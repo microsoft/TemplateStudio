@@ -6,11 +6,7 @@ Namespace Views
         Inherits Page
 '{[{
 
-        Private ReadOnly Property ViewModel As wts.ItemNameViewModel
-            Get
-                Return ViewModelLocator.Current.wts.ItemNameViewModel
-            End Get
-        End Property
+        Private ReadOnly Property ViewModel As wts.ItemNameViewModel = ViewModelLocator.Current.wts.ItemNameViewModel
 '}]}
     End Class
 End Namespace

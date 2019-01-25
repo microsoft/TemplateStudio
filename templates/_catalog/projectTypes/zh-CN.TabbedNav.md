@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿顶部的标签页可用于在页面之间快速导航，并为应用内容保留了大量空间。
+推荐用于有不超过 5 个同等重要的顶层导航项的情况。

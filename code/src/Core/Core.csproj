@@ -206,7 +206,7 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
-    <Compile Include="MetadataType.cs" />
+    <Compile Include="Templates\MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\PageSuffixValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
@@ -224,13 +224,13 @@
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostActionInfo.cs" />
-    <Compile Include="Fs.cs" />
+    <Compile Include="Helpers\Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatusEventArgs.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
-    <Compile Include="MetadataLocalizedInfo.cs" />
+    <Compile Include="Templates\MetadataLocalizedInfo.cs" />
     <Compile Include="Naming\ExistingNamesValidator.cs" />
     <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
@@ -327,7 +327,7 @@
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
-    <Compile Include="MetadataInfo.cs" />
+    <Compile Include="Templates\MetadataInfo.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
@@ -346,8 +346,8 @@
     <Compile Include="Templates\TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\TemplateType.cs" />
-    <Compile Include="ValidationErrorType.cs" />
-    <Compile Include="ValidationResult.cs" />
+    <Compile Include="Naming\ValidationErrorType.cs" />
+    <Compile Include="Naming\ValidationResult.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\ValidationMessage.cs" />
     <Compile Include="Validation\ValidationResult.cs" />

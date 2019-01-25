@@ -6,10 +6,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class wts.ItemNamePage : Page
     {
         //{[{
-        private wts.ItemNameViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.wts.ItemNameViewModel; }
-        }
+        private wts.ItemNameViewModel ViewModel { get; } = ViewModelLocator.Current.wts.ItemNameViewModel;
 
         //}]}
     }

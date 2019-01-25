@@ -15,6 +15,7 @@ using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Test
 {

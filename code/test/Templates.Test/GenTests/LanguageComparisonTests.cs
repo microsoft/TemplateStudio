@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
 using Xunit;
 

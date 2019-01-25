@@ -473,6 +473,14 @@
     <value>Strona {0} została pomyślnie dodana</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Nie można znaleźć projektu {0}</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Nie można dodać plików ani projektów.</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas zwijania drzewa rozwiązań. Przykład:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -581,6 +589,10 @@
     <value>Kontrolka HamburgerMenu jest przestarzała, a program Windows Template Studio obsługuje teraz kontrolkę NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio używa teraz kontrolki NavigationView w układzie poziomym w projektach zawierających elementy przestawne. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio używa teraz kontrolki NavigationView z biblioteki interfejsu użytkownika systemu Windows.</value>
     <comment>Has old navigation view validation error message</comment>
@@ -607,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Zobacz dokumentację, aby zaktualizować.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -648,60 +668,43 @@
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -Id {0} -Version {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
   <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+    <value>Nie można dodać niektórych pakietów NuGet do projektu {0}. Być może jest to spowodowane Twoim wcześniejszym przełączeniem się do trybu offline. 
+Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojego projektu i ręcznie dodaj brakujące pakiety: 
 
 {1}</value>
     <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Pakiet instalacyjny -Identyfikator {0} -Wersja {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>Dodawanie elementu {0} do projektu…</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>Dodawanie pakietu NuGet {0} do projektu…</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>Dodawanie projektu {0} do rozwiązania…</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>Dodawanie odwołań między projektami...</value>
+    <comment>Status bar message for adding project references</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
     <value>{0}updatetomultiproject.md</value>
     <comment>Has no core project validation link documentation</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has no core project validation link documentation message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
-    <value>Windows Template Studio is now adding a core project. </value>
+    <value>Program Windows Template Studio doda teraz projekt podstawowy. </value>
     <comment>Has no core project validation error message</comment>
   </data>
 </root>

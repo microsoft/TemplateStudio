@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿タブを上部に表示することで、ページ間をすばやく移動したり、アプリ コンテンツに使用できるスペースを広く確保したりできます。
+これは、最上位のナビゲーション項目が 5 つ以下で、それらの重要性が同程度であるときにご利用ください。

@@ -150,11 +150,11 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der Postaktionsdatei manuell zusammen. Verwandte Vorlage: '{2}'.</value>
+    <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der postactionsdatei manuell zusammen. Verwandte Vorlage: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Die Datei {0} kann nicht zu {1} kopiert werden. Fehler: {2}</value>
+    <value>Die Datei {0} kann nicht in {1} kopiert werden. Fehler: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
@@ -206,7 +206,7 @@
     <value>Zurzeit können keine Vorlageninhalte heruntergeladen werden. Der Vorgang wird später wiederholt.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Die Vorlageninhalte wurden von {1} zu {0} heruntergeladen.</value>
+    <value>Die Vorlageninhalte wurden von {1} in {0} heruntergeladen.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
@@ -445,11 +445,11 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
     <value>Fehler beim Herunterladen der Quellkonfigurationsdatei.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>Die Datei {0} kann nicht in {1} verschoben werden. Fehler: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Die Layoutvorlage {0} für Framework framework {1} und Plattform {2} wurde nicht gefunden.</value>
+    <value>Die Layoutvorlage {0} für framework {1} und Plattform {2} wurde nicht gefunden.</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -461,7 +461,7 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Die Abhängigkeitsvorlage {0} für Framework framework {1} und Plattform {2} wurde nicht gefunden.</value>
+    <value>Die Abhängigkeitsvorlage {0} für framework {1} und Plattform {2} wurde nicht gefunden.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">

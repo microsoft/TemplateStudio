@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -245,8 +246,6 @@ namespace Microsoft.Templates.Core.Locations
 
         private void LoadAvailableContents()
         {
-            var latestVersion = new Version(0, 0, 0, 0);
-            string latestContent = Path.Combine(TemplatesFolder, "0.0.0.0");
             All = new List<TemplatesContentInfo>();
 
             if (Directory.Exists(TemplatesFolder))

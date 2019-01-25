@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Core.PostActions
             }
         }
 
-        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions, bool addingToExistingProject = false)
+        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateOutputType())
             {

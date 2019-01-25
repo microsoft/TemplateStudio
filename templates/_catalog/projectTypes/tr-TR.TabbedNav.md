@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Üstteki sekmeler, sayfalar arasında hızlı gezinti olanağı sağlar ve uygulama içeriğine çok fazla alan bırakır.
+Bu, eşit düzeyde önemli 5 veya daha az üst seviye gezinme öğeniz varsa önerilir.

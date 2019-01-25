@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Les onglets figurant sur la partie supérieure permettent de naviguer rapidement entre les pages et laissent de l'espace pour le contenu de l'application.
+Pensez-y si vous avez jusqu'à 5 éléments de navigation d'importance égale sur la partie supérieure.

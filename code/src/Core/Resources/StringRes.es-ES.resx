@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>No se puede encontrar la línea esperada `{0}` en el archivo '{1}'. Combina el contenido del archivo de la acción posterior manualmente. Plantilla relacionada: '{2}'.</value>
+    <value>No se puede encontrar la línea esperada `{0}` en el archivo '{1}'. Combina el contenido del archivo de la postaction manualmente. Plantilla relacionada: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -445,7 +445,7 @@ No se pueden integrar las modificaciones siguientes: {2}
     <value>Error al descargar el archivo de configuración de origen.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>El archivo {0} no se puede mover a {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
