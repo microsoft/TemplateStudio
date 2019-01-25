@@ -29,16 +29,6 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
-            MyBase.OnNavigatedTo(e)
-            If e.NavigationMode = NavigationMode.Back Then
-                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey)
-                If Not String.IsNullOrEmpty(selectedImageId) Then
-                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey)
-                End If
-            End If
-        End Sub
-
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)
             Dim selected = TryCast(e.ClickedItem, SampleImage)
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID)
