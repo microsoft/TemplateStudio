@@ -113,6 +113,27 @@ where
 * `<wts directory>` : Directory where WTS is cloned
 * `<output directory>`: Directory where test xml result files will be generated
 
+## Core project
+The core project is in charge of:
+- Checking for new template packages, download, extract and verify template packages and building up and refreshing the templates cache.
+- Providing information about available projecttypes, frameworks, page and feature templates
+- Composition of the generation queue
+- Generation and postaction execution
+
+
+During the generation the GenContext class provides access to:
+
+* The Toolbox, with the Templates Repository and the Shell class
+* The current context, with information about:
+    * The current project name
+    * The generation output path
+        * Project Path for New Project generations
+        * Temporary Path for New Item generations using Right Click
+    * The destination path (project Path for both New Project and New Item generations)
+    * ProjectInfo: Information about projects to be added to the solution and items and references that will be added to the project once the generation finishes
+
+
+
 ## Table of Contents
 
 * [Installing / Using the extension](getting-started-extension.md)
