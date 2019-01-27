@@ -197,6 +197,7 @@ namespace Microsoft.Templates.Core.Gen
                     var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue, newItemGeneration);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                     genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
+                    genInfo?.Parameters.Add(GenParams.Username, Environment.UserName);
 
                     foreach (var dependency in genInfo?.Template.GetDependencyList())
                     {
