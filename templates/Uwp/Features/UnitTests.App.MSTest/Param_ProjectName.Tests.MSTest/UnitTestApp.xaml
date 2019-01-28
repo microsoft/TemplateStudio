@@ -1,0 +1,11 @@
+﻿<Application
+    x:Class="Param_ProjectName.Tests.MSTest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Param_ProjectName.Tests.MSTest">
+
+    <Application.Resources>
+        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+    </Application.Resources>
+
+</Application>
