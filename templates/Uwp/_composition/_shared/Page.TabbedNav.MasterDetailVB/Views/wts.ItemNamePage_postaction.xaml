@@ -1,0 +1,12 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <controls:MasterDetailsView
+            x:Name="MasterDetailsViewControl"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+    </Grid>
+</Page>
