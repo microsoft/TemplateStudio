@@ -10,8 +10,8 @@
     "summary": "Um zwischen den Seiten navigieren zu können, ist ein Navigationsbereich („Hamburger-Menü“) enthalten."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Registerkarten oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigationselemente oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten."
   }
 ]

@@ -20,7 +20,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private const string MacroStartDelete = "{--{";
         private const string MacroEndDelete = "}--}";
 
-        private static string[] macros = new string[] { MacroBeforeMode, MacroStartGroup, MacroEndGroup, MacroStartDocumentation, MacroEndDocumentation, MacroStartDelete, MacroEndDelete };
+        internal const string MacroStartOptionalContext = "{??{";
+        internal const string MacroEndOptionalContext = "}??}";
+
+        private static string[] macros = new string[] { MacroBeforeMode, MacroStartGroup, MacroEndGroup, MacroStartDocumentation, MacroEndDocumentation, MacroStartDelete, MacroEndDelete, MacroStartOptionalContext, MacroEndOptionalContext };
 
         private const string OpeningBrace = "{";
         private const string ClosingBrace = "}";
@@ -70,7 +73,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             foreach (var mergeLine in merge)
             {
                 // try to find line
-                if (mergeMode == MergeMode.Context)
+                if (mergeMode == MergeMode.Context || mergeMode == MergeMode.OptionalContext)
                 {
                     currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(diffTrivia), lastLineIndex);
                 }
@@ -125,6 +128,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                         else if (mergeMode == MergeMode.Remove)
                         {
                             removalBuffer.Add(mergeLine.WithLeadingTrivia(diffTrivia));
+                        }
+                        else if (mergeMode == MergeMode.OptionalContext)
+                        {
+                            currentLineIndex = lastLineIndex;
                         }
                         else if (mergeMode == MergeMode.Context)
                         {
@@ -183,6 +190,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 return MergeMode.Context;
             }
+            else if (mergeLine.Contains(MacroStartOptionalContext))
+            {
+                return MergeMode.OptionalContext;
+            }
+            else if (mergeLine.Contains(MacroEndOptionalContext))
+            {
+                return MergeMode.Context;
+            }
 
             return current;
         }
@@ -208,8 +223,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
 
                 mergeString = mergeString.Remove(startIndex - commentIndicatorLength, lengthOfDeletion);
-                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
-                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
+                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
+                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
             }
 
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();

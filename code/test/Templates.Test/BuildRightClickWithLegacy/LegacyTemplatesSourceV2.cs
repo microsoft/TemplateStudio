@@ -4,16 +4,10 @@
 
 using System;
 using System.IO;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Packaging;
-using Microsoft.Templates.Core.Resources;
-using Microsoft.Templates.UI.Threading;
-using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -31,9 +25,6 @@ namespace Microsoft.Templates.Test
             await AcquireAsync(packageInfo, ct);
 
             var templatecontent = await base.GetContentAsync(packageInfo, workingFolder, ct);
-
-            // Workaround for version 2.4, as templates contain "Templates" folder
-            await Fs.SafeMoveDirectoryAsync(Path.Combine(templatecontent.Path, "Templates"), templatecontent.Path);
 
             return templatecontent;
         }

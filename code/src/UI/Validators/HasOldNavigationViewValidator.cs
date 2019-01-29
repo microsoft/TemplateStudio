@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
 using Microsoft.Templates.UI.Services;
 

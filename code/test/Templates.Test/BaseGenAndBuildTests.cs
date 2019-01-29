@@ -6,22 +6,28 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
-using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Test
 {
-    public class BaseGenAndBuildTests : BaseTestContextProvider
+    public class BaseGenAndBuildTests
     {
         protected BaseGenAndBuildFixture _fixture;
+
+        public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
+        {
+            _fixture = fixture;
+            _fixture.InitializeFixture(contextProvider ?? new FakeContextProvider(), framework);
+        }
 
         protected static string ShortLanguageName(string language)
         {
@@ -36,8 +42,8 @@ namespace Microsoft.Templates.Test
                     return "B";
                 case "SplitView":
                     return "SV";
-                case "TabbedPivot":
-                    return "TP";
+                case "TabbedNav":
+                    return "TN";
                 default:
                     return projectType;
             }
@@ -48,17 +54,36 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
         }
 
+        protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            var projectName = $"{ShortProjectType(projectType)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
+
+            return (projectName, projectPath);
+        }
+
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            ProjectName = projectName;
-
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = destinationPath,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -90,6 +115,35 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
+        protected void EnsureCanInferConfigInfo(string projectType, string framework, string platform, string projectPath)
+        {
+            RemoveProjectConfigInfoFromProject();
+
+            AssertCorrectProjectConfigInfo(projectType, framework, platform);
+            AssertProjectConfigInfoRecreated(projectType, framework, platform);
+
+            Fs.SafeDeleteDirectory(projectPath);
+        }
+
+        protected void RemoveProjectConfigInfoFromProject()
+        {
+            var manifest = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
+            var lines = File.ReadAllLines(manifest);
+            var sb = new StringBuilder();
+            var fx = $"genTemplate:Item Name=\"framework\"";
+            var pt = $"genTemplate:Item Name=\"projectType\"";
+            foreach (var line in lines)
+            {
+                if (!line.Contains(fx) && !line.Contains(pt))
+                {
+                    sb.AppendLine(line);
+                }
+            }
+
+            File.Delete(manifest);
+            File.WriteAllText(manifest, sb.ToString());
+        }
+
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
@@ -97,6 +151,18 @@ namespace Microsoft.Templates.Test
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
             Assert.Equal(expectedPlatform, info.Platform);
+        }
+
+        protected void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
+        {
+            var content = File.ReadAllText(Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest"));
+            var expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
+            var expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
+            var expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
+
+            Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
@@ -115,10 +181,14 @@ namespace Microsoft.Templates.Test
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
+            var path = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = path,
+                GenerationOutputPath = path,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -144,7 +214,7 @@ namespace Microsoft.Templates.Test
                                              && !t.GetIsHidden()
                                              && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
@@ -167,12 +237,17 @@ namespace Microsoft.Templates.Test
             return finalProjectPath;
         }
 
-        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
+        protected async Task AddRightClickTemplatesAsync(string destinationPath, IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
             // Add new items
             foreach (var item in rightClickTemplates)
             {
-                TempGenerationPath = GenContext.GetTempGenerationPath(projectName);
+                GenContext.Current = new FakeContextProvider
+                {
+                    ProjectName = projectName,
+                    DestinationPath = destinationPath,
+                    GenerationOutputPath = GenContext.GetTempGenerationPath(projectName),
+                };
 
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
@@ -208,11 +283,14 @@ namespace Microsoft.Templates.Test
             finalName = Naming.Infer(finalName, validators);
 
             var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            OutputPath = DestinationPath;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = destinationPath,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -237,9 +315,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
         {
-            var result = GenerationFixture.GetProjectTemplates();
-
-            return result;
+            return GenerationFixture.GetProjectTemplates();
         }
 
         public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGenerationAsync()
@@ -255,7 +331,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool includeMultipleInstances = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
@@ -271,9 +347,15 @@ namespace Microsoft.Templates.Test
                 singlePageName = genIdentitiesList.Last().Split('.').Last();
             }
 
-            ProjectName = $"{projectType}{framework}{singlePageName}{ShortLanguageName(language)}";
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
-            OutputPath = DestinationPath;
+            var projectName = $"{projectType}{framework}{singlePageName}{ShortLanguageName(language)}";
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = destinationPath,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);
 
@@ -286,7 +368,7 @@ namespace Microsoft.Templates.Test
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
-                if (itemTemplate.GetMultipleInstance())
+                if (includeMultipleInstances && itemTemplate.GetMultipleInstance())
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }
@@ -297,7 +379,7 @@ namespace Microsoft.Templates.Test
                 // Useful if creating a blank project type and want to change the start page
                 userSelection.HomeName = userSelection.Pages.Last().name;
 
-                if (projectType == "TabbedPivot")
+                if (projectType == "TabbedNav")
                 {
                     userSelection.Pages.Reverse();
                 }
@@ -305,9 +387,9 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, GenContext.Current.ProjectName);
 
-            return (resultPath, ProjectName);
+            return (resultPath, GenContext.Current.ProjectName);
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string framework)
@@ -318,7 +400,7 @@ namespace Microsoft.Templates.Test
 
         private const string NavigationPanel = "SplitView";
         private const string Blank = "Blank";
-        private const string TabsAndPivot = "TabbedPivot";
+        private const string TabbedNav = "TabbedNav";
         private const string MvvmBasic = "MVVMBasic";
         private const string MvvmLight = "MVVMLight";
         private const string CodeBehind = "CodeBehind";
@@ -332,9 +414,9 @@ namespace Microsoft.Templates.Test
             yield return new object[] { Blank, CodeBehind };
             yield return new object[] { Blank, MvvmBasic };
             yield return new object[] { Blank, MvvmLight };
-            yield return new object[] { TabsAndPivot, CodeBehind };
-            yield return new object[] { TabsAndPivot, MvvmBasic };
-            yield return new object[] { TabsAndPivot, MvvmLight };
+            yield return new object[] { TabbedNav, CodeBehind };
+            yield return new object[] { TabbedNav, MvvmBasic };
+            yield return new object[] { TabbedNav, MvvmLight };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
@@ -347,6 +429,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                 "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                 "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
                 "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                 "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
@@ -355,7 +438,7 @@ namespace Microsoft.Templates.Test
             };
         }
 
-        // Need overload with different number of params to work with XUnit.MemeberData
+        // Need overload with different number of params to work with XUnit.MemberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
         {
             return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);

@@ -1,6 +1,7 @@
-﻿Imports Param_ItemNamespace.Models
+﻿Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Services
 Imports Windows.System
+Imports Microsoft.Toolkit.Uwp.UI.Animations
 
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
@@ -8,25 +9,20 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            ViewModel.SetImage(previewImage)
         End Sub
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            ViewModel.Initialize(TryCast(e.Parameter, String), e.NavigationMode)
-            showFlipView.Begin()
+            Dim selectedImageId = TryCast(e.Parameter, String)
+            ViewModel.Initialize(selectedImageId, e.NavigationMode)
         End Sub
 
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
-                previewImage.Visibility = Visibility.Visible
-                ViewModel.SetAnimation()
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.SelectedImage)
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
             End If
-        End Sub
-
-        Private Sub OnShowFlipViewCompleted(sender As Object, e As Object)
-            flipView.Focus(FocusState.Programmatic)
         End Sub
 
         Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)

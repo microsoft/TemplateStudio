@@ -3,8 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.UI.Controls;
-using Param_ItemNamespace.Models;
-using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {

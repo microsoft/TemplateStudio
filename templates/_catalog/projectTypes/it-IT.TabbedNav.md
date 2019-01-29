@@ -1,0 +1,2 @@
+﻿Le schede nella parte superiore permettono la navigazione veloce tra pagine e lasciano una gran quantità di spazio al contenuto dell'app.
+È consigliato se si dispone di un massimo di 5 elementi di navigazione di primo livello della stessa importanza.

@@ -1,0 +1,13 @@
+﻿<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+<!--^^-->
+<!--{[{-->
+    <Type Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs}" MarshalObject="Public" />
+
+    <Type Name="Microsoft.UI.Xaml.Controls.NavigationView">
+      <Event Name="ItemInvoked" Dynamic="Required"/>
+    </Type>
+
+<!--}]}-->
+  </Application>
+</Directives>

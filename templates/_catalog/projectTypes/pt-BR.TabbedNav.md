@@ -1,0 +1,2 @@
+﻿Guias na parte superior permitem a navegação rápida entre as páginas e deixam bastante espaço para o conteúdo do aplicativo.
+Isso é recomendado se você tem cinco ou menos itens de navegação de nível superior que são igualmente importantes.

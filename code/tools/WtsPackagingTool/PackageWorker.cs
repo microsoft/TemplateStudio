@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -126,7 +127,7 @@ namespace WtsPackagingTool
                     Fs.EnsureFolder(destinationDir);
 
                     output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
-                    await TemplatePackage.ExtractAsync(inputFile, destinationDir, true).ConfigureAwait(false);
+                    await TemplatePackage.ExtractAsync(inputFile, destinationDir).ConfigureAwait(false);
                 }
                 else
                 {

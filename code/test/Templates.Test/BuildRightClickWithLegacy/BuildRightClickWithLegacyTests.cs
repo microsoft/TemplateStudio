@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
+using Microsoft.Templates.Core.Helpers;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -21,13 +22,12 @@ namespace Microsoft.Templates.Test
         private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
@@ -52,6 +52,11 @@ namespace Microsoft.Templates.Test
 
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
+            // Add core project using test template.
+            // This is a temporary workaround to allow right clicks with multiproject on 2.5 templates. Remove when 3.0 is released
+            var coreTemplate = _fixture.Templates().Where(t => t.Name == "Testing.AddCoreProject" || t.Name == "Testing.AddCoreProject.VB");
+            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, coreTemplate, projectName, projectType, framework, platform, language);
+
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                             && t.GetFrameworkList().Contains(framework)
@@ -60,18 +65,27 @@ namespace Microsoft.Templates.Test
                                             && !t.GetIsHidden()
                                             && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, rightClickTemplates, projectName, projectType, framework, platform, language);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
-            var projectName = $"{ShortProjectType(projectType)}{framework}AllLegacy";
+            var fixture = _fixture as BuildRightClickWithLegacyFixture;
+
+            if (language == ProgrammingLanguages.VisualBasic)
+            {
+                fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
+            }
+
+            var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project
@@ -80,9 +94,13 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            // var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
-            // Temp workaround to be able to generate project from template without platform
-            var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            Func<ITemplateInfo, bool> templateSelector =
+               t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                   && t.GetFrameworkList().Contains(framework)
+                   && t.GetPlatform() == platform
+                   && !t.GetIsHidden();
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName,  false);
         }
 
         protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
@@ -91,10 +109,11 @@ namespace Microsoft.Templates.Test
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
-            ProjectName = projectName;
-
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName),
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language);
 

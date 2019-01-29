@@ -101,7 +101,7 @@ Namespace Controls
                       Throw New NotSupportedException()
                   End If
 
-                  Dim device = _cameraDevices.FirstOrDefault(Function(camera) camera.EnclosureLocation?.Panel = Panel)
+                  Dim device = _cameraDevices.FirstOrDefault(Function(camera) camera.EnclosureLocation IsNot Nothing And camera.EnclosureLocation?.Panel = Panel)
 
                   Dim cameraId = If(device?.Id, _cameraDevices.First().Id)
 
@@ -126,6 +126,10 @@ Namespace Controls
               errorMessage.Text = "Camera_Exception_UnauthorizedAccess".GetLocalized()
           Catch ex As NotSupportedException
                 errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized()
+          Catch ex As TaskCanceledException
+                errorMessage.Text = "Camera_Exception_InitializationCanceled".GetLocalized()
+          Catch ex As Exception
+                errorMessage.Text = "Camera_Exception_InitializationError".GetLocalized()
           End Try
       End Function
 

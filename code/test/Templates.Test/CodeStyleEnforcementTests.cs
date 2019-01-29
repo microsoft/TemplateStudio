@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
             CheckStringNotIncluded("'''/");
 
-            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync", "OnPivotActivatedAsync" });
+            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync", "OnPivotActivatedAsync", "TaskCanceledException" });
 
             IfLineIncludes("\"{", itMustAlsoInclude: "$");
 
@@ -149,7 +149,9 @@ namespace Microsoft.Templates.Test
 
         // Disabled as failing on AppVeyor for some files with no obvious reason
         ////[Fact]
+#pragma warning disable xUnit1013 // Public method should be marked as test
         public void EnsureVisualBasicFilesEndWithSingleBlankLine()
+#pragma warning restore xUnit1013 // Public method should be marked as test
         {
             var errorFiles = new List<string>();
 
@@ -157,8 +159,8 @@ namespace Microsoft.Templates.Test
             {
                 var text = File.ReadAllText(file, Encoding.UTF8);
 
-                if (!text.EndsWith(Environment.NewLine, StringComparison.InvariantCulture)
-                 || text.EndsWith(Environment.NewLine + Environment.NewLine, StringComparison.InvariantCulture))
+                if (!text.EndsWith(Environment.NewLine, StringComparison.OrdinalIgnoreCase)
+                 || text.EndsWith(Environment.NewLine + Environment.NewLine, StringComparison.OrdinalIgnoreCase))
                 {
                     errorFiles.Add(file);
                 }

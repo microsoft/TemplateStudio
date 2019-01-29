@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement. Modèle associé : '{2}'.</value>
+    <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de postaction manuellement. Modèle associé : '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -211,9 +211,6 @@
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la synchronisation des modèles. État :</value>
-  </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Ajout des éléments au projet…</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Ouverture des fichiers générés…</value>
@@ -411,7 +408,7 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>Le '{0}' PostAction.ActionId défini dans le modèle ne correspond pas à la classe ActionId « {1} » attendue. Impossible de continuer. Modèle associé : {2}.</value>
+    <value>Le PostAction.ActionId « {0} » défini dans le modèle ne correspond pas à la classe ActionId « {1} » attendue. Impossible de continuer. Modèle associé : {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -446,5 +443,60 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
     <value>Une erreur est survenue lors du téléchargement du fichier de configuration source.</value>
+  </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>Le fichier {0} ne peut pas être déplacé vers {1}. Erreur : {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Le modèle de mise en page {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Élément de mise en page {0} non valide. Les éléments de mise en page doivent être de type Page ou Fonctionnalité.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Élément de dépendance {0} non valide. Les éléments de dépendance doivent être de type Page ou Fonctionnalité.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Le modèle de dépendance {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Élément de dépendance {0} non valide. Les dépendances doivent être configurées en tant que multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Dépendance circulaire détectée sur le modèle {0} avec {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Le modèle de dépendance {0} n'a pas été trouvé dans la sélection de l'utilisateur.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Création de la fonctionnalité « {0} »…</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Création de la page « {0} »…</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Création du projet « {0} »…</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Modèle « {0} », nom : « {1} », raison : '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Télémétrie du suivi de l'exception pendant la création.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Impossible de résoudre la plateforme.</value>
   </data>
 </root>

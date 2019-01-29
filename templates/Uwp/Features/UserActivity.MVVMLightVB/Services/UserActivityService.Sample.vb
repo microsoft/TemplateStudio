@@ -27,7 +27,7 @@ Namespace Services
         ' TODO WTS: Change this To configure your own adaptive card
         ' For more info about adaptive cards see http://adaptivecards.io/
         Private Function CreateAdaptiveCardSample(displayText As String, description As String, imageUrl As String) As IAdaptiveCard
-            Dim adaptiveCard = New AdaptiveCard()
+            Dim adaptiveCard = New AdaptiveCard("1.0")
             Dim columns = New AdaptiveColumnSet()
             Dim firstColumn = New AdaptiveColumn() With {
                 .Width = "auto"

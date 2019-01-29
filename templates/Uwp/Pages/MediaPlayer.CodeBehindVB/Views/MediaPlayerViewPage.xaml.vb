@@ -27,6 +27,20 @@ Namespace Views
             mpe.Source = MediaSource.CreateFromUri(New Uri(DefaultSource))
         End Sub
 
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
+        End Sub
+
+        Protected Overrides Sub OnNavigatedFrom(e As NavigationEventArgs)
+            MyBase.OnNavigatedFrom(e)
+            mpe.MediaPlayer.Pause()
+            RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
+            Dim mediaSource = TryCast(mpe.Source, MediaSource)
+            mediaSource?.Dispose()
+            mpe.Source = Nothing
+        End Sub
+
         Private Async Sub PlaybackSession_PlaybackStateChanged(sender As MediaPlaybackSession, args As Object)
             Dim playbackSession = TryCast(sender, MediaPlaybackSession)
 

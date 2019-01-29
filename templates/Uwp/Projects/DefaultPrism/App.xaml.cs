@@ -28,5 +28,12 @@ namespace wts.DefaultProject
         {
             await base.OnInitializeAsync(args);
         }
+
+        protected override IDeviceGestureService OnCreateDeviceGestureService()
+        {
+            var service = base.OnCreateDeviceGestureService();
+            service.UseTitleBarBackButton = false;
+            return service;
+        }
     }
 }

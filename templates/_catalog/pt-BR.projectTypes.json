@@ -10,8 +10,8 @@
     "summary": "Um painel de navegação (ou 'menu hambúrguer') é incluído para a navegação entre as páginas."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Guias na parte superior permitem a navegação rápida entre as páginas."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Itens de Navegação na parte superior permitem a navegação rápida entre as páginas."
   }
 ]

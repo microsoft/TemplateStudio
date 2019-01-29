@@ -453,10 +453,6 @@
     <value>Génération terminée</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Restauration des packages…</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Création du projet Windows Template Studio…</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,81 +473,21 @@
     <value>La page {0} a bien été ajoutée</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Télémétrie du suivi de l'exception pendant la création.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Impossible de trouver le projet {0}</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Impossible d'ajouter des éléments.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Impossible d'ajouter le projet à la solution. Assurez-vous d'avoir installé le kit de développement logiciel requis.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Impossible de réactualiser le projet. Essayez de le réactualiser manuellement.</value>
-    <comment>Error message for unable to refresh project</comment>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Impossible d'ajouter des fichiers et des projets.</value>
+    <comment>Error message for unable to add files and projects</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la réduction de l'arborescence de solutions. Ex. :</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Une erreur est survenue lors de la restauration des packages. Ex. :</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Impossible de restaurer automatiquement les packages NuGet pour la solution. Restaurer manuellement les packages NuGet.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
-  </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de l'affichage du message d'état. Ex. :</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Dépendance circulaire détectée sur le modèle {0} avec {1}.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Le modèle de dépendance {0} n'a pas été trouvé dans la sélection de l'utilisateur.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Élément de dépendance {0} non valide. Les dépendances doivent être configurées en tant que multipleInstance = false.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Le modèle de dépendance {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Élément de dépendance {0} non valide. Les éléments de dépendance doivent être de type Page ou Fonctionnalité.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Modèle « {0} », nom : « {1} », raison : '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Le modèle de mise en page {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Élément de mise en page {0} non valide. Les éléments de mise en page doivent être de type Page ou Fonctionnalité.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Création de la fonctionnalité « {0} »…</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Création de la page « {0} »…</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Création du projet « {0} »…</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Lancement de l'application</value>
@@ -653,15 +589,16 @@
     <value>La commande HamburgerMenu est obsolète et Windows Template Studio prend désormais en charge NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio utilise désormais la NavigationView horizontale dans les projets Pivot. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio utilise désormais NavigationView depuis la bibliothèque d’interface utilisateur Windows.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Outil de composition</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Impossible de résoudre la plateforme.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Sélectionner la plateforme</value>
@@ -682,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Afficher la documentation à mettre à jour.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -722,5 +667,44 @@
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Certains packages NuGet n'ont pas pu être ajoutés à votre projet {0}. Cette situation a pu se produire si vous étiez déconnecté. 
+Vérifiez la liste suivante reprenant les packages requis par le code de votre projet et ajoutez manuellement les packages manquants : 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Ajout de {0} au projet…</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Ajout du package NuGet {0} au projet…</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Ajout du projet {0} à la solution…</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Ajout des références entre les projets...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Afficher la documentation à mettre à jour.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio ajoute un projet principal. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

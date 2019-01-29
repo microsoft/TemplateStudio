@@ -10,8 +10,8 @@
     "summary": "Zawiera on okienko nawigacji (tzw. menu typu „hamburger”) do nawigowania między stronami."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Karty u góry umożliwiają szybkie przechodzenie między stronami."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Elementy nawigacyjne u góry umożliwiają szybkie przechodzenie między stronami."
   }
 ]

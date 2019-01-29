@@ -5,7 +5,7 @@
 
 using System;
 //{[{
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Helpers;
 //}]}
 
 namespace Param_ItemNamespace.Services
@@ -22,8 +22,11 @@ namespace Param_ItemNamespace.Services
             //  2. Uncomment the following line (an exception will be thrown if it is executed and the above information is not provided).
             // await Singleton<HubNotificationsFeatureService>.Instance.InitializeAsync();
 //}]}
+//{??{
             await Task.CompletedTask;
+//}??}
         }
+
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {

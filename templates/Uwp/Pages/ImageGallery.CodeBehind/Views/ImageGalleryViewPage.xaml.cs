@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
-using Windows.Storage;
-using Windows.UI.Xaml;
+using Microsoft.Toolkit.Uwp.UI.Animations;
+
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
@@ -18,8 +15,6 @@ namespace Param_ItemNamespace.Views
     public sealed partial class ImageGalleryViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
-        public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
-        public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
         private ObservableCollection<SampleImage> _source;
 
@@ -39,8 +34,8 @@ namespace Param_ItemNamespace.Views
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selected = e.ClickedItem as SampleImage;
-            ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
             NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
     }

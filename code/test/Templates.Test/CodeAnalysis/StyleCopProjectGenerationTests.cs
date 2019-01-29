@@ -4,16 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 using Xunit;
-using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -23,13 +18,12 @@ namespace Microsoft.Templates.Test
     public class StyleCopProjectGenerationTests : BaseGenAndBuildTests
     {
         public StyleCopProjectGenerationTests(StyleCopGenerationTestsFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForStyleCop")]
+        [MemberData(nameof(GetProjectTemplatesForStyleCop))]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
         {

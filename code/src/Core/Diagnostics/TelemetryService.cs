@@ -247,7 +247,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 if (vsTelemAvailable)
                 {
-                    TrackProjectVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
+                    TrackVsTelemetry("Project generated", properties, pageIdentities, featureIdentities, metrics, success);
                 }
             }
             catch (Exception ex)
@@ -256,40 +256,13 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        private static void TrackProjectVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success)
-        {
-            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
-
-            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "Project generated");
-
-            foreach (var key in properties.Keys)
-            {
-                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
-                if (!string.IsNullOrEmpty(properties[key]))
-                {
-                    e.Properties[renamedKey] = properties[key];
-                }
-            }
-
-            e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
-            e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
-
-            foreach (var key in metrics.Keys)
-            {
-                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpperInvariant() + ".");
-                e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
-            }
-
-            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
-        }
-
         public void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
         {
             try
             {
                 if (vsTelemAvailable)
                 {
-                    TrackNewItemVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
+                    TrackVsTelemetry("New Item generated", properties, pageIdentities, featureIdentities, metrics, success);
                 }
             }
             catch (Exception ex)
@@ -298,11 +271,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        private void TrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
+        private static void TrackVsTelemetry(string resultSummary, Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success)
         {
             VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
 
-            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "New Item generated");
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, resultSummary);
 
             foreach (var key in properties.Keys)
             {

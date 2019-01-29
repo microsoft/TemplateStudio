@@ -4,7 +4,7 @@
 '**}
 
 '{[{
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 '}]}
 
 Namespace Services
@@ -14,7 +14,9 @@ Namespace Services
             '{[{
             Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
+            '{??{
             Await Task.CompletedTask
+            '}??}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

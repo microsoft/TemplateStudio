@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Resources;
 
@@ -102,7 +103,7 @@ namespace Microsoft.Templates.Core.Gen
             var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator> { new SuggestedDirectoryNameValidator(projectTempFolder) }, "_");
 
-            return Path.Combine(projectTempFolder, inferredName);
+            return Path.Combine(projectTempFolder, inferredName, projectName);
         }
 
         private static void PurgeTempGenerations(int daysToKeep)

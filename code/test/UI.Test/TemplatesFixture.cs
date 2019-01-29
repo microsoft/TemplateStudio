@@ -3,40 +3,18 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 
 namespace Microsoft.UI.Test
 {
-    public class TemplatesFixture : IContextProvider
+    public class TemplatesFixture
     {
         private static bool syncExecuted = false;
-
-        public string ProjectName => "Test";
-
-        public string OutputPath { get; set; }
-
-        public string DestinationPath => string.Empty;
-
-        public string DestinationParentPath => string.Empty;
-
-        public string TempGenerationPath => string.Empty;
-
-        public List<string> ProjectItems => null;
-
-        public List<string> FilesToOpen => null;
-
-        public List<FailedMergePostActionInfo> FailedMergePostActions => null;
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => null;
-
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => null;
 
         public TemplatesRepository Repository { get; private set; }
 
@@ -46,9 +24,16 @@ namespace Microsoft.UI.Test
         Justification = "Required por unit testing.")]
         public void InitializeFixture(string platform, string language)
         {
+            var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
             var source = new LocalTemplatesSource();
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
-            GenContext.Current = this;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = "Test",
+                DestinationPath = path,
+                GenerationOutputPath = path,
+            };
+
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();

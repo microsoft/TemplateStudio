@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class MergePostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void MergePostAction_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_LineNotFound_Error()
+        public void MergePostAction_Execute_LineNotFound_Error()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\Merge\Source_fail.cs");
@@ -59,7 +60,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_Error()
+        public void Execute_FileNotFound_ErrorAsync()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\Merge\NoSource_postaction.cs");
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_LineNotFound_NoError()
+        public void MergePostAction_Execute_LineNotFound_NoError()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source_fail.cs");
@@ -88,9 +89,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             GenContext.Current = new FakeContextProvider()
             {
-                OutputPath = outputPath,
+                GenerationOutputPath = outputPath,
                 DestinationPath = destinationPath,
-                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
@@ -99,9 +99,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
-                    @"temp\Source_fail.cs",
-                    mergeFile,
-                    @"temp\Source_fail_failedpostaction.cs",
+                    "temp\\Source_fail.cs",
+                    Path.Combine(outputPath, "Source_fail_postaction.cs"),
+                    "temp\\Source_fail_failedpostaction.cs",
+                    Path.Combine(outputPath, "Source_fail_failedpostaction.cs"),
                     string.Format(StringRes.FailedMergePostActionLineNotFound, "namespace TestData", "temp\\Source_fail.cs", templateName),
                     MergeFailureType.LineNotFound);
 
@@ -113,6 +114,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 {
                     Assert.Equal(expected.Description, f1.Description);
                     Assert.Equal(expected.FailedFileName, f1.FailedFileName);
+                    Assert.Equal(expected.FailedFilePath, f1.FailedFilePath);
                     Assert.Equal(expected.FileName, f1.FileName);
                     Assert.Equal(expected.FilePath, f1.FilePath);
                     Assert.Equal(expected.MergeFailureType, f1.MergeFailureType);
@@ -120,7 +122,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_NoError()
+        public void MergePostAction_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_postaction.cs");
@@ -132,9 +134,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             GenContext.Current = new FakeContextProvider()
             {
-                OutputPath = outputPath,
+                GenerationOutputPath = outputPath,
                 DestinationPath = destinationPath,
-                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
@@ -142,8 +143,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
                     "temp\\NoSource.cs",
-                    mergeFile,
-                    @"temp\NoSource_failedpostaction.cs",
+                    Path.Combine(outputPath, "NoSource_postaction.cs"),
+                    "temp\\NoSource_failedpostaction.cs",
+                    Path.Combine(outputPath, "NoSource_failedpostaction.cs"),
                     string.Format(StringRes.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
                     MergeFailureType.FileNotFound);
 
@@ -155,6 +157,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                   {
                       Assert.Equal(expected.Description, f1.Description);
                       Assert.Equal(expected.FailedFileName, f1.FailedFileName);
+                      Assert.Equal(expected.FailedFilePath, f1.FailedFilePath);
                       Assert.Equal(expected.FileName, f1.FileName);
                       Assert.Equal(expected.FilePath, f1.FilePath);
                       Assert.Equal(expected.MergeFailureType, f1.MergeFailureType);

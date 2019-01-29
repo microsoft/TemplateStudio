@@ -4,7 +4,6 @@
 
         Public Sub New()
             InitializeComponent()
-            ViewModel.Initialize(gridView)
-        End Sub        
+        End Sub
     End Class
 End Namespace

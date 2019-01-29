@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Core.Models;
 
 namespace Param_ItemNamespace.Views
 {

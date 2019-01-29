@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace Localization
         {
             var templatesDirectory = _routesManager.GetDirectoryFromSource(Path.Combine(Routes.TemplatesRootDirPath, platform));
             var allDirectories = templatesDirectory.GetDirectories(templateType, SearchOption.AllDirectories);
-            var names = allDirectories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB"))).Select(d => d.Name);
+            var names = allDirectories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase))).Select(d => d.Name);
 
             foreach (var name in names)
             {

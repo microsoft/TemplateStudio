@@ -9,8 +9,10 @@ using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -25,18 +27,15 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Dictionary<string, string> _replacementsDictionary;
         private string _platform;
         private string _language;
+        private GenerationService _generationService = GenerationService.Instance;
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
+        public string GenerationOutputPath => DestinationPath;
 
-        public string OutputPath { get; set; }
-
-        public string TempGenerationPath => string.Empty;
-
-        public List<string> ProjectItems { get; } = new List<string>();
+        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 
@@ -75,33 +74,26 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
-                },
-                JoinableTaskCreationOptions.LongRunning);
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
 
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
-
-            SafeThreading.JoinableTaskFactory.Run(
-                async () =>
-                {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await _generationService.GenerateProjectAsync(_userSelection);
                     PostGenerationActions();
+
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
                 },
                 JoinableTaskCreationOptions.LongRunning);
         }
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
-            GenContext.ToolBox.Shell.RestorePackages();
-
             GenContext.ToolBox.Shell.CollapseSolutionItems();
             GenContext.ToolBox.Shell.OpenProjectOverview();
+            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.ToolBox.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -114,7 +106,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
+                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)
@@ -149,6 +141,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 Fs.SafeDeleteDirectory(parentDir);
             }
+        }
+
+        public SolutionWizard()
+        {
         }
     }
 }

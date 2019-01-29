@@ -8,13 +8,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -41,8 +39,8 @@ namespace Microsoft.Templates.Test
 
                 InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), language);
 
-                // TODO: Re-enable for all platforms
-                ////foreach (var language in Platforms.GetAllPlarforms())
+                // TODO: Re-enable for all platforms when there are more than just UWP which have legacy templates
+                ////foreach (var language in Platforms.GetAllPlatforms())
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
                             .Where(m => !string.IsNullOrEmpty(m.Description))
                             .Select(m => m.Name);

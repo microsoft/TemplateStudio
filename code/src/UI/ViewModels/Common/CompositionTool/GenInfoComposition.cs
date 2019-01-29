@@ -16,9 +16,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public ObservableCollection<CompositionFile> Files { get; } = new ObservableCollection<CompositionFile>();
 
         public GenInfoComposition(GenInfo item)
+            : base(item.Name, item.Template)
         {
-            Name = item.Name;
-            Template = item.Template;
             foreach (var parameter in item.Parameters)
             {
                 Parameters.Add(parameter.Key, parameter.Value);

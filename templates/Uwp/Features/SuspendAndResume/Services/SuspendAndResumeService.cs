@@ -23,22 +23,36 @@ namespace Param_ItemNamespace.Services
 
         // This method saves the application state before entering background state. It fires the event OnBackgroundEntering to collect
         // state data from the current subscriber and saves it to the local storage.
-        public async Task SaveStateAsync()
+        public async Task<bool> SaveStateAsync()
         {
-            var suspensionState = new SuspensionState()
+            if (OnBackgroundEntering == null)
             {
-                SuspensionDate = DateTime.Now
-            };
+                return false;
+            }
 
-            var target = OnBackgroundEntering?.Target.GetType();
-            var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
+            try
+            {
+                var suspensionState = new SuspensionState()
+                {
+                    SuspensionDate = DateTime.Now
+                };
 
-            OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
+                var target = OnBackgroundEntering?.Target.GetType();
+                var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
 
-            await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
+                OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
+
+                await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
+                return true;
+            }
+            catch (Exception)
+            {
+                // TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                return false;
+            }
         }
 
-        // This method allows subscribers to refesh data that might be outdated when the App is resuming from suspension.
+        // This method allows subscribers to refresh data that might be outdated when the App is resuming from suspension.
         // If the App was terminated during suspension this event will not fire, data restore is handled by the method HandleInternalAsync.
         public void ResumeApp()
         {

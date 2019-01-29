@@ -15,26 +15,32 @@
     "wts.displayOrder": "1",
     "wts.group": "BackgroundWork",
     "wts.multipleInstance": "true",
-    "wts.genGroup": "0",    
-    "wts.rightClickEnabled":"true"
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent":"true"
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\BackgroundTaskService.vb"
+      "path": ".\\Param_ProjectName\\Services\\BackgroundTaskService.vb"
     },
     {
-      "path": ".\\BackgroundTasks\\BackgroundTask.vb"
+      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTask.vb"
     },
     {
-      "path": ".\\BackgroundTasks\\BackgroundTaskFeature.vb"
+      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTaskFeature.vb"
     },
     {
-      "path": ".\\Helpers\\TaskExtensions.vb"
+      "path": ".\\Param_ProjectName.Core\\Helpers\\TaskExtensions.vb"
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"

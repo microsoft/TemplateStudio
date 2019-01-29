@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
 using Microsoft.Templates.UI.Validators;
 
@@ -19,6 +20,8 @@ namespace Microsoft.Templates.UI.Services
             new HasHamburgerMenuValidator(),
             new HasOldMvvmLightLocatorValidator(),
             new HasOldNavigationViewValidator(),
+            new HasPivotValidator(),
+            new HasNoCoreProjectValidator(),
         };
 
         public static ValidationResult Validate()

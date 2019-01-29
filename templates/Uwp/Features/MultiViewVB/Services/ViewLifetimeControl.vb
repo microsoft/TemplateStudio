@@ -133,6 +133,12 @@ Namespace Services
 
             If justReleased Then
                 UnregisterForEvents()
+
+                If InternalReleasedEvent Is Nothing Then
+                    ' For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
+                    Throw New InvalidOperationException("ExceptionViewLifeTimeControlMissingReleasedSubscription".GetLocalized())
+                End If
+                
                 RaiseEvent InternalReleased(Me, Nothing)
             End If
         End Sub

@@ -1,10 +1,6 @@
-﻿Imports Windows.Storage
-Imports Windows.UI.Xaml.Media.Animation
-Imports Windows.UI.Xaml.Navigation
-
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Models
-Imports Param_ItemNamespace.Services
+﻿Imports Param_ItemNamespace.Helpers
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 
 Namespace ViewModels
     Public Class ImageGalleryViewDetailViewModel
@@ -40,25 +36,15 @@ Namespace ViewModels
             Source = SampleDataService.GetGallerySampleData()
         End Sub
 
-        Public Sub SetImage(image As UIElement)
-            _image = image
-        End Sub
-
-        Public Sub Initialize(sampleImageId As String, navigationMode as NavigationMode)
-            If Not String.IsNullOrEmpty(sampleImageId) AndAlso navigationMode = NavigationMode.New Then
-                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
+        Public Sub Initialize(selectedImageId As String, navigationMode as NavigationMode)
+            If Not String.IsNullOrEmpty(selectedImageId) AndAlso navigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
             Else
-                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
+                selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then
                     SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
                 End If
             End If
-            Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen)
-            animation?.TryStart(_image)
-        End Sub
-
-        Public Sub SetAnimation()
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image)
         End Sub
     End Class
 End Namespace

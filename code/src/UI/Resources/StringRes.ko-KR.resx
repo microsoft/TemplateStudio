@@ -453,10 +453,6 @@
     <value>생성 완료</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>패키지 복원 중...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Template Studio 프로젝트 생성 중...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,81 +473,21 @@
     <value>{0} 페이지가 추가됨</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>생성하는 동안 텔레메트리 추적 예외가 발생했습니다.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>{0} 프로젝트를 찾을 수 없음</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>프로젝트 항목을 추가할 수 없습니다.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>솔루션에 프로젝트를 추가할 수 없습니다. 예상하는 SDK가 설치되어 있는지 확인하십시오.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>프로젝트를 새로 고칠 수 없습니다. 수동으로 새로 고치십시오.</value>
-    <comment>Error message for unable to refresh project</comment>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>파일과 프로젝트를 추가할 수 없습니다.</value>
+    <comment>Error message for unable to add files and projects</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>솔루션 트리가 접히는 오류가 발생했습니다. 예:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>패키지를 복원하는 중 오류가 발생했습니다. 예:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>솔루션의 NuGet 패키지를 자동으로 복원할 수 없습니다. NuGet 패키지를 수동으로 복원하십시오.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
-  </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>상태 메시지를 표시하는 중에 오류가 발생했습니다. 예:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>{1}의 {0} 템플릿에서 순환 종속성이 감지되었습니다.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>사용자 선택에서 {0} 종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>{0} 종속성 항목이 잘못되었습니다. 종속성은 multipleInstance = false로 구성되어야 합니다.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>{0} 종속성 항목이 잘못되었습니다. 종속성 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>템플릿 '{0}', 이름: {1}, 이유: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 레이아웃 템플릿을 찾을 수 없습니다.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>{0} 레이아웃 항목이 잘못되었습니다. 레이아웃 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>{0} 기능 생성 중...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>{0} 페이지 생성 중...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>프로젝트 '{0}' 생성 중...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>애플리케이션 시작하기</value>
@@ -653,15 +589,16 @@
     <value>HamburgerMenu 제어를 사용하지 않고 이제 Windows Template Studio는 NavigationView를 지원합니다. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio는 피벗 프로젝트의 가로형 NavigationView를 사용하고 있습니다. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>이제 Windows Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>작성 도구</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>플랫폼을 알 수 없습니다.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>플랫폼 선택</value>
@@ -682,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -722,5 +667,44 @@
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>일부 NuGet 패키지는 {0} 프로젝트에 추가할 수 없습니다. 이는 오프라인일 경우 발생할 수 있습니다. 
+프로젝트의 코드에서 필요로 하는 다음 패키지 목록을 확인하고 누락된 패키지를 수동으로 추가하십시오. 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>프로젝트에 {0} 항목 추가 중...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>프로젝트에 {0} NuGet 패키지 추가 중...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>{0} 프로젝트에 솔루션 추가 중...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>프로젝트 간 참조 추가 중...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio에서 핵심 프로젝트를 추가 중입니다. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

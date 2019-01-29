@@ -10,8 +10,8 @@
     "summary": "Sayfalar arasında gezinti için bir gezinti bölmesi (veya 'hamburger menüsü') bulunmaktadır."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Üstteki sekmeler, sayfalar arasında hızlı gezinti olanağı sağlar."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Üstteki Gezinme Öğeleri, sayfalar arasında hızlı gezinti olanağı sağlar."
   }
 ]

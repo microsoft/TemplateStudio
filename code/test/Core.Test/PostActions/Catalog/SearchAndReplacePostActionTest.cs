@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class SearchAndReplacePostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void SearchAndReplace_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -56,32 +57,30 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_NoError()
+        public void SearchAndReplace_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_searchreplace.cs");
             var path = Path.GetFullPath(@".\TestData\temp");
-            var failedFileName = @"temp\NoSource_failedpostaction.cs";
-            var relativeSourceFilePath = "temp\\NoSource.cs";
 
             Directory.CreateDirectory(path);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\SearchReplace\\NoSource_searchreplace.cs"), mergeFile, true);
 
             GenContext.Current = new FakeContextProvider()
             {
-                OutputPath = path,
+                GenerationOutputPath = path,
                 DestinationPath = Path.GetFullPath(@".\Destination\Project"),
-                DestinationParentPath = Path.GetFullPath(@".\Destination\"),
             };
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, false));
 
             mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
-                    relativeSourceFilePath,
-                    mergeFile,
-                    failedFileName,
-                    string.Format(StringRes.FailedMergePostActionFileNotFound, relativeSourceFilePath, templateName),
+                    "temp\\NoSource.cs",
+                    Path.Combine(path, "NoSource_searchreplace.cs"),
+                    "temp\\NoSource_failedpostaction.cs",
+                    Path.Combine(path, "NoSource_failedpostaction.cs"),
+                    string.Format(StringRes.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
                     MergeFailureType.FileNotFound);
 
             Directory.Delete(path, true);
@@ -94,6 +93,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                       Assert.Equal(expected.FailedFileName, f1.FailedFileName);
                       Assert.Equal(expected.FileName, f1.FileName);
                       Assert.Equal(expected.FilePath, f1.FilePath);
+                      Assert.Equal(expected.FailedFilePath, f1.FailedFilePath);
                       Assert.Equal(expected.MergeFailureType, f1.MergeFailureType);
                   });
         }

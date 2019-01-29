@@ -4,16 +4,17 @@
 
 using System;
 using System.Windows;
+using Microsoft.Templates.UI.Views;
 
 namespace Microsoft.Templates.UI
 {
     public static class WindowExtensions
     {
-        public static void SafeClose(this Window window)
+        public static void SafeClose(this IWizardShell shell)
         {
             try
             {
-                window?.Close();
+                (shell as Window)?.Close();
             }
             catch (Exception)
             {

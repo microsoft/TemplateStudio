@@ -453,10 +453,6 @@
     <value>Generování bylo dokončeno.</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Obnovování balíčků...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Vytváření projektu ve Windows Template Studiu...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,81 +473,21 @@
     <value>Stránka {0} byla úspěšně přidána.</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Telemetrie sledování výjimky během generování</value>
-    <comment>Exception tracking telemetry during generation.</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Projekt {0} nebyl nalezen.</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Nelze přidat položky projektu.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Nelze přidat projekt do řešení. Ujistěte se, že je nainstalovaná očekávaná sada SDK.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Nelze aktualizovat projekt. Zkuste ho aktualizovat ručně.</value>
-    <comment>Error message for unable to refresh project</comment>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Nebylo možné přidat soubory a projekty.</value>
+    <comment>Error message for unable to add files and projects</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Při sbalování stromu řešení došlo k chybě. Příklad:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Při obnovování balíčků došlo k chybě. Příklad:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Nelze automaticky obnovit balíčky NuGet pro řešení. Obnovte balíčky NuGet ručně.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
-  </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Při zobrazování stavové zprávy došlo k chybě. Příklad:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>V šabloně {0} byla zjištěna cyklická závislost se šablonou {1}.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Ve výběru uživatele nebyla nalezena závislá šablona {0}.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Závislá položka {0} je neplatná. Závislosti je nutné nakonfigurovat jako multipleInstance = false.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Nebyla nalezena šablona závislosti {0} pro rámec (framework) {1} a platformu {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Závislá položka {0} je neplatná. Závislé položky musí být typu Stránka nebo Funkce.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Šablona {0}, název: {1}, důvod: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1} a platformu {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Položka rozložení {0} je neplatná. Položky rozvržení musí být typu Stránka nebo Funkce.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Vytváření funkce {0}...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Vytváření stránky {0}...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Vytváření projektu {0}...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Spuštění aplikace</value>
@@ -653,15 +589,16 @@
     <value>Ovládací prvek HamburgerMenu je zastaralý a Windows Template Studio teď podporuje ovládací prvek NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio teď v projektech, které využívají ovládací prvek Pivot, používá horizontální ovládací prvek NavigationView. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio teď používá ovládací prvek NavigationView z knihovny uživatelského rozhraní Windows.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Nástroj Kompozice</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Nelze rozpoznat platformu.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Vybrat platformu</value>
@@ -682,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -712,7 +657,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>Změnili jsme naši implementaci třídy ViewModelLocator, která je součástí rámce MVVM Light, tak aby podporovala vícenásobné zobrazení v rámci MVVM Light. </value>
+    <value>Změnili jsme naši implementaci třídy ViewModelLocator, která je součástí rámce MVVMLight, tak aby podporovala vícenásobné zobrazení v rámci MVVMLight. </value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -722,5 +667,44 @@
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Některé balíčky NuGet nebylo možné do vašeho projektu {0} přidat. K tomu mohlo dojít, pokud jste byli offline. 
+Ověřte následující seznam balíčků požadovaných v kódu vašeho projektu a ručně přidejte chybějící balíčky: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Přidávání položky {0} do projektu...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Přidávání balíčku NuGet {0} do projektu...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Přidávání projektu {0} do řešení...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Přidávání referencí mezi projekty...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio nyní přidává základní projekt. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

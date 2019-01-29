@@ -1,7 +1,5 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
@@ -10,7 +8,6 @@ namespace Param_ItemNamespace.Views
         public ImageGalleryViewPage()
         {
             InitializeComponent();
-            ViewModel.Initialize(gridView);
         }
     }
 }

@@ -1,0 +1,5 @@
+﻿<CodeCloneSettings>  
+  <Exclusions>
+    <FunctionName>TemplateValidator.TemplateJsonVerifier.VerifyTagUsage</FunctionName>
+  </Exclusions>  
+</CodeCloneSettings>  

@@ -4,20 +4,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -56,32 +49,7 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
             InitializeTemplates(new LocalTemplatesSource("VBStyle"));
-
-            List<object[]> result = new List<object[]>();
-
-            var platform = Platforms.Uwp;
-
-            var projectTemplates =
-               GenContext.ToolBox.Repo.GetAll().Where(
-                   t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
-
-            foreach (var projectTemplate in projectTemplates)
-            {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-
-                foreach (var projectType in projectTypeList)
-                {
-                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                    foreach (var framework in frameworks)
-                    {
-                        result.Add(new object[] { projectType, framework, platform });
-                    }
-                }
-            }
-
-            return result;
+            return GetVBProjectTemplates();
         }
     }
 }

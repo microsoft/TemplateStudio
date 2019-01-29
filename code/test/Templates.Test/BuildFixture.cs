@@ -4,21 +4,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -35,37 +27,7 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             InitializeTemplates(new LocalTemplatesSource("TstBld"));
-
-            List<object[]> result = new List<object[]>();
-            foreach (var language in ProgrammingLanguages.GetAllLanguages())
-            {
-                SetCurrentLanguage(language);
-                foreach (var platform in Platforms.GetAllPlatforms())
-                {
-                    SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
-
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                                .Select(m => m.Name);
-
-                    foreach (var projectType in projectTypes)
-                    {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Contains(m.Name))
-                                                    .Select(m => m.Name).ToList();
-
-                        foreach (var framework in targetFrameworks)
-                        {
-                            result.Add(new object[] { projectType, framework, platform, language });
-                        }
-                    }
-                }
-            }
-
-            return result;
+            return GetAllProjectTemplates();
         }
 
         [SuppressMessage(

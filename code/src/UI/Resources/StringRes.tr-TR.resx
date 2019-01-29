@@ -382,7 +382,7 @@
     <comment>Feature list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
-    <value>Design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
+    <value>design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
@@ -453,10 +453,6 @@
     <value>Oluşturma tamamlandı</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Paketler geri yükleniyor...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Şablon Stüdyosu projesi oluşturuluyor...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,81 +473,21 @@
     <value>{0} sayfası başarıyla eklendi</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Oluşturma sırasında özel durum izleme telemetrisi.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>{0} projesi bulunamıyor</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Proje öğeleri eklenemiyor.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Proje çözüme eklenemiyor. Beklenen SDK'nin yüklü olduğundan emin olun.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Proje yenilenemiyor. El ile yenilemeyi deneyin.</value>
-    <comment>Error message for unable to refresh project</comment>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Dosyalar ve projeler eklenemedi.</value>
+    <comment>Error message for unable to add files and projects</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Çözüm ağacı daraltılırken bir hata oluştu. Ör:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Paketler geri yüklenirken bir hata oluştu. Ör:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Çözüm için NuGet Paketlerini Geri Yükle işlemi otomatik olarak gerçekleştirilemiyor. NuGet paketlerini el ile geri yükleyin.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
-  </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>{0} şablonunda {1} ile döngüsel bağımlılık algılandı.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>{0} bağımlılık şablonu kullanıcı seçiminde bulunamadı.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılıkların multipleInstance = yanlış olarak yapılandırılması gerekir.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{0} bağımlılık şablonu {1} framework ve {2} platformu için bulunamadı.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılık öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Şablon "{0}", adı: "{1}", neden: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{0} düzen şablonu {1} framework ve {2} platformu için bulunamadı.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Düzen öğesi {0} geçersiz. Düzen öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>"{0}" özelliği oluşturuluyor...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>"{0}" sayfası oluşturuluyor...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>"{0}" projesi oluşturuluyor...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Uygulama Başlatma</value>
@@ -653,15 +589,16 @@
     <value>HamburgerMenu denetimi artık kullanılamıyor. Windows Şablon Stüdyosu artık NavigationView öğesini desteklemektedir. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Şablon Stüdyosu artık Özet projelerde yatay NavigationView kullanmaktadır. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Şablon Stüdyosu artık Windows UI Kitaplığı'ndan NavigationView kullanmaktadır.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Oluşturma aracı</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Platform çözümlenemedi.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Platform seç</value>
@@ -682,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Güncelleştirmek için belgelere bakın.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -722,5 +667,44 @@
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Bazı NuGet paketleri {0} projenize eklenemedi. Bu durum çevrimdışı olmanız nedeniyle olabilir. 
+Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulayın ve eksik paketleri el ile ekleyin: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Yükleme-Paketi -Kimliği {0} -Sürüm {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>{0} projeye ekleniyor...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>NuGet paketi {0} projeye ekleniyor...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>{0} projesi çözüme ekleniyor...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Projeler arasında başvurular ekleniyor...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Güncelleştirmek için belgelere bakın.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Şablon Stüdyosu şu anda bir çekirdek proje ekliyor. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

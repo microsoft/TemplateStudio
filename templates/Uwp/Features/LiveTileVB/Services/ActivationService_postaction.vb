@@ -5,7 +5,7 @@
 '**}
 
 '{[{
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 '}]}
 
 Namespace Services
@@ -21,7 +21,9 @@ Namespace Services
             '{[{
             Singleton(Of LiveTileFeatureService).Instance.SampleUpdate()
             '}]}
+            '{??{
             Await Task.CompletedTask
+            '}??}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

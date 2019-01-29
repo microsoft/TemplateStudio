@@ -2,24 +2,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergeConfiguration
     {
         public const string Suffix = "postaction";
-        public const string NewSuffix = "failedpostaction";
+        public const string FailedPostactionSuffix = "failedpostaction";
         public const string SearchReplaceSuffix = "searchreplace";
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
         public const string PostactionAndSearchReplaceRegex = @"(\$\S*)?(_" + Suffix + "|_" + SearchReplaceSuffix + "|_g" + Suffix + @")\.";
 
-        public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")(\d)?\.";
+        public const string FailedPostactionRegex = @"(\$\S*)?(_" + FailedPostactionSuffix + "|_g" + FailedPostactionSuffix + @")(\d)?\.";
 
         public const string Extension = "_" + Suffix + ".";
         public const string SearchReplaceExtension = "_" + SearchReplaceSuffix + ".";

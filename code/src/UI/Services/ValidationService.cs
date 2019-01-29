@@ -68,13 +68,13 @@ namespace Microsoft.Templates.UI.Services
 
             foreach (var name in names)
             {
-                if (!name.ToLower().EndsWith("view"))
+                if (!name.EndsWith("view", StringComparison.OrdinalIgnoreCase))
                 {
                     return false;
                 }
             }
 
-            if (fromNewTemplate && !newName.ToLower().EndsWith("view"))
+            if (fromNewTemplate && !newName.EndsWith("view", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }

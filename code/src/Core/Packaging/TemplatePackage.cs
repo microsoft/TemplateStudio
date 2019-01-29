@@ -31,15 +31,6 @@ namespace Microsoft.Templates.Core.Packaging
             return source + DefaultExtension;
         }
 
-        public static async Task<string> PackAndSignAsync(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
-        {
-            string outFile = CreateSourcePath(source);
-
-            await PackAndSignAsync(source, outFile, certThumbprint, mimeMediaType);
-
-            return outFile;
-        }
-
         public static async Task<string> PackAndSignAsync(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = CreateSourcePath(source);
@@ -109,7 +100,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, bool verifySignatures = true, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
+        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken), bool verifySignatures = true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);

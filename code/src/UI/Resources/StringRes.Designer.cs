@@ -439,51 +439,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Circular dependency detected on template {0} with {1}..
-        /// </summary>
-        public static string ErrorDependencyCircularReference {
-            get {
-                return ResourceManager.GetString("ErrorDependencyCircularReference", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found on user selection..
-        /// </summary>
-        public static string ErrorDependencyMissing {
-            get {
-                return ResourceManager.GetString("ErrorDependencyMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false..
-        /// </summary>
-        public static string ErrorDependencyMultipleInstance {
-            get {
-                return ResourceManager.GetString("ErrorDependencyMultipleInstance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1} and platform {2}..
-        /// </summary>
-        public static string ErrorDependencyNotFound {
-            get {
-                return ResourceManager.GetString("ErrorDependencyNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependency items must be of type Page or Feature..
-        /// </summary>
-        public static string ErrorDependencyType {
-            get {
-                return ResourceManager.GetString("ErrorDependencyType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show details.
         /// </summary>
         public static string ErrorDialogShowDetails {
@@ -511,74 +466,41 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
+        ///   Looks up a localized string similar to Install-Package -Id {0} -Version {1}.
         /// </summary>
-        public static string ErrorGenerating {
+        public static string ErrorMissingNugetPackagesInstallTemplate {
             get {
-                return ResourceManager.GetString("ErrorGenerating", resourceCulture);
+                return ResourceManager.GetString("ErrorMissingNugetPackagesInstallTemplate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout template {0} not found for framework {1} and platform {2}..
+        ///   Looks up a localized string similar to Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+        ///Please verify the following list of packages needed by your project&apos;s code and manually add the missing packages: 
+        ///
+        ///{1}.
         /// </summary>
-        public static string ErrorLayoutNotFound {
+        public static string ErrorMissingNugetPackagesTemplate {
             get {
-                return ResourceManager.GetString("ErrorLayoutNotFound", resourceCulture);
+                return ResourceManager.GetString("ErrorMissingNugetPackagesTemplate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid layout item {0}. Layout items must be of type Page or Feature..
+        ///   Looks up a localized string similar to Unable to add files and projects..
         /// </summary>
-        public static string ErrorLayoutType {
+        public static string ErrorUnableAddFilesAndProjects {
             get {
-                return ResourceManager.GetString("ErrorLayoutType", resourceCulture);
+                return ResourceManager.GetString("ErrorUnableAddFilesAndProjects", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exception tracking telemetry during generation..
+        ///   Looks up a localized string similar to Unable to find project {0}.
         /// </summary>
-        public static string ErrorTrackTelemetryException {
+        public static string ErrorUnableGetProjectByPath {
             get {
-                return ResourceManager.GetString("ErrorTrackTelemetryException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable add project items..
-        /// </summary>
-        public static string ErrorUnableAddItemsToProject {
-            get {
-                return ResourceManager.GetString("ErrorUnableAddItemsToProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to add the project to the solution. Make sure you have the expected SDK installed..
-        /// </summary>
-        public static string ErrorUnableAddProjectToSolution {
-            get {
-                return ResourceManager.GetString("ErrorUnableAddProjectToSolution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to resolve platform..
-        /// </summary>
-        public static string ErrorUnableResolvePlatform {
-            get {
-                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
-        /// </summary>
-        public static string ErrorUnableToRefreshProject {
-            get {
-                return ResourceManager.GetString("ErrorUnableToRefreshProject", resourceCulture);
+                return ResourceManager.GetString("ErrorUnableGetProjectByPath", resourceCulture);
             }
         }
         
@@ -597,24 +519,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ErrorVsGenShellCollapseSolutionItemsMessage {
             get {
                 return ResourceManager.GetString("ErrorVsGenShellCollapseSolutionItemsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an error restoring the packages. Ex:.
-        /// </summary>
-        public static string ErrorVsGenShellRestorePackagesErrorMessage {
-            get {
-                return ResourceManager.GetString("ErrorVsGenShellRestorePackagesErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages..
-        /// </summary>
-        public static string ErrorVsGenShellRestorePackagesWarningMessage {
-            get {
-                return ResourceManager.GetString("ErrorVsGenShellRestorePackagesWarningMessage", resourceCulture);
             }
         }
         
@@ -1132,38 +1036,47 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding {0} to project ....
+        /// </summary>
+        public static string StatusAddingItem {
+            get {
+                return ResourceManager.GetString("StatusAddingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding NuGet package {0} to project ....
+        /// </summary>
+        public static string StatusAddingNuget {
+            get {
+                return ResourceManager.GetString("StatusAddingNuget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding project {0} to solution....
+        /// </summary>
+        public static string StatusAddingProject {
+            get {
+                return ResourceManager.GetString("StatusAddingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding references between projects....
+        /// </summary>
+        public static string StatusAddingProjectReferences {
+            get {
+                return ResourceManager.GetString("StatusAddingProjectReferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creating Windows Template Studio project....
         /// </summary>
         public static string StatusBarCreatingProject {
             get {
                 return ResourceManager.GetString("StatusBarCreatingProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
-        /// </summary>
-        public static string StatusBarGeneratingFeatureMessage {
-            get {
-                return ResourceManager.GetString("StatusBarGeneratingFeatureMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating &apos;{0}&apos; page ....
-        /// </summary>
-        public static string StatusBarGeneratingPageMessage {
-            get {
-                return ResourceManager.GetString("StatusBarGeneratingPageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating project &apos;{0}&apos;....
-        /// </summary>
-        public static string StatusBarGeneratingProjectMessage {
-            get {
-                return ResourceManager.GetString("StatusBarGeneratingProjectMessage", resourceCulture);
             }
         }
         
@@ -1209,15 +1122,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusBarNewItemAddPageSuccess {
             get {
                 return ResourceManager.GetString("StatusBarNewItemAddPageSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restoring packages....
-        /// </summary>
-        public static string StatusBarRestoring {
-            get {
-                return ResourceManager.GetString("StatusBarRestoring", resourceCulture);
             }
         }
         
@@ -1366,6 +1270,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}updatetomultiproject.md.
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio is now adding a core project. .
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}frameworks/updatemvvmlightlocator.md.
         /// </summary>
         public static string ValidatorHasOldMvvmLightLocatorLink {
@@ -1416,6 +1347,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidatorHasOldNavigationViewMessage {
             get {
                 return ResourceManager.GetString("ValidatorHasOldNavigationViewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}projectTypes/updatetohorizontalnavview.md.
+        /// </summary>
+        public static string ValidatorHasPivotLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasPivotLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio is now using horizontal NavigationView in Pivot projects. .
+        /// </summary>
+        public static string ValidatorHasPivotMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotMessage", resourceCulture);
             }
         }
         

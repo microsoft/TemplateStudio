@@ -1,0 +1,2 @@
+﻿Karty u góry umożliwiają szybkie przechodzenie między stronami, a przy tym zostawiają dużo miejsca na treść aplikacji.
+Stosowane kart jest zalecane, jeśli masz maksymalnie 5 elementów nawigacyjnych najwyższego poziomu o jednakowo dużym znaczeniu.

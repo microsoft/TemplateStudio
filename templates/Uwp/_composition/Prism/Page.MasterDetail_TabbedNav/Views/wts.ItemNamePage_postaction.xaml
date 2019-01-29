@@ -1,0 +1,14 @@
+﻿<Page
+    <!--^^-->
+    <!--{[{-->
+   Loaded="Page_Loaded"
+    <!--}]}-->
+    mc:Ignorable="d">
+
+        <controls:MasterDetailsView
+            x:Name="MasterDetailsViewControl"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
+    </Grid>
+</Page>

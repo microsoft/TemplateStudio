@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
@@ -17,12 +18,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GenerateMergeInfoPostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void GenerateMergeInfo_Execute_Success()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
             var mergeFile = Path.GetFullPath(@".\temp\Source_postaction.cs");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destinationPath = Path.GetFullPath(@".\DestinationPath\Project");
             var expectedPostactionCode = File.ReadAllText(@".\TestData\Merge\Source_expectedmergeinfo.cs");
 
@@ -32,9 +33,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destinationPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             GenContext.Current.MergeFilesFromProject.Add(relSourceFilePath, new List<MergeInfo>());
@@ -48,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 PostActionCode = expectedPostactionCode,
             };
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
 
             Assert.Equal(expected.Format, GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].Format);
             Assert.Equal(expected.PostActionCode.Replace("\r\n", string.Empty).Replace("\n", string.Empty), GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].PostActionCode.Replace("\r\n", string.Empty).Replace("\n", string.Empty));
