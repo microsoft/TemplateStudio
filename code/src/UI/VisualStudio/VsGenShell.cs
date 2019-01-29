@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
@@ -130,25 +129,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
-        public override void ShowModal(System.Windows.Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // get the owner of this dialog
-            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
-
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-
-            UIShell.EnableModeless(0);
-
-            try
+            if (shell is System.Windows.Window dialog)
             {
-                WindowHelper.ShowModal(dialog, hwnd);
-            }
-            finally
-            {
-                // This will take place after the window is closed.
-                UIShell.EnableModeless(1);
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                // get the owner of this dialog
+                UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
+
+                dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
+                UIShell.EnableModeless(0);
+
+                try
+                {
+                    WindowHelper.ShowModal(dialog, hwnd);
+                }
+                finally
+                {
+                    // This will take place after the window is closed.
+                    UIShell.EnableModeless(1);
+                }
             }
         }
 

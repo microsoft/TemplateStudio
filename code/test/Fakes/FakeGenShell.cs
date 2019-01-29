@@ -6,10 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Gen;
-
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Fakes
@@ -192,10 +190,13 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void ShowModal(Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            dialog.Owner = _owner;
-            dialog.ShowDialog();
+            if (shell is Window dialog)
+            {
+                dialog.Owner = _owner;
+                dialog.ShowDialog();
+            }
         }
 
         public override void CancelWizard(bool back = true)

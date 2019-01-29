@@ -4,6 +4,7 @@
 
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Views.Common
@@ -11,7 +12,7 @@ namespace Microsoft.Templates.UI.Views.Common
     /// <summary>
     /// Interaction logic for ErrorDialog.xaml
     /// </summary>
-    public partial class ErrorDialog : Window
+    public partial class ErrorDialog : Window, IWindow
     {
         public ErrorDialog(ErrorDialogViewModel vm)
         {

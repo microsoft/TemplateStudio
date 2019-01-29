@@ -180,6 +180,7 @@
     <Compile Include="Gen\GenComposer.cs" />
     <Compile Include="Gen\GenController.cs" />
     <Compile Include="Gen\GenException.cs" />
+    <Compile Include="Gen\IWindow.cs" />
     <Compile Include="Gen\NewItemGenController.cs" />
     <Compile Include="Gen\NewItemGenerationFileInfo.cs" />
     <Compile Include="Gen\NewItemGenerationResult.cs" />

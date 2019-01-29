@@ -258,7 +258,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Views\IWizardShell.cs" />
     <Compile Include="Launcher\WizardLauncher.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
@@ -443,6 +442,7 @@
     <Compile Include="Views\Common\QuestionDialogWindow.xaml.cs">
       <DependentUpon>QuestionDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IWizardShell.cs" />
     <Compile Include="Views\NewItem\ChangesSummaryPage.xaml.cs">
       <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
     </Compile>
