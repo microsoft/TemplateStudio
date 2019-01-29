@@ -9,8 +9,8 @@
     <!--/+:cnd:noEmit -->
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Param_ProjectName.Tests.MSTest</RootNamespace>
-    <AssemblyName>Param_ProjectName.Tests.MSTest</AssemblyName>
+    <RootNamespace>Param_ProjectName.Tests.xUnit</RootNamespace>
+    <AssemblyName>Param_ProjectName.Tests.xUnit</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
@@ -18,7 +18,7 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Param_ProjectName.Tests.MSTest_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Param_ProjectName.Tests.xUnit_TemporaryKey.pfx</PackageCertificateKeyFile>
     <!--/-:cnd:noEmit -->
     <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">$(VisualStudioVersion)</UnitTestPlatformVersion>
     <!--/+:cnd:noEmit -->
