@@ -102,4 +102,7 @@ namespace Param_ProjectName.Tests.MSTest
             deferral.Complete();
         }
     }
+
+    // This type is defined to force the compiler to add the necessary references and allows tests to run
+    public class WinUiReference : Windows.UI.Xaml.Controls.Button { }
 }
