@@ -2,9 +2,10 @@
 using System;
 using Xunit;
 
-namespace Param_ProjectName.Tests.xUnit
+namespace Param_RootNamespace.Tests.xUnit
 {
-    public class UnitTest1
+    // TODO WTS: Add appropriate tests
+    public class Tests
     {
         [Fact]
         public void TestMethod1()

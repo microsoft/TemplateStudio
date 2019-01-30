@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ProjectName.Tests.MSTest
+namespace Param_RootNamespace.Tests.MSTest
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -28,8 +28,8 @@ namespace Param_ProjectName.Tests.MSTest
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Param_ProjectName.Tests.MSTest
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
 //+:cnd:noEmit
