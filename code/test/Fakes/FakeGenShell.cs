@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Fakes
@@ -284,6 +285,11 @@ namespace Microsoft.Templates.Fakes
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
         }
     }
 }

@@ -16,6 +16,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.ProjectSystem;
@@ -729,6 +730,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                 // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
                 return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
             }
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
         }
     }
 }

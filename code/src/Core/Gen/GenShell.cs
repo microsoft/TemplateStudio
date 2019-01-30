@@ -113,5 +113,7 @@ namespace Microsoft.Templates.Core.Gen
 
             return filesByProject;
         }
+
+        public abstract string CreateCertificate(string publisherName);
     }
 }
