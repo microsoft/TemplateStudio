@@ -65,7 +65,7 @@
         "files" : "0"
       },
       "continueOnError": "true"
-    },    
+    },
     {
       "description": "Add reference to the main UWP app",
       "manualInstructions": [ ],
