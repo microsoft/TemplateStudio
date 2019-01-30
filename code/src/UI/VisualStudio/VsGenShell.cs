@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
@@ -17,6 +16,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.ProjectSystem;
@@ -130,25 +130,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
-        public override void ShowModal(System.Windows.Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // get the owner of this dialog
-            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
-
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-
-            UIShell.EnableModeless(0);
-
-            try
+            if (shell is System.Windows.Window dialog)
             {
-                WindowHelper.ShowModal(dialog, hwnd);
-            }
-            finally
-            {
-                // This will take place after the window is closed.
-                UIShell.EnableModeless(1);
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                // get the owner of this dialog
+                UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
+
+                dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
+                UIShell.EnableModeless(0);
+
+                try
+                {
+                    WindowHelper.ShowModal(dialog, hwnd);
+                }
+                finally
+                {
+                    // This will take place after the window is closed.
+                    UIShell.EnableModeless(1);
+                }
             }
         }
 
@@ -727,6 +730,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                 // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
                 return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
             }
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
         }
     }
 }

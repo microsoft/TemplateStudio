@@ -6,10 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Gen;
-
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Fakes
@@ -192,10 +191,13 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void ShowModal(Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            dialog.Owner = _owner;
-            dialog.ShowDialog();
+            if (shell is Window dialog)
+            {
+                dialog.Owner = _owner;
+                dialog.ShowDialog();
+            }
         }
 
         public override void CancelWizard(bool back = true)
@@ -283,6 +285,11 @@ namespace Microsoft.Templates.Fakes
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
         }
     }
 }

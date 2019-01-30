@@ -5,9 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
@@ -34,7 +31,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void OpenProjectOverview();
 
-        public abstract void ShowModal(Window dialog);
+        public abstract void ShowModal(IWindow shell);
 
         public abstract void CancelWizard(bool back = true);
 
@@ -116,5 +113,7 @@ namespace Microsoft.Templates.Core.Gen
 
             return filesByProject;
         }
+
+        public abstract string CreateCertificate(string publisherName);
     }
 }
