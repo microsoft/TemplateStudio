@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     // TODO WTS: Add appropriate tests
     public class Tests

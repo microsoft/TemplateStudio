@@ -1,12 +1,10 @@
 ﻿//{[{
 using Param_RootNamespace.ViewModels;
-using Param_RootNamespace.Core.Services;
-using Moq;
 //}]}
 
 namespace Param_RootNamespace.Tests.MSTest
 {
-    public class UnitTest1
+    public class Tests
     {
         //^^
         //{[{
@@ -16,8 +14,7 @@ namespace Param_RootNamespace.Tests.MSTest
         public void Testwts.ItemNameViewModelCreation()
         {
             // This test is trivial. Add your own tests for the logic you add to the ViewModel.
-            var mockDataService = new Mock<ISampleDataService>();
-            var vm = new ChartViewModel(mockDataService.Object);
+            var vm = new wts.ItemNameViewModel();
             Assert.IsNotNull(vm);
         }
         //}]}

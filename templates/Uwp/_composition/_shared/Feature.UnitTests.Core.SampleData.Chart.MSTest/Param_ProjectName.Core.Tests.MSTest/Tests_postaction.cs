@@ -4,7 +4,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.Core.Tests.MSTest
 {
-    public class UnitTest1
+    public class Tests
     {
         //^^
         //{[{
@@ -12,9 +12,9 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         // TODO WTS: Remove or update this once your app is using real data and not the SampleDataService
         // This test serves only as a demonstration of testing functionality in the Core library
         [TestMethod]
-        public void EnsureSampleDataServiceReturnsContentGridData()
+        public void EnsureSampleDataServiceReturnsChartData()
         {
-            var actual = SampleDataService.GetContentGridData();
+            var actual = SampleDataService.GetChartSampleData();
 
             Assert.AreNotEqual(0, actual.Count);
         }

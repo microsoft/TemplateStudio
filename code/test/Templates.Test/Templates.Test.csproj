@@ -332,9 +332,7 @@
       <Name>Fakes</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="System\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

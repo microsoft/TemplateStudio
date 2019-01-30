@@ -20,7 +20,14 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName\\GlobalSuppressions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Tests.MSTest\\GlobalSuppressions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Tests.xUnit\\GlobalSuppressions.cs"
     }
+     
   ],
   "symbols": {
     "wts.projectName": {
@@ -90,6 +97,28 @@
         "packageId" : "StyleCop.Analyzers",
         "version" : "1.0.2",
         "projectPath": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
       },
       "continueOnError": "true"
     }

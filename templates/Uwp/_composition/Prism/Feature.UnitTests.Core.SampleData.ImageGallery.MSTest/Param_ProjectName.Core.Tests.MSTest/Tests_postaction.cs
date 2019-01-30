@@ -1,12 +1,10 @@
 ﻿//{[{
-using System.Linq;
-using System.Threading.Tasks;
 using Param_RootNamespace.Core.Services;
 //}]}
 
 namespace Param_RootNamespace.Core.Tests.MSTest
 {
-    public class UnitTest1
+    public class Tests
     {
         //^^
         //{[{
@@ -14,11 +12,12 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         // TODO WTS: Remove or update this once your app is using real data and not the SampleDataService
         // This test serves only as a demonstration of testing functionality in the Core library
         [TestMethod]
-        public async Task EnsureSampleDataServiceReturnsModelDataAsync()
+        public void EnsureSampleDataServiceReturnsGalleryData()
         {
-            var actual = await SampleDataService.GetSampleModelDataAsync();
+            var dataService = new SampleDataService();
+            var actual = dataService.GetGallerySampleData();
 
-            Assert.AreNotEqual(0, actual.Count());
+            Assert.AreNotEqual(0, actual.Count);
         }
         //}]}
     }

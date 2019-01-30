@@ -2,7 +2,7 @@
 using Param_RootNamespace.ViewModels;
 //}]}
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class Tests
     {

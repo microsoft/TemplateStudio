@@ -6,7 +6,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.Core.Tests.MSTest
 {
-    public class UnitTest1
+    public class Tests
     {
         //^^
         //{[{
