@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Page.Chart.UnitTests.App.MSTest",
+  "name": "Prism.Page._Location.UnitTests.App.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -11,7 +11,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Chart.Prism & $feature == wts.Feat.UnitTests.App.MSTest",
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Map.Prism & $feature == wts.Feat.UnitTests.App.xUnit",
     "wts.licenses": "[Moq](https://raw.githubusercontent.com/moq/moq4/master/License.txt)"
   },
   "sourceName": "wts.ItemName",
@@ -37,7 +37,7 @@
       "args": {
         "packageId" : "Moq",
         "version" : "4.10.1",
-        "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
       },
       "continueOnError": "true"
     }
