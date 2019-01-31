@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 
@@ -93,21 +94,23 @@ namespace Microsoft.Templates.Core.Gen
                 var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
                 if (string.IsNullOrEmpty(projFile))
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.ExceptionProjectNotFound, item));
-                }
-
-                if (workWithProjitemsFile && Path.GetExtension(projFile) == ".shproj")
-                {
-                    projFile = projFile.Replace(".shproj", ".projitems");
-                }
-
-                if (!filesByProject.ContainsKey(projFile))
-                {
-                    filesByProject.Add(projFile, new List<string>() { item });
+                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ExceptionProjectNotFound, item)).FireAndForget();
                 }
                 else
                 {
-                    filesByProject[projFile].Add(item);
+                    if (workWithProjitemsFile && Path.GetExtension(projFile) == ".shproj")
+                    {
+                        projFile = projFile.Replace(".shproj", ".projitems");
+                    }
+
+                    if (!filesByProject.ContainsKey(projFile))
+                    {
+                        filesByProject.Add(projFile, new List<string>() { item });
+                    }
+                    else
+                    {
+                        filesByProject[projFile].Add(item);
+                    }
                 }
             }
 
