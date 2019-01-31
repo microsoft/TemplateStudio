@@ -2,13 +2,13 @@
 
 ## Summary
 
-The main goal is adding two different features (optional and mandatory login) that allow developers to integrate authentication from the generated app.
+The goal is adding two different features (optional and mandatory login) that allow developers to integrate authentication from the generated app.
 The app will use [Microsoft Identity Platform v.2.0](https://docs.microsoft.com/azure/active-directory/develop/v2-overview) with the Microsoft Identity Client (MSAL) [nuget package](https://www.nuget.org/packages/Microsoft.Identity.Client/).
-When a login feature will be selected, a new step being available in Wizard to configure the identity with Azure Active Directory.
+When a identity feature will be selected, a new step being available in Wizard to configure the identity with Azure Active Directory.
 
 ## Optional Login and Mandatory Login templates
 
-### Select features
+### 1. Select feature
 
  - New Identity features category.
  - Two new login features, one for mandatory login in the app, one for optional login in the app. The difference between those two features is how the generated app will provide login/logout to the end user.
@@ -18,24 +18,26 @@ When a login feature will be selected, a new step being available in Wizard to c
 
 ![](./resources/identity/FeatureNoSelected.png)
 
-### One of the identity features added
+### 2. One of the identity features added
 
  - New step “Identity configuration” in wizard is added that allows to configure the identity feature selected.
  - Next button available.
  - Microsoft.Identity.Client (MSAL) license added.
  - At this point, if you choose to create (without configuring identity) we would generate the app with client_id set to xxxx and a TODO that tells you the steps necessary on Azure to create the application. The same thing happens if you do not finish the identity configuration explained below.
+ 
+ ## Identity configuration
 
 
 ![](./resources/identity/OptionalLoginSelected.png)
 
-### Azure Log In or Sign Up
+### 1. Azure Log In or Sign Up
 
  - If you click Log In, this will show a new pop-up window to log in with Azure.
  - If you click Sign up, this will open azure registration portal in a web browser.
 
 ![](./resources/identity/UserNotLoggedIn.png)
 
-### Logged in but there is no Azure Subscriptions
+### 2. Logged in but there is no Azure Subscriptions
 
  - Option to create a subscription on the azure portal.
  - Refresh button fetch for new subscriptions.
@@ -43,7 +45,7 @@ When a login feature will be selected, a new step being available in Wizard to c
 
 ![](./resources/identity/NoAzureSubscriptions.png)
 
-### Chose AAD
+### 3.1 Chose AAD
 
  - First Azure Active directory selected by default.
  - Identity Mode AAD selected by default.
@@ -55,16 +57,16 @@ When a login feature will be selected, a new step being available in Wizard to c
 
 ![](./resources/identity/ChooseAAD.png)
 
-### Create a new App Registration
+### 3.2 Create a new App Registration
 
  - Enter the app registration name.
  - Creation will happen when you hit Create on Wizard.
 
 ![](./resources/identity/NewAppRegistration.png)
 
-### Chose B2B
+### 4. Chose B2B
 
  - Filtered by B2B Apps.
- - Does not require extra configurations.
+ - There are no subcategories in B2B. You have only to choose an app registration or create a new one.
 
 ![](./resources/identity/ChoseB2B.png)
