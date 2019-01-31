@@ -235,14 +235,11 @@ namespace Microsoft.Templates.Test
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
 
             const string batFile = "RunTests.bat";
+
+            // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
             var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
             var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.NUnit.dll\" ";
             var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.xUnit.dll\" ";
-
-            //      .\vstest.console.
-            //      exe "C:\UIT\P\24131820\Proj\SVAll\SVAll.Core.Tests.xUnit\bin\Debug\netcoreapp2.1\SVAll.Core.Tests.xUnit.dll" "C:\UIT\P\2
-            //  4131820\Proj\SVAll\SVAll.Core.Tests.MSTest\bin\Debug\netcoreapp2.1\SVAll.Core.Tests.MSTest.dll" "C: \UIT\P\24131820\Proj\
-            //  SVAll\SVAll.Core.Tests.NUnit\bin\Debug\netcoreapp2.1\SVAll.Core.Tests.NUnit.dll"
 
             var batPath = Path.GetDirectoryName(GetPath(batFile));
 
