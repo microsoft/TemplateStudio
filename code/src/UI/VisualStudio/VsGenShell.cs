@@ -65,6 +65,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VsOutputPane OutputPane => _outputPane.Value;
 
+        private Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
+
+        private VSTelemetryService VSTelemetryService => telemetryService.Value;
+
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
             var proj = GetProjectByPath(projPath);
@@ -735,6 +739,26 @@ namespace Microsoft.Templates.UI.VisualStudio
         public override string CreateCertificate(string publisherName)
         {
             return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return VSTelemetryService.VsTelemetryIsOptedIn();
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
+            VSTelemetryService.SafeTrackWizardCancelledVsTelemetry(properties, success);
         }
     }
 }
