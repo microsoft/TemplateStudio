@@ -9,7 +9,7 @@
     <!--/+:cnd:noEmit -->
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Param_ProjectName.Tests.MSTest</RootNamespace>
+    <RootNamespace>Param_RootNamespace.Tests.MSTest</RootNamespace>
     <AssemblyName>Param_ProjectName.Tests.MSTest</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

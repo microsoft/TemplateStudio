@@ -1,7 +1,5 @@
 ﻿//{[{
 using Param_RootNamespace.ViewModels;
-using Param_RootNamespace.Core.Services;
-using Moq;
 //}]}
 
 namespace Param_RootNamespace.Tests.MSTest

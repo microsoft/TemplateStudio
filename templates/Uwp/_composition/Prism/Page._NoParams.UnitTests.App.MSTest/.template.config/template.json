@@ -11,8 +11,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Camera.Prism|wts.Page.WebView.Prism|wts.Page.TabbedPivot|wts.Page.Blank|wts.Page.InkSmartCanvas.Prism|wts.Page.InkDraw.Prism|wts.Page.InkDrawPicture.Prism|wts.Page.Settings.Prism & $feature == wts.Feat.UnitTests.App.MSTest",
-    "wts.licenses": "[Moq](https://raw.githubusercontent.com/moq/moq4/master/License.txt)"
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Camera.Prism|wts.Page.WebView.Prism|wts.Page.TabbedPivot|wts.Page.Blank|wts.Page.InkSmartCanvas.Prism|wts.Page.InkDraw.Prism|wts.Page.InkDrawPicture.Prism|wts.Page.Settings.Prism & $feature == wts.Feat.UnitTests.App.MSTest"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -28,18 +27,5 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }
-  },
-  "postActions": [
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "Moq",
-        "version" : "4.10.1",
-        "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
-      },
-      "continueOnError": "true"
-    }
-  ]
+  }
 }
