@@ -12,6 +12,7 @@ using System.Reflection;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
@@ -82,7 +83,6 @@ namespace Microsoft.Templates.Core.Gen
                 var repository = new TemplatesRepository(source, wizardVersion, platform, language);
 
                 ToolBox = new GenToolBox(repository, shell);
-
                 PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);
 
                 CurrentLanguage = language;
