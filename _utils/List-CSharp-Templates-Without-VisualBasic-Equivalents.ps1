@@ -2,10 +2,10 @@
 # Any output indicates missing VB templates.
 
 # Get list of all templates
-$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { Write-Output $_.FullName }
+$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\Test\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {
-    if ($t -match "_shared\\Page.AddConnectedAnimationService")
+    if ($t -contains "_shared\\Page.AddConnectedAnimationService")
     {
         # This is a shared template but only used by Prism & Caliburn.Micro so doesn't need a VB equivalent
         break;
