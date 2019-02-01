@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Map.UnitTests.App.xUnit",
+  "name": "Page.UnitTests.App.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -11,7 +11,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CaliburnMicro & identity == wts.Page.Map|wts.Page.Map.CaliburnMicro & $feature == wts.Feat.UnitTests.App.xUnit"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CaliburnMicro & wts.type == page & identity != wts.Page.ContentGrid.CaliburnMicro|wts.Page.ImageGallery.CaliburnMicro & $feature == wts.Feat.UnitTests.App.xUnit"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
