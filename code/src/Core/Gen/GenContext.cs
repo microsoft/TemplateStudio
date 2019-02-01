@@ -64,6 +64,8 @@ namespace Microsoft.Templates.Core.Gen
             try
             {
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
+                AppHealth.Current.IntializeTelemetryClient(shell);
+
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
                 string hostVersion = $"{shell.GetVsVersionAndInstance()}-{wizardVersion.Major}.{wizardVersion.Minor}";

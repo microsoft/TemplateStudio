@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -290,6 +291,30 @@ namespace Microsoft.Templates.Fakes
         public override string CreateCertificate(string publisherName)
         {
             return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return new VSTelemetryInfo()
+            {
+                OptedIn = true,
+                VisualStudioCulture = string.Empty,
+                VisualStudioEdition = string.Empty,
+                VisualStudioExeVersion = string.Empty,
+                VisualStudioManifestId = string.Empty,
+            };
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
         }
     }
 }
