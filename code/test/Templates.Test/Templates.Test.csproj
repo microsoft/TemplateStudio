@@ -320,6 +320,10 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj">
+      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
       <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>
       <Name>TemplateValidator</Name>
