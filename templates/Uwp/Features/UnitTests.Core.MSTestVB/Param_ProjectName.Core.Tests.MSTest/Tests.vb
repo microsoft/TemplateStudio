@@ -2,7 +2,7 @@
 
 ' TODO WTS: Add appropriate unit tests
 <TestClass>
-Public Class UnitTest1
+Public Class Tests
 
     <TestMethod>
     Public Sub TestMethod1()

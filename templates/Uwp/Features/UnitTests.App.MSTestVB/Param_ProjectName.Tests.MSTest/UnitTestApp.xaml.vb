@@ -18,7 +18,9 @@
             AddHandler rootFrame.NavigationFailed, AddressOf OnNavigationFailed
 
             If e.PreviousExecutionState = ApplicationExecutionState.Terminated Then
-                ' TODO: Load state from previously suspended application
+                ' In a regular app, this is where you would
+                ' Load state from previously suspended application
+                ' But this should not be necessary in a test app
             End If
             ' Place the frame in the current Window
             Window.Current.Content = rootFrame
