@@ -114,6 +114,6 @@
         "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
       "continueOnError": "true"
-    
+    }
   ]
 }
