@@ -51,5 +51,25 @@ namespace Microsoft.Templates.Core
         {
             return value.GetMultiValue().Length > 1;
         }
+
+        // This is the same substitution as VS makes with new projects
+        public static string MakeSafeForProjectName(this string value)
+        {
+            var result = new StringBuilder();
+
+            foreach (var character in value)
+            {
+                if (char.IsLetterOrDigit(character) || character == '.')
+                {
+                    result.Append(character);
+                }
+                else
+                {
+                    result.Append('_');
+                }
+            }
+
+            return result.ToString();
+        }
     }
 }
