@@ -322,7 +322,7 @@ namespace Microsoft.Templates.Core.Gen
                 ns = GenContext.Current.ProjectName;
             }
 
-            ns = ns.MakeSafeForProjectName();
+            ns = ns.MakeSafeProjectName();
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 

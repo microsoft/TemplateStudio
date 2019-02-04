@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -53,23 +54,45 @@ namespace Microsoft.Templates.Core
         }
 
         // This is the same substitution as VS makes with new projects
-        public static string MakeSafeForProjectName(this string value)
+        public static string MakeSafeProjectName(this string projectName)
         {
-            var result = new StringBuilder();
-
-            foreach (var character in value)
+            if (projectName == null)
             {
-                if (char.IsLetterOrDigit(character) || character == '.')
+                return null;
+            }
+
+            var stringBuilder = new StringBuilder(projectName);
+
+            for (var i = 0; i < stringBuilder.Length; i++)
+            {
+                var unicodeCategory = char.GetUnicodeCategory(stringBuilder[i]);
+
+                var flag = unicodeCategory == UnicodeCategory.UppercaseLetter ||
+                           unicodeCategory == UnicodeCategory.LowercaseLetter ||
+                           unicodeCategory == UnicodeCategory.TitlecaseLetter ||
+                           unicodeCategory == UnicodeCategory.OtherLetter ||
+                           unicodeCategory == UnicodeCategory.LetterNumber ||
+                           stringBuilder[i] == '\u005F';
+
+                var flag1 = unicodeCategory == UnicodeCategory.NonSpacingMark ||
+                            unicodeCategory == UnicodeCategory.SpacingCombiningMark ||
+                            unicodeCategory == UnicodeCategory.ModifierLetter ||
+                            unicodeCategory == UnicodeCategory.DecimalDigitNumber;
+
+                if (i == 0)
                 {
-                    result.Append(character);
+                    if (!flag)
+                    {
+                        stringBuilder[i] = '\u005F';
+                    }
                 }
-                else
+                else if (!flag & !flag1)
                 {
-                    result.Append('_');
+                    stringBuilder[i] = '\u005F';
                 }
             }
 
-            return result.ToString();
+            return stringBuilder.ToString();
         }
     }
 }
