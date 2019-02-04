@@ -12,7 +12,6 @@ using System.Reflection;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
