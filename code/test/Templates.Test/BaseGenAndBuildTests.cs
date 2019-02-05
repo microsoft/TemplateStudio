@@ -34,6 +34,14 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
         }
 
+        // Used to create names that include a number of characters that are valid in project names but have the potential to cause issues
+        protected static string CharactersThatMayCauseProjectNameIssues()
+        {
+            // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
+            // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
+            return " -_.,'@!(£)+=";
+        }
+
         protected static string ShortProjectType(string projectType)
         {
             switch (projectType)

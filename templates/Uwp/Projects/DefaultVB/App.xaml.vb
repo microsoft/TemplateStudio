@@ -1,4 +1,4 @@
-﻿Imports wts.DefaultProject.Services
+﻿Imports Param_RootNamespace.Services
 
 NotInheritable Partial Class App
     Inherits Application

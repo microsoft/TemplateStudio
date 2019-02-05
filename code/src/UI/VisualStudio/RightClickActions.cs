@@ -28,6 +28,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName { get; private set; }
 
+        public string SafeProjectName { get; private set; }
+
         public string GenerationOutputPath { get; private set; }
 
         public string DestinationPath { get; private set; }
@@ -121,6 +123,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                    SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
