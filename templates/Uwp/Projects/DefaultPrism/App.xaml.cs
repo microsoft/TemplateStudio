@@ -7,7 +7,7 @@ using Prism.Windows.AppModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
-namespace wts.DefaultProject
+namespace Param_RootNamespace
 {
     [Windows.UI.Xaml.Data.Bindable]
     public sealed partial class App : PrismUnityApplication

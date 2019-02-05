@@ -322,6 +322,8 @@ namespace Microsoft.Templates.Core.Gen
                 ns = GenContext.Current.ProjectName;
             }
 
+            ns = ns.MakeSafeProjectName();
+
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
             // TODO: THIS SHOULD BE THE ITEM IN CONTEXT

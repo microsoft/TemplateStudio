@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
-using wts.DefaultProject.Services;
+using Param_RootNamespace.Services;
 
-namespace wts.DefaultProject.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 
-namespace wts.DefaultProject.Helpers
+namespace Param_RootNamespace.Helpers
 {
     internal static class ResourceExtensions
     {
