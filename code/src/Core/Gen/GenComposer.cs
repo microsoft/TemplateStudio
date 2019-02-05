@@ -319,7 +319,7 @@ namespace Microsoft.Templates.Core.Gen
 
             if (string.IsNullOrEmpty(ns))
             {
-                ns = GenContext.Current.ProjectName;
+                ns = GenContext.Current.SafeProjectName;
             }
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);

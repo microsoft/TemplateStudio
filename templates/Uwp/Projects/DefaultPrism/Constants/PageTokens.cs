@@ -1,4 +1,4 @@
-﻿namespace wts.DefaultProject
+﻿namespace Param_RootNamespace
 {
     internal static class PageTokens
     {

@@ -45,6 +45,34 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureTemplatesDefineNamespacesCorrectly()
+        {
+            var result = new List<string>();
+
+            void EnsureDoNotUse(string shouldNotUse, string fileExtension)
+            {
+                var (success, failMessage) = CodeIsNotUsed(shouldNotUse, fileExtension);
+
+                if (!success)
+                {
+                    result.Add(failMessage + " It should use 'Param_RootNamespace' instead.");
+                }
+            }
+
+            // The placeholder "Param_RootNamespace" should be used instead, to ensure that all namespaces are created equally
+            EnsureDoNotUse("namespace wts.DefaultProject", "*.cs");
+            EnsureDoNotUse("namespace wts.DefaultProject", "*.vb");
+            EnsureDoNotUse("namespace Param_ProjectName", "*.cs");
+            EnsureDoNotUse("namespace Param_ProjectName", "*.vb");
+            EnsureDoNotUse("using wts.DefaultProject", "*.cs");
+            EnsureDoNotUse("Imports wts.DefaultProject", "*.vb");
+            EnsureDoNotUse("using Param_ProjectName", "*.cs");
+            EnsureDoNotUse("Imports Param_ProjectName", "*.vb");
+
+            Assert.True(!result.Any(), string.Join(Environment.NewLine, result));
+        }
+
+        [Fact]
         public void EnsureCodeDoesNotUseOldTodoCommentIdentifier()
         {
             void EnsureUwpTemplatesNotUsed(string fileExtension)
