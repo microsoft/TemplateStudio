@@ -2,7 +2,7 @@
 'This code block adds the logic to handle SettingsItem in NavigationView control from ViewModel.
 '**}
 '{[{
-Imports Param_ItemNamespace.Views
+Imports Param_RootNamespace.Views
 '}]}
 
 Namespace ViewModels

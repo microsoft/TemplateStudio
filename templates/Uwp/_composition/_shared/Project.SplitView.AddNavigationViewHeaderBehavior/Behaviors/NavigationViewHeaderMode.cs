@@ -1,4 +1,4 @@
-﻿namespace wts.ItemName.Behaviors
+﻿namespace Param_RootNamespace.Behaviors
 {
     public enum NavigationViewHeaderMode
     {

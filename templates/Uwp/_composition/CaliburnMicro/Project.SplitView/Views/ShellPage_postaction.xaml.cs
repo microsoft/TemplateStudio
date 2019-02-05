@@ -1,4 +1,4 @@
-﻿namespace wts.ItemName.Views
+﻿namespace Param_RootNamespace.Views
 {
     public sealed partial class ShellPage : IShellView
     {
