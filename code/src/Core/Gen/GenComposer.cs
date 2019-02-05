@@ -319,10 +319,8 @@ namespace Microsoft.Templates.Core.Gen
 
             if (string.IsNullOrEmpty(ns))
             {
-                ns = GenContext.Current.ProjectName;
+                ns = GenContext.Current.SafeProjectName;
             }
-
-            ns = ns.MakeSafeProjectName();
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
