@@ -2,7 +2,7 @@
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public class ConnectedAnimationService : IConnectedAnimationService
     {

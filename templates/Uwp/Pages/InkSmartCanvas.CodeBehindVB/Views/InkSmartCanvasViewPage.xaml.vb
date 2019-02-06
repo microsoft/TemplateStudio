@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
-Imports Param_ItemNamespace.Services.Ink.UndoRedo
+﻿Imports Param_RootNamespace.Services.Ink
+Imports Param_RootNamespace.Services.Ink.UndoRedo
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md

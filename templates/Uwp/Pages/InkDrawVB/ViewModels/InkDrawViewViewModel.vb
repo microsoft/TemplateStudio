@@ -1,8 +1,8 @@
 ﻿Imports System.Linq
 Imports System.Windows.Input
-Imports Param_ItemNamespace.Services.Ink
-Imports Param_ItemNamespace.Services.Ink.UndoRedo
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Services.Ink
+Imports Param_RootNamespace.Services.Ink.UndoRedo
+Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class InkDrawViewViewModel

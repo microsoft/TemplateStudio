@@ -1,7 +1,7 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Storage
 Imports Windows.Storage.Streams
-Imports Param_ItemNamespace.Models
+Imports Param_RootNamespace.Models
 
 Namespace Helpers
     ' TODO WTS: Start sharing data from your pages / views with these steps:

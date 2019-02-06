@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Services.Ink.UndoRedo
+﻿namespace Param_RootNamespace.Services.Ink.UndoRedo
 {
     public interface IUndoRedoOperation
     {

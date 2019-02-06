@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     // A custom event that fires whenever the secondary view is ready to be closed. You should
     // clean up any state (including deregistering for events) then close the window in this handler

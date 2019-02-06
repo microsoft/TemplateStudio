@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     // TODO WTS: Remove this sample page when/if it's not needed.
     // This page is an sample of how to launch a specific page in response to a protocol launch and pass it a value.

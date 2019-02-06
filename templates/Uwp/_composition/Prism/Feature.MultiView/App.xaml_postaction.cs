@@ -6,7 +6,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 //}]}
 
-namespace Param_ItemNamespace
+namespace Param_RootNamespace
 {
     [Windows.UI.Xaml.Data.Bindable]
     public sealed partial class App : PrismUnityApplication

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 //}]}
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class SchemeActivationSamplePage : Page
     {

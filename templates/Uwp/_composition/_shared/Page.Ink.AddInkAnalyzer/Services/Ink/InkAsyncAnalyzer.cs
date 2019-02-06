@@ -6,9 +6,9 @@ using Windows.UI.Input.Inking;
 using Windows.UI.Input.Inking.Analysis;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.EventHandlers.Ink;
+using Param_RootNamespace.EventHandlers.Ink;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     // TODO WTS: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
     // For more info see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md#install-handwriting-recognition

@@ -4,9 +4,9 @@ using System.ComponentModel;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {

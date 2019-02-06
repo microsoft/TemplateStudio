@@ -4,7 +4,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Caliburn.Micro;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Screen
     {

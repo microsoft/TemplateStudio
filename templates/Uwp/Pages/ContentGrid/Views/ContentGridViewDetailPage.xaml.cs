@@ -2,9 +2,9 @@
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ContentGridViewDetailPage : Page
     {

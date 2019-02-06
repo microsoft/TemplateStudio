@@ -1,8 +1,8 @@
 ﻿//{[{
-using Param_ItemNamespace.Views;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.Views;
+using Param_RootNamespace.ViewModels;
 //}]}
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {

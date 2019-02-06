@@ -3,7 +3,7 @@ using Param_RootNamespace.Views;
 //}]}
 using System;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Observable
     {

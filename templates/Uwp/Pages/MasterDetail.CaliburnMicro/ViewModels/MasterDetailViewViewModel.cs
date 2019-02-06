@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Core.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class MasterDetailViewViewModel : Conductor<MasterDetailViewDetailViewModel>.Collection.OneActive
     {

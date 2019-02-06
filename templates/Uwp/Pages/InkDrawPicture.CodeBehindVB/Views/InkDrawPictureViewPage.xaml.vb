@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
-Imports Param_ItemNamespace.Helpers
+﻿Imports Param_RootNamespace.Services.Ink
+Imports Param_RootNamespace.Helpers
 Imports Windows.Storage
 
 Namespace Views

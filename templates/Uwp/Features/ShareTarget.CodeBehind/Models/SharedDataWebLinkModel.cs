@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Param_ItemNamespace.Models
+namespace Param_RootNamespace.Models
 {
     public class SharedDataWebLinkModel : SharedDataModelBase
     {

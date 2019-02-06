@@ -1,8 +1,8 @@
 ﻿Imports Windows.Devices.Geolocation
 Imports Windows.Storage.Streams
 Imports Windows.UI.Xaml.Controls.Maps
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Services
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace Views
     Public NotInheritable Partial Class MapPagePage

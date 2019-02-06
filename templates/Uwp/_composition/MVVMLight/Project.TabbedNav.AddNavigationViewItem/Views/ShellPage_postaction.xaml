@@ -11,7 +11,7 @@
         <winui:NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" helpers:NavHelper.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" helpers:NavHelper.NavigateTo="Param_RootNamespace.ViewModels.wts.ItemNameViewModel" />
             <!--}]}-->
         </winui:NavigationView.MenuItems>        
     </winui:NavigationView>

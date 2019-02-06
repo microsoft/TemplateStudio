@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Input
 Imports System.Threading.Tasks
-Imports Param_ItemNamespace.Services.Ink
-Imports Param_ItemNamespace.Services.Ink.UndoRedo
+Imports Param_RootNamespace.Services.Ink
+Imports Param_RootNamespace.Services.Ink.UndoRedo
 
 Namespace ViewModels
     Public Class InkSmartCanvasViewViewModel

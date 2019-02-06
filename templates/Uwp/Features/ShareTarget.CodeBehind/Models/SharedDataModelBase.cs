@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Models
+﻿namespace Param_RootNamespace.Models
 {
     public abstract class SharedDataModelBase
     {

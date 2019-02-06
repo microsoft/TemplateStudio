@@ -1,6 +1,6 @@
-﻿Imports Param_ItemNamespace.Core.Models
-Imports Param_ItemNamespace.Core.Services
-Imports Param_ItemNamespace.Services
+﻿Imports Param_RootNamespace.Core.Models
+Imports Param_RootNamespace.Core.Services
+Imports Param_RootNamespace.Services
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 
 Namespace ViewModels

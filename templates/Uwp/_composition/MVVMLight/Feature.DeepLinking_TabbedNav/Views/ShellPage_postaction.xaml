@@ -11,7 +11,7 @@
         <winui:NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" helpers:NavHelper.NavigateTo="Param_ItemNamespace.ViewModels.SchemeActivationSampleViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" helpers:NavHelper.NavigateTo="Param_RootNamespace.ViewModels.SchemeActivationSampleViewModel" />
             <!--}]}-->
         </winui:NavigationView.MenuItems>        
     </winui:NavigationView>

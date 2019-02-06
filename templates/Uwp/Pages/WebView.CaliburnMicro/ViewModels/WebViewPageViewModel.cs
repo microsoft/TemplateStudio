@@ -2,10 +2,10 @@
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 using Caliburn.Micro;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class WebViewPageViewModel : Screen
     {

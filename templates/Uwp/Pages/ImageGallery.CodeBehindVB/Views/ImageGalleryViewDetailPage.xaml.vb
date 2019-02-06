@@ -1,10 +1,10 @@
 ﻿Imports Windows.System
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Core.Models
-Imports Param_ItemNamespace.Core.Services
-Imports Param_ItemNamespace.Services
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Models
+Imports Param_RootNamespace.Core.Services
+Imports Param_RootNamespace.Services
 
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
