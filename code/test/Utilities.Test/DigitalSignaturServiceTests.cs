@@ -27,7 +27,6 @@ namespace Microsoft.Templates.Utilities
     public class DigitalSignaturServiceTests
     {
 
-
         [Fact]
         public async Task DigitalSignaturService_IsSigned()
         {
@@ -121,33 +120,33 @@ namespace Microsoft.Templates.Utilities
             }
         }
 
-        //[Fact]
-        //public async Task SignPackageAsync()
-        //{
-        //    var dss = new DigitalSignatureService();
-        //    var templatePackage = new TemplatePackage(dss);
-        //    var certPass = GetTestCertPassword();
-        //    X509Certificate2 cert = templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
+        [Fact]
+        public void SignPackage()
+        {
+            var dss = new DigitalSignatureService();
+            var templatePackage = new TemplatePackage(dss);
+            var certPass = GetTestCertPassword();
+            X509Certificate2 cert = templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-        //    var signedFile = Path.GetFullPath(@".\Packaging\Unsigned\Templates.mstx");
+            var file = Path.GetFullPath(@".\Packaging\Unsigned\JustPacked.mstx");
 
-        //    using (Package package = Package.Open(signedFile, FileMode.Open, FileAccess.Read, FileShare.Read))
-        //    {
-        //        dss.SignPackage(package, cert);
+            using (Package package = Package.Open(file, FileMode.Open))
+            {
+                dss.SignPackage(package, cert);
 
-        //    }
+            }
 
-        //    using (Package package = Package.Open(signedFile, FileMode.Open, FileAccess.Read, FileShare.Read))
-        //    {
-        //        var isSigned = dss.IsSigned(package);
-        //        var isSignatureValid = dss.VerifySignatures(package);
+            using (Package package = Package.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var isSigned = dss.IsSigned(package);
+                var isSignatureValid = dss.VerifySignatures(package);
 
-        //        Assert.True(isSigned);
-        //        Assert.True(isSignatureValid);
-        //    }
+                Assert.True(isSigned);
+                Assert.True(isSignatureValid);
+            }
 
-        //    File.Delete(signedFile);
-        //}
+            File.Delete(file);
+        }
 
         private static SecureString GetTestCertPassword()
         {
