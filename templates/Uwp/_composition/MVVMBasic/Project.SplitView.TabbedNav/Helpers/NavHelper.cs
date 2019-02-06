@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 
-namespace wts.ItemName.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public class NavHelper
     {

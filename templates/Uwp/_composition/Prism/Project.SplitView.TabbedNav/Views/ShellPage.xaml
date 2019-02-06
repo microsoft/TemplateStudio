@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="wts.ItemName.Views.ShellPage"
+    x:Class="Param_RootNamespace.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:helpers="using:wts.ItemName.Helpers"
+    xmlns:helpers="using:Param_RootNamespace.Helpers"
     mc:Ignorable="d">
 
     <winui:NavigationView

@@ -9,9 +9,9 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 
-using wts.ItemName.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {

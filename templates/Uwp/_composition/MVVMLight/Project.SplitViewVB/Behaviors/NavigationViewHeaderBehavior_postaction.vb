@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports wts.ItemName.ViewModels
+Imports Param_RootNamespace.ViewModels
 '}]}
 
 Namespace Behaviors
