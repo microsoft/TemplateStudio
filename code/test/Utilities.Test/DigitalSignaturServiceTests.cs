@@ -3,19 +3,15 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.IO.Packaging;
 using System.Linq;
-using System.Reflection;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Utilities.Services;
@@ -31,31 +27,19 @@ namespace Microsoft.Templates.Utilities
         public async Task DigitalSignaturService_IsSigned()
         {
             string drive = Path.GetPathRoot(new Uri(typeof(DigitalSignaturServiceTests).Assembly.CodeBase).LocalPath);
-            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
 
-            try
+            DigitalSignatureService dss = new DigitalSignatureService();
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            CancellationTokenSource cts = new CancellationTokenSource();
+            await rts.LoadConfigAsync(cts.Token);
+            var templatesPackage = rts.Config.Latest;
+
+            await rts.AcquireAsync(templatesPackage, cts.Token);
+            using (Package package = Package.Open(templatesPackage.LocalPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                DigitalSignatureService dss = new DigitalSignatureService();
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
-                CancellationTokenSource cts = new CancellationTokenSource();
-                await rts.LoadConfigAsync(cts.Token);
-                var templatesPackage = rts.Config.Latest;
+                var isSigned = dss.IsSigned(package);
 
-                await rts.AcquireAsync(templatesPackage, cts.Token);
-                using (Package package = Package.Open(templatesPackage.LocalPath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var isSigned = dss.IsSigned(package);
-
-                    Assert.True(isSigned);
-
-                }
-            }
-            finally
-            {
-                if (Directory.Exists(testDir))
-                {
-                    Directory.Delete(testDir, true);
-                }
+                Assert.True(isSigned);
             }
         }
 
@@ -63,31 +47,19 @@ namespace Microsoft.Templates.Utilities
         public async Task DigitalSignaturService_VerifySignatures()
         {
             string drive = Path.GetPathRoot(new Uri(typeof(DigitalSignaturServiceTests).Assembly.CodeBase).LocalPath);
-            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
 
-            try
+            DigitalSignatureService dss = new DigitalSignatureService();
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            CancellationTokenSource cts = new CancellationTokenSource();
+            await rts.LoadConfigAsync(cts.Token);
+            var templatesPackage = rts.Config.Latest;
+
+            await rts.AcquireAsync(templatesPackage, cts.Token);
+            using (Package package = Package.Open(templatesPackage.LocalPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                DigitalSignatureService dss = new DigitalSignatureService();
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
-                CancellationTokenSource cts = new CancellationTokenSource();
-                await rts.LoadConfigAsync(cts.Token);
-                var templatesPackage = rts.Config.Latest;
+                var signatureValid = dss.VerifySignatures(package);
 
-                await rts.AcquireAsync(templatesPackage, cts.Token);
-                using (Package package = Package.Open(templatesPackage.LocalPath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var signatureValid = dss.VerifySignatures(package);
-
-                    Assert.True(signatureValid);
-
-                }
-            }
-            finally
-            {
-                if (Directory.Exists(testDir))
-                {
-                    Directory.Delete(testDir, true);
-                }
+                Assert.True(signatureValid);
             }
         }
 
@@ -95,29 +67,24 @@ namespace Microsoft.Templates.Utilities
         public void DigitalSignaturService_VerifyLocalContent()
         {
             string drive = Path.GetPathRoot(new Uri(typeof(DigitalSignaturServiceTests).Assembly.CodeBase).LocalPath);
-            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
 
-            try
+            DigitalSignatureService dss = new DigitalSignatureService();
+            var packageFile = Path.GetFullPath(@".\Packaging\MsSigned\Templates.mstx");
+
+            using (Package package = Package.Open(packageFile, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                DigitalSignatureService dss = new DigitalSignatureService();
-                var packageFile = Path.GetFullPath(@".\Packaging\MsSigned\Templates.mstx");
+                var isSigned = dss.IsSigned(package);
+                var isSignatureValid = dss.VerifySignatures(package);
 
-                using (Package package = Package.Open(packageFile, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var isSigned = dss.IsSigned(package);
-                    var isSignatureValid = dss.VerifySignatures(package);
+                Assert.True(isSigned);
+                Assert.True(isSignatureValid);
 
-                    Assert.True(isSigned);
-                    Assert.True(isSignatureValid);
-                }
-            }
-            finally
-            {
-                if (Directory.Exists(testDir))
+                foreach (var cert in dss.GetX509Certificates(package))
                 {
-                    Directory.Delete(testDir, true);
+                    var statusFlag = dss.VerifyCertificate(cert);
+                    Assert.NotEqual(X509ChainStatusFlags.Revoked, statusFlag);
                 }
-            }
+            }  
         }
 
         [Fact]
@@ -128,15 +95,16 @@ namespace Microsoft.Templates.Utilities
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            var file = Path.GetFullPath(@".\Packaging\Unsigned\JustPacked.mstx");
+            var file = Path.GetFullPath(@".\Packaging\Unsigned\UnsignedPackage.mstx");
+            var file2 = Path.GetFullPath(@".\Packaging\ToSign.mstx");
+            File.Copy(file, file2);
 
-            using (Package package = Package.Open(file, FileMode.Open))
+            using (Package package = Package.Open(file2, FileMode.Open))
             {
                 dss.SignPackage(package, cert);
-
             }
 
-            using (Package package = Package.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Package package = Package.Open(file2, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var isSigned = dss.IsSigned(package);
                 var isSignatureValid = dss.VerifySignatures(package);
@@ -145,7 +113,56 @@ namespace Microsoft.Templates.Utilities
                 Assert.True(isSignatureValid);
             }
 
-            File.Delete(file);
+            File.Delete(file2);
+        }
+
+        [Fact]
+        public void ExtractPackage_Tampered()
+        {
+            var dss = new DigitalSignatureService();
+            var templatePackage = new TemplatePackage(dss);
+            var certPass = GetTestCertPassword();
+            X509Certificate2 cert = templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
+
+            var file = Path.GetFullPath(@".\Packaging\Unsigned\UnsignedPackage.mstx");
+            var file2 = Path.GetFullPath(@".\Packaging\ToSign.mstx");
+            File.Copy(file, file2);
+
+
+            using (Package package = Package.Open(file2, FileMode.Open))
+            {
+                dss.SignPackage(package, cert);
+
+            }
+
+            ModifyContent(file2, "SampleContent.txt");
+
+            using (Package package = Package.Open(file2, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var isSigned = dss.IsSigned(package);
+                var isSignatureValid = dss.VerifySignatures(package);
+
+                Assert.True(isSigned);
+                Assert.False(isSignatureValid);
+            }
+
+            File.Delete(file2);
+        }
+
+        private void ModifyContent(string signedPack, string contentFile)
+        {
+            using (ZipArchive zip = ZipFile.Open(signedPack, ZipArchiveMode.Update))
+            {
+                var entry = zip.Entries.Where(e => e.Name == contentFile).FirstOrDefault();
+                if (entry != null)
+                {
+                    using (StreamWriter sw = new StreamWriter(entry.Open()))
+                    {
+                        sw.BaseStream.Position = sw.BaseStream.Length - 1;
+                        sw.WriteLine("Tampered");
+                    }
+                }
+            }
         }
 
         private static SecureString GetTestCertPassword()

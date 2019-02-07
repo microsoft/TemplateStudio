@@ -37,13 +37,12 @@ namespace Microsoft.Templates.Core.Test.Locations
         {
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
             var inFolder = Environment.CurrentDirectory;
-            var inFile = @"Packaging\SampleContent.txt";
 
             var outDir = @"C:\Temp\PackTests";
             var outFile = Path.Combine(outDir, "JustPacked.mstx");
             var extractDir = Path.Combine(outDir, "Extraction");
 
-            await _templatePackage.PackAsync(inFile, outFile, MediaTypeNames.Text.Plain);
+            await _templatePackage.PackAsync(inFolder, outFile, MediaTypeNames.Text.Plain);
 
             await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None, false);
 
