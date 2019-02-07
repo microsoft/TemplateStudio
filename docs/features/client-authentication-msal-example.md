@@ -1,3 +1,29 @@
+# Table of Contents
+* [Introduction](#introduction)
+    * [Azure AD Authentication](#azure-ad-authentication--uwp-c-code-spec)
+    * [Terminology](#terminology)
+* [The Basics](#the-basics)
+    * [Basic code flow](#basic-code-flow)
+    * [App-specific variables](#app-specific-variables)
+    * [Authentication endpoints](#authentication-endpoints)
+* [The Code](#the-code)
+    * [Project dependencies](#project-dependencies)
+    * [App interface and required controls](#app-interface-and-required-controls)
+    * [Creating an application instance](#creating-an-application-instance)
+    * [Global variables](#global-variables)
+    * [Authenticating the user](#authenticating-the-user)
+    * [Implementing optional authentication](#implementing-optional-authentication)
+    * [Logging in](#logging-in)
+    * [Implementing logic after logging in](#implementing-logic-after-logging-in)
+    * [Logging out](#logging-out)
+    * [Implementing logic after logging out](#implementing-logic-after-logging-out)
+    * [Handling exceptions](#handling-exceptions)
+    * [Displaying exception message in-app](#displaying-exception-message-in-app)
+* [The Graph Sample](#the-graph-sample)
+    * [Implement GraphButton Click() function](#implement-graph-button-click-function)
+    * [Call Graph API using HTTPS](#call-graph-api-using-https)
+    * [Display Token Info](#display-token-info)
+
 Introduction
 ============
 
