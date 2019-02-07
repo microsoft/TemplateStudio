@@ -52,11 +52,6 @@ namespace Microsoft.Templates.Test
 
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
-            // Add core project using test template.
-            // This is a temporary workaround to allow right clicks with multiproject on 2.5 templates. Remove when 3.0 is released
-            var coreTemplate = _fixture.Templates().Where(t => t.Name == "Testing.AddCoreProject" || t.Name == "Testing.AddCoreProject.VB");
-            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, coreTemplate, projectName, projectType, framework, platform, language);
-
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                             && t.GetFrameworkList().Contains(framework)
