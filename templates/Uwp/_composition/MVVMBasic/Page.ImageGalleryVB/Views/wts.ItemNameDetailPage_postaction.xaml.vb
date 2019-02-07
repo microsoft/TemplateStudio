@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_ItemNamespace.ViewModels
+Imports Param_RootNamespace.ViewModels
 '}]}
 Namespace Views
     Public NotInheritable Partial Class wts.ItemNameDetailPage

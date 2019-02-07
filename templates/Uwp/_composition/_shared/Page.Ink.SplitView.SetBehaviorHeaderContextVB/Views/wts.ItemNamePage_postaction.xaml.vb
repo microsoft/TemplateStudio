@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_ItemNamespace.Behaviors
+Imports Param_RootNamespace.Behaviors
 Imports Windows.UI.Xaml.Data
 '}]}
 

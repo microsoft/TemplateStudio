@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal interface IBackgroundTaskService
     {

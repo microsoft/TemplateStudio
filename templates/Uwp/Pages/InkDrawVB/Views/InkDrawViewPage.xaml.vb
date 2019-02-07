@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.Services.Ink
+﻿Imports Param_RootNamespace.Services.Ink
 Imports Windows.UI.Xaml.Controls
 
 Namespace Views

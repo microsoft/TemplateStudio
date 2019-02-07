@@ -1,5 +1,5 @@
 ﻿Imports Windows.UI.Core
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Helpers
 
 Namespace Services
 

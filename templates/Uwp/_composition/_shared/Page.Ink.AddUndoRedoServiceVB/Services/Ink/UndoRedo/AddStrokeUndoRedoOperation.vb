@@ -1,5 +1,5 @@
 ﻿Imports Windows.UI.Input.Inking
-Imports Param_ItemNamespace.EventHandlers.Ink
+Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
     Public Class AddStrokeUndoRedoOperation

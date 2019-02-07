@@ -2,8 +2,8 @@
 Imports GalaSoft.MvvmLight.Command
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 '}]}
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Services
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace ViewModels
     Public Class wts.ItemNameViewModel

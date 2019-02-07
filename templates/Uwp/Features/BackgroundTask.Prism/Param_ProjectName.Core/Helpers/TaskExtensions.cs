@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Param_ItemNamespace.Core.Helpers
+namespace Param_RootNamespace.Core.Helpers
 {
     public static class TaskExtensions
     {

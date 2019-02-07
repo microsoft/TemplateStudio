@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
-Imports Param_ItemNamespace.ViewModels
+﻿Imports Param_RootNamespace.Services.Ink
+Imports Param_RootNamespace.ViewModels
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 

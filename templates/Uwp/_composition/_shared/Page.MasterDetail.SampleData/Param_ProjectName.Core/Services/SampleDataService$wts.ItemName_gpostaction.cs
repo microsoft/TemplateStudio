@@ -4,7 +4,7 @@
 //{[{
 using System.Threading.Tasks;
 //}]}
-namespace Param_ItemNamespace.Core.Services
+namespace Param_RootNamespace.Core.Services
 {
     public static class SampleDataService
     {

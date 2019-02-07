@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Services
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 Imports Windows.System
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 

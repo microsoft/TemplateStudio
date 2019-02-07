@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.EventHandlers.Ink
+﻿Imports Param_RootNamespace.EventHandlers.Ink
 Imports System.Collections.Generic
 Imports System.Linq
 Imports Windows.UI.Input.Inking

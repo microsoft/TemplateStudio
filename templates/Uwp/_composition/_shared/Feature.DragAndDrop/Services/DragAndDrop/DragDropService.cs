@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 using Param_RootNamespace.Models;
 
-namespace Param_ItemNamespace.Services.DragAndDrop
+namespace Param_RootNamespace.Services.DragAndDrop
 {
     // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/drag-and-drop.md
     public class DragDropService

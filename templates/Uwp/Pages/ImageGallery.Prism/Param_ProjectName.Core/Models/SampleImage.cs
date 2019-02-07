@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Core.Models
+﻿namespace Param_RootNamespace.Core.Models
 {
     public class SampleImage
     {

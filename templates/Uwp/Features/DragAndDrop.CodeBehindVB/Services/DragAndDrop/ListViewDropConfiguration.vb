@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.Models
+﻿Imports Param_RootNamespace.Models
 
 Namespace Services.DragAndDrop
 

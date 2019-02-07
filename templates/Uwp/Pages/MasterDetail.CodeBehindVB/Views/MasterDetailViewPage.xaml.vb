@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Param_ItemNamespace.Core.Models
-Imports Param_ItemNamespace.Core.Services
+Imports Param_RootNamespace.Core.Models
+Imports Param_RootNamespace.Core.Services
 
 Namespace Views
     Public NotInheritable Partial Class MasterDetailViewPage

@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_ItemNamespace.Services
+Imports Param_RootNamespace.Services
 '}]}
 Namespace ViewModels
     Public Class wts.ItemNameDetailViewModel

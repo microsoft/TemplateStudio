@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.ViewModels
+﻿namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : Screen
     {

@@ -1,6 +1,6 @@
-﻿Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Core.Models
-Imports Param_ItemNamespace.Core.Services
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Models
+Imports Param_RootNamespace.Core.Services
 
 Namespace ViewModels
     Public Class ImageGalleryViewDetailViewModel

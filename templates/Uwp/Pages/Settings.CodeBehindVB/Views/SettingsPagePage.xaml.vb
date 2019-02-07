@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Services
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace Views
     ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.vb.md
