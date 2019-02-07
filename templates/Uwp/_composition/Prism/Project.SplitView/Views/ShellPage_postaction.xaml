@@ -1,7 +1,7 @@
 ﻿<Page
 <!--^^-->
 <!--{[{-->
-    xmlns:behaviors="using:wts.ItemName.Behaviors"
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
 <!--}]}-->
     mc:Ignorable="d">
 

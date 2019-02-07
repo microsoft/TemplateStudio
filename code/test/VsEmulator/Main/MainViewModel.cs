@@ -55,6 +55,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
 
+        public string SafeProjectName => ProjectName.MakeSafeProjectName();
+
         public string GenerationOutputPath { get;  set; }
 
         public string DestinationPath { get; private set; }
