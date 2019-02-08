@@ -1,7 +1,7 @@
 ﻿Imports Windows.System
 Imports Windows.UI.Core
 
-Imports wts.DefaultProject.Activation
+Imports Param_RootNamespace.Activation
 
 Namespace Services
     ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.vb.md

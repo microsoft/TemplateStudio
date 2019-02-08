@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Param_RootNamespace.Services;
 using Windows.ApplicationModel.Activation;
 
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {

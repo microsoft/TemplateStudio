@@ -2,7 +2,7 @@
 using Param_RootNamespace.ViewModels;
 //}]}
 
-namespace Param_ItemNamespace
+namespace Param_RootNamespace
 {
     public sealed partial class App
     {

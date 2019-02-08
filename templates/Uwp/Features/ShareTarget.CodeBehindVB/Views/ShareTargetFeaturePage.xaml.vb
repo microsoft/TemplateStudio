@@ -1,8 +1,8 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports Windows.Storage
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Models
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Models
 
 Namespace Views
     ' TODO WTS: Remove this example page when/if it's not needed.

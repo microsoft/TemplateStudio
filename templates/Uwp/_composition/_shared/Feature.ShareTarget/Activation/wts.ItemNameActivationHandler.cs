@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Views;
+using Param_RootNamespace.Views;
 
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class wts.ItemNameActivationHandler : ActivationHandler<ShareTargetActivatedEventArgs>
     {

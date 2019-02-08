@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.Core.Models
+﻿Imports Param_RootNamespace.Core.Models
 
 Namespace Views
     Public NotInheritable Partial Class wts.ItemNameDetailControl

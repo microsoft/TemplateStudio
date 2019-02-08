@@ -1,4 +1,4 @@
-﻿Imports wts.ItemName.ViewModels
+﻿Imports Param_RootNamespace.ViewModels
 
 Namespace Views
     ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.

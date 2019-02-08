@@ -2,7 +2,7 @@
 ' This code block adds the call to `SampleDataService Initialize` in ActivationService of your project.
 '**}
 '{[{
-Imports Param_ItemNamespace.Core.Services
+Imports Param_RootNamespace.Core.Services
 '}]}
 
 Namespace Services

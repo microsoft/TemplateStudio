@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ContentGrid",
+  "name": "Content Grid",
   "description": "Bu sayfa, özel öğeleri Uyarlamalı Kılavuz biçiminde eklemenizi sağlar.",
   "identity": "wts.Page.ContentGrid"
 }

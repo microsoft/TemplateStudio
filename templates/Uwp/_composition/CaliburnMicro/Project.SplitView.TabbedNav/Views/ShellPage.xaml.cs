@@ -1,9 +1,9 @@
-﻿using wts.ItemName.ViewModels;
+﻿using Param_RootNamespace.ViewModels;
 using Caliburn.Micro;
 using Windows.UI.Xaml.Controls;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
-namespace wts.ItemName.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : IShellView

@@ -3,7 +3,7 @@ using Caliburn.Micro;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
 
-namespace wts.ItemName.Views
+namespace Param_RootNamespace.Views
 {
     public interface IShellView
     {

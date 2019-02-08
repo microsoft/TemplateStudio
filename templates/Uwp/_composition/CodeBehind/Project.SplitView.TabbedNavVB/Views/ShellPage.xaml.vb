@@ -1,7 +1,7 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
-Imports wts.ItemName.Helpers
-Imports wts.ItemName.Services
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace Views
     ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.

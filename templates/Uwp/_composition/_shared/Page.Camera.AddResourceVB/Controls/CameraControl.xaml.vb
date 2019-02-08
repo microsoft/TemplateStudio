@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.EventHandlers
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.EventHandlers
 
 Imports Windows.Devices.Enumeration
 Imports Windows.Devices.Sensors

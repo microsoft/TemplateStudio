@@ -1,6 +1,6 @@
 ﻿'{[{
-Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Views
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Views
 '}]}
 
 Namespace ViewModels

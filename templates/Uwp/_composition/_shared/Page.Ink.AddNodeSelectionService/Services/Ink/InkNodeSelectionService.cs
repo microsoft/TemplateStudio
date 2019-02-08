@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkNodeSelectionService
     {

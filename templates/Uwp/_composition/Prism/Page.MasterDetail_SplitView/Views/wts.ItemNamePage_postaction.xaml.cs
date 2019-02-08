@@ -2,7 +2,7 @@
 using Microsoft.Toolkit.Uwp.UI.Controls;
 //}]}
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {

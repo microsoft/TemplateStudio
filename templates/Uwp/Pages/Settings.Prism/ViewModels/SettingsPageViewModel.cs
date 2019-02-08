@@ -8,7 +8,7 @@ using Windows.ApplicationModel;
 using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged

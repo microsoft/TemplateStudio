@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace
+﻿namespace Param_RootNamespace
 {
     public sealed partial class App
     {

@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="Param_ItemNamespace.Views.ImageGalleryViewDetailPage"
+    x:Class="Param_RootNamespace.Views.ImageGalleryViewDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:Param_ItemNamespace.Core.Models"
+    xmlns:models="using:Param_RootNamespace.Core.Models"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     KeyDown="OnPageKeyDown"
     mc:Ignorable="d">

@@ -11,10 +11,10 @@ using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using wts.ItemName.Services;
-using wts.ItemName.Helpers;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Helpers;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {

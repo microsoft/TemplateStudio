@@ -1,9 +1,9 @@
 ﻿using System;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page
     {

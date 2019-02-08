@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-using wts.DefaultProject.Services;
+using Param_RootNamespace.Services;
 
-namespace wts.DefaultProject
+namespace Param_RootNamespace
 {
     public sealed partial class App : Application
     {

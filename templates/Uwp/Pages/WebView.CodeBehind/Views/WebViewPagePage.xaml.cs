@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class WebViewPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {

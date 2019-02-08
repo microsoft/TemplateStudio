@@ -1,7 +1,7 @@
 ﻿//{[{
-using Param_ItemNamespace.Views;
+using Param_RootNamespace.Views;
 //}]}
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {

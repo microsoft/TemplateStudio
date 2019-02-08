@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.EventHandlers
+﻿Imports Param_RootNamespace.EventHandlers
 
 Namespace Views
     Public NotInheritable Partial Class CameraViewPage

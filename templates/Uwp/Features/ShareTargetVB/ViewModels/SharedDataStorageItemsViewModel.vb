@@ -2,7 +2,7 @@
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports Windows.Storage
 
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class SharedDataStorageItemsViewModel

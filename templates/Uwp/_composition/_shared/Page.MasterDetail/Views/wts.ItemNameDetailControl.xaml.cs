@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Core.Models;
+using Param_RootNamespace.Core.Models;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNameDetailControl : UserControl
     {

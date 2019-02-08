@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Param_ItemNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public static class ImagesNavigationHelper
     {

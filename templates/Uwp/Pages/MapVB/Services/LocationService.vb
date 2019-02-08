@@ -1,7 +1,7 @@
 ﻿Imports Windows.Devices.Geolocation
 Imports Windows.ApplicationModel.Core
 Imports Windows.UI.Core
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Helpers
 
 Namespace Services
     Public Class LocationService

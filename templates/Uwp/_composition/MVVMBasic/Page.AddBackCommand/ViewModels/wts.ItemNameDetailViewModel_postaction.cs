@@ -1,10 +1,10 @@
 ﻿//{[{
 using System.Windows.Input;
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
 //}]}
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : Observable
     {

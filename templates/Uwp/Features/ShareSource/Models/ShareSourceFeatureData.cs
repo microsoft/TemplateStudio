@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 using Windows.Storage;
 
-namespace Param_ItemNamespace.Models
+namespace Param_RootNamespace.Models
 {
     public class ShareSourceFeatureData
     {

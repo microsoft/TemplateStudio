@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public interface IWebViewService
     {

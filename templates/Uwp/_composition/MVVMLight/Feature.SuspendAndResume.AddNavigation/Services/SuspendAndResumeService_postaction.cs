@@ -1,7 +1,7 @@
 ﻿//{[{
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 //}]}
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {

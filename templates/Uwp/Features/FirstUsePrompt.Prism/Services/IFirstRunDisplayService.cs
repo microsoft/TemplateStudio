@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public interface IFirstRunDisplayService
     {

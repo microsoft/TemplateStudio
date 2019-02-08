@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 
-namespace Param_ItemNamespace.TemplateSelectors
+namespace Param_RootNamespace.TemplateSelectors
 {
     public class SharedContentTemplateSelector : DataTemplateSelector
     {

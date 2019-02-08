@@ -1,7 +1,7 @@
 ﻿<Page
     <!--^^-->
     <!--{[{-->
-    xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal"
     <!--}]}-->
     mc:Ignorable="d">

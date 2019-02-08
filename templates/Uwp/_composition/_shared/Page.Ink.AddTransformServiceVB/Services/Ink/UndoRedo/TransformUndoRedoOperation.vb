@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.EventHandlers.Ink
+﻿Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
     Public Class TransformUndoRedoOperation

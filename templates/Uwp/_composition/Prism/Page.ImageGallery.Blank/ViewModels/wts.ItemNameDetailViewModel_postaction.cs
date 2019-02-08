@@ -3,7 +3,7 @@ using Prism.Commands;
 using System.Windows.Input;
 //}]}
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : ViewModelBase
     {

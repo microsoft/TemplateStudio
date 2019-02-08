@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_ItemNamespace.Services
+Imports Param_RootNamespace.Services
 Imports GalaSoft.MvvmLight.Command
 '}]}
 Namespace ViewModels

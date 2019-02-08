@@ -2,7 +2,7 @@
 using Caliburn.Micro;
 //}]}
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public sealed class ViewLifetimeControl
     {
