@@ -322,10 +322,10 @@ namespace Microsoft.Templates.Core.Gen
                 ns = GenContext.Current.SafeProjectName;
             }
 
-            genInfo.Parameters.Add(GenParams.RootNamespace, ns);
-
-            // TODO: THIS SHOULD BE THE ITEM IN CONTEXT
+            // TODO: This is needed to make legaytests work, remove once 3.1 is released
             genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
+
+            genInfo.Parameters.Add(GenParams.RootNamespace, ns);
         }
     }
 }

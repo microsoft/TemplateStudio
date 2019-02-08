@@ -1,6 +1,6 @@
 ﻿Imports Windows.Storage
 Imports Windows.Storage.Streams
-Imports Param_ItemNamespace.Core.Helpers
+Imports Param_RootNamespace.Core.Helpers
 
 Namespace Helpers
     ' Use these extension methods to store and retrieve local and roaming app data

@@ -8,10 +8,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Models;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Models;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Remove this example page when/if it's not needed.
     // This page is an example of how to handle data that is shared with your app.

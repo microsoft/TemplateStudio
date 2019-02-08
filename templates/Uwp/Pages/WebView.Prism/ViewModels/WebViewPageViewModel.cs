@@ -4,9 +4,9 @@ using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class WebViewPageViewModel : ViewModelBase
     {

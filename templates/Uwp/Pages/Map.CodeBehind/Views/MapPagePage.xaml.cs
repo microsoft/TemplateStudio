@@ -5,11 +5,11 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
 using System.Threading.Tasks;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class MapPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {

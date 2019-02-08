@@ -1,6 +1,6 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class wts.ItemNameViewModel

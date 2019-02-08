@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class WebViewPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {

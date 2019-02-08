@@ -1,11 +1,11 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.ViewModels;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.ViewModels;
+using Param_RootNamespace.Core.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page
     {

@@ -7,8 +7,8 @@ namespace Microsoft.Templates.Core.Gen
     public class GenParams
     {
         public const string Username = "wts.userName";
-        public const string RootNamespace = "wts.rootNamespace";
         public const string ItemNamespace = "wts.itemNamespace";
+        public const string RootNamespace = "wts.rootNamespace";
         public const string WizardVersion = "wts.wizardVersion";
         public const string TemplatesVersion = "wts.templatesVersion";
         public const string HomePageName = "wts.homePageName";

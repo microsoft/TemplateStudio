@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Input.Inking;
-using Param_ItemNamespace.EventHandlers.Ink;
-using Param_ItemNamespace.Services.Ink.UndoRedo;
+using Param_RootNamespace.EventHandlers.Ink;
+using Param_RootNamespace.Services.Ink.UndoRedo;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkUndoRedoService
     {

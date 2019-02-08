@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Core.Services
+﻿namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {

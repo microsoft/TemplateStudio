@@ -1,9 +1,9 @@
-﻿using Param_ItemNamespace.Services.Ink;
+﻿using Param_RootNamespace.Services.Ink;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
     public sealed partial class InkSmartCanvasViewPage : Page

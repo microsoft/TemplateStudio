@@ -1,7 +1,7 @@
 ﻿//{[{
 using Caliburn.Micro;
 //}]}
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {

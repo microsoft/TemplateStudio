@@ -3,7 +3,7 @@ Imports Windows.Storage
 Imports Windows.Storage.Provider
 Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
-Imports Param_ItemNamespace.EventHandlers.Ink
+Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink
     Public Class InkStrokesService

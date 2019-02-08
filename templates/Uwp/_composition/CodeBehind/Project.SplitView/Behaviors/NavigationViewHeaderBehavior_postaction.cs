@@ -1,8 +1,8 @@
 ﻿//{[{
-using wts.ItemName.Services;
+using Param_RootNamespace.Services;
 //}]}
 
-namespace wts.ItemName.Behaviors
+namespace Param_RootNamespace.Behaviors
 {
     public class NavigationViewHeaderBehavior : Behavior<WinUI.NavigationView>
     {

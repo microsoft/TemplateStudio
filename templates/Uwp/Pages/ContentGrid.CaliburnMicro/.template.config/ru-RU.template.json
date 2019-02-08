@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ContentGrid",
+  "name": "Content Grid",
   "description": "Эта страница разрешает добавление пользовательских элементов в виде адаптивной сетки.",
   "identity": "wts.Page.ContentGrid.CaliburnMicro"
 }

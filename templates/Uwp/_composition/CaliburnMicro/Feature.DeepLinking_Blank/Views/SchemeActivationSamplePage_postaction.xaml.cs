@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Views
+﻿namespace Param_RootNamespace.Views
 {
         public SchemeActivationSamplePage()
         {

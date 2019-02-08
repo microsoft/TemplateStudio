@@ -1,5 +1,5 @@
 ﻿Imports Windows.Storage
-Imports Param_ItemNamespace.Helpers
+Imports Param_RootNamespace.Helpers
 
 Namespace Models
     Public Class ShareSourceFeatureData

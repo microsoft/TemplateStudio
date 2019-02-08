@@ -6,25 +6,33 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 3.0 - January 2019
+#### 3.1 - March 2019
 
-* Multi-project
-* Migrate Tab/Pivot to NavView with TopPane
-* +more
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.0)
-
-## Upcoming releases
-
-### 3.1 - est. March 2019
-
-* Identity Login
+* Identity Login with AAD and B2B
+* Menubar navigation pattern
 * Menubar project type
-* Azure Easy Table
+* Unit test feature
+* Refactor core project into own GitHub project
+* Start having all mocks for future projects public.
 * Tooling improvements and cleanup
 * +more
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.1)
+
+## Upcoming releases
+
+### 3.2 and beyond
+
+* VS 2019 Support
+* Refactor features into different groups/tabs
+* Identity Login to support B2C (Twitter, Facebook, ...)
+* Treeview master detail page
+* Data based features such as SQL Client
+* Azure cloud features (Functions, SendGrid, Easy Table, ...)
+* Tooling for writing templates
+* +more
+
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.2)
 
 ## Future Releases
 
@@ -32,6 +40,7 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
+* [3.0 - January 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.0)
 * [2.5 - November 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.5)
 * [2.4 - September 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.4)
 * [2.3 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.3)

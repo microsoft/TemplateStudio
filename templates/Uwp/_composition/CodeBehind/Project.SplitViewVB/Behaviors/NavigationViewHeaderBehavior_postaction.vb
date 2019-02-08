@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports wts.ItemName.Services
+Imports Param_RootNamespace.Services
 '}]}
 
 Namespace Behaviors

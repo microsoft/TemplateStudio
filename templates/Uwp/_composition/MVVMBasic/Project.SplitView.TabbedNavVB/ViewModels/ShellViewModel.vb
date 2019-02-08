@@ -2,8 +2,8 @@
 Imports Windows.System
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
-Imports wts.ItemName.Helpers
-Imports wts.ItemName.Services
+Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace ViewModels
 

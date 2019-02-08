@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.Views
+﻿Imports Param_RootNamespace.Views
 
 Namespace Activation
     Friend Class wts.ItemNameActivationHandler

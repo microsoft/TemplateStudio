@@ -4,7 +4,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Param_ItemNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public static class ImageHelper
     {

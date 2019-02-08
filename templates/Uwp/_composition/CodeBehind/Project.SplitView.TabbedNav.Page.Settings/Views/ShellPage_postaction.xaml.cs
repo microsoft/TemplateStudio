@@ -1,7 +1,7 @@
 ﻿//{**
 //This code block adds the logic to handle SettingsItem in NavigationView control from ShellPage code behind.
 //**}
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {

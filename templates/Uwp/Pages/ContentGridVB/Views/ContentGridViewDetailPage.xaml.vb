@@ -1,4 +1,4 @@
-﻿Imports Param_ItemNamespace.Services
+﻿Imports Param_RootNamespace.Services
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 
 Namespace Views

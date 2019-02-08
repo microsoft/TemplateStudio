@@ -4,8 +4,8 @@ Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
-Imports wts.ItemName.Services
-Imports wts.ItemName.Helpers
+Imports Param_RootNamespace.Services
+Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class ShellViewModel

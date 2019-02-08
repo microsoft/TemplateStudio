@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Windows.Foundation;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkCopyPasteService
     {

@@ -1,5 +1,5 @@
-﻿Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.EventHandlers
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.EventHandlers
 
 Namespace ViewModels
     Public Class CameraViewViewModel

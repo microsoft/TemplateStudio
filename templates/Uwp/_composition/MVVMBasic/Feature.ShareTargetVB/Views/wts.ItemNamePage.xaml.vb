@@ -1,5 +1,5 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer.ShareTarget
-Imports Param_ItemNamespace.ViewModels
+Imports Param_RootNamespace.ViewModels
 
 Namespace Views
     ' TODO WTS: Remove this example page when/if it's not needed.

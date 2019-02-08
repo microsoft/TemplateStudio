@@ -1,5 +1,5 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer
-Imports Param_ItemNamespace.ViewModels
+Imports Param_RootNamespace.ViewModels
 
 Namespace TemplateSelectors
     Public Class SharedContentTemplateSelector

@@ -6,7 +6,7 @@ Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
-Imports Param_ItemNamespace.EventHandlers.Ink
+Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink
     ' TODO WTS: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
