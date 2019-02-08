@@ -6,7 +6,7 @@
 
 function Get-CsEquivalentFile($vbfile)
 {
-    return $vbfile -replace "VB\\", "\" `
+    return $vbfile -replace "._VB\\", "\" `
                    -replace ".vb", ".cs"`
                    -replace "My Project", "Properties"
 }
@@ -16,7 +16,7 @@ $allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | w
 Foreach ($t in $allTemplates)
 {
     # find VB ones
-    if ($t -match "VB\\")
+    if ($t -match "._VB\\")
     {
         $templateName = $t -replace "\\.template.config\\template.json", ""
 
