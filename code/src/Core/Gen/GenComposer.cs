@@ -322,17 +322,13 @@ namespace Microsoft.Templates.Core.Gen
 
             if (string.IsNullOrEmpty(ns))
             {
-                ns = GenContext.Current.ProjectName;
+                ns = GenContext.Current.SafeProjectName;
             }
 
-            // Project name can include a hyphen but it's not allowed in a namespace
-            // This is the same substitution as VS makes with new projects
-            ns = ns.Replace("-", "_");
+            // TODO: This is needed to make legacy tests work, remove once 3.1 is released
+            genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
-
-            // TODO: THIS SHOULD BE THE ITEM IN CONTEXT
-            genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
         }
     }
 }

@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 //}]}
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNameDetailPage : Page, INotifyPropertyChanged
     {

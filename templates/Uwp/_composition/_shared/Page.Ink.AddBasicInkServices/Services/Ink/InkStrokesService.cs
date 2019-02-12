@@ -9,9 +9,9 @@ using Windows.Storage.Provider;
 using Windows.UI.Input.Inking;
 using Windows.UI.Input.Inking.Analysis;
 using Windows.UI.Xaml.Media;
-using Param_ItemNamespace.EventHandlers.Ink;
+using Param_RootNamespace.EventHandlers.Ink;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkStrokesService
     {

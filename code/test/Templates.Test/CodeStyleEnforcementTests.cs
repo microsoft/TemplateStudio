@@ -64,10 +64,20 @@ namespace Microsoft.Templates.Test
             EnsureDoNotUse("namespace wts.DefaultProject", "*.vb");
             EnsureDoNotUse("namespace Param_ProjectName", "*.cs");
             EnsureDoNotUse("namespace Param_ProjectName", "*.vb");
+            EnsureDoNotUse("namespace Param_ItemNamespace", "*.cs");
+            EnsureDoNotUse("namespace Param_ItemNamespace", "*.vb");
+            EnsureDoNotUse("namespace wts.ItemName", "*.cs");
+            EnsureDoNotUse("namespace wts.ItemName", "*.vb");
+            EnsureDoNotUse("using wts.ItemName.", "*.cs");
+            EnsureDoNotUse("Imports wts.ItemName.", "*.vb");
             EnsureDoNotUse("using wts.DefaultProject", "*.cs");
             EnsureDoNotUse("Imports wts.DefaultProject", "*.vb");
+            EnsureDoNotUse("using Param_ItemNamespace", "*.cs");
+            EnsureDoNotUse("Imports Param_ItemNamespace", "*.vb");
             EnsureDoNotUse("using Param_ProjectName", "*.cs");
             EnsureDoNotUse("Imports Param_ProjectName", "*.vb");
+            EnsureDoNotUse("x:Class=\"wts.DefaultProject", "*.xaml");
+            EnsureDoNotUse("using:wts.ItemName", "*.xaml");
 
             Assert.True(!result.Any(), string.Join(Environment.NewLine, result));
         }

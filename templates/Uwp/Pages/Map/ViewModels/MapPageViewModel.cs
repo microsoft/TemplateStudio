@@ -4,10 +4,10 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {

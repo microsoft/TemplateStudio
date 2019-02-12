@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Services
+﻿namespace Param_RootNamespace.Services
 {
     public interface IConnectedAnimationService
     {

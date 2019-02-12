@@ -64,6 +64,32 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
+        [Trait("Type", "BuildAllPagesAndFeatures")]
+        public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]

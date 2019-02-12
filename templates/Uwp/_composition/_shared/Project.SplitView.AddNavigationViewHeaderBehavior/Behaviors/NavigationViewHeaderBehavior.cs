@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Navigation;
 
 using WinUI = Microsoft.UI.Xaml.Controls;
 
-namespace wts.ItemName.Behaviors
+namespace Param_RootNamespace.Behaviors
 {
     public class NavigationViewHeaderBehavior : Behavior<WinUI.NavigationView>
     {

@@ -2,6 +2,6 @@
 using Prism.Windows.Mvvm;
 //}]}
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
 }

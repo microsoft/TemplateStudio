@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkSelectionRectangleService
     {

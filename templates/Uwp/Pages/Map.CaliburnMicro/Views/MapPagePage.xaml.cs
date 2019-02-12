@@ -5,7 +5,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class MapPagePage : Page, IMapPageView
     {

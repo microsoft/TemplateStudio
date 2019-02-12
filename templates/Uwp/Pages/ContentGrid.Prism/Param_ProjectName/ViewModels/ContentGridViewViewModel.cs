@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

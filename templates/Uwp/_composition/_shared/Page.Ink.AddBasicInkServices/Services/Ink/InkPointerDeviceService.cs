@@ -4,7 +4,7 @@ using Windows.UI.Core;
 using Windows.UI.Input.Inking;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkPointerDeviceService
     {

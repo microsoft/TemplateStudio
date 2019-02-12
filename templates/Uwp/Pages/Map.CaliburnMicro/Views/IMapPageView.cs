@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.Devices.Geolocation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public interface IMapPageView
     {

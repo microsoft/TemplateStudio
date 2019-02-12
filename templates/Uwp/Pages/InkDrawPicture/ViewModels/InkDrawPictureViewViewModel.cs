@@ -1,12 +1,12 @@
-﻿using Param_ItemNamespace.Services.Ink;
-using Param_ItemNamespace.Helpers;
+﻿using Param_RootNamespace.Services.Ink;
+using Param_RootNamespace.Helpers;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class InkDrawPictureViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

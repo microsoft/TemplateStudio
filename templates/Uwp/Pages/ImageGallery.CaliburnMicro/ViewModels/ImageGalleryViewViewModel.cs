@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

@@ -86,6 +86,11 @@ namespace TemplateValidator
                             {
                                 results.Add($"'{localizedFile.FullName}' does not have the correct identity.");
                             }
+
+                            if (template.Name != localizedTemplate.Name)
+                            {
+                                results.Add($"'{localizedFile.FullName}' does not have the correct name.");
+                            }
                         }
                     }
                     else

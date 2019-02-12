@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 //}]}
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {

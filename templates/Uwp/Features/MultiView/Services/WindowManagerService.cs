@@ -9,7 +9,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public delegate void ViewClosedHandler(ViewLifetimeControl viewControl, EventArgs e);
 

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -12,6 +13,8 @@ namespace Microsoft.Templates.Fakes
     public class FakeContextProvider : IContextProvider
     {
         public string ProjectName { get; set; }
+
+        public string SafeProjectName => ProjectName.MakeSafeProjectName();
 
         public string GenerationOutputPath { get; set; }
 

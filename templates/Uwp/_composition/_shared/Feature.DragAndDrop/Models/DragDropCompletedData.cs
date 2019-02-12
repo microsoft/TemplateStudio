@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
 
-namespace Param_ItemNamespace.Models
+namespace Param_RootNamespace.Models
 {
     public class DragDropCompletedData
     {

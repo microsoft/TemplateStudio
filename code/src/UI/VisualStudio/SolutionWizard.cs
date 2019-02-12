@@ -29,7 +29,9 @@ namespace Microsoft.Templates.UI.VisualStudio
         private string _language;
         private GenerationService _generationService = GenerationService.Instance;
 
-        public string ProjectName => _replacementsDictionary["$safeprojectname$"];
+        public string SafeProjectName => _replacementsDictionary["$safeprojectname$"];
+
+        public string ProjectName => _replacementsDictionary["$projectname$"];
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 

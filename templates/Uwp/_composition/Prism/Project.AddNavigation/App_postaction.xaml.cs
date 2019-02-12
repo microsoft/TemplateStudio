@@ -1,7 +1,9 @@
 ﻿//{[{
 using Prism.Mvvm;
 using System.Globalization;
-//}]}namespace Param_RootNamespace
+//}]}
+
+namespace Param_RootNamespace
 {
     public sealed partial class App : PrismUnityApplication
     {

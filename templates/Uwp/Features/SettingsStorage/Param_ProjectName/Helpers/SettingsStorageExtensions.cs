@@ -6,7 +6,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Param_RootNamespace.Core.Helpers;
 
-namespace Param_ItemNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     // Use these extension methods to store and retrieve local and roaming app data
     // More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Input.Inking;
-using Param_ItemNamespace.EventHandlers.Ink;
+using Param_RootNamespace.EventHandlers.Ink;
 
-namespace Param_ItemNamespace.Services.Ink.UndoRedo
+namespace Param_RootNamespace.Services.Ink.UndoRedo
 {
     public class RemoveStrokeUndoRedoOperation : IUndoRedoOperation
     {
