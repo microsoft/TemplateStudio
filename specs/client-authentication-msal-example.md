@@ -142,21 +142,21 @@ Suggested XAML for displaying these controls is below.
 
 ```XML
 <StackPanel>
-    <StackPanel Orientation="Horizontal" 
+    <StackPanel Orientation="Horizontal"
         HorizontalAlignment="Right">
-        <Button x:Name="GraphButton" 
-            Content="Call Graph" 
+        <Button x:Name="GraphButton"
+            Content="Call Graph"
             Click="GraphButton_Click"/>
-        <Button x:Name="UserButton" 
-            Content="Log In" 
+        <Button x:Name="UserButton"
+            Content="Log In"
             Click="UserButton_Click"/>
         <TextBlock x:Name="ErrorText"/>
     </StackPanel>
     <TextBlock Text="Response Body"/>
-    <TextBox x:Name="ResultText" 
+    <TextBox x:Name="ResultText"
         TextWrapping="Wrap"/>
     <TextBlock Text="Token Info"/>
-    <TextBox x:Name="TokenText" 
+    <TextBox x:Name="TokenText"
         TextWrapping="Wrap"/>
 </StackPanel>
 ```
@@ -178,16 +178,16 @@ application’s `App.xaml.cs` so that any page in the app can handle authenticat
 if necessary.
 
 ```C#
-// value should be filled in during configuration (from app registration) 
+// value should be filled in during configuration (from app registration)
 private static string ClientId = "b280a505-cc3d-4382-996e-50c3ea09af2d";
 
 // prefix of endpoint does not change
 private static string Endpoint = "https://login.microsoftonline.com/ ";
 
 // append to Endpoint per user selection during configuration
-Endpoint += "/organizations/"; 
+Endpoint += "/organizations/";
 
-public static PublicClientApplication PublicClientApp { get; } = 
+public static PublicClientApplication PublicClientApp { get; } =
 new PublicClientApplication(ClientId, Endpoint);
 ```
 
@@ -299,9 +299,6 @@ private async void LoginUser()
     // silent auth failed - catch exception
     catch (MsalException ex)
     {
-        // silent auth failed
-        exceptions.Add(ex);
-
         // try interactive auth
         try
         {
