@@ -55,9 +55,8 @@ namespace TemplateValidator
             get
             {
                 return TemplateTags.ToDictionary<KeyValuePair<string, string>, string, ICacheTag>(
-                    templateTag =>
-                        templateTag.Key,
-                        templateTag => new CacheTag(string.Empty, new Dictionary<string, string>(), templateTag.Value));
+                    templateTag => templateTag.Key,
+                    templateTag => new CacheTag(string.Empty, new Dictionary<string, string>(), templateTag.Value));
             }
         }
 
