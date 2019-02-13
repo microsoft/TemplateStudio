@@ -14,6 +14,8 @@ namespace Microsoft.Templates.Utilities.Services
 {
     public class DigitalSignatureService : IDigitalSignatureService
     {
+        public bool CanVerifySignatures => true;
+
         public X509ChainStatusFlags VerifyCertificate(X509Certificate cert)
         {
             return PackageDigitalSignatureManager.VerifyCertificate(cert);

@@ -21,5 +21,9 @@ namespace Microsoft.Templates.Core.Packaging
         bool VerifySignatures(Package package);
 
         Dictionary<string, X509Certificate> GetPackageCertificates(Package package);
+
+        // TODO WTS: This property is a temporal patch to disable verify signatures.
+        // Required as signature can´t be verify in .net core
+        bool CanVerifySignatures { get; }
     }
 }

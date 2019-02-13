@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken), bool verifySignatures = true)
+        public async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -120,6 +120,7 @@ namespace Microsoft.Templates.Core.Packaging
                 using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     bool isSignatureValid = false;
+                    bool verifySignatures = _digitalSignatureService.CanVerifySignatures;
 
                     if (verifySignatures)
                     {

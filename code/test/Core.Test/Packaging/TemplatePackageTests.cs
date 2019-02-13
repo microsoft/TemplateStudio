@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -12,10 +11,8 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
-using Microsoft.Templates.Utilities.Services;
+using Microsoft.Templates.Core.Test.TestFakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Locations
@@ -28,7 +25,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         public TemplatePackageTests()
         {
-            var digitalSignatureService = new DigitalSignatureService();
+            var digitalSignatureService = new TestDigitalSignatureService();
             _templatePackage = new TemplatePackage(digitalSignatureService);
         }
 
@@ -44,7 +41,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.PackAsync(inFolder, outFile, MediaTypeNames.Text.Plain);
 
-            await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None, false);
+            await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -62,7 +59,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             var outFile = await _templatePackage.PackAsync(inFolder);
 
-            await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None, false);
+            await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -82,7 +79,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir = @"OutFolder\Extraction";
 
             string signedFile = await _templatePackage.PackAndSignAsync(inFolder, cert);
-            await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -102,7 +99,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir = @"C:\Temp\OutFolder\Extraction";
 
             string signedFile = await _templatePackage.PackAndSignAsync(inFolder, cert);
-            await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -202,7 +199,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, inFile)));
@@ -223,7 +220,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, @"Packaging\SampleContent.txt")));
@@ -238,14 +235,14 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"), true);
+            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"));
             var inFile = "NewFile.txt";
             var outFile = @"ToExtract.package";
             var extractionDir = Environment.CurrentDirectory;
 
             await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
@@ -265,7 +262,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
+            await _templatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None);
 
             Assert.True(File.Exists(outFile));
 
@@ -279,8 +276,8 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir1 = @"C:\Temp\OutFolder\Concurrent1";
             var outDir2 = @"C:\Temp\OutFolder\Concurrent2";
 
-            Task t1 = Task.Run(async () => await _templatePackage.ExtractAsync(inFile, outDir1, null, CancellationToken.None, true));
-            Task t2 = Task.Run(async () => await _templatePackage.ExtractAsync(inFile, outDir2, null, CancellationToken.None, true));
+            Task t1 = Task.Run(async () => await _templatePackage.ExtractAsync(inFile, outDir1, null, CancellationToken.None));
+            Task t2 = Task.Run(async () => await _templatePackage.ExtractAsync(inFile, outDir2, null, CancellationToken.None));
 
             await Task.WhenAll(t1, t2);
 

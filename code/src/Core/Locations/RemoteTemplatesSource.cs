@@ -29,11 +29,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Platform { get; }
 
+        public bool CanGetNewContent { get; }
+
         public RemoteTemplatesSource(string platform, string language, IDigitalSignatureService digitalSignatureService)
         {
             Platform = platform;
             Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
             _templatePackage = new TemplatePackage(digitalSignatureService);
+            CanGetNewContent = digitalSignatureService.CanVerifySignatures;
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
