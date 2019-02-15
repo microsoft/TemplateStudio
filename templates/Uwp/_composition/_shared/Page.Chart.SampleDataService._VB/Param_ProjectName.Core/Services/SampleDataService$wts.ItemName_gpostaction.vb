@@ -6,7 +6,7 @@ Namespace Services
         '^^
         '{[{
 
-        ' TODO WTS: Remove this once your chart page is displaying real data
+        ' TODO WTS: Remove this once your chart page is displaying real data.
         Public Function GetChartSampleData() As ObservableCollection(Of DataPoint)
             Dim data = AllOrders().[Select](Function(o) New DataPoint() With {
                 .Category = o.Company,

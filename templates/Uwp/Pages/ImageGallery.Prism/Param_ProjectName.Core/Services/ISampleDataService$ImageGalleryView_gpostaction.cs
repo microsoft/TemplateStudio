@@ -5,6 +5,7 @@
     {
 //^^
 //{[{
+
         void Initialize(string localResourcesPath);
 
         ObservableCollection<SampleImage> GetGallerySampleData();

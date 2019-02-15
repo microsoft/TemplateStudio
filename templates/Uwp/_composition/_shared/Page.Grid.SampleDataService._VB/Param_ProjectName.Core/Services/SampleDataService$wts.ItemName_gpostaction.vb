@@ -6,7 +6,7 @@ Namespace Services
         '^^
         '{[{
 
-        ' TODO WTS: Remove this once your grid page is displaying real data
+        ' TODO WTS: Remove this once your grid page is displaying real data.
         Public Function GetGridSampleData() As ObservableCollection(Of SampleOrder)
             Return New ObservableCollection(Of SampleOrder)(AllOrders())
         End Function

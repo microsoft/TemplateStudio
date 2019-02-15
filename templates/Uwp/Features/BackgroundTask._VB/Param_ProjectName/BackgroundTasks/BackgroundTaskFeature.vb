@@ -33,7 +33,7 @@ Namespace BackgroundTasks
 
         Public Overrides Function RunAsyncInternal(taskInstance As IBackgroundTaskInstance) As Task
             If taskInstance Is Nothing Then
-                Return Nothing
+                Return Task.CompletedTask
             End If
 
             _deferral = taskInstance.GetDeferral()

@@ -197,6 +197,7 @@ namespace Microsoft.Templates.Core.Gen
                     var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue, newItemGeneration);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                     genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
+                    genInfo?.Parameters.Add(GenParams.Username, Environment.UserName);
 
                     foreach (var dependency in genInfo?.Template.GetDependencyList())
                     {
@@ -241,6 +242,8 @@ namespace Microsoft.Templates.Core.Gen
             {
                 new QueryableProperty("projecttype", userSelection.ProjectType),
                 new QueryableProperty("framework", userSelection.Framework),
+                new QueryableProperty("page", string.Join("|", userSelection.Pages.Select(p => p.template.Identity))),
+                new QueryableProperty("feature", string.Join("|", userSelection.Features.Select(p => p.template.Identity))),
             };
 
             var combinedQueue = new List<GenInfo>();
@@ -322,7 +325,7 @@ namespace Microsoft.Templates.Core.Gen
                 ns = GenContext.Current.SafeProjectName;
             }
 
-            // TODO: This is needed to make legaytests work, remove once 3.1 is released
+            // TODO: This is needed to make legacy tests work, remove once 3.1 is released
             genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
