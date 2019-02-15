@@ -707,4 +707,8 @@
     <value>Windows Template Studio 现在正在添加核心项目。</value>
     <comment>Has no core project validation error message</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>
