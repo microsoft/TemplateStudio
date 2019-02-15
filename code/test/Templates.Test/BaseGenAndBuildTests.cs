@@ -39,7 +39,8 @@ namespace Microsoft.Templates.Test
         {
             // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
-            return " -_.,'@!(£)+=";
+            // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
+            return " -_.,@! (£)+=";
         }
 
         protected static string ShortProjectType(string projectType)
