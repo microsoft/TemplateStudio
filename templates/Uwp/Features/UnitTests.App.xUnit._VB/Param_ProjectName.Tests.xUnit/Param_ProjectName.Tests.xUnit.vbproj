@@ -8,7 +8,7 @@
     <ProjectGuid>{6b17846a-9301-4daa-a8c3-05d101541451}</ProjectGuid>
     <!--/+:cnd:noEmit -->
     <OutputType>AppContainerExe</OutputType>
-    <RootNamespace>Param_RootNamespace.Tests.xUnit</RootNamespace>
+    <RootNamespace>Param_RootNamespace.Tests.XUnit</RootNamespace>
     <AssemblyName>Param_ProjectName.Tests.xUnit</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
