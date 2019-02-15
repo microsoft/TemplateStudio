@@ -707,4 +707,8 @@
     <value>Windows Template Studio에서 핵심 프로젝트를 추가 중입니다. </value>
     <comment>Has no core project validation error message</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>
