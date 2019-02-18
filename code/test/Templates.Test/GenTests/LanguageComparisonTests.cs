@@ -44,8 +44,8 @@ namespace Microsoft.Templates.Test
             EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureFileCommentsAreIdentical(vbResultPath);
-            EnsureCodeFileContainIdenticalElements(vbResultPath);
-            EnsureEquivalentErrorhandling(vbResultPath);
+            EnsureCodeFilesContainIdenticalElements(vbResultPath);
+            EnsureEquivalentErrorHandling(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
@@ -239,7 +239,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private void EnsureCodeFileContainIdenticalElements(string vbResultPath)
+        private void EnsureCodeFilesContainIdenticalElements(string vbResultPath)
         {
             var failures = new List<string>();
 
@@ -378,7 +378,7 @@ namespace Microsoft.Templates.Test
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
         }
 
-        private void EnsureEquivalentErrorhandling(string vbResultPath)
+        private void EnsureEquivalentErrorHandling(string vbResultPath)
         {
             var failures = new List<string>();
 

@@ -39,7 +39,8 @@ namespace Microsoft.Templates.Test
         {
             // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
-            return " -_.,'@!(£)+=";
+            // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
+            return " -_.,@! (£)+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -74,6 +75,29 @@ namespace Microsoft.Templates.Test
             var projectName = $"{ShortProjectType(projectType)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
+
+            return (projectName, projectPath);
+        }
+
+        protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             return (projectName, projectPath);
         }
@@ -182,6 +206,29 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
+            Fs.SafeDeleteDirectory(projectPath);
+        }
+
+        protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
+        {
+            var (buildExitCode, buildOutputFile) = _fixture.BuildSolution(projectName, projectPath, platform);
+
+            if (buildExitCode.Equals(0))
+            {
+                var (testExitCode, testOutputFile) = _fixture.RunTests(projectName, projectPath);
+
+                var summary = _fixture.GetTestSummary(testOutputFile);
+
+                Assert.True(
+                    summary.Contains("Failed: 0."),
+                    $"Tests failed. {Environment.NewLine}{summary}{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+            else
+            {
+                Assert.True(buildExitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(buildOutputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+
+            // Tidy up if all tests passed
             Fs.SafeDeleteDirectory(projectPath);
         }
 
@@ -443,6 +490,8 @@ namespace Microsoft.Templates.Test
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                 "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                 "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
+                "wts.Feat.UnitTests.Core.MSTest", "wts.Feat.UnitTests.Core.NUnit", "wts.Feat.UnitTests.Core.xUnit",
+                "wts.Feat.UnitTests.App.MSTest", "wts.Feat.UnitTests.App.xUnit",
             };
         }
 

@@ -707,4 +707,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <value>Windows Template Studio sta ora aggiungendo un progetto core. </value>
     <comment>Has no core project validation error message</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>

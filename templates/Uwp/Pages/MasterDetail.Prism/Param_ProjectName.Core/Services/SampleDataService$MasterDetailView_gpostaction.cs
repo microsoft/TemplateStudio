@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
         {
             return await Task.FromResult<IEnumerable<SampleOrder>>(AllOrders());
