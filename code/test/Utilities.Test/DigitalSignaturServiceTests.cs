@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Compression;
 using System.IO.Packaging;
 using System.Linq;
+using System.Reflection;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace Microsoft.Templates.Utilities
             string drive = Path.GetPathRoot(new Uri(typeof(DigitalSignaturServiceTests).Assembly.CodeBase).LocalPath);
 
             DigitalSignatureService dss = new DigitalSignatureService();
-            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, null, new DigitalSignatureService());
             CancellationTokenSource cts = new CancellationTokenSource();
             await rts.LoadConfigAsync(cts.Token);
             var templatesPackage = rts.Config.Latest;
@@ -49,7 +50,7 @@ namespace Microsoft.Templates.Utilities
             string drive = Path.GetPathRoot(new Uri(typeof(DigitalSignaturServiceTests).Assembly.CodeBase).LocalPath);
 
             DigitalSignatureService dss = new DigitalSignatureService();
-            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, null, new DigitalSignatureService());
             CancellationTokenSource cts = new CancellationTokenSource();
             await rts.LoadConfigAsync(cts.Token);
             var templatesPackage = rts.Config.Latest;

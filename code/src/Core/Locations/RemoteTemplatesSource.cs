@@ -25,16 +25,19 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version _version;
 
+        public override string InstalledPackagePath { get; }
+
         public override string Language { get; }
 
         public override string Platform { get; }
 
         public bool CanGetNewContent { get; }
 
-        public RemoteTemplatesSource(string platform, string language, IDigitalSignatureService digitalSignatureService)
+        public RemoteTemplatesSource(string platform, string language, string installedPackagePath, IDigitalSignatureService digitalSignatureService)
         {
             Platform = platform;
             Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
+            InstalledPackagePath = installedPackagePath;
             _templatePackage = new TemplatePackage(digitalSignatureService);
             CanGetNewContent = digitalSignatureService.CanVerifySignatures;
         }

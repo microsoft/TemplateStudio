@@ -71,7 +71,7 @@ namespace Microsoft.Templates.VsEmulator
                             : options.ProjectName;
 
                         GenContext.Bootstrap(
-                            new LocalTemplatesSource("0.0.0.0", string.Empty),
+                            new LocalTemplatesSource(string.Empty, "0.0.0.0", string.Empty),
                             new FakeGenShell(Platforms.Uwp, progLanguage),
                             new Version("0.0.0.0"),
                             Platforms.Uwp,

@@ -180,8 +180,7 @@ namespace Microsoft.Templates.Core.Packaging
 
         public X509Certificate2 LoadCert(string filePath, SecureString password)
         {
-            var cert = new X509Certificate2();
-            cert.Import(filePath, password, X509KeyStorageFlags.DefaultKeySet);
+            var cert = new X509Certificate2(File.ReadAllBytes(filePath), password, X509KeyStorageFlags.DefaultKeySet);
 
             return cert;
         }
@@ -251,16 +250,20 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)> GetCertsInfo(string signedPackageFilename)
+        public List<CertInfo> GetCertsInfo(string signedPackageFilename)
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var res = new List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)>();
+                var res = new List<CertInfo>();
                 var certs = _digitalSignatureService.GetX509Certificates(package);
                 foreach (X509Certificate cert in certs)
                 {
-                    (X509Certificate2 cert, string pin, X509ChainStatusFlags status) certInfo =
-                        (cert: new X509Certificate2(cert), pin: cert.GetPublicKeyString().ObfuscateSHA(), _digitalSignatureService.VerifyCertificate(cert));
+                    var certInfo = new CertInfo()
+                    {
+                           Cert = new X509Certificate2(cert),
+                           Pin = cert.GetPublicKeyString().ObfuscateSHA(),
+                           Status = _digitalSignatureService.VerifyCertificate(cert),
+                    };
 
                     res.Add(certInfo);
                 }

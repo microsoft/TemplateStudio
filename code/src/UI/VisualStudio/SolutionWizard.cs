@@ -56,7 +56,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), platform, language);
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, new DigitalSignatureService()), new VsGenShell(), platform, language);
 #endif

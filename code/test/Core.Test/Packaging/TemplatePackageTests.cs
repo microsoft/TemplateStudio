@@ -235,7 +235,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"));
+            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"), true);
             var inFile = "NewFile.txt";
             var outFile = @"ToExtract.package";
             var extractionDir = Environment.CurrentDirectory;
@@ -248,6 +248,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
 
             File.Delete(outFile);
+            File.Delete(inFile);
         }
 
         [Fact]
@@ -283,47 +284,6 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             Directory.Delete(outDir1, true);
             Directory.Delete(outDir2, true);
-        }
-
-        [Fact]
-        public async Task ExtractFileTamperedAsync()
-        {
-            var certPass = GetTestCertPassword();
-            X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
-
-            var inFile = @"Packaging\SampleContent.txt";
-            var outFile = @"Packaging\ToExtract.package";
-            var extractionDir = "SubDir";
-
-            await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
-
-            ModifyContent(outFile, "SampleContent.txt");
-
-            InvalidSignatureException ex = await Assert.ThrowsAsync<InvalidSignatureException>(async () =>
-            {
-                await _templatePackage.ExtractAsync(outFile, extractionDir);
-            });
-
-            File.Delete(outFile);
-            Directory.Delete(extractionDir, true);
-        }
-
-        [Fact]
-        public async Task ValidateSignatureTamperedPackageAsync()
-        {
-            var certPass = GetTestCertPassword();
-            X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
-
-            var inFile = @"Packaging\SampleContent.txt";
-            var outFile = @"Packaging\ToExtract.package";
-
-            await _templatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
-
-            ModifyContent(outFile, "SampleContent.txt");
-
-            Assert.False(_templatePackage.ValidateSignatures(outFile));
-
-            File.Delete(outFile);
         }
 
         [Fact]
