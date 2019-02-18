@@ -7,6 +7,7 @@
         <Setter Property="DefaultLabelPosition" Value="Collapsed" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
     </Style>
     
 </ResourceDictionary>
