@@ -5,19 +5,15 @@ IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\ID
 ECHO ON
 	"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "%~1" "%~2" "%~3"
 ECHO OFF
-)
-ELSE IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" (
+) ELSE IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" (
 ECHO ON
 	"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "%~1" "%~2" "%~3"
 ECHO OFF
-)
-ELSE IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" (
+) ELSE IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" (
 ECHO ON
 	"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "%~1" "%~2" "%~3"
 ECHO OFF
-)
-ELSE
-(
+) ELSE (
 ECHO ON
 	ECHO vstest.console.exe not found!
 )

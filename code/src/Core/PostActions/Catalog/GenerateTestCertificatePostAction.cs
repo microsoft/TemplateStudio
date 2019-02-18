@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddToProject(string base64Encoded, string projectFileWithoutExtension)
         {
-            var filePath = Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
+            var filePath = Path.GetFullPath(Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx");
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.Current.ProjectInfo.ProjectItems.Add(filePath);
