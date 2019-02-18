@@ -26,14 +26,14 @@ namespace Microsoft.Templates.Test
             foreach (var file in GetFiles(templatesRoot, "cs-CZ.description.md"))
             {
                 // Only interested in templates with a VB version
-                if (file.Contains("VB\\"))
+                if (file.Contains("._VB\\"))
                 {
                     var czechFileContents = File.ReadAllText(file);
                     var defaultFileContents = File.ReadAllText(file.Replace("cs-CZ.", string.Empty));
 
                     if (czechFileContents == defaultFileContents)
                     {
-                        var csVersionOfCzechFileContents = File.ReadAllText(file.Replace("VB\\", "\\"));
+                        var csVersionOfCzechFileContents = File.ReadAllText(file.Replace("._VB\\", "\\"));
 
                         if (csVersionOfCzechFileContents != czechFileContents)
                         {

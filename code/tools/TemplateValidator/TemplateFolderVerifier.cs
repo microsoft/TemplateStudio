@@ -47,6 +47,8 @@ namespace TemplateValidator
                 var allDependencies = new Dictionary<string, string>(); // filepath, dependency
                 var allFileHashes = new Dictionary<string, string>();   // filehash, filepath
                 var allCompFilters = new Dictionary<string, string>();  // filepath, filter
+                var allPageIdentities = new List<string>();
+                var allFeatureIdentities = new List<string>();
 
                 foreach (var templateFilePath in allTemplateFilePaths)
                 {
@@ -63,6 +65,15 @@ namespace TemplateValidator
                         else
                         {
                             allIdentities.Add(template.Identity, templateFilePath);
+
+                            if (template.GetTemplateType() == TemplateType.Page)
+                            {
+                                allPageIdentities.Add(template.Identity);
+                            }
+                            else if (template.GetTemplateType() == TemplateType.Feature)
+                            {
+                                allFeatureIdentities.Add(template.Identity);
+                            }
                         }
 
                         // Check that localized files have the same identity
@@ -115,6 +126,7 @@ namespace TemplateValidator
                          && !file.Name.Contains("_gpostaction")
                          && !file.Name.Contains("_searchreplace")
                          && !file.FullName.Contains("\\Projects\\Default")
+                         && !file.FullName.Contains("\\Test\\")
                          && !file.FullName.Contains(".template.config"))
                         {
                             // Projects will include files that aren't directly referenced
@@ -176,6 +188,26 @@ namespace TemplateValidator
                                 if (!allIdentities.Keys.Contains(templateIdentity))
                                 {
                                     results.Add($"'{compFilter.Key}' contains composition filter identity '{templateIdentity}' that does not exist.");
+                                }
+                            }
+                        }
+                        else if (queryItem.Field == "page")
+                        {
+                            foreach (var templateIdentity in queryItem.Value.Split('|'))
+                            {
+                                if (!allPageIdentities.Contains(templateIdentity))
+                                {
+                                    results.Add($"'{compFilter.Key}' contains composition filter page identity '{templateIdentity}' that does not exist.");
+                                }
+                            }
+                        }
+                        else if (queryItem.Field == "feature")
+                        {
+                            foreach (var templateIdentity in queryItem.Value.Split('|'))
+                            {
+                                if (!allFeatureIdentities.Contains(templateIdentity))
+                                {
+                                    results.Add($"'{compFilter.Key}' contains composition filter feature identity '{templateIdentity}' that does not exist.");
                                 }
                             }
                         }

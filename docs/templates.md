@@ -248,6 +248,8 @@ Where
 * <context parameter>
   - $framework -> current generation framework.
   - $projectType -> current generation project type.
+  - $page -> current selection includes a page with the specified Id.
+  - $feature -> current selection includes a feature with the specified Id.
 
 ```
 

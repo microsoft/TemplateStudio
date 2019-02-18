@@ -34,39 +34,51 @@ namespace Microsoft.Templates.Test
         [Fact]
         public async Task LicenseLinksAreCorrectAsync()
         {
+            var errorMessage = new System.Text.StringBuilder();
             var filesWithBrokenLinks = new List<(string file, string uri, int statusCode)>();
 
             foreach (var file in GetFiles(TemplatesRoot, "template.json"))
             {
-                var fileContents = File.ReadAllText(file);
-                var info = JsonConvert.DeserializeObject<TemplateValidator.ValidationTemplateInfo>(fileContents);
-
-                var licenses = GetLicenses(info).ToList();
-
-                foreach (var license in licenses)
+                try
                 {
-                    var statusCode = await GetStatusCodeAsync(license.Url);
+                    var fileContents = File.ReadAllText(file);
+                    var info = JsonConvert.DeserializeObject<TemplateValidator.ValidationTemplateInfo>(fileContents);
 
-                    switch (statusCode)
+                    var licenses = GetLicenses(info).ToList();
+
+                    foreach (var license in licenses)
                     {
-                        case HttpStatusCode.OK:
-                            break;
-                        default:
-                            filesWithBrokenLinks.Add((file, license.Url, (int)statusCode));
-                            break;
+                        var statusCode = await GetStatusCodeAsync(license.Url);
+
+                        switch (statusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                break;
+                            default:
+                                filesWithBrokenLinks.Add((file, license.Url, (int)statusCode));
+                                break;
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    errorMessage.AppendLine($"Error with '{file}'");
+                    errorMessage.AppendLine(e.Message);
                 }
             }
 
-            var errorMessage = new System.Text.StringBuilder();
-            errorMessage.AppendLine("Some License links failed:");
-
-            foreach (var brokenLink in filesWithBrokenLinks)
+            if (filesWithBrokenLinks.Any())
             {
-                errorMessage.AppendLine($"Got a {brokenLink.statusCode} when requesting '{brokenLink.uri}' for '{brokenLink.file}'");
+                errorMessage.AppendLine("Some License links failed:");
+
+                foreach (var brokenLink in filesWithBrokenLinks)
+                {
+                    errorMessage.AppendLine(
+                        $"Got a {brokenLink.statusCode} when requesting '{brokenLink.uri}' for '{brokenLink.file}'");
+                }
             }
 
-            Assert.True(!filesWithBrokenLinks.Any(), errorMessage.ToString());
+            Assert.True(errorMessage.Length == 0, errorMessage.ToString());
         }
 
         private string pattern = @"\[     # Match [
