@@ -712,6 +712,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        /// </summary>
+        public static string NotificationRemoveError_ReadOnly {
+            get {
+                return ResourceManager.GetString("NotificationRemoveError_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error refreshing templates. See output window for more details..
         /// </summary>
         public static string NotificationSyncError_Refresh {
