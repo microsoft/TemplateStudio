@@ -33,7 +33,6 @@ namespace Microsoft.Templates.Core.Test.TestFakes
 
         public void SignPackage(Package package, X509Certificate cert)
         {
-
         }
 
         private void SignUris(IEnumerable<Uri> uris, X509Certificate2 cert)
