@@ -23,7 +23,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         Layout,
         UserSelection,
-        Dependency,
     }
 
     public class UserSelectionViewModel : Observable
@@ -124,7 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
                 }
 
-                Add(TemplateOrigin.Dependency, dependencyTemplate);
+                Add(templateOrigin, dependencyTemplate);
             }
 
             template.IncreaseSelection();
