@@ -8,6 +8,7 @@ using System.IO;
 using EnvDTE;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 

@@ -33,11 +33,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
-        private Lazy<IPackageInstallerService> _packageInstallerService = new Lazy<IPackageInstallerService>(() => GetCpsService(), true);
+        private Lazy<IPackageInstallerService> _packageInstallerService = new Lazy<IPackageInstallerService>(() => GetPackageInstallerService(), true);
 
         private IPackageInstallerService PackageInstallerService => _packageInstallerService.Value;
 
-        private static IPackageInstallerService GetCpsService()
+        private static IPackageInstallerService GetPackageInstallerService()
         {
             var componentModel = (IComponentModel)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
             return componentModel.GetService<IPackageInstallerService>();
