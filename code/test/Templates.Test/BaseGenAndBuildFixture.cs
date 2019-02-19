@@ -228,6 +228,39 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
+        public (int exitCode, string outputFile) RunTests(string projectName, string outputPath)
+        {
+            var outputFile = Path.Combine(outputPath, $"_testOutput_{projectName}.txt");
+
+            var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
+
+            const string batFile = "RunTests.bat";
+
+            // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
+            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
+            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.NUnit.dll\" ";
+            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.xUnit.dll\" ";
+
+            var batPath = Path.GetDirectoryName(GetPath(batFile));
+
+            var startInfo = new ProcessStartInfo(GetPath(batFile))
+            {
+                Arguments = $"{mstestPath} {nunitPath} {xunitPath}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = false,
+                WorkingDirectory = outputPath,
+            };
+
+            var process = Process.Start(startInfo);
+
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+            process.WaitForExit();
+
+            return (process.ExitCode, outputFile);
+        }
+
         public string GetErrorLines(string filePath)
         {
             Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
@@ -235,6 +268,14 @@ namespace Microsoft.Templates.Test
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
             return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
+        }
+
+        public string GetTestSummary(string filePath)
+        {
+            var outputLines = File.ReadAllLines(filePath);
+            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests") || l.StartsWith("Test "));
+
+            return summaryLines.Any() ? summaryLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         private static string GetPath(string fileName)

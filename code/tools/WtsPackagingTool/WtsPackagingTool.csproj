@@ -143,6 +143,10 @@
       <Project>{51ddb424-2da2-4871-a042-4f4f9b622515}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj">
+      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />

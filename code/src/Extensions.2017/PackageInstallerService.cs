@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Extension
                     {
                         GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
 
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version).ConfigureAwait(false);
+                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
                     }
                 });
             }

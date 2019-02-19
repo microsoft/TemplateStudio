@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your chart page is displaying real data.
         public ObservableCollection<DataPoint> GetChartSampleData()
         {
             var data = AllOrders().Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })

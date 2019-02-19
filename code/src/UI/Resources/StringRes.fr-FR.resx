@@ -707,4 +707,8 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>Windows Template Studio ajoute un projet principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>

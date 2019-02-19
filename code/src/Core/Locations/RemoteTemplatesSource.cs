@@ -17,6 +17,8 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class RemoteTemplatesSource : TemplatesSource
     {
+        private readonly TemplatePackage _templatePackage;
+
         private readonly string _tmpExtension = "_tmp";
 
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
@@ -27,10 +29,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Platform { get; }
 
-        public RemoteTemplatesSource(string platform, string language)
+        public bool CanGetNewContent { get; }
+
+        public RemoteTemplatesSource(string platform, string language, IDigitalSignatureService digitalSignatureService)
         {
             Platform = platform;
             Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
+            _templatePackage = new TemplatePackage(digitalSignatureService);
+            CanGetNewContent = digitalSignatureService.CanVerifySignatures;
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
@@ -131,7 +137,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
 
-                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
+                    await _templatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
                     Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
 
                     AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();

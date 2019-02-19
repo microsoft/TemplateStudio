@@ -255,6 +255,9 @@
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <None Include=".codeclonesettings" />
+    <None Include="RunTests.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="test.config.json">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -320,6 +323,10 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj">
+      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
       <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>
       <Name>TemplateValidator</Name>
@@ -329,9 +336,7 @@
       <Name>Fakes</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="System\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
