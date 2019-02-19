@@ -8,6 +8,7 @@
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:models="using:Param_RootNamespace.Core.Models"
     xmlns:cm="using:Caliburn.Micro"
+    Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">

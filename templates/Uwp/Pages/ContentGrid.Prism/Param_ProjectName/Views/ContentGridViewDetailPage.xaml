@@ -7,6 +7,7 @@
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid
