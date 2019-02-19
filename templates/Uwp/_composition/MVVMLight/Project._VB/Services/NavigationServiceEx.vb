@@ -92,7 +92,7 @@ Namespace Services
                 If _pages.ContainsValue(page) Then
                     Return _pages.FirstOrDefault(Function(p) p.Value.Equals(page)).Key
                 Else
-                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageUnknow".GetLocalized(), page.Name))
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageUnknown".GetLocalized(), page.Name))
                 End If
             End SyncLock
         End Function
