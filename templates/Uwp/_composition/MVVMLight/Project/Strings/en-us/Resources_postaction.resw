@@ -13,7 +13,7 @@
     <value>This type is already configured with key {0}</value>
     <comment>The page type is already configured with page key in navigation service</comment>
   </data>
-  <data name="ExceptionNavigationServiceExPageUnknow" xml:space="preserve">
+  <data name="ExceptionNavigationServiceExPageUnknown" xml:space="preserve">
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
