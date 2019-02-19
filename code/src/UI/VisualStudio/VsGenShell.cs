@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
@@ -17,6 +16,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.ProjectSystem;
@@ -64,6 +64,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
 
         private VsOutputPane OutputPane => _outputPane.Value;
+
+        private Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
+
+        private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
@@ -130,25 +134,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
-        public override void ShowModal(System.Windows.Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // get the owner of this dialog
-            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
-
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-
-            UIShell.EnableModeless(0);
-
-            try
+            if (shell is System.Windows.Window dialog)
             {
-                WindowHelper.ShowModal(dialog, hwnd);
-            }
-            finally
-            {
-                // This will take place after the window is closed.
-                UIShell.EnableModeless(1);
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                // get the owner of this dialog
+                UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
+
+                dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
+                UIShell.EnableModeless(0);
+
+                try
+                {
+                    WindowHelper.ShowModal(dialog, hwnd);
+                }
+                finally
+                {
+                    // This will take place after the window is closed.
+                    UIShell.EnableModeless(1);
+                }
             }
         }
 
@@ -727,6 +734,31 @@ namespace Microsoft.Templates.UI.VisualStudio
                 // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
                 return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
             }
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return VSTelemetryService.VsTelemetryIsOptedIn();
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
+            VSTelemetryService.SafeTrackWizardCancelledVsTelemetry(properties, success);
         }
     }
 }

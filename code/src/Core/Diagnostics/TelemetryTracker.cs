@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -15,11 +16,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public TelemetryTracker()
         {
-        }
-
-        public TelemetryTracker(Configuration config)
-        {
-            TelemetryService.SetConfiguration(config);
         }
 
         public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType, WizardActionEnum wizardAction, string vsProductVersion)
@@ -48,7 +44,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
 
-            TelemetryService.Current.SafeTrackWizardCancelledVsTelemetry(properties);
+            GenContext.ToolBox.Shell.SafeTrackWizardCancelledVsTelemetry(properties);
 
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
@@ -136,7 +132,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 metrics.Add(TelemetryMetrics.FeaturesCount, genItemsTelemetryData.FeaturesCount.Value);
             }
 
-            TelemetryService.Current.SafeTrackNewItemVsTelemetry(properties, genItemsTelemetryData.PageIdentities, genItemsTelemetryData.FeatureIdentities, metrics);
+            GenContext.ToolBox.Shell.SafeTrackNewItemVsTelemetry(properties, genItemsTelemetryData.PageIdentities, genItemsTelemetryData.FeatureIdentities, metrics);
 
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewItemGen, properties, metrics).ConfigureAwait(false);
         }
@@ -193,7 +189,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 }
             }
 
-            TelemetryService.Current.SafeTrackProjectVsTelemetry(properties, genItemsTelemetryData.PageIdentities, genItemsTelemetryData.FeatureIdentities, metrics, status == GenStatusEnum.Completed);
+            GenContext.ToolBox.Shell.SafeTrackProjectVsTelemetry(properties, genItemsTelemetryData.PageIdentities, genItemsTelemetryData.FeatureIdentities, metrics, status == GenStatusEnum.Completed);
 
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.ProjectGen, properties, metrics).ConfigureAwait(false);
         }

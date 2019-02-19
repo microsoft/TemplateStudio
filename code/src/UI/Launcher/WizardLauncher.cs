@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -57,7 +56,7 @@ namespace Microsoft.Templates.UI.Launcher
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
-                wizardShell.SafeClose();
+                (wizardShell as IWindow).SafeClose();
                 _dialogService.ShowError(ex);
             }
 
@@ -71,7 +70,7 @@ namespace Microsoft.Templates.UI.Launcher
 
         private UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
-            GenContext.ToolBox.Shell.ShowModal(wizardShell as Window);
+            GenContext.ToolBox.Shell.ShowModal(wizardShell as IWindow);
             return wizardShell.Result;
         }
 

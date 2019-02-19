@@ -16,6 +16,7 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, new DigitalSignatureService()), new VsGenShell(), platform, language);
 #endif
             }
         }
