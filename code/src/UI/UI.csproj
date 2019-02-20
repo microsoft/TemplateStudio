@@ -112,16 +112,6 @@
       <HintPath>..\..\packages\Microsoft.VisualStudio.OLE.Interop.7.10.6070\lib\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.ProjectSystem, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.ProjectSystem.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.Interop.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.ProjectSystem.VS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.VS.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.RemoteControl, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.RemoteControl.14.0.262-masterA5CACE98\lib\net45\Microsoft.VisualStudio.RemoteControl.dll</HintPath>
     </Reference>
@@ -492,6 +482,7 @@
     <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />

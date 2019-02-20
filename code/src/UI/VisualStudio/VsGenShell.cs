@@ -4,10 +4,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
@@ -19,8 +21,6 @@ using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.ProjectSystem;
-using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -33,6 +33,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
+        private Lazy<IPackageInstallerService> _packageInstallerService = new Lazy<IPackageInstallerService>(() => GetPackageInstallerService(), true);
+
+        private IPackageInstallerService PackageInstallerService => _packageInstallerService.Value;
+
+        private static IPackageInstallerService GetPackageInstallerService()
+        {
+            var componentModel = (IComponentModel)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
+            return componentModel.GetService<IPackageInstallerService>();
+        }
+
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
 
         private DTE Dte => _dte.Value;
@@ -651,7 +661,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 var project = GetProjectByPath(projectPath);
                 if (IsCpsProject(projectPath))
                 {
-                    AddNugetToCPSProject(project, projectNugets);
+                    PackageInstallerService.AddNugetToCPSProject(project, projectNugets);
                 }
                 else
                 {
@@ -676,27 +686,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 WriteMissingNugetPackagesInfo(projectPath, projectNugets);
-            }
-        }
-
-        private static void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
-        {
-            if (project is IVsBrowseObjectContext browseObjectContext)
-            {
-                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
-
-                threadingService.ExecuteSynchronously(
-                async () =>
-                {
-                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
-
-                    foreach (var reference in projectNugets)
-                    {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-                    }
-                });
             }
         }
 
