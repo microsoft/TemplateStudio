@@ -29,7 +29,7 @@ namespace Param_RootNamespace.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return _navigationService.SourcePageType == null;
+            return _navigationService.SourcePageType == null && _navElement != null;
         }
     }
 }
