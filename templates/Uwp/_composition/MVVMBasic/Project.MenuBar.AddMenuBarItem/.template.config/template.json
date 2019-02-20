@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Page.AddBackCommand.VB",
+  "name": "MVVMBasic.Project.MenuBar.AddMenuBarItem",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == Blank|MenuBar & groupidentity == wts.Page.ContentGrid.VB|wts.Page.ImageGallery.VB"
-  },
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $projectType == MenuBar & $framework == MVVMBasic"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
