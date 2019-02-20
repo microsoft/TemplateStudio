@@ -53,11 +53,12 @@ namespace Param_RootNamespace.Services
 
         public static void GoForward() => Frame.GoForward();
 
-        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
+        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null, bool clearNavigation = false)
         {
             // Don't open the same page multiple times
             if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {
+                Frame.Tag = clearNavigation;
                 var navigationResult = Frame.Navigate(pageType, parameter, infoOverride);
                 if (navigationResult)
                 {
@@ -72,9 +73,9 @@ namespace Param_RootNamespace.Services
             }
         }
 
-        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null)
+        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null, bool clearNavigation = false)
             where T : Page
-            => Navigate(typeof(T), parameter, infoOverride);
+            => Navigate(typeof(T), parameter, infoOverride, clearNavigation);
 
         private static void RegisterFrameEvents()
         {
@@ -96,6 +97,19 @@ namespace Param_RootNamespace.Services
 
         private static void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => NavigationFailed?.Invoke(sender, e);
 
-        private static void Frame_Navigated(object sender, NavigationEventArgs e) => Navigated?.Invoke(sender, e);
+        private static void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var frame = sender as Frame;
+            if (frame != null)
+            {
+                bool clearNavigation = (bool)frame.Tag;
+                if (clearNavigation)
+                {
+                    frame.BackStack.Clear();
+                }
+
+                Navigated?.Invoke(sender, e);
+            }
+        }
     }
 }
