@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.ContentGrid.Blank.VB",
+  "name": "Project.MenuBar.AddMenuBarItemResources",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank & groupidentity == wts.Page.ContentGrid.VB"
-  },
+    "wts.compositionFilter": "wts.type==page & $projectType == MenuBar"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
