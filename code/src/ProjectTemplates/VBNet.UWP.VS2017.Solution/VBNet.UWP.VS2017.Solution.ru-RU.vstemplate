@@ -6,7 +6,7 @@
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>VisualBasic</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>8c9d48fe-478b-483e-bbe6-954d9f1dabe2</TemplateID>
+    <TemplateID>Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
@@ -14,6 +14,7 @@
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
+      <CustomParameter Name="$wts.platform$" Value="Uwp"/>
       <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
     </CustomParameters>
