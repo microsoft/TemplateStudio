@@ -173,10 +173,12 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="Gen\CompositionInfo.cs" />
     <Compile Include="Gen\GenComposer.cs" />
     <Compile Include="Gen\GenController.cs" />
     <Compile Include="Gen\GenException.cs" />
     <Compile Include="Gen\IWindow.cs" />
+    <Compile Include="Gen\LayoutInfo.cs" />
     <Compile Include="Gen\NewItemGenController.cs" />
     <Compile Include="Gen\NewItemGenerationFileInfo.cs" />
     <Compile Include="Gen\NewItemGenerationResult.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Gen\ProjectInfo.cs" />
     <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
+    <Compile Include="Gen\TemplateInfo.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
@@ -203,6 +206,7 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
+    <Compile Include="Packaging\CertInfo.cs" />
     <Compile Include="Packaging\IDigitalSignatureService.cs" />
     <Compile Include="Templates\MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />

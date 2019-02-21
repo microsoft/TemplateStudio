@@ -173,19 +173,19 @@ namespace WtsPackagingTool
             foreach (var info in certsInfo)
             {
                 output.WriteLine();
-                output.WriteCommandText($" Cert Subject: {info.cert.Subject}");
+                output.WriteCommandText($" Cert Subject: {info.Cert.Subject}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Issuer: {info.cert.IssuerName.Name}");
+                output.WriteCommandText($" Cert Issuer: {info.Cert.IssuerName.Name}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Serial Number: {info.cert.SerialNumber}");
+                output.WriteCommandText($" Cert Serial Number: {info.Cert.SerialNumber}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Chain Status: {info.status.ToString()}");
+                output.WriteCommandText($" Cert Chain Status: {info.Status.ToString()}");
                 output.WriteLine();
                 output.WriteCommandText($" Cert PubKey:");
-                output.WriteCommandText($" {info.cert.GetPublicKeyString()}");
+                output.WriteCommandText($" {info.Cert.GetPublicKeyString()}");
                 output.WriteLine();
                 output.WriteCommandText($" Cert Pin:");
-                output.WriteCommandText($" {info.pin}");
+                output.WriteCommandText($" {info.Pin}");
                 output.WriteLine();
                 output.WriteCommandText("--");
             }

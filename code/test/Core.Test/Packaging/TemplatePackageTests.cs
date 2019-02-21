@@ -235,7 +235,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"));
+            File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"), true);
             var inFile = "NewFile.txt";
             var outFile = @"ToExtract.package";
             var extractionDir = Environment.CurrentDirectory;
@@ -248,6 +248,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
 
             File.Delete(outFile);
+            File.Delete(inFile);
         }
 
         [Fact]

@@ -624,7 +624,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task ConfigureGenContextAsync()
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSource(TemplatesVersion, string.Empty),
+                new LocalTemplatesSource(string.Empty, TemplatesVersion, string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 Platforms.Uwp,

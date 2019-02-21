@@ -164,7 +164,7 @@ namespace Microsoft.Templates.Core.Locations
             TemplatesPackageInfo installedPackage = null;
             if (Source is RemoteTemplatesSource)
             {
-                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"{Source.Platform}.{Source.Language}.Templates.mstx");
+                var mstxFilePath = Path.Combine(Source.InstalledPackagePath, $"{Source.Platform}.{Source.Language}.Templates.mstx");
 
                 if (File.Exists(mstxFilePath))
                 {

@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Test
             Justification = "Required por unit testing.")]
         public void InitializeFixture(string language)
         {
-            var source = new UnitTestsTemplatesSource();
+            var source = new UnitTestsTemplatesSource(null);
 
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), Platforms.Uwp, language);
             if (!_syncExecuted)

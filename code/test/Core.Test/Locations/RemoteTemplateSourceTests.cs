@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
-using Microsoft.Templates.Utilities.Services;
+using Microsoft.Templates.Core.Test.TestFakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Locations
@@ -26,7 +26,12 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public async Task TestRemoteSource_AcquireAsync()
         {
-            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            var platform = Platforms.Uwp;
+            var language = ProgrammingLanguages.CSharp;
+
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
             CancellationTokenSource cts = new CancellationTokenSource();
 
             await rts.LoadConfigAsync(cts.Token);
@@ -61,7 +66,12 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public async Task TestRemoteSource_AcquireCancelAsync()
         {
-            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+            var platform = Platforms.Uwp;
+            var language = ProgrammingLanguages.CSharp;
+
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
             CancellationTokenSource cts = new CancellationTokenSource();
 
             await rts.LoadConfigAsync(cts.Token);
@@ -95,7 +105,12 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+                var platform = Platforms.Uwp;
+                var language = ProgrammingLanguages.CSharp;
+
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+                RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
                 CancellationTokenSource cts = new CancellationTokenSource();
                 await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;
@@ -122,7 +137,12 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+                var platform = Platforms.Uwp;
+                var language = ProgrammingLanguages.CSharp;
+
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+                RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
                 CancellationTokenSource cts = new CancellationTokenSource();
                 await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;
@@ -157,7 +177,11 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+                var platform = Platforms.Uwp;
+                var language = ProgrammingLanguages.CSharp;
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+                RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
                 CancellationTokenSource cts = new CancellationTokenSource();
                 await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;
@@ -183,7 +207,12 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp, new DigitalSignatureService());
+                var platform = Platforms.Uwp;
+                var language = ProgrammingLanguages.CSharp;
+
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+
+                RemoteTemplatesSource rts = new RemoteTemplatesSource(platform, language, path, new TestDigitalSignatureService());
                 CancellationTokenSource cts = new CancellationTokenSource();
 
                 var packageFile = Path.GetFullPath(@".\Packaging\MsSigned\Templates.mstx");

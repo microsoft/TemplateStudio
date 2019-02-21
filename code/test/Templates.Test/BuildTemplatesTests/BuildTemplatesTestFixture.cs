@@ -24,11 +24,11 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{ShortFrameworkName(_framework)}\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource(ShortFrameworkName(_framework));
+        public TemplatesSource Source => new LocalTemplatesSource(null, ShortFrameworkName(_framework));
 
         public static IEnumerable<object[]> GetProjectTemplates(string frameworkFilter, string programmingLanguage, string selectedPlatform)
         {
-            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
 
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter)
         {
-            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
             return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter);
         }

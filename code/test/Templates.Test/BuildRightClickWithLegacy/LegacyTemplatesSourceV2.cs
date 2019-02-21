@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Test
         public override string Id => "TestLegacy" + GetAgentName();
 
         public LegacyTemplatesSourceV2(string language)
-           : base(Platforms.Uwp, language, new DigitalSignatureService())
+           : base(Platforms.Uwp, language, string.Empty, new DigitalSignatureService())
         {
         }
 

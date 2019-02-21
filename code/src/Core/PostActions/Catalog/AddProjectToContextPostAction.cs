@@ -29,14 +29,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var projectsToAdd = Config
                             .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                            .Select(o => (
-                                generationPath: Path.GetFullPath(Path.Combine(_generationPath, o.GetOutputPath(_genParameters))),
-                                destinationPath: Path.GetFullPath(Path.Combine(_destinationPath, o.GetOutputPath(_genParameters)))))
+                            .Select(o => Path.GetFullPath(Path.Combine(_destinationPath, o.GetOutputPath(_genParameters))))
                             .ToList();
 
             foreach (var project in projectsToAdd)
             {
-                GenContext.Current.ProjectInfo.Projects.Add(project.destinationPath);
+                GenContext.Current.ProjectInfo.Projects.Add(project);
             }
         }
     }
