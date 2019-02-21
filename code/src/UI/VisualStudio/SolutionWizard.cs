@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -58,7 +59,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, new DigitalSignatureService()), new VsGenShell(), platform, language);
+                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"{platform}.{language}.Templates.mstx");
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), platform, language);
 #endif
             }
         }
