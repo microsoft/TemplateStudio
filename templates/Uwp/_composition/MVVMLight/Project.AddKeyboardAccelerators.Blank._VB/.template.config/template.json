@@ -3,9 +3,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.Blank.AddKeyboardAccelerators",
+  "name": "MVVMLight.Project.AddKeyboardAccelerators.Blank.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",

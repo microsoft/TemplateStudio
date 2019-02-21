@@ -59,7 +59,7 @@ namespace Param_RootNamespace.Services
 
         public void GoForward() => Frame.GoForward();
 
-        public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
+        public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null, bool clearNavigation = false)
         {
             Type page;
             lock (_pages)
@@ -72,6 +72,7 @@ namespace Param_RootNamespace.Services
 
             if (Frame.Content?.GetType() != page || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {
+                Frame.Tag = clearNavigation;
                 var navigationResult = Frame.Navigate(page, parameter, infoOverride);
                 if (navigationResult)
                 {
@@ -139,6 +140,19 @@ namespace Param_RootNamespace.Services
 
         private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => NavigationFailed?.Invoke(sender, e);
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e) => Navigated?.Invoke(sender, e);
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var frame = sender as Frame;
+            if (frame != null)
+            {
+                bool clearNavigation = (bool)frame.Tag;
+                if (clearNavigation)
+                {
+                    frame.BackStack.Clear();
+                }
+
+                Navigated?.Invoke(sender, e);
+            }
+        }
     }
 }
