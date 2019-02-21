@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.DeepLinking.Blank.MenuBar.VB",
+  "name": "CodeBehind.Feature.DeepLinking.Blank",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic & identity == wts.Feat.DeepLinking.VB & $projectType == Blank|MenuBar"
+    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.DeepLinking & $projectType == Blank"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
