@@ -53,6 +53,8 @@ namespace Microsoft.Templates.Test
                     return "SV";
                 case "TabbedNav":
                     return "TN";
+                case "MenuBar":
+                    return "MB";
                 default:
                     return projectType;
             }
@@ -456,6 +458,7 @@ namespace Microsoft.Templates.Test
         private const string NavigationPanel = "SplitView";
         private const string Blank = "Blank";
         private const string TabbedNav = "TabbedNav";
+        private const string MenuBar = "MenuBar";
         private const string MvvmBasic = "MVVMBasic";
         private const string MvvmLight = "MVVMLight";
         private const string CodeBehind = "CodeBehind";
@@ -472,6 +475,9 @@ namespace Microsoft.Templates.Test
             yield return new object[] { TabbedNav, CodeBehind };
             yield return new object[] { TabbedNav, MvvmBasic };
             yield return new object[] { TabbedNav, MvvmLight };
+            yield return new object[] { MenuBar, CodeBehind };
+            yield return new object[] { MenuBar, MvvmBasic };
+            yield return new object[] { MenuBar, MvvmLight };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
