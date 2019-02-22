@@ -20,7 +20,7 @@ namespace Param_RootNamespace.Views
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
-            ViewModel.Initialize(frame, navigationView);
+            ViewModel.Initialize(splitView, rightFrame);
         }
     }
 }

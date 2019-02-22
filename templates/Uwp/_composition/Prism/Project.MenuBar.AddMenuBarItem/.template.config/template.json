@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Page.ContentGrid.Blank",
+  "name": "Prism.Project.MenuBar.AddMenuBarItem",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & $projectType == Blank & groupidentity == wts.Page.ContentGrid"
-  },
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.Prism & $projectType == MenuBar"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

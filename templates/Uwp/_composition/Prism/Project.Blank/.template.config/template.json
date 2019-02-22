@@ -1,16 +1,17 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.DeepLinking.Blank",
+  "name": "Prism.Project.Blank",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Feat.DeepLinking.Prism & $projectType == Blank"
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$framework == Prism & $projectType == Blank & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

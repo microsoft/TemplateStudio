@@ -14,6 +14,24 @@ namespace Param_RootNamespace
         {
             InitializeComponent();
         }
+
+        protected override void ConfigureContainer()
+        {
+//^^
+//{[{
+            Container.RegisterType<IMenuNavigationService, MenuNavigationService>();
+//}]}
+        }
+
+        private async Task LaunchApplicationAsync(string page, object launchParam)
+        {
+//^^
+//{[{
+            var menuNavigationService = Container.Resolve<IMenuNavigationService>();
+            menuNavigationService.UpdateView(page, launchParam);
+//}]}
+            Window.Current.Activate();
+        }
 //^^
 //{[{
 

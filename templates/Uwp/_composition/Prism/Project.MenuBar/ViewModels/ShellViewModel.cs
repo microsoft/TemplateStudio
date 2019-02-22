@@ -14,17 +14,19 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
+        private IMenuNavigationService _menuNavigationService;
+
         public ICommand MenuFileExitCommand { get; }
 
-        public ShellViewModel()
+        public ShellViewModel(IMenuNavigationService menuNavigationService)
         {
+            _menuNavigationService = menuNavigationService;
             MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
 
-        public void Initialize(Frame shellFrame, SplitView splitView, Frame rightFrame)
+        public void Initialize(SplitView splitView, Frame rightFrame)
         {
-            NavigationService.Frame = shellFrame;
-            MenuNavigationHelper.Initialize(splitView, rightFrame);
+            _menuNavigationService.Initialize(splitView, rightFrame);
         }
 
         private void OnMenuFileExit()
