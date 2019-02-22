@@ -3,5 +3,10 @@
         "name": "Main",
         "templateGroupIdentity": "wts.Page.Blank",
         "readonly": "false"
-    }    
+    },
+    {
+        "name": "Multiple views",
+        "templateGroupIdentity": "wts.Feat.MultiView",
+        "readonly": "true"
+    }
 ]
