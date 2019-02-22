@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(path).FullName, true);
             Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.True(GenContext.Current.FilesToOpen.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.FilesToOpen);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(path).FullName, true);
             Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.False(GenContext.Current.FilesToOpen.Contains(finalFile));
+            Assert.DoesNotContain(finalFile, GenContext.Current.FilesToOpen);
         }
     }
 }

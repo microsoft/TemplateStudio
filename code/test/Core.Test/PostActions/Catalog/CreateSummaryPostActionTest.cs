@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             cultureInfo = CultureInfo.CurrentUICulture;
         }
 
-        public void Dispose()
+        internal void Dispose()
         {
             CultureInfo.CurrentUICulture = cultureInfo;
         }

@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.ProjectInfo.ProjectItems);
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.ProjectInfo.ProjectItems);
         }
     }
 }
