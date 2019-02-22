@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (IsTraceEnabled())
             {
-                foreach (IHealthWriter writer in HealthWriters.Available)
+                foreach (IHealthWriter writer in HealthWriters.Available.ToArray())
                 {
                     await SafeTrackAsync(traceToTrack, ex, writer);
                 }

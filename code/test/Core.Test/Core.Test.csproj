@@ -170,6 +170,7 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
       <Private>True</Private>
@@ -220,6 +221,7 @@
     <Compile Include="Naming\NamingTests.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
+    <Compile Include="TestFakes\TestDigitalSignatureService.cs" />
     <None Include="TestData\Merge\Source_expectedWithOptionalContextLines.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -308,6 +310,10 @@
     <ProjectReference Include="..\..\src\Core\Core.csproj">
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj">
+      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>

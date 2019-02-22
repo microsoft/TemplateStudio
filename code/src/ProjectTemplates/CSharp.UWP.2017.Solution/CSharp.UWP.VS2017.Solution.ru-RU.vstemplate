@@ -8,7 +8,7 @@
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
+    <TemplateID>Microsoft.CSharp.UWP.WindowsTemplateStudio.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>

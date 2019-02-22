@@ -24,14 +24,4 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public static string EditSummaryItem { get; private set; } = Prefix + "EditSummaryItem";
     }
-
-    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation. Used for constants.")]
-    public class VsTelemetryEvents
-    {
-        public const string Prefix = "Wts.";
-
-        public static string WtsGen { get; private set; } = "vs/windowstemplatestudio/wts-generated";
-
-        public static string WtsWizard { get; private set; } = "vs/windowstemplatestudio/wts-wizard";
-    }
 }

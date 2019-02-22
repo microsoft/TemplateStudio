@@ -143,17 +143,16 @@ namespace Microsoft.Templates.Core
             return properties;
         }
 
-        public static IEnumerable<(string name, string value)> GetExports(this ITemplateInfo ti)
+        public static IDictionary<string, string> GetExports(this ITemplateInfo ti)
         {
             if (ti == null || ti.Tags == null)
             {
-                return Enumerable.Empty<(string name, string value)>();
+                return new Dictionary<string, string>();
             }
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
-                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
-                        .ToList();
+                        .ToDictionary(t => t.Key.Replace(TagPrefix + "export.", string.Empty), v => v.Value.DefaultValue);
         }
 
         public static List<string> GetFrameworkList(this ITemplateInfo ti)

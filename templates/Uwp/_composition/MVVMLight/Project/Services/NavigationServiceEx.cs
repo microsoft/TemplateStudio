@@ -115,7 +115,7 @@ namespace Param_RootNamespace.Services
                 }
                 else
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknow".GetLocalized(), page.Name));
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown".GetLocalized(), page.Name));
                 }
             }
         }

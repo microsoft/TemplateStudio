@@ -99,6 +99,11 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task GetNewContentAsync(CancellationToken ct)
         {
+            if (!CanGetNewContent())
+            {
+                return;
+            }
+
             await EnsureVsInstancesSyncingAsync();
 
             if (LockSync())
@@ -340,6 +345,16 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnDeletingLockFileMessage, ex).FireAndForget();
             }
+        }
+
+        private bool CanGetNewContent()
+        {
+            if (_content.Source is RemoteTemplatesSource remote)
+            {
+                return remote.CanGetNewContent;
+            }
+
+            return true;
         }
     }
 }

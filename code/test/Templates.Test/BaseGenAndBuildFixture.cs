@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            userSelection.HomeName = userSelection.Pages.FirstOrDefault().name;
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault().Name;
 
             return userSelection;
         }
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Test
             if (template.GetMultipleInstance() || !AlreadyAdded(userSelection, template))
             {
                 var itemName = getName(template);
-                var usedNames = userSelection.Pages.Select(p => p.name).Concat(userSelection.Features.Select(f => f.name));
+                var usedNames = userSelection.Pages.Select(p => p.Name).Concat(userSelection.Features.Select(f => f.Name));
                 var validators = new List<Validator>()
                     {
                         new ExistingNamesValidator(usedNames),
@@ -92,13 +92,14 @@ namespace Microsoft.Templates.Test
 
         public void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
         {
+            var templateInfo = new TemplateInfo { Name = itemName, Template = template };
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
-                    userSelection.Pages.Add((itemName, template));
+                    userSelection.Pages.Add(templateInfo);
                     break;
                 case TemplateType.Feature:
-                    userSelection.Features.Add((itemName, template));
+                    userSelection.Features.Add(templateInfo);
                     break;
             }
 
@@ -171,7 +172,7 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity);
+            return userSelection.Pages.Any(p => p.Template.Identity == item.Identity) || userSelection.Features.Any(f => f.Template.Identity == item.Identity);
         }
 
         public static string GetDefaultName(ITemplateInfo template)

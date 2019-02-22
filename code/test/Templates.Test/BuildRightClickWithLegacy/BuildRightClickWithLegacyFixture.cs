@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource VBSource => new LegacyTemplatesSourceV2(ProgrammingLanguages.VisualBasic);
 
-        public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
+        public TemplatesSource LocalSource => new LocalTemplatesSource(null, "BldRClickLegacy");
 
         private static bool syncExecuted;
 

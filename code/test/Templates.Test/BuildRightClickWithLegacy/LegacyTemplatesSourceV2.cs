@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Utilities.Services;
 
 namespace Microsoft.Templates.Test
 {
@@ -16,7 +17,7 @@ namespace Microsoft.Templates.Test
         public override string Id => "TestLegacy" + GetAgentName();
 
         public LegacyTemplatesSourceV2(string language)
-           : base(Platforms.Uwp, language)
+           : base(Platforms.Uwp, language, string.Empty, new DigitalSignatureService())
         {
         }
 
