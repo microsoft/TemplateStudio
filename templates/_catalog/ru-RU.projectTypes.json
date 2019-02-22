@@ -17,6 +17,6 @@
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "summary": "A menu is added to move around between pages."
   }
 ]

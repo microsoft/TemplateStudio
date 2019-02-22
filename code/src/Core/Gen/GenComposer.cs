@@ -37,7 +37,9 @@ namespace Microsoft.Templates.Core.Gen
         public static IEnumerable<LayoutInfo> GetLayoutTemplates(string projectType, string framework, string platform)
         {
             var projectTemplate = GetProjectTemplate(projectType, framework, platform);
-            var layout = projectTemplate?.GetLayout();
+            var layout = projectTemplate?
+                .GetLayout()
+                .Where(l => l.ProjectType.GetMultiValue().Contains(projectType));
 
             foreach (var item in layout)
             {

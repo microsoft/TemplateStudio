@@ -1,17 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--This file is NOT compatible with Silverlight-->
 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-  <Canvas Name="svg3954" Width="48" Height="48">
-    <Canvas.RenderTransform>
-      <TranslateTransform X="0" Y="0"/>
-    </Canvas.RenderTransform>
-    <Canvas.Resources/>
-    <!--Unknown tag: metadata-->
-    <!--Unknown tag: sodipodi:namedview-->
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3952" Fill="#000000">
-      <Path.Data>
-        <PathGeometry Figures="M48 42H0V4H48ZM2 40H46V6H2Z" FillRule="NonZero"/>
-      </Path.Data>
-    </Path>
+  <Canvas Width="48" Height="48">
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="0" Canvas.Top="4" Width="48" Height="38" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>    
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="0" Canvas.Top="4" Width="20" Height="26" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>    
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="1" Y1="13" X2="47" Y2="13" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/> 
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="32" Y1="5" X2="32" Y2="12" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="6" Y1="18" X2="14" Y2="18" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="6" Y1="23" X2="14" Y2="23" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>    
   </Canvas>
 </Viewbox>

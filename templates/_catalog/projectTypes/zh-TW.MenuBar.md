@@ -1,3 +1,5 @@
-﻿此基本專案是用來打造您應用程式的空白畫布。
+﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
 
-它未提供任何支架/結構，讓您自己決定一切。
+Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+
+The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.

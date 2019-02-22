@@ -1,3 +1,5 @@
-﻿이 기본 프로젝트는 앱을 구축할 빈 캔버스입니다.
+﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
 
-모든 것은 사용자의 선택에 달려 있습니다.
+Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+
+The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.

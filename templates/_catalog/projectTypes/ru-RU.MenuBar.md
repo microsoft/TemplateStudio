@@ -1,3 +1,5 @@
-﻿Этот базовый проект является пустым холстом, на котором можно создать приложение.
+﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
 
-Он не предоставляет возможность формирования шаблонов, и вы можете сделать все самостоятельно.
+Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+
+The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
