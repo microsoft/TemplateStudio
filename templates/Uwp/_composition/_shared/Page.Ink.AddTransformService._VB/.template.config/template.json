@@ -1,0 +1,37 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.Ink.AddTransformService.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == wts.Page.InkSmartCanvas.VB"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\Ink\\InkTransformService.vb"
+    },
+    {
+      "path": ".\\Services\\Ink\\InkTransformResult.vb"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\TransformUndoRedoOperation.vb"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\ClearStrokesAndShapesUndoRedoOperation.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            userSelection.HomeName = userSelection.Pages.FirstOrDefault().name;
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault().Name;
 
             return userSelection;
         }
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Test
             if (template.GetMultipleInstance() || !AlreadyAdded(userSelection, template))
             {
                 var itemName = getName(template);
-                var usedNames = userSelection.Pages.Select(p => p.name).Concat(userSelection.Features.Select(f => f.name));
+                var usedNames = userSelection.Pages.Select(p => p.Name).Concat(userSelection.Features.Select(f => f.Name));
                 var validators = new List<Validator>()
                     {
                         new ExistingNamesValidator(usedNames),
@@ -92,13 +92,14 @@ namespace Microsoft.Templates.Test
 
         public void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
         {
+            var templateInfo = new TemplateInfo { Name = itemName, Template = template };
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
-                    userSelection.Pages.Add((itemName, template));
+                    userSelection.Pages.Add(templateInfo);
                     break;
                 case TemplateType.Feature:
-                    userSelection.Features.Add((itemName, template));
+                    userSelection.Features.Add(templateInfo);
                     break;
             }
 
@@ -171,7 +172,7 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity);
+            return userSelection.Pages.Any(p => p.Template.Identity == item.Identity) || userSelection.Features.Any(f => f.Template.Identity == item.Identity);
         }
 
         public static string GetDefaultName(ITemplateInfo template)
@@ -228,6 +229,39 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
+        public (int exitCode, string outputFile) RunTests(string projectName, string outputPath)
+        {
+            var outputFile = Path.Combine(outputPath, $"_testOutput_{projectName}.txt");
+
+            var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
+
+            const string batFile = "RunTests.bat";
+
+            // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
+            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
+            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.NUnit.dll\" ";
+            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.xUnit.dll\" ";
+
+            var batPath = Path.GetDirectoryName(GetPath(batFile));
+
+            var startInfo = new ProcessStartInfo(GetPath(batFile))
+            {
+                Arguments = $"{mstestPath} {nunitPath} {xunitPath}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = false,
+                WorkingDirectory = outputPath,
+            };
+
+            var process = Process.Start(startInfo);
+
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+            process.WaitForExit();
+
+            return (process.ExitCode, outputFile);
+        }
+
         public string GetErrorLines(string filePath)
         {
             Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
@@ -235,6 +269,14 @@ namespace Microsoft.Templates.Test
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
             return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
+        }
+
+        public string GetTestSummary(string filePath)
+        {
+            var outputLines = File.ReadAllLines(filePath);
+            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests") || l.StartsWith("Test "));
+
+            return summaryLines.Any() ? summaryLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         private static string GetPath(string fileName)
@@ -335,6 +377,70 @@ namespace Microsoft.Templates.Test
                                     language,
                                 });
                             }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        protected static IEnumerable<object[]> GetVBProjectTemplates()
+        {
+            List<object[]> result = new List<object[]>();
+
+            var platform = Platforms.Uwp;
+
+            var projectTemplates =
+               GenContext.ToolBox.Repo.GetAll().Where(
+                   t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
+
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                foreach (var projectType in projectTypeList)
+                {
+                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                    foreach (var framework in frameworks)
+                    {
+                        result.Add(new object[] { projectType, framework, platform });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        protected static IEnumerable<object[]> GetAllProjectTemplates()
+        {
+            List<object[]> result = new List<object[]>();
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            {
+                SetCurrentLanguage(language);
+
+                foreach (var platform in Platforms.GetAllPlatforms())
+                {
+                    SetCurrentPlatform(platform);
+                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Select(m => m.Name);
+
+                    foreach (var projectType in projectTypes)
+                    {
+                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Contains(m.Name))
+                                                    .Select(m => m.Name).ToList();
+
+                        foreach (var framework in targetFrameworks)
+                        {
+                            result.Add(new object[] { projectType, framework, platform, language });
                         }
                     }
                 }

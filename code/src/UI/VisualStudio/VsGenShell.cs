@@ -4,22 +4,23 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.ProjectSystem;
-using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -32,6 +33,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
+        private Lazy<IPackageInstallerService> _packageInstallerService = new Lazy<IPackageInstallerService>(() => GetPackageInstallerService(), true);
+
+        private IPackageInstallerService PackageInstallerService => _packageInstallerService.Value;
+
+        private static IPackageInstallerService GetPackageInstallerService()
+        {
+            var componentModel = (IComponentModel)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
+            return componentModel.GetService<IPackageInstallerService>();
+        }
+
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
 
         private DTE Dte => _dte.Value;
@@ -63,6 +74,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
 
         private VsOutputPane OutputPane => _outputPane.Value;
+
+        private Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
+
+        private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
@@ -129,25 +144,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
-        public override void ShowModal(System.Windows.Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // get the owner of this dialog
-            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
-
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-
-            UIShell.EnableModeless(0);
-
-            try
+            if (shell is System.Windows.Window dialog)
             {
-                WindowHelper.ShowModal(dialog, hwnd);
-            }
-            finally
-            {
-                // This will take place after the window is closed.
-                UIShell.EnableModeless(1);
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                // get the owner of this dialog
+                UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
+
+                dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
+                UIShell.EnableModeless(0);
+
+                try
+                {
+                    WindowHelper.ShowModal(dialog, hwnd);
+                }
+                finally
+                {
+                    // This will take place after the window is closed.
+                    UIShell.EnableModeless(1);
+                }
             }
         }
 
@@ -476,8 +494,8 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                // TODO: Handle this
                 AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddFilesAndProjects, ex).FireAndForget();
+                throw;
             }
         }
 
@@ -643,7 +661,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 var project = GetProjectByPath(projectPath);
                 if (IsCpsProject(projectPath))
                 {
-                    AddNugetToCPSProject(project, projectNugets);
+                    PackageInstallerService.AddNugetToCPSProject(project, projectNugets);
                 }
                 else
                 {
@@ -651,7 +669,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                     {
                         var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
                         var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-                        var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
 
                         if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
                         {
@@ -672,30 +689,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private static void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
-        {
-            if (project is IVsBrowseObjectContext browseObjectContext)
-            {
-                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
-
-                threadingService.ExecuteSynchronously(
-                async () =>
-                {
-                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
-
-                    foreach (var reference in projectNugets)
-                    {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version).ConfigureAwait(false);
-                    }
-                });
-            }
-        }
-
         private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
-            var relPath = projectPath.Replace(Directory.GetParent(GenContext.Current.DestinationPath).FullName, string.Empty);
+            var relPath = projectPath.GetPathRelativeToDestinationParentPath();
             var sb = new StringBuilder();
 
             foreach (var nuget in projectNugets)
@@ -727,6 +723,31 @@ namespace Microsoft.Templates.UI.VisualStudio
                 // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
                 return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
             }
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return VSTelemetryService.VsTelemetryIsOptedIn();
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
+            VSTelemetryService.SafeTrackWizardCancelledVsTelemetry(properties, success);
         }
     }
 }

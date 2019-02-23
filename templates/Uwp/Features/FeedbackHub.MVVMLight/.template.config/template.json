@@ -34,10 +34,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
-    },
     "wts.Page.Settings": {
       "type": "parameter",
       "replaces": "Param_SettingsPageName",
@@ -51,7 +47,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Services.Store.Engagement",
-        "version" : "10.1711.28001",
+        "version" : "10.1810.16002",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

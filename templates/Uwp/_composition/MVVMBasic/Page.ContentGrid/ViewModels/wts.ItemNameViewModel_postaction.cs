@@ -1,9 +1,9 @@
 ﻿//{[{
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Views;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Views;
 //}]}
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Observable
     {

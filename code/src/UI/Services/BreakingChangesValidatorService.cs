@@ -21,6 +21,7 @@ namespace Microsoft.Templates.UI.Services
             new HasOldMvvmLightLocatorValidator(),
             new HasOldNavigationViewValidator(),
             new HasPivotValidator(),
+            new HasNoCoreProjectValidator(),
         };
 
         public static ValidationResult Validate()

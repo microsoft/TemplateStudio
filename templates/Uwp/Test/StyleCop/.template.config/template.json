@@ -9,6 +9,7 @@
     "type": "item",
     "wts.platform": "Uwp",
     "wts.type": "feature",
+    "wts.outputToParent": "true",
     "wts.version": "1.0.0",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
@@ -18,8 +19,15 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\GlobalSuppressions.cs"
+      "path": ".\\Param_ProjectName\\GlobalSuppressions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Tests.MSTest\\GlobalSuppressions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Tests.xUnit\\GlobalSuppressions.cs"
     }
+     
   ],
   "symbols": {
     "wts.projectName": {
@@ -30,10 +38,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
     }
   },
   "postActions": [
@@ -44,7 +48,73 @@
       "args": {
         "packageId" : "StyleCop.Analyzers",
         "version" : "1.0.2",
-        "projectPath": "Param_ProjectName.csproj"
+        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
       },
       "continueOnError": "true"
     }

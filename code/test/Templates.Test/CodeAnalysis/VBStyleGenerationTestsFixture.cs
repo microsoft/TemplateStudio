@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\VBSA\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("VBStyle");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "VBStyle");
 
         [SuppressMessage(
    "Usage",
@@ -48,33 +48,8 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
-            InitializeTemplates(new LocalTemplatesSource("VBStyle"));
-
-            List<object[]> result = new List<object[]>();
-
-            var platform = Platforms.Uwp;
-
-            var projectTemplates =
-               GenContext.ToolBox.Repo.GetAll().Where(
-                   t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
-
-            foreach (var projectTemplate in projectTemplates)
-            {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-
-                foreach (var projectType in projectTypeList)
-                {
-                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                    foreach (var framework in frameworks)
-                    {
-                        result.Add(new object[] { projectType, framework, platform });
-                    }
-                }
-            }
-
-            return result;
+            InitializeTemplates(new LocalTemplatesSource(null, "VBStyle"));
+            return GetVBProjectTemplates();
         }
     }
 }

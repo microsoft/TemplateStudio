@@ -24,6 +24,8 @@ namespace Microsoft.Templates.Core.Locations
 
         protected const string TemplatesFolderName = "Templates";
 
+        public virtual string InstalledPackagePath { get; }
+
         public virtual string Language { get; }
 
         public virtual string Platform { get; }

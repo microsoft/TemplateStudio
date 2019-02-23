@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Maps;
 
-namespace Param_ItemNamespace.Behaviors
+namespace Param_RootNamespace.Behaviors
 {
     public class BindableMapIconBehavior : Behavior<MapControl>
     {

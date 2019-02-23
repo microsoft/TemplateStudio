@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Le schede nella parte superiore permettono la navigazione veloce tra pagine e lasciano una gran quantità di spazio al contenuto dell'app.
+È consigliato se si dispone di un massimo di 5 elementi di navigazione di primo livello della stessa importanza.

@@ -5,14 +5,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -25,6 +28,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         private GenerationService _generationService = GenerationService.Instance;
 
         public string ProjectName { get; private set; }
+
+        public string SafeProjectName { get; private set; }
 
         public string GenerationOutputPath { get; private set; }
 
@@ -47,59 +52,41 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewPage()
         {
-            if (_shell.GetActiveProjectIsWts())
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
             {
                 SetContext();
-
-                try
-                {
-                    var userSelection = NewItemController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-
-                    if (userSelection != null)
-                    {
-                        SafeThreading.JoinableTaskFactory.Run(
-                        async () =>
-                        {
-                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
-
-                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
-                        },
-                        JoinableTaskCreationOptions.LongRunning);
-                    }
-                }
-                catch (WizardBackoutException)
-                {
-                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
-                }
+                var userSelection = WizardLauncher.Instance.StartAddPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
             }
         }
 
         public void AddNewFeature()
         {
-            if (_shell.GetActiveProjectIsWts())
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
             {
                 SetContext();
-                try
-                {
-                    var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-
-                    if (userSelection != null)
-                    {
-                        SafeThreading.JoinableTaskFactory.Run(
-                        async () =>
-                        {
-                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
-                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
-                        },
-                        JoinableTaskCreationOptions.LongRunning);
-                    }
-                }
-                catch (WizardBackoutException)
-                {
-                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
-                }
+                var userSelection = WizardLauncher.Instance.StartAddFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
             }
         }
 
@@ -137,6 +124,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                    SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
@@ -150,15 +138,33 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        private void FinishGeneration(UserSelection userSelection, string statusBarMessage)
+        {
+            if (userSelection is null)
+            {
+                return;
+            }
+
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                _generationService.FinishGeneration(userSelection);
+                _shell.ShowStatusBarMessage(statusBarMessage);
+            },
+            JoinableTaskCreationOptions.LongRunning);
+        }
+
         private void EnsureGenContextInitialized()
         {
             var projectLanguage = _shell.GetActiveProjectLanguage();
             if (GenContext.CurrentLanguage != projectLanguage)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, projectLanguage);
+                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), _shell, Platforms.Uwp, projectLanguage);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"{Platforms.Uwp}.{projectLanguage}.Templates.mstx");
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage, mstxFilePath, new DigitalSignatureService()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 

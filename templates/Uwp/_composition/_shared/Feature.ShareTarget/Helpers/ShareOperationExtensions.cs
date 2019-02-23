@@ -6,7 +6,7 @@ using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage.Streams;
 using Windows.Storage;
 
-namespace Param_ItemNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public static class ShareOperationExtensions
     {

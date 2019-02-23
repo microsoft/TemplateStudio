@@ -6,7 +6,7 @@ using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : ViewModelBase
     {

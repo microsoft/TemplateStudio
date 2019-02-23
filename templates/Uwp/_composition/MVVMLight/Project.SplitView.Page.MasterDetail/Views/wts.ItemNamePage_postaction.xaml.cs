@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Navigation;
 //}]}
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
 
     public sealed partial class wts.ItemNamePage : Page

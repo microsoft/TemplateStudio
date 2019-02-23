@@ -9,9 +9,9 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 
-using wts.ItemName.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
@@ -43,6 +43,10 @@ namespace wts.ItemName.ViewModels
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
             _navigationView = navigationView;
+            frame.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             frame.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }

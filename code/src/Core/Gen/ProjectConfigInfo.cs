@@ -161,7 +161,8 @@ namespace Microsoft.Templates.Core.Gen
                 var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
-                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight\">"))
+                    // Allow for reference names "MvvmLight" & "MvvmLightStd10"
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight"))
                     {
                         return true;
                     }

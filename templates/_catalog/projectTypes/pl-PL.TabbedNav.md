@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Karty u góry umożliwiają szybkie przechodzenie między stronami, a przy tym zostawiają dużo miejsca na treść aplikacji.
+Stosowane kart jest zalecane, jeśli masz maksymalnie 5 elementów nawigacyjnych najwyższego poziomu o jednakowo dużym znaczeniu.

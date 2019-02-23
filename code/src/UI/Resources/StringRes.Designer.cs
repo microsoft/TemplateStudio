@@ -523,24 +523,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an error restoring the packages. Ex:.
-        /// </summary>
-        public static string ErrorVsGenShellRestorePackagesErrorMessage {
-            get {
-                return ResourceManager.GetString("ErrorVsGenShellRestorePackagesErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages..
-        /// </summary>
-        public static string ErrorVsGenShellRestorePackagesWarningMessage {
-            get {
-                return ResourceManager.GetString("ErrorVsGenShellRestorePackagesWarningMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There was an error showing status message. Ex:.
         /// </summary>
         public static string ErrorVsGenShellShowStatusBarMessageMessage {
@@ -1144,15 +1126,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restoring packages....
-        /// </summary>
-        public static string StatusBarRestoring {
-            get {
-                return ResourceManager.GetString("StatusBarRestoring", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Added.
         /// </summary>
         public static string TemplateAdded {
@@ -1302,6 +1275,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidatorHasHamburgerMenuMessage {
             get {
                 return ResourceManager.GetString("ValidatorHasHamburgerMenuMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}updatetomultiproject.md.
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio is now adding a core project. .
+        /// </summary>
+        public static string ValidatorHasNoCoreProjectMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNoCoreProjectMessage", resourceCulture);
             }
         }
         

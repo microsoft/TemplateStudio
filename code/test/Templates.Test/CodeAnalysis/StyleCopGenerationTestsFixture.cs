@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("StyleCop");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "StyleCop");
 
         [SuppressMessage(
          "Usage",
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
         {
-            InitializeTemplates(new LocalTemplatesSource("StyleCop"));
+            InitializeTemplates(new LocalTemplatesSource(null, "StyleCop"));
 
             List<object[]> result = new List<object[]>();
 

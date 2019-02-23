@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -30,6 +32,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public async Task UnsafeGenerateNewItemAsync(TemplateType templateType, UserSelection userSelection)
         {
+            VerifyGenContextPaths();
+
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
 
             var chrono = Stopwatch.StartNew();
@@ -148,8 +152,8 @@ namespace Microsoft.Templates.Core.Gen
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(parentGenerationOutputPath, parentDestinationPath);
-                var fileName = file.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
+                var destFilePath = file.GetDestinationPath();
+                var fileName = file.GetPathRelativeToGenerationParentPath();
 
                 var projectFileName = Path.GetFullPath(Path.Combine(parentDestinationPath, fileName));
 
@@ -200,22 +204,12 @@ namespace Microsoft.Templates.Core.Gen
         {
             try
             {
-                int pagesAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Page);
-                int featuresAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Feature);
-                var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
-                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
+                var genItemsTelemetryData = new GenItemsTelemetryData(genItems);
+                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, appPlatform, GenContext.ToolBox.Shell.GetVsProjectId(), genItemsTelemetryData, timeSpent).FireAndForget();
 
-                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, appPlatform, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
-
-                foreach (var genInfo in genItems)
+                foreach (var genInfo in genItems.Where(g => g.Template != null))
                 {
-                    if (genInfo.Template == null)
-                    {
-                        continue;
-                    }
-
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
-
                     AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, GenSourceEnum.NewItem, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
                 }
             }

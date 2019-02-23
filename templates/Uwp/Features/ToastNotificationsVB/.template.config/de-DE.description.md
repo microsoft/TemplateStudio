@@ -1,3 +1,0 @@
-﻿Mithilfe adaptiver und interaktiver Popupbenachrichtigungen können Sie flexible Benachrichtigungen mit mehr Inhalt, optionalen Inlinebildern und optionalen Benutzerinteraktionen erstellen. Sie können Bilder, Schaltflächen, Texteingaben, Aktionen und mehr verwenden!
-
-Weitere Informationen zu Popups finden Sie auf [docs.microsoft.com] (https://docs.microsoft.com/de-de/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). Zusätzlich stellt das Team für Benachrichtigungen eine [Visualisierungs-App] (https://docs.microsoft.com/de-de/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) bereit, um die Entwicklung adaptiver Livekacheln und Benachrichtigungen zu unterstützen.

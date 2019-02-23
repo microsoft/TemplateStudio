@@ -8,10 +8,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
-using wts.ItemName.Services;
-using wts.ItemName.Helpers;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Helpers;
 
-namespace wts.ItemName.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
@@ -44,6 +44,10 @@ namespace wts.ItemName.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
         }

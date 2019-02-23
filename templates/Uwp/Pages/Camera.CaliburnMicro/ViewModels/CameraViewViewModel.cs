@@ -1,10 +1,10 @@
 ﻿using System;
 
-using Param_ItemNamespace.EventHandlers;
+using Param_RootNamespace.EventHandlers;
 using Caliburn.Micro;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class CameraViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

@@ -408,7 +408,7 @@
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>템플릿에 지정된 '{0}' PostAction.ActionId는 예정된 클래스 ActionId '{1}'와 일치하지 않습니다. 계속 진행할 수 없습니다. 관련 템플릿: {2}.</value>
+    <value>템플릿에 지정된 PostAction.ActionId '{0}'는 예정된 클래스 ActionId '{1}'와 일치하지 않습니다. 계속 진행할 수 없습니다. 관련 템플릿: {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -445,7 +445,7 @@
     <value>원본 구성 파일을 다운로드 하는 중에 오류가 발생했습니다.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>{0} 파일은 {1}(으)로 이동할 수 없습니다. 오류: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
@@ -493,7 +493,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>생성하는 동안 텔레메트리 추적 예외가 발생했습니다.</value>
+    <value>생성하는 동안 예외 추적 원격 분석이 발생했습니다.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">

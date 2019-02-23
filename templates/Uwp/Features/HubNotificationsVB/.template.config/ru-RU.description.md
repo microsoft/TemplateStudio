@@ -1,3 +1,0 @@
-﻿Центры уведомлений Azure формируют простую многоплатформенную масштабируемую подсистему push-уведомлений. С помощью одного кроссплатформенного вызова API вы можете легко отправлять целевые и персонализированные push-уведомления на любую мобильную платформу с любого облачного или локального внутреннего сервера.
-
-Дополнительные сведения о начале работы с центрами уведомлений Azure с UWP: [docs.microsoft.com](https://docs.microsoft.com/ru-ru/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification).  Общие сведения см. на [главной странице документации](https://docs.microsoft.com/ru-ru/azure/notification-hubs/notification-hubs-push-notification-overview).

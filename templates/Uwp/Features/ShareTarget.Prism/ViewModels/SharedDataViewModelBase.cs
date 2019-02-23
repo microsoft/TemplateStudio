@@ -5,9 +5,9 @@ using Prism.Mvvm;
 
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class SharedDataViewModelBase : BindableBase
     {

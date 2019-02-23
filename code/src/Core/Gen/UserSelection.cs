@@ -46,11 +46,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
-        public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<TemplateInfo> Pages { get; } = new List<TemplateInfo>();
 
-        public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<TemplateInfo> Features { get; } = new List<TemplateInfo>();
 
-        public IEnumerable<(string name, ITemplateInfo template)> PagesAndFeatures
+        public IEnumerable<TemplateInfo> PagesAndFeatures
         {
             get
             {
@@ -90,22 +90,22 @@ namespace Microsoft.Templates.Core.Gen
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             return sb.ToString();
         }
 
-        public void Add((string name, ITemplateInfo template) template)
+        public void Add(TemplateInfo template)
         {
-            switch (template.template.GetTemplateType())
+            switch (template.Template.GetTemplateType())
             {
                 case TemplateType.Page:
                     Pages.Add(template);

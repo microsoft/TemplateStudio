@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 
@@ -16,20 +17,29 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class RemoteTemplatesSource : TemplatesSource
     {
+        private readonly TemplatePackage _templatePackage;
+
         private readonly string _tmpExtension = "_tmp";
 
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
         private Version _version;
 
+        public override string InstalledPackagePath { get; }
+
         public override string Language { get; }
 
         public override string Platform { get; }
 
-        public RemoteTemplatesSource(string platform, string language)
+        public bool CanGetNewContent { get; }
+
+        public RemoteTemplatesSource(string platform, string language, string installedPackagePath, IDigitalSignatureService digitalSignatureService)
         {
             Platform = platform;
             Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
+            InstalledPackagePath = installedPackagePath;
+            _templatePackage = new TemplatePackage(digitalSignatureService);
+            CanGetNewContent = digitalSignatureService.CanVerifySignatures;
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
@@ -40,7 +50,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (!Directory.Exists(finalDestination))
             {
-                var extracted = await ExtractAsync(packageInfo, finalDestination, false, ct);
+                var extracted = await ExtractAsync(packageInfo, finalDestination, ct);
                 if (!extracted)
                 {
                     return null;
@@ -121,7 +131,7 @@ namespace Microsoft.Templates.Core.Locations
             OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private async Task<bool> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
+        private async Task<bool> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, CancellationToken ct = default(CancellationToken))
         {
             try
             {
@@ -130,7 +140,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
 
-                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
+                    await _templatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
                     Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
 
                     AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();

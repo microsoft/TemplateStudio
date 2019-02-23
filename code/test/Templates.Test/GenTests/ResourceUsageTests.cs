@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Xunit;

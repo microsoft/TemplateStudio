@@ -4,7 +4,7 @@ using Windows.ApplicationModel.UserActivities;
 using Windows.UI;
 using Param_RootNamespace.Activation;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public class UserActivityData
     {

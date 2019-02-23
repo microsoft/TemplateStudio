@@ -1,3 +1,0 @@
-﻿Адаптивные и интерактивные всплывающие уведомления повышают гибкость приложения и позволяют добавлять в них больше содержимого, необязательные встроенные изображения и дополнительные возможности для взаимодействия с пользователем. Вы можете использовать рисунки, кнопки, ввод текста, действия и многое другое!
-
-Дополнительные сведения о всплывающих уведомлениях: [docs.microsoft.com](https://docs.microsoft.com/ru-ru/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). Кроме того, у группы уведомлений есть [приложение визуализации](https://docs.microsoft.com/ru-ru/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer), которое помогает создавать адаптивные живые плитки и уведомления.

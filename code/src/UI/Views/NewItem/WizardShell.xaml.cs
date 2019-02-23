@@ -13,7 +13,7 @@ using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
-    public partial class WizardShell : Window
+    public partial class WizardShell : Window, IWindow, IWizardShell
     {
         private TemplateType _templateType;
         private string _language;

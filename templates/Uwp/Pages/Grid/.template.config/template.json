@@ -10,7 +10,6 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.telemName": "Grid",
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
 	"wts.platform": "Uwp",
@@ -44,10 +43,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
-    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
@@ -60,7 +55,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Telerik.UI.for.UniversalWindowsPlatform",
-        "version" : "1.0.1.2",
+        "version" : "1.0.1.3",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

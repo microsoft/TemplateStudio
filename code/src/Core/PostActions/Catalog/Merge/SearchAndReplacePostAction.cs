@@ -7,15 +7,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public class SearchAndReplacePostAction : PostAction<MergeConfiguration>
+    public class SearchAndReplacePostAction : MergePostAction
     {
-        private const string Divider = "^^^-searchabove-replacebelow-vvv";
+        public const string Divider = "^^^-searchabove-replacebelow-vvv";
 
         public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.\d?\.?";
 
@@ -30,16 +29,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (!File.Exists(originalFilePath))
             {
-                if (Config.FailOnError)
-                {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
-                }
-                else
-                {
-                    AddFailedMergePostActionsFileNotFound(originalFilePath);
-                    File.Delete(Config.FilePath);
-                    return;
-                }
+                HandleFileNotFound(originalFilePath, MergeConfiguration.SearchReplaceSuffix);
+                return;
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
@@ -74,42 +65,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
             File.Delete(Config.FilePath);
-        }
-
-        private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
-        {
-            var description = string.Format(StringRes.FailedMergePostActionFileNotFound, GetRelativePath(originalFilePath), RelatedTemplate);
-            AddFailedMergePostActions(originalFilePath, MergeFailureType.FileNotFound, description);
-        }
-
-        protected void AddFailedMergePostActions(string originalFilePath, MergeFailureType mergeFailureType, string description)
-        {
-            var sourceFileName = GetRelativePath(originalFilePath);
-            var postactionFileName = GetRelativePath(Config.FilePath);
-
-            var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), failedFileName, description, mergeFailureType));
-            File.Copy(Config.FilePath, failedFileName, true);
-        }
-
-        protected string GetRelativePath(string path)
-        {
-            return path.Replace(Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName + Path.DirectorySeparatorChar, string.Empty);
-        }
-
-        private string GetFailedPostActionFileName()
-        {
-            var newFileName = Path.GetFileNameWithoutExtension(Config.FilePath).Replace(MergeConfiguration.SearchReplaceSuffix, MergeConfiguration.NewSuffix);
-            var folder = Path.GetDirectoryName(Config.FilePath);
-            var extension = Path.GetExtension(Config.FilePath);
-
-            var validator = new List<Validator>
-            {
-                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath)),
-            };
-
-            newFileName = Naming.Infer(newFileName, validator);
-            return Path.Combine(folder, newFileName + extension);
         }
     }
 }

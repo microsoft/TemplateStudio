@@ -27,6 +27,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
+            VerifyGenContextPaths();
+
             var genItems = GenComposer.Compose(userSelection).ToList();
 
             var chrono = Stopwatch.StartNew();
@@ -40,23 +42,15 @@ namespace Microsoft.Templates.Core.Gen
         {
             try
             {
-                int pagesAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Page);
-                int featuresAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Feature);
-                var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
-                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
+                var genItemsTelemetryData = new GenItemsTelemetryData(genItems);
 
-                foreach (var genInfo in genItems)
+                foreach (var genInfo in genItems.Where(g => g.Template != null))
                 {
-                    if (genInfo.Template == null)
-                    {
-                        continue;
-                    }
-
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, appPlatform, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent, GenContext.Current.ProjectMetrics).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, appPlatform, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, genItemsTelemetryData, timeSpent, GenContext.Current.ProjectMetrics).FireAndForget();
                     }
                     else
                     {

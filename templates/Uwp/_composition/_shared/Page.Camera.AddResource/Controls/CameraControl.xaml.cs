@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
 using Windows.ApplicationModel;
 using Windows.Devices.Enumeration;
@@ -17,10 +17,10 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Param_ItemNamespace.EventHandlers;
+using Param_RootNamespace.EventHandlers;
 using System.Windows.Input;
 
-namespace Param_ItemNamespace.Controls
+namespace Param_RootNamespace.Controls
 {
     public sealed partial class CameraControl
     {
@@ -137,6 +137,14 @@ namespace Param_ItemNamespace.Controls
             catch (NotSupportedException)
             {
                 errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized();
+            }
+            catch (TaskCanceledException)
+            {
+                errorMessage.Text = "Camera_Exception_InitializationCanceled".GetLocalized();
+            }
+            catch (Exception)
+            {
+                errorMessage.Text = "Camera_Exception_InitializationError".GetLocalized();
             }
         }
 

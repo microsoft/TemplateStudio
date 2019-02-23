@@ -5,15 +5,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -27,7 +31,9 @@ namespace Microsoft.Templates.UI.VisualStudio
         private string _language;
         private GenerationService _generationService = GenerationService.Instance;
 
-        public string ProjectName => _replacementsDictionary["$safeprojectname$"];
+        public string SafeProjectName => _replacementsDictionary["$safeprojectname$"];
+
+        public string ProjectName => _replacementsDictionary["$projectname$"];
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
@@ -51,9 +57,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language), new VsGenShell(), platform, language);
+                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"{platform}.{language}.Templates.mstx");
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), platform, language);
 #endif
             }
         }
@@ -104,7 +111,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
+                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

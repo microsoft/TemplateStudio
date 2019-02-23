@@ -40,10 +40,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
-    },
     "wts.homePageName": {
       "type": "parameter",
       "replaces": "Param_HomeName"
@@ -56,7 +52,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.0.181018003",
+        "version" : "2.0.181018003.1",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

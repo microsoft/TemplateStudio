@@ -453,10 +453,6 @@
     <value>생성 완료</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>패키지 복원 중...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Template Studio 프로젝트 생성 중...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,17 +473,17 @@
     <value>{0} 페이지가 추가됨</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>{0} 프로젝트를 찾을 수 없음</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>파일과 프로젝트를 추가할 수 없습니다.</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>솔루션 트리가 접히는 오류가 발생했습니다. 예:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>패키지를 복원하는 중 오류가 발생했습니다. 예:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>솔루션의 NuGet 패키지를 자동으로 복원할 수 없습니다. NuGet 패키지를 수동으로 복원하십시오.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>상태 메시지를 표시하는 중에 오류가 발생했습니다. 예:</value>
@@ -593,6 +589,10 @@
     <value>HamburgerMenu 제어를 사용하지 않고 이제 Windows Template Studio는 NavigationView를 지원합니다. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio는 피벗 프로젝트의 가로형 NavigationView를 사용하고 있습니다. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>이제 Windows Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
     <comment>Has old navigation view validation error message</comment>
@@ -619,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -660,48 +668,47 @@
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>일부 NuGet 패키지는 {0} 프로젝트에 추가할 수 없습니다. 이는 오프라인일 경우 발생할 수 있습니다. 
+프로젝트의 코드에서 필요로 하는 다음 패키지 목록을 확인하고 누락된 패키지를 수동으로 추가하십시오. 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
   <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
     <value>Install-Package -Id {0} -Version {1}</value>
     <comment>{0}: package id, {1}: version</comment>
   </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
-
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>프로젝트에 {0} 항목 추가 중...</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>프로젝트에 {0} NuGet 패키지 추가 중...</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>{0} 프로젝트에 솔루션 추가 중...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>프로젝트 간 참조 추가 중...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio에서 핵심 프로젝트를 추가 중입니다. </value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
   </data>
 </root>

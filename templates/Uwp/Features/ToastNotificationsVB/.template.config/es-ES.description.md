@@ -1,3 +1,0 @@
-﻿Las notificaciones del sistema adaptables e interactivas te permiten crear notificaciones emergentes flexibles con más contenido, imágenes incorporadas opcionales e interacción de usuario opcional. Puedes usar imágenes, botones, entradas de texto, acciones y mucho más.
-
-Para obtener más información acerca de las notificaciones del sistema, dirígete a [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). Además, el equipo de notificaciones tiene una [aplicación de visualización](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) que ayuda a diseñar notificaciones y mosaicos dinámicos adaptables.

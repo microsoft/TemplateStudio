@@ -29,13 +29,6 @@ namespace Param_RootNamespace
             shell.SetRootFrame(rootFrame);
             return shell;
         }
-
-        protected override IDeviceGestureService OnCreateDeviceGestureService()
-        {
-            var service = base.OnCreateDeviceGestureService();
-            service.UseTitleBarBackButton = false;
-            return service;
-        }
 //}]}
     }
 }

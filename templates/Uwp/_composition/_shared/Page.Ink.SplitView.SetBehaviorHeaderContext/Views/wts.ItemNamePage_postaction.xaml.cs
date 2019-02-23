@@ -1,10 +1,10 @@
 ﻿//{[{
-using Param_ItemNamespace.Behaviors;
+using Param_RootNamespace.Behaviors;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 //}]}
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {

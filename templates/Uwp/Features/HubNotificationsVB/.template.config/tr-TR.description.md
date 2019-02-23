@@ -1,3 +1,0 @@
-﻿Azure Bildirim Hub'ları kullanımı kolay, birden çok platformlu, ölçeklendirilmiş bir iletme altyapısı sağlar. Tekli bir platformlar arası API çağrısı kullanarak, hedeflenen ve kişiselleştirilmiş anında iletilen bildirimleri tüm bulut veya yerinde arka uçlardan tüm mobil platformlara kolaylıkla gönderebilirsiniz.
-
-UWP özellikli Azure Bildirim Hub'larını kullanmaya başlama hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification) adresine gidin.  Genel bilgi için [ana belge sayfasına](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) gidin.

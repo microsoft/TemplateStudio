@@ -5,9 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
@@ -32,7 +31,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void OpenProjectOverview();
 
-        public abstract void ShowModal(Window dialog);
+        public abstract void ShowModal(IWindow shell);
 
         public abstract void CancelWizard(bool back = true);
 
@@ -83,6 +82,14 @@ namespace Microsoft.Templates.Core.Gen
             return result;
         }
 
+        public abstract VSTelemetryInfo GetVSTelemetryInfo();
+
+        public abstract void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true);
+
+        public abstract void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true);
+
+        public abstract void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true);
+
         protected static Dictionary<string, List<string>> ResolveProjectFiles(IEnumerable<string> itemsFullPath, bool workWithProjitemsFile = false)
         {
             Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
@@ -92,25 +99,29 @@ namespace Microsoft.Templates.Core.Gen
                 var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
                 if (string.IsNullOrEmpty(projFile))
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.ExceptionProjectNotFound, item));
-                }
-
-                if (workWithProjitemsFile && Path.GetExtension(projFile) == ".shproj")
-                {
-                    projFile = projFile.Replace(".shproj", ".projitems");
-                }
-
-                if (!filesByProject.ContainsKey(projFile))
-                {
-                    filesByProject.Add(projFile, new List<string>() { item });
+                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ExceptionProjectNotFound, item)).FireAndForget();
                 }
                 else
                 {
-                    filesByProject[projFile].Add(item);
+                    if (workWithProjitemsFile && Path.GetExtension(projFile) == ".shproj")
+                    {
+                        projFile = projFile.Replace(".shproj", ".projitems");
+                    }
+
+                    if (!filesByProject.ContainsKey(projFile))
+                    {
+                        filesByProject.Add(projFile, new List<string>() { item });
+                    }
+                    else
+                    {
+                        filesByProject[projFile].Add(item);
+                    }
                 }
             }
 
             return filesByProject;
         }
+
+        public abstract string CreateCertificate(string publisherName);
     }
 }

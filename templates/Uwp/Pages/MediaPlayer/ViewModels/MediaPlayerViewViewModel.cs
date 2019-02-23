@@ -2,7 +2,7 @@
 using Windows.Media.Playback;
 using Windows.Media.Core;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class MediaPlayerViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
@@ -32,6 +32,13 @@ namespace Param_ItemNamespace.ViewModels
         {
             Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
             PosterSource = DefaultPoster;
+        }
+
+        public void DisposeSource()
+        {
+            var mediaSource = Source as MediaSource;
+            mediaSource?.Dispose();
+            Source = null;
         }
     }
 }

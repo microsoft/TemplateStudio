@@ -1,3 +1,0 @@
-﻿Tato funkce umožňuje přidávat z vaší aplikace uživatelské aktivity na časovou osu ve Windows a prostřednictvím přímých odkazů obnovovat vaši aplikaci z uživatelských aktivit. Tyto aktivity mohou být vytvářeny pomocí adaptivních karet nebo textu a popisu.
-
-Další informace o uživatelských aktivitách najdete na stránce [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).

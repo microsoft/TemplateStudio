@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkSelectionRectangleService
     {
@@ -57,18 +57,18 @@ namespace Param_ItemNamespace.Services.Ink
 
         private Rectangle GetSelectionRectangle()
         {
-            var selectionRectange = _selectionCanvas
+            var selectionRectangle = _selectionCanvas
                 .Children
                 .FirstOrDefault(f => f is Rectangle r && r.Name == SelectionRectName)
                 as Rectangle;
 
-            if (selectionRectange == null)
+            if (selectionRectangle == null)
             {
-                selectionRectange = CreateNewSelectionRectangle();
-                _selectionCanvas.Children.Add(selectionRectange);
+                selectionRectangle = CreateNewSelectionRectangle();
+                _selectionCanvas.Children.Add(selectionRectangle);
             }
 
-            return selectionRectange;
+            return selectionRectangle;
         }
 
         private Rectangle CreateNewSelectionRectangle()

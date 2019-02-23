@@ -9,7 +9,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services.Ink
+namespace Param_RootNamespace.Services.Ink
 {
     public class InkFileService
     {

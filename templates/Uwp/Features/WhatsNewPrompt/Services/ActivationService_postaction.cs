@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class ActivationService
     {
@@ -14,7 +14,9 @@ namespace Param_ItemNamespace.Services
             //{[{
             await WhatsNewDisplayService.ShowIfAppropriateAsync();
             //}]}
+            //{??{
             await Task.CompletedTask;
+            //}??}
         }
     }
 }

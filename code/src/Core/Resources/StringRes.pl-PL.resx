@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Nie można znaleźć oczekiwanego wiersza „{0}” w pliku „{1}”. Ręcznie scal zawartość z pliku akcji po operacji. Powiązany szablon: '{2}'.</value>
+    <value>Nie można znaleźć oczekiwanego wiersza „{0}” w pliku „{1}”. Ręcznie scal zawartość z pliku postaction. Powiązany szablon: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -445,7 +445,7 @@ Nie można zinterpretować następujących zmian: {2}
     <value>Wystąpił błąd podczas pobierania pliku źródłowego konfiguracji.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>Nie można przenieść pliku {0} do {1}. Błąd: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">

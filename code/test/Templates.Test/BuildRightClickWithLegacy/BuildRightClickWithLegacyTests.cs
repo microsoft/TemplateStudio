@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
 using Xunit;
 
@@ -51,11 +52,6 @@ namespace Microsoft.Templates.Test
 
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
-            // Add core project using test template.
-            // This is a temporary workaround to allow right clicks with multiproject on 2.5 templates. Remove when 3.0 is released
-            var coreTemplate = _fixture.Templates().Where(t => t.Name == "Testing.AddCoreProject" || t.Name == "Testing.AddCoreProject.VB");
-            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, coreTemplate, projectName, projectType, framework, platform, language);
-
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                             && t.GetFrameworkList().Contains(framework)
@@ -77,7 +73,14 @@ namespace Microsoft.Templates.Test
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
 #pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
-            var projectName = $"{ShortProjectType(projectType)}{framework}AllLegacy";
+            var fixture = _fixture as BuildRightClickWithLegacyFixture;
+
+            if (language == ProgrammingLanguages.VisualBasic)
+            {
+                fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
+            }
+
+            var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project

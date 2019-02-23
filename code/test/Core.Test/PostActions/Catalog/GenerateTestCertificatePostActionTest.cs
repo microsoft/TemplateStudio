@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Fakes;
@@ -27,7 +28,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var destinationPath = @".\TestData\temp\TestProject";
             var generationOutputPath = @".\TestData\temp\TestProject";
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(new LocalTemplatesSource(null), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
 
             GenContext.Current = new FakeContextProvider
             {
@@ -68,7 +69,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var destinationPath = @".\TestData\temp";
             var generationOutputPath = @".\TestData\temp\";
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(new LocalTemplatesSource(null), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
 
             GenContext.Current = new FakeContextProvider
             {

@@ -7,10 +7,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
-using wts.ItemName.Helpers;
-using wts.ItemName.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : Observable
     {
@@ -49,6 +49,10 @@ namespace wts.ItemName.ViewModels
             _navigationView = navigationView;
             _keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }

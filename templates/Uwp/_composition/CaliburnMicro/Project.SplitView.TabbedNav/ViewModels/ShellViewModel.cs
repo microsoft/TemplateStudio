@@ -9,10 +9,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using Caliburn.Micro;
-using wts.ItemName.Helpers;
-using wts.ItemName.Views;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Views;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : Screen
     {
@@ -52,6 +52,10 @@ namespace wts.ItemName.ViewModels
 
             if (_navigationService != null)
             {
+                _navigationService.NavigationFailed += (sender, e) =>
+                {
+                    throw e.Exception;
+                };
                 _navigationService.Navigated += NavigationService_Navigated;
                 _navigationView.BackRequested += OnBackRequested;
             }

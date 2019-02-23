@@ -1,3 +1,0 @@
-﻿Klíčem k úspěchu vás jako vývojáře aplikací je zaujmout zákazníky vhodnou komunikací ve správný čas. Web Windows Dev Center poskytuje daty řízenou platformu zaměřenou na zaujetí zákazníků, kterou můžete používat k odesílání oznámení všem svým zákazníkům nebo pouze k zaměření na podmnožinu zákazníků používajících Windows 10, kteří splňují kritéria definovaná v segmentu zákazníků.
-
-Další informace o oznámeních úložiště najdete na webu [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications), pokud potřebujete všeobecný přehled této funkce, nebo v článku o [odesílání oznámení zákazníkům vaší aplikace](https://docs.microsoft.com/en-us/windows/uwp/publish/send-push-notifications-to-your-apps-customers).

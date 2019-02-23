@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewDetailViewModel : ViewModelBase
     {
@@ -22,13 +22,6 @@ namespace Param_ItemNamespace.ViewModels
         {
             get { return _item; }
             set { SetProperty(ref _item, value); }
-        }
-
-        public ContentGridViewDetailViewModel(ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
-        {
-            // TODO WTS: Replace this with your actual data
-            _sampleDataService = sampleDataServiceInstance;
-            _connectedAnimationService = connectedAnimationService;
         }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)

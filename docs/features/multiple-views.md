@@ -153,3 +153,15 @@ public sealed partial class SecondaryPage : Page
     }
 }
 ```
+
+## Adapt pages to show in a new window
+
+When showing a page in a new window, you must adapt your page to the new context:
+
+- Do not use NavigationService: NavigationService only manages the main Frame, so if you need to navigate in the new window you must use the native methods of the new frame control configured in the new window.
+
+- Review and move code from OnNavigatedFrom event to OnViewLifetimeControlReleased to ensure page resources are cleaned up correctly.
+
+- If you need to make changes to the UI thread, you have to encapsulate those calls within _viewLifetimeControl.Dispatcher.
+
+- Do not use NavigationViewHeaderBehavior: The NavigationViewHeaderBehavior is used to configure the page headers within the main NavigationView. This component does not exist in the new window.

@@ -450,12 +450,8 @@
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>已完成生成</value>
+    <value>生成已完成</value>
     <comment>Status bar message generation finished</comment>
-  </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>正在还原程序包...</value>
-    <comment>Status bar message for restoring</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>正在创建 Windows Template Studio 项目...</value>
@@ -477,17 +473,17 @@
     <value>已成功添加页面 {0}</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>无法找到项目 {0}</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>无法添加文件和项目。</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>折叠解决方案树时出错。例如:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>还原程序包时出错。例如:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>无法自动还原解决方案的 NuGet 程序包。请手动还原 NuGet 程序包。</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>显示状态消息时出错。例如:</value>
@@ -593,6 +589,10 @@
     <value>HamburgerMenu 控件已过时，Windows Template Studio 现在支持 NavigationView。</value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio 现在在 Pivot 项目中使用横向 NavigationView。</value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio 现在使用 Windows UI Library 提供的 NavigationView。</value>
     <comment>Has old navigation view validation error message</comment>
@@ -619,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>请参阅文档进行更新。</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -660,48 +668,47 @@
     <value>请参阅文档进行更新。</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -Id {0} -Version {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
   <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+    <value>一些 NuGet 程序包无法添加到项目 {0} 中。离线时可能会出现这种情况。
+请检查下面列出的项目代码所需的程序包，并手动添加缺少的程序包:
 
 {1}</value>
     <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -ID {0} -版本 {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>正在向项目中添加 {0}...</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>正在向项目中添加 NuGet 程序包 {0}...</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>正在向解决方案中添加项目 {0}...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>正在项目之间添加引用...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio 现在正在添加核心项目。</value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
   </data>
 </root>

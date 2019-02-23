@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
@@ -28,7 +29,7 @@ namespace Microsoft.Templates.Core
 
         private const string Catalog = "_catalog";
 
-        private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
+        private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml", ".svg" };
 
         public string CurrentPlatform { get; set; }
 
@@ -93,7 +94,7 @@ namespace Microsoft.Templates.Core
 
             return queryResult
                         .Where(r => r.IsMatch)
-                        .Where(r => r.Info.GetPlatform() == CurrentPlatform)
+                        .Where(r => r.Info.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
                         .Select(r => r.Info)
                         .ToList();
         }

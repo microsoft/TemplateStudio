@@ -1,15 +1,12 @@
 ﻿//{[{
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 //}]}
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {
         //{[{
-        private wts.ItemNameViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.wts.ItemNameViewModel; }
-        }
+        private wts.ItemNameViewModel ViewModel { get; } = ViewModelLocator.Current.wts.ItemNameViewModel;
 
         //}]}
     }

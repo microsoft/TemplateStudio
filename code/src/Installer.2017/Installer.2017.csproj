@@ -214,7 +214,9 @@
     <None Include="..\..\README.md">
       <Link>README.md</Link>
     </None>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <VSCTCompile Include="Commands\RelayCommandPackage.en-US.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
@@ -614,6 +616,14 @@
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
+    <ProjectReference Include="..\Extensions.2017\Extensions.2017.csproj">
+      <Project>{4842508d-8e24-425d-b431-ec4f6ba51a67}</Project>
+      <Name>Extensions.2017</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions.2019\Extensions.2019.csproj">
+      <Project>{17f9058f-ec97-42e7-a3b5-1f76d5407afd}</Project>
+      <Name>Extensions.2019</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\CSharp.UWP.2017.Solution\CSharp.UWP.VS2017.Solution.csproj">
       <Project>{D5E1C23A-7547-412A-82F1-F00C34622C1E}</Project>
       <Name>CSharp.UWP.VS2017.Solution</Name>
@@ -631,6 +641,12 @@
     <ProjectReference Include="..\UI\UI.csproj">
       <Project>{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}</Project>
       <Name>UI</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
+      <Name>Utilities</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>

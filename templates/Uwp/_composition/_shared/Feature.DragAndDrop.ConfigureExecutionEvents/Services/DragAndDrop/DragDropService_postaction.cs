@@ -1,4 +1,4 @@
-﻿namespace Param_ItemNamespace.Services.DragAndDrop
+﻿namespace Param_RootNamespace.Services.DragAndDrop
 {
     public class DragDropService
     {

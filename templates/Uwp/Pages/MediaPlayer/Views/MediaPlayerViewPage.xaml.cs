@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Core;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class MediaPlayerViewPage : Page
     {
@@ -30,6 +30,7 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedFrom(e);
             mpe.MediaPlayer.Pause();
             mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            ViewModel.DisposeSource();
         }
 
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)

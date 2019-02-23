@@ -10,19 +10,6 @@ namespace Microsoft.Templates.Core
 {
     public static class StringExtensions
     {
-        public static string Obfuscate(this string data)
-        {
-            string result = data;
-            byte[] b64data = Encoding.UTF8.GetBytes(data);
-
-            using (MD5 md5Hash = MD5.Create())
-            {
-                result = GetHash(md5Hash, b64data);
-            }
-
-            return result.ToUpperInvariant();
-        }
-
         public static string ObfuscateSHA(this string data)
         {
             string result = data;

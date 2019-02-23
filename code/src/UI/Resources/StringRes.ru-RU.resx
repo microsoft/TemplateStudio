@@ -442,7 +442,7 @@
     <comment>Template selection title</comment>
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>Продолжая, вы соглашаетесь с условиями всех лицензий в разделе лицензирования.</value>
+    <value>Продолжая, вы принимаете условия всех лицензий в разделе лицензирования.</value>
     <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
@@ -450,47 +450,43 @@
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>Создание завершено</value>
+    <value>Создание завершено.</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Восстанавливаются пакеты…</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Создается проект Windows Template Studio…</value>
+    <value>Создание проекта Windows Template Studio…</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Добавление нового компонента отменено</value>
+    <value>Добавление нового компонента отменено.</value>
     <comment>Status bar message for Add new feature cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
-    <value>Компонент {0} добавлен</value>
+    <value>Компонент {0} добавлен.</value>
     <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
-    <value>Добавление новой страницы отменено</value>
+    <value>Добавление новой страницы отменено.</value>
     <comment>Status bar message for Add new page cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
-    <value>Страница {0} добавлена</value>
+    <value>Страница {0} добавлена.</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Проект {0} не найден.</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Невозможно добавить файлы и проекты.</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>Произошла ошибка при свертывании дерева решений. Пример:</value>
+    <value>При свертывании дерева решений произошла ошибка. Пример:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Произошла ошибка при восстановлении пакетов. Пример:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Не удалось автоматически восстановить пакеты NuGet для решения. Сделайте это вручную.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
-  </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>Произошла ошибка при отображении сообщения о состоянии. Пример:</value>
+    <value>При отображении сообщения о состоянии произошла ошибка. Пример:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
@@ -590,18 +586,22 @@
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
+    <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Теперь Windows Template Studio использует горизонтальное представление NavigationView в проектах сводки. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Теперь Windows Template Studio использует NavigationView из библиотеки Windows UI.</value>
+    <value>Теперь Windows Template Studio использует NavigationView из библиотеки Windows UI.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Средство композиции</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Выбрать платформу</value>
+    <value>Выбор платформы</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
@@ -619,6 +619,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -645,7 +653,7 @@
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>Обратите внимание, что в конец указанного имени будет добавлено слово "Page". [Дополнительные сведения об именовании.]({0}WTSNaming.md)</value>
+    <value>Слово "Page" будет добавлено в конец указанного имени. [Дополнительные сведения об именовании.]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
@@ -660,48 +668,47 @@
     <value>Сведения об обновлении см. в документации.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Не удалось добавить некоторые пакеты NuGet в ваш проект {0}. Возможно, вы были не в сети. 
+Проверьте следующий список пакетов, требуемых кодом вашего проекта, и вручную добавьте недостающие: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
   <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
     <value>Install-Package -Id {0} -Version {1}</value>
     <comment>{0}: package id, {1}: version</comment>
   </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
-
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>{0} добавляется в проект…</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>Добавление в проект пакета NuGet {0}…</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>Добавление в решение проекта {0}…</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>Добавление ссылок между проектами…</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio теперь добавляет базовый проект. </value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
   </data>
 </root>

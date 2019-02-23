@@ -11,10 +11,10 @@ using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using wts.ItemName.Services;
-using wts.ItemName.Helpers;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Helpers;
 
-namespace wts.ItemName.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
@@ -55,6 +55,10 @@ namespace wts.ItemName.ViewModels
             _navigationView = navigationView;
             _keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }

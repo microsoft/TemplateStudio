@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class MediaPlayerViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
@@ -41,6 +41,9 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedFrom(e);
             mpe.MediaPlayer.Pause();
             mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            var mediaSource = mpe.Source as MediaSource;
+            mediaSource?.Dispose();
+            mpe.Source = null;
         }
 
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)

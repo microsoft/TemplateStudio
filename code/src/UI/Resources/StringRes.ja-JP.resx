@@ -453,10 +453,6 @@
     <value>生成が完了しました</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>パッケージを復元しています...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Template Studio プロジェクトを作成しています...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -477,17 +473,17 @@
     <value>ページ {0} が追加されました</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>プロジェクト {0} が見つかりません</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>ファイルとプロジェクトを追加できません。</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>ソリューション ツリーを折りたたむ際のエラーです。例: </value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>パッケージを回復する際のエラーです。例: </value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>ソリューションの NuGet パッケージを自動的に復元できません。NuGet パッケージを手動で復元してください。</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>ステータス メッセージを表示する際にエラーが発生しました。例: </value>
@@ -593,6 +589,10 @@
     <value>HamburgerMenu コントロールは廃止されました。Windows Template Studio が現在サポートするのは NavigationView です。</value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>現在、Windows Template Studio はピボット プロジェクトの水平方向の NavigationView を使用しています。</value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>現在、Windows Template Studio は Windows UI ライブラリの NavigationView を使用しています。</value>
     <comment>Has old navigation view validation error message</comment>
@@ -620,6 +620,14 @@
     <value>更新するには、ドキュメントをご覧ください。</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>更新するには、ドキュメントをご覧ください。</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
     <comment>Has old navigation view validation link documentation</comment>
@@ -641,15 +649,15 @@
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>「Page」 が自動的に追加されるため、「Page」 で終わる名前をつけることはできません。[ネーミングの詳細については、以下を参照してください。] ({0}WTSNaming.md)</value>
+    <value>「Page」 が自動的に追加されるため、「Page」 で終わる名前をつけることはできません。[名前付けの詳細をご覧ください。]({0}WTSNaming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>指定した名前の最後に「Page」が追加されることにご注意ください。[ネーミングの詳細については、以下を参照してください。] ({0}WTSNaming.md)</value>
+    <value>指定した名前の最後に「Page」が追加されることにご注意ください。[名前付けの詳細をご覧ください。]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>MVVMLight ViewModelLocator の実装が変更され、MVVMLight 内の MultiView がサポートされました。</value>
+    <value>MVVMLight ViewModelLocator の実装が変更され、MVVMLight で MultiView がサポートされるようになりました。</value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -660,48 +668,47 @@
     <value>更新するには、ドキュメントをご覧ください。</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>プロジェクト {0} に追加できなかった NuGet パッケージがあります。これは、オフラインであったことが原因である可能性があります。
+以下の一覧でプロジェクトのコードに必要なパッケージを確認し、追加されなかったパッケージを手動で追加してください。
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
   <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
     <value>Install-Package -Id {0} -Version {1}</value>
     <comment>{0}: package id, {1}: version</comment>
   </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
-
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>{0} をプロジェクトに追加しています...</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>NuGet パッケージ {0} をプロジェクトに追加しています...</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>プロジェクト {0} をソリューションに追加しています...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>プロジェクト間に参照を追加しています...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>更新するには、ドキュメントをご覧ください。</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio により、コア プロジェクトを追加します。</value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
   </data>
 </root>

@@ -2,6 +2,6 @@
 using GalaSoft.MvvmLight;
 //}]}
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
 }

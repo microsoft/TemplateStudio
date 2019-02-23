@@ -2,7 +2,7 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "この基本的なページは、アプリを構築するための空白のキャンバスです。"
+    "summary": "この基本のプロジェクトは、アプリを構築する基盤となる空白のキャンバスになります。"
   },
   {
     "name": "SplitView",
@@ -12,6 +12,6 @@
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Navigation Items across the top allow for quickly navigating between pages."
+    "summary": "ナビゲーション項目を上部に表示することで、ページ間をすばやく移動できます。"
   }
 ]

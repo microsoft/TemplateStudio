@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     internal class WebToAppLinkActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {

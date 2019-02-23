@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
@@ -14,6 +15,7 @@ using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Test
 {
@@ -30,6 +32,15 @@ namespace Microsoft.Templates.Test
         protected static string ShortLanguageName(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+        }
+
+        // Used to create names that include a number of characters that are valid in project names but have the potential to cause issues
+        protected static string CharactersThatMayCauseProjectNameIssues()
+        {
+            // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
+            // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
+            // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
+            return " -_.,@! (£)+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -50,6 +61,45 @@ namespace Microsoft.Templates.Test
         protected static string GetProjectExtension(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
+        }
+
+        protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            var projectName = $"{ShortProjectType(projectType)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
+
+            return (projectName, projectPath);
+        }
+
+        protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+
+            return (projectName, projectPath);
         }
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
@@ -97,6 +147,35 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
+        protected void EnsureCanInferConfigInfo(string projectType, string framework, string platform, string projectPath)
+        {
+            RemoveProjectConfigInfoFromProject();
+
+            AssertCorrectProjectConfigInfo(projectType, framework, platform);
+            AssertProjectConfigInfoRecreated(projectType, framework, platform);
+
+            Fs.SafeDeleteDirectory(projectPath);
+        }
+
+        protected void RemoveProjectConfigInfoFromProject()
+        {
+            var manifest = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
+            var lines = File.ReadAllLines(manifest);
+            var sb = new StringBuilder();
+            var fx = $"genTemplate:Item Name=\"framework\"";
+            var pt = $"genTemplate:Item Name=\"projectType\"";
+            foreach (var line in lines)
+            {
+                if (!line.Contains(fx) && !line.Contains(pt))
+                {
+                    sb.AppendLine(line);
+                }
+            }
+
+            File.Delete(manifest);
+            File.WriteAllText(manifest, sb.ToString());
+        }
+
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
@@ -104,6 +183,18 @@ namespace Microsoft.Templates.Test
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
             Assert.Equal(expectedPlatform, info.Platform);
+        }
+
+        protected void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
+        {
+            var content = File.ReadAllText(Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest"));
+            var expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
+            var expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
+            var expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
+
+            Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
@@ -115,6 +206,29 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
+            Fs.SafeDeleteDirectory(projectPath);
+        }
+
+        protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
+        {
+            var (buildExitCode, buildOutputFile) = _fixture.BuildSolution(projectName, projectPath, platform);
+
+            if (buildExitCode.Equals(0))
+            {
+                var (testExitCode, testOutputFile) = _fixture.RunTests(projectName, projectPath);
+
+                var summary = _fixture.GetTestSummary(testOutputFile);
+
+                Assert.True(
+                    summary.Contains("Failed: 0."),
+                    $"Tests failed. {Environment.NewLine}{summary}{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+            else
+            {
+                Assert.True(buildExitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(buildOutputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+
+            // Tidy up if all tests passed
             Fs.SafeDeleteDirectory(projectPath);
         }
 
@@ -318,7 +432,7 @@ namespace Microsoft.Templates.Test
             if (lastPageIsHome)
             {
                 // Useful if creating a blank project type and want to change the start page
-                userSelection.HomeName = userSelection.Pages.Last().name;
+                userSelection.HomeName = userSelection.Pages.Last().Name;
 
                 if (projectType == "TabbedNav")
                 {
@@ -376,10 +490,12 @@ namespace Microsoft.Templates.Test
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                 "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                 "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
+                "wts.Feat.UnitTests.Core.MSTest", "wts.Feat.UnitTests.Core.NUnit", "wts.Feat.UnitTests.Core.xUnit",
+                "wts.Feat.UnitTests.App.MSTest", "wts.Feat.UnitTests.App.xUnit",
             };
         }
 
-        // Need overload with different number of params to work with XUnit.MemeberData
+        // Need overload with different number of params to work with XUnit.MemberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
         {
             return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);

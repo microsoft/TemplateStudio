@@ -1,8 +1,8 @@
 ﻿//{[{
-using wts.ItemName.ViewModels;
+using Param_RootNamespace.ViewModels;
 //}]}
 
-namespace wts.ItemName.Behaviors
+namespace Param_RootNamespace.Behaviors
 {
     public class NavigationViewHeaderBehavior : Behavior<WinUI.NavigationView>
     {
