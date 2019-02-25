@@ -97,6 +97,7 @@
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
     <Compile Include="TestFakes\TestDigitalSignatureService.cs" />
+    <None Include="ApplicationInsights.config" />
     <None Include="TestData\Merge\Source_expectedWithOptionalContextLines.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -246,9 +247,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Config\Ok.config.valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -318,14 +316,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.15.0">
       <Version>15.0.26606</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>15.3.83</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
-      <Version>15.0.240</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>
