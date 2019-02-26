@@ -173,6 +173,16 @@
         </TextBlock>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsItemTemplateLayout">
+        <TextBlock AutomationProperties.Name="{Binding Template.Title}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
+                <Grid Background="Transparent">
+                    <TextBlock Text="{Binding Template.Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                </Grid>
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
+
     <DataTemplate x:Key="WtsItemTemplateLicense">
         <TextBlock AutomationProperties.Name="{Binding Text}">
             <Hyperlink Style="{StaticResource WtsHyperlink}"

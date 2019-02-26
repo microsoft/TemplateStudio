@@ -7,7 +7,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",    
+    "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "0",

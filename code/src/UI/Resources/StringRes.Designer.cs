@@ -1162,6 +1162,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frameworks:.
+        /// </summary>
+        public static string TemplateDetailsFrameworks {
+            get {
+                return ResourceManager.GetString("TemplateDetailsFrameworks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout:.
+        /// </summary>
+        public static string TemplateDetailsLayout {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (optional).
+        /// </summary>
+        public static string TemplateDetailsLayoutOptional {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayoutOptional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses:.
         /// </summary>
         public static string TemplateDetailsLicenses {

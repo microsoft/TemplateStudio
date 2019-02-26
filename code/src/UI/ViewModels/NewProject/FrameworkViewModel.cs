@@ -9,7 +9,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
-    public class FrameworkViewModel : SelectableGroup<MetadataInfoViewModel>
+    public class FrameworkViewModel : SelectableGroup<FrameworkMetaDataViewModel>
     {
         public FrameworkViewModel(Func<bool> isSelectionEnabled, Action osSelected)
             : base(isSelectionEnabled, osSelected)

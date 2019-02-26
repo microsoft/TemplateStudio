@@ -9,10 +9,10 @@ namespace Param_RootNamespace.Services
 {
     public class MenuNavigationService : IMenuNavigationService
     {
-        INavigationService _navigationServiceInstance;
         private object _lastParamUsed;
         private SplitView _splitView;
         private Frame _rightFrame;
+        private INavigationService _navigationServiceInstance;
 
         public MenuNavigationService(INavigationService navigationServiceInstance)
         {

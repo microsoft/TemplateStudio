@@ -36,7 +36,6 @@
       "author": "Microsoft",
       "order": "4",
       "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
-      "dependencies": "wts.Feat.MultiView",
       "platforms": [ "Uwp" ],
       "languages": [ "C#" ]
     }

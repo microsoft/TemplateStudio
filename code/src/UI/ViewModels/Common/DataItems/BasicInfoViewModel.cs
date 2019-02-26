@@ -9,7 +9,7 @@ using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
-    public class BasicInfoViewModel : Selectable
+    public abstract class BasicInfoViewModel : Selectable
     {
         private string _title;
         private string _summary;
@@ -81,6 +81,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !WizardStatus.Current.IsBusy));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
+
+        public virtual bool HasLayout { get; } = false;
+
+        public virtual bool HasFrameworks { get; } = false;
 
         protected BasicInfoViewModel()
             : base(false)

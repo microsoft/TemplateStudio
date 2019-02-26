@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using GalaSoft.MvvmLight;
 using Param_RootNamespace.Helpers;
 

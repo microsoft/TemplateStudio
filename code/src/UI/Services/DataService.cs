@@ -12,13 +12,21 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class DataService
     {
-        public static bool LoadProjectTypes(ObservableCollection<MetadataInfoViewModel> projectTypes, string platform)
+        public static bool LoadProjectTypes(ObservableCollection<ProjectTypeMetaDataViewModel> projectTypes, string platform)
         {
             var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
-
             var data = GenContext.ToolBox.Repo.GetProjectTypes(platform)
                         .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                        .Select(m => new MetadataInfoViewModel(m))
+                        .Select(m =>
+                        {
+                            var templateFrameworks = GenComposer.GetSupportedFx(m.Name, platform);
+                            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                        .Where(fx => templateFrameworks.Contains(fx.Name))
+                                        .Select(fx => new FrameworkMetaDataViewModel(fx, platform))
+                                        .OrderBy(f => f.Order)
+                                        .ToList();
+                            return new ProjectTypeMetaDataViewModel(m, platform, targetFrameworks);
+                        })
                         .OrderBy(pt => pt.Order).ToList();
 
             projectTypes.Clear();
@@ -38,13 +46,13 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public static bool LoadFrameworks(ObservableCollection<MetadataInfoViewModel> frameworks, string projectTypeName, string platform)
+        public static bool LoadFrameworks(ObservableCollection<FrameworkMetaDataViewModel> frameworks, string projectTypeName, string platform)
         {
             var templateFrameworks = GenComposer.GetSupportedFx(projectTypeName, platform);
 
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
                                         .Where(m => templateFrameworks.Contains(m.Name))
-                                        .Select(m => new MetadataInfoViewModel(m))
+                                        .Select(m => new FrameworkMetaDataViewModel(m, platform))
                                         .OrderBy(f => f.Order)
                                         .ToList();
 
