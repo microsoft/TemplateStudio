@@ -830,7 +830,7 @@
       <Version>15.3.789-masterCC863119</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>15.8.132</Version>
+      <Version>15.3.83</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
       <Version>15.8.132</Version>

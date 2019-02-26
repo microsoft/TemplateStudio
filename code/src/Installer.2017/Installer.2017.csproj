@@ -561,7 +561,7 @@
       <Version>12.0.30110</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>15.8.132</Version>
+      <Version>15.3.83</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
       <Version>15.8.132</Version>
@@ -569,7 +569,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
-      <Version>15.8.3247</Version>
+      <Version>15.0.26201</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -581,13 +581,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Abstractions.dll" />
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Core.Contracts.dll" />
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Core.dll" />
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Edge.dll" />
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll" />
-    <SuppressFromVsix Include="Microsoft.TemplateEngine.Utils.dll" />
   </ItemGroup>
+  <Target Name="IncludeNuGetPackageReferences" AfterTargets="GetVsixSourceItems">
+    <ItemGroup>
+      <VSIXSourceItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'Microsoft.ApplicationInsights'" />
+      <VSIXSourceItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'Microsoft.VisualStudio.Setup.Configuration.Interop'" />
+      <VSIXSourceItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'WriteableBitmapEx'" />
+    </ItemGroup>
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup>

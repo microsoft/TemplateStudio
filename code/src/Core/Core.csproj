@@ -394,7 +394,7 @@
       <Version>1.0.0-beta2-20170518-234</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>15.8.132</Version>
+      <Version>15.3.83</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
       <Version>15.8.132</Version>
