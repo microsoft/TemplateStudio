@@ -805,6 +805,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.EventSource">
+      <Version>1.1.24</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge">
       <Version>1.0.0-beta2-20170518-234</Version>
     </PackageReference>
