@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using Windows.ApplicationModel.Activation;
-
-using Param_RootNamespace.Services;
 
 namespace Param_RootNamespace.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
+        private readonly Type _navElement;
+        private readonly INavigationService _navigationService;
+
+        public DefaultLaunchActivationHandler(Type navElement, INavigationService navigationService)
+        {
+            _navElement = navElement;
+            _navigationService = navigationService;
+        }
+
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
-            // When the navigation stack isn't restored, navigate to the first page and configure
-            // the new page by passing required information in the navigation parameter
-            NavigationService.Navigate(_navElement, args.Arguments);
+            // When the navigation stack isn't restored navigate to the first page,
+            // configuring the new page by passing required information as a navigation
+            // parameter
+            _navigationService.NavigateToViewModel(_navElement, args.Arguments);
 
             await Task.CompletedTask;
         }
@@ -20,7 +29,7 @@ namespace Param_RootNamespace.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return NavigationService.Frame.Content == null && _navElement != null;
+            return _navigationService.SourcePageType == null && _navElement != null;
         }
     }
 }

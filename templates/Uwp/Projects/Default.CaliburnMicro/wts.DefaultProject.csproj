@@ -135,6 +135,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\PropertyChangedBaseExtensions.cs" />
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

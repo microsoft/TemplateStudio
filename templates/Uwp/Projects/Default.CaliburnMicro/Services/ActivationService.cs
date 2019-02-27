@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Caliburn.Micro;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,13 +14,13 @@ namespace Param_RootNamespace.Services
     // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
-        private readonly App _app;
-        private readonly Lazy<UIElement> _shell;
+        private readonly WinRTContainer _container;
         private readonly Type _defaultNavItem;
+        private readonly Lazy<UIElement> _shell;
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
-            _app = app;
+            _container = container;
             _shell = shell;
             _defaultNavItem = defaultNavItem;
         }
@@ -37,7 +37,23 @@ namespace Param_RootNamespace.Services
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = _shell?.Value ?? new Frame();
+                    if (_shell?.Value == null)
+                    {
+                        var frame = new Frame();
+                        NavigationService = _container.RegisterNavigationService(frame);
+                        Window.Current.Content = frame;
+                    }
+                    else
+                    {
+                        var viewModel = ViewModelLocator.LocateForView(_shell.Value);
+
+                        ViewModelBinder.Bind(viewModel, _shell.Value, null);
+
+                        ScreenExtensions.TryActivate(viewModel);
+
+                        NavigationService = _container.GetInstance<INavigationService>();
+                        Window.Current.Content = _shell?.Value;
+                    }
                 }
             }
 
@@ -51,7 +67,7 @@ namespace Param_RootNamespace.Services
 
             if (IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
+                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem, NavigationService);
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);
@@ -64,6 +80,8 @@ namespace Param_RootNamespace.Services
                 await StartupAsync();
             }
         }
+
+        private INavigationService NavigationService { get; set; }
 
         private async Task InitializeAsync()
         {
