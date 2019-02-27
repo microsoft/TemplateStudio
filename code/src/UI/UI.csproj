@@ -268,8 +268,10 @@
     <Compile Include="ViewModels\Common\DataItems\FileExtension.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileStatus.cs" />
     <Compile Include="ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
+    <Compile Include="ViewModels\Common\DataItems\LayoutViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\LicenseViewModel.cs" />
-    <Compile Include="ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\FrameworkMetaDataViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\ProjectTypeMetaDataViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />

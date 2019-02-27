@@ -9,7 +9,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
-    public class ProjectTypeViewModel : SelectableGroup<MetadataInfoViewModel>
+    public class ProjectTypeViewModel : SelectableGroup<ProjectTypeMetaDataViewModel>
     {
         public ProjectTypeViewModel(Func<bool> isSelectionEnabled, Action onSelected)
             : base(isSelectionEnabled, onSelected)

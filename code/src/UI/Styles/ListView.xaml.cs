@@ -47,8 +47,15 @@ namespace Microsoft.Templates.UI.Styles
         {
             switch (item)
             {
-                case MetadataInfoViewModel metadataInfo:
-                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(metadataInfo.MetadataType))
+                case ProjectTypeMetaDataViewModel projectTypeMeta:
+                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(projectTypeMeta.MetadataType))
+                    {
+                        return;
+                    }
+
+                    break;
+                case FrameworkMetaDataViewModel frameworkMetadata:
+                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(frameworkMetadata.MetadataType))
                     {
                         return;
                     }

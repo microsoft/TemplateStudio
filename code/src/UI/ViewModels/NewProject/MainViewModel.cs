@@ -156,16 +156,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public override void ProcessItem(object item)
         {
-            if (item is MetadataInfoViewModel metadata)
+            if (item is ProjectTypeMetaDataViewModel projectTypeMetaData)
             {
-                if (metadata.MetadataType == MetadataType.ProjectType)
-                {
-                    ProjectType.Selected = metadata;
-                }
-                else if (metadata.MetadataType == MetadataType.Framework)
-                {
-                    Framework.Selected = metadata;
-                }
+                ProjectType.Selected = projectTypeMetaData;
+            }
+            else if (item is FrameworkMetaDataViewModel frameworkMetaData)
+            {
+                Framework.Selected = frameworkMetaData;
             }
             else if (item is TemplateInfoViewModel template)
             {

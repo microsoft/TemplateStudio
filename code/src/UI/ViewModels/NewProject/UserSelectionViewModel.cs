@@ -23,7 +23,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         Layout,
         UserSelection,
-        Dependency,
     }
 
     public class UserSelectionViewModel : Observable
@@ -98,7 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     var template = MainViewModel.Instance.GetTemplate(item.Template);
                     if (template != null)
                     {
-                        Add(TemplateOrigin.Layout, template, item.Layout.Name);
+                        Add(TemplateOrigin.Layout, template, item.Layout.Name, item.Layout.Readonly);
                     }
                 }
             }
@@ -112,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public IEnumerable<string> GetPageNames()
             => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
 
-        public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null)
+        public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
             var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName, _platform);
             foreach (var dependency in dependencies)
@@ -124,11 +123,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
                 }
 
-                Add(TemplateOrigin.Dependency, dependencyTemplate);
+                Add(templateOrigin, dependencyTemplate);
             }
 
             template.IncreaseSelection();
-            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin);
+            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
@@ -307,7 +306,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             foreach (var page in Pages)
             {
-                if (page.TemplateOrigin != TemplateOrigin.Layout)
+                if (page.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
@@ -316,7 +315,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             foreach (var feature in Features)
             {
-                if (feature.TemplateOrigin != TemplateOrigin.Layout)
+                if (feature.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
@@ -339,6 +338,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)
         {
+            if (page.IsReadOnly)
+            {
+                await ShowReadOnlyNotificationAsync(page.Name);
+                return;
+            }
+
             int newIndex = Pages.IndexOf(page) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
@@ -356,6 +361,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task OnDeleteFeatureAsync(SavedTemplateViewModel feature)
         {
+            if (feature.IsReadOnly)
+            {
+                await ShowReadOnlyNotificationAsync(feature.Name);
+                return;
+            }
+
             int newIndex = Features.IndexOf(feature) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
@@ -369,6 +380,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SelectedFeature = Features.ElementAt(newIndex);
                 SelectedFeature.IsFocused = true;
             }
+        }
+
+        private async Task ShowReadOnlyNotificationAsync(string name)
+        {
+            var message = string.Format(StringRes.NotificationRemoveError_ReadOnly, name);
+            var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
         }
 
         private async Task ShowDependencyNotificationAsync(string name, IEnumerable<string> dependencyNames)

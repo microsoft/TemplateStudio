@@ -24,6 +24,7 @@ namespace Microsoft.Templates.Core.Gen
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedNav = "TabbedNav";
+        private const string ProjTypeMenuBar = "MenuBar";
 
         public static ProjectMetadata ReadProjectConfiguration()
         {
@@ -142,6 +143,10 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return ProjTypeBlank;
             }
+            else if (IsMenuBar())
+            {
+                return ProjTypeMenuBar;
+            }
             else
             {
                 return string.Empty;
@@ -152,6 +157,12 @@ namespace Microsoft.Templates.Core.Gen
         {
             return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
                 || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
+        }
+
+        private static bool IsMenuBar()
+        {
+            return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                && ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs");
         }
 
         private static bool IsMVVMLight()

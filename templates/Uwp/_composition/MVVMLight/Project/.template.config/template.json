@@ -19,9 +19,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\ViewModels\\ViewModelLocator.cs"
-    },
-    {
-      "path": ".\\Services\\NavigationServiceEx.cs"
     }
   ],
   "symbols": {
