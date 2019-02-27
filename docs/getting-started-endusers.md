@@ -21,7 +21,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Basic | This basic project is a blank canvas upon which to build your app. It provides no scaffolding and leaves everything up to you. |
 | [Navigation Pane](projectTypes/navigationpane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen to enable easy user navigation between pages. This style is popular in mobile apps, but also works well on larger screens. The menu can be hidden when space is limited, or when it isn't needed.|
 | Pivot and Tabs | Tabs across the top allow for quickly navigating between pages. The pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers, which are always displayed.|
-| MenuBar | This is a traditional menu bar project that contains a top menu bar with File and Views options and a Blank canvas to show your views. The project includes navigation methods to show views in different ways. |
+| MenuBar | This project contains a top menu bar with File and Views options and a Blank canvas to show your views. The project includes navigation methods to show views in different ways. |
 
 ### Design patterns
 
