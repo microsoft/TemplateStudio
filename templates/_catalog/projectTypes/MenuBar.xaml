@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Width="48" Height="48">
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="0" Canvas.Top="4" Width="48" Height="38" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>    
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="0" Canvas.Top="4" Width="20" Height="26" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>    
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="1" Y1="13" X2="47" Y2="13" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/> 
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="32" Y1="5" X2="32" Y2="12" StrokeThickness="3" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="6" Y1="18" X2="14" Y2="18" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="6" Y1="23" X2="14" Y2="23" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>    
+  </Canvas>
+</Viewbox>

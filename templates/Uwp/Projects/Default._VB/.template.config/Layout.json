@@ -2,6 +2,7 @@
     {
         "name": "Main",
         "templateGroupIdentity": "wts.Page.Blank.VB",
-        "readonly": "false"
+        "readonly": "false",
+        "projecttype": "Blank|SplitView|TabbedNav"
     }
 ]

@@ -712,6 +712,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        /// </summary>
+        public static string NotificationRemoveError_ReadOnly {
+            get {
+                return ResourceManager.GetString("NotificationRemoveError_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error refreshing templates. See output window for more details..
         /// </summary>
         public static string NotificationSyncError_Refresh {
@@ -1149,6 +1158,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsDependencies {
             get {
                 return ResourceManager.GetString("TemplateDetailsDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frameworks:.
+        /// </summary>
+        public static string TemplateDetailsFrameworks {
+            get {
+                return ResourceManager.GetString("TemplateDetailsFrameworks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout:.
+        /// </summary>
+        public static string TemplateDetailsLayout {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (optional).
+        /// </summary>
+        public static string TemplateDetailsLayoutOptional {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayoutOptional", resourceCulture);
             }
         }
         
