@@ -46,8 +46,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName)));
-            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
+            Assert.Contains(GenContext.Current.ProjectInfo.ProjectReferences, p => p.Project == Path.Combine(destPath, projectName));
+            Assert.Contains(GenContext.Current.ProjectInfo.ProjectReferences, p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd)));
         }
 
         [Fact]
@@ -86,8 +86,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName)));
-            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
+            Assert.Contains(GenContext.Current.ProjectInfo.ProjectReferences, p => p.Project == Path.Combine(destPath, projectName));
+            Assert.Contains(GenContext.Current.ProjectInfo.ProjectReferences, p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd)));
         }
     }
 }

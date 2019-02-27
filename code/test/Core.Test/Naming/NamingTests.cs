@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         [Trait("Type", "ProjectGeneration")]
         public void Infer_SuccessfullyAccountsForExistingNames(string language)
         {
@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Infer_SuccessfullyAccountsForReservedNames(string language)
         {
             SetUpFixtureForTesting(language);
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Infer_SuccessfullyAccountsForDefaultNames(string language)
         {
             SetUpFixtureForTesting(language);
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Infer_RemovesInvalidCharacters(string language)
         {
             SetUpFixtureForTesting(language);
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Infer_DoesNotRemoveNonAsciiCharacters(string language)
         {
             SetUpFixtureForTesting(language);
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Infer_SuccessfullyHandlesSpacesAndConversionToTitleCase(string language)
         {
             SetUpFixtureForTesting(language);
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_RecognizesValidNameAsValid(string language)
         {
             SetUpFixtureForTesting(language);
@@ -123,7 +123,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_RecognizesEmptyStringAsInvalid(string language)
         {
             SetUpFixtureForTesting(language);
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifiesExistingNames(string language)
         {
             SetUpFixtureForTesting(language);
@@ -149,7 +149,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifiesDefaultNames(string language)
         {
             SetUpFixtureForTesting(language);
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifiesReservedNames(string language)
         {
             SetUpFixtureForTesting(language);
@@ -175,7 +175,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifies_InvalidChars(string language)
         {
             SetUpFixtureForTesting(language);
@@ -187,7 +187,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifies_NamesThatStartWithNumbers(string language)
         {
             SetUpFixtureForTesting(language);
@@ -199,7 +199,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifies_InvalidPageSuffix(string language)
         {
             SetUpFixtureForTesting(language);
@@ -211,7 +211,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory]
-        [MemberData("GetAllLanguages")]
+        [MemberData(nameof(GetAllLanguages))]
         public void Validate_SuccessfullyIdentifies_ValidPageSuffix(string language)
         {
             SetUpFixtureForTesting(language);
