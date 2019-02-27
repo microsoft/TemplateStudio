@@ -109,6 +109,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="FrameworkTypes.cs" />
     <Compile Include="Gen\CompositionInfo.cs" />
     <Compile Include="Gen\GenComposer.cs" />
     <Compile Include="Gen\GenController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Gen\ProjectInfo.cs" />
     <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
+    <Compile Include="Gen\SupportedFramework.cs" />
     <Compile Include="Gen\TemplateInfo.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />

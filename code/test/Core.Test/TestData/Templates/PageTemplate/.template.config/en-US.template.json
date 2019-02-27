@@ -2,5 +2,5 @@
   "author": "Microsoft USA",
   "name": "PageTemplate",
   "description": "US English...",
-  "identity": "Microsoft.UWPTemplates.Test.PageTemplate.CSharp"
+  "identity": "Microsoft.Templates.Test.PageTemplate.CSharp"
 }

@@ -127,14 +127,18 @@ namespace Microsoft.Templates.Core
             return GetProjectTypes().Where(m => m.Platforms.Contains(platform));
         }
 
-        public IEnumerable<MetadataInfo> GetFrameworks()
+        public IEnumerable<MetadataInfo> GetFrontEndFrameworks()
         {
-            return GetMetadataInfo("frameworks");
+            IEnumerable<MetadataInfo> result = GetMetadataInfo("frontendframeworks");
+            result.ToList().ForEach(meta => meta.Tags["type"] = "frontend");
+            return result;
         }
 
-        public IEnumerable<MetadataInfo> GetFrameworks(string platform)
+        public IEnumerable<MetadataInfo> GetBackEndFrameworks()
         {
-            return GetFrameworks().Where(m => m.Platforms.Contains(platform));
+            IEnumerable<MetadataInfo> result = GetMetadataInfo("backendframeworks");
+            result.ToList().ForEach(meta => meta.Tags["type"] = "backend");
+            return result;
         }
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
@@ -174,8 +178,20 @@ namespace Microsoft.Templates.Core
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
             metadata.ForEach(m => m.MetadataType = type == "projectTypes" ? MetadataType.ProjectType : MetadataType.Framework);
             metadata.ForEach(m => SetLicenseTerms(m));
-
+            metadata.ForEach(m => SetDefaultTags(m));
             return metadata.OrderBy(m => m.Order);
+        }
+
+        private void SetDefaultTags(MetadataInfo metadataInfo)
+        {
+            if (metadataInfo.Tags == null)
+            {
+                metadataInfo.Tags = new Dictionary<string, object> { { "enabled", true } };
+            }
+            else if (!metadataInfo.Tags.ContainsKey("enabled"))
+            {
+                metadataInfo.Tags.Add(new KeyValuePair<string, object>("enabled", true));
+            }
         }
 
         private void SetLicenseTerms(MetadataInfo metadataInfo)

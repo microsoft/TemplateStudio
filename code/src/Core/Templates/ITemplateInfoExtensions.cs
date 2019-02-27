@@ -155,14 +155,29 @@ namespace Microsoft.Templates.Core
                         .ToDictionary(t => t.Key.Replace(TagPrefix + "export.", string.Empty), v => v.Value.DefaultValue);
         }
 
-        public static List<string> GetFrameworkList(this ITemplateInfo ti)
+        public static List<string> GetFrontEndFrameworkList(this ITemplateInfo ti)
         {
-            var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
+            var frontEndFrameworks = GetValueFromTag(ti, TagPrefix + "frontendframework");
+
             var result = new List<string>();
 
-            if (!string.IsNullOrEmpty(frameworks))
+            if (!string.IsNullOrEmpty(frontEndFrameworks))
             {
-                result.AddRange(frameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+                result.AddRange(frontEndFrameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
+        }
+
+        public static List<string> GetBackEndFrameworkList(this ITemplateInfo ti)
+        {
+            var backEndFrameworks = GetValueFromTag(ti, TagPrefix + "backendframework");
+
+            var result = new List<string>();
+
+            if (!string.IsNullOrEmpty(backEndFrameworks))
+            {
+                result.AddRange(backEndFrameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
             }
 
             return result;

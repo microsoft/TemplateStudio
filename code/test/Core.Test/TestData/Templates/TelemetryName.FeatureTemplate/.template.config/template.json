@@ -2,12 +2,12 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "TelemetryNameTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.TelemetryNameTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.TelemetryNameTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.TelemetryNameTemplate",
+  "identity": "Microsoft.Templates.Test.TelemetryNameTemplate.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "feature",
     "wts.telemName": "TelemName"
   },

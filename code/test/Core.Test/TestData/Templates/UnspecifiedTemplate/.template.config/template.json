@@ -1,12 +1,12 @@
 {
   "author": "Microsoft",
-  "classifications": ["Test"],
+  "classifications": [ "Test" ],
   "name": "UnspecifiedTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.UnspecifiedTemplate",
+  "identity": "Microsoft.Templates.Test.UnspecifiedTemplate.CSharp",
   "tags": {
     "language": "C#",
-    "wts.platform": "Uwp"
+    "wts.platform": "test"
 
   },
   "sourceName": "App_Name",

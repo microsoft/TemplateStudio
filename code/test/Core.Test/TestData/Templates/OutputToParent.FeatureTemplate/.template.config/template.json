@@ -2,12 +2,12 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "OutputToParentTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.OutputToParentTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.OutputToParentTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.OutputToParentTemplate",
+  "identity": "Microsoft.Templates.Test.OutputToParentTemplate.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "feature",
     "wts.outputToParent": "true"
   },
