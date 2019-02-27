@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project",
+  "name": "MVVMLight.Project.AddNavigationService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -12,13 +12,13 @@
     "wts.version": "1.0.0",
     "wts.compositionOrder": "0",
     "wts.licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
-    "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == Blank|SplitView|TabbedNav & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\ViewModelLocator.cs"
+      "path": ".\\Services\\NavigationServiceEx.cs"
     }
   ],
   "symbols": {

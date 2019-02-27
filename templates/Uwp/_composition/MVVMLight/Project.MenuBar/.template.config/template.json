@@ -20,6 +20,9 @@
       "path": ".\\Helpers\\MenuNavigationHelper.cs"
     },
     {
+      "path": ".\\Services\\NavigationServiceEx.cs"
+    },
+    {
       "path": ".\\ViewModels\\ShellContentDialogViewModel.cs"
     },
     {
