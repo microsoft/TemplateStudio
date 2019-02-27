@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.Gen
             var projectTemplate = GetProjectTemplate(projectType, framework, platform);
             var layout = projectTemplate?
                 .GetLayout()
-                .Where(l => l.ProjectType.GetMultiValue().Contains(projectType));
+                .Where(l => l.ProjectType == null || l.ProjectType.GetMultiValue().Contains(projectType));
 
             if (layout != null)
             {
