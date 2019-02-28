@@ -135,6 +135,10 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return ProjTypeTabbedNav;
             }
+            else if (IsMenuBar())
+            {
+                return ProjTypeMenuBar;
+            }
             else if (IsSplitView())
             {
                 return ProjTypeSplitView;
@@ -142,10 +146,6 @@ namespace Microsoft.Templates.Core.Gen
             else if (IsBlank())
             {
                 return ProjTypeBlank;
-            }
-            else if (IsMenuBar())
-            {
-                return ProjTypeMenuBar;
             }
             else
             {
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Core.Gen
         private static bool IsMenuBar()
         {
             return ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                && ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs");
+                && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs") || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
         }
 
         private static bool IsMVVMLight()
