@@ -4,8 +4,11 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
@@ -24,6 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isSequentialFlowEnabled;
         private bool _isLoading = true;
         private ICommand _openWebSiteCommand;
+        private ICommand _createIssueCommand;
 
         public static WizardStatus Current { get; private set; }
 
@@ -87,6 +91,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
 
+        public ICommand CreateIssueCommand => _createIssueCommand ?? (_createIssueCommand = new RelayCommand(OnCreateIssue));
+
         public WizardStatus()
         {
             Current = this;
@@ -116,6 +122,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsSequentialFlowEnabled = await BaseMainViewModel.BaseInstance.IsStepAvailableAsync();
         }
 
-        private void OnOpenWebSite() => Process.Start("https://aka.ms/wts");
+        private void OnOpenWebSite() => Process.Start("https://aka.ms/wts/");
+
+        private void OnCreateIssue()
+        {
+            var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
+            var index = executingDirectory.IndexOf("/code/");
+            var issueTemplatePath = $"{executingDirectory.Substring(0, index)}/docs/issue_template.md";
+            var issueTemplate = File.ReadAllText(issueTemplatePath);
+            issueTemplate = issueTemplate.Replace("* **WTS Wizard Version:**", $"* **WTS Wizard Version: {GenContext.ToolBox.WizardVersion}**");
+            issueTemplate = issueTemplate.Replace("* **WTS Template Version:**", $"* **WTS Template Version: {GenContext.ToolBox.TemplatesVersion}**");
+            issueTemplate = issueTemplate.Replace("* **Windows Build:**", $"* **Windows Build: {Environment.OSVersion.Version}**");
+            var body = HttpUtility.UrlEncode(issueTemplate);
+            Process.Start($"https://github.com/Microsoft/WindowsTemplateStudio/issues/new?body={body}");
+        }
     }
 }

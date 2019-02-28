@@ -1,24 +1,27 @@
-## For new Features:
+### For new Features:
 
-* **Overview:** What you'd think should be added with scenarios
-* **Links:**
+#### Overview
 
-## For Bugs:
+What you'd think should be added with scenarios
 
-### Repro steps
+#### Links
+
+### For Bugs:
+
+#### Repro steps
 
 What did you do? How can someone else reproduce this?
 
-### Expected Behavior
+#### Expected Behavior
 
 What was expected to happen
 (include screenshots if a visual issue)
 
-### Actual Behavior
+#### Actual Behavior
 
 What really happened
 
-## System
+### System
 
 * **VS Version:**
 * **WTS Wizard Version:**
