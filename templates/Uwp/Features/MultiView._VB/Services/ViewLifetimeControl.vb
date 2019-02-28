@@ -18,6 +18,8 @@ Namespace Services
 
         Private _released As Boolean = False
 
+        Private ReadOnly _lockObj As Object = New Object()
+
         Private Event InternalReleased As ViewReleasedHandler
 
         ' Necessary to communicate with the window
@@ -31,7 +33,7 @@ Namespace Services
         Public Custom Event Released As ViewReleasedHandler
             AddHandler(value As ViewReleasedHandler)
                 Dim releasedCopy As Boolean = False
-                SyncLock Me
+                SyncLock _lockObj
                     releasedCopy = _released
                     If Not _released Then
                         AddHandler InternalReleased, value
@@ -45,7 +47,7 @@ Namespace Services
             End AddHandler
 
             RemoveHandler(value As ViewReleasedHandler)
-                SyncLock Me
+                SyncLock _lockObj
                     RemoveHandler InternalReleased, value
                 End SyncLock
             End RemoveHandler
@@ -71,7 +73,7 @@ Namespace Services
         Public Function StartViewInUse() As Integer
             Dim releasedCopy As Boolean = False
             Dim refCountCopy As Integer = 0
-            SyncLock Me
+            SyncLock _lockObj
                 releasedCopy = _released
                 If Not _released Then
                     refCountCopy = System.Threading.Interlocked.Increment(_refCount)
@@ -91,12 +93,12 @@ Namespace Services
         Public Function StopViewInUse() As Integer
             Dim refCountCopy As Integer = 0
             Dim releasedCopy As Boolean = False
-            SyncLock Me
+            SyncLock _lockObj
                 releasedCopy = _released
                 If Not _released Then
                     refCountCopy = System.Threading.Interlocked.Decrement(_refCount)
                     If refCountCopy = 0 Then
-                        Dim task = Dispatcher.RunAsync(CoreDispatcherPriority.Low, AddressOf FinalizeRelease)
+                        Dispatcher.RunAsync(CoreDispatcherPriority.Low, AddressOf FinalizeRelease).AsTask()
                     End If
                 End If
 
@@ -123,7 +125,7 @@ Namespace Services
 
         Private Sub FinalizeRelease()
             Dim justReleased As Boolean = False
-            SyncLock Me
+            SyncLock _lockObj
                 If _refCount = 0 Then
                     justReleased = True
                     _released = True
@@ -138,7 +140,7 @@ Namespace Services
                     ' For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
                     Throw New InvalidOperationException("ExceptionViewLifeTimeControlMissingReleasedSubscription".GetLocalized())
                 End If
-                
+
                 RaiseEvent InternalReleased(Me, Nothing)
             End If
         End Sub

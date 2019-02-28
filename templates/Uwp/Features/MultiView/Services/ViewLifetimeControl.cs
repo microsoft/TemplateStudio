@@ -17,6 +17,7 @@ namespace Param_RootNamespace.Services
         private CoreWindow _window;
         private int _refCount = 0;
         private bool _released = false;
+        private readonly object _lockObj = new object();
 
         private event ViewReleasedHandler InternalReleased;
 
@@ -33,7 +34,7 @@ namespace Param_RootNamespace.Services
             add
             {
                 bool releasedCopy = false;
-                lock (this)
+                lock (_lockObj)
                 {
                     releasedCopy = _released;
                     if (!_released)
@@ -50,7 +51,7 @@ namespace Param_RootNamespace.Services
 
             remove
             {
-                lock (this)
+                lock (_lockObj)
                 {
                     InternalReleased -= value;
                 }
@@ -77,7 +78,7 @@ namespace Param_RootNamespace.Services
             bool releasedCopy = false;
             int refCountCopy = 0;
 
-            lock (this)
+            lock (_lockObj)
             {
                 releasedCopy = _released;
                 if (!_released)
@@ -101,7 +102,7 @@ namespace Param_RootNamespace.Services
             int refCountCopy = 0;
             bool releasedCopy = false;
 
-            lock (this)
+            lock (_lockObj)
             {
                 releasedCopy = _released;
                 if (!_released)
@@ -109,7 +110,7 @@ namespace Param_RootNamespace.Services
                     refCountCopy = --_refCount;
                     if (refCountCopy == 0)
                     {
-                        var task = Dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease);
+                        Dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease).AsTask();
                     }
                 }
             }
@@ -140,7 +141,7 @@ namespace Param_RootNamespace.Services
         private void FinalizeRelease()
         {
             bool justReleased = false;
-            lock (this)
+            lock (_lockObj)
             {
                 if (_refCount == 0)
                 {
