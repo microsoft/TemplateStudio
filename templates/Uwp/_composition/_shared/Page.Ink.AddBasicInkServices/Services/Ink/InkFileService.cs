@@ -105,7 +105,7 @@ namespace Param_RootNamespace.Services.Ink
             }
 
             // Finalize write so other apps can update file.
-            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(saveFile);
+            await CachedFileManager.CompleteUpdatesAsync(saveFile);
 
             return saveFile;
         }

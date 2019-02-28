@@ -85,7 +85,7 @@ Namespace Services.Ink
             End Using
 
             '  Finalize write so other apps can update file.
-            Dim status As FileUpdateStatus = Await CachedFileManager.CompleteUpdatesAsync(saveFile)
+            Await CachedFileManager.CompleteUpdatesAsync(saveFile)
             Return saveFile
         End Function
 
