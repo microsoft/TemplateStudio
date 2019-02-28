@@ -12,7 +12,7 @@
     "wts.version": "1.0.0",
     "wts.compositionOrder": "0",
     "wts.licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
-    "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
+    "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

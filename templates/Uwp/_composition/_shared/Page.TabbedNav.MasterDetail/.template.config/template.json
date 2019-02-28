@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedNav & $framework != Prism & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$projectType == TabbedNav & $frontendframework != Prism & groupidentity == wts.Page.MasterDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

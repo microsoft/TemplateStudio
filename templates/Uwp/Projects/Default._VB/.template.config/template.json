@@ -9,7 +9,7 @@
     "language": "VisualBasic",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.projecttype":"Blank|SplitView|TabbedNav",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
@@ -58,7 +58,7 @@
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFramework":
+    "wts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"

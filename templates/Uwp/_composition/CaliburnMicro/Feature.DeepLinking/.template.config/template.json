@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.DeepLinking"
+    "wts.compositionFilter": "$frontendframework == CaliburnMicro & identity == wts.Feat.DeepLinking"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.version": "1.0.0",
     "wts.platform" : "Uwp",
-    "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.ShareTarget",
+    "wts.compositionFilter": "$frontendframework == CaliburnMicro & identity == wts.Feat.ShareTarget",
     "wts.export.baseclass": "PropertyChangedBase",
     "wts.export.setter": "Set"
   },

@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.VB & $framework == MVVMLight & $projectType == TabbedNav"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.VB & $frontendframework == MVVMLight & $projectType == TabbedNav"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
