@@ -11,14 +11,14 @@ Namespace Services
     ' StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
     Public NotInheritable Class ViewLifetimeControl
 
+        Private ReadOnly _lockObj As Object = New Object()
+
         ' Window for this particular view. Used to register and unregister for events
         Private _window As CoreWindow
 
         Private _refCount As Integer = 0
 
         Private _released As Boolean = False
-
-        Private ReadOnly _lockObj As Object = New Object()
 
         Private Event InternalReleased As ViewReleasedHandler
 

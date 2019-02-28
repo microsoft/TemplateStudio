@@ -13,11 +13,12 @@ namespace Param_RootNamespace.Services
     // StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
     public sealed class ViewLifetimeControl
     {
+        private readonly object _lockObj = new object();
+
         // Window for this particular view. Used to register and unregister for events
         private CoreWindow _window;
         private int _refCount = 0;
         private bool _released = false;
-        private readonly object _lockObj = new object();
 
         private event ViewReleasedHandler InternalReleased;
 
