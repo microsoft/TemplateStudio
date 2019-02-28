@@ -26,6 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _isTextSelected;
         private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;
+        private string _emptyBackendFramework = string.Empty;
 
         public string Name
         {
@@ -119,7 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, MainViewModel.Instance.ConfigPlatform);
+                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework, MainViewModel.Instance.ConfigPlatform);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

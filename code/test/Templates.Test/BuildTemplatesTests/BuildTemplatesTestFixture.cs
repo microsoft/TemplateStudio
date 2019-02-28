@@ -64,8 +64,8 @@ namespace Microsoft.Templates.Test
                     {
                         var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Contains(m.Name) && m.Name == frameworkFilter)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name) && m.Name == frameworkFilter)
                                                     .Select(m => m.Name)
                                                     .ToList();
 

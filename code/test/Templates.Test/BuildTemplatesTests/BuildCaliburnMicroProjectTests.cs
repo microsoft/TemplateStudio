@@ -71,14 +71,14 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                      && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetFrontEndFrameworkList().Contains(framework)
                      && t.GetPlatform() == platform
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 
             Func<ITemplateInfo, bool> templateSelector =
                 t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetFrontEndFrameworkList().Contains(framework)
                      && t.GetPlatform() == platform
                      && !t.GetIsHidden();
 
@@ -99,14 +99,14 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
             Func<ITemplateInfo, bool> templateSelector =
                 t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 

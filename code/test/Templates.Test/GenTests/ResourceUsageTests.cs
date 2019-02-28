@@ -188,7 +188,7 @@ namespace Microsoft.Templates.Test
             var projectTemplate = _fixture.Templates().FirstOrDefault(t =>
                                                                         t.GetTemplateType() == TemplateType.Project &&
                                                                         t.GetProjectTypeList().Contains(projectType) &&
-                                                                        t.GetFrameworkList().Contains(framework));
+                                                                        t.GetFrontEndFrameworkList().Contains(framework));
 
             var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
@@ -202,7 +202,7 @@ namespace Microsoft.Templates.Test
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
             var itemTemplates = _fixture.Templates().Where(t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                             && t.GetFrameworkList().Contains(framework)
+                                                             && t.GetFrontEndFrameworkList().Contains(framework)
                                                              && t.GetPlatform() == platform
                                                              && !t.GetIsHidden());
 

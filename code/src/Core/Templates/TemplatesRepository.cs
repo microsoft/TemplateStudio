@@ -134,11 +134,21 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public IEnumerable<MetadataInfo> GetFrontEndFrameworks(string platform)
+        {
+            return GetFrontEndFrameworks().Where(f => f.Platforms.Contains(platform));
+        }
+
         public IEnumerable<MetadataInfo> GetBackEndFrameworks()
         {
             IEnumerable<MetadataInfo> result = GetMetadataInfo("backendframeworks");
             result.ToList().ForEach(meta => meta.Tags["type"] = "backend");
             return result;
+        }
+
+        public IEnumerable<MetadataInfo> GetBackEndFrameworks(string platform)
+        {
+            return GetBackEndFrameworks().Where(f => f.Platforms.Contains(platform));
         }
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)

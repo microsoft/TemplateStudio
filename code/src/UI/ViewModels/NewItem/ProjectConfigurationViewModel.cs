@@ -85,8 +85,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void LoadFrameworks()
         {
             var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name, SelectedPlatform);
-            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(tf => projectFrameworks.Contains(tf.Name))
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks()
+                                                                .Where(tf => projectFrameworks.Any(x => x.Type == FrameworkTypes.FrontEnd && x.Name == tf.Name))
                                                                 .ToList();
             Frameworks.Clear();
             Frameworks.AddRange(targetFrameworks);

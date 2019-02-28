@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
             t => t.GetTemplateType() == TemplateType.Project
                && t.GetProjectTypeList().Contains(projectType)
-               && t.GetFrameworkList().Contains(framework)
+               && t.GetFrontEndFrameworkList().Contains(framework)
                && !t.GetIsHidden()
                && t.GetLanguage() == language;
 
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Test
 
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                                            && t.GetFrameworkList().Contains(framework)
+                                            && t.GetFrontEndFrameworkList().Contains(framework)
                                             && !excludedTemplates.Contains(t.GroupIdentity)
                                             && t.GetPlatform() == platform
                                             && !t.GetIsHidden()
@@ -85,13 +85,13 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project
                    && t.GetProjectTypeList().Contains(projectType)
-                   && t.GetFrameworkList().Contains(framework)
+                   && t.GetFrontEndFrameworkList().Contains(framework)
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
             Func<ITemplateInfo, bool> templateSelector =
                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                   && t.GetFrameworkList().Contains(framework)
+                   && t.GetFrontEndFrameworkList().Contains(framework)
                    && t.GetPlatform() == platform
                    && !t.GetIsHidden();
 
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Test
 
         public IEnumerable<ITemplateInfo> GetTemplates(string framework)
         {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework));
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework));
         }
     }
 }
