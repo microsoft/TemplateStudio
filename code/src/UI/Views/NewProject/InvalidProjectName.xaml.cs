@@ -5,27 +5,20 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    public partial class WizardShell : Window, IWindow, IWizardShell
+    public partial class InvalidProjectName : Window, IWindow
     {
         private string _language;
         private string _platform;
 
-        public static WizardShell Current { get; private set; }
-
-        public UserSelection Result { get; set; }
-
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(string platform, string language, BaseStyleValuesProvider provider)
+        public InvalidProjectName(string platform, string language, BaseStyleValuesProvider provider)
         {
-            Current = this;
             _platform = platform;
             _language = language;
             ViewModel = new MainViewModel(this, provider)
@@ -34,7 +27,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
             };
             DataContext = ViewModel;
             InitializeComponent();
-            NavigationService.InitializeMainFrame(mainFrame, new MainPage());
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -44,31 +36,11 @@ namespace Microsoft.Templates.UI.Views.NewProject
                 Close();
                 return;
             }
-
-            if (e.Key == Key.Back
-                && NavigationService.CanGoBackMainFrame
-                && sender is WizardShell shell
-                && shell.mainFrame.NavigationService.Content is TemplateInfoPage)
-            {
-                NavigationService.GoBackMainFrame();
-            }
-        }
-
-        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            OnMouseLeftButtonDown(e);
-            DragMove();
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             await MainViewModel.Instance.InitializeAsync(_platform, _language);
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel.UnsubscribeEventHandlers();
-            NotificationsControl.UnsubscribeEventHandlers();
         }
     }
 }

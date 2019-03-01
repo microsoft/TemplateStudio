@@ -559,6 +559,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio adds some project naming restrictions. The project name **&quot;{0}&quot;** is a project reserved name. Read more about [naming restrictions](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/WTSNaming.md), please restart the Windows Template Studio Wizard..
+        /// </summary>
+        public static string InvalidProjectNameDescription {
+            get {
+                return ResourceManager.GetString("InvalidProjectNameDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is already part of your project. Please choose another feature..
         /// </summary>
         public static string NewItemHasNoChangesFeature {

@@ -142,6 +142,7 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
+    <Compile Include="Naming\ProjectNameValidator.cs" />
     <Compile Include="Packaging\CertInfo.cs" />
     <Compile Include="Packaging\IDigitalSignatureService.cs" />
     <Compile Include="Templates\MetadataType.cs" />

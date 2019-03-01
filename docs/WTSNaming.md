@@ -1,5 +1,11 @@
 # Windows Template Studio Naming
 
+## Project reserved names
+WTS has some reserved names. You can't use those names for naming your project:
+ - Prism
+ - CaliburnMicro
+ - MVVMLight
+
 ## Page suffixes
 For **Page** generation the suffixes 'Page' and 'ViewModel' will be added by WTS to Page and ViewModel files.
 
@@ -12,7 +18,7 @@ A page named **Main** in the wizard will result in the generation of the followi
 
 **When choosing the name for a Page in the wizard you should not use suffixes like 'Page' or 'View'**
 
-## Reserved names
+## Pages and features reserved names
 WTS has some reserved names. You can't use those names for naming pages and features:
  - 3DLauncher
  - BackgroundTask

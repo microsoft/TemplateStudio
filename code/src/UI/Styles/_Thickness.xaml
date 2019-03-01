@@ -44,6 +44,7 @@
 
     <Thickness x:Key="Margin_L_Left">24,0,0,0</Thickness>
     <Thickness x:Key="Margin_L_LeftTop">24,24,0,0</Thickness>
+    <Thickness x:Key="Margin_L_LeftTopRightBottom">24,24,24,24</Thickness>
     <Thickness x:Key="Margin_L_LeftRight">24,0,24,0</Thickness>
     <Thickness x:Key="Margin_L_Top">0,24,0,0</Thickness>
 

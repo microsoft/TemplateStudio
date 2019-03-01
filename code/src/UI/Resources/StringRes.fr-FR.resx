@@ -727,4 +727,7 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>{0} (optional)</value>
     <comment>The layout is optional</comment>
   </data>
+  <data name="InvalidProjectNameDescription" xml:space="preserve">
+    <value>Windows Template Studio adds some project naming restrictions. The project name **"{0}"** is a project reserved name. Read more about [naming restrictions](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/WTSNaming.md), please restart the Windows Template Studio Wizard.</value>
+  </data>
 </root>

@@ -336,6 +336,9 @@
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\NewProject\InvalidProjectName.xaml.cs">
+      <DependentUpon>InvalidProjectName.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
@@ -532,6 +535,10 @@
     <Page Include="Views\Common\TemplateInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewProject\InvalidProjectName.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewProject\WizardShell.xaml">
       <Generator>MSBuild:Compile</Generator>

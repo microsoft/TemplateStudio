@@ -18,6 +18,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         private string _title;
         private string _versions;
+        private string _invalidProjectNameDescription;
         private bool _isBusy;
         private bool _isNotBusy;
         private bool _hasValidationErrors;
@@ -41,6 +42,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _versions;
             set => SetProperty(ref _versions, value);
+        }
+
+        public string InvalidProjectNameDescription
+        {
+            get => _invalidProjectNameDescription;
+            set => SetProperty(ref _invalidProjectNameDescription, value);
         }
 
         public bool IsBusy

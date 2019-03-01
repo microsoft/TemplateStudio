@@ -61,6 +61,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
+        public Action CloseWindow { get; set; }
+
         public MainViewModel(Window mainView, BaseStyleValuesProvider provider)
             : base(mainView, provider)
         {
@@ -71,10 +73,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public override async Task InitializeAsync(string platform, string language)
         {
             WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
+            WizardStatus.InvalidProjectNameDescription = string.Format(StringRes.InvalidProjectNameDescription, GenContext.Current.ProjectName);
             await base.InitializeAsync(platform, language);
         }
 
-        protected override void OnCancel() => WizardShell.Current.Close();
+        protected override void OnCancel() => CloseWindow();
 
         protected override void OnFinish()
         {
