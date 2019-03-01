@@ -30,6 +30,8 @@ queryTable
 
         public string Frameworks => string.Format(DataQuery, year, month, "WtsProjectGen", "WtsFramework");
 
+        public string Languages => string.Format(DataQuery, year, month, "WtsProjectGen", "WtsLanguage");
+
         public string Pages => string.Format(DataQuery, year, month, "WtsPageGen", "WtsTemplateName");
 
         public string Features => string.Format(DataQuery, year, month, "WtsFeatureGen", "WtsTemplateName");
