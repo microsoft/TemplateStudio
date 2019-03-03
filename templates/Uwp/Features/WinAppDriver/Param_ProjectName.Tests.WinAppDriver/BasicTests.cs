@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 
-namespace Param_ProjectName.Tests.WinAppDriver
+namespace Param_RootNamespace.Tests.WinAppDriver
 {
     [TestClass]
     public class BasicTests
