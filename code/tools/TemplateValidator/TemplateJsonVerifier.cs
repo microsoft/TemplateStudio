@@ -317,7 +317,7 @@ namespace TemplateValidator
             foreach (var value in values)
             {
                 // This is a really crude regex designed to catch basic variation from a markdown URI link
-                if (!new Regex(@"^\[([\w .\-]){4,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(value))
+                if (!new Regex(@"^\[([\w .\-]){3,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(value))
                 {
                     results.Add($"'{value}' specified in the wts.licenses tag does not match the expected format.");
                 }
