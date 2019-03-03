@@ -10,7 +10,7 @@
       "wts.type": "composition",
       "wts.platform" : "Uwp",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TabbedNav"
+      "wts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == wts.Page.TabbedNav"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

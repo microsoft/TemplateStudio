@@ -711,4 +711,20 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <value>Testing</value>
     <comment>Group header for Testing templates</comment>
   </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>You can not remove **{0}** because it is readonly.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Frameworks:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Layout:</value>
+    <comment>Template details: Layout</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (optional)</value>
+    <comment>The layout is optional</comment>
+  </data>
 </root>

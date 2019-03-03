@@ -14,6 +14,15 @@ namespace Param_RootNamespace
         {
             InitializeComponent();
         }
+
+        private async Task LaunchApplicationAsync(string page, object launchParam)
+        {
+//^^
+//{[{
+            NavigationService.Navigate(page, launchParam);
+//}]}
+            Window.Current.Activate();
+        }
 //^^
 //{[{
 

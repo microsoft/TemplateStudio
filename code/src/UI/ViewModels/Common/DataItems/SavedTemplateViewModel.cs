@@ -26,6 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isHidden;
         private bool _hasErrors;
         private bool _isReorderEnabled;
+        private bool _isReadOnly;
         private bool _isDragging;
         private bool _isFocused;
         private bool _isTextSelected;
@@ -85,6 +86,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _isReorderEnabled, value);
         }
 
+        public bool IsReadOnly
+        {
+            get => _isReadOnly;
+            private set => SetProperty(ref _isReadOnly, value);
+        }
+
         public bool IsFocused
         {
             get => _isFocused;
@@ -119,7 +126,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
-        public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin)
+        public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin, bool isReadOnly = false)
         {
             _id = Guid.NewGuid();
             Template = template.Template;
@@ -132,6 +139,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsHidden = template.IsHidden;
             TemplateOrigin = templateOrigin;
             IsReorderEnabled = template.TemplateType == TemplateType.Page;
+            IsReadOnly = isReadOnly;
         }
 
         public void SetName(string newName, bool fromNewTemplate = false)

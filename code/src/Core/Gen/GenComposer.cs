@@ -37,27 +37,32 @@ namespace Microsoft.Templates.Core.Gen
         public static IEnumerable<LayoutInfo> GetLayoutTemplates(string projectType, string framework, string platform)
         {
             var projectTemplate = GetProjectTemplate(projectType, framework, platform);
-            var layout = projectTemplate?.GetLayout();
+            var layout = projectTemplate?
+                .GetLayout()
+                .Where(l => l.ProjectType == null || l.ProjectType.GetMultiValue().Contains(projectType));
 
-            foreach (var item in layout)
+            if (layout != null)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
-
-                if (template == null)
+                foreach (var item in layout)
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, framework, platform));
-                }
-                else
-                {
-                    var templateType = template.GetTemplateType();
+                    var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
 
-                    if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                    if (template == null)
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
+                        LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, framework, platform));
                     }
                     else
                     {
-                        yield return new LayoutInfo() { Layout = item, Template = template };
+                        var templateType = template.GetTemplateType();
+
+                        if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                        {
+                            LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
+                        }
+                        else
+                        {
+                            yield return new LayoutInfo() { Layout = item, Template = template };
+                        }
                     }
                 }
             }

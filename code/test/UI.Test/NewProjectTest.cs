@@ -55,7 +55,7 @@ namespace Microsoft.UI.Test
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
 
-            Assert.True(viewModel.ProjectType.Items.Count == 3);
+            Assert.True(viewModel.ProjectType.Items.Count == 4);
             Assert.True(viewModel.Framework.Items.Count == 5);
             Assert.True(viewModel.AddPages.Groups.Count > 0);
             Assert.True(viewModel.AddFeatures.Groups.Count > 0);

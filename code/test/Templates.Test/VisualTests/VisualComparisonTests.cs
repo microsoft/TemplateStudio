@@ -156,7 +156,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<string> GetAllProjectTypes()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav", "MenuBar" })
             {
                 yield return projectType;
             }
