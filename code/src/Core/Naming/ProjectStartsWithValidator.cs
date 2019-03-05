@@ -6,33 +6,29 @@ using System.Linq;
 
 namespace Microsoft.Templates.Core
 {
-    public class ProjectNameValidator : Validator
+    public class ProjectStartsWithValidator : Validator
     {
-        private static readonly string[] ReservedNames = new string[]
+        private static readonly string[] StartsWith = new string[]
         {
-            "Prism",
-            "CaliburnMicro",
-            "MVVMLight",
+            "$",
         };
 
         public override ValidationResult Validate(string suggestedName)
         {
-            if (ReservedNames.Contains(suggestedName))
+            if (StartsWith.Any(r => suggestedName.StartsWith(r)))
             {
                 return new ValidationResult()
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.ReservedName,
+                    ErrorType = ValidationErrorType.ProjectStartsWith,
                 };
             }
-            else
+
+            return new ValidationResult()
             {
-                return new ValidationResult()
-                {
-                    IsValid = true,
-                    ErrorType = ValidationErrorType.None,
-                };
-            }
+                IsValid = true,
+                ErrorType = ValidationErrorType.None,
+            };
         }
     }
 }

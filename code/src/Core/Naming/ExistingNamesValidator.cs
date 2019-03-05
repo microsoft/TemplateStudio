@@ -24,14 +24,12 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.AlreadyExists,
                 };
             }
-            else
+
+            return new ValidationResult()
             {
-                return new ValidationResult()
-                {
-                    IsValid = true,
-                    ErrorType = ValidationErrorType.None,
-                };
-            }
+                IsValid = true,
+                ErrorType = ValidationErrorType.None,
+            };
         }
     }
 }

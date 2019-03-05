@@ -3,11 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -16,7 +18,6 @@ namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
-        private ProjectNameValidator _projectNameValidator = new ProjectNameValidator();
         private DialogService _dialogService = DialogService.Instance;
         private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
@@ -28,7 +29,13 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var projectNameValidation = _projectNameValidator.Validate(GenContext.Current.ProjectName);
+            var validators = new List<Validator>()
+            {
+                new ProjectReservedNamesValidator(),
+                new ProjectStartsWithValidator(),
+            };
+            var projectName = GenContext.Current.ProjectName;
+            var projectNameValidation = Naming.Validate(projectName, validators);
             if (projectNameValidation.IsValid)
             {
                 var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
@@ -36,8 +43,18 @@ namespace Microsoft.Templates.UI.Launcher
             }
             else
             {
-                var message = string.Format(StringRes.ErrorProjectReservedName, GenContext.Current.ProjectName);
-                var title = StringRes.WindowsTemplateStudio;
+                var message = string.Empty;
+                switch (projectNameValidation.ErrorType)
+                {
+                    case ValidationErrorType.ProjectReservedName:
+                        message = string.Format(StringRes.ErrorProjectReservedName, projectName);
+                        break;
+                    case ValidationErrorType.ProjectStartsWith:
+                        message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
+                        break;
+                }
+
+                var title = StringRes.ErrorTitleInvalidProjectName;
                 MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
                 CancelWizard();
                 return null;

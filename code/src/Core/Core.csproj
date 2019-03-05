@@ -142,7 +142,10 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
-    <Compile Include="Naming\ProjectNameValidator.cs" />
+    <Compile Include="Naming\BadFormatValidator.cs" />
+    <Compile Include="Naming\EmptyNameValidator.cs" />
+    <Compile Include="Naming\ProjectReservedNamesValidator.cs" />
+    <Compile Include="Naming\ProjectStartsWithValidator.cs" />
     <Compile Include="Packaging\CertInfo.cs" />
     <Compile Include="Packaging\IDigitalSignatureService.cs" />
     <Compile Include="Templates\MetadataType.cs" />
@@ -320,7 +323,6 @@
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringRes.en-US.resx" />
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
@@ -344,6 +346,7 @@
     <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
       <Generator>ResXFileCodeGenerator</Generator>

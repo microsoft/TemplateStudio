@@ -29,14 +29,12 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.ReservedName,
                 };
             }
-            else
+
+            return new ValidationResult()
             {
-                return new ValidationResult()
-                {
-                    IsValid = true,
-                    ErrorType = ValidationErrorType.None,
-                };
-            }
+                IsValid = true,
+                ErrorType = ValidationErrorType.None,
+            };
         }
     }
 }

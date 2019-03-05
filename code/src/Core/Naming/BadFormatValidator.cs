@@ -2,30 +2,23 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.IO;
-using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core
 {
-    public class FileExistsValidator : Validator<string>
+    public class BadFormatValidator : Validator
     {
-        public FileExistsValidator(string config)
-            : base(config)
-        {
-        }
+        private const string ValidationPattern = @"^((?!\d)\w+)$";
 
         public override ValidationResult Validate(string suggestedName)
         {
-            var existing = Directory.EnumerateFiles(Config)
-                                            .Select(f => Path.GetFileNameWithoutExtension(f))
-                                            .ToList();
-
-            if (existing.Contains(suggestedName))
+            var m = Regex.Match(suggestedName, ValidationPattern);
+            if (!m.Success)
             {
-                return new ValidationResult()
+                return new ValidationResult
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.AlreadyExists,
+                    ErrorType = ValidationErrorType.BadFormat,
                 };
             }
 
