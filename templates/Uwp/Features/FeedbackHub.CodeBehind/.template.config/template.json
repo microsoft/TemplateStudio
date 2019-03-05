@@ -47,7 +47,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Services.Store.Engagement",
-        "version" : "10.1810.16002",
+        "version" : "10.1901.28001",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"
