@@ -8,7 +8,7 @@
     <ProjectGuid>{6B17846A-9301-4DAA-A8C3-05D101541451}</ProjectGuid>
     <!--/+:cnd:noEmit -->
     <OutputType>Library</OutputType>
-    <RootNamespace>Param_ProjectName.Tests.WinAppDriver</RootNamespace>
+    <RootNamespace>Param_RootNamespace.Tests.WinAppDriver</RootNamespace>
     <AssemblyName>Param_ProjectName.Tests.WinAppDriver</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
