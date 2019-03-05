@@ -13,7 +13,7 @@ namespace Param_RootNamespace.Services
             _frame = frame;
         }
 
-        public void SetListDataItemForNextConnectedAnnimation(object item)
+        public void SetListDataItemForNextConnectedAnimation(object item)
         {
             _frame.SetListDataItemForNextConnectedAnnimation(item);
         }

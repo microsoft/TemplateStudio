@@ -74,7 +74,7 @@ namespace Param_RootNamespace.ViewModels
 
         public void UpdateConnectedAnimation()
         {
-            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnimation(SelectedImage);
             ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
         }
     }
