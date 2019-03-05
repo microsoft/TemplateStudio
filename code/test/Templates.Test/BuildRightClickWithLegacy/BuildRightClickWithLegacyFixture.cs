@@ -13,12 +13,9 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
 {
-    // TODO: Enable legacy test when version 3.1 is published
-    [Ignore("Cannot generate legacy projects due to split framework in frontend and backend")]
     public sealed class BuildRightClickWithLegacyFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
