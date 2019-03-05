@@ -37,7 +37,7 @@ namespace Param_RootNamespace.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnimation(selected);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Services
 
         public void SetListDataItemForNextConnectedAnimation(object item)
         {
-            _frame.SetListDataItemForNextConnectedAnnimation(item);
+            _frame.SetListDataItemForNextConnectedAnimation(item);
         }
     }
 }
