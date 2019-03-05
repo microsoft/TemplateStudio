@@ -727,4 +727,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <value>{0} (optional)</value>
     <comment>The layout is optional</comment>
   </data>
+  <data name="ErrorProjectReservedName" xml:space="preserve">
+    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <comment>Message box text for project reserved names.</comment>
+  </data>
 </root>

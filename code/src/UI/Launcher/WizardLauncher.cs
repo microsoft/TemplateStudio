@@ -3,9 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -14,6 +16,7 @@ namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
+        private ProjectNameValidator _projectNameValidator = new ProjectNameValidator();
         private DialogService _dialogService = DialogService.Instance;
         private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
@@ -25,8 +28,20 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
-            return StartWizard(newProjectView, WizardTypeEnum.NewProject);
+            var projectNameValidation = _projectNameValidator.Validate(GenContext.Current.ProjectName);
+            if (projectNameValidation.IsValid)
+            {
+                var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
+                return StartWizard(newProjectView, WizardTypeEnum.NewProject);
+            }
+            else
+            {
+                var message = string.Format(StringRes.ErrorProjectReservedName, GenContext.Current.ProjectName);
+                var title = StringRes.WindowsTemplateStudio;
+                MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+                CancelWizard();
+                return null;
+            }
         }
 
         public UserSelection StartAddPage(string language, BaseStyleValuesProvider provider)

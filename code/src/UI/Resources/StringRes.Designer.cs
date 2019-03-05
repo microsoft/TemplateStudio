@@ -487,6 +487,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; is a reserved name. Please choose a different name and try again..
+        /// </summary>
+        public static string ErrorProjectReservedName {
+            get {
+                return ResourceManager.GetString("ErrorProjectReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to add files and projects..
         /// </summary>
         public static string ErrorUnableAddFilesAndProjects {
