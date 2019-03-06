@@ -126,14 +126,47 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void OnCreateIssue()
         {
-            var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
-            var index = executingDirectory.IndexOf("/code/");
-            var issueTemplatePath = $"{executingDirectory.Substring(0, index)}/docs/issue_template.md";
-            var issueTemplate = File.ReadAllText(issueTemplatePath);
-            issueTemplate = issueTemplate.Replace("* **WTS Wizard Version:**", $"* **WTS Wizard Version: {GenContext.ToolBox.WizardVersion}**");
-            issueTemplate = issueTemplate.Replace("* **WTS Template Version:**", $"* **WTS Template Version: {GenContext.ToolBox.TemplatesVersion}**");
-            issueTemplate = issueTemplate.Replace("* **Windows Build:**", $"* **Windows Build: {Environment.OSVersion.Version}**");
-            var body = HttpUtility.UrlEncode(issueTemplate);
+            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            var sb = new StringBuilder();
+            sb.AppendLine("### For new Features:");
+            sb.AppendLine();
+            sb.AppendLine("#### Overview");
+            sb.AppendLine();
+            sb.AppendLine("What you'd think should be added with scenarios");
+            sb.AppendLine();
+            sb.AppendLine("#### Links");
+            sb.AppendLine();
+            sb.AppendLine("### For Bugs:");
+            sb.AppendLine();
+            sb.AppendLine("#### Repro steps");
+            sb.AppendLine();
+            sb.AppendLine("What did you do? How can someone else reproduce this?");
+            sb.AppendLine();
+            sb.AppendLine("#### Expected Behavior");
+            sb.AppendLine();
+            sb.AppendLine("What was expected to happen");
+            sb.AppendLine("(include screenshots if a visual issue)");
+            sb.AppendLine();
+            sb.AppendLine("#### Actual Behavior");
+            sb.AppendLine();
+            sb.AppendLine("What really happened");
+            sb.AppendLine();
+            sb.AppendLine("### System");
+            sb.AppendLine();
+            if (!string.IsNullOrEmpty(vsInfo.VisualStudioEdition) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
+            {
+                sb.AppendLine($"* **VS Version: {vsInfo.VisualStudioEdition} {vsInfo.VisualStudioExeVersion}**");
+            }
+            else
+            {
+                sb.AppendLine($"* **VS Version:**");
+            }
+
+            sb.AppendLine($"* **WTS Wizard Version: {GenContext.ToolBox.WizardVersion}**");
+            sb.AppendLine($"* **WTS Template Version: {GenContext.ToolBox.TemplatesVersion}**");
+            sb.AppendLine($"* **Windows Build: {Environment.OSVersion.Version}**");
+
+            var body = HttpUtility.UrlEncode(sb.ToString());
             Process.Start($"https://github.com/Microsoft/WindowsTemplateStudio/issues/new?body={body}");
         }
     }
