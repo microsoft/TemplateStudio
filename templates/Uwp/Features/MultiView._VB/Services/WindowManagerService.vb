@@ -40,7 +40,7 @@ Namespace Services
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType, theme)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
-            Dim viewShown = Await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.[Default], ApplicationView.GetForCurrentView().Id, ViewSizePreference.[Default])
+            Await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.[Default], ApplicationView.GetForCurrentView().Id, ViewSizePreference.[Default])
             viewControl.StopViewInUse()
             Return viewControl
         End Function
@@ -51,7 +51,7 @@ Namespace Services
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType, theme)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
-            Dim viewShown = Await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode)
+            Await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode)
             viewControl.StopViewInUse()
             Return viewControl
         End Function

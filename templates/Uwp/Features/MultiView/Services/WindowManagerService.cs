@@ -41,7 +41,7 @@ namespace Param_RootNamespace.Services
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
-            var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
             viewControl.StopViewInUse();
             return viewControl;
         }
@@ -52,7 +52,7 @@ namespace Param_RootNamespace.Services
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
-            var viewShown = await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode);
+            await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode);
             viewControl.StopViewInUse();
             return viewControl;
         }
