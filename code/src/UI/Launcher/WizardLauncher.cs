@@ -38,7 +38,7 @@ namespace Microsoft.Templates.UI.Launcher
         public UserSelection StartAddFeature(string language, BaseStyleValuesProvider provider)
         {
             var addFeatureView = new Views.NewItem.WizardShell(TemplateType.Feature, language, provider);
-            return StartWizard(addFeatureView, WizardTypeEnum.NewProject);
+            return StartWizard(addFeatureView, WizardTypeEnum.AddFeature);
         }
 
         private UserSelection StartWizard(IWizardShell wizardShell, WizardTypeEnum wizardType)
