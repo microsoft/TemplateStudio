@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank & $framework == Prism & groupidentity == wts.Page.ImageGallery|wts.Page.ContentGrid"
+    "wts.compositionFilter": "$projectType == Blank & $frontendframework == Prism & groupidentity == wts.Page.ImageGallery|wts.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

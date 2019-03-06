@@ -31,6 +31,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private GenerationService _generationService = GenerationService.Instance;
 
+        private string _emptyBackendFramework = string.Empty;
+
         public TemplateType TemplateType { get; set; }
 
         public string ConfigPlatform { get; private set; }
@@ -117,8 +119,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, ConfigPlatform);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, _emptyBackendFramework, ConfigPlatform);
             var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
             userSelection.Add(templateInfo);
 
@@ -142,7 +144,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection GetUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
             var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
             userSelection.Add(templateInfo);
             return userSelection;

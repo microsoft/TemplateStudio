@@ -31,11 +31,11 @@ namespace Microsoft.Templates.Test
                     && t.GetLanguage() == ProgrammingLanguages.VisualBasic
                     && t.GetPlatform() == platform
                     && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework);
+                    && t.GetFrontEndFrameworkList().Contains(framework);
 
             Func<ITemplateInfo, bool> templateSelector =
                 t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                        && t.GetFrameworkList().Contains(framework)
+                        && t.GetFrontEndFrameworkList().Contains(framework)
                         && t.GetPlatform() == platform
                         && !t.GetIsHidden())
                      || (t.Name == "Feature.Testing.SonarLint.VB");

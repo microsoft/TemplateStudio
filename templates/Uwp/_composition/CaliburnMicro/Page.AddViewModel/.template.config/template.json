@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.version": "1.0.0",
     "wts.platform" : "Uwp",
-    "wts.compositionFilter": "$framework == CaliburnMicro & wts.type==page",
+    "wts.compositionFilter": "$frontendframework == CaliburnMicro & wts.type==page",
     "wts.export.baseclass": "Screen",
     "wts.export.setter": "Set"
   },

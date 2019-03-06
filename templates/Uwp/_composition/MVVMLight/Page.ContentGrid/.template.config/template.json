@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & groupidentity == wts.Page.ContentGrid"
+    "wts.compositionFilter": "$frontendframework == MVVMLight & groupidentity == wts.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

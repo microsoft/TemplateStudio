@@ -73,13 +73,13 @@ namespace Microsoft.UI.Test
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.ProjectType == SplitView);
-            Assert.True(userSelection.Framework == CodeBehind);
+            Assert.True(userSelection.FrontEndFramework == CodeBehind);
             Assert.True(userSelection.Pages.First().Template.Identity == PageBlankCodeBehind);
             SetProjectType(viewModel, Blank);
             SetFramework(viewModel, MVVMLight);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.ProjectType == Blank);
-            Assert.True(userSelection.Framework == MVVMLight);
+            Assert.True(userSelection.FrontEndFramework == MVVMLight);
             Assert.True(userSelection.Pages.First().Template.Identity == PageBlank);
         }
 

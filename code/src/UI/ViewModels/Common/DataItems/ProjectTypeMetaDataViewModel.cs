@@ -14,6 +14,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class ProjectTypeMetaDataViewModel : BasicInfoViewModel
     {
         private MetadataType _metadataType;
+        private string _emptyBackendFramework = string.Empty;
 
         public MetadataType MetadataType
         {
@@ -43,7 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
             Frameworks = frameworks;
             var fx = frameworks.First().Name;
-            var layout = GenComposer.GetLayoutTemplates(Name, fx, platform);
+            var layout = GenComposer.GetLayoutTemplates(Name, fx, _emptyBackendFramework, platform);
             Layout = layout.Select(l => new LayoutViewModel(l, fx, platform));
         }
     }

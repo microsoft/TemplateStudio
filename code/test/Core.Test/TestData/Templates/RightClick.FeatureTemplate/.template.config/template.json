@@ -2,12 +2,12 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "RightClickTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.RightClickTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.RightClickTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.RightClickTemplate",
+  "identity": "Microsoft.Templates.Test.RightClickTemplate.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "feature",
     "wts.rightClickEnabled": "true"
   },

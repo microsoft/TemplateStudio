@@ -39,14 +39,14 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                      && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetFrontEndFrameworkList().Contains(framework)
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 
             // Exclude background task from WACK tests until WACK is fixed
             Func<ITemplateInfo, bool> templateSelector =
                 t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GroupIdentity != "wts.Feat.BackgroundTask"
                     && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
                     && t.GetPlatform() == platform

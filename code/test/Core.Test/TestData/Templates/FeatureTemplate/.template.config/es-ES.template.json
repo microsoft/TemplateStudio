@@ -2,5 +2,5 @@
   "author": "Microsoft España",
   "name": "FeatureTemplate",
   "description": "Está en Español (Feature)...",
-  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp"
+  "identity": "Microsoft.Templates.Test.FeatureTemplate.CSharp"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft USA",
   "name": "FeatureTemplate",
   "description": "Feature US English...",
-  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.VB"
+  "identity": "Microsoft.Templates.Test.FeatureTemplate.VB"
 }

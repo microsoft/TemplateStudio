@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == Blank & groupidentity == wts.Page.ImageGallery"
+    "wts.compositionFilter": "$frontendframework == CaliburnMicro & $projectType == Blank & groupidentity == wts.Page.ImageGallery"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -173,7 +173,8 @@ namespace TemplateValidator
                     case "wts.compositionOrder":
                         VerifyWtsCompositionOrderTagValue(tag, results);
                         break;
-                    case "wts.framework":
+                    case "wts.frontendframework":
+                    case "wts.backendframework":
                         VerifyWtsFrameworkTagValue(tag, results);
                         break;
                     case "wts.projecttype":
@@ -231,9 +232,9 @@ namespace TemplateValidator
                 }
             }
 
-            if (template.TemplateTags.ContainsKey("language") && template.TemplateTags.ContainsKey("wts.framework"))
+            if (template.TemplateTags.ContainsKey("language") && template.TemplateTags.ContainsKey("wts.frontendframework"))
             {
-                VerifyFrameworksAreAppropriateForLanguage(template.TemplateTags["language"], template.TemplateTags["wts.framework"], results);
+                VerifyFrameworksAreAppropriateForLanguage(template.TemplateTags["language"], template.TemplateTags["wts.frontendframework"], results);
             }
         }
 
@@ -380,7 +381,7 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var projectType in tag.Value.Split('|'))
             {
-                if (!new[] { "Blank", "SplitView", "TabbedNav" }.Contains(projectType))
+                if (!new[] { "Blank", "SplitView", "TabbedNav", "all" }.Contains(projectType))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.projecttype tag.");
                 }

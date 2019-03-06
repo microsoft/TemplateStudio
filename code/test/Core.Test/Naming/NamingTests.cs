@@ -224,7 +224,7 @@ namespace Microsoft.Templates.Core.Test
 
         private void SetUpFixtureForTesting(string language)
         {
-            _fixture.InitializeFixture(language);
+            _fixture.InitializeFixture("test", language);
         }
 
         public static IEnumerable<object[]> GetAllLanguages()

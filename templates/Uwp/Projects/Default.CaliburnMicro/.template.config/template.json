@@ -9,7 +9,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "CaliburnMicro",
+    "wts.frontendframework": "CaliburnMicro",
     "wts.projecttype":"Blank|SplitView|TabbedNav",
 	  "wts.platform": "Uwp",
     "wts.version": "1.0.0",
@@ -57,7 +57,7 @@
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFramework":
+    "wts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"

@@ -142,7 +142,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("CompositionTemplate");
 
             var result = target.GetCompositionFilter();
-            Assert.Equal("groupidentity == Microsoft.UWPTemplates.Test.PageTemplate", result);
+            Assert.Equal("groupidentity == Microsoft.Templates.Test.PageTemplate", result);
         }
 
         [Theory]
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetPlatform();
-            Assert.Equal("Uwp", result);
+            Assert.Equal("test", result);
         }
 
         [Theory]
@@ -221,19 +221,19 @@ namespace Microsoft.Templates.Core.Test
 
             var target = GetTargetByName("ProjectTemplate");
 
-            var result = target.GetFrameworkList();
+            var result = target.GetFrontEndFrameworkList();
             Assert.Collection(result, e1 => e1.Equals("fx1"));
         }
 
         [Theory]
         [MemberData(nameof(GetAllLanguages))]
-        public void GetFramework_unspecified(string language)
+        public void GetFrontEndFramework_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
 
             var target = GetTargetByName("UnspecifiedTemplate");
 
-            var result = target.GetFrameworkList();
+            var result = target.GetFrontEndFrameworkList();
             Assert.Empty(result);
         }
 
@@ -282,7 +282,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("PageTemplate");
 
             var result = target.GetExports();
-            Assert.Collection(result, e1 => e1.Equals(("baseclass", "ViewModelBase") ), e2 => e2.Equals(("setter", "Set") ));
+            Assert.Collection(result, e1 => e1.Equals(("baseclass", "ViewModelBase")), e2 => e2.Equals(("setter", "Set")));
         }
 
         [Theory]
@@ -363,7 +363,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
+            var target = GetTargetByIdentity("Microsoft.Templates.Test.PageTemplate.CSharp");
 
             var result = target.GetDisplayOrder();
             Assert.Equal(1, result);
@@ -507,7 +507,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+            var target = GetTargetByIdentity("Microsoft.Templates.Test.FeatureTemplate.CSharp");
             var result = target.GetRightClickEnabled();
 
             Assert.False(result);
@@ -529,7 +529,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+            var target = GetTargetByIdentity("Microsoft.Templates.Test.FeatureTemplate.CSharp");
             var result = target.GetIsHidden();
 
             Assert.False(result);
@@ -649,7 +649,7 @@ namespace Microsoft.Templates.Core.Test
 
         private void SetUpFixtureForTesting(string language)
         {
-            _fixture.InitializeFixture(language);
+            _fixture.InitializeFixture("test", language);
         }
 
         public static IEnumerable<object[]> GetAllLanguages()
