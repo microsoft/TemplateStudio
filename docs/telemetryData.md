@@ -30,19 +30,17 @@ As new features and pages roll out, percentages  will adjust.
 |Master/Detail|9.6%|
 |DataGrid|6.2%|
 |Web View|5.9%|
-|Content Grid|5%|
+|Content Grid|5.5%|
 |Tabbed|4.9%|
 |Chart|4.6%|
 |Map|3.9%|
 |ImageGallery|3%|
-|Telerik Data Grid|2.9%|
+|Telerik Data Grid|3.0%|
 |Media Player|2.4%|
 |Camera|2%|
 |Ink Draw Picture|1.5%|
 |Ink Draw|1.5%|
 |Ink Smart Canvas|1.4%|
-|ContentGrid|0.5%|
-|Grid|0.1%|
 
 ## Features
 
@@ -76,6 +74,13 @@ As new features and pages roll out, percentages  will adjust.
 
 |Entry point|Percentage|
 |:---|:---:|
-|New Project|90.9%|
-|Add Page|9%|
-|Add Feature|0.1%|
+|New Project|89.5%|
+|Add Page|9.4%|
+|Add Feature|1.1%|
+
+## Programming languages
+
+|Languages|Percentage|
+|:---|:---:|
+|C#|95.6%|
+|VisualBasic|4.4%|
