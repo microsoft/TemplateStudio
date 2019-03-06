@@ -32,7 +32,7 @@ namespace Localization
 
         internal const string WtsTemplatesRootDirPath = "templates\\_catalog";
         internal const string WtsProjectTypes = "projectTypes";
-        internal const string WtsFrameworks = "frameworks";
+        internal const string WtsFrameworks = "frontendframeworks";
 
         internal const string VsixRootDirPath = "code\\src\\Installer.2017";
         internal const string VsixLangDirPattern = "{0}\\Extension.vsixlangpack";
@@ -68,7 +68,7 @@ namespace Localization
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer.2017\\Commands\\RelayCommandPackage.en-US.vsct";
         internal const string VspackageFileNameValidate = "code\\src\\Installer.2017\\Commands\\VSPackage.en-US.resx";
         internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
-        internal const string WtsFrameworksValidate = "templates\\_catalog\\frameworks.json";
+        internal const string WtsFrameworksValidate = "templates\\_catalog\\frontendframeworks.json";
 
         // Extract files folders
         internal const string OriginalExtractDirectory = "original";
