@@ -19,6 +19,10 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
             NavigationService.Frame = shellFrame;
             MenuNavigationHelper.Initialize(splitView, rightFrame);
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
             KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
         }

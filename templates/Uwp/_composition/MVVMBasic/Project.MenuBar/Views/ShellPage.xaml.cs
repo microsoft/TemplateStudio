@@ -17,6 +17,10 @@ namespace Param_RootNamespace.Views
         {
             InitializeComponent();
             ViewModel.Initialize(shellFrame, splitView, rightFrame);
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
             KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
         }
