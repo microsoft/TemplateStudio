@@ -12,7 +12,7 @@ Namespace ViewModels
         Private Sub OnsItemSelected(args As ItemClickEventArgs)
             Dim selected = TryCast(args.ClickedItem, SampleImage)
             ImagesNavigationHelper.AddImageId(wts.ItemNameSelectedIdKey, selected.ID)
-            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected)
+            NavigationService.Frame.SetListDataItemForNextConnectedAnimation(selected)
             NavigationService.Navigate(Of wts.ItemNameDetailPage)(selected.ID)
         End Sub
         '}]}

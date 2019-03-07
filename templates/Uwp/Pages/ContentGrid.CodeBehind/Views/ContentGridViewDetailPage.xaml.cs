@@ -41,7 +41,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(Item);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(Item);
             }
         }
 

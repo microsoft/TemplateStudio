@@ -56,7 +56,7 @@ Namespace Views
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage)
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(SelectedImage)
                 ImagesNavigationHelper.RemoveImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
             End If
         End Sub

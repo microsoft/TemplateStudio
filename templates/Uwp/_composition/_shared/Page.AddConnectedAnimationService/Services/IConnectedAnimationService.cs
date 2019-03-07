@@ -2,6 +2,6 @@
 {
     public interface IConnectedAnimationService
     {
-        void SetListDataItemForNextConnectedAnnimation(object item);
+        void SetListDataItemForNextConnectedAnimation(object item);
     }
 }

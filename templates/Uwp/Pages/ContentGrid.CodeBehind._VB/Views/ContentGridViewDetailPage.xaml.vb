@@ -35,7 +35,7 @@ Namespace Views
             MyBase.OnNavigatingFrom(e)
 
             If e.NavigationMode = NavigationMode.Back Then
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(Item)
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(Item)
             End If
         End Sub
 

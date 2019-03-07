@@ -69,7 +69,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(SelectedImage);
                 ImagesNavigationHelper.RemoveImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
             }
         }

@@ -26,9 +26,9 @@ namespace Param_RootNamespace.ViewModels
             Item = data.First(i => i.OrderId == orderId);
         }
 
-        public void SetListDataItemForNextConnectedAnnimation()
+        public void SetListDataItemForNextConnectedAnimation()
         {
-            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(Item);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnimation(Item);
         }
     }
 }
