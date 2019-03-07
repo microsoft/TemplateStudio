@@ -407,7 +407,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
-                        result.Add(new object[] { projectType, framework, platform });
+                        result.Add(new object[] { projectType, framework.Name, platform });
                     }
                 }
             }
