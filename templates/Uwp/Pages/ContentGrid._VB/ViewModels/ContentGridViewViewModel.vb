@@ -21,7 +21,7 @@ Namespace ViewModels
 
         Private Sub OnItemClick(clickedItem As SampleOrder)
             If clickedItem IsNot Nothing Then
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem)
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem)
             End If
         End Sub
     End Class

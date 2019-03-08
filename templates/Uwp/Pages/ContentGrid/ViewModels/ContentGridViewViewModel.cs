@@ -31,7 +31,7 @@ namespace Param_RootNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
             }
         }
     }

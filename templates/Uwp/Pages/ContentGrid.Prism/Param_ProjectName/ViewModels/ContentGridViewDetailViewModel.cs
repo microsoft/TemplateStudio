@@ -38,7 +38,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(Item);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnimation(Item);
             }
         }
     }

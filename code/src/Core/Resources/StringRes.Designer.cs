@@ -187,6 +187,33 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; is a reserved name. Please choose a different name and try again..
+        /// </summary>
+        public static string ErrorProjectReservedName {
+            get {
+                return ResourceManager.GetString("ErrorProjectReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; is not a valid name. Project name can&apos;t start with &quot;{1}&quot;..
+        /// </summary>
+        public static string ErrorProjectStartsWith {
+            get {
+                return ResourceManager.GetString("ErrorProjectStartsWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid project name.
+        /// </summary>
+        public static string ErrorTitleInvalidProjectName {
+            get {
+                return ResourceManager.GetString("ErrorTitleInvalidProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception tracking telemetry during generation..
         /// </summary>
         public static string ErrorTrackTelemetryException {

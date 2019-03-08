@@ -2,30 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.IO;
 using System.Linq;
 
 namespace Microsoft.Templates.Core
 {
-    public class FileExistsValidator : Validator<string>
+    public class ProjectStartsWithValidator : Validator
     {
-        public FileExistsValidator(string config)
-            : base(config)
+        private static readonly string[] StartsWith = new string[]
         {
-        }
+            "$",
+        };
 
         public override ValidationResult Validate(string suggestedName)
         {
-            var existing = Directory.EnumerateFiles(Config)
-                                            .Select(f => Path.GetFileNameWithoutExtension(f))
-                                            .ToList();
-
-            if (existing.Contains(suggestedName))
+            if (StartsWith.Any(r => suggestedName.StartsWith(r)))
             {
                 return new ValidationResult()
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.AlreadyExists,
+                    ErrorType = ValidationErrorType.ProjectStartsWith,
                 };
             }
 

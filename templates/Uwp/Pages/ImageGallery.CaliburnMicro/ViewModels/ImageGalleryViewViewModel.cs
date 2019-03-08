@@ -36,7 +36,7 @@ namespace Param_RootNamespace.ViewModels
         public void OnImageSelected(SampleImage image)
         {
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, image.ID);
-            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(image);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnimation(image);
             _navigationService.For<ImageGalleryViewDetailViewModel>()
                 .WithParam(v => v.ID, image.ID)
                 .Navigate();

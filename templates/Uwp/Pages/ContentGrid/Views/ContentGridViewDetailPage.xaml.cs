@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Item);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
             }
         }
     }

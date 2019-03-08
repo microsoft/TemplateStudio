@@ -31,7 +31,7 @@ namespace Param_RootNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(clickedItem);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
                 _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem.OrderId);
             }
         }

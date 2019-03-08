@@ -499,4 +499,16 @@ Nemohly být integrovány následující změny: {2}
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
     <value>Nelze rozpoznat platformu.</value>
   </data>
+  <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
+    <value>Invalid project name</value>
+    <comment>Message box title for project invalid names.</comment>
+  </data>
+  <data name="ErrorProjectReservedName" xml:space="preserve">
+    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <comment>Message box text for project reserved names.</comment>
+  </data>
+  <data name="ErrorProjectStartsWith" xml:space="preserve">
+    <value>"{0}" is not a valid name. Project name can't start with "{1}".</value>
+    <comment>Message box text for project name can not start with.</comment>
+  </data>
 </root>
