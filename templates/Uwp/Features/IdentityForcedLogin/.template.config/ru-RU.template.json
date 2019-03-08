@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Identity Forced Login",
+  "description": "",
+  "identity": "wts.Feat.IdentityForcedLogin"
+}
