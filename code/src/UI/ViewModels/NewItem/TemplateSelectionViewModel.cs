@@ -120,7 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework, MainViewModel.Instance.ConfigPlatform);
+                var licenses = GenComposer.GetAllLicences(template.Template.Identity, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework, MainViewModel.Instance.ConfigPlatform);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

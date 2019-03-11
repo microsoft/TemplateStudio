@@ -74,13 +74,13 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.ProjectType == SplitView);
             Assert.True(userSelection.FrontEndFramework == CodeBehind);
-            Assert.True(userSelection.Pages.First().Template.Identity == PageBlankCodeBehind);
+            Assert.True(userSelection.Pages.First().TemplateId == PageBlankCodeBehind);
             SetProjectType(viewModel, Blank);
             SetFramework(viewModel, MVVMLight);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.ProjectType == Blank);
             Assert.True(userSelection.FrontEndFramework == MVVMLight);
-            Assert.True(userSelection.Pages.First().Template.Identity == PageBlank);
+            Assert.True(userSelection.Pages.First().TemplateId == PageBlank);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
             Assert.True(userSelection.Features.Count == numOfDependencies);
-            Assert.True(userSelection.Features.First().Template.Identity == FeatureSettingsStorage);
+            Assert.True(userSelection.Features.First().TemplateId == FeatureSettingsStorage);
         }
 
         [Fact]

@@ -99,22 +99,22 @@ namespace Microsoft.Templates.Core.Gen
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             return sb.ToString();
         }
 
-        public void Add(TemplateInfo template)
+        public void Add(TemplateInfo template, TemplateType templateType)
         {
-            switch (template.Template.GetTemplateType())
+            switch (templateType)
             {
                 case TemplateType.Page:
                     Pages.Add(template);

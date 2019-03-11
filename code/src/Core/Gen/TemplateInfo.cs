@@ -10,6 +10,6 @@ namespace Microsoft.Templates.Core.Gen
     {
         public string Name { get; set; }
 
-        public ITemplateInfo Template { get; set; }
+        public string TemplateId { get; set; }
     }
 }

@@ -83,7 +83,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
             IsHidden = template.GetIsHidden();
-            var dependencies = GenComposer.GetAllDependencies(template, frameworkName, _emptyBackendFramework, platform);
+            var dependencies = GenComposer.GetAllDependencies(Identity, frameworkName, _emptyBackendFramework, platform);
             Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName, platform));
             Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
 

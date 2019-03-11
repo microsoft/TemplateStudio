@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Test
 
         public void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
         {
-            var templateInfo = new TemplateInfo { Name = itemName, Template = template };
+            var templateInfo = new TemplateInfo { Name = itemName, TemplateId = template.Identity };
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Test
                     break;
             }
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.FrontEndFramework, userSelection.BackEndFramework, userSelection.Platform);
+            var dependencies = GenComposer.GetAllDependencies(template.Identity, userSelection.FrontEndFramework, userSelection.BackEndFramework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {
@@ -173,7 +173,7 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.Template.Identity == item.Identity) || userSelection.Features.Any(f => f.Template.Identity == item.Identity);
+            return userSelection.Pages.Any(p => p.TemplateId == item.Identity) || userSelection.Features.Any(f => f.TemplateId == item.Identity);
         }
 
         public static string GetDefaultName(ITemplateInfo template)

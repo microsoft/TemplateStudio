@@ -120,14 +120,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, _emptyBackendFramework, ConfigPlatform);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
-            userSelection.Add(templateInfo);
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template.Identity, ConfigFramework, _emptyBackendFramework, ConfigPlatform);
+            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
+            userSelection.Add(templateInfo, TemplateSelection.Template.GetTemplateType());
 
             foreach (var dependencyTemplate in dependencies)
             {
-                var dependencyTemplateInfo = new TemplateInfo { Name = dependencyTemplate.GetDefaultName(), Template = dependencyTemplate };
-                userSelection.Add(dependencyTemplateInfo);
+                var dependencyTemplateInfo = new TemplateInfo { Name = dependencyTemplate.GetDefaultName(), TemplateId = dependencyTemplate.Identity };
+                userSelection.Add(dependencyTemplateInfo, dependencyTemplate.GetTemplateType());
             }
 
             return userSelection;
@@ -145,8 +145,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection GetUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
-            userSelection.Add(templateInfo);
+            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
+            userSelection.Add(templateInfo, TemplateSelection.Template.GetTemplateType());
             return userSelection;
         }
 
