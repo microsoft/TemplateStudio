@@ -1,7 +1,7 @@
 {
   "author": "Microsoft",
   "classifications": [ "Test" ],
-  "name": "ProjectTemplate",
+  "name": "ProjectTemplate2",
   "groupIdentity": "Microsoft.Templates.Test.ProjectTemplate2",
   "identity": "Microsoft.Templates.Test.ProjectTemplate2.CSharp",
   "tags": {

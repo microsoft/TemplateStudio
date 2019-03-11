@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _canBeAdded, value);
         }
 
-        public TemplateInfoViewModel(ITemplateInfo template, string frameworkName, string platform)
+        public TemplateInfoViewModel(ITemplateInfo template,  string platform, string projectType, string frameworkName)
         {
             // BasicInfo properties
             Name = template.Name;
@@ -83,8 +83,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
             IsHidden = template.GetIsHidden();
-            var dependencies = GenComposer.GetAllDependencies(template, frameworkName, _emptyBackendFramework, platform);
-            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName, platform));
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template, platform, projectType, frameworkName, _emptyBackendFramework);
+            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties

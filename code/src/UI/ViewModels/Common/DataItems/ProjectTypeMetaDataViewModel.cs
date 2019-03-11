@@ -44,8 +44,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
             Frameworks = frameworks;
             var fx = frameworks.First().Name;
-            var layout = GenComposer.GetLayoutTemplates(Name, fx, _emptyBackendFramework, platform);
-            Layout = layout.Select(l => new LayoutViewModel(l, fx, platform));
+            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, Name, fx, _emptyBackendFramework);
+            Layout = layout.Select(l => new LayoutViewModel(l, platform, Name, fx));
         }
     }
 }
