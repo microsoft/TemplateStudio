@@ -74,15 +74,15 @@ namespace Microsoft.Templates.Core.Gen
             genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
         }
 
-        private static void AddTemplates(IEnumerable<TemplateInfo> templates, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
+        private static void AddTemplates(IEnumerable<UserSelectionItem> selectedTemplates, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
         {
-            foreach (var selectionItem in templates)
+            foreach (var selectedTemplate in selectedTemplates)
             {
-                if (!genQueue.Any(t => t.Name == selectionItem.Name && t.Template.Identity == selectionItem.TemplateId))
+                if (!genQueue.Any(t => t.Name == selectedTemplate.Name && t.Template.Identity == selectedTemplate.TemplateId))
                 {
-                    var template = GenContext.ToolBox.Repo.Find(t => t.Identity == selectionItem.TemplateId);
+                    var template = GenContext.ToolBox.Repo.Find(t => t.Identity == selectedTemplate.TemplateId);
                     AddDependencyTemplates(template, genQueue, userSelection, newItemGeneration);
-                    var genInfo = CreateGenInfo(selectionItem.Name, template, genQueue, newItemGeneration);
+                    var genInfo = CreateGenInfo(selectedTemplate.Name, template, genQueue, newItemGeneration);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                     genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
                     genInfo?.Parameters.Add(GenParams.Username, Environment.UserName);

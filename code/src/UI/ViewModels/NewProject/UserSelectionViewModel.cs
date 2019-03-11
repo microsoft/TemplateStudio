@@ -212,15 +212,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 selection.HomeName = Pages.First().Name;
             }
 
-            foreach (var page in Pages)
-            {
-                selection.Pages.Add(page.GetUserSelection());
-            }
-
-            foreach (var feature in Features)
-            {
-                selection.Features.Add(feature.GetUserSelection());
-            }
+            selection.Pages.AddRange(Pages.Select(p => p.ToUserSelectionItem()));
+            selection.Features.AddRange(Features.Select(f => f.ToUserSelectionItem()));
 
             return selection;
         }

@@ -49,11 +49,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
-        public List<TemplateInfo> Pages { get; } = new List<TemplateInfo>();
+        public List<UserSelectionItem> Pages { get; } = new List<UserSelectionItem>();
 
-        public List<TemplateInfo> Features { get; } = new List<TemplateInfo>();
+        public List<UserSelectionItem> Features { get; } = new List<UserSelectionItem>();
 
-        public IEnumerable<TemplateInfo> PagesAndFeatures
+        public IEnumerable<UserSelectionItem> PagesAndFeatures
         {
             get
             {
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Core.Gen
             return sb.ToString();
         }
 
-        public void Add(TemplateInfo template, TemplateType templateType)
+        public void Add(UserSelectionItem template, TemplateType templateType)
         {
             switch (templateType)
             {

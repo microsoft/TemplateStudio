@@ -93,16 +93,8 @@ namespace Microsoft.Templates.Test
 
         public void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
         {
-            var templateInfo = new TemplateInfo { Name = itemName, TemplateId = template.Identity };
-            switch (template.GetTemplateType())
-            {
-                case TemplateType.Page:
-                    userSelection.Pages.Add(templateInfo);
-                    break;
-                case TemplateType.Feature:
-                    userSelection.Features.Add(templateInfo);
-                    break;
-            }
+            var selectedTemplate = new UserSelectionItem { Name = itemName, TemplateId = template.Identity };
+            userSelection.Add(selectedTemplate, template.GetTemplateType());
 
             var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.Identity, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
 

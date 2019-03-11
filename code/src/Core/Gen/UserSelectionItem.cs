@@ -6,7 +6,7 @@ using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Core.Gen
 {
-    public class TemplateInfo
+    public class UserSelectionItem
     {
         public string Name { get; set; }
 

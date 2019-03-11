@@ -120,14 +120,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(TemplateSelection.Template.Identity, ConfigPlatform, ConfigProjectType, ConfigFramework, _emptyBackendFramework);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
-            userSelection.Add(templateInfo, TemplateSelection.Template.GetTemplateType());
+            var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
+            userSelection.Add(selectedTemplate, TemplateSelection.Template.GetTemplateType());
 
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(TemplateSelection.Template.Identity, ConfigPlatform, ConfigProjectType, ConfigFramework, _emptyBackendFramework);
             foreach (var dependencyTemplate in dependencies)
             {
-                var dependencyTemplateInfo = new TemplateInfo { Name = dependencyTemplate.GetDefaultName(), TemplateId = dependencyTemplate.Identity };
-                userSelection.Add(dependencyTemplateInfo, dependencyTemplate.GetTemplateType());
+                var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.GetDefaultName(), TemplateId = dependencyTemplate.Identity };
+                userSelection.Add(selectedTemplateDependency, dependencyTemplate.GetTemplateType());
             }
 
             return userSelection;
@@ -145,8 +145,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection GetUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
-            userSelection.Add(templateInfo, TemplateSelection.Template.GetTemplateType());
+            var selectedItem = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
+            userSelection.Add(selectedItem, TemplateSelection.Template.GetTemplateType());
             return userSelection;
         }
 
