@@ -54,18 +54,16 @@ namespace Microsoft.Templates.Test
                 foreach (var platform in platformsOfInterest)
                 {
                     SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Where(m => !string.IsNullOrEmpty(m.Description))
                                 .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name) && m.Name == frameworkFilter)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                                                    .Where(m => m.Name == frameworkFilter)
                                                     .Select(m => m.Name)
                                                     .ToList();
 

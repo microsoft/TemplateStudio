@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
         {
             var userSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language);
 
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework, userSelection.Platform);
+            var layouts = GenContext.ToolBox.Repo.GetLayoutTemplates(userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
 
             foreach (var item in layouts)
             {
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Test
                     break;
             }
 
-            var dependencies = GenComposer.GetAllDependencies(template.Identity, userSelection.FrontEndFramework, userSelection.BackEndFramework, userSelection.Platform);
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.Identity, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
 
             foreach (var item in dependencies)
             {
@@ -344,18 +344,16 @@ namespace Microsoft.Templates.Test
                 foreach (var platform in Platforms.GetAllPlatforms())
                 {
                     SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Where(m => !string.IsNullOrEmpty(m.Description))
                                 .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name) && m.Name == frameworkFilter)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                                                    .Where(m => m.Name == frameworkFilter)
                                                     .Select(m => m.Name).ToList();
 
                         foreach (var framework in targetFrameworks)
@@ -403,11 +401,12 @@ namespace Microsoft.Templates.Test
 
                 foreach (var projectType in projectTypeList)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
+                    var frameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                                            .Select(m => m.Name).ToList(); 
 
                     foreach (var framework in frameworks)
                     {
-                        result.Add(new object[] { projectType, framework.Name, platform });
+                        result.Add(new object[] { projectType, framework, platform });
                     }
                 }
             }
@@ -425,18 +424,15 @@ namespace Microsoft.Templates.Test
                 foreach (var platform in Platforms.GetAllPlatforms())
                 {
                     SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Where(m => !string.IsNullOrEmpty(m.Description))
                                 .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name))
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
                                                     .Select(m => m.Name).ToList();
 
                         foreach (var framework in targetFrameworks)

@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetFrontEndFrameworkList();
-            Assert.Collection(result, e1 => e1.Equals("fx1"));
+            Assert.Collection(result, e1 => e1.Equals("fx1"), e2 => e2.Equals("TestFramework"));
         }
 
         [Theory]
@@ -246,7 +246,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetProjectTypeList();
-            Assert.Collection(result,  e1 => e1.Equals("pt1"), e2 => e2.Equals("pt2"));
+            Assert.Collection(result,  e1 => e1.Equals("pt1"), e2 => e2.Equals("pt2"), e3 => e3.Equals("TestProjectType"));
         }
 
         [Theory]

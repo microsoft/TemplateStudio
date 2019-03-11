@@ -120,7 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template.Identity, ConfigFramework, _emptyBackendFramework, ConfigPlatform);
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(TemplateSelection.Template.Identity, ConfigPlatform, ConfigProjectType, ConfigFramework, _emptyBackendFramework);
             var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.Identity };
             userSelection.Add(templateInfo, TemplateSelection.Template.GetTemplateType());
 
@@ -152,7 +152,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override async Task OnTemplatesAvailableAsync()
         {
-            TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
+            TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
