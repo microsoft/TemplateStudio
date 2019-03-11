@@ -145,7 +145,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetTemplateInfo(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
         {
-            return GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == type
+            return Get(t => t.GetTemplateType() == type
                 && t.GetPlatform().Equals(platform, StringComparison.OrdinalIgnoreCase)
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && IsMatchFrontEnd(t, frontEndFramework)
@@ -164,7 +164,7 @@ namespace Microsoft.Templates.Core
             {
                 foreach (var item in layout)
                 {
-                    var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity
+                    var template = Find(t => t.GroupIdentity == item.TemplateGroupIdentity
                                                             && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                                                             && IsMatchFrontEnd(t, frontEndFramework)
                                                             && IsMatchBackEnd(t, backEndFramework)
@@ -193,7 +193,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAllDependencies(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)
         {
-            var template = GenContext.ToolBox.Repo.Find(t => t.Identity == templateId);
+            var template = Find(t => t.Identity == templateId);
             return GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
         }
 
@@ -201,7 +201,7 @@ namespace Microsoft.Templates.Core
         {
             var templates = new List<ITemplateInfo>();
 
-            var template = GenContext.ToolBox.Repo.Find(t => t.Identity == templateId);
+            var template = Find(t => t.Identity == templateId);
             templates.Add(template);
             templates.AddRange(GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>()));
             return templates.SelectMany(s => s.GetLicenses())
@@ -211,7 +211,7 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<string> GetSupportedProjectTypes(string platform)
         {
-            return GenContext.ToolBox.Repo.GetAll()
+            return GetAll()
                 .Where(t => t.GetTemplateType() == TemplateType.Project
                                 && t.GetPlatform() == platform)
                 .SelectMany(t => t.GetProjectTypeList())
@@ -220,7 +220,7 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<SupportedFramework> GetSupportedFx(string platform, string projectType)
         {
-            var filtered = GenContext.ToolBox.Repo.GetAll()
+            var filtered = GetAll()
                           .Where(t => t.GetTemplateType() == TemplateType.Project
                           && t.GetProjectTypeList().Contains(projectType)
                           && t.GetPlatform().Equals(platform, StringComparison.OrdinalIgnoreCase)).ToList();
@@ -239,7 +239,7 @@ namespace Microsoft.Templates.Core
 
             foreach (var dependency in dependencies)
             {
-                var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency
+                var dependencyTemplate = Find(t => t.Identity == dependency
                                                                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                                                                 && IsMatchFrontEnd(t, frontEndFramework)
                                                                 && IsMatchBackEnd(t, backEndFramework)
