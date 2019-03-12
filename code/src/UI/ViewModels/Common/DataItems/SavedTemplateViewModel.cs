@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _setFocusCommand;
         private Guid _id;
 
-        public ITemplateInfo Template { get; }
+        public TemplateInfo Template { get; }
 
         public string Identity { get; }
 
@@ -197,6 +197,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public UserSelectionItem ToUserSelectionItem() => new UserSelectionItem { Name = Name, TemplateId = Template.Identity };
+        public UserSelectionItem ToUserSelectionItem() => new UserSelectionItem { Name = Name, TemplateId = Template.TemplateId };
     }
 }

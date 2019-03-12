@@ -143,18 +143,24 @@ namespace Microsoft.Templates.Core
             return results;
         }
 
-        public IEnumerable<ITemplateInfo> GetTemplateInfo(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
+        public IEnumerable<ITemplateInfo> GetTemplates(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
         {
             return Get(t => t.GetTemplateType() == type
                 && t.GetPlatform().Equals(platform, StringComparison.OrdinalIgnoreCase)
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && IsMatchFrontEnd(t, frontEndFramework)
-                && IsMatchBackEnd(t, backEndFramework)).ToList();
+                && IsMatchBackEnd(t, backEndFramework));
+        }
+
+        public IEnumerable<TemplateInfo> GetTemplateInfo(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
+        {
+            var templates = GetTemplates(type, platform, projectType, frontEndFramework, backEndFramework);
+            return templates.ToTemplateInfo();
         }
 
         public IEnumerable<LayoutInfo> GetLayoutTemplates(string platform, string projectType, string frontEndFramework, string backEndFramework)
         {
-            var projectTemplate = GetTemplateInfo(TemplateType.Project, platform, projectType, frontEndFramework, backEndFramework)
+            var projectTemplate = GetTemplates(TemplateType.Project, platform, projectType, frontEndFramework, backEndFramework)
                 .FirstOrDefault();
             var layout = projectTemplate?
                 .GetLayout()
@@ -184,17 +190,18 @@ namespace Microsoft.Templates.Core
                         }
                         else
                         {
-                            yield return new LayoutInfo() { Layout = item, Template = template };
+                            yield return new LayoutInfo() { Layout = item, Template = template.ToTemplateInfo() };
                         }
                     }
                 }
             }
         }
 
-        public IEnumerable<ITemplateInfo> GetAllDependencies(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)
+        public IEnumerable<TemplateInfo> GetAllDependencies(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)
         {
             var template = Find(t => t.Identity == templateId);
-            return GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
+            var dependencies = GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
+            return dependencies.ToTemplateInfo();
         }
 
         public IEnumerable<TemplateLicense> GetAllLicences(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)

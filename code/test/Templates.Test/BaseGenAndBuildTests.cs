@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Test
             return (projectName, projectPath);
         }
 
-        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<TemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -120,11 +120,11 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
 
             if (getName != null && itemTemplatesSelector != null)
             {
-                var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
+                var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector).ToTemplateInfo();
                 _fixture.AddItems(userSelection, itemTemplates, getName);
             }
 
@@ -252,7 +252,8 @@ namespace Microsoft.Templates.Test
 
             if (!emptyProject)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework, platform), BaseGenAndBuildFixture.GetDefaultName);
+                var templates = _fixture.GetTemplates(framework, platform).ToTemplateInfo();
+                _fixture.AddItems(userSelection, templates, BaseGenAndBuildFixture.GetDefaultName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -313,7 +314,7 @@ namespace Microsoft.Templates.Test
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
-                _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item.ToTemplateInfo(), BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -352,7 +353,7 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
-            _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+            _fixture.AddItem(userSelection, itemTemplate.ToTemplateInfo(), BaseGenAndBuildFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -419,14 +420,14 @@ namespace Microsoft.Templates.Test
 
             foreach (var identity in genIdentitiesList)
             {
-                ITemplateInfo itemTemplate = _fixture.Templates()
+                var itemTemplate = _fixture.Templates()
                                                      .FirstOrDefault(t => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
-                                                                        && t.GetFrontEndFrameworkList().Contains(framework));
+                                                                        && t.GetFrontEndFrameworkList().Contains(framework)).ToTemplateInfo();
 
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
-                if (includeMultipleInstances && itemTemplate.GetMultipleInstance())
+                if (includeMultipleInstances && itemTemplate.MultipleInstance)
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }

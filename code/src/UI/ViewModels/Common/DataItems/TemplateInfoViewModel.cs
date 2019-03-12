@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _canBeAdded;
         private string _emptyBackendFramework = string.Empty;
 
-        public ITemplateInfo Template { get; }
+        public TemplateInfo Template { get; }
 
         public string Group { get; }
 
@@ -70,30 +70,30 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _canBeAdded, value);
         }
 
-        public TemplateInfoViewModel(ITemplateInfo template,  string platform, string projectType, string frameworkName)
+        public TemplateInfoViewModel(TemplateInfo template,  string platform, string projectType, string frameworkName)
         {
             // BasicInfo properties
             Name = template.Name;
-            Identity = template.Identity;
+            Identity = template.TemplateId;
             Title = template.Name;
             Summary = template.Description;
-            Description = template.GetRichDescription();
+            Description = template.RichDescription;
             Author = template.Author;
-            Version = template.GetVersion();
-            Icon = template.GetIcon();
-            Order = template.GetDisplayOrder();
-            IsHidden = template.GetIsHidden();
+            Version = template.Version;
+            Icon = template.Icon;
+            Order = template.DisplayOrder;
+            IsHidden = template.IsHidden;
             var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(Identity, platform, projectType, frameworkName, _emptyBackendFramework);
             Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
-            Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
+            Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
             Template = template;
-            Group = template.GetGroup();
-            GenGroup = template.GetGenGroup();
-            TemplateType = template.GetTemplateType();
-            MultipleInstance = template.GetMultipleInstance();
-            ItemNameEditable = template.GetItemNameEditable();
+            Group = template.Group;
+            GenGroup = template.GenGroup;
+            TemplateType = template.TemplateType;
+            MultipleInstance = template.MultipleInstance;
+            ItemNameEditable = template.ItemNameEditable;
             CanBeAdded = MultipleInstance || Count == 0;
         }
 

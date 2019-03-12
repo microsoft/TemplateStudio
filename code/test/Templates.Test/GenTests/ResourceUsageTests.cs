@@ -204,7 +204,8 @@ namespace Microsoft.Templates.Test
             var itemTemplates = _fixture.Templates().Where(t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                                                              && t.GetFrontEndFrameworkList().Contains(framework)
                                                              && t.GetPlatform() == platform
-                                                             && !t.GetIsHidden());
+                                                             && !t.GetIsHidden())
+                                                             .ToTemplateInfo();
 
             _fixture.AddItems(userSelection, itemTemplates, BaseGenAndBuildFixture.GetDefaultName);
 

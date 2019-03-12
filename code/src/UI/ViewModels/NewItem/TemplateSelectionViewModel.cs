@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public ITemplateInfo Template { get; private set; }
+        public TemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
@@ -120,7 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.Identity, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

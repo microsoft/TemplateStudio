@@ -114,7 +114,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.Template.Identity, _platform, _projectTypeName, _frameworkName, _emptyBackendFramework);
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.Template.TemplateId, _platform, _projectTypeName, _frameworkName, _emptyBackendFramework);
             foreach (var dependency in dependencies)
             {
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);

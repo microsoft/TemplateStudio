@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Test
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName,  false);
         }
 
-        protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<TemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
@@ -136,9 +136,9 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
-        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
+        public IEnumerable<TemplateInfo> GetTemplates(string framework)
         {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework));
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)).ToTemplateInfo();
         }
     }
 }

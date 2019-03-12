@@ -116,9 +116,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return result;
         }
 
-        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
+        public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
-            var groups = templateInfo.GetTemplateType() == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
+            var groups = templateInfo.TemplateType == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
             foreach (var group in groups)
             {
                 var template = group.GetTemplate(templateInfo);

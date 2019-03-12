@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
             return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework) && t.GetPlatform() == platform);
         }
 
-        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null)
+        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<TemplateInfo, string> getName = null)
         {
             var userSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language);
 
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
             return userSelection;
         }
 
-        public void AddItems(UserSelection userSelection, IEnumerable<ITemplateInfo> templates, Func<ITemplateInfo, string> getName)
+        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName)
         {
             foreach (var template in templates)
             {
@@ -70,9 +70,9 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public void AddItem(UserSelection userSelection, ITemplateInfo template, Func<ITemplateInfo, string> getName)
+        public void AddItem(UserSelection userSelection, TemplateInfo template, Func<TemplateInfo, string> getName)
         {
-            if (template.GetMultipleInstance() || !AlreadyAdded(userSelection, template))
+            if (template.MultipleInstance || !AlreadyAdded(userSelection, template))
             {
                 var itemName = getName(template);
                 var usedNames = userSelection.Pages.Select(p => p.Name).Concat(userSelection.Features.Select(f => f.Name));
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
                         new ExistingNamesValidator(usedNames),
                         new ReservedNamesValidator(),
                     };
-                if (template.GetItemNameEditable())
+                if (template.ItemNameEditable)
                 {
                     validators.Add(new DefaultNamesValidator());
                 }
@@ -91,18 +91,18 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
+        public void AddItem(UserSelection userSelection, string itemName, TemplateInfo template)
         {
-            var selectedTemplate = new UserSelectionItem { Name = itemName, TemplateId = template.Identity };
-            userSelection.Add(selectedTemplate, template.GetTemplateType());
+            var selectedTemplate = new UserSelectionItem { Name = itemName, TemplateId = template.TemplateId };
+            userSelection.Add(selectedTemplate, template.TemplateType);
 
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.Identity, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
+            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.TemplateId, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
 
             foreach (var item in dependencies)
             {
                 if (!AlreadyAdded(userSelection, item))
                 {
-                    AddItem(userSelection, item.GetDefaultName(), item);
+                    AddItem(userSelection, item.DefaultName, item);
                 }
             }
         }
@@ -163,18 +163,18 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile, resultFile);
         }
 
-        private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
+        private bool AlreadyAdded(UserSelection userSelection, TemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.TemplateId == item.Identity) || userSelection.Features.Any(f => f.TemplateId == item.Identity);
+            return userSelection.Pages.Any(p => p.TemplateId == item.TemplateId) || userSelection.Features.Any(f => f.TemplateId == item.TemplateId);
         }
 
-        public static string GetDefaultName(ITemplateInfo template)
+        public static string GetDefaultName(TemplateInfo template)
         {
-            return template.GetDefaultName();
+            return template.DefaultName;
         }
 
 #pragma warning disable RECS0154 // Parameter is never used - but used by method which takes an action which is passed a template
-        public static string GetRandomName(ITemplateInfo template)
+        public static string GetRandomName(TemplateInfo template)
 #pragma warning restore RECS0154 // Parameter is never used
         {
             for (int i = 0; i < 10; i++)

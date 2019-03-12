@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.Gen
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = GenContext.ToolBox.Repo.GetTemplateInfo(TemplateType.Project, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework)
+            var projectTemplate = GenContext.ToolBox.Repo.GetTemplates(TemplateType.Project, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework)
                 .FirstOrDefault();
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue, false);
 

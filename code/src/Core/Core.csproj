@@ -132,6 +132,7 @@
     <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
     <Compile Include="Gen\SupportedFramework.cs" />
+    <Compile Include="Gen\TemplateInfo.cs" />
     <Compile Include="Gen\UserSelectionItem.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
