@@ -5,7 +5,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;

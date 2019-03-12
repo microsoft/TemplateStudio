@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Gen; 
 using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
