@@ -12,8 +12,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class FrameworkViewModel : SelectableGroup<FrameworkMetaDataViewModel>
     {
-        public FrameworkViewModel(Func<bool> isSelectionEnabled, Action osSelected)
-            : base(isSelectionEnabled, osSelected)
+        public FrameworkViewModel(Func<bool> isSelectionEnabled, Func<Task> onSelected)
+            : base(isSelectionEnabled, onSelected)
         {
         }
 

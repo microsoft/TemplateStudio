@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -32,9 +33,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public static MainViewModel Instance { get; private set; }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType), () => Instance.OnProjectTypeSelected());
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType), () => Instance.OnProjectTypeSelectedAsync());
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework), () => Instance.OnFrameworkSelected());
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework), () => Instance.OnFrameworkSelectedAsync());
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
@@ -170,13 +171,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private async void OnProjectTypeSelected()
+        private async Task OnProjectTypeSelectedAsync()
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             await Framework.LoadDataAsync(ProjectType.Selected.Name, Platform);
         }
 
-        private async void OnFrameworkSelected()
+        private async Task OnFrameworkSelectedAsync()
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             AddPages.LoadData(Framework.Selected.Name, Platform);
             AddFeatures.LoadData(Framework.Selected.Name, Platform);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
