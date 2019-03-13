@@ -206,6 +206,21 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "group");
         }
 
+        public static bool GetIsGroupExclusiveSelection(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "isGroupExclusiveSelection");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
+        }
+
         public static string GetVersion(this ITemplateInfo ti)
         {
             return GetValueFromTag(ti, TagPrefix + "version");

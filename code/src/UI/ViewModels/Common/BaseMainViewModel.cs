@@ -76,7 +76,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public abstract bool IsSelectionEnabled(MetadataType metadataType);
 
-        public abstract void ProcessItem(object item);
+        public abstract Task ProcessItemAsync(object item);
 
         protected abstract void OnCancel();
 

@@ -131,19 +131,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return null;
         }
 
-        private void AddTemplate(TemplateInfoViewModel selectedTemplate)
+        private async Task AddTemplateAsync(TemplateInfoViewModel selectedTemplate)
         {
             if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
             {
-                UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
+                await UserSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }
 
-        protected override Task OnTemplatesAvailableAsync()
+        protected override async Task OnTemplatesAvailableAsync()
         {
-            ProjectType.LoadData(Platform);
+            await ProjectType.LoadDataAsync(Platform);
             ShowNoContentPanel = !ProjectType.Items.Any();
-            return Task.CompletedTask;
         }
 
         protected override IEnumerable<Step> GetSteps()
@@ -154,7 +153,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             yield return new Step(3, StringRes.NewProjectStepFour, () => new AddFeaturesPage());
         }
 
-        public override void ProcessItem(object item)
+        public override async Task ProcessItemAsync(object item)
         {
             if (item is ProjectTypeMetaDataViewModel projectTypeMetaData)
             {
@@ -167,20 +166,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             else if (item is TemplateInfoViewModel template)
             {
                 _selectedTemplate = template;
-                AddTemplate(template);
+                await AddTemplateAsync(template);
             }
         }
 
-        private void OnProjectTypeSelected()
+        private async void OnProjectTypeSelected()
         {
-            Framework.LoadData(ProjectType.Selected.Name, Platform);
+            await Framework.LoadDataAsync(ProjectType.Selected.Name, Platform);
         }
 
-        private void OnFrameworkSelected()
+        private async void OnFrameworkSelected()
         {
             AddPages.LoadData(Framework.Selected.Name, Platform);
             AddFeatures.LoadData(Framework.Selected.Name, Platform);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
+            await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }
 

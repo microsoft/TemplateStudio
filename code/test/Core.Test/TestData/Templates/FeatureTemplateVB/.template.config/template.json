@@ -9,7 +9,8 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.platform": "test",
-    "wts.type": "feature"
+    "wts.type": "feature",
+    "wts.isGroupExclusiveSelection": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true
