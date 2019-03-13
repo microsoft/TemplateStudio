@@ -40,7 +40,9 @@ namespace Microsoft.Templates.Core.Gen
 
         public bool ItemNameEditable { get; set; }
 
-        public IEnumerable<TemplateLicense> Licenses { get; set; }
+        public IEnumerable<TemplateLicense> Licenses { get; set; } = new List<TemplateLicense>();
+
+        public IEnumerable<TemplateInfo> Dependencies { get; set; } = new List<TemplateInfo>();
 
         public TemplateType TemplateType { get; set; }
 

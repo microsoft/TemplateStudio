@@ -96,9 +96,7 @@ namespace Microsoft.Templates.Test
             var selectedTemplate = new UserSelectionItem { Name = itemName, TemplateId = template.TemplateId };
             userSelection.Add(selectedTemplate, template.TemplateType);
 
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(template.TemplateId, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
-
-            foreach (var item in dependencies)
+            foreach (var item in template.Dependencies)
             {
                 if (!AlreadyAdded(userSelection, item))
                 {

@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
     [Collection("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
+        private readonly string _emptyBackendFramework = string.Empty;
         private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
@@ -116,7 +117,9 @@ namespace Microsoft.Templates.Test
 
             if (getName != null)
             {
-                _fixture.AddItems(userSelection, GetTemplates(framework), getName);
+                var templates = GetTemplates(framework);
+                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, string.Empty, projectType, framework, _emptyBackendFramework);
+                _fixture.AddItems(userSelection, templatesInfo, getName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -136,9 +139,9 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
-        public IEnumerable<TemplateInfo> GetTemplates(string framework)
+        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
         {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)).ToTemplateInfo();
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework));
         }
     }
 }

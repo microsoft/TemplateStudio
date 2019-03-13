@@ -398,34 +398,5 @@ namespace Microsoft.Templates.Core
 
             return null;
         }
-
-        public static TemplateInfo ToTemplateInfo(this ITemplateInfo templateInfo)
-        {
-            return new TemplateInfo
-            {
-                TemplateId = templateInfo.Identity,
-                Name = templateInfo.Name,
-                DefaultName = templateInfo.GetDefaultName(),
-                Description = templateInfo.Description,
-                RichDescription = templateInfo.GetRichDescription(),
-                Author = templateInfo.Author,
-                Version = templateInfo.GetVersion(),
-                Icon = templateInfo.GetIcon(),
-                DisplayOrder = templateInfo.GetDisplayOrder(),
-                IsHidden = templateInfo.GetIsHidden(),
-                Group = templateInfo.GetGroup(),
-                GenGroup = templateInfo.GetGenGroup(),
-                MultipleInstance = templateInfo.GetMultipleInstance(),
-                ItemNameEditable = templateInfo.GetItemNameEditable(),
-                Licenses = templateInfo.GetLicenses(),
-                TemplateType = templateInfo.GetTemplateType(),
-                RightClickEnabled = templateInfo.GetRightClickEnabled(),
-            };
-        }
-
-        public static IEnumerable<TemplateInfo> ToTemplateInfo(this IEnumerable<ITemplateInfo> templates)
-        {
-            return templates.Select(t => t.ToTemplateInfo());
-        }
     }
 }

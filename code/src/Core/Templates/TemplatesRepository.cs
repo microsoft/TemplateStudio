@@ -152,10 +152,47 @@ namespace Microsoft.Templates.Core
                 && IsMatchBackEnd(t, backEndFramework));
         }
 
-        public IEnumerable<TemplateInfo> GetTemplateInfo(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
+        public TemplateInfo GetTemplateInfo(ITemplateInfo template, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
+        {
+            var templateInfo = new TemplateInfo
+            {
+                TemplateId = template.Identity,
+                Name = template.Name,
+                DefaultName = template.GetDefaultName(),
+                Description = template.Description,
+                RichDescription = template.GetRichDescription(),
+                Author = template.Author,
+                Version = template.GetVersion(),
+                Icon = template.GetIcon(),
+                DisplayOrder = template.GetDisplayOrder(),
+                IsHidden = template.GetIsHidden(),
+                Group = template.GetGroup(),
+                GenGroup = template.GetGenGroup(),
+                MultipleInstance = template.GetMultipleInstance(),
+                ItemNameEditable = template.GetItemNameEditable(),
+                Licenses = template.GetLicenses(),
+                TemplateType = template.GetTemplateType(),
+                RightClickEnabled = template.GetRightClickEnabled(),
+            };
+
+            var dependencies = GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
+            templateInfo.Dependencies = GetTemplatesInfo(dependencies, platform, projectType, frontEndFramework, backEndFramework);
+
+            return templateInfo;
+        }
+
+        public IEnumerable<TemplateInfo> GetTemplatesInfo(TemplateType type, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
         {
             var templates = GetTemplates(type, platform, projectType, frontEndFramework, backEndFramework);
-            return templates.ToTemplateInfo();
+            return GetTemplatesInfo(templates, platform, projectType, frontEndFramework, backEndFramework);
+        }
+
+        public IEnumerable<TemplateInfo> GetTemplatesInfo(IEnumerable<ITemplateInfo> templates, string platform, string projectType, string frontEndFramework = null, string backEndFramework = null)
+        {
+            foreach (var template in templates)
+            {
+                yield return GetTemplateInfo(template, platform, projectType, frontEndFramework, backEndFramework);
+            }
         }
 
         public IEnumerable<LayoutInfo> GetLayoutTemplates(string platform, string projectType, string frontEndFramework, string backEndFramework)
@@ -190,18 +227,12 @@ namespace Microsoft.Templates.Core
                         }
                         else
                         {
-                            yield return new LayoutInfo() { Layout = item, Template = template.ToTemplateInfo() };
+                            var templateInfo = GetTemplateInfo(template, platform, projectType, frontEndFramework, backEndFramework);
+                            yield return new LayoutInfo() { Layout = item, Template = templateInfo };
                         }
                     }
                 }
             }
-        }
-
-        public IEnumerable<TemplateInfo> GetAllDependencies(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)
-        {
-            var template = Find(t => t.Identity == templateId);
-            var dependencies = GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
-            return dependencies.ToTemplateInfo();
         }
 
         public IEnumerable<TemplateLicense> GetAllLicences(string templateId, string platform, string projectType, string frontEndFramework, string backEndFramework)

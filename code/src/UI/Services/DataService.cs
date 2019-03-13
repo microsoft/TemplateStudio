@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.Services
         {
             if (!templatesGroups.Any())
             {
-                var templates = _repo.GetTemplateInfo(templateType, platform, projectType, frameworkName)
+                var templates = _repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
                     .Where(t => !t.IsHidden);
 
                 if (loadFromRightClick)

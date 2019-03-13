@@ -124,8 +124,9 @@ namespace Microsoft.Templates.Test
 
             if (getName != null && itemTemplatesSelector != null)
             {
-                var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector).ToTemplateInfo();
-                _fixture.AddItems(userSelection, itemTemplates, getName);
+                var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
+                var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, platform, projectType, framework, _emptyBackendFramework);
+                _fixture.AddItems(userSelection, itemsTemplateInfo, getName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -252,8 +253,10 @@ namespace Microsoft.Templates.Test
 
             if (!emptyProject)
             {
-                var templates = _fixture.GetTemplates(framework, platform).ToTemplateInfo();
-                _fixture.AddItems(userSelection, templates, BaseGenAndBuildFixture.GetDefaultName);
+                var templates = _fixture.GetTemplates(framework, platform);
+                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
+
+                _fixture.AddItems(userSelection, templatesInfo, BaseGenAndBuildFixture.GetDefaultName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -314,7 +317,9 @@ namespace Microsoft.Templates.Test
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
-                _fixture.AddItem(newUserSelection, item.ToTemplateInfo(), BaseGenAndBuildFixture.GetDefaultName);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(item, platform, projectType, framework, _emptyBackendFramework);
+
+                _fixture.AddItem(newUserSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -352,8 +357,9 @@ namespace Microsoft.Templates.Test
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
+            var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, platform, projectType, framework, _emptyBackendFramework);
 
-            _fixture.AddItem(userSelection, itemTemplate.ToTemplateInfo(), BaseGenAndBuildFixture.GetDefaultName);
+            _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -422,14 +428,15 @@ namespace Microsoft.Templates.Test
             {
                 var itemTemplate = _fixture.Templates()
                                                      .FirstOrDefault(t => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
-                                                                        && t.GetFrontEndFrameworkList().Contains(framework)).ToTemplateInfo();
+                                                                        && t.GetFrontEndFrameworkList().Contains(framework));
 
-                _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
+                _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
-                if (includeMultipleInstances && itemTemplate.MultipleInstance)
+                if (includeMultipleInstances && templateInfo.MultipleInstance)
                 {
-                    _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+                    _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
                 }
             }
 

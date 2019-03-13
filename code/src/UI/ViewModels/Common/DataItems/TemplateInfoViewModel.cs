@@ -82,8 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Icon = template.Icon;
             Order = template.DisplayOrder;
             IsHidden = template.IsHidden;
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(Identity, platform, projectType, frameworkName, _emptyBackendFramework);
-            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties

@@ -123,8 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
             userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
-            var dependencies = GenContext.ToolBox.Repo.GetAllDependencies(TemplateSelection.Template.TemplateId, ConfigPlatform, ConfigProjectType, ConfigFramework, _emptyBackendFramework);
-            foreach (var dependencyTemplate in dependencies)
+            foreach (var dependencyTemplate in TemplateSelection.Template.Dependencies)
             {
                 var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.DefaultName, TemplateId = dependencyTemplate.TemplateId };
                 userSelection.Add(selectedTemplateDependency, dependencyTemplate.TemplateType);
