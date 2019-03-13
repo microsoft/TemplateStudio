@@ -268,6 +268,49 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.None, result.ErrorType);
         }
 
+        [Fact]
+        public void Validate_SuccessfullyIdentifies_ReservedProjectName()
+        {
+
+            var validators = new List<Validator>()
+            {
+                new ProjectReservedNamesValidator(),
+            };
+            var result = Naming.Validate("Prism", validators);
+
+            Assert.False(result.IsValid);
+            Assert.Equal(ValidationErrorType.ProjectReservedName, result.ErrorType);
+        }
+
+        [Fact]
+        public void Validate_SuccessfullyIdentifies_ProjectStartsWith()
+        {
+
+            var validators = new List<Validator>()
+            {
+                new ProjectStartsWithValidator(),
+            };
+            var result = Naming.Validate("$App", validators);
+
+            Assert.False(result.IsValid);
+            Assert.Equal(ValidationErrorType.ProjectStartsWith, result.ErrorType);
+        }
+
+        [Fact]
+        public void Validate_SuccessfullyIdentifies_ValidProjectName()
+        {
+
+            var validators = new List<Validator>()
+            {
+                new ProjectReservedNamesValidator(),
+                new ProjectStartsWithValidator(),
+            };
+            var result = Naming.Validate("App", validators);
+
+            Assert.True(result.IsValid);
+            Assert.Equal(ValidationErrorType.None, result.ErrorType);
+        }
+
         private void SetUpFixtureForTesting(string language)
         {
             _fixture.InitializeFixture("test", language);
