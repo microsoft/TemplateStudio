@@ -3,10 +3,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Identity Forced Login",
+  "name": "Forced Login",
   "groupIdentity": "wts.Feat.IdentityForcedLogin",
   "identity": "wts.Feat.IdentityForcedLogin",
-  "description": "",
+  "description": "Access to the app is restricted with user login.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +16,9 @@
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
+    "wts.isHidden": "true",
     "wts.group": "Identity",
+    "wts.isGroupExclusiveSelection": "true",
     "wts.defaultInstance": "IdentityForcedLogin",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0"

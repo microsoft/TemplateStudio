@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Optional Login",
+  "description": "Allows to add restricted content for logged in users.",
+  "identity": "wts.Feat.IdentityOptionalLogin"
+}

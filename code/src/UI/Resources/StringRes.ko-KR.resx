@@ -727,4 +727,7 @@
     <value>{0} (optional)</value>
     <comment>The layout is optional</comment>
   </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (choose one)</value>
+  </data>
 </root>

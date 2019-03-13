@@ -1,0 +1,40 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Optional Login",
+  "groupIdentity": "wts.Feat.IdentityOptionalLogin",
+  "identity": "wts.Feat.IdentityOptionalLogin",
+  "description": "Allows to add restricted content for logged in users.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "2",
+    "wts.isHidden": "true",
+    "wts.group": "Identity",
+    "wts.isGroupExclusiveSelection": "true",
+    "wts.defaultInstance": "IdentityOptionalLogin",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0"
+  },
+  "sourceName": "IdentityOptionalLogin",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}
