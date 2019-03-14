@@ -892,7 +892,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://aka.ms/wts.
+        ///   Looks up a localized string similar to Report issue.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionIssuesLink {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionIssuesLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
             get {
@@ -906,15 +915,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectDetailsAboutSectionTemplatesVersion {
             get {
                 return ResourceManager.GetString("ProjectDetailsAboutSectionTemplatesVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio.
-        /// </summary>
-        public static string ProjectDetailsAboutSectionText {
-            get {
-                return ResourceManager.GetString("ProjectDetailsAboutSectionText", resourceCulture);
             }
         }
         
@@ -1248,6 +1248,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateGroup_ConnectedExperiences {
             get {
                 return ResourceManager.GetString("TemplateGroup_ConnectedExperiences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identity (choose one).
+        /// </summary>
+        public static string TemplateGroup_Identity {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Identity", resourceCulture);
             }
         }
         

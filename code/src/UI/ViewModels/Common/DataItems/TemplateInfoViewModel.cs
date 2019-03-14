@@ -21,6 +21,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public string Group { get; }
 
+        public bool IsGroupExclusiveSelection { get; }
+
         public int GenGroup { get; }
 
         public TemplateType TemplateType { get; }
@@ -88,6 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             // ITemplateInfo properties
             Template = template;
             Group = template.Group;
+            IsGroupExclusiveSelection = template.IsGroupExclusiveSelection;
             GenGroup = template.GenGroup;
             TemplateType = template.TemplateType;
             MultipleInstance = template.MultipleInstance;

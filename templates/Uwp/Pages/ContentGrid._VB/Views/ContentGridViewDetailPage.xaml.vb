@@ -19,7 +19,7 @@ Namespace Views
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Item)
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.Item)
             End If
         End Sub
     End Class

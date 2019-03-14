@@ -224,12 +224,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             yield return new Step(1, StringRes.NewItemStepTwo, () => new ChangesSummaryPage(_output));
         }
 
-        public override void ProcessItem(object item)
+        public override async Task ProcessItemAsync(object item)
         {
             if (item is TemplateInfoViewModel template)
             {
                 TemplateSelection.SelectTemplate(template);
             }
+
+            await Task.CompletedTask;
         }
 
         public override bool IsSelectionEnabled(MetadataType metadataType) => true;
