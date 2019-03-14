@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Services;

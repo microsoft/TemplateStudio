@@ -8,9 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-using TestData.Shell;
 using TestData.BackgroundTask;
 using TestData.Services;
+using TestData.Shell;
 
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+
 using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Core.Gen

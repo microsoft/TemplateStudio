@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Diagnostics
