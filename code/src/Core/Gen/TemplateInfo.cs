@@ -34,6 +34,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public string Group { get; set; }
 
+        public bool IsGroupExclusiveSelection { get; set; }
+
         public int GenGroup { get; set; }
 
         public bool MultipleInstance { get; set; }

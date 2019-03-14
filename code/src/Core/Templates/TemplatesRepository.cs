@@ -167,6 +167,7 @@ namespace Microsoft.Templates.Core
                 DisplayOrder = template.GetDisplayOrder(),
                 IsHidden = template.GetIsHidden(),
                 Group = template.GetGroup(),
+                IsGroupExclusiveSelection = template.GetIsGroupExclusiveSelection(),
                 GenGroup = template.GetGenGroup(),
                 MultipleInstance = template.GetMultipleInstance(),
                 ItemNameEditable = template.GetItemNameEditable(),

@@ -84,7 +84,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnimation(SelectedImage);
                 ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
             }
         }

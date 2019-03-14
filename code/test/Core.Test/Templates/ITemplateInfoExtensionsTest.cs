@@ -357,6 +357,30 @@ namespace Microsoft.Templates.Core.Test
             Assert.Null(result);
         }
 
+        [Theory]
+        [MemberData(nameof(GetAllLanguages))]
+        public void GetIsGroupExclusiveSelection_unspecified(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var target = GetTargetByName("UnspecifiedTemplate");
+
+            var result = target.GetIsGroupExclusiveSelection();
+            Assert.False(result);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllLanguages))]
+        public void GetIsGroupExclusiveSelection_true(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var target = GetTargetByName("FeatureTemplate");
+
+            var result = target.GetIsGroupExclusiveSelection();
+            Assert.True(result);
+        }
+
         [Fact]
         [Trait("Type", "ProjectGeneration")]
         public void GetDisplayOrder()
