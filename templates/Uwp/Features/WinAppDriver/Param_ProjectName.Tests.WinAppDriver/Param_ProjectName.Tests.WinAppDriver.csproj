@@ -21,6 +21,9 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
   <!--/-:cnd:noEmit -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <OutputPath>bin\Debug\</OutputPath>
