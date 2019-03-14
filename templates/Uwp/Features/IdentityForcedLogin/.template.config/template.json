@@ -1,12 +1,12 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Forced Login",
   "groupIdentity": "wts.Feat.IdentityForcedLogin",
   "identity": "wts.Feat.IdentityForcedLogin",
-  "description": "Access to the app is restricted with user login.",
+  "description": "Make your application require the user to login.",
   "tags": {
     "language": "C#",
     "type": "item",

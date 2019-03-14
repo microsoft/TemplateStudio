@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "IdentityForcedLogin",
-  "description": "Access to the app is restricted with user login.",
+  "author": "Microsoft",
+  "name": "Forced Login",
+  "description": "Make your application require the user to login.",
   "identity": "wts.Feat.IdentityForcedLogin"
 }

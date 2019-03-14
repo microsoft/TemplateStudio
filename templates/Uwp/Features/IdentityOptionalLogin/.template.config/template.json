@@ -1,12 +1,12 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Optional Login",
   "groupIdentity": "wts.Feat.IdentityOptionalLogin",
   "identity": "wts.Feat.IdentityOptionalLogin",
-  "description": "Allows to add restricted content for logged in users.",
+  "description": "Make your application have an optional login and restricted features.",
   "tags": {
     "language": "C#",
     "type": "item",
