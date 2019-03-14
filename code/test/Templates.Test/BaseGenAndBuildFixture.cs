@@ -33,11 +33,7 @@ namespace Microsoft.Templates.Test
         public string TestNewItemPath => Path.GetFullPath(Path.Combine(GetTestRunPath(), "RightClick"));
 
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
-
-        public IEnumerable<ITemplateInfo> GetTemplates(string framework, string platform)
-        {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework) && t.GetPlatform() == platform);
-        }
+ 
 
         public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<TemplateInfo, string> getName = null)
         {
