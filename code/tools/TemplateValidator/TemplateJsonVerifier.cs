@@ -220,6 +220,9 @@ namespace TemplateValidator
                     case "wts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
+                    case "wts.isGroupExclusiveSelection":
+                        VerifyWtsWtsIsGroupExclusiveSelectionTagValue(tag, results);
+                        break;
                     case "wts.telemName":
                         VerifyWtsTelemNameTagValue(tag, results);
                         break;
@@ -270,6 +273,14 @@ namespace TemplateValidator
             }
         }
 
+        private static void VerifyWtsWtsIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!BoolStrings.Contains(tag.Value))
+            {
+                results.Add($"Invalid value '{tag.Value}' specified in the wts.isGroupExclusiveSelection tag.");
+            }
+        }
+
         private static void VerifyWtsExportSetterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "Set", "SetProperty" }.Contains(tag.Value))
@@ -304,7 +315,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Testing" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
             }

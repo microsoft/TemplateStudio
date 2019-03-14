@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Optional Login",
+  "description": "Make your application have an optional login and restricted features.",
+  "identity": "wts.Feat.IdentityOptionalLogin"
+}

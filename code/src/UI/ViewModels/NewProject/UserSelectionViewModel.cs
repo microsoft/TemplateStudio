@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void Initialize(string projectTypeName, string frameworkName, string platform, string language)
+        public async Task InitializeAsync(string projectTypeName, string frameworkName, string platform, string language)
         {
             _projectTypeName = projectTypeName;
             _frameworkName = frameworkName;
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     var template = MainViewModel.Instance.GetTemplate(item.Template);
                     if (template != null)
                     {
-                        Add(TemplateOrigin.Layout, template, item.Layout.Name, item.Layout.Readonly);
+                        await AddAsync(TemplateOrigin.Layout, template, item.Layout.Name, item.Layout.Readonly);
                     }
                 }
             }
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public IEnumerable<string> GetPageNames()
             => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
 
-        public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
+        public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
             var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName, _emptyBackendFramework, _platform);
             foreach (var dependency in dependencies)
@@ -124,10 +124,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
                 }
 
-                Add(templateOrigin, dependencyTemplate);
+                await AddAsync(templateOrigin, dependencyTemplate);
             }
 
             template.IncreaseSelection();
+            if (template.IsGroupExclusiveSelection)
+            {
+                if (template.TemplateType == TemplateType.Feature)
+                {
+                    var exclusiveSelectionAddedTemplates = Features.Where(f => f.Group == template.Group).ToList();
+                    foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
+                    {
+                        await RemoveAsync(exclusiveFeature);
+                    }
+                }
+            }
+
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)

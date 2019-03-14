@@ -727,4 +727,19 @@
     <value>Report issue</value>
     <comment>Project details about section report lssue link</comment>
   </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (choose one)</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Windows Template Studio has changed the ActivationService to be able to include Identity features.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
 </root>
