@@ -177,8 +177,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private async Task OnFrameworkSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            AddPages.LoadData(Platform, Framework.Selected.Name, Platform);
-            AddFeatures.LoadData(Platform, Framework.Selected.Name, Platform);
+            AddPages.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            AddFeatures.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }
