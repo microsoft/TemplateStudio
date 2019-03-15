@@ -42,6 +42,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public int GenGroup { get; }
 
+        public string Group { get; }
+
+        public bool IsGroupExclusiveSelection { get; }
+
         public IEnumerable<BasicInfoViewModel> Dependencies { get; }
 
         public string Name
@@ -139,6 +143,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsHidden = template.IsHidden;
             TemplateOrigin = templateOrigin;
             IsReorderEnabled = template.TemplateType == TemplateType.Page;
+            Group = template.Group;
+            IsGroupExclusiveSelection = template.IsGroupExclusiveSelection;
             IsReadOnly = isReadOnly;
         }
 
