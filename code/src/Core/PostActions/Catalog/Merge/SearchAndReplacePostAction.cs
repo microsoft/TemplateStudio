@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.Templates.Core.Extensions;
@@ -37,6 +38,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var source = File.ReadAllLines(originalFilePath).ToList();
             var instructions = File.ReadAllLines(Config.FilePath).ToList();
 
+            var originalEncoding = GetEncoding(originalFilePath);
+            var otherEncoding = GetEncoding(Config.FilePath);
+
+            if (originalEncoding.EncodingName != otherEncoding.EncodingName
+                || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+            {
+                HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
+                return;
+            }
+
             var search = new List<string>();
             var replace = new List<string>();
 
@@ -64,7 +75,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var result = string.Join(Environment.NewLine, source);
             result = result.Replace(string.Join(Environment.NewLine, search), string.Join(Environment.NewLine, replace));
 
-            File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
+            File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None), originalEncoding);
             File.Delete(Config.FilePath);
         }
     }

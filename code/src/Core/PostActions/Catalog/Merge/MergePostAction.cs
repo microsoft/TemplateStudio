@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.Delete(Config.FilePath);
         }
 
-        private void HandleMismatchedEncodings(string originalFilePath, string otherFilePath, Encoding originalEncoding, Encoding otherEncoding)
+        protected void HandleMismatchedEncodings(string originalFilePath, string otherFilePath, Encoding originalEncoding, Encoding otherEncoding)
         {
             var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
             var otherRelativePath = otherFilePath.GetPathRelativeToGenerationParentPath();
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
         }
 
-        private Encoding GetEncoding(string originalFilePath)
+        protected Encoding GetEncoding(string originalFilePath)
         {
             // Will read the file, and look at the BOM to check the encoding.
             using (var reader = new StreamReader(File.OpenRead(originalFilePath), true))

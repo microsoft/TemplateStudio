@@ -176,7 +176,7 @@ namespace Microsoft.Templates.Test
             }
 
             File.Delete(manifest);
-            File.WriteAllText(manifest, sb.ToString());
+            File.WriteAllText(manifest, sb.ToString(), Encoding.UTF8);
         }
 
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
