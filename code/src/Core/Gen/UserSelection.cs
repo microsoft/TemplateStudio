@@ -124,5 +124,13 @@ namespace Microsoft.Templates.Core.Gen
                     break;
             }
         }
+
+        public void Add(IEnumerable<TemplateInfo> templates)
+        {
+            foreach (var template in templates)
+            {
+                Add(template);
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 

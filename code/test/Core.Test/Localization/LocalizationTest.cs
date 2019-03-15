@@ -4,6 +4,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+
 using Microsoft.Templates.Core.Gen;
 
 using Xunit;

@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test

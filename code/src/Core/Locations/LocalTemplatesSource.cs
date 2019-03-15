@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 
@@ -25,7 +26,7 @@ namespace Microsoft.Templates.Core.Locations
             Date = DateTime.Now,
         };
 
-        protected virtual string Origin => $@"{InstalledPackagePath}\{TemplatesFolderName}";
+        protected virtual string Origin => Path.Combine(Path.GetFullPath(InstalledPackagePath), TemplatesFolderName);
 
         private string _id;
 
