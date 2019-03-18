@@ -11,8 +11,10 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Test.TestFakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Locations

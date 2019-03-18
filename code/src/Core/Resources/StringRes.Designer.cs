@@ -295,6 +295,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File `{0}` has encoding &amp;apos;{1}&amp;apos; while file `{2}` has encoding &amp;apos;{3}&amp;apos; please ensure both encodings are the same..
+        /// </summary>
+        public static string FailedMergePostActionMismatchedEncoding {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionMismatchedEncoding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot remove readonly protection from file {0}.
         /// </summary>
         public static string FsEnsureFileEditableException {

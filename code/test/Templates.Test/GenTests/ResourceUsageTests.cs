@@ -20,6 +20,8 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class ResourceUsageTests : BaseGenAndBuildTests
     {
+        private readonly string _emptyBackendFramework = string.Empty;
+
         public ResourceUsageTests(GenerationFixture fixture)
             : base(fixture)
         {
@@ -201,12 +203,14 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
-            var itemTemplates = _fixture.Templates().Where(t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+            var templates = _fixture.Templates().Where(t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                                                              && t.GetFrontEndFrameworkList().Contains(framework)
                                                              && t.GetPlatform() == platform
                                                              && !t.GetIsHidden());
 
-            _fixture.AddItems(userSelection, itemTemplates, BaseGenAndBuildFixture.GetDefaultName);
+            var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
+
+            _fixture.AddItems(userSelection, templatesInfo, BaseGenAndBuildFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
