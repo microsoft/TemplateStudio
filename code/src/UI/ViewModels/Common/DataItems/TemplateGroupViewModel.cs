@@ -5,7 +5,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private string GetName(string groupName) => StringRes.ResourceManager.GetString($"TemplateGroup_{groupName}");
 
-        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
+        public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
             return Items.FirstOrDefault(t => t.Name == templateInfo.Name);
         }

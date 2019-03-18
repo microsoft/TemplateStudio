@@ -6,10 +6,10 @@ using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Core.Gen
 {
-    public class LayoutInfo
+    public class UserSelectionItem
     {
-        public LayoutItem Layout { get; set; }
+        public string Name { get; set; }
 
-        public TemplateInfo Template { get; set; }
+        public string TemplateId { get; set; }
     }
 }

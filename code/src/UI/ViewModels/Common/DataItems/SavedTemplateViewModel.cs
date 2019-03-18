@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
@@ -34,7 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _setFocusCommand;
         private Guid _id;
 
-        public ITemplateInfo Template { get; }
+        public TemplateInfo Template { get; }
 
         public string Identity { get; }
 
@@ -203,6 +202,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public TemplateInfo GetUserSelection() => new TemplateInfo { Name = Name, Template = Template };
+        public UserSelectionItem ToUserSelectionItem() => new UserSelectionItem { Name = Name, TemplateId = Template.TemplateId };
     }
 }

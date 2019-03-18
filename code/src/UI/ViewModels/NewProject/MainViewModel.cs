@@ -7,9 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -117,9 +114,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return result;
         }
 
-        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
+        public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
-            var groups = templateInfo.GetTemplateType() == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
+            var groups = templateInfo.TemplateType == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
             foreach (var group in groups)
             {
                 var template = group.GetTemplate(templateInfo);
@@ -180,8 +177,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private async Task OnFrameworkSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            AddPages.LoadData(Framework.Selected.Name, Platform);
-            AddFeatures.LoadData(Framework.Selected.Name, Platform);
+            AddPages.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            AddFeatures.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }

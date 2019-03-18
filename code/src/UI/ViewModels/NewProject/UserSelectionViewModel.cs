@@ -90,7 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 Features.Clear();
             }
 
-            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName, _emptyBackendFramework, platform);
+            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, projectTypeName, frameworkName, _emptyBackendFramework);
             foreach (var item in layout)
             {
                 if (item.Template != null)
@@ -114,14 +114,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName, _emptyBackendFramework, _platform);
-            foreach (var dependency in dependencies)
+            foreach (var dependency in template.Template.Dependencies)
             {
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);
                 if (dependencyTemplate == null)
                 {
                     // Case of hidden templates, it's not found on templat lists
-                    dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
+                    dependencyTemplate = new TemplateInfoViewModel(dependency, _platform, _projectTypeName, _frameworkName);
                 }
 
                 await AddAsync(templateOrigin, dependencyTemplate);
@@ -224,15 +223,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 selection.HomeName = Pages.First().Name;
             }
 
-            foreach (var page in Pages)
-            {
-                selection.Pages.Add(page.GetUserSelection());
-            }
-
-            foreach (var feature in Features)
-            {
-                selection.Features.Add(feature.GetUserSelection());
-            }
+            selection.Pages.AddRange(Pages.Select(p => p.ToUserSelectionItem()));
+            selection.Features.AddRange(Features.Select(f => f.ToUserSelectionItem()));
 
             return selection;
         }

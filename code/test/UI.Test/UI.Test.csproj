@@ -102,12 +102,6 @@
     <PackageReference Include="Appium.WebDriver">
       <Version>3.0.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.TemplateEngine.Edge">
-      <Version>1.0.0-beta2-20170518-234</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
-      <Version>1.0.0-beta2-20170518-234</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK.EmbedInteropTypes">
       <Version>15.0.9</Version>
     </PackageReference>
