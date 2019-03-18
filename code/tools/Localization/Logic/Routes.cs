@@ -8,8 +8,8 @@ namespace Localization
     {
         internal const string ProjectTemplatePathCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution";
         internal const string ProjectTemplatePathVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution";
-        internal const string ProjectTemplateFileCS = "CSharp.UWP.VS2017.Solution.vstemplate";
-        internal const string ProjectTemplateFileVB = "VBNet.UWP.VS2017.Solution.vstemplate";
+        internal const string ProjectTemplateFileCS = "CSharp.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileVB = "VBNet.UWP.Solution.vstemplate";
         internal const string ProjectTemplateFileNamePatternCS = "CSharp.UWP.Solution.{0}.vstemplate";
         internal const string ProjectTemplateFileNamePatternVB = "VBNet.UWP.Solution.{0}.vstemplate";
 
@@ -52,7 +52,7 @@ namespace Localization
         internal static string[] ResoureceDirectories { get; } =
         {
             "code\\src\\Core\\Resources",
-            "code\\src\\Installer.2017\\Resources",
+            "code\\src\\Installer\\Resources",
             "code\\src\\UI\\Resources",
         };
 
@@ -62,7 +62,7 @@ namespace Localization
         };
 
         // Validate Routes
-        internal const string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";
+        internal const string VsixValidatePath = "code\\src\\Installer\\source.extension.vsixmanifest";
         internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution\\CSharp.UWP.Solution.vstemplate";
         internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution\\VBNet.UWP.Solution.vstemplate";
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer\\Commands\\RelayCommandPackage.en-US.vsct";
