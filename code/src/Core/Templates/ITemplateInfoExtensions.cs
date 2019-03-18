@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.Templates.Core.Composition;
-
+using Microsoft.Templates.Core.Gen;
 using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core

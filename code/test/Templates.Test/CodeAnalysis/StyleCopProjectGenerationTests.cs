@@ -27,23 +27,17 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
         {
-            Func<ITemplateInfo, bool> selector =
-                    t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetLanguage() == ProgrammingLanguages.CSharp
-                    && t.GetPlatform() == platform
-                    && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrontEndFrameworkList().Contains(framework);
-
             Func<ITemplateInfo, bool> templateSelector =
                 t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                        && t.GetFrontEndFrameworkList().Contains(framework)
-                        && t.GetPlatform() == platform
-                        && !t.GetIsHidden())
-                     || (t.Name == "Feature.Testing.StyleCop");
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden())
+                || (t.Name == "Feature.Testing.StyleCop");
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.CSharp, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.CSharp, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
