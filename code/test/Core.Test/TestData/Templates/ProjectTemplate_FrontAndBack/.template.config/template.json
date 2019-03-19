@@ -10,7 +10,7 @@
     "wts.type": "project",
     "wts.projecttype": "pt3",
     "wts.frontendframework": "fx3",
-    "wts.backendframework": "fx4",
+    "wts.backendframework": "fx4|TestFramework",
     "wts.platform": "test",
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",
