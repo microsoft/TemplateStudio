@@ -62,7 +62,7 @@ Namespace Behaviors
         Private Sub OnNavigated(sender As Object, e As NavigationEventArgs)
             Dim frame = TryCast(sender, Frame)
             Dim page = TryCast(frame.Content, Page)
-            
+
             If page IsNot Nothing Then
                 _currentPage = page
                 UpdateHeader()

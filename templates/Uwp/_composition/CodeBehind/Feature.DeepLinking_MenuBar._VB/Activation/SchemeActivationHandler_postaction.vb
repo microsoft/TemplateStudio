@@ -4,7 +4,7 @@ Imports Param_RootNamespace.Views
 '}]}
 Namespace Activation
     Friend Class SchemeActivationHandler
-        Inherits ActivationHandler(Of ProtocolActivatedEventArgs)    
+        Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
 '{[{
 
         ' By default, this handler expects URIs of the format 'wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2'

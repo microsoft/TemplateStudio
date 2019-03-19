@@ -178,6 +178,28 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureVisualBasicCodeDoesNotContainTrailingWhiteSpace()
+        {
+            var warnings = new List<string>();
+
+            foreach (var file in GetFiles(TemplatesRoot, "*.vb"))
+            {
+                var lineNo = 1;
+                foreach (var line in File.ReadAllLines(file))
+                {
+                    if (line.TrimEnd() != line)
+                    {
+                        warnings.Add($"Trailing whitespace in '{file}' on line {lineNo}.");
+                    }
+
+                    lineNo += 1;
+                }
+            }
+
+            Assert.True(!warnings.Any(), string.Join(Environment.NewLine, warnings));
+        }
+
+        [Fact]
         public void EnsureVisualBasicCodeDoesNotIndicateParamsPassedByVal()
         {
             var result = CodeIsNotUsed("ByVal", "*.vb");

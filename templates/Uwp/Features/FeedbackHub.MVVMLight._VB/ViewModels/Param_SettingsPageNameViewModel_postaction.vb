@@ -17,7 +17,7 @@ Namespace ViewModels
         Public ReadOnly Property LaunchFeedbackHubCommand As ICommand
             Get
                 If _launchFeedbackHubCommand Is Nothing Then
-                    _launchFeedbackHubCommand = New RelayCommand(Async Sub() 
+                    _launchFeedbackHubCommand = New RelayCommand(Async Sub()
                             ' This launcher is part of the Store Services SDK https://docs.microsoft.com/en-us/windows/uwp/monetize/microsoft-store-services-sdk
                             Dim launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault()
                             Await launcher.LaunchAsync()

@@ -5,7 +5,7 @@ Imports Param_RootNamespace.ViewModels
 '}]}
 Namespace Activation
     Friend Class SchemeActivationHandler
-        Inherits ActivationHandler(Of ProtocolActivatedEventArgs)    
+        Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
 '{[{
 
         Private ReadOnly Property NavigationService As NavigationServiceEx

@@ -16,7 +16,7 @@ Namespace BackgroundTasks
         Public Overrides Sub Register()
             Dim taskName As String = [GetType]().Name
             Dim taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(Function(t) t.Value.Name = taskName).Value
-            
+
             If taskRegistration Is Nothing Then
                 Dim builder As BackgroundTaskBuilder = New BackgroundTaskBuilder() With {
                     .Name = taskName
@@ -38,7 +38,7 @@ Namespace BackgroundTasks
 
             _deferral = taskInstance.GetDeferral()
 
-            Return Task.Run(Sub() 
+            Return Task.Run(Sub()
                 ' TODO WTS: Insert the code that should be executed in the background task here.
                 ' This sample initializes a timer that counts to 100 in steps of 10.  It updates Message each time.
 
@@ -80,4 +80,4 @@ Namespace BackgroundTasks
             End If
         End Sub
     End Class
-End Namespace 
+End Namespace

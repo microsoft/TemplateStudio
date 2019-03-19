@@ -9,7 +9,7 @@ Namespace Views
         Inherits Page
 
         Public Sub New()
-            InitializeComponent()          
+            InitializeComponent()
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()
                                     AddHandler image.SizeChanged,  AddressOf Image_SizeChanged

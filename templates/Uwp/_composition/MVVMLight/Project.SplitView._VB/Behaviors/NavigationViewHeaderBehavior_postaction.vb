@@ -3,7 +3,7 @@ Imports Param_RootNamespace.ViewModels
 '}]}
 
 Namespace Behaviors
-    Public Class NavigationViewHeaderBehavior 
+    Public Class NavigationViewHeaderBehavior
         Inherits Behavior(Of WinUI.NavigationView)
 
         Protected Overrides Sub OnAttached()
