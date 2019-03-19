@@ -31,7 +31,7 @@
 '{[{
 
         Private Sub OnMenuViewswts.ItemName()
-            MenuNavigationHelper.UpdateView(GetType(wts.ItemNameViewModel))
+            MenuNavigationHelper.UpdateView(GetType(wts.ItemNamePage))
         End Sub
 '}]}
     End Class
