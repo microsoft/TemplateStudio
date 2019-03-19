@@ -5,14 +5,14 @@
   ],
   "name": "Forced Login",
   "groupIdentity": "wts.Feat.IdentityForcedLogin",
-  "identity": "wts.Feat.IdentityForcedLogin",
+  "identity": "wts.Feat.IdentityForcedLogin.Prism",
   "description": "Make your application require the user to login.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic",
+    "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -29,27 +29,6 @@
   "sourceName": "IdentityForcedLogin",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Param_ProjectName\\Services\\UserDataService.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName\\ViewModels\\LogInViewModel.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName\\ViewModels\\UserViewModel.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName\\Views\\LogInPage.xaml"
-    },
-    {
-      "path": ".\\Param_ProjectName\\Views\\LogInPage.xaml.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {
