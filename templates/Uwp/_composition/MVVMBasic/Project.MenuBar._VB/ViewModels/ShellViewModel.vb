@@ -12,7 +12,7 @@ Namespace ViewModels
         Private _menuFileExitCommand As ICommand
 
         Public ReadOnly Property MenuFileExitCommand As ICommand
-            Get            
+            Get
                 If _menuFileExitCommand Is Nothing Then
                     _menuFileExitCommand = New RelayCommand(AddressOf OnMenuFileExit)
                 End If

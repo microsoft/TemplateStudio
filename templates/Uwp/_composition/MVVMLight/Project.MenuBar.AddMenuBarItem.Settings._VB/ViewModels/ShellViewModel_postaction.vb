@@ -1,7 +1,7 @@
 ﻿Namespace ViewModels
     Public Class ShellViewModel
         Inherits ViewModelBase
-        
+
 '{[{
         Private _menuFilewts.ItemNameCommand as ICommand
 '}]}
