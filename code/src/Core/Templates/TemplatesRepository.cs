@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Core
 
             var results = GetMetadataInfo("backendframeworks")
                 .Where(f => f.Platforms.Contains(platform)
-                            && frameworks.Any(fx => fx.Name == f.Name && fx.Type == FrameworkTypes.FrontEnd));
+                            && frameworks.Any(fx => fx.Name == f.Name && fx.Type == FrameworkTypes.BackEnd));
 
             results.ToList().ForEach(meta => meta.Tags["type"] = "backend");
             return results;

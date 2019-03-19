@@ -1,6 +1,7 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
+
 using System;
 using System.Globalization;
 using System.Linq;
@@ -160,7 +161,7 @@ namespace Microsoft.Templates.Core.Test
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt1").ToList();
+            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt3").ToList();
             MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
 
             Assert.NotNull(template);
@@ -175,7 +176,7 @@ namespace Microsoft.Templates.Core.Test
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt1").ToList();
+            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt3").ToList();
             MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
 
             Assert.NotNull(template);
@@ -190,7 +191,7 @@ namespace Microsoft.Templates.Core.Test
             CultureInfo.CurrentUICulture = new CultureInfo("fr-FR");
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt1").ToList();
+            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt3").ToList();
             MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
 
             Assert.NotNull(template);
@@ -205,7 +206,7 @@ namespace Microsoft.Templates.Core.Test
             CultureInfo.CurrentUICulture = new CultureInfo("xx-XX");
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt1").ToList();
+            var frameworkTemplates = GenContext.ToolBox.Repo.GetBackEndFrameworks(_platform, "pt3").ToList();
             MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
 
             Assert.NotNull(template);
