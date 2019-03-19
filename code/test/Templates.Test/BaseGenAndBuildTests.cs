@@ -547,7 +547,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp)
         {
             IEnumerable<object[]> result = new List<object[]>();
 

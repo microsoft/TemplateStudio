@@ -157,9 +157,19 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
-        public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task BuildMVVMBasicOneByOneItemsCSAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        {
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic)]
+        [Trait("Type", "BuildOneByOneMVVMBasic")]
+        public async Task BuildMVVMBasicOneByOneItemsVBAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 

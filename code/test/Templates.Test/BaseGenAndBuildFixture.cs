@@ -340,49 +340,47 @@ namespace Microsoft.Templates.Test
             fakeShell.SetCurrentPlatform(platform);
         }
 
-        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter)
+        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp)
         {
             List<object[]> result = new List<object[]>();
-            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+
+            SetCurrentLanguage(language);
+            foreach (var platform in Platforms.GetAllPlatforms())
             {
-                SetCurrentLanguage(language);
-                foreach (var platform in Platforms.GetAllPlatforms())
+                SetCurrentPlatform(platform);
+                var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                            .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                            .Select(m => m.Name);
+
+                foreach (var projectType in projectTypes)
                 {
-                    SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                                .Select(m => m.Name);
+                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
+                                                .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name) && m.Name == frameworkFilter)
+                                                .Select(m => m.Name).ToList();
 
-                    foreach (var projectType in projectTypes)
+                    foreach (var framework in targetFrameworks)
                     {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+                        var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)
+                                                                && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                && t.GetPlatform() == platform
+                                                                && t.GetLanguage() == language
+                                                                && !t.GetIsHidden());
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Any(f => f.Type == FrameworkTypes.FrontEnd && f.Name == m.Name) && m.Name == frameworkFilter)
-                                                    .Select(m => m.Name).ToList();
-
-                        foreach (var framework in targetFrameworks)
+                        foreach (var itemTemplate in itemTemplates)
                         {
-                            var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)
-                                                                 && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                 && t.GetPlatform() == platform
-                                                                 && t.GetLanguage() == language
-                                                                 && !t.GetIsHidden());
-
-                            foreach (var itemTemplate in itemTemplates)
+                            result.Add(new object[]
                             {
-                                result.Add(new object[]
-                                {
-                                    itemTemplate.Name,
-                                    projectType,
-                                    framework,
-                                    platform,
-                                    itemTemplate.Identity,
-                                    language,
-                                });
-                            }
+                                itemTemplate.Name,
+                                projectType,
+                                framework,
+                                platform,
+                                itemTemplate.Identity,
+                                language,
+                            });
                         }
                     }
                 }

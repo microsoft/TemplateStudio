@@ -157,9 +157,19 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildOneByOneCodeBehind")]
-        public async Task BuildCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task BuildCodeBehindOneByOneItemsCSAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        {
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CodeBehind", ProgrammingLanguages.VisualBasic)]
+        [Trait("Type", "BuildOneByOneCodeBehind")]
+        public async Task BuildCodeBehindOneByOneItemsVBAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
