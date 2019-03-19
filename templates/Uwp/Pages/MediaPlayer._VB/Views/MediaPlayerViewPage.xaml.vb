@@ -34,14 +34,14 @@ Namespace Views
             If playbackSession IsNot Nothing AndAlso playbackSession.NaturalVideoHeight <> 0 Then
                 If playbackSession.PlaybackState = MediaPlaybackState.Playing Then
                     If Not _isRequestActive Then
-                        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub() 
+                        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                             _displayRequest.RequestActive()
                             _isRequestActive = True
                         End Sub)
                     End If
                 Else
                     If _isRequestActive Then
-                        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub() 
+                        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                             _displayRequest.RequestRelease()
                             _isRequestActive = False
                         End Sub)

@@ -183,7 +183,7 @@ Namespace Controls
 
       Private Async Sub CleanAndInitialize()
           Await Task.Run(Async Function()
-                             Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Async Sub() 
+                             Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Async Sub()
                                     Await CleanupCameraAsync()
                                     Await InitializeCameraAsync()
                                  End Sub)
@@ -192,7 +192,7 @@ Namespace Controls
 
       Private Async Sub MediaCapture_Failed(sender As MediaCapture, errorEventArgs As MediaCaptureFailedEventArgs)
         Await Task.Run(Async Function()
-                           Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Async Sub() 
+                           Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Async Sub()
                                     Await CleanupCameraAsync()
                                 End Sub)
                     End Function)

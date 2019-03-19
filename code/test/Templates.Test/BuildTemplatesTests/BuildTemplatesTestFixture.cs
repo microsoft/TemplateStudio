@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp)
         {
             InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 

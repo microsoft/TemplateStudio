@@ -466,11 +466,9 @@ namespace Microsoft.Templates.Test
             yield return new object[] { TabbedNav, CodeBehind };
             yield return new object[] { TabbedNav, MvvmBasic };
             yield return new object[] { TabbedNav, MvvmLight };
-
-            // Re-enable when VB MenuBar templates are added
-            // yield return new object[] { MenuBar, CodeBehind };
-            // yield return new object[] { MenuBar, MvvmBasic };
-            // yield return new object[] { MenuBar, MvvmLight };
+            yield return new object[] { MenuBar, CodeBehind };
+            yield return new object[] { MenuBar, MvvmBasic };
+            yield return new object[] { MenuBar, MvvmLight };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
@@ -539,7 +537,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp)
         {
             IEnumerable<object[]> result = new List<object[]>();
 
