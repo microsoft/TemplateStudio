@@ -3,29 +3,25 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.ShareTarget.VB",
+  "name": "MvvmBasic.Feature.IdentityForcedLogin.SplitView",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic & identity == wts.Feat.ShareTarget.VB"
-  },
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projecttype == SplitView & groupidentity == wts.Feat.IdentityForcedLogin"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\ViewModels\\wts.ItemNameViewModel.vb"
-    },
-    {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
-    },
-    {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.vb"
-    }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
