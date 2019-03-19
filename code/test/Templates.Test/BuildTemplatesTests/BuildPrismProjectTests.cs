@@ -69,23 +69,16 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                     && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrontEndFrameworkList().Contains(framework)
-                     && t.GetPlatform() == platform
-                     && !t.GetIsHidden()
-                     && t.GetLanguage() == language;
-
             Func<ITemplateInfo, bool> templateSelector =
-                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                     && t.GetFrontEndFrameworkList().Contains(framework)
-                     && t.GetPlatform() == platform
-                     && !t.GetIsHidden();
+                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -97,22 +90,16 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildMinimum")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && !t.GetIsHidden()
-                    && t.GetLanguage() == language;
-
             Func<ITemplateInfo, bool> templateSelector =
-                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}AllRandom";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -124,7 +111,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRightClick";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -136,7 +123,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRightClick2";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }

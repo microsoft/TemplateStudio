@@ -113,21 +113,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, _emptyBackendFramework, ConfigPlatform);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
-            userSelection.Add(templateInfo);
+            var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
+            userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
-            foreach (var dependencyTemplate in dependencies)
+            foreach (var dependencyTemplate in TemplateSelection.Template.Dependencies)
             {
-                var dependencyTemplateInfo = new TemplateInfo { Name = dependencyTemplate.GetDefaultName(), Template = dependencyTemplate };
-                userSelection.Add(dependencyTemplateInfo);
+                var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.DefaultName, TemplateId = dependencyTemplate.TemplateId };
+                userSelection.Add(selectedTemplateDependency, dependencyTemplate.TemplateType);
             }
 
             return userSelection;
@@ -145,14 +144,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection GetUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
-            var templateInfo = new TemplateInfo { Name = TemplateSelection.Name, Template = TemplateSelection.Template };
-            userSelection.Add(templateInfo);
+            var selectedItem = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
+            userSelection.Add(selectedItem, TemplateSelection.Template.TemplateType);
             return userSelection;
         }
 
         protected override async Task OnTemplatesAvailableAsync()
         {
-            TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
+            TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();

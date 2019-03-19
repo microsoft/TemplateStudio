@@ -49,11 +49,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
-        public List<TemplateInfo> Pages { get; } = new List<TemplateInfo>();
+        public List<UserSelectionItem> Pages { get; } = new List<UserSelectionItem>();
 
-        public List<TemplateInfo> Features { get; } = new List<TemplateInfo>();
+        public List<UserSelectionItem> Features { get; } = new List<UserSelectionItem>();
 
-        public IEnumerable<TemplateInfo> PagesAndFeatures
+        public IEnumerable<UserSelectionItem> PagesAndFeatures
         {
             get
             {
@@ -99,22 +99,22 @@ namespace Microsoft.Templates.Core.Gen
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             return sb.ToString();
         }
 
-        public void Add(TemplateInfo template)
+        public void Add(UserSelectionItem template, TemplateType templateType)
         {
-            switch (template.Template.GetTemplateType())
+            switch (templateType)
             {
                 case TemplateType.Page:
                     Pages.Add(template);
@@ -122,14 +122,6 @@ namespace Microsoft.Templates.Core.Gen
                 case TemplateType.Feature:
                     Features.Add(template);
                     break;
-            }
-        }
-
-        public void Add(IEnumerable<TemplateInfo> templates)
-        {
-            foreach (var template in templates)
-            {
-                Add(template);
             }
         }
     }
