@@ -163,7 +163,7 @@ namespace Microsoft.Templates.Core.Gen
         private static bool IsMenuBar()
         {
             return ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs") || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
+                && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs") || ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.vb") || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
         }
 
         private static bool IsMVVMLight()
