@@ -55,5 +55,6 @@ namespace Param_RootNamespace.ViewModels
             await IdentityService.LogoutAsync();
         }
 //}]}
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

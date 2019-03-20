@@ -18,6 +18,12 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName.Core\\Helpers\\StreamExtensions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
     }
   ],
   "symbols": {

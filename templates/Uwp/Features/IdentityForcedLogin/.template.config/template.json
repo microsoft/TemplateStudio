@@ -23,32 +23,25 @@
     "wts.defaultInstance": "IdentityForcedLogin",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"false",
-    "wts.outputToParent": "true"
+    "wts.rightClickEnabled":"false"
   },
   "sourceName": "IdentityForcedLogin",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Services\\UserDataService.cs"
+      "path": ".\\Services\\UserDataService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\LogInViewModel.cs"
+      "path": ".\\ViewModels\\LogInViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\UserViewModel.cs"
+      "path": ".\\ViewModels\\UserViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\LogInPage.xaml"
+      "path": ".\\Views\\LogInPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\LogInPage.xaml.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+      "path": ".\\Views\\LogInPage.xaml.cs"
     }
   ],
   "symbols": {
