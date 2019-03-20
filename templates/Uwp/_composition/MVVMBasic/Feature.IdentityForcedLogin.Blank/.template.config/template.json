@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin.Blank",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin.Blank",
   "tags": {
     "language": "C#",
     "type": "item",

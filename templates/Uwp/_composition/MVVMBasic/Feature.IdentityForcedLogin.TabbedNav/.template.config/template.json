@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin.TabbedNav",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

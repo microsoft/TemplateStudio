@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin",
   "tags": {
     "language": "C#",
     "type": "item",

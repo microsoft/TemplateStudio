@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin.SplitView.TabbedNav",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

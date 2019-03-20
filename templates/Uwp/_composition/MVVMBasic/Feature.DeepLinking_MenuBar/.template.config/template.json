@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.DeepLinking.MenuBar",
+  "name": "MVVMBasic.Feature.DeepLinking.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

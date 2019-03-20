@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin.MenuBar",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

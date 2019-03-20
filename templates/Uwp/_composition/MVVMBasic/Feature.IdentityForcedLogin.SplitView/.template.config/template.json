@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.Feature.IdentityForcedLogin.SplitView",
+  "name": "MVVMBasic.Feature.IdentityForcedLogin.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
