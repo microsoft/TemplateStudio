@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -42,7 +43,7 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoadedAsync));
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
@@ -63,12 +64,13 @@ namespace Param_RootNamespace.ViewModels
             _navigationView.BackRequested += OnBackRequested;
         }
 
-        private void OnLoaded()
+        private async void OnLoadedAsync()
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             _keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             _keyboardAccelerators.Add(_backKeyboardAccelerator);
+            await Task.CompletedTask;
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)

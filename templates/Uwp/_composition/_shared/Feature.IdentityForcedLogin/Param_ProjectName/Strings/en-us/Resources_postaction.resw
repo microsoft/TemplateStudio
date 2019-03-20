@@ -1,0 +1,37 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the BlankViewPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="LogInPageTitle.Text" xml:space="preserve">
+    <value>LogIn</value>
+    <comment>Title for LogIn page</comment>
+  </data>
+  <data name="LogInButton.Content" xml:space="preserve">
+    <value>Click to log in</value>
+    <comment>LogIn Button content in LogIn page</comment>
+  </data>
+  <data name="StatusUnauthorized" xml:space="preserve">
+    <value>User is unauthorized</value>
+    <comment>Status message for unauthorized login result</comment>
+  </data>
+  <data name="StatusNoNetworkAvailable" xml:space="preserve">
+    <value>There is no internet connection, please connect to the internet and try again.</value>
+    <comment>Status message for no network login result</comment>
+  </data>
+  <data name="StatusLoginFails" xml:space="preserve">
+    <value>Something went wrong during the login, please try again.</value>
+    <comment>Status message for login fails result</comment>
+  </data>
+  <data name="Settings_User.Text" xml:space="preserve">
+    <value>User</value>
+    <comment>Settings section title for User</comment>
+  </data>
+  <data name="Settings_LogOut.Content" xml:space="preserve">
+    <value>Log out</value>
+    <comment>Settings LogOut user content</comment>
+  </data>
+  <!--}]}-->
+</root>
