@@ -48,15 +48,6 @@ namespace Param_RootNamespace.Services
         }
 //{[{
 
-        public async Task RedirectLoginPageAsync()
-        {
-            var frame = new Frame();
-            NavigationService.Frame = frame;
-            Window.Current.Content = frame;
-            await ThemeSelectorService.SetRequestedThemeAsync();
-            NavigationService.Navigate<Views.LogInPage>();
-        }
-
         private async void OnLoggedIn(object sender, EventArgs e)
         {
             if (_shell?.Value != null)

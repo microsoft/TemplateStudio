@@ -25,7 +25,6 @@ namespace Param_RootNamespace.ViewModels
             set
             {
                 Param_Setter(ref _isBusy, value);
-                LoginCommand.OnCanExecuteChanged();
             }
         }
 
