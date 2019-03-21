@@ -5,7 +5,7 @@ Imports Windows.Storage.FileProperties
 Namespace Helpers
     Public Module CameraOrientationExtensions
 
-      <Extension> 
+      <Extension>
       Public Function ToSimpleOrientation(displayInformation As DisplayInformation, deviceOrientation As SimpleOrientation, isFlipped As Boolean) As SimpleOrientation
           Dim result = deviceOrientation
 

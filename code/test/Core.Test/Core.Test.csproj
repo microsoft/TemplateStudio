@@ -167,13 +167,8 @@
     <None Include="Packaging\SampleConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="TestData\Templates\ProjectTemplate_FrontAndBack\.template.config\icon.png" />
     <Content Include="TestData\Templates\UnspecifiedTemplateVB\.template.config\template.json" />
-    <Content Include="TestData\Templates\_catalog\en-US.frameworks.json" />
-    <Content Include="TestData\Templates\_catalog\es-ES.frameworks.json" />
-    <Content Include="TestData\Templates\_catalog\frameworks.json" />
-    <Content Include="TestData\Templates\_catalog\frameworks\en-US.TestFramework.md" />
-    <Content Include="TestData\Templates\_catalog\frameworks\es-ES.TestFramework.md" />
-    <Content Include="TestData\Templates\_catalog\frameworks\TestFramework.md" />
     <Content Include="TestData\Templates\_catalog\en-US.projectTypes.json" />
     <Content Include="TestData\Templates\_catalog\es-ES.projectTypes.json" />
     <Content Include="TestData\Templates\_catalog\projectTypes.json" />
@@ -181,6 +176,21 @@
     <Content Include="TestData\Templates\_catalog\projectTypes\es-ES.TestProjectType.md" />
     <Content Include="TestData\Templates\_catalog\projectTypes\TestProjectType.md" />
     <Content Include="TestData\Templates\Hidden.FeatureTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\ProjectTemplate_FrontAndBack\.template.config\description.md" />
+    <None Include="TestData\Templates\ProjectTemplate_FrontAndBack\.template.config\Layout.json" />
+    <None Include="TestData\Templates\ProjectTemplate_FrontAndBack\.template.config\template.json" />
+    <None Include="TestData\Templates\_catalog\backendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\backendframeworks\en-US.TestFramework.md" />
+    <None Include="TestData\Templates\_catalog\backendframeworks\es-ES.TestFramework.md" />
+    <None Include="TestData\Templates\_catalog\backendframeworks\TestFramework.md" />
+    <None Include="TestData\Templates\_catalog\en-US.backendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\en-US.frontendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\es-ES.backendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\es-ES.frontendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\frontendframeworks.json" />
+    <None Include="TestData\Templates\_catalog\frontendframeworks\en-US.TestFramework.md" />
+    <None Include="TestData\Templates\_catalog\frontendframeworks\es-ES.TestFramework.md" />
+    <None Include="TestData\Templates\_catalog\frontendframeworks\TestFramework.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -318,7 +328,7 @@
       <Version>15.0.26606</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime">
       <Version>4.3.0</Version>

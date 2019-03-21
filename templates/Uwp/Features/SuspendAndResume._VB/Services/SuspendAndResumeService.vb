@@ -30,7 +30,7 @@ Namespace Services
                 }
 
                 Dim target As Type = Nothing
-                
+
                 If OnBackgroundEnteringEvent IsNot Nothing Then
                     target = OnBackgroundEnteringEvent.Target.GetType
                 End If
@@ -50,7 +50,7 @@ Namespace Services
         ' This method allows subscribers to refresh data that might be outdated when the App is resuming from suspension.
         ' If the App was terminated during suspension this event will not fire, data restore is handled by the method HandleInternalAsync.
         Public Sub ResumeApp()
-            RaiseEvent OnResuming(Me, EventArgs.Empty)         
+            RaiseEvent OnResuming(Me, EventArgs.Empty)
         End Sub
 
         ' This method restores application state when the App is launched after termination, it navigates to the stored Page passing the recovered state data.

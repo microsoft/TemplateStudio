@@ -10,6 +10,6 @@ namespace Microsoft.Templates.Core.Gen
     {
         public LayoutItem Layout { get; set; }
 
-        public ITemplateInfo Template { get; set; }
+        public TemplateInfo Template { get; set; }
     }
 }

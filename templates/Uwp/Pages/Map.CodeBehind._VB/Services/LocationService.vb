@@ -69,7 +69,7 @@ Namespace Services
 
             CurrentPosition = args.Position
 
-            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub() 
+            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                 RaiseEvent PositionChanged(Me, CurrentPosition)
             End Sub)
         End Sub

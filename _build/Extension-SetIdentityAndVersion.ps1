@@ -74,7 +74,7 @@ if($vsixIdentity){
         $_.FullName -notmatch "\\Templates\\" -and 
         $_.FullName -notmatch "\\debug\\" -and
         $_.FullName -notmatch "\\obj\\" -and
-        $_.FullName -match "\\Installer.2017\\"
+        $_.FullName -match "\\Installer\\"
     }
     if($vsixLangPacks){ 
       Write-Host "Applying Display Name to vsixlangpack files"
@@ -126,7 +126,7 @@ if($cmdSetGuid -and $packageGuid){
       $_.FullName -notmatch "\\Templates\\" -and 
       $_.FullName -notmatch "\\debug\\" -and
       $_.FullName -notmatch "\\obj\\" -and
-      $_.FullName -match "\\Installer.2017\\Commands"
+      $_.FullName -match "\\Installer\\Commands"
   }
   if($vsctFiles){ 
     Write-Host

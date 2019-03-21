@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -177,7 +178,7 @@ namespace Microsoft.Templates.VsEmulator
 </Package>
 ";
 
-            File.WriteAllText(Path.Combine(projectPath, "package.appxmanifest"), fakeAppxManifest);
+            File.WriteAllText(Path.Combine(projectPath, "package.appxmanifest"), fakeAppxManifest, Encoding.UTF8);
 
             if (!string.IsNullOrWhiteSpace(progLanguage))
             {

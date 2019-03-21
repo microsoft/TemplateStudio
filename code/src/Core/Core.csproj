@@ -133,6 +133,7 @@
     <Compile Include="Gen\ProjectConfigInfo.cs" />
     <Compile Include="Gen\SupportedFramework.cs" />
     <Compile Include="Gen\TemplateInfo.cs" />
+    <Compile Include="Gen\UserSelectionItem.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
@@ -408,7 +409,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.1.0-beta009</Version>

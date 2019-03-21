@@ -68,23 +68,17 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                     && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrontEndFrameworkList().Contains(framework)
-                     && t.GetPlatform() == platform
-                     && !t.GetIsHidden()
-                     && t.GetLanguage() == language;
 
             Func<ITemplateInfo, bool> templateSelector =
-                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                     && t.GetFrontEndFrameworkList().Contains(framework)
-                     && t.GetPlatform() == platform
-                     && !t.GetIsHidden();
+                        t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                        && t.GetFrontEndFrameworkList().Contains(framework)
+                        && t.GetPlatform() == platform
+                        && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -111,23 +105,16 @@ namespace Microsoft.Templates.Test
 
         private async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && !t.GetIsHidden()
-                    && t.GetLanguage() == language;
-
             Func<ITemplateInfo, bool> templateSelector =
-                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}AllRandom{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -139,7 +126,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -151,15 +138,25 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC2{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
-        public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task BuildMVVMBasicOneByOneItemsCSAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        {
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic)]
+        [Trait("Type", "BuildOneByOneMVVMBasic")]
+        public async Task BuildMVVMBasicOneByOneItemsVBAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 

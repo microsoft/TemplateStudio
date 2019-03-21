@@ -7,6 +7,7 @@
         End Sub
 
         '{[{
+
         Private Sub OnGoBack(sender As Object, e As RoutedEventArgs)
             If NavigationService.CanGoBack Then
                 NavigationService.GoBack()
