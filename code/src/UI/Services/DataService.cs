@@ -12,18 +12,15 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class DataService
     {
-        private static readonly TemplatesRepository _repo = GenContext.ToolBox.Repo;
-
         public static bool LoadProjectTypes(ObservableCollection<ProjectTypeMetaDataViewModel> projectTypes, string platform)
         {
-            var newProjectTypes = _repo
-                                    .GetProjectTypes(platform)
+            var newProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
                                     .Where(m => !string.IsNullOrEmpty(m.Description));
 
             var data = newProjectTypes
                         .Select(m =>
                         {
-                            var targetFrameworks = _repo.GetFrontEndFrameworks(platform, m.Name)
+                            var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, m.Name)
                                         .Select(fx => new FrameworkMetaDataViewModel(fx, platform))
                                         .OrderBy(f => f.Order)
                                         .ToList();
@@ -51,7 +48,7 @@ namespace Microsoft.Templates.UI.Services
 
         public static bool LoadFrameworks(ObservableCollection<FrameworkMetaDataViewModel> frameworks, string projectTypeName, string platform)
         {
-            var targetFrameworks = _repo.GetFrontEndFrameworks(platform, projectTypeName)
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectTypeName)
                                         .Select(m => new FrameworkMetaDataViewModel(m, platform))
                                         .OrderBy(f => f.Order)
                                         .ToList();
@@ -70,7 +67,7 @@ namespace Microsoft.Templates.UI.Services
         {
             if (!templatesGroups.Any())
             {
-                var templates = _repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
+                var templates = GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
                     .Where(t => !t.IsHidden);
 
                 if (loadFromRightClick)

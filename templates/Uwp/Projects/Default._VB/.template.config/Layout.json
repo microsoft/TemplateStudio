@@ -3,6 +3,12 @@
         "name": "Main",
         "templateGroupIdentity": "wts.Page.Blank.VB",
         "readonly": "false",
-        "projecttype": "Blank|SplitView|TabbedNav"
+        "projecttype": "Blank|SplitView|TabbedNav|MenuBar"
+    },
+    {
+        "name": "Multiple views",
+        "templateGroupIdentity": "wts.Feat.MultiView.VB",
+        "readonly": "true",
+        "projecttype": "MenuBar"
     }
 ]

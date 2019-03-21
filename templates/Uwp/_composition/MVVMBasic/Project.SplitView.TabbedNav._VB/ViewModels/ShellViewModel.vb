@@ -100,7 +100,7 @@ Namespace ViewModels
             Return pageType = sourcePageType
         End Function
 
-        Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
+        Private Shared Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
             Dim keyboardAccelerator = New KeyboardAccelerator() With {
                 .Key = key
             }
@@ -113,7 +113,7 @@ Namespace ViewModels
             Return keyboardAccelerator
         End Function
 
-        Private Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+        Private Shared Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
             Dim result = NavigationService.GoBack()
             args.Handled = result
         End Sub

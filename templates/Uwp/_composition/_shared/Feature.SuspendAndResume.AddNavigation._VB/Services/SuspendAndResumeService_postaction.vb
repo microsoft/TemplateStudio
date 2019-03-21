@@ -12,7 +12,7 @@ Namespace Services
         ' TODO WTS: Subscribe to the OnBackgroundEntering event from your current Page to save the current App data.
         ' Only one Page should subscribe to OnBackgroundEntering at a time, as the App will navigate to that Page on resume.
         Public Event OnBackgroundEntering As EventHandler(Of OnBackgroundEnteringEventArgs)
-        
+
         ' TODO WTS: Subscribe to the OnResuming event from the current Page
         ' if you need to refresh online data when the App resumes without being terminated.
         Public Event OnResuming As EventHandler

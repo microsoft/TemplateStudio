@@ -12,7 +12,7 @@ Namespace Services.Ink
         Public Sub New(inkPresenter As InkPresenter)
             _strokeContainer = inkPresenter.StrokeContainer
             AddHandler inkPresenter.StrokesCollected, Sub(s, e) RaiseEvent StrokesCollected(Me, e)
-            AddHandler inkPresenter.StrokesErased, Sub(s, e) RaiseEvent StrokesErased(Me, e) 
+            AddHandler inkPresenter.StrokesErased, Sub(s, e) RaiseEvent StrokesErased(Me, e)
         End Sub
 
         Public Event StrokesCollected As EventHandler(Of InkStrokesCollectedEventArgs)

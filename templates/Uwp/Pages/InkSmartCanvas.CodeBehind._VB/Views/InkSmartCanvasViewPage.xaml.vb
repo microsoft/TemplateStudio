@@ -83,7 +83,7 @@ Namespace Views
                 [Param_Setter](_penInkingButtonIsChecked, value)
                 pointerDeviceService.EnablePen = value
             End Set
-        End Property        
+        End Property
 
         Public Property TransformTextAndShapesButtonIsEnabled As Boolean
             Get

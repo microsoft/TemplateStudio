@@ -9,6 +9,6 @@
             Dim export = TryCast(TransformTextAndShapesCommand, RelayCommand)
             export?.OnCanExecuteChanged()
             Dim clearAll = TryCast(ClearAllCommand, RelayCommand)
-            clearAll?.OnCanExecuteChanged()        
+            clearAll?.OnCanExecuteChanged()
             '}]}
         End Sub

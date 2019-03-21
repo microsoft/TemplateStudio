@@ -2,8 +2,8 @@
     Public Class wts.ItemNameViewModel
         Inherits Observable
         '^^
-
         '{[{
+
         Public Sub Cleanup()
             If locationService IsNot Nothing Then
                 RemoveHandler locationService.PositionChanged, AddressOf LocationService_PositionChanged

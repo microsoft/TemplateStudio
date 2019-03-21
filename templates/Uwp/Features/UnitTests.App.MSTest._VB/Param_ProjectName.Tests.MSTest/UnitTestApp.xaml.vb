@@ -5,7 +5,7 @@
         InitializeComponent()
         AddHandler Suspending, AddressOf OnSuspending
     End Sub
-        
+
     Protected Overrides Sub OnLaunched(e As Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)
         Dim rootFrame As Frame = TryCast(Window.Current.Content, Frame)
 

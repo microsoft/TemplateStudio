@@ -10,7 +10,7 @@ Namespace Services
         End Sub
 
         Private Const SettingsKey As String = "AppBackgroundRequestedTheme"
-        
+
         Public Shared Property Theme As ElementTheme = ElementTheme.Default
 
         Public Shared Async Function InitializeAsync() As Task

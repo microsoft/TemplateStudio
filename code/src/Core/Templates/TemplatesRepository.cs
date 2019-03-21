@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Core
 
             var results = GetMetadataInfo("backendframeworks")
                 .Where(f => f.Platforms.Contains(platform)
-                            && frameworks.Any(fx => fx.Name == f.Name && fx.Type == FrameworkTypes.FrontEnd));
+                            && frameworks.Any(fx => fx.Name == f.Name && fx.Type == FrameworkTypes.BackEnd));
 
             results.ToList().ForEach(meta => meta.Tags["type"] = "backend");
             return results;
@@ -198,38 +198,41 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<LayoutInfo> GetLayoutTemplates(string platform, string projectType, string frontEndFramework, string backEndFramework)
         {
-            var projectTemplate = GetTemplates(TemplateType.Project, platform, projectType, frontEndFramework, backEndFramework)
-                .FirstOrDefault();
-            var layout = projectTemplate?
+            var projectTemplates = GetTemplates(TemplateType.Project, platform, projectType, frontEndFramework, backEndFramework);
+
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var layout = projectTemplate?
                 .GetLayout()
                 .Where(l => l.ProjectType == null || l.ProjectType.GetMultiValue().Contains(projectType));
 
-            if (layout != null)
-            {
-                foreach (var item in layout)
+                if (layout != null)
                 {
-                    var template = Find(t => t.GroupIdentity == item.TemplateGroupIdentity
-                                                            && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                                                            && IsMatchFrontEnd(t, frontEndFramework)
-                                                            && IsMatchBackEnd(t, backEndFramework)
-                                                            && t.GetPlatform() == platform);
-
-                    if (template == null)
+                    foreach (var item in layout)
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, frontEndFramework, backEndFramework, platform));
-                    }
-                    else
-                    {
-                        var templateType = template.GetTemplateType();
+                        var template = Find(t => t.GroupIdentity == item.TemplateGroupIdentity
+                                                                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                                                                && IsMatchFrontEnd(t, frontEndFramework)
+                                                                && IsMatchBackEnd(t, backEndFramework)
+                                                                && t.GetPlatform() == platform);
 
-                        if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                        if (template == null)
                         {
-                            LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
+                            LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, frontEndFramework, backEndFramework, platform));
                         }
                         else
                         {
-                            var templateInfo = GetTemplateInfo(template, platform, projectType, frontEndFramework, backEndFramework);
-                            yield return new LayoutInfo() { Layout = item, Template = templateInfo };
+                            var templateType = template.GetTemplateType();
+
+                            if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                            {
+                                LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
+                            }
+                            else
+                            {
+                                var templateInfo = GetTemplateInfo(template, platform, projectType, frontEndFramework, backEndFramework);
+                                yield return new LayoutInfo() { Layout = item, Template = templateInfo };
+                            }
                         }
                     }
                 }
