@@ -60,18 +60,21 @@ namespace Microsoft.Templates.Core.Gen
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = GenContext.ToolBox.Repo.GetTemplates(TemplateType.Project, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework)
-                .FirstOrDefault();
-            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue, false);
+            var projectTemplates = GenContext.ToolBox.Repo.GetTemplates(TemplateType.Project, userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
 
-            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-            genProject.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
-            genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
-            genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
-            genProject.Parameters.Add(GenParams.FrontEndFramework, userSelection.FrontEndFramework);
-            genProject.Parameters.Add(GenParams.BackEndFramework, userSelection.BackEndFramework);
-            genProject.Parameters.Add(GenParams.Platform, userSelection.Platform);
-            genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue, false);
+
+                genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+                genProject.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
+                genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
+                genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
+                genProject.Parameters.Add(GenParams.FrontEndFramework, userSelection.FrontEndFramework);
+                genProject.Parameters.Add(GenParams.BackEndFramework, userSelection.BackEndFramework);
+                genProject.Parameters.Add(GenParams.Platform, userSelection.Platform);
+                genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
+            }
         }
 
         private static void AddTemplates(IEnumerable<UserSelectionItem> selectedTemplates, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
