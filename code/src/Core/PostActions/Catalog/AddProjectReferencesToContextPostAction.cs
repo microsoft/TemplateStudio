@@ -30,7 +30,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     //  ]
     // Expected args:
     //    - fileIndex -> The file index from the primary outputs which is the project file that will be referenced by the other project.
-    //    - otherProjectPath -> The path to the project where the reference will be added.
+    //    - referencedProject -> Alternatively you can specify the referenced project if not available on the primary outputs (e.g. on a composition template)
+    //    - projectPath -> The path to the project where the reference will be added.
     // Optional args:
     //    - specifiedPathIsTarget -> If 'true' the direction of the reference is reversed. (i.e. The indexed file will reference the project specified by path)
     public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
@@ -55,9 +56,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
+            var referencedProject = string.Empty;
 
-            int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            if (Args.ContainsKey("referencedProjectPath"))
+            {
+                referencedProject = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["referencedProjectPath"]));
+            }
+            else
+            {
+                int targetProjectIndex = int.Parse(Args["fileIndex"]);
+                referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            }
 
             var invert = Args.ContainsKey("specifiedPathIsTarget") && bool.Parse(Args["specifiedPathIsTarget"] ?? "False");
 

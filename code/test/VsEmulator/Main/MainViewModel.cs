@@ -28,6 +28,7 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
+using static System.Environment;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -680,7 +681,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string GetTemplatesFolder()
         {
-            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnv";
+            return Path.Combine(SpecialFolder.LocalApplicationData.ToString(), @"\WinTS\Templates\LocalEnv");
         }
     }
 }
