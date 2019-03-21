@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
@@ -35,14 +36,15 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            Initialize();
+            await InitializeAsync();
         }
 
-        private void Initialize()
+        private async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+            await Task.CompletedTask;
         }
 
         private string GetVersionDescription()
