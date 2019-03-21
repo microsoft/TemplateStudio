@@ -18,7 +18,6 @@ namespace Param_RootNamespace.Views
         {
             InitializeComponent();
             ViewModel.Initialize(shellFrame, splitView, rightFrame);
-            Loaded += OnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
