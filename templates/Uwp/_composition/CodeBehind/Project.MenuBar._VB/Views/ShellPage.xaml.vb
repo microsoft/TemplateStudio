@@ -1,8 +1,10 @@
 ﻿Imports System
 Imports System.ComponentModel
 Imports System.Runtime.CompilerServices
+Imports Windows.System
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
+Imports Windows.UI.Xaml.Input
 Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
 
@@ -15,6 +17,9 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 
+        Private ReadOnly _altLeftKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu)
+        Private ReadOnly _backKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack)
+
         Public Sub New()
             InitializeComponent()
             NavigationService.Frame = shellFrame
@@ -22,12 +27,32 @@ Namespace Views
         End Sub
 
         Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
-            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
-            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
+            ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
+            keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
+            keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
 
         Private Sub ShellMenuItemClick_File_Exit(sender As Object, e As RoutedEventArgs)
             Application.Current.[Exit]()
+        End Sub
+
+        Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
+            Dim keyboardAccelerator = New KeyboardAccelerator() With {
+                .Key = key
+            }
+
+            If modifiers.HasValue Then
+                keyboardAccelerator.Modifiers = modifiers.Value
+            End If
+
+            AddHandler keyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
+            Return keyboardAccelerator
+        End Function
+
+        Private Overloads Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+            Dim result = NavigationService.GoBack()
+            args.Handled = result
         End Sub
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
