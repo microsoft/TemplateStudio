@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Models;

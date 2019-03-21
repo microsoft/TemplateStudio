@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Param_RootNamespace.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
 

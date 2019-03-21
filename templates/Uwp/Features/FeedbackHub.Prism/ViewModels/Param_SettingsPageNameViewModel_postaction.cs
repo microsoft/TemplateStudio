@@ -7,7 +7,6 @@ namespace Param_RootNamespace.ViewModels
     {
 
 //{[{
-
         public Visibility FeedbackLinkVisibility => Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
 
         private ICommand _launchFeedbackHubCommand;

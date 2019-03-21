@@ -1,4 +1,4 @@
-namespace Param_RootNamespace.Services
+﻿namespace Param_RootNamespace.Services
 {
     internal class ActivationService
     {

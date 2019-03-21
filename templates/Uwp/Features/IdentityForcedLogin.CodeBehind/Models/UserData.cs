@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Param_RootNamespace.Models

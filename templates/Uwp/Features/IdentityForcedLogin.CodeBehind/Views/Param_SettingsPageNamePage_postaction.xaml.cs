@@ -11,11 +11,13 @@ namespace Param_RootNamespace.Views
         private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
 //}]}
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 //{[{
         private UserData _user;
 //}]}
+
 //^^
 //{[{
         public UserData User
@@ -49,6 +51,7 @@ namespace Param_RootNamespace.Views
             await IdentityService.LogoutAsync();
         }
 //}]}
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
