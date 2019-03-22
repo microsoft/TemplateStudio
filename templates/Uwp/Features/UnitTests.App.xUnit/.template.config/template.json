@@ -83,17 +83,6 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.NETCore.UniversalWindowsPlatform",
-        "version" : "6.1.9",
-        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
         "packageId" : "Microsoft.Xaml.Behaviors.Uwp.Managed",
         "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
@@ -106,7 +95,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.0.181018003.1",
+        "version" : "2.0.181018004",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
       },
       "continueOnError": "true"
