@@ -32,9 +32,6 @@
       "path": ".\\ViewModels\\LogInViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\UserViewModel.cs"
-    },
-    {
       "path": ".\\Views\\LogInPage.xaml"
     },
     {

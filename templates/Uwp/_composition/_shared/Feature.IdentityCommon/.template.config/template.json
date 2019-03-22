@@ -21,9 +21,6 @@
       "path": ".\\Param_ProjectName\\App.config"
     },
     {
-      "path": ".\\Param_ProjectName\\Services\\UserDataService.cs"
-    },
-    {
       "path": ".\\Param_ProjectName.Core\\Helpers\\StreamExtensions.cs"
     },
     {

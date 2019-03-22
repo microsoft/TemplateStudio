@@ -1,10 +1,11 @@
 ﻿using System;
 using Param_RootNamespace.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
+using GalaSoft.MvvmLight;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class UserViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class UserViewModel : ViewModelBase
     {
         private string _name;
         private string _userPrincipalName;
@@ -13,19 +14,19 @@ namespace Param_RootNamespace.ViewModels
         public string Name
         {
             get => _name;
-            set => Param_Setter(ref _name, value);
+            set => Set(ref _name, value);
         }
 
         public string UserPrincipalName
         {
             get => _userPrincipalName;
-            set => Param_Setter(ref _userPrincipalName, value);
+            set => Set(ref _userPrincipalName, value);
         }
 
         public BitmapImage Photo
         {
             get => _photo;
-            set => Param_Setter(ref _photo, value);
+            set => Set(ref _photo, value);
         }
 
         public UserViewModel()

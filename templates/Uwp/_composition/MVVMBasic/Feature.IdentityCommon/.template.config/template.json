@@ -3,18 +3,24 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.IdentityForcedLogin",
+  "name": "MVVMBasic.Feature.IdentityCommon",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Feat.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & groupidentity == wts.Feat.IdentityForcedLogin|wts.Feat.IdentityOptionalLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\UserDataService.cs"
+    },
+    {
+      "path": ".\\ViewModels\\UserViewModel.cs"
+    }
   ],
   "symbols": {
     "wts.projectName": {
