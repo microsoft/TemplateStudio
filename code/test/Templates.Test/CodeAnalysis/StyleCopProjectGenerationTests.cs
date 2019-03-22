@@ -25,14 +25,16 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForStyleCop))]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string exclusiveSelectionTemplateId)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
-                && !t.GetIsHidden())
+                && !t.GetIsHidden()
+                && !t.GetIsGroupExclusiveSelection())
+                || t.Identity == exclusiveSelectionTemplateId
                 || (t.Name == "Feature.Testing.StyleCop");
 
             var projectName = $"{projectType}{framework}AllStyleCop";

@@ -67,7 +67,24 @@ namespace Microsoft.Templates.Test
 
                 foreach (var framework in targetFrameworks)
                 {
-                    result.Add(new object[] { projectType, framework, platform });
+                    var templateIds = GenContext.ToolBox.Repo.GetAll().Where(
+                        t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains("all"))
+                        && t.GetFrontEndFrameworkList().Contains(framework)
+                        && t.GetPlatform() == platform
+                        && t.GetIsGroupExclusiveSelection() == true);
+
+                    if (templateIds == null || templateIds.Count() == 0)
+                    {
+                        result.Add(new object[] { projectType, framework, platform, string.Empty });
+                    }
+                    else
+                    {
+                        foreach (var templateId in templateIds)
+                        {
+                            result.Add(new object[] { projectType, framework, platform, templateId.Identity });
+                        }
+                    }
                 }
             }
 
