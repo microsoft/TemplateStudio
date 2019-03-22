@@ -30,6 +30,7 @@
                 Return _menuFileExitCommand
             End Get
         End Property
+
 '^^
 '{[{
         Private Sub OnMenuViewswts.ItemName()
