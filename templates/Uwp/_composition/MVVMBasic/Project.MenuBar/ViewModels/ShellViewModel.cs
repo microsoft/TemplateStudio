@@ -17,7 +17,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly KeyboardAccelerator _altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
         private readonly KeyboardAccelerator _backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
         private IList<KeyboardAccelerator> _keyboardAccelerators;
-        
+
         private ICommand _loadedCommand;
         private ICommand _menuFileExitCommand;
 

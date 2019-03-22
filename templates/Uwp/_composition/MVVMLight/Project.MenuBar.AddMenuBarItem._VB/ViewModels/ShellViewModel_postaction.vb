@@ -2,12 +2,14 @@
     Public Class ShellViewModel
         Inherits ViewModelBase
 
+        Private _keyboardAccelerators As IList(Of KeyboardAccelerator)
+'^^
 '{[{
         Private _menuViewswts.ItemNameCommand As ICommand
 '}]}
         Private _menuFileExitCommand As ICommand
+'^^
 '{[{
-
         Public ReadOnly Property MenuViewswts.ItemNameCommand As ICommand
             Get
                 If _menuViewswts.ItemNameCommand Is Nothing Then
@@ -17,6 +19,7 @@
                 Return _menuViewswts.ItemNameCommand
             End Get
         End Property
+
 '}]}
         Public ReadOnly Property MenuFileExitCommand As ICommand
             Get
@@ -27,12 +30,12 @@
                 Return _menuFileExitCommand
             End Get
         End Property
-
+'^^
 '{[{
-
         Private Sub OnMenuViewswts.ItemName()
             MenuNavigationHelper.UpdateView(GetType(wts.ItemNameViewModel).FullName)
         End Sub
+
 '}]}
     End Class
 End Namespace
