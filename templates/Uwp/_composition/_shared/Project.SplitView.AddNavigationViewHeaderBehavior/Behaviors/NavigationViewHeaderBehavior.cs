@@ -66,6 +66,13 @@ namespace Param_RootNamespace.Behaviors
         {
             base.OnAttached();
             _current = this;
+            NavigationService.Navigated += OnNavigated;
+        }
+
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+            NavigationService.Navigated -= OnNavigated;
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)

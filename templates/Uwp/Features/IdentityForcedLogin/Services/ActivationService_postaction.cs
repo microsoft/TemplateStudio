@@ -34,16 +34,17 @@ namespace Param_RootNamespace.Services
                 }
 //}]}
             }
-
 //{--{
             await HandleActivationAsync(activationArgs);
 //}--}
+//^^
 //{[{
             if (IdentityService.IsLoggedIn())
             {
                 await HandleActivationAsync(activationArgs);
             }
 //}]}
+
             _lastActivationArgs = activationArgs;
         }
 //{[{
@@ -63,7 +64,6 @@ namespace Param_RootNamespace.Services
 
             await ThemeSelectorService.SetRequestedThemeAsync();
             await HandleActivationAsync(_lastActivationArgs);
-            _lastActivationArgs = null;
         }
 //}]}
     }

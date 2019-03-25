@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Behaviors
 
         //}]}
         protected override void OnAttached()
-        {            
+        {
         }
     }
 }
