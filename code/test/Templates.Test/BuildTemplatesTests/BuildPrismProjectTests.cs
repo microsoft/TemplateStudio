@@ -16,8 +16,6 @@ using System.Linq;
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildTemplateTestCollection")]
-    [Trait("ExecutionSet", "BuildPrism")]
-    [Trait("ExecutionSet", "Build")]
     public class BuildPrismProjectTests : BaseGenAndBuildTests
     {
         public BuildPrismProjectTests(BuildTemplatesTestFixture fixture)
@@ -27,6 +25,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -37,6 +36,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
@@ -48,6 +48,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -58,6 +59,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
         {
@@ -68,6 +70,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
@@ -126,6 +129,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -138,6 +142,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -150,6 +155,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp)]
+        [Trait("ExecutionSet", "BuildOneByOnePrism")]
         [Trait("Type", "BuildOneByOnePrism")]
         public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
