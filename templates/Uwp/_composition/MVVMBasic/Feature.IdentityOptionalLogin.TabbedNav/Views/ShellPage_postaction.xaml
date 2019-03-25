@@ -25,12 +25,12 @@
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left">
                     <Grid>
-                        <Ellipse Width="26" Height="26" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}">
+                        <Ellipse Width="24" Height="24" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>
-                        <Ellipse Width="26" Height="26" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
+                        <Ellipse Width="24" Height="24" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/Assets/DefaultIcon.png" Stretch="UniformToFill" />
                             </Ellipse.Fill>

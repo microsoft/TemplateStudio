@@ -5,7 +5,7 @@
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
 <!--^^-->
 <!--{[{-->
-        <winui:NavigationView.PaneFooter>
+<winui:NavigationView.PaneFooter>
             <Button
                 Padding="0" Margin="0"
                 Click="OnUserProfile"
@@ -14,19 +14,23 @@
                 HorizontalContentAlignment="Left">
                 <Grid Height="40">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="34" />
+                        <ColumnDefinition Width="38" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse Width="26" Height="26">
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{x:Bind User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <TextBlock
                         Grid.Column="1"
-                        Margin="{StaticResource SmallLeftMargin}"
                         Text="{x:Bind User.Name, Mode=OneWay}"
                         VerticalAlignment="Center"
+                        Margin="{StaticResource XSmallLeftMargin}"
                         Style="{ThemeResource BodyTextBlockStyle}" />
                 </Grid>
             </Button>

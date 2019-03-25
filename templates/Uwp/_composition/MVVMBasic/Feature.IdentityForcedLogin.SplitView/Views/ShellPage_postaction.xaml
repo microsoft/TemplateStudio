@@ -14,19 +14,23 @@
                 HorizontalContentAlignment="Left">
                 <Grid Height="40">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="34" />
+                        <ColumnDefinition Width="38" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse Width="26" Height="26">
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <TextBlock
                         Grid.Column="1"
-                        Margin="{StaticResource SmallLeftMargin}"
                         Text="{x:Bind ViewModel.User.Name, Mode=OneWay}"
                         VerticalAlignment="Center"
+                        Margin="{StaticResource XSmallLeftMargin}"
                         Style="{ThemeResource BodyTextBlockStyle}" />
                 </Grid>
             </Button>

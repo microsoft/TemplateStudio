@@ -14,7 +14,7 @@
                 Background="Transparent"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left">
-                <Ellipse Width="26" Height="26">
+                <Ellipse Width="24" Height="24">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{x:Bind User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
                     </Ellipse.Fill>

@@ -25,15 +25,25 @@
                     HorizontalContentAlignment="Left">
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition Width="38" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Ellipse Width="28" Height="28" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}">
+                        <Ellipse
+                            Grid.Column="0"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>
-                        <Ellipse Width="28" Height="28" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
+                        <Ellipse
+                            Grid.Column="0"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/Assets/DefaultIcon.png" Stretch="UniformToFill" />
                             </Ellipse.Fill>
@@ -43,11 +53,13 @@
                             Text="{x:Bind ViewModel.User.Name, Mode=OneWay}"
                             VerticalAlignment="Center"
                             Style="{ThemeResource BodyTextBlockStyle}"
+                            Margin="{StaticResource XSmallLeftMargin}"
                             Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}" />
                         <TextBlock
                             Grid.Column="1"
                             x:Uid="Shell_LogIn"
                             VerticalAlignment="Center"
+                            Margin="{StaticResource XSmallLeftMargin}"
                             Style="{ThemeResource BodyTextBlockStyle}"
                             Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}" />
                     </Grid>
