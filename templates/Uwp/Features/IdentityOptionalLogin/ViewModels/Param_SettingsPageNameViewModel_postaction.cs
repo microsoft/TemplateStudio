@@ -1,0 +1,127 @@
+﻿//{[{
+using Param_RootNamespace.Core.Helpers;
+using Param_RootNamespace.Core.Services;
+//}]}
+namespace Param_RootNamespace.ViewModels
+{
+    public class Param_SettingsPageNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    {
+//{[{
+        private UserDataService UserDataService => Singleton<UserDataService>.Instance;
+
+        private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
+//}]}
+        private ElementTheme _elementTheme = ThemeSelectorService.Theme;
+//{[{
+        private RelayCommand _logInCommand;
+        private RelayCommand _logOutCommand;
+        private bool _isLoggedIn;
+        private bool _isBusy;
+        private UserViewModel _user;
+//}]}
+
+        public ElementTheme ElementTheme
+        {
+        }
+//^^
+//{[{
+
+        public RelayCommand LogInCommand => _logInCommand ?? (_logInCommand = new RelayCommand(OnLogIn, () => !IsBusy));
+
+        public RelayCommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new RelayCommand(OnLogOut, () => !IsBusy));
+
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set { Set(ref _isLoggedIn, value); }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                Set(ref _isBusy, value);
+                LogInCommand.OnCanExecuteChanged();
+                LogOutCommand.OnCanExecuteChanged();
+            }
+        }
+
+        public UserViewModel User
+        {
+            get { return _user; }
+            set { Set(ref _user, value); }
+        }
+//}]}
+
+        public Param_SettingsPageNameViewModel()
+        {
+        }
+
+        public async Task InitializeAsync()
+        {
+            VersionDescription = GetVersionDescription();
+//^^
+//{[{
+            IdentityService.LoggedIn += OnLoggedIn;
+            IdentityService.LoggedOut += OnLoggeOut;
+            await GetUserDataAsync();
+//}]}
+            await Task.CompletedTask;
+        }
+
+//^^
+//{[{
+
+        public void UnregisterEvents()
+        {
+            IdentityService.LoggedIn -= OnLoggedIn;
+            IdentityService.LoggedOut -= OnLoggeOut;
+        }
+
+        private async void OnLogIn()
+        {
+            IsBusy = true;
+            var loginResult = await IdentityService.LoginAsync();
+            if (loginResult != LoginResultType.Success)
+            {
+                await AuthenticationHelper.ShowLoginErrorAsync(loginResult);
+                IsBusy = false;
+            }
+        }
+
+        private async void OnLogOut()
+        {
+            IsBusy = true;
+            await IdentityService.LogoutAsync();
+        }
+
+        private async void OnLoggedIn(object sender, EventArgs e)
+        {
+            await GetUserDataAsync();
+            IsBusy = false;
+        }
+
+        private async void OnLoggeOut(object sender, EventArgs e)
+        {
+            await GetUserDataAsync();
+            IsBusy = false;
+        }
+
+        private async Task GetUserDataAsync()
+        {
+            IsLoggedIn = IdentityService.IsLoggedIn();
+            if (IsLoggedIn)
+            {
+                User = await UserDataService.GetUserFromCacheAsync();
+                User = await UserDataService.GetUserFromGraphApiAsync();
+                if (User == null)
+                {
+                    User = UserDataService.GetDefaultUserData();
+                }
+            }
+        }
+//}]}
+    }
+}
