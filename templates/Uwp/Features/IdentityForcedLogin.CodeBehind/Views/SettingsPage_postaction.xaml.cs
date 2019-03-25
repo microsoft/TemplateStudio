@@ -1,41 +1,38 @@
 ﻿//{[{
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Models;
 //}]}
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.Views
 {
-    public class Param_SettingsPageNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public sealed partial class SettingsPage : Page, INotifyPropertyChanged
     {
 //{[{
         private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
 //}]}
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 //{[{
-        private UserViewModel _user;
+        private UserData _user;
 //}]}
 
 //^^
 //{[{
-        private ICommand _logoutCommand;
-
-        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new RelayCommand(OnLogout));
-
-        public UserViewModel User
+        public UserData User
         {
             get { return _user; }
             set { Set(ref _user, value); }
         }
 //}]}
 
-        public Param_SettingsPageNameViewModel()
+        public SettingsPage()
         {
         }
 
-        public async Task InitializeAsync()
+        private async Task InitializeAsync()
         {
-            VersionDescription = GetVersionDescription();
 //^^
 //{[{
             User = await UserDataService.GetUserFromCacheAsync();
@@ -47,13 +44,14 @@ namespace Param_RootNamespace.ViewModels
 //}]}
             await Task.CompletedTask;
         }
-
 //^^
 //{[{
-        private async void OnLogout()
+        private async void OnLogout(object sender, RoutedEventArgs e)
         {
             await IdentityService.LogoutAsync();
         }
 //}]}
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

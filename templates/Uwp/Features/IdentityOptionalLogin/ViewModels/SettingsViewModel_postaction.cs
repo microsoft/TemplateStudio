@@ -4,7 +4,7 @@ using Param_RootNamespace.Core.Services;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class Param_SettingsPageNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class SettingsViewModel : System.ComponentModel.INotifyPropertyChanged
     {
 //{[{
         private UserDataService UserDataService => Singleton<UserDataService>.Instance;
@@ -43,8 +43,6 @@ namespace Param_RootNamespace.ViewModels
             set
             {
                 Set(ref _isBusy, value);
-                LogInCommand.OnCanExecuteChanged();
-                LogOutCommand.OnCanExecuteChanged();
             }
         }
 
@@ -55,7 +53,7 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public Param_SettingsPageNameViewModel()
+        public SettingsViewModel()
         {
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class Param_SettingsPageNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class SettingsViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         public async Task InitializeAsync()
         {

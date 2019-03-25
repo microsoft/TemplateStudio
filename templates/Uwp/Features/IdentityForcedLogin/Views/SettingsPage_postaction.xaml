@@ -8,7 +8,7 @@
 <!--{[{-->
 
             <TextBlock
-                x:Uid="Param_SettingsPageName_User"
+                x:Uid="Settings_User"
                 Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource SmallTopMargin}" Orientation="Horizontal">
@@ -28,7 +28,7 @@
                 </StackPanel>
             </StackPanel>
             <HyperlinkButton
-                x:Uid="Param_SettingsPageName_LogOut"
+                x:Uid="Settings_LogOut"
                 Command="{x:Bind ViewModel.LogoutCommand}"
                 Margin="{StaticResource XSmallTopMargin}" />
 <!--}]}-->

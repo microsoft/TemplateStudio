@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.Views
 {
-    public sealed partial class Param_SettingsPageNamePage : Page
+    public sealed partial class SettingsPage : Page
     {
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {

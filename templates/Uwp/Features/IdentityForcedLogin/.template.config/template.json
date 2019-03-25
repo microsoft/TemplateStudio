@@ -54,11 +54,6 @@
     "setter": {
       "type": "parameter",
       "replaces": "Param_Setter"
-    },
-    "wts.Page.Settings": {
-      "type": "parameter",
-      "replaces": "Param_SettingsPageName",
-      "fileRename": "Param_SettingsPageName"
     }
   }
 }
