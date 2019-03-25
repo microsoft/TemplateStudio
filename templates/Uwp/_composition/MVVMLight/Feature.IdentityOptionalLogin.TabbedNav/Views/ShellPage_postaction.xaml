@@ -1,0 +1,46 @@
+﻿<Page
+<!--^^-->
+<!--{[{-->
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+<!--}]}-->
+    mc:Ignorable="d">
+<!--^^-->
+<!--{[{-->
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="ReverseBoolToVisibility" FalseValue="Visible" TrueValue="Collapsed" />
+    </Page.Resources>
+<!--}]}-->
+
+    <winui:NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+<!--^^-->
+<!--{[{-->
+        <winui:NavigationView.PaneFooter>
+            <Grid>
+                <Button
+                    Width="48"
+                    Height="40"
+                    Command="{x:Bind ViewModel.UserProfileCommand}"
+                    Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+                    <Grid>
+                        <Ellipse Width="24" Height="24" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse Width="24" Height="24" Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/DefaultIcon.png" Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Grid>
+                </Button>
+            </Grid>
+        </winui:NavigationView.PaneFooter>
+<!--}]}-->
+        <Grid>
+        </Grid>
+    </winui:NavigationView>
+</Page>
