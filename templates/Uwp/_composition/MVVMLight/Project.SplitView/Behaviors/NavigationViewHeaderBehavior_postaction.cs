@@ -13,5 +13,13 @@ namespace Param_RootNamespace.Behaviors
             ViewModelLocator.Current.NavigationService.Navigated += OnNavigated;
             //}]}
         }
+
+        protected override void OnDetaching()
+        {
+            //^^
+            //{[{
+            ViewModelLocator.Current.NavigationService.Navigated -= OnNavigated;
+            //}]}
+        }
     }
 }

@@ -13,5 +13,13 @@ namespace Param_RootNamespace.Behaviors
             NavigationService.Navigated += OnNavigated;
             //}]}
         }
+
+        protected override void OnDetaching()
+        {
+            //^^
+            //{[{
+            NavigationService.Navigated -= OnNavigated;
+            //}]}
+        }
     }
 }
