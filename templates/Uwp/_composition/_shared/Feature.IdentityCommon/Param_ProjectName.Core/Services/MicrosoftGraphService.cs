@@ -16,7 +16,6 @@ namespace Param_RootNamespace.Core.Services
 
         private const string _graphAPIEndpoint = "https://graph.microsoft.com/v1.0/";
         private const string _apiServiceMe = "me/";
-        private const string _apiServiceMePeople = "me/people";
         private const string _apiServiceMePhoto = "me/photo/$value";
 
         public MicrosoftGraphService()
