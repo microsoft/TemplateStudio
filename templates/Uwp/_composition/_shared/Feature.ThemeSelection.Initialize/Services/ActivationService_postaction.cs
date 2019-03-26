@@ -15,11 +15,7 @@ namespace Param_RootNamespace.Services
         private async Task StartupAsync()
         {
 //{[{
-            if (Window.Current.Content == null)
-            {
-                await ThemeSelectorService.InitializeAsync();
-            }
-
+            await ThemeSelectorService.SetRequestedThemeAsync();
 //}]}
         }
     }
