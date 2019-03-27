@@ -51,11 +51,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{D5E1C23A-7547-412A-82F1-F00C34622C1E}</ProjectGuid>
+    <ProjectGuid>{2B997E0A-16C8-4B8E-810A-D1D7DAFBD760}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharp.Upw.Solution</RootNamespace>
-    <AssemblyName>CSharp.Upw.Solution</AssemblyName>
+    <RootNamespace>VBNet.UWP.Solution</RootNamespace>
+    <AssemblyName>VBNet.UWP.Solution</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
@@ -101,10 +101,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CSharp.UWP.VS2017.Solution.ico" />
+    <None Include="VBNet.UWP.Solution.ico" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <SubType>Designer</SubType>
     </VSTemplate>
@@ -122,61 +122,62 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.ru-RU.vstemplate">
-      <SubType>Designer</SubType>
-      <Culture>1049</Culture>
-      <OutputSubPath>Windows UAP</OutputSubPath>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.cs-CZ.vstemplate">
+    <None Include="windowsTemplateStudio_Logo_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="VBNet.UWP.Solution.cs-CZ.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.de-DE.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.de-DE.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1031</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.es-ES.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.es-ES.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>3082</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.fr-FR.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.fr-FR.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1036</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.it-IT.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.it-IT.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1040</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.ja-JP.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.ja-JP.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1041</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.ko-KR.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.ko-KR.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1042</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.pl-PL.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.pl-PL.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1045</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.pt-BR.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.pt-BR.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1046</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.tr-TR.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.tr-TR.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1055</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.zh-CN.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.zh-CN.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>2052</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.UWP.VS2017.Solution.zh-TW.vstemplate">
+    <VSTemplate Include="VBNet.UWP.Solution.zh-TW.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1028</Culture>
     </VSTemplate>
+    <VSTemplate Include="VBNet.UWP.Solution.ru-RU.vstemplate">
+      <OutputSubPath>Windows UAP</OutputSubPath>
+      <Culture>1049</Culture>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
-    <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AsyncUsageAnalyzers">
@@ -198,7 +199,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

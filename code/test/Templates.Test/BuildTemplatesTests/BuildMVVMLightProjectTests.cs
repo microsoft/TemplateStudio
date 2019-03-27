@@ -14,7 +14,6 @@ using Microsoft.Templates.Fakes;
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildTemplateTestCollection")]
-    [Trait("ExecutionSet", "BuildMVVMLight")]
     public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMLightProjectTests(BuildTemplatesTestFixture fixture)
@@ -24,6 +23,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -34,6 +34,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
@@ -45,6 +46,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -55,6 +57,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
         {
@@ -65,6 +68,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
@@ -120,6 +124,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -132,6 +137,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -144,6 +150,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp)]
+        [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
         public async Task BuildMVVMLightOneByOneItemsCSAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
@@ -154,6 +161,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic)]
+        [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
         public async Task BuildMVVMLightOneByOneItemsVBAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

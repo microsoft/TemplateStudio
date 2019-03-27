@@ -1,16 +1,16 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.Blank.MenuBar.AddKeyboardAccelerators.VB",
+  "name": "Project.Blank.AddKeyboardAccelerators",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMBasic & $projectType == Blank|MenuBar & wts.type == project"
+    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMBasic & $projectType == Blank & wts.type == project"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

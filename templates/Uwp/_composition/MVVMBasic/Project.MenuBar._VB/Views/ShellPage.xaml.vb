@@ -1,7 +1,5 @@
 ﻿Imports System
-Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
-Imports Param_RootNamespace.Services
 Imports Param_RootNamespace.ViewModels
 
 Namespace Views
@@ -16,12 +14,7 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            ViewModel.Initialize(shellFrame, splitView, rightFrame)
-        End Sub
-
-        Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
-            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
-            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
+            ViewModel.Initialize(shellFrame, splitView, rightFrame, KeyboardAccelerators)
         End Sub
     End Class
 End Namespace

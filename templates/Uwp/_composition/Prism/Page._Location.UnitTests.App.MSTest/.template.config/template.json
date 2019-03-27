@@ -40,6 +40,17 @@
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": "true"
+    },
+    {
+      "description": "Add reference to the core project",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "referencedProjectPath" : "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
+        "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+
+      },
+      "continueOnError": "true"
     }
   ]
 }
