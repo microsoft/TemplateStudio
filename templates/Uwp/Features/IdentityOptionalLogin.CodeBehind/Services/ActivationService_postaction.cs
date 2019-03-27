@@ -12,7 +12,6 @@ namespace Param_RootNamespace.Services
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
 //}]}
-
         public async Task ActivateAsync(object activationArgs)
         {
             if (IsInteractive(activationArgs))

@@ -20,13 +20,11 @@ namespace Param_RootNamespace.Views
         private bool _isBusy;
         private UserData _user;
 //}]}
-
         public ElementTheme ElementTheme
         {
         }
 //^^
 //{[{
-
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -36,10 +34,7 @@ namespace Param_RootNamespace.Views
         public bool IsBusy
         {
             get { return _isBusy; }
-            set
-            {
-                Set(ref _isBusy, value);
-            }
+            set { Set(ref _isBusy, value); }
         }
 
         public UserData User
@@ -56,7 +51,6 @@ namespace Param_RootNamespace.Views
         private async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
-//^^
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggeOut;
@@ -65,7 +59,6 @@ namespace Param_RootNamespace.Views
         }
 //^^
 //{[{
-
         private async void OnLogIn(object sender, RoutedEventArgs e)
         {
             IsBusy = true;

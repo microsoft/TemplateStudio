@@ -10,7 +10,6 @@ namespace Param_RootNamespace.ViewModels
         private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
-
 //}]}
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 //{[{
@@ -20,13 +19,11 @@ namespace Param_RootNamespace.ViewModels
         private bool _isBusy;
         private UserViewModel _user;
 //}]}
-
         public ElementTheme ElementTheme
         {
         }
 //^^
 //{[{
-
         public RelayCommand LogInCommand => _logInCommand ?? (_logInCommand = new RelayCommand(OnLogIn, () => !IsBusy));
 
         public RelayCommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new RelayCommand(OnLogOut, () => !IsBusy));
@@ -39,7 +36,7 @@ namespace Param_RootNamespace.ViewModels
 
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get => _isBusy;
             set
             {
                 Set(ref _isBusy, value);
@@ -71,7 +68,6 @@ namespace Param_RootNamespace.ViewModels
 
 //^^
 //{[{
-
         public void UnregisterEvents()
         {
             IdentityService.LoggedIn -= OnLoggedIn;
