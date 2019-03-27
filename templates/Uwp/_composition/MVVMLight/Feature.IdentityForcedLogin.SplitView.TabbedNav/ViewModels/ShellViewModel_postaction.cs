@@ -56,6 +56,8 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
+            _keyboardAccelerators.Clear();
+            NavigationService.NavigationFailed -= Frame_NavigationFailed;
             NavigationService.Navigated -= Frame_Navigated;
             _navigationView.BackRequested -= OnBackRequested;
             IdentityService.LoggedOut -= OnLoggedOut;
