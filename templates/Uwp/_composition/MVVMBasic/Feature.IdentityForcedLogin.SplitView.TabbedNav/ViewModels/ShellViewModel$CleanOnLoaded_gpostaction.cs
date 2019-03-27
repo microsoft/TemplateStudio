@@ -1,8 +1,8 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : ViewModelBase
+    public class ShellViewModel : Observable
     {
-        private async void OnLoadedAsync()
+        private async void OnLoaded()
         {
 //{--{
             await Task.CompletedTask;

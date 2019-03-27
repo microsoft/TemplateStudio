@@ -37,7 +37,7 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoadedAsync));
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
@@ -50,15 +50,12 @@ namespace Param_RootNamespace.ViewModels
             _navigationView = navigationView;
             _keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
-            NavigationService.NavigationFailed += (sender, e) =>
-            {
-                throw e.Exception;
-            };
+            NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }
 
-        private async void OnLoadedAsync()
+        private async void OnLoaded()
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
@@ -79,6 +76,11 @@ namespace Param_RootNamespace.ViewModels
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
         {
             NavigationService.GoBack();
+        }
+
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw e.Exception;
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)

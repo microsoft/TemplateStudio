@@ -66,7 +66,7 @@ namespace Param_RootNamespace.ViewModels
 //}]}
         }
 
-        private async void OnLoadedAsync()
+        private async void OnLoaded()
         {
 //^^
 //{[{

@@ -40,7 +40,7 @@ namespace Param_RootNamespace.ViewModels
 //}]}
         }
 
-        private async void OnLoadedAsync()
+        private async void OnLoaded()
         {
 //^^
 //{[{
@@ -56,6 +56,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
+            NavigationService.NavigationFailed -= Frame_NavigationFailed;
             NavigationService.Navigated -= Frame_Navigated;
             _navigationView.BackRequested -= OnBackRequested;
             IdentityService.LoggedOut -= OnLoggedOut;

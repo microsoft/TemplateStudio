@@ -56,6 +56,7 @@ namespace Param_RootNamespace.Views
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
+            NavigationService.NavigationFailed -= Frame_NavigationFailed;
             NavigationService.Navigated -= Frame_Navigated;
             navigationView.BackRequested -= OnBackRequested;
             IdentityService.LoggedOut -= OnLoggedOut;

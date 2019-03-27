@@ -43,7 +43,7 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoadedAsync));
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
@@ -61,7 +61,7 @@ namespace Param_RootNamespace.ViewModels
             _navigationView.BackRequested += OnBackRequested;
         }
 
-        private async void OnLoadedAsync()
+        private async void OnLoaded()
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8

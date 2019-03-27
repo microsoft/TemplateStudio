@@ -45,10 +45,7 @@ namespace Param_RootNamespace.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
-            NavigationService.NavigationFailed += (sender, e) =>
-            {
-                throw e.Exception;
-            };
+            NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
         }
@@ -60,6 +57,11 @@ namespace Param_RootNamespace.Views
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
             await Task.CompletedTask;
+        }
+
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw e.Exception;
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
