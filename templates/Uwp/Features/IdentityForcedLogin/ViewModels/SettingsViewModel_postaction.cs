@@ -38,21 +38,33 @@ namespace Param_RootNamespace.ViewModels
             VersionDescription = GetVersionDescription();
 //^^
 //{[{
-            User = await UserDataService.GetUserFromCacheAsync();
-            User = await UserDataService.GetUserFromGraphApiAsync();
-            if (User == null)
-            {
-                User = UserDataService.GetDefaultUserData();
-            }
+            IdentityService.LoggedOut += OnLoggeOut;
+            UserDataService.UserDataUpdated += OnUserDataUpdated;
+            User = await UserDataService.GetUserAsync();
 //}]}
-            await Task.CompletedTask;
         }
-
 //^^
 //{[{
+
+        public void UnregisterEvents()
+        {
+            IdentityService.LoggedOut -= OnLoggeOut;
+            UserDataService.UserDataUpdated -= OnUserDataUpdated;
+        }
+
+        private void OnUserDataUpdated(object sender, UserViewModel user)
+        {
+            User = user;
+        }
+
         private async void OnLogout()
         {
             await IdentityService.LogoutAsync();
+        }
+
+        private void OnLoggeOut(object sender, EventArgs e)
+        {
+            UnregisterEvents();
         }
 //}]}
     }

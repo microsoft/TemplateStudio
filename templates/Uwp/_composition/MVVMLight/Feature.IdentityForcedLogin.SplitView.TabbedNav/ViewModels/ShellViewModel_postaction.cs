@@ -37,6 +37,7 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
             IdentityService.LoggedOut += OnLoggedOut;
+            UserDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
 
@@ -44,15 +45,15 @@ namespace Param_RootNamespace.ViewModels
         {
 //^^
 //{[{
-            User = await UserDataService.GetUserFromCacheAsync();
-            User = await UserDataService.GetUserFromGraphApiAsync();
-            if (User == null)
-            {
-                User = UserDataService.GetDefaultUserData();
-            }
+            User = await UserDataService.GetUserAsync();
 //}]}
         }
 //{[{
+
+        private void OnUserDataUpdated(object sender, UserViewModel user)
+        {
+            User = user;
+        }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
@@ -60,6 +61,7 @@ namespace Param_RootNamespace.ViewModels
             NavigationService.NavigationFailed -= Frame_NavigationFailed;
             NavigationService.Navigated -= Frame_Navigated;
             _navigationView.BackRequested -= OnBackRequested;
+            UserDataService.UserDataUpdated -= OnUserDataUpdated;
             IdentityService.LoggedOut -= OnLoggedOut;
         }
 

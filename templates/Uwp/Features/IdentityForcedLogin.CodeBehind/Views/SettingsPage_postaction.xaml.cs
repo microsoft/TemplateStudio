@@ -35,20 +35,37 @@ namespace Param_RootNamespace.Views
         {
 //^^
 //{[{
-            User = await UserDataService.GetUserFromCacheAsync();
-            User = await UserDataService.GetUserFromGraphApiAsync();
-            if (User == null)
-            {
-                User = UserDataService.GetDefaultUserData();
-            }
+            User = await UserDataService.GetUserAsync();
 //}]}
             await Task.CompletedTask;
         }
 //^^
 //{[{
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            UnregisterEvents();
+        }
+
+        public void UnregisterEvents()
+        {
+            IdentityService.LoggedOut -= OnLoggeOut;
+            UserDataService.UserDataUpdated -= OnUserDataUpdated;
+        }
+
+        private void OnUserDataUpdated(object sender, UserData user)
+        {
+            User = user;
+        }
+
         private async void OnLogout(object sender, RoutedEventArgs e)
         {
             await IdentityService.LogoutAsync();
+        }
+
+        private void OnLoggeOut(object sender, EventArgs e)
+        {
+            UnregisterEvents();
         }
 //}]}
 
