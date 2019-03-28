@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -38,13 +39,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var instructions = File.ReadAllLines(Config.FilePath).ToList();
 
             var originalEncoding = GetEncoding(originalFilePath);
-            var otherEncoding = GetEncoding(Config.FilePath);
 
-            if (originalEncoding.EncodingName != otherEncoding.EncodingName
-                || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+            // Only check encoding on new project, might have changed on right click
+            if (GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
             {
-                HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
-                return;
+                var otherEncoding = GetEncoding(Config.FilePath);
+
+                if (originalEncoding.EncodingName != otherEncoding.EncodingName
+                    || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+                {
+                    HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
+                    return;
+                }
             }
 
             var search = new List<string>();
