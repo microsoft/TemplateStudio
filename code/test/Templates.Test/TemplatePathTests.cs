@@ -30,13 +30,13 @@ namespace Microsoft.Templates.Test
 
                 var relativePath = path.Replace(templateRoot, string.Empty);
 
-                if (relativePath.Length > 140)
+                if (relativePath.Length > 130)
                 {
                     exceedingTemplates.Add(relativePath);
                 }     
             }
 
-            Assert.True(exceedingTemplates.Count == 0, $"Following templates exceed 140 chars:  {string.Join(Environment.NewLine, exceedingTemplates.ToArray())}");
+            Assert.True(exceedingTemplates.Count == 0, $"Following templates exceed 130 chars:  {string.Join(Environment.NewLine, exceedingTemplates.ToArray())}");
         }
 
  
