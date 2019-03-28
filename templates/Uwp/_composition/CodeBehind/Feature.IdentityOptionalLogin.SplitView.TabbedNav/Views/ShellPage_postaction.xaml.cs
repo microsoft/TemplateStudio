@@ -79,14 +79,14 @@ namespace Param_RootNamespace.Views
             User = user;
         }
 
-        private async void OnLoggedIn(object sender, EventArgs e)
+        private void OnLoggedIn(object sender, EventArgs e)
         {
             IsLoggedIn = true;
             IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
             IsBusy = false;
         }
 
-        private async void OnLoggedOut(object sender, EventArgs e)
+        private void OnLoggedOut(object sender, EventArgs e)
         {
             User = null;
             IsLoggedIn = false;

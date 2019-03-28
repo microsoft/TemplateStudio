@@ -78,7 +78,6 @@ namespace Param_RootNamespace.ViewModels
         }
 //{[{
 
-
         private void OnUserDataUpdated(object sender, UserViewModel user)
         {
             User = user;
