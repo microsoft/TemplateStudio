@@ -11,6 +11,8 @@ namespace Param_RootNamespace.Services
 //{[{
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
+        private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 //}]}
         public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
@@ -26,6 +28,7 @@ namespace Param_RootNamespace.Services
             {
                 await InitializeAsync();
 //{[{
+                UserDataService.Initialize();
                 IdentityService.InitializeWithAadAndPersonalMsAccounts();
                 var silentLoginSuccess = await IdentityService.AcquireTokenSilentAsync();
                 if (!silentLoginSuccess || !IdentityService.IsAuthorized())

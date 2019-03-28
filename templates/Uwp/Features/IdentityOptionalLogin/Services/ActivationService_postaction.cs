@@ -11,6 +11,8 @@ namespace Param_RootNamespace.Services
 //{[{
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
+        private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 //}]}
         public async Task ActivateAsync(object activationArgs)
         {
@@ -18,6 +20,7 @@ namespace Param_RootNamespace.Services
             {
                 await InitializeAsync();
 //{[{
+                UserDataService.Initialize();
                 IdentityService.InitializeWithAadAndPersonalMsAccounts();
                 await IdentityService.AcquireTokenSilentAsync();
 //}]}
