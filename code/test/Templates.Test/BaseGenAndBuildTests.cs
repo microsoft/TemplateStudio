@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, string excludedGroupIdentity = "")
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -245,11 +245,12 @@ namespace Microsoft.Templates.Test
             if (!emptyProject)
             {
                 var templates = _fixture.Templates().Where(
-                            t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                            && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                            && t.GetFrontEndFrameworkList().Contains(framework)
-                            && t.GetPlatform() == platform
-                            && !t.GetIsHidden());
+                        t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                        && t.GetFrontEndFrameworkList().Contains(framework)
+                        && t.GetPlatform() == platform
+                        && t.GroupIdentity != excludedGroupIdentity
+                        && !t.GetIsHidden());
 
                 var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
 
