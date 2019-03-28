@@ -12,7 +12,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
     "wts.platform": "Uwp",
-    "wts.group": "Experimental",
+    "wts.group": "Tools",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.defaultInstance": "XAMLStyler",

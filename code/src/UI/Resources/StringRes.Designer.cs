@@ -1270,6 +1270,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string TemplateGroup_Tools {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Interaction.
         /// </summary>
         public static string TemplateGroup_UserInteraction {
@@ -1293,6 +1302,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}update-activationservice-for-identity.md.
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio has changed the ActivationService to be able to include Identity features..
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityMessage", resourceCulture);
             }
         }
         
