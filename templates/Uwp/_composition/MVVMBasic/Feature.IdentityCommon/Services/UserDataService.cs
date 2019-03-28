@@ -14,27 +14,57 @@ namespace Param_RootNamespace.Services
     {
         private const string _userSettingsKey = "IdentityUser";
 
+        private UserViewModel _user;
+
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
 
         private MicrosoftGraphService MicrosoftGraphService => Singleton<MicrosoftGraphService>.Instance;
 
+        public event EventHandler<UserViewModel> UserDataUpdated;
+
         public UserDataService()
         {
+        }
+
+        public void Initialize()
+        {
+            IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggedOut;
+        }
+
+        public async Task<UserViewModel> GetUserAsync()
+        {
+            if (_user == null)
+            {
+                _user = await GetUserFromCacheAsync();
+                if (_user == null)
+                {
+                    _user = GetDefaultUserData();
+                }
+            }
+
+            return _user;
+        }
+
+        private async void OnLoggedIn(object sender, EventArgs e)
+        {
+            _user = await GetUserFromGraphApiAsync();
+            UserDataUpdated?.Invoke(this, _user);
         }
 
         private async void OnLoggedOut(object sender, EventArgs e)
         {
+            _user = null;
             await ApplicationData.Current.LocalFolder.SaveAsync<User>(_userSettingsKey, null);
         }
 
-        public async Task<UserViewModel> GetUserFromCacheAsync()
+        private async Task<UserViewModel> GetUserFromCacheAsync()
         {
             var cacheData = await ApplicationData.Current.LocalFolder.ReadAsync<User>(_userSettingsKey);
             return await GetUserViewModelFromData(cacheData);
         }
 
-        public async Task<UserViewModel> GetUserFromGraphApiAsync()
+        private async Task<UserViewModel> GetUserFromGraphApiAsync()
         {
             var accessToken = await IdentityService.GetAccessTokenAsync();
             if (string.IsNullOrEmpty(accessToken))
@@ -71,7 +101,7 @@ namespace Param_RootNamespace.Services
             };
         }
 
-        internal UserViewModel GetDefaultUserData()
+        private UserViewModel GetDefaultUserData()
         {
             return new UserViewModel()
             {
