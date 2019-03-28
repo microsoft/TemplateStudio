@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Ink.AddImageHelper",
+  "name": "Page.AddImageHelper",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -15,9 +15,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Helpers\\ImageHelper.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

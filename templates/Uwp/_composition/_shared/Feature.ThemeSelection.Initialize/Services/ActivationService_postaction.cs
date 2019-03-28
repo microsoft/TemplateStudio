@@ -1,17 +1,22 @@
 ﻿//{**
 // These code blocks add the ThemeSelectorService initialization to the ActivationService of your project.
 //**}
-
-private async Task InitializeAsync()
+namespace Param_RootNamespace.Services
 {
-    //{[{
-    await ThemeSelectorService.InitializeAsync();
-    //}]}
-}
+    internal class ActivationService
+    {
+        private async Task InitializeAsync()
+        {
+//{[{
+            await ThemeSelectorService.InitializeAsync();
+//}]}
+        }
 
-private async Task StartupAsync()
-{
-    //{[{
-    await ThemeSelectorService.SetRequestedThemeAsync();
-    //}]}
+        private async Task StartupAsync()
+        {
+//{[{
+            await ThemeSelectorService.SetRequestedThemeAsync();
+//}]}
+        }
+    }
 }

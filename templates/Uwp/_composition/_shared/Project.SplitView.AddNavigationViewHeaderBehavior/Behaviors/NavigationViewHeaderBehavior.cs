@@ -68,6 +68,11 @@ namespace Param_RootNamespace.Behaviors
             _current = this;
         }
 
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+        }
+
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
             var frame = sender as Frame;

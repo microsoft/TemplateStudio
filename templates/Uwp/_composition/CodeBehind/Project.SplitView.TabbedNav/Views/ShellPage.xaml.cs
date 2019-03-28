@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -44,20 +45,23 @@ namespace Param_RootNamespace.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
-            NavigationService.NavigationFailed += (sender, e) =>
-            {
-                throw e.Exception;
-            };
+            NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
+            await Task.CompletedTask;
+        }
+
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw e.Exception;
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)

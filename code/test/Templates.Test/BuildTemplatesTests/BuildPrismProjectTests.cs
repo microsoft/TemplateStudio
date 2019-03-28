@@ -10,6 +10,8 @@ using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Core.Gen;
+using System.Linq;
 
 namespace Microsoft.Templates.Test
 {
@@ -72,11 +74,20 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
+            // get first item from each exclusive selection group
+            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
+                (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+
             Func<ITemplateInfo, bool> templateSelector =
                     t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
+                    && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                     && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
@@ -87,17 +98,48 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "MinimumPrism")]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden())
+                || (t.Name == "Feature.Testing.StyleCop");
+
+            var projectName = $"{projectType}{framework}AllStyleCop";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "BuildMinimum")]
+        [Trait("ExecutionSet", "BuildPrism")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
+            // get first item from each exclusive selection group
+            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
+                (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+
             Func<ITemplateInfo, bool> templateSelector =
                     t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
+                    && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                     && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}AllRandom";
@@ -143,5 +185,7 @@ namespace Microsoft.Templates.Test
 
             AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
         }
+
+     
     }
 }
