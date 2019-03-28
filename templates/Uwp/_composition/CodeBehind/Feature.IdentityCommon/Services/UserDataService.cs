@@ -32,7 +32,7 @@ namespace Param_RootNamespace.Services
             IdentityService.LoggedOut += OnLoggedOut;
         }
 
-        public async Task<UserViewModel> GetUserAsync()
+        public async Task<UserData> GetUserAsync()
         {
             if (_user == null)
             {
