@@ -98,6 +98,28 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "MinimumCaliburnMicro")]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden())
+                || (t.Name == "Feature.Testing.StyleCop");
+
+            var projectName = $"{projectType}{framework}AllStyleCop";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
@@ -162,27 +184,6 @@ namespace Microsoft.Templates.Test
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId,  language, false);
 
             AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "MinimumCaliburnMicro")]
-        [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
-        {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && !t.GetIsHidden())
-                || (t.Name == "Feature.Testing.StyleCop");
-
-            var projectName = $"{projectType}{framework}AllStyleCop";
-
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
     }
 }
