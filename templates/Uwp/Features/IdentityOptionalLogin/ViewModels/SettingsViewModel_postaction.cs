@@ -61,9 +61,10 @@ namespace Param_RootNamespace.ViewModels
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggeOut;
-            await GetUserDataAsync();
+            UserDataService.UserDataUpdated += OnUserDataUpdated;
+            IsLoggedIn = IdentityService.IsLoggedIn();
+            User = await UserDataService.GetUserAsync();
 //}]}
-            await Task.CompletedTask;
         }
 
 //^^
@@ -72,6 +73,12 @@ namespace Param_RootNamespace.ViewModels
         {
             IdentityService.LoggedIn -= OnLoggedIn;
             IdentityService.LoggedOut -= OnLoggeOut;
+            UserDataService.UserDataUpdated -= OnUserDataUpdated;
+        }
+
+        private void OnUserDataUpdated(object sender, UserViewModel user)
+        {
+            User = user;
         }
 
         private async void OnLogIn()
@@ -91,30 +98,17 @@ namespace Param_RootNamespace.ViewModels
             await IdentityService.LogoutAsync();
         }
 
-        private async void OnLoggedIn(object sender, EventArgs e)
+        private void OnLoggedIn(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            IsLoggedIn = true;
             IsBusy = false;
         }
 
-        private async void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggeOut(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            User = null;
+            IsLoggedIn = false;
             IsBusy = false;
-        }
-
-        private async Task GetUserDataAsync()
-        {
-            IsLoggedIn = IdentityService.IsLoggedIn();
-            if (IsLoggedIn)
-            {
-                User = await UserDataService.GetUserFromCacheAsync();
-                User = await UserDataService.GetUserFromGraphApiAsync();
-                if (User == null)
-                {
-                    User = UserDataService.GetDefaultUserData();
-                }
-            }
         }
 //}]}
     }

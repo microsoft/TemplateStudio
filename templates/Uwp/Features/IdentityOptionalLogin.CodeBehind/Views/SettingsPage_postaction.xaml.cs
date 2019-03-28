@@ -54,11 +54,18 @@ namespace Param_RootNamespace.Views
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggeOut;
-            await GetUserDataAsync();
+            UserDataService.UserDataUpdated += OnUserDataUpdated;
+            IsLoggedIn = IdentityService.IsLoggedIn();
+            User = await UserDataService.GetUserAsync();
 //}]}
         }
 //^^
 //{[{
+        private void OnUserDataUpdated(object sender, UserData user)
+        {
+            User = user;
+        }
+
         private async void OnLogIn(object sender, RoutedEventArgs e)
         {
             IsBusy = true;
@@ -76,30 +83,17 @@ namespace Param_RootNamespace.Views
             await IdentityService.LogoutAsync();
         }
 
-        private async void OnLoggedIn(object sender, EventArgs e)
+        private void OnLoggedIn(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            IsLoggedIn = true;
             IsBusy = false;
         }
 
-        private async void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggeOut(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            User = null;
+            IsLoggedIn = false;
             IsBusy = false;
-        }
-
-        private async Task GetUserDataAsync()
-        {
-            IsLoggedIn = IdentityService.IsLoggedIn();
-            if (IsLoggedIn)
-            {
-                User = await UserDataService.GetUserFromCacheAsync();
-                User = await UserDataService.GetUserFromGraphApiAsync();
-                if (User == null)
-                {
-                    User = UserDataService.GetDefaultUserData();
-                }
-            }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -107,6 +101,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatingFrom(e);
             IdentityService.LoggedIn -= OnLoggedIn;
             IdentityService.LoggedOut -= OnLoggeOut;
+            UserDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 //}]}
 

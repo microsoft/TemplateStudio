@@ -59,6 +59,7 @@ namespace Param_RootNamespace.Views
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggedOut;
+            UserDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
 
@@ -66,20 +67,30 @@ namespace Param_RootNamespace.Views
         {
 //^^
 //{[{
-            await GetUserDataAsync();
+            IsLoggedIn = IdentityService.IsLoggedIn();
+            IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
+            User = await UserDataService.GetUserAsync();
 //}]}
         }
 //{[{
 
+        private void OnUserDataUpdated(object sender, UserData user)
+        {
+            User = user;
+        }
+
         private async void OnLoggedIn(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            IsLoggedIn = true;
+            IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
             IsBusy = false;
         }
 
         private async void OnLoggedOut(object sender, EventArgs e)
         {
-            await GetUserDataAsync();
+            User = null;
+            IsLoggedIn = false;
+            IsAuthorized = false;
             foreach (var backStack in NavigationService.Frame.BackStack)
             {
                 var isRestricted = Attribute.IsDefined(backStack.SourcePageType, typeof(Restricted));
@@ -94,26 +105,6 @@ namespace Param_RootNamespace.Views
             if (isCurrentPageRestricted)
             {
                 NavigationService.GoBack();
-            }
-        }
-
-        private async Task GetUserDataAsync()
-        {
-            IsLoggedIn = IdentityService.IsLoggedIn();
-            IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
-
-            if (IsLoggedIn)
-            {
-                User = await UserDataService.GetUserFromCacheAsync();
-                User = await UserDataService.GetUserFromGraphApiAsync();
-                if (User == null)
-                {
-                    User = UserDataService.GetDefaultUserData();
-                }
-            }
-            else
-            {
-                User = null;
             }
         }
 
