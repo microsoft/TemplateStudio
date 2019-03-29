@@ -55,6 +55,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\SearchReplace\NoSource_searchreplace.cs");
 
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
+
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, true));
 
             Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
