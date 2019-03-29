@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
             const string templatesRoot = "../../../../../Templates";
 
             // The following excludes the catalog and project folders, but they only contain a single template file each
-            var foldersOfInterest = new[] { "Uwp/_composition", "Uwp/Features", "Uwp/Pages" };
+            var foldersOfInterest = new[] { "Uwp/_comp", "Uwp/Features", "Uwp/Pages" };
 
             foreach (var folder in foldersOfInterest)
             {
