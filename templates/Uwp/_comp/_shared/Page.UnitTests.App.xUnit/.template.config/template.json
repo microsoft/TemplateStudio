@@ -1,0 +1,26 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.UnitTests.App.xUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CaliburnMicro & wts.type == page & identity != wts.Page.ContentGrid.CaliburnMicro|wts.Page.ImageGallery.CaliburnMicro & $feature == wts.Feat.UnitTests.App.xUnit"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

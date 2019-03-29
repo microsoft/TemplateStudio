@@ -1,14 +1,14 @@
 ﻿using System;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Services;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page
     {
@@ -28,7 +28,7 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.SelectedImage);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.SelectedImage);
                 ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
             }
         }

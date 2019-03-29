@@ -9,7 +9,8 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",
@@ -31,10 +32,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
     }
   }
 }

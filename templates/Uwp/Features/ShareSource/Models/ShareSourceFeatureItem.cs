@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 
-namespace Param_ItemNamespace.Models
+namespace Param_RootNamespace.Models
 {
     internal enum ShareSourceFeatureItemType
     {

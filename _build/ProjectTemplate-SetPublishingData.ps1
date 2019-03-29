@@ -4,12 +4,15 @@ Param(
   [string]$name,
 
   [Parameter(Mandatory=$True,Position=3)]
-  [string]$templateId,
+  [string]$csharptemplateId,
 
   [Parameter(Mandatory=$True,Position=4)]
+  [string]$visualbasictemplateId,
+
+  [Parameter(Mandatory=$True,Position=5)]
   [string]$buildNumber,
 
-  [Parameter(Mandatory=$false,Position=5)]
+  [Parameter(Mandatory=$false,Position=6)]
   [string]$description
 )
 
@@ -41,8 +44,18 @@ if($name){
       if(Test-Path($projectTemplate)){
         [xml]$templateContent = Get-Content $projectTemplate
         $templateContent.VSTemplate.TemplateData.Name = $name
-        $templateContent.VSTemplate.TemplateData.TemplateID = $templateId
-        $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[1].Value = $versionNumber
+        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'CSharp')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharptemplateId
+        }
+
+        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'VisualBasic')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $visualbasictemplateId
+        }
+
+
+        $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2].Value = $versionNumber
       
         if($description)
         {
@@ -50,7 +63,7 @@ if($name){
         }
 
         $templateContent.Save($projectTemplate) 
-        Write-Host "$projectTemplate - Name, TemplateId, Version & Description applied ($name, $templateId, $versionNumber, $description)"
+        Write-Host "$projectTemplate - Name, TemplateId, Version & Description applied ($name, $csharptemplateId/$visualbasictemplateId, $versionNumber, $description)"
       }
     }
   }

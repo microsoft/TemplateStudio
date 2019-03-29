@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Test
             ////yield return new object[] { "TabbedNav", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
             foreach (var projectType in GetAllProjectTypes())
             {
-                var otherFrameworks = GetAdditionalCsFrameworks().Select(f => f[0].ToString()).ToArray();
+                var otherFrameworks = GetAdditionalCsFrameworks(projectType).Select(f => f[0].ToString()).ToArray();
 
                 var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
@@ -126,12 +126,24 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public static IEnumerable<object[]> GetAdditionalCsFrameworks()
+        public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType)
         {
-            foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+            //TODO: Remove this once Caliburn Micro Templates are done for MenuBar
+            if (projectType == "MenuBar")
             {
-                yield return new object[] { framework };
+                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "Prism" })
+                {
+                    yield return new object[] { framework };
+                }
             }
+            else
+            {
+                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+                {
+                    yield return new object[] { framework };
+                }
+            }
+            
         }
 
         public static IEnumerable<object[]> GetAllFrameworksForBothVbAndCs()
@@ -156,7 +168,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<string> GetAllProjectTypes()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav", "MenuBar" })
             {
                 yield return projectType;
             }
@@ -553,7 +565,7 @@ namespace Microsoft.Templates.Test
 
             var errors = new List<string>();
 
-            foreach (var framework in GetAdditionalCsFrameworks())
+            foreach (var framework in GetAdditionalCsFrameworks("SplitView"))
             {
                 var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
 

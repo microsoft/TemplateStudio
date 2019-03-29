@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
@@ -17,20 +18,29 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class RemoteTemplatesSource : TemplatesSource
     {
+        private readonly TemplatePackage _templatePackage;
+
         private readonly string _tmpExtension = "_tmp";
 
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
         private Version _version;
 
+        public override string InstalledPackagePath { get; }
+
         public override string Language { get; }
 
         public override string Platform { get; }
 
-        public RemoteTemplatesSource(string platform, string language)
+        public bool CanGetNewContent { get; }
+
+        public RemoteTemplatesSource(string platform, string language, string installedPackagePath, IDigitalSignatureService digitalSignatureService)
         {
             Platform = platform;
             Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
+            InstalledPackagePath = installedPackagePath;
+            _templatePackage = new TemplatePackage(digitalSignatureService);
+            CanGetNewContent = digitalSignatureService.CanVerifySignatures;
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
@@ -131,7 +141,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
 
-                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
+                    await _templatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
                     Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
 
                     AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();

@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -38,7 +40,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.ProjectInfo.ProjectItems);
         }
 
         [Fact]
@@ -64,7 +66,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.ProjectInfo.ProjectItems);
         }
     }
 }

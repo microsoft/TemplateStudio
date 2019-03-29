@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class WebViewPagePage : Page
     {

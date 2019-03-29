@@ -1,0 +1,54 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Settings",
+  "groupIdentity": "wts.Page.Settings.VB",
+  "identity": "wts.Page.Settings.VB",
+  "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "2",
+    "wts.dependencies":"wts.Feature.ThemeSelection.VB",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "1",
+    "wts.rightClickEnabled":"true" 
+  },
+  "sourceName": "SettingsPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Helpers\\EnumToBooleanConverter.vb"
+    },
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml.vb"
+    },
+    {
+      "path": ".\\ViewModels\\SettingsPageViewModel.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  }
+}

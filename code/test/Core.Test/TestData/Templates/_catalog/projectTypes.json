@@ -4,6 +4,7 @@
     "displayName": "Test Project Type Base",
     "summary": "Test Project Type Base Summary",
     "author": "Microsoft",
+    "platforms": [ "test" ],
     "order": "1",
     "licenses": ""
   }

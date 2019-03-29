@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 using Prism.Mvvm;
 using Prism.Commands;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ShareTargetFeatureViewModel : BindableBase
     {

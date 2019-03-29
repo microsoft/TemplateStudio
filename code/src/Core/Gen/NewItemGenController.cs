@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
@@ -40,7 +41,9 @@ namespace Microsoft.Templates.Core.Gen
             var genResults = await GenerateItemsAsync(genItems, true);
             chrono.Stop();
 
-            TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
+            // TODO: Adapt telemetry to properly handle backend
+            string appFx = userSelection.FrontEndFramework + (string.IsNullOrEmpty(userSelection.BackEndFramework) ? string.Empty : userSelection.BackEndFramework);
+            TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, appFx, userSelection.Platform);
         }
 
         public void UnsafeFinishGeneration(UserSelection userSelection)

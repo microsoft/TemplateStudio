@@ -60,10 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadProjectTypes()
         {
-            var projectTypes = GenComposer.GetSupportedProjectTypes(SelectedPlatform);
-            var targetProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(SelectedPlatform)
-                                                                .Where(pt => projectTypes.Contains(pt.Name))
-                                                                .ToList();
+            var targetProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(SelectedPlatform).ToList();
             ProjectTypes.Clear();
             Frameworks.Clear();
             ProjectTypes.AddRange(targetProjectTypes);
@@ -84,10 +81,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFrameworks()
         {
-            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name, SelectedPlatform);
-            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(tf => projectFrameworks.Contains(tf.Name))
-                                                                .ToList();
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(SelectedPlatform, SelectedProjectType.Name).ToList();
+
             Frameworks.Clear();
             Frameworks.AddRange(targetFrameworks);
             if (SelectedFramework == null)

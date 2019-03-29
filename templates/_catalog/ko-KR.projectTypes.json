@@ -13,5 +13,10 @@
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "상단의 탐색 아이템을 이용 하면 페이지 간에 빠르게 탐색할 수 있습니다."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "A menu is added to move around between pages."
   }
 ]

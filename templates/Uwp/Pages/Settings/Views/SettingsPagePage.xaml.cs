@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     public sealed partial class SettingsPagePage : Page
@@ -12,9 +12,9 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Initialize();
+            await ViewModel.InitializeAsync();
         }
     }
 }

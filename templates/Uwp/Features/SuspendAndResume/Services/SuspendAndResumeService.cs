@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     // The SuspendAndResumeService allows you to save the App data before the App is being suspended (or enters in background state).
     // In case the App is terminated during suspension, the data is restored during App launch by this ActivationHandler.

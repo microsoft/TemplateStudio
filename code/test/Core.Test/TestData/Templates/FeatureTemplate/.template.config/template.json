@@ -3,14 +3,18 @@
   "classifications": [ "Test" ],
   "name": "FeatureTemplate",
   "description": "Generic Feature description...",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.FeatureTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.FeatureTemplate",
+  "identity": "Microsoft.Templates.Test.FeatureTemplate.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "fx1",
+    "wts.backendframework": "fx3",
     "wts.type": "feature",
-    "wts.multipleInstance": "false"
+    "wts.multipleInstance": "false",
+    "wts.isGroupExclusiveSelection": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

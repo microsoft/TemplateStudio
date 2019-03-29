@@ -1,0 +1,29 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Feature.DeepLinking.MenuBar",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == CodeBehind & identity == wts.Feat.DeepLinking & $projectType == MenuBar"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
+    }
+  }
+}

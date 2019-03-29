@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private FileHealthWriter()
         {
-            _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
+            _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Configuration.Current.LogFileFolderPath);
 
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);

@@ -11,27 +11,35 @@ using System.Net.Mime;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Packaging
 {
-    public static class TemplatePackage
+    public class TemplatePackage
     {
         public const string DefaultExtension = ".mstx";
 
         private const int BufSize = 0x1000;
         private const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
-        private static string CreateSourcePath(string source)
+        public TemplatePackage(IDigitalSignatureService digitalSignatureService)
+        {
+            _digitalSignatureService = digitalSignatureService;
+        }
+
+        private readonly IDigitalSignatureService _digitalSignatureService;
+
+        private string CreateSourcePath(string source)
         {
             return source + DefaultExtension;
         }
 
-        public static async Task<string> PackAndSignAsync(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public async Task<string> PackAndSignAsync(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = CreateSourcePath(source);
 
@@ -40,7 +48,7 @@ namespace Microsoft.Templates.Core.Packaging
             return outFile;
         }
 
-        public static async Task PackAndSignAsync(string source, string outFile, string certThumbprint, string mimeMediaType)
+        public async Task PackAndSignAsync(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
 
@@ -52,13 +60,13 @@ namespace Microsoft.Templates.Core.Packaging
             await PackAndSignAsync(source, outFile, cert, mimeMediaType);
         }
 
-        public static async Task PackAndSignAsync(string source, string outFile, X509Certificate signingCert, string mimeMediaType)
+        public async Task PackAndSignAsync(string source, string outFile, X509Certificate signingCert, string mimeMediaType)
         {
             await PackAsync(source, outFile, mimeMediaType);
             Sign(outFile, signingCert);
         }
 
-        public static async Task<string> PackAsync(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public async Task<string> PackAsync(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = source + DefaultExtension;
 
@@ -67,7 +75,7 @@ namespace Microsoft.Templates.Core.Packaging
             return outFile;
         }
 
-        public static async Task PackAsync(string source, string outFile, string mimeMediaType)
+        public async Task PackAsync(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
             {
@@ -100,7 +108,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken), bool verifySignatures = true)
+        public async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -113,6 +121,7 @@ namespace Microsoft.Templates.Core.Packaging
                 using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     bool isSignatureValid = false;
+                    bool verifySignatures = _digitalSignatureService.CanVerifySignatures;
 
                     if (verifySignatures)
                     {
@@ -132,7 +141,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static void Sign(string file, X509Certificate signingCert)
+        private void Sign(string file, X509Certificate signingCert)
         {
             if (signingCert == null)
             {
@@ -145,7 +154,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static async Task ExtractContentAsync(string outDir, Package package, Action<int> reportProgress, CancellationToken ct)
+        private async Task ExtractContentAsync(string outDir, Package package, Action<int> reportProgress, CancellationToken ct)
         {
             PackagePart packagePartDocument = null;
             int partCounter = 0;
@@ -170,15 +179,14 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static X509Certificate2 LoadCert(string filePath, SecureString password)
+        public X509Certificate2 LoadCert(string filePath, SecureString password)
         {
-            var cert = new X509Certificate2();
-            cert.Import(filePath, password, X509KeyStorageFlags.DefaultKeySet);
+            var cert = new X509Certificate2(File.ReadAllBytes(filePath), password, X509KeyStorageFlags.DefaultKeySet);
 
             return cert;
         }
 
-        public static X509Certificate2 LoadCert(string thumbprint)
+        public X509Certificate2 LoadCert(string thumbprint)
         {
             X509Certificate2 certFound = FindCertificate(thumbprint, StoreLocation.CurrentUser);
 
@@ -195,7 +203,7 @@ namespace Microsoft.Templates.Core.Packaging
             return certFound;
         }
 
-        private static X509Certificate2 FindCertificate(string thumbprint, StoreLocation location)
+        private X509Certificate2 FindCertificate(string thumbprint, StoreLocation location)
         {
             X509Certificate2 certFound = null;
 
@@ -226,7 +234,7 @@ namespace Microsoft.Templates.Core.Packaging
             return certFound;
         }
 
-        private static async Task ExtractPartAsync(PackagePart packagePart, string targetDirectory)
+        private async Task ExtractPartAsync(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
             var partUri = new Uri(stringPart, UriKind.Relative);
@@ -243,17 +251,20 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)> GetCertsInfo(string signedPackageFilename)
+        public List<CertInfo> GetCertsInfo(string signedPackageFilename)
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var res = new List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)>();
-                var dsm = new PackageDigitalSignatureManager(package);
-                var certs = GetPackageCertificates(dsm);
-                foreach (X509Certificate cert in certs.Values)
+                var res = new List<CertInfo>();
+                var certs = _digitalSignatureService.GetX509Certificates(package);
+                foreach (X509Certificate cert in certs)
                 {
-                    (X509Certificate2 cert, string pin, X509ChainStatusFlags status) certInfo =
-                        (cert: new X509Certificate2(cert), pin: cert.GetPublicKeyString().ObfuscateSHA(), PackageDigitalSignatureManager.VerifyCertificate(cert));
+                    var certInfo = new CertInfo()
+                    {
+                           Cert = new X509Certificate2(cert),
+                           Pin = cert.GetPublicKeyString().ObfuscateSHA(),
+                           Status = _digitalSignatureService.VerifyCertificate(cert),
+                    };
 
                     res.Add(certInfo);
                 }
@@ -262,16 +273,15 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static bool IsSigned(string signedPackageFilename)
+        public bool IsSigned(string signedPackageFilename)
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var dsm = new PackageDigitalSignatureManager(package);
-                return dsm.IsSigned;
+                return _digitalSignatureService.IsSigned(package);
             }
         }
 
-        public static bool ValidateSignatures(string signedPackageFilename)
+        public bool ValidateSignatures(string signedPackageFilename)
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -279,33 +289,21 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static bool ValidateSignatures(Package package)
+        private bool ValidateSignatures(Package package)
         {
             if (package == null)
             {
                 throw new ArgumentNullException("ValidateSignatures(package)");
             }
 
-            var dsm = new PackageDigitalSignatureManager(package);
-            bool result = dsm.IsSigned;
-
-            if (result)
-            {
-                result = result && ValidatePackageCertificates(dsm);
-
-                if (result)
-                {
-                    VerifyResult verifyResult = dsm.VerifySignatures(false);
-                    result = result && verifyResult == VerifyResult.Success;
-                }
-            }
-
-            return result;
+            return _digitalSignatureService.IsSigned(package)
+                && ValidatePackageCertificates(package)
+                && _digitalSignatureService.VerifySignatures(package);
         }
 
-        private static bool ValidatePackageCertificates(PackageDigitalSignatureManager dsm)
+        private bool ValidatePackageCertificates(Package package)
         {
-            Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
+            Dictionary<string, X509Certificate> certs = _digitalSignatureService.GetPackageCertificates(package);
             bool certificatesOk = certs.Count > 0;
 
             foreach (X509Certificate cert in certs.Values)
@@ -329,35 +327,20 @@ namespace Microsoft.Templates.Core.Packaging
             return certificatesOk;
         }
 
-        private static bool CertificateChainVaidationRequired()
+        private bool CertificateChainVaidationRequired()
         {
             return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !string.IsNullOrWhiteSpace(pk)).Any();
         }
 
-        private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
+        private bool VerifyCertificate(X509Certificate cert)
         {
-            var certs = new Dictionary<string, X509Certificate>();
-
-            foreach (var signature in dsm.Signatures)
-            {
-                if (!certs.Keys.Contains(signature.Signer.GetSerialNumberString()))
-                {
-                    certs.Add(signature.Signer.GetSerialNumberString(), signature.Signer);
-                }
-            }
-
-            return certs;
-        }
-
-        private static bool VerifyCertificate(X509Certificate cert)
-        {
-            var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
+            var status = _digitalSignatureService.VerifyCertificate(cert);
             AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatePackageVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
 
             return status == X509ChainStatusFlags.NoError;
         }
 
-        private static bool VerifyAllowedPublicKey(X509Certificate cert)
+        private bool VerifyAllowedPublicKey(X509Certificate cert)
         {
             var pubKeyCert = cert.GetPublicKeyString();
 
@@ -373,7 +356,7 @@ namespace Microsoft.Templates.Core.Packaging
             return pinAllowed;
         }
 
-        private static void SignAllParts(Package package, X509Certificate cert)
+        private void SignAllParts(Package package, X509Certificate cert)
         {
             if (package == null)
             {
@@ -385,26 +368,9 @@ namespace Microsoft.Templates.Core.Packaging
                 throw new ArgumentNullException("SignAllParts(cert)");
             }
 
-            var dsm = new PackageDigitalSignatureManager(package)
-            {
-                CertificateOption = CertificateEmbeddingOption.InSignaturePart,
-                HashAlgorithm = SignedXml.XmlDsigSHA512Url,
-            };
-
-            var toSign = new List<Uri>();
-
-            foreach (PackagePart packagePart in package.GetParts())
-            {
-                toSign.Add(packagePart.Uri);
-            }
-
-            toSign.Add(PackUriHelper.GetRelationshipPartUri(dsm.SignatureOrigin));
-            toSign.Add(dsm.SignatureOrigin);
-            toSign.Add(PackUriHelper.GetRelationshipPartUri(new Uri("/", UriKind.RelativeOrAbsolute)));
-
             try
             {
-                  dsm.Sign(toSign, cert);
+                _digitalSignatureService.SignPackage(package, cert);
             }
             catch (CryptographicException ex)
             {
@@ -413,7 +379,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static async Task CopyStreamAsync(Stream source, Stream target)
+        private async Task CopyStreamAsync(Stream source, Stream target)
         {
             var buf = new byte[BufSize];
             int bytesRead = 0;
@@ -424,7 +390,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static void EnsureDirectory(string dir)
+        private void EnsureDirectory(string dir)
         {
             if (!string.IsNullOrEmpty(dir) && !dir.Equals(Environment.CurrentDirectory, StringComparison.OrdinalIgnoreCase))
             {
@@ -435,7 +401,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static async Task AddContentToPackagePartAsync(FileInfo file, PackagePart packagePart)
+        private async Task AddContentToPackagePartAsync(FileInfo file, PackagePart packagePart)
         {
             using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
             {
@@ -443,7 +409,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static Uri GetPartUriFile(Uri rootUri, FileInfo file)
+        private Uri GetPartUriFile(Uri rootUri, FileInfo file)
         {
             var uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
             var partUriFile = PackUriHelper.CreatePartUri(uriFile);
@@ -451,7 +417,7 @@ namespace Microsoft.Templates.Core.Packaging
             return partUriFile;
         }
 
-        private static Uri GetRootUri(string source)
+        private Uri GetRootUri(string source)
         {
             string uriString;
 
@@ -477,7 +443,7 @@ namespace Microsoft.Templates.Core.Packaging
             return rootUri;
         }
 
-        private static FileInfo[] GetSourceFiles(string source)
+        private FileInfo[] GetSourceFiles(string source)
         {
             FileInfo[] files = null;
 

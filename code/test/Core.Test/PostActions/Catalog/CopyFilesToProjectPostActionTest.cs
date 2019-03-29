@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -48,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(path).FullName, true);
             Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.True(GenContext.Current.FilesToOpen.Contains(finalFile));
+            Assert.Contains(finalFile, GenContext.Current.FilesToOpen);
         }
 
         [Fact]
@@ -81,7 +83,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(path).FullName, true);
             Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.False(GenContext.Current.FilesToOpen.Contains(finalFile));
+            Assert.DoesNotContain(finalFile, GenContext.Current.FilesToOpen);
         }
     }
 }

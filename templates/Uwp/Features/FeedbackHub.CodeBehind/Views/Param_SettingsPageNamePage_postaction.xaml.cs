@@ -1,11 +1,11 @@
 ﻿//{**
 // This code block adds the code to launch the Feedback Hub from the settings page
 //**}
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class Param_SettingsPageNamePage : Page, INotifyPropertyChanged
     {
-        private void Initialize()
+        private async Task InitializeAsync()
         {
             //^^
             //{[{

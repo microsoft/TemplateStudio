@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.UI.Xaml.Media;
 
-namespace Param_ItemNamespace.Models
+namespace Param_RootNamespace.Models
 {
     public class SharedDataStorageItemsModel : SharedDataModelBase
     {

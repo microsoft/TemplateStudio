@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public class WebViewService : IWebViewService
     {

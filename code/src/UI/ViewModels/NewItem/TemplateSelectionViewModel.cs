@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
@@ -26,6 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _isTextSelected;
         private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;
+        private string _emptyBackendFramework = string.Empty;
 
         public string Name
         {
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public ITemplateInfo Template { get; private set; }
+        public TemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
@@ -94,9 +94,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             IsTextSelected = true;
         }
 
-        public void LoadData(TemplateType templateType, string framework, string platform)
+        public void LoadData(TemplateType templateType, string platform, string projectTypeName, string frameworkName)
         {
-            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform, true);
+            DataService.LoadTemplatesGroups(Groups, templateType, platform, projectTypeName, frameworkName, true);
 
             var group = Groups.FirstOrDefault();
             if (group != null)
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, MainViewModel.Instance.ConfigPlatform);
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

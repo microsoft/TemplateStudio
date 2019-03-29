@@ -43,12 +43,19 @@ namespace Microsoft.Templates.UI.Styles
             }
         }
 
-        private void SelectItem(BasicInfoViewModel item)
+        private async Task SelectItemAsync(BasicInfoViewModel item)
         {
             switch (item)
             {
-                case MetadataInfoViewModel metadataInfo:
-                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(metadataInfo.MetadataType))
+                case ProjectTypeMetaDataViewModel projectTypeMeta:
+                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(projectTypeMeta.MetadataType))
+                    {
+                        return;
+                    }
+
+                    break;
+                case FrameworkMetaDataViewModel frameworkMetadata:
+                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(frameworkMetadata.MetadataType))
                     {
                         return;
                     }
@@ -58,7 +65,7 @@ namespace Microsoft.Templates.UI.Styles
                     break;
             }
 
-            BaseMainViewModel.BaseInstance.ProcessItem(item);
+            await BaseMainViewModel.BaseInstance.ProcessItemAsync(item);
         }
 
         private async Task SelectStepAsync(Step step) => await BaseMainViewModel.BaseInstance.SetStepAsync(step.Index);
@@ -93,7 +100,7 @@ namespace Microsoft.Templates.UI.Styles
             switch (itemType)
             {
                 case BasicInfoViewModel info:
-                    SelectItem(info);
+                    await SelectItemAsync(info);
                     break;
                 case Step step:
                     await SelectStepAsync(step);

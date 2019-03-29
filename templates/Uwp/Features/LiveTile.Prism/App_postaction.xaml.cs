@@ -23,7 +23,6 @@ namespace Param_RootNamespace
 
         private async Task LaunchApplicationAsync(string page, object launchParam)
         {
-            NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
             Container.Resolve<ILiveTileFeatureService>().SampleUpdate();
@@ -33,7 +32,7 @@ namespace Param_RootNamespace
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
-//^^            
+//^^
 //{[{
             await Container.Resolve<ILiveTileFeatureService>().EnableQueueAsync().ConfigureAwait(false);
 //}]}

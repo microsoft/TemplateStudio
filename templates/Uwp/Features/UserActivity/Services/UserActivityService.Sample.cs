@@ -9,7 +9,7 @@ using Param_RootNamespace.Activation;
 using Param_RootNamespace.Views;
 
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public static partial class UserActivityService
     {

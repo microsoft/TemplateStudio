@@ -8,9 +8,9 @@ using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class SharedDataStorageItemsViewModel : SharedDataViewModelBase
     {

@@ -2,7 +2,7 @@
 using Windows.Media.Playback;
 using Windows.Media.Core;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class MediaPlayerViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

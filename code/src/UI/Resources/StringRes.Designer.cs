@@ -712,6 +712,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        /// </summary>
+        public static string NotificationRemoveError_ReadOnly {
+            get {
+                return ResourceManager.GetString("NotificationRemoveError_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error refreshing templates. See output window for more details..
         /// </summary>
         public static string NotificationSyncError_Refresh {
@@ -883,7 +892,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://aka.ms/wts.
+        ///   Looks up a localized string similar to Report issue.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionIssuesLink {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionIssuesLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
             get {
@@ -897,15 +915,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectDetailsAboutSectionTemplatesVersion {
             get {
                 return ResourceManager.GetString("ProjectDetailsAboutSectionTemplatesVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio.
-        /// </summary>
-        public static string ProjectDetailsAboutSectionText {
-            get {
-                return ResourceManager.GetString("ProjectDetailsAboutSectionText", resourceCulture);
             }
         }
         
@@ -1153,6 +1162,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frameworks:.
+        /// </summary>
+        public static string TemplateDetailsFrameworks {
+            get {
+                return ResourceManager.GetString("TemplateDetailsFrameworks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout:.
+        /// </summary>
+        public static string TemplateDetailsLayout {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (optional).
+        /// </summary>
+        public static string TemplateDetailsLayoutOptional {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLayoutOptional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses:.
         /// </summary>
         public static string TemplateDetailsLicenses {
@@ -1212,6 +1248,24 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateGroup_ConnectedExperiences {
             get {
                 return ResourceManager.GetString("TemplateGroup_ConnectedExperiences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identity (choose one).
+        /// </summary>
+        public static string TemplateGroup_Identity {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Identity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing.
+        /// </summary>
+        public static string TemplateGroup_Testing {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Testing", resourceCulture);
             }
         }
         

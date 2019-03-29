@@ -24,11 +24,11 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{ShortFrameworkName(_framework)}\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource(ShortFrameworkName(_framework));
+        public TemplatesSource Source => new LocalTemplatesSource(null, ShortFrameworkName(_framework));
 
         public static IEnumerable<object[]> GetProjectTemplates(string frameworkFilter, string programmingLanguage, string selectedPlatform)
         {
-            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
 
@@ -54,18 +54,16 @@ namespace Microsoft.Templates.Test
                 foreach (var platform in platformsOfInterest)
                 {
                     SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Where(m => !string.IsNullOrEmpty(m.Description))
                                 .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Contains(m.Name) && m.Name == frameworkFilter)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                                                    .Where(m => m.Name == frameworkFilter)
                                                     .Select(m => m.Name)
                                                     .ToList();
 
@@ -80,9 +78,9 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp)
         {
-            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
             return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter);
         }

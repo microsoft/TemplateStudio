@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 
@@ -25,9 +26,11 @@ namespace Microsoft.Templates.Core.Locations
             Date = DateTime.Now,
         };
 
-        protected virtual string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
+        protected virtual string Origin => Path.Combine(Path.GetFullPath(InstalledPackagePath), TemplatesFolderName);
 
         private string _id;
+
+        public override string InstalledPackagePath { get; }
 
         public override string Language { get => string.Empty; }
 
@@ -39,24 +42,33 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Id { get => _id; }
 
-        public LocalTemplatesSource()
-            : this(GenContext.GetWizardVersionFromAssembly().ToString())
+        public LocalTemplatesSource(string installedPackagePath)
+            : this(installedPackagePath, GenContext.GetWizardVersionFromAssembly().ToString())
         {
             _id = Configuration.Current.Environment + GetAgentName();
         }
 
-        public LocalTemplatesSource(string id)
-            : this(GenContext.GetWizardVersionFromAssembly().ToString(), id)
+        public LocalTemplatesSource(string installedPackagePath, string id)
+            : this(installedPackagePath, GenContext.GetWizardVersionFromAssembly().ToString(), id)
         {
             _id = id + GetAgentName();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
-        public LocalTemplatesSource(string templatesVersion, string id)
+        public LocalTemplatesSource(string installedPackagePath, string templatesVersion, string id)
         {
             if (string.IsNullOrEmpty(_id))
             {
                 _id = Configuration.Current.Environment + GetAgentName();
+            }
+
+            if (string.IsNullOrEmpty(installedPackagePath))
+            {
+                InstalledPackagePath = $@"..\..\..\..\..";
+            }
+            else
+            {
+                InstalledPackagePath = installedPackagePath;
             }
 
             availablePackages.Add(VersionZero);
@@ -66,7 +78,7 @@ namespace Microsoft.Templates.Core.Locations
                 var package = new TemplatesPackageInfo()
                 {
                     Name = $"LocalTemplates_v{v.ToString()}",
-                    LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
+                    LocalPath = $@"{InstalledPackagePath}\{TemplatesFolderName}",
                     WizardVersions = new List<Version>() { v },
                     Bytes = 1024,
                     Date = DateTime.Now,

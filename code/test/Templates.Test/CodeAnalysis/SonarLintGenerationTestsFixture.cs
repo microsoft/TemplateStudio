@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SL\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("SonarLint");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "SonarLint");
 
         [SuppressMessage(
          "Usage",
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForSonarLint()
         {
-            InitializeTemplates(new LocalTemplatesSource("SonarLint"));
+            InitializeTemplates(new LocalTemplatesSource(null, "SonarLint"));
             return GetVBProjectTemplates();
         }
     }

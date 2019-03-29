@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class DataGridViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {

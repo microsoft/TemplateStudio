@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 using Windows.UI.Xaml.Media.Imaging;
-using Param_ItemNamespace.EventHandlers;
+using Param_RootNamespace.EventHandlers;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class CameraViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

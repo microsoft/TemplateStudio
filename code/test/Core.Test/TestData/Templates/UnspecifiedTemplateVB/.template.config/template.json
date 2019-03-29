@@ -1,13 +1,13 @@
 {
   "author": "Microsoft",
-  "classifications": ["Test"],
+  "classifications": [ "Test" ],
   "name": "UnspecifiedTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.VisualBasic",
+  "groupIdentity": "Microsoft.Templates.Test.UnspecifiedTemplate",
+  "identity": "Microsoft.Templates.Test.UnspecifiedTemplate.VisualBasic",
   "shortName": "unspecified-test",
   "tags": {
     "language": "VisualBasic",
-    "wts.platform": "Uwp"
+    "wts.platform": "test"
 
   },
   "sourceName": "App_Name",

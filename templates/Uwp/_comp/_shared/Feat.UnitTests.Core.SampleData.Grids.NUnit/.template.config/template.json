@@ -1,0 +1,27 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Feature.UnitTests.Core.SampleData.Grids.NUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.UnitTests.Core.NUnit & $page == wts.Page.Grid|wts.Page.Grid.CodeBehind|wts.Page.DataGrid|wts.Page.DataGrid.CodeBehind",
+    "wts.compositionOrder" : "1"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

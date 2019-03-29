@@ -16,5 +16,8 @@ namespace Microsoft.Templates.Core
 
         [JsonProperty("readonly")]
         public bool Readonly { get; set; }
+
+        [JsonProperty("projecttype")]
+        public string ProjectType { get; set; }
     }
 }

@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.Toolkit.Uwp.UI.Animations;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
             }
         }
     }

@@ -22,7 +22,9 @@ namespace Microsoft.Templates.Core.Locations
 
         public event EventHandler<ProgressEventArgs> GetContentProgress;
 
-        protected const string TemplatesFolderName = "Templates";
+        protected const string TemplatesFolderName = "templates";
+
+        public virtual string InstalledPackagePath { get; }
 
         public virtual string Language { get; }
 

@@ -4,13 +4,13 @@
 
 using System;
 using System.Windows;
-using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI
 {
     public static class WindowExtensions
     {
-        public static void SafeClose(this IWizardShell shell)
+        public static void SafeClose(this IWindow shell)
         {
             try
             {

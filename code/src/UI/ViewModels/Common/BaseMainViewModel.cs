@@ -24,7 +24,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public static BaseMainViewModel BaseInstance { get; private set; }
 
-        private Window _mainView;
         private int _step;
         private int _origStep;
         private bool _canGoBack = false;
@@ -35,6 +34,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
+
+        protected Window MainView { get; private set; }
 
         protected string Language { get; private set; }
 
@@ -65,7 +66,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public BaseMainViewModel(Window mainView, BaseStyleValuesProvider provider, bool canFinish = true)
         {
             BaseInstance = this;
-            _mainView = mainView;
+            MainView = mainView;
             _canFinish = canFinish;
             Steps = new ObservableCollection<Step>();
             SystemService = new SystemService();
@@ -76,7 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public abstract bool IsSelectionEnabled(MetadataType metadataType);
 
-        public abstract void ProcessItem(object item);
+        public abstract Task ProcessItemAsync(object item);
 
         protected abstract void OnCancel();
 
@@ -185,10 +186,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected virtual void OnFinish()
         {
-            if (_mainView != null)
+            if (MainView != null)
             {
-                _mainView.DialogResult = true;
-                _mainView?.Close();
+                MainView.DialogResult = true;
+                MainView?.Close();
             }
         }
 

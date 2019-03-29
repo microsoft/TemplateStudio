@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Param_ItemNamespace.Activation
+namespace Param_RootNamespace.Activation
 {
     public static class SchemeActivationConfig
     {

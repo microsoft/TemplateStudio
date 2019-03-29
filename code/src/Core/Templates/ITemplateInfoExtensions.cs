@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.Templates.Core.Composition;
-
+using Microsoft.Templates.Core.Gen;
 using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core
@@ -143,27 +143,41 @@ namespace Microsoft.Templates.Core
             return properties;
         }
 
-        public static IEnumerable<(string name, string value)> GetExports(this ITemplateInfo ti)
+        public static IDictionary<string, string> GetExports(this ITemplateInfo ti)
         {
             if (ti == null || ti.Tags == null)
             {
-                return Enumerable.Empty<(string name, string value)>();
+                return new Dictionary<string, string>();
             }
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
-                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
-                        .ToList();
+                        .ToDictionary(t => t.Key.Replace(TagPrefix + "export.", string.Empty), v => v.Value.DefaultValue);
         }
 
-        public static List<string> GetFrameworkList(this ITemplateInfo ti)
+        public static List<string> GetFrontEndFrameworkList(this ITemplateInfo ti)
         {
-            var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
+            var frontEndFrameworks = GetValueFromTag(ti, TagPrefix + "frontendframework");
+
             var result = new List<string>();
 
-            if (!string.IsNullOrEmpty(frameworks))
+            if (!string.IsNullOrEmpty(frontEndFrameworks))
             {
-                result.AddRange(frameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+                result.AddRange(frontEndFrameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
+        }
+
+        public static List<string> GetBackEndFrameworkList(this ITemplateInfo ti)
+        {
+            var backEndFrameworks = GetValueFromTag(ti, TagPrefix + "backendframework");
+
+            var result = new List<string>();
+
+            if (!string.IsNullOrEmpty(backEndFrameworks))
+            {
+                result.AddRange(backEndFrameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
             }
 
             return result;
@@ -190,6 +204,21 @@ namespace Microsoft.Templates.Core
         public static string GetGroup(this ITemplateInfo ti)
         {
             return GetValueFromTag(ti, TagPrefix + "group");
+        }
+
+        public static bool GetIsGroupExclusiveSelection(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "isGroupExclusiveSelection");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
         }
 
         public static string GetVersion(this ITemplateInfo ti)

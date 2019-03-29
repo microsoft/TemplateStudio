@@ -1,7 +1,7 @@
 ﻿using System;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 
-namespace Param_ItemNamespace.Views.MasterDetailViewDetail
+namespace Param_RootNamespace.Views.MasterDetailViewDetail
 {
     public sealed partial class DetailsView
     {

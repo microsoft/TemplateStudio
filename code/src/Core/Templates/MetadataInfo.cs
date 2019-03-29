@@ -35,5 +35,7 @@ namespace Microsoft.Templates.Core
         public IEnumerable<string> Platforms { get; set; }
 
         public IEnumerable<string> Languages { get; set; }
+
+        public IDictionary<string, object> Tags { get; set; }
     }
 }

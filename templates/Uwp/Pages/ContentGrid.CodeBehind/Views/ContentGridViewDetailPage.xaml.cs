@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ContentGridViewDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(Item);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(Item);
             }
         }
 

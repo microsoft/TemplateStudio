@@ -4,19 +4,19 @@
 
 using System;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class ActivationService
     {
         private async Task StartupAsync()
         {
-            //^^
-            //{[{
+//^^
+//{[{
             await FirstRunDisplayService.ShowIfAppropriateAsync();
-            //}]}
-            //{??{
+//}]}
+//{??{
             await Task.CompletedTask;
-            //}??}
+//}??}
         }
     }
 }

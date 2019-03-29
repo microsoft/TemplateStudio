@@ -11,6 +11,11 @@ namespace Microsoft.Templates.Core.Test.Locations
 {
     public sealed class UnitTestsTemplatesSource : LocalTemplatesSource
     {
+        public UnitTestsTemplatesSource(string installedPackagePath)
+            : base(installedPackagePath)
+        {
+        }
+
         public override string Id => "UnitTest" + GetAgentName();
 
         protected override string Origin => $@"..\..\TestData\{TemplatesFolderName}";

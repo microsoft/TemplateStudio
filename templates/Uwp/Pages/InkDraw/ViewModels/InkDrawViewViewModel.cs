@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Param_ItemNamespace.Services.Ink;
-using Param_ItemNamespace.Services.Ink.UndoRedo;
+using Param_RootNamespace.Services.Ink;
+using Param_RootNamespace.Services.Ink.UndoRedo;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class InkDrawViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

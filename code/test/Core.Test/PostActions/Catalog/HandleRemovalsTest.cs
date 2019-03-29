@@ -3,7 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Linq;
+
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

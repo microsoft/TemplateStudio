@@ -28,6 +28,7 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
+using static System.Environment;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -624,7 +625,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task ConfigureGenContextAsync()
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSource(TemplatesVersion, string.Empty),
+                new LocalTemplatesSource(string.Empty, TemplatesVersion, string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 Platforms.Uwp,
@@ -680,7 +681,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string GetTemplatesFolder()
         {
-            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnv";
+            return Path.Combine(SpecialFolder.LocalApplicationData.ToString(), @"\WinTS\Templates\LocalEnv");
         }
     }
 }

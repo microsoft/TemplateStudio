@@ -1,0 +1,63 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "DataGrid",
+  "groupIdentity": "wts.Page.DataGrid.VB",
+  "identity": "wts.Page.DataGrid.CodeBehind.VB",
+  "description": "A page displaying a simple data grid.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.telemName": "DataGrid",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "CodeBehind",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "7",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
+    "wts.dependencies": "wts.Feat.SampleDataService.VB",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "DataGridView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\DataGridViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\DataGridViewPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.Toolkit.Uwp.UI.Controls.DataGrid",
+        "version": "5.1.0",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

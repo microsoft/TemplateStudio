@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Caliburn.Micro;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewDetailViewModel : Screen
     {
@@ -26,9 +26,9 @@ namespace Param_ItemNamespace.ViewModels
             Item = data.First(i => i.OrderId == orderId);
         }
 
-        public void SetListDataItemForNextConnectedAnnimation()
+        public void SetListDataItemForNextConnectedAnimation()
         {
-            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(Item);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnimation(Item);
         }
     }
 }

@@ -9,8 +9,8 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "Prism",
-    "wts.projecttype": "Blank|SplitView|TabbedNav",
+    "wts.frontendframework": "Prism",
+    "wts.projecttype": "Blank|SplitView|TabbedNav|MenuBar",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -58,7 +58,7 @@
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFramework":
+    "wts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"

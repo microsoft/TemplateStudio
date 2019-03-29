@@ -3,10 +3,10 @@
 # This is necessary because the way template folders are copied and filtered means that, for example, the VB templates can't point to files in the C# folders.
 
 # This script finds all interested files in VB folders and then copies the equivalent file from the CS version
-Get-ChildItem ..\templates\* -Recurse -include *.xaml, *.resw, *.md, *.png, Package.appxmanifest | where { $_.FullName -Match "VB\\" -and ($_.FullName -notmatch "\\templates\\Uwp\\test\\") } | % { $cs = $_.FullName -replace "VB\\", "\\"; Copy-Item $cs $_.FullName }
+Get-ChildItem ..\templates\* -Recurse -include *.xaml, *.resw, *.md, *.png, Package.appxmanifest | where { $_.FullName -Match "._VB\\" -and ($_.FullName -notmatch "\\templates\\Uwp\\test\\") } | % { $cs = $_.FullName -replace "._VB\\", "\\"; Copy-Item $cs $_.FullName }
 
 # This script handles project file postactions that add 3rd party references
-Get-ChildItem ..\templates\* -Recurse -include _postaction.vbproj | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { $cs = $_.FullName -replace "VB\\", "\\"; $cs = $cs -replace ".vbproj", ".csproj"; Copy-Item $cs $_.FullName }
+Get-ChildItem ..\templates\* -Recurse -include _postaction.vbproj | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { $cs = $_.FullName -replace "._VB\\", "\\"; $cs = $cs -replace ".vbproj", ".csproj"; Copy-Item $cs $_.FullName }
 
 # Formats JSON in a nicer format than the built-in ConvertTo-Json does.
 # This is based on code from https://github.com/PowerShell/PowerShell/issues/2736 and will be built into PS6.0
@@ -34,7 +34,7 @@ function Format-Json([Parameter(Mandatory, ValueFromPipeline)][String] $json) {
 Get-ChildItem ..\templates\* -Recurse -include *template.json | where { $_.FullName -Match "VB\\" -and ($_.FullName -notmatch "\\templates\\Uwp\\test\\") } |  % { 
 
     $vbFile = $_.FullName;
-    $csFile = $_.FullName -replace "VB\\", "\\"; 
+    $csFile = $_.FullName -replace "._VB\\", "\\"; 
 
     Try
     {

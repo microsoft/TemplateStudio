@@ -39,134 +39,135 @@
         </StackPanel>
         <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-            <Grid.ColumnDefinitions>
-                <!--Sequential flow-->
-                <ColumnDefinition Width="220" />
-                <ColumnDefinition Width="Auto" />
-                <!--Selection area-->
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <!--Project details-->
-                <ColumnDefinition Width="252" />
-            </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
-            <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
-            <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
-            <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
-            <ScrollViewer Grid.Column="4" Style="{StaticResource WtsScrollViewer}">
-                <StackPanel>
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftTopRight}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsTitle}" />
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
-                    <ComboBox
-                        x:Name="projectTypeCombo"
-                        Margin="16,12,26,0"
-                        ItemsSource="{Binding ProjectType.Items}"
-                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
-                        Style="{StaticResource WtsComboBoxProjectTypeStyle}"
-                        IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"
-                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}" />
-                    <ComboBox
-                        x:Name="frameworkCombo"
-                        Margin="16,12,26,0"
-                        ItemsSource="{Binding Framework.Items}"
-                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
-                        Style="{StaticResource WtsComboBoxFrameworkStyle}"
-                        IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
-                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
-
-                    <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <!--Sequential flow-->
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="Auto" />
+                    <!--Selection area-->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <!--Project details-->
+                    <ColumnDefinition Width="252" />
+                </Grid.ColumnDefinitions>
+                <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
+                <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+                <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
+                <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
+                <ScrollViewer Grid.Column="4" Style="{StaticResource WtsScrollViewer}">
+                    <StackPanel>
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftTopRight}"
+                            Text="{x:Static strings:StringRes.ProjectDetailsTitle}" />
+                            <TextBlock
+                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                            Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
+                        <ComboBox
+                            x:Name="projectTypeCombo"
+                            Margin="16,12,26,0"
+                            ItemsSource="{Binding ProjectType.Items}"
+                            SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
+                            Style="{StaticResource WtsComboBoxProjectTypeStyle}"
+                            IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                            AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"
+                            PreviewKeyDown="ComboBox_PreviewKeyDown" />
                         <TextBlock
                             Style="{StaticResource WtsTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
-                        <ListView
-                            x:Name="pagesList"
-                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                            ItemsSource="{Binding UserSelection.Pages}"
-                            SelectedItem="{Binding UserSelection.SelectedPage, Mode=TwoWay}">
-                            <ListView.InputBindings>
-                                <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
-                                <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
-                                <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
-                                <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
-                            </ListView.InputBindings>
-                        </ListView>
-                    </StackPanel>
+                            Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}" />
+                        <ComboBox
+                            x:Name="frameworkCombo"
+                            Margin="16,12,26,0"
+                            ItemsSource="{Binding Framework.Items}"
+                            SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
+                            Style="{StaticResource WtsComboBoxFrameworkStyle}"
+                            IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                            AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
+                            PreviewKeyDown="ComboBox_PreviewKeyDown" />
 
-                    <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
+                        <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
+                            <ListView
+                                x:Name="pagesList"
+                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                ItemsSource="{Binding UserSelection.Pages}"
+                                SelectedItem="{Binding UserSelection.SelectedPage, Mode=TwoWay}">
+                                <ListView.InputBindings>
+                                    <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
+                                    <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
+                                </ListView.InputBindings>
+                            </ListView>
+                        </StackPanel>
+
+                        <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
+                            <ListView
+                                x:Name="featuresList"
+                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                ItemsSource="{Binding UserSelection.Features}"
+                                SelectedItem="{Binding UserSelection.SelectedFeature, Mode=TwoWay}">
+                                <ListView.InputBindings>
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
+                                </ListView.InputBindings>
+                            </ListView>
+                        </StackPanel>
+
+                        <StackPanel Visibility="{Binding UserSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}" />
+                            <ItemsControl
+                                Style="{StaticResource WtsItemsControl}"
+                                ItemsSource="{Binding UserSelection.Licenses}"
+                                Margin="20,4,4,4"
+                                ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
+                        </StackPanel>
+
                         <TextBlock
                             Style="{StaticResource WtsTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
-                        <ListView
-                            x:Name="featuresList"
-                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                            ItemsSource="{Binding UserSelection.Features}"
-                            SelectedItem="{Binding UserSelection.SelectedFeature, Mode=TwoWay}">
-                            <ListView.InputBindings>
-                                <KeyBinding  Key="F2" Command="{Binding UserSelection.EditFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
-                                <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
-                            </ListView.InputBindings>
-                        </ListView>
+                            Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionTitle}" />
+                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox
+                            Style="{StaticResource WtsTextBoxVersion}"
+                            Margin="{StaticResource Margin_M1_LeftRight_S_Top}"
+                            Text="{Binding WizardStatus.Versions}"
+                            AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                        <Button
+                            Margin="16,8,26,8"
+                            Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                            Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
+                            Command="{Binding RefreshTemplatesCacheCommand}"
+                            Visibility="{Binding RefreshTemplateCacheVisibility}" />
+                        <Button
+                            Margin="16,8,26,8"
+                            Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                            Content="{x:Static strings:StringRes.ButtonCompositionTool}"
+                            Command="{Binding CompositionToolCommand}"
+                            Visibility="{Binding RefreshTemplateCacheVisibility}" />
                     </StackPanel>
-
-                    <StackPanel Visibility="{Binding UserSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
-                        <TextBlock
-                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}" />
-                        <ItemsControl
-                            Style="{StaticResource WtsItemsControl}"
-                            ItemsSource="{Binding UserSelection.Licenses}"
-                            Margin="20,4,4,4"
-                            ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
-                    </StackPanel>
-
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionTitle}" />
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockAboutSubSectionText}"
-                        Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
-                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
-                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
-                            <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBox
-                        Style="{StaticResource WtsTextBoxVersion}"
-                        Margin="{StaticResource Margin_M1_LeftRight}"
-                        Text="{Binding WizardStatus.Versions}"
-                        AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                    <Button
-                        Margin="16,8,26,8"
-                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
-                        Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
-                        Command="{Binding RefreshTemplatesCacheCommand}"
-                        Visibility="{Binding RefreshTemplateCacheVisibility}" />
-                    <Button
-                        Margin="16,8,26,8"
-                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
-                        Content="{x:Static strings:StringRes.ButtonCompositionTool}"
-                        Command="{Binding CompositionToolCommand}"
-                        Visibility="{Binding RefreshTemplateCacheVisibility}" />
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
+                </ScrollViewer>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">

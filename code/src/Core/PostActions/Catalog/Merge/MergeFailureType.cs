@@ -9,5 +9,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         FileNotFound,
         LineNotFound,
         KeyAlreadyDefined,
+        MismatchedEncoding,
     }
 }

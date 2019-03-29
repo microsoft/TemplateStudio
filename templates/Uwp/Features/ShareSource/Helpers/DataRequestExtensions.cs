@@ -7,9 +7,9 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-using Param_ItemNamespace.Models;
+using Param_RootNamespace.Models;
 
-namespace Param_ItemNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     // TODO WTS: Start sharing data from your pages / views with these steps:
     // - Step 1. Setup a DataTransferManager object in your page / view and add a DataRequested event handler

@@ -11,7 +11,8 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "Prism",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "9",
@@ -47,10 +48,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
-    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
@@ -67,7 +64,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Telerik.UI.for.UniversalWindowsPlatform",
-        "version" : "1.0.1.3",
+        "version" : "1.0.1.4",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": "true"

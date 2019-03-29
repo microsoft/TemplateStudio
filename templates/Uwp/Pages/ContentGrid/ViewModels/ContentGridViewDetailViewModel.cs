@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {

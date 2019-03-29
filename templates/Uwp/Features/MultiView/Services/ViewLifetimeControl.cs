@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     // A custom event that fires whenever the secondary view is ready to be closed. You should
     // clean up any state (including deregistering for events) then close the window in this handler
@@ -13,6 +13,8 @@ namespace Param_ItemNamespace.Services
     // StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
     public sealed class ViewLifetimeControl
     {
+        private readonly object _lockObj = new object();
+
         // Window for this particular view. Used to register and unregister for events
         private CoreWindow _window;
         private int _refCount = 0;
@@ -33,7 +35,7 @@ namespace Param_ItemNamespace.Services
             add
             {
                 bool releasedCopy = false;
-                lock (this)
+                lock (_lockObj)
                 {
                     releasedCopy = _released;
                     if (!_released)
@@ -50,7 +52,7 @@ namespace Param_ItemNamespace.Services
 
             remove
             {
-                lock (this)
+                lock (_lockObj)
                 {
                     InternalReleased -= value;
                 }
@@ -77,7 +79,7 @@ namespace Param_ItemNamespace.Services
             bool releasedCopy = false;
             int refCountCopy = 0;
 
-            lock (this)
+            lock (_lockObj)
             {
                 releasedCopy = _released;
                 if (!_released)
@@ -101,7 +103,7 @@ namespace Param_ItemNamespace.Services
             int refCountCopy = 0;
             bool releasedCopy = false;
 
-            lock (this)
+            lock (_lockObj)
             {
                 releasedCopy = _released;
                 if (!_released)
@@ -109,7 +111,7 @@ namespace Param_ItemNamespace.Services
                     refCountCopy = --_refCount;
                     if (refCountCopy == 0)
                     {
-                        var task = Dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease);
+                        Dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease).AsTask();
                     }
                 }
             }
@@ -140,7 +142,7 @@ namespace Param_ItemNamespace.Services
         private void FinalizeRelease()
         {
             bool justReleased = false;
-            lock (this)
+            lock (_lockObj)
             {
                 if (_refCount == 0)
                 {

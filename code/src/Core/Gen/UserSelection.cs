@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Gen
 
     public class UserSelection
     {
-        public UserSelection(string projectType, string framework, string platform, string language)
+        public UserSelection(string projectType, string frontEndFramework, string backEndFramework, string platform, string language)
         {
             if (string.IsNullOrWhiteSpace(language))
             {
@@ -29,14 +29,17 @@ namespace Microsoft.Templates.Core.Gen
             }
 
             ProjectType = projectType;
-            Framework = framework;
+            FrontEndFramework = frontEndFramework;
+            BackEndFramework = backEndFramework;
             Platform = platform;
             Language = language;
         }
 
         public string ProjectType { get; set; }
 
-        public string Framework { get; set; }
+        public string FrontEndFramework { get; set; }
+
+        public string BackEndFramework { get; set; }
 
         public string HomeName { get; set; }
 
@@ -46,11 +49,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
-        public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<UserSelectionItem> Pages { get; } = new List<UserSelectionItem>();
 
-        public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<UserSelectionItem> Features { get; } = new List<UserSelectionItem>();
 
-        public IEnumerable<(string name, ITemplateInfo template)> PagesAndFeatures
+        public IEnumerable<UserSelectionItem> PagesAndFeatures
         {
             get
             {
@@ -82,30 +85,36 @@ namespace Microsoft.Templates.Core.Gen
                 sb.AppendLine();
             }
 
-            if (!string.IsNullOrEmpty(Framework))
+            if (!string.IsNullOrEmpty(FrontEndFramework))
             {
-                sb.AppendFormat("Framework: '{0}'", Framework);
+                sb.AppendFormat("Front End Framework: '{0}'", FrontEndFramework);
+                sb.AppendLine();
+            }
+
+            if (!string.IsNullOrEmpty(BackEndFramework))
+            {
+                sb.AppendFormat("Back End Framework: '{0}'", BackEndFramework);
                 sb.AppendLine();
             }
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.TemplateId}").ToArray()));
                 sb.AppendLine();
             }
 
             return sb.ToString();
         }
 
-        public void Add((string name, ITemplateInfo template) template)
+        public void Add(UserSelectionItem template, TemplateType templateType)
         {
-            switch (template.template.GetTemplateType())
+            switch (templateType)
             {
                 case TemplateType.Page:
                     Pages.Add(template);

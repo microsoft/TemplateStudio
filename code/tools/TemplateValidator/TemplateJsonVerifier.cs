@@ -55,7 +55,7 @@ namespace TemplateValidator
             {
                 var fileContents = File.ReadAllText(configFilePath);
 
-                // The analyzer compares the JSON with the POCO type. It identifies discrepencies in types, missing or extra properties, etc.
+                // The analyzer compares the JSON with the POCO type. It identifies discrepancies in types, missing or extra properties, etc.
                 var analyzerResults = await Analyzer.AnalyzeJsonAsync(fileContents, typeof(ValidationTemplateInfo));
 
                 // The "other" checks are specific to what the wizard does with the config file and expectations of the content
@@ -90,7 +90,7 @@ namespace TemplateValidator
                 var template = JsonConvert.DeserializeObject<ValidationTemplateInfo>(fileContents);
 
                 // Composition templates don't need as much as Page and feature ones
-                if (!filePath.Contains("_composition"))
+                if (!filePath.Contains("_comp"))
                 {
                     EnsureAdequateDescription(template, results);
 
@@ -173,7 +173,8 @@ namespace TemplateValidator
                     case "wts.compositionOrder":
                         VerifyWtsCompositionOrderTagValue(tag, results);
                         break;
-                    case "wts.framework":
+                    case "wts.frontendframework":
+                    case "wts.backendframework":
                         VerifyWtsFrameworkTagValue(tag, results);
                         break;
                     case "wts.projecttype":
@@ -219,6 +220,9 @@ namespace TemplateValidator
                     case "wts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
+                    case "wts.isGroupExclusiveSelection":
+                        VerifyWtsWtsIsGroupExclusiveSelectionTagValue(tag, results);
+                        break;
                     case "wts.telemName":
                         VerifyWtsTelemNameTagValue(tag, results);
                         break;
@@ -229,6 +233,11 @@ namespace TemplateValidator
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
                 }
+            }
+
+            if (template.TemplateTags.ContainsKey("language") && template.TemplateTags.ContainsKey("wts.frontendframework"))
+            {
+                VerifyFrameworksAreAppropriateForLanguage(template.TemplateTags["language"], template.TemplateTags["wts.frontendframework"], results);
             }
         }
 
@@ -261,6 +270,14 @@ namespace TemplateValidator
             if (!BoolStrings.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.isHidden tag.");
+            }
+        }
+
+        private static void VerifyWtsWtsIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!BoolStrings.Contains(tag.Value))
+            {
+                results.Add($"Invalid value '{tag.Value}' specified in the wts.isGroupExclusiveSelection tag.");
             }
         }
 
@@ -298,7 +315,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Testing" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
             }
@@ -306,10 +323,16 @@ namespace TemplateValidator
 
         private static void VerifyWtsLicensesTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            // This is a really crude regex designed to catch basic variation from a markdown URI link
-            if (!new Regex(@"^\[([\w .\-]){4,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(tag.Value))
+            // Allow for multiple pipe separated links
+            var values = tag.Value.Split('|');
+
+            foreach (var value in values)
             {
-                results.Add($"'{tag.Value}' specified in the wts.licenses tag does not match the expected format.");
+                // This is a really crude regex designed to catch basic variation from a markdown URI link
+                if (!new Regex(@"^\[([\w .\-]){3,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(value))
+                {
+                    results.Add($"'{value}' specified in the wts.licenses tag does not match the expected format.");
+                }
             }
         }
 
@@ -369,21 +392,49 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var projectType in tag.Value.Split('|'))
             {
-                if (!new[] { "Blank", "SplitView", "TabbedNav" }.Contains(projectType))
+                if (!new[] { "Blank", "SplitView", "TabbedNav", "MenuBar", "all" }.Contains(projectType))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.projecttype tag.");
                 }
             }
         }
 
+        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind" };
+
+        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+
+        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+
         private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var frameworkValue in tag.Value.Split('|'))
             {
-                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" }.Contains(frameworkValue))
+                if (!AllFrameworks.Contains(frameworkValue))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
+                }
+            }
+        }
+
+        private static void VerifyFrameworksAreAppropriateForLanguage(string language, string frameworks, List<string> results)
+        {
+            // This tag may contain a single value or multiple ones separated by the pipe character
+            foreach (var frameworkValue in frameworks.Split('|'))
+            {
+                if (language == ProgrammingLanguages.CSharp)
+                {
+                    if (!CsFrameworks.Contains(frameworkValue))
+                    {
+                        results.Add($"Invalid framework '{frameworkValue}' is not supported in templates for C# projects.");
+                    }
+                }
+                else if (language == ProgrammingLanguages.VisualBasic)
+                {
+                    if (!VbFrameworks.Contains(frameworkValue))
+                    {
+                        results.Add($"Invalid framework '{frameworkValue}' is not supported in templates for VB.Net projects.");
+                    }
                 }
             }
         }

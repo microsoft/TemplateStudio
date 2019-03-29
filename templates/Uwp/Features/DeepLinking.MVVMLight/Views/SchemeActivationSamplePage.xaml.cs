@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Remove this sample page when/if it's not needed.
     // This page is an sample of how to launch a specific page in response to a protocol launch and pass it a value.

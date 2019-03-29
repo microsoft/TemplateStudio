@@ -2,16 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Services;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 using Windows.UI.Xaml.Controls;
 
 using Prism.Commands;
 using Prism.Windows.Navigation;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
@@ -46,7 +46,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(selected);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnimation(selected);
             _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected.ID);
         }
     }

@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
     [Collection("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
+        private readonly string _emptyBackendFramework = string.Empty;
         private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
@@ -26,7 +27,8 @@ namespace Microsoft.Templates.Test
         {
         }
 
-        [Theory]
+        // TODO: Enable legacy test when version 3.1 is published+
+        [Theory(Skip = "Cannot generate legacy projects due to split framework in frontend and backend")]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
@@ -41,25 +43,13 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}Legacy";
 
-            Func<ITemplateInfo, bool> selector =
-            t => t.GetTemplateType() == TemplateType.Project
-               && t.GetProjectTypeList().Contains(projectType)
-               && t.GetFrameworkList().Contains(framework)
-               && !t.GetIsHidden()
-               && t.GetLanguage() == language;
-
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, Platforms.Uwp, language, null, null, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Uwp, language, null, null);
 
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
-            // Add core project using test template.
-            // This is a temporary workaround to allow right clicks with multiproject on 2.5 templates. Remove when 3.0 is released
-            var coreTemplate = _fixture.Templates().Where(t => t.Name == "Testing.AddCoreProject" || t.Name == "Testing.AddCoreProject.VB");
-            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, coreTemplate, projectName, projectType, framework, platform, language);
-
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                                            && t.GetFrameworkList().Contains(framework)
+                                            && t.GetFrontEndFrameworkList().Contains(framework)
                                             && !excludedTemplates.Contains(t.GroupIdentity)
                                             && t.GetPlatform() == platform
                                             && !t.GetIsHidden()
@@ -70,7 +60,8 @@ namespace Microsoft.Templates.Test
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
-        [Theory]
+        // TODO: Enable legacy test when version 3.1 is published+
+        [Theory(Skip = "Cannot generate legacy projects due to split framework in frontend and backend")]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
@@ -87,61 +78,14 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 
-            Func<ITemplateInfo, bool> selector =
-               t => t.GetTemplateType() == TemplateType.Project
-                   && t.GetProjectTypeList().Contains(projectType)
-                   && t.GetFrameworkList().Contains(framework)
-                   && !t.GetIsHidden()
-                   && t.GetLanguage() == language;
-
             Func<ITemplateInfo, bool> templateSelector =
-               t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                   && t.GetFrameworkList().Contains(framework)
-                   && t.GetPlatform() == platform
-                   && !t.GetIsHidden();
+                       t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                       && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                       && t.GetFrontEndFrameworkList().Contains(framework)
+                       && t.GetPlatform() == platform
+                       && !t.GetIsHidden();
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName,  false);
-        }
-
-        protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
-        {
-            BaseGenAndBuildFixture.SetCurrentLanguage(language);
-
-            var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
-
-            GenContext.Current = new FakeContextProvider
-            {
-                ProjectName = projectName,
-                DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName),
-            };
-
-            var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language);
-
-            if (getName != null)
-            {
-                _fixture.AddItems(userSelection, GetTemplates(framework), getName);
-            }
-
-            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
-
-            var resultPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-
-            // Assert
-            Assert.True(Directory.Exists(resultPath));
-            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
-
-            // Clean
-            if (cleanGeneration)
-            {
-                Fs.SafeDeleteDirectory(resultPath);
-            }
-
-            return resultPath;
-        }
-
-        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
-        {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework));
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }
     }
 }

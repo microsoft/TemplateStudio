@@ -1,0 +1,48 @@
+﻿{
+  "author": "Laurent Bugnion",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "0",
+    "wts.licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
+    "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\ViewModelLocator.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "MvvmLightStd10",
+        "version" : "5.4.1.2",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

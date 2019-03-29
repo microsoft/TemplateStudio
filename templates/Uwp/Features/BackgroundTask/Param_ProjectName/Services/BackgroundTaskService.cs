@@ -10,7 +10,7 @@ using Param_RootNamespace.Activation;
 using Param_RootNamespace.BackgroundTasks;
 using Param_RootNamespace.Core.Helpers;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {

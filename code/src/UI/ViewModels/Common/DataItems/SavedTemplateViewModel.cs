@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isHidden;
         private bool _hasErrors;
         private bool _isReorderEnabled;
+        private bool _isReadOnly;
         private bool _isDragging;
         private bool _isFocused;
         private bool _isTextSelected;
@@ -32,13 +33,17 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _setFocusCommand;
         private Guid _id;
 
-        public ITemplateInfo Template { get; }
+        public TemplateInfo Template { get; }
 
         public string Identity { get; }
 
         public TemplateType TemplateType { get; }
 
         public int GenGroup { get; }
+
+        public string Group { get; }
+
+        public bool IsGroupExclusiveSelection { get; }
 
         public IEnumerable<BasicInfoViewModel> Dependencies { get; }
 
@@ -84,6 +89,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _isReorderEnabled, value);
         }
 
+        public bool IsReadOnly
+        {
+            get => _isReadOnly;
+            private set => SetProperty(ref _isReadOnly, value);
+        }
+
         public bool IsFocused
         {
             get => _isFocused;
@@ -118,7 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
-        public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin)
+        public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin, bool isReadOnly = false)
         {
             _id = Guid.NewGuid();
             Template = template.Template;
@@ -131,6 +142,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsHidden = template.IsHidden;
             TemplateOrigin = templateOrigin;
             IsReorderEnabled = template.TemplateType == TemplateType.Page;
+            Group = template.Group;
+            IsGroupExclusiveSelection = template.IsGroupExclusiveSelection;
+            IsReadOnly = isReadOnly;
         }
 
         public void SetName(string newName, bool fromNewTemplate = false)
@@ -188,6 +202,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
+        public UserSelectionItem ToUserSelectionItem() => new UserSelectionItem { Name = Name, TemplateId = Template.TemplateId };
     }
 }

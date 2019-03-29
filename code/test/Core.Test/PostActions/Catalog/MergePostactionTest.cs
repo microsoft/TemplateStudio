@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Fakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -31,6 +33,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source.cs"), sourceFile, true);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_postaction.cs"), mergeFile, true);
 
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
+
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
             mergePostAction.Execute();
 
@@ -47,6 +55,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\Merge\Source_fail.cs");
             var mergeFile = Path.GetFullPath(@".\TestData\Merge\Source_fail_postaction.cs");
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
 

@@ -23,7 +23,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         Layout,
         UserSelection,
-        Dependency,
     }
 
     public class UserSelectionViewModel : Observable
@@ -41,6 +40,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private ICommand _deleteFeatureCommand;
         private ICommand _movePageUpCommand;
         private ICommand _movePageDownCommand;
+        private string _emptyBackendFramework = string.Empty;
 
         public ObservableCollection<SavedTemplateViewModel> Pages { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void Initialize(string projectTypeName, string frameworkName, string platform, string language)
+        public async Task InitializeAsync(string projectTypeName, string frameworkName, string platform, string language)
         {
             _projectTypeName = projectTypeName;
             _frameworkName = frameworkName;
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 Features.Clear();
             }
 
-            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName, platform);
+            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, projectTypeName, frameworkName, _emptyBackendFramework);
             foreach (var item in layout)
             {
                 if (item.Template != null)
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     var template = MainViewModel.Instance.GetTemplate(item.Template);
                     if (template != null)
                     {
-                        Add(TemplateOrigin.Layout, template, item.Layout.Name);
+                        await AddAsync(TemplateOrigin.Layout, template, item.Layout.Name, item.Layout.Readonly);
                     }
                 }
             }
@@ -112,23 +112,34 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public IEnumerable<string> GetPageNames()
             => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
 
-        public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null)
+        public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName, _platform);
-            foreach (var dependency in dependencies)
+            foreach (var dependency in template.Template.Dependencies)
             {
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);
                 if (dependencyTemplate == null)
                 {
                     // Case of hidden templates, it's not found on templat lists
-                    dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
+                    dependencyTemplate = new TemplateInfoViewModel(dependency, _platform, _projectTypeName, _frameworkName);
                 }
 
-                Add(TemplateOrigin.Dependency, dependencyTemplate);
+                await AddAsync(templateOrigin, dependencyTemplate);
             }
 
             template.IncreaseSelection();
-            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin);
+            if (template.IsGroupExclusiveSelection)
+            {
+                if (template.TemplateType == TemplateType.Feature)
+                {
+                    var exclusiveSelectionAddedTemplates = Features.Where(f => f.Group == template.Group).ToList();
+                    foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
+                    {
+                        await RemoveAsync(exclusiveFeature);
+                    }
+                }
+            }
+
+            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
@@ -205,22 +216,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelection GetUserSelection()
         {
-            var selection = new UserSelection(_projectTypeName, _frameworkName, _platform, _language);
+            var selection = new UserSelection(_projectTypeName, _frameworkName, _emptyBackendFramework, _platform, _language);
 
             if (Pages.Any())
             {
                 selection.HomeName = Pages.First().Name;
             }
 
-            foreach (var page in Pages)
-            {
-                selection.Pages.Add(page.GetUserSelection());
-            }
-
-            foreach (var feature in Features)
-            {
-                selection.Features.Add(feature.GetUserSelection());
-            }
+            selection.Pages.AddRange(Pages.Select(p => p.ToUserSelectionItem()));
+            selection.Features.AddRange(Features.Select(f => f.ToUserSelectionItem()));
 
             return selection;
         }
@@ -307,7 +311,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             foreach (var page in Pages)
             {
-                if (page.TemplateOrigin != TemplateOrigin.Layout)
+                if (page.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
@@ -316,7 +320,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             foreach (var feature in Features)
             {
-                if (feature.TemplateOrigin != TemplateOrigin.Layout)
+                if (feature.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
@@ -339,6 +343,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)
         {
+            if (page.IsReadOnly)
+            {
+                await ShowReadOnlyNotificationAsync(page.Name);
+                return;
+            }
+
             int newIndex = Pages.IndexOf(page) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
@@ -356,6 +366,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task OnDeleteFeatureAsync(SavedTemplateViewModel feature)
         {
+            if (feature.IsReadOnly)
+            {
+                await ShowReadOnlyNotificationAsync(feature.Name);
+                return;
+            }
+
             int newIndex = Features.IndexOf(feature) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
@@ -369,6 +385,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SelectedFeature = Features.ElementAt(newIndex);
                 SelectedFeature.IsFocused = true;
             }
+        }
+
+        private async Task ShowReadOnlyNotificationAsync(string name)
+        {
+            var message = string.Format(StringRes.NotificationRemoveError_ReadOnly, name);
+            var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
         }
 
         private async Task ShowDependencyNotificationAsync(string name, IEnumerable<string> dependencyNames)

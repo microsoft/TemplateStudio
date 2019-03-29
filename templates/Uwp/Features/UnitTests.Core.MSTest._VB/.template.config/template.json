@@ -1,0 +1,80 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Test Core library with MSTest",
+  "groupIdentity": "wts.Feat.UnitTests.Core.MSTest.VB",
+  "identity": "wts.Feat.UnitTests.Core.MSTest.VB",
+  "description": "Add a project to test code in the Core library with MSTest.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "project",
+    "wts.type": "feature",
+    "wts.outputToParent": "true",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "Testing",
+    "wts.defaultInstance": "Tests-Core-MSTest",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[MSTest](https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm)"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": ".\\Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "MSTest.TestFramework",
+        "version" : "1.4.0",
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "MSTest.TestAdapter",
+        "version" : "1.4.0",
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.NET.Test.Sdk",
+        "version" : "16.0.1",
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

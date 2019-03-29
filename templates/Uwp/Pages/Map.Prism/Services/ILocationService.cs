@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
-using Param_ItemNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public interface ILocationService
     {

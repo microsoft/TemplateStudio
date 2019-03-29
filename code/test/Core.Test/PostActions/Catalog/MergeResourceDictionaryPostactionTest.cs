@@ -8,10 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -27,6 +29,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
             var config = new MergeConfiguration(postaction, true);
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
             mergeResourceDictionaryPostAction.Execute();

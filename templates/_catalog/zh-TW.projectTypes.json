@@ -13,5 +13,10 @@
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "上方的導覽項目可讓您在不同頁面之間快速導覽。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "A menu is added to move around between pages."
   }
 ]

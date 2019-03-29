@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource VBSource => new LegacyTemplatesSourceV2(ProgrammingLanguages.VisualBasic);
 
-        public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
+        public TemplatesSource LocalSource => new LocalTemplatesSource(null, "BldRClickLegacy");
 
         private static bool syncExecuted;
 
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Test
 
                 // TODO: Re-enable for all platforms when there are more than just UWP which have legacy templates
                 ////foreach (var language in Platforms.GetAllPlatforms())
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(Platforms.Uwp)
                             .Where(m => !string.IsNullOrEmpty(m.Description))
                             .Select(m => m.Name);
 
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Test
                 {
                     // TODO: Re-enable for all platforms
                     // var projectFrameworks = GenComposer.GetSupportedFx(projectType, string.Empty);
-                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
+                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(Platforms.Uwp, projectType)
                                                 .Select(m => m.Name).ToList();
 
                     foreach (var framework in targetFrameworks)

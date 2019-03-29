@@ -8,7 +8,18 @@ namespace Microsoft.Templates.Core
 {
     public class ReservedNamesValidator : Validator
     {
-        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot", "Shell", "SharedDataWebLink", "SharedDataStorageItems", "SchemeActivationSample" };
+        private static readonly string[] ReservedNames = new string[]
+        {
+            "Page",
+            "BackgroundTask",
+            "Pivot",
+            "Shell",
+            "User",
+            "LogIn",
+            "SharedDataWebLink",
+            "SharedDataStorageItems",
+            "SchemeActivationSample",
+        };
 
         public override ValidationResult Validate(string suggestedName)
         {
@@ -20,14 +31,12 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.ReservedName,
                 };
             }
-            else
+
+            return new ValidationResult()
             {
-                return new ValidationResult()
-                {
-                    IsValid = true,
-                    ErrorType = ValidationErrorType.None,
-                };
-            }
+                IsValid = true,
+                ErrorType = ValidationErrorType.None,
+            };
         }
     }
 }

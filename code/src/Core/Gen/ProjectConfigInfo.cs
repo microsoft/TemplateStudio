@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Services;
@@ -24,6 +25,7 @@ namespace Microsoft.Templates.Core.Gen
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedNav = "TabbedNav";
+        private const string ProjTypeMenuBar = "MenuBar";
 
         public static ProjectMetadata ReadProjectConfiguration()
         {
@@ -134,6 +136,10 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return ProjTypeTabbedNav;
             }
+            else if (IsMenuBar())
+            {
+                return ProjTypeMenuBar;
+            }
             else if (IsSplitView())
             {
                 return ProjTypeSplitView;
@@ -152,6 +158,12 @@ namespace Microsoft.Templates.Core.Gen
         {
             return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
                 || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
+        }
+
+        private static bool IsMenuBar()
+        {
+            return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs") || ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.vb") || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
         }
 
         private static bool IsMVVMLight()

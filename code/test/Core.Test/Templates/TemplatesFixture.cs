@@ -3,9 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Fakes;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
@@ -20,11 +22,11 @@ namespace Microsoft.Templates.Core.Test
             "Usage",
             "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
             Justification = "Required por unit testing.")]
-        public void InitializeFixture(string language)
+        public void InitializeFixture(string platform, string language)
         {
-            var source = new UnitTestsTemplatesSource();
+            var source = new UnitTestsTemplatesSource(null);
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), Platforms.Uwp, language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
             if (!_syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();

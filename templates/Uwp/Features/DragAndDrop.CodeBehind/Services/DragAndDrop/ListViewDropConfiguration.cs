@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 
-using Param_ItemNamespace.Models;
+using Param_RootNamespace.Models;
 
-namespace Param_ItemNamespace.Services.DragAndDrop
+namespace Param_RootNamespace.Services.DragAndDrop
 {
     public class ListViewDropConfiguration : DropConfiguration
     {

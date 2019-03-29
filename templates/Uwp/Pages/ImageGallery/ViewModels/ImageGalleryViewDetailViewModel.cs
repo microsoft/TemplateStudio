@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {

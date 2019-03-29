@@ -5,12 +5,12 @@ using Microsoft.Toolkit.Uwp.UI.Animations;
 
 using Windows.UI.Xaml.Controls;
 
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class ImageGalleryViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
@@ -35,7 +35,7 @@ namespace Param_ItemNamespace.Views
         {
             var selected = e.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnimation(selected);
             NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
     }

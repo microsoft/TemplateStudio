@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -44,6 +45,21 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 var mergeRoot = XElement.Load(Config.FilePath);
                 var sourceRoot = XElement.Load(originalFilePath);
 
+                var originalEncoding = GetEncoding(originalFilePath);
+
+                // Only check encoding on new project, might have changed on right click
+                if (GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
+                {
+                    var otherEncoding = GetEncoding(Config.FilePath);
+
+                    if (originalEncoding.EncodingName != otherEncoding.EncodingName
+                        || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+                    {
+                        HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
+                        return;
+                    }
+                }
+
                 foreach (var node in GetNodesToMerge(mergeRoot))
                 {
                     var sourceNode = sourceRoot.Elements().FirstOrDefault(e => GetKey(e) == GetKey(node));
@@ -70,7 +86,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     }
                 }
 
-                using (TextWriter writeFile = new StreamWriter(originalFilePath))
+                using (TextWriter writeFile = new StreamWriter(originalFilePath, false, originalEncoding))
                 {
                     var writer = new ResourceDictionaryWriter(writeFile);
                     writer.WriteResourceDictionary(sourceRoot);
@@ -87,7 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var relPath = originalFilePath.GetPathRelativeToGenerationPath().Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
-            File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
+            File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent, Encoding.UTF8);
         }
 
         private static void AddNode(XElement sourceRoot, XElement node)

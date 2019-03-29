@@ -31,6 +31,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private GenerationService _generationService = GenerationService.Instance;
 
+        private string _emptyBackendFramework = string.Empty;
+
         public TemplateType TemplateType { get; set; }
 
         public string ConfigPlatform { get; private set; }
@@ -111,18 +113,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, ConfigPlatform);
-            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
-            foreach (var dependencyTemplate in dependencies)
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
+            userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
+
+            foreach (var dependencyTemplate in TemplateSelection.Template.Dependencies)
             {
-                userSelection.Add((dependencyTemplate.GetDefaultName(), dependencyTemplate));
+                var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.DefaultName, TemplateId = dependencyTemplate.TemplateId };
+                userSelection.Add(selectedTemplateDependency, dependencyTemplate.TemplateType);
             }
 
             return userSelection;
@@ -139,14 +143,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection GetUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language);
-            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
+            var selectedItem = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
+            userSelection.Add(selectedItem, TemplateSelection.Template.TemplateType);
             return userSelection;
         }
 
         protected override async Task OnTemplatesAvailableAsync()
         {
-            TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
+            TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
@@ -219,12 +224,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             yield return new Step(1, StringRes.NewItemStepTwo, () => new ChangesSummaryPage(_output));
         }
 
-        public override void ProcessItem(object item)
+        public override async Task ProcessItemAsync(object item)
         {
             if (item is TemplateInfoViewModel template)
             {
                 TemplateSelection.SelectTemplate(template);
             }
+
+            await Task.CompletedTask;
         }
 
         public override bool IsSelectionEnabled(MetadataType metadataType) => true;

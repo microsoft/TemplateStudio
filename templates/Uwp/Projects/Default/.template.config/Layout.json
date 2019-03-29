@@ -2,6 +2,13 @@
     {
         "name": "Main",
         "templateGroupIdentity": "wts.Page.Blank",
-        "readonly": "false"
-    }    
+        "readonly": "false",
+        "projecttype": "Blank|SplitView|TabbedNav|MenuBar"
+    },
+    {
+        "name": "Multiple views",
+        "templateGroupIdentity": "wts.Feat.MultiView",
+        "readonly": "true",
+        "projecttype": "MenuBar"
+    }
 ]

@@ -41,16 +41,20 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    result = GetUwpPane(dte, paneGuid);
-
-                    if (result == null)
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
                     {
-                        CreateUwpPane(paneGuid, visible, clearWithSolution, StringRes.WindowsTemplateStudio);
                         result = GetUwpPane(dte, paneGuid);
+
+                        if (result == null)
+                        {
+                            await CreateUwpPaneAsync(paneGuid, visible, clearWithSolution, StringRes.WindowsTemplateStudio);
+                            result = GetUwpPane(dte, paneGuid);
+                        }
                     }
-                }
+                });
             }
             catch (Exception ex)
             {
@@ -60,9 +64,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             return result;
         }
 
-        private static void CreateUwpPane(Guid paneGuid, bool visible, bool clearWithSolution, string title)
+        private static async System.Threading.Tasks.Task CreateUwpPaneAsync(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IVsOutputWindow output = ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
 

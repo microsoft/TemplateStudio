@@ -358,17 +358,13 @@
     <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
-    <value>https://aka.ms/wts</value>
+    <value>Windows Template Studio</value>
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Vorlagenversion:</value>
     <comment>About section templates version</comment>
-  </data>
-  <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
-    <value>Windows Template Studio</value>
-    <comment>About section text</comment>
-  </data>
+  </data>  
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>Info</value>
     <comment>About section title</comment>
@@ -706,5 +702,44 @@
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
     <value>Windows Template Studio fügt nun ein Kernprojekt hinzu. </value>
     <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>You can not remove **{0}** because it is readonly.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Frameworks:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Layout:</value>
+    <comment>Template details: Layout</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (optional)</value>
+    <comment>The layout is optional</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>Report issue</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (choose one)</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Windows Template Studio has changed the ActivationService to be able to include Identity features.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
 </root>

@@ -19,19 +19,19 @@ namespace Microsoft.Templates.Test
         private string _testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Gen\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("TestGen");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "TestGen");
 
         private static bool syncExecuted;
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            InitializeTemplates(new LocalTemplatesSource("TestGen"));
+            InitializeTemplates(new LocalTemplatesSource(null, "TestGen"));
             return GetAllProjectTemplates();
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string frameworkFilter)
         {
-            InitializeTemplates(new LocalTemplatesSource("TestGen"));
+            InitializeTemplates(new LocalTemplatesSource(null, "TestGen"));
 
             return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter);
         }

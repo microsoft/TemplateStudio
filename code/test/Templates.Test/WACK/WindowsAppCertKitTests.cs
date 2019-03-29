@@ -36,25 +36,20 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "", "", "Uwp")]
         public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                     && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrameworkList().Contains(framework)
-                     && !t.GetIsHidden()
-                     && t.GetLanguage() == language;
-
             // Exclude background task from WACK tests until WACK is fixed
             Func<ITemplateInfo, bool> templateSelector =
                 t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && t.GetFrameworkList().Contains(framework)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GroupIdentity != "wts.Feat.BackgroundTask"
                     && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
+                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin"
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName);
 
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))

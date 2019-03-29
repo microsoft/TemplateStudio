@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" 
+            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Windows Template Studio (Universal Windows; local)</Name>
+    <Description>Windows Template Studio에서는 마법사 UI를 통해 신속하게 UWP 앱을 빌드할 수 있고, Windows 10 패턴 및 베스트 프랙티스를 바탕으로 개발자의 요구를 충족합니다.</Description>
+    <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>Microsoft.CSharp.UWP.WindowsTemplateStudio.local</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="$wts.platform$" Value="Uwp"/>
+      <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
+      <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCS</FullClassName>
+  </WizardExtension>
+</VSTemplate>

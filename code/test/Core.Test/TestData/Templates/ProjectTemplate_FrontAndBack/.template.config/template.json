@@ -1,0 +1,22 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "ProjectTemplate2",
+  "groupIdentity": "Microsoft.Templates.Test.ProjectTemplate2",
+  "identity": "Microsoft.Templates.Test.ProjectTemplate2.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "pt3",
+    "wts.frontendframework": "fx3",
+    "wts.backendframework": "fx4|TestFramework",
+    "wts.platform": "test",
+    "wts.version": "1.0.0",
+    "wts.licenses": "[text1](url1)|[text2](url2)",
+    "wts.group": "group1",
+    "wts.defaultInstance": "DefaultName"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

@@ -36,6 +36,7 @@ namespace WtsTelemetry
             var pagesData = DataService.GetData(queries.Pages);
             var featuresData = DataService.GetData(queries.Features);
             var entryPointData = DataService.GetData(queries.EntryPoints);
+            var languageData = DataService.GetData(queries.Languages);
 
             log.Info($"WTS: Create Md File");
             var mdText = new MarkdownBuilder()
@@ -45,6 +46,7 @@ namespace WtsTelemetry
                         .AddTable("Pages", "Pages", pagesData)
                         .AddTable("Features", "Features", featuresData)
                         .AddTable("Windows Template Studio entry point", "Entry point", entryPointData)
+                        .AddTable("Programming languages", "Languages", languageData)
                         .GetText();
 
 

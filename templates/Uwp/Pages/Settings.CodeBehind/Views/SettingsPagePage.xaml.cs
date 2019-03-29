@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Param_RootNamespace.Helpers;
-using Param_ItemNamespace.Services;
+using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.md
     // TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
@@ -35,14 +36,15 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            Initialize();
+            await InitializeAsync();
         }
 
-        private void Initialize()
+        private async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+            await Task.CompletedTask;
         }
 
         private string GetVersionDescription()

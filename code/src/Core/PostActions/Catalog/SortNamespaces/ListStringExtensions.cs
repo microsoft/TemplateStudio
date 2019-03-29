@@ -43,8 +43,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
                                 .Skip(startUsingIndex)
                                 .Take(usingsLinesCount)
                                 .Where(u => !string.IsNullOrWhiteSpace(u))
-                                .Select(u => (comparer.ExtractNs(u), u))
-                                .GroupBy(s => ExtractRootNs(s.Item1), s => s.Item2)
+                                .Select(u => new { ns = comparer.ExtractNs(u), usingStatement = u })
+                                .GroupBy(s => ExtractRootNs(s.ns), s => s.usingStatement)
                                 .ToList();
 
             classContent.RemoveRange(startUsingIndex, usingsLinesCount);

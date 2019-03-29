@@ -50,81 +50,13 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.3.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.3.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.3.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.3.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.3.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Telemetry, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Telemetry.15.3.789-masterCC863119\lib\net45\Microsoft.VisualStudio.Telemetry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Validation.15.3.15\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Packaging, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.IO.Packaging.4.3.0\lib\net46\System.IO.Packaging.dll</HintPath>
-    </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -156,7 +88,7 @@
     <Compile Include="Diagnostics\NewItemType.cs" />
     <Compile Include="Diagnostics\ProjectMetricsEnum.cs" />
     <Compile Include="Diagnostics\TelemetryMetrics.cs" />
-    <Compile Include="Diagnostics\VsTelemetryProperties.cs" />
+    <Compile Include="Diagnostics\VSTelemetryInfo.cs" />
     <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
     <Compile Include="Diagnostics\FileHealthWriter.cs" />
@@ -177,9 +109,13 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="FrameworkTypes.cs" />
+    <Compile Include="Gen\CompositionInfo.cs" />
     <Compile Include="Gen\GenComposer.cs" />
     <Compile Include="Gen\GenController.cs" />
     <Compile Include="Gen\GenException.cs" />
+    <Compile Include="Gen\IWindow.cs" />
+    <Compile Include="Gen\LayoutInfo.cs" />
     <Compile Include="Gen\NewItemGenController.cs" />
     <Compile Include="Gen\NewItemGenerationFileInfo.cs" />
     <Compile Include="Gen\NewItemGenerationResult.cs" />
@@ -195,6 +131,9 @@
     <Compile Include="Gen\ProjectInfo.cs" />
     <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
+    <Compile Include="Gen\SupportedFramework.cs" />
+    <Compile Include="Gen\TemplateInfo.cs" />
+    <Compile Include="Gen\UserSelectionItem.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
@@ -206,6 +145,12 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
+    <Compile Include="Naming\BadFormatValidator.cs" />
+    <Compile Include="Naming\EmptyNameValidator.cs" />
+    <Compile Include="Naming\ProjectReservedNamesValidator.cs" />
+    <Compile Include="Naming\ProjectStartsWithValidator.cs" />
+    <Compile Include="Packaging\CertInfo.cs" />
+    <Compile Include="Packaging\IDigitalSignatureService.cs" />
     <Compile Include="Templates\MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\PageSuffixValidator.cs" />
@@ -364,29 +309,11 @@
     </None>
     <None Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Configuration\WindowsTemplateStudio.tokenized.config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="CERTENROLLLib">
-      <Guid>{728AB348-217D-11DA-B2A4-000E7BBB2B09}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
@@ -399,7 +326,6 @@
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringRes.en-US.resx" />
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
@@ -423,6 +349,7 @@
     <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -463,6 +390,35 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TemplateEngine.Edge">
+      <Version>1.0.0-beta2-20170518-234</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
+      <Version>1.0.0-beta2-20170518-234</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading">
+      <Version>15.3.83</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
+      <Version>15.8.132</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>9.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.1.0-beta009</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.IO.Packaging">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

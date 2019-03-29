@@ -8,7 +8,7 @@ using System;
 using Param_RootNamespace.Core.Helpers;
 //}]}
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class ActivationService
     {

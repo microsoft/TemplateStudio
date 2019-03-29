@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -23,11 +24,11 @@ namespace Microsoft.Templates.Core
         // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
 
-        public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
+        public string LogFileFolderPath { get; set; } = @"WinTS/Logs";
 
-        public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
+        public string RepositoryFolderName { get; set; } = @"WinTS";
 
-        public string BackupFolderPath { get; set; } = @"WindowsTemplateStudio\Backups";
+        public string BackupFolderPath { get; set; } = @"WinTS/Backups";
 
         public string TempGenerationFolderPath { get; set; } = "WTSTempGeneration";
 

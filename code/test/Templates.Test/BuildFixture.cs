@@ -20,13 +20,13 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Build\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("TstBld");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "TstBld");
 
         private static bool syncExecuted;
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            InitializeTemplates(new LocalTemplatesSource("TstBld"));
+            InitializeTemplates(new LocalTemplatesSource(null, "TstBld"));
             return GetAllProjectTemplates();
         }
 

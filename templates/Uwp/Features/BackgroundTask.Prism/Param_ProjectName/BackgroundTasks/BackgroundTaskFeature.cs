@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 
-namespace Param_ItemNamespace.BackgroundTasks
+namespace Param_RootNamespace.BackgroundTasks
 {
     public sealed class BackgroundTaskFeature : BackgroundTask
     {

@@ -11,8 +11,9 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "CaliburnMicro",
-	"wts.platform": "Uwp",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "CaliburnMicro",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "13",
     "wts.dependencies": "wts.Feat.SampleDataService",
@@ -59,10 +60,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
-      "type": "parameter",
-      "replaces": "Param_ItemNamespace"
-    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
@@ -79,7 +76,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Toolkit.Uwp.UI.Animations",
-        "version" : "5.0.0",
+        "version" : "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

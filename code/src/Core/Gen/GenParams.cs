@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+
 namespace Microsoft.Templates.Core.Gen
 {
     public class GenParams
@@ -13,7 +15,8 @@ namespace Microsoft.Templates.Core.Gen
         public const string TemplatesVersion = "wts.templatesVersion";
         public const string HomePageName = "wts.homePageName";
         public const string ProjectType = "wts.generationProjectType";
-        public const string Framework = "wts.generationFramework";
+        public const string FrontEndFramework = "wts.generationFrontEndFramework";
+        public const string BackEndFramework = "wts.generationBackEndFramework";
         public const string Platform = "wts.generationPlatform";
         public const string ProjectName = "wts.projectName";
     }

@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Composition
 
         public bool Compare(QueryNode query)
         {
-            if (string.IsNullOrEmpty(Value) || string.IsNullOrEmpty(query.Value))
+            if (Value == null || string.IsNullOrEmpty(query.Value))
             {
                 return false;
             }

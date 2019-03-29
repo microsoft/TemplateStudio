@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.UserActivities;
 using Windows.UI.Shell;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     // More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/user-activity.md
     // For more info about UserActivities in Timeline see https://docs.microsoft.com/windows/uwp/launch-resume/useractivities

@@ -14,7 +14,6 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private const string ValidationPattern = @"^((?!\d)\w+)$";
         private const string InferInvalidPattern = @"[^\d\w\-]";
 
         public static string Infer(string suggestedName, IEnumerable<Validator> validators, string inferWith = "")
@@ -41,25 +40,6 @@ namespace Microsoft.Templates.Core
 
         public static ValidationResult Validate(string value, IEnumerable<Validator> validators)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                return new ValidationResult
-                {
-                    IsValid = false,
-                    ErrorType = ValidationErrorType.Empty,
-                };
-            }
-
-            var m = Regex.Match(value, ValidationPattern);
-            if (!m.Success)
-            {
-                return new ValidationResult
-                {
-                    IsValid = false,
-                    ErrorType = ValidationErrorType.BadFormat,
-                };
-            }
-
             foreach (var validator in validators)
             {
                 var validationResult = validator.Validate(value);

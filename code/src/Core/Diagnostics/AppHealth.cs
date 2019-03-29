@@ -6,6 +6,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
+using Microsoft.Templates.Core.Gen;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class AppHealth : IDisposable
@@ -63,6 +65,11 @@ namespace Microsoft.Templates.Core.Diagnostics
                     HealthWriters.Available.Add(newWriter);
                 }
             }
+        }
+
+        public void IntializeTelemetryClient(GenShell shell)
+        {
+            TelemetryService.Current.IntializeTelemetryClient(shell);
         }
 
         private void InstanceDefaultWriters()

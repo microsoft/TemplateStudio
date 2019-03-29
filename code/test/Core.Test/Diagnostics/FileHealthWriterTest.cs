@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
                 sr.Close();
 
-                Assert.True(content.Contains(uniqueMsg));
+                Assert.Contains(uniqueMsg, content);
             }
         }
     }

@@ -2,13 +2,13 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "LiveTile",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.Naming.DefaultName",
-  "identity": "Microsoft.UWPTemplates.Test.Naming.DefaultName.VisualBasic",
+  "groupIdentity": "Microsoft.Templates.Test.Naming.DefaultName",
+  "identity": "Microsoft.Templates.Test.Naming.DefaultName.VisualBasic",
   "shortName": "naming-default",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "feature",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "LiveTile"

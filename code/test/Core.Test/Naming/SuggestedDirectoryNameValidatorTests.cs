@@ -4,6 +4,7 @@
 
 using System;
 using System.IO;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
@@ -21,7 +22,7 @@ namespace Microsoft.Templates.Core.Test
 
             var result = sut.Validate(Guid.NewGuid().ToString());
 
-            Assert.Equal(result.IsValid, true);
+            Assert.True(result.IsValid);
         }
 
         [Fact]
@@ -30,7 +31,7 @@ namespace Microsoft.Templates.Core.Test
             var sut = new SuggestedDirectoryNameValidator(Environment.CurrentDirectory);
             var result = sut.Validate(Guid.NewGuid().ToString()); // Use new GUID as a name for a folder that won't already exist
 
-            Assert.Equal(result.IsValid, true);
+            Assert.True(result.IsValid);
         }
 
         [Fact]
@@ -45,7 +46,7 @@ namespace Microsoft.Templates.Core.Test
 
                 var result = sut.Validate(existingDir.Name);
 
-                Assert.Equal(result.IsValid, false);
+                Assert.False(result.IsValid);
             }
             finally
             {

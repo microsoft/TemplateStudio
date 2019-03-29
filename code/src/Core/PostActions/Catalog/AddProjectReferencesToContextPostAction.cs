@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Templates;
@@ -18,17 +19,21 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     //    {
     //        "description": "Have UWP app reference this project",
     //        "manualInstructions": [ ],
-    //        "actionId": ""849AAEB8-487D-45B3-94B9-77FA74E83A012",
+    //        "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A012",
     //        "args": {
     //            "fileIndex" : "0",
-    //            "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+    //            "projectPath": "Param_ProjectName\\Param_ProjectName.csproj",
+    //            "specifiedPathIsTarget": "false"
     //        },
     //        "continueOnError": "true"
     //    }
     //  ]
     // Expected args:
     //    - fileIndex -> The file index from the primary outputs which is the project file that will be referenced by the other project.
-    //    - otherProjectPath -> The path to the project where the refrence will be added.
+    //    - referencedProject -> Alternatively you can specify the referenced project if not available on the primary outputs (e.g. on a composition template)
+    //    - projectPath -> The path to the project where the reference will be added.
+    // Optional args:
+    //    - specifiedPathIsTarget -> If 'true' the direction of the reference is reversed. (i.e. The indexed file will reference the project specified by path)
     public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
     {
         public const string Id = "849AAEB8-487D-45B3-94B9-77FA74E83A01";
@@ -51,15 +56,32 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
+            var referencedProject = string.Empty;
 
-            int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
-
-            var projectReference = new ProjectReference
+            if (Args.ContainsKey("referencedProjectPath"))
             {
-                Project = projectPath,
-                ReferencedProject = referencedProject,
-            };
+                referencedProject = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["referencedProjectPath"]));
+            }
+            else
+            {
+                int targetProjectIndex = int.Parse(Args["fileIndex"]);
+                referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            }
+
+            var invert = Args.ContainsKey("specifiedPathIsTarget") && bool.Parse(Args["specifiedPathIsTarget"] ?? "False");
+
+            var projectReference = new ProjectReference();
+
+            if (invert)
+            {
+                projectReference.Project = referencedProject;
+                projectReference.ReferencedProject = projectPath;
+            }
+            else
+            {
+                projectReference.Project = projectPath;
+                projectReference.ReferencedProject = referencedProject;
+            }
 
             if (!GenContext.Current.ProjectInfo.ProjectReferences.Any(n => n.Equals(projectReference)))
             {

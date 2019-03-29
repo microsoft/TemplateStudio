@@ -2,14 +2,14 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "CompositionTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.CompositionTemplate.VB",
+  "identity": "Microsoft.Templates.Test.CompositionTemplate.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == Microsoft.UWPTemplates.Test.PageTemplate",
+    "wts.compositionFilter": "groupidentity == Microsoft.Templates.Test.PageTemplate",
     "wts.compositionOrder": "1"
 
   },

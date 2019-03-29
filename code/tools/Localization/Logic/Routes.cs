@@ -6,14 +6,14 @@ namespace Localization
 {
     public static class Routes
     {
-        internal const string ProjectTemplatePathCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution";
-        internal const string ProjectTemplatePathVB = "code\\src\\ProjectTemplates\\VBNet.UWP.VS2017.Solution";
-        internal const string ProjectTemplateFileCS = "CSharp.UWP.VS2017.Solution.vstemplate";
-        internal const string ProjectTemplateFileVB = "VBNet.UWP.VS2017.Solution.vstemplate";
-        internal const string ProjectTemplateFileNamePatternCS = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
-        internal const string ProjectTemplateFileNamePatternVB = "VBNet.UWP.VS2017.Solution.{0}.vstemplate";
+        internal const string ProjectTemplatePathCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution";
+        internal const string ProjectTemplatePathVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution";
+        internal const string ProjectTemplateFileCS = "CSharp.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileVB = "VBNet.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileNamePatternCS = "CSharp.UWP.Solution.{0}.vstemplate";
+        internal const string ProjectTemplateFileNamePatternVB = "VBNet.UWP.Solution.{0}.vstemplate";
 
-        internal const string CommandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
+        internal const string CommandTemplateRootDirPath = "code\\src\\Installer\\Commands";
         internal const string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
         internal const string VspackageFile = "VSPackage.en-US.resx";
 
@@ -32,9 +32,9 @@ namespace Localization
 
         internal const string WtsTemplatesRootDirPath = "templates\\_catalog";
         internal const string WtsProjectTypes = "projectTypes";
-        internal const string WtsFrameworks = "frameworks";
+        internal const string WtsFrameworks = "frontendframeworks";
 
-        internal const string VsixRootDirPath = "code\\src\\Installer.2017";
+        internal const string VsixRootDirPath = "code\\src\\Installer";
         internal const string VsixLangDirPattern = "{0}\\Extension.vsixlangpack";
         internal const string VsixManifestFile = "source.extension.vsixmanifest";
         internal const string VsixLangpackFile = "Extension.vsixlangpack";
@@ -52,7 +52,7 @@ namespace Localization
         internal static string[] ResoureceDirectories { get; } =
         {
             "code\\src\\Core\\Resources",
-            "code\\src\\Installer.2017\\Resources",
+            "code\\src\\Installer\\Resources",
             "code\\src\\UI\\Resources",
         };
 
@@ -62,13 +62,13 @@ namespace Localization
         };
 
         // Validate Routes
-        internal const string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";
-        internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution\\CSharp.UWP.VS2017.Solution.vstemplate";
-        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.VS2017.Solution\\VBNet.UWP.VS2017.Solution.vstemplate";
-        internal const string RelayCommandFileNameValidate = "code\\src\\Installer.2017\\Commands\\RelayCommandPackage.en-US.vsct";
-        internal const string VspackageFileNameValidate = "code\\src\\Installer.2017\\Commands\\VSPackage.en-US.resx";
+        internal const string VsixValidatePath = "code\\src\\Installer\\source.extension.vsixmanifest";
+        internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution\\CSharp.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution\\VBNet.UWP.Solution.vstemplate";
+        internal const string RelayCommandFileNameValidate = "code\\src\\Installer\\Commands\\RelayCommandPackage.en-US.vsct";
+        internal const string VspackageFileNameValidate = "code\\src\\Installer\\Commands\\VSPackage.en-US.resx";
         internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
-        internal const string WtsFrameworksValidate = "templates\\_catalog\\frameworks.json";
+        internal const string WtsFrameworksValidate = "templates\\_catalog\\frontendframeworks.json";
 
         // Extract files folders
         internal const string OriginalExtractDirectory = "original";

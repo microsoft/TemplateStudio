@@ -1,10 +1,10 @@
-﻿using Param_ItemNamespace.EventHandlers;
+﻿using Param_RootNamespace.EventHandlers;
 using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     public sealed partial class CameraViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {

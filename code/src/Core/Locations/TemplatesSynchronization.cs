@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
-        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
+        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), FolderName));
 
         private readonly TemplatesContent _content;
 
@@ -99,6 +100,11 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task GetNewContentAsync(CancellationToken ct)
         {
+            if (!CanGetNewContent())
+            {
+                return;
+            }
+
             await EnsureVsInstancesSyncingAsync();
 
             if (LockSync())
@@ -340,6 +346,16 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnDeletingLockFileMessage, ex).FireAndForget();
             }
+        }
+
+        private bool CanGetNewContent()
+        {
+            if (_content.Source is RemoteTemplatesSource remote)
+            {
+                return remote.CanGetNewContent;
+            }
+
+            return true;
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Param_ItemNamespace.Services.Ink;
-using Param_ItemNamespace.Services.Ink.UndoRedo;
+﻿using Param_RootNamespace.Services.Ink;
+using Param_RootNamespace.Services.Ink.UndoRedo;
 using System.Windows.Input;
 using System.Linq;
 using Prism.Commands;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class InkSmartCanvasViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

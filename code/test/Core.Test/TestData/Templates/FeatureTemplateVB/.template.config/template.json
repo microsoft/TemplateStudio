@@ -3,13 +3,14 @@
   "classifications": [ "Test" ],
   "name": "FeatureTemplate",
   "description": "Generic Feature description...",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.FeatureTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.VB",
+  "groupIdentity": "Microsoft.Templates.Test.FeatureTemplate",
+  "identity": "Microsoft.Templates.Test.FeatureTemplate.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "Uwp",
-    "wts.type": "feature"
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.isGroupExclusiveSelection": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

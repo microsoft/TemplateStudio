@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.ViewModels;
+using Param_RootNamespace.ViewModels;
 
-namespace Param_ItemNamespace.Views
+namespace Param_RootNamespace.Views
 {
     // TODO WTS: Remove this example page when/if it's not needed.
     // This page is an example of how to handle data that is shared with your app.

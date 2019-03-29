@@ -3,10 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -26,8 +29,36 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
-            return StartWizard(newProjectView, WizardTypeEnum.NewProject);
+            var validators = new List<Validator>()
+            {
+                new ProjectReservedNamesValidator(),
+                new ProjectStartsWithValidator(),
+            };
+            var projectName = GenContext.Current.ProjectName;
+            var projectNameValidation = Naming.Validate(projectName, validators);
+            if (projectNameValidation.IsValid)
+            {
+                var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
+                return StartWizard(newProjectView, WizardTypeEnum.NewProject);
+            }
+            else
+            {
+                var message = string.Empty;
+                switch (projectNameValidation.ErrorType)
+                {
+                    case ValidationErrorType.ProjectReservedName:
+                        message = string.Format(StringRes.ErrorProjectReservedName, projectName);
+                        break;
+                    case ValidationErrorType.ProjectStartsWith:
+                        message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
+                        break;
+                }
+
+                var title = StringRes.ErrorTitleInvalidProjectName;
+                MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+                CancelWizard();
+                return null;
+            }
         }
 
         public UserSelection StartAddPage(string language, BaseStyleValuesProvider provider)
@@ -39,7 +70,7 @@ namespace Microsoft.Templates.UI.Launcher
         public UserSelection StartAddFeature(string language, BaseStyleValuesProvider provider)
         {
             var addFeatureView = new Views.NewItem.WizardShell(TemplateType.Feature, language, provider);
-            return StartWizard(addFeatureView, WizardTypeEnum.NewProject);
+            return StartWizard(addFeatureView, WizardTypeEnum.AddFeature);
         }
 
         private UserSelection StartWizard(IWizardShell wizardShell, WizardTypeEnum wizardType)
@@ -57,7 +88,7 @@ namespace Microsoft.Templates.UI.Launcher
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
-                wizardShell.SafeClose();
+                (wizardShell as IWindow).SafeClose();
                 _dialogService.ShowError(ex);
             }
 
@@ -71,7 +102,7 @@ namespace Microsoft.Templates.UI.Launcher
 
         private UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
-            GenContext.ToolBox.Shell.ShowModal(wizardShell as Window);
+            GenContext.ToolBox.Shell.ShowModal(wizardShell as IWindow);
             return wizardShell.Result;
         }
 

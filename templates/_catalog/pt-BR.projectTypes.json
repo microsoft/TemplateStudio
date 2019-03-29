@@ -13,5 +13,10 @@
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Itens de Navegação na parte superior permitem a navegação rápida entre as páginas."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "A menu is added to move around between pages."
   }
 ]

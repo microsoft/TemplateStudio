@@ -2,12 +2,12 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "DependenciesTemplate",
-  "groupIdentity": "Microsoft.UWPTemplates.Test.DependenciesTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.DependenciesTemplate.CSharp",
+  "groupIdentity": "Microsoft.Templates.Test.DependenciesTemplate",
+  "identity": "Microsoft.Templates.Test.DependenciesTemplate.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "Uwp",
+    "wts.platform": "test",
     "wts.type": "feature",
     "wts.dependencies": "dp1|dp2"
   },

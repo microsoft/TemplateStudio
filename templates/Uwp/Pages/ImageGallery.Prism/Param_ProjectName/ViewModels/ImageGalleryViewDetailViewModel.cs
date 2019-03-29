@@ -7,15 +7,15 @@ using Windows.System;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
-using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Services;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
@@ -84,7 +84,7 @@ namespace Param_ItemNamespace.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnimation(SelectedImage);
                 ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
             }
         }

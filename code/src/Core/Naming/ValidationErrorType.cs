@@ -11,6 +11,8 @@ namespace Microsoft.Templates.Core
         AlreadyExists,
         BadFormat,
         ReservedName,
+        ProjectReservedName,
+        ProjectStartsWith,
         EndsWithPageSuffix,
         EndsWithViewSuffix,
     }

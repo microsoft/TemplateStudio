@@ -1,7 +1,7 @@
 ﻿//{**
 // This code block adds the BackgroundTaskFeature to the method `CreateInstances()` of the BackgroundTaskService of your project.
 //**}
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class BackgroundTaskService : IBackgroundTaskService
     {

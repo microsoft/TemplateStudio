@@ -4,7 +4,9 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

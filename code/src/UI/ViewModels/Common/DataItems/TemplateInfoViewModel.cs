@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Linq;
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 
@@ -16,10 +15,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _hasMoreThanTwo;
         private bool _showAddedText;
         private bool _canBeAdded;
+        private string _emptyBackendFramework = string.Empty;
 
-        public ITemplateInfo Template { get; }
+        public TemplateInfo Template { get; }
 
         public string Group { get; }
+
+        public bool IsGroupExclusiveSelection { get; }
 
         public int GenGroup { get; }
 
@@ -69,30 +71,30 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _canBeAdded, value);
         }
 
-        public TemplateInfoViewModel(ITemplateInfo template, string frameworkName, string platform)
+        public TemplateInfoViewModel(TemplateInfo template,  string platform, string projectType, string frameworkName)
         {
             // BasicInfo properties
             Name = template.Name;
-            Identity = template.Identity;
+            Identity = template.TemplateId;
             Title = template.Name;
             Summary = template.Description;
-            Description = template.GetRichDescription();
+            Description = template.RichDescription;
             Author = template.Author;
-            Version = template.GetVersion();
-            Icon = template.GetIcon();
-            Order = template.GetDisplayOrder();
-            IsHidden = template.GetIsHidden();
-            var dependencies = GenComposer.GetAllDependencies(template, frameworkName, platform);
-            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName, platform));
-            Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
+            Version = template.Version;
+            Icon = template.Icon;
+            Order = template.DisplayOrder;
+            IsHidden = template.IsHidden;
+            Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
             Template = template;
-            Group = template.GetGroup();
-            GenGroup = template.GetGenGroup();
-            TemplateType = template.GetTemplateType();
-            MultipleInstance = template.GetMultipleInstance();
-            ItemNameEditable = template.GetItemNameEditable();
+            Group = template.Group;
+            IsGroupExclusiveSelection = template.IsGroupExclusiveSelection;
+            GenGroup = template.GenGroup;
+            TemplateType = template.TemplateType;
+            MultipleInstance = template.MultipleInstance;
+            ItemNameEditable = template.ItemNameEditable;
             CanBeAdded = MultipleInstance || Count == 0;
         }
 

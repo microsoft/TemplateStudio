@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\VBSA\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("VBStyle");
+        public TemplatesSource Source => new LocalTemplatesSource(null, "VBStyle");
 
         [SuppressMessage(
    "Usage",
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
-            InitializeTemplates(new LocalTemplatesSource("VBStyle"));
+            InitializeTemplates(new LocalTemplatesSource(null, "VBStyle"));
             return GetVBProjectTemplates();
         }
     }

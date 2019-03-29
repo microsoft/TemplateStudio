@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Fakes
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Fakes
 
                 solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
 
-                if (!IsCpsProject(project))
+                if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
                     AddItems(project, filesByProject[project]);
                 }
@@ -192,10 +192,13 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void ShowModal(Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            dialog.Owner = _owner;
-            dialog.ShowDialog();
+            if (shell is Window dialog)
+            {
+                dialog.Owner = _owner;
+                dialog.ShowDialog();
+            }
         }
 
         public override void CancelWizard(bool back = true)
@@ -283,6 +286,35 @@ namespace Microsoft.Templates.Fakes
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return new VSTelemetryInfo()
+            {
+                OptedIn = true,
+                VisualStudioCulture = string.Empty,
+                VisualStudioEdition = string.Empty,
+                VisualStudioExeVersion = string.Empty,
+                VisualStudioManifestId = string.Empty,
+            };
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
         }
     }
 }

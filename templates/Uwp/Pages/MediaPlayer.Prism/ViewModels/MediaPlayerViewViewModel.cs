@@ -8,7 +8,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Prism.Windows.Navigation;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class MediaPlayerViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

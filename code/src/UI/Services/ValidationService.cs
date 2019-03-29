@@ -25,6 +25,8 @@ namespace Microsoft.Templates.UI.Services
         {
             var validators = new List<Validator>()
             {
+                new EmptyNameValidator(),
+                new BadFormatValidator(),
                 new ReservedNamesValidator(),
                 new PageSuffixValidator(),
             };

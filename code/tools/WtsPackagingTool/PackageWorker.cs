@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
+using Microsoft.Templates.Utilities.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -18,6 +19,8 @@ namespace WtsPackagingTool
 {
     internal class PackageWorker
     {
+        private static TemplatePackage templatePackage = new TemplatePackage(new DigitalSignatureService());
+
         internal static async Task CreateAsync(string inputPath, string outfile, string certThumbprint, TextWriter output, TextWriter error)
         {
             try
@@ -28,13 +31,13 @@ namespace WtsPackagingTool
                     if (!string.IsNullOrWhiteSpace(certThumbprint))
                     {
                         output.WriteCommandText($"The template package will be signed using the cert matching {certThumbprint} as thumbprint.");
-                        await TemplatePackage.PackAndSignAsync(inputPath, outfile, certThumbprint, "text/plain").ConfigureAwait(false);
+                        await templatePackage.PackAndSignAsync(inputPath, outfile, certThumbprint, "text/plain").ConfigureAwait(false);
                         output.WriteCommandText($"Templates package file '{outfile}' successfully created.");
                     }
                     else
                     {
                         output.WriteCommandText($"No cert thumbprint provided, the template package will not be signed.");
-                        await TemplatePackage.PackAsync(inputPath, outfile, "text/plain").ConfigureAwait(false);
+                        await templatePackage.PackAsync(inputPath, outfile, "text/plain").ConfigureAwait(false);
                     }
 
                     output.WriteCommandText($"Templates package file '{outfile}' successfully created.");
@@ -127,7 +130,7 @@ namespace WtsPackagingTool
                     Fs.EnsureFolder(destinationDir);
 
                     output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
-                    await TemplatePackage.ExtractAsync(inputFile, destinationDir).ConfigureAwait(false);
+                    await templatePackage.ExtractAsync(inputFile, destinationDir).ConfigureAwait(false);
                 }
                 else
                 {
@@ -147,7 +150,7 @@ namespace WtsPackagingTool
                 output.WriteCommandHeader($"Templates package {inputPath} information:");
                 if (File.Exists(inputPath))
                 {
-                    output.WriteCommandText($"Is signed: {TemplatePackage.IsSigned(inputPath).ToString()}");
+                    output.WriteCommandText($"Is signed: {templatePackage.IsSigned(inputPath).ToString()}");
 
                     WriteSignatureValidationsInfo(inputPath, output);
 
@@ -164,25 +167,25 @@ namespace WtsPackagingTool
 
         private static void WriteCertificatesInfo(string inputPath, TextWriter output)
         {
-            var certsInfo = TemplatePackage.GetCertsInfo(inputPath);
+            var certsInfo = templatePackage.GetCertsInfo(inputPath);
             output.WriteLine();
             output.WriteCommandText($"Found {certsInfo.Count} certificates in the package.");
             foreach (var info in certsInfo)
             {
                 output.WriteLine();
-                output.WriteCommandText($" Cert Subject: {info.cert.Subject}");
+                output.WriteCommandText($" Cert Subject: {info.Cert.Subject}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Issuer: {info.cert.IssuerName.Name}");
+                output.WriteCommandText($" Cert Issuer: {info.Cert.IssuerName.Name}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Serial Number: {info.cert.SerialNumber}");
+                output.WriteCommandText($" Cert Serial Number: {info.Cert.SerialNumber}");
                 output.WriteLine();
-                output.WriteCommandText($" Cert Chain Status: {info.status.ToString()}");
+                output.WriteCommandText($" Cert Chain Status: {info.Status.ToString()}");
                 output.WriteLine();
                 output.WriteCommandText($" Cert PubKey:");
-                output.WriteCommandText($" {info.cert.GetPublicKeyString()}");
+                output.WriteCommandText($" {info.Cert.GetPublicKeyString()}");
                 output.WriteLine();
                 output.WriteCommandText($" Cert Pin:");
-                output.WriteCommandText($" {info.pin}");
+                output.WriteCommandText($" {info.Pin}");
                 output.WriteLine();
                 output.WriteCommandText("--");
             }
@@ -191,7 +194,7 @@ namespace WtsPackagingTool
         private static void WriteSignatureValidationsInfo(string inputPath, TextWriter output)
         {
             output.WriteLine();
-            output.WriteCommandText($"WTS is valid signature: {TemplatePackage.ValidateSignatures(inputPath)}");
+            output.WriteCommandText($"WTS is valid signature: {templatePackage.ValidateSignatures(inputPath)}");
         }
 
         private static void WriteCurrentPinConfiguration(TextWriter output)

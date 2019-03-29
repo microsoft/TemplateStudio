@@ -1,0 +1,89 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Content Grid",
+  "groupIdentity": "wts.Page.ContentGrid.VB",
+  "identity": "wts.Page.ContentGrid.VB",
+  "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "6",
+    "wts.dependencies": "wts.Feat.SampleDataService.VB",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+  },
+  "sourceName": "ContentGridView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\ContentGridViewViewModel.vb"
+    },
+    {
+      "path": ".\\ViewModels\\ContentGridViewDetailViewModel.vb"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewPage.xaml.vb"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewDetailPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewDetailPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
+        "version" : "5.1.1",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Animations",
+        "version" : "5.1.1",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

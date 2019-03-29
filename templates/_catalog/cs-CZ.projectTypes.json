@@ -13,5 +13,10 @@
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigační položky podél horního okraje zajišťují rychlou navigaci mezi stránkami."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "A menu is added to move around between pages."
   }
 ]

@@ -20,14 +20,14 @@ First of all, be sure you are running [Visual Studio 2017](https://www.visualstu
 
 1. Clone this repo to your local machine
 1. Open the solution [Big.sln](../code/)
-1. Set the project "Installer.2017" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio.
-1. Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
-   1. Open the "Installer.2017" project properties.
+1. Set the project "Installer" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio.
+1. Configure the "Installer" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
+   1. Open the "Installer" project properties.
    1. Go to "Debug" properties.
    1. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\"
    1. In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
    1. Save the changes.
-    ![Installer.2017 Configuration](./resources/getting-started/Installer2017.Debug.Config.JPG)
+    ![Installer Configuration](./resources/getting-started/Installer2017.Debug.Config.JPG)
     *The project configuration should looks like this*
 1. Build the solution.
 1. Start debugging (F5) or start without debugging (Ctrl+F5).
@@ -63,7 +63,7 @@ Following are described the contents for each folder:
 * [_tools](../code/_tools): tooling required for testing / validations.
 * [src](../code/src): solution source code
   * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .
-  * [Installer.2017](../code/src/Installer.2017): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
+  * [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
   * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
   * [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
@@ -81,23 +81,39 @@ The following list shows which tests are executed in which build. Within the Tem
   * Core.Tests	
   * UI.Test	
   * Templates.Tests	
-    * ExecutionSet=BuildMinimum
-    * ExecutionSet=BuildStyleCop
+    * ExecutionSet=MinimumCodebehind
+    * ExecutionSet=MinimumMVVMLight
+    * ExecutionSet=MinimumMVVMBasic
+    * ExecutionSet=MinimumCaliburnMicro
+    * ExecutionSet=MinimumPrism
     * ExecutionSet=TemplateValidation
 
 * VSO 'Templates.Test.Full'	Build (Full Tests):
   * Core.Tests	
   *	UI.Tests	
   *	Templates.Test
-    * ExecutionSet=BuildMVVMBasic
-    * ExecutionSet=BuildCodeBehind 
-    * ExecutionSet=BuildMVVMLight
-    * ExecutionSet=BuildCaliburnMicro
-    * ExecutionSet=BuildPrism
-    * ExecutionSet=BuildStyleCop
-    * ExecutionSet=BuildVBStyle
-    * ExecutionSet=TemplateValidation
-    * ExecutionSet=BuildRightClickWithLegacy
+      * ExecutionSet=MinimumCodebehind
+      * ExecutionSet=MinimumMVVMLight
+      * ExecutionSet=MinimumMVVMBasic
+      * ExecutionSet=MinimumCaliburnMicro
+      * ExecutionSet=MinimumPrism
+      * ExecutionSet=BuildVBStyle
+      * ExecutionSet=TemplateValidation
+      * ExecutionSet=BuildRightClickWithLegacy
+      * ExecutionSet=BuildMVVMBasic
+      * ExecutionSet=BuildCodeBehind 
+      * ExecutionSet=BuildMVVMLight
+      * ExecutionSet=BuildCaliburnMicro
+      * ExecutionSet=BuildPrism
+
+    
+* VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
+  *	Templates.Test
+    * ExecutionSet=BuildOneByOneMVVMBasic
+    * ExecutionSet=BuildOneByOneCodeBehind 
+    * ExecutionSet=BuildOneByOneMVVMLight
+    * ExecutionSet=BuildOneByOneCaliburnMicro
+    * ExecutionSet=BuildOneByOnePrism
 
 * VSO 'Templates.Test.Wack'	Build (Wack Tests):
   * Templates.Test

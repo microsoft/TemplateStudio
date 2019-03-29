@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -15,23 +17,23 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private T _selected;
         private T _origSelected;
         private Func<bool> _isSelectionEnabled;
-        private Action _onSelected;
+        private Func<Task> _onSelected;
 
         public T Selected
         {
             get => _selected;
-            set => Select(value);
+            set => SafeThreading.JoinableTaskFactory.RunAsync(async () => await SelectAsync(value));
         }
 
         public ObservableCollection<T> Items { get; } = new ObservableCollection<T>();
 
-        public SelectableGroup(Func<bool> isSelectionEnabled, Action onSelected = null)
+        public SelectableGroup(Func<bool> isSelectionEnabled, Func<Task> onSelected = null)
         {
             _isSelectionEnabled = isSelectionEnabled;
             _onSelected = onSelected;
         }
 
-        private bool Select(T value)
+        private async Task<bool> SelectAsync(T value)
         {
             if (value != null)
             {
@@ -50,7 +52,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
                     _selected.IsSelected = true;
                     OnPropertyChanged(nameof(Selected));
-                    _onSelected?.Invoke();
+                    if (_onSelected != null)
+                    {
+                        await _onSelected?.Invoke();
+                    }
+
                     return true;
                 }
                 else

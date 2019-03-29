@@ -12,8 +12,8 @@ $files = git diff --name-only 7a4c807bf03ad0b3f8fff045752e1b3375603b67
 function Get-CsEquivalentFile($vbfile)
 {
     # Need to support local and remote file paths
-    return $vbfile -replace "VB/", "/" `
-                   -replace "VB\\", "\" `
+    return $vbfile -replace "._VB/", "/" `
+                   -replace "._VB\\", "\" `
                    -replace ".vb", ".cs"`
                    -replace "My Project", "Properties"
 }
@@ -55,7 +55,7 @@ $allTemplates = Get-ChildItem ..\* -Recurse -include template.json | % { Write-O
 $vbfilesOnDisk = @()
 Foreach ($template in $allTemplates)
 {
-    if ($template -match "VB\\")
+    if ($template -match "._VB\\")
     {
         $vbfilesOnDisk += $template
     }

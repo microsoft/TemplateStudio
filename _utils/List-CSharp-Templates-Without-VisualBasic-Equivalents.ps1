@@ -2,17 +2,17 @@
 # Any output indicates missing VB templates.
 
 # Get list of all templates
-$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { Write-Output $_.FullName }
+$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\Test\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {
-    if ($t -match "_shared\\Page.AddConnectedAnimationService")
+    if ($t -like '*_shared\Page.AddConnectedAnimationService*')
     {
         # This is a shared template but only used by Prism & Caliburn.Micro so doesn't need a VB equivalent
-        break;
+        continue
     }
 
     # Ignore VB ones
-    if ($t -notmatch "VB\\")
+    if ($t -notmatch "._VB\\")
     {
         $hasVbEquivalent = $false;
 
@@ -20,10 +20,10 @@ Foreach ($t in $allTemplates)
         foreach ($u in $allTemplates)
         {
             # Now only interested in VB ones
-            if ($u -match "VB\\")
+            if ($u -match "._VB\\")
             {
                 # See if it matches the CS one we're looking for
-                $without = $u -replace "VB\\", "\";
+                $without = $u -replace "._VB\\", "\";
 
                 if ($t -eq $without)
                 {
@@ -42,5 +42,34 @@ Foreach ($t in $allTemplates)
             $templateName = $t -replace "\\.template.config\\template.json", ""
             Write-Output $templateName
         }
+    }
+    else
+    {
+        # Check for VB templates without CS versions - can happen when CS ones are moved/changed
+        $hasCsEquivalent = $false;
+
+        # Get name of CS equivalent
+        $without = $t -replace "._VB\\", "\";
+
+        # Search through all templates
+        foreach ($u in $allTemplates)
+        {
+            if ($u -eq $without)
+            {
+                # If it matches that means the VB version has a CS equivalent so we can move on
+                $hasCsEquivalent = $true;
+                break;
+            }
+        }
+
+        # Output the name of the template without a CS equivalent
+        # Exclude CaliburnMicro & Prism templates as they don't support VB
+        if (-not $hasCsEquivalent -and $t -notmatch "Caliburn" -and $t -notmatch "Prism")
+        {
+            # This will be the path of the folder that needs a VB version
+            $templateName = $t -replace "\\.template.config\\template.json", ""
+            Write-Output "$templateName Has no CS version!"
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class TabbedPivotPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {

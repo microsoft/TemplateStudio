@@ -4,11 +4,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
@@ -17,15 +18,15 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.ProjectSystem;
-using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 using NuGet.VisualStudio;
 using VSLangProj;
 
@@ -33,52 +34,69 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
-        private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
+        private AsyncLazy<IPackageInstallerService> _packageInstallerService = new AsyncLazy<IPackageInstallerService>(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var componentModel = (IComponentModel)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
+                return componentModel.GetService<IPackageInstallerService>();
+            },
+            SafeThreading.JoinableTaskFactory);
 
-        private DTE Dte => _dte.Value;
+        private AsyncLazy<DTE> _dte = new AsyncLazy<DTE>(
+             async () =>
+             {
+                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                 return ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE;
+             },
+             SafeThreading.JoinableTaskFactory);
 
         private string _vsVersionInstance = string.Empty;
 
         private string _vsProductVersion = string.Empty;
 
-        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
-            () =>
-            {
-                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
-            },
-            true);
+        private AsyncLazy<IVsUIShell> _uiShell = new AsyncLazy<IVsUIShell>(
+           async () =>
+           {
+               await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+               return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
+           },
+           SafeThreading.JoinableTaskFactory);
 
-        private IVsUIShell UIShell => _uiShell.Value;
-
-        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(
-            () =>
+        private AsyncLazy<IVsSolution> _vssolution = new AsyncLazy<IVsSolution>(
+            async () =>
             {
-                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
             },
-            true);
-
-        private IVsSolution VSSolution => _vssolution.Value;
+            SafeThreading.JoinableTaskFactory);
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
 
         private VsOutputPane OutputPane => _outputPane.Value;
 
+        private Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
+
+        private VSTelemetryService VSTelemetryService => telemetryService.Value;
+
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
-            var proj = GetProjectByPath(projPath);
-            if (proj != null && proj.ProjectItems != null)
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                foreach (var file in projFiles)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var proj = await GetProjectByPathAsync(projPath);
+                if (proj != null && proj.ProjectItems != null)
                 {
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
+                    foreach (var file in projFiles)
+                    {
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
 
-                    var newItem = proj.ProjectItems.AddFromFile(file);
+                        var newItem = proj.ProjectItems.AddFromFile(file);
+                    }
+
+                    proj.Save();
                 }
-
-                proj.Save();
-            }
+            });
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
@@ -112,7 +130,12 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                Dte.StatusBar.Text = message;
+                SafeThreading.JoinableTaskFactory.Run(async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var dte = await _dte.GetValueAsync();
+                    dte.StatusBar.Text = message;
+                });
             }
             catch (Exception ex)
             {
@@ -127,28 +150,40 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void OpenProjectOverview()
         {
-            Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+            });
         }
 
-        public override void ShowModal(System.Windows.Window dialog)
+        public override void ShowModal(IWindow shell)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // get the owner of this dialog
-            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
-
-            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-
-            UIShell.EnableModeless(0);
-
-            try
+            if (shell is System.Windows.Window dialog)
             {
-                WindowHelper.ShowModal(dialog, hwnd);
-            }
-            finally
-            {
-                // This will take place after the window is closed.
-                UIShell.EnableModeless(1);
+                SafeThreading.JoinableTaskFactory.Run(async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                    // get the owner of this dialog
+                    var uiShell = await _uiShell.GetValueAsync();
+                    uiShell.GetDialogOwnerHwnd(out IntPtr hwnd);
+
+                    dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
+                    uiShell.EnableModeless(0);
+
+                    try
+                    {
+                        WindowHelper.ShowModal(dialog, hwnd);
+                    }
+                    finally
+                    {
+                        // This will take place after the window is closed.
+                        uiShell.EnableModeless(1);
+                    }
+                });
             }
         }
 
@@ -166,22 +201,25 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectGuid()
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            var p = GetActiveProject();
-
-            if (p != null)
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
-                if (hierarchy != null)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var p = GetActiveProject();
+
+                if (p != null)
                 {
-                    hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
+                    var solution = await _vssolution.GetValueAsync();
+                    solution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+                    if (hierarchy != null)
+                    {
+                        hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
 
-                    return projectGuid.ToString();
+                        return projectGuid.ToString();
+                    }
                 }
-            }
 
-            return string.Empty;
+                return string.Empty;
+            });
         }
 
         public override string GetActiveProjectTypeGuids()
@@ -242,20 +280,30 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void CloseSolution()
         {
-            Dte.Solution.Close();
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                dte.Solution.Close();
+            });
         }
 
         public override void CollapseSolutionItems()
         {
             try
             {
-                var solutionExplorer = Dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
-                var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
-
-                foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    Collapse(item);
-                }
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var dte = await _dte.GetValueAsync();
+                    var solutionExplorer = dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
+                    var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
+
+                    foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
+                    {
+                        Collapse(item);
+                    }
+                });
             }
             catch (Exception ex)
             {
@@ -265,69 +313,86 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetVsProjectId()
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            var project = GetActiveProject();
-            Guid projectGuid = Guid.Empty;
-            try
+            return ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
-                if (project != null)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var project = GetActiveProject();
+                Guid projectGuid = Guid.Empty;
+                try
                 {
-                    var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
-
-                    solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                    if (hierarchy != null)
+                    if (project != null)
                     {
-                        hierarchy.GetGuidProperty(
-                                    VSConstants.VSITEMID_ROOT,
-                                    (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
-                                    out projectGuid);
+                        var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+
+                        solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                        if (hierarchy != null)
+                        {
+                            hierarchy.GetGuidProperty(
+                                        VSConstants.VSITEMID_ROOT,
+                                        (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                        out projectGuid);
+                        }
                     }
                 }
-            }
-            catch
-            {
-                projectGuid = Guid.Empty;
-            }
+                catch
+                {
+                    projectGuid = Guid.Empty;
+                }
 
-            return projectGuid;
+                return projectGuid;
+            });
         }
 
         public override void OpenItems(params string[] itemsFullPath)
         {
-            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                return;
-            }
-
-            foreach (var item in itemsFullPath)
-            {
-                switch (Path.GetExtension(item).ToUpperInvariant())
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                if (itemsFullPath == null || itemsFullPath.Length == 0)
                 {
-                    case ".XAML":
-                        Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
-                        break;
-
-                    default:
-                        if (!item.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
-                        {
-                            Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
-                        }
-
-                        break;
+                    return;
                 }
-            }
+
+                foreach (var item in itemsFullPath)
+                {
+                    switch (Path.GetExtension(item).ToUpperInvariant())
+                    {
+                        case ".XAML":
+                            dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
+                            break;
+
+                        default:
+                            if (!item.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
+                            {
+                                dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
+                            }
+
+                            break;
+                    }
+                }
+            });
         }
 
         public override bool IsDebuggerEnabled()
         {
-            return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                return dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
+            });
         }
 
         public override bool IsBuildInProgress()
         {
-            return Dte.Solution.SolutionBuild.BuildState == vsBuildState.vsBuildStateInProgress;
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                return dte.Solution.SolutionBuild.BuildState == vsBuildState.vsBuildStateInProgress;
+            });
         }
 
         public override string GetVsVersionAndInstance()
@@ -358,41 +423,49 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
-
-            foreach (var project in groupedReferences)
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                var parentProject = GetProjectByPath(project.Key);
-                if (project != null)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
+
+                foreach (var project in groupedReferences)
                 {
-                    var proj = (VSProject)parentProject.Object;
-
-                    foreach (var referenceToAdd in project)
+                    var parentProject = await GetProjectByPathAsync(project.Key);
+                    if (project != null)
                     {
-                        var referenceProject = GetProjectByPath(referenceToAdd.ReferencedProject);
-                        if (referenceProject != null)
-                        {
-                            proj.References.AddProject(referenceProject);
-                        }
-                    }
+                        var proj = (VSProject)parentProject.Object;
 
-                    parentProject.Save();
+                        foreach (var referenceToAdd in project)
+                        {
+                            var referenceProject = await GetProjectByPathAsync(referenceToAdd.ReferencedProject);
+                            if (referenceProject != null)
+                            {
+                                proj.References.AddProject(referenceProject);
+                            }
+                        }
+
+                        parentProject.Save();
+                    }
                 }
-            }
+            });
         }
 
         private void AddSdksForProject(string projectPath, IEnumerable<SdkReference> sdkReferences)
         {
-            var project = GetProjectByPath(projectPath);
-            var proj = (VSProject)project.Object;
-
-            foreach (var referenceValue in sdkReferences)
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                var refs = proj.References as VSLangProj110.References2;
-                refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
-            }
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var project = await GetProjectByPathAsync(projectPath);
+                var proj = (VSProject)project.Object;
 
-            project.Save();
+                foreach (var referenceValue in sdkReferences)
+                {
+                    var refs = proj.References as VSLangProj110.References2;
+                    refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
+                }
+
+                project.Save();
+            });
         }
 
         public override void AddContextItemsToSolution(ProjectInfo projectInfo)
@@ -435,9 +508,14 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     var chrono = Stopwatch.StartNew();
 
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
+                    SafeThreading.JoinableTaskFactory.Run(async () =>
+                    {
+                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
 
-                    Dte.Solution.AddFromFile(project);
+                        var dte = await _dte.GetValueAsync();
+                        dte.Solution.AddFromFile(project);
+                    });
 
                     secAddProjects += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
@@ -484,21 +562,26 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
-            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                if (solConfiguration.Name == configurationName)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
                 {
-                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    if (solConfiguration.Name == configurationName)
                     {
-                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                        foreach (SolutionContext context in solConfiguration.SolutionContexts)
                         {
-                            solConfiguration.Activate();
+                            if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                            {
+                                solConfiguration.Activate();
+                            }
                         }
                     }
                 }
-            }
 
-            return false;
+                return false;
+            });
         }
 
         private void SetStartupProject(Project project)
@@ -512,36 +595,45 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private string GetProjectTypeGuid(Project project)
         {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            if (project != null)
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                if (project != null)
                 {
-                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+                    var solution = await _vssolution.GetValueAsync();
+                    solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
 
-                    return projTypeGuids;
+                    if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
+                    {
+                        aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+
+                        return projTypeGuids;
+                    }
                 }
-            }
 
-            return string.Empty;
+                return string.Empty;
+            });
         }
 
         private Project GetProjectByGuid(string projectTypeGuid)
         {
-            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                var projectGuid = GetProjectTypeGuid(p);
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
 
-                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
                 {
-                    return p;
-                }
-            }
+                    var projectGuid = GetProjectTypeGuid(p);
 
-            return null;
+                    if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                    {
+                        return p;
+                    }
+                }
+
+                return null;
+            });
         }
 
         private Project GetActiveProject()
@@ -550,15 +642,20 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                if (_dte != null)
+                return SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    Array projects = (Array)Dte.ActiveSolutionProjects;
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var dte = await _dte.GetValueAsync();
+
+                    Array projects = (Array)dte.ActiveSolutionProjects;
 
                     if (projects?.Length >= 1)
                     {
                         p = (Project)projects.GetValue(0);
                     }
-                }
+
+                    return p;
+                });
             }
             catch (Exception)
             {
@@ -569,16 +666,17 @@ namespace Microsoft.Templates.UI.VisualStudio
             return p;
         }
 
-        private Project GetProjectByPath(string projFile)
+        private async Task<Project> GetProjectByPathAsync(string projFile)
         {
             Project p = null;
             try
             {
                 if (_dte != null)
                 {
-                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+                    var vsSolution = await _vssolution.GetValueAsync();
+                    vsSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
                     ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
                     p = (Project)obj;
                 }
@@ -597,10 +695,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                if (_dte != null)
+                s = SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    s = Dte.Solution;
-                }
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var dte = await _dte.GetValueAsync();
+                    return dte.Solution;
+                });
             }
             catch (Exception)
             {
@@ -616,15 +716,24 @@ namespace Microsoft.Templates.UI.VisualStudio
             // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
             await System.Threading.Tasks.Task.Delay(1000);
 
-            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var dte = await _dte.GetValueAsync();
+
+            var window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
 
             window.Activate();
         }
 
         private void SolutionEvents_Opened()
         {
-            Dte.ExecuteCommand("Project.Overview");
-            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+
+                dte.ExecuteCommand("Project.Overview");
+                dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
+            });
         }
 
         private void Collapse(UIHierarchyItem item)
@@ -641,55 +750,39 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                var project = GetProjectByPath(projectPath);
-                if (IsCpsProject(projectPath))
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    AddNugetToCPSProject(project, projectNugets);
-                }
-                else
-                {
-                    foreach (var reference in projectNugets)
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var project = await GetProjectByPathAsync(projectPath);
+                    if (IsCpsProject(projectPath))
                     {
-                        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-                        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-                        if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                        {
-                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-
-                            var installer = componentModel.GetService<IVsPackageInstaller>();
-
-                            installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
-                        }
+                        var packageInstallerService = await _packageInstallerService.GetValueAsync();
+                        packageInstallerService.AddNugetToCPSProject(project, projectNugets);
                     }
+                    else
+                    {
+                        foreach (var reference in projectNugets)
+                        {
+                            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
 
-                    project.Save();
-                }
+                            if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                            {
+                                GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
+                                var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                                installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                            }
+                        }
+
+                        project.Save();
+                    }
+                });
             }
             catch (Exception)
             {
                 WriteMissingNugetPackagesInfo(projectPath, projectNugets);
-            }
-        }
-
-        private static void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
-        {
-            if (project is IVsBrowseObjectContext browseObjectContext)
-            {
-                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
-
-                threadingService.ExecuteSynchronously(
-                async () =>
-                {
-                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
-
-                    foreach (var reference in projectNugets)
-                    {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version).ConfigureAwait(false);
-                    }
-                });
             }
         }
 
@@ -714,19 +807,48 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
 
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
-            if (hierarchy != null)
-            {
-                return hierarchy.IsCapabilityMatch("CPS");
-            }
-            else
-            {
-                // Detect if project is CPS project system based
-                // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
-                return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
-            }
+                var solution = await _vssolution.GetValueAsync();
+                solution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+                if (hierarchy != null)
+                {
+                    return hierarchy.IsCapabilityMatch("CPS");
+                }
+                else
+                {
+                    // Detect if project is CPS project system based
+                    // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
+                    return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
+                }
+            });
+        }
+
+        public override string CreateCertificate(string publisherName)
+        {
+            return CertificateService.Instance.CreateCertificate(publisherName);
+        }
+
+        public override VSTelemetryInfo GetVSTelemetryInfo()
+        {
+            return VSTelemetryService.VsTelemetryIsOptedIn();
+        }
+
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        {
+            VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
+        }
+
+        public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
+            VSTelemetryService.SafeTrackWizardCancelledVsTelemetry(properties, success);
         }
     }
 }

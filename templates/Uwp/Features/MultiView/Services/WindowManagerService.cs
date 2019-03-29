@@ -9,7 +9,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Param_ItemNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public delegate void ViewClosedHandler(ViewLifetimeControl viewControl, EventArgs e);
 
@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.Services
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
-            var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
             viewControl.StopViewInUse();
             return viewControl;
         }
@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.Services
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
-            var viewShown = await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode);
+            await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode);
             viewControl.StopViewInUse();
             return viewControl;
         }

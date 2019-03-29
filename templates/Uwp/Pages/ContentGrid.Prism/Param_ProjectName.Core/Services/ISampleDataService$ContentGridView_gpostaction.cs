@@ -4,12 +4,13 @@
 //{[{
 using System.Threading.Tasks;
 //}]}
-namespace Param_ItemNamespace.Core.Services
+namespace Param_RootNamespace.Core.Services
 {
     public interface ISampleDataService
     {
 //^^
 //{[{
+
         ObservableCollection<SampleOrder> GetContentGridData();
 //}]}
     }

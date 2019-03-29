@@ -26,23 +26,17 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
-            Func<ITemplateInfo, bool> selector =
-                               t => t.GetTemplateType() == TemplateType.Project
-                               && t.GetLanguage() == ProgrammingLanguages.VisualBasic
-                               && t.GetPlatform() == platform
-                               && t.GetProjectTypeList().Contains(projectType)
-                               && t.GetFrameworkList().Contains(framework);
-
             Func<ITemplateInfo, bool> templateSelector =
                 t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                        && t.GetFrameworkList().Contains(framework)
-                        && t.GetPlatform() == platform
-                        && !t.GetIsHidden())
-                     || (t.Name == "Feature.Testing.VBStyleAnalysis");
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden())
+                || (t.Name == "Feature.Testing.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyle";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }

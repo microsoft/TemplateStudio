@@ -1,0 +1,126 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Test App with xUnit",
+  "groupIdentity": "wts.Feat.UnitTests.App.xUnit",
+  "identity": "wts.Feat.UnitTests.App.xUnit",
+  "description": "Add a project for unit tests against the app using xUnit.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "feature",
+    "wts.outputToParent": "true",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "Testing",
+    "wts.defaultInstance": "Tests-App-xUnit",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/license.txt)"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
+  "PrimaryOutputs": [
+    { "path": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  },
+  "postActions": [
+    {
+      "description": "Generate Test Certificate",
+      "manualInstructions": [ ],
+      "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+      "args": {
+        "files" : "0"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add reference to the main UWP app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj",
+        "specifiedPathIsTarget": "true"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Xaml.Behaviors.Uwp.Managed",
+        "version" : "2.0.0",
+        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.UI.Xaml",
+        "version" : "2.0.181018004",
+        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "xunit",
+        "version" : "2.4.1",
+        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "xunit.runner.visualstudio",
+        "version" : "2.4.1",
+        "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

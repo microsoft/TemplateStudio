@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
-using Param_ItemNamespace.Views;
+using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Views;
 
-namespace Param_ItemNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(clickedItem);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
                 _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem.OrderId);
             }
         }
