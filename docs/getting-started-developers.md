@@ -81,23 +81,31 @@ The following list shows which tests are executed in which build. Within the Tem
   * Core.Tests	
   * UI.Test	
   * Templates.Tests	
-    * ExecutionSet=BuildMinimum
-    * ExecutionSet=BuildStyleCop
+    * ExecutionSet=MinimumCodebehind
+    * ExecutionSet=MinimumMVVMLight
+    * ExecutionSet=MinimumMVVMBasic
+    * ExecutionSet=MinimumCaliburnMicro
+    * ExecutionSet=MinimumPrism
     * ExecutionSet=TemplateValidation
 
 * VSO 'Templates.Test.Full'	Build (Full Tests):
   * Core.Tests	
   *	UI.Tests	
   *	Templates.Test
-    * ExecutionSet=BuildMVVMBasic
-    * ExecutionSet=BuildCodeBehind 
-    * ExecutionSet=BuildMVVMLight
-    * ExecutionSet=BuildCaliburnMicro
-    * ExecutionSet=BuildPrism
-    * ExecutionSet=BuildStyleCop
-    * ExecutionSet=BuildVBStyle
-    * ExecutionSet=TemplateValidation
-    * ExecutionSet=BuildRightClickWithLegacy
+      * ExecutionSet=MinimumCodebehind
+      * ExecutionSet=MinimumMVVMLight
+      * ExecutionSet=MinimumMVVMBasic
+      * ExecutionSet=MinimumCaliburnMicro
+      * ExecutionSet=MinimumPrism
+      * ExecutionSet=BuildVBStyle
+      * ExecutionSet=TemplateValidation
+      * ExecutionSet=BuildRightClickWithLegacy
+      * ExecutionSet=BuildMVVMBasic
+      * ExecutionSet=BuildCodeBehind 
+      * ExecutionSet=BuildMVVMLight
+      * ExecutionSet=BuildCaliburnMicro
+      * ExecutionSet=BuildPrism
+
     
 * VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
   *	Templates.Test
