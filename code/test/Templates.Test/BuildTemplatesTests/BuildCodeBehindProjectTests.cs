@@ -146,7 +146,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumCodebehind")]
+        [Trait("ExecutionSet", "BuildCodeBehind")]
         public async Task BuildAllPagesAndFeaturesRandomNamesCSAsync(string projectType, string framework, string platform, string language)
         {
             await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, platform, language);

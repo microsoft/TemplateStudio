@@ -148,7 +148,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumMVVMBasic")]
+        [Trait("ExecutionSet", "BuildMVVMBasic")]
         public async Task BuildAllPagesAndFeaturesRandomNamesCSAsync(string projectType, string framework, string platform, string language)
         {
             await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, platform, language);
