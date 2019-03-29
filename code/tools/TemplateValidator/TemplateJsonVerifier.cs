@@ -90,7 +90,7 @@ namespace TemplateValidator
                 var template = JsonConvert.DeserializeObject<ValidationTemplateInfo>(fileContents);
 
                 // Composition templates don't need as much as Page and feature ones
-                if (!filePath.Contains("_composition"))
+                if (!filePath.Contains("_comp"))
                 {
                     EnsureAdequateDescription(template, results);
 
