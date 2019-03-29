@@ -8,41 +8,105 @@
     <Grid x:Name="ContentArea">
         <ScrollViewer
             x:Name="canvasScroll"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             ZoomMode="Enabled">
-                <Grid Background="{StaticResource InkCanvasBackground}"
-                        Width="{Binding ElementName=inkCanvas, Path=Width}"
-                        Height="{Binding ElementName=inkCanvas, Path=Height}">                        
-                    <InkCanvas x:Name="inkCanvas"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
-                <Canvas x:Name="selectionCanvas"
-                        Width="{Binding ElementName=inkCanvas, Path=Width}"
-                        Height="{Binding ElementName=inkCanvas, Path=Height}"/>
+                <Grid
+                    Background="{StaticResource InkCanvasBackground}"
+                    Width="{Binding ElementName=inkCanvas, Path=Width}"
+                    Height="{Binding ElementName=inkCanvas, Path=Height}">                        
+                    <InkCanvas
+                        x:Name="inkCanvas"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch" />
+                <Canvas
+                    x:Name="selectionCanvas"
+                    Width="{Binding ElementName=inkCanvas, Path=Width}"
+                    Height="{Binding ElementName=inkCanvas, Path=Height}" />
             </Grid>
         </ScrollViewer>        
-        <CommandBar
-            x:Name="bottomCommandBar"
-            Style="{StaticResource InkCommandBarStyle}">
+        <CommandBar x:Name="bottomCommandBar" Style="{StaticResource InkCommandBarStyle}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="InkDrawView_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarButton
+                    x:Uid="InkDrawView_ZoomInButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="ZoomIn_Click"
+                    Icon="ZoomIn" />
+                <AppBarButton
+                    x:Uid="InkDrawView_ZoomOutButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="ZoomOut_Click"
+                    Icon="ZoomOut" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="InkDrawView_CutButton" Icon="Cut" Click="Cut_Click" IsEnabled="{x:Bind CutButtonIsEnabled, Mode=OneWay}"  BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_CopyButton" Icon="Copy" Click="Copy_Click" IsEnabled="{x:Bind CopyButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_PasteButton" Icon="Paste" Click="Paste_Click" IsEnabled="{x:Bind PasteButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarButton
+                    x:Uid="InkDrawView_CutButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="Cut_Click"
+                    Icon="Cut"
+                    IsEnabled="{x:Bind CutButtonIsEnabled, Mode=OneWay}" />
+                <AppBarButton
+                    x:Uid="InkDrawView_CopyButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="Copy_Click"
+                    Icon="Copy"
+                    IsEnabled="{x:Bind CopyButtonIsEnabled, Mode=OneWay}" />
+                <AppBarButton
+                    x:Uid="InkDrawView_PasteButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="Paste_Click"
+                    Icon="Paste"
+                    IsEnabled="{x:Bind PasteButtonIsEnabled, Mode=OneWay}" />
                 <AppBarSeparator />
-                <AppBarButton x:Uid="InkDrawView_UndoButton" Icon="Undo" Click="Undo_Click" IsEnabled="{x:Bind UndoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_RedoButton" Icon="Redo" Click="Redo_Click" IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarSeparator/>
-                <AppBarButton x:Uid="InkDrawView_LoadInkFileButton" Icon="OpenFile" Click="LoadInkFile_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_SaveInkFileButton" Icon="Save" Click="SaveInkFile_Click" IsEnabled="{x:Bind SaveInkFileButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarButton x:Uid="InkDrawView_ExportAsImageButton" Icon="Download" Click="ExportAsImage_Click" IsEnabled="{x:Bind ExportAsImageButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                <AppBarSeparator/>
-                <AppBarButton x:Uid="InkDrawView_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{x:Bind ClearAllButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarButton
+                    x:Uid="InkDrawView_UndoButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="Undo_Click"
+                    Icon="Undo"
+                    IsEnabled="{x:Bind UndoButtonIsEnabled, Mode=OneWay}" />
+                <AppBarButton
+                    x:Uid="InkDrawView_RedoButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0" 
+                    Click="Redo_Click"
+                    Icon="Redo"
+                    IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}"/>
+                <AppBarSeparator />
+                <AppBarButton
+                    x:Uid="InkDrawView_LoadInkFileButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="LoadInkFile_Click"
+                    Icon="OpenFile" />
+                <AppBarButton
+                    x:Uid="InkDrawView_SaveInkFileButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="SaveInkFile_Click"
+                    Icon="Save"
+                    IsEnabled="{x:Bind SaveInkFileButtonIsEnabled, Mode=OneWay}" />
+                <AppBarButton
+                    x:Uid="InkDrawView_ExportAsImageButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="ExportAsImage_Click"
+                    Icon="Download"
+                    IsEnabled="{x:Bind ExportAsImageButtonIsEnabled, Mode=OneWay}" />
+                <AppBarSeparator />
+                <AppBarButton
+                    x:Uid="InkDrawView_ClearAllButton"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Click="ClearAll_Click"
+                    Icon="Delete"
+                    IsEnabled="{x:Bind ClearAllButtonIsEnabled, Mode=OneWay}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

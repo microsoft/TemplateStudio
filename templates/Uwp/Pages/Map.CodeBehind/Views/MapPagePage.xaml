@@ -3,15 +3,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid>
         <maps:MapControl
             x:Name="mapControl"
-            ZoomLevel="{x:Bind ZoomLevel, Mode=OneWay}"
-            Center="{x:Bind Center, Mode=OneWay}"/>
-        <TickBar/>
+            Center="{x:Bind Center, Mode=OneWay}"
+            ZoomLevel="{x:Bind ZoomLevel, Mode=OneWay}" />
+        <TickBar />
     </Grid>
 </Page>

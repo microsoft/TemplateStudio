@@ -7,11 +7,8 @@
     xmlns:tc="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tc:RadCartesianChart>
                 <tc:RadCartesianChart.HorizontalAxis>
                     <tc:CategoricalAxis />

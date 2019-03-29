@@ -19,10 +19,10 @@
                         Height="{Binding ElementName=inkCanvas, Path=Height}">                        
                     <InkCanvas x:Name="inkCanvas"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
+                            VerticalAlignment="Stretch" />
                 <Canvas x:Name="selectionCanvas"
                         Width="{Binding ElementName=inkCanvas, Path=Width}"
-                        Height="{Binding ElementName=inkCanvas, Path=Height}"/>
+                        Height="{Binding ElementName=inkCanvas, Path=Height}" />
             </Grid>
         </ScrollViewer>
         <CommandBar

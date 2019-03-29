@@ -9,19 +9,19 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="CameraButtonStyle" TargetType="Button">
-                <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
-                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
-                <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="Padding" Value="18"/>
-                <Setter Property="Margin" Value="20"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="Padding" Value="18" />
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="Content" Value="&#xE114;" />
-                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-                <Setter Property="FontWeight" Value="Normal"/>
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="UseSystemFocusVisuals" Value="True"/>
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -30,46 +30,46 @@
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
                                             <Storyboard>
-                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BorderCircle">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BorderCircle">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Disabled">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="BorderCircle">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Ellipse x:Name="BorderOutCircle" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding BorderThickness}" Fill="{TemplateBinding Background}"/>
-                                <Ellipse x:Name="BorderCircle" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Margin="1"/>
-                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Ellipse x:Name="BorderOutCircle" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding BorderThickness}" Fill="{TemplateBinding Background}" />
+                                <Ellipse x:Name="BorderCircle" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Margin="1" />
+                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -77,11 +77,11 @@
             </Style>
             <Style x:Key="SwitchCameraButtonStyle" TargetType="Button" BasedOn="{StaticResource CameraButtonStyle}">
                 <Setter Property="Content" Value="&#xE124;" />
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="8"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="8" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="FontSize" Value="17" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -90,16 +90,16 @@
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
                                             <Storyboard>
-                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BorderCircle">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
                                             </Storyboard>
@@ -107,25 +107,25 @@
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BorderCircle">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Disabled">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Ellipse x:Name="BorderCircle" Fill="{TemplateBinding Background}"/>
-                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Ellipse x:Name="BorderCircle" Fill="{TemplateBinding Background}" />
+                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -135,23 +135,22 @@
     </UserControl.Resources>
 
     <Grid>
-        <CaptureElement Name="PreviewControl"
-                  Stretch="UniformToFill"/>
+        <CaptureElement Name="PreviewControl" Stretch="UniformToFill" />
 
         <TextBlock x:Name="errorMessage"
                 FontSize="18"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                TextWrapping="WrapWholeWords"/>
+                TextWrapping="WrapWholeWords" />
 
         <Button x:Uid="CameraControl_CameraButton"
             Click="CaptureButton_Click"
             IsEnabled="{x:Bind IsInitialized, Mode=OneWay}"
-            Style="{x:Bind CameraButtonStyle}"/>
+            Style="{x:Bind CameraButtonStyle}" />
 
         <Button x:Uid="CameraControl_SwitchCameraButton"
         Click="SwitchButton_Click"
         Visibility="{x:Bind CanSwitch, Mode=OneWay}"
-        Style="{x:Bind SwitchCameraButtonStyle}"/>
+        Style="{x:Bind SwitchCameraButtonStyle}" />
     </Grid>
 </UserControl>
