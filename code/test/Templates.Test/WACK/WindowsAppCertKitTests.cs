@@ -43,6 +43,7 @@ namespace Microsoft.Templates.Test
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GroupIdentity != "wts.Feat.BackgroundTask"
                     && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
+                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin"
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
