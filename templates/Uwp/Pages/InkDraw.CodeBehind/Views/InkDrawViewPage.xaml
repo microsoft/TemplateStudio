@@ -77,7 +77,7 @@
                     BorderThickness="0,0,0,0" 
                     Click="Redo_Click"
                     Icon="Redo"
-                    IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}"/>
+                    IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}" />
                 <AppBarSeparator />
                 <AppBarButton
                     x:Uid="InkDrawView_LoadInkFileButton"

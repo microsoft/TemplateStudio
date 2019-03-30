@@ -7,6 +7,6 @@
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}" />
     </Grid>
 </Page>

@@ -40,7 +40,7 @@
                             BorderBrush="Transparent"
                             BorderThickness="0,0,0,0"
                             Click="ZoomIn_Click" 
-                            Icon="ZoomIn"/>
+                            Icon="ZoomIn" />
                         <AppBarButton
                             x:Uid="wts.ItemName_ZoomOutButton"
                             BorderBrush="Transparent"

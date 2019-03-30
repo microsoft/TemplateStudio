@@ -4,8 +4,8 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <!--{[{-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -22,4 +22,3 @@
         </StackPanel>
     </Grid>    
 </Page>
-

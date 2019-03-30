@@ -44,11 +44,11 @@
             BackButtonBehavior="Automatic"
             <!--}]}-->
             <!--{--{-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}" />
             <!--}--}-->
             <!--^^-->
             <!--{[{-->
-            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}" />
             <!--}]}-->
     </Grid>
 </Page>
