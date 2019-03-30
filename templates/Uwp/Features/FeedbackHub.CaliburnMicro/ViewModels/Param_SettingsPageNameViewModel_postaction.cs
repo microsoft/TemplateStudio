@@ -5,7 +5,8 @@ namespace Param_RootNamespace.ViewModels
 {
     public class Param_SettingsPageNameViewModel : Screen
     {
-        //{[{
+
+//{[{
         public Visibility FeedbackLinkVisibility => Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
 
         public async void LaunchFeedbackHub()
@@ -15,6 +16,6 @@ namespace Param_RootNamespace.ViewModels
             await launcher.LaunchAsync();
         }
 
-        //}]}
+//}]}
     }
 }

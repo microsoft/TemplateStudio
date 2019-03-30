@@ -153,7 +153,7 @@
                             Margin="{StaticResource Margin_M1_LeftRight_S_Top}"
                             Text="{Binding WizardStatus.Versions}"
                             AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}" />
-                        <!--<Button
+                        <Button
                             Margin="16,8,26,8"
                             Style="{StaticResource ButtonRefreshTemplatesStyle}"
                             Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
@@ -164,7 +164,7 @@
                             Style="{StaticResource ButtonRefreshTemplatesStyle}"
                             Content="{x:Static strings:StringRes.ButtonCompositionTool}"
                             Command="{Binding CompositionToolCommand}"
-                            Visibility="{Binding RefreshTemplateCacheVisibility}" />-->
+                            Visibility="{Binding RefreshTemplateCacheVisibility}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

@@ -14,6 +14,8 @@ namespace Microsoft.Templates.Core
             "BackgroundTask",
             "Pivot",
             "Shell",
+            "User",
+            "LogIn",
             "SharedDataWebLink",
             "SharedDataStorageItems",
             "SchemeActivationSample",

@@ -1,0 +1,37 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+        <StackPanel
+            x:Name="ContentArea">
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+            </StackPanel>
+<!--{[{-->
+
+            <TextBlock
+                x:Uid="Settings_User"
+                Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+            <StackPanel Margin="{StaticResource SmallTopMargin}" Orientation="Horizontal">
+                <Ellipse Width="64" Height="64">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{x:Bind User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Margin="{StaticResource SmallLeftMargin}">
+                    <TextBlock
+                        Text="{x:Bind User.Name, Mode=OneWay}"
+                        Style="{ThemeResource BodyTextBlockStyle}" />
+                    <TextBlock
+                        Text="{x:Bind User.UserPrincipalName, Mode=OneWay}"
+                        Margin="{StaticResource XSmallTopMargin}"
+                        Style="{ThemeResource BodyTextBlockStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <HyperlinkButton
+                x:Uid="Settings_LogOut"
+                Click="OnLogout"
+                Margin="{StaticResource XSmallTopMargin}" />
+<!--}]}-->
+        </StackPanel>
+    </Grid>
+</Page>

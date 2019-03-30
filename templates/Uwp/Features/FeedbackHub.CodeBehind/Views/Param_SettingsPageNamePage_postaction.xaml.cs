@@ -5,7 +5,7 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class Param_SettingsPageNamePage : Page, INotifyPropertyChanged
     {
-        private void Initialize()
+        private async Task InitializeAsync()
         {
             //^^
             //{[{

@@ -87,9 +87,6 @@
     <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
-    <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
-    <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="ExternalLinksTests.cs" />
     <Compile Include="TemplatePathTests.cs" />
     <Compile Include="GenTests\ResourceUsageTests.cs" />

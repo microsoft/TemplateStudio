@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Services;
@@ -52,9 +53,10 @@ namespace Param_RootNamespace.ViewModels
         {
         }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+            await Task.CompletedTask;
         }
 
         private string GetVersionDescription()
