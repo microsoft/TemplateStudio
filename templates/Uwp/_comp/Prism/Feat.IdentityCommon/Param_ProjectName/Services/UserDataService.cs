@@ -23,7 +23,6 @@ namespace Param_RootNamespace.Services
         {
             _identityService = identityService;
             _microsoftGraphService = microsoftGraphService;
-            _identityService.LoggedOut += OnLoggedOut;
         }
 
         public void Initialize()

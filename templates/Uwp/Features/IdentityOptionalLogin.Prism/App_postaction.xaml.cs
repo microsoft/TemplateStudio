@@ -30,6 +30,7 @@ namespace Param_RootNamespace
             var identityService = Container.Resolve<IIdentityService>();
             userDataService.Initialize();
             identityService.InitializeWithAadAndPersonalMsAccounts();
+            await identityService.AcquireTokenSilentAsync();
 //}]}
         }
     }
