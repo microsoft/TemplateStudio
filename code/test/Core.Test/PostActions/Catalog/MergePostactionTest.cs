@@ -33,6 +33,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source.cs"), sourceFile, true);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_postaction.cs"), mergeFile, true);
 
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
+
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
             mergePostAction.Execute();
 
@@ -49,6 +55,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\Merge\Source_fail.cs");
             var mergeFile = Path.GetFullPath(@".\TestData\Merge\Source_fail_postaction.cs");
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                GenerationOutputPath = Directory.GetCurrentDirectory(),
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
 

@@ -46,13 +46,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 var sourceRoot = XElement.Load(originalFilePath);
 
                 var originalEncoding = GetEncoding(originalFilePath);
-                var otherEncoding = GetEncoding(Config.FilePath);
 
-                if (originalEncoding.EncodingName != otherEncoding.EncodingName
-                    || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+                // Only check encoding on new project, might have changed on right click
+                if (GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
                 {
-                    HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
-                    return;
+                    var otherEncoding = GetEncoding(Config.FilePath);
+
+                    if (originalEncoding.EncodingName != otherEncoding.EncodingName
+                        || !Enumerable.SequenceEqual(originalEncoding.GetPreamble(), otherEncoding.GetPreamble()))
+                    {
+                        HandleMismatchedEncodings(originalFilePath, Config.FilePath, originalEncoding, otherEncoding);
+                        return;
+                    }
                 }
 
                 foreach (var node in GetNodesToMerge(mergeRoot))
