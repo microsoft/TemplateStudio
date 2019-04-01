@@ -13,7 +13,7 @@
     "wts.type": "feature",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
-    "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
+    "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
@@ -28,6 +28,12 @@
   "sourceName": "IdentityOptionalLogin",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Helpers\\AuthenticationHelper.cs"
+    },
+    {
+      "path": ".\\Helpers\\Restricted.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
@@ -38,5 +44,18 @@
       "type":"parameter",
       "replaces":"Param_HomeName"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
+        "version" : "5.1.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }
