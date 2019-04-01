@@ -91,6 +91,12 @@ namespace Param_RootNamespace.Views
             User = null;
             IsLoggedIn = false;
             IsAuthorized = false;
+            CleanRestrictedPagesFromNavigationHistory();
+            GoBackToLastUnrestrictedPage();
+        }
+
+        private void CleanRestrictedPagesFromNavigationHistory()
+        {
             foreach (var backStack in NavigationService.Frame.BackStack)
             {
                 var isRestricted = Attribute.IsDefined(backStack.SourcePageType, typeof(Restricted));
@@ -99,7 +105,10 @@ namespace Param_RootNamespace.Views
                     NavigationService.Frame.BackStack.Remove(backStack);
                 }
             }
+        }
 
+        private void GoBackToLastUnrestrictedPage()
+        {
             var currentPage = NavigationService.Frame.Content as Page;
             var isCurrentPageRestricted = Attribute.IsDefined(currentPage.GetType(), typeof(Restricted));
             if (isCurrentPageRestricted)
