@@ -28,7 +28,8 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <StackPanel x:Name="contentPanel">
+        <StackPanel
+            x:Name="contentPanel">
 
             <RelativePanel>
                 <Grid

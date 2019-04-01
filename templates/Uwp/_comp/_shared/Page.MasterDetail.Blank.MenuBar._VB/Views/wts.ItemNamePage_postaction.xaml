@@ -7,6 +7,6 @@
             <!--{[{-->
             BackButtonBehavior="Inline"
             <!--}]}-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}" />
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
     </Grid>
 </Page>

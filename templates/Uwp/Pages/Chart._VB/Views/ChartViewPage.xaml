@@ -8,7 +8,8 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tc:RadCartesianChart>
                 <tc:RadCartesianChart.HorizontalAxis>
                     <tc:CategoricalAxis />

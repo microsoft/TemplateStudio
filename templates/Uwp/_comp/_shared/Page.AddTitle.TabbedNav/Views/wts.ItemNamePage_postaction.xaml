@@ -1,9 +1,7 @@
 ﻿<Page
     mc:Ignorable="d">
 
-    <Grid 
-        x:Name="ContentArea"
-        Margin="{StaticResource SmallLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

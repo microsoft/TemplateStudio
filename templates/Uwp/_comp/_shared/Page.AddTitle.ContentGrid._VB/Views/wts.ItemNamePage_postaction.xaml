@@ -19,7 +19,7 @@
 <!--{[{-->
             Grid.Row="1"
 <!--}]}-->
-            ItemHeight="160">
+            StretchContentForSingleRow="False">
         </controls:AdaptiveGridView>
     </Grid>
 </Page>

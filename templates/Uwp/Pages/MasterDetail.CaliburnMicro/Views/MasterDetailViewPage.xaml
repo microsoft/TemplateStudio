@@ -42,15 +42,15 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
-            ItemsSource="{x:Bind ViewModel.Items}"
-            SelectedItem="{x:Bind ViewModel.ActiveItem, Mode=OneWay}"
-            ItemTemplate="{StaticResource ItemTemplate}"
-            DetailsTemplate="{StaticResource DetailsTemplate}"
-            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            Loaded="MasterDetailsViewControl_Loaded"
-            BorderBrush="Transparent"
-            MasterHeader="MasterDetail"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}" />
+            BorderBrush="Transparent"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            ItemsSource="{x:Bind ViewModel.Items}"
+            ItemTemplate="{StaticResource ItemTemplate}"
+            Loaded="MasterDetailsViewControl_Loaded"
+            MasterHeader="MasterDetail"
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
     </Grid>
 </Page>
