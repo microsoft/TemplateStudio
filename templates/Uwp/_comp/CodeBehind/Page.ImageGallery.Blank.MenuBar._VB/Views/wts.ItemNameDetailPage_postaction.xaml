@@ -3,7 +3,7 @@
 
     <Grid>
         <FlipView
-            SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
+            SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
         </FlipView>
 <!--{[{-->
         <Button

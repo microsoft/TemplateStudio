@@ -7,6 +7,6 @@
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
     </Grid>
 </Page>

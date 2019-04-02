@@ -8,7 +8,9 @@
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea" animations:Connected.AnchorElement="{x:Bind itemHero}">
+    <Grid
+        x:Name="ContentArea"
+        animations:Connected.AnchorElement="{x:Bind itemHero}">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

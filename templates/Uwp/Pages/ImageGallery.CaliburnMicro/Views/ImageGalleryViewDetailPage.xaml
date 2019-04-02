@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:cm="using:Caliburn.Micro"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_RootNamespace.Core.Models"
-    xmlns:cm="using:Caliburn.Micro"
     cm:Message.Attach="[Event KeyDown] = [OnPageKeyDown($eventArgs)]"
     mc:Ignorable="d">
 

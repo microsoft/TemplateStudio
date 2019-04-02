@@ -26,7 +26,9 @@
                     Height="{Binding ElementName=inkCanvas, Path=Height}" />
             </Grid>
         </ScrollViewer>        
-        <CommandBar x:Name="bottomCommandBar" Style="{StaticResource InkCommandBarStyle}">
+        <CommandBar
+            x:Name="bottomCommandBar"
+            Style="{StaticResource InkCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton
                     x:Uid="InkDrawView_ZoomInButton"
