@@ -155,27 +155,40 @@ namespace Param_RootNamespace.Core.Services
 
         public async Task<bool> AcquireTokenSilentAsync()
         {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                return false;
+            }
             try
             {
-                if (_integratedAuthAvailable)
-                {
-                    _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
-                                                         .ExecuteAsync();
-                }
-                else
-                {
-                    var accounts = await _client.GetAccountsAsync();
-                    _authenticationResult = await _client.AcquireTokenSilent(_scopes)
-                                                         .WithAccount(accounts.FirstOrDefault())
-                                                         .ExecuteAsync();
-                }
-
+                var accounts = await _client.GetAccountsAsync();
+                _authenticationResult = await _client.AcquireTokenSilent(_scopes)
+                                                     .WithAccount(accounts.FirstOrDefault())
+                                                     .ExecuteAsync();
                 return true;
             }
             catch (MsalUiRequiredException)
             {
-                // Interactive authentication is required
-                return false;
+                if (_integratedAuthAvailable)
+                {
+                    try
+                    {
+
+                        _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
+                                                             .ExecuteAsync();
+                        return true;
+                    }
+                    catch(MsalUiRequiredException ex)
+                    {
+                        // Interactive authentication is required
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Interactive authentication is required
+                    return false;
+                }
             }
             catch (MsalException)
             {
