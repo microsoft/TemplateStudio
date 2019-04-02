@@ -21,7 +21,7 @@
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
-    "wts.license": "[XAMLStyler]https://marketplace.visualstudio.com/items/TeamXavalon.XAMLStyler/license"
+    "wts.licenses": "[XAMLStyler](https://marketplace.visualstudio.com/items/TeamXavalon.XAMLStyler/license)"
   },
   "sourceName": "XAMLStylerFeature",
   "preferNameDirectory": true,
