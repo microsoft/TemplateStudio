@@ -12,11 +12,11 @@
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Üstteki Gezinme Öğeleri, sayfalar arasında hızlı gezinti olanağı sağlar."
+    "summary": "Üst kısımdaki Gezinti Öğeleri, sayfalar arasında hızlı gezinti olanağı sağlar."
   },
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "A menu is added to move around between pages."
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
   }
 ]

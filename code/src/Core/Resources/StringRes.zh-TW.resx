@@ -500,15 +500,15 @@
     <value>無法解析平台。</value>
   </data>
   <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
-    <value>Invalid project name</value>
+    <value>專案名稱無效</value>
     <comment>Message box title for project invalid names.</comment>
   </data>
   <data name="ErrorProjectReservedName" xml:space="preserve">
-    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <value>「{0}」為保留名稱。請選擇另一個名稱，然後重試。</value>
     <comment>Message box text for project reserved names.</comment>
   </data>
   <data name="ErrorProjectStartsWith" xml:space="preserve">
-    <value>"{0}" is not a valid name. Project name can't start with "{1}".</value>
+    <value>「{0}」不是有效的名稱。專案名稱開頭不可為「{1}」。</value>
     <comment>Message box text for project name can not start with.</comment>
   </data>
   <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">

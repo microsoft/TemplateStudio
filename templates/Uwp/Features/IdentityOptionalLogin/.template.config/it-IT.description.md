@@ -1,7 +1,7 @@
-﻿Optional login adds user authentication using Azure AD and [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
-This style allows to combine unrestricted and restricted content. Restricted content is only shown to logged in and authorized users.
-The application includes a call to the Microsoft Graph to show user info and photo on the NavigationPane and the SettingsPage.
+﻿Optional Login aggiunge l'autenticazione utente tramite Azure AD e [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+Questo stile consente di combinare contenuto con e senza restrizioni. Il contenuto con restrizioni è mostrato solo agli utenti connessi e autorizzati.
+L'applicazione include una chiamata a Microsoft Graph, al fine di mostrare la foto e le informazioni dell'utente in NavigationPane e SettingsPage.
 
-By default this features works with Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use integrated auth.
+Per impostazione predefinita, questa funzionalità viene utilizzata con gli account in una directory organizzativa e con gli account Microsoft personali, ad esempio Skype, Xbox e Outlook.com, e consente di escludere gli account Microsoft personali, limitare l'accesso a una directory specifica o usare l'autenticazione integrata.
 
-[Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
+[Scopri di più su Microsoft Identity Platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

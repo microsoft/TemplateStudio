@@ -2,7 +2,7 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Этот базовый проект представляет собой пустой холст для создания приложения."
+    "summary": "Этот базовый проект является пустым холстом, на котором можно создать приложение."
   },
   {
     "name": "SplitView",
@@ -17,6 +17,6 @@
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "A menu is added to move around between pages."
+    "summary": "Добавленное меню позволяет перемещаться между страницами."
   }
 ]

@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿项目包括屏幕顶部的菜单栏，通过此菜单栏可访问各应用程序页面。
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+菜单栏常用于 Outlook、Word 或 Visual Studio 等桌面应用程序中。
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+菜单最初显示“文件”和“视图”两项。可将“页面”添加到“视图”菜单项，“设置页面”添加到“文件”菜单项。项目创建后，你可以方便地重新分发或创建新的菜单项。

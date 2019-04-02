@@ -704,34 +704,34 @@
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
+    <value>테스트하기</value>
     <comment>Group header for Testing templates</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is readonly.</value>
+    <value>랜덤하기 때문에 **{0}**를 제거할 수 없습니다.</value>
     <comment>Remove error message: Template is read only</comment>
   </data>
-  <data name="TemplateDetailsFrameworks" xml:space="preserve">
-    <value>Frameworks:</value>
-    <comment>Template details: Frameworks</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Layout:</value>
+    <value>레이아웃:</value>
     <comment>Template details: Layout</comment>
   </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Framework:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0} (optional)</value>
+    <value>{0}(선택 사항)</value>
     <comment>The layout is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>Report issue</value>
+    <value>보고서 문제점</value>
     <comment>Project details about section report lssue link</comment>
   </data>
   <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity (choose one)</value>
+    <value>Identity(1개 선택)</value>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Windows Template Studio has changed the ActivationService to be able to include Identity features.</value>
+    <value>Windows Template Studio는 Identity 기능을 포함할 수 있도록 ActivationService을 변경했습니다.</value>
     <comment>Has ActivationService before Identity error message</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
@@ -739,7 +739,7 @@
     <comment>Has ActivationService before Identity link documentation</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
 </root>

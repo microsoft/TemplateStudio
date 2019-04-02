@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Win App Driver",
-  "description": "Add project for UI tests using Appium via Windows Application Driver.",
+  "description": "Añade un proyecto para realizar pruebas de IU con Appium mediante Windows Application Driver.",
   "identity": "wts.Feat.WinAppDriver"
 }
