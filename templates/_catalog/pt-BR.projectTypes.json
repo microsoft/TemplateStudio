@@ -7,16 +7,16 @@
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "Um painel de navegação (ou 'menu hambúrguer') é incluído para a navegação entre as páginas."
+    "summary": "Um painel de navegação (ou \"menu hambúrguer\") é incluído para a navegação entre as páginas."
   },
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Itens de Navegação na parte superior permitem a navegação rápida entre as páginas."
+    "summary": "Os itens de navegação na parte superior permitem a navegação rápida entre as páginas."
   },
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "A menu is added to move around between pages."
+    "summary": "Um menu é adicionado para se mover entre as páginas."
   }
 ]

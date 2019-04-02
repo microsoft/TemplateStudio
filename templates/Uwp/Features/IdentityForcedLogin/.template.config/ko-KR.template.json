@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Forced Login",
-  "description": "Make your application require the user to login.",
+  "description": "애플리케이션에서 사용자 로그인이 필요하도록 만듭니다.",
   "identity": "wts.Feat.IdentityForcedLogin"
 }

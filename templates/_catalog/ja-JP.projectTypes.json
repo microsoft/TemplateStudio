@@ -2,12 +2,12 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "この基本のプロジェクトは、アプリを構築する基盤となる空白のキャンバスになります。"
+    "summary": "この基本的なページは、アプリを構築するための空白のキャンバスです。"
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "ウィンドウ間を移動するために、ナビゲーション ウィンドウ (通称「ハンバーガー メニュー」) が含まれます。"
+    "summary": "ページ間の移動に使用する、ナビゲーション ウィンドウ (通称「ハンバーガー メニュー」) が含まれています。"
   },
   {
     "name": "TabbedNav",
@@ -17,6 +17,6 @@
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "A menu is added to move around between pages."
+    "summary": "ページ間を移動するためのメニューが追加されます。"
   }
 ]

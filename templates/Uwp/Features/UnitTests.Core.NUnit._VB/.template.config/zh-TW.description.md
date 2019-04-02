@@ -1,5 +1,5 @@
-﻿NUnit is a unit-testing framework for all .Net languages. Initially ported from JUnit, the current production release, version 3, has been completely rewritten with many new features and support for a wide range of .NET platforms.
+﻿NUnit 是適用於所有 .Net 語言的單元測試framework。版本 3 一開始是從目前的生產版本 JUnit 移植而來，但是已經過全面改寫，包含許多新功能而且可支援廣泛的 .NET 平台。
 
-Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the Core library.
+包含此功能可為解決方案新增專案，該專案是為了裝載核心程式庫中程式碼的單元測試所設定。
 
-[Learn more about using NUnit.](https://github.com/nunit/docs/wiki/NUnit-Documentation)
+[深入了解如何使用 NUnit。](https://github.com/nunit/docs/wiki/NUnit-Documentation)

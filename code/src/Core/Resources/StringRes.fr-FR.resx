@@ -500,15 +500,15 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <value>Impossible de résoudre la plateforme.</value>
   </data>
   <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
-    <value>Invalid project name</value>
+    <value>Nom de projet incorrect</value>
     <comment>Message box title for project invalid names.</comment>
   </data>
   <data name="ErrorProjectReservedName" xml:space="preserve">
-    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <value>« {0} » est un nom réservé. Choisissez un autre nom et réessayez.</value>
     <comment>Message box text for project reserved names.</comment>
   </data>
   <data name="ErrorProjectStartsWith" xml:space="preserve">
-    <value>"{0}" is not a valid name. Project name can't start with "{1}".</value>
+    <value>« {0} » n'est pas un nom correct. Le nom de projet ne peut pas commencer par « {1} ».</value>
     <comment>Message box text for project name can not start with.</comment>
   </data>
   <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">

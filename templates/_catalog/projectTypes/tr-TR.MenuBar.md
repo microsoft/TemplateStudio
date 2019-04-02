@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿Projede ekranın üst kısmında, uygulamanın sayfalarına erişim sağlayan bir menü çubuğu bulabilirsiniz.
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+Menü Çubukları; Outlook, Word veya Visual Studio gibi masaüstü uygulamalarında çok sık kullanılır.
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+Menü başlangıçta Dosya ve Görünümler olmak üzere iki giriş gösterir. Sayfalar Görünümler menü girişine, Ayarlar Sayfası da dosya girişine eklenir. Proje oluşturulduktan sonra menü girişlerini istediğiniz gibi yeniden dağıtabilir veya yenilerini oluşturabilirsiniz.
