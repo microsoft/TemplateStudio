@@ -704,34 +704,34 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
+    <value>Probando</value>
     <comment>Group header for Testing templates</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is readonly.</value>
+    <value>No puedes eliminar **{0}** porque es de solo lectura.</value>
     <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Diseño:</value>
+    <comment>Template details: Layout</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Frameworks:</value>
     <comment>Template details: Frameworks</comment>
   </data>
-  <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Layout:</value>
-    <comment>Template details: Layout</comment>
-  </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0} (optional)</value>
+    <value>{0} (opcional)</value>
     <comment>The layout is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>Report issue</value>
+    <value>Informar del problema</value>
     <comment>Project details about section report lssue link</comment>
   </data>
   <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity (choose one)</value>
+    <value>Identity (elegir una)</value>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Windows Template Studio has changed the ActivationService to be able to include Identity features.</value>
+    <value>Windows Template Studio ha cambiado el ActivationService para que pueda incluir funciones de Identity.</value>
     <comment>Has ActivationService before Identity error message</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
@@ -739,7 +739,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <comment>Has ActivationService before Identity link documentation</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
 </root>

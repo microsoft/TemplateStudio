@@ -1297,6 +1297,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}update-activationservice-for-identity.md.
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio has changed the ActivationService to be able to include Identity features..
+        /// </summary>
+        public static string ValidatorHasActivationServiceBeforeIdentityMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasActivationServiceBeforeIdentityMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}projectTypes/updatetonavigationview.md.
         /// </summary>
         public static string ValidatorHasHamburgerMenuLink {

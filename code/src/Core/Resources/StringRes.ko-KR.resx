@@ -493,22 +493,22 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>생성하는 동안 예외 추적 원격 분석이 발생했습니다.</value>
+    <value>생성하는 동안 추적 원격 분석은 제외합니다.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
     <value>플랫폼을 알 수 없습니다.</value>
   </data>
   <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
-    <value>Invalid project name</value>
+    <value>유효하지 않는 프로젝트 이름</value>
     <comment>Message box title for project invalid names.</comment>
   </data>
   <data name="ErrorProjectReservedName" xml:space="preserve">
-    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <value>"{0}" 이름은 예약된 이름입니다. 다른 이름을 선택한 후 다시 시도하십시오.</value>
     <comment>Message box text for project reserved names.</comment>
   </data>
   <data name="ErrorProjectStartsWith" xml:space="preserve">
-    <value>"{0}" is not a valid name. Project name can't start with "{1}".</value>
+    <value>"{0}" 이름은 유효하지 않습니다. 프로젝트 이름은 "{1}"(으)로 시작할 수 없습니다.</value>
     <comment>Message box text for project name can not start with.</comment>
   </data>
   <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">

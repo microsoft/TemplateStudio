@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Forced Login",
-  "description": "Make your application require the user to login.",
+  "description": "Реализация в приложении принудительного входа пользователя.",
   "identity": "wts.Feat.IdentityForcedLogin"
 }

@@ -1,5 +1,5 @@
-﻿MSTest is Microsoft's suite of unit testing tools. The unit testing framework is defined in Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll. Unit tests created with the unit testing framework can be executed in Visual Studio or, using MSTest.exe, from a command line. 
+﻿MSTest è una suite di strumenti di testing unità di Microsoft. Il framework di testing unità è definito in Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll. Gli unit test creati con il framework di testing unità possono essere eseguiti in Visual Studio o tramite MSTest.exe, da una riga di comando. 
 
-Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the Core library.
+Se si include questa funzionalità, un nuovo progetto viene aggiunto alla soluzione configurata per l'hosting di unit test del codice nella libreria principale.
 
-[Learn more about using the MSTest framework in unit tests.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Scopri di più sull'uso del framework MSTest negli unit test.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

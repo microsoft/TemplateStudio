@@ -1,7 +1,7 @@
-﻿Optional login adds user authentication using Azure AD and [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
-This style allows to combine unrestricted and restricted content. Restricted content is only shown to logged in and authorized users.
-The application includes a call to the Microsoft Graph to show user info and photo on the NavigationPane and the SettingsPage.
+﻿Volitelné přihlašování přidává ověřování uživatelů pomocí Azure AD a [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+Tento styl také umožňuje kombinovat neomezený a omezený obsah. Omezený obsah se zobrazuje pouze přihlášeným a autorizovaným uživatelům.
+Aplikace zahrnuje volání nástroje Microsoft Graph k zobrazení informací o uživateli a jeho fotografie na navigačním panelu a stránce nastavení.
 
-By default this features works with Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use integrated auth.
+Ve výchozím nastavení tato funkce pracuje s účty v libovolné adresářové službě organizace a s osobními účty Microsoft (např. Skype, Xbox, Outlook.com) a umožňuje vyloučit osobní účty Microsoft, omezit přístup k určitým adresářům a využívat integrované ověřování.
 
-[Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
+[Další informace o platformě Microsoft Identity](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

@@ -1,5 +1,5 @@
-﻿Windows Application Driver is a service to support Selenium-like UI Test Automation on Windows Applications. This service supports testing Universal Windows Platform (UWP) and Classic Windows (Win32) apps on Windows 10 PCs.
+﻿Windows Application Driver — это служба, предназначенная для поддержки автоматизации тестирования пользовательского интерфейса (аналогичного тестированию с использованием Selenium) в приложениях Windows. Эта служба поддерживает тестирование приложений универсальной платформы Windows (UWP) и классических приложений Windows (Win32) на ПК с Windows 10.
 
-Including this feature adds a new project to the solution that is set up for hosting UI tests of your UWP app that are powered by WinAppDriver.
+За счет включения этого компонента новый проект добавляется в решение, настроенное для тестирования пользовательского интерфейса приложений UWP с помощью WinAppDriver.
 
-[Learn more about the Windows Application Driver and creating tests with it.](https://github.com/Microsoft/WinAppDriver)
+[Узнайте больше о Windows Application Driver и создании тестов, для выполнения которых будет использоваться эта служба.](https://github.com/Microsoft/WinAppDriver)
