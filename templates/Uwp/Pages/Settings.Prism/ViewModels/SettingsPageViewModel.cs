@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
-using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
+using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Services;
 
 namespace Param_RootNamespace.ViewModels
 {

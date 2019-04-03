@@ -7,8 +7,11 @@
         public ICommand MenuViewswts.ItemNameCommand { get; }
 
 //}]}
+//{??{
         public ShellViewModel(IMenuNavigationService menuNavigationService)
+//}??}
         {
+            _menuNavigationService = menuNavigationService;
 //^^
 //{[{
             MenuViewswts.ItemNameCommand = new DelegateCommand(OnMenuViewswts.ItemName);

@@ -25,6 +25,7 @@ namespace Param_RootNamespace
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            await base.OnInitializeAsync(args);
 //{[{
             var userDataService = Container.Resolve<IUserDataService>();
             var identityService = Container.Resolve<IIdentityService>();

@@ -1,4 +1,8 @@
-﻿namespace Param_RootNamespace.ViewModels
+﻿//{[{
+using System.Collections.Generic;
+using Prism.Windows.Navigation;
+//}]}
+namespace Param_RootNamespace.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
