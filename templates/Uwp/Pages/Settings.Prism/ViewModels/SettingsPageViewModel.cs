@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
-using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
-using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
 
 namespace Param_RootNamespace.ViewModels
@@ -55,9 +53,8 @@ namespace Param_RootNamespace.ViewModels
         {
         }
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public async Task InitializeAsync()
         {
-            base.OnNavigatedTo(e, viewModelState);
             VersionDescription = GetVersionDescription();
             await Task.CompletedTask;
         }
