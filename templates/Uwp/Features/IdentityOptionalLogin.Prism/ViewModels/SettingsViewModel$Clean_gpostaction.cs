@@ -2,7 +2,7 @@
 {
     public class SettingsViewModel : ViewModelBase
     {
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public async Task InitializeAsync()
         {
 //{--{
             await Task.CompletedTask;

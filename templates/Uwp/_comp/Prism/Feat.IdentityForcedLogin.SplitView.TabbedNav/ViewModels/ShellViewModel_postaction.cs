@@ -54,7 +54,9 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-        public ICommand MenuFileSettingsCommand { get; }
+        public WinUI.NavigationViewItem Selected
+        {
+        }
 //{[{
 
         public ShellViewModel(INavigationService navigationServiceInstance, IUserDataService userDataService, IIdentityService identityService)

@@ -1,4 +1,6 @@
 ﻿//{[{
+using System.Collections.Generic;
+using Prism.Windows.Navigation;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Core.Services;
 //}]}
@@ -51,13 +53,7 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-//{--{
-        public SettingsViewModel()
-        {
-        }
-//}--}
 //{[{
-
         public SettingsViewModel(IIdentityService identityService, IUserDataService userDataService)
         {
             _identityService = identityService;
@@ -65,9 +61,8 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public async Task InitializeAsync()
         {
-            VersionDescription = GetVersionDescription();
 //^^
 //{[{
             _identityService.LoggedIn += OnLoggedIn;
