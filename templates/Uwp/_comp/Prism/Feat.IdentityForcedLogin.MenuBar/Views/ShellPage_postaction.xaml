@@ -11,6 +11,10 @@
 <!--}]}-->
     <Grid>
         <SplitView
+//^^
+//{[{
+            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}"
+//}]}
             OpenPaneLength="400">
         </SplitView>
 <!--{[{-->

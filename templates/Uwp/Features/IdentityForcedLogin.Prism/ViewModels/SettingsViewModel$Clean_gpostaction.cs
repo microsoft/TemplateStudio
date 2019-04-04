@@ -1,17 +1,6 @@
-﻿namespace Param_RootNamespace.ViewModels
+﻿public async Task InitializeAsync()
 {
-    public class SettingsViewModel : ViewModelBase
-    {
 //{--{
-        public SettingsViewModel()
-        {
-        }
+    await Task.CompletedTask;
 //}--}
-        public async Task InitializeAsync()
-        {
-//{--{
-            await Task.CompletedTask;
-//}--}
-        }
-    }
 }

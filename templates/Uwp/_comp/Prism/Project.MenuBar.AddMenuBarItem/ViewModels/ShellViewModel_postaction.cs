@@ -2,18 +2,12 @@
 {
     public class ShellViewModel : ViewModelBase
     {
-        public ICommand MenuFileExitCommand { get; }
-// {[{
-
-        public ICommand MenuViewswts.ItemNameCommand { get; }
-//}]}
-        {
-            _menuNavigationService = menuNavigationService;
 //^^
-//{[{
-            MenuViewswts.ItemNameCommand = new DelegateCommand(OnMenuViewswts.ItemName);
+// {[{
+        public ICommand MenuViewswts.ItemNameCommand { get; }
+
 //}]}
-        }
+        public ICommand MenuFileExitCommand { get; }
 
         private void OnMenuFileExit()
         {

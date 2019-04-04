@@ -21,14 +21,16 @@ namespace Param_RootNamespace.ViewModels
         }
 
         public ICommand LogoutCommand;
+//}]}
 
-        public SettingsViewModel(IIdentityService identityService, IUserDataService userDataService)
+        public SettingsViewModel()
         {
+//{[{
             _identityService = identityService;
             _userDataService = userDataService;
             LogoutCommand = new DelegateCommand(OnLogout);
-        }
 //}]}
+        }
 
         public async Task InitializeAsync()
         {

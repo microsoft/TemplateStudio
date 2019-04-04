@@ -3,6 +3,7 @@ using Param_RootNamespace.Services;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Core.Services;
 //}]}
+
 namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
@@ -12,7 +13,10 @@ namespace Param_RootNamespace.ViewModels
         private bool _isLoggedIn;
         private string _statusMessage;
         private IIdentityService _identityService;
-
+//}]}
+        private IMenuNavigationService _menuNavigationService;
+//^^
+//{[{
         public DelegateCommand LoginCommand { get; }
 
         public bool IsBusy
@@ -36,17 +40,16 @@ namespace Param_RootNamespace.ViewModels
             get { return _statusMessage; }
             set { SetProperty(ref _statusMessage, value); }
         }
-
-        public ShellViewModel(IMenuNavigationService menuNavigationService, IIdentityService identityService)
-        {
-            _menuNavigationService = menuNavigationService;
-            _identityService = identityService;
-            MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
-            MenuViewsMainCommand = new DelegateCommand(OnMenuViewsMain);
-            MenuFileSettingsCommand = new DelegateCommand(OnMenuFileSettings);
-            LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
-        }
 //}]}
+
+        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        {
+//^^
+//{[{
+            _identityService = identityService;
+            LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
+//}]}
+        }
         public void Initialize(SplitView splitView, Frame rightFrame)
         {
 //^^
@@ -56,6 +59,7 @@ namespace Param_RootNamespace.ViewModels
             IsLoggedIn = _identityService.IsLoggedIn();
 //}]}
         }
+//^^
 //{[{
 
         private void OnLoggedIn(object sender, EventArgs e)
@@ -67,6 +71,7 @@ namespace Param_RootNamespace.ViewModels
         {
             IsLoggedIn = false;
             _menuNavigationService.CloseRightPane();
+            _menuNavigationService.UpdateView(PageTokens.Param_HomeNamePage);
         }
 
         private async void OnLogin()
