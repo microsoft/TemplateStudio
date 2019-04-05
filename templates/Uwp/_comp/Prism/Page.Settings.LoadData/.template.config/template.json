@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity == wts.Page.Settings.Prism & $projectType == Blank|SplitView|TabbedNab"
+    "wts.compositionFilter": "identity == wts.Page.Settings.Prism & $projectType == Blank|SplitView|TabbedNav"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

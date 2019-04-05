@@ -1,5 +1,4 @@
 ﻿//{[{
-using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Core.Services;
 //}]}
 namespace Param_RootNamespace.ViewModels

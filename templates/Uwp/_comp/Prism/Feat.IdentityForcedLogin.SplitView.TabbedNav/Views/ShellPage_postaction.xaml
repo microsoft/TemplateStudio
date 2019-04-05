@@ -18,6 +18,10 @@
 
     <Grid>
         <winui:NavigationView
+<!--^^-->
+<!--{[{-->
+            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}"
+<!--}]}-->
             Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         </winui:NavigationView>
 <!--{[{-->
