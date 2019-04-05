@@ -6,18 +6,21 @@
 
 Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
 
-* Visual Studio 2017 Update 3 or higher (any edition) - Although VS 2017.3 is the minimum version, we recommend using WTS with the latest Visual Studio Update.
+* Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WTS with the latest Visual Studio Update.
 * Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
 * .Net Framework 4.7
 * Windows Template Studio extension.  You have two ways of aquiring the extension.
    * Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
    * Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
-   
+
 ## Public Release instructions
 
 1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
 2. Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see Windows Template Studio as an option.
 ![New Project](resources/vsix/newProject.PNG)
+
+on Visual Studio 2019 you can use the search box or the filters to get to the Windows Template Studio project template
+![New Project](resources/vsix/newProject2019.PNG)
 
 3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → New page or New feature from the context menu. For more info on adding new items see [here](newitem.md).
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
@@ -34,7 +37,7 @@ The Pre-release build version allows you to get updates with stable features not
 
 This feed will have stable extension versions so it is not thought to have breaking changes (and can be installed side by side with the official one), anyway, installing this extension is at your own risk.
 
-Open Visual Studio 2017 and go to **Tools→ Extensions & Updates**, then click on **Change your Extensions and Updates settings** *(bottom left of the 'Extensions and Updates' window)* and create an Additional Extension Gallery.
+Open Visual Studio 2017 and go to **Tools→ Extensions & Updates**, then click on **Change your Extensions and Updates settings** *(bottom left of the 'Extensions and Updates' window)* and create an Additional Extension Gallery. On Visual Studio 2019 you'll find Extensions on a separate **Extensions** Menu.
 
 ![Configure Additional Extension Gallery](resources/vsix/configurefeed.PNG)
 
