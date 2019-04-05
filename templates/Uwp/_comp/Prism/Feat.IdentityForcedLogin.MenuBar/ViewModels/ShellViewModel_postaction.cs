@@ -21,7 +21,7 @@ namespace Param_RootNamespace.ViewModels
 
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get => _isBusy;
             set
             {
                 SetProperty(ref _isBusy, value);

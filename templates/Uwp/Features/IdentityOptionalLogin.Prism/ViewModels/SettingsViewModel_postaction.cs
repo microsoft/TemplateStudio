@@ -25,7 +25,6 @@ namespace Param_RootNamespace.ViewModels
         }
 //^^
 //{[{
-
         public DelegateCommand LogInCommand => _logInCommand ?? (_logInCommand = new DelegateCommand(OnLogIn, () => !IsBusy));
 
         public DelegateCommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new DelegateCommand(OnLogOut, () => !IsBusy));
@@ -53,13 +52,15 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-//{[{
-        public SettingsViewModel(IIdentityService identityService, IUserDataService userDataService)
+
+        public SettingsViewModel()
         {
+//{[{
             _identityService = identityService;
             _userDataService = userDataService;
-        }
 //}]}
+        }
+
 
         public async Task InitializeAsync()
         {

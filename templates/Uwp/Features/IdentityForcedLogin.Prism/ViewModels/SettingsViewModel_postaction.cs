@@ -20,9 +20,8 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 
-        public ICommand LogoutCommand;
+        public ICommand LogoutCommand { get; }
 //}]}
-
         public SettingsViewModel()
         {
 //{[{

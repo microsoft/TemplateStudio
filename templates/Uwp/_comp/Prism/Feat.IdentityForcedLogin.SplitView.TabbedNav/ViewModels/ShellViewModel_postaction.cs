@@ -28,7 +28,7 @@ namespace Param_RootNamespace.ViewModels
 
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get => _isBusy;
             set
             {
                 SetProperty(ref _isBusy, value);
@@ -54,22 +54,17 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-        public WinUI.NavigationViewItem Selected
-        {
-        }
-//{[{
-
-        public ShellViewModel(INavigationService navigationServiceInstance, IUserDataService userDataService, IIdentityService identityService)
+        public ShellViewModel(INavigationService navigationServiceInstance)
         {
             _navigationService = navigationServiceInstance;
+//{[{
             _userDataService = userDataService;
             _identityService = identityService;
             LoadedCommand = new DelegateCommand(OnLoaded);
-            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
             UserProfileCommand = new DelegateCommand(OnUserProfile);
-        }
 //}]}
+        }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
@@ -101,7 +96,7 @@ namespace Param_RootNamespace.ViewModels
         private void OnLoggedOut(object sender, EventArgs e)
         {
             IsLoggedIn = false;
-            _navigationService.Navigate(PageTokens.MainPage, null);
+            _navigationService.Navigate(PageTokens.Param_HomeNamePage, null);
             _navigationService.ClearHistory();
             IsBackEnabled = false;
         }

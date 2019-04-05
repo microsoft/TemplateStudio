@@ -2,10 +2,14 @@
 {
     public sealed partial class App : PrismUnityApplication
     {
+//^^
 //{[{
         private LaunchActivatedEventArgs _lastActivationArgs;
-//}]}
 
+//}]}
+        public App()
+        {
+        }
         protected override void ConfigureContainer()
         {
             var identityService = new IdentityService();

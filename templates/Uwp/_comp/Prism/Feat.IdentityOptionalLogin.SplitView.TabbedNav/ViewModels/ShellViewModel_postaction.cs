@@ -20,6 +20,7 @@ namespace Param_RootNamespace.ViewModels
 //}]}
         public ICommand ItemInvokedCommand { get; }
 //{[{
+
         public DelegateCommand UserProfileCommand { get; }
 
         public UserViewModel User
@@ -49,25 +50,17 @@ namespace Param_RootNamespace.ViewModels
             get { return _isAuthorized; }
             set { SetProperty(ref _isAuthorized, value); }
         }
-
 //}]}
-//{--{
         public ShellViewModel(INavigationService navigationServiceInstance)
         {
             _navigationService = navigationServiceInstance;
-            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
-        }
-//}--}
 //{[{
-        public ShellViewModel(INavigationService navigationServiceInstance, IIdentityService identityService, IUserDataService userDataService)
-        {
-            _navigationService = navigationServiceInstance;
             _identityService = identityService;
             _userDataService = userDataService;
-            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
             UserProfileCommand = new DelegateCommand(OnUserProfile);
-        }
 //}]}
+        }
+
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
 //^^
@@ -124,7 +117,6 @@ namespace Param_RootNamespace.ViewModels
 
         private void GoBackToLastUnrestrictedPage()
         {
-
             var currentPage = _frame.Content as Page;
             var isCurrentPageRestricted = Attribute.IsDefined(currentPage.GetType(), typeof(Restricted));
             if (isCurrentPageRestricted)
