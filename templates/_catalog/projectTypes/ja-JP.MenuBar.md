@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿プロジェクトには、画面上部に表示される、アプリケーション内のページへのアクセスを提供するメニュー バーが含まれます。
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+メニュー バーは、Outlook、Word、Visual Studio のようなデスクトップ アプリケーションで、頻繁に利用されています。
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+初期状態では、メニューには File と Views の 2 つのエントリが表示されます。Pages は Views メニュー エントリに追加され、Settings Page は File エントリに追加されます。プロジェクトが作成されたら再頒布できます。または、必要に応じて新しいメニュー エントリを作成することもできます。

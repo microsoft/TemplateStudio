@@ -500,15 +500,15 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>Platform çözümlenemedi.</value>
   </data>
   <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
-    <value>Invalid project name</value>
+    <value>Geçersiz proje adı</value>
     <comment>Message box title for project invalid names.</comment>
   </data>
   <data name="ErrorProjectReservedName" xml:space="preserve">
-    <value>"{0}" is a reserved name. Please choose a different name and try again.</value>
+    <value>"{0}" ayrılmış bir addır. Lütfen farklı bir ad seçin ve yeniden deneyin.</value>
     <comment>Message box text for project reserved names.</comment>
   </data>
   <data name="ErrorProjectStartsWith" xml:space="preserve">
-    <value>"{0}" is not a valid name. Project name can't start with "{1}".</value>
+    <value>"{0}" geçerli bir ad değil. Proje adı "{1}" ile başlayamaz.</value>
     <comment>Message box text for project name can not start with.</comment>
   </data>
   <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">

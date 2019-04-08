@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿В верхней части экрана находится строка меню проекта для доступа к страницам приложения.
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+Строки меню используются во многих классических приложениях, таких как Outlook, Word или Visual Studio.
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+Изначально в меню отображаются два пункта — "Файл" и "Представления". Страницы добавляются в пункт меню "Представления", а страница параметров — в пункт "Файл". После создания проекта при желании можно распространить существующие пункты меню или создать новые.

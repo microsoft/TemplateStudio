@@ -358,7 +358,7 @@
     <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
-    <value>Windows Template Studio</value>
+    <value>Windows Şablon Stüdyosu</value>
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
@@ -378,7 +378,7 @@
     <comment>Feature list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
-    <value>design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
+    <value>Daha önceki design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
@@ -641,7 +641,7 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Varsayılan çözüm yapılandırılması ayarlanamıyor</value>
+    <value>Varsayılan çözüm yapılandırması ayarlanamıyor</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
@@ -704,34 +704,34 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
+    <value>Test ediliyor</value>
     <comment>Group header for Testing templates</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is readonly.</value>
+    <value>Salt okunur olduğundan **{0}** öğesini kaldıramazsınız.</value>
     <comment>Remove error message: Template is read only</comment>
   </data>
-  <data name="TemplateDetailsFrameworks" xml:space="preserve">
-    <value>Frameworks:</value>
-    <comment>Template details: Frameworks</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Layout:</value>
+    <value>Düzen:</value>
     <comment>Template details: Layout</comment>
   </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Framework:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0} (optional)</value>
+    <value>{0} (isteğe bağlı)</value>
     <comment>The layout is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>Report issue</value>
+    <value>Sorunu bildir</value>
     <comment>Project details about section report lssue link</comment>
   </data>
   <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity (choose one)</value>
+    <value>Identity (birini seçin)</value>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Windows Template Studio has changed the ActivationService to be able to include Identity features.</value>
+    <value>Windows Şablon Stüdyosu, ActivationService hizmetini Identity özelliklerini içerebilecek şekilde değiştirdi.</value>
     <comment>Has ActivationService before Identity error message</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
@@ -739,7 +739,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has ActivationService before Identity link documentation</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
 </root>

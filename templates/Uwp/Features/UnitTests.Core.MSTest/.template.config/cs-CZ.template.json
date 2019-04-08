@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Test Core library with MSTest",
-  "description": "Add a project to test code in the Core library with MSTest.",
+  "description": "Přidá projekt pro testování kódu v knihovně kódu pomocí nástroje MSTest.",
   "identity": "wts.Feat.UnitTests.Core.MSTest"
 }

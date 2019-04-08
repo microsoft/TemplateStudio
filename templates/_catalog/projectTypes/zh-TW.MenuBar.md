@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿此專案在畫面最上方包含功能表列，可讓您存取應用程式的頁面。
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+類似 Outlook、Word 或 Visual Studio 等傳統型應用程式都經常使用功能表列。
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+此功能表一開始會顯示兩個項目：[檔案] 和 [檢視]。[檢視] 功能表項目已新增 [頁面]，[檔案] 項目已新增 [設定頁面]。在建立專案後，您就可以方便地重新分配或建立新的功能表項目。

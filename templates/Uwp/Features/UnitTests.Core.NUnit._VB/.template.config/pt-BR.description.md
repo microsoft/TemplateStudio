@@ -1,5 +1,5 @@
-﻿NUnit is a unit-testing framework for all .Net languages. Initially ported from JUnit, the current production release, version 3, has been completely rewritten with many new features and support for a wide range of .NET platforms.
+﻿A NUnit é uma framework de teste de unidade para todas as linguagens do .Net. Inicialmente portada do JUnit, a versão de produção 3 atual foi completamente reescrita com muitos recursos novos e suporte para uma ampla gama de plataformas .NET.
 
-Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the Core library.
+A inclusão desse recurso adiciona um novo projeto à solução que está configurada para hospedar testes de unidade do código na biblioteca Core.
 
-[Learn more about using NUnit.](https://github.com/nunit/docs/wiki/NUnit-Documentation)
+[Saiba mais sobre o uso da xUnit.](https://github.com/nunit/docs/wiki/NUnit-Documentation)

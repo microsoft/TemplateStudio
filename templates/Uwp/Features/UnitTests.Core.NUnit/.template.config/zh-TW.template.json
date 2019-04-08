@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Test Core library with NUnit",
-  "description": "Add a project to test code in the Core library with NUnit.",
+  "description": "使用 NUnit 在核心程式庫中新增測試程式碼的專案。",
   "identity": "wts.Feat.UnitTests.Core.NUnit"
 }

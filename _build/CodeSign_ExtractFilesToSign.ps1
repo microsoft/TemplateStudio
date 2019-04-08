@@ -1,7 +1,7 @@
 ﻿param
 (
 	[Parameter(Mandatory=$true)]
-	[string]$vsixFilePath = "c:\vsix\Microsoft.Templates.2017.vsix",
+	[string]$vsixFilePath = "c:\vsix\Microsoft.Templates.vsix",
     [Parameter(Mandatory=$true)]
 	[string]$outputPath = "c:\vsix\c"
 )

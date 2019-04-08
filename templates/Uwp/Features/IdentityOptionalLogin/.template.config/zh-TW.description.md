@@ -1,5 +1,7 @@
-﻿Optional login adds user authentication using Azure AD and [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).  This style allows to combine unrestricted and restricted content. Restricted content is only shown to logged in and authorized users. The application includes a call to the Microsoft Graph to show user info and photo on the NavigationPane and the SettingsPage.
+﻿選擇性登入會使用 Azure AD 和 [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) 新增使用者驗證。
+此樣式可結合非限制性和限制性內容。限制性內容只會顯示給已登入且授權的使用者。
+此應用程式包含對 Microsoft Graph 的呼叫，以便在 NavigationPane 和 SettingsPage 上顯示使用者資訊和相片。
 
-By default this features works with Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use integrated auth.
+根據預設，此功能適用於任何組織目錄中的帳戶及個人 Microsoft 帳戶 (例如 Skype、Xbox、Outlook.com)，而且可讓您選擇排除個人 Microsoft 帳戶、限制特定目錄的存取或使用整合式驗證。
 
-[Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
+[深入了解 Microsoft Identity 平台。](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

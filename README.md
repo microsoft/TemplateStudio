@@ -1,6 +1,6 @@
 # Windows Template Studio
 
-Windows Template Studio (WTS) is a Visual Studio 2017 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WTS supports creating apps in C# or VB.Net.
+Windows Template Studio (WTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WTS supports creating apps in C# or VB.Net.
 
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
@@ -45,8 +45,6 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 * [Authoring Templates](docs/templates.md)
 
 ## Known issues
-* Issue ([#1532](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)): when uninstalling / upgrading where you may get an error of "A value for 'Component' needs to be specified in the catalog."  If you get this error, we need logs to help track this with the help of the Visual Studio team.  We don't know how to reproduce it but we know a few people have hit this scenario.  We have how to capture these logs in the [tracking issue on GitHub.](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)
-* Issue ([#2632](https://github.com/Microsoft/WindowsTemplateStudio/issues/2632)): When using Background Task with Prism the Unity container always gets recreated resulting in incorrect dependency resolving. We're putting a check around this line of code to make this work correctly for version 2.5. Meanwhile you can find the manual fix in the tracking issue. There's still a known issue where the in-process background task triggers an activation and this isn't handled anymore while the app is running. This will shortly activate the app to do its work and suspend again, resulting a NullReferenceException on suspending. This will be fixed in the next release of Prism. 
 * You can't have side-by-side versions (nightly/pre-release/release) of WindowsTemplateStudio VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap

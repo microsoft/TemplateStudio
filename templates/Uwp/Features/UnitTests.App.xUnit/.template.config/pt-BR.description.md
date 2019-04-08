@@ -1,5 +1,5 @@
-﻿xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework. Written by the original inventor of NUnit v2, xUnit.net is the latest technology for unit testing C#, F#, VB.NET and other .NET languages. xUnit.net works with ReSharper, CodeRush, TestDriven.NET and Xamarin. 
+﻿xUnit.net é uma ferramenta de teste de unidade gratuita, de código aberto e com foco na comunidade para o .NET Framework. Escrita pelo inventor original do NUnit v2, a xUnit.net é a tecnologia mais recente para testes de unidade de C#, F#, VB.NET e outras linguagens do .NET. A xUnit.net trabalha com ReSharper, CodeRush, TestDriven.NET e Xamarin. 
 
-Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the main app.
+A inclusão desse recurso adiciona um projeto novo à solução que está configurada para hospedar testes de unidade do código no aplicativo principal.
 
-[Learn more about using xUnit.](https://xunit.github.io/)
+[Saiba mais sobre o uso da xUnit.](https://xunit.github.io/)

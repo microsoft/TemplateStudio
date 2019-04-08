@@ -1,5 +1,5 @@
-﻿The project includes a menu bar on top of the screen that gives access to the pages of the application.
+﻿O projeto inclui uma barra de menu na parte superior da tela que oferece acesso às páginas do aplicativo.
 
-Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio.
+As barras de menu são muito usadas em aplicativos de desktop, como Outlook, Word ou Visual Studio.
 
-The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
+Inicialmente, o menu mostra duas entradas, Arquivo e Visualizações. As páginas são adicionadas à entrada do menu Visualizações, e a Página de configurações à entrada do arquivo. Depois que o projeto é criado, você pode redistribuir ou criar novas entradas de menu conforme for mais conveniente.
