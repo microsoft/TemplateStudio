@@ -1,6 +1,6 @@
-﻿Forced Login adds user authentication using Azure AD and [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
-Access to your app is restricted to logged in and authorized users. If interactive login is required, the user is redirected to a LoginPage before showing the interactive dialog. The same page is shown after logging out.
+﻿Forced Login ajoute l'authentification utilisateur grâce à Azure AD et [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
+L'accès à votre application est limité aux utilisateurs connectés et autorisés. Si une connexion interactive est requise, l'utilisateur est redirigé vers une LoginPage avant que la boîte de dialogue interactive ne s'affiche. La même page s'affiche après la déconnexion.
 
-The application includes a call to the Microsoft Graph to show user info and photo on the NavigationPane and the SettingsPage.  By default this features works with accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use windows integrated auth.
+L'application comprend une demande à Microsoft Graph dans le but d'afficher les informations et la photo de l'utilisateur dans le NavigationPane et la SettingsPage.  Par défaut, cette fonctionnalité fonctionne avec les comptes de n'importe quel répertoire organisationnel ainsi qu'avec les comptes personnels Microsoft (par exemple : Skype, Xbox, Outlook.com). Elle permet d'exclure des comptes personnels Microsoft, de limiter l'accès à un répertoire spécifique ou d'utiliser Integrated Windows Authentication.
 
-[Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
+[En savoir plus sur la plateforme Microsoft Identity.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

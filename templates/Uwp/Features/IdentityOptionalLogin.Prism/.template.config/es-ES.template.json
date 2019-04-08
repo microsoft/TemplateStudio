@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Optional Login",
-  "description": "Make your application have an optional login and restricted features.",
+  "description": "Haz que tu aplicación tenga un inicio de sesión opcional y características restringidas.",
   "identity": "wts.Feat.IdentityOptionalLogin.Prism"
 }

@@ -1,7 +1,7 @@
-﻿Optional login adds user authentication using Azure AD and [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
-This style allows to combine unrestricted and restricted content. Restricted content is only shown to logged in and authorized users.
-The application includes a call to the Microsoft Graph to show user info and photo on the NavigationPane and the SettingsPage.
+﻿Функция необязательного входа позволяет проверять подлинность пользователей с помощью Azure AD и [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
+В этом случае можно объединять неограниченное и ограниченное содержимое. Ограниченное содержимое отображается только для авторизованных и выполнивших вход пользователей.
+Приложение содержит вызов Microsoft Graph для отображения сведений о пользователе и его фотографии на панели навигации и странице параметров.
 
-By default this features works with Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use integrated auth.
+По умолчанию эта функция работает с учетными записями в любом каталоге организации и с личными учетными записями Майкрософт (например, для Skype, Xbox, Outlook.com) и позволяет исключать личные учетные записи Майкрософт, ограничивать доступ к конкретному каталогу или использовать интегрированную проверку подлинности.
 
-[Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
+[Узнайте больше о платформе Microsoft Identity.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

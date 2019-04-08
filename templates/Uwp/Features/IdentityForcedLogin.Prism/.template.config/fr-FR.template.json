@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Forced Login",
-  "description": "Make your application require the user to login.",
+  "description": "Faites en sorte que votre application exige une connexion de l'utilisateur.",
   "identity": "wts.Feat.IdentityForcedLogin.Prism"
 }
