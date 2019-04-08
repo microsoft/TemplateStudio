@@ -1,4 +1,4 @@
-﻿Optional Login aggiunge l'autenticazione utente tramite Azure AD e [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+﻿Optional Login aggiunge l'autenticazione utente tramite Azure AD e [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
 Questo stile consente di combinare contenuto con e senza restrizioni. Il contenuto con restrizioni è mostrato solo agli utenti connessi e autorizzati.
 L'applicazione include una chiamata a Microsoft Graph, al fine di mostrare la foto e le informazioni dell'utente in NavigationPane e SettingsPage.
 

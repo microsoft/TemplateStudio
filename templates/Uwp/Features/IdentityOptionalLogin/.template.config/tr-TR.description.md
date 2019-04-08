@@ -1,4 +1,4 @@
-﻿İsteğe bağlı oturum açma seçeneği, Azure AD ve [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) kullanarak kullanıcı kimlik doğrulaması ekler. 
+﻿İsteğe bağlı oturum açma seçeneği, Azure AD ve [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) kullanarak kullanıcı kimlik doğrulaması ekler.
 Bu stil, kısıtlamasız ve kısıtlamalı içeriğin birleştirilmesine olanak tanır. Kısıtlamalı içerik yalnızca oturum açmış ve yetkilendirilmiş kullanıcılara gösterilir.
 Uygulama, NavigationPane ve SettingsPage üzerinde kullanıcı bilgilerini ve fotoğrafını göstermek için bir Microsoft Graph çağrısı içerir.
 
