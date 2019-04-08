@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Test
                     yield return new object[] { framework };
                 }
             }
-            
+
         }
 
         public static IEnumerable<object[]> GetAllFrameworksForBothVbAndCs()
@@ -629,6 +629,22 @@ namespace Microsoft.Templates.Test
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "TabbedNav");
         }
 
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageWithMenuBarWithoutErrorAsync(string framework, string language)
+        {
+            if (framework == "CaliburnMicro")
+            {
+                // Caliburn does not yet support MenuBar projects
+                // TODO: remove this when implement #3000
+                return;
+            }
+
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "MenuBar");
+        }
+
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
         {
             var pageIdentities = AllTestablePages();
@@ -641,6 +657,43 @@ namespace Microsoft.Templates.Test
 
             int pagesOpenedSuccessfully = 0;
 
+            async Task ForOpenedPage(string pageName, WindowsDriver<WindowsElement> session)
+            {
+                if (pageName == "Map")
+                {
+                    // For location permission
+                    if (await ClickYesOnPopUpAsync(session))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                        pagesOpenedSuccessfully++;
+                    }
+                    else
+                    {
+                        Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                    }
+                }
+                else if (pageName == "Camera")
+                {
+                    var cameraPermission = await ClickYesOnPopUpAsync(session); // For camera permission
+                    var microphonePermission = await ClickYesOnPopUpAsync(session); // For microphone permission
+
+                    if (cameraPermission && microphonePermission)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                        pagesOpenedSuccessfully++;
+                    }
+                    else
+                    {
+                        Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                    }
+                }
+                else
+                {
+                    pagesOpenedSuccessfully++;
+                }
+            }
+
+
             try
             {
                 appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
@@ -651,46 +704,60 @@ namespace Microsoft.Templates.Test
 
                     await Task.Delay(TimeSpan.FromSeconds(2));
 
-                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
-
-                    foreach (var menuItem in menuItems)
+                    if (projectType == "MenuBar")
                     {
-                        menuItem.Click();
-                        Debug.WriteLine("Opened: " + menuItem.Text);
+                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
-                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
-
-                        if (menuItem.Text == "Map")
+                        for (int i = menuItems.Count - 1; i >= 0; i--)
                         {
-                            // For location permission
-                            if (await ClickYesOnPopUpAsync(appSession))
+                            menuItems[i].Click(); // Open menu to count sub-items
+                            var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
+                            menuItems[i].Click(); // Close menu so get in a consistent state
+
+                            // Stepping through the MenuFlyoutItems is unreliable
+                            for (int j = 0; j < subItemCount; j++)
                             {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                                menuItems[i].Click(); // Open the menu again
+
+                                var subItems = appSession.FindElementsByClassName("MenuFlyoutItem");
+
+                                var option = subItems[j].Text;
+
+                                // Don't close the app or the WinAppDriver will throw an error and the test will fail
+                                if (option != "Exit")
+                                {
+                                    subItems[j].Click();
+                                }
+
+                                await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                                if (option == "Settings")
+                                {
+                                    // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
+                                    const byte Escape = 27; // From System.Windows.Forms.Keys
+
+                                    VirtualKeyboard.KeyDown(Escape);
+                                    VirtualKeyboard.KeyUp(Escape);
+                                }
+                                else
+                                {
+                                    await ForOpenedPage(subItems[j].Text, appSession);
+                                }
                             }
                         }
-                        else if (menuItem.Text == "Camera")
-                        {
-                            var cameraPermission = await ClickYesOnPopUpAsync(appSession); // For camera permission
-                            var microphonePermission = await ClickYesOnPopUpAsync(appSession); // For microphone permission
+                    }
+                    else
+                    {
+                        var menuItems = appSession.FindElementsByClassName("ListViewItem");
 
-                            if (cameraPermission && microphonePermission)
-                            {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
-                            }
-                        }
-                        else
+                        foreach (var menuItem in menuItems)
                         {
-                            pagesOpenedSuccessfully++;
+                            menuItem.Click();
+                            Debug.WriteLine("Opened: " + menuItem.Text);
+
+                            await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                            await ForOpenedPage(menuItem.Text, appSession);
                         }
                     }
 
@@ -712,7 +779,7 @@ namespace Microsoft.Templates.Test
 
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
 
-            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
+            Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         }
 
         private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
