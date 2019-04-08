@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Test Core library with MSTest",
-  "description": "Add a project to test code in the Core library with MSTest.",
+  "description": "コア ライブラリのコードを MSTest を使用してテストするプロジェクトを追加します。",
   "identity": "wts.Feat.UnitTests.Core.MSTest"
 }

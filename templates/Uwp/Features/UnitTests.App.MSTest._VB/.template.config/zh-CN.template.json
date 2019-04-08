@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Test App with MSTest",
-  "description": "Add a project for unit tests against the app using MSTest.",
-  "identity": "wts.Feat.UnitTests.App.MSTest.VB"
+    "author": "Microsoft Community",
+    "name": "Test App with MSTest",
+    "description": "使用 MSTest 为应用单元测试添加项目。",
+    "identity": "wts.Feat.UnitTests.App.MSTest.VB"
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Forced Login",
-  "description": "Make your application require the user to login.",
+  "description": "将应用程序配置为需要用户登录。",
   "identity": "wts.Feat.IdentityForcedLogin"
 }

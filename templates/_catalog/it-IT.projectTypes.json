@@ -2,21 +2,21 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Questo progetto di base è un'area vuota su cui creare un'app."
+    "summary": "Questo progetto di base è una tela vuota su cui creare un'app."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "Per la navigazione tra pagine è incluso un riquadro di navigazione (o \"menu Hamburger\")."
+    "summary": "Un riquadro di spostamento (o \"menu Hamburger\") è incluso per spostarsi tra le pagine."
   },
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Elementi di navigazione nella parte superiore permettono la navigazione veloce tra pagine."
+    "summary": "Elementi di spostamento nella parte superiore permettono di spostarsi velocemente tra le pagine."
   },
   {
     "name": "MenuBar",
     "displayName": "MenuBar",
-    "summary": "A menu is added to move around between pages."
+    "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
   }
 ]
