@@ -28,6 +28,7 @@ namespace Param_RootNamespace
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            await base.OnInitializeAsync(args);
 //{[{
 
             // We are remapping the default ViewNamePage and ViewNamePageViewModel naming to ViewNamePage and ViewNameViewModel to
@@ -38,7 +39,6 @@ namespace Param_RootNamespace
                 return Type.GetType(viewModelTypeName);
             });
 //}]}
-            await base.OnInitializeAsync(args);
         }
 
     }

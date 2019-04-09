@@ -15,6 +15,8 @@ namespace Param_RootNamespace.Services
 
         void OpenInRightPane(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null);
 
+        void CloseRightPane();
+
         Task OpenInNewWindow(Type pageType);
 
         Task OpenInDialog(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null);

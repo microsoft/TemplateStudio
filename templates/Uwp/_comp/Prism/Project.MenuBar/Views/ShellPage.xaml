@@ -11,37 +11,37 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-
-    <SplitView
-        x:Name="splitView"
-        PanePlacement="Right"
-        OpenPaneLength="400">
-        <SplitView.Pane>
-            <Frame
-                x:Name="rightFrame"
-                BorderThickness="1,1,0,0"
-                BorderBrush="Gray"
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
-        </SplitView.Pane>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <winui:MenuBar VerticalAlignment="Top">
-                <!--
-                TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw
-                -->
-                <winui:MenuBarItem x:Uid="ShellMenuBarItem_File">
-                    <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
-                </winui:MenuBarItem>
-                <winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
-                </winui:MenuBarItem>
-            </winui:MenuBar>
-            <Grid Grid.Row="1">
-                <Frame x:Name="shellFrame" />
+    <Grid>
+        <SplitView
+            x:Name="splitView"
+            PanePlacement="Right"
+            OpenPaneLength="400">
+            <SplitView.Pane>
+                <Frame
+                    x:Name="rightFrame"
+                    BorderThickness="1,1,0,0"
+                    BorderBrush="Gray"
+                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+            </SplitView.Pane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <winui:MenuBar VerticalAlignment="Top">
+                    <!--
+                    TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw
+                    -->
+                    <winui:MenuBarItem x:Uid="ShellMenuBarItem_File">
+                        <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
+                    </winui:MenuBarItem>
+                    <winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
+                    </winui:MenuBarItem>
+                </winui:MenuBar>
+                <Grid Grid.Row="1">
+                    <Frame x:Name="shellFrame" />
+                </Grid>
             </Grid>
-        </Grid>
-    </SplitView>
-
+        </SplitView>
+    </Grid>
 </Page>

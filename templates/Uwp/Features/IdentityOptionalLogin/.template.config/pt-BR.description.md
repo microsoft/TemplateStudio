@@ -1,4 +1,4 @@
-﻿O logon opcional adiciona autenticação do usuário usando o Azure AD e o [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+﻿O logon opcional adiciona autenticação do usuário usando o Azure AD e o [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
 Esse estilo permite combinar conteúdo irrestrito e restrito. O conteúdo restrito só é exibido a usuários conectados e autorizados.
 O aplicativo inclui uma chamada para o Microsoft Graph para mostrar informações e fotos do usuário no Painel de navegação e na Página de configurações.
 

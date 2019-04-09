@@ -7,6 +7,7 @@ namespace Param_RootNamespace
     {
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            await base.OnInitializeAsync(args);
 //{[{
             var sampleDataService = Container.Resolve<ISampleDataService>();
             sampleDataService.Initialize("ms-appx:///Assets");

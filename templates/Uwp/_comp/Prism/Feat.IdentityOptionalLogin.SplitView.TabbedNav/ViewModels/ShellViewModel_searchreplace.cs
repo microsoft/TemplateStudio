@@ -1,0 +1,3 @@
+﻿public ShellViewModel(INavigationService navigationServiceInstance)
+^^^-searchabove-replacebelow-vvv
+public ShellViewModel(INavigationService navigationServiceInstance, IIdentityService identityService, IUserDataService userDataService)

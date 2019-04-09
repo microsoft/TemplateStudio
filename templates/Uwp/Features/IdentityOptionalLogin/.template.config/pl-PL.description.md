@@ -1,4 +1,4 @@
-﻿Funkcja opcjonalnego logowania dodaje uwierzytelnianie użytkowników przy użyciu usługi Azure AD i biblioteki [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+﻿Funkcja opcjonalnego logowania dodaje uwierzytelnianie użytkowników przy użyciu usługi Azure AD i biblioteki [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
 Pozwala to na jednoczesne korzystanie z zawartości o różnym poziomie ograniczeń (z restrykcjami lub bez). Zawartość z restrykcjami jest wyświetlana tylko zalogowanym i autoryzowanym użytkownikom.
 Aplikacja odwołuje się do usługi Microsoft Graph, aby wyświetlać informacje o użytkowniku i jego zdjęcie na stronach NavigationPane i SettingsPage.
 
