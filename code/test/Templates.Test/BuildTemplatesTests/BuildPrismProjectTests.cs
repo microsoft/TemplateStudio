@@ -190,11 +190,24 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
+        public async Task BuildCompleteProjectWithAllRightClickItemsWithForcedLoginAsync(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{ShortProjectType(projectType)}AllRightClick2";
+            var projectName = $"{ShortProjectType(projectType)}AllRCF";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Feat.IdentityOptionalLogin");
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("Type", "BuildRightClick")]
+        public async Task BuildCompleteProjectWithAllRightClickItemsWithOptionalLoginAsync(string projectType, string framework, string platform, string language)
+        {
+            var projectName = $"{ShortProjectType(projectType)}AllRCO";
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Feat.IdentityForcedLogin");
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
