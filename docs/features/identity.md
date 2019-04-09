@@ -14,28 +14,38 @@
 
 ## Introduction
 
-Identity group features add to your app the ability to request user authentication to restrict the use of the app (Forced Login) or enable restricted content (Optional Login). Both features will use the Microsoft Authentication Library (MSAL) Nuget Package to authenticate the user with Azure Active Directory. Once the user has been authenticated, the app will call to Microsoft Graph API to retrieve user information. The app will contain a settings page added as dependency with a user section to log out.
+The Identity features add user authentication to your app and enable you to restrict the use of the app (Forced Login) or provide restricted content (Optional Login) to authenticated users.
+
+Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) nuget package to authenticate the user againt the Azure Active Directory. 
+
+Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. The app will also contain a section in the settings page that allows the user to log in/out.
 
 ## Authentication Endpoints
 
-You can choose different ways to initialize the IdentityService, with that, we will choose de account types that can be authenticated with the application.
+You can choose different ways to initialize the IdentityService, restricting hereby the allowed account types.
 
 1. AAD and personal Microsoft accounts **(Default)**
 2. AAD multiple organizations
-3. AAD single orgganization
+3. AAD single organization
 
-Options 2 and 3 also includes the possibility to use Windows Integrated Auth.
+By choosing options 2 or 3 you can enable Windows Integrated Auth for domain joined machines. For more info regarding intergrated auth see [Integrated Windows Authentication](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Integrated-Windows-Authentication).
 
 ## Understanding the authentication flow
 
-Authentication process will be added on app initialization in ActivationService (App.xaml.cs in Prism).
-The LogIn process will obtain an access token to get a user single identification, this access token will be used as an authentication parameter in restricted access APIs like Microsoft Graph API.
+The authentication process is initialized on App activation in the ActivationService (App.xaml.cs in Prism) trying to get an authentication token silently from the cache. This authentication token is passed to the Microsoft Graph to get user information.
 
-Once authentication succeeds, IdentityService also adds a method to include an extra authentication validation (i.e. database verification) to specify is a user is authorized.
+If silently requesting the token from the cache fails, the interactive authentication process is triggered:
 
-Both features use silent login and interactive login. The silent login at app launch moment and the interactive login with a new window prompt when the users click on log in, the differences between forced and optional are in pages navigation order and the content that user can view without do the login.
+### Forced Login authentication flow
 
-Here are graphics that explain the login processes.
+Apps with Forced Login will be redirected to a landing LoginPage that restricts the access to the rest of the pages.
+
+### Optional Login authentication flow
+
+Apps with Optional Login will show a LogIn button in the SettingsPage and on the NavigationView (for project types Navigation Pane and Horizontal Navigation Pane).
+While the user is not logged in only unrestricted pages are shown.
+
+The following graphics explain the silent and interactive login process:
 
 **Silent LogIn**
 
@@ -45,15 +55,10 @@ Here are graphics that explain the login processes.
 
 ![Interactive Silent Login](../resources/identity/identity-interactive-login.png)
 
-### Forced Login authentication flow
+## Further resticting authorized users.
 
-Forced Login starts in a landing login page if the user is not logged in and restricts the access to the rest of the pages if the user is not authenticated and authorized.
-
-### Optional Login authentication flow
-
-Optional Login does not change the pages launch order but adds a log in and log out buttons in the Settings page. NavigationView and TabbedNav project types also add a user button in the SellPage.
-
-You can also specify a Restricted attribute in all pages that you want to be restricted of authenticated and authorized users.
+If you want to further restict app access, the IdentityService provides a method called IsAuthorized() where you can in include further authentication checks (i.e. check permissions in a database) to specify is a user is authorized.
+In Forced Login apps unauthorized users cannot log into the app (all pages are restricted), in Optional Login apps unauthorized users can login but will not see restriced pages.
 
 ## Understanding the code
 
@@ -61,35 +66,30 @@ You can also specify a Restricted attribute in all pages that you want to be res
 
 #### IdentityService (Core project)
 
-This class is responsible to request the user credentials and use that to obtain the access token for this user. The class uses the MSAL Nuget library to connect with AAD services. The generated apps include a ClientID for testing purposes that it must be replaced by a new one before going to production.
+This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL Nuget library to connect with AAD services. The app includes a ClientID that is for testing purposes only. It has to be replaced by a new one before going to production following the steps provided on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 
 #### MicrosoftGraphService (Core project)
 
-This class calls to Microsoft Graph with a HttpClient passing the user access token as a parameter to obtain the user information and the user photo. This class could be extended adding methods that get info from different Microsoft Graph services.
+This class calls the Microsoft Graph to obtain the user information and the user photo. This class can be extended adding methods that get info from other Microsoft Graph services.
 
 #### UserActivityService
 
-This class consumes MicrosoftGraphService and is responsible to store the user info in cache.
+This class consumes MicrosoftGraphService and is responsible for storing the user info in the cache.
 
-#### Dependencies
-
- - Settings Page that includes the user section and log in and log out buttons.
-
-#### Licenses
-
- - [MSAL: Microsoft authentication library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)
- - [ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)
 
 ### Forced Login code
 
-Forced login adds a login page with a button that calls to IdentityService. When the user is logged in, the apps restore the Shell page with no possibilities to come back to the Login page.
+Forced login adds a login page with a button that calls to IdentityService. When the user is logged in, the apps goes to the Shell page. When the user logs out, the LoginPage is shown again.
 
-If the app is launch from activation like ToastNotification or DeepLinking and the user is not logged in, the app resumes the activation flow after the user completes the login process.
+If the app is activated from other activation other than LaunchActivation (for example DeepLinking or ToastNotification) the activation flow is intercepted by the Identity service to ensure the user is logged in befor redirecting to the requested page.
 
 ### Optional Login code
 
-Optional login handles two properties to identify different users and allow content for each user, IsAuthenticated and IsAuthorized. With that scenario, all user that do log in with AAD is authenticated in the app and can see the user section and the logout button, but only if this user is authorized, can see the restricted content. Authorization method returns true by default but you can add logic in that method, like validation in a database.
-Yo have to add some code to limit the content that not logged in users can see. There is the code you have to add to restrict a page for logged in users.
+Optional login allows to login from the SettingsPage and the ShellPage (for NavigationPane and Tabbed Nav projects). 
+
+To restrict the access to a page and make it invisible and unaccessable for unauthenticated and unauthorized users you have to add the "Restricted" attibute to the page and limit it's visiblity on the ShellPage as shown below:
+
+1. Add the [Restricted] Attribute to the Views CodeBehind code
 
 PageName.xaml.cs
 
@@ -106,6 +106,8 @@ namespace YourAppNamespace.Views
 }
 ```
 
+2. Bind the NavViewItems Visiblity to the IsAuthorized property
+
 ShellPage.xaml
 
 ```xml
@@ -114,7 +116,7 @@ Find MenuItems definition in page xaml code
 -->
 <winui:NavigationView.MenuItems>
     <!--
-    Add helpers:NavHelper.NavigateTo and Visibility to hide restricted pages.
+    Add Visibility to hide restricted pages.
     -->
     <winui:NavigationViewItem
         x:Uid="Shell_PageName"
@@ -126,11 +128,11 @@ Find MenuItems definition in page xaml code
 
 ## Calling the Microsoft.Graph
 
-The MicrosoftGraphSerive class in the core project allows you to retrieve information to the user from the Microsoft Graph API, calling to the following endpoint using a HttpClient.
+The MicrosoftGraphSerive class in the core project allows you to retrieve information of the user from the Microsoft Graph API, calling the following endpoint using a HttpClient.
 
 _https://graph.microsoft.com/v1.0/_
 
-Http requests always have to add the access token as an authentication header.
+All calls add the AccessToken as an authentication header.
 
 ## Terminology
 
