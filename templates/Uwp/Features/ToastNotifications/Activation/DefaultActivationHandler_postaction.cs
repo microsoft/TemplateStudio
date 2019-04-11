@@ -8,9 +8,9 @@ using Param_RootNamespace.Services;
 
 namespace Param_RootNamespace.Activation
 {
-    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+    internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
     {
-        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+        protected override async Task HandleInternalAsync(IActivatedEventArgs args)
         {
             //^^
             //{[{

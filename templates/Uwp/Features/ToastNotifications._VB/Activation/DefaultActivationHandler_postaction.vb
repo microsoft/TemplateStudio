@@ -7,10 +7,10 @@ Imports Param_RootNamespace.Services
 '}]}
 
 Namespace Activation
-    Friend Class DefaultLaunchActivationHandler
-        Inherits ActivationHandler(Of LaunchActivatedEventArgs)
+    Friend Class DefaultActivationHandler
+        Inherits ActivationHandler(Of IActivatedEventArgs)
 
-        Protected Overrides Async Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As IActivatedEventArgs) As Task
             '^^
             '{[{
             ' TODO WTS: Remove or change this sample which shows a toast notification when the app is launched.

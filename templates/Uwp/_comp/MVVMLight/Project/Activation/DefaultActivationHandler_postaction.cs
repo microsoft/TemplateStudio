@@ -3,14 +3,14 @@ using Param_RootNamespace.ViewModels;
 //}]}
 namespace Param_RootNamespace.Activation
 {
-    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+    internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
     {
 //{[{
         private readonly string _navElement;
 
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public DefaultLaunchActivationHandler(Type navElement)
+        public DefaultActivationHandler(Type navElement)
         {
             _navElement = navElement.FullName;
         }
