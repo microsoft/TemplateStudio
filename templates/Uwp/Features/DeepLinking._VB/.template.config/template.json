@@ -19,7 +19,7 @@
     "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "DeepLinking",
     "wts.multipleInstance": "false",
-    "wts.rightClickEnabled":"false",
+    "wts.rightClickEnabled":"true",
     "wts.genGroup": "0"
   },
   "sourceName": "DeepLinking",
