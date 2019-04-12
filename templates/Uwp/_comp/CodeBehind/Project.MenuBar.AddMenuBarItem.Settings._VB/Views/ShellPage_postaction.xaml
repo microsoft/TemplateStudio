@@ -2,7 +2,6 @@
 <!--This code adds the settings page to the MenuBar control in ShellPage -->
 <!--**}-->
 
-
 <winui:MenuBarItem x:Uid="ShellMenuBarItem_File">
 <!--^^-->
 <!--{[{-->
