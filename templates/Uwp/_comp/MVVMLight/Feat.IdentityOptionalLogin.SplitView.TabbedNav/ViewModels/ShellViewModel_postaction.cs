@@ -1,4 +1,5 @@
 ﻿//{[{
+using System.Linq;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Core.Helpers;
 //}]}
