@@ -31,9 +31,6 @@
     },
     {
       "path": ".\\Param_ProjectName.Core\\Models\\User.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
     }
   ],
   "symbols": {

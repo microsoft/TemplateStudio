@@ -16,6 +16,7 @@ namespace Param_RootNamespace
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            await base.OnInitializeAsync(args);
 //{[{
             await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
 //}]}

@@ -2,21 +2,9 @@
 <!--This code adds the new page to the MenuBar control in ShellPage -->
 <!--**}-->
 
-<Page
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
-    <SplitView
-        OpenPaneLength="400">
-        <Grid>
-            <winui:MenuBar VerticalAlignment="Top">
-                <winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
-                    <!--^^-->
-                    <!--{[{-->
-                    <MenuFlyoutItem x:Uid="ShellMenuItem_Views_wts.ItemName" Command="{x:Bind ViewModel.MenuViewswts.ItemNameCommand}" />
-                    <!--}]}-->
-                </winui:MenuBarItem>
-            </winui:MenuBar>
-        </Grid>
-    </SplitView>
-</Page>
+<winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
+    <!--^^-->
+    <!--{[{-->
+    <MenuFlyoutItem x:Uid="ShellMenuItem_Views_wts.ItemName" Command="{x:Bind ViewModel.MenuViewswts.ItemNameCommand}" />
+    <!--}]}-->
+</winui:MenuBarItem>

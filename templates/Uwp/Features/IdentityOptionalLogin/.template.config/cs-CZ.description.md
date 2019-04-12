@@ -1,4 +1,4 @@
-﻿Volitelné přihlašování přidává ověřování uživatelů pomocí Azure AD a [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL). 
+﻿Volitelné přihlašování přidává ověřování uživatelů pomocí Azure AD a [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL).
 Tento styl také umožňuje kombinovat neomezený a omezený obsah. Omezený obsah se zobrazuje pouze přihlášeným a autorizovaným uživatelům.
 Aplikace zahrnuje volání nástroje Microsoft Graph k zobrazení informací o uživateli a jeho fotografie na navigačním panelu a stránce nastavení.
 

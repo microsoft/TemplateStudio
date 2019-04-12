@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
-    prismMvvm:ViewModelLocator.AutoWireViewModel="True"    
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
@@ -14,12 +14,11 @@
     <Grid>
         <maps:MapControl
             x:Name="mapControl" MapServiceToken="{Binding MapServiceToken}"
-            ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" 
-            Center="{x:Bind ViewModel.Center, Mode=OneWay}" >
+            ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}"
+            Center="{x:Bind ViewModel.Center, Mode=OneWay}">
             <i:Interaction.Behaviors>
                 <behaviors:BindableMapIconBehavior MapIcons="{Binding MapIcons}" />
             </i:Interaction.Behaviors>
         </maps:MapControl>
-        <TickBar/>
     </Grid>
 </Page>

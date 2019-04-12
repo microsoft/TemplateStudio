@@ -1,0 +1,56 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Prism.Feature.IdentityCommon",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Feat.IdentityForcedLogin.Prism|wts.Feat.IdentityOptionalLogin.Prism",
+    "wts.outputToParent": "true"
+ },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName\\Services\\IUserDataService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Services\\UserDataService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\ViewModels\\UserViewModel.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\IIdentityService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\IMicrosoftGraphService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}

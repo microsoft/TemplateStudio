@@ -13,6 +13,7 @@ namespace Param_RootNamespace
     {
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            await base.OnInitializeAsync(args);
 //{[{
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.Normal,

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Forced Login",
+  "description": "アプリケーションの使用に際して、ユーザーのログインを必須にします。",
+  "identity": "wts.Feat.IdentityForcedLogin.Prism"
+}

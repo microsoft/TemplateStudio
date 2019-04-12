@@ -7,23 +7,18 @@
         public ICommand MenuViewswts.ItemNameCommand { get; }
 
 //}]}
-        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        public ICommand MenuFileExitCommand { get; }
+
+        private void OnMenuFileExit()
         {
-//^^
-//{[{
-            MenuViewswts.ItemNameCommand = new DelegateCommand(OnMenuViewswts.ItemName);
-//}]}
         }
 //^^
 // {[{
+
         private void OnMenuViewswts.ItemName()
         {
             _menuNavigationService.UpdateView(PageTokens.wts.ItemNamePage);
         }
-
 //}]}
-        private void OnMenuFileExit()
-        {
-        }
     }
 }
