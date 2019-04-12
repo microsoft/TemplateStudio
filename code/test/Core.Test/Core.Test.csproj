@@ -76,6 +76,7 @@
     <Compile Include="Locations\RemoteTemplateSourceTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\AddJsonDictionaryItemPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\AddProjectReferenceToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\AddSdkReferenceToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostActionTest.cs" />
@@ -191,6 +192,8 @@
     <None Include="TestData\Templates\_catalog\frontendframeworks\en-US.TestFramework.md" />
     <None Include="TestData\Templates\_catalog\frontendframeworks\es-ES.TestFramework.md" />
     <None Include="TestData\Templates\_catalog\frontendframeworks\TestFramework.md" />
+    <None Include="TestData\TestJson\TestJson.json" />
+    <None Include="TestData\TestJson\TestJson_expected.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">

@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.PostActions.Catalog.AddJsonDictionaryItem;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.PostActions
@@ -64,6 +65,9 @@ namespace Microsoft.Templates.Core.PostActions
                         break;
                     case AddNugetReferenceToContextPostAction.Id:
                         postActions.Add(new AddNugetReferenceToContextPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddJsonDictionaryItemPostAction.Id:
+                        postActions.Add(new AddJsonDictionaryItemPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
                         break;
                     case AddSdkReferencesToContextPostAction.Id:
                         postActions.Add(new AddSdkReferencesToContextPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
