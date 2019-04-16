@@ -87,7 +87,7 @@ If the app is activated from activations other than LaunchActivation (for exampl
 
 Optional login allows the user to log in from the SettingsPage and the NavigationView (if available).
 
-To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attibute to the page and limit its visiblity on the ShellPage as shown below:
+To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attibute to the page and limit its visiblity on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
 
 #### 1. Add the **Restricted** Attribute to the Views CodeBehind code
 
