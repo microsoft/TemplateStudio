@@ -25,7 +25,7 @@ Namespace Views
                 Return _statusMessage
             End Get
             Set(value As String)
-                Return [Set](_statusMessage, value)
+                [Set](_statusMessage, value)
             End Set
         End Property
 
@@ -34,7 +34,7 @@ Namespace Views
                 Return _isBusy
             End Get
             Set(value As Boolean)
-                Return [Set](_isBusy, value)
+                [Set](_isBusy, value)
             End Set
         End Property
 
@@ -63,7 +63,7 @@ Namespace Views
             End Select
         End Function
 
-        Public Event PropertyChanged As PropertyChangedEventHandler
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
         Private Sub [Set](Of T)(ByRef storage As T, value As T, <CallerMemberName> Optional propertyName As String = Nothing)
             If Equals(storage, value) Then
@@ -75,7 +75,7 @@ Namespace Views
         End Sub
 
         Private Sub OnPropertyChanged(propertyName As String)
-            Return PropertyChanged?.Invoke(Me, New PropertyChangedEventArgs(propertyName))
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
         End Sub
     End Class
 End Namespace

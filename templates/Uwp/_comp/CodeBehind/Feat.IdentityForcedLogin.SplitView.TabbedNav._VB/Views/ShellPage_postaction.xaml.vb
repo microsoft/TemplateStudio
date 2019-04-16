@@ -61,9 +61,9 @@ Namespace Views
         End Sub
 
         Private Sub OnLoggedOut(sender As Object, e As EventArgs)
-            RemoveHandler NavigationService.NavigationFailed, Frame_NavigationFailed
-            RemoveHandler NavigationService.Navigated, Frame_Navigated
-            RemoveHandler navigationView.BackRequested, OnBackRequested
+            RemoveHandler NavigationService.NavigationFailed, AddressOf Frame_NavigationFailed
+            RemoveHandler NavigationService.Navigated, AddressOf Frame_Navigated
+            RemoveHandler navigationView.BackRequested, AddressOf OnBackRequested
             RemoveHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
             RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
         End Sub

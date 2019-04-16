@@ -21,7 +21,7 @@ Namespace ViewModels
                 Return _statusMessage
             End Get
             Set(value As String)
-                Return Param_Setter(_statusMessage, value)
+                Param_Setter(_statusMessage, value)
             End Set
         End Property
 

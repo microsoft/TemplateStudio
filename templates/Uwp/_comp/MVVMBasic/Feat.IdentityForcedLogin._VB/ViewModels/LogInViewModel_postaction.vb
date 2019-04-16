@@ -1,6 +1,5 @@
 ﻿Namespace ViewModels
     Public Class LogInViewModel
-        Inherits Observable
 
         Public Property IsBusy As Boolean
             Get

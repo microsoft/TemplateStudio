@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.Generic
 
-Namespace Core.Models
+Namespace Models
     ' This class contains user members to download user information from Microsoft Graph
     ' https://docs.microsoft.com/graph/api/resources/user?view=graph-rest-1.0
     Public Class User

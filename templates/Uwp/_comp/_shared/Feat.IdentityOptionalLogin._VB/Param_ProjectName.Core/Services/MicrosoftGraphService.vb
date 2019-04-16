@@ -4,7 +4,7 @@ Imports System.Threading.Tasks
 Imports Param_RootNamespace.Core.Helpers
 Imports Param_RootNamespace.Core.Models
 
-Namespace Core.Services
+Namespace Services
     Public Class MicrosoftGraphService
         ' For more information about Get-User Service, refer to the following documentation
         ' https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0

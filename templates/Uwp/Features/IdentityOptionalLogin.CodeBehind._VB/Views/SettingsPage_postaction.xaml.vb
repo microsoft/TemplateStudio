@@ -7,8 +7,8 @@ Namespace Views
     Public NotInheritable Partial Class SettingsPage
         Inherits Page
         Implements INotifyPropertyChanged
-'{[{
 
+'{[{
         Private ReadOnly Property UserDataService As UserDataService
             Get
                 Return Singleton(Of UserDataService).Instance
@@ -63,7 +63,7 @@ Namespace Views
         Public Sub New()
         End Sub
 
-        Private Async Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
             VersionDescription = GetVersionDescription()
 '{[{
             AddHandler IdentityService.LoggedIn, AddressOf OnLoggedIn
@@ -114,6 +114,6 @@ Namespace Views
         End Sub
 
 '}]}
-        Public Event PropertyChanged As PropertyChangedEventHandler
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     End Class
 End Namespace

@@ -36,13 +36,14 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
-            Initialize()
+        Protected Overrides Async Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+            Await InitializeAsync()
         End Sub
 
-        Private Sub Initialize()
+        Public Async Function InitializeAsync() As Task
             VersionDescription = GetVersionDescription()
-        End Sub
+            Await Task.CompletedTask
+        End Function
 
         Private Function GetVersionDescription() As String
             Dim appName = "AppDisplayName".GetLocalized()

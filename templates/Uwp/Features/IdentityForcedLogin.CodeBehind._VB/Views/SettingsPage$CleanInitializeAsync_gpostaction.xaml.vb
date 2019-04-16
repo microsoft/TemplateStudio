@@ -3,7 +3,7 @@
         Inherits Page
         Implements INotifyPropertyChanged
 
-        Private Async Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
 '{--{
             Await Task.CompletedTask
 '}--}

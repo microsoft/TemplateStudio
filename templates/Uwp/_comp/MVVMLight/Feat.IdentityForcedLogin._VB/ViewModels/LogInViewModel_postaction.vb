@@ -4,7 +4,6 @@ Imports GalaSoft.MvvmLight.Command
 '}]}
 Namespace ViewModels
     Public Class LogInViewModel
-        Inherits ViewModelBase
 
         Public Property IsBusy As Boolean
             Get

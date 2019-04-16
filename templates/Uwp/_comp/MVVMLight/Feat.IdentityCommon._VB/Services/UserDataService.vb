@@ -48,7 +48,7 @@ Namespace Services
 
         Private Async Sub OnLoggedIn(sender As Object, e As EventArgs)
             _user = Await GetUserFromGraphApiAsync()
-            UserDataUpdated?.Invoke(Me, _user)
+            RaiseEvent UserDataUpdated(Me, _user)
         End Sub
 
         Private Async Sub OnLoggedOut(sender As Object, e As EventArgs)

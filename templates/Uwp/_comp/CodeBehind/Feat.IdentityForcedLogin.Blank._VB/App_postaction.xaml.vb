@@ -2,7 +2,7 @@
 Imports Param_RootNamespace.Core.Helpers
 Imports Param_RootNamespace.Core.Services
 '}]}
-Public NotInheritable Partial Class App
+NotInheritable Partial Class App
     Inherits Application
 
 '{[{
@@ -15,7 +15,7 @@ Public NotInheritable Partial Class App
 '}]}
 
     Public Sub New()
-        _activationService = New Lazy(Of ActivationService)(CreateActivationService)
+        _activationService = New Lazy(Of ActivationService)(AddressOf CreateActivationService)
 '^^
 '{[{
         AddHandler IdentityService.LoggedOut, AddressOf OnLoggedOut

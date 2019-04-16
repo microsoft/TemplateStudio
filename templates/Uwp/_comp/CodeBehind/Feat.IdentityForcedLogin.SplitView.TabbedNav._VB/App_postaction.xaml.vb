@@ -1,8 +1,8 @@
-﻿'[{[
+﻿'{[{
 Imports Param_RootNamespace.Core.Helpers
 Imports Param_RootNamespace.Core.Services
 '}]}
-Public NotInheritable Partial Class App
+NotInheritable Partial Class App
     Inherits Application
 '{[{
     Private ReadOnly Property IdentityService As IdentityService
@@ -12,7 +12,7 @@ Public NotInheritable Partial Class App
     End Property
 '}]}
     Public Sub New()
-        _activationService = New Lazy(Of ActivationService)(CreateActivationService)
+        _activationService = New Lazy(Of ActivationService)(AddressOf CreateActivationService)
 '^^
 '{[{
         AddHandler IdentityService.LoggedOut, AddressOf OnLoggedOut

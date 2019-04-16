@@ -47,9 +47,9 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public Sub Initialize()
+        Public Async Function InitializeAsync() As Task
             VersionDescription = GetVersionDescription()
-        End Sub
+        End Function
 
         Private Function GetVersionDescription() As String
             Dim appName = "AppDisplayName".GetLocalized()

@@ -40,8 +40,9 @@ Namespace Services
                 End If
 '}]}
             End If
-
+'{--{
             Await HandleActivationAsync(activationArgs)
+'}--}
 '^^
 '{[{
 

@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
 
-Namespace Core.Helpers
+Namespace Helpers
     Module StreamExtensions
         <Extension()>
         Function ToBase64String(stream As Stream) As String

@@ -1,8 +1,7 @@
 ﻿Namespace ViewModels
     Public Class SettingsViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
 
-        Private Async Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
 '{--{
             Await Task.CompletedTask
 '}--}

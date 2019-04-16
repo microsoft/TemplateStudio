@@ -43,7 +43,7 @@ Namespace Views
         Public Sub New()
         End Sub
 
-        Private Async Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
 '^^
 '{[{
             User = Await UserDataService.GetUserAsync()
@@ -76,6 +76,6 @@ Namespace Views
         End Sub
 '}]}
 
-        Public Event PropertyChanged As PropertyChangedEventHandler
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     End Class
 End Namespace

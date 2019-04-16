@@ -1,4 +1,4 @@
-﻿Namespace Core.Helpers
+﻿Namespace Helpers
     Public Enum LoginResultType
         Success
         Unauthorized

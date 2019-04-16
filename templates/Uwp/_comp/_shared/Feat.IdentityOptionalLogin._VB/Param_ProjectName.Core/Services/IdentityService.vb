@@ -6,7 +6,7 @@ Imports Microsoft.Identity.Client
 Imports Microsoft.Identity.Client.AppConfig
 Imports Param_RootNamespace.Core.Helpers
 
-Namespace Core.Services
+Namespace Services
     Public Class IdentityService
         ' For more information about using Identity, see
         ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/identity.md
@@ -14,7 +14,7 @@ Namespace Core.Services
         ' Read more about Microsoft Identity Client here
         ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         ' https://docs.microsoft.com/azure/active-directory/develop/v2-overview
-        Private ReadOnly _scopes As String() = New String() {"user.read"}
+        Private ReadOnly _scopes As String() = {"user.read"}
         Private _integratedAuthAvailable As Boolean
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
@@ -58,7 +58,7 @@ Namespace Core.Services
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
                 _authenticationResult = Await _client.AcquireTokenInteractive(_scopes, Nothing).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
-                LoggedIn?.Invoke(Me, EventArgs.Empty)
+                RaiseEvent LoggedIn(Me, EventArgs.Empty)
                 Return LoginResultType.Success
             Catch ex As MsalClientException
 
@@ -92,7 +92,7 @@ Namespace Core.Services
                 End If
 
                 _authenticationResult = Nothing
-                LoggedOut?.Invoke(Me, EventArgs.Empty)
+                RaiseEvent LoggedOut(Me, EventArgs.Empty)
             Catch ex As MsalException
                 ' TODO WTS: LogoutAsync can fail please handle exceptions as appropriate to your scenario
                 ' For more info on MsalExceptions see
@@ -114,7 +114,7 @@ Namespace Core.Services
                 Catch ex As MsalException
                     ' AcquireTokenSilent and AcquireTokenInteractive failed, the session will be closed.
                     _authenticationResult = Nothing
-                    LoggedOut?.Invoke(Me, EventArgs.Empty)
+                    RaiseEvent LoggedOut(Me, EventArgs.Empty)
                     Return String.Empty
                 End Try
             End If
@@ -125,21 +125,16 @@ Namespace Core.Services
                 Return False
             End If
 
+            Dim retryWithUI As Boolean = False
+
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
                 _authenticationResult = Await _client.AcquireTokenSilent(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
                 Return True
-            Catch __unusedMsalUiRequiredException1__ As MsalUiRequiredException
+            Catch ex As MsalUiRequiredException
 
                 If _integratedAuthAvailable Then
-
-                    Try
-                        _authenticationResult = Await _client.AcquireTokenByIntegratedWindowsAuth(_scopes).ExecuteAsync()
-                        Return True
-                    Catch ex As MsalUiRequiredException
-                        ' Interactive authentication is required
-                        Return False
-                    End Try
+                    retryWithUI = True
                 Else
                     ' Interactive authentication is required
                     Return False
@@ -151,6 +146,18 @@ Namespace Core.Services
                 ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
                 Return False
             End Try
+
+            If retryWithUI Then
+                Try
+                    _authenticationResult = Await _client.AcquireTokenByIntegratedWindowsAuth(_scopes).ExecuteAsync()
+                    Return True
+                Catch ex As MsalUiRequiredException
+                    ' Interactive authentication is required
+                    Return False
+                End Try
+            Else
+                Return false
+            End If
         End Function
     End Class
 End Namespace

@@ -1,8 +1,11 @@
-﻿Imports Windows.Storage
+﻿'{[{
+Imports Windows.Storage
 Imports Windows.Storage.Pickers
-
+'}]}
 Namespace Helpers
     Module ImageHelper
+'^^
+'{[{
         Async Function LoadImageFileAsync() As Task(Of StorageFile)
             Dim openPicker = New FileOpenPicker With {
                 .SuggestedStartLocation = PickerLocationId.PicturesLibrary
@@ -27,9 +30,10 @@ Namespace Helpers
                     Return bitmapImage
                 End Using
 
-            Catch __unusedException1__ As Exception
+            Catch ex As Exception
                 Return Nothing
             End Try
         End Function
+'}]}
     End Module
 End Namespace

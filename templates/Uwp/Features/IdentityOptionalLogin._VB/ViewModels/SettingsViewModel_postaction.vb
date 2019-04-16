@@ -4,9 +4,9 @@ Imports Param_RootNamespace.Core.Services
 '}]}
 Namespace ViewModels
     Public Class SettingsViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
 
 '{[{
+
         Private ReadOnly Property UserDataService As UserDataService
             Get
                 Return Singleton(Of UserDataService).Instance

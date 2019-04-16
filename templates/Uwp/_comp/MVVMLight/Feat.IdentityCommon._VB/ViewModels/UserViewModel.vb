@@ -15,7 +15,7 @@ Namespace ViewModels
                 Return _name
             End Get
             Set(value As String)
-                Return [Set](_name, value)
+                [Set](_name, value)
             End Set
         End Property
 
@@ -24,7 +24,7 @@ Namespace ViewModels
                 Return _userPrincipalName
             End Get
             Set(value As String)
-                Return [Set](_userPrincipalName, value)
+                [Set](_userPrincipalName, value)
             End Set
         End Property
 
@@ -33,7 +33,7 @@ Namespace ViewModels
                 Return _photo
             End Get
             Set(value As BitmapImage)
-                Return [Set](_photo, value)
+                [Set](_photo, value)
             End Set
         End Property
 
