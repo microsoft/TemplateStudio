@@ -1,42 +1,23 @@
 ﻿//{[{
 using System.Linq;
-using Param_RootNamespace.Models;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Core.Helpers;
 //}]}
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.ViewModels
 {
-    public sealed partial class ShellPage : Page, INotifyPropertyChanged
+    public class ShellViewModel : ViewModelBase
     {
-        private WinUI.NavigationViewItem _selected;
+        private ICommand _menuFileExitCommand;
 //{[{
-        private UserData _user;
-        private bool _isBusy;
         private bool _isLoggedIn;
         private bool _isAuthorized;
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
-
-        private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 //}]}
-        public WinUI.NavigationViewItem Selected
-        {
-        }
+        public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
 //^^
 //{[{
-        public UserData User
-        {
-            get { return _user; }
-            set { Set(ref _user, value); }
-        }
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { Set(ref _isBusy, value); }
-        }
-
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -50,46 +31,41 @@ namespace Param_RootNamespace.Views
         }
 //}]}
 
-        public ShellPage()
+        public ShellViewModel()
         {
         }
 
-        private void Initialize()
+        public void Initialize(Frame shellFrame, SplitView splitView, Frame rightFrame, IList<KeyboardAccelerator> keyboardAccelerators)
         {
 //^^
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
             IdentityService.LoggedOut += OnLoggedOut;
-            UserDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
 
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded()
         {
 //^^
 //{[{
             IsLoggedIn = IdentityService.IsLoggedIn();
             IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
-            User = await UserDataService.GetUserAsync();
 //}]}
         }
-//{[{
 
-        private void OnUserDataUpdated(object sender, UserData user)
+        private void OnMenuFileExit()
         {
-            User = user;
         }
+//{[{
 
         private void OnLoggedIn(object sender, EventArgs e)
         {
             IsLoggedIn = true;
             IsAuthorized = IsLoggedIn && IdentityService.IsAuthorized();
-            IsBusy = false;
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            User = null;
             IsLoggedIn = false;
             IsAuthorized = false;
             CleanRestrictedPagesFromNavigationHistory();
@@ -110,24 +86,13 @@ namespace Param_RootNamespace.Views
             var isCurrentPageRestricted = Attribute.IsDefined(currentPage.GetType(), typeof(Restricted));
             if (isCurrentPageRestricted)
             {
-                NavigationService.GoBack();
-            }
-        }
-
-        private async void OnUserProfile(object sender, RoutedEventArgs e)
-        {
-            if (IsLoggedIn)
-            {
-                NavigationService.Navigate<SettingsPage>();
-            }
-            else
-            {
-                IsBusy = true;
-                var loginResult = await IdentityService.LoginAsync();
-                if (loginResult != LoginResultType.Success)
+                if (NavigationService.CanGoBack)
                 {
-                    await AuthenticationHelper.ShowLoginErrorAsync(loginResult);
-                    IsBusy = false;
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    MenuNavigationHelper.UpdateView(typeof(Param_HomeNameViewModel).FullName);
                 }
             }
         }
