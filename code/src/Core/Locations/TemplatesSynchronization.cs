@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
-        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), FolderName));
+        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create), FolderName));
 
         private readonly TemplatesContent _content;
 
@@ -41,7 +41,6 @@ namespace Microsoft.Templates.Core.Locations
         {
             string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(source.Id, source.Platform, source.Language);
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
-
             CurrentWizardVersion = wizardVersion;
         }
 
