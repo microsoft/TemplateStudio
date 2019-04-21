@@ -16,9 +16,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Services\\NavigationService.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

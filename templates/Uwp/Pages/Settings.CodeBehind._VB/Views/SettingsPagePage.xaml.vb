@@ -36,7 +36,7 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Async Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             Await InitializeAsync()
         End Sub
 
