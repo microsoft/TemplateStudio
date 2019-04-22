@@ -1,4 +1,5 @@
 ﻿//{[{
+using System.Linq;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Core.Helpers;
 //}]}
@@ -101,14 +102,10 @@ namespace Param_RootNamespace.ViewModels
 
         private void CleanRestrictedPagesFromNavigationHistory()
         {
-            foreach (var backStack in NavigationService.Frame.BackStack)
-            {
-                var isRestricted = Attribute.IsDefined(backStack.SourcePageType, typeof(Restricted));
-                if (isRestricted)
-                {
-                    NavigationService.Frame.BackStack.Remove(backStack);
-                }
-            }
+            NavigationService.Frame.BackStack
+                .Where(b => Attribute.IsDefined(b.SourcePageType, typeof(Restricted)))
+                .ToList()
+                .ForEach(page => NavigationService.Frame.BackStack.Remove(page));
         }
 
         private void GoBackToLastUnrestrictedPage()
