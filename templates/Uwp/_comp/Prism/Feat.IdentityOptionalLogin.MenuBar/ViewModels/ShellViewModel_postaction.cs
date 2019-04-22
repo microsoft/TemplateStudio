@@ -12,7 +12,6 @@ namespace Param_RootNamespace.ViewModels
 //{[{
         private bool _isLoggedIn;
         private bool _isAuthorized;
-
         private INavigationService _navigationService;
         private IIdentityService _identityService;
 //}]}
@@ -31,6 +30,7 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _isAuthorized, value); }
         }
 //}]}
+
         public ICommand MenuViewsMainCommand { get; }
 
         public ShellViewModel(IMenuNavigationService menuNavigationService)
