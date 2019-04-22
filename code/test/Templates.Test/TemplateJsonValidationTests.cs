@@ -120,6 +120,14 @@ namespace Microsoft.Templates.Test
                                 }
                             }
                         }
+
+                        var csCompOrder = csTemplate.TemplateTags.ContainsKey("wts.compositionOrder") ? csTemplate.TemplateTags["wts.compositionOrder"] : null;
+                        var vbCompOrder = vbTemplate.TemplateTags.ContainsKey("wts.compositionOrder") ? vbTemplate.TemplateTags["wts.compositionOrder"] : null;
+
+                        if (csCompOrder != vbCompOrder)
+                        {
+                            errors.Add($"CompostionOrder issue in {template[0].ToString()}");
+                        }
                     }
                 }
 

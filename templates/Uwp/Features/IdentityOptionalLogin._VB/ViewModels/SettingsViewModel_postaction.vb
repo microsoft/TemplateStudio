@@ -4,6 +4,7 @@ Imports Param_RootNamespace.Core.Services
 '}]}
 Namespace ViewModels
     Public Class SettingsViewModel
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
 '{[{
 

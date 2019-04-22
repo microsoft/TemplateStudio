@@ -4,6 +4,7 @@ Imports Param_RootNamespace.Core.Services
 '}]}
 Namespace ViewModels
     Public Class SettingsViewModel
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
 '{[{
         Private ReadOnly Property UserDataService As UserDataService
@@ -62,8 +63,8 @@ Namespace ViewModels
 '{[{
 
         Public Sub UnregisterEvents()
-            IdentityService.LoggedOut -= AddressOf OnLoggeOut
-            UserDataService.UserDataUpdated -= AddressOf OnUserDataUpdated
+            RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            RemoveHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
         Private Sub OnUserDataUpdated(sender As Object, user As UserViewModel)

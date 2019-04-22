@@ -4,7 +4,7 @@ Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class LogInViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _statusMessage As String
         Private _isBusy As Boolean
@@ -21,7 +21,7 @@ Namespace ViewModels
                 Return _statusMessage
             End Get
             Set(value As String)
-                Param_Setter(_statusMessage, value)
+                [Param_Setter](_statusMessage, value)
             End Set
         End Property
 
@@ -30,7 +30,7 @@ Namespace ViewModels
                 Return _isBusy
             End Get
             Set(value As Boolean)
-                Param_Setter(_isBusy, value)
+                [Param_Setter](_isBusy, value)
             End Set
         End Property
 

@@ -99,6 +99,10 @@ Namespace ViewModels
             NavigationService.Navigate(pageKey)
         End Sub
 
+        Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+            Throw e.Exception
+        End Sub
+
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
             Selected = _navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
