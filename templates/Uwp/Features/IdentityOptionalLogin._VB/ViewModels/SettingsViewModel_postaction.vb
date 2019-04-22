@@ -33,7 +33,7 @@ Namespace ViewModels
 
 '^^
 '{[{
-        Public ReadOnly Property LoginCommand As RelayCommand
+        Public ReadOnly Property LogInCommand As RelayCommand
             Get
                 If _loginCommand Is Nothing Then
                     _loginCommand = New RelayCommand(AddressOf OnLogin, Function() Not IsBusy)
@@ -88,7 +88,7 @@ Namespace ViewModels
             VersionDescription = GetVersionDescription()
 '^^
 '{[{
-            AddHandler dentityService.LoggedIn, AddressOf OnLoggedIn
+            AddHandler IdentityService.LoggedIn, AddressOf OnLoggedIn
             AddHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
             AddHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
             IsLoggedIn = IdentityService.IsLoggedIn()

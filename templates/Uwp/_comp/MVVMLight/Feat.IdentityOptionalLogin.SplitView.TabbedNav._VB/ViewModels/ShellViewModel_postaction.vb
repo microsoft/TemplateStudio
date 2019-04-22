@@ -39,7 +39,11 @@ Namespace ViewModels
 '{[{
         Public ReadOnly Property UserProfileCommand As RelayCommand
             Get
-                Return If(_userProfileCommand, (CSharpImpl.__Assign(_userProfileCommand, New RelayCommand(AddressOf OnUserProfile, Function() Not IsBusy))))
+                If _userProfileCommand Is Nothing Then
+                    _userProfileCommand = New RelayCommand(AddressOf OnUserProfile, Function() Not IsBusy)
+                End If
+
+                Return _itemInvokedCommand
             End Get
         End Property
 
