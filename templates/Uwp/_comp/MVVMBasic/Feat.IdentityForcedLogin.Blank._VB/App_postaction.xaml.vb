@@ -23,6 +23,7 @@ NotInheritable Partial Class App
 
 '^^
 '{[{
+
     Private Async Sub OnLoggedOut(sender As Object, e As EventArgs)
         Await ActivationService.RedirectLoginPageAsync()
     End Sub

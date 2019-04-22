@@ -6,6 +6,7 @@ NotInheritable Partial Class App
     Inherits Application
 
 '{[{
+
     Private ReadOnly Property IdentityService As IdentityService
         Get
             Return Singleton(Of IdentityService).Instance

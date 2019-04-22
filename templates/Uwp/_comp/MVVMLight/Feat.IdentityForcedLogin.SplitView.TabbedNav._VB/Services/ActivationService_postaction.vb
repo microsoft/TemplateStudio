@@ -9,6 +9,7 @@ Namespace Services
             End Get
         End Property
 '{[{
+
         Public Shared ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return ViewModelLocator.Current.NavigationService

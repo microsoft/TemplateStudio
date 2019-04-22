@@ -23,6 +23,7 @@ NotInheritable Partial Class App
 
 '^^
 '{[{
+
     Private Async Sub OnLoggedOut(sender As Object, e As EventArgs)
         ActivationService.SetShell(New Lazy(Of UIElement)(CreateShell))
         Await ActivationService.RedirectLoginPageAsync()

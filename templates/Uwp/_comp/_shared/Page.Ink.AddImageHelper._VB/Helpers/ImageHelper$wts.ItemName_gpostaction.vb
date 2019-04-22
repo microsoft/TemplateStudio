@@ -6,6 +6,7 @@ Namespace Helpers
     Module ImageHelper
 '^^
 '{[{
+
         Async Function LoadImageFileAsync() As Task(Of StorageFile)
             Dim openPicker = New FileOpenPicker With {
                 .SuggestedStartLocation = PickerLocationId.PicturesLibrary

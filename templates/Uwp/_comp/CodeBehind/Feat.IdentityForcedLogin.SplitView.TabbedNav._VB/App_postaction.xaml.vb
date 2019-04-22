@@ -5,6 +5,7 @@ Imports Param_RootNamespace.Core.Services
 NotInheritable Partial Class App
     Inherits Application
 '{[{
+
     Private ReadOnly Property IdentityService As IdentityService
         Get
             Return Singleton(Of IdentityService).Instance
@@ -21,6 +22,7 @@ NotInheritable Partial Class App
 
 '^^
 '{[{
+
     Private Async Sub OnLoggedOut(sender As Object, e As EventArgs)
         ActivationService.SetShell(New Lazy(Of UIElement)(CreateShell))
         Await ActivationService.RedirectLoginPageAsync()

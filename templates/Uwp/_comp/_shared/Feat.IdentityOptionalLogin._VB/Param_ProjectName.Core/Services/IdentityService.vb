@@ -29,6 +29,7 @@ Namespace Services
         End Property
 
         Public Event LoggedIn As EventHandler
+
         Public Event LoggedOut As EventHandler
 
         Public Sub InitializeWithAadAndPersonalMsAccounts()

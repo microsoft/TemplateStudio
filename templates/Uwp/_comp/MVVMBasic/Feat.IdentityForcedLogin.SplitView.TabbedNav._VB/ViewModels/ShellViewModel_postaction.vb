@@ -54,6 +54,7 @@ Namespace ViewModels
                 [Set](_user, value)
             End Set
         End Property
+
 '}]}
         Public Sub New()
         End Sub

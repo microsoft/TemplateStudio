@@ -7,6 +7,7 @@ Namespace Services
         Private _lastActivationArgs As Object
 
 '{[{
+
         Private ReadOnly Property IdentityService As IdentityService
             Get
                 Return Singleton(Of IdentityService).Instance

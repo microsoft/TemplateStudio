@@ -83,6 +83,7 @@ Namespace ViewModels
                 [Set](_isAuthorized, value)
             End Set
         End Property
+
 '}]}
         Public Sub New()
         End Sub
