@@ -21,6 +21,8 @@ namespace Param_RootNamespace.ViewModels
         public ICommand ItemInvokedCommand { get; }
 //{[{
 
+        public ICommand LoadedCommand { get; }
+
         public DelegateCommand UserProfileCommand { get; }
 
         public UserViewModel User
@@ -57,6 +59,7 @@ namespace Param_RootNamespace.ViewModels
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;
+            LoadedCommand = new DelegateCommand(OnLoaded);
             UserProfileCommand = new DelegateCommand(OnUserProfile);
 //}]}
         }
@@ -72,9 +75,8 @@ namespace Param_RootNamespace.ViewModels
         }
 //{[{
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        private async void OnLoaded()
         {
-            base.OnNavigatedTo(e, viewModelState);
             IsLoggedIn = _identityService.IsLoggedIn();
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
             User = await _userDataService.GetUserAsync();
