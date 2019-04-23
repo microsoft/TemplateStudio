@@ -54,7 +54,7 @@ Namespace ViewModels
             VersionDescription = GetVersionDescription()
 '^^
 '{[{
-            AddHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            AddHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
             AddHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
             User = Await UserDataService.GetUserAsync()
 '}]}
@@ -63,7 +63,7 @@ Namespace ViewModels
 '{[{
 
         Public Sub UnregisterEvents()
-            RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
             RemoveHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
@@ -75,7 +75,7 @@ Namespace ViewModels
             Await IdentityService.LogoutAsync()
         End Sub
 
-        Private Sub OnLoggeOut(sender As Object, e As EventArgs)
+        Private Sub OnLoggedOut(sender As Object, e As EventArgs)
             UnregisterEvents()
         End Sub
 '}]}

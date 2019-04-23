@@ -59,7 +59,7 @@ Namespace Views
         End Sub
 
         Public Sub UnregisterEvents()
-            Removehandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            Removehandler IdentityService.LoggedOut, AddressOf OnLoggedOut
             Removehandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
@@ -71,7 +71,7 @@ Namespace Views
             Await IdentityService.LogoutAsync()
         End Sub
 
-        Private Sub OnLoggeOut(sender As Object, e As EventArgs)
+        Private Sub OnLoggedOut(sender As Object, e As EventArgs)
             UnregisterEvents()
         End Sub
 '}]}

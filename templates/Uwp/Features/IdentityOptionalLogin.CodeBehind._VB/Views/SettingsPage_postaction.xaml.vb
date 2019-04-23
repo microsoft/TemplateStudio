@@ -68,7 +68,7 @@ Namespace Views
             VersionDescription = GetVersionDescription()
 '{[{
             AddHandler IdentityService.LoggedIn, AddressOf OnLoggedIn
-            AddHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            AddHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
             AddHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
             IsLoggedIn = IdentityService.IsLoggedIn()
             User = Await UserDataService.GetUserAsync()
@@ -101,7 +101,7 @@ Namespace Views
             IsBusy = False
         End Sub
 
-        Private Sub OnLoggeOut(sender As Object, e As EventArgs)
+        Private Sub OnLoggedOut(sender As Object, e As EventArgs)
             User = Nothing
             IsLoggedIn = False
             IsBusy = False
@@ -110,7 +110,7 @@ Namespace Views
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)
             MyBase.OnNavigatingFrom(e)
             RemoveHandler IdentityService.LoggedIn, AddressOf OnLoggedIn
-            RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggeOut
+            RemoveHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
             RemoveHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
