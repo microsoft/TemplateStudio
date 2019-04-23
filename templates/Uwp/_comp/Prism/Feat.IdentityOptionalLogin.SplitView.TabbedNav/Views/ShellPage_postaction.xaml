@@ -1,0 +1,10 @@
+﻿<Page
+    mc:Ignorable="d">
+<!--{[{-->
+    <i:Interaction.Behaviors>
+        <ic:EventTriggerBehavior EventName="Loaded">
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
+        </ic:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+<!--}]}-->
+</Page>
