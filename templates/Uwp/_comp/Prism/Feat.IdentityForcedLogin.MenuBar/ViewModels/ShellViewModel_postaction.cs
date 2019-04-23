@@ -50,7 +50,7 @@ namespace Param_RootNamespace.ViewModels
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
 //}]}
         }
-        public void Initialize(SplitView splitView, Frame rightFrame)
+        public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
         {
 //^^
 //{[{

@@ -1,6 +1,6 @@
 ﻿//{[{
-using System.Collections.Generic;
-using Param_RootNamespace.Services;
+using System.Linq;
+using Prism.Windows.Navigation;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Core.Helpers;
 //}]}
@@ -9,38 +9,15 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
-        private WinUI.NavigationViewItem _selected;
 //{[{
-        private UserViewModel _user;
-        private bool _isBusy;
         private bool _isLoggedIn;
         private bool _isAuthorized;
+        private INavigationService _navigationService;
         private IIdentityService _identityService;
-        private IUserDataService _userDataService;
 //}]}
-        public ICommand ItemInvokedCommand { get; }
+        private Frame _frame;
+//^^
 //{[{
-
-        public ICommand LoadedCommand { get; }
-
-        public DelegateCommand UserProfileCommand { get; }
-
-        public UserViewModel User
-        {
-            get { return _user; }
-            set { SetProperty(ref _user, value); }
-        }
-
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set
-            {
-                SetProperty(ref _isBusy, value);
-                UserProfileCommand.RaiseCanExecuteChanged();
-            }
-        }
-
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -53,50 +30,42 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _isAuthorized, value); }
         }
 //}]}
-        public ShellViewModel(INavigationService navigationServiceInstance)
+
+        public ICommand MenuViewsMainCommand { get; }
+
+        public ShellViewModel(IMenuNavigationService menuNavigationService)
         {
-            _navigationService = navigationServiceInstance;
+            _menuNavigationService = menuNavigationService;
 //{[{
+            _navigationService = navigationService;
             _identityService = identityService;
-            _userDataService = userDataService;
-            LoadedCommand = new DelegateCommand(OnLoaded);
-            UserProfileCommand = new DelegateCommand(OnUserProfile);
 //}]}
         }
 
-        public void Initialize(Frame frame, WinUI.NavigationView navigationView)
+        public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
         {
 //^^
 //{[{
             _identityService.LoggedIn += OnLoggedIn;
             _identityService.LoggedOut += OnLoggedOut;
-            _userDataService.UserDataUpdated += OnUserDataUpdated;
-//}]}
-        }
-//{[{
-
-        private async void OnLoaded()
-        {
             IsLoggedIn = _identityService.IsLoggedIn();
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
-            User = await _userDataService.GetUserAsync();
+//}]}
         }
 
-        private void OnUserDataUpdated(object sender, UserViewModel user)
+        private void OnMenuFileExit()
         {
-            User = user;
         }
+//{[{
 
         private void OnLoggedIn(object sender, EventArgs e)
         {
             IsLoggedIn = true;
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
-            IsBusy = false;
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            User = null;
             IsLoggedIn = false;
             IsAuthorized = false;
             CleanRestrictedPagesFromNavigationHistory();
@@ -123,24 +92,13 @@ namespace Param_RootNamespace.ViewModels
             var isCurrentPageRestricted = Attribute.IsDefined(currentPage.GetType(), typeof(Restricted));
             if (isCurrentPageRestricted)
             {
-                _navigationService.GoBack();
-            }
-        }
-
-        private async void OnUserProfile()
-        {
-            if (IsLoggedIn)
-            {
-                _navigationService.Navigate(PageTokens.SettingsPage, null);
-            }
-            else
-            {
-                IsBusy = true;
-                var loginResult = await _identityService.LoginAsync();
-                if (loginResult != LoginResultType.Success)
+                if (_navigationService.CanGoBack())
                 {
-                    await AuthenticationHelper.ShowLoginErrorAsync(loginResult);
-                    IsBusy = false;
+                    _navigationService.GoBack();
+                }
+                else
+                {
+                    _menuNavigationService.UpdateView(PageTokens.MainPage);
                 }
             }
         }
