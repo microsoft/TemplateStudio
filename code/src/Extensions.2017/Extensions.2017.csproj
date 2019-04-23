@@ -56,9 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
+      <Project>{5f7ee68f-e773-47f3-a490-af16985cdf6e}</Project>
+      <Name>CoreTemplateStudio.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\UI\UI.csproj">
       <Project>{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}</Project>

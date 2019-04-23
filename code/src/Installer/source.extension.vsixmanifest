@@ -23,7 +23,7 @@
         <Prerequisite Id="Microsoft.VisualStudio.Workload.Universal" Version="[15.0,)" DisplayName="Universal Windows Platform development" />
     </Prerequisites>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="CoreTemplateStudio.Core" Path="|CoreTemplateStudio.Core|" AssemblyName="|CoreTemplateStudio.Core;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.Solution" d:TargetPath="|CSharp.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
