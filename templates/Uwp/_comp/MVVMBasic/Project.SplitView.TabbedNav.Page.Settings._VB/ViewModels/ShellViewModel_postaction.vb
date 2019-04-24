@@ -19,7 +19,7 @@ Namespace ViewModels
             '}]}
         End Sub
 
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
             '{[{
             If e.SourcePageType = GetType(wts.ItemNamePage) Then
