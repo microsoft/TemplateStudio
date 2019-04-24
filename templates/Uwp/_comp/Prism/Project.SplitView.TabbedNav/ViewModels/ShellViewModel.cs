@@ -16,6 +16,7 @@ namespace Param_RootNamespace.ViewModels
     public class ShellViewModel : ViewModelBase
     {
         private static INavigationService _navigationService;
+        private Frame _frame;
         private WinUI.NavigationView _navigationView;
         private bool _isBackEnabled;
         private WinUI.NavigationViewItem _selected;
@@ -42,12 +43,13 @@ namespace Param_RootNamespace.ViewModels
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
+            _frame = frame;
             _navigationView = navigationView;
-            frame.NavigationFailed += (sender, e) =>
+            _frame.NavigationFailed += (sender, e) =>
             {
                 throw e.Exception;
             };
-            frame.Navigated += Frame_Navigated;
+            _frame.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }
 

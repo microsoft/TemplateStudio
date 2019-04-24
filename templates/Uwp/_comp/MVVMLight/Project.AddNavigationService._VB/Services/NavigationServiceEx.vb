@@ -122,11 +122,11 @@ Namespace Services
             End If
         End Sub
 
-        Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+        Public Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
             RaiseEvent NavigationFailed(sender, e)
         End Sub
 
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             RaiseEvent Navigated(sender, e)
         End Sub
     End Class

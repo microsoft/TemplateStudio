@@ -1,0 +1,56 @@
+﻿<Page
+<!--^^-->
+<!--{[{-->
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+<!--}]}-->
+    mc:Ignorable="d">
+<!--{[{-->
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="ReverseBoolToVisibility" FalseValue="Visible" TrueValue="Collapsed" />
+    </Page.Resources>
+
+    <i:Interaction.Behaviors>
+        <ic:EventTriggerBehavior EventName="Loaded">
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
+        </ic:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+<!--}]}-->
+
+    <Grid>
+        <winui:NavigationView
+<!--^^-->
+<!--{[{-->
+            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}"
+<!--}]}-->
+            Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        </winui:NavigationView>
+<!--{[{-->
+        <Grid
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}">
+            <Grid
+                Margin="{StaticResource MediumLeftRightMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Uid="LogInPageTitle"
+                    Grid.Row="0"
+                    Style="{StaticResource TitleTextBlockStyle}" />
+                <Button
+                    Grid.Row="1"
+                    x:Uid="LogInButton"
+                    Margin="{StaticResource MediumTopMargin}"
+                    Command="{x:Bind ViewModel.LoginCommand}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="{StaticResource MediumTopMargin}"
+                    Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+                    Style="{StaticResource BodyTextBlockStyle}" />
+            </Grid>
+        </Grid>
+<!--}]}-->
+    </Grid>
+</Page>

@@ -59,6 +59,10 @@ Namespace Behaviors
             _current = Me
         End Sub
 
+        Protected Overrides Sub OnDetaching()
+            MyBase.OnDetaching()
+        End Sub
+
         Private Sub OnNavigated(sender As Object, e As NavigationEventArgs)
             Dim frame = TryCast(sender, Frame)
             Dim page = TryCast(frame.Content, Page)

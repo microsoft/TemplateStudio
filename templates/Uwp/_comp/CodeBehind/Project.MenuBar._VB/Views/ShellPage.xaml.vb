@@ -26,11 +26,12 @@ Namespace Views
             MenuNavigationHelper.Initialize(splitView, rightFrame)
         End Sub
 
-        Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
+        Private Async Sub OnLoaded(sender As Object, e As RoutedEventArgs)
             ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             keyboardAccelerators.Add(_backKeyboardAccelerator)
+            Await Task.CompletedTask
         End Sub
 
         Private Sub ShellMenuItemClick_File_Exit(sender As Object, e As RoutedEventArgs)

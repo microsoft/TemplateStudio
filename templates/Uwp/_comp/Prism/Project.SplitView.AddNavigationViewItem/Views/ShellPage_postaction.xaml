@@ -2,17 +2,9 @@
 <!--This code adds the new page to the NavigationView control in ShellPage -->
 <!--**}-->
 
-<Page
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
-    <winui:NavigationView
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-        <winui:NavigationView.MenuItems>
-            <!--^^-->
-            <!--{[{-->
-            <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="wts.ItemName" />
-            <!--}]}-->
-        </winui:NavigationView.MenuItems>        
-    </winui:NavigationView>
-</Page>
+<winui:NavigationView.MenuItems>
+<!--^^-->
+<!--{[{-->
+    <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="wts.ItemName" />
+<!--}]}-->
+</winui:NavigationView.MenuItems>

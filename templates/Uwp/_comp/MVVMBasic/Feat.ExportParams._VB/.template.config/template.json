@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic & identity == wts.Feat.ShareTarget.VB",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & identity == wts.Feat.IdentityForcedLogin.VB|wts.Feat.IdentityOptionalLogin.VB|wts.Feat.ShareTarget.VB",
     "wts.export.baseclass": "Observable",
     "wts.export.setter": "Set"
   },

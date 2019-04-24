@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Forced Login",
+  "description": "Uygulamanızın kullanıcının oturum açmasını gerektirmesini sağlayın.",
+  "identity": "wts.Feat.IdentityForcedLogin.Prism"
+}
