@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
+        const string MenuBar = "MenuBar";
+
         public VisualComparisonTests(GenerationFixture fixture)
             : base(fixture)
         {
@@ -505,18 +507,44 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, "SplitView");
+        }
+
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksForBothVbAndCs))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInMenuBarAsync(string framework)
+        {
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, MenuBar);
+        }
+
+        private async Task EnsureLanguagesProduceIdenticalOutputForEachPageAsync(string framework, string projectType)
+        {
             var genIdentities = AllPagesThatSupportSimpleTesting();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
-            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
+            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 
             var pageExclusions = new Dictionary<string, string>();
             pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
 
-            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
+            (string projectFolder, string imagesFolder) testProjectDetails;
+
+            switch (projectType)
+            {
+                case MenuBar:
+                    testProjectDetails = SetUpTestProjectForAllMenuBarPagesComparison(app1Details, app2Details, pageExclusions);
+                    break;
+                default:
+                    testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
+                    break;
+            }
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -554,7 +582,7 @@ namespace Microsoft.Templates.Test
         [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
+        public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
             var genIdentities = AllPagesThatSupportSimpleTesting();
 
@@ -616,14 +644,12 @@ namespace Microsoft.Templates.Test
         [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInMenuBarAsync()
+        public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInMenuBarAsync()
         {
             var genIdentities = AllPagesThatSupportSimpleTesting();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
-
-            const string MenuBar = "MenuBar";
 
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, MenuBar, "MVVMBasic", genIdentities);
 

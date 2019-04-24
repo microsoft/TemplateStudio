@@ -42,10 +42,10 @@ namespace AutomatedUITests.Tests
 
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
-                var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
+                var menuItems = appSession1.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
                 menuItems[1].Click(); // Open menu to count sub-items
-                var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
+                var subItemCount = appSession1.FindElementsByClassName("MenuFlyoutItem").Count;
                 menuItems[1].Click(); // Close menu so get in a consistent state
 
                 // Stepping through the MenuFlyoutItems is unreliable
@@ -53,11 +53,12 @@ namespace AutomatedUITests.Tests
                 {
                     menuItems[1].Click(); // Open the menu again
 
+                    var subItems = appSession1.FindElementsByClassName("MenuFlyoutItem");
                     subItems[j].Click();
                     Task.Delay(TimeSpan.FromMilliseconds(1500)).Wait(); // Allow page to load and animations to complete
 
                     var screenshot = appSession1.GetScreenshot();
-                    var fileName = string.Format(AppFileNameFormat, TestAppInfo.AppName1, menuItem.Text);
+                    var fileName = string.Format(AppFileNameFormat, TestAppInfo.AppName1, subItems[j].Text);
                     screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, fileName), ImageFormat.Png);
                 }
 
@@ -72,10 +73,10 @@ namespace AutomatedUITests.Tests
 
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
-                var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
+                var menuItems = appSession2.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
                 menuItems[1].Click(); // Open menu to count sub-items
-                var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
+                var subItemCount = appSession2.FindElementsByClassName("MenuFlyoutItem").Count;
                 menuItems[1].Click(); // Close menu so get in a consistent state
 
                 // Stepping through the MenuFlyoutItems is unreliable
@@ -83,11 +84,12 @@ namespace AutomatedUITests.Tests
                 {
                     menuItems[1].Click(); // Open the menu again
 
+                    var subItems = appSession2.FindElementsByClassName("MenuFlyoutItem");
                     subItems[j].Click();
                     Task.Delay(TimeSpan.FromMilliseconds(1500)).Wait(); // Allow page to load and animations to complete
 
                     var screenshot = appSession2.GetScreenshot();
-                    var fileName = string.Format(AppFileNameFormat, TestAppInfo.AppName2, menuItem.Text);
+                    var fileName = string.Format(AppFileNameFormat, TestAppInfo.AppName2, subItems[j].Text);
                     screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, fileName), ImageFormat.Png);
                 }
 
