@@ -61,7 +61,6 @@ Namespace Behaviors
 
         Protected Overrides Sub OnDetaching()
             MyBase.OnDetaching()
-            RemoveHandler NavigationService.Navigated, AddressOf OnNavigated
         End Sub
 
         Private Sub OnNavigated(sender As Object, e As NavigationEventArgs)

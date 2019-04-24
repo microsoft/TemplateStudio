@@ -7,10 +7,17 @@ Namespace Behaviors
         Inherits Behavior(Of WinUI.NavigationView)
 
         Protected Overrides Sub OnAttached()
-            '^^
-            '{[{
+'^^
+'{[{
             AddHandler ViewModelLocator.Current.NavigationService.Navigated, AddressOf OnNavigated
-            '}]}
+'}]}
+        End Sub
+
+        Protected Overrides Sub OnDetaching()
+'^^
+'{[{
+            RemoveHandler ViewModelLocator.Current.NavigationService.Navigated, AddressOf OnNavigated
+'}]}
         End Sub
     End Class
 End Namespace
