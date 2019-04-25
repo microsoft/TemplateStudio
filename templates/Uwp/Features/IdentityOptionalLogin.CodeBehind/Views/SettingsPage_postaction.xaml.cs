@@ -61,9 +61,9 @@ namespace Param_RootNamespace.Views
         }
 //^^
 //{[{
-        private void OnUserDataUpdated(object sender, UserData user)
+        private void OnUserDataUpdated(object sender, UserData userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogIn(object sender, RoutedEventArgs e)

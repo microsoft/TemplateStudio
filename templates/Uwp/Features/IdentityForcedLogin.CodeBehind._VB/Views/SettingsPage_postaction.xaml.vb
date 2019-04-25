@@ -63,8 +63,8 @@ Namespace Views
             Removehandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
-        Private Sub OnUserDataUpdated(sender As Object, user As UserData)
-            User = user
+        Private Sub OnUserDataUpdated(sender As Object, userData As UserData)
+            User = userData
         End Sub
 
         Private Async Sub OnLogout(sender As Object, e As RoutedEventArgs)

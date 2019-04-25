@@ -52,9 +52,9 @@ namespace Param_RootNamespace.ViewModels
             UserDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 
-        private void OnUserDataUpdated(object sender, UserViewModel user)
+        private void OnUserDataUpdated(object sender, UserViewModel userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogout()
