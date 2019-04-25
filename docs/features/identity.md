@@ -11,38 +11,40 @@
     * [Optional Login code](#optional-login-code)
 * [Calling the Microsoft.Graph](#calling-the-microsoft.graph)
 * [Terminology](#terminology)
+* [Additional resources](#additional-resources)
+
 
 ## Introduction
 
 The Identity features add user authentication to your app and enable you to restrict your app (Forced Login) or provide restricted content (Optional Login) to authenticated users.
 
-Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) nuget package to authenticate the user againt Azure Active Directory.
+Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) nuget package to authenticate the user using Azure Active Directory.
 
-Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. The user info is displayed on the Navigation View, and also on a section of the SettingsPage that also allows the user to log out.
+Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. This info is displayed on the Navigation View (for project types Navigation Pane and Horizontal Navigation Pane), and also on the SettingsPage that also allows the user to log out.
 
 ## Authentication Endpoints
 
-You can choose different ways to initialize the IdentityService, restricting hereby the allowed account types.
+You can choose between different ways to initialize the IdentityService, restricting hereby the allowed account types.
 
-1. AAD and personal Microsoft accounts **(Default)**
-2. AAD multiple organizations
-3. AAD single organization
+1. InitializeWithAadAndPersonalMsAccounts() **(Default)** - allows Azure Active Directory Accounts and Personal Microsoft Accounts
+2. InitializeWithAadMultipleOrgs() - allows Azure Active Directory Accounts from any organization
+3. InitializeWithAadSingleOrg() - allows Azure Active Directory Accounts from the specified organization
 
 By choosing options 2 or 3 you can enable Windows Integrated Auth for domain joined machines. For more info regarding intergrated auth see [Integrated Windows Authentication](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Integrated-Windows-Authentication).
 
 ## Understanding the authentication flow
 
-The authentication process is initialized on App activation in the ActivationService (App.xaml.cs in Prism). First of all the IdentityService tries to get an access token silently from the cache. This access token is then passed to the Microsoft Graph to get user information.
+The authentication process is initialized on app activation in the ActivationService (App.xaml.cs in Prism). First of all the IdentityService tries to get an AccessToken silently from the cache. This AccessToken is then passed to the Microsoft Graph to get user information.
 
 If silently requesting the token from the cache fails, the interactive authentication process is triggered:
 
 **Forced Login**
 
-Apps with Forced Login will be redirected to a landing LoginPage that restricts the access to the rest of the pages.
+Apps with the Forced Login feature will be redirected to a LoginPage that can be used as a landing page and restricts the access to the rest of the pages.
 
 **Optional Login**
 
-Apps with Optional Login will show a Log In button on the NavigationView (for project types Navigation Pane or Horizontal Navigation Pane) and in the SettingsPage.
+Apps with Optional Login feature will show a LogIn button on the NavigationView (if available) and in the SettingsPage.
 While the user is not logged in only unrestricted pages are shown.
 
 The following graphics explain the silent and interactive login process:
@@ -57,7 +59,7 @@ The following graphics explain the silent and interactive login process:
 
 ## Further resticting access to authorized users
 
-If you want to further restict app access, the IdentityService provides a method called IsAuthorized() where you can include further authorization checks (i.e. check permissions in a database).
+If you want to further restrict app access, the IdentityService provides a method called IsAuthorized() where you can include further authorization checks (i.e. check permissions in a database).
 
 In Forced Login apps unauthorized users cannot log into the app, in Optional Login apps unauthorized users can login but will not see restricted pages.
 
@@ -69,24 +71,23 @@ This class is responsible for obtaining the AccessToken from the cache or via Wi
 
 ### MicrosoftGraphService (Core project)
 
-This class calls the Microsoft Graph to obtain the user information and the user photo. This class can be extended adding methods that get info from other Microsoft Graph services.
+This class calls the Microsoft Graph to obtain the user information and the user photo. It can be extended adding methods that get info from other Microsoft Graph services.
 
-### UserActivityService
+### UserDataService
 
-This class consumes MicrosoftGraphService and is responsible for storing the user info in the cache.
-
+This class consumes the MicrosoftGraphService and is responsible for storing the user information in the cache.
 
 ### Forced Login code
 
-Forced login adds a LoginPage with a button that allows the user to interactively login calling the IdentityService. When the user is logged in, the apps goes to the Shell page. When the user logs out, the LoginPage is shown again.
+Forced login adds a LoginPage with a button that allows the user to interactively login calling the IdentityService. When the user is logged in, the apps navigates to the ShellPage that gives access to the rest of the pages. When the user logs out, the LoginPage is shown again.
 
 If the app is activated from activations other than LaunchActivation (for example DeepLinking or ToastNotification) the activation flow is intercepted by the IdentityService to ensure the user is logged in before redirecting to the requested page.
 
 ### Optional Login code
 
-Optional login allows the user to log in from the SettingsPage and the ShellPage (for Navigation Pane or Horizontal Navigation Pane projects).
+Optional login allows the user to log in from the SettingsPage and the NavigationView (if available).
 
-To restrict the access to a page and make it invisible and unaccessable for unauthenticated and unauthorized users you have to add the "Restricted" attibute to the page and limit its visiblity on the ShellPage as shown below:
+To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attibute to the page and limit its visiblity on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
 
 #### 1. Add the **Restricted** Attribute to the Views CodeBehind code
 
@@ -132,7 +133,8 @@ The MicrosoftGraphService class in the core project allows you to retrieve infor
 
 _https://graph.microsoft.com/v1.0/_
 
-All calls add the AccessToken as an authentication header.
+All calls need to add the AccessToken as an authentication header.
+If your app has a lot of interaction with the Graph, consider using the [Microsoft Graph Client Library](https://www.nuget.org/packages/Microsoft.Graph/).
 
 ## Terminology
 
@@ -157,3 +159,11 @@ mind:
 | OIDC                    | <ul><li>OpenID Connect</li><li>An open standard used by various authentication providers, including AAD</li></ul>|
 | OAuth2                  | <ul><li>The previous open authentication standard; deprecated and superseded by OIDC</li></ul>|
 | OpenID                  | <ul><li>The original open auth standard; deprecated and superseded by OAuth2</li></ul>|
+
+
+## Additional resources
+
+* [About Microsoft Identity Platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform)
+* [About V2](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview)
+* [MSAL.NET wiki](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki)
+* [Microsoft Graph explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)
