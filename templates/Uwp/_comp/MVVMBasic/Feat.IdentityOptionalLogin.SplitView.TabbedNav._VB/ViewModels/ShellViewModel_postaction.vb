@@ -130,9 +130,9 @@ Namespace ViewModels
 
         Private Sub CleanRestrictedPagesFromNavigationHistory()
             NavigationService.Frame.BackStack.
-                Where(Function(b) Attribute.IsDefined(b.SourcePageType, GetType(Restricted))).
+                Where(Function(backStackEntry) Attribute.IsDefined(backStackEntry.SourcePageType, GetType(Restricted))).
                 ToList().
-                ForEach(Sub(backStack) NavigationService.Frame.BackStack.Remove(backStack))
+                ForEach(Sub(restricted) NavigationService.Frame.BackStack.Remove(restricted))
         End Sub
 
         Private Sub GoBackToLastUnrestrictedPage()
