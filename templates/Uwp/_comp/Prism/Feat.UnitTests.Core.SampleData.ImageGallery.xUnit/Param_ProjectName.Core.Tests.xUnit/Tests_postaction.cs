@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Tests.XUnit
         public void EnsureSampleDataServiceReturnsGalleryData()
         {
             var dataService = new SampleDataService();
-            var actual = dataService.GetGallerySampleData();
+            var actual = dataService.GetGallerySampleDataAsync();
 
             Assert.NotEmpty(actual);
         }

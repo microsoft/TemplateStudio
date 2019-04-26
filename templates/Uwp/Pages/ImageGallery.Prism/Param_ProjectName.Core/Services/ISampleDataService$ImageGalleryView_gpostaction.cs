@@ -8,7 +8,7 @@
 
         void Initialize(string localResourcesPath);
 
-        ObservableCollection<SampleImage> GetGallerySampleData();
+        Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync();
 //}]}
     }
 }

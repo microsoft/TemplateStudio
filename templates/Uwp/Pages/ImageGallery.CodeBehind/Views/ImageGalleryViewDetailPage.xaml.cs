@@ -41,14 +41,16 @@ namespace Param_RootNamespace.Views
 
         public ImageGalleryViewDetailPage()
         {
-            // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            // TODO WTS: Replace this with your actual data
+            Source = await SampleDataService.GetGallerySampleDataAsync();
+
             var selectedImageID = e.Parameter as string;
             if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {

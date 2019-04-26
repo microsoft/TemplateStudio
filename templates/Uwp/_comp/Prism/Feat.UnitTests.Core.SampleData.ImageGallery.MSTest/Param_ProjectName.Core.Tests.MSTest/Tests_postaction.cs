@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         public void EnsureSampleDataServiceReturnsGalleryData()
         {
             var dataService = new SampleDataService();
-            var actual = dataService.GetGallerySampleData();
+            var actual = dataService.GetGallerySampleDataAsync();
 
             Assert.AreNotEqual(0, actual.Count);
         }
