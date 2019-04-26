@@ -15,7 +15,7 @@ Namespace ViewModels
                 Return _name
             End Get
             Set(value As String)
-                [Set](_name, value)
+                [Set](_name, newValue := value)
             End Set
         End Property
 
@@ -24,7 +24,7 @@ Namespace ViewModels
                 Return _userPrincipalName
             End Get
             Set(value As String)
-                [Set](_userPrincipalName, value)
+                [Set](_userPrincipalName, newValue := value)
             End Set
         End Property
 

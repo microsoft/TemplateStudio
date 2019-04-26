@@ -75,8 +75,8 @@ Namespace ViewModels
         End Sub
 
 '{[{
-        Private Sub OnUserDataUpdated(sender As Object, user As UserViewModel)
-            User = user
+        Private Sub OnUserDataUpdated(sender As Object, userData As UserViewModel)
+            User = userData
         End Sub
 
         Private Sub OnLoggedOut(sender As Object, e As EventArgs)

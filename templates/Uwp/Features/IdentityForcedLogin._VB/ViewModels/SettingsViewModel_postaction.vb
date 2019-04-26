@@ -67,8 +67,8 @@ Namespace ViewModels
             RemoveHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
         End Sub
 
-        Private Sub OnUserDataUpdated(sender As Object, user As UserViewModel)
-            User = user
+        Private Sub OnUserDataUpdated(sender As Object, userData As UserViewModel)
+            User = userData
         End Sub
 
         Private Async Sub OnLogout()

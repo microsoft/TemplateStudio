@@ -7,11 +7,8 @@ Namespace ViewModels
     Public Class ShellViewModel
         Inherits Observable
 
-        Private _itemInvokedCommand As ICommand
+        Private _menuFileExitCommand As ICommand
 '{[{
-        Private _userProfileCommand As RelayCommand
-        Private _user As UserViewModel
-        Private _isBusy As Boolean
         Private _isLoggedIn As Boolean
         Private _isAuthorized As Boolean
 
@@ -20,55 +17,18 @@ Namespace ViewModels
                 Return Singleton(Of IdentityService).Instance
             End Get
         End Property
-
-        Private ReadOnly Property UserDataService As UserDataService
-            Get
-                Return Singleton(Of UserDataService).Instance
-            End Get
-        End Property
 '}]}
-
-        Public ReadOnly Property ItemInvokedCommand As ICommand
+        Public ReadOnly Property MenuFileExitCommand As ICommand
             Get
-                If _itemInvokedCommand Is Nothing Then
-                    _itemInvokedCommand = New RelayCommand(Of WinUI.NavigationViewItemInvokedEventArgs)(AddressOf OnItemInvoked)
+                If _menuFileExitCommand Is Nothing Then
+                    _menuFileExitCommand = New RelayCommand(AddressOf OnMenuFileExit)
                 End If
 
-                Return _itemInvokedCommand
+                Return _menuFileExitCommand
             End Get
         End Property
-
 '^^
 '{[{
-        Public ReadOnly Property UserProfileCommand As RelayCommand
-            Get
-                If _userProfileCommand Is Nothing Then
-                    _userProfileCommand = New RelayCommand(AddressOf OnUserProfile, Function() Not IsBusy)
-                End If
-
-                Return _userProfileCommand
-            End Get
-        End Property
-
-        Public Property User As UserViewModel
-            Get
-                Return _user
-            End Get
-            Set(value As UserViewModel)
-                [Set](_user, value)
-            End Set
-        End Property
-
-        Public Property IsBusy As Boolean
-            Get
-                Return _isBusy
-            End Get
-            Set(value As Boolean)
-                [Set](_isBusy, value)
-                UserProfileCommand.OnCanExecuteChanged()
-            End Set
-        End Property
-
         Public Property IsLoggedIn As Boolean
             Get
                 Return _isLoggedIn
@@ -91,12 +51,11 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public Sub Initialize(frame As Frame, navigationView As WinUI.NavigationView, keyboardAccelerators As IList(Of KeyboardAccelerator))
+        Public Sub Initialize(shellFrame As Frame, splitView As SplitView, rightFrame As Frame, keyboardAccelerators As IList(Of KeyboardAccelerator))
 '^^
 '{[{
             AddHandler IdentityService.LoggedIn, AddressOf OnLoggedIn
             AddHandler IdentityService.LoggedOut, AddressOf OnLoggedOut
-            AddHandler UserDataService.UserDataUpdated, AddressOf OnUserDataUpdated
 '}]}
         End Sub
 
@@ -105,23 +64,19 @@ Namespace ViewModels
 '{[{
             IsLoggedIn = IdentityService.IsLoggedIn()
             IsAuthorized = IsLoggedIn AndAlso IdentityService.IsAuthorized()
-            User = Await UserDataService.GetUserAsync()
 '}]}
         End Sub
 
-'{[{
-        Private Sub OnUserDataUpdated(sender As Object, userData As UserViewModel)
-            User = userData
+        Private Sub OnMenuFileExit()
         End Sub
+'{[{
 
         Private Sub OnLoggedIn(sender As Object, e As EventArgs)
             IsLoggedIn = True
             IsAuthorized = IsLoggedIn AndAlso IdentityService.IsAuthorized()
-            IsBusy = False
         End Sub
 
         Private Sub OnLoggedOut(sender As Object, e As EventArgs)
-            User = Nothing
             IsLoggedIn = False
             IsAuthorized = False
             CleanRestrictedPagesFromNavigationHistory()
@@ -135,25 +90,15 @@ Namespace ViewModels
                 ForEach(Sub(restricted) NavigationService.Frame.BackStack.Remove(restricted))
         End Sub
 
-        Private Sub GoBackToLastUnrestrictedPage()
+        Private Sub  GoBackToLastUnrestrictedPage()
             Dim currentPage = TryCast(NavigationService.Frame.Content, Page)
             Dim isCurrentPageRestricted = Attribute.IsDefined(currentPage.[GetType](), GetType(Restricted))
 
             If isCurrentPageRestricted Then
-                NavigationService.GoBack()
-            End If
-        End Sub
-
-        Private Async Sub OnUserProfile()
-            If IsLoggedIn Then
-                NavigationService.Navigate(Of SettingsPage)()
-            Else
-                IsBusy = True
-                Dim loginResult = Await IdentityService.LoginAsync()
-
-                If loginResult <> LoginResultType.Success Then
-                    Await AuthenticationHelper.ShowLoginErrorAsync(loginResult)
-                    IsBusy = False
+                If NavigationService.CanGoBack Then
+                    NavigationService.GoBack()
+                Else
+                    MenuNavigationHelper.UpdateView(GetType(Param_HomeNamePage))
                 End If
             End If
         End Sub
