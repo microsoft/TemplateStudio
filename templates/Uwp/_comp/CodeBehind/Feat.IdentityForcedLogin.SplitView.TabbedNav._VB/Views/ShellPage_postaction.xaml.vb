@@ -57,8 +57,8 @@ Namespace Views
         End Sub
 '{[{
 
-        Private Sub OnUserDataUpdated(sender As Object, user As UserData)
-            User = user
+        Private Sub OnUserDataUpdated(sender As Object, userData As UserData)
+            User = userData
         End Sub
 
         Private Sub OnLoggedOut(sender As Object, e As EventArgs)

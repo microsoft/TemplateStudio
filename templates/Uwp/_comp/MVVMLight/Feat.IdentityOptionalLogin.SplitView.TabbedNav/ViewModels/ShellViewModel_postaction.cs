@@ -79,9 +79,9 @@ namespace Param_RootNamespace.ViewModels
         }
 //{[{
 
-        private void OnUserDataUpdated(object sender, UserViewModel user)
+        private void OnUserDataUpdated(object sender, UserViewModel userData)
         {
-            User = user;
+            User = userData;
         }
 
         private void OnLoggedIn(object sender, EventArgs e)
