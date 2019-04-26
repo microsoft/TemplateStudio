@@ -17,9 +17,10 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            await ViewModel.LoadDataAsync();
             ViewModel.Initialize(e.Parameter as string, e.NavigationMode);
         }
 
