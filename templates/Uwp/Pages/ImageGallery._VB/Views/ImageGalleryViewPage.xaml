@@ -14,7 +14,7 @@
 
     <Grid x:Name="ContentArea">
         <GridView
-            ItemsSource="{x:Bind ViewModel.Source}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="thumbnailImage"

@@ -12,7 +12,7 @@
 
     <Grid x:Name="ContentArea">
         <GridView
-            ItemsSource="{x:Bind Source}"
+            ItemsSource="{x:Bind Source, Mode=OneWay}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="thumbnailImage"

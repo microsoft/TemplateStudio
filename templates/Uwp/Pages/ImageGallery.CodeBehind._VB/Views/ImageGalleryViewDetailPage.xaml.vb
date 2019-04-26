@@ -35,13 +35,15 @@ Namespace Views
         End Property
 
         Public Sub New()
-            ' TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData()
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+
+            ' TODO WTS: Replace this with your actual data
+            Source = Await SampleDataService.GetGallerySampleDataAsync()
+
             Dim selectedImageId = TryCast(e.Parameter, String)
             If Not String.IsNullOrEmpty(selectedImageId) AndAlso e.NavigationMode = NavigationMode.New Then
                 SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
