@@ -25,6 +25,7 @@ namespace Param_RootNamespace.ViewModels
             {
                 return _source;
             }
+
             set
             {
                 SetProperty(ref _source, value);

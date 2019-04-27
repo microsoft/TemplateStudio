@@ -20,6 +20,7 @@ namespace Param_RootNamespace.ViewModels
             {
                 return _source;
             }
+
             set
             {
                 Param_Setter(ref _source, value);

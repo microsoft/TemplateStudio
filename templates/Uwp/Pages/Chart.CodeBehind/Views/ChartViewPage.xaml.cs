@@ -24,6 +24,7 @@ namespace Param_RootNamespace.Views
             {
                 return _source;
             }
+
             set
             {
                 Set(ref _source, value);
