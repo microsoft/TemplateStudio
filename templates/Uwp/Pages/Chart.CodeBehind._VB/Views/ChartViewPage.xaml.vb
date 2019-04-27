@@ -6,17 +6,26 @@ Namespace Views
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
+        Private _source As ObservableCollection(Of DataPoint)
+
         ' TODO WTS: Change the chart as appropriate to your app.
         ' For help see http://docs.telerik.com/windows-universal/controls/radchart/getting-started
         Public Sub New()
             InitializeComponent()
         End Sub
 
-        Public ReadOnly Property Source As ObservableCollection(Of DataPoint)
+        Public Property Source As ObservableCollection(Of DataPoint)
             Get
-                ' TODO WTS: Replace this with your actual data
-                Return SampleDataService.GetChartSampleData()
+                Return _source
             End Get
+            Set(value As ObservableCollection(Of DataPoint))
+                [Set](_source, value)
+            End Set
         End Property
+
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            Source = Await SampleDataService.GetChartSampleDataAsync()
+        End Sub
     End Class
 End Namespace
