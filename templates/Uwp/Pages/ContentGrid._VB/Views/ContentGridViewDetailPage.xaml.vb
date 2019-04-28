@@ -9,11 +9,11 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             Dim orderId As Long
             orderId = CType(e.Parameter, Long)
-            ViewModel.Initialize(orderId)
+            Await ViewModel.InitializeAsync(orderId)
         End Sub
 
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)

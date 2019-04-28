@@ -8,7 +8,7 @@
             InitializeComponent()
         End Sub
 
-        Protected Overrides Async Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             Await ViewModel.LoadDataAsync()
         End Sub
