@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Prism.Commands;
@@ -31,9 +32,14 @@ namespace Param_RootNamespace.ViewModels
             _navigationService = navigationServiceInstance;
             _sampleDataService = sampleDataServiceInstance;
             _connectedAnimationService = connectedAnimationService;
+        }
+
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
 
             // TODO WTS: Replace this with your actual data
-            Source = _sampleDataService.GetContentGridData();
+            Source = await _sampleDataService.GetContentGridDataAsync();
         }
 
         private void OnItemClick(SampleOrder clickedItem)

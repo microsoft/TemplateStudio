@@ -1,4 +1,5 @@
 ﻿//{[{
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Services;
 //}]}
 
@@ -12,10 +13,10 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         // TODO WTS: Remove or update this once your app is using real data and not the SampleDataService.
         // This test serves only as a demonstration of testing functionality in the Core library.
         [Test]
-        public void EnsureSampleDataServiceReturnsContentGridData()
+        public async void EnsureSampleDataServiceReturnsContentGridDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = dataService.GetContentGridData();
+            var actual = await dataService.GetContentGridDataAsync();
 
             Assert.AreNotEqual(0, actual.Count);
         }

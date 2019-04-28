@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_RootNamespace.Views
 {
@@ -8,6 +10,13 @@ namespace Param_RootNamespace.Views
         public ContentGridViewPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            await ViewModel.LoadDataAsync();
         }
     }
 }

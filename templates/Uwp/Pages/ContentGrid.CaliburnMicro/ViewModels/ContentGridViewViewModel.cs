@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Services;
@@ -12,12 +13,18 @@ namespace Param_RootNamespace.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IConnectedAnimationService _connectedAnimationService;
 
+        private ObservableCollection<SampleOrder> _source;
+
         public ObservableCollection<SampleOrder> Source
         {
             get
             {
-                // TODO WTS: Replace this with your actual data
-                return SampleDataService.GetContentGridData();
+                return _source;
+            }
+
+            set
+            {
+                Set(ref _source, value);
             }
         }
 
@@ -25,6 +32,12 @@ namespace Param_RootNamespace.ViewModels
         {
             _navigationService = navigationService;
             _connectedAnimationService = connectedAnimationService;
+        }
+
+        public async Task LoadDataAsync()
+        {
+            // TODO WTS: Replace this with your actual data
+            Source = await SampleDataService.GetContentGridDataAsync();
         }
 
         public void OnItemSelected(SampleOrder clickedItem)

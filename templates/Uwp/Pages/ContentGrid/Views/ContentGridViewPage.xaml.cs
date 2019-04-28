@@ -9,5 +9,12 @@ namespace Param_RootNamespace.Views
         {
             InitializeComponent();
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            await ViewModel.LoadDataAsync();
+        }
     }
 }

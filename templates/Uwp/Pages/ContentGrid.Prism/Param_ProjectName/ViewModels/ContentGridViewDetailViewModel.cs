@@ -24,12 +24,13 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _item, value); }
         }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             if (e.Parameter is long orderId)
             {
-                Item = _sampleDataService.GetContentGridData().First(i => i.OrderId == orderId);
+                var data = await _sampleDataService.GetContentGridDataAsync();
+                Item = data.First(i => i.OrderId == orderId);
             }
         }
 
