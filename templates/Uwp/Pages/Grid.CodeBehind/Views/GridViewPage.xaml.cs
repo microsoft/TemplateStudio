@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class GridViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private ObservableCollection<DataPoint> _source;
+        private ObservableCollection<SampleOrder> _source;
 
         // TODO WTS: Change the grid as appropriate to your app, adjust the column definitions on GridViewPage.xaml.
         // For help see http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted
@@ -38,7 +38,6 @@ namespace Param_RootNamespace.Views
 
             // TODO WTS: Replace this with your actual data
             Source = await SampleDataService.GetGridSampleDataAsync();
-        }
         }
     }
 }
