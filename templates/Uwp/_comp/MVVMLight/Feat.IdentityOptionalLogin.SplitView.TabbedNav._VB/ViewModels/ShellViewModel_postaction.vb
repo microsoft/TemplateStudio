@@ -43,7 +43,7 @@ Namespace ViewModels
                     _userProfileCommand = New RelayCommand(AddressOf OnUserProfile, Function() Not IsBusy)
                 End If
 
-                Return _itemInvokedCommand
+                Return _userProfileCommand
             End Get
         End Property
 
