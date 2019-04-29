@@ -1,4 +1,4 @@
-﻿로그인 옵션으로 Azure AD 및 [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL)를 이용한 사용자 인증을 추가합니다. 
+﻿로그인 옵션으로 Azure AD 및 [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL)를 이용한 사용자 인증을 추가합니다.
 이 방식을 통해 제한/비제한 콘텐츠를 결합할 수 있습니다. 제한된 콘텐츠는 로그인하여 인증된 사용자에게만 표시됩니다.
 이 애플리케이션에서는 Microsoft Graph로의 호출을 사용하여 NavigationPane 및 SettingsPage에서 사용자 정보 및 사진을 표시합니다.
 

@@ -16,7 +16,7 @@ Under the [code](../code/) folder, the repo have different solutions to aid deve
 
 ## Running the Extension Locally
 
-First of all, be sure you are running [Visual Studio 2017](https://www.visualstudio.com/downloads/) (Any version works)
+First of all, be sure you are running [Visual Studio 2017 or 2019](https://www.visualstudio.com/downloads/) (Any version works)
 
 1. Clone this repo to your local machine
 1. Open the solution [Big.sln](../code/)
@@ -24,7 +24,7 @@ First of all, be sure you are running [Visual Studio 2017](https://www.visualstu
 1. Configure the "Installer" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
    1. Open the "Installer" project properties.
    1. Go to "Debug" properties.
-   1. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\"
+   1. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\" or C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\"
    1. In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
    1. Save the changes.
     ![Installer Configuration](./resources/getting-started/Installer2017.Debug.Config.JPG)
@@ -75,12 +75,12 @@ Following are described the contents for each folder:
 
 ## Test execution
 
-The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run. 
+The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run.
 
-* AppVeyor 'CIBuild' Build (CI):	
-  * Core.Tests	
-  * UI.Test	
-  * Templates.Tests	
+* AppVeyor 'CIBuild' Build (CI):
+  * Core.Tests
+  * UI.Test
+  * Templates.Tests
     * ExecutionSet=MinimumCodebehind
     * ExecutionSet=MinimumMVVMLight
     * ExecutionSet=MinimumMVVMBasic
@@ -89,8 +89,8 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=TemplateValidation
 
 * VSO 'Templates.Test.Full'	Build (Full Tests):
-  * Core.Tests	
-  *	UI.Tests	
+  * Core.Tests
+  *	UI.Tests
   *	Templates.Test
       * ExecutionSet=MinimumCodebehind
       * ExecutionSet=MinimumMVVMLight
@@ -101,16 +101,16 @@ The following list shows which tests are executed in which build. Within the Tem
       * ExecutionSet=TemplateValidation
       * ExecutionSet=BuildRightClickWithLegacy
       * ExecutionSet=BuildMVVMBasic
-      * ExecutionSet=BuildCodeBehind 
+      * ExecutionSet=BuildCodeBehind
       * ExecutionSet=BuildMVVMLight
       * ExecutionSet=BuildCaliburnMicro
       * ExecutionSet=BuildPrism
 
-    
+
 * VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
   *	Templates.Test
     * ExecutionSet=BuildOneByOneMVVMBasic
-    * ExecutionSet=BuildOneByOneCodeBehind 
+    * ExecutionSet=BuildOneByOneCodeBehind
     * ExecutionSet=BuildOneByOneMVVMLight
     * ExecutionSet=BuildOneByOneCaliburnMicro
     * ExecutionSet=BuildOneByOnePrism
@@ -122,7 +122,7 @@ The following list shows which tests are executed in which build. Within the Tem
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:
 
-`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner <wts directory>\Code\packages\xunit.runner.console.2.2.0\tools\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
+`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
 
 where
 

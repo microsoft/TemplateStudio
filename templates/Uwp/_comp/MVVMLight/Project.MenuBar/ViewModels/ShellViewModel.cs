@@ -39,7 +39,7 @@ namespace Param_RootNamespace.ViewModels
             NavigationService.Frame = shellFrame;
             MenuNavigationHelper.Initialize(splitView, rightFrame);
             _keyboardAccelerators = keyboardAccelerators;
-            }
+        }
 
         private void OnLoaded()
         {

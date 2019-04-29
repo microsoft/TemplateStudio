@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Optional Login",
+  "description": "Faites en sorte que votre application dispose d'une connexion facultative et de fonctionnalités restreintes.",
+  "identity": "wts.Feat.IdentityOptionalLogin.Prism"
+}

@@ -51,6 +51,11 @@ namespace Param_RootNamespace.Services
             _splitView.IsPaneOpen = true;
         }
 
+        public void CloseRightPane()
+        {
+            _splitView.IsPaneOpen = false;
+        }
+
         public async Task OpenInNewWindow(Type pageType)
         {
             await WindowManagerService.Current.TryShowAsStandaloneAsync(pageType.Name, pageType);

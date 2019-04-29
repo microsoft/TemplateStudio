@@ -44,6 +44,7 @@ namespace Microsoft.Templates.Test
                     && t.GroupIdentity != "wts.Feat.BackgroundTask"
                     && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
                     && t.GroupIdentity != "wts.Feat.IdentityForcedLogin"
+                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB"
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 

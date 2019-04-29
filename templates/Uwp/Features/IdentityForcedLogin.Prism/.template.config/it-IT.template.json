@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Forced Login",
+  "description": "Imposta l'applicazione in modo da richiedere l'accesso da parte dell'utente.",
+  "identity": "wts.Feat.IdentityForcedLogin.Prism"
+}

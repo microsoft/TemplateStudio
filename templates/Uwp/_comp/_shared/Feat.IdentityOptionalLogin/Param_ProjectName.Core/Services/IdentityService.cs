@@ -11,6 +11,9 @@ namespace Param_RootNamespace.Core.Services
 {
     public class IdentityService
     {
+        //// For more information about using Identity, see
+        //// https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/identity.md
+        ////
         //// Read more about Microsoft Identity Client here
         //// https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         //// https://docs.microsoft.com/azure/active-directory/develop/v2-overview
@@ -157,25 +160,34 @@ namespace Param_RootNamespace.Core.Services
             }
             try
             {
-                if (_integratedAuthAvailable)
-                {
-                    _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
-                                                         .ExecuteAsync();
-                }
-                else
-                {
-                    var accounts = await _client.GetAccountsAsync();
-                    _authenticationResult = await _client.AcquireTokenSilent(_scopes)
-                                                         .WithAccount(accounts.FirstOrDefault())
-                                                         .ExecuteAsync();
-                }
-
+                var accounts = await _client.GetAccountsAsync();
+                _authenticationResult = await _client.AcquireTokenSilent(_scopes)
+                                                     .WithAccount(accounts.FirstOrDefault())
+                                                     .ExecuteAsync();
                 return true;
             }
             catch (MsalUiRequiredException)
             {
-                // Interactive authentication is required
-                return false;
+                if (_integratedAuthAvailable)
+                {
+                    try
+                    {
+
+                        _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
+                                                             .ExecuteAsync();
+                        return true;
+                    }
+                    catch(MsalUiRequiredException)
+                    {
+                        // Interactive authentication is required
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Interactive authentication is required
+                    return false;
+                }
             }
             catch (MsalException)
             {
