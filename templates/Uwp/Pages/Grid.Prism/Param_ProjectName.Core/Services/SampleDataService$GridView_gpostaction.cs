@@ -1,4 +1,7 @@
-﻿namespace Param_RootNamespace.Core.Services
+﻿//{[{
+using System.Threading.Tasks;
+//}]}
+namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {

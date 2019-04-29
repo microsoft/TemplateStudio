@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Prism.Windows.Mvvm;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
@@ -17,7 +18,7 @@ namespace Param_RootNamespace.ViewModels
             _sampleDataService = sampleDataServiceInstance;
         }
 
-        public ObservableCollection<SampleOrder> Source 
+        public ObservableCollection<SampleOrder> Source
         {
             get
             {
