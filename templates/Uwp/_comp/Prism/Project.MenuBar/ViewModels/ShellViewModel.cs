@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Services;
@@ -14,6 +15,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
+        private Frame _frame;
         private IMenuNavigationService _menuNavigationService;
 
         public ICommand MenuFileExitCommand { get; }
@@ -24,8 +26,9 @@ namespace Param_RootNamespace.ViewModels
             MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
 
-        public void Initialize(SplitView splitView, Frame rightFrame)
+        public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
         {
+            _frame = frame;
             _menuNavigationService.Initialize(splitView, rightFrame);
         }
 

@@ -11,7 +11,6 @@
         <maps:MapControl
             x:Name="mapControl"
             ZoomLevel="{x:Bind ZoomLevel, Mode=OneWay}"
-            Center="{x:Bind Center, Mode=OneWay}"/>
-        <TickBar/>
+            Center="{x:Bind Center, Mode=OneWay}" />
     </Grid>
 </Page>

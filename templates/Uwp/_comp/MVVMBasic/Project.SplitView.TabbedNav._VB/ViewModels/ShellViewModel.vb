@@ -62,6 +62,9 @@ Namespace ViewModels
             End Get
         End Property
 
+        Public Sub New()
+        End Sub
+
         Public Sub Initialize(frame As Frame, navigationView As WinUI.NavigationView, keyboardAccelerators As IList(Of KeyboardAccelerator))
             _navigationView = navigationView
             _keyboardAccelerators = keyboardAccelerators
@@ -73,11 +76,12 @@ Namespace ViewModels
             AddHandler _navigationView.BackRequested, AddressOf OnBackRequested
         End Sub
 
-        Private Sub OnLoaded()
+        Private Async Sub OnLoaded()
             ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             _keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             _keyboardAccelerators.Add(_backKeyboardAccelerator)
+            Await Task.CompletedTask
         End Sub
 
         Private Sub OnBackRequested(sender As WinUI.NavigationView, args As WinUI.NavigationViewBackRequestedEventArgs)
@@ -90,7 +94,11 @@ Namespace ViewModels
             NavigationService.Navigate(pageType)
         End Sub
 
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+            Throw e.Exception
+        End Sub
+
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
             Selected = _navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
