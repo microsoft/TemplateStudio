@@ -1,11 +1,11 @@
 ﻿namespace Param_RootNamespace.Activation
 {
-    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+    internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
     {
 //{[{
         private readonly Type _navElement;
 
-        public DefaultLaunchActivationHandler(Type navElement)
+        public DefaultActivationHandler(Type navElement)
         {
             _navElement = navElement;
         }
