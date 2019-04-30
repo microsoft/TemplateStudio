@@ -35,11 +35,6 @@ Namespace Services
             _lastActivationArgs = activationArgs
 
             If IsInteractive(activationArgs) Then
-                Dim defaultHandler = New DefaultActivationHandler(_defaultNavItem)
-                If defaultHandler.CanHandle(activationArgs) Then
-                    Await defaultHandler.HandleAsync(activationArgs)
-                End If
-
                 ' Ensure the current window is active
                 Window.Current.Activate()
 
