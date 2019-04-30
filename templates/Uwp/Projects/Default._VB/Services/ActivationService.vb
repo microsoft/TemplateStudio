@@ -60,7 +60,7 @@ Namespace Services
             End If
 
             If IsInteractive(activationArgs) Then
-                Dim defaultHandler = New DefaultLaunchActivationHandler(_defaultNavItem)
+                Dim defaultHandler = New DefaultActivationHandler(_defaultNavItem)
 
                 If defaultHandler.CanHandle(activationArgs) Then
                     Await defaultHandler.HandleAsync(activationArgs)
