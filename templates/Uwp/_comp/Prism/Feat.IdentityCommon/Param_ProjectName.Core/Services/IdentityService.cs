@@ -177,7 +177,7 @@ namespace Param_RootNamespace.Core.Services
                                                              .ExecuteAsync();
                         return true;
                     }
-                    catch(MsalUiRequiredException ex)
+                    catch(MsalUiRequiredException)
                     {
                         // Interactive authentication is required
                         return false;

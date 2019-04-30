@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Forced Login",
+  "description": "将应用程序配置为需要用户登录。",
+  "identity": "wts.Feat.IdentityForcedLogin.CodeBehind.VB"
+}

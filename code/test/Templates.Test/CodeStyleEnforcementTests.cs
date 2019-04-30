@@ -153,6 +153,10 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("yield return"); // Return not needed but converter includes it
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
             CheckStringNotIncluded("'''/");
+            CheckStringNotIncluded(" += AddressOf"); // Use AddHandler instead
+            CheckStringNotIncluded(" -= AddressOf"); // Use RemoveHandler instead
+            CheckStringNotIncluded("Param_Setter("); // ParamSetter should be in square brackets
+            CheckStringNotIncluded("CSharpImpl"); // Output by converter
 
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync", "OnPivotActivatedAsync", "TaskCanceledException" });
 

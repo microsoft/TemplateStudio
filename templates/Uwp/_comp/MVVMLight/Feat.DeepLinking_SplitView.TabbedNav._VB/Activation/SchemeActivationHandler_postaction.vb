@@ -18,9 +18,6 @@ Namespace Activation
             Dim data = New SchemeActivationData(args.Uri)
             If data.IsValid Then
                 NavigationService.Navigate(data.ViewModelName, data.Parameters)
-            ElseIf args.PreviousExecutionState <> ApplicationExecutionState.Running Then
-                ' If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
-                NavigationService.Navigate(GetType(ViewModels.Param_HomeNameViewModel).FullName)
             End If
             Await Task.CompletedTask
         End Function

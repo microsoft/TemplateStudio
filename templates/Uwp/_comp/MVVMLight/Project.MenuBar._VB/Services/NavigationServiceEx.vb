@@ -123,11 +123,11 @@ Namespace Services
             End If
         End Sub
 
-        Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+        Public Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
             RaiseEvent NavigationFailed(sender, e)
         End Sub
 
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim frame = TryCast(sender, Frame)
 
             If frame IsNot Nothing Then

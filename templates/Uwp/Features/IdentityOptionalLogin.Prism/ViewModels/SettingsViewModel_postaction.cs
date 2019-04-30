@@ -67,7 +67,7 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
             _identityService.LoggedIn += OnLoggedIn;
-            _identityService.LoggedOut += OnLoggeOut;
+            _identityService.LoggedOut += OnLoggedOut;
             _userDataService.UserDataUpdated += OnUserDataUpdated;
             IsLoggedIn = _identityService.IsLoggedIn();
             User = await _userDataService.GetUserAsync();
@@ -80,13 +80,13 @@ namespace Param_RootNamespace.ViewModels
         {
             base.OnNavigatingFrom(e, viewModelState, suspending);
             _identityService.LoggedIn -= OnLoggedIn;
-            _identityService.LoggedOut -= OnLoggeOut;
+            _identityService.LoggedOut -= OnLoggedOut;
             _userDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 
-        private void OnUserDataUpdated(object sender, UserViewModel user)
+        private void OnUserDataUpdated(object sender, UserViewModel userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogIn()
@@ -112,7 +112,7 @@ namespace Param_RootNamespace.ViewModels
             IsBusy = false;
         }
 
-        private void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggedOut(object sender, EventArgs e)
         {
             User = null;
             IsLoggedIn = false;
