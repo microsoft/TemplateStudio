@@ -364,7 +364,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Templates version:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>
     <comment>About section title</comment>
@@ -741,5 +741,9 @@ Please verify the following list of packages needed by your project's code and m
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>See documentation to update.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for data templates</comment>
   </data>
 </root>
