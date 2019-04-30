@@ -20,7 +20,7 @@
     "wts.defaultInstance": "DeepLinking",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"false"
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "DeepLinking",
   "preferNameDirectory": true,
@@ -45,10 +45,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

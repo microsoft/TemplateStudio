@@ -1,4 +1,4 @@
-﻿Die optionale Anmeldung fügt die Benutzerauthentifizierung über Azure AD und [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) hinzu. 
+﻿Die optionale Anmeldung fügt die Benutzerauthentifizierung über Azure AD und [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) hinzu.
 Diese Anmeldungsmethode ermöglicht die Kombination von nicht eingeschränkten und eingeschränkten Inhalten. Eingeschränkte Inhalte werden nur für angemeldete und autorisierte Benutzer angezeigt.
 Die Anwendung enthält einen Aufruf von Microsoft Graph zur Anzeige von Benutzerinformationen und -foto im NavigationPane und auf der SettingsPage.
 

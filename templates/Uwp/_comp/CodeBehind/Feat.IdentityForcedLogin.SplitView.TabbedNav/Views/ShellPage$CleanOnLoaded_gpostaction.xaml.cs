@@ -1,12 +1,6 @@
-﻿namespace Param_RootNamespace.Views
+﻿private async void OnLoaded(object sender, RoutedEventArgs e)
 {
-    public sealed partial class ShellPage : Page, INotifyPropertyChanged
-    {
-        private async void OnLoaded(object sender, RoutedEventArgs e)
-        {
 //{--{
-            await Task.CompletedTask;
+    await Task.CompletedTask;
 //}--}
-        }
-    }
 }

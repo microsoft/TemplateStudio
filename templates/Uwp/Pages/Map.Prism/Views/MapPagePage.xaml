@@ -21,6 +21,5 @@
                 <behaviors:BindableMapIconBehavior MapIcons="{Binding MapIcons}" />
             </i:Interaction.Behaviors>
         </maps:MapControl>
-        <TickBar />
     </Grid>
 </Page>

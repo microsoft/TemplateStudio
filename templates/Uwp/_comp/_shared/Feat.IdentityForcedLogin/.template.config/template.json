@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Feat.IdentityForcedLogin",
+    "wts.compositionFilter": "identity == wts.Feat.IdentityForcedLogin|wts.Feat.IdentityForcedLogin.CodeBehind",
     "wts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",
@@ -18,6 +18,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
     }
   ],
   "symbols": {
@@ -29,10 +32,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

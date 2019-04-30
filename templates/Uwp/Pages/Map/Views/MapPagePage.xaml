@@ -12,6 +12,5 @@
             x:Name="mapControl"
             Center="{x:Bind ViewModel.Center, Mode=OneWay}"
             ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" />
-        <TickBar />
     </Grid>
 </Page>

@@ -116,7 +116,7 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.vb" />
     <Compile Include="Services\ActivationService.vb" />
-    <Compile Include="Activation\DefaultLaunchActivationHandler.vb" />
+    <Compile Include="Activation\DefaultActivationHandler.vb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.vb">

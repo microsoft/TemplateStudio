@@ -19,9 +19,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\ViewModels\\ViewModelLocator.vb"
-    },
-    {
-      "path": ".\\Services\\NavigationServiceEx.vb"
     }
   ],
   "symbols": {

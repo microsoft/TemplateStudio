@@ -15,9 +15,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Helpers\\ImageHelper.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

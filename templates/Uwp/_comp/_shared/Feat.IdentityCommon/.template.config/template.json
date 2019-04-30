@@ -31,9 +31,6 @@
     },
     {
       "path": ".\\Param_ProjectName.Core\\Models\\User.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
     }
   ],
   "symbols": {
@@ -45,10 +42,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   },
   "postActions": [

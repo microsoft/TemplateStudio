@@ -1,0 +1,56 @@
+﻿<Page
+<!--^^-->
+<!--{[{-->
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+<!--}]}-->
+    mc:Ignorable="d">
+<!--^^-->
+<!--{[{-->
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="ReverseBoolToVisibility" FalseValue="Visible" TrueValue="Collapsed" />
+    </Page.Resources>
+<!--}]}-->
+
+    <winui:NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+<!--^^-->
+<!--{[{-->
+        <winui:NavigationView.PaneFooter>
+            <Grid>
+                <Button
+                    x:Uid="Shell_UserInfoButton"
+                    Width="48"
+                    Height="40"
+                    Command="{x:Bind ViewModel.UserProfileCommand}"
+                    Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay}"
+                    Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+                    <Ellipse Width="24" Height="24">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Button>
+                <Button
+                    x:Uid="Shell_LoginButton"
+                    Width="48"
+                    Height="40"
+                    Command="{x:Bind ViewModel.UserProfileCommand}"
+                    Visibility="{x:Bind ViewModel.IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}"
+                    Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+                    <Ellipse Width="24" Height="24">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Assets/DefaultIcon.png" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Button>
+            </Grid>
+        </winui:NavigationView.PaneFooter>
+<!--}]}-->
+        <Grid>
+        </Grid>
+    </winui:NavigationView>
+</Page>

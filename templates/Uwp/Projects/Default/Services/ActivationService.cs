@@ -73,7 +73,7 @@ namespace Param_RootNamespace.Services
 
             if (IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
+                var defaultHandler = new DefaultActivationHandler(_defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);

@@ -53,7 +53,7 @@ namespace Param_RootNamespace.Views
             VersionDescription = GetVersionDescription();
 //{[{
             IdentityService.LoggedIn += OnLoggedIn;
-            IdentityService.LoggedOut += OnLoggeOut;
+            IdentityService.LoggedOut += OnLoggedOut;
             UserDataService.UserDataUpdated += OnUserDataUpdated;
             IsLoggedIn = IdentityService.IsLoggedIn();
             User = await UserDataService.GetUserAsync();
@@ -61,9 +61,9 @@ namespace Param_RootNamespace.Views
         }
 //^^
 //{[{
-        private void OnUserDataUpdated(object sender, UserData user)
+        private void OnUserDataUpdated(object sender, UserData userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogIn(object sender, RoutedEventArgs e)
@@ -89,7 +89,7 @@ namespace Param_RootNamespace.Views
             IsBusy = false;
         }
 
-        private void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggedOut(object sender, EventArgs e)
         {
             User = null;
             IsLoggedIn = false;
@@ -100,7 +100,7 @@ namespace Param_RootNamespace.Views
         {
             base.OnNavigatingFrom(e);
             IdentityService.LoggedIn -= OnLoggedIn;
-            IdentityService.LoggedOut -= OnLoggeOut;
+            IdentityService.LoggedOut -= OnLoggedOut;
             UserDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 //}]}

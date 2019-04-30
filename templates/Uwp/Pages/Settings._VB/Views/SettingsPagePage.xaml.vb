@@ -7,8 +7,8 @@
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
-            ViewModel.Initialize()
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            Await ViewModel.InitializeAsync()
         End Sub
     End Class
 End Namespace

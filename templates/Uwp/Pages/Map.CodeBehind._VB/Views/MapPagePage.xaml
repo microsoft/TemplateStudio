@@ -10,8 +10,7 @@
     <Grid>
         <maps:MapControl
             x:Name="mapControl"
-            Center="{x:Bind Center, Mode=OneWay}"
-            ZoomLevel="{x:Bind ZoomLevel, Mode=OneWay}" />
-        <TickBar />
+            ZoomLevel="{x:Bind ZoomLevel, Mode=OneWay}"
+            Center="{x:Bind Center, Mode=OneWay}" />
     </Grid>
 </Page>
