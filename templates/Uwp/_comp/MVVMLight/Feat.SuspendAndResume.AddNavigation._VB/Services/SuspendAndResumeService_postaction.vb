@@ -9,9 +9,12 @@ Namespace Services
         Private Const StateFilename As String = "SuspendAndResumeState"
 
         '{[{
-        ' TODO WTS: Subscribe to the OnBackgroundEntering event from your current Page's ViewModel to save the current App data.
-        ' Only one Page should subscribe to OnBackgroundEntering at a time, as the App will navigate to that Page on resume.
-        Public Event OnBackgroundEntering As EventHandler(Of OnBackgroundEnteringEventArgs)
+        ' TODO WTS: Subscribe to the OnBackgroundEntering and OnDataRestored events from your current Page to save and restore the current App data.
+        ' Only one Page should subscribe to OnBackgroundEntering and OnDataRestored at a time, as the App will navigate to that Page on resume.
+        '
+        Public Event OnBackgroundEntering As EventHandler(Of SuspendAndResumeArgs)
+
+        Public Event OnDataRestored As EventHandler(Of SuspendAndResumeArgs)
 
         ' TODO WTS: Subscribe to the OnResuming event from the current Page's ViewModel
         ' if you need to refresh online data when the App resumes without being terminated.
