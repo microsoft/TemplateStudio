@@ -84,7 +84,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Xaml.Behaviors.Uwp.Managed",
-        "version" : "2.0.0",
+        "version" : "2.0.1",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": "true"
@@ -95,7 +95,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.1.190405004.1",
+        "version" : "2.1.190405004.2",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": "true"
