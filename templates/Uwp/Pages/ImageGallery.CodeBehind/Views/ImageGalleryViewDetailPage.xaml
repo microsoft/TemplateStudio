@@ -11,7 +11,7 @@
 
     <Grid>
         <FlipView
-            ItemsSource="{x:Bind Source}"
+            ItemsSource="{x:Bind Source, Mode=OneWay}"
             SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}"
             animations:Connected.Key="galleryAnimationKey"
             animations:Connected.AnchorElement="{Binding ElementName=detailImage}">

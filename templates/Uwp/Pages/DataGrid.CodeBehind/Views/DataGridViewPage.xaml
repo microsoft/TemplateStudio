@@ -12,7 +12,7 @@
         Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <controls:DataGrid
-                ItemsSource="{x:Bind Source}"
+                ItemsSource="{x:Bind Source, Mode=OneWay}"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal">
                 <controls:DataGrid.Columns>

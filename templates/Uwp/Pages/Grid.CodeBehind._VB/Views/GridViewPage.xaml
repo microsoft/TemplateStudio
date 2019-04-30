@@ -12,7 +12,7 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source}" AutoGenerateColumns="False" >
+            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source, Mode=OneWay}" AutoGenerateColumns="False" >
                 <tg:RadDataGrid.Columns>
                     <!--TODO WTS:
                       Remove this column definitions and define columns for your data.
