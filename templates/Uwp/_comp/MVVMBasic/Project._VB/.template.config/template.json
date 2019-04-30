@@ -17,9 +17,6 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationService.vb"
-    },
-    {
       "path": ".\\Helpers\\Observable.vb"
     },
     {

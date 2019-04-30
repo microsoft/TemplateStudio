@@ -49,13 +49,13 @@ namespace Param_RootNamespace.Views
 
         public void UnregisterEvents()
         {
-            IdentityService.LoggedOut -= OnLoggeOut;
+            IdentityService.LoggedOut -= OnLoggedOut;
             UserDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 
-        private void OnUserDataUpdated(object sender, UserData user)
+        private void OnUserDataUpdated(object sender, UserData userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogout(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace Param_RootNamespace.Views
             await IdentityService.LogoutAsync();
         }
 
-        private void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggedOut(object sender, EventArgs e)
         {
             UnregisterEvents();
         }

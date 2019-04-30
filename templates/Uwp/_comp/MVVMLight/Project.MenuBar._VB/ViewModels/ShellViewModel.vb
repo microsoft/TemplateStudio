@@ -55,11 +55,12 @@ Namespace ViewModels
             _keyboardAccelerators = keyboardAccelerators
         End Sub
 
-        Private Sub OnLoaded()
+        Private Async Sub OnLoaded()
             ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             _keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             _keyboardAccelerators.Add(_backKeyboardAccelerator)
+            Await Task.CompletedTask
         End Sub
 
         Private Sub OnMenuFileExit()

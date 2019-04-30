@@ -24,18 +24,39 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForSonarLint))]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
+        public async Task GenerateAllPagesAndFeaturesOptionalLoginAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
         {
-
             Func<ITemplateInfo, bool> templateSelector =
                     t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
-                    && !t.GetIsHidden())
+                    && !t.GetIsHidden()
+                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB")
                     || (t.Name == "Feature.Testing.SonarLint.VB");
 
-            var projectName = $"{projectType}{framework}AllSonarLint";
+            var projectName = $"{ShortProjectType(projectType)}{framework}OptionalAllSonarLint";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForSonarLint))]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateAllPagesAndFeaturesForcedLoginAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                    t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden()
+                    && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin.VB")
+                    || (t.Name == "Feature.Testing.SonarLint.VB");
+
+            var projectName = $"{ShortProjectType(projectType)}{framework}ForcedAllSonarLint";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 

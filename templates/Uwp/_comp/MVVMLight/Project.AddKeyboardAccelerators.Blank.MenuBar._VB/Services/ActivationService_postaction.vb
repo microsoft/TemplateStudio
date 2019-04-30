@@ -7,6 +7,7 @@ Namespace Services
     Friend Class ActivationService
 '^^
 '{[{
+
         Public Shared ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return ViewModelLocator.Current.NavigationService
