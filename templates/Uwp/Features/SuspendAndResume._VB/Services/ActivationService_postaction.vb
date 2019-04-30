@@ -9,10 +9,28 @@ Imports Param_RootNamespace.Core.Helpers
 
 Namespace Services
     Friend Class ActivationService
+        Public Async Function ActivateAsync(activationArgs As Object) As Task
+            If IsInteractive(activationArgs) Then
+            End If
+
+            Await HandleActivationAsync(activationArgs)
+            _lastActivationArgs = activationArgs
+
+            If IsInteractive(activationArgs) Then
+'{[{
+                Dim Activation = TryCast(activationArgs, IActivatedEventArgs)
+                If Activation IsNot Nothing And Activation.PreviousExecutionState = ApplicationExecutionState.Terminated Then
+                    Await Singleton(Of SuspendAndResumeService).Instance.RestoreSuspendAndResumeData()
+                End If
+
+'}]}
+            End If
+        End Function
+
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
-            '{[{
+'{[{
             Yield Singleton(Of SuspendAndResumeService).Instance
-            '}]}
+'}]}
 '{--{
             Exit Function
 '}--}
