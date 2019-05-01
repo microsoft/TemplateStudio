@@ -35,6 +35,7 @@ namespace Param_RootNamespace.Views
         {
             base.OnNavigatedTo(e);
 
+            // TODO WTS: Replace this with your actual data
             Source = await SampleDataService.GetContentGridDataAsync();
         }
 

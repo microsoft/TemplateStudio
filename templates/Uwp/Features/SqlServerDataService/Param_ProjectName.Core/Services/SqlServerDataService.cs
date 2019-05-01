@@ -25,7 +25,7 @@ namespace Param_RootNamespace.Core.Services
             }
             else
             {
-                // If there's no connection string specified in a config file, use this as a fallback.
+                // If no connection string is specified in a config file, use this as a fallback.
                 return @"Data Source=*server*\*instance*;Initial Catalog=*dbname*;Integrated Security=SSPI";
             }
         }
@@ -87,7 +87,7 @@ Order BY Orders.OrderID";
             }
             catch (Exception eSql)
             {
-                System.Diagnostics.Debug.WriteLine("Exception: " + eSql.Message);
+                System.Diagnostics.Debug.WriteLine($"Exception: {eSql.Message} {eSql.InnerException?.Message}");
             }
 
             return sampleOrders;

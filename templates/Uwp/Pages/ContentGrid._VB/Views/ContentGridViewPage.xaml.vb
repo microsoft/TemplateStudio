@@ -9,7 +9,7 @@
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
 
-            Await ViewModel.LoadDataASync()
+            Await ViewModel.LoadDataAsync()
         End Sub
     End Class
 End Namespace

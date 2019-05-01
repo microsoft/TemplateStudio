@@ -20,6 +20,7 @@ Namespace ViewModels
         End Property
 
         Public Async Function LoadDataAsync() As Task
+            ' TODO WTS: Replace this with your actual data
             Source = Await SampleDataService.GetChartSampleDataAsync()
         End Function
     End Class

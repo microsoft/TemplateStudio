@@ -8,6 +8,8 @@ Namespace Services
     ' This class holds sample data used by some generated pages to show how they can be used.
     ' TODO WTS: Change your code to use this instead of the SampleDataService.
     Public Module SqlServerDataService
+
+        ' TODO WTS: Specify the connection string in a config file or below.
         Private Function GetConnectionString() As String
             ' Attempt to get the connection string from a config file
             ' Learn more about specifying the connection string in a config file at https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?view=netframework-4.7.2
@@ -16,7 +18,7 @@ Namespace Services
             If Not String.IsNullOrWhiteSpace(conStr) Then
                 Return conStr
             Else
-                ' If connection string is specified in a config file, use this as a fallback.
+                ' If no connection string is specified in a config file, use this as a fallback.
                 Return "Data Source=*server*\*instance*;Initial Catalog=*dbname*;Integrated Security=SSPI"
             End If
         End Function

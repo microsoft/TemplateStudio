@@ -21,7 +21,8 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public Async Function LoadDataASync() As Task
+        Public Async Function LoadDataAsync() As Task
+            ' TODO WTS: Replace this with your actual data
             Source = Await SampleDataService.GetContentGridDataAsync()
         End Function
 
