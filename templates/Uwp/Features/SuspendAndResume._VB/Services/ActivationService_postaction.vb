@@ -13,9 +13,6 @@ Namespace Services
             If IsInteractive(activationArgs) Then
             End If
 
-            Await HandleActivationAsync(activationArgs)
-            _lastActivationArgs = activationArgs
-
             If IsInteractive(activationArgs) Then
 '{[{
                 Dim Activation = TryCast(activationArgs, IActivatedEventArgs)

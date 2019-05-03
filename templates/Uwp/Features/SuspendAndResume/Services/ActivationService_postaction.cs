@@ -18,9 +18,6 @@ namespace Param_RootNamespace.Services
             {
             }
 
-            await HandleActivationAsync(activationArgs);
-            _lastActivationArgs = activationArgs;
-
             if (IsInteractive(activationArgs))
             {
 //{[{
