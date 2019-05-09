@@ -249,16 +249,15 @@ namespace Localization
             foreach (string directory in Routes.ResoureceDirectories)
             {
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (_validator.HasResourceChanges(srcResFile))
-                {
-                    FileInfo resourceFile = _routesManager.GetFileFromSource(srcResFile);
-                    var desDirectory = _routesManager.GetOrCreateDestDirectory(directory);
+                var desDirectory = _routesManager.GetOrCreateDestDirectory(directory).FullName;
 
-                    foreach (string culture in _cultures)
-                    {
-                        string destResFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ResourcesFilePathPattern, culture));
-                        resourceFile.CopyTo(destResFile, true);
-                    }
+                var newResxValues = _validator.GetResourcesWithChanges(srcResFile);
+                var resourceFile = ResourcesExtensions.CreateResxFile(Path.Combine(desDirectory, Routes.ResourcesFilePath), newResxValues);
+
+                foreach (string culture in _cultures)
+                {
+                    string destResFile = Path.Combine(desDirectory, string.Format(Routes.ResourcesFilePathPattern, culture));
+                    resourceFile.CopyTo(destResFile, true);
                 }
             }
         }

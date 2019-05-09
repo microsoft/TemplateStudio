@@ -31,5 +31,15 @@ namespace Localization.Extensions
 
             return true;
         }
+
+        internal static Dictionary<string, string> GetChangesFrom(this Dictionary<string, string> d1, Dictionary<string, string> d2)
+        {
+            // return new entries and changed entries
+            var result = d1
+                .Where(entry => !d2.Keys.Contains(entry.Key) || d2[entry.Key] != entry.Value)
+                .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
+
+            return result;
+        }
     }
 }

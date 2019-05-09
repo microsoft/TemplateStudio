@@ -21,17 +21,41 @@ namespace Localization.Extensions
 
             using (var resx = new ResXResourceReader(filePath))
             {
-                return resx.Cast<DictionaryEntry>()
-                            .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
+                return resx
+                        .Cast<DictionaryEntry>()
+                        .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
             }
         }
 
-        public static string GetResourceValue(string filePath, string name)
+        public static Dictionary<string, string> GetResourceValues(string filePath, IEnumerable<string> keys)
         {
-            using (ResXResourceSet resxSet = new ResXResourceSet(filePath))
+            using (ResXResourceSet resx = new ResXResourceSet(filePath))
             {
-                return resxSet.GetString(name);
+                return resx
+                        .Cast<DictionaryEntry>()
+                        .Where(item => keys.Contains(item.Key))
+                        .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
             }
+        }
+
+        public static FileInfo CreateResxFile(string path, Dictionary<string, string> dictionary)
+        {
+            if (dictionary is null)
+            {
+                return null;
+            }
+
+            using (var writer = new ResXResourceWriter(path))
+            {
+                foreach (var entry in dictionary)
+                {
+                    writer.AddResource(entry.Key, entry.Value);
+                }
+
+                writer.Generate();
+            }
+
+            return new FileInfo(path);
         }
     }
 }
