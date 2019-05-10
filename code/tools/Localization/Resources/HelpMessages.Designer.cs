@@ -117,12 +117,35 @@ namespace Localization.Resources {
         ///
         ///EXT        Extract localizable items for different cultures.
         ///GEN        Generates Project Templates for different cultures.
+        ///MERGE      Merge localizable items to projects and templates.
         ///VERIFY     Verify if exist localizable items for different cultures.
         ///HELP       Provides Help information for Windows Template Studio Localization Tool..
         /// </summary>
         public static string Info {
             get {
                 return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge localizable items to projects and templates.
+        ///
+        ///Localization merge -s &quot;sourceDirectory&quot; -d &quot;destinationDirectory&quot;
+        ///
+        ///        sourceDirectory          - path to the folder that contains
+        ///                                   localizable items to merge.
+        ///
+        ///        destinationDirectory     - path to the folder that contains
+        ///                                   source files for Project Templates
+        ///                                   (it&apos;s root project folder).
+        ///
+        ///Example:
+        ///
+        ///        Localization merge -s &quot;C:\\M [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string MergeCommand {
+            get {
+                return ResourceManager.GetString("MergeCommand", resourceCulture);
             }
         }
         

@@ -15,6 +15,9 @@ namespace Localization.Options
         [VerbOption("gen", HelpText = "Generates Project Templates for different cultures.")]
         public GenerationOptions GenerationOptions { get; set; }
 
+        [VerbOption("merge", HelpText = "Merge localizable items to projects and templates.")]
+        public MergeOptions MergeOptions { get; set; }
+
         [VerbOption("verify", HelpText = "Verify if exist localizable items for different cultures")]
         public VerifyOptions VerifyOptions { get; set; }
 

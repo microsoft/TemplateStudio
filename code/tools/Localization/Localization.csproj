@@ -71,6 +71,7 @@
     <Compile Include="Logic\CatalogLocalizationValue.cs" />
     <Compile Include="Logic\OriginalLocalizableItemsExtractor.cs" />
     <Compile Include="Logic\ProjectTemplateGeneratorConfig.cs" />
+    <Compile Include="Options\MergeOptions.cs" />
     <Compile Include="Options\ExtractOptions.cs" />
     <Compile Include="Options\GenerationOptions.cs" />
     <Compile Include="Options\CommandLineOptions.cs" />

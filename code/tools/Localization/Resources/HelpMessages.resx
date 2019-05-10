@@ -165,8 +165,25 @@ Localization help [command]
 
 EXT        Extract localizable items for different cultures.
 GEN        Generates Project Templates for different cultures.
+MERGE      Merge localizable items to projects and templates.
 VERIFY     Verify if exist localizable items for different cultures.
 HELP       Provides Help information for Windows Template Studio Localization Tool.</value>
+  </data>
+  <data name="MergeCommand" xml:space="preserve">
+    <value>Merge localizable items to projects and templates.
+
+Localization merge -s "sourceDirectory" -d "destinationDirectory"
+
+        sourceDirectory          - path to the folder that contains
+                                   localizable items to merge.
+
+        destinationDirectory     - path to the folder that contains
+                                   source files for Project Templates
+                                   (it's root project folder).
+
+Example:
+
+        Localization merge -s "C:\\MyFolder\\LocalizedItems" -d "C:\\MyFolder\\wts"</value>
   </data>
   <data name="UnknownCommand" xml:space="preserve">
     <value>Command unknown.</value>

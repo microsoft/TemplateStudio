@@ -113,6 +113,18 @@ namespace Localization
             return result;
         }
 
+        public void MergeLocalizableItems(MergeOptions options)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+           // merge files
+            Console.WriteLine("End");
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+        }
+
         private bool CanOverwriteDirectory(string destDirectory)
         {
             if (!Directory.Exists(destDirectory) || !Directory.EnumerateFileSystemEntries(destDirectory).Any())
