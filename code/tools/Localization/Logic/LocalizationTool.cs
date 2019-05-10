@@ -118,7 +118,11 @@ namespace Localization
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-           // merge files
+            var merger = new LocalizableItemsMerger(options.SourceDirectory, options.DestinationDirectory);
+
+            Console.WriteLine("Merge files");
+            merger.MergeFiles();
+
             Console.WriteLine("End");
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;

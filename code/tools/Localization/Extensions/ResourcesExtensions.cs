@@ -19,9 +19,9 @@ namespace Localization.Extensions
                 return new Dictionary<string, string>();
             }
 
-            using (var resx = new ResXResourceReader(filePath))
+            using (var reader = new ResXResourceReader(filePath))
             {
-                return resx
+                return reader
                         .Cast<DictionaryEntry>()
                         .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
             }
@@ -56,6 +56,36 @@ namespace Localization.Extensions
             }
 
             return new FileInfo(path);
+        }
+
+        public static void MergeResxFiles(FileInfo sourceFile, FileInfo destFile)
+        {
+            var sourceEntries = GetResourcesByFile(sourceFile.FullName);
+
+            using (var reader = new ResXResourceReader(destFile.FullName))
+            using (var writer = new ResXResourceWriter(destFile.FullName))
+            {
+                reader.UseResXDataNodes = true;
+
+                foreach (DictionaryEntry item in reader)
+                {
+                    var node = (ResXDataNode)item.Value;
+                    var key = item.Key.ToString();
+
+                    if (sourceEntries.Keys.Contains(key))
+                    {
+                        var newNode = new ResXDataNode(key, sourceEntries[key]);
+                        newNode.Comment = node.Comment;
+                        writer.AddResource(newNode);
+                    }
+                    else
+                    {
+                        writer.AddResource(node);
+                    }
+                }
+
+                writer.Generate();
+            }
         }
     }
 }
