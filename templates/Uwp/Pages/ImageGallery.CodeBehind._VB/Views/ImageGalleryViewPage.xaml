@@ -2,34 +2,33 @@
     x:Class="Param_RootNamespace.Views.ImageGalleryViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
     xmlns:models="using:Param_RootNamespace.Core.Models"
-    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     NavigationCacheMode="Required"
+    Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <GridView
-            ItemsSource="{x:Bind Source}"
-            IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="thumbnailImage"
             animations:Connected.ListItemKey="galleryAnimationKey"
+            IsItemClickEnabled="True"
             ItemClick="ImagesGridView_ItemClick"
+            ItemsSource="{x:Bind Source}"
             SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
                     <Image
                         x:Name="thumbnailImage"
-                        Style="{StaticResource ThumbnailImageStyle}"
-                        Source="{x:Bind Source}"
                         AutomationProperties.Name="{x:Bind Name}"
-                        ToolTipService.ToolTip="{x:Bind Name}"/>
+                        Source="{x:Bind Source}"
+                        Style="{StaticResource ThumbnailImageStyle}"
+                        ToolTipService.ToolTip="{x:Bind Name}" />
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
 </Page>
-
