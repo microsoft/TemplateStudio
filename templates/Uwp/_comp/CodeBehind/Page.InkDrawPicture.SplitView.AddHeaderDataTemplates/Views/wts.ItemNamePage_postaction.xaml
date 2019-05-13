@@ -9,41 +9,96 @@
     <Page.Resources>
         <DataTemplate x:Key="BigHeaderTemplate">
             <RelativePanel>
-                <InkToolbar x:Name="toolbar" Background="Transparent" Loaded="OnInkToolbarLoaded" RelativePanel.AlignHorizontalCenterWithPanel="True">
-                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbar
+                    x:Name="toolbar"
+                    Background="Transparent"
+                    Loaded="OnInkToolbarLoaded"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True">
+                    <InkToolbarCustomToggleButton
+                        x:Uid="wts.ItemName_TouchInkingButton"
+                        Background="Transparent"
+                        IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
                     </InkToolbarCustomToggleButton>
-                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                    <InkToolbarCustomToggleButton
+                        x:Uid="wts.ItemName_MouseInkingButton"
+                        Background="Transparent"
+                        IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                     </InkToolbarCustomToggleButton>
                 </InkToolbar>
-                <CommandBar x:Name="topCommandBar" Style="{StaticResource InkCommandBarStyle}" RelativePanel.RightOf="toolbar" RelativePanel.AlignRightWithPanel="True">
+                <CommandBar
+                    x:Name="topCommandBar"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.RightOf="toolbar"
+                    Style="{StaticResource InkCommandBarStyle}">
                     <CommandBar.PrimaryCommands>
-                        <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ZoomInButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ZoomIn_Click"
+                            Icon="ZoomIn" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ZoomOutButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ZoomOut_Click"
+                            Icon="ZoomOut" />
                     </CommandBar.PrimaryCommands>
                     <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Uid="wts.ItemName_OriginalSizeButton" Icon="FullScreen" Click="ResetZoom_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_FitToScreenButton" Click="FitToScreen_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0">
+                        <AppBarButton
+                            x:Uid="wts.ItemName_OriginalSizeButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ResetZoom_Click"
+                            Icon="FullScreen" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_FitToScreenButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="FitToScreen_Click">
                             <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE73F;" />
                         </AppBarButton>
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="wts.ItemName_OpenImageButton" Click="LoadImage_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0">
+                        <AppBarSeparator />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_OpenImageButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="LoadImage_Click">
                             <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEB9F;" />
                         </AppBarButton>
-                        <AppBarButton x:Uid="wts.ItemName_SaveImageButton" Icon="Save" Click="SaveImage_Click" IsEnabled="{Binding Content.SaveImageButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_SaveImageButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="SaveImage_Click"
+                            Icon="Save"
+                            IsEnabled="{Binding Content.SaveImageButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarSeparator />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ClearAllButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ClearAll_Click"
+                            Icon="Delete"
+                            IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="SmallHeaderTemplate">
             <InkToolbar HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton
+                    x:Uid="wts.ItemName_TouchInkingButton"
+                    Background="Transparent"
+                    IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
                 </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton
+                    x:Uid="wts.ItemName_MouseInkingButton"
+                    Background="Transparent"
+                    IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                 </InkToolbarCustomToggleButton>
             </InkToolbar>

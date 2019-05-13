@@ -1270,6 +1270,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string TemplateGroup_Tools {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Interaction.
         /// </summary>
         public static string TemplateGroup_UserInteraction {

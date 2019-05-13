@@ -8,17 +8,22 @@
     <Grid x:Name="ContentArea">
         <ScrollViewer
             x:Name="canvasScroll"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             ZoomMode="Enabled">
-                <Grid Background="{StaticResource InkCanvasBackground}"
-                        Width="{Binding ElementName=inkCanvas, Path=Width}"
-                        Height="{Binding ElementName=inkCanvas, Path=Height}">
-                    <Image x:Name="image" Source="{x:Bind ViewModel.Image, Mode=TwoWay}" Stretch="None"/>                    
-                    <InkCanvas x:Name="inkCanvas"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
+                <Grid
+                    Background="{StaticResource InkCanvasBackground}"
+                    Width="{Binding ElementName=inkCanvas, Path=Width}"
+                    Height="{Binding ElementName=inkCanvas, Path=Height}">
+                    <Image
+                        x:Name="image"
+                        Source="{x:Bind ViewModel.Image, Mode=TwoWay}"
+                        Stretch="None" />                    
+                    <InkCanvas
+                        x:Name="inkCanvas"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch" />
             </Grid>
         </ScrollViewer>        
         <CommandBar
@@ -34,7 +39,7 @@
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE73F;" />
                 </AppBarButton>
                 <AppBarSeparator />
-                <AppBarButton x:Uid="InkDrawPictureView_OpenImageButton" Command="{x:Bind ViewModel.LoadImageCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" >
+                <AppBarButton x:Uid="InkDrawPictureView_OpenImageButton" Command="{x:Bind ViewModel.LoadImageCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEB9F;" />
                 </AppBarButton>
                 <AppBarButton x:Uid="InkDrawPictureView_SaveImageButton" Icon="Save" Command="{x:Bind ViewModel.SaveImageCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
