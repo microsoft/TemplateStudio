@@ -2,7 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Localization.Extensions;
 
 namespace Localization
@@ -31,20 +33,37 @@ namespace Localization
             }
         }
 
-        public void MergeResxFile(FileInfo file)
-        {
-            var relativePath = _routesManager.GetRelativePathFromSourceFile(file);
-            var destFile = _routesManager.GetFileFromDestination(relativePath);
-
-            ResourcesExtensions.MergeResxFiles(file, destFile);
-        }
-
-        public void MergeFile(FileInfo file)
+        private void MergeFile(FileInfo file)
         {
             var relativePath = _routesManager.GetRelativePathFromSourceFile(file);
             var destFile = _routesManager.GetFileFromDestination(relativePath);
 
             file.CopyTo(destFile.FullName, true);
+        }
+
+        private void MergeResxFile(FileInfo file)
+        {
+            var mainKeys = GetmainResxKeys(file);
+            var relativePath = _routesManager.GetRelativePathFromSourceFile(file);
+            var destFile = _routesManager.GetFileFromDestination(relativePath);
+
+            var newResxItems = ResourcesExtensions.GetResourcesByFile(file.FullName);
+            var sourceResxItems = ResourcesExtensions.GetResourcesByFile(destFile.FullName)
+                .Where(item => mainKeys.Contains(item.Key) && !newResxItems.Keys.Contains(item.Key));
+
+            foreach (var item in sourceResxItems)
+            {
+                newResxItems.Add(item.Key, item.Value);
+            }
+
+            ResourcesExtensions.CreateResxFile(destFile.FullName, newResxItems);
+        }
+
+        private IEnumerable<string> GetmainResxKeys(FileInfo file)
+        {
+            var relativeDirectory = _routesManager.GetRelativeDirectoryFromSource(file.Directory);
+            var mainFile = _routesManager.GetFileFromDestination(Path.Combine(relativeDirectory, Routes.ResourcesFilePath));
+            return ResourcesExtensions.GetResourcesByFile(mainFile.FullName).Keys;
         }
     }
 }

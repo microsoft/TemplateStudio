@@ -83,5 +83,12 @@ namespace Localization.Extensions
                 ? file.FullName.Substring(_sourceDir.FullName.Length + 1)
                 : string.Empty;
         }
+
+        public string GetRelativeDirectoryFromSource(DirectoryInfo directory)
+        {
+            return directory.FullName.StartsWith(_sourceDir.FullName)
+                ? directory.FullName.Substring(_sourceDir.FullName.Length + 1)
+                : string.Empty;
+        }
     }
 }

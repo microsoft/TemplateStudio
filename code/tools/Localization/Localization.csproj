@@ -72,6 +72,7 @@
     <Compile Include="Logic\LocalizableItemsMerger.cs" />
     <Compile Include="Logic\OriginalLocalizableItemsExtractor.cs" />
     <Compile Include="Logic\ProjectTemplateGeneratorConfig.cs" />
+    <Compile Include="Logic\ResxItem.cs" />
     <Compile Include="Options\MergeOptions.cs" />
     <Compile Include="Options\ExtractOptions.cs" />
     <Compile Include="Options\GenerationOptions.cs" />

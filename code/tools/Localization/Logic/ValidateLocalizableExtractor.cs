@@ -125,7 +125,7 @@ namespace Localization
 
         // TODO: this method should not be in this class, since it is not a validating method,
         // but the _routesManager contains the necessary paths
-        internal Dictionary<string, string> GetResourcesWithChanges(string resPath)
+        internal Dictionary<string, ResxItem> GetResourcesWithChanges(string resPath)
         {
             var originalResxPath = _routesManager.GetFileFromSource(resPath);
             var originalValues = ResourcesExtensions.GetResourcesByFile(originalResxPath.FullName);
