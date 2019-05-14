@@ -7,9 +7,7 @@
     xmlns:tg="using:Telerik.UI.Xaml.Controls.Grid"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" AutoGenerateColumns="False" >

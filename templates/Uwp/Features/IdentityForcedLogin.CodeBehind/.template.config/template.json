@@ -40,10 +40,6 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
-    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"

@@ -1,6 +1,6 @@
 ﻿Namespace Activation
-    Friend Class DefaultLaunchActivationHandler
-        Inherits ActivationHandler(Of LaunchActivatedEventArgs)
+    Friend Class DefaultActivationHandler
+        Inherits ActivationHandler(Of IActivatedEventArgs)
 '{[{
 
         Private ReadOnly _navElement As Type

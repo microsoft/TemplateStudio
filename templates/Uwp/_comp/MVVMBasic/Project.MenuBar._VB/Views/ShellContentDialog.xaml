@@ -7,6 +7,6 @@
     mc:Ignorable="d"
     PrimaryButtonText="Ok">
 
-    <Frame x:Name="shellFrame"/>
+    <Frame x:Name="shellFrame" />
 
 </ContentDialog>

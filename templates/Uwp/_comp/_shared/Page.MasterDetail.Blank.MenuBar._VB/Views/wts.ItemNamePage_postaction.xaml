@@ -7,6 +7,6 @@
             <!--{[{-->
             BackButtonBehavior="Inline"
             <!--}]}-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
     </Grid>
 </Page>

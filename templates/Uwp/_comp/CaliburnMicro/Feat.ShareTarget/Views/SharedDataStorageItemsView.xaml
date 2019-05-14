@@ -12,7 +12,7 @@
         <FlipView ItemsSource="{x:Bind ViewModel.Images}">
             <FlipView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding}"/>
+                    <Image Source="{Binding}" />
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
