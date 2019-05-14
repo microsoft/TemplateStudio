@@ -78,26 +78,159 @@ InitializeAsync contains static or singleton services initialization for service
 
 StartupAsync contains initializations of some classes and start's processes that will be run after the Window is activated.
 
+**HandleActivation**
+
+HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. Before that creates a DefaultActivationHandler and execute if it possible (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
+
+![](resources/activation/HandleActivation.png)
+
 ## Sample: Add activation from File Association
 
-Let's add activation from a file association:
-We created a sample application, that allows to view markdown (.md) files. You can check the sample here: [Markdown Viewer](/samples/activation).
+We are going now trying to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader in our app.
 
-The sample application was created using Windows Template Studio with the following configuration:
+The following code is thougt to be added in a WTS MVVM Basic app.
 
-* Project Type: Blank
-* Framework: MVVM Basic
-* Pages: MainPage and MarkdownPage
+
 
 For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) was added.
 
+
+
+### Add Page and ViewModel to show the opened file
+
+
+**MarkdownPage.xaml**
+
+```xml
+<Page
+    x:Class="YourAppName.Views.MarkdownPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="Markdown_Title"
+            FontSize="28" FontWeight="SemiLight"
+            TextTrimming="CharacterEllipsis"
+            TextWrapping="NoWrap" VerticalAlignment="Center"
+            Margin="24,0,24,7"/>
+
+        <Grid Grid.Row="1" >
+            <ScrollViewer
+                Margin="12"
+                BorderBrush="{ThemeResource AppBarBorderThemeBrush}"
+                BorderThickness="2"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Visible">
+                <controls:MarkdownTextBlock
+                    x:Name="UiMarkdownText"
+                    Padding="24,12,24,12"
+                    Foreground="Black"
+                    Background="White"
+                    LinkClicked="UiMarkdownText_LinkClicked"
+                    Text="{x:Bind ViewModel.Text, Mode=TwoWay}" />
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
+```
+
+**MarkdownPage.xaml.cs**
+
+```csharp
+using System;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.Storage;
+using Windows.System;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+
+using YourAppName.ViewModels;
+
+namespace YourAppName.Views
+{
+    public sealed partial class MarkdownPage : Page
+    {
+        public MarkdownViewModel ViewModel { get; } = new MarkdownViewModel();
+
+        public MarkdownPage()
+        {
+            InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(e.Parameter?.ToString()))
+            {
+                var text = await FileIO.ReadTextAsync(e.Parameter as StorageFile);
+                ViewModel.Text = text;
+            }
+        }
+
+        private async void UiMarkdownText_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri(e.Link));
+        }
+    }
+}
+```
+
+**MarkdownViewModel.cs**
+
+```csharp
+using System;
+using YourAppName.Helpers;
+
+namespace YourAppName.ViewModels
+{
+    public class MarkdownViewModel : Observable
+    {
+        private string _text;
+
+        public string Text
+        {
+            get { return _text; }
+            set { Set(ref _text, value); }
+        }
+
+        public MarkdownViewModel()
+        {
+        }
+    }
+}
+```
+
+**Resources.resw**
+
+You also should add a string resource for Markdown Title.
+
+```xml
+<data name="Markdown_Title.Text" xml:space="preserve">
+    <value>Markdown</value>
+</data>
+```
+
+
 ### Set up File Association Activation
 
-First we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
+Now we are going to configure the file association activation, first we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
 
-![](resources/activation/DeclarationFileAssociation.PNG) 
+![](resources/activation/DeclarationFileAssociation.PNG)
 
-Further we have to handle the file activation event by implementing OnFileActivated:
+Further we have to handle the file activation event by implementing the override of OnFileActivated:
+
+**App.xaml.cs**
 
 ```csharp
 protected override async void OnFileActivated(FileActivatedEventArgs args)
@@ -106,10 +239,10 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
 }
 ```
 
-### Add a FileAssociationService
+Then we need a service that handles this new type of activation. We'll call it FileAssociationService, it derives from `ApplicationHandler<T>`.
+As it manages activation by File​Activated​Event​Args the signature would be:
 
-Then we need a service that handles this new type of activation. We'll call it FileAssociationService, it derives from `ApplicationHandler<T>`. 
-As it manages activation by File​Activated​Event​Args the signature would be: 
+**FileAssociationService**
 
 ```csharp
 internal class FileAssociationService : ActivationHandler<File​Activated​Event​Args>
@@ -135,10 +268,12 @@ protected override async Task HandleInternalAsync(File​Activated​Event​Arg
 
 Last but not least, we'll have to add our new FileAssociationService to the ActivationHandlers registered in the ActivationService:
 
+**ActivationService**
+
 ```csharp
 private IEnumerable<ActivationHandler> GetActivationHandlers()
 {
+    // Add this new FileAssociationService
     yield return Singleton<FileAssociationService>.Instance;
-    yield break;
 }
 ```
