@@ -7,7 +7,7 @@
 
 The ActivationService is in charge of handling the applications initialization and activation.
 
-With the method `ActivateAsync()` it has one common entry point that is called from the app lifecycle events `OnLaunched`, `OnActivated` and `OnBackgroundActivated`. 
+With the method `ActivateAsync()` it has one common entry point that is called from the app lifecycle events `OnLaunched`, `OnActivated` and `OnBackgroundActivated`.
 For more information on application lifecycle and its events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle).
 
 ## ActivationHandlers
@@ -20,45 +20,63 @@ The virtual method `CanHandleInternal()` checks if the incoming activation argum
 
 ### ActivationHandlers sample
 
-We'll have look at the SuspendAndResumeService to see how activation works in detail:
+We'll have look at the SchemeActivationHandler, added by DeepLink feature, to see how activation works in detail:
 
 ```csharp
-protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+protected override bool CanHandleInternal(ProtocolActivatedEventArgs args)
 {
-    return args.PreviousExecutionState == ApplicationExecutionState.Terminated;
+    // If your app has multiple handlers of ProtocolActivationEventArgs
+    // use this method to determine which to use. (possibly checking args.Uri.Scheme)
+    return true;
 }
 
-protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+// By default, this handler expects URIs of the format 'wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2'
+protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
 {
-    await RestoreStateAsync();
-}
-
-private async Task RestoreStateAsync()
-{
-    var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
-    if (typeof(Page).IsAssignableFrom(saveState?.Target))
+    // Create data from activation Uri in ProtocolActivatedEventArgs
+    var data = new SchemeActivationData(args.Uri);
+    if (data.IsValid)
     {
-        NavigationService.Navigate(saveState.Target, saveState.SuspensionState);
+        NavigationService.Navigate(data.PageType, data.Parameters);
     }
+
+    await Task.CompletedTask;
 }
 ```
 
-The `CanHandleInternal()` method was overwritten here, to handle activation only in case the PreviousExecutionState is Terminated.
-The `HandleInternalAsync()` method restores the previously stored application state and navigates to the stored page.
+The `CanHandleInternal()` method was overwritten here and it returns true by default, devs could use args to add extra validations in scenarios with multiple ProtocolActivationEventArgs.
 
-## What else happens on activation?
+The `HandleInternalAsync()` method gets the ActivationData from argument's Uri and uses the PageType and Parameters to navigate.
 
-When executing `ActivatedAsync()`, the ActivationService retrieves the first ActivationHandler able to handle the current activation (evaluating `CanHandleInternal()` of all registered ActivationHandlers) and invokes it.
+## Activation in depth
 
-In case of interactive activation (for example on application launch or on activation from LiveTile) the ActivationService additionally executes the following steps:
+### Activation flow
 
-* Initialize the App (`InitializeAsync()`) (f.ex register background tasks, set app theme)
-* If there is no current content a frame is created and navigation events handlers are added
-* If no ActivationHandler is found, a DefaultLaunchActivationHandler is instantiated, that is in charge of navigating to the default page.
-* Activate the current window
-* Execute StartUp Actions (`StartupAsync()`)
+The following flowchart shows the Activation proccess that starts with an app lifecycle event and ends with StartupAsync method call.
 
-You can use `InitializeAsync()` and `StartupAsync()` to add code that should be executed on application initialization and startup.
+**ActivateAsync**
+
+Activation starts from an app lifecycle event: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`.
+
+![](resources/activation/AppLifecycleEvent.png)
+
+The flowchart shows that the first in ActivateAsync is to call InitializeAsync and do the ShellCreation, both actions are excluded from background running (IsInteractive check). If you have added an Identity feature to your app, this block also will include code for Identity configuration and SilentLogin.
+
+After this first block, the flowchart calls to HandleActivation (explained below).
+
+![](resources/activation/ActivateAsync.png)
+
+**IsInteractive**
+
+All interactions with the app window and navigations are only available when the activation arguments extend from IActivatedEventArgs, this allows ActivationService runs activation code on running background task without activating the window.
+
+**InitializeAsync**
+
+InitializeAsync contains static or singleton services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. The code in this method runs while the splash screen is shown, initializations from classes different from ActivationHandlers should be placed at StartupAsync method.
+
+**StartupAsync**
+
+StartupAsync contains initializations of some classes and start's processes that will be run after the Window is activated.
 
 ## Sample: Add activation from File Association
 
