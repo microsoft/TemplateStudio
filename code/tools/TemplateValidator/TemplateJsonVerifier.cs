@@ -315,7 +315,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing", "Data" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing", "Data", "Tools" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
             }

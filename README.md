@@ -87,6 +87,7 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 
 ## Projects we like and collaborate with
 
+- [Web Template Studio](https://github.com/Microsoft/WebTemplateStudio)
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
 - [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)

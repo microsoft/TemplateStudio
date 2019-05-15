@@ -13,16 +13,14 @@
             x:Name="Items">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock
-                        Text="{Binding}"
-                        Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{Binding}" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
+                        The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                        Place your content here.
                     -->
 
                 </Grid>
@@ -31,8 +29,8 @@
             <PivotItem x:Uid="TabbedPivotPage_PivotItem2">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
+                        The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                        Place your content here.
                     -->
 
                 </Grid>

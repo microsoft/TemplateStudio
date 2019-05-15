@@ -1,0 +1,44 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "XAML Styler Config",
+  "groupIdentity": "wts.Feat.XAMLStyler",
+  "identity": "wts.Feat.XAMLStyler",
+  "description": "Default XAML Styler config file.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.group": "Tools",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "XAMLStyler",
+    "wts.multipleInstance": "false",
+    "wts.isHidden": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true",
+    "wts.licenses": "[XAMLStyler](https://marketplace.visualstudio.com/items/TeamXavalon.XAMLStyler/license)"
+  },
+  "sourceName": "XAMLStylerFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName\\Settings.XamlStyler"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
