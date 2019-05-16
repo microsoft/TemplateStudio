@@ -44,7 +44,7 @@ protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs arg
 }
 ```
 
-The `CanHandleInternal()` method was overwritten here and it returns true by default, devs could use args to add extra validations in scenarios with multiple ProtocolActivationEventArgs.
+The `CanHandleInternal()` method was overwritten here and it returns true by default, devs can use args to add extra validations in scenarios with multiple ProtocolActivationEventArgs.
 
 The `HandleInternalAsync()` method gets the ActivationData from argument's Uri and uses the PageType and Parameters to navigate.
 
@@ -52,31 +52,33 @@ The `HandleInternalAsync()` method gets the ActivationData from argument's Uri a
 
 ### Activation flow
 
-The following flowchart shows the Activation proccess that starts with an app lifecycle event and ends with StartupAsync method call.
+The following flowchart shows the Activation proccess that starts with one of the app lifecycle event and ends with the StartupAsync call.
 
-**ActivateAsync**
+**Lifecycle event  `OnLaunched`, `OnActivated` or `OnBackgroundActivated`**
 
-Activation starts from an app lifecycle event: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`.
+Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in ActivationService.ActivateAsync().
 
 ![](resources/activation/AppLifecycleEvent.png)
 
-The flowchart shows that the first in ActivateAsync is to call InitializeAsync and do the ShellCreation, both actions are excluded from background running (IsInteractive check). If you have added an Identity feature to your app, this block also will include code for Identity configuration and SilentLogin.
+**ActivateAsync**
 
-After this first block, the flowchart calls to HandleActivation (explained below).
+The first calls in ActivateAsync are InitializeAsync() and the ShellCreation in case you activation is interactive. If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
+
+After this first block, HandleActivation is called (more details below).
 
 ![](resources/activation/ActivateAsync.png)
 
 **IsInteractive**
 
-All interactions with the app window and navigations are only available when the activation arguments extend from IActivatedEventArgs, this allows ActivationService runs activation code on running background task without activating the window.
+Interactions with the app window and navigations are only available when the activation arguments extend from IActivatedEventArgs. An example for non-interactive activation is activation from a background Task.
 
 **InitializeAsync**
 
-InitializeAsync contains static or singleton services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. The code in this method runs while the splash screen is shown, initializations from classes different from ActivationHandlers should be placed at StartupAsync method.
+InitializeAsync contains services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. Only code that needs to be executed before app activation should be places here, as the splash screen is shown while this code is executed.
 
 **StartupAsync**
 
-StartupAsync contains initializations of some classes and start's processes that will be run after the Window is activated.
+StartupAsync contains initializations of other classes that do not need to happen before app activation and start's processes that will be run after the Window is activated.
 
 **HandleActivation**
 
@@ -86,20 +88,18 @@ HandleActivation method gets the first ActivationHandler that can handle the arg
 
 ## Sample: Add activation from File Association
 
-We are going now trying to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader in our app.
+We are going to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader to our app.
 
-The following code is thougt to be added in a WTS MVVM Basic app.
+The following code is thought to be added in a WTS MVVM Basic app.
 
-
-
-For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) was added.
+For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 
 
 
-### Add Page and ViewModel to show the opened file
+### 1. Add Page and ViewModel to show the opened file
+Add the following files to your project
 
-
-**MarkdownPage.xaml**
+**Views/MarkdownPage.xaml**
 
 ```xml
 <Page
@@ -146,7 +146,7 @@ For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit
 </Page>
 ```
 
-**MarkdownPage.xaml.cs**
+**Views/MarkdownPage.xaml.cs**
 
 ```csharp
 using System;
@@ -186,7 +186,7 @@ namespace YourAppName.Views
 }
 ```
 
-**MarkdownViewModel.cs**
+**ViewModels/MarkdownViewModel.cs**
 
 ```csharp
 using System;
@@ -211,7 +211,7 @@ namespace YourAppName.ViewModels
 }
 ```
 
-**Resources.resw**
+**Strings/en-us/Resources.resw**
 
 You also should add a string resource for Markdown Title.
 
@@ -222,13 +222,13 @@ You also should add a string resource for Markdown Title.
 ```
 
 
-### Set up File Association Activation
+### 2. Set up File Association Activation
 
-Now we are going to configure the file association activation, first we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
+Add a file type association declaration in the application manifest, to allow the App to be shown as a default handler for markdown files.
 
 ![](resources/activation/DeclarationFileAssociation.PNG)
 
-Further we have to handle the file activation event by implementing the override of OnFileActivated:
+Handle the file activation event by implementing the override of OnFileActivated:
 
 **App.xaml.cs**
 
@@ -238,8 +238,9 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
     await ActivationService.ActivateAsync(args);
 }
 ```
+### 3. Add a FileAssociationService
 
-Then we need a service that handles this new type of activation. We'll call it FileAssociationService, it derives from `ApplicationHandler<T>`.
+Add a FileAssociationService to your project that handles activation from files. It derives from `ApplicationHandler<T>`.
 As it manages activation by File​Activated​Event​Args the signature would be:
 
 **FileAssociationService**
@@ -251,7 +252,8 @@ internal class FileAssociationService : ActivationHandler<File​Activated​Eve
 }
 ```
 
-Next, we'll implement HandleInternalAsync(), to evaluate the event args, and take action:
+
+Override HandleInternalAsync(), to evaluate the event args, and take action:
 
 ```csharp
 protected override async Task HandleInternalAsync(File​Activated​Event​Args args)
@@ -264,7 +266,7 @@ protected override async Task HandleInternalAsync(File​Activated​Event​Arg
 }
 ```
 
-### Add the FileAssociationService to ActivationService
+### 4. Add the FileAssociationService to ActivationService
 
 Last but not least, we'll have to add our new FileAssociationService to the ActivationHandlers registered in the ActivationService:
 
