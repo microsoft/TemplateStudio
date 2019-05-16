@@ -4,7 +4,8 @@ Imports Windows.UI.Core
 Imports Param_RootNamespace.Activation
 
 Namespace Services
-    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.vb.md
+    ' For more information on understanding and extending activation flow see
+    ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _defaultNavItem As Type
@@ -20,17 +21,20 @@ Namespace Services
 
         Public Async Function ActivateAsync(activationArgs As Object) As Task
             If IsInteractive(activationArgs) Then
-                ' Initialize things like registering background task before the app is loaded
+                ' Initialize services that you need before app activation
+                ' take into account that the splash screen is shown while this code runs.
                 Await InitializeAsync()
 
                 ' Do not repeat app initialization when the Window already has content,
                 ' just ensure that the window is active
                 If Window.Current.Content Is Nothing Then
-                    ' Create a Frame to act as the navigation context and navigate to the first page
+                    ' Create a Shell or Frame to act as the navigation context
                     Window.Current.Content = If(_shell?.Value, New Frame())
                 End If
             End If
 
+            ' Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
+            ' will navigate to the first page
             Await HandleActivationAsync(activationArgs)
             _lastActivationArgs = activationArgs
 
