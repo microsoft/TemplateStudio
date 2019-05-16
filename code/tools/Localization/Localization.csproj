@@ -71,7 +71,6 @@
     <Compile Include="Logic\CatalogLocalizationValue.cs" />
     <Compile Include="Logic\LocalizableItemsMerger.cs" />
     <Compile Include="Logic\OriginalLocalizableItemsExtractor.cs" />
-    <Compile Include="Logic\ProjectTemplateGeneratorConfig.cs" />
     <Compile Include="Logic\ResxItem.cs" />
     <Compile Include="Options\MergeOptions.cs" />
     <Compile Include="Options\ExtractOptions.cs" />
@@ -79,16 +78,13 @@
     <Compile Include="Options\CommandLineOptions.cs" />
     <Compile Include="Options\TemplatesGeneratorOptions.cs" />
     <Compile Include="Options\VerifyOptions.cs" />
-    <Compile Include="Logic\CSharpProjectTemplateGenerator.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
     <Compile Include="Logic\LocalizationTool.cs" />
     <Compile Include="Logic\RightClickCommandGenerator.cs" />
     <Compile Include="Logic\Routes.cs" />
     <Compile Include="Logic\ValidateLocalizableExtractor.cs" />
-    <Compile Include="Logic\VisualBasicProjectTemplateGenerator.cs" />
     <Compile Include="Logic\XmlUtility.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Logic\ProjectTemplateGeneratorBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\HelpMessages.Designer.cs">
       <AutoGen>True</AutoGen>
