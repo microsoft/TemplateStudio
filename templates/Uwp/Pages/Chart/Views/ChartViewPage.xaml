@@ -17,7 +17,7 @@
                 <tc:RadCartesianChart.VerticalAxis>
                     <tc:LinearAxis />
                 </tc:RadCartesianChart.VerticalAxis>
-                <tc:BarSeries ItemsSource="{x:Bind ViewModel.Source}" ShowLabels="True">
+                <tc:BarSeries ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" ShowLabels="True">
                     <tc:BarSeries.CategoryBinding>
                         <tc:PropertyNameDataPointBinding PropertyName="Category" />
                     </tc:BarSeries.CategoryBinding>

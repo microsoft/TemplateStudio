@@ -32,9 +32,12 @@ Namespace ViewModels
         End Property
 
         Public Sub New()
-            ' TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData()
         End Sub
+
+        Public Async Function LoadDataAsync() As Task
+            ' TODO WTS: Replace this with your actual data
+            Source = Await SampleDataService.GetGallerySampleDataAsync()
+        End Function
 
         Public Sub Initialize(selectedImageId As String, navigationMode as NavigationMode)
             If Not String.IsNullOrEmpty(selectedImageId) AndAlso navigationMode = NavigationMode.New Then

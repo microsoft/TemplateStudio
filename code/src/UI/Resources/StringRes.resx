@@ -738,6 +738,10 @@ Please verify the following list of packages needed by your project's code and m
     <value>See documentation to update.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for data templates</comment>
+  </data>
   <data name="TemplateGroup_Tools" xml:space="preserve">
     <value>Tools</value>
     <comment>Group header for 'Tools' templates</comment>

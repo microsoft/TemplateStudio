@@ -9,10 +9,10 @@ Public Class Tests
     ' TODO WTS: Remove or update this once your app is using real data and not the SampleDataService.
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <Test>
-    Public Sub EnsureSampleDataServiceReturnsGalleryData()
-        Dim actual = SampleDataService.GetGallerySampleData()
+    Public Async Function EnsureSampleDataServiceReturnsGalleryDataAsync() As Task
+        Dim actual = Await SampleDataService.GetGallerySampleDataAsync()
 
         Assert.AreNotEqual(0, actual.Count)
-    End Sub
+    End Function
     '}]}
 End Class

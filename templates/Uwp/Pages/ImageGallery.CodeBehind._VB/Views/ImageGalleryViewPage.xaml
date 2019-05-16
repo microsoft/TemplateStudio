@@ -16,7 +16,7 @@
             animations:Connected.ListItemElementName="thumbnailImage"
             animations:Connected.ListItemKey="galleryAnimationKey"
             IsItemClickEnabled="True"
-            ItemClick="ImagesGridView_ItemClick"
+            ItemClick="ImagesGridView_ItemClick, Mode=OneWay"
             ItemsSource="{x:Bind Source}"
             SelectionMode="None">
             <GridView.ItemTemplate>

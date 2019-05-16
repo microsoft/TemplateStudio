@@ -18,7 +18,7 @@
             animations:Connected.ListItemElementName="thumbnailImage"
             animations:Connected.ListItemKey="galleryAnimationKey"
             IsItemClickEnabled="True"
-            ItemsSource="{x:Bind ViewModel.Source}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             SelectionMode="None">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">
