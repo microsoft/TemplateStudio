@@ -84,9 +84,6 @@
     <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
     <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
-    <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
-    <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
     <Compile Include="ExternalLinksTests.cs" />
     <Compile Include="TemplatePathTests.cs" />
     <Compile Include="GenTests\ResourceUsageTests.cs" />
@@ -117,6 +114,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllNavViewPages.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllMenuBarPages.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="VisualTests\VisualComparisonTests.cs" />

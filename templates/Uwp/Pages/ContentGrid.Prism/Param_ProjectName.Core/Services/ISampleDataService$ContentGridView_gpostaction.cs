@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetContentGridData()` to the SampleDataService of your project.
+// This code block adds the method `GetContentGridDataAsync()` to the SampleDataService of your project.
 //**}
 //{[{
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        ObservableCollection<SampleOrder> GetContentGridData();
+        Task<ObservableCollection<SampleOrder>> GetContentGridDataAsync();
 //}]}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -35,11 +36,16 @@ namespace Param_RootNamespace.ViewModels
         public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationServiceInstance;
-
-            // TODO WTS: Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
             _connectedAnimationService = connectedAnimationService;
-            Source = _sampleDataService.GetGallerySampleData();
+        }
+
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+
+            // TODO WTS: Replace this with your actual data
+            Source = await _sampleDataService.GetGallerySampleDataAsync();
         }
 
         private void OnsItemSelected(ItemClickEventArgs args)

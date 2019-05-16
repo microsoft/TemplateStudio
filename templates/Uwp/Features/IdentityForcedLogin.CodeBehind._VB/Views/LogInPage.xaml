@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.LogInPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            x:Uid="LogInPageTitle"
+            Grid.Row="0"
+            Style="{StaticResource TitleTextBlockStyle}" />
+        <Button
+            Grid.Row="1"
+            x:Uid="LogInButton"
+            Margin="{StaticResource MediumTopMargin}"
+            Click="OnLogIn" />
+        <TextBlock
+            Grid.Row="2"
+            Margin="{StaticResource MediumTopMargin}"
+            Text="{x:Bind StatusMessage, Mode=OneWay}"
+            Style="{StaticResource BodyTextBlockStyle}" />
+    </Grid>
+</Page>

@@ -16,11 +16,6 @@ namespace Param_RootNamespace.Activation
             {
                 MenuNavigationHelper.UpdateView(data.PageType, data.Parameters);
             }
-            else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
-            {
-                // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
-                NavigationService.Navigate(typeof(Views.Param_HomeNamePage));
-            }
 
             await Task.CompletedTask;
         }

@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
+        const string MenuBar = "MenuBar";
+
         public VisualComparisonTests(GenerationFixture fixture)
             : base(fixture)
         {
@@ -143,7 +145,7 @@ namespace Microsoft.Templates.Test
                     yield return new object[] { framework };
                 }
             }
-            
+
         }
 
         public static IEnumerable<object[]> GetAllFrameworksForBothVbAndCs()
@@ -505,18 +507,44 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, "SplitView");
+        }
+
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksForBothVbAndCs))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInMenuBarAsync(string framework)
+        {
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, MenuBar);
+        }
+
+        private async Task EnsureLanguagesProduceIdenticalOutputForEachPageAsync(string framework, string projectType)
+        {
             var genIdentities = AllPagesThatSupportSimpleTesting();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
-            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
+            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 
             var pageExclusions = new Dictionary<string, string>();
             pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
 
-            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
+            (string projectFolder, string imagesFolder) testProjectDetails;
+
+            switch (projectType)
+            {
+                case MenuBar:
+                    testProjectDetails = SetUpTestProjectForAllMenuBarPagesComparison(app1Details, app2Details, pageExclusions);
+                    break;
+                default:
+                    testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
+                    break;
+            }
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -554,7 +582,7 @@ namespace Microsoft.Templates.Test
         [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
+        public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
             var genIdentities = AllPagesThatSupportSimpleTesting();
 
@@ -611,6 +639,68 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Fact]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInMenuBarAsync()
+        {
+            var genIdentities = AllPagesThatSupportSimpleTesting();
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, MenuBar, "MVVMBasic", genIdentities);
+
+            var errors = new List<string>();
+
+            foreach (var framework in GetAdditionalCsFrameworks(MenuBar))
+            {
+                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, MenuBar, framework[0].ToString(), genIdentities);
+
+                var pageExclusions = new Dictionary<string, string>();
+                pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
+
+                var testProjectDetails = SetUpTestProjectForAllMenuBarPagesComparison(app1Details, app2Details, pageExclusions);
+
+                var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+                // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+                if (testSuccess)
+                {
+                    UninstallAppx(app2Details.PackageFullName);
+
+                    RemoveCertificate(app2Details.CertificatePath);
+
+                    // Parent of images folder also contains the test project
+                    Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                }
+                else
+                {
+                    errors.AddRange(testOutput);
+
+                    // A diff image is automatically created if the outputs differ
+                    if (Directory.GetFiles(testProjectDetails.imagesFolder, "DIFF-*.png").Any())
+                    {
+                        errors.Add($"Failing test images in {testProjectDetails.imagesFolder}");
+                    }
+                }
+            }
+
+            var outputMessages = string.Join(Environment.NewLine, errors);
+
+            if (outputMessages.Any())
+            {
+                Assert.True(false, $"{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                RemoveCertificate(app1Details.CertificatePath);
+            }
+        }
+
         [Theory]
         [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
         [Trait("ExecutionSet", "ManualOnly")]
@@ -629,6 +719,22 @@ namespace Microsoft.Templates.Test
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "TabbedNav");
         }
 
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageWithMenuBarWithoutErrorAsync(string framework, string language)
+        {
+            if (framework == "CaliburnMicro")
+            {
+                // Caliburn does not yet support MenuBar projects
+                // TODO: remove this when implement #3000
+                return;
+            }
+
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "MenuBar");
+        }
+
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
         {
             var pageIdentities = AllTestablePages();
@@ -641,6 +747,43 @@ namespace Microsoft.Templates.Test
 
             int pagesOpenedSuccessfully = 0;
 
+            async Task ForOpenedPage(string pageName, WindowsDriver<WindowsElement> session)
+            {
+                if (pageName == "Map")
+                {
+                    // For location permission
+                    if (await ClickYesOnPopUpAsync(session))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                        pagesOpenedSuccessfully++;
+                    }
+                    else
+                    {
+                        Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                    }
+                }
+                else if (pageName == "Camera")
+                {
+                    var cameraPermission = await ClickYesOnPopUpAsync(session); // For camera permission
+                    var microphonePermission = await ClickYesOnPopUpAsync(session); // For microphone permission
+
+                    if (cameraPermission && microphonePermission)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                        pagesOpenedSuccessfully++;
+                    }
+                    else
+                    {
+                        Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                    }
+                }
+                else
+                {
+                    pagesOpenedSuccessfully++;
+                }
+            }
+
+
             try
             {
                 appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
@@ -651,46 +794,60 @@ namespace Microsoft.Templates.Test
 
                     await Task.Delay(TimeSpan.FromSeconds(2));
 
-                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
-
-                    foreach (var menuItem in menuItems)
+                    if (projectType == "MenuBar")
                     {
-                        menuItem.Click();
-                        Debug.WriteLine("Opened: " + menuItem.Text);
+                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
-                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
-
-                        if (menuItem.Text == "Map")
+                        for (int i = menuItems.Count - 1; i >= 0; i--)
                         {
-                            // For location permission
-                            if (await ClickYesOnPopUpAsync(appSession))
+                            menuItems[i].Click(); // Open menu to count sub-items
+                            var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
+                            menuItems[i].Click(); // Close menu so get in a consistent state
+
+                            // Stepping through the MenuFlyoutItems is unreliable
+                            for (int j = 0; j < subItemCount; j++)
                             {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                                menuItems[i].Click(); // Open the menu again
+
+                                var subItems = appSession.FindElementsByClassName("MenuFlyoutItem");
+
+                                var option = subItems[j].Text;
+
+                                // Don't close the app or the WinAppDriver will throw an error and the test will fail
+                                if (option != "Exit")
+                                {
+                                    subItems[j].Click();
+                                }
+
+                                await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                                if (option == "Settings")
+                                {
+                                    // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
+                                    const byte Escape = 27; // From System.Windows.Forms.Keys
+
+                                    VirtualKeyboard.KeyDown(Escape);
+                                    VirtualKeyboard.KeyUp(Escape);
+                                }
+                                else
+                                {
+                                    await ForOpenedPage(subItems[j].Text, appSession);
+                                }
                             }
                         }
-                        else if (menuItem.Text == "Camera")
-                        {
-                            var cameraPermission = await ClickYesOnPopUpAsync(appSession); // For camera permission
-                            var microphonePermission = await ClickYesOnPopUpAsync(appSession); // For microphone permission
+                    }
+                    else
+                    {
+                        var menuItems = appSession.FindElementsByClassName("ListViewItem");
 
-                            if (cameraPermission && microphonePermission)
-                            {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
-                            }
-                        }
-                        else
+                        foreach (var menuItem in menuItems)
                         {
-                            pagesOpenedSuccessfully++;
+                            menuItem.Click();
+                            Debug.WriteLine("Opened: " + menuItem.Text);
+
+                            await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                            await ForOpenedPage(menuItem.Text, appSession);
                         }
                     }
 
@@ -712,7 +869,7 @@ namespace Microsoft.Templates.Test
 
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
 
-            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
+            Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         }
 
         private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
@@ -845,6 +1002,68 @@ namespace Microsoft.Templates.Test
             var newProjFileContents = projFileContents.Replace(
                 @"<!--<Compile Include=""Tests\LaunchBothAppsAndCompareAllNavViewPages.cs"" />-->",
                 @"<Compile Include=""Tests\LaunchBothAppsAndCompareAllNavViewPages.cs"" />");
+
+            File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
+
+            // set AppInfo values
+            var appInfoFileName = Path.Combine(projectFolder, "TestAppInfo.cs");
+
+            var appInfoFileContents = File.ReadAllText(appInfoFileName);
+
+            var newAppInfoFileContents = appInfoFileContents
+                .Replace("***APP-PFN-1-GOES-HERE***", $"{app1Details.PackageFamilyName}!App")
+                .Replace("***APP-PFN-2-GOES-HERE***", $"{app2Details.PackageFamilyName}!App")
+                .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
+                .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
+                .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+
+            if (pageAreasToExclude != null)
+            {
+                var replacement = string.Empty;
+
+                foreach (var exclusion in pageAreasToExclude)
+                {
+                    replacement += $" {{ \"{exclusion.Key}\", {exclusion.Value} }},{Environment.NewLine}";
+                }
+
+                newAppInfoFileContents =
+                    newAppInfoFileContents.Replace(
+                        "PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>();",
+                        $"PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>{{{replacement}}};");
+            }
+
+            File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
+
+            // build test project
+            var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
+            ExecutePowerShellScript(restoreNugetScript);
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return (projectFolder, imagesFolder);
+        }
+
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllMenuBarPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, Dictionary<string, string> pageAreasToExclude = null)
+        {
+            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
+            var projectFolder = Path.Combine(rootFolder, "TestProject");
+            var imagesFolder = Path.Combine(rootFolder, "Images");
+
+            Fs.EnsureFolder(rootFolder);
+            Fs.EnsureFolder(projectFolder);
+            Fs.EnsureFolder(imagesFolder);
+
+            // Copy base project
+            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+
+            // enable appropriate test
+            var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");
+
+            var projFileContents = File.ReadAllText(projFileName);
+
+            var newProjFileContents = projFileContents.Replace(
+                @"<!--<Compile Include=""Tests\LaunchBothAppsAndCompareAllMenuBarPages.cs"" />-->",
+                @"<Compile Include=""Tests\LaunchBothAppsAndCompareAllMenuBarPages.cs"" />");
 
             File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
 

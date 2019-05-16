@@ -25,12 +25,12 @@ namespace Param_RootNamespace.ViewModels
             _connectedAnimationService = connectedAnimationService;
         }
 
-        protected override void OnInitialize()
+        protected override async void OnInitialize()
         {
             base.OnInitialize();
 
             // TODO WTS: Replace this with your actual data
-            Source.AddRange(SampleDataService.GetGallerySampleData());
+            Source.AddRange(await SampleDataService.GetGallerySampleDataAsync());
         }
 
         public void OnImageSelected(SampleImage image)

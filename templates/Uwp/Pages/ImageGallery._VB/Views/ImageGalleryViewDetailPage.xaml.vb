@@ -11,8 +11,11 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+
+            Await ViewModel.LoadDataAsync()
+
             Dim selectedImageId = TryCast(e.Parameter, String)
             ViewModel.Initialize(selectedImageId, e.NavigationMode)
         End Sub

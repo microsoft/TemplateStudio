@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     xmlns:views="using:Param_RootNamespace.Views"
     mc:Ignorable="d">
@@ -12,20 +12,27 @@
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
             <Grid Height="60">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <FontIcon Grid.Column="0" FontSize="32" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />
-                <StackPanel Grid.Column="1" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Company}" Style="{ThemeResource ListTitleStyle}"/>
-                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}"/>
+                <FontIcon
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                    Glyph="{x:Bind Symbol}" />
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center">
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Company}" />
+                    <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind Status}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}"/>
+                <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
@@ -33,10 +40,10 @@
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
                     x:Uid="MasterDetailView_NoSelection"
-                    Style="{StaticResource SubtitleTextBlockStyle}"
-                    VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    TextAlignment="Center"/>
+                    VerticalAlignment="Center"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    TextAlignment="Center" />
             </Grid>
         </DataTemplate>
 
@@ -44,9 +51,9 @@
             <Grid Height="40">
                 <TextBlock
                     x:Name="headerText"
-                    Text="{Binding}"
                     VerticalAlignment="Center"
-                    Style="{StaticResource ListTitleStyle}" />
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -54,14 +61,14 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
-            ItemsSource="{x:Bind ViewModel.SampleItems}"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
-            ItemTemplate="{StaticResource ItemTemplate}"
-            DetailsTemplate="{StaticResource DetailsTemplate}"
-            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            BorderBrush="Transparent"
-            MasterHeader="MasterDetail"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            BorderBrush="Transparent"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            ItemsSource="{x:Bind ViewModel.SampleItems}"
+            ItemTemplate="{StaticResource ItemTemplate}"
+            MasterHeader="MasterDetail"
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
     </Grid>
 </Page>

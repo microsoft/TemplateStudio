@@ -103,7 +103,7 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Services\ActivationService.cs" />
-    <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Activation\DefaultActivationHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

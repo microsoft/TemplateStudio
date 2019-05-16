@@ -24,15 +24,39 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForVBStyle))]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
+        public async Task GenerateAllPagesAndFeaturesForcedLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
-                && !t.GetIsHidden())
-                || (t.Name == "Feature.Testing.VBStyleAnalysis");
+                && !t.GetIsHidden()
+                && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin.VB")
+                || (t.Name == "Feature.Testing.VBStyleAnalysis")
+                || (t.Name == "Feature.Testing.SonarLint.VB");
+
+            var projectName = $"{projectType}{framework}AllVBStyle";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForVBStyle))]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateAllPagesAndFeaturesOptionalLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB")
+                || (t.Name == "Feature.Testing.VBStyleAnalysis")
+                || (t.Name == "Feature.Testing.SonarLint.VB");
 
             var projectName = $"{projectType}{framework}AllVBStyle";
 

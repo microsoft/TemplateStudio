@@ -24,9 +24,13 @@ Namespace Views
         End Property
 
         Public Sub New()
-            ' TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData()
             InitializeComponent()
+            AddHandler Loaded, AddressOf ImageGalleryViewPage_OnLoaded
+        End Sub
+
+        Public Async Sub ImageGalleryViewPage_OnLoaded(sender As Object, eventArgs As RoutedEventArgs)
+            ' TODO WTS: Replace this with your actual data
+            Source = Await SampleDataService.GetGallerySampleDataAsync()
         End Sub
 
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)

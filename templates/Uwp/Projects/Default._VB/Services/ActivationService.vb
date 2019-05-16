@@ -7,8 +7,10 @@ Namespace Services
     ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.vb.md
     Friend Class ActivationService
         Private ReadOnly _app As App
-        Private ReadOnly _shell As Lazy(Of UIElement)
         Private ReadOnly _defaultNavItem As Type
+        Private _shell As Lazy(Of UIElement)
+
+        Private _lastActivationArgs As Object
 
         Public Sub New(app As App, defaultNavItem As Type, Optional shell As Lazy(Of UIElement) = Nothing)
             _app = app
@@ -29,14 +31,11 @@ Namespace Services
                 End If
             End If
 
-            Dim activationHandler = GetActivationHandlers().FirstOrDefault(Function(h) h.CanHandle(activationArgs))
-
-            If activationHandler IsNot Nothing Then
-                Await activationHandler.HandleAsync(activationArgs)
-            End If
+            Await HandleActivationAsync(activationArgs)
+            _lastActivationArgs = activationArgs
 
             If IsInteractive(activationArgs) Then
-                Dim defaultHandler = New DefaultLaunchActivationHandler(_defaultNavItem)
+                Dim defaultHandler = New DefaultActivationHandler(_defaultNavItem)
                 If defaultHandler.CanHandle(activationArgs) Then
                     Await defaultHandler.HandleAsync(activationArgs)
                 End If
@@ -51,6 +50,22 @@ Namespace Services
 
         Private Async Function InitializeAsync() As Task
             Await Task.CompletedTask
+        End Function
+
+        Private Async Function HandleActivationAsync(activationArgs As Object) As Task
+            Dim activationHandler = GetActivationHandlers().FirstOrDefault(Function(h) h.CanHandle(activationArgs))
+
+            If activationHandler IsNot Nothing Then
+                Await activationHandler.HandleAsync(activationArgs)
+            End If
+
+            If IsInteractive(activationArgs) Then
+                Dim defaultHandler = New DefaultActivationHandler(_defaultNavItem)
+
+                If defaultHandler.CanHandle(activationArgs) Then
+                    Await defaultHandler.HandleAsync(activationArgs)
+                End If
+            End If
         End Function
 
         Private Async Function StartupAsync() As Task

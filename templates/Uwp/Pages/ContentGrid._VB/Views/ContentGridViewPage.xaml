@@ -2,26 +2,26 @@
     x:Class="Param_RootNamespace.Views.ContentGridViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_RootNamespace.Core.Models"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <controls:AdaptiveGridView
-            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
-            ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
-            StretchContentForSingleRow="False"
-            SelectionMode="None"
-            IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyContentGridView"
             DesiredWidth="180"
-            ItemHeight="160">
+            ItemHeight="160"
+            IsItemClickEnabled="True"
+            ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
+            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            SelectionMode="None"
+            StretchContentForSingleRow="False">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleOrder">
                     <Grid
@@ -29,13 +29,12 @@
                         Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <FontIcon
-                                Glyph="{x:Bind Symbol}" />
+                            <FontIcon Glyph="{x:Bind Symbol}" />
                             <TextBlock
                                 Margin="{StaticResource XXSmallTopMargin}"
                                 HorizontalAlignment="Center"
-                                Text="{x:Bind Company}"
-                                Style="{ThemeResource BodyTextStyle}" />
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Company}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

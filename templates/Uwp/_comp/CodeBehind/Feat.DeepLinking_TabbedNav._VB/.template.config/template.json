@@ -10,6 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
     "wts.compositionFilter": "$frontendframework == CodeBehind & identity == wts.Feat.DeepLinking.VB & $projectType == TabbedNav"
   },
   "sourceName": "wts.ItemName",
@@ -24,10 +25,6 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    },
-    "wts.homePageName": {
-      "type": "parameter",
-      "replaces": "Param_HomeName"
     }
   }
 }

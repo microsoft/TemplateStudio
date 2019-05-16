@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Optional Login",
+  "description": "必要に応じて、ログイン必須の制限付き機能を、アプリケーションに組み込むことができます。",
+  "identity": "wts.Feat.IdentityOptionalLogin.CodeBehind.VB"
+}

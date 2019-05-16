@@ -7,12 +7,10 @@
     xmlns:tg="using:Telerik.UI.Xaml.Controls.Grid"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source}" AutoGenerateColumns="False" >
+            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source, Mode=OneWay}" AutoGenerateColumns="False" >
                 <tg:RadDataGrid.Columns>
                     <!--TODO WTS:
                       Remove this column definitions and define columns for your data.

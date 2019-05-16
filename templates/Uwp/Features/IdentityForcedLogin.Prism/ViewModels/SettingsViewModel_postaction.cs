@@ -34,7 +34,7 @@ namespace Param_RootNamespace.ViewModels
         {
 //^^
 //{[{
-            _identityService.LoggedOut += OnLoggeOut;
+            _identityService.LoggedOut += OnLoggedOut;
             _userDataService.UserDataUpdated += OnUserDataUpdated;
             User = await _userDataService.GetUserAsync();
 //}]}
@@ -43,13 +43,13 @@ namespace Param_RootNamespace.ViewModels
 
         public void UnregisterEvents()
         {
-            _identityService.LoggedOut -= OnLoggeOut;
+            _identityService.LoggedOut -= OnLoggedOut;
             _userDataService.UserDataUpdated -= OnUserDataUpdated;
         }
 
-        private void OnUserDataUpdated(object sender, UserViewModel user)
+        private void OnUserDataUpdated(object sender, UserViewModel userData)
         {
-            User = user;
+            User = userData;
         }
 
         private async void OnLogout()
@@ -57,7 +57,7 @@ namespace Param_RootNamespace.ViewModels
             await _identityService.LogoutAsync();
         }
 
-        private void OnLoggeOut(object sender, EventArgs e)
+        private void OnLoggedOut(object sender, EventArgs e)
         {
             UnregisterEvents();
         }
