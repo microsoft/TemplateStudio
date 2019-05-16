@@ -22,7 +22,7 @@ The virtual method `CanHandleInternal()` checks if the incoming activation argum
 
 We'll have look at the SchemeActivationHandler, added by DeepLink feature, to see how activation works in detail:
 
-```vbnet
+```vb
 Protected Overrides Function CanHandleInternal(args As ProtocolActivatedEventArgs) As Boolean
     ' If your app has multiple handlers of ProtocolActivationEventArgs
     ' use this method to determine which to use. (possibly checking args.Uri.Scheme)
@@ -142,9 +142,9 @@ Add the following files to your project
 </Page>
 ```
 
-**Views/MarkdownPage.xaml.cs**
+**Views/MarkdownPage.xaml.vb**
 
-```csharp
+```vb
 Imports YourAppName.ViewModels
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
@@ -172,9 +172,9 @@ Namespace Views
 End Namespace
 ```
 
-**ViewModels/MarkdownViewModel.cs**
+**ViewModels/MarkdownViewModel.vb**
 
-```vbnet
+```vb
 Imports YourAppName.Helpers
 
 Namespace ViewModels
@@ -217,9 +217,9 @@ Add a file type association declaration in the application manifest, to allow th
 
 Handle the file activation event by implementing the override of OnFileActivated:
 
-**App.xaml.cs**
+**App.xaml.vb**
 
-```vbnet
+```vb
 Protected Overrides Async Sub OnFileActivated(args As FileActivatedEventArgs)
     MyBase.OnFileActivated(args)
     Await ActivationService.ActivateAsync(args)
@@ -232,7 +232,7 @@ As it manages activation by File​Activated​Event​Args the signature would 
 
 **FileAssociationService**
 
-```vbnet
+```vb
 Imports YourAppName.Activation
 Imports YourAppName.Services
 Imports YourAppName.Views
@@ -246,7 +246,7 @@ End Class
 
 Override HandleInternalAsync(), to evaluate the event args, and take action:
 
-```vbnet
+```vb
 Imports YourAppName.Activation
 Imports YourAppName.Services
 Imports YourAppName.Views
@@ -268,7 +268,7 @@ Last but not least, we'll have to add our new FileAssociationService to the Acti
 
 **ActivationService**
 
-```vbnet
+```vb
 Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
     Yield Singleton(Of FileAssociationService).Instance
 End Function
