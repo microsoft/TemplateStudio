@@ -10,7 +10,7 @@ The Suspend And Resume Feature allows you to save App data on suspension and bri
 ### SuspendAndResumeService.cs
 Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page (Codehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to save App data.
 
-In case the App is terminated during supension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can suscribe to this event from your current Page (CodeBehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to apply restored data. SuspendAndResumeService also navigates
+In case the App is terminated during supension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can suscribe to this event from your current Page (CodeBehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to apply restored data. 
 
 To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../activation.md).
 
