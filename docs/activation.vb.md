@@ -1,6 +1,6 @@
 # ActivationService & ActivationHandlers
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./activation.md) :heavy_exclamation_mark: |
+:heavy_exclamation_mark: There is also a version of [this document with code in C#](./activation.md) :heavy_exclamation_mark: |
 -------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## ActivationService
