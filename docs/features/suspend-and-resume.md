@@ -3,19 +3,21 @@
 :heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./suspend-and-resume.vb.md) :heavy_exclamation_mark: |
 ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-The Suspend And Resume Feature allows you to save App data on suspension and bring your App to the state it was before in case it is terminated during suspension. 
+The Suspend And Resume Feature allows you to save App data on suspension and bring your App to the state it was before in case it is terminated during suspension.
 
 ## Understanding the code
 
 ### SuspendAndResumeService.cs
-Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page (Codehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to save App data. 
+Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page (Codehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to save App data.
 
-In case the App is terminated during supension the previous application state has to be restored during re-launch. Th SuspendAndResumeService retrieves the stored data in this case and navigates to the stored page passing the data. To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../activation.md).
+In case the App is terminated during supension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can suscribe to this event from your current Page (CodeBehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to apply restored data. SuspendAndResumeService also navigates
 
-In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario. 
+To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../activation.md).
+
+In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario.
 
 ### SuspensionState.cs
-SuspensionState holds the App data and the SuspensionDate that indicates when this data was stored. 
+SuspensionState holds the App data and the SuspensionDate that indicates when this data was stored.
 
 ## Using SuspendAndResumeService
 In this example we are going to show how to save data on App suspension and restore it in case the App was terminated during suspension.
@@ -74,63 +76,76 @@ public string Data
 }
 ```
 
-### **2. Subscribe to OnBackgroundEntering and save data**
-Subscribe to the `OnBackgroundEntering` event and save the data to `SuspensionState.Data` when the application enters background state. 
+### **2. Subscribe to OnBackgroundEntering and OnDataRestored to save and restore data**
+Subscribe to the `OnBackgroundEntering` and  `OnDataRestored` events to save and restore the data to `SuspensionState.Data` when the application enters background state or be restored from suspension.
 
 **`CodeBehind`**
 
-Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
+Subscribe to the OnBackgroundEntering and OnDataRestored event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
     base.OnNavigatedTo(e);
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored += OnDataRestored;
 }
 protected override void OnNavigatedFrom(NavigationEventArgs e)
 {
     base.OnNavigatedFrom(e);
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
 public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
 {
     e.SuspensionState.Data = Data;
 }
+
+private void OnDataRestored(object sender, SuspendAndResumeArgs e)
+{
+    Data = e.SuspensionState.Data as string;
+}
 ```
 
 **`MVVMBasic`**
 
-Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
+Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
     base.OnNavigatedTo(e);
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored += OnDataRestored;
 }
 
 protected override void OnNavigatedFrom(NavigationEventArgs e)
 {
     base.OnNavigatedFrom(e);
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
 public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
 {
     e.SuspensionState.Data = ViewModel.Data;
 }
+
+private void OnDataRestored(object sender, SuspendAndResumeArgs e)
+{
+    ViewModel.Data = e.SuspensionState.Data as string;
+}
 ```
 
 **`MVVMLight and Caliburn.Micro`**
 
-Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page. 
-The subscription to the event has to be on the ViewModel, as the navigation is using ViewModel as parameter. 
+Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page.
+The subscription to the event has to be on the ViewModel, as the navigation is using ViewModel as parameter.
 Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
     base.OnNavigatedTo(e);
     ViewModel.Initialize();
-    
 }
 
 protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -144,87 +159,27 @@ DataViewModel.cs:
 public void Initialize()
 {
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored += OnDataRestored;
 }
 
 public void UnsubscribeFromEvents()
 {
     Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= OnBackgroundEntering;
+    Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
 private void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
 {
     e.SuspensionState.Data = Data;
 }
-```
-### **3. Restore data on Application resume**
-When resuming after app termination, the SuspendAndResumeService will recover the saved data and navigate to the stored page passing the data as parameter.
 
-**`CodeBehind`**
-
-Retrieve the stored data from the SuspensionState. 
-
-DataPage.xaml.cs:
-```cs
-protected override void OnNavigatedTo(NavigationEventArgs e)
+private void OnDataRestored(object sender, SuspendAndResumeArgs e)
 {
-    base.OnNavigatedTo(e);
-
-    var suspensionState = e.Parameter as SuspensionState;
-    if (suspensionState != null)
-    {
-        Data = suspensionState.Data.ToString();
-    }
-
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
+    Data = e.SuspensionState.Data as string;
 }
 ```
 
-**`MVVMBasic`**
-
-Retrieve the stored data from the SuspensionState. 
-
-DataPage.xaml.cs:
-```cs
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    base.OnNavigatedTo(e);
-
-    var suspensionState = e.Parameter as SuspensionState;
-    if (suspensionState != null)
-    {
-        ViewModel.Data = suspensionState.Data.ToString();
-    }
-
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
-}
-```
-
-**`MVVMLight and Caliburn.Micro`**
-
-Pass the suspensionState parameter to the ViewModel initialization.
-
-DataPage.xaml.cs:
-```cs
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    base.OnNavigatedTo(e);
-    ViewModel.Initialize(e.Parameter as SuspensionState);     
-}
-```
-DataViewModel.cs:
-```cs
-public void Initialize(SuspensionState suspensionState)
-{
-    if (suspensionState != null)
-    {
-        Data = suspensionState.Data.ToString();
-    }
-        
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
-}
-```
-
-### **4. Test from Visual Studio**
-App suspension with termination can be simulated in Visual Studio using the LifeCycle Event **Suspend and shutdown**. To simulate resume, you just restart the application again. 
+### **3. Test from Visual Studio**
+App suspension with termination can be simulated in Visual Studio using the LifeCycle Event **Suspend and shutdown**. To simulate resume, you just restart the application again.
 
 ![](../resources/suspend-and-resume/SuspendAndShutdown.png)
