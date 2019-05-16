@@ -60,7 +60,7 @@ namespace Localization
                         tool.ExtractLocalizableItems(options as ExtractOptions);
                         break;
                     case "gen":
-                        tool.GenerateProjectTemplatesAndCommandsHandler(options as GenerationOptions);
+                        tool.GenerateTemplatesItems(options as GenerationOptions);
                         break;
                     case "merge":
                         tool.MergeLocalizableItems(options as MergeOptions);
