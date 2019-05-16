@@ -11,7 +11,6 @@ Under the [code](../code/) folder, the repo have different solutions to aid deve
 * **Big.sln**: This is the solution which contains all the projects available, including test projects.
 * **Installer.sln**: This solution is focused on the Visual Studio extension, have the extension project and all the dependencies and is thought to run the extension in the Visual Studio Experimental IDE.
 * **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the Windows Template Studio wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
-* **Core.sln**: This solution contains the Core assembly and it's unit tests. Use this solution when common core code is developed.
 * **Test.sln**: This solution is used to work with the project integration tests.
 
 ## Running the Extension Locally
@@ -62,13 +61,11 @@ Following are described the contents for each folder:
 
 * [_tools](../code/_tools): tooling required for testing / validations.
 * [src](../code/src): solution source code
-  * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .
   * [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
   * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
   * [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
   * [Fakes](../code/test/Fakes): Common test elements.
-  * [Core.Test](../code/test/Core.Test): Contains unit test for Core assembly.
   * [Templates.Test](../code/test/Templates.Test): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
   * [UI.Test](../code/test/UI.Test): Contains unit test for UI assembly.
   * [VsEmulator](../code/test/VsEmulator): test application able to run End-To-End the generation using the local templates repository without deploying the VSIX to VS Experimental instance.
@@ -129,24 +126,21 @@ where
 * `<wts directory>` : Directory where WTS is cloned
 * `<output directory>`: Directory where test xml result files will be generated
 
-## Core project
-The core project is in charge of:
-- Checking for new template packages, download, extract and verify template packages and building up and refreshing the templates cache.
-- Providing information about available projecttypes, frameworks, page and feature templates
-- Composition of the generation queue
-- Generation and postaction execution
+## Core
+Windows Template Studio relies on Core Template Studio for template synchronization and template composition, generation and postaction. Core Template Studio has it's own Github repository (https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project Web Template Studio (https://github.com/Microsoft/WebTemplateStudio).
+
+Core Template Studio is integrated into Windows Template Studio using a git submodule under the folder (../code/CoreTemplateStudio).
+The submodule points to a specific commit in Core Template Studio, 
+
+When you clone WTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
+When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
+
+Changes on Core Template Studio should be done on the Core Template Studio repos. 
+In WinTS, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
 
 
-During the generation the GenContext class provides access to:
 
-* The Toolbox, with the Templates Repository and the Shell class
-* The current context, with information about:
-    * The current project name
-    * The generation output path
-        * Project Path for New Project generations
-        * Temporary Path for New Item generations using Right Click
-    * The destination path (project Path for both New Project and New Item generations)
-    * ProjectInfo: Information about projects to be added to the solution and items and references that will be added to the project once the generation finishes
+
 
 
 
