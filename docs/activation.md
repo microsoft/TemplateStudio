@@ -54,13 +54,13 @@ The `HandleInternalAsync()` method gets the ActivationData from argument's Uri a
 
 The following flowchart shows the Activation proccess that starts with one of the app lifecycle event and ends with the StartupAsync call.
 
-**Lifecycle event  `OnLaunched`, `OnActivated` or `OnBackgroundActivated`**
+### Lifecycle event  `OnLaunched`, `OnActivated` or `OnBackgroundActivated`
 
 Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in ActivationService.ActivateAsync().
 
 ![](resources/activation/AppLifecycleEvent.png)
 
-**ActivateAsync**
+### ActivateAsync
 
 The first calls in ActivateAsync are InitializeAsync() and the ShellCreation in case you activation is interactive. If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
 
@@ -80,7 +80,7 @@ InitializeAsync contains services initialization for services that are going to 
 
 StartupAsync contains initializations of other classes that do not need to happen before app activation and start's processes that will be run after the Window is activated.
 
-**HandleActivation**
+### HandleActivation
 
 HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. Before that creates a DefaultActivationHandler and execute if it possible (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
 
