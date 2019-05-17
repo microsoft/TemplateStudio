@@ -63,7 +63,7 @@ namespace Localization
 
         private void GenerateTemplateJsonFiles(FileInfo jsonFile)
         {
-            if (!jsonFile.Exists)
+            if (jsonFile is null || !jsonFile.Exists)
             {
                 return;
             }
@@ -93,7 +93,7 @@ namespace Localization
 
         private void GenerateTemplateMdFiles(FileInfo mdFile)
         {
-            if (!mdFile.Exists)
+            if (mdFile is null || !mdFile.Exists)
             {
                 return;
             }
@@ -112,38 +112,45 @@ namespace Localization
 
         private void GenerateCatalogFiles(string fileName)
         {
-            var destDirectory2 = new DirectoryInfo(Path.Combine(_path, Routes.WtsTemplatesRootDirPath)).FullName;
             var destDirectory = Path.Combine(_path, Routes.WtsTemplatesRootDirPath);
-            var file = new FileInfo(Path.Combine(destDirectory, fileName + ".json"));
+            var jsonFile = new FileInfo(Path.Combine(destDirectory, fileName + ".json"));
 
-            if (file.Exists)
+            if (jsonFile is null || !jsonFile.Exists)
             {
-                var fileContent = File.ReadAllText(file.FullName);
-                var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-                var projects = content.Select(json => new
-                {
-                    name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
-                    displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
-                    summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>(),
-                });
+                return;
+            }
 
-                var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
-                foreach (string culture in _cultures)
+            var fileContent = File.ReadAllText(jsonFile.FullName);
+            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+            var projects = content.Select(json => new
+            {
+                name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
+                displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
+                summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>(),
+            });
+
+            var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
+            foreach (string culture in _cultures)
+            {
+                var desFile = Path.Combine(destDirectory, culture + "." + jsonFile.Name);
+                if (!File.Exists(desFile))
                 {
-                    var desFile = Path.Combine(destDirectory, culture + "." + file.Name);
-                    if (!File.Exists(desFile))
-                    {
-                        File.WriteAllText(desFile, data, Encoding.UTF8);
-                        Console.WriteLine($"Generate {desFile}");
-                    }
+                    File.WriteAllText(desFile, data, Encoding.UTF8);
+                    Console.WriteLine($"Generate {desFile}");
                 }
             }
         }
 
         private void GenerateCatalogSubfolderFile(string routeType)
         {
-            var srcFile = Path.Combine(_path, Routes.WtsTemplatesRootDirPath, routeType + ".json");
-            var fileContent = File.ReadAllText(srcFile);
+            var jsonFile = Path.Combine(_path, Routes.WtsTemplatesRootDirPath, routeType + ".json");
+
+            if (!File.Exists(jsonFile))
+            {
+                return;
+            }
+
+            var fileContent = File.ReadAllText(jsonFile);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var names = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
 
