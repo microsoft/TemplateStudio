@@ -12,12 +12,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Localization
 {
-    public class TemplatesGenerator
+    public class LocalizableItemsGenerator
     {
         private readonly string _path;
         private readonly IEnumerable<string> _cultures;
 
-        public TemplatesGenerator(string path, IEnumerable<string> cultures)
+        public LocalizableItemsGenerator(string path, IEnumerable<string> cultures)
         {
             _path = path;
             _cultures = cultures;

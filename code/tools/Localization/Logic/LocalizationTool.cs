@@ -26,7 +26,7 @@ namespace Localization
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var generator = new TemplatesGenerator(options.SourceDirectory, cultures);
+            var generator = new LocalizableItemsGenerator(options.SourceDirectory, cultures);
 
             Console.WriteLine("\nGenerate catalog project types localization files");
             generator.GenerateCatalogProjectTypes();

@@ -69,6 +69,7 @@
     <Compile Include="Extensions\RoutesExtensions.cs" />
     <Compile Include="Extensions\RoutesManager.cs" />
     <Compile Include="Logic\CatalogLocalizationValue.cs" />
+    <Compile Include="Logic\LocalizableItemsGenerator.cs" />
     <Compile Include="Logic\LocalizableItemsMerger.cs" />
     <Compile Include="Logic\OriginalLocalizableItemsExtractor.cs" />
     <Compile Include="Logic\ResxItem.cs" />
@@ -91,7 +92,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HelpMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="TemplatesGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">
