@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
@@ -19,10 +20,10 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _item, value); }
         }
 
-        public void Initialize(long orderId)
+        public async Task InitializeAsync(long orderId)
         {
             // TODO WTS: Replace this with your actual data
-            var data = SampleDataService.GetContentGridData();
+            var data = await SampleDataService.GetContentGridDataAsync();
             Item = data.First(i => i.OrderId == orderId);
         }
 

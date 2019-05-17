@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
@@ -31,8 +32,12 @@ namespace Param_RootNamespace.ViewModels
 
         public ImageGalleryViewDetailViewModel()
         {
+        }
+
+        public async Task LoadDataAsync()
+        {
             // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
+            Source = await SampleDataService.GetGallerySampleDataAsync();
         }
 
         public void Initialize(string selectedImageID, NavigationMode navigationMode)

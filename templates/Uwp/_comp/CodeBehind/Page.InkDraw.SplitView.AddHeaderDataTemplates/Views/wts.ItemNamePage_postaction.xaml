@@ -9,48 +9,133 @@
     <Page.Resources>
         <DataTemplate x:Key="BigHeaderTemplate">
             <RelativePanel>
-                <InkToolbar x:Name="toolbar" Background="Transparent" Loaded="OnInkToolbarLoaded" RelativePanel.AlignHorizontalCenterWithPanel="True">
-                    <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbar
+                    x:Name="toolbar"
+                    Background="Transparent"
+                    Loaded="OnInkToolbarLoaded"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True">
+                    <InkToolbarCustomToolButton
+                        x:Uid="wts.ItemName_LassoSelectionButton"
+                        Background="Transparent"
+                        IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                     </InkToolbarCustomToolButton>
-                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                    <InkToolbarCustomToggleButton
+                        x:Uid="wts.ItemName_TouchInkingButton"
+                        Background="Transparent"
+                        IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
                     </InkToolbarCustomToggleButton>
-                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                    <InkToolbarCustomToggleButton
+                        x:Uid="wts.ItemName_MouseInkingButton"
+                        Background="Transparent"
+                        IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                     </InkToolbarCustomToggleButton>
                 </InkToolbar>
                 <CommandBar x:Name="topCommandBar" Style="{StaticResource InkCommandBarStyle}" RelativePanel.RightOf="toolbar" RelativePanel.AlignRightWithPanel="True">
                     <CommandBar.PrimaryCommands>
-                        <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ZoomInButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ZoomIn_Click" 
+                            Icon="ZoomIn" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ZoomOutButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ZoomOut_Click"
+                            Icon="ZoomOut" />
                     </CommandBar.PrimaryCommands>
                     <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Uid="wts.ItemName_CutButton" Icon="Cut" Click="Cut_Click" IsEnabled="{Binding Content.CutButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}"  BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_CopyButton" Icon="Copy" Click="Copy_Click" IsEnabled="{Binding Content.CopyButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_PasteButton" Icon="Paste" Click="Paste_Click" IsEnabled="{Binding Content.PasteButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_CutButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="Cut_Click"
+                            Icon="Cut"
+                            IsEnabled="{Binding Content.CutButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_CopyButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="Copy_Click"
+                            Icon="Copy"
+                            IsEnabled="{Binding Content.CopyButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_PasteButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="Paste_Click"
+                            Icon="Paste"
+                            IsEnabled="{Binding Content.PasteButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
                         <AppBarSeparator />
-                        <AppBarButton x:Uid="wts.ItemName_UndoButton" Icon="Undo" Click="Undo_Click" IsEnabled="{Binding Content.UndoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_RedoButton" Icon="Redo" Click="Redo_Click" IsEnabled="{Binding Content.RedoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="wts.ItemName_LoadInkFileButton" Icon="OpenFile" Click="LoadInkFile_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_SaveInkFileButton" Icon="Save" Click="SaveInkFile_Click" IsEnabled="{Binding Content.SaveInkFileButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="wts.ItemName_ExportAsImageButton" Icon="Download" Click="ExportAsImage_Click" IsEnabled="{Binding Content.ExportAsImageButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_UndoButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="Undo_Click"
+                            Icon="Undo"
+                            IsEnabled="{Binding Content.UndoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_RedoButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="Redo_Click"
+                            Icon="Redo"
+                            IsEnabled="{Binding Content.RedoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarSeparator />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_LoadInkFileButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="LoadInkFile_Click"
+                            Icon="OpenFile" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_SaveInkFileButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="SaveInkFile_Click"
+                            Icon="Save"
+                            IsEnabled="{Binding Content.SaveInkFileButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ExportAsImageButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ExportAsImage_Click"
+                            Icon="Download"
+                            IsEnabled="{Binding Content.ExportAsImageButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
+                        <AppBarSeparator />
+                        <AppBarButton
+                            x:Uid="wts.ItemName_ClearAllButton"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Click="ClearAll_Click"
+                            Icon="Delete"
+                            IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="SmallHeaderTemplate">
             <InkToolbar HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
-                <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbarCustomToolButton
+                    x:Uid="wts.ItemName_LassoSelectionButton"
+                    Background="Transparent"
+                    IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                 </InkToolbarCustomToolButton>
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton
+                    x:Uid="wts.ItemName_TouchInkingButton"
+                    Background="Transparent"
+                    IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
                 </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton
+                    x:Uid="wts.ItemName_MouseInkingButton"
+                    Background="Transparent"
+                    IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                 </InkToolbarCustomToggleButton>
             </InkToolbar>

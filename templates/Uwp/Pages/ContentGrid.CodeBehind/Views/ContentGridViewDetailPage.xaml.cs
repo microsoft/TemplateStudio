@@ -26,12 +26,12 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is long orderId)
             {
-                var data = SampleDataService.GetContentGridData();
+                var data = await SampleDataService.GetContentGridDataAsync();
                 Item = data.First(i => i.OrderId == orderId);
             }
         }

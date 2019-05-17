@@ -44,16 +44,17 @@ namespace Param_RootNamespace.ViewModels
         public ImageGalleryViewDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationServiceInstance;
-
-            // TODO WTS: Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
             _connectedAnimationService = connectedAnimationService;
-            Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+
+            // TODO WTS: Replace this with your actual data
+            Source = await _sampleDataService.GetGallerySampleDataAsync();
+
             var selectedImageID = e.Parameter as string;
 
             if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)

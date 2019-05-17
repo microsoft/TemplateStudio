@@ -1,5 +1,6 @@
 ﻿//{[{
 using Param_RootNamespace.Core.Services;
+using System.Threading.Tasks;
 //}]}
 
 namespace Param_RootNamespace.Core.Tests.NUnit
@@ -12,10 +13,10 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         // TODO WTS: Remove or update this once your app is using real data and not the SampleDataService.
         // This test serves only as a demonstration of testing functionality in the Core library.
         [Test]
-        public void EnsureSampleDataServiceReturnsGalleryData()
+        public async Task EnsureSampleDataServiceReturnsGalleryDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = dataService.GetGallerySampleData();
+            var actual = await dataService.GetGallerySampleDataAsync();
 
             Assert.AreNotEqual(0, actual.Count);
         }

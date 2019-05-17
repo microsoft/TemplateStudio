@@ -364,7 +364,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Templates version:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>
     <comment>About section title</comment>
@@ -703,10 +703,6 @@ Please verify the following list of packages needed by your project's code and m
     <value>Windows Template Studio is now adding a core project. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>You can not remove **{0}** because it is readonly.</value>
     <comment>Remove error message: Template is read only</comment>
@@ -741,5 +737,13 @@ Please verify the following list of packages needed by your project's code and m
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>See documentation to update.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>

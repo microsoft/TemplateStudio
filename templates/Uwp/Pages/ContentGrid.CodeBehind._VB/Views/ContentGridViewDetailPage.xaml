@@ -35,61 +35,74 @@
 
             <RelativePanel>
                 <Grid
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
                     x:Name="itemHero"
-                    animations:Connected.Key="animationKeyContentGridView"
                     Width="200"
                     Height="200"
+                    Margin="{StaticResource SmallRightMargin}"
+                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Margin="{StaticResource SmallRightMargin}"
-                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                    animations:Connected.Key="animationKeyContentGridView"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
                     <FontIcon
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Glyph="{x:Bind Item.Symbol}" FontSize="70" />
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="70"
+                        Glyph="{x:Bind Item.Symbol}" />
                 </Grid>
 
                 <TextBlock
                     x:Name="title"
+                    Margin="{StaticResource XXSmallTopMargin}"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind Item.Company, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}"
-                    Margin="{StaticResource XXSmallTopMargin}" />
+                    Text="{x:Bind Item.Company, Mode=OneWay}" />
 
                 <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
                     <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind Item.Status}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Status" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind Item.Status}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind Item.OrderDate}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order date" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind Item.OrderDate}" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
                     <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Ship to" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind Item.ShipTo}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Ship to" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind Item.ShipTo}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind Item.OrderTotal}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order total" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind Item.OrderTotal}" />
                     </StackPanel>
                 </StackPanel>
 
             </RelativePanel>
 
-            <TextBlock Text="Note 1" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource DetailSubTitleStyle}"
+                Text="Note 1" />
+            <TextBlock
+                Style="{StaticResource DetailBodyStyle}"
+                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
 
-            <TextBlock Text="Note 2" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <TextBlock Style="{StaticResource DetailBodyStyle}" Margin="{StaticResource MediumBottomMargin}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource DetailSubTitleStyle}"
+                Text="Note 2" />
+            <TextBlock
+                Margin="{StaticResource MediumBottomMargin}"
+                Style="{StaticResource DetailBodyStyle}"
+                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
         </StackPanel>
     </Grid>
 </Page>

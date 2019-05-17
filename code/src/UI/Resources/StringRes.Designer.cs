@@ -1252,6 +1252,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string TemplateGroup_Data {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identity (choose one).
         /// </summary>
         public static string TemplateGroup_Identity {
@@ -1261,11 +1270,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Testing.
+        ///   Looks up a localized string similar to Tools.
         /// </summary>
-        public static string TemplateGroup_Testing {
+        public static string TemplateGroup_Tools {
             get {
-                return ResourceManager.GetString("TemplateGroup_Testing", resourceCulture);
+                return ResourceManager.GetString("TemplateGroup_Tools", resourceCulture);
             }
         }
         

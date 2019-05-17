@@ -24,6 +24,6 @@
         </VisualStateManager.VisualStateGroups>        
         <RelativePanel>
             <!--{[{-->
-            <TextBlock x:Name="headerTitle" x:Uid="wts.ItemNameHeader" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource PageTitleStyle}" MaxLines="1" TextTrimming="CharacterEllipsis" RelativePanel.LeftOf="toolbar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWith="toolbar"/>
+            <TextBlock x:Name="headerTitle" x:Uid="wts.ItemNameHeader" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource PageTitleStyle}" MaxLines="1" TextTrimming="CharacterEllipsis" RelativePanel.LeftOf="toolbar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWith="toolbar" />
             <!--}]}-->
         </RelativePanel>

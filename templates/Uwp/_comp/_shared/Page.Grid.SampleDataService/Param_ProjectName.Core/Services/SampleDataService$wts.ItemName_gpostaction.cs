@@ -1,7 +1,9 @@
 ﻿//{**
-// This code block adds the method `GetGridSampleData()` to the SampleDataService of your project.
+// This code block adds the method `GetGridSampleDataAsync()` to the SampleDataService of your project.
 //**}
-
+﻿//{[{
+using System.Threading.Tasks;
+//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public static class SampleDataService
@@ -10,8 +12,10 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your grid page is displaying real data.
-        public static ObservableCollection<SampleOrder> GetGridSampleData()
+        public static async Task<ObservableCollection<SampleOrder>> GetGridSampleDataAsync()
         {
+            await Task.CompletedTask;
+
             return new ObservableCollection<SampleOrder>(AllOrders());
         }
 //}]}
