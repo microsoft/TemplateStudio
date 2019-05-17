@@ -136,22 +136,17 @@ Example:
         Localization ext -o "C:\Projects\wts_old" - a "C:\Projects\wts" - d "C:\MyFolder\Extracted\"</value>
   </data>
   <data name="GenCommand" xml:space="preserve">
-    <value>Generates Project Templates for different cultures.
+    <value>Generate the missing localized files for different cultures in the templates.
 
-Localization gen -s "sourceDirectory" -d "destinationDirectory"
+Localization gen -s "sourceDirectory"
 
         sourceDirectory          - path to the folder that contains
-                                   source files for Project Templates
+                                   source files for Templates
                                    (it's root project folder).
-
-        destinationDirectory     - path to the folder in which will be
-                                   saved all localized Project
-                                   Templates(parent for
-                                   CSharp.UWP.2017.Solution directory).
 
 Example:
 
-        Localization gen -s "C:\\MyFolder\\wts" -d "C:\\MyFolder\\Generated\\ProjectTemplates"</value>
+        Localization gen -s "C:\\MyFolder\\wts"</value>
   </data>
   <data name="HelpCommand" xml:space="preserve">
     <value>Provides Help information for Windows Template Studio Localization Tool.

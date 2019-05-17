@@ -81,17 +81,17 @@ namespace Localization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generates Project Templates for different cultures.
+        ///   Looks up a localized string similar to Generate the missing localized files for different cultures in the templates.
         ///
-        ///Localization gen -s &quot;sourceDirectory&quot; -d &quot;destinationDirectory&quot;
+        ///Localization gen -s &quot;sourceDirectory&quot;
         ///
         ///        sourceDirectory          - path to the folder that contains
-        ///                                   source files for Project Templates
+        ///                                   source files for Templates
         ///                                   (it&apos;s root project folder).
         ///
-        ///        destinationDirectory     - path to the folder in which will be
-        ///                                   saved all localized Project
-        ///                                   Templates(par [rest of string was truncated]&quot;;.
+        ///Example:
+        ///
+        ///        Localization gen -s &quot;C:\\MyFolder\\wts&quot;.
         /// </summary>
         public static string GenCommand {
             get {
