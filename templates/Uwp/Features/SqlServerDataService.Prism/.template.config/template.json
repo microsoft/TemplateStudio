@@ -2,22 +2,22 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "SQL Server Data",
-  "groupIdentity": "wts.Feat.SqlServerDataService.VB",
-  "identity": "wts.Feat.SqlServerDataService.VB",
+  "groupIdentity": "wts.Feat.SqlServerDataService",
+  "identity": "wts.Feat.SqlServerDataService.Prism",
   "description": "Get data from SQL Server to use in the app.",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "feature",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",
     "wts.group": "Data",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.defaultInstance": "SqlServerDataService",
     "wts.multipleInstance": "false",
-    "wts.dependencies": "wts.Feat.SampleDataService.VB",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
@@ -28,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\SqlServerDataService.vb"
+      "path": ".\\Param_ProjectName.Core\\Services\\SqlServerDataService.cs"
     }
   ],
   "symbols": {
@@ -50,7 +50,7 @@
       "args": {
         "packageId" : "Microsoft.EntityFrameworkCore.SqlServer",
         "version" : "2.2.4",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": "true"
     },
@@ -61,7 +61,7 @@
       "args": {
         "packageId" : "System.Configuration.ConfigurationManager",
         "version" : "4.5.0",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": "true"
     }
