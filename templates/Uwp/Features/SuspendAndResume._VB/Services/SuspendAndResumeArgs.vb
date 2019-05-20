@@ -1,5 +1,5 @@
 ﻿Namespace Services
-    Public Class OnBackgroundEnteringEventArgs
+    Public Class SuspendAndResumeArgs
         Inherits EventArgs
 
         Public Property SuspensionState As SuspensionState

@@ -11,7 +11,8 @@ using Param_RootNamespace.Activation;
 
 namespace Param_RootNamespace.Services
 {
-    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    // For more information on understanding and extending activation flow see
+    // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly App _app;
@@ -31,18 +32,21 @@ namespace Param_RootNamespace.Services
         {
             if (IsInteractive(activationArgs))
             {
-                // Initialize things like registering background task before the app is loaded
+                // Initialize services that you need before app activation
+                // take into account that the splash screen is shown while this code runs.
                 await InitializeAsync();
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
                 if (Window.Current.Content == null)
                 {
-                    // Create a Frame to act as the navigation context and navigate to the first page
+                    // Create a Shell or Frame to act as the navigation context
                     Window.Current.Content = _shell?.Value ?? new Frame();
                 }
             }
 
+            // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
+            // will navigate to the first page
             await HandleActivationAsync(activationArgs);
             _lastActivationArgs = activationArgs;
 

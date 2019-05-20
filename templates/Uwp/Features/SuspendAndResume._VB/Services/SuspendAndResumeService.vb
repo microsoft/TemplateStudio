@@ -35,7 +35,7 @@ Namespace Services
                     target = OnBackgroundEnteringEvent.Target.GetType
                 End If
 
-                Dim onBackgroundEnteringArgs = New OnBackgroundEnteringEventArgs(suspensionState, target)
+                Dim onBackgroundEnteringArgs = New SuspendAndResumeArgs(suspensionState, target)
 
                 RaiseEvent OnBackgroundEntering(Me, onBackgroundEnteringArgs)
 
@@ -53,14 +53,32 @@ Namespace Services
             RaiseEvent OnResuming(Me, EventArgs.Empty)
         End Sub
 
+        Public Async Function RestoreSuspendAndResumeData() As Task
+            Dim saveState = Await GetSuspendAndResumeData()
+
+            If saveState IsNot Nothing Then
+                RaiseEvent OnDataRestored(Me, saveState)
+            End If
+        End Function
+
         ' This method restores application state when the App is launched after termination, it navigates to the stored Page passing the recovered state data.
         Protected Overrides Async Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
-            Dim saveState = Await ApplicationData.Current.LocalFolder.ReadAsync(Of OnBackgroundEnteringEventArgs)(StateFilename)
+            Dim saveState = Await GetSuspendAndResumeData()
         End Function
 
         Protected Overrides Function CanHandleInternal(args As LaunchActivatedEventArgs) As Boolean
             ' Application State must only be restored if the App was terminated during suspension.
             Return args.PreviousExecutionState = ApplicationExecutionState.Terminated
+        End Function
+
+        Public Async Function GetSuspendAndResumeData() As Task(Of SuspendAndResumeArgs)
+            Dim saveState = Await ApplicationData.Current.LocalFolder.ReadAsync(Of SuspendAndResumeArgs)(StateFilename)
+
+            If saveState?.Target IsNot Nothing AndAlso GetType(Page).IsAssignableFrom(saveState.Target) Then
+                Return saveState
+            End If
+
+            Return Nothing
         End Function
 
     End Class

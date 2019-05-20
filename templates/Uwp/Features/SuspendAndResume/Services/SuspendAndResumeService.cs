@@ -38,7 +38,7 @@ namespace Param_RootNamespace.Services
                 };
 
                 var target = OnBackgroundEntering?.Target.GetType();
-                var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
+                var onBackgroundEnteringArgs = new SuspendAndResumeArgs(suspensionState, target);
 
                 OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
 
@@ -59,16 +59,36 @@ namespace Param_RootNamespace.Services
             OnResuming?.Invoke(this, EventArgs.Empty);
         }
 
+        public async Task RestoreSuspendAndResumeData()
+        {
+            var saveState = await GetSuspendAndResumeData();
+            if (saveState != null)
+            {
+                OnDataRestored?.Invoke(this, saveState);
+            }
+        }
+
         // This method restores application state when the App is launched after termination, it navigates to the stored Page passing the recovered state data.
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
-            var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(StateFilename);
+            var saveState = await GetSuspendAndResumeData();
         }
 
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // Application State must only be restored if the App was terminated during suspension.
             return args.PreviousExecutionState == ApplicationExecutionState.Terminated;
+        }
+
+        public async Task<SuspendAndResumeArgs> GetSuspendAndResumeData()
+        {
+            var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<SuspendAndResumeArgs>(StateFilename);
+            if (saveState?.Target != null && typeof(Page).IsAssignableFrom(saveState.Target))
+            {
+                return saveState;
+            }
+
+            return null;
         }
     }
 }
