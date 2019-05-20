@@ -20,7 +20,7 @@
             animations:Connected.ListItemKey="galleryAnimationKey"
             cm:Message.Attach="[Event ItemClick] = [OnImageSelected($clickedItem)]"
             IsItemClickEnabled="True"
-            ItemsSource="{x:Bind ViewModel.Source}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">

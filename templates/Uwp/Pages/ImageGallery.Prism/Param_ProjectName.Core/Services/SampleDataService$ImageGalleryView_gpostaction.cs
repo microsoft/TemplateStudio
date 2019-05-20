@@ -1,6 +1,9 @@
 ﻿//{**
 // This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
 //**}
+//{[{
+using System.Threading.Tasks;
+//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
@@ -18,8 +21,9 @@ namespace Param_RootNamespace.Core.Services
         }
 
         // TODO WTS: Remove this once your image gallery page is displaying real data.
-        public ObservableCollection<SampleImage> GetGallerySampleData()
+        public async Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync()
         {
+            await Task.CompletedTask;
             if (_gallerySampleData == null)
             {
                 _gallerySampleData = new ObservableCollection<SampleImage>();

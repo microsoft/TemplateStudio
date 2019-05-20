@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
             // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
             // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
-            return " -_.,@! (£)+=";
+            return " -_.,@! (ï¿½)+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -497,7 +497,8 @@ namespace Microsoft.Templates.Test
                 "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                 "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
                 "wts.Feat.UnitTests.Core.MSTest", "wts.Feat.UnitTests.Core.NUnit", "wts.Feat.UnitTests.Core.xUnit",
-                "wts.Feat.UnitTests.App.MSTest", "wts.Feat.UnitTests.App.xUnit", "wts.Feat.HttpDataService",
+                "wts.Feat.UnitTests.App.MSTest", "wts.Feat.UnitTests.App.xUnit",
+                "wts.Feat.HttpDataService", "wts.Feat.SqlServerDataService",
             };
         }
 

@@ -14,7 +14,7 @@
         <FlipView
             animations:Connected.Key="galleryAnimationKey"
             animations:Connected.AnchorElement="{Binding ElementName=detailImage}"
-            ItemsSource="{x:Bind ViewModel.Source}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">

@@ -23,11 +23,11 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             Dim orderId As Long
             orderId = CType(e.Parameter, Long)
-            Dim data = SampleDataService.GetContentGridData()
+            Dim data = Await SampleDataService.GetContentGridDataAsync()
             Item = data.First(Function(i) i.OrderId = orderId)
         End Sub
 

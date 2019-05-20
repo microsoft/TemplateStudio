@@ -5,11 +5,20 @@ Namespace ViewModels
     Public Class DataGridViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
-        Public ReadOnly Property Source As ObservableCollection(Of SampleOrder)
+        Private _source As ObservableCollection(Of SampleOrder)
+
+        Public Property Source As ObservableCollection(Of SampleOrder)
             Get
-                ' TODO WTS: Replace this with your actual data
-                Return SampleDataService.GetGridSampleData()
+                Return _source
             End Get
+            Set(value As ObservableCollection(Of SampleOrder))
+                [Set](_source, value)
+            End Set
         End Property
+
+        Public Async Function LoadDataAsync() As Task
+            ' TODO WTS: Replace this with your actual data
+            Source = Await SampleDataService.GetGridSampleDataAsync()
+        End Function
     End Class
 End Namespace

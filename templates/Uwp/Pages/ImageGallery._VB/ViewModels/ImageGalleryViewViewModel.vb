@@ -23,8 +23,11 @@ Namespace ViewModels
         Public ReadOnly Property ItemSelectedCommand As ICommand = new RelayCommand(Of ItemClickEventArgs)(Sub(args) OnsItemSelected(args))
 
         Public Sub New()
-            ' TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData()
         End Sub
+
+        Public Async Function LoadDataAsync() As Task
+            ' TODO WTS: Replace this with your actual data
+            Source = Await SampleDataService.GetGallerySampleDataAsync()
+        End Function
     End Class
 End Namespace

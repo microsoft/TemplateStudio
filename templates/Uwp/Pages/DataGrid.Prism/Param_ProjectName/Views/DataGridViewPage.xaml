@@ -12,7 +12,7 @@
             <controls:DataGrid
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source}">
+                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO WTS:
