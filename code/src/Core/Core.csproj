@@ -151,6 +151,7 @@
     <Compile Include="Naming\ProjectStartsWithValidator.cs" />
     <Compile Include="Packaging\CertInfo.cs" />
     <Compile Include="Packaging\IDigitalSignatureService.cs" />
+    <Compile Include="Templates\FeatureType.cs" />
     <Compile Include="Templates\MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\PageSuffixValidator.cs" />

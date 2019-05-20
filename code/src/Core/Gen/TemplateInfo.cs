@@ -48,6 +48,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public TemplateType TemplateType { get; set; }
 
+        public FeatureType FeatureType { get; set; }
+
         public bool RightClickEnabled { get; set; }
     }
 }

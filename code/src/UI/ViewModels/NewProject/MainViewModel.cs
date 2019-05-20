@@ -23,6 +23,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        public const string NewProjectStepProjectType = "ProjectType";
+        public const string NewProjectStepFramework = "Framework";
+        public const string NewProjectStepPages = "Pages";
+        public const string NewProjectStepFeatures = "Features";
+        public const string NewProjectStepTests = "Tests";
+        public const string NewProjectStepServices = "Services";
+
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
 
@@ -37,6 +44,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
         public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
+
+        public AddTestingViewModel AddTesting { get; } = new AddTestingViewModel();
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
@@ -60,24 +69,42 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public MainViewModel(Window mainView, BaseStyleValuesProvider provider)
-            : base(mainView, provider)
+            : base(mainView, provider, NewProjectSteps)
         {
             Instance = this;
             ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
+            Navigation.OnFinish += OnFinish;
+        }
+
+        public override void UnsubscribeEventHandlers()
+        {
+            base.UnsubscribeEventHandlers();
+            Navigation.OnFinish -= OnFinish;
+        }
+
+        private static IEnumerable<StepData> NewProjectSteps
+        {
+            get
+            {
+                yield return StepData.MainStep(NewProjectStepProjectType, "1", StringRes.NewProjectStepOne, () => new ProjectTypePage(), true, true);
+                yield return StepData.MainStep(NewProjectStepFramework, "2", StringRes.NewProjectStepTwo, () => new FrameworkPage());
+                yield return StepData.MainStep(NewProjectStepPages, "3", StringRes.NewProjectStepThree, () => new AddPagesPage());
+                yield return StepData.MainStep(NewProjectStepFeatures, "4", StringRes.NewProjectStepFour, () => new AddFeaturesPage());
+                yield return StepData.MainStep(NewProjectStepTests, "5", StringRes.NewProjectStepFive, () => new AddTestingPage());
+                yield return StepData.MainStep(NewProjectStepServices, "6", StringRes.NewProjectStepSix, () => new AddServicesPage());
+            }
         }
 
         public override async Task InitializeAsync(string platform, string language)
         {
             WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
             await base.InitializeAsync(platform, language);
+            Navigation.OnFinish += OnFinish;
         }
 
-        protected override void OnCancel() => WizardShell.Current.Close();
-
-        protected override void OnFinish()
+        private void OnFinish(object sender, EventArgs e)
         {
             WizardShell.Current.Result = UserSelection.GetUserSelection();
-            base.OnFinish();
         }
 
         public override bool IsSelectionEnabled(MetadataType metadataType)
@@ -109,6 +136,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 AddPages.ResetUserSelection();
                 AddFeatures.ResetTemplatesCount();
+                AddTesting.ResetUserSelection();
             }
 
             return result;
@@ -143,14 +171,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ShowNoContentPanel = !ProjectType.Items.Any();
         }
 
-        protected override IEnumerable<Step> GetSteps()
-        {
-            yield return new Step(0, StringRes.NewProjectStepOne, () => new ProjectTypePage(), true, true);
-            yield return new Step(1, StringRes.NewProjectStepTwo, () => new FrameworkPage());
-            yield return new Step(2, StringRes.NewProjectStepThree, () => new AddPagesPage());
-            yield return new Step(3, StringRes.NewProjectStepFour, () => new AddFeaturesPage());
-        }
-
         public override async Task ProcessItemAsync(object item)
         {
             if (item is ProjectTypeMetaDataViewModel projectTypeMetaData)
@@ -179,6 +199,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             AddPages.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
             AddFeatures.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            AddTesting.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }

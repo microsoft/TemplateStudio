@@ -110,6 +110,7 @@
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="Extensions\SelectableExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
@@ -204,7 +205,7 @@
     <Compile Include="Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Step.cs" />
+    <Compile Include="Controls\StepData.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\HasItemsVisibilityConverter.cs" />
     <Compile Include="Converters\IntegerVisibilityConverter.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\Selectable.cs" />
     <Compile Include="ViewModels\Common\SelectableGroup`1.cs" />
+    <Compile Include="ViewModels\Common\WizardNavigation.cs" />
     <Compile Include="ViewModels\NewItem\BreakingChangeMessageViewModel.cs" />
     <Compile Include="ViewModels\Common\WizardStatus.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
@@ -288,6 +290,7 @@
     <Compile Include="ViewModels\NewItem\TemplateSelectionViewModel.cs" />
     <Compile Include="ViewModels\NewProject\AddFeaturesViewModel.cs" />
     <Compile Include="ViewModels\NewProject\AddPagesViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\AddTestingViewModel.cs" />
     <Compile Include="ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
@@ -316,6 +319,12 @@
     </Compile>
     <Compile Include="Views\NewItem\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewProject\AddServicesPage.xaml.cs">
+      <DependentUpon>AddServicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewProject\AddTestingPage.xaml.cs">
+      <DependentUpon>AddTestingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProject\AddFeaturesPage.xaml.cs">
       <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
@@ -506,6 +515,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewItem\WizardShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewProject\AddServicesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewProject\AddTestingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

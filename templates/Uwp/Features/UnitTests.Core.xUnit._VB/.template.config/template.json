@@ -9,6 +9,7 @@
     "language": "VisualBasic",
     "type": "project",
     "wts.type": "feature",
+    "wts.featureType": "Testing",
     "wts.outputToParent": "true",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",

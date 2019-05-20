@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*" />
                 <!--80% Selection area-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
+            <controls:SequentialFlow Steps="{Binding Navigation.Steps}" IsEnabled="{Binding WizardStatus.IsNotBusy}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         </Grid>
@@ -58,11 +58,11 @@
                 IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"
                 Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding GoForwardCommand}"
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding Navigation.GoForwardCommand}"
                         extensions:FocusExtension.IsFocused="{Binding TemplateSelection.IsFocused}" AutomationProperties.AutomationId="GoForwardButton" />
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="8,0,0,0" Command="{Binding CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="8,0,0,0" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

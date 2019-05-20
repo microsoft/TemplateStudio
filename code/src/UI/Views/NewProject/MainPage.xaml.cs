@@ -5,6 +5,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
@@ -20,7 +21,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-            Services.NavigationService.InitializeSecondaryFrame(stepFrame, MainViewModel.Instance.GetCurrentStep().GetPage());
+            Services.NavigationService.InitializeSecondaryFrame(stepFrame, WizardNavigation.Current.CurrentStep.GetPage());
             Services.OrderingService.Initialize(pagesList);
         }
 

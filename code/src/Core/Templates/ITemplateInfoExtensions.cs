@@ -358,6 +358,18 @@ namespace Microsoft.Templates.Core
             return false;
         }
 
+        public static FeatureType GetFeatureType(this ITemplateInfo ti)
+        {
+            var type = GetValueFromTag(ti, TagPrefix + "featureType");
+            switch (type?.ToUpperInvariant())
+            {
+                case "TESTING":
+                    return FeatureType.Testing;
+                default:
+                    return FeatureType.Default;
+            }
+        }
+
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
             return ti.GetMultipleInstance();

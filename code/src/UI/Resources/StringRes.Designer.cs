@@ -649,6 +649,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tests.
+        /// </summary>
+        public static string NewProjectStepFive {
+            get {
+                return ResourceManager.GetString("NewProjectStepFive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string NewProjectStepFour {
@@ -663,6 +672,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NewProjectStepOne {
             get {
                 return ResourceManager.GetString("NewProjectStepOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        public static string NewProjectStepSix {
+            get {
+                return ResourceManager.GetString("NewProjectStepSix", resourceCulture);
             }
         }
         

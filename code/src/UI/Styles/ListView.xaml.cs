@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.Styles
             await BaseMainViewModel.BaseInstance.ProcessItemAsync(item);
         }
 
-        private async Task SelectStepAsync(Step step) => await BaseMainViewModel.BaseInstance.SetStepAsync(step.Index);
+        private async Task SelectStepAsync(StepData step) => await BaseMainViewModel.BaseInstance.Navigation.SetStepAsync(step);
 
         private void SelectFile(NewItemFileViewModel file) => ViewModels.NewItem.MainViewModel.Instance.ChangesSummary.SelectFile(file);
 
@@ -102,7 +102,7 @@ namespace Microsoft.Templates.UI.Styles
                 case BasicInfoViewModel info:
                     await SelectItemAsync(info);
                     break;
-                case Step step:
+                case StepData step:
                     await SelectStepAsync(step);
                     break;
                 case NewItemFileViewModel file:
