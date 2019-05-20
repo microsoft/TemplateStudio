@@ -16,7 +16,7 @@ Namespace Services
             If IsInteractive(activationArgs) Then
 '{[{
                 Dim Activation = TryCast(activationArgs, IActivatedEventArgs)
-                If Activation IsNot Nothing And Activation.PreviousExecutionState = ApplicationExecutionState.Terminated Then
+                If Activation IsNot Nothing AndAlso Activation.PreviousExecutionState = ApplicationExecutionState.Terminated Then
                     Await Singleton(Of SuspendAndResumeService).Instance.RestoreSuspendAndResumeData()
                 End If
 
