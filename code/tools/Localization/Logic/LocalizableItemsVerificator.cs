@@ -204,12 +204,12 @@ namespace Localization
                 _warnings.Add(string.Format("Missing resource: {0} contain \"{1}\" resource name but not in {2}", cultureFile, name, resxFile)));
         }
 
-        private void VerifyResourcesFormat(Dictionary<string, string> resources, Dictionary<string, string> cultureResources, string resxFile, string cultureFile)
+        private void VerifyResourcesFormat(Dictionary<string, ResxItem> resources, Dictionary<string, ResxItem> cultureResources, string resxFile, string cultureFile)
         {
             string pattern = @"([.^{^}]*(?<p>{\d+}))+";
 
-            var resWithStringFormat = resources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
-            var resCultureWithStringFormat = cultureResources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
+            var resWithStringFormat = resources.Select(r => new { r.Key, Regex.Matches(r.Value.Text, pattern).Count });
+            var resCultureWithStringFormat = cultureResources.Select(r => new { r.Key, Regex.Matches(r.Value.Text, pattern).Count });
             var resWithDistinctFormats = resWithStringFormat.Where(r => resCultureWithStringFormat.Any(c => c.Key == r.Key && c.Count != r.Count));
 
             foreach (var res in resWithDistinctFormats)
