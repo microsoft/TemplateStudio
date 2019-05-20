@@ -5,12 +5,12 @@ using CommandLine;
 
 namespace Localization.Options
 {
-    public class GenerationOptions
+    public class TemplatesGeneratorOptions
     {
         [Option(
             's',
             "source",
-            HelpText = "path to the folder that contains source files for Project Templates(it's root project folder).",
+            HelpText = "path to the folder that contains templates folder",
             Required = true)]
         public string SourceDirectory { get; set; }
     }
