@@ -1,1 +1,0 @@
-Descripción de Framework de prueba
