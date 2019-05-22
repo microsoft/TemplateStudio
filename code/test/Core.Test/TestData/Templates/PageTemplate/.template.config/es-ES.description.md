@@ -1,1 +1,0 @@
-Descripción del proyecto de prueba
