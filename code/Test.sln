@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Test", "test\UI.Test\UI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "tools\Localization\Localization.csproj", "{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTemplateStudio.Core", "CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj", "{023B31F6-944F-4FD8-A0C1-79535C1F865F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "CoreTemplateStudio\code\src\Utilities\Utilities.csproj", "{356EADB6-D826-494D-B5E1-41245159D5AE}"
@@ -31,6 +29,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTemplateStudio.Core.Test", "CoreTemplateStudio\code\test\CoreTemplateStudio.Core.Test\CoreTemplateStudio.Core.Test.csproj", "{9A7EFC61-6310-4C9F-BA69-FC1C5AA312C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test", "CoreTemplateStudio\code\test\Utilities.Test\Utilities.Test.csproj", "{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "CoreTemplateStudio\code\tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,12 +75,6 @@ Global
 		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{023B31F6-944F-4FD8-A0C1-79535C1F865F}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
 		{023B31F6-944F-4FD8-A0C1-79535C1F865F}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
 		{023B31F6-944F-4FD8-A0C1-79535C1F865F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -105,6 +99,12 @@ Global
 		{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
