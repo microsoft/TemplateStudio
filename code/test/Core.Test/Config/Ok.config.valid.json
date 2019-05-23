@@ -1,7 +1,0 @@
-﻿{
-  "CdnUrl": "myCdnUrldata",
-  "RemoteTelemetryKey": "myRemoteTelemetryKey",
-  "LogFileFolderPath": "WinTS\\Logs",
-  "DiagnosticsTraceLevel": "Information",
-  "DaysToKeepDiagnosticsLogs": 15
-}

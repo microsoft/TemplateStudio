@@ -136,22 +136,17 @@ Example:
         Localization ext -o "C:\Projects\wts_old" - a "C:\Projects\wts" - d "C:\MyFolder\Extracted\"</value>
   </data>
   <data name="GenCommand" xml:space="preserve">
-    <value>Generates Project Templates for different cultures.
+    <value>Generate the missing localized files for different cultures in the templates.
 
-Localization gen -s "sourceDirectory" -d "destinationDirectory"
+Localization gen -s "sourceDirectory"
 
         sourceDirectory          - path to the folder that contains
-                                   source files for Project Templates
+                                   source files for Templates
                                    (it's root project folder).
-
-        destinationDirectory     - path to the folder in which will be
-                                   saved all localized Project
-                                   Templates(parent for
-                                   CSharp.UWP.2017.Solution directory).
 
 Example:
 
-        Localization gen -s "C:\\MyFolder\\wts" -d "C:\\MyFolder\\Generated\\ProjectTemplates"</value>
+        Localization gen -s "C:\\MyFolder\\wts"</value>
   </data>
   <data name="HelpCommand" xml:space="preserve">
     <value>Provides Help information for Windows Template Studio Localization Tool.
@@ -165,8 +160,25 @@ Localization help [command]
 
 EXT        Extract localizable items for different cultures.
 GEN        Generates Project Templates for different cultures.
+MERGE      Merge localizable items to projects and templates.
 VERIFY     Verify if exist localizable items for different cultures.
 HELP       Provides Help information for Windows Template Studio Localization Tool.</value>
+  </data>
+  <data name="MergeCommand" xml:space="preserve">
+    <value>Merge localizable items to projects and templates.
+
+Localization merge -s "sourceDirectory" -d "destinationDirectory"
+
+        sourceDirectory          - path to the folder that contains
+                                   localizable items to merge.
+
+        destinationDirectory     - path to the folder that contains
+                                   source files for Project Templates
+                                   (it's root project folder).
+
+Example:
+
+        Localization merge -s "C:\\MyFolder\\LocalizedItems" -d "C:\\MyFolder\\wts"</value>
   </data>
   <data name="UnknownCommand" xml:space="preserve">
     <value>Command unknown.</value>

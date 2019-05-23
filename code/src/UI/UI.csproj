@@ -377,11 +377,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{51ddb424-2da2-4871-a042-4f4f9b622515}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
+      <Project>{5f7ee68f-e773-47f3-a490-af16985cdf6e}</Project>
+      <Name>CoreTemplateStudio.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\Utilities\Utilities.csproj">
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
     </ProjectReference>

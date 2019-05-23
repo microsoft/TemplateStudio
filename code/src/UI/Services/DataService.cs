@@ -63,7 +63,7 @@ namespace Microsoft.Templates.UI.Services
             return frameworks.Any();
         }
 
-        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string platform, string projectType, string frameworkName, FeatureType featureType = FeatureType.Default, bool loadFromRightClick = false)
+        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string platform, string projectType, string frameworkName, bool loadFromRightClick = false)
         {
             if (!templatesGroups.Any())
             {
@@ -73,11 +73,6 @@ namespace Microsoft.Templates.UI.Services
                 if (loadFromRightClick)
                 {
                     templates = templates.Where(t => t.RightClickEnabled);
-                }
-
-                if (templateType == TemplateType.Feature)
-                {
-                    templates = templates.Where(t => t.FeatureType == featureType);
                 }
 
                 var templateViewModel = templates.Select(t => new TemplateInfoViewModel(t, platform, projectType, frameworkName));

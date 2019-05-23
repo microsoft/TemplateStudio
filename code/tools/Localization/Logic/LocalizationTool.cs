@@ -21,30 +21,29 @@ namespace Localization
         {
         }
 
-        public void GenerateProjectTemplatesAndCommandsHandler(GenerationOptions options)
+        public void GenerateTemplatesItems(GenerationOptions options)
         {
-            if (CanOverwriteDirectory(options.DestinationDirectory))
-            {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-                Console.WriteLine("\nGenerate C# project templates.");
-                var csProjectTemplateGenerator = new CSharpProjectTemplateGenerator(options.SourceDirectory, options.DestinationDirectory);
-                csProjectTemplateGenerator.GenerateProjectTemplates(cultures);
+            var generator = new LocalizableItemsGenerator(options.SourceDirectory, cultures);
 
-                Console.WriteLine("\nGenerate VB project templates.");
-                var vbProjectTemplateGenerator = new VisualBasicProjectTemplateGenerator(options.SourceDirectory, options.DestinationDirectory);
-                vbProjectTemplateGenerator.GenerateProjectTemplates(cultures);
+            Console.WriteLine("\nGenerate catalog project types localization files");
+            generator.GenerateCatalogProjectTypes();
 
-                Console.WriteLine("\nGenerate right click commands.");
-                var rightClickCommandGenerator = new RightClickCommandGenerator(options.SourceDirectory, options.DestinationDirectory);
-                rightClickCommandGenerator.GenerateRightClickCommands(cultures);
+            Console.WriteLine("\nEGenerate catalog frameworks localization files");
+            generator.GenerateCatalogFramework();
 
-                Console.WriteLine("End");
-                stopwatch.Stop();
-                TimeSpan ts = stopwatch.Elapsed;
-                Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
-            }
+            Console.WriteLine("\nGenerate pages localization files");
+            generator.GeneratePages();
+
+            Console.WriteLine("\nGenerate features localization files");
+            generator.GenerateFeatures();
+
+            Console.WriteLine("End");
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
         }
 
         public void ExtractLocalizableItems(ExtractOptions options)
@@ -111,6 +110,22 @@ namespace Localization
             Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
 
             return result;
+        }
+
+        public void MergeLocalizableItems(MergeOptions options)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var merger = new LocalizableItemsMerger(options.SourceDirectory, options.DestinationDirectory);
+
+            Console.WriteLine("Merge files");
+            merger.MergeFiles();
+
+            Console.WriteLine("End");
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
         }
 
         private bool CanOverwriteDirectory(string destDirectory)
