@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public void LoadData(string platform, string projectTypeName, string frameworkName)
         {
             Groups.Clear();
-            DataService.LoadTemplatesGroups(Groups, TemplateType.Feature, platform, projectTypeName, frameworkName, FeatureType.Testing);
+            DataService.LoadTemplatesGroups(Groups, TemplateType.Feature, platform, projectTypeName, frameworkName);
         }
 
         public void ResetUserSelection()
