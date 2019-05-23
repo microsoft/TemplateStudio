@@ -294,6 +294,7 @@
     <Compile Include="ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\TemplatesStepViewModel.cs" />
     <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
     <Compile Include="Views\Common\CompositionToolWindow.xaml.cs">
       <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
@@ -319,6 +320,9 @@
     </Compile>
     <Compile Include="Views\NewItem\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewProject\TemplatesStepPage.xaml.cs">
+      <DependentUpon>TemplatesStepPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProject\AddServicesPage.xaml.cs">
       <DependentUpon>AddServicesPage.xaml</DependentUpon>
@@ -515,6 +519,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewItem\WizardShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewProject\TemplatesStepPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
