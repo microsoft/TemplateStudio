@@ -51,7 +51,7 @@ namespace Localization
 
         internal static string[] ResoureceDirectories { get; } =
         {
-            "code\\src\\Core\\Resources",
+            "code\\CoreTemplateStudio\\code\\src\\CoreTemplateStudio\\CoreTemplateStudio.Core\\Resources",
             "code\\src\\Installer\\Resources",
             "code\\src\\UI\\Resources",
         };
