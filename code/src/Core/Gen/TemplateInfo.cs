@@ -46,9 +46,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public IEnumerable<TemplateInfo> Dependencies { get; set; } = new List<TemplateInfo>();
 
-        public TemplateType TemplateType { get; set; }
-
-        public FeatureType FeatureType { get; set; }
+        public TemplateType TemplateType { get; set; }        
 
         public bool RightClickEnabled { get; set; }
     }

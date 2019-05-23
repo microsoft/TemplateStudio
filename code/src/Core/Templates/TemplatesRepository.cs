@@ -174,7 +174,6 @@ namespace Microsoft.Templates.Core
                 Licenses = template.GetLicenses(),
                 TemplateType = template.GetTemplateType(),
                 RightClickEnabled = template.GetRightClickEnabled(),
-                FeatureType = template.GetFeatureType(),
             };
 
             var dependencies = GetDependencies(template, platform, projectType, frontEndFramework, backEndFramework, new List<ITemplateInfo>());
