@@ -606,7 +606,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddLog(string message)
         {
-            Log += message + Environment.NewLine;
+            Log = message + Environment.NewLine + Log;
         }
 
         private void SetCurrentLanguage(string language)
