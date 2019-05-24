@@ -19,5 +19,6 @@ namespace Microsoft.Templates.Core.Gen
         public const string BackEndFramework = "wts.generationBackEndFramework";
         public const string Platform = "wts.generationPlatform";
         public const string ProjectName = "wts.projectName";
+        public const string RequiredWorkload = "wts.requiredWorkload";
     }
 }

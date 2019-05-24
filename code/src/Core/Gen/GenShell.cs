@@ -52,6 +52,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void OpenItems(params string[] itemsFullPath);
 
+        public abstract bool IsWorkloadAvailable(string workloadId);
+
         public virtual void CollapseSolutionItems()
         {
         }
