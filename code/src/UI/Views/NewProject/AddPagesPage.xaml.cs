@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public AddPagesPage()
         {
-            DataContext = MainViewModel.Instance.AddPages;
+            DataContext = MainViewModel.Instance.StepsViewModels[Core.TemplateType.Page];
             InitializeComponent();
         }
     }

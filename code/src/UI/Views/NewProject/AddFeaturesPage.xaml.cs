@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public AddFeaturesPage()
         {
-            DataContext = MainViewModel.Instance.AddFeatures;
+            DataContext = MainViewModel.Instance.StepsViewModels[Core.TemplateType.Feature];
             InitializeComponent();
         }
     }

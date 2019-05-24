@@ -288,9 +288,6 @@
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateSelectionViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\AddFeaturesViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\AddPagesViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\AddTestingViewModel.cs" />
     <Compile Include="ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
@@ -323,12 +320,6 @@
     </Compile>
     <Compile Include="Views\NewProject\TemplatesStepPage.xaml.cs">
       <DependentUpon>TemplatesStepPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewProject\AddServicesPage.xaml.cs">
-      <DependentUpon>AddServicesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewProject\AddTestingPage.xaml.cs">
-      <DependentUpon>AddTestingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProject\AddFeaturesPage.xaml.cs">
       <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
@@ -523,14 +514,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewProject\TemplatesStepPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewProject\AddServicesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewProject\AddTestingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

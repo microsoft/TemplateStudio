@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Row="0"
-            Text="{x:Static strings:StringRes.AddFeaturesTitle}"
+            Text="{Binding Title}"
             Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
             Style="{StaticResource WtsTextBlockSectionTitle}" />
         <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">

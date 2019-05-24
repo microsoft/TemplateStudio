@@ -17,19 +17,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private string _projectTypeName;
         private string _frameworkName;
         private TemplateType _templateType;
+        private string _title;
+
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
-        public TemplatesStepViewModel()
+        public TemplatesStepViewModel(TemplateType templateType, string platform, string projectTypeName, string frameworkName, string title)
         {
-        }
-
-        public void Initialize(string platform, string projectTypeName, string frameworkName, TemplateType templateType)
-        {
+            _templateType = templateType;
             _platform = platform;
             _projectTypeName = projectTypeName;
             _frameworkName = frameworkName;
-            _templateType = templateType;
+            Title = title;
         }
 
         public void LoadData()

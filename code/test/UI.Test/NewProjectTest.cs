@@ -57,8 +57,8 @@ namespace Microsoft.UI.Test
 
             Assert.True(viewModel.ProjectType.Items.Count == 4);
             Assert.True(viewModel.Framework.Items.Count == 5);
-            Assert.True(viewModel.AddPages.Groups.Count > 0);
-            Assert.True(viewModel.AddFeatures.Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Page].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Count > 0);
             Assert.True(viewModel.UserSelection.Pages.Count == 1);
             Assert.True(viewModel.UserSelection.Features.Count == 0);
         }
@@ -90,7 +90,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -110,7 +110,7 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
             Assert.True(viewModel.UserSelection.Licenses.Count == 1);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             userSelection = viewModel.UserSelection.GetUserSelection();
@@ -126,7 +126,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
             DeletePage(viewModel.UserSelection, 1);
@@ -153,7 +153,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -170,8 +170,8 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var chartTemplate = GetTemplate(viewModel.AddPages.Groups, PageChartCodeBehind);
-            var gridTemplate = GetTemplate(viewModel.AddPages.Groups, PageGridCodeBehind);
+            var chartTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageChartCodeBehind);
+            var gridTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageGridCodeBehind);
             var numOfDependencies = chartTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, chartTemplate);
             await AddTemplateAsync(viewModel, gridTemplate);
@@ -198,10 +198,10 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.Pages[2].Name == "Blank1");
@@ -229,7 +229,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[0].Name == "Main");
             Assert.True(userSelection.Pages[1].Name == "Blank");
