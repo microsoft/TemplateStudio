@@ -2,37 +2,37 @@
     x:Class="Param_RootNamespace.Views.DataGridViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource SmallLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <controls:DataGrid
-                ItemsSource="{x:Bind Source}"
                 AutoGenerateColumns="False"
-                GridLinesVisibility="Horizontal">
+                GridLinesVisibility="Horizontal"
+                ItemsSource="{x:Bind Source, Mode=OneWay}">
                 <controls:DataGrid.Columns>
-                    <!--TODO WTS:
-                    Remove this column definitions and define columns for your data.
-                    Consider adding header properties to Resources.resw-->
-                    <controls:DataGridTextColumn Header="OrderId" Binding="{Binding OrderId}" />
-                    <controls:DataGridTextColumn Header="OrderDate" Binding="{Binding OrderDate}"  />
-                    <controls:DataGridTextColumn Header="Company" Binding="{Binding Company}" />
-                    <controls:DataGridTextColumn Header="ShipTo" Binding="{Binding ShipTo}" />
-                    <controls:DataGridTextColumn Header="OrderTotal" Binding="{Binding OrderTotal}" />
-                    <controls:DataGridTextColumn Header="Status" Binding="{Binding Status}"  />
+                    <!--
+                        TODO WTS:
+                        Remove this column definitions and define columns for your data.
+                        Consider adding header properties to Resources.resw
+                    -->
+                    <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" />
+                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
+                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
+                    <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                    <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
                                 <FontIcon
-                                HorizontalAlignment="Left"
-                                Margin="{StaticResource SmallLeftRightMargin}"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="{x:Bind Symbol}" />
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                    Glyph="{x:Bind Symbol}" />
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>

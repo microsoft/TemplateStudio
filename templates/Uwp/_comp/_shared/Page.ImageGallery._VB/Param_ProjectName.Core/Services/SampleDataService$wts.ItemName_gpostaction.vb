@@ -15,7 +15,8 @@ Namespace Services
         End Sub
 
         ' TODO WTS: Remove this once your image gallery page is displaying real data.
-        Public Function GetGallerySampleData() As ObservableCollection(Of SampleImage)
+        Public Async Function GetGallerySampleDataAsync() As Task(Of ObservableCollection(Of SampleImage))
+            Await Task.CompletedTask
             If _gallerySampleData Is Nothing Then
                 _gallerySampleData = New ObservableCollection(Of SampleImage)()
                 For i As Integer = 1 To 10

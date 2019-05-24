@@ -2,12 +2,12 @@
     x:Class="Param_RootNamespace.Views.CameraViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    xmlns:controls="using:Param_RootNamespace.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:controls="using:Param_RootNamespace.Controls"
-    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">    
     <Grid x:Name="ContentArea">
         <Grid
@@ -17,7 +17,7 @@
                 x:Uid="CameraViewPage_CameraControl">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="PhotoTaken">
-                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.PhotoTakenCommand}"/>
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.PhotoTakenCommand}" />
                     </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </controls:CameraControl>           
@@ -28,7 +28,7 @@
                 Stretch="UniformToFill"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Source="{x:Bind ViewModel.Photo, Mode=OneWay}"/>
+                Source="{x:Bind ViewModel.Photo, Mode=OneWay}" />
         </Grid>
     </Grid>
 </Page>

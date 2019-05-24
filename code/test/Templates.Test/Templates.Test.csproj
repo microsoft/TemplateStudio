@@ -84,9 +84,6 @@
     <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
     <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
-    <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
-    <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
     <Compile Include="ExternalLinksTests.cs" />
     <Compile Include="TemplatePathTests.cs" />
     <Compile Include="GenTests\ResourceUsageTests.cs" />
@@ -154,17 +151,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Core\Core.csproj">
-      <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
+      <Project>{5f7ee68f-e773-47f3-a490-af16985cdf6e}</Project>
+      <Name>CoreTemplateStudio.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\Utilities\Utilities.csproj">
+      <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\UI\UI.csproj">
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj">
-      <Project>{356EADB6-D826-494D-B5E1-41245159D5AE}</Project>
-      <Name>Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
       <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>

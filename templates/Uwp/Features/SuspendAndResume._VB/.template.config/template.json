@@ -28,7 +28,7 @@
       "path": ".\\Services\\SuspendAndResumeService.vb"
     },
     {
-      "path": ".\\Services\\OnBackgroundEnteringEventArgs.vb"
+      "path": ".\\Services\\SuspendAndResumeArgs.vb"
     },
     {
       "path": ".\\Services\\SuspensionState.vb"

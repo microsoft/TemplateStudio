@@ -12,10 +12,13 @@ namespace Localization.Options
         [VerbOption("ext", HelpText = "Extract localizable items for different cultures.")]
         public ExtractOptions ExtractOptions { get; set; }
 
-        [VerbOption("gen", HelpText = "Generates Project Templates for different cultures.")]
+        [VerbOption("gen", HelpText = "Generate the missing localized files for different cultures in the templates.")]
         public GenerationOptions GenerationOptions { get; set; }
 
-        [VerbOption("verify", HelpText = "Verify if exist localizable items for different cultures")]
+        [VerbOption("merge", HelpText = "Merge localizable items to projects and templates.")]
+        public MergeOptions MergeOptions { get; set; }
+
+        [VerbOption("verify", HelpText = "Verify if exist localizable items for different cultures.")]
         public VerifyOptions VerifyOptions { get; set; }
 
         [HelpVerbOption]

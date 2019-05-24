@@ -10,8 +10,8 @@ Public Class BasicTests
     ' TODO WTS: install WinAppDriver and start it before running tests: https://github.com/Microsoft/WinAppDriver
     Protected Const WindowsApplicationDriverUrl As String = "http://127.0.0.1:4723"
 
-    ' TODO WTS: set the app launch ID
-    ' The part before "!App" will be in Package.Appxmanifest > Packaging > Package Family Name
+    ' TODO WTS: set the app launch ID.
+    ' The part before "!App" will be in Package.Appxmanifest > Packaging > Package Family Name.
     ' The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
     Protected Const AppToLaunch As String = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX_XXXXXXXXXXXXX!App"
 
@@ -21,8 +21,8 @@ Public Class BasicTests
 
     <ClassInitialize>
     Public Shared Sub Setup(context As TestContext)
-        ' TODO WTS: change the location where screenshots are saved
-        ' Create separate folders for saving the results of each test run
+        ' TODO WTS: change the location where screenshots are saved.
+        ' Create separate folders for saving the results of each test run.
         _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now.ToString("dd_HHmm")}\\"
 
         ' Make sure the folder exists or saving screenshots will fail
@@ -43,12 +43,12 @@ Public Class BasicTests
 
             AppSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(4))
 
-            ' Maximize the window to have a consistent size and position
+            ' Maximize the window to have a consistent size and position.
             AppSession.Manage().Window.Maximize()
         End If
     End Sub
 
-    ' TODO WTS: Add other tests as appropriate
+    ' TODO WTS: Add other tests as appropriate.
     <TestMethod>
     Public Sub TakeScreenshotOfLaunchPage()
         Dim screenshotFileName = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png")

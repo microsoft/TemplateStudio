@@ -60,7 +60,10 @@ namespace Localization
                         tool.ExtractLocalizableItems(options as ExtractOptions);
                         break;
                     case "gen":
-                        tool.GenerateProjectTemplatesAndCommandsHandler(options as GenerationOptions);
+                        tool.GenerateTemplatesItems(options as GenerationOptions);
+                        break;
+                    case "merge":
+                        tool.MergeLocalizableItems(options as MergeOptions);
                         break;
                     case "verify":
                         var result = tool.VerifyLocalizableItems(options as VerifyOptions);
@@ -97,6 +100,9 @@ namespace Localization
                     break;
                 case "GEN":
                     Console.WriteLine(HelpMessages.GenCommand);
+                    break;
+                case "MERGE":
+                    Console.WriteLine(HelpMessages.MergeCommand);
                     break;
                 case "VERIFY":
                     Console.WriteLine(HelpMessages.VerifyCommand);

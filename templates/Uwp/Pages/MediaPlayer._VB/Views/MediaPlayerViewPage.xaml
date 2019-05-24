@@ -6,13 +6,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid>
-        <MediaPlayerElement x:Name="mpe"
-                            AutoPlay="True"
-                            AreTransportControlsEnabled="True"
-                            PosterSource="{x:Bind ViewModel.PosterSource, Mode=OneWay}"
-                            Source="{x:Bind ViewModel.Source, Mode=OneWay}" >
+        <MediaPlayerElement
+            x:Name="mpe"
+            AreTransportControlsEnabled="True"
+            AutoPlay="True"
+            PosterSource="{x:Bind ViewModel.PosterSource, Mode=OneWay}"
+            Source="{x:Bind ViewModel.Source, Mode=OneWay}" >
             <MediaPlayerElement.TransportControls>
-                <MediaTransportControls IsCompact="False"/>
+                <MediaTransportControls IsCompact="False" />
             </MediaPlayerElement.TransportControls>
         </MediaPlayerElement>
     </Grid>

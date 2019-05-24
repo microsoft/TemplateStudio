@@ -28,7 +28,7 @@
       "path": ".\\Services\\SuspendAndResumeService.cs"
     },
     {
-      "path": ".\\Services\\OnBackgroundEnteringEventArgs.cs"
+      "path": ".\\Services\\SuspendAndResumeArgs.cs"
     },
     {
       "path": ".\\Services\\SuspensionState.cs"

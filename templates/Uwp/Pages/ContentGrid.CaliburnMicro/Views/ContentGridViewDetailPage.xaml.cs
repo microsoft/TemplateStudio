@@ -18,12 +18,12 @@ namespace Param_RootNamespace.Views
             get { return DataContext as ContentGridViewDetailViewModel; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is long orderId)
             {
-                ViewModel.Initialize(orderId);
+                await ViewModel.InitializeAsync(orderId);
             }
         }
 

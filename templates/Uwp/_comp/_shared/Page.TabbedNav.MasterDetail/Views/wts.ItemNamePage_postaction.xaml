@@ -7,6 +7,6 @@
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
     </Grid>
 </Page>
