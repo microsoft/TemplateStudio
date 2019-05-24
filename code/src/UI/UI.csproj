@@ -321,12 +321,6 @@
     <Compile Include="Views\NewProject\TemplatesStepPage.xaml.cs">
       <DependentUpon>TemplatesStepPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewProject\AddFeaturesPage.xaml.cs">
-      <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewProject\AddPagesPage.xaml.cs">
-      <DependentUpon>AddPagesPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -516,14 +510,6 @@
     <Page Include="Views\NewProject\TemplatesStepPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewProject\AddFeaturesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewProject\AddPagesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewProject\MainPage.xaml">
       <SubType>Designer</SubType>
