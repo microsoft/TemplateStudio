@@ -82,23 +82,32 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
-            <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio"/>
-                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio Code" />
-                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}" ToolTip="Open in explorer" />
-                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new feature"/>
-                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new page"/>
-                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  ToolTip="Open temp folder in explorer"/>
-                </StackPanel>
-                <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
-                <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />
-            </Grid>
+            <ScrollViewer Grid.Column="2">
+                <ItemsControl
+                    ItemsSource="{Binding Projects}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio"/>
+                                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio Code" />
+                                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}" ToolTip="Open in explorer" />
+                                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new feature"/>
+                                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new page"/>
+                                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  ToolTip="Open temp folder in explorer"/>
+                                </StackPanel>
+                                <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
+                                <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource StatusContainer}">
             <TextBlock Text="{Binding State}" Style="{StaticResource StatusText}" />

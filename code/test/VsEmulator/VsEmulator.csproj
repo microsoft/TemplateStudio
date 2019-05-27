@@ -94,6 +94,7 @@
       <DependentUpon>LoadProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadProject\LoadProjectViewModel.cs" />
+    <Compile Include="Main\GeneratedProjectInfo.cs" />
     <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Services\CommonControls.cs" />
