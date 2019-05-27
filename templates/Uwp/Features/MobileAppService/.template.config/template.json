@@ -48,8 +48,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.AspNetCore.All",
-        "version" : "2.0.8",
+        "packageId" : "Microsoft.AspNetCore.App",
+        "version": "2.1.1",
         "projectPath": "Param_ProjectName.MobileAppService\\Param_ProjectName.MobileAppService.csproj"
       },
       "continueOnError": "true"
@@ -60,7 +60,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Swashbuckle.AspNetCore",
-        "version" : "2.4.0",
+        "version" : "4.0.1",
         "projectPath": "Param_ProjectName.MobileAppService\\Param_ProjectName.MobileAppService.csproj"
       },
       "continueOnError": "true"

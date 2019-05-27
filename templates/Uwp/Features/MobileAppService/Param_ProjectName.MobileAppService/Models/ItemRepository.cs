@@ -17,11 +17,6 @@ namespace Param_RootNamespace.Models
             Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 3", Description = "This is an item description." });
         }
 
-        public Item Get(string id)
-        {
-            return items[id];
-        }
-
         public IEnumerable<Item> GetAll()
         {
             return items.Values;
@@ -33,7 +28,7 @@ namespace Param_RootNamespace.Models
             items[item.Id] = item;
         }
 
-        public Item Find(string id)
+        public Item Get(string id)
         {
             items.TryGetValue(id, out Item item);
 
