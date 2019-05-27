@@ -12,18 +12,18 @@ namespace Param_RootNamespace.Controllers
     [ApiController]
     public class ItemController : ControllerBase
     {
-        private readonly IItemRepository ItemRepository;
+        private readonly IItemRepository _itemRepository;
 
         public ItemController(IItemRepository itemRepository)
         {
-            ItemRepository = itemRepository;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Item>> List()
         {
-            return ItemRepository.GetAll().ToList();
+            return _itemRepository.GetAll().ToList();
         }
 
         [HttpGet("{id}")]
@@ -31,10 +31,12 @@ namespace Param_RootNamespace.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Item> GetItem(string id)
         {
-            Item item = ItemRepository.Get(id);
+            Item item = _itemRepository.Get(id);
 
             if (item == null)
+            {
                 return NotFound();
+            }
 
             return item;
         }
@@ -44,7 +46,7 @@ namespace Param_RootNamespace.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Item> Create([FromBody]Item item)
         {
-            ItemRepository.Add(item);
+            _itemRepository.Add(item);
             return CreatedAtAction(nameof(GetItem), new { item.Id }, item);
         }
 
@@ -55,12 +57,13 @@ namespace Param_RootNamespace.Controllers
         {
             try
             {
-                ItemRepository.Update(item);
+                _itemRepository.Update(item);
             }
             catch (Exception)
             {
                 return BadRequest("Error while creating");
             }
+
             return NoContent();
         }
 
@@ -69,10 +72,12 @@ namespace Param_RootNamespace.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Delete(string id)
         {
-            Item item = ItemRepository.Remove(id);
+            Item item = _itemRepository.Remove(id);
 
             if (item == null)
+            {
                 return NotFound();
+            }
 
             return Ok();
         }
