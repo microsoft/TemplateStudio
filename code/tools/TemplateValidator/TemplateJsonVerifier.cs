@@ -230,7 +230,7 @@ namespace TemplateValidator
                         VerifyWtsOutputToParentTagValue(tag, results);
                         break;
                     case "wts.requiredWorkload":
-                        // TODO: verify required workload value(s)
+                        // No validation done here as we don't know all workload IDs.
                         break;
                     default:
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
