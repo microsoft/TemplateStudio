@@ -10,8 +10,8 @@ namespace Param_RootNamespace.Core.Services
 {
     public class HttpDataService
     {
-        private HttpClient client;
         private readonly Dictionary<string, object> responseCache;
+        private HttpClient client;
 
         public HttpDataService(string defaultBaseUrl = "")
         {
