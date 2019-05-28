@@ -19,9 +19,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 {
     public class GeneratedProjectInfo : Observable, IContextProvider
     {
-        private string _solutionName;
-        private Visibility _isProjectLoaded;
+        private string _projectType;
+        private string _framework;
         private GenerationService _generationService = GenerationService.Instance;
+        private Visibility _isWtsProject;
 
         public string ProjectName { get; private set; }
 
@@ -55,21 +56,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand OpenTempInExplorerCommand { get; }
 
-
-        public Visibility IsProjectLoaded
+        public Visibility IsWtsProject
         {
-            get => _isProjectLoaded;
-            set => SetProperty(ref _isProjectLoaded, value);
-        }
-
-        public string SolutionName
-        {
-            get => _solutionName;
-            set
-            {
-                SetProperty(ref _solutionName, value);
-                IsProjectLoaded = string.IsNullOrEmpty(value) ? Visibility.Hidden : Visibility.Visible;
-            }
+            get => _isWtsProject;
+            set => SetProperty(ref _isWtsProject, value);
         }
 
         public Visibility TempFolderAvailable
@@ -77,19 +67,58 @@ namespace Microsoft.Templates.VsEmulator.Main
             get => HasContent(GetTempGenerationFolder()) ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public GeneratedProjectInfo((string name, string solutionName, string location) newProjectInfo)
+        public string ProjectType
         {
-            var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-            ProjectName = newProjectInfo.name;
-            DestinationPath = destinationPath;
-            GenerationOutputPath = destinationPath;
+            get => _projectType;
+            set => SetProperty(ref _projectType, value);
+        }
+
+        public string Framework
+        {
+            get => _framework;
+            set => SetProperty(ref _framework, value);
+        }
+
+        public GeneratedProjectInfo()
+        {
             OpenInVsCommand = new RelayCommand(OpenInVs);
             OpenInVsCodeCommand = new RelayCommand(OpenInVsCode);
             OpenInExplorerCommand = new RelayCommand(OpenInExplorer);
-            AddNewPageCommand = new RelayCommand(()=> AddNewItem(TemplateType.Page));
+            AddNewPageCommand = new RelayCommand(() => AddNewItem(TemplateType.Page));
             AddNewFeatureCommand = new RelayCommand(() => AddNewItem(TemplateType.Feature));
             OpenTempInExplorerCommand = new RelayCommand(OpenTempInExplorer);
+        }
 
+        public void SetBasicInfo((string name, string solutionName, string location) projectInfo)
+        {
+            var destinationPath = Path.Combine(projectInfo.location, projectInfo.solutionName, projectInfo.name);
+            ProjectName = projectInfo.name;
+            DestinationPath = destinationPath;
+            GenerationOutputPath = destinationPath;
+        }
+
+        public void SetBasicInfo(string projectName, string destinationPath)
+        {
+            ProjectName = projectName;
+            DestinationPath = destinationPath;
+            GenerationOutputPath = destinationPath;
+        }
+
+        public void SetProjectData(string projectType, string framework)
+        {
+            ProjectType = projectType;
+            Framework = framework;
+        }
+
+        public void SetContextInfo()
+        {
+            SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+            IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void SetContext()
+        {
+            GenContext.Current = this;
         }
 
         private void OpenInVs()
@@ -122,12 +151,13 @@ namespace Microsoft.Templates.VsEmulator.Main
             if (!string.IsNullOrEmpty(DestinationPath))
             {
                 var destinationParentPath = Directory.GetParent(DestinationPath).FullName;
-                System.Diagnostics.Process.Start(destinationParentPath);
+                Process.Start(destinationParentPath);
             }
         }
 
         private void AddNewItem(TemplateType templateType)
         {
+            SetContext();
             GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             try
             {

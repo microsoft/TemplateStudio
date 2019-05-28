@@ -13,13 +13,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -69,14 +66,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
-
-        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems { get; } = new List<string>();
-
         public ObservableCollection<GeneratedProjectInfo> Projects { get; } = new ObservableCollection<GeneratedProjectInfo>();
 
         public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
@@ -108,14 +97,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get => _log;
             set => SetProperty(ref _log, value);
-        }
-
-        private Visibility _isWtsProject;
-
-        public Visibility IsWtsProject
-        {
-            get => _isWtsProject;
-            set => SetProperty(ref _isWtsProject, value);
         }
 
         private string _wizardVersion;
@@ -191,25 +172,18 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-                    var newProject = new GeneratedProjectInfo(newProjectInfo);
-                    GenContext.Current = newProject;
+                    var newProject = new GeneratedProjectInfo();
+                    newProject.SetBasicInfo(newProjectInfo);
+                    newProject.SetContext();
                     var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
-                        //ClearContext();
-
                         await _generationService.GenerateProjectAsync(userSelection);
-
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-
-                        newProject.SolutionName = newProjectInfo.name;
-                        newProject.SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-                        IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
-
-                        Projects.Add(newProject);
-                        OnPropertyChanged("Projects");
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework);
+                        newProject.SetContextInfo();
+                        Projects.Insert(0, newProject);
                     }
                 }
             }
@@ -231,18 +205,13 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
                 var newProjectLocation = Path.GetTempPath();
-
-                var destinationPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
-                var newProjectInfo = (newProjectName, newProjectName, destinationPath);
-                var newProject = new GeneratedProjectInfo(newProjectInfo);
-                GenContext.Current = newProject;
-
+                var newProject = new GeneratedProjectInfo();
+                newProject.SetBasicInfo((newProjectName, newProjectName, newProjectLocation));
+                newProject.SetContext();
                 var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    //ClearContext();
-
                     AnalyzeSelectionOutput(userSelection);
                     AddLog("See debug window for analysis");
                 }
@@ -327,24 +296,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        //private void ClearContext()
-        //{
-        //    ProjectInfo.Projects.Clear();
-        //    ProjectInfo.ProjectReferences.Clear();
-        //    ProjectInfo.NugetReferences.Clear();
-        //    ProjectInfo.SdkReferences.Clear();
-        //    ProjectInfo.ProjectItems.Clear();
-        //    MergeFilesFromProject.Clear();
-        //    FailedMergePostActions.Clear();
-        //    FilesToOpen.Clear();
-        //}
-
-
-
-
-
         private void LoadProject()
         {
+            var newProject = new GeneratedProjectInfo();
+            newProject.SetContext();
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
@@ -359,17 +314,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
-                var newProjectInfo = (solutionName, solutionName, solutionFilePath);
-                var newProject = new GeneratedProjectInfo(newProjectInfo);
-                GenContext.Current = newProject;
-
-                var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
+                newProject.SetBasicInfo(projectName, destinationPath);
+                var config = ProjectConfigInfo.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
-                SetCurrentPlatform(platform);
-
-                //IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
-                //OnPropertyChanged(nameof(TempFolderAvailable));
-                //ClearContext();
+                SetCurrentPlatform(config.Platform);
+                newProject.SetProjectData(config.ProjectType, config.Framework);
+                newProject.SetContextInfo();
+                Projects.Insert(0, newProject);
             }
         }
 
@@ -415,8 +366,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string ShowLoadProjectDialog()
         {
-            var solutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-            var dialog = new LoadProjectView(solutionFilePath);
+            var dialog = new LoadProjectView(null);
             dialog.Owner = _host;
 
             var result = dialog.ShowDialog();
