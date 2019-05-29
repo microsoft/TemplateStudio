@@ -71,7 +71,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 var templates = GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
                     .Where(t => !t.IsHidden
-                             && (!t.RequiredWorkloads.Any() || HasAllWorkloads(t.RequiredWorkloads)));
+                             && (!t.RequiredVisualStudioWorkloads.Any() || HasAllVisualStudioWorkloads(t.RequiredVisualStudioWorkloads)));
 
                 if (loadFromRightClick)
                 {
@@ -92,7 +92,7 @@ namespace Microsoft.Templates.UI.Services
             return 0;
         }
 
-        private static bool HasAllWorkloads(IEnumerable<string> workloadIds)
+        private static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
         {
             var vsShell = GenContext.ToolBox.Shell as VsGenShell;
 
