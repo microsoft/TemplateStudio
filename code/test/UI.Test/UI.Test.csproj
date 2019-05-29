@@ -83,6 +83,10 @@
     </AdditionalFiles>
     <None Include=".codeclonesettings" />
     <None Include="app.config" />
+    <None Include="test.config.json">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
