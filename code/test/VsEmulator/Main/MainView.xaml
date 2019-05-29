@@ -92,6 +92,14 @@
                                 <StackPanel Grid.Row="1">
                                     <TextBlock Text="{Binding ProjectName}" Style="{StaticResource Header2}" />
                                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                        <TextBlock Text="Platform: " Style="{StaticResource Label1}" />
+                                        <TextBlock Text="{Binding Platform}" Style="{StaticResource Label1}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                        <TextBlock Text="Language: " Style="{StaticResource Label1}" />
+                                        <TextBlock Text="{Binding Language}" Style="{StaticResource Label1}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                                         <TextBlock Text="Project Type: " Style="{StaticResource Label1}" />
                                         <TextBlock Text="{Binding ProjectType}" Style="{StaticResource Label1}" />
                                     </StackPanel>
@@ -120,6 +128,10 @@
                                     <Button Command="{Binding AddNewFeatureCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
                                         <Button.ToolTip>Add new feature</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/newfeature.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding StyleCopButtonVisibility}">
+                                        <Button.ToolTip>Add stylecop</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/stylecop.png" />
                                     </Button>
                                     <Button Command="{Binding OpenTempInExplorerCommand}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}">
                                         <Button.ToolTip>Open temp folder in explorer</Button.ToolTip>

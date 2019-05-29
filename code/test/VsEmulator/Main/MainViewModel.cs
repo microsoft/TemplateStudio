@@ -32,8 +32,6 @@ namespace Microsoft.Templates.VsEmulator.Main
     public class MainViewModel : Observable
     {
         private readonly MainView _host;
-
-        private string _platform;
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
 
@@ -162,7 +160,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task NewProjectAsync(string platform, string language)
         {
-            _platform = platform;
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
@@ -181,7 +178,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework);
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -304,7 +301,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
             {
-                // TODO: mvegaca
                 var solutionFilePath = loadProjectInfo;
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var destinationParent = Path.GetDirectoryName(solutionFilePath);
@@ -318,7 +314,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var config = ProjectConfigInfo.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
-                newProject.SetProjectData(config.ProjectType, config.Framework);
+                newProject.SetProjectData(config.ProjectType, config.Framework, string.Empty, language);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }
