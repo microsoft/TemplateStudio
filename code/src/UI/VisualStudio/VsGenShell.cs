@@ -79,7 +79,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
-        private Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() => {
+        private Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
+        {
             var instances = new List<ISetupInstance2>();
 
             var setupConfiguration = new SetupConfiguration();
