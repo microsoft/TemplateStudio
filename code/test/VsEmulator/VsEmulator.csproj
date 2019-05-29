@@ -222,7 +222,6 @@
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
     <None Include="app.manifest" />
-    <Resource Include="Assets\stylecop.png" />
     <Content Include="CoreTemplateStudio.config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

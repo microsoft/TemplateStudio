@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -57,8 +58,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand AddNewFeatureCommand { get; }
 
-        public RelayCommand AddTestingCommand { get; }
-
         public RelayCommand OpenTempInExplorerCommand { get; }
 
         public Visibility IsWtsProject
@@ -109,7 +108,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             OpenInExplorerCommand = new RelayCommand(OpenInExplorer);
             AddNewPageCommand = new RelayCommand(() => AddNewItem(TemplateType.Page));
             AddNewFeatureCommand = new RelayCommand(() => AddNewItem(TemplateType.Feature));
-            AddTestingCommand = new RelayCommand(OnAddTesting);
             OpenTempInExplorerCommand = new RelayCommand(OpenTempInExplorer);
         }
 
@@ -203,52 +201,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
-            }
-        }
-
-        private async void OnAddTesting()
-        {
-            try
-            {
-                var name = GetStyleCopFeatureName();
-                var testingFeatures = GenContext.ToolBox.Repo.GetAll()
-                    .Where(t => t.Name == name);
-                var testingFeature = testingFeatures?.FirstOrDefault();
-                if (testingFeature != null)
-                {
-                    var userSelection = new UserSelection(ProjectType, Framework, "", Platform, Language)
-                    {
-                        ItemGenerationType = ItemGenerationType.GenerateAndMerge,
-                        HomeName = "",
-                    };
-                    var userSelectionItem = new UserSelectionItem()
-                    {
-                        Name = "StyleCop",
-                        TemplateId = name,
-                    };
-                    userSelection.Add(userSelectionItem, TemplateType.Feature);
-
-                    await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(TemplateType.Feature, userSelection);
-                    NewItemGenController.Instance.UnsafeFinishGeneration(userSelection);
-
-                    OnPropertyChanged(nameof(TempFolderAvailable));
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("StyleCop added!!!");
-                    StyleCopButtonVisibility = Visibility.Collapsed;
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
-        private string GetStyleCopFeatureName()
-        {
-            switch (Language)
-            {
-                case "C#":
-                    return "Feature.Testing.StyleCop";
-                default:
-                    return string.Empty;
             }
         }
 

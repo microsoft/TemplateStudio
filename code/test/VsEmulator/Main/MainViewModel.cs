@@ -34,6 +34,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
+        private bool _useStyleCop = true;
 
         private GenerationService _generationService = GenerationService.Instance;
 
@@ -60,6 +61,12 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var themeName = SystemService.IsHighContrast ? "HighContrast" : value;
                 Services.FakeStyleValuesProvider.Instance.LoadResources(themeName);
             }
+        }
+
+        public bool UseStyleCop
+        {
+            get => _useStyleCop;
+            set => SetProperty(ref _useStyleCop, value);
         }
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
@@ -176,6 +183,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     if (userSelection != null)
                     {
+                        if (UseStyleCop)
+                        {
+                            AddStyleCop(userSelection, language);
+                        }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
                         newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language);
@@ -192,6 +203,36 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void AddStyleCop(UserSelection userSelection, string language)
+        {
+            var styleCopTemplates = new List<string>();
+            switch (language)
+            {
+                case "C#":
+                    styleCopTemplates.Add("Feature.Testing.StyleCop");
+                    break;
+                case "VisualBasic":
+                    styleCopTemplates.Add("Feature.Testing.SonarLint.VB");
+                    styleCopTemplates.Add("Feature.Testing.VBStyleAnalysis");
+                    break;
+            }
+
+            foreach (var template in styleCopTemplates)
+            {
+                var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == template);
+                if (testingFeature != null)
+                {
+                    var userSelectionItem = new UserSelectionItem()
+                    {
+                        Name = template,
+                        TemplateId = template,
+                    };
+
+                    userSelection.Add(userSelectionItem, TemplateType.Feature);
+                }
             }
         }
 
