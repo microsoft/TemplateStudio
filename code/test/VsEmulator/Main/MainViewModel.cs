@@ -208,31 +208,29 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddStyleCop(UserSelection userSelection, string language)
         {
-            var styleCopTemplates = new List<string>();
+            var styleCopTemplate = string.Empty;
             switch (language)
             {
                 case "C#":
-                    styleCopTemplates.Add("Feature.Testing.StyleCop");
+                    styleCopTemplate = "Feature.Testing.StyleCop";
                     break;
                 case "VisualBasic":
-                    styleCopTemplates.Add("Feature.Testing.SonarLint.VB");
-                    styleCopTemplates.Add("Feature.Testing.VBStyleAnalysis");
+                    styleCopTemplate = "Feature.Testing.VBStyleAnalysis";
                     break;
+                default:
+                    return;
             }
 
-            foreach (var template in styleCopTemplates)
+            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == styleCopTemplate);
+            if (testingFeature != null)
             {
-                var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == template);
-                if (testingFeature != null)
+                var userSelectionItem = new UserSelectionItem()
                 {
-                    var userSelectionItem = new UserSelectionItem()
-                    {
-                        Name = template,
-                        TemplateId = template,
-                    };
+                    Name = styleCopTemplate,
+                    TemplateId = styleCopTemplate,
+                };
 
-                    userSelection.Add(userSelectionItem, TemplateType.Feature);
-                }
+                userSelection.Add(userSelectionItem, TemplateType.Feature);
             }
         }
 
