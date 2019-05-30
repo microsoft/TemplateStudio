@@ -229,7 +229,7 @@ namespace TemplateValidator
                     case "wts.outputToParent":
                         VerifyWtsOutputToParentTagValue(tag, results);
                         break;
-                    case "wts.requiredWorkload":
+                    case "wts.requiredVsWorkload":
                         // No validation done here as we don't know all workload IDs.
                         break;
                     default:
