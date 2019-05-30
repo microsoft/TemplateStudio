@@ -18,7 +18,7 @@ namespace Param_RootNamespace.Tests.WinAppDriver
         // The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
         protected const string AppToLaunch = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX_XXXXXXXXXXXXX!App";
 
-        protected static WindowsDriver<WindowsElement> AppSession;
+        protected static WindowsDriver<WindowsElement> AppSession { get; set; }
 
         private static string _screenshotFolder;
 
