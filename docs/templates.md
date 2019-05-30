@@ -197,6 +197,13 @@ A template can define an "export parameter" that will be handled by the `Compose
 
 This template is defining two export parameters **baseclass** and **setter**. Those parameters will be provided to other templates where they will be used as the values for symbol replacements.
 
+### Filtering supported templates
+
+It's possible to filter the displayed templates based on installed Visual Studio workloads.
+This is done by adding the tag `wts.requiredVsWorkload` and specifying the ID of the required workload.
+This tag is optional. If specified, the template will only be displayed if the required workload is installed.
+This tag cannot be used with frameworks or project types.
+
 ## Composable Templates
 
 As we already have mentioned, templates can be composed to maximize the code reusability. Consider, for example,the Blank page template, the page's source code will remain the same no matter the project type it is used in. Moreover, there will be very few changes in the page source code depending on which framework we rely on. The idea behind having composable templates is to reuse as much as possible the existing code for a certain page or feature no matter the project type or framework used.
@@ -272,7 +279,7 @@ Currently we support the following types of [Post-Actions](../code/src/Core/Post
 - Other postactions:
   * **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
   * **SearchAndReplace**: searches for the source code defined in the postaction file and replaces it with the specified code. This Post-Action requires a special (_searchreplace) configuration in the templates files.
-  
+
   * **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
   * **Set Default Solution Configuration**: sets the default solution configuration in the Visual Studio sln file. With this post-action we change the default solution configuration from Debug|ARM to Debug|x86.
 
@@ -355,7 +362,7 @@ Here is the content of the ShellPage_postaction.xaml:
             <!--{[{-->
             <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="views:wts.ItemNamePage" />
             <!--}]}-->
-        </NavigationView.MenuItems>        
+        </NavigationView.MenuItems>
     </NavigationView>
 </Page>
 
@@ -387,7 +394,7 @@ There are different merge directives to drive the code merging. Currently:
 
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
 * MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
-* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. 
+* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
 * MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
 * MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
 
@@ -400,7 +407,7 @@ This postaction does not work with directives but based on the x:keys contained 
 
 The postaction works in three steps:
 1. Locate the source resource dictionary file. (Imagine the postaction file is called Styles/Button_postaction.xaml, the source file would be Styles/Button.xaml)
-2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
+2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file.
 3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
 
 ## Supporting VB.Net and C# versions of Templates
@@ -429,7 +436,7 @@ When validating an individual template file it will look for missing required el
 
 ![TemplateValidator used in file mode](./resources/tools/templateValidator-f.png)
 
-If, as in the above image the file contains no issues the message "All looks good." will be displayed. If any issues are identified these will be listed. 
+If, as in the above image the file contains no issues the message "All looks good." will be displayed. If any issues are identified these will be listed.
 
 ### Testing directories containing template files
 
