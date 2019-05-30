@@ -13,7 +13,8 @@
     "wts.version": "1.0.0",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
-    "wts.compositionFilter": "wts.type == project"
+    "wts.compositionFilter": "wts.type == project",
+    "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

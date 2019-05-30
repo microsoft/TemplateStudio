@@ -12,7 +12,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "identity == Feature.Testing.StyleCop & $feature == wts.Feat.WinAppDriver",
-    "wts.compositionOrder" : "1"
+    "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
