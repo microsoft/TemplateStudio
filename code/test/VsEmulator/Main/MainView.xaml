@@ -49,10 +49,11 @@
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" />
-                                <TextBlock Margin="6,0,0,0" Text="Use StyleCop" />
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                                <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" VerticalAlignment="Center" />
+                                <TextBlock Margin="6,0,0,0" Text="With style checks" VerticalAlignment="Center" />
+                                <Image Margin="3,0,0,0" Width="20" Source="/VsEmulator;component/Assets/stylecop.png" VerticalAlignment="Center" />
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -94,37 +95,35 @@
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" Margin="0" />
             <ScrollViewer Grid.Column="2">
                 <ItemsControl
-                    Margin="18,12,12,12"
+                    Margin="18,12,0,12"
                     ItemsSource="{Binding Projects}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Style="{StaticResource HorizontalSeparator}" />
-                                <StackPanel Grid.Row="1">
-                                    <TextBlock Text="{Binding ProjectName}" Style="{StaticResource Header2}" />
-                                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                        <TextBlock Text="Platform: " Style="{StaticResource Label1}" />
-                                        <TextBlock Text="{Binding Platform}" Style="{StaticResource Label1}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                        <TextBlock Text="Language: " Style="{StaticResource Label1}" />
-                                        <TextBlock Text="{Binding Language}" Style="{StaticResource Label1}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                        <TextBlock Text="Project Type: " Style="{StaticResource Label1}" />
-                                        <TextBlock Text="{Binding ProjectType}" Style="{StaticResource Label1}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                        <TextBlock Text="Framework: " Style="{StaticResource Label1}" />
-                                        <TextBlock Text="{Binding Framework}" Style="{StaticResource Label1}" />
-                                    </StackPanel>
+                            <StackPanel Margin="0,0,0,24">
+                                <TextBlock Text="{Binding ProjectName}" Style="{StaticResource Header2}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                    <TextBlock Text="Platform: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Platform}" Style="{StaticResource Label1}" />
                                 </StackPanel>
-                                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Language: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Language}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Project Type: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding ProjectType}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Framework: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Framework}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Time: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Time}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <TextBlock Margin="0,4,0,0" Text="Generated with style checks" Style="{StaticResource Label1}" Visibility="{Binding StyleCopTextVisibility}" />
+
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                                     <Button Command="{Binding OpenInVsCommand}" Style="{StaticResource IconButton}">
                                         <Button.ToolTip>Open in Visual Studio</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/vs.jpg" />
@@ -150,7 +149,7 @@
                                         <Image Source="/VsEmulator;component/Assets/openfolder.png"/>
                                     </Button>
                                 </StackPanel>
-                            </Grid>
+                            </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

@@ -24,9 +24,10 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _framework;
         private string _platform;
         private string _language;
+        private string _time;
         private GenerationService _generationService = GenerationService.Instance;
         private Visibility _isWtsProject;
-        private Visibility _styleCopButtonVisibility = Visibility.Visible;
+        private Visibility _styleCopTextVisibility = Visibility.Visible;
 
         public string ProjectName { get; private set; }
 
@@ -66,10 +67,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _isWtsProject, value);
         }
 
-        public Visibility StyleCopButtonVisibility
+        public Visibility StyleCopTextVisibility
         {
-            get => _styleCopButtonVisibility;
-            set => SetProperty(ref _styleCopButtonVisibility, value);
+            get => _styleCopTextVisibility;
+            set => SetProperty(ref _styleCopTextVisibility, value);
         }
 
         public Visibility TempFolderAvailable
@@ -101,6 +102,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _language, value);
         }
 
+        public string Time
+        {
+            get => _time;
+            set => SetProperty(ref _time, value);
+        }
+
         public GeneratedProjectInfo()
         {
             OpenInVsCommand = new RelayCommand(OpenInVs);
@@ -126,12 +133,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenerationOutputPath = destinationPath;
         }
 
-        public void SetProjectData(string projectType, string framework, string platform, string language)
+        public void SetProjectData(string projectType, string framework, string platform, string language, bool useStyleCop)
         {
             ProjectType = projectType;
             Framework = framework;
             Platform = platform;
             Language = language;
+            StyleCopTextVisibility = useStyleCop ? Visibility.Visible : Visibility.Collapsed;
+            Time = DateTime.Now.ToShortTimeString();
         }
 
         public void SetContextInfo()

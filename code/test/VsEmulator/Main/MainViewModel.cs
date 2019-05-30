@@ -34,7 +34,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
-        private bool _useStyleCop = true;
+        private bool _useStyleCop;
 
         private GenerationService _generationService = GenerationService.Instance;
 
@@ -189,7 +189,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language);
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -353,7 +353,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var config = ProjectConfigInfo.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
-                newProject.SetProjectData(config.ProjectType, config.Framework, string.Empty, language);
+                newProject.SetProjectData(config.ProjectType, config.Framework, string.Empty, language, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }
