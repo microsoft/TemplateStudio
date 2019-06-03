@@ -10,6 +10,7 @@ namespace Param_RootNamespace.ViewModels
         private UserDataService UserDataService => Singleton<UserDataService>.Instance;
 
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+
 //}]}
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 //{[{

@@ -15,7 +15,7 @@ Public Class BasicTests
     ' The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
     Protected Const AppToLaunch As String = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX_XXXXXXXXXXXXX!App"
 
-    Protected Shared AppSession As WindowsDriver(Of WindowsElement)
+    Protected Shared Property AppSession As WindowsDriver(Of WindowsElement)
 
     Private Shared _screenshotFolder As String
 

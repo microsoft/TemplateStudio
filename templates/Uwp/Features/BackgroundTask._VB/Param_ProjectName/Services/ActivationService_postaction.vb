@@ -10,18 +10,15 @@ Imports Param_RootNamespace.Core.Helpers
 Namespace Services
     Friend Class ActivationService
         Private Async Function InitializeAsync() As Task
-            '{[{
+'{[{
             Await Singleton(Of BackgroundTaskService).Instance.RegisterBackgroundTasksAsync()
-            '}]}
+'}]}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
-            '{[{
+'{[{
             yield Singleton(Of BackgroundTaskService).Instance
-            '}]}
-'{--{
-            Exit Function
-'}--}
+'}]}
         End Function
     End Class
 End Namespace

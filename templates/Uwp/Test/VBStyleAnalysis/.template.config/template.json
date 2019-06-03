@@ -13,7 +13,8 @@
     "wts.version": "1.0.0",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
-    "wts.compositionFilter": "wts.type == project"
+    "wts.compositionFilter": "wts.type == project",
+    "wts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/master/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -61,9 +62,9 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId": "VBStyleAnalyzer",
-        "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
+        "packageId" : "SonarAnalyzer.VisualBasic",
+        "version" : "7.2.0.5463",
+        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.vbproj"
       },
       "continueOnError": "true"
     },
@@ -72,42 +73,9 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId": "VBStyleAnalyzer",
-        "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.vbproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "VBStyleAnalyzer",
-        "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "VBStyleAnalyzer",
-        "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.vbproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "VBStyleAnalyzer",
-        "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
+        "packageId" : "SonarAnalyzer.VisualBasic",
+        "version" : "7.2.0.5463",
+        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
       "continueOnError": "true"
     }

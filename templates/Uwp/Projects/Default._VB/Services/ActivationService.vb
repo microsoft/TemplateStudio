@@ -72,8 +72,6 @@ Namespace Services
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
-
-            Exit Function
         End Function
 
         Private Function IsInteractive(args As Object) As Boolean

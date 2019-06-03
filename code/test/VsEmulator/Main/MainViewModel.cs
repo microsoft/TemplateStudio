@@ -13,13 +13,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -32,13 +29,12 @@ using static System.Environment;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
-    public class MainViewModel : Observable, IContextProvider
+    public class MainViewModel : Observable
     {
         private readonly MainView _host;
-
-        private string _platform;
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
+        private bool _useStyleCop;
 
         private GenerationService _generationService = GenerationService.Instance;
 
@@ -54,14 +50,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             SystemService = new SystemService();
         }
 
-        public string ProjectName { get; private set; }
-
-        public string SafeProjectName => ProjectName.MakeSafeProjectName();
-
-        public string GenerationOutputPath { get;  set; }
-
-        public string DestinationPath { get; private set; }
-
         public SystemService SystemService { get; }
 
         public string SelectedTheme
@@ -75,25 +63,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        public bool UseStyleCop
+        {
+            get => _useStyleCop;
+            set => SetProperty(ref _useStyleCop, value);
+        }
+
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
-
-        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
-
-        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems { get; } = new List<string>();
-
-        public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
-
-        public List<string> FilesToOpen { get; } = new List<string>();
-
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
+        public ObservableCollection<GeneratedProjectInfo> Projects { get; } = new ObservableCollection<GeneratedProjectInfo>();
 
         public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
 
@@ -108,19 +86,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
 
-        public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
-
-        public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
-
-        public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
-
-        public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
-
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
-
-        public RelayCommand AddNewFeatureCommand => new RelayCommand(() => AddNewItem(TemplateType.Feature));
-
-        public RelayCommand AddNewPageCommand => new RelayCommand(() => AddNewItem(TemplateType.Page));
 
         private string _state;
 
@@ -136,30 +102,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get => _log;
             set => SetProperty(ref _log, value);
-        }
-
-        private Visibility _isProjectLoaded;
-
-        public Visibility IsProjectLoaded
-        {
-            get => _isProjectLoaded;
-            set => SetProperty(ref _isProjectLoaded, value);
-        }
-
-        private Visibility _isWtsProject;
-
-        public Visibility IsWtsProject
-        {
-            get => _isWtsProject;
-            set => SetProperty(ref _isWtsProject, value);
-        }
-
-        public Visibility TempFolderAvailable
-        {
-            get
-            {
-                return HasContent(GetTempGenerationFolder()) ? Visibility.Visible : Visibility.Hidden;
-            }
         }
 
         private string _wizardVersion;
@@ -178,33 +120,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _templatesVersion, value);
         }
 
-        private string _solutionName;
-
-        public string SolutionName
-        {
-            get => _solutionName;
-            set
-            {
-                SetProperty(ref _solutionName, value);
-
-                if (string.IsNullOrEmpty(value))
-                {
-                    IsProjectLoaded = Visibility.Hidden;
-                }
-                else
-                {
-                    IsProjectLoaded = Visibility.Visible;
-                }
-            }
-        }
-
-        public string SolutionFilePath { get; set; }
-
         public async Task InitializeAsync()
         {
             SystemService.Initialize();
             SelectedTheme = Themes.First();
-            SolutionName = null;
             await ConfigureGenContextAsync();
         }
 
@@ -217,14 +136,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private void FinishGeneration(UserSelection userSelection)
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _generationService.FinishGeneration(userSelection);
-            });
-        }
+
 
         private void AnalyzeCSharpSelection()
         {
@@ -255,7 +167,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task NewProjectAsync(string platform, string language)
         {
-            _platform = platform;
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
@@ -265,29 +176,22 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
-                    GenContext.Current = this;
-                    ProjectName = newProjectInfo.name;
-                    DestinationPath = destinationPath;
-                    GenerationOutputPath = destinationPath;
-                    SolutionName = null;
-
+                    var newProject = new GeneratedProjectInfo();
+                    newProject.SetBasicInfo(newProjectInfo);
+                    newProject.SetContext();
                     var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
-                        ClearContext();
-
+                        if (UseStyleCop)
+                        {
+                            AddStyleCop(userSelection, language);
+                        }
                         await _generationService.GenerateProjectAsync(userSelection);
-
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-
-                        SolutionName = newProjectInfo.name;
-                        SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-                        IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
-
-                        OnPropertyChanged(nameof(TempFolderAvailable));
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetContextInfo();
+                        Projects.Insert(0, newProject);
                     }
                 }
             }
@@ -302,6 +206,34 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void AddStyleCop(UserSelection userSelection, string language)
+        {
+            var styleCopTemplate = string.Empty;
+            switch (language)
+            {
+                case "C#":
+                    styleCopTemplate = "Feature.Testing.StyleCop";
+                    break;
+                case "VisualBasic":
+                    styleCopTemplate = "Feature.Testing.VBStyleAnalysis";
+                    break;
+                default:
+                    return;
+            }
+
+            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == styleCopTemplate);
+            if (testingFeature != null)
+            {
+                var userSelectionItem = new UserSelectionItem()
+                {
+                    Name = styleCopTemplate,
+                    TemplateId = styleCopTemplate,
+                };
+
+                userSelection.Add(userSelectionItem, TemplateType.Feature);
+            }
+        }
+
         private void AnalyzeNewProject(string platform, string language)
         {
             SetCurrentLanguage(language);
@@ -309,20 +241,13 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
                 var newProjectLocation = Path.GetTempPath();
-
-                var destinationPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
-
-                GenContext.Current = this;
-                ProjectName = newProjectName;
-                DestinationPath = destinationPath;
-                GenerationOutputPath = destinationPath;
-
+                var newProject = new GeneratedProjectInfo();
+                newProject.SetBasicInfo((newProjectName, newProjectName, newProjectLocation));
+                newProject.SetContext();
                 var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    ClearContext();
-
                     AnalyzeSelectionOutput(userSelection);
                     AddLog("See debug window for analysis");
                 }
@@ -407,87 +332,30 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void ClearContext()
-        {
-            ProjectInfo.Projects.Clear();
-            ProjectInfo.ProjectReferences.Clear();
-            ProjectInfo.NugetReferences.Clear();
-            ProjectInfo.SdkReferences.Clear();
-            ProjectInfo.ProjectItems.Clear();
-            MergeFilesFromProject.Clear();
-            FailedMergePostActions.Clear();
-            FilesToOpen.Clear();
-        }
-
-        private UserSelection GetUserSelectionByType(TemplateType templateType)
-        {
-            if (templateType == TemplateType.Page)
-            {
-                return WizardLauncher.Instance.StartAddPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
-            }
-
-            if (templateType == TemplateType.Feature)
-            {
-                return WizardLauncher.Instance.StartAddFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
-            }
-
-            return null;
-        }
-
-        private void AddNewItem(TemplateType templateType)
-        {
-            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
-            ClearContext();
-            try
-            {
-                var userSelection = GetUserSelectionByType(templateType);
-
-                if (userSelection != null)
-                {
-                    FinishGeneration(userSelection);
-                    OnPropertyChanged(nameof(TempFolderAvailable));
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
-                }
-            }
-            catch (WizardBackoutException)
-            {
-                CleanUp();
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
-            }
-            catch (WizardCancelledException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
-            }
-        }
-
         private void LoadProject()
         {
+            var newProject = new GeneratedProjectInfo();
+            newProject.SetContext();
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
             {
-                SolutionFilePath = loadProjectInfo;
-                SolutionName = Path.GetFileNameWithoutExtension(SolutionFilePath);
-
-                var destinationParent = Path.GetDirectoryName(SolutionFilePath);
-
+                var solutionFilePath = loadProjectInfo;
+                var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
+                var destinationParent = Path.GetDirectoryName(solutionFilePath);
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
-
-                ProjectName = Path.GetFileNameWithoutExtension(projFile);
-                DestinationPath = Path.GetDirectoryName(projFile);
-                GenerationOutputPath = DestinationPath;
-                GenContext.Current = this;
-
-                var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
+                var projectName = Path.GetFileNameWithoutExtension(projFile);
+                var destinationPath = Path.GetDirectoryName(projFile);
+                newProject.SetBasicInfo(projectName, destinationPath);
+                var config = ProjectConfigInfo.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
-                SetCurrentPlatform(platform);
-
-                IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
-                OnPropertyChanged(nameof(TempFolderAvailable));
-                ClearContext();
+                SetCurrentPlatform(config.Platform);
+                newProject.SetProjectData(config.ProjectType, config.Framework, string.Empty, language, false);
+                newProject.SetContextInfo();
+                Projects.Insert(0, newProject);
             }
         }
 
@@ -516,58 +384,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void OpenInVs()
-        {
-            if (!string.IsNullOrEmpty(SolutionFilePath))
-            {
-                System.Diagnostics.Process.Start(SolutionFilePath);
-            }
-        }
-
-        private void OpenInVsCode()
-        {
-            if (!string.IsNullOrEmpty(SolutionFilePath))
-            {
-                System.Diagnostics.Process.Start("code", $@"--new-window ""{Path.GetDirectoryName(SolutionFilePath)}""");
-            }
-        }
-
-        private void OpenInExplorer()
-        {
-            if (!string.IsNullOrEmpty(DestinationPath))
-            {
-                var destinationParentPath = Directory.GetParent(DestinationPath).FullName;
-                System.Diagnostics.Process.Start(destinationParentPath);
-            }
-        }
-
-        private void OpenTempInExplorer()
-        {
-            var tempGenerationPath = GetTempGenerationFolder();
-            if (HasContent(tempGenerationPath))
-            {
-                System.Diagnostics.Process.Start(tempGenerationPath);
-            }
-        }
-
-        private static string GetTempGenerationFolder()
-        {
-            if (GenContext.ToolBox == null || GenContext.ToolBox.Shell == null)
-            {
-                return string.Empty;
-            }
-
-            var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
-
-            Guid guid = GenContext.ToolBox.Shell.GetVsProjectId();
-            return Path.Combine(path, guid.ToString());
-        }
-
-        private static bool HasContent(string tempPath)
-        {
-            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
-        }
-
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
             var dialog = new NewProjectView();
@@ -585,7 +401,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string ShowLoadProjectDialog()
         {
-            var dialog = new LoadProjectView(SolutionFilePath);
+            var dialog = new LoadProjectView(null);
             dialog.Owner = _host;
 
             var result = dialog.ShowDialog();
@@ -606,7 +422,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddLog(string message)
         {
-            Log += message + Environment.NewLine;
+            Log = message + Environment.NewLine + Log;
         }
 
         private void SetCurrentLanguage(string language)
