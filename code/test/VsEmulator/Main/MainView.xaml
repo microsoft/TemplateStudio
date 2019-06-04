@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
-        Height="480" Width="800" 
+        Height="480" Width="960" 
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -143,6 +143,14 @@
                                     <Button Command="{Binding AddNewFeatureCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
                                         <Button.ToolTip>Add new feature</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/newfeature.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new service</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newservice.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new testing</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newtesting.png" />
                                     </Button>
                                     <Button Command="{Binding OpenTempInExplorerCommand}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}">
                                         <Button.ToolTip>Open temp folder in explorer</Button.ToolTip>

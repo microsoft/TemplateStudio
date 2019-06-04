@@ -11,6 +11,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -23,12 +24,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
-        public const string NewProjectStepProjectType = "ProjectType";
-        public const string NewProjectStepFramework = "Framework";
-        public const string NewProjectStepPages = "Pages";
-        public const string NewProjectStepFeatures = "Features";
-        public const string NewProjectStepTests = "Tests";
-        public const string NewProjectStepServices = "Services";
+        public const string NewProjectStepProjectType = "01ProjectType";
+        public const string NewProjectStepFramework = "02Framework";
 
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
@@ -82,12 +79,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get
             {
-                yield return StepData.MainStep(NewProjectStepProjectType, "1", StringRes.NewProjectStepOne, () => new ProjectTypePage(), true, true);
-                yield return StepData.MainStep(NewProjectStepFramework, "2", StringRes.NewProjectStepTwo, () => new FrameworkPage());
-                yield return StepData.MainStep(NewProjectStepPages, "3", StringRes.NewProjectStepThree, () => new TemplatesStepPage(TemplateType.Page));
-                yield return StepData.MainStep(NewProjectStepFeatures, "4", StringRes.NewProjectStepFour, () => new TemplatesStepPage(TemplateType.Feature));
-                yield return StepData.MainStep(NewProjectStepTests, "5", StringRes.NewProjectStepFive, () => new TemplatesStepPage(TemplateType.Feature));
-                yield return StepData.MainStep(NewProjectStepServices, "6", StringRes.NewProjectStepSix, () => new TemplatesStepPage(TemplateType.Feature));
+                yield return StepData.MainStep(NewProjectStepProjectType, "1", StringRes.NewProjectStepProjectType, () => new ProjectTypePage(), true, true);
+                yield return StepData.MainStep(NewProjectStepFramework, "2", StringRes.NewProjectStepDesignPattern, () => new FrameworkPage());
             }
         }
 
@@ -191,24 +184,40 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private async Task OnFrameworkSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            BuildStepViewModel(TemplateType.Page, StringRes.AddPagesTitle);
-            BuildStepViewModel(TemplateType.Feature, StringRes.AddFeaturesTitle);
-            StepsViewModels.Values.ToList().ForEach(vm => vm.LoadData());
+            await BuildStepViewModelAsync(TemplateType.Page);
+            await BuildStepViewModelAsync(TemplateType.Feature);
+            await BuildStepViewModelAsync(TemplateType.Service);
+            await BuildStepViewModelAsync(TemplateType.Testing);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }
 
-        private void BuildStepViewModel(TemplateType templateType, string title)
+        private async Task BuildStepViewModelAsync(TemplateType templateType)
         {
             var hasTemplates = DataService.HasTemplatesFromType(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            var stepId = templateType.GetNewProjectStepId();
             var isStepAdded = StepsViewModels.ContainsKey(templateType);
-            if (hasTemplates && !isStepAdded)
+            if (hasTemplates)
             {
-                StepsViewModels.Add(templateType, new TemplatesStepViewModel(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name, title));
+                if (!isStepAdded)
+                {
+                    var stepTitle = templateType.GetNewProjectStepTitle();
+                    var pageTitle = templateType.GetStepPageTitle();
+                    var step = new TemplatesStepViewModel(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name, pageTitle);
+                    step.LoadData();
+                    StepsViewModels.Add(templateType, step);
+                    WizardNavigation.Current.AddNewStep(stepId, stepTitle, () => new TemplatesStepPage(templateType));
+                }
+                else
+                {
+                    var step = StepsViewModels[templateType];
+                    step.ResetData(ProjectType.Selected.Name, Framework.Selected.Name);
+                }
             }
             else if (!hasTemplates && isStepAdded)
             {
                 StepsViewModels.Remove(templateType);
+                await WizardNavigation.Current.RemoveStepAsync(stepId);
             }
         }
 

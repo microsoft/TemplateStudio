@@ -29,6 +29,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         private SavedTemplateViewModel _selectedPage;
         private SavedTemplateViewModel _selectedFeature;
+        private SavedTemplateViewModel _selectedService;
+        private SavedTemplateViewModel _selectedTesting;
         private bool _isInitialized;
         private string _projectTypeName;
         private string _frameworkName;
@@ -36,8 +38,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private string _language;
         private ICommand _editPageCommand;
         private RelayCommand<SavedTemplateViewModel> _deletePageCommand;
-        private ICommand _editFeatureCommand;
-        private ICommand _deleteFeatureCommand;
+        private ICommand _editItemTemplateCommand;
+        private ICommand _deleteItemTemplateCommand;
         private ICommand _movePageUpCommand;
         private ICommand _movePageDownCommand;
         private string _emptyBackendFramework = string.Empty;
@@ -46,15 +48,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SavedTemplateViewModel> Features { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
+        public ObservableCollection<SavedTemplateViewModel> Services { get; } = new ObservableCollection<SavedTemplateViewModel>();
+
+        public ObservableCollection<SavedTemplateViewModel> Testing { get; } = new ObservableCollection<SavedTemplateViewModel>();
+
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
         public ICommand EditPageCommand => _editPageCommand ?? (_editPageCommand = new RelayCommand<SavedTemplateViewModel>((page) => page.IsTextSelected = true, (page) => page != null));
 
         public RelayCommand<SavedTemplateViewModel> DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>((page) => OnDeletePageAsync(page).FireAndForget(), CanDeletePage));
 
-        public ICommand EditFeatureCommand => _editFeatureCommand ?? (_editFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => feature.IsTextSelected = true, (feature) => feature != null));
+        public ICommand EditItemTemplateCommand => _editItemTemplateCommand ?? (_editItemTemplateCommand = new RelayCommand<SavedTemplateViewModel>((feature) => feature.IsTextSelected = true, (feature) => feature != null));
 
-        public ICommand DeleteFeatureCommand => _deleteFeatureCommand ?? (_deleteFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => OnDeleteFeatureAsync(feature).FireAndForget()));
+        public ICommand DeleteItemTemplateCommand => _deleteItemTemplateCommand ?? (_deleteItemTemplateCommand = new RelayCommand<SavedTemplateViewModel>((item) => OnDeleteItemTemplateAsync(item).FireAndForget()));
 
         public ICommand MovePageUpCommand => _movePageUpCommand ?? (_movePageUpCommand = new RelayCommand(() => OrderingService.MoveUp(SelectedPage)));
 
@@ -74,6 +80,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _selectedFeature, value);
         }
 
+        public SavedTemplateViewModel SelectedService
+        {
+            get => _selectedService;
+            set => SetProperty(ref _selectedService, value);
+        }
+
+        public SavedTemplateViewModel SelectedTesting
+        {
+            get => _selectedTesting;
+            set => SetProperty(ref _selectedTesting, value);
+        }
+
         public UserSelectionViewModel()
         {
         }
@@ -88,6 +106,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 Pages.Clear();
                 Features.Clear();
+                Services.Clear();
+                Testing.Clear();
             }
 
             var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, projectTypeName, frameworkName, _emptyBackendFramework);
@@ -107,7 +127,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public IEnumerable<string> GetNames()
-            => Pages.Select(t => t.Name).Concat(Features.Select(f => f.Name));
+            => Pages.Select(t => t.Name)
+            .Concat(Features.Select(f => f.Name))
+            .Concat(Services.Select(f => f.Name))
+            .Concat(Testing.Select(f => f.Name));
 
         public IEnumerable<string> GetPageNames()
             => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
@@ -129,13 +152,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             template.IncreaseSelection();
             if (template.IsGroupExclusiveSelection)
             {
-                if (template.TemplateType == TemplateType.Feature)
+                var collection = GetCollection(template.TemplateType);
+                var exclusiveSelectionAddedTemplates = collection.Where(f => f.Group == template.Group).ToList();
+                foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
                 {
-                    var exclusiveSelectionAddedTemplates = Features.Where(f => f.Group == template.Group).ToList();
-                    foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
-                    {
-                        await RemoveAsync(exclusiveFeature);
-                    }
+                    await RemoveAsync(exclusiveFeature);
                 }
             }
 
@@ -167,7 +188,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType) => templateType == TemplateType.Page ? Pages : Features;
+        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType)
+        {
+            switch (templateType)
+            {
+                case TemplateType.Page:
+                    return Pages;
+                case TemplateType.Feature:
+                    return Features;
+                case TemplateType.Service:
+                    return Services;
+                case TemplateType.Testing:
+                    return Testing;
+                default:
+                    return null;
+            }
+        }
 
         public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
 
@@ -195,6 +231,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             _isInitialized = false;
             Pages.Clear();
             Features.Clear();
+            Services.Clear();
+            Testing.Clear();
         }
 
         private void BuildLicenses()
@@ -210,8 +248,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private void RaiseCollectionChanged(TemplateType templateType)
         {
             // Notify collection name to update the visibillity on the layout
-            var collectionName = templateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
-            OnPropertyChanged(collectionName);
+            switch (templateType)
+            {
+                case TemplateType.Page:
+                    OnPropertyChanged(nameof(Pages));
+                    break;
+                case TemplateType.Feature:
+                    OnPropertyChanged(nameof(Features));
+                    break;
+                case TemplateType.Service:
+                    OnPropertyChanged(nameof(Services));
+                    break;
+                case TemplateType.Testing:
+                    OnPropertyChanged(nameof(Testing));
+                    break;
+            }
         }
 
         public UserSelection GetUserSelection()
@@ -225,6 +276,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             selection.Pages.AddRange(Pages.Select(p => p.ToUserSelectionItem()));
             selection.Features.AddRange(Features.Select(f => f.ToUserSelectionItem()));
+            selection.Services.AddRange(Services.Select(f => f.ToUserSelectionItem()));
+            selection.Testing.AddRange(Testing.Select(f => f.ToUserSelectionItem()));
 
             return selection;
         }
@@ -235,13 +288,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var dependencies = GetSavedTemplateDependencies(savedTemplate);
             if (!dependencies.Any())
             {
-                if (Pages.Contains(savedTemplate))
+                var collection = GetCollection(savedTemplate.TemplateType);
+                if (collection.Contains(savedTemplate))
                 {
-                    Pages.Remove(savedTemplate);
-                }
-                else if (Features.Contains(savedTemplate))
-                {
-                    Features.Remove(savedTemplate);
+                    collection.Remove(savedTemplate);
                 }
 
                 if (savedTemplate.HasErrors)
@@ -268,11 +318,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             foreach (var identity in savedTemplate.Dependencies)
             {
-                var dependency = Features.FirstOrDefault(f => f.Identity == identity.Identity);
-                if (dependency == null)
-                {
-                    dependency = Pages.FirstOrDefault(p => p.Identity == identity.Identity);
-                }
+                var dependency = AllTemplates.FirstOrDefault(f => f.Identity == identity.Identity);
 
                 if (dependency != null)
                 {
@@ -281,7 +327,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     {
                         // Look if there are another saved template that depends on it.
                         // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
-                        if (!Features.Any(sf => sf.Dependencies.Any(d => d.Identity == dependency.Identity)) || Pages.Any(p => p.Dependencies.Any(d => d.Identity == dependency.Identity)))
+                        if (!AllTemplates.Any(sf => sf.Dependencies.Any(d => d.Identity == dependency.Identity)))
                         {
                             await RemoveAsync(dependency);
                         }
@@ -290,18 +336,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
+        private IEnumerable<SavedTemplateViewModel> AllTemplates
+            => Pages.Concat(Features).Concat(Services).Concat(Testing);
+
         private IEnumerable<SavedTemplateViewModel> GetSavedTemplateDependencies(SavedTemplateViewModel savedTemplate)
         {
             List<SavedTemplateViewModel> dependencies = new List<SavedTemplateViewModel>();
 
-            foreach (var page in Pages.Where(p => p.Dependencies.Any(d => d.Identity == savedTemplate.Identity)))
+            foreach (var template in AllTemplates.Where(p => p.Dependencies.Any(d => d.Identity == savedTemplate.Identity)))
             {
-                dependencies.Add(page);
-            }
-
-            foreach (var feature in Features.Where(f => f.Dependencies.Any(d => d.Identity == savedTemplate.Identity)))
-            {
-                dependencies.Add(feature);
+                dependencies.Add(template);
             }
 
             return dependencies;
@@ -309,18 +353,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void UpdateHasItemsAddedByUser()
         {
-            foreach (var page in Pages)
+            foreach (var template in AllTemplates)
             {
-                if (page.TemplateOrigin == TemplateOrigin.UserSelection)
-                {
-                    HasItemsAddedByUser = true;
-                    return;
-                }
-            }
-
-            foreach (var feature in Features)
-            {
-                if (feature.TemplateOrigin == TemplateOrigin.UserSelection)
+                if (template.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
@@ -364,26 +399,42 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public async Task OnDeleteFeatureAsync(SavedTemplateViewModel feature)
+        public async Task OnDeleteItemTemplateAsync(SavedTemplateViewModel itemTemplate)
         {
-            if (feature.IsReadOnly)
+            if (itemTemplate.IsReadOnly)
             {
-                await ShowReadOnlyNotificationAsync(feature.Name);
+                await ShowReadOnlyNotificationAsync(itemTemplate.Name);
                 return;
             }
 
-            int newIndex = Features.IndexOf(feature) - 1;
+            var collection = GetCollection(itemTemplate.TemplateType);
+            int newIndex = collection.IndexOf(itemTemplate) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
-            var dependencies = await RemoveAsync(feature);
+            var dependencies = await RemoveAsync(itemTemplate);
             if (dependencies != null && dependencies.Any())
             {
-                await ShowDependencyNotificationAsync(feature.Name, dependencies.Select(t => t.Name));
+                await ShowDependencyNotificationAsync(itemTemplate.Name, dependencies.Select(t => t.Name));
             }
             else
             {
-                SelectedFeature = Features.ElementAt(newIndex);
-                SelectedFeature.IsFocused = true;
+                switch (itemTemplate.TemplateType)
+                {
+                    case TemplateType.Feature:
+                        SelectedFeature = collection.ElementAt(newIndex);
+                        SelectedFeature.IsFocused = true;
+                        break;
+                    case TemplateType.Service:
+                        SelectedService = collection.ElementAt(newIndex);
+                        SelectedService.IsFocused = true;
+                        break;
+                    case TemplateType.Testing:
+                        SelectedTesting = collection.ElementAt(newIndex);
+                        SelectedTesting.IsFocused = true;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

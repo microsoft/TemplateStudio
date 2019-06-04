@@ -99,8 +99,8 @@
                                 <ListView.InputBindings>
                                     <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
                                     <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}" />
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}" />
                                 </ListView.InputBindings>
                             </ListView>
                         </StackPanel>
@@ -116,8 +116,42 @@
                                 ItemsSource="{Binding UserSelection.Features}"
                                 SelectedItem="{Binding UserSelection.SelectedFeature, Mode=TwoWay}">
                                 <ListView.InputBindings>
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}" />
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}" />
+                                </ListView.InputBindings>
+                            </ListView>
+                        </StackPanel>
+
+                        <StackPanel Visibility="{Binding UserSelection.Services, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                Text="{x:Static strings:StringRes.ProjectDetailsServicesSectionTitle}" />
+                            <ListView
+                                x:Name="servicesList"
+                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                ItemsSource="{Binding UserSelection.Services}"
+                                SelectedItem="{Binding UserSelection.SelectedService, Mode=TwoWay}">
+                                <ListView.InputBindings>
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=servicesList, Path=SelectedItem}" />
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=servicesList, Path=SelectedItem}" />
+                                </ListView.InputBindings>
+                            </ListView>
+                        </StackPanel>
+
+                        <StackPanel Visibility="{Binding UserSelection.Testing, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                Text="{x:Static strings:StringRes.ProjectDetailsTestingSectionTitle}" />
+                            <ListView
+                                x:Name="testingList"
+                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                ItemsSource="{Binding UserSelection.Testing}"
+                                SelectedItem="{Binding UserSelection.SelectedService, Mode=TwoWay}">
+                                <ListView.InputBindings>
+                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=testingList, Path=SelectedItem}" />
+                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=testingList, Path=SelectedItem}" />
                                 </ListView.InputBindings>
                             </ListView>
                         </StackPanel>

@@ -8,7 +8,7 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.platform": "Uwp",

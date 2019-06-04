@@ -42,6 +42,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             DataService.LoadTemplatesGroups(Groups, _templateType, _platform, _projectTypeName, _frameworkName);
         }
 
+        public void ResetData(string projectTypeName, string frameworkName)
+        {
+            _projectTypeName = projectTypeName;
+            _frameworkName = frameworkName;
+            Groups.Clear();
+            DataService.LoadTemplatesGroups(Groups, _templateType, _platform, _projectTypeName, _frameworkName);
+        }
+
         public void ResetTemplatesCount()
         {
             foreach (var group in Groups)

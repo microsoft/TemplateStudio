@@ -99,6 +99,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (step.Id == NewItemStepTemplateSelection)
             {
                 ChangesSummary.ClearSelected();
+                WizardNavigation.Current.SetCanFinish(false);
+            }
+            else if (step.Id == NewItemStepChangesSummary)
+            {
+                WizardNavigation.Current.SetCanFinish(true);
             }
         }
 
@@ -155,14 +160,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }, TemplateType);
             WizardShell.Current.Result = userSelection;
             WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
-        }
-
-        private UserSelection GetUserSelection()
-        {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
-            var selectedItem = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
-            userSelection.Add(selectedItem, TemplateSelection.Template.TemplateType);
-            return userSelection;
         }
 
         protected override async Task OnTemplatesAvailableAsync()

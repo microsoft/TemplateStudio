@@ -8,7 +8,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",

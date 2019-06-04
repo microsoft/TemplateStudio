@@ -59,6 +59,8 @@ namespace Microsoft.UI.Test
             Assert.True(viewModel.Framework.Items.Count == 5);
             Assert.True(viewModel.StepsViewModels[TemplateType.Page].Groups.Count > 0);
             Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Service].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Testing].Groups.Count > 0);
             Assert.True(viewModel.UserSelection.Pages.Count == 1);
             Assert.True(viewModel.UserSelection.Features.Count == 0);
         }
@@ -269,9 +271,9 @@ namespace Microsoft.UI.Test
         private void DeleteFeature(UserSelectionViewModel viewmodel, int index)
         {
             var feature = viewmodel.Features.ElementAt(index);
-            if (viewmodel.DeleteFeatureCommand.CanExecute(feature))
+            if (viewmodel.DeleteItemTemplateCommand.CanExecute(feature))
             {
-                viewmodel.DeleteFeatureCommand.Execute(feature);
+                viewmodel.DeleteItemTemplateCommand.Execute(feature);
             }
         }
 

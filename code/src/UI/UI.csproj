@@ -111,6 +111,7 @@
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\SelectableExtensions.cs" />
+    <Compile Include="Extensions\TemplateTypeExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">

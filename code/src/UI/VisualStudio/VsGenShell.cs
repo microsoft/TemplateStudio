@@ -836,12 +836,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             return VSTelemetryService.VsTelemetryIsOptedIn();
         }
 
-        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
             VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
         }
 
-        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
             VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
         }

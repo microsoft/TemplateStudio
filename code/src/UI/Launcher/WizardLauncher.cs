@@ -61,16 +61,10 @@ namespace Microsoft.Templates.UI.Launcher
             }
         }
 
-        public UserSelection StartAddPage(string language, BaseStyleValuesProvider provider)
+        public UserSelection StartAddTemplate(string language, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
         {
-            var addPageView = new Views.NewItem.WizardShell(TemplateType.Page, language, provider);
-            return StartWizard(addPageView, WizardTypeEnum.AddPage);
-        }
-
-        public UserSelection StartAddFeature(string language, BaseStyleValuesProvider provider)
-        {
-            var addFeatureView = new Views.NewItem.WizardShell(TemplateType.Feature, language, provider);
-            return StartWizard(addFeatureView, WizardTypeEnum.AddFeature);
+            var addTemplateView = new Views.NewItem.WizardShell(templateType, language, provider);
+            return StartWizard(addTemplateView, wizardTypeEnum);
         }
 
         private UserSelection StartWizard(IWizardShell wizardShell, WizardTypeEnum wizardType)

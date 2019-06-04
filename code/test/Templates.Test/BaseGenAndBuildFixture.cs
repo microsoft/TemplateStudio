@@ -71,7 +71,10 @@ namespace Microsoft.Templates.Test
             if (template.MultipleInstance || !AlreadyAdded(userSelection, template))
             {
                 var itemName = getName(template);
-                var usedNames = userSelection.Pages.Select(p => p.Name).Concat(userSelection.Features.Select(f => f.Name));
+                var usedNames = userSelection.Pages.Select(p => p.Name)
+                    .Concat(userSelection.Features.Select(f => f.Name))
+                    .Concat(userSelection.Services.Select(f => f.Name))
+                    .Concat(userSelection.Testing.Select(f => f.Name));
                 var validators = new List<Validator>()
                     {
                         new ExistingNamesValidator(usedNames),
@@ -159,7 +162,10 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, TemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.TemplateId == item.TemplateId) || userSelection.Features.Any(f => f.TemplateId == item.TemplateId);
+            return userSelection.Pages.Any(p => p.TemplateId == item.TemplateId)
+                || userSelection.Features.Any(f => f.TemplateId == item.TemplateId)
+                || userSelection.Services.Any(f => f.TemplateId == item.TemplateId)
+                || userSelection.Testing.Any(f => f.TemplateId == item.TemplateId);
         }
 
         public static string GetDefaultName(TemplateInfo template)

@@ -13,6 +13,10 @@
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
                     id="AddFeatureCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="AddServiceCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="AddTestingCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
                     id="OpenTempFolder" context="UICONTEXT_SolutionHasAppContainerProject" />  
   </VisibilityConstraints>
   
@@ -53,7 +57,25 @@
           <ButtonText>New feature...</ButtonText>
         </Strings>
       </Button>
-      <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300" type="Button">
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddServiceCommand" priority="0x0300" type="Button">
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="guidImages" id="bmpFeature1" />
+        <Strings>
+          <ButtonText>New service...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="guidImages" id="bmpFeature1" />
+        <Strings>
+          <ButtonText>New testing...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -71,6 +93,8 @@
   <KeyBindings>
     <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="P" />
     <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="F" />
+    <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddServiceCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="S" />
+    <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="T" />
     <KeyBinding guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="O" />
   </KeyBindings>
   <CommandPlacements>
@@ -99,7 +123,15 @@
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
     </CommandPlacement>
 
-    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300">
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddServiceCommand" priority="0x0300">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" priority="0x0400">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0500">
       <Parent guid="guidRelayCommandPackageCmdSet" id="ToolsContextMenuGroup" />
     </CommandPlacement>
   </CommandPlacements>
@@ -114,7 +146,8 @@
       <IDSymbol name="ToolsContextMenuGroup" value="0x0350" />
       <IDSymbol name="AddPageCommand" value="0x0400"/>
       <IDSymbol name="AddFeatureCommand" value="0x0500"/>
-      <IDSymbol name="OpenTempFolder" value="0x0600"/>
+      <IDSymbol name="AddServiceCommand" value="0x0600"/>
+      <IDSymbol name="OpenTempFolder" value="0x0700"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{2be1a05a-8b56-4036-9f02-8bfee4cf74c7}" >

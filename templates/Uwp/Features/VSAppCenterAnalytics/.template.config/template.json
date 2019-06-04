@@ -10,7 +10,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
     "wts.platform": "Uwp",

@@ -223,6 +223,8 @@
     </AdditionalFiles>
     <None Include="app.manifest" />
     <Resource Include="Assets\stylecop.png" />
+    <Resource Include="Assets\newtesting.png" />
+    <Resource Include="Assets\newservice.png" />
     <Content Include="CoreTemplateStudio.config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

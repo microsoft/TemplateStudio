@@ -8,7 +8,7 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "feature",
+    "wts.type": "testing",
     "wts.outputToParent": "true",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",

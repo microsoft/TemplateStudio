@@ -162,6 +162,22 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
+        public void AddNewStep(string stepId, string title, Func<object> getPage)
+        {
+            var newStep = StepData.MainStep(stepId, (Steps.Count + 1).ToString(), title, getPage);
+            var nextStep = Steps.FirstOrDefault(s => s.Id.CompareTo(stepId) > 0);
+            if (nextStep != null)
+            {
+                int position = Steps.IndexOf(nextStep);
+                Steps.Insert(position, newStep);
+                SetStepsIndex();
+            }
+            else
+            {
+                Steps.Add(newStep);
+            }
+        }
+
         public async Task RemoveStepAsync(string stepId)
         {
             var stepToRemove = Steps.FirstOrDefault(s => s.Id == stepId);
@@ -177,6 +193,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 {
                     UpdateBackForward();
                 }
+
+                SetStepsIndex();
+            }
+        }
+
+        private void SetStepsIndex()
+        {
+            for (int index = 0; index < Steps.Count; index++)
+            {
+                Steps[index].Index = (index + 1).ToString();
             }
         }
     }

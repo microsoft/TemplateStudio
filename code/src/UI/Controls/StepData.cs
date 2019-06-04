@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.Controls
                 GetPage = getPage,
                 Completed = completed,
             };
-        }        
+        }
 
         public override bool Equals(object obj)
         {
