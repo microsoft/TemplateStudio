@@ -2,11 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -68,7 +70,8 @@ namespace Microsoft.Templates.UI.Services
             if (!templatesGroups.Any())
             {
                 var templates = GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
-                    .Where(t => !t.IsHidden);
+                    .Where(t => !t.IsHidden
+                             && (!t.RequiredVisualStudioWorkloads.Any() || HasAllVisualStudioWorkloads(t.RequiredVisualStudioWorkloads)));
 
                 if (loadFromRightClick)
                 {
@@ -87,6 +90,27 @@ namespace Microsoft.Templates.UI.Services
             }
 
             return 0;
+        }
+
+        private static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
+        {
+            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+
+            // If not in VS then assume all workloads are available.
+            if (vsShell != null)
+            {
+                var installedIds = vsShell.GetInstalledPackageIds();
+
+                foreach (var workloadId in workloadIds)
+                {
+                    if (!installedIds.Contains(workloadId))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
