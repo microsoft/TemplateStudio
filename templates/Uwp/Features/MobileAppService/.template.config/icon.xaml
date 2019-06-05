@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="svg" Width="48" Height="48">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <Canvas Name="svgg">
+      <Canvas.RenderTransform>
+        <MatrixTransform Matrix="0.11918941 0 0 0.11918941 -0.01480875 -0.69480509"/>
+      </Canvas.RenderTransform>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path0" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="m 25.6 50.803475 c 1.18046 214.377645 -0.02292 260.937635 0.265644 299.271435 128.734156 -0.4503 340.196366 -0.0108 348.960836 -0.0965 0.11615 -93.96795 -0.17145 -211.72027 -0.0794 -299.103505 L 200.34 50.812 m 150.19242 74.31787 c -0.60882 69.00946 -0.75062 123.7695 -0.0265 200.03708 C 314.09723 325.25215 234.42431 325.59816 200.4 325.6 160.97145 325.643 75.922035 325.41999 50.4 325.19394 50.134 325.19394 50 288.467 50 225.4 50 162.333 50.09655 125.11917 50.362547 125.11917 100.30085 125.05309 158.90569 124.80225 200.4 124.8" FillRule="EvenOdd"/>
+        </Path.Data>
+      </Path>
+    </Canvas>
+    <Canvas Name="layer1">
+      <Canvas.RenderTransform>
+        <TranslateTransform X="0" Y="-352"/>
+      </Canvas.RenderTransform>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="rect4534" Fill="#FF000000" StrokeThickness="0.11918943" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1">
+        <Path.Data>
+          <PathGeometry Figures="m 31.099643 369.44742 c -3.428324 0.004 -6.38981 2.39819 -7.11249 5.74948 -2.962033 1.28315 -2.153608 2.24986 -0.0048 3.07122 0.722972 3.35318 3.687149 5.74777 7.117377 5.74973 4.023524 2e-5 7.285238 -3.26169 7.285221 -7.28521 1.7e-5 -4.02354 -3.261697 -7.28524 -7.285221 -7.28522 z m -7.117377 8.8207 c -0.219858 -1.04431 -0.205433 -2.10444 0.0048 -3.07122 h -6.768642 c -0.674125 -1.52137 -2.142711 -2.49758 -3.760519 -2.49971 -2.287884 2e-5 -4.1425626 1.91869 -4.1425306 4.28546 9.3e-5 2.36668 1.8547346 4.28522 4.1425306 4.28523 1.808823 -3.5e-4 3.408284 -1.21475 3.950942 -2.99976 z m 7.367396 -6.10658 c 2.623158 0 4.749648 2.12649 4.749651 4.74965 -3e-6 2.62316 -2.126493 4.74965 -4.749651 4.74965 -2.623159 0 -4.749649 -2.12649 -4.749653 -4.74965 4e-6 -2.62316 2.126494 -4.74965 4.749653 -4.74965 z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+    </Canvas>
+  </Canvas>
+</Viewbox>
