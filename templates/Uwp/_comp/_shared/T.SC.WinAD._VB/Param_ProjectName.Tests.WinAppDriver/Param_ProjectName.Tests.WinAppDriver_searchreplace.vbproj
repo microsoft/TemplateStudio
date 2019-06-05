@@ -1,6 +1,6 @@
-﻿    <TargetFramework>netcoreapp2.1</TargetFramework>
+﻿    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
 ^^^-searchabove-replacebelow-vvv
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,VBSAC002</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
     <CodeAnalysisRuleSet>WTSVBRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>S1186</NoWarn>

@@ -1,4 +1,4 @@
-﻿    <Prefer32Bit>true</Prefer32Bit>
+﻿    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
 ^^^-searchabove-replacebelow-vvv
-    <Prefer32Bit>true</Prefer32Bit>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

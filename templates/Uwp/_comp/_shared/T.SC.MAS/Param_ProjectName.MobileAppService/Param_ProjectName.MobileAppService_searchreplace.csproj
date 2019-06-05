@@ -1,4 +1,4 @@
-﻿    <Prefer32Bit>true</Prefer32Bit>
+﻿    <TargetFramework>netcoreapp2.1</TargetFramework>
 ^^^-searchabove-replacebelow-vvv
-    <Prefer32Bit>true</Prefer32Bit>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

@@ -2,5 +2,6 @@
 ^^^-searchabove-replacebelow-vvv
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
     <CodeAnalysisRuleSet>WTSVBRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>S1186</NoWarn>
