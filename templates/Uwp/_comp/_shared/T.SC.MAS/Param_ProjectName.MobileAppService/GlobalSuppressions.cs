@@ -14,5 +14,5 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single class", Justification = "For simplicity we're allowing generic and non-generic versions of Activationhandler in one file.")]
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File must have header", Justification = "By default we do not include a header in the generated files.")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File must have header", Justification = "By default we do not include a header in the geenrated files.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1652:Enable XML documentation output", Justification = "We leave this as a choice for the developer to enable. As the generated code doesn't include XML comments, enabling this would just create more issues with the generated code.")]
