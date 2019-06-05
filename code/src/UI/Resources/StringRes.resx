@@ -740,10 +740,14 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
     <value>Data</value>
-    <comment>Group header for data templates</comment>
+    <comment>Group header for Data templates</comment>
   </data>
   <data name="TemplateGroup_Tools" xml:space="preserve">
     <value>Tools</value>
     <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for 'Testing' templates</comment>
   </data>
 </root>

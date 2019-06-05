@@ -30,6 +30,7 @@ namespace Param_RootNamespace.Core.Services
         private string _clientId => ConfigurationManager.AppSettings["IdentityClientId"];
 
         public event EventHandler LoggedIn;
+
         public event EventHandler LoggedOut;
 
         public void InitializeWithAadAndPersonalMsAccounts()
@@ -158,6 +159,7 @@ namespace Param_RootNamespace.Core.Services
             {
                 return false;
             }
+
             try
             {
                 var accounts = await _client.GetAccountsAsync();
@@ -172,12 +174,11 @@ namespace Param_RootNamespace.Core.Services
                 {
                     try
                     {
-
                         _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
                                                              .ExecuteAsync();
                         return true;
                     }
-                    catch(MsalUiRequiredException)
+                    catch (MsalUiRequiredException)
                     {
                         // Interactive authentication is required
                         return false;
