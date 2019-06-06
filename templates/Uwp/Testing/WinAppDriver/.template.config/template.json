@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Win App Driver",
-  "groupIdentity": "wts.Feat.WinAppDriver",
-  "identity": "wts.Feat.WinAppDriver",
+  "groupIdentity": "wts.Testing.WinAppDriver",
+  "identity": "wts.Testing.WinAppDriver",
   "description": "Add project for UI tests using Appium via Windows Application Driver.",
   "tags": {
     "language": "C#",
