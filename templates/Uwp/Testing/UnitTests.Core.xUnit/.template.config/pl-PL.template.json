@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with xUnit",
   "description": "Dodaj projekt, aby przetestować kod w bibliotece Core przy użyciu narzędzia xUnit.",
-  "identity": "wts.Feat.UnitTests.Core.xUnit"
+  "identity": "wts.Testing.UnitTests.Core.xUnit"
 }

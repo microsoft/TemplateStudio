@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Test Core library with xUnit",
     "description": "xUnit ile Çekirdek kitaplığındaki kodu test etmek için bir proje ekleyin.",
-    "identity": "wts.Feat.UnitTests.Core.xUnit.VB"
+    "identity": "wts.Testing.UnitTests.Core.xUnit.VB"
 }
