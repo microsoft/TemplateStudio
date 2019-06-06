@@ -30,7 +30,7 @@ namespace Param_RootNamespace.Core.Services
         private string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
 
         public event EventHandler LoggedIn;
- 
+
         public event EventHandler LoggedOut;
 
         public void InitializeWithAadAndPersonalMsAccounts()
