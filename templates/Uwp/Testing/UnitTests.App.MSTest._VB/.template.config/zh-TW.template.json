@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Test App with MSTest",
     "description": "使用 MSTest 新增針對應用程式進行單元測試的專案。",
-    "identity": "wts.Feat.UnitTests.App.MSTest.VB"
+    "identity": "wts.Testing.UnitTests.App.MSTest.VB"
 }

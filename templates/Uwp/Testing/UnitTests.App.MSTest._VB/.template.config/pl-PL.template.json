@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Test App with MSTest",
     "description": "Dodaj projekt do przeprowadzania testów jednostkowych w aplikacji przy użyciu narzędzia MSTest.",
-    "identity": "wts.Feat.UnitTests.App.MSTest.VB"
+    "identity": "wts.Testing.UnitTests.App.MSTest.VB"
 }

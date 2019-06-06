@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test App with MSTest",
-  "groupIdentity": "wts.Feat.UnitTests.App.MSTest.VB",
-  "identity": "wts.Feat.UnitTests.App.MSTest.VB",
+  "groupIdentity": "wts.Testing.UnitTests.App.MSTest.VB",
+  "identity": "wts.Testing.UnitTests.App.MSTest.VB",
   "description": "Add a project for unit tests against the app using MSTest.",
   "tags": {
     "language": "VisualBasic",
