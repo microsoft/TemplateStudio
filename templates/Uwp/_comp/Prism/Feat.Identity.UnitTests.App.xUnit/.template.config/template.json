@@ -11,7 +11,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Feat.IdentityOptionalLogin.Prism|wts.Feat.IdentityForcedLogin.Prism & $feature == wts.Feat.UnitTests.App.xUnit"
+    "wts.compositionFilter": "identity == wts.Feat.IdentityOptionalLogin.Prism|wts.Feat.IdentityForcedLogin.Prism & $feature == wts.Testing.UnitTests.App.xUnit"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

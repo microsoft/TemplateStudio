@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Test App with xUnit",
     "description": "Добавление проекта для модульного тестирования приложений с помощью xUnit.",
-    "identity": "wts.Feat.UnitTests.App.xUnit.VB"
+    "identity": "wts.Testing.UnitTests.App.xUnit.VB"
 }

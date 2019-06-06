@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test App with xUnit",
-  "groupIdentity": "wts.Feat.UnitTests.App.xUnit.VB",
-  "identity": "wts.Feat.UnitTests.App.xUnit.VB",
+  "groupIdentity": "wts.Testing.UnitTests.App.xUnit.VB",
+  "identity": "wts.Testing.UnitTests.App.xUnit.VB",
   "description": "Add a project for unit tests against the app using xUnit.",
   "tags": {
     "language": "VisualBasic",
