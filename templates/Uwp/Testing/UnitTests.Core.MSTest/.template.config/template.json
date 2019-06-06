@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test Core library with MSTest",
-  "groupIdentity": "wts.Feat.UnitTests.Core.MSTest",
-  "identity": "wts.Feat.UnitTests.Core.MSTest",
+  "groupIdentity": "wts.Testing.UnitTests.Core.MSTest",
+  "identity": "wts.Testing.UnitTests.Core.MSTest",
   "description": "Add a project to test code in the Core library with MSTest.",
   "tags": {
     "language": "C#",

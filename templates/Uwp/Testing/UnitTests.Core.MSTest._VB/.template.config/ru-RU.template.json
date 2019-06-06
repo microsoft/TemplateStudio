@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Test Core library with MSTest",
     "description": "Добавление проекта для тестирования кода в основной библиотеке с помощью MSTest.",
-    "identity": "wts.Feat.UnitTests.Core.MSTest.VB"
+    "identity": "wts.Testing.UnitTests.Core.MSTest.VB"
 }
