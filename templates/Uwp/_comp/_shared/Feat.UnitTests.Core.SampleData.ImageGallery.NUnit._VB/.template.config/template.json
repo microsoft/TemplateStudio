@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.UnitTests.Core.SampleData.ImageGallery.NUnit.VB",
+  "name": "Testing.UnitTests.Core.SampleData.ImageGallery.NUnit.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

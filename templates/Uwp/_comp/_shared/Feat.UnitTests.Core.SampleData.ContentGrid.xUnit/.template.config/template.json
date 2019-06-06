@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.UnitTests.Core.SampleData.ContentGrid.xUnit",
+  "name": "Testing.UnitTests.Core.SampleData.ContentGrid.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",

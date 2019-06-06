@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.UnitTests.Core.SampleData.Grids.xUnit",
+  "name": "Testing.UnitTests.Core.SampleData.Grids.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",

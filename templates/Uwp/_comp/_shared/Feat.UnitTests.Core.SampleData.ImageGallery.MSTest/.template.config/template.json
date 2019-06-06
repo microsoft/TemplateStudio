@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.UnitTests.Core.SampleData.ImageGallery.MSTest",
+  "name": "Testing.UnitTests.Core.SampleData.ImageGallery.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
