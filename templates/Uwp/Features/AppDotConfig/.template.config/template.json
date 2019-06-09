@@ -1,0 +1,42 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Sample Data",
+  "groupIdentity": "wts.Feat.AppDotConfig",
+  "identity": "wts.Feat.AppDotConfig",
+  "description": "Adds an empty App.config file to the project.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "AppDotConfig",
+    "wts.multipleInstance": "false",
+    "wts.isHidden": "true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "AppDotConfigFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName\\App.Config"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
