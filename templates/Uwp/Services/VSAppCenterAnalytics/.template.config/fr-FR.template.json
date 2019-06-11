@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "VS App Center Analytics",
   "description": "Envoyer des analyses à Visual Studio App Center.",
-  "identity": "wts.Feat.VSAppCenterAnalytics"
+  "identity": "wts.Service.VSAppCenterAnalytics"
 }

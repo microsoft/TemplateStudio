@@ -4,8 +4,8 @@
     "Universal"
   ],
   "name": "VS App Center Analytics",
-  "groupIdentity": "wts.Feat.VSAppCenterAnalytics",
-  "identity": "wts.Feat.VSAppCenterAnalytics",
+  "groupIdentity": "wts.Service.VSAppCenterAnalytics",
+  "identity": "wts.Service.VSAppCenterAnalytics",
   "description": "Send analytics to the Visual Studio App Center.",
   "tags": {
     "language": "C#",
