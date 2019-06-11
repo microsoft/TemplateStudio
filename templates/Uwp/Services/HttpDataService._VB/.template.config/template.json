@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "HTTP Data Service",
-  "groupIdentity": "wts.Feat.HttpDataService.VB",
-  "identity": "wts.Feat.HttpDataService.VB",
+  "groupIdentity": "wts.Service.HttpDataService.VB",
+  "identity": "wts.Service.HttpDataService.VB",
   "description": "Access content over HTTP.",
   "tags": {
     "language": "VisualBasic",

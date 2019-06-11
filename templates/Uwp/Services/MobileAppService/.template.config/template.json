@@ -17,7 +17,7 @@
     "wts.displayOrder": "1",
     "wts.defaultInstance": "MobileAppService",
     "wts.multipleInstance": "false",
-    "wts.dependencies":"wts.Feat.HttpDataService",
+    "wts.dependencies":"wts.Service.HttpDataService",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
     "wts.isHidden": "false",
     "wts.genGroup": "0",

@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "HTTP Data Service",
-  "groupIdentity": "wts.Feat.HttpDataService",
-  "identity": "wts.Feat.HttpDataService",
+  "groupIdentity": "wts.Service.HttpDataService",
+  "identity": "wts.Service.HttpDataService",
   "description": "Access content over HTTP.",
   "tags": {
     "language": "C#",

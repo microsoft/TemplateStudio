@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "HTTP Data Service",
   "description": "Access content over HTTP.",
-  "identity": "wts.Feat.HttpDataService"
+  "identity": "wts.Service.HttpDataService"
 }
