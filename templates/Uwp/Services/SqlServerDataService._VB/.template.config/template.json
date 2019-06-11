@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "SQL Server Data",
-  "groupIdentity": "wts.Feat.SqlServerDataService.VB",
-  "identity": "wts.Feat.SqlServerDataService.VB",
+  "groupIdentity": "wts.Service.SqlServerDataService.VB",
+  "identity": "wts.Service.SqlServerDataService.VB",
   "description": "Get data from SQL Server to use in the app.",
   "tags": {
     "language": "VisualBasic",
