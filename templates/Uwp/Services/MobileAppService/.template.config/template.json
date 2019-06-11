@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Mobile App Service",
-  "groupIdentity": "wts.Feat.MobileAppService",
-  "identity": "wts.Feat.MobileAppService",
+  "groupIdentity": "wts.Service.MobileAppService",
+  "identity": "wts.Service.MobileAppService",
   "description": "Include ASP.NET Core Web API project.",
   "tags": {
     "language": "C#",

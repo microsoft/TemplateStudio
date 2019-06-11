@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Mobile App Service",
   "description": "Include ASP.NET Core Web API project.",
-  "identity": "wts.Feat.MobileAppService"
+  "identity": "wts.Service.MobileAppService"
 }
