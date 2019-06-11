@@ -20,7 +20,7 @@ Scenarios covered in this document:
 
 **Files to modify:**
 - ActivationService.cs
-- DefaultLaunchActivationHandler.cs
+- DefaultActivationHandler.cs
 - App.xaml.cs
 
 ### 1. Replace NavigationService.cs
@@ -352,58 +352,49 @@ namespace YOUR_APP_NAME.Services
 }
 ```
 
-### 5. Changes in DefaultLaunchActivationHandler.cs
-- Change the DefaultLaunchActivationHandler to:
+### 5. Changes in DefaultActivationHandler.cs
+- Change the DefaultActivationHandler to:
 
 ```csharp
-internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
 {
     private readonly Type _navElement;
     private readonly Type _shell;
 
-
-    public DefaultLaunchActivationHandler(Type navElement, Type shell = null)
+    public DefaultActivationHandler(Type navElement, Type shell = null)
     {
         _navElement = navElement;
         _shell = shell;
     }
 
-    protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+    protected override async Task HandleInternalAsync(IActivatedEventArgs args)
     {
         // When the navigation stack isn't restored, navigate to the first page and configure
         // the new page by passing required information in the navigation parameter
+        object arguments = null;
+        if (args is LaunchActivatedEventArgs launchArgs)
+        {
+            arguments = launchArgs.Arguments;
+        }
         if (_shell != null)
         {
             NavigationService.NavigateInMainFrame(_shell);
-            NavigationService.NavigateInSecondaryFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: args.Arguments));
+            NavigationService.NavigateInSecondaryFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: arguments));
         }
         else
         {
-            NavigationService.NavigateInMainFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: args.Arguments));
+            NavigationService.NavigateInMainFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: arguments));
         }
 
 
         await Task.CompletedTask;
     }
 
-    protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+    protected override bool CanHandleInternal(IActivatedEventArgs args)
     {
         // None of the ActivationHandlers has handled the app activation
         return !NavigationService.HasContentMainFrame();
     }
-}
-```
-
-### 6. Changes in ActivationService.cs
-- Replace the field `private readonly Lazy<UIElement> _shell;` with `private readonly Type _shell;`
-
-- Change constructor to
-```csharp
-public ActivationService(App app, Type defaultNavItem, Type shell = null)
-{
-    _app = app;
-    _shell = shell;
-    _defaultNavItem = defaultNavItem;
 }
 ```
 
@@ -413,7 +404,8 @@ public async Task ActivateAsync(object activationArgs)
 {
     if (IsInteractive(activationArgs))
     {
-        // Initialize things like registering background task before the app is loaded
+        // Initialize services that you need before app activation
+        // take into account that the splash screen is shown while this code runs.
         await InitializeAsync();
 
         // Do not repeat app initialization when the Window already has content,
@@ -425,6 +417,8 @@ public async Task ActivateAsync(object activationArgs)
         }
     }
 
+    // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
+    // will navigate to the first page
     await HandleActivationAsync(activationArgs);
     _lastActivationArgs = activationArgs;
 
@@ -438,7 +432,7 @@ public async Task ActivateAsync(object activationArgs)
     }
 }
 ```
-- Add `_shell` parameter in `DefaultLaunchActivationHandler` constructor in `HandleActivationAsync`.
+- Add `_shell` parameter in `DefaultActivationHandler` constructor in `HandleActivationAsync`.
 
 ### 7. Change App.xaml.cs
 #### 7.1 For startup on Startup page:
