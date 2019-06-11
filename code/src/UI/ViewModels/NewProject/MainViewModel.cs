@@ -73,6 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             base.UnsubscribeEventHandlers();
             Navigation.OnFinish -= OnFinish;
+            UserSelection.UnsubscribeEventHandlers();
         }
 
         private static IEnumerable<StepData> NewProjectSteps

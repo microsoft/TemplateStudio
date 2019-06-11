@@ -404,21 +404,7 @@
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource WtsButtonDeleteTemplate}">
                                             <Setter Property="Opacity" Value="0" />
-                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteItemTemplateCommand}" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Service}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteItemTemplateCommand}" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Testing}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteItemTemplateCommand}" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                            <Setter Property="Command" Value="{Binding DeleteCommand}" />
                                         </Style>
                                     </Button.Style>
                                 </Button>

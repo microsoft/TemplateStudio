@@ -68,24 +68,7 @@ namespace Microsoft.Templates.UI.Extensions
             var step = GetSequentialFlowStep(textBlock);
             var index = GetSequentialFlowStepIndex(textBlock);
             var completed = GetSequentialFlowStepCompleted(textBlock);
-
             textBlock.Inlines.Clear();
-
-            //if (completed)
-            //{
-            //    textBlock.Inlines.Add(GetCheckMark());
-            //    textBlock.Inlines.Add(" ");
-            //}
-
-            //if (completed)
-            //{
-            //    textBlock.Inlines.Add(GetCheckMark());
-            //}
-            //else
-            //{
-            //    textBlock.Inlines.Add($"{index}.");
-            //}
-
             textBlock.Inlines.Add($"{index}. {step.Title}");
         }
 

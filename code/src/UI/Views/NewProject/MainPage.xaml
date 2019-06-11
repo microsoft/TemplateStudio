@@ -85,76 +85,34 @@
                             IsEnabled="{Binding WizardStatus.IsNotBusy}"
                             AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
-
-                        <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
-                            <ListView
-                                x:Name="pagesList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Pages}"
-                                SelectedItem="{Binding UserSelection.SelectedPage, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
-                                    <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}" />
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}" />
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
-
-                        <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
-                            <ListView
-                                x:Name="featuresList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Features}"
-                                SelectedItem="{Binding UserSelection.SelectedFeature, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}" />
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}" />
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
-
-                        <StackPanel Visibility="{Binding UserSelection.Services, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsServicesSectionTitle}" />
-                            <ListView
-                                x:Name="servicesList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Services}"
-                                SelectedItem="{Binding UserSelection.SelectedService, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=servicesList, Path=SelectedItem}" />
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=servicesList, Path=SelectedItem}" />
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
-
-                        <StackPanel Visibility="{Binding UserSelection.Testing, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsTestingSectionTitle}" />
-                            <ListView
-                                x:Name="testingList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Testing}"
-                                SelectedItem="{Binding UserSelection.SelectedService, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditItemTemplateCommand}" CommandParameter="{Binding ElementName=testingList, Path=SelectedItem}" />
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteItemTemplateCommand}" CommandParameter="{Binding ElementName=testingList, Path=SelectedItem}" />
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
+                        <ItemsControl
+                            ItemsSource="{Binding UserSelection.Groups}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Visibility="{Binding Items, Converter={StaticResource HasItemsVisibilityConverter}}">
+                                        <TextBlock
+                                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                            Text="{Binding Header}" />
+                                        <ListView
+                                            x:Name="itemsList"
+                                            Loaded="UserSelectionGroupLoaded"
+                                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                            Tag="{Binding TemplateType}"
+                                            ItemsSource="{Binding Items}"
+                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.InputBindings>
+                                                <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding MoveUpCommand}" />
+                                                <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding MoveDownCommand}" />
+                                                <KeyBinding  Key="F2" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
+                                                <KeyBinding  Key="Delete" Command="{Binding DeletePageCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
+                                            </ListView.InputBindings>
+                                        </ListView>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
                         <StackPanel Visibility="{Binding UserSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                             <TextBlock
