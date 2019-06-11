@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype == MenuBar & identity == wts.Feat.IdentityOptionalLogin.CodeBehind"
+    "wts.compositionFilter": "$projecttype == MenuBar & identity == wts.Service.IdentityOptionalLogin.CodeBehind"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

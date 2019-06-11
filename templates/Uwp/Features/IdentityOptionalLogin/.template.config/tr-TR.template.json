@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Uygulamanıza isteğe bağlı oturum açma ve kısıtlamalı özellikler ekleyin.",
-  "identity": "wts.Feat.IdentityOptionalLogin"
+  "identity": "wts.Service.IdentityOptionalLogin"
 }

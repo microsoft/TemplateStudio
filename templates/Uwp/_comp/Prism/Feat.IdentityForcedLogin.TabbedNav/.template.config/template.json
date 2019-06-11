@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype == TabbedNav & identity == wts.Feat.IdentityForcedLogin.Prism"
+    "wts.compositionFilter": "$projecttype == TabbedNav & identity == wts.Service.IdentityForcedLogin.Prism"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

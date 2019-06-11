@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Feat.IdentityForcedLogin.VB|wts.Feat.IdentityOptionalLogin.VB"
+    "wts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

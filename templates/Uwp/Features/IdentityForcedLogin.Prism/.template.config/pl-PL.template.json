@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Określ, aby użytkownik musiał zalogować się do aplikacji.",
-  "identity": "wts.Feat.IdentityForcedLogin.Prism"
+  "identity": "wts.Service.IdentityForcedLogin.Prism"
 }

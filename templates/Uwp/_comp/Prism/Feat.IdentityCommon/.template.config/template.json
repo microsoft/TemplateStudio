@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Feat.IdentityForcedLogin.Prism|wts.Feat.IdentityOptionalLogin.Prism",
+    "wts.compositionFilter": "identity == wts.Service.IdentityForcedLogin.Prism|wts.Service.IdentityOptionalLogin.Prism",
     "wts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

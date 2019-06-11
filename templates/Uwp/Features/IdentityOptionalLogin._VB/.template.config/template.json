@@ -4,13 +4,13 @@
     "Universal"
   ],
   "name": "Optional Login",
-  "groupIdentity": "wts.Feat.IdentityOptionalLogin.VB",
-  "identity": "wts.Feat.IdentityOptionalLogin.VB",
+  "groupIdentity": "wts.Service.IdentityOptionalLogin.VB",
+  "identity": "wts.Service.IdentityOptionalLogin.VB",
   "description": "Make your application have an optional login and restricted features.",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",

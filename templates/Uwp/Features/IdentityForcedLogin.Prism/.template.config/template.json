@@ -4,13 +4,13 @@
     "Universal"
   ],
   "name": "Forced Login",
-  "groupIdentity": "wts.Feat.IdentityForcedLogin",
-  "identity": "wts.Feat.IdentityForcedLogin.Prism",
+  "groupIdentity": "wts.Service.IdentityForcedLogin",
+  "identity": "wts.Service.IdentityForcedLogin.Prism",
   "description": "Make your application require the user to login.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
     "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",

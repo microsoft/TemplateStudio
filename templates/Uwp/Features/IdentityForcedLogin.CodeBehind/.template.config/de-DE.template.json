@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Richten Sie für Ihre Anwendung eine erzwungene Anmeldung ein.",
-  "identity": "wts.Feat.IdentityForcedLogin.CodeBehind"
+  "identity": "wts.Service.IdentityForcedLogin.CodeBehind"
 }

@@ -4,13 +4,13 @@
     "Universal"
   ],
   "name": "Optional Login",
-  "groupIdentity": "wts.Feat.IdentityOptionalLogin",
-  "identity": "wts.Feat.IdentityOptionalLogin.Prism",
+  "groupIdentity": "wts.Service.IdentityOptionalLogin",
+  "identity": "wts.Service.IdentityOptionalLogin.Prism",
   "description": "Make your application have an optional login and restricted features.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
+    "wts.type": "service",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
     "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",

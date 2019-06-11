@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "为应用程序添加选择性登录和受限功能。",
-  "identity": "wts.Feat.IdentityOptionalLogin"
+  "identity": "wts.Service.IdentityOptionalLogin"
 }

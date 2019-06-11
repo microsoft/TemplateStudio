@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic & groupidentity == wts.Feat.IdentityOptionalLogin.VB"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & groupidentity == wts.Service.IdentityOptionalLogin.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
