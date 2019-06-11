@@ -2,8 +2,8 @@
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "XAML Styler Config",
-  "groupIdentity": "wts.Feat.XAMLStyler.VB",
-  "identity": "wts.Feat.XAMLStyler.VB",
+  "groupIdentity": "wts.Service.XAMLStyler.VB",
+  "identity": "wts.Service.XAMLStyler.VB",
   "description": "Default XAML Styler config file.",
   "tags": {
     "language": "VisualBasic",
