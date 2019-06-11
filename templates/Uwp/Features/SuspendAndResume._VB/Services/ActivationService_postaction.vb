@@ -28,9 +28,6 @@ Namespace Services
 '{[{
             Yield Singleton(Of SuspendAndResumeService).Instance
 '}]}
-'{--{
-            Exit Function
-'}--}
         End Function
     End Class
 End Namespace

@@ -13,21 +13,15 @@
     "wts.version": "1.0.0",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
-    "wts.compositionFilter": "wts.type == project"
+    "wts.compositionFilter": "wts.type == project",
+    "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName\\GlobalSuppressions.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Tests.MSTest\\GlobalSuppressions.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName.Tests.xUnit\\GlobalSuppressions.cs"
     }
-     
   ],
   "symbols": {
     "wts.projectName": {
@@ -60,72 +54,6 @@
         "packageId" : "StyleCop.Analyzers",
         "version" : "1.0.2",
         "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "StyleCop.Analyzers",
-        "version" : "1.0.2",
-        "projectPath": ".\\Param_ProjectName.MobileAppService\\Param_ProjectName.MobileAppService.csproj"
       },
       "continueOnError": "true"
     }

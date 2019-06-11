@@ -27,10 +27,10 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
         // Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
         // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        private string _clientId => ConfigurationManager.AppSettings["IdentityClientId"];
+        private string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
 
         public event EventHandler LoggedIn;
- 
+
         public event EventHandler LoggedOut;
 
         public void InitializeWithAadAndPersonalMsAccounts()

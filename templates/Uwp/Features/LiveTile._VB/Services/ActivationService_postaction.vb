@@ -11,28 +11,25 @@ Imports Param_RootNamespace.Core.Helpers
 Namespace Services
     Friend Class ActivationService
         Private Async Function InitializeAsync() As Task
-            '{[{
+'{[{
             Await Singleton(Of LiveTileFeatureService).Instance.EnableQueueAsync()
-            '}]}
+'}]}
         End Function
 
         Private Async Function StartupAsync() As Task
-            '^^
-            '{[{
+'^^
+'{[{
             Singleton(Of LiveTileFeatureService).Instance.SampleUpdate()
-            '}]}
-            '{??{
+'}]}
+'{??{
             Await Task.CompletedTask
-            '}??}
+'}??}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
-            '{[{
+'{[{
             yield Singleton(Of LiveTileFeatureService).Instance
-            '}]}
-'{--{
-            Exit Function
-'}--}
+'}]}
         End Function
     End Class
 End Namespace

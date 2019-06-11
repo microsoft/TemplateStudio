@@ -10,5 +10,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Param_ProjectName.Core\Param_ProjectName.Core.vbproj" />
   </ItemGroup>
-  
+
 </Project>

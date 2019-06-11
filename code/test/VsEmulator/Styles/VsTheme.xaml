@@ -28,6 +28,11 @@
         <Setter Property="FontWeight" Value="UltraLight" />
         <Setter Property="Foreground" Value="Purple" />
     </Style>
+    <Style TargetType="TextBlock" x:Key="Label1">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="UltraLight" />
+        <Setter Property="Foreground" Value="#333333" />
+    </Style>
     <Style TargetType="Grid" x:Key="StatusContainer">
         <Setter Property="Background" Value="{StaticResource AccentColorBrush}" />
     </Style>
