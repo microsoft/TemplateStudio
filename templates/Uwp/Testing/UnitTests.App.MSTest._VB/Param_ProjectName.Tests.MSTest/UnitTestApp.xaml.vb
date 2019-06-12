@@ -50,4 +50,5 @@ End Class
 ' This type is defined to force the compiler to add the necessary references and allows tests to run
 Public Class WinUiReference
     Inherits Windows.UI.Xaml.Controls.Button
+
 End Class

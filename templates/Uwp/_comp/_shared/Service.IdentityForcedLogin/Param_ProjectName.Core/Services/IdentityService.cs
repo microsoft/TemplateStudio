@@ -26,7 +26,7 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
         // Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
         // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        private string ClientId => ConfigurationManager.AppSettings["IdentityClientId"];
+        private string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
 
         public event EventHandler LoggedIn;
 
@@ -35,7 +35,7 @@ namespace Param_RootNamespace.Core.Services
         public void InitializeWithAadAndPersonalMsAccounts()
         {
             _integratedAuthAvailable = false;
-            _client = PublicClientApplicationBuilder.Create(ClientId)
+            _client = PublicClientApplicationBuilder.Create(_clientId)
                                                     .WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
                                                     .Build();
         }
@@ -43,7 +43,7 @@ namespace Param_RootNamespace.Core.Services
         public void InitializeWithAadMultipleOrgs(bool integratedAuth = false)
         {
             _integratedAuthAvailable = integratedAuth;
-            _client = PublicClientApplicationBuilder.Create(ClientId)
+            _client = PublicClientApplicationBuilder.Create(_clientId)
                                                     .WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs)
                                                     .Build();
         }
@@ -51,7 +51,7 @@ namespace Param_RootNamespace.Core.Services
         public void InitializeWithAadSingleOrg(string tenant, bool integratedAuth = false)
         {
             _integratedAuthAvailable = integratedAuth;
-            _client = PublicClientApplicationBuilder.Create(ClientId)
+            _client = PublicClientApplicationBuilder.Create(_clientId)
                                                     .WithAuthority(AzureCloudInstance.AzurePublic, tenant)
                                                     .Build();
         }
