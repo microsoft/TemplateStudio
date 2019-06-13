@@ -96,7 +96,7 @@ protected override void OnNavigatedFrom(NavigationEventArgs e)
     Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
-public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
+public void OnBackgroundEntering(object sender, SuspendAndResumeArgs e)
 {
     e.SuspensionState.Data = Data;
 }
@@ -125,7 +125,7 @@ protected override void OnNavigatedFrom(NavigationEventArgs e)
     Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
-public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
+public void OnBackgroundEntering(object sender, SuspendAndResumeArgs e)
 {
     e.SuspensionState.Data = ViewModel.Data;
 }
@@ -168,7 +168,7 @@ public void UnsubscribeFromEvents()
     Singleton<SuspendAndResumeService>.Instance.OnDataRestored -= OnDataRestored;
 }
 
-private void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
+private void OnBackgroundEntering(object sender, SuspendAndResumeArgs e)
 {
     e.SuspensionState.Data = Data;
 }
