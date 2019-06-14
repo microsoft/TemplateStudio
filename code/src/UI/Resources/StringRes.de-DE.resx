@@ -726,11 +726,7 @@
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
     <value>Windows Template Studio fügt nun ein Kernprojekt hinzu. </value>
     <comment>Has no core project validation error message</comment>
-  </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Test</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
+  </data>  
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Sie können **{0}** nicht entfernen, da dieses Element schreibgeschützt ist.</value>
     <comment>Remove error message: Template is read only</comment>

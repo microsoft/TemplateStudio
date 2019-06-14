@@ -727,10 +727,6 @@
     <value>Windows Template Studio により、コア プロジェクトを追加します。</value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>テスト</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>**{0}** は読み取り専用であるため、削除できません。</value>
     <comment>Remove error message: Template is read only</comment>

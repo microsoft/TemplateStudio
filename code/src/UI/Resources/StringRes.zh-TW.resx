@@ -727,10 +727,6 @@
     <value>Windows Template Studio 目前正在新增核心專案。</value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>測試</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>您不可移除 **{0}** 因為它是唯讀的。</value>
     <comment>Remove error message: Template is read only</comment>

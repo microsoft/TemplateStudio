@@ -727,10 +727,6 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <value>O Windows Template Studio está adicionando um projeto principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Teste</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Você não pode remover **{0}** porque ele é somente leitura.</value>
     <comment>Remove error message: Template is read only</comment>

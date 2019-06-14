@@ -770,10 +770,6 @@ Please verify the following list of packages needed by your project's code and m
     <value>Tools</value>
     <comment>Group header for 'Tools' templates</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Group header for 'Testing' templates</comment>
-  </data>
   <data name="NewProjectStepFive" xml:space="preserve">
     <value>Services</value>
   </data>

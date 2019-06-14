@@ -727,10 +727,6 @@
     <value>Windows Template Studio теперь добавляет базовый проект. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Тестирование</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Невозможно удалить **{0}**, так как он доступен только для чтения.</value>
     <comment>Remove error message: Template is read only</comment>

@@ -727,10 +727,6 @@
     <value>Windows Template Studio에서 핵심 프로젝트를 추가 중입니다. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>테스트하기</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>랜덤하기 때문에 **{0}**를 제거할 수 없습니다.</value>
     <comment>Remove error message: Template is read only</comment>

@@ -726,11 +726,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
     <value>Windows Template Studio está agregando ahora un proyecto principal. </value>
     <comment>Has no core project validation error message</comment>
-  </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Probando</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
+  </data>  
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>No puedes eliminar **{0}** porque es de solo lectura.</value>
     <comment>Remove error message: Template is read only</comment>

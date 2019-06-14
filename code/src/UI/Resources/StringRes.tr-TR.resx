@@ -727,10 +727,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Windows Şablon Stüdyosu şu anda bir çekirdek proje ekliyor. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Test ediliyor</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Salt okunur olduğundan **{0}** öğesini kaldıramazsınız.</value>
     <comment>Remove error message: Template is read only</comment>

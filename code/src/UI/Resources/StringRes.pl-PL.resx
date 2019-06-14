@@ -727,10 +727,6 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <value>Program Windows Template Studio doda teraz projekt podstawowy. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testowanie</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Nie można usunąć **{0}**, ponieważ jest to element tylko do odczytu.</value>
     <comment>Remove error message: Template is read only</comment>

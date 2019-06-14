@@ -726,11 +726,7 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
     <value>Windows Template Studio nyní přidává základní projekt. </value>
     <comment>Has no core project validation error message</comment>
-  </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testování</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
+  </data>  
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>Nelze odebrat šablonu **{0}**, protože je jen pro čtení.</value>
     <comment>Remove error message: Template is read only</comment>
