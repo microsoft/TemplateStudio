@@ -17,7 +17,7 @@
     "wts.displayOrder": "1",
     "wts.defaultInstance": "SqlServerDataService",
     "wts.multipleInstance": "false",
-    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
+    "wts.dependencies": "wts.Service.SampleDataService.Prism",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
