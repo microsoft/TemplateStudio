@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
@@ -26,6 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _hasValidationErrors;
         private bool _isLoading = true;
         private ICommand _openWebSiteCommand;
+        private ICommand _createIssueCommand;
 
         public double Width { get; }
 
@@ -81,6 +83,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
 
+        public ICommand CreateIssueCommand => _createIssueCommand ?? (_createIssueCommand = new RelayCommand(OnCreateIssue));
+
         public WizardStatus()
         {
             Current = this;
@@ -110,5 +114,51 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private void OnOpenWebSite() => Process.Start("https://aka.ms/wts");
+
+        private void OnCreateIssue()
+        {
+            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            var sb = new StringBuilder();
+            sb.AppendLine("### For new Features:");
+            sb.AppendLine();
+            sb.AppendLine("#### Overview");
+            sb.AppendLine();
+            sb.AppendLine("What you'd think should be added with scenarios");
+            sb.AppendLine();
+            sb.AppendLine("#### Links");
+            sb.AppendLine();
+            sb.AppendLine("### For Bugs:");
+            sb.AppendLine();
+            sb.AppendLine("#### Repro steps");
+            sb.AppendLine();
+            sb.AppendLine("What did you do? How can someone else reproduce this?");
+            sb.AppendLine();
+            sb.AppendLine("#### Expected Behavior");
+            sb.AppendLine();
+            sb.AppendLine("What was expected to happen");
+            sb.AppendLine("(include screenshots if a visual issue)");
+            sb.AppendLine();
+            sb.AppendLine("#### Actual Behavior");
+            sb.AppendLine();
+            sb.AppendLine("What really happened");
+            sb.AppendLine();
+            sb.AppendLine("### System");
+            sb.AppendLine();
+            if (!string.IsNullOrEmpty(vsInfo.VisualStudioEdition) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
+            {
+                sb.AppendLine($"* **VS Version: {vsInfo.VisualStudioEdition} {vsInfo.VisualStudioExeVersion}**");
+            }
+            else
+            {
+                sb.AppendLine($"* **VS Version:**");
+            }
+
+            sb.AppendLine($"* **WTS Wizard Version: {GenContext.ToolBox.WizardVersion}**");
+            sb.AppendLine($"* **WTS Template Version: {GenContext.ToolBox.TemplatesVersion}**");
+            sb.AppendLine($"* **Windows Build: {Environment.OSVersion.Version}**");
+
+            var body = HttpUtility.UrlEncode(sb.ToString());
+            Process.Start($"https://github.com/Microsoft/WindowsTemplateStudio/issues/new?body={body}");
+        }
     }
 }
