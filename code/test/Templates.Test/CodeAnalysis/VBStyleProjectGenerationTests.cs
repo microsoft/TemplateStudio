@@ -33,8 +33,8 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin.VB"
-                || (t.Name == "Feature.Testing.VBStyleAnalysis");
+                && t.GroupIdentity != "wts.Service.IdentityOptionalLogin.VB"
+                || (t.Name == "wts.Feat.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyle";
 
@@ -54,8 +54,8 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB"
-                || (t.Name == "Feature.Testing.VBStyleAnalysis");
+                && t.GroupIdentity != "wts.Service.IdentityForcedLogin.VB"
+                || (t.Name == "wts.Feat.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyle";
 

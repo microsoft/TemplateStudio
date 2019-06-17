@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.Testing.StyleCop",
+  "name": "wts.Feat.StyleCop",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -21,6 +21,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName\\GlobalSuppressions.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\GlobalSuppressions.cs"
     }
   ],
   "symbols": {

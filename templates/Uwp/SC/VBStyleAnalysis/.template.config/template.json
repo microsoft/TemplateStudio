@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.Testing.VBStyleAnalysis",
+  "name": "wts.Feat.VBStyleAnalysis",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -21,6 +21,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName\\WTSVBRules.ruleset"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\WTSVBRules.ruleset"
     }
   ],
   "symbols": {
