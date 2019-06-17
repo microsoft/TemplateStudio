@@ -3,7 +3,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.VBStyleAnalysis",
+  "name": "VBStyleAnalysis",
+  "groupIdentity": "wts.Feat.VBStyleAnalysis",
+  "identity": "wts.Feat.VBStyleAnalysis",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

@@ -3,7 +3,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.StyleCop",
+  "name": "StyleCop",
+  "groupIdentity": "wts.Feat.StyleCop",
+  "identity": "wts.Feat.StyleCop",
   "tags": {
     "language": "C#",
     "type": "item",

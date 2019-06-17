@@ -183,17 +183,17 @@ namespace Microsoft.UI.Test
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 3);
-            Assert.True(userSelection.Features.Count == numOfDependencies);
+            Assert.True(userSelection.Services.Count == numOfDependencies);
 
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 2);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            Assert.True(userSelection.Features.Count == numOfDependencies);
+            Assert.True(userSelection.Services.Count == numOfDependencies);
 
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
-            Assert.True(userSelection.Features.Count == numOfDependencies - 1);
+            Assert.True(userSelection.Services.Count == numOfDependencies - 1);
         }
 
         [Fact]
