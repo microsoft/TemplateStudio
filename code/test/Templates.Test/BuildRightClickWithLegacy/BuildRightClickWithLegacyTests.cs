@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
@@ -47,12 +48,12 @@ namespace Microsoft.Templates.Test
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
             var rightClickTemplates = _fixture.Templates().Where(
-                                          t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                                            && t.GetFrontEndFrameworkList().Contains(framework)
-                                            && !excludedTemplates.Contains(t.GroupIdentity)
-                                            && t.GetPlatform() == platform
-                                            && !t.GetIsHidden()
-                                            && t.GetRightClickEnabled());
+                t => t.GetTemplateType().IsItemTemplate()
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && !excludedTemplates.Contains(t.GroupIdentity)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && t.GetRightClickEnabled());
 
             await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, rightClickTemplates, projectName, projectType, framework, platform, language);
 
@@ -77,11 +78,11 @@ namespace Microsoft.Templates.Test
             var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> templateSelector =
-                       t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                       && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                       && t.GetFrontEndFrameworkList().Contains(framework)
-                       && t.GetPlatform() == platform
-                       && !t.GetIsHidden();
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden();
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }

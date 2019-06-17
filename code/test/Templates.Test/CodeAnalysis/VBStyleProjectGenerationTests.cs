@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Fakes;
 using Xunit;
 
@@ -27,12 +28,12 @@ namespace Microsoft.Templates.Test
         public async Task GenerateAllPagesAndFeaturesForcedLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             Func<ITemplateInfo, bool> templateSelector =
-                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin.VB")
+                && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin.VB"
                 || (t.Name == "Feature.Testing.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyle";
@@ -48,12 +49,12 @@ namespace Microsoft.Templates.Test
         public async Task GenerateAllPagesAndFeaturesOptionalLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             Func<ITemplateInfo, bool> templateSelector =
-                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB")
+                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB"
                 || (t.Name == "Feature.Testing.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyle";

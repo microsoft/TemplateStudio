@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Fakes;
 
@@ -354,11 +355,12 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in targetFrameworks)
                     {
-                        var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)
-                                                                                && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                                && t.GetPlatform() == platform
-                                                                                && t.GetLanguage() == language
-                                                                                && !t.GetIsHidden());
+                        var itemTemplates = GenContext.ToolBox.Repo.GetAll()
+                            .Where(t => t.GetFrontEndFrameworkList().Contains(framework)
+                            && t.GetTemplateType().IsItemTemplate()
+                            && t.GetPlatform() == platform
+                            && t.GetLanguage() == language
+                            && !t.GetIsHidden());
 
                         foreach (var itemTemplate in itemTemplates)
                         {

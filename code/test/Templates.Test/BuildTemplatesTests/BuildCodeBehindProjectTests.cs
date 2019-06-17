@@ -12,6 +12,7 @@ using Xunit;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Core.Gen;
 using System.Linq;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Test
 {
@@ -75,19 +76,19 @@ namespace Microsoft.Templates.Test
         {
             // get first item from each exclusive selection group
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+                t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
             Func<ITemplateInfo, bool> templateSelector =
-                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
-                    && !t.GetIsHidden();
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
+                && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
 
@@ -104,13 +105,13 @@ namespace Microsoft.Templates.Test
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithForcedLogin(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
-                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                t => (t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && t.GroupIdentity != "wts.Feat.IdentityOptionalLogin")
-                || (t.Name == "Feature.Testing.StyleCop");
+                || t.Name == "Feature.Testing.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopF";
 
@@ -127,13 +128,13 @@ namespace Microsoft.Templates.Test
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
-                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin")
-                || (t.Name == "Feature.Testing.StyleCop");
+                && t.GroupIdentity != "wts.Feat.IdentityForcedLogin"
+                || t.Name == "Feature.Testing.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopO";
 
@@ -167,14 +168,14 @@ namespace Microsoft.Templates.Test
         {
             // get first item from each exclusive selection group
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+                t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
             Func<ITemplateInfo, bool> templateSelector =
-                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    t => t.GetTemplateType().IsItemTemplate()
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform

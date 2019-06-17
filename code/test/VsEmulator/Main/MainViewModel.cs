@@ -212,10 +212,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             switch (language)
             {
                 case "C#":
-                    styleCopTemplate = "Feature.Testing.StyleCop";
+                    styleCopTemplate = "wts.Feat.StyleCop";
                     break;
                 case "VisualBasic":
-                    styleCopTemplate = "Feature.Testing.VBStyleAnalysis";
+                    styleCopTemplate = "wts.Feat.VBStyleAnalysis";
                     break;
                 default:
                     return;
@@ -230,7 +230,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     TemplateId = styleCopTemplate,
                 };
 
-                userSelection.Add(userSelectionItem, TemplateType.Feature);
+                userSelection.Add(userSelectionItem, TemplateType.Testing);
             }
         }
 
