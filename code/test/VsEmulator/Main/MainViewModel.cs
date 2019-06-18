@@ -221,7 +221,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     return;
             }
 
-            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == styleCopTemplate);
+            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
             if (testingFeature != null)
             {
                 var userSelectionItem = new UserSelectionItem()
