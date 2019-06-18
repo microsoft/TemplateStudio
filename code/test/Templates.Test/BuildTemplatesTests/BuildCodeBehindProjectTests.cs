@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Test
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && t.GroupIdentity != "wts.Service.IdentityOptionalLogin")
-                || t.Name == "wts.Feat.StyleCop";
+                || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopF";
 
@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Test
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && t.GroupIdentity != "wts.Service.IdentityForcedLogin"
-                || t.Name == "wts.Feat.StyleCop";
+                || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopO";
 

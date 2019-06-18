@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                || t.Name == "wts.Feat.StyleCop";
+                || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
