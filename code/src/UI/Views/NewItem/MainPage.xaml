@@ -50,13 +50,13 @@
                 Grid.Column="0"
                 Text="{x:Static strings:StringRes.TermsAndConditionsText}"
                 Style="{StaticResource WtsTextBlockTermsAndConditions}"
-                Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=0}" />
+                Visibility="{Binding Navigation.CurrentStep, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
             <CheckBox
                 Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}"
                 Style="{StaticResource WtsCheckBoxStyle}"
                 Margin="{StaticResource Margin_M_LeftRight}"
                 IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"
-                Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
+                Visibility="{Binding Navigation.CurrentStep, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=2}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding Navigation.GoForwardCommand}"

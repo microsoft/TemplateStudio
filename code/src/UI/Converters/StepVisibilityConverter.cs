@@ -6,6 +6,7 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Converters
 {
@@ -13,9 +14,9 @@ namespace Microsoft.Templates.UI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && parameter != null)
+            if (value is StepData stepData && parameter != null)
             {
-                return value.ToString().Equals(parameter.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+                return stepData.Index.ToString().Equals(parameter.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             }
 
             return Visibility.Collapsed;
