@@ -9,7 +9,7 @@ namespace Param_RootNamespace
         protected override void Configure()
         {
             //^^
-            //{[{       
+            //{[{
             _container.PerRequest<wts.ItemNameViewModel>();
             //}]}
         }

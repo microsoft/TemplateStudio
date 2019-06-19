@@ -47,7 +47,7 @@ namespace Param_RootNamespace.ViewModels
         public void Complete()
         {
             // TODO WTS: Implement any other logic or add a QuickLink before completing the share operation.
-            // More details at https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
+            // More details at https://docs.microsoft.com/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }
     }
