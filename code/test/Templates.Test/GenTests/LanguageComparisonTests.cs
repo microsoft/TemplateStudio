@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentForcedLoginAsync(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Feat.IdentityForcedLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityForcedLogin");
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentOptionalLoginAsync(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Feat.IdentityOptionalLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityOptionalLogin");
         }
 
         private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)

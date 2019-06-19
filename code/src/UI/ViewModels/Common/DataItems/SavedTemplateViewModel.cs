@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
@@ -32,6 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _lostKeyboardFocusCommand;
         private ICommand _setFocusCommand;
         private Guid _id;
+        private ICommand _deleteCommand;
 
         public TemplateInfo Template { get; }
 
@@ -129,6 +131,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(OnDelete, CanDelete));
+
         public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin, bool isReadOnly = false)
         {
             _id = Guid.NewGuid();
@@ -203,5 +207,26 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public override int GetHashCode() => base.GetHashCode();
 
         public UserSelectionItem ToUserSelectionItem() => new UserSelectionItem { Name = Name, TemplateId = Template.TemplateId };
+
+        private async void OnDelete()
+        {
+            var userSelection = MainViewModel.Instance.UserSelection;
+            await userSelection.DeleteSavedTemplateAsync(this);
+        }
+
+        private bool CanDelete()
+        {
+            var userSelection = MainViewModel.Instance.UserSelection;
+            var group = userSelection.GetGroup(TemplateType);
+            if (TemplateType == TemplateType.Page)
+            {
+                if (GenGroup == 0)
+                {
+                    return group.Items.Count(p => p.GenGroup == 0) > 1;
+                }
+            }
+
+            return true;
+        }
     }
 }

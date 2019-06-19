@@ -161,7 +161,7 @@
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
-        <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static strings:StringRes.HelpTextPressEnterToAddItem}}" />        
+        <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static strings:StringRes.HelpTextPressEnterToAddItem}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -268,19 +268,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
-                        <Border x:Name="bd" MinHeight="35" Background="{TemplateBinding Background}">
+                        <Grid x:Name="bd" MinHeight="35"  Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
                             <TextBlock
+                                Grid.Column="0"
                                 x:Name="text"
                                 Foreground="{TemplateBinding Foreground}"
                                 Style="{StaticResource WtsTextBlockSequentialFlow}"
                                 extensions:TextBlockExtensions.SequentialFlowStep="{Binding}"
+                                extensions:TextBlockExtensions.SequentialFlowStepIndex="{Binding Index}"
                                 extensions:TextBlockExtensions.SequentialFlowStepCompleted="{Binding Completed}" />
-                        </Border>
+                            <TextBlock
+                                Grid.Column="1"
+                                x:Name="checkMark"
+                                Style="{StaticResource WtsTextBlockSequentialFlowCheckMark}"                                    
+                                Foreground="{TemplateBinding Foreground}"
+                                Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected}" Value="true">
                             <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -289,6 +302,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -297,9 +311,11 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -388,15 +404,7 @@
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource WtsButtonDeleteTemplate}">
                                             <Setter Property="Opacity" Value="0" />
-                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
-                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteFeatureCommand}" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                            <Setter Property="Command" Value="{Binding DeleteCommand}" />
                                         </Style>
                                     </Button.Style>
                                 </Button>

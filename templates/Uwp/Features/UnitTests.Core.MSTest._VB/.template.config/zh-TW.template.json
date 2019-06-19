@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test Core library with MSTest",
-    "description": "使用 MSTest 在核心程式庫中新增測試程式碼的專案。",
-    "identity": "wts.Feat.UnitTests.Core.MSTest.VB"
-}

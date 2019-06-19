@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test App with MSTest",
-    "description": "Fügen Sie ein Projekt für Einheitentests für die App unter Verwendung von MSTest hinzu.",
-    "identity": "wts.Feat.UnitTests.App.MSTest.VB"
-}

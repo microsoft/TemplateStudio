@@ -61,9 +61,9 @@
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonYes}" Command="{Binding AcceptCommand}" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.CancelCommand}" />
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" />
+        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
     </Grid>
 </Window>

@@ -1,0 +1,75 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Test Core library with xUnit",
+  "groupIdentity": "wts.Testing.UnitTests.Core.xUnit.VB",
+  "identity": "wts.Testing.UnitTests.Core.xUnit.VB",
+  "description": "Add a project to test code in the Core library with xUnit.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "project",
+    "wts.type": "testing",
+    "wts.outputToParent": "true",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "Tests-Core-xUnit",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/license.txt)"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "xunit",
+        "version" : "2.4.1",
+        "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "xunit.runner.visualstudio",
+        "version" : "2.4.1",
+        "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.NET.Test.Sdk",
+        "version" : "16.0.1",
+        "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

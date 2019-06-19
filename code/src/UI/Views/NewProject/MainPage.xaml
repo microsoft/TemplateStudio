@@ -49,7 +49,7 @@
                     <!--Project details-->
                     <ColumnDefinition Width="252" />
                 </Grid.ColumnDefinitions>
-                <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
+                <controls:SequentialFlow Steps="{Binding Navigation.Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
                 <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
                 <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
                 <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
@@ -85,42 +85,34 @@
                             IsEnabled="{Binding WizardStatus.IsNotBusy}"
                             AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
-
-                        <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
-                            <ListView
-                                x:Name="pagesList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Pages}"
-                                SelectedItem="{Binding UserSelection.SelectedPage, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
-                                    <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditPageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeletePageCommand}" CommandParameter="{Binding ElementName=pagesList, Path=SelectedItem}"/>
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
-
-                        <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
-                            <TextBlock
-                                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                                Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
-                            <ListView
-                                x:Name="featuresList"
-                                Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                                ItemsSource="{Binding UserSelection.Features}"
-                                SelectedItem="{Binding UserSelection.SelectedFeature, Mode=TwoWay}">
-                                <ListView.InputBindings>
-                                    <KeyBinding  Key="F2" Command="{Binding UserSelection.EditFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
-                                    <KeyBinding  Key="Delete" Command="{Binding UserSelection.DeleteFeatureCommand}" CommandParameter="{Binding ElementName=featuresList, Path=SelectedItem}"/>
-                                </ListView.InputBindings>
-                            </ListView>
-                        </StackPanel>
+                        <ItemsControl
+                            ItemsSource="{Binding UserSelection.Groups}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Visibility="{Binding Items, Converter={StaticResource HasItemsVisibilityConverter}}">
+                                        <TextBlock
+                                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                                            Text="{Binding Header}" />
+                                        <ListView
+                                            x:Name="itemsList"
+                                            Loaded="UserSelectionGroupLoaded"
+                                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                                            Tag="{Binding TemplateType}"
+                                            ItemsSource="{Binding Items}"
+                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.InputBindings>
+                                                <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding MoveUpCommand}" />
+                                                <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding MoveDownCommand}" />
+                                                <KeyBinding  Key="F2" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
+                                                <KeyBinding  Key="Delete" Command="{Binding DeletePageCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
+                                            </ListView.InputBindings>
+                                        </ListView>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
                         <StackPanel Visibility="{Binding UserSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                             <TextBlock
@@ -190,10 +182,10 @@
                 </TextBlock.Style>
             </TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

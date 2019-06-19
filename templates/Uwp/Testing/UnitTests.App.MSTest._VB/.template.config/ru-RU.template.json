@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Test App with MSTest",
+    "description": "Добавление проекта для модульного тестирования приложения с помощью MSTest.",
+    "identity": "wts.Testing.UnitTests.App.MSTest.VB"
+}

@@ -121,6 +121,14 @@
     <value>機能の追加</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
+  <data name="AddServiceTitle" xml:space="preserve">
+    <value>Add services</value>
+    <comment>AddService title on AddServicePage</comment>
+  </data>
+  <data name="AddTestingTitle" xml:space="preserve">
+    <value>Add testing</value>
+    <comment>AddTesting title on AddTestingPage</comment>
+  </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>ページの追加</value>
     <comment>Add pages title on AddPagesPage</comment>
@@ -277,21 +285,29 @@
     <value>新しいページ</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectStepFour" xml:space="preserve">
+  <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>機能</value>
-    <comment>New project: Navigation step four</comment>
+    <comment>New project: Navigation step features</comment>
   </data>
-  <data name="NewProjectStepOne" xml:space="preserve">
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Services</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Testing</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
     <value>プロジェクトの種類</value>
-    <comment>New project: Navigation step one</comment>
+    <comment>New project: Navigation step project type</comment>
   </data>
-  <data name="NewProjectStepThree" xml:space="preserve">
+  <data name="NewProjectStepPages" xml:space="preserve">
     <value>ページ</value>
-    <comment>New project: Navigation step three</comment>
+    <comment>New project: Navigation step pages</comment>
   </data>
-  <data name="NewProjectStepTwo" xml:space="preserve">
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
     <value>Design pattern</value>
-    <comment>New project: Navigation step two</comment>
+    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>新しい Windows ユニバーサル プラットフォーム アプリ</value>
@@ -376,6 +392,14 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>機能</value>
     <comment>Feature list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Services</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>design pattern の選択が変更されました。選択したページと機能は失われます。続行しますか?</value>
@@ -702,10 +726,6 @@
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
     <value>Windows Template Studio により、コア プロジェクトを追加します。</value>
     <comment>Has no core project validation error message</comment>
-  </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>テスト</value>
-    <comment>Group header for Testing templates</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>**{0}** は読み取り専用であるため、削除できません。</value>

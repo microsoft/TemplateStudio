@@ -4,8 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -24,38 +22,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public static BaseMainViewModel BaseInstance { get; private set; }
 
-        private int _step;
-        private int _origStep;
-        private bool _canGoBack = false;
-        private bool _canGoForward = true;
-        private bool _canFinish;
-
-        private RelayCommand _cancelCommand;
-        private RelayCommand _goBackCommand;
-        private RelayCommand _goForwardCommand;
-        private RelayCommand _finishCommand;
-
         protected Window MainView { get; private set; }
 
         protected string Language { get; private set; }
 
         protected string Platform { get; private set; }
-
-        public int Step
-        {
-            get => _step;
-            private set => SetStepAsync(value).FireAndForget();
-        }
-
-        public ObservableCollection<Step> Steps { get; }
-
-        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
-
-        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
-
-        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => _canFinish && !WizardStatus.IsBusy));
 
         public WizardStatus WizardStatus { get; }
 
@@ -63,15 +34,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public UIStylesService StylesService { get; }
 
-        public BaseMainViewModel(Window mainView, BaseStyleValuesProvider provider, bool canFinish = true)
+        public WizardNavigation Navigation { get; }
+
+        public BaseMainViewModel(Window mainView, BaseStyleValuesProvider provider, IEnumerable<StepData> steps, bool canFinish = true)
         {
             BaseInstance = this;
             MainView = mainView;
-            _canFinish = canFinish;
-            Steps = new ObservableCollection<Step>();
             SystemService = new SystemService();
             WizardStatus = new WizardStatus();
             StylesService = new UIStylesService(provider);
+            Navigation = new WizardNavigation(mainView, steps, canFinish);
             ResourcesService.Instance.Initialize(mainView);
         }
 
@@ -79,64 +51,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public abstract Task ProcessItemAsync(object item);
 
-        protected abstract void OnCancel();
-
         protected abstract Task OnTemplatesAvailableAsync();
 
-        protected abstract IEnumerable<Step> GetSteps();
-
-        public void RefreshStep(object navigatedPage)
-        {
-            var step = Steps.FirstOrDefault(s => s.Equals(navigatedPage.GetType()));
-            if (step != null)
-            {
-                SetStepAsync(step.Index, false).FireAndForget();
-            }
-        }
-
-        public void UnsubscribeEventHandlers()
+        public virtual void UnsubscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
             SystemService.UnsubscribeEventHandlers();
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
-
-        public async Task SetStepAsync(int step, bool navigate = true)
-        {
-            _origStep = _step;
-            if (step != _step)
-            {
-                _step = step;
-            }
-
-            if (await IsStepAvailableAsync(step))
-            {
-                OnPropertyChanged(nameof(Step));
-                UpdateStep(navigate);
-            }
-            else
-            {
-                DispatcherService.BeginInvoke(() =>
-                {
-                    _step = _origStep;
-                    OnPropertyChanged(nameof(Step));
-                });
-            }
-        }
-
-        public Step GetCurrentStep() => Steps.FirstOrDefault(step => step.Equals(Step));
-
         public virtual async Task InitializeAsync(string platform, string language)
         {
             Platform = platform;
             Language = language;
-            Steps.Clear();
-            foreach (var step in GetSteps())
-            {
-                Steps.Add(step);
-            }
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             SystemService.Initialize();
@@ -149,53 +76,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
-        }
-
-        protected virtual async Task<bool> IsStepAvailableAsync(int step)
-        {
-            await Task.CompletedTask;
-            return !WizardStatus.HasValidationErrors;
-        }
-
-        protected virtual void UpdateStep(bool navigate)
-        {
-            var compleatedSteps = Steps.Where(s => s.IsPrevious(Step));
-            foreach (var step in compleatedSteps)
-            {
-                step.Completed = true;
-            }
-
-            foreach (var step in Steps)
-            {
-                step.IsSelected = false;
-            }
-
-            var selectedStep = GetCurrentStep();
-            if (selectedStep != null)
-            {
-                selectedStep.IsSelected = true;
-                if (navigate)
-                {
-                    NavigationService.NavigateSecondaryFrame(selectedStep.GetPage());
-                }
-            }
-
-            _canGoBack = Step > 0;
-            _canGoForward = Step < Steps.Count - 1;
-        }
-
-        protected virtual void OnFinish()
-        {
-            if (MainView != null)
-            {
-                MainView.DialogResult = true;
-                MainView?.Close();
-            }
-        }
-
-        protected void SetCanFinish(bool canFinish)
-        {
-            _canFinish = canFinish;
         }
 
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
@@ -222,12 +102,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 await OnTemplatesAvailableAsync();
             }
-        }
-
-        private void OnResetSelection(object sender, EventArgs e)
-        {
-            _step = _origStep;
-            OnPropertyChanged("Step");
         }
     }
 }

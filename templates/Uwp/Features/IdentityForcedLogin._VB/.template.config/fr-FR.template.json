@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "Faites en sorte que votre application exige une connexion de l'utilisateur.",
-  "identity": "wts.Feat.IdentityForcedLogin.VB"
-}

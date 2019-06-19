@@ -73,7 +73,7 @@
 
 
     <!--Sequential Flow-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">        
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -81,6 +81,17 @@
         <Setter Property="Margin" Value="10,5,0,5" />
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlowCheckMark">
+        <Setter Property="Text" Value="&#xE001;" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10,5,10,5" />
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
@@ -296,7 +307,7 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
-    <!--Composition Tool-->    
+    <!--Composition Tool-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockCompositionToolTreeViewText">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />

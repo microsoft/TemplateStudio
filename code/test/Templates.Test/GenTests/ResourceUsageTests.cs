@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
@@ -203,10 +204,11 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
-            var templates = _fixture.Templates().Where(t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                             && t.GetFrontEndFrameworkList().Contains(framework)
-                                                             && t.GetPlatform() == platform
-                                                             && !t.GetIsHidden());
+            var templates = _fixture.Templates()
+                .Where(t => t.GetTemplateType().IsItemTemplate()
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden());
 
             var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
 

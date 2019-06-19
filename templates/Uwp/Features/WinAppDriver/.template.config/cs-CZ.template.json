@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Win App Driver",
-  "description": "Přidá projekt pro testování UI pomocí Appium prostřednictvím ovladače Windows Application Driver.",
-  "identity": "wts.Feat.WinAppDriver"
-}

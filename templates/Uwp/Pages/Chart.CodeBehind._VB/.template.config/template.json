@@ -17,7 +17,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "9",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService.VB",
+    "wts.dependencies": "wts.Service.SampleDataService.VB",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },

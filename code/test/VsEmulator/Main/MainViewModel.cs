@@ -212,16 +212,16 @@ namespace Microsoft.Templates.VsEmulator.Main
             switch (language)
             {
                 case "C#":
-                    styleCopTemplate = "Feature.Testing.StyleCop";
+                    styleCopTemplate = "wts.Feat.StyleCop";
                     break;
                 case "VisualBasic":
-                    styleCopTemplate = "Feature.Testing.VBStyleAnalysis";
+                    styleCopTemplate = "wts.Feat.VBStyleAnalysis";
                     break;
                 default:
                     return;
             }
 
-            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Name == styleCopTemplate);
+            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
             if (testingFeature != null)
             {
                 var userSelectionItem = new UserSelectionItem()
@@ -230,7 +230,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     TemplateId = styleCopTemplate,
                 };
 
-                userSelection.Add(userSelectionItem, TemplateType.Feature);
+                userSelection.Add(userSelectionItem, TemplateType.Testing);
             }
         }
 

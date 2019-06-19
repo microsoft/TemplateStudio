@@ -67,7 +67,7 @@
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         <controls:NotificationsControl Grid.Row="2" VerticalAlignment="Top"/>
 
-        <Button  Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" />
+        <Button  Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
     </Grid>
 
 </Window>

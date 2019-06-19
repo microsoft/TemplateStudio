@@ -11,7 +11,9 @@ namespace Microsoft.Templates.Extension.Commands
     {
         public const int AddPageCommand = 0x0400;
         public const int AddFeatureCommand = 0x500;
-        public const int OpenTempFolder = 0x600;
+        public const int AddServiceCommand = 0x0600;
+        public const int AddTestingCommand = 0x0700;
+        public const int OpenTempFolder = 0x800;
     }
 
     [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation. Used for constants.")]

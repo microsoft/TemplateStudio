@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
@@ -58,6 +59,10 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewPageCommand { get; }
 
         public RelayCommand AddNewFeatureCommand { get; }
+
+        public RelayCommand AddNewServiceCommand { get; }
+
+        public RelayCommand AddNewTestingCommand { get; }
 
         public RelayCommand OpenTempInExplorerCommand { get; }
 
@@ -115,6 +120,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             OpenInExplorerCommand = new RelayCommand(OpenInExplorer);
             AddNewPageCommand = new RelayCommand(() => AddNewItem(TemplateType.Page));
             AddNewFeatureCommand = new RelayCommand(() => AddNewItem(TemplateType.Feature));
+            AddNewServiceCommand = new RelayCommand(() => AddNewItem(TemplateType.Service));
+            AddNewTestingCommand = new RelayCommand(() => AddNewItem(TemplateType.Testing));
             OpenTempInExplorerCommand = new RelayCommand(OpenTempInExplorer);
         }
 
@@ -215,14 +222,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private UserSelection GetUserSelectionByType(TemplateType templateType)
         {
-            if (templateType == TemplateType.Page)
+            if (templateType.IsItemTemplate())
             {
-                return WizardLauncher.Instance.StartAddPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
-            }
-
-            if (templateType == TemplateType.Feature)
-            {
-                return WizardLauncher.Instance.StartAddFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                return WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance, templateType, templateType.GetWizardType().Value);
             }
 
             return null;

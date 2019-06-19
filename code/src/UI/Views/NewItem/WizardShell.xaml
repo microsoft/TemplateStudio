@@ -62,7 +62,7 @@
         <Button
                 Grid.Column="1"
                 Style="{StaticResource WtsButtonCloseWindow}"
-                Command="{Binding CancelCommand}" />
+                Command="{Binding Navigation.CancelCommand}" />
     </Grid>
 
 </Window>

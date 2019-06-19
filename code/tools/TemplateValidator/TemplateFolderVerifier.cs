@@ -49,6 +49,8 @@ namespace TemplateValidator
                 var allCompFilters = new Dictionary<string, string>();  // filepath, filter
                 var allPageIdentities = new List<string>();
                 var allFeatureIdentities = new List<string>();
+                var allServiceIdentities = new List<string>();
+                var allTestingIdentities = new List<string>();
 
                 foreach (var templateFilePath in allTemplateFilePaths)
                 {
@@ -73,6 +75,14 @@ namespace TemplateValidator
                             else if (template.GetTemplateType() == TemplateType.Feature)
                             {
                                 allFeatureIdentities.Add(template.Identity);
+                            }
+                            else if (template.GetTemplateType() == TemplateType.Service)
+                            {
+                                allServiceIdentities.Add(template.Identity);
+                            }
+                            else if (template.GetTemplateType() == TemplateType.Testing)
+                            {
+                                allTestingIdentities.Add(template.Identity);
                             }
                         }
 
@@ -208,6 +218,26 @@ namespace TemplateValidator
                                 if (!allFeatureIdentities.Contains(templateIdentity))
                                 {
                                     results.Add($"'{compFilter.Key}' contains composition filter feature identity '{templateIdentity}' that does not exist.");
+                                }
+                            }
+                        }
+                        else if (queryItem.Field == "service")
+                        {
+                            foreach (var templateIdentity in queryItem.Value.Split('|'))
+                            {
+                                if (!allServiceIdentities.Contains(templateIdentity))
+                                {
+                                    results.Add($"'{compFilter.Key}' contains composition filter service identity '{templateIdentity}' that does not exist.");
+                                }
+                            }
+                        }
+                        else if (queryItem.Field == "testing")
+                        {
+                            foreach (var templateIdentity in queryItem.Value.Split('|'))
+                            {
+                                if (!allTestingIdentities.Contains(templateIdentity))
+                                {
+                                    results.Add($"'{compFilter.Key}' contains composition filter testing identity '{templateIdentity}' that does not exist.");
                                 }
                             }
                         }

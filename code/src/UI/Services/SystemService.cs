@@ -12,11 +12,23 @@ namespace Microsoft.Templates.UI.Services
 {
     public class SystemService : DependencyObject
     {
-        public static SystemService Instance { get; private set; }
+        public static SystemService Current { get; private set; }
+
+        public Visibility DebugComponentVisibility
+        {
+            get
+            {
+#if DEBUG
+                return Visibility.Visible;
+#else
+                return Visibility.Collapsed;
+#endif
+            }
+        }
 
         public SystemService()
         {
-            Instance = this;
+            Current = this;
         }
 
         public void Initialize()

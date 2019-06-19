@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Test Core library with NUnit",
+  "description": "Añade un proyecto para probar código en la biblioteca principal con NUnit.",
+  "identity": "wts.Testing.UnitTests.Core.NUnit"
+}

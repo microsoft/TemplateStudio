@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Fakes;
 
@@ -71,7 +72,10 @@ namespace Microsoft.Templates.Test
             if (template.MultipleInstance || !AlreadyAdded(userSelection, template))
             {
                 var itemName = getName(template);
-                var usedNames = userSelection.Pages.Select(p => p.Name).Concat(userSelection.Features.Select(f => f.Name));
+                var usedNames = userSelection.Pages.Select(p => p.Name)
+                    .Concat(userSelection.Features.Select(f => f.Name))
+                    .Concat(userSelection.Services.Select(f => f.Name))
+                    .Concat(userSelection.Testing.Select(f => f.Name));
                 var validators = new List<Validator>()
                     {
                         new ExistingNamesValidator(usedNames),
@@ -159,7 +163,10 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, TemplateInfo item)
         {
-            return userSelection.Pages.Any(p => p.TemplateId == item.TemplateId) || userSelection.Features.Any(f => f.TemplateId == item.TemplateId);
+            return userSelection.Pages.Any(p => p.TemplateId == item.TemplateId)
+                || userSelection.Features.Any(f => f.TemplateId == item.TemplateId)
+                || userSelection.Services.Any(f => f.TemplateId == item.TemplateId)
+                || userSelection.Testing.Any(f => f.TemplateId == item.TemplateId);
         }
 
         public static string GetDefaultName(TemplateInfo template)
@@ -348,11 +355,12 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in targetFrameworks)
                     {
-                        var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrontEndFrameworkList().Contains(framework)
-                                                                                && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                                && t.GetPlatform() == platform
-                                                                                && t.GetLanguage() == language
-                                                                                && !t.GetIsHidden());
+                        var itemTemplates = GenContext.ToolBox.Repo.GetAll()
+                            .Where(t => t.GetFrontEndFrameworkList().Contains(framework)
+                            && t.GetTemplateType().IsItemTemplate()
+                            && t.GetPlatform() == platform
+                            && t.GetLanguage() == language
+                            && !t.GetIsHidden());
 
                         foreach (var itemTemplate in itemTemplates)
                         {

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "Faça seu aplicativo exigir que o usuário faça logon.",
-  "identity": "wts.Feat.IdentityForcedLogin.VB"
-}

@@ -27,6 +27,8 @@ namespace Microsoft.Templates.Extension.Commands
 
         private RelayCommand addPageCommand;
         private RelayCommand addFeatureCommand;
+        private RelayCommand addServiceCommand;
+        private RelayCommand addTestingCommand;
         private RelayCommand openTempFolderCommand;
 
         public RelayCommandPackage()
@@ -58,6 +60,20 @@ namespace Microsoft.Templates.Extension.Commands
                 AddFeature,
                 RightClickAvailable);
 
+            addServiceCommand = new RelayCommand(
+                 this,
+                 PackageIds.AddServiceCommand,
+                 PackageGuids.GuidRelayCommandPackageCmdSet,
+                 AddService,
+                 RightClickAvailable);
+
+            addTestingCommand = new RelayCommand(
+                 this,
+                 PackageIds.AddTestingCommand,
+                 PackageGuids.GuidRelayCommandPackageCmdSet,
+                 AddTesting,
+                 RightClickAvailable);
+
             openTempFolderCommand = new RelayCommand(
                 this,
                 PackageIds.OpenTempFolder,
@@ -79,6 +95,22 @@ namespace Microsoft.Templates.Extension.Commands
             if (RightClickActions.Visible())
             {
                 RightClickActions.AddNewFeature();
+            }
+        }
+
+        private void AddService(object sender, EventArgs e)
+        {
+            if (RightClickActions.Visible())
+            {
+                RightClickActions.AddNewService();
+            }
+        }
+
+        private void AddTesting(object sender, EventArgs e)
+        {
+            if (RightClickActions.Visible())
+            {
+                RightClickActions.AddNewTesting();
             }
         }
 

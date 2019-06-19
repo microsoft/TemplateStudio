@@ -104,13 +104,13 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             case "PAGE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userPageSelection = WizardLauncher.Instance.StartAddPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userPageSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Page, WizardTypeEnum.AddPage);
 
                                 break;
 
                             case "FEATURE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = WizardLauncher.Instance.StartAddFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userFeatureSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Feature, WizardTypeEnum.AddFeature);
 
                                 break;
 

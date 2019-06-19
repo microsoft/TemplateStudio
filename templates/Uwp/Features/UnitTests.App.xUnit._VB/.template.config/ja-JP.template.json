@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test App with xUnit",
-    "description": "xUnit を使用してアプリの単体テストを行うためのプロジェクトを追加します。",
-    "identity": "wts.Feat.UnitTests.App.xUnit.VB"
-}

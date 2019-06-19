@@ -288,14 +288,14 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource Self}}" Value="true" />
-                                <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="true" />
+                                <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Current}}" Value="true" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
-                                <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="true" />
+                                <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Current}}" Value="true" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
