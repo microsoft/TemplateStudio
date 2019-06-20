@@ -1,6 +1,6 @@
 # Understanding the Templates
 
-Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages and Features.
+Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
 
 For example, consider the following scenarios:
 
@@ -48,6 +48,8 @@ The [Templates Repository](../templates) has the following structure:
   * [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
   * [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
   * [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+  * [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
+  * [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
 ## Anatomy of templates
 
@@ -118,7 +120,9 @@ The replacements are done based on the configuration established in the `templat
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false",                      //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
-    "wts.outputToParent": "true"                  //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
+    "wts.outputToParent": "true",                 //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
+    "wts.casing.sourceName":"kebab|camel|pascal", // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.sourceName.casing.kebab)
+    "wts.casing.rootNamespace":"kebab|camel|pascal" // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.rootNamespace.casing.kebab)     
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
   "preferNameDirectory": true,
@@ -210,7 +214,7 @@ As we already have mentioned, templates can be composed to maximize the code reu
 
 Creating composable templates is like when you are developing software and try to generalize something; it fits within the 80-20 rule, meaning that the 80% of the code is common among the callers and easy to be generalized, but the 20% have more dependencies, specific details, etc. and, by the way, it is more complex to be generalized. Considering this, we have two groups of templates in the repository:
 
-1. **Standard templates**: *the 80 part*, these templates are the common part of the source code, corresponding with the shared source code for projects, pages and features. This templates live in the `Projects`, `Pages` or `Features` folders of our Templates repository. Through the wizard, a user can select which project type, which pages and which features wants, those selections can be shown as a user adding items to a "generation basket".
+1. **Standard templates**: *the 80 part*, these templates are the common part of the source code, corresponding with the shared source code for projects, pages and features. This templates live in the `Projects`, `Pages`, `Features`, `Services` and `Testing` folders of our Templates repository. Through the wizard, a user can select which project type, which pages and which features wants, those selections can be shown as a user adding items to a "generation basket".
 1. **Composition templates**: *the 20 part*, these templates are thought to include the specific details required by a concrete template (a page or feature) which is going to be generated in a certain context. The context is determined by the combination of project type and framework selected by the user. Required composition templates are added to the "generation basket" automatically by the `Composer`. The composition templates live in the project `_composition` folder of the Templates repository.
 
 The structure of files and folders within the `_composition` folder is just for organization, to exactly determine which *composition templates* are required to be added to the generation basket, the `Composer` evaluates all the templates available in the `_composition` folder, applying the **composition filter** defined in the `template.json` file (tag `wts.compositionFilter`). All the templates with composition filters resulting in positive matches are added to the generation basket. The following is a sample of composition filter.
