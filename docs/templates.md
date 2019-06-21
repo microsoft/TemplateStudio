@@ -456,6 +456,25 @@ Any issues that start with "WARNING" are recommendations that should be addresse
 
 The Templates.Test project includes tests to run all the checks from the TemplateValidator tool as part of the automated tests for the solution.
 
+## Authoring templates tooling
+
+### Code Snippets
+Here are some Visual Studio Code Snippets for help on authoring templates.
+
+#### Adding code Snippets
+ - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
+ - Open Json.json on language files list.
+
+#### Add WTS code snippets to Json.json file
+ - Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
+ - Paste those code snippets on the opened Json.json file.
+
+#### Using the code snippets.
+
+After creating an empty template.json type wts.template and click Enter, the code snippet will add a template json with tab key stops to complete different parameters.
+You can also use code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
+
+
 ## Table of Contents
 
 * [Installing / Using the extension](getting-started-extension.md)
