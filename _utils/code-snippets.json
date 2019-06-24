@@ -1,0 +1,266 @@
+{
+	// TEMPLATES
+	"wts.template": {
+		"prefix": "wts.template",
+		"body": [
+		"{",
+		"  \"author\": \"$1\",",
+		"  \"classifications\": [",
+		"    \"Universal\"",
+		"  ],",
+		"  \"name\": \"${3:name}\",",
+		"  \"groupIdentity\": \"wts.${2|Page,Feat,Service,Testing|}.${4:Identifier}\",",
+		"  \"identity\": \"wts.${2|Page,Feat,Service,Testing|}.${4:Identifier}\",",
+		"  \"description\": \"Description for ${3:name}\",",
+		"  \"tags\": {",
+		"    \"language\": \"${5|C#,VisualBasic|}\",",
+		"    \"type\": \"item\",",
+		"    \"wts.type\": \"${6|page,feature,service,testing|}\",",
+		"    \"wts.projecttype\": \"all\",",
+		"    \"wts.frontendframework\": \"all\",",
+		"    \"wts.platform\": \"Uwp\",",
+		"    \"wts.version\": \"1.0.0\",",
+		"    \"wts.genGroup\": \"0\",",
+		"    \"wts.rightClickEnabled\": \"true\"",
+		"  },",
+		"  \"sourceName\": \"wts.ItemName\",",
+		"  \"preferNameDirectory\": \"true\",",
+		"  \"PrimaryOutputs\": [",
+		"  ],",
+		"  \"symbols\": {",
+		"    \"wts.rootNamespace\": {",
+		"      \"type\": \"parameter\",",
+		"      \"replaces\": \"Param_RootNamespace\"",
+		"    }",
+		"  }",
+		"}"
+		],
+		"description": "Add a WTS template template.json file content"
+	},
+	"wts.template.composition": {
+		"prefix": "wts.template.composition",
+		"body": [
+		"{",
+		"  \"author\": \"$1\",",
+		"  \"classifications\": [",
+		"    \"Universal\"",
+		"  ],",
+		"  \"name\": \"${2:name}\",",
+		"  \"tags\": {",
+		"    \"language\": \"${3|C#,VisualBasic|}\",",
+		"    \"type\": \"item\",",
+		"    \"wts.type\": \"composition\",",
+		"    \"wts.platform\": \"Uwp\",",
+		"    \"wts.version\": \"1.0.0\",",
+		"    \"wts.compositionFilter\": \"\",",
+		"  },",
+		"  \"sourceName\": \"wts.ItemName\",",
+		"  \"preferNameDirectory\": \"true\",",
+		"  \"PrimaryOutputs\": [",
+		"  ],",
+		"  \"symbols\": {",
+		"    \"wts.rootNamespace\": {",
+		"      \"type\": \"parameter\",",
+		"      \"replaces\": \"Param_RootNamespace\"",
+		"    }",
+		"  }",
+		"}"
+		],
+		"description": "Add a WTS composition template.json"
+	},
+
+	// SYMBOLS
+	"wts.symbols.rootNamespace":{
+		"prefix": "wts.symbols.rootNamespace",
+		"body": [
+		"\"wts.rootNamespace\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"Param_RootNamespace\"",
+		"}",
+		],
+		"description": "Add a symbol rootNamespace block to be added on WTS template.json"
+	},
+	"wts.symbols.projectName":{
+		"prefix": "wts.symbols.projectName",
+		"body": [
+		"\"wts.projectName\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"Param_ProjectName\"",
+		"}",
+		],
+		"description": "Add a symbol projectName block to be added on WTS template.json"
+	},
+	"wts.symbols.baseclass":{
+		"prefix": "wts.symbols.baseclass",
+		"body": [
+		"\"baseclass\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"System.ComponentModel.INotifyPropertyChanged\"",
+		"}",
+		],
+		"description": "Add a symbol baseclass block to be added on WTS template.json"
+	},
+	"wts.symbols.setter":{
+		"prefix": "wts.symbols.setter",
+		"body": [
+		"\"setter\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"Param_Setter\"",
+		"}",
+		],
+		"description": "Add a symbol setter block to be added on WTS template.json"
+	},
+	"wts.symbols.copyrightYear":{
+		"prefix": "wts.symbols.copyrightYear",
+		"body": [
+		"\"copyrightYear\": {",
+		"  \"type\": \"generated\",",
+		"  \"generator\": \"now\",",
+		"  \"replaces\": \"1976\",",
+		"  \"parameters\": {",
+		"    \"format\": \"yyyy\"",
+		"  }",
+		"}",
+		],
+		"description": "Add a symbol copyrightYear block to be added on WTS template.json"
+	},
+	"wts.symbols.homePageName":{
+		"prefix": "wts.symbols.homePageName",
+		"body": [
+		"\"wts.homePageName\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"Param_HomeName\"",
+		"}",
+		],
+		"description": "Add a symbol homePageName block to be added on WTS template.json"
+	},
+	"wts.symbols.page.Settings":{
+		"prefix": "wts.symbols.page.settings",
+		"body": [
+		"\"wts.Page.Settings\": {",
+		"  \"type\": \"parameter\",",
+		"  \"replaces\": \"Param_SettingsPageName\",",
+		"  \"fileRename\": \"Param_SettingsPageName\"",
+		"}",
+		],
+		"description": "Add a symbol page.settings block to be added on WTS template.json"
+	},
+
+	// PRIMARY OUTPUT
+	"wts.primaryOutput":{
+		"prefix": "wts.primaryOutput",
+		"body": [
+		"{",
+		"  \"path\": \".\\\\\\FolderName\\\\\\FileName.extension\"",
+		"}",
+		],
+		"description": "Add a primary output block to be added on WTS template.json"
+	},
+	"wts.primaryOutputToParent":{
+		"prefix": "wts.primaryOutputToParent",
+		"body": [
+		"{",
+		"  \"path\": \".\\\\\\Param_ProjectName\\\\\\FolderName\\\\\\FileName.extension\"",
+		"}",
+		],
+		"description": "Add a primary output to parent block to be added on WTS template.json"
+	},
+
+	// TAGS
+	"wts.tag.outputToParent": {
+		"prefix": "wts.tag.outputToParent",
+		"body": "\"wts.outputToParent\": \"true\"",
+		"description": "Add WTS tag outputToParent"
+	},
+	"wts.tag.defaultInstance": {
+		"prefix": "wts.tag.defaultInstance",
+		"body": "\"wts.defaultInstance\": \"true\"",
+		"description": "Add WTS tag defaultInstance"
+	},
+	"wts.tag.multipleInstance": {
+		"prefix": "wts.tag.multipleInstance",
+		"body": "\"wts.multipleInstance\": \"true\"",
+		"description": "Add WTS tag multipleInstance"
+	},
+	"wts.tag.compositionOrder": {
+		"prefix": "wts.tag.compositionOrder",
+		"body": "\"wts.compositionOrder\": \"0\"",
+		"description": "Add WTS tag compositionOrder"
+	},
+	"wts.tag.licenses": {
+		"prefix": "wts.tag.licenses",
+		"body": "\"wts.licenses\": \"[]()\"",
+		"description": "Add WTS tag licenses"
+	},
+
+	// POST ACTIONS
+	"wts.postActions": {
+		"prefix": "wts.postActions",
+		"body": [
+		"\"postActions\": [",
+		"  ",
+		"]"],
+		"description": "Add postActions block to template.json"
+	},
+	"wts.postAction.AddNugetPackage": {
+		"prefix": "wts.postAction.AddNugetPackage",
+		"body": [
+		"{",
+		"  \"description\": \"Add nuget package\",",
+		"  \"manualInstructions\": [],",
+		"  \"actionId\": \"0B814718-16A3-4F7F-89F1-69C0F9170EAD\",",
+		"  \"args\": {",
+		"    \"packageId\": \"\",",
+		"    \"version\": \"\",",
+		"    \"projectPath\": \"\"",
+		"  },",
+		"  \"continueOnError\": \"true\"",
+		"}",],
+		"description": "Add AddNugetPackage template.json postActions"
+	},
+	"wts.postAction.AddReferenceToThisProject": {
+		"prefix": "wts.postAction.AddReferenceToThisProject",
+		"body": [
+		"{",
+		"  \"description\": \"Add reference to this project in main UWP app\",",
+		"  \"manualInstructions\": [],",
+		"  \"actionId\": \"849AAEB8-487D-45B3-94B9-77FA74E83A01\",",
+		"  \"args\": {",
+		"    \"fileIndex\": \"\",",
+		"    \"projectPath\": \"\"",
+		"  },",
+		"  \"continueOnError\": \"true\"",
+		"}",],
+		"description": "Add AddReferenceToThisProject template.json postActions"
+	},
+	"wts.postAction.AddSdkReference": {
+		"prefix": "wts.postAction.AddSdkReference",
+		"body": [
+		"{",
+		"  \"description\": \"Add sdk Reference\",",
+		"  \"manualInstructions\": [],",
+		"  \"actionId\": \"9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977\",",
+		"  \"args\": {",
+		"    \"name\": \"\",",
+		"    \"sdk\": \"\",",
+		"    \"projectPath\": \"\"",
+		"  },",
+		"  \"continueOnError\": \"true\"",
+		"}",],
+		"description": "Add AddReferenceToThisProject template.json postActions"
+	},
+	"wts.postAction.GenerateTestCertificate": {
+		"prefix": "wts.postAction.GenerateTestCertificate",
+		"body": [
+		"{",
+		"  \"description\": \"Generate Test Certificate\",",
+		"  \"manualInstructions\": [],",
+		"  \"actionId\": \"65057255-BD7B-443C-8180-5D82B9DA9E22\",",
+		"  \"args\": {",
+		"    \"files\": \"\"",
+		"  },",
+		"  \"continueOnError\": \"true\"",
+		"}",],
+		"description": "Add AddReferenceToThisProject template.json postActions"
+	}
+}
