@@ -1,0 +1,73 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "TreeView",
+  "groupIdentity": "wts.Page.TreeView",
+  "identity": "wts.Page.TreeView",
+  "description": "Description for TreeView page",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.dependencies": "wts.Service.SampleDataService",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": "true",
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Behaviors\\TreeViewExpandCollapseBehavior.cs"
+    },
+    {
+      "path": ".\\TemplateSelectors\\SampleDataTemplateSelector.cs"
+    },
+    {
+      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNamePage.xaml"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.UI.Xaml",
+        "version": "2.1.190606001",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}
