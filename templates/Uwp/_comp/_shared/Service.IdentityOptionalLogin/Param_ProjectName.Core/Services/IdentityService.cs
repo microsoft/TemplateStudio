@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
-using Microsoft.Identity.Client.AppConfig;
 using Param_RootNamespace.Core.Helpers;
 
 namespace Param_RootNamespace.Core.Services
@@ -69,7 +68,7 @@ namespace Param_RootNamespace.Core.Services
             try
             {
                 var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenInteractive(_scopes, null)
+                _authenticationResult = await _client.AcquireTokenInteractive(_scopes)
                                                      .WithAccount(accounts.FirstOrDefault())
                                                      .ExecuteAsync();
 
@@ -138,7 +137,7 @@ namespace Param_RootNamespace.Core.Services
                 {
                     // Interactive authentication is required
                     var accounts = await _client.GetAccountsAsync();
-                    _authenticationResult = await _client.AcquireTokenInteractive(_scopes, null)
+                    _authenticationResult = await _client.AcquireTokenInteractive(_scopes)
                                                          .WithAccount(accounts.FirstOrDefault())
                                                          .ExecuteAsync();
                     return _authenticationResult.AccessToken;
@@ -163,8 +162,7 @@ namespace Param_RootNamespace.Core.Services
             try
             {
                 var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenSilent(_scopes)
-                                                     .WithAccount(accounts.FirstOrDefault())
+                _authenticationResult = await _client.AcquireTokenSilent(_scopes, accounts.FirstOrDefault())
                                                      .ExecuteAsync();
                 return true;
             }

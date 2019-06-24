@@ -3,7 +3,6 @@ Imports System.Linq
 Imports System.Net.NetworkInformation
 Imports System.Threading.Tasks
 Imports Microsoft.Identity.Client
-Imports Microsoft.Identity.Client.AppConfig
 Imports Param_RootNamespace.Core.Helpers
 
 Namespace Services
@@ -58,7 +57,7 @@ Namespace Services
 
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
-                _authenticationResult = Await _client.AcquireTokenInteractive(_scopes, Nothing).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
+                _authenticationResult = Await _client.AcquireTokenInteractive(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
                 RaiseEvent LoggedIn(Me, EventArgs.Empty)
                 Return LoginResultType.Success
             Catch ex As MsalClientException
@@ -110,7 +109,7 @@ Namespace Services
                 Try
                     ' Interactive authentication is required
                     Dim accounts = Await _client.GetAccountsAsync()
-                    _authenticationResult = Await _client.AcquireTokenInteractive(_scopes, Nothing).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
+                    _authenticationResult = Await _client.AcquireTokenInteractive(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
                     Return _authenticationResult.AccessToken
                 Catch ex As MsalException
                     ' AcquireTokenSilent and AcquireTokenInteractive failed, the session will be closed.
@@ -130,7 +129,7 @@ Namespace Services
 
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
-                _authenticationResult = Await _client.AcquireTokenSilent(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
+                _authenticationResult = Await _client.AcquireTokenSilent(_scopes, accounts.FirstOrDefault()).ExecuteAsync()
                 Return True
             Catch ex As MsalUiRequiredException
 
