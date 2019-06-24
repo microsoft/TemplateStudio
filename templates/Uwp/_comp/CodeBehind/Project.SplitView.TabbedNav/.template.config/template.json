@@ -49,7 +49,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.1.190405004.2",
+        "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"
