@@ -27,10 +27,10 @@ namespace Param_RootNamespace.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            if (e.Parameter is long orderId)
+            if (e.Parameter is long orderID)
             {
                 var data = await _sampleDataService.GetContentGridDataAsync();
-                Item = data.First(i => i.OrderId == orderId);
+                Item = data.First(i => i.OrderID == orderID);
             }
         }
 

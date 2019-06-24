@@ -18,7 +18,7 @@ Namespace ViewModels
             If clickedItem IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderId)
+                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderID)
 '}]}
             End If
         End Sub

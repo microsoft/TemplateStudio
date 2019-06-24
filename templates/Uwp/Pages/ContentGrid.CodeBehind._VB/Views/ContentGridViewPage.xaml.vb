@@ -34,7 +34,7 @@ Namespace Views
             Dim item = TryCast(e.ClickedItem, SampleOrder)
             If item IsNot Nothing Then
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(item)
-                NavigationService.Navigate(Of ContentGridViewDetailPage)(item.OrderId)
+                NavigationService.Navigate(Of ContentGridViewDetailPage)(item.OrderID)
             End If
         End Sub
 

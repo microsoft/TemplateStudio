@@ -3,7 +3,7 @@
     ' This is used by the SampleDataService.
     ' It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     Public Class SampleOrder
-        Public Property OrderId As Long
+        Public Property OrderID As Long
 
         Public Property OrderDate As DateTime
 

@@ -20,11 +20,11 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _item, value); }
         }
 
-        public async Task InitializeAsync(long orderId)
+        public async Task InitializeAsync(long orderID)
         {
             // TODO WTS: Replace this with your actual data
             var data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderId == orderId);
+            Item = data.First(i => i.OrderID == orderID);
         }
 
         public void SetListDataItemForNextConnectedAnimation()

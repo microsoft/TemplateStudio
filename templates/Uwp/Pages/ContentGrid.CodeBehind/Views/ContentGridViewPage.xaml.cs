@@ -44,7 +44,7 @@ namespace Param_RootNamespace.Views
             if (e.ClickedItem is SampleOrder item)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(item);
-                NavigationService.Navigate<ContentGridViewDetailPage>(item.OrderId);
+                NavigationService.Navigate<ContentGridViewDetailPage>(item.OrderID);
             }
         }
     }

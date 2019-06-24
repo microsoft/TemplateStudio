@@ -19,9 +19,9 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public Async Function InitializeAsync(orderId As Long) As Task
+        Public Async Function InitializeAsync(orderID As Long) As Task
             Dim data = Await SampleDataService.GetContentGridDataAsync()
-            Item = data.First(Function(i) i.OrderId = orderId)
+            Item = data.First(Function(i) i.OrderID = orderID)
         End Function
 
     End Class

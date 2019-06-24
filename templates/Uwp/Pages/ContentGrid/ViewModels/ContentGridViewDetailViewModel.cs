@@ -20,10 +20,10 @@ namespace Param_RootNamespace.ViewModels
         {
         }
 
-        public async Task InitializeAsync(long orderId)
+        public async Task InitializeAsync(long orderID)
         {
             var data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderId == orderId);
+            Item = data.First(i => i.OrderID == orderID);
         }
     }
 }

@@ -10,7 +10,7 @@ Namespace ViewModels
             If clickedItem IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(Of wts.ItemNameDetailPage)(clickedItem.OrderId)
+                NavigationService.Navigate(Of wts.ItemNameDetailPage)(clickedItem.OrderID)
 '}]}
             End If
         End Sub

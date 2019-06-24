@@ -18,10 +18,8 @@ namespace Param_RootNamespace.Core.Services
         {
             if (_allOrders == null)
             {
-                _allOrders = AllOrders();
+                _allOrders = await GetAllOrdersAsync();
             }
-
-            await Task.CompletedTask;
 
             return new ObservableCollection<SampleOrder>(_allOrders);
         }

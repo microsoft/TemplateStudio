@@ -70,7 +70,7 @@ Order BY Orders.OrderID";
                                 {
                                     var order = new SampleOrder
                                     {
-                                        OrderId = reader.GetInt32(0),
+                                        OrderID = reader.GetInt32(0),
                                         OrderDate = reader.GetDateTime(1),
                                         Company = reader.GetString(2),
                                         ShipTo = reader.GetString(3),
