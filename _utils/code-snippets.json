@@ -192,6 +192,11 @@
 		"body": "\"wts.licenses\": \"[]()\"",
 		"description": "Add WTS tag licenses"
 	},
+	"wts.tag.dependencies": {
+		"prefix": "wts.tag.dependencies",
+		"body": "\"wts.dependencies\": \"\"",
+		"description": "Add WTS tag dependencies"
+	},
 
 	// POST ACTIONS
 	"wts.postActions": {
