@@ -458,21 +458,19 @@ The Templates.Test project includes tests to run all the checks from the Templat
 
 ## Authoring templates tooling
 
-### Code Snippets
-Here are some Visual Studio Code Snippets for help on authoring templates.
+### Visual Studio Code Snippets
+We've created some Visual Studio Code Snippets to help creating the template.json files.
 
-#### Adding code Snippets
+#### Adding code Snippets to Visual Studio Code
  - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
  - Open Json.json on language files list.
-
-#### Add WTS code snippets to Json.json file
  - Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
  - Paste those code snippets on the opened Json.json file.
 
-#### Using the code snippets.
+#### Using the code snippets
 
-After creating an empty template.json type wts.template and click Enter, the code snippet will add a template json with tab key stops to complete different parameters.
-You can also use code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
+After creating an empty template.json file, type wts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
+There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
 
 
 ## Table of Contents
