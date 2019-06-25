@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Param_RootNamespace.Core.Models
 {

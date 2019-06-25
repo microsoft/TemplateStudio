@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.Xaml.Interactivity;
-using Param_RootNamespace.Helpers;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Behaviors

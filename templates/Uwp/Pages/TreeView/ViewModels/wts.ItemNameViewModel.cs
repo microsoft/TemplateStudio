@@ -28,7 +28,6 @@ namespace Param_RootNamespace.ViewModels
             set
             {
                 _isCollapsed = value;
-                OnPropertyChanged(nameof(IsCollapsed));
             }
         }
 
