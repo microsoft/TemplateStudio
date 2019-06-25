@@ -1,12 +1,6 @@
 ﻿//{**
 // This code block adds the method `GetChartSampleDataAsync()` to the SampleDataService of your project.
 //**}
-//{[{
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-//}]}
-
 namespace Param_RootNamespace.Core.Services
 {
     public static class SampleDataService

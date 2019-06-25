@@ -1,9 +1,9 @@
-﻿using Param_RootNamespace.Core.Models;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.Core.Services
 {
