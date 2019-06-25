@@ -289,6 +289,14 @@
     <value>功能</value>
     <comment>New project: Navigation step features</comment>
   </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>New service</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>New testing project</value>
+    <comment>New item: new testing project title</comment>
+  </data>
   <data name="NewProjectStepServices" xml:space="preserve">
     <value>Services</value>
     <comment>New project: Navigation step services</comment>
