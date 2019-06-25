@@ -12,14 +12,12 @@
     "wts.version": "1.0.0",
     "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)|[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
     "wts.compositionFilter": "groupIdentity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB",
-    "wts.outputToParent": "true"
+    "wts.outputToParent": "true",
+    "wts.dependencies":"wts.Feat.AppDotConfig.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Param_ProjectName\\App.config"
-    },
     {
       "path": ".\\Param_ProjectName\\Assets\\DefaultIcon.png"
     },
