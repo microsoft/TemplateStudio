@@ -7,11 +7,10 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     xmlns:templateSelectors="using:Param_RootNamespace.TemplateSelectors"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -20,7 +19,7 @@
             <winui:TreeViewItem
                 AutomationProperties.Name="{x:Bind CompanyName}"
                 ItemsSource="{x:Bind Orders}" IsExpanded="True">
-                <TextBlock Text="{x:Bind CompanyName}" Margin="0,4,8,4" />
+                <TextBlock Text="{x:Bind CompanyName}" Margin="{StaticResource XXSmallTopRightBottomMargin}" />
             </winui:TreeViewItem>
         </DataTemplate>
 
@@ -112,7 +111,7 @@
             <winui:TreeViewItem
                 AutomationProperties.Name="{x:Bind OrderID}"
                 ItemsSource="{x:Bind Details}" IsExpanded="True">
-                <TextBlock Text="{x:Bind ShortDescription}" Margin="0,4,8,4" />
+                <TextBlock Text="{x:Bind ShortDescription}" Margin="{StaticResource XXSmallTopRightBottomMargin}" />
             </winui:TreeViewItem>
         </DataTemplate>
 
@@ -191,7 +190,7 @@
         <DataTemplate x:Key="OrderDetailTemplate" x:DataType="model:SampleOrderDetail">
             <winui:TreeViewItem
                 AutomationProperties.Name="{x:Bind ProductName}">
-                <TextBlock Text="{x:Bind ShortDescription}" TextWrapping="Wrap" Margin="4,4,8,4" />
+                <TextBlock Text="{x:Bind ShortDescription}" TextWrapping="Wrap" Margin="{StaticResource XXSmallTopRightBottomMargin}" />
             </winui:TreeViewItem>
         </DataTemplate>
 
@@ -283,34 +282,21 @@
             <ColumnDefinition x:Name="treeViewColumn" MinWidth="150" MaxWidth="350" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
-                        <AdaptiveTrigger MinWindowWidth="641" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="header.Margin" Value="0,0,0,0" />
-                        <Setter Target="treeViewColumn.Width" Value="350" />
-                        <Setter Target="treeViewColumn.MaxWidth" Value="500" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid Grid.Column="0" Background="{ThemeResource  SystemChromeMediumLowColor}">
+        <Grid
+            Background="{ThemeResource  SystemChromeMediumLowColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid x:Name="header" Margin="80,0,0,0">
+            <Grid
+                x:Name="header">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock
                     Text="TreeView"
-                    Margin="12,0,0,0"
+                    Margin="{StaticResource SmallLeftMargin}"
                     Style="{StaticResource ListTitleStyle}"
                     VerticalAlignment="Center" />
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -318,7 +304,7 @@
                         x:Uid="TreeView_CollapseAllButton"
                         Content="&#xE738;"
                         FontSize="14"
-                        Padding="12,0,12,0"
+                        Padding="{StaticResource SmallLeftRightMargin}"
                         VerticalAlignment="Stretch"
                         VerticalContentAlignment="Center"
                         FontFamily="Segoe MDL2 Assets"
@@ -328,7 +314,7 @@
                         x:Uid="TreeView_ExpandAllButton"
                         Content="&#xE710;"
                         FontSize="14"
-                        Padding="12,0,12,0"
+                        Padding="{StaticResource SmallLeftRightMargin}"
                         VerticalAlignment="Stretch"
                         VerticalContentAlignment="Center"
                         FontFamily="Segoe MDL2 Assets"

@@ -1,0 +1,43 @@
+﻿<Page
+<!--^^-->
+<!--{[{-->
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+<!--}]}-->
+    mc:Ignorable="d">
+
+    <Page.Resources>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+<!--{[{-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="header.Margin" Value="0,0,0,0" />
+                        <Setter Target="treeViewColumn.Width" Value="350" />
+                        <Setter Target="treeViewColumn.MaxWidth" Value="500" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+<!--}]}-->
+        <Grid
+            Background="{ThemeResource  SystemChromeMediumLowColor}">
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <Grid
+<!--{[{-->
+                Margin="80,0,0,0"
+<!--}]}-->
+                x:Name="header">
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
