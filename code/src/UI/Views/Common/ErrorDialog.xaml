@@ -89,6 +89,6 @@
                     HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
+        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" />
     </Grid>
 </Window>
