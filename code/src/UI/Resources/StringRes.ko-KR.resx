@@ -285,6 +285,14 @@
     <value>새 페이지</value>
     <comment>New item: new page title</comment>
   </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>New service</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>New testing project</value>
+    <comment>New item: new testing project title</comment>
+  </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>기능</value>
     <comment>New project: Navigation step features</comment>

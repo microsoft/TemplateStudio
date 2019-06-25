@@ -667,6 +667,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New service.
+        /// </summary>
+        public static string NewItemTitleService {
+            get {
+                return ResourceManager.GetString("NewItemTitleService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New testing project.
+        /// </summary>
+        public static string NewItemTitleTesting {
+            get {
+                return ResourceManager.GetString("NewItemTitleTesting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
         public static string NewProjectStepDesignPattern {

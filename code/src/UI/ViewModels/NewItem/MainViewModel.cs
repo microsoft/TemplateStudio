@@ -88,10 +88,26 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public async Task InitializeAsync(TemplateType templateType, string language)
         {
             TemplateType = templateType;
-            var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
-            WizardStatus.Title = stringResource;
+            WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
             await InitializeAsync(ConfigPlatform, language);
+        }
+
+        private string GetNewItemTitle(TemplateType templateType)
+        {
+            switch (templateType)
+            {
+                case TemplateType.Page:
+                    return StringRes.NewItemTitlePage;
+                case TemplateType.Feature:
+                    return StringRes.NewItemTitleFeature;
+                case TemplateType.Service:
+                    return StringRes.NewItemTitleService;
+                case TemplateType.Testing:
+                    return StringRes.NewItemTitleTesting;
+                default:
+                    return string.Empty;
+            }
         }
 
         private void OnStepUpdated(object sender, StepData step)
