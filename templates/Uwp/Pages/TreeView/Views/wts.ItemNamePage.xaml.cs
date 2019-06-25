@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Param_RootNamespace.Views
 {
     // For more info about the TreeView Control see
-    // https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tree-view
+    // https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view
     // For other samples, get the XAML Controls Gallery app http://aka.ms/XamlControlsGallery
     public sealed partial class wts.ItemNamePage : Page
     {

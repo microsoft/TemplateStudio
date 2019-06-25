@@ -6,7 +6,7 @@
   "name": "TreeView",
   "groupIdentity": "wts.Page.TreeView",
   "identity": "wts.Page.TreeView",
-  "description": "Description for TreeView page",
+  "description": "The tree-view page has a tree view control to show hierarchical content.",
   "tags": {
     "language": "C#",
     "type": "item",
