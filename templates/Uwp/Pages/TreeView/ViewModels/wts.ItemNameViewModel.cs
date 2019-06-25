@@ -18,13 +18,13 @@ namespace Param_RootNamespace.ViewModels
 
         public object SelectedItem
         {
-            get { return _selectedItem; }
-            set { Param_Setter(ref _selectedItem, value); }
+            get => _selectedItem;
+            set => Param_Setter(ref _selectedItem, value);
         }
 
         public bool IsCollapsed
         {
-            get { return _isCollapsed; }
+            get => _isCollapsed;
             set
             {
                 _isCollapsed = value;

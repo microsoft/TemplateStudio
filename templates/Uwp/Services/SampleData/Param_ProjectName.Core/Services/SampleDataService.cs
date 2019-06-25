@@ -31,7 +31,7 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Sales Representative",
                     Address = "Obere Str. 57",
                     City = "Berlin",
-                    Region = "",
+                    Region = string.Empty,
                     PostalCode = "12209",
                     Country = "Germany",
                     Phone = "030-0074321",
@@ -41,9 +41,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10643,
-                            OrderDate = new DateTime(1997,8,25),
-                            RequiredDate = new DateTime(1997,9,22),
-                            ShippedDate = new DateTime(1997,9,22),
+                            OrderDate = new DateTime(1997, 8, 25),
+                            RequiredDate = new DateTime(1997, 9, 22),
+                            ShippedDate = new DateTime(1997, 9, 22),
                             ShipperName = "Speedy Express",
                             ShipperPhone = "(503) 555-9831",
                             Freight = 29.46,
@@ -95,9 +95,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10835,
-                            OrderDate = new DateTime(1998,1,15),
-                            RequiredDate = new DateTime(1998,2,12),
-                            ShippedDate = new DateTime(1998,1,21),
+                            OrderDate = new DateTime(1998, 1, 15),
+                            RequiredDate = new DateTime(1998, 2, 12),
+                            ShippedDate = new DateTime(1998, 1, 21),
                             ShipperName = "Federal Shipping",
                             ShipperPhone = "(503) 555-9931",
                             Freight = 69.53,
@@ -137,9 +137,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10952,
-                            OrderDate = new DateTime(1998,3,16),
-                            RequiredDate = new DateTime(1998,4,27),
-                            ShippedDate = new DateTime(1998,3,24),
+                            OrderDate = new DateTime(1998, 3, 16),
+                            RequiredDate = new DateTime(1998, 4, 27),
+                            ShippedDate = new DateTime(1998, 3, 24),
                             ShipperName = "Speedy Express",
                             ShipperPhone = "(503) 555-9831",
                             Freight = 40.42,
@@ -186,7 +186,7 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Owner",
                     Address = "Avda. de la Constitución 2222",
                     City = "México D.F.",
-                    Region = "",
+                    Region = string.Empty,
                     PostalCode = "05021",
                     Country = "Mexico",
                     Phone = "(5) 555-4729",
@@ -196,9 +196,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10625,
-                            OrderDate = new DateTime(1997,8,8),
-                            RequiredDate = new DateTime(1997,9,5),
-                            ShippedDate = new DateTime(1997,8,14),
+                            OrderDate = new DateTime(1997, 8, 8),
+                            RequiredDate = new DateTime(1997, 9, 5),
+                            ShippedDate = new DateTime(1997, 8, 14),
                             ShipperName = "Speedy Express",
                             ShipperPhone = "(503) 555-9831",
                             Freight = 43.90,
@@ -250,9 +250,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10926,
-                            OrderDate = new DateTime(1998,3,4),
-                            RequiredDate = new DateTime(1998,4,1),
-                            ShippedDate = new DateTime(1998,3,11),
+                            OrderDate = new DateTime(1998, 3, 4),
+                            RequiredDate = new DateTime(1998, 4, 1),
+                            ShippedDate = new DateTime(1998, 3, 11),
                             ShipperName = "Federal Shipping",
                             ShipperPhone = "(503) 555-9931",
                             Freight = 39.92,
@@ -323,19 +323,19 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Owner",
                     Address = "Mataderos  2312",
                     City = "México D.F.",
-                    Region = "",
+                    Region = string.Empty,
                     PostalCode = "05023",
                     Country = "Mexico",
                     Phone = "(5) 555-3932",
-                    Fax = "",
+                    Fax = string.Empty,
                     Orders = new List<SampleOrder>()
                     {
                         new SampleOrder()
                         {
                             OrderID = 10507,
-                            OrderDate = new DateTime(1997,4,15),
-                            RequiredDate = new DateTime(1997,5,13),
-                            ShippedDate = new DateTime(1997,4,22),
+                            OrderDate = new DateTime(1997, 4, 15),
+                            RequiredDate = new DateTime(1997, 5, 13),
+                            ShippedDate = new DateTime(1997, 4, 22),
                             ShipperName = "Speedy Express",
                             ShipperPhone = "(503) 555-9831",
                             Freight = 47.45,
@@ -375,9 +375,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10573,
-                            OrderDate = new DateTime(1997,6,19),
-                            RequiredDate = new DateTime(1997,7,17),
-                            ShippedDate = new DateTime(1997,6,20),
+                            OrderDate = new DateTime(1997, 6, 19),
+                            RequiredDate = new DateTime(1997, 7, 17),
+                            ShippedDate = new DateTime(1997, 6, 20),
                             ShipperName = "Federal Shipping",
                             ShipperPhone = "(503) 555-9931",
                             Freight = 84.84,
@@ -429,9 +429,9 @@ namespace Param_RootNamespace.Core.Services
                         new SampleOrder()
                         {
                             OrderID = 10682,
-                            OrderDate = new DateTime(1997,9,25),
-                            RequiredDate = new DateTime(1997,10,23),
-                            ShippedDate = new DateTime(1997,10,1),
+                            OrderDate = new DateTime(1997, 9, 25),
+                            RequiredDate = new DateTime(1997, 10, 23),
+                            ShippedDate = new DateTime(1997, 10, 1),
                             ShipperName = "United Package",
                             ShipperPhone = "(503) 555-3199",
                             Freight = 36.13,

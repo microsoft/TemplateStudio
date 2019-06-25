@@ -17,7 +17,6 @@ namespace Param_RootNamespace.Behaviors
             ExpandAllCommand = new RelayCommand(() => ExpandOrCollapse(AssociatedObject.RootNodes, true));
         }
 
-
         private void ExpandOrCollapse(IList<WinUI.TreeViewNode> nodes, bool expand)
         {
             foreach (var node in nodes)
