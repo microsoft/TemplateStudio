@@ -45,6 +45,16 @@ namespace Localization
             GenerateTemplatesFiles(Routes.TemplatesFeaturesPatternPath);
         }
 
+        public void GenerateServices()
+        {
+            GenerateTemplatesFiles(Routes.TemplatesServicesPatternPath);
+        }
+
+        public void GenerateTesting()
+        {
+            GenerateTemplatesFiles(Routes.TemplatesTestingPatternPath);
+        }
+
         private void GenerateTemplatesFiles(string patternPath)
         {
             var srcDirectory = new DirectoryInfo(Path.Combine(_path, Routes.TemplatesRootDirPath));

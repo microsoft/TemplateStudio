@@ -119,19 +119,31 @@ namespace Localization
             ExtractTemplateEngineTemplates(Routes.TemplatesFeaturesPatternPath);
         }
 
+        internal void ExtractTemplateServices()
+        {
+            ExtractTemplateEngineTemplates(Routes.TemplatesServicesPatternPath);
+        }
+
+        internal void ExtractTemplateTesting()
+        {
+            ExtractTemplateEngineTemplates(Routes.TemplatesTestingPatternPath);
+        }
+
         private void ExtractTemplateEngineTemplates(string patternPath)
         {
-            var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
-            var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase)));
-
-            foreach (var directory in templatesDirectories)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                var path = GetTemplateRelativePath(directory);
-                string pageSrcDirectory = Path.Combine(path, Routes.TemplateConfigDir);
+                var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
+                var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
+                var templatesDirectories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-                ExtractTemplateJson(pageSrcDirectory);
-                ExtractTemplateDescription(pageSrcDirectory);
+                foreach (var directory in templatesDirectories)
+                {
+                    string templateSrcDirectory = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+
+                    ExtractTemplateJson(templateSrcDirectory);
+                    ExtractTemplateDescription(templateSrcDirectory);
+                }
             }
         }
 
@@ -265,17 +277,6 @@ namespace Localization
                     resourceFile.Delete();
                 }
             }
-        }
-
-        private string GetTemplateRelativePath(DirectoryInfo directory)
-        {
-            if (directory.Name == Routes.TemplatesRootDirPath)
-            {
-                return directory.Name;
-            }
-
-            var path = GetTemplateRelativePath(directory.Parent);
-            return Path.Combine(path, directory.Name);
         }
     }
 }

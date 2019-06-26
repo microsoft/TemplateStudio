@@ -47,6 +47,8 @@ namespace Localization
             Execute(VerifyCommandTemplates, "Verifying command templates");
             Execute(VerifyTemplatePages, "Verifying template pages");
             Execute(VerifyTemplateFeatures, "Verifying template features");
+            Execute(VerifyTemplateServices, "Verifying template services");
+            Execute(VerifyTemplateTesting, "Verifying template testing");
             Execute(VerifyWtsProjectTypes, "Verifying project types");
             Execute(VerifyWtsFrameworks, "Verifying project frameworks");
             Execute(VerifyResourceFiles, "Verifying resources");
@@ -85,6 +87,16 @@ namespace Localization
         private void VerifyTemplateFeatures()
         {
             VerifyTemplateItem(Routes.TemplatesFeaturesPatternPath);
+        }
+
+        private void VerifyTemplateServices()
+        {
+            VerifyTemplateItem(Routes.TemplatesServicesPatternPath);
+        }
+
+        private void VerifyTemplateTesting()
+        {
+            VerifyTemplateItem(Routes.TemplatesTestingPatternPath);
         }
 
         private void VerifyWtsProjectTypes()
@@ -135,9 +147,7 @@ namespace Localization
 
         private void VerifyTemplateItem(string patternPath)
         {
-            var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.TemplatesRootDirPath));
-            var directories = templatesDir.EnumerateDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories()).Select(d => GetTemplateRelativePath(d));
+            var templatesDirectories = GetPlatformsTemplatesDirectory(patternPath).ToList();
 
             foreach (var itemTemplate in templatesDirectories)
             {
@@ -243,15 +253,18 @@ namespace Localization
             _warnings.ToList().ForEach(e => ConsoleExt.WriteWarning(string.Concat(" - ", e)));
         }
 
-        private string GetTemplateRelativePath(DirectoryInfo directory)
+        private IEnumerable<string> GetPlatformsTemplatesDirectory(string patternPath)
         {
-            if (directory.Name == Routes.TemplatesRootDirPath)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                return directory.Name;
-            }
+                var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
+                var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, baseDir));
 
-            var path = GetTemplateRelativePath(directory.Parent);
-            return Path.Combine(path, directory.Name);
+                foreach (var directory in templatesDir.GetDirectories())
+                {
+                    yield return Path.Combine(baseDir, directory.Name);
+                }
+            }
         }
     }
 }
