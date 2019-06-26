@@ -1,6 +1,6 @@
 ﻿//{[{
-using Param_RootNamespace.Core.Services;
 using System.Threading.Tasks;
+using Param_RootNamespace.Core.Services;
 //}]}
 
 namespace Param_RootNamespace.Core.Tests.NUnit
