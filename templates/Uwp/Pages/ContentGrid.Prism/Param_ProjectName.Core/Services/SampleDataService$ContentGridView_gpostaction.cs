@@ -8,10 +8,15 @@ namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {
+//{[{
+        private static IEnumerable<SampleOrder> _allOrders;
+//}]}
+
+        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        {
+        }
 //^^
 //{[{
-
-        private static IEnumerable<SampleOrder> _allOrders;
 
         // TODO WTS: Remove this once your ContentGrid page is displaying real data.
         public async Task<ObservableCollection<SampleOrder>> GetContentGridDataAsync()
