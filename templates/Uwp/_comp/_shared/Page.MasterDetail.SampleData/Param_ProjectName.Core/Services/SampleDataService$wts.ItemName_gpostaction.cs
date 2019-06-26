@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetMasterDetailDataAsync()` to the SampleDataService of your project.
 //**}
 namespace Param_RootNamespace.Core.Services
 {
@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
-        public static async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
+        public static async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
         {
             return await GetAllOrdersAsync();
         }

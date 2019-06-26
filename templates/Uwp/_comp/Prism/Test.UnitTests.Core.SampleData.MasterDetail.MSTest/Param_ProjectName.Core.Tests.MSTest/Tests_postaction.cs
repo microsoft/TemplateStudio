@@ -17,7 +17,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         public async Task EnsureSampleDataServiceReturnsModelDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetSampleModelDataAsync();
+            var actual = await dataService.GetMasterDetailDataAsync();
 
             Assert.AreNotEqual(0, actual.Count());
         }

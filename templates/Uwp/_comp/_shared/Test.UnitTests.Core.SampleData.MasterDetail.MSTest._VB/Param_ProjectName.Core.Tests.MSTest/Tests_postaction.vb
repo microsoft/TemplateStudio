@@ -12,7 +12,7 @@ Public Class Tests
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <TestMethod>
     Public Async Function EnsureSampleDataServiceReturnsModelDataAsync() As Task
-        Dim actual = Await SampleDataService.GetSampleModelDataAsync()
+        Dim actual = Await SampleDataService.GetMasterDetailDataAsync()
 
         Assert.AreNotEqual(0, actual.Count())
     End Function

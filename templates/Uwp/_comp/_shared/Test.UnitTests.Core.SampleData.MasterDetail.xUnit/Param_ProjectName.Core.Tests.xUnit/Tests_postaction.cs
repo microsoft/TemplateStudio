@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Tests.XUnit
         [Fact]
         public async Task EnsureSampleDataServiceReturnsModelDataAsync()
         {
-            var actual = await SampleDataService.GetSampleModelDataAsync();
+            var actual = await SampleDataService.GetMasterDetailDataAsync();
 
             Assert.NotEmpty(actual);
         }
