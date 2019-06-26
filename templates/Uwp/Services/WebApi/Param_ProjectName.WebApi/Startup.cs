@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Swagger;
 
 using Param_RootNamespace.Models;
 
-namespace Param_RootNamespace.MobileAppService
+namespace Param_RootNamespace.WebApi
 {
     public class Startup
     {

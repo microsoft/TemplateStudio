@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.Models
+namespace Param_RootNamespace.WebApi.Models
 {
     public interface IItemRepository
     {

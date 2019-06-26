@@ -5,7 +5,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 
-namespace Param_RootNamespace.MobileAppService
+namespace Param_RootNamespace.WebApi
 {
     public class Program
     {

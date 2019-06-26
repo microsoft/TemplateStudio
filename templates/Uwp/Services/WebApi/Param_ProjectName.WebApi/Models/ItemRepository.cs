@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.Models
+namespace Param_RootNamespace.WebApi.Models
 {
     public class ItemRepository : IItemRepository
     {

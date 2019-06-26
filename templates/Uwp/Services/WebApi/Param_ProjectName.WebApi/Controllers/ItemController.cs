@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Param_RootNamespace.Core.Models;
-using Param_RootNamespace.Models;
+using Param_RootNamespace.WebApi.Models;
 
-namespace Param_RootNamespace.Controllers
+namespace Param_RootNamespace.WebApi.Controllers
 {
     [Route("api/item")]
     [ApiController]
@@ -44,7 +44,7 @@ namespace Param_RootNamespace.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Item> Create([FromBody]Item item)
+        public ActionResult<Item> Create([FromBody] Item item)
         {
             _itemRepository.Add(item);
             return CreatedAtAction(nameof(GetItem), new { item.Id }, item);
