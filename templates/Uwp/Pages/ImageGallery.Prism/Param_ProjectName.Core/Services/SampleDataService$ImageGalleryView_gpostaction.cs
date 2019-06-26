@@ -8,20 +8,18 @@ namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {
+//{[{
+        private static ObservableCollection<SampleImage> _gallerySampleData;
+//}]}
+
+        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        {
+        }
 //^^
 //{[{
 
-        private static string _localResourcesPath;
-
-        private static ObservableCollection<SampleImage> _gallerySampleData;
-
-        public void Initialize(string localResourcesPath)
-        {
-            _localResourcesPath = localResourcesPath;
-        }
-
         // TODO WTS: Remove this once your image gallery page is displaying real data.
-        public async Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync()
+        public async Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync(string localResourcesPath)
         {
             await Task.CompletedTask;
             if (_gallerySampleData == null)
@@ -32,7 +30,7 @@ namespace Param_RootNamespace.Core.Services
                     _gallerySampleData.Add(new SampleImage()
                     {
                         ID = $"{i}",
-                        Source = $"{_localResourcesPath}/SampleData/SamplePhoto{i}.png",
+                        Source = $"{localResourcesPath}/SampleData/SamplePhoto{i}.png",
                         Name = $"Image sample {i}"
                     });
                 }

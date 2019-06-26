@@ -1,6 +1,6 @@
 ﻿//{[{
-using Param_RootNamespace.Core.Services;
 using System.Threading.Tasks;
+using Param_RootNamespace.Core.Services;
 //}]}
 
 namespace Param_RootNamespace.Core.Tests.NUnit
@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         public async Task EnsureSampleDataServiceReturnsGalleryDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetGallerySampleDataAsync();
+            var actual = await dataService.GetGallerySampleDataAsync("ms-appx:///Assets");
 
             Assert.AreNotEqual(0, actual.Count);
         }

@@ -37,7 +37,7 @@ namespace Param_RootNamespace.ViewModels
         public async Task LoadDataAsync()
         {
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetGallerySampleDataAsync();
+            Source = await SampleDataService.GetGallerySampleDataAsync("ms-appx:///Assets");
         }
 
         public void Initialize(string selectedImageID, NavigationMode navigationMode)

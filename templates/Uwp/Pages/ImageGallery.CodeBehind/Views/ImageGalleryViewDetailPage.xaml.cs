@@ -49,7 +49,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatedTo(e);
 
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetGallerySampleDataAsync();
+            Source = await SampleDataService.GetGallerySampleDataAsync("ms-appx:///Assets");
 
             var selectedImageID = e.Parameter as string;
             if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)

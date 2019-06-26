@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnInitialize();
 
             // TODO WTS: Replace this with your actual data
-            Source.AddRange(await SampleDataService.GetGallerySampleDataAsync());
+            Source.AddRange(await SampleDataService.GetGallerySampleDataAsync("ms-appx:///Assets"));
         }
 
         public void OnImageSelected(SampleImage image)

@@ -1,4 +1,5 @@
 ﻿//{[{
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Services;
 //}]}
 
@@ -14,7 +15,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         [TestMethod]
         public async Task EnsureSampleDataServiceReturnsGalleryDataAsync()
         {
-            var actual = await SampleDataService.GetGallerySampleDataAsync();
+            var actual = await SampleDataService.GetGallerySampleDataAsync("ms-appx:///Assets");
 
             Assert.AreNotEqual(0, actual.Count);
         }
