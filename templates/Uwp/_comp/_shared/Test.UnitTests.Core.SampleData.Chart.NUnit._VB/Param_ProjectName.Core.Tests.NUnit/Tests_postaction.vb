@@ -10,7 +10,7 @@ Public Class Tests
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <Test>
     Public Async Function EnsureSampleDataServiceReturnsChartDataAsync() As Task
-        Dim actual = await SampleDataService.GetChartSampleDataAsync()
+        Dim actual = await SampleDataService.GetChartDataAsync()
 
         Assert.IsNotEmpty(actual)
     End Function

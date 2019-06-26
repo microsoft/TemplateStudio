@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         public async Task EnsureSampleDataServiceReturnsChartDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetChartSampleDataAsync();
+            var actual = await dataService.GetChartDataAsync();
 
             Assert.IsNotEmpty(actual);
         }

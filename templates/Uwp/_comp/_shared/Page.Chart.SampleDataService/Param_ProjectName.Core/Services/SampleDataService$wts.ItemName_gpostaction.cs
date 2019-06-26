@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetChartSampleDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetChartDataAsync()` to the SampleDataService of your project.
 //**}
 namespace Param_RootNamespace.Core.Services
 {
@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your chart page is displaying real data.
-        public static async Task<ObservableCollection<DataPoint>> GetChartSampleDataAsync()
+        public static async Task<ObservableCollection<DataPoint>> GetChartDataAsync()
         {
             var allOrders = await GetAllOrdersAsync();
             var data = allOrders.Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
