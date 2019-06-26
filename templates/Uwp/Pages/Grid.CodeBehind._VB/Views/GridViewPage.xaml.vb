@@ -28,7 +28,7 @@ Namespace Views
             MyBase.OnNavigatedTo(e)
 
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetGridSampleDataAsync()
+            Source = Await SampleDataService.GetGridDataAsync()
         End Sub
     End Class
 End Namespace

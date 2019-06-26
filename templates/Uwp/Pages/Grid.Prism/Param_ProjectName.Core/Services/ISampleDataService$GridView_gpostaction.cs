@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetGridSampleDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetGridDataAsync()` to the SampleDataService of your project.
 //**}
 //{[{
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleOrder>> GetGridSampleDataAsync();
+        Task<ObservableCollection<SampleOrder>> GetGridDataAsync();
 //}]}
     }
 }

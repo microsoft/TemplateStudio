@@ -36,7 +36,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnNavigatedTo(e, viewModelState);
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetGridSampleDataAsync();
+            Source = await _sampleDataService.GetGridDataAsync();
         }
     }
 }

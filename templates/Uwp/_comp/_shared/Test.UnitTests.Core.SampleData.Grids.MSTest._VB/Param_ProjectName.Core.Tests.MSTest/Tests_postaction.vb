@@ -10,7 +10,7 @@ Public Class Tests
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <TestMethod>
     Public Async Sub EnsureSampleDataServiceReturnsGridDataAsync()
-        Dim actual = Await SampleDataService.GetGridSampleDataAsync()
+        Dim actual = Await SampleDataService.GetGridDataAsync()
 
         Assert.AreNotEqual(0, actual.Count)
     End Sub

@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         [Test]
         public async Task EnsureSampleDataServiceReturnsGridDataAsync()
         {
-            var actual = await SampleDataService.GetGridSampleDataAsync();
+            var actual = await SampleDataService.GetGridDataAsync();
 
             Assert.AreNotEqual(0, actual.Count);
         }

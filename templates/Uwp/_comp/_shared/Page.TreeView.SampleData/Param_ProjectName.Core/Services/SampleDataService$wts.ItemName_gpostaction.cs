@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetGridSampleDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetCompaniesDataAsync()` to the SampleDataService of your project.
 //**}
 namespace Param_RootNamespace.Core.Services
 {
