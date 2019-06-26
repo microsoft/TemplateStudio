@@ -9,10 +9,10 @@ namespace Param_RootNamespace.Core.Services
     public class SampleDataService : ISampleDataService
     {
 //{[{
-        private static ObservableCollection<SampleImage> _gallerySampleData;
+        private ObservableCollection<SampleImage> _gallerySampleData;
 //}]}
 
-        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
         {
         }
 //^^

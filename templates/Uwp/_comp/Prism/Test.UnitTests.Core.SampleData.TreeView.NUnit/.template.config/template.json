@@ -3,15 +3,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.TreeView.SampleData",
+  "name": "Prism.Testing.UnitTests.Core.SampleData.TreeView.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform": "Uwp",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework != Prism & groupidentity == wts.Page.TreeView",
-    "wts.outputToParent": "true"
+    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Testing.UnitTests.Core.NUnit & $page == wts.Page.TreeView.Prism",
+    "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

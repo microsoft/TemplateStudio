@@ -11,14 +11,14 @@ namespace Param_RootNamespace.Core.Services
     // TODO WTS: Delete this file once your app is using real data.
     public class SampleDataService : ISampleDataService
     {
-        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
         {
             // The following is order summary data
             var companies = await GetDataAsync();
             return companies.SelectMany(c => c.Orders);
         }
 
-        private static async Task<IEnumerable<SampleCompany>> GetDataAsync()
+        private async Task<IEnumerable<SampleCompany>> GetDataAsync()
         {
             await Task.CompletedTask;
             return new List<SampleCompany>()
