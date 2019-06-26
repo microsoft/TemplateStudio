@@ -1,5 +1,5 @@
 ﻿'{**
-' This code block adds the method `GetGallerySampleDataAsync()` to the SampleDataService of your project.
+' This code block adds the method `GetImageGalleryDataAsync()` to the SampleDataService of your project.
 '**}
 Namespace Services
     Public Module SampleDataService
@@ -15,7 +15,7 @@ Namespace Services
         End Sub
 
         ' TODO WTS: Remove this once your image gallery page is displaying real data.
-        Public Async Function GetGallerySampleDataAsync() As Task(Of ObservableCollection(Of SampleImage))
+        Public Async Function GetImageGalleryDataAsync() As Task(Of ObservableCollection(Of SampleImage))
             Await Task.CompletedTask
             If _gallerySampleData Is Nothing Then
                 _gallerySampleData = New ObservableCollection(Of SampleImage)()

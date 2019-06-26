@@ -43,7 +43,7 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task LoadDataAsync()
         {
-            var data = await SampleDataService.GetCompaniesDataAsync();
+            var data = await SampleDataService.GetTreeViewDataAsync();
             foreach (var item in data)
             {
                 SampleItems.Add(item);

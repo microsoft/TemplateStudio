@@ -44,7 +44,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnInitialize();
 
             // TODO WTS: Replace this with your actual data
-            Source.AddRange(await SampleDataService.GetGallerySampleDataAsync("ms-appx:///Assets"));
+            Source.AddRange(await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets"));
         }
 
         public void Initialize(NavigationMode navigationMode)

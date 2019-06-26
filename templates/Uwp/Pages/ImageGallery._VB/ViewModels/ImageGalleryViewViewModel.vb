@@ -27,7 +27,7 @@ Namespace ViewModels
 
         Public Async Function LoadDataAsync() As Task
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetGallerySampleDataAsync()
+            Source = Await SampleDataService.GetImageGalleryDataAsync()
         End Function
     End Class
 End Namespace

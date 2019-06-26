@@ -42,7 +42,7 @@ Namespace Views
             MyBase.OnNavigatedTo(e)
 
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetGallerySampleDataAsync()
+            Source = Await SampleDataService.GetImageGalleryDataAsync()
 
             Dim selectedImageId = TryCast(e.Parameter, String)
             If Not String.IsNullOrEmpty(selectedImageId) AndAlso e.NavigationMode = NavigationMode.New Then

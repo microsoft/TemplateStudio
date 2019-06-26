@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetCompaniesDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetTreeViewDataAsync()` to the SampleDataService of your project.
 //**}
 namespace Param_RootNamespace.Core.Services
 {
@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your TreeView page is displaying real data.
-        public static async Task<IEnumerable<SampleCompany>> GetCompaniesDataAsync()
+        public static async Task<IEnumerable<SampleCompany>> GetTreeViewDataAsync()
         {
             return await GetDataAsync();
         }

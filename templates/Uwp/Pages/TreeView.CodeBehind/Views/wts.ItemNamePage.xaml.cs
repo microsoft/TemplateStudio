@@ -34,7 +34,7 @@ namespace Param_RootNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var data = await SampleDataService.GetCompaniesDataAsync();
+            var data = await SampleDataService.GetTreeViewDataAsync();
             foreach (var item in data)
             {
                 SampleItems.Add(item);

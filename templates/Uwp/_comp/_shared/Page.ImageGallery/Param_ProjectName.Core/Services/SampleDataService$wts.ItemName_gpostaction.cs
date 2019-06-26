@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetGallerySampleDataAsync(string localResourcesPath)` to the SampleDataService of your project.
+// This code block adds the method `GetImageGalleryDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
 namespace Param_RootNamespace.Core.Services
 {
@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your image gallery page is displaying real data.
-        public static async Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync(string localResourcesPath)
+        public static async Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
         {
             await Task.CompletedTask;
             if (_gallerySampleData == null)
