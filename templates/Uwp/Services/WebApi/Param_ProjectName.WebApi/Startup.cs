@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
-using Param_RootNamespace.Models;
+using Param_RootNamespace.WebApi.Models;
 
 namespace Param_RootNamespace.WebApi
 {
