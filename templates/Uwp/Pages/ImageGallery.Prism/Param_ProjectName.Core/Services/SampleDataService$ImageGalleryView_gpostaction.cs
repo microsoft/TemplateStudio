@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetGallerySampleDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
 //{[{
 using System.Threading.Tasks;
