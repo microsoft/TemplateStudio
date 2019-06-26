@@ -17,7 +17,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         {
             var actual = await SampleDataService.GetTreeViewDataAsync();
 
-            Assert.AreNotEqual(0, actual.Count);
+            Assert.AreNotEqual(0, actual.Count());
         }
         //}]}
     }
