@@ -76,7 +76,7 @@ Order BY Orders.OrderID";
                                         ShipTo = reader.GetString(3),
                                         OrderTotal = double.Parse(reader.GetDecimal(4).ToString()),
                                         Status = reader.GetString(5),
-                                        Symbol = (char)reader.GetInt32(6)
+                                        SymbolCode = (char)reader.GetInt32(6)
                                     };
                                     sampleOrders.Add(order);
                                 }
