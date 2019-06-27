@@ -213,6 +213,7 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages[3].Name == "Blank2");
             Assert.True(userSelection.Pages[4].Name == "Blank3");
             var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
+            pages.EnableOrdering(null);
             pages.SelectedItem = pages.Items[2]; // Select Blank1
             pages.MoveDownCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
@@ -241,6 +242,7 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.HomeName == "Main");
             var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
+            pages.EnableOrdering(null);
             pages.SelectedItem = pages.Items[1]; // Select Blank
             pages.MoveUpCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();

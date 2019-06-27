@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public void EnableOrdering(ListView listView)
         {
-            if (_allowsOrdering && listView != null)
+            if (_allowsOrdering)
             {
                 _orderingService = new OrderingService(listView);
             }
