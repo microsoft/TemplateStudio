@@ -126,7 +126,6 @@ namespace Localization
 
             if (!file.Exists)
             {
-                _verificationResult = false;
                 _errors.Add(string.Format("{0} not found.", file.FullName));
             }
         }
@@ -139,7 +138,6 @@ namespace Localization
 
                 if (!languageFile.Exists)
                 {
-                    _verificationResult = false;
                     _errors.Add(string.Format("{0} not found.", languageFile.FullName));
                 }
             }
@@ -152,12 +150,15 @@ namespace Localization
             foreach (var itemTemplate in templatesDirectories)
             {
                 var templateDirectory = Path.Combine(itemTemplate, Routes.TemplateConfigDir);
-
                 VerifyFile(templateDirectory, Routes.TemplateJsonFile);
-                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
 
-                VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
-                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
+                if (!IsTemplateHidden(itemTemplate))
+                {
+                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
+
+                    VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
+                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
+                }
             }
         }
 
@@ -238,6 +239,7 @@ namespace Localization
 
             if (_errors.Any())
             {
+                _verificationResult = false;
                 ConsoleExt.WriteError(" - ERROR");
             }
             else if (_warnings.Any())
@@ -265,6 +267,14 @@ namespace Localization
                     yield return Path.Combine(baseDir, directory.Name);
                 }
             }
+        }
+
+        private bool IsTemplateHidden(string templatePath)
+        {
+            var jsonFile = RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, templatePath, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
+            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
+
+            return value != null && value is "true";
         }
     }
 }

@@ -61,20 +61,13 @@ namespace Localization
             foreach (var directory in directories)
             {
                 var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
-                _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
-                _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
+
+                if (!IsTemplateHidden(templatePath))
+                {
+                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
+                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
+                }
             }
-
-            ////var templatesDirectory = _routesManager.GetDirectoryFromSource(Path.Combine(Routes.TemplatesRootDirPath, platform));
-            ////var allDirectories = templatesDirectory.GetDirectories(templateType, SearchOption.AllDirectories);
-            ////var names = allDirectories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase))).Select(d => d.Name);
-
-            ////foreach (var name in names)
-            ////{
-            ////    var templatePath = Path.Combine(Routes.TemplatesRootDirPath, platform, templateType, name, Routes.TemplateConfigDir);
-            ////    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
-            ////    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
-            ////}
         }
 
         private void CopyCatalogType(string routeType)
@@ -92,6 +85,14 @@ namespace Localization
         {
             var jsonFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
             return JsonExtensions.GetValuesByName(jsonFile.FullName, "name");
+        }
+
+        private bool IsTemplateHidden(string templatePath)
+        {
+            var jsonFile = _routesManager.GetFileFromSource(Path.Combine(templatePath, Routes.TemplateJsonFile));
+            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
+
+            return value != null && value is "true";
         }
     }
 }
