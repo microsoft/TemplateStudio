@@ -137,7 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 _output = await CleanupAndGenerateNewItemAsync();
                 if (!_output.HasChangesToApply)
                 {
-                    var message = TemplateType == TemplateType.Page ? StringRes.NewItemHasNoChangesPage : StringRes.NewItemHasNoChangesFeature;
+                    var message = GetNewItemHasNoChangesMessage(TemplateType);
                     message = string.Format(message, TemplateSelection.Name);
                     var notification = Notification.Warning(message, Category.RightClickItemHasNoChanges);
                     NotificationsControl.AddNotificationAsync(notification).FireAndForget();
@@ -147,6 +147,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
 
             return true;
+        }
+
+        private string GetNewItemHasNoChangesMessage(TemplateType templateType)
+        {
+            switch (templateType)
+            {
+                case TemplateType.Page:
+                    return StringRes.NewItemHasNoChangesPage;
+                case TemplateType.Feature:
+                    return StringRes.NewItemHasNoChangesFeature;
+                case TemplateType.Service:
+                    return StringRes.NewItemHasNoChangesService;
+                case TemplateType.Testing:
+                    return StringRes.NewItemHasNoChangesTesting;
+                default:
+                    return string.Empty;
+            }
         }
 
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()

@@ -232,11 +232,7 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>出现错误 :-(</value>
     <comment>Error dialog title</comment>
-  </data>
-  <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Windows Template Studio 错误</value>
-    <comment>Error dialog window title</comment>
-  </data>
+  </data>  
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>更多信息</value>
     <comment>Changes summary more info link</comment>
@@ -252,6 +248,14 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} 已是项目的一部分。请选择其他页面。</value>
     <comment>Page already added {0}: Page name</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another service.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another testing project.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>模板选择</value>
@@ -500,6 +504,22 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>已成功添加页面 {0}</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Add new service cancelled</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Service {0} successfully added</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Add new testing project cancelled</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Testing project {0} successfully added</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>无法找到项目 {0}</value>
@@ -769,5 +789,13 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>请参阅文档进行更新。</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>

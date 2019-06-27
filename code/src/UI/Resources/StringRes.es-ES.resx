@@ -233,10 +233,6 @@
     <value>Algo no fue bien :-(</value>
     <comment>Error dialog title</comment>
   </data>
-  <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Error de Windows Template Studio</value>
-    <comment>Error dialog window title</comment>
-  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>más información</value>
     <comment>Changes summary more info link</comment>
@@ -252,6 +248,14 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} ya es parte de tu proyecto. Elige otra página.</value>
     <comment>Page already added {0}: Page name</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another service.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another testing project.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Selección de plantillas</value>
@@ -500,6 +504,22 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>La página {0} se ha agregado correctamente</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Add new service cancelled</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Service {0} successfully added</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Add new testing project cancelled</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Testing project {0} successfully added</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>No se puede encontrar el proyecto {0}</value>
@@ -769,5 +789,13 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>
