@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private ICommand _editCommand;
         private SavedTemplateViewModel _selectedItem;
         private OrderingService _orderingService;
+        private bool _allowsOrdering;
 
         public string Header
         {
@@ -50,10 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             TemplateType = templateType;
             Header = header;
-            if (allowsOrdering)
-            {
-                _orderingService = new OrderingService();
-            }
+            _allowsOrdering = allowsOrdering;
         }
 
         public IEnumerable<string> GetNames() => Items.Select(i => i.Name);
@@ -62,7 +60,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public void EnableOrdering(ListView listView)
         {
-            _orderingService?.Initialize(listView);
+            if (_allowsOrdering)
+            {
+                _orderingService = new OrderingService(listView);
+            }
         }
 
         public void UnsubscribeEventHandlers()
