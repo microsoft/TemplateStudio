@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Localization.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -45,19 +46,36 @@ namespace Localization
             GenerateTemplatesFiles(Routes.TemplatesFeaturesPatternPath);
         }
 
+        public void GenerateServices()
+        {
+            GenerateTemplatesFiles(Routes.TemplatesServicesPatternPath);
+        }
+
+        public void GenerateTesting()
+        {
+            GenerateTemplatesFiles(Routes.TemplatesTestingPatternPath);
+        }
+
         private void GenerateTemplatesFiles(string patternPath)
         {
-            var srcDirectory = new DirectoryInfo(Path.Combine(_path, Routes.TemplatesRootDirPath));
-            var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories());
-
-            foreach (var directory in templatesDirectories)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                var jsonFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
-                GenerateTemplateJsonFiles(jsonFile);
+                var baseDir = Path.Combine(_path, Routes.TemplatesRootDirPath, platform, patternPath);
+                var srcDirectory = new DirectoryInfo(baseDir);
+                var templatesDirectories = srcDirectory.GetDirectories();
 
-                var mdFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateDescriptionFile));
-                GenerateTemplateMdFiles(mdFile);
+                foreach (var directory in templatesDirectories)
+                {
+                    var jsonFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
+
+                    if (!IsTemplateHidden(jsonFile))
+                    {
+                        GenerateTemplateJsonFiles(jsonFile);
+
+                        var mdFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateDescriptionFile));
+                        GenerateTemplateMdFiles(mdFile);
+                    }
+                }
             }
         }
 
@@ -172,6 +190,12 @@ namespace Localization
                     }
                 }
             }
+        }
+
+        private bool IsTemplateHidden(FileInfo jsonFile)
+        {
+            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
+            return value != null && value is "true";
         }
     }
 }

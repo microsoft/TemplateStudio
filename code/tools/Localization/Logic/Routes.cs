@@ -25,6 +25,8 @@ namespace Localization
         internal const string TemplatesRootDirPath = "templates";
         internal const string TemplatesPagesPatternPath = "Pages";
         internal const string TemplatesFeaturesPatternPath = "Features";
+        internal const string TemplatesServicesPatternPath = "Services";
+        internal const string TemplatesTestingPatternPath = "Testing";
 
         internal const string TemplateConfigDir = ".template.config";
         internal const string TemplateDescriptionFile = "description.md";
