@@ -8,7 +8,7 @@ using Param_RootNamespace.WebApi.Models;
 
 namespace Param_RootNamespace.WebApi.Controllers
 {
-    [Route("api/item")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
     {
