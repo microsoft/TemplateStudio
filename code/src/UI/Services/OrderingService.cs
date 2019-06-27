@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Services
             get => MainViewModel.Instance.UserSelection.Groups.First(g => g.TemplateType == Core.TemplateType.Page).Items;
         }
 
-        public void Initialize(ListView listView)
+        public OrderingService(ListView listView)
         {
             _listView = listView;
 

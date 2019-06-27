@@ -76,6 +76,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Navigation.IsStepAvailable = IsStepAvailableAsync;
         }
 
+        public override void UnsubscribeEventHandlers()
+        {
+            base.UnsubscribeEventHandlers();
+            Navigation.OnFinish -= OnFinish;
+            Navigation.OnStepUpdated -= OnStepUpdated;
+        }
+
         private static IEnumerable<StepData> NewItemSteps
         {
             get
