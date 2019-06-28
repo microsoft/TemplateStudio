@@ -62,7 +62,7 @@ Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivat
 
 ### ActivateAsync
 
-The first calls in ActivateAsync are InitializeAsync() and the ShellCreation in case you activation is interactive. If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
+The first calls in ActivateAsync are InitializeAsync() and ShellCreation (in case you activation is interactive). If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
 
 After this first block, HandleActivation is called (more details below).
 
@@ -74,15 +74,15 @@ Interactions with the app window and navigations are only available when the act
 
 **InitializeAsync**
 
-InitializeAsync contains services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. Only code that needs to be executed before app activation should be places here, as the splash screen is shown while this code is executed.
+InitializeAsync contains services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. Only code that needs to be executed before app activation should be placed here, as the splash screen is shown while this code is executed.
 
 **StartupAsync**
 
-StartupAsync contains initializations of other classes that do not need to happen before app activation and start's processes that will be run after the Window is activated.
+StartupAsync contains initializations of other classes that do not need to happen before app activation and starts processes that will be run after the Window is activated.
 
 ### HandleActivation
 
-HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. Before that creates a DefaultActivationHandler and execute if it possible (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
+The HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. It also creates a DefaultActivationHandler and execute if it necesary (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
 
 ![](resources/activation/HandleActivation.png)
 
@@ -90,10 +90,9 @@ HandleActivation method gets the first ActivationHandler that can handle the arg
 
 We are going to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader to our app.
 
-The following code is thought to be added in a WTS MVVM Basic app.
+The following sample code is thought to be added in a WTS MVVM Basic app.
 
 For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
-
 
 
 ### 1. Add Page and ViewModel to show the opened file

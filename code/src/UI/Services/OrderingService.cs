@@ -13,25 +13,30 @@ namespace Microsoft.Templates.UI.Services
     public class OrderingService
     {
         private ListView _listView;
-        private DragAndDropService<SavedTemplateViewModel> _service;
+        private DragAndDropService<SavedTemplateViewModel> _dragAndDropService;
 
         private ObservableCollection<SavedTemplateViewModel> Pages
         {
             get => MainViewModel.Instance.UserSelection.Groups.First(g => g.TemplateType == Core.TemplateType.Page).Items;
         }
 
-        public void Initialize(ListView listView)
+        public OrderingService(ListView listView)
         {
-            _listView = listView;
-
-            _service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
-            _service.ProcessDrop += OnDrop;
+            if (_listView != null)
+            {
+                _listView = listView;
+                _dragAndDropService = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
+                _dragAndDropService.ProcessDrop += OnDrop;
+            }
         }
 
         public void UnsubscribeEventHandlers()
         {
-            _service.UnsubscribeEventHandlers();
-            _service.ProcessDrop -= OnDrop;
+            if (_dragAndDropService != null)
+            {
+                _dragAndDropService.UnsubscribeEventHandlers();
+                _dragAndDropService.ProcessDrop -= OnDrop;
+            }
         }
 
         public void MoveUp(SavedTemplateViewModel item)

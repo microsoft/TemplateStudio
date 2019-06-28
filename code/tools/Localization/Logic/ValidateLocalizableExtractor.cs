@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using LibGit2Sharp;
 using Localization.Extensions;
 using Localization.Options;
 using Newtonsoft.Json;
