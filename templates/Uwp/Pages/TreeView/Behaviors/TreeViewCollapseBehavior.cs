@@ -14,7 +14,6 @@ namespace Param_RootNamespace.Behaviors
             CollapseAllCommand = new RelayCommand(() => CollapseNodes(AssociatedObject.RootNodes));
         }
 
-
         private void CollapseNodes(IList<WinUI.TreeViewNode> nodes)
         {
             foreach (var node in nodes)

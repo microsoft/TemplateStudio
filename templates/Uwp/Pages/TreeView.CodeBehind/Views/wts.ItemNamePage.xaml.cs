@@ -39,11 +39,6 @@ namespace Param_RootNamespace.Views
             {
                 SampleItems.Add(item);
             }
-
-            if (SampleItems.Any())
-            {
-                SelectedItem = SampleItems.First();
-            }
         }
 
         private void OnItemInvoked(WinUI.TreeView sender, WinUI.TreeViewItemInvokedEventArgs args)

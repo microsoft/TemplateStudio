@@ -24,7 +24,7 @@
   "preferNameDirectory": "true",
   "PrimaryOutputs": [
     {
-      "path": ".\\Behaviors\\TreeViewExpandCollapseBehavior.cs"
+      "path": ".\\Behaviors\\TreeViewCollapseBehavior.cs"
     },
     {
       "path": ".\\TemplateSelectors\\SampleDataTemplateSelector.cs"

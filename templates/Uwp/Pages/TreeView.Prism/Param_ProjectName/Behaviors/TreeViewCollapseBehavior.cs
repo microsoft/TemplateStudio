@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.Xaml.Interactivity;
+using Prism.Commands;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Behaviors
@@ -11,9 +12,8 @@ namespace Param_RootNamespace.Behaviors
 
         public TreeViewCollapseBehavior()
         {
-            CollapseAllCommand = new RelayCommand(() => CollapseNodes(AssociatedObject.RootNodes));
+            CollapseAllCommand = new DelegateCommand(() => CollapseNodes(AssociatedObject.RootNodes));
         }
-
 
         private void CollapseNodes(IList<WinUI.TreeViewNode> nodes)
         {
