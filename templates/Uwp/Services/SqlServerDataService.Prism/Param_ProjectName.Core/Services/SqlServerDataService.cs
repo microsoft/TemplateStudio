@@ -9,6 +9,7 @@ using Param_RootNamespace.Core.Models;
 namespace Param_RootNamespace.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
+    // More information on using and configuring this service can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/sql-server-data-service.md
     // TODO WTS: Change your code to use this instead of the SampleDataService.
     public static class SqlServerDataService
     {
@@ -30,12 +31,13 @@ namespace Param_RootNamespace.Core.Services
             }
         }
 
-        // This method returns data with the same structure as the SampleDataService but based on the NORTHWIND database.
-        // Use this as an alternative to the sample data to test using a different datasource without changing the page code.
-        // Alternatively, use this as a base for your ow data retrieval methods.
+        // This method returns data with the same structure as the SampleDataService but based on the NORTHWIND sample database.
+        // Use this as an alternative to the sample data to test using a different datasource without changing any other code.
         // TODO WTS: Remove this when or if it isn't needed.
         public static async Task<ObservableCollection<SampleOrder>> AllOrders()
         {
+            // This hard-coded SQL statement is included to make this sample simpler.
+            // You can use Stored procedure, ORMs, or whatever is appropriate to access data in your app.
             const string getSampleOrdersQuery = @"
 SELECT Orders.OrderID,
        Orders.OrderDate,
@@ -87,6 +89,8 @@ Order BY Orders.OrderID";
             }
             catch (Exception eSql)
             {
+                // Your code may benefit from more robust error handling or logging.
+                // This logging is just a reminder that you should handle exceptions when connecting to remote data.
                 System.Diagnostics.Debug.WriteLine($"Exception: {eSql.Message} {eSql.InnerException?.Message}");
             }
 
