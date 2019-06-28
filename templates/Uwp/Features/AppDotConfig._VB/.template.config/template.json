@@ -1,7 +1,7 @@
 ﻿{
   "author": "Microsoft Community",
   "classifications": ["Universal"],
-  "name": "Sample Data",
+  "name": "App Config",
   "groupIdentity": "wts.Feat.AppDotConfig.VB",
   "identity": "wts.Feat.AppDotConfig.VB",
   "description": "Adds an empty App.config file to the project.",
@@ -19,7 +19,8 @@
     "wts.isHidden": "true",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.outputToParent": "true"
+    "wts.outputToParent": "true",
+    "wts.licenses": "[System.Configuration.ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
   },
   "sourceName": "AppDotConfigFeature",
   "preferNameDirectory": true,
@@ -38,5 +39,18 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "System.Configuration.ConfigurationManager",
+        "version" : "4.5.0",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }
