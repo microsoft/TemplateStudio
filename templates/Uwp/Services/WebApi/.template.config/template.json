@@ -50,7 +50,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.AspNetCore.App",
-        "version": "2.1.1",
+        "version": "2.1.11",
         "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": "true"
@@ -62,17 +62,6 @@
       "args": {
         "packageId" : "Swashbuckle.AspNetCore",
         "version" : "4.0.1",
-        "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "Microsoft.EntityFrameworkCore",
-        "version" : "2.1.11",
         "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": "true"
