@@ -1,50 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Models;
+using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.WebApi.Models
 {
     public class ItemRepository : IItemRepository
     {
-        private static ConcurrentDictionary<string, Item> items =
-            new ConcurrentDictionary<string, Item>();
+        private static Dictionary<long, SampleOrder> items =
+            new Dictionary<long, SampleOrder>();
 
         public ItemRepository()
         {
-            Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 1", Description = "This is an item description." });
-            Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 2", Description = "This is an item description." });
-            Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 3", Description = "This is an item description." });
+            Task.Run(async () =>
+            {
+                foreach (var order in await SampleDataService.GetWebApiSampleDataAsync())
+                {
+                    items.TryAdd(order.OrderId, order);
+                }
+            });
         }
 
-        public IEnumerable<Item> GetAll()
+        public IEnumerable<SampleOrder> GetAll()
         {
             return items.Values;
         }
 
-        public void Add(Item item)
+        public void Add(SampleOrder item)
         {
-            item.Id = Guid.NewGuid().ToString();
-            items[item.Id] = item;
+            items[item.OrderId] = item;
         }
 
-        public Item Get(string id)
+        public SampleOrder Get(long id)
         {
-            items.TryGetValue(id, out Item item);
+            items.TryGetValue(id, out SampleOrder item);
 
             return item;
         }
 
-        public Item Remove(string id)
+        public SampleOrder Remove(long id)
         {
-            items.TryRemove(id, out Item item);
+            items.Remove(id, out SampleOrder item);
 
             return item;
         }
 
-        public void Update(Item item)
+        public void Update(SampleOrder item)
         {
-            items[item.Id] = item;
+            items[item.OrderId] = item;
         }
     }
 }

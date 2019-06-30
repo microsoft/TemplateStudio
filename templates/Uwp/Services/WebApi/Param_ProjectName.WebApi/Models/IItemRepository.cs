@@ -6,14 +6,14 @@ namespace Param_RootNamespace.WebApi.Models
 {
     public interface IItemRepository
     {
-        void Add(Item item);
+        void Add(SampleOrder item);
 
-        void Update(Item item);
+        void Update(SampleOrder item);
 
-        Item Remove(string key);
+        SampleOrder Remove(long id);
 
-        Item Get(string id);
+        SampleOrder Get(long id);
 
-        IEnumerable<Item> GetAll();
+        IEnumerable<SampleOrder> GetAll();
     }
 }
