@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your Web API is returning real data.
-        public static async Task<ObservableCollection<DataPoint>> GetWebApiSampleDataAsync()
+        public static async Task<ObservableCollection<SampleOrder>> GetWebApiSampleDataAsync()
         {
             await Task.CompletedTask;
 
