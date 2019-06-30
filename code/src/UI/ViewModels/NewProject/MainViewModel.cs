@@ -89,7 +89,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
             await base.InitializeAsync(platform, language);
-            Navigation.OnFinish += OnFinish;
         }
 
         private void OnFinish(object sender, EventArgs e)

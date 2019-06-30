@@ -13,22 +13,30 @@ namespace Localization.Extensions
 {
     public static class JsonExtensions
     {
-        public static List<JObject> GetJsonContent(string path)
+        public static T GetJsonContent<T>(string path)
+            where T : new()
         {
             if (!File.Exists(path))
             {
-                return new List<JObject>();
+                return new T();
             }
 
             var fileContent = File.ReadAllText(path);
-            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+            var content = JsonConvert.DeserializeObject<T>(fileContent);
             return content;
         }
 
         public static IEnumerable<string> GetValuesByName(string path, string name)
         {
-            var content = GetJsonContent(path);
+            var content = GetJsonContent<List<JObject>>(path);
             return content.Select(item => item.GetValue(name, StringComparison.Ordinal).Value<string>());
+        }
+
+        public static string GetTemplateTag(string path, string tagName)
+        {
+            var content = GetJsonContent<JObject>(path);
+            var value = (string)content["tags"][tagName];
+            return value;
         }
     }
 }

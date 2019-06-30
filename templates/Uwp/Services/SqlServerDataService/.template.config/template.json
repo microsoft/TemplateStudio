@@ -17,12 +17,12 @@
     "wts.displayOrder": "1",
     "wts.defaultInstance": "SqlServerDataService",
     "wts.multipleInstance": "false",
-    "wts.dependencies": "wts.Service.SampleDataService",
+    "wts.dependencies": "wts.Service.SampleDataService|wts.Feat.AppDotConfig",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
-    "wts.licenses": "[EntityFrameworkCore.SqlServer](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)|[ConfigurationManager](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
+    "wts.licenses": "[EntityFrameworkCore.SqlServer](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)"
   },
   "sourceName": "SqlServerDataServiceFeature",
   "preferNameDirectory": true,
@@ -50,17 +50,6 @@
       "args": {
         "packageId" : "Microsoft.EntityFrameworkCore.SqlServer",
         "version" : "2.1.11",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
-      },
-      "continueOnError": "true"
-    },
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId" : "System.Configuration.ConfigurationManager",
-        "version" : "4.5.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": "true"
