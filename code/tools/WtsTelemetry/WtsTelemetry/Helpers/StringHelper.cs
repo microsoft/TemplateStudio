@@ -17,6 +17,8 @@ namespace WtsTelemetry.Helpers
             { "NewProject", "New Project" },
             { "AddPage", "Add Page" },
             { "AddFeature", "Add Feature" },
+            { "AddService", "Add Service" },
+            { "AddTesting", "Add Testing" },
         };
 
         public static IEnumerable<QueryData> ToQueryData(this string jsonData)
