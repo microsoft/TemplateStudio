@@ -18,7 +18,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "Identity",
-    "wts.dependencies": "wts.Page.Settings",
+    "wts.dependencies": "wts.Page.Settings|wts.Feat.AppDotConfig",
     "wts.isGroupExclusiveSelection": "true",
     "wts.defaultInstance": "IdentityForcedLogin",
     "wts.multipleInstance": "false",
