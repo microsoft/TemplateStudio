@@ -1,27 +1,17 @@
 ﻿{
   "author": "Microsoft Community",
   "classifications": ["Universal"],
-  "name": "Web API",
-  "groupIdentity": "wts.Service.WebApi",
-  "identity": "wts.Service.WebApi",
-  "description": "Include ASP.NET Core Web API project.",
+  "name": "wts.Service.WebApi.Shared",
   "tags": {
     "language": "C#",
-    "type": "item",
-    "wts.type": "service",
-    "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "type": "project",
+    "wts.type": "composition",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
     "wts.platform": "Uwp",
-    "wts.group": "Data",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & groupidentity == wts.Service.WebApi",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
     "wts.defaultInstance": "WebApi",
     "wts.multipleInstance": "false",
-    "wts.dependencies":"wts.Service.SampleDataService|wts.Service.HttpDataService",
-    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
-    "wts.isHidden": "false",
-    "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
     "wts.licenses": "[AspNetCore](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)|[DotNetCore](https://github.com/dotnet/core-setup/blob/master/LICENSE.TXT)|[Swashbuckle](https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE)"
   },
@@ -29,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\Models\\ItemRepository.cs"
+      "path": ".\\Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
     }
   ],
   "symbols": {

@@ -1,34 +1,35 @@
 ﻿{
   "author": "Microsoft Community",
   "classifications": ["Universal"],
-  "name": "SQL Server Data",
-  "groupIdentity": "wts.Service.SqlServerDataService",
-  "identity": "wts.Service.SqlServerDataService",
-  "description": "Get data from SQL Server to use in the app.",
+  "name": "Web API",
+  "groupIdentity": "wts.Service.WebApi",
+  "identity": "wts.Service.WebApi.Prism",
+  "description": "Include ASP.NET Core Web API project.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "service",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",
     "wts.group": "Data",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "2",
-    "wts.defaultInstance": "SqlServerDataService",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "WebApi",
     "wts.multipleInstance": "false",
-    "wts.dependencies": "wts.Service.SampleDataService|wts.Feat.AppDotConfig",
+    "wts.dependencies":"wts.Service.SampleDataService.Prism|wts.Service.HttpDataService",
+    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
-    "wts.licenses": "[EntityFrameworkCore.SqlServer](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)"
+    "wts.licenses": "[AspNetCore](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)|[DotNetCore](https://github.com/dotnet/core-setup/blob/master/LICENSE.TXT)|[Swashbuckle](https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE)"
   },
-  "sourceName": "SqlServerDataServiceFeature",
+  "sourceName": "WebApiFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\SqlServerDataService.cs"
+      "path": ".\\Param_ProjectName.WebApi\\Models\\ItemRepository.cs"
     }
   ],
   "symbols": {
@@ -48,9 +49,9 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.EntityFrameworkCore.SqlServer",
-        "version" : "2.1.11",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        "packageId" : "Microsoft.AspNetCore.App",
+        "version": "2.1.11",
+        "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": "true"
     },
@@ -59,9 +60,9 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.EntityFrameworkCore",
-        "version" : "2.1.11",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        "packageId" : "Swashbuckle.AspNetCore",
+        "version" : "4.0.1",
+        "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": "true"
     }
