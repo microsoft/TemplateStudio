@@ -12,7 +12,7 @@ namespace Param_RootNamespace.Core.Services
         private IEnumerable<SampleOrder> _allOrders;
 //}]}
 
-        private async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private IEnumerable<SampleOrder> AllOrders()
         {
         }
 //^^
@@ -23,7 +23,7 @@ namespace Param_RootNamespace.Core.Services
         {
             if (_allOrders == null)
             {
-                _allOrders = await GetAllOrdersAsync();
+                _allOrders = AllOrders();
             }
 
             return new ObservableCollection<SampleOrder>(_allOrders);

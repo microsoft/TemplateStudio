@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
         private static IEnumerable<SampleOrder> _allOrders;
 //}]}
 
-        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private static IEnumerable<SampleOrder> AllOrders()
         {
         }
 //^^
@@ -18,9 +18,10 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: Remove this once your ContentGrid page is displaying real data.
         public static async Task<ObservableCollection<SampleOrder>> GetContentGridDataAsync()
         {
+            await Task.CompletedTask;
             if (_allOrders == null)
             {
-                _allOrders = await GetAllOrdersAsync();
+                _allOrders = AllOrders();
             }
 
             return new ObservableCollection<SampleOrder>(_allOrders);

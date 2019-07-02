@@ -11,7 +11,8 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: Remove this once your chart page is displaying real data.
         public static async Task<ObservableCollection<DataPoint>> GetChartDataAsync()
         {
-            var allOrders = await GetAllOrdersAsync();
+            await Task.CompletedTask;
+            var allOrders = AllOrders();
             var data = allOrders.Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
                                   .OrderBy(dp => dp.Category);
 

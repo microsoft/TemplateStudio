@@ -12,7 +12,7 @@ namespace Param_RootNamespace.Core.Services
         private ObservableCollection<SampleImage> _gallerySampleData;
 //}]}
 
-        private async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private IEnumerable<SampleOrder> AllOrders()
         {
         }
 //^^

@@ -12,7 +12,8 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: Remove this once your TreeView page is displaying real data.
         public async Task<IEnumerable<SampleCompany>> GetTreeViewDataAsync()
         {
-            return await GetDataAsync();
+            await Task.CompletedTask;
+            return AllCompanies();
         }
 //}]}
     }

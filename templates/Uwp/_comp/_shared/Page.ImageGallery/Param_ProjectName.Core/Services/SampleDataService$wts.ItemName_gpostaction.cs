@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
         private static ObservableCollection<SampleImage> _gallerySampleData;
 //}]}
 
-        private static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
+        private static IEnumerable<SampleOrder> AllOrders()
         {
         }
 //^^
