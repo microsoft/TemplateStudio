@@ -35,6 +35,8 @@ namespace WtsTelemetry
             var frameworksData = DataService.GetData(queries.Frameworks);
             var pagesData = DataService.GetData(queries.Pages);
             var featuresData = DataService.GetData(queries.Features);
+            var servicesData = DataService.GetData(queries.Services);
+            var testingData = DataService.GetData(queries.Testing);
             var entryPointData = DataService.GetData(queries.EntryPoints);
             var languageData = DataService.GetData(queries.Languages);
 
@@ -45,6 +47,8 @@ namespace WtsTelemetry
                         .AddTable("Framework", "Framework Type", frameworksData)
                         .AddTable("Pages", "Pages", pagesData)
                         .AddTable("Features", "Features", featuresData)
+                        .AddTable("Services", "Services", servicesData)
+                        .AddTable("Testing", "Testing", testingData)
                         .AddTable("Windows Template Studio entry point", "Entry point", entryPointData)
                         .AddTable("Programming languages", "Languages", languageData)
                         .GetText();
