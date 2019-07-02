@@ -61,12 +61,12 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            x:Uid="MasterDetailView"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind SampleItems}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            MasterHeader="MasterDetail"
             MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind Selected, Mode=TwoWay}" />

@@ -40,6 +40,7 @@
         <!--}]}-->
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            x:Uid="wts.ItemName"
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->

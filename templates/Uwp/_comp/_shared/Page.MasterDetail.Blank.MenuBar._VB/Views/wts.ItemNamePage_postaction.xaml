@@ -4,6 +4,7 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            x:Uid="wts.ItemName"
             <!--{[{-->
             BackButtonBehavior="Inline"
             <!--}]}-->
