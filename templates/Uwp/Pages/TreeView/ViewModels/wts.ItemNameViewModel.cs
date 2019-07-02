@@ -12,9 +12,7 @@ namespace Param_RootNamespace.ViewModels
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private ICommand _itemInvokedCommand;
-        private ICommand _collapseAllCommand;
         private object _selectedItem;
-        private bool _isCollapsed;
 
         public object SelectedItem
         {
@@ -22,20 +20,9 @@ namespace Param_RootNamespace.ViewModels
             set => Param_Setter(ref _selectedItem, value);
         }
 
-        public bool IsCollapsed
-        {
-            get => _isCollapsed;
-            set
-            {
-                _isCollapsed = value;
-            }
-        }
-
         public ObservableCollection<SampleCompany> SampleItems { get; } = new ObservableCollection<SampleCompany>();
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.TreeViewItemInvokedEventArgs>(OnItemInvoked));
-
-        public ICommand CollapseAllCommand => _collapseAllCommand ?? (_collapseAllCommand = new RelayCommand(OnCollapseAll));
 
         public wts.ItemNameViewModel()
         {
@@ -52,8 +39,5 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnItemInvoked(WinUI.TreeViewItemInvokedEventArgs args)
             => SelectedItem = args.InvokedItem;
-
-        private void OnCollapseAll()
-            => IsCollapsed = true;
     }
 }

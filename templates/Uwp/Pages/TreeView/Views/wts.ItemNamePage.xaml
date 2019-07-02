@@ -18,7 +18,7 @@
         <DataTemplate x:Key="CompanyTemplate" x:DataType="model:SampleCompany">
             <winui:TreeViewItem
                 AutomationProperties.Name="{x:Bind CompanyName}"
-                ItemsSource="{x:Bind Orders}" IsExpanded="True">
+                ItemsSource="{x:Bind Orders}" IsExpanded="False">
                 <TextBlock Text="{x:Bind CompanyName}" Margin="{StaticResource XXSmallTopRightBottomMargin}" />
             </winui:TreeViewItem>
         </DataTemplate>
@@ -110,7 +110,7 @@
         <DataTemplate x:Key="OrderTemplate" x:DataType="model:SampleOrder">
             <winui:TreeViewItem
                 AutomationProperties.Name="{x:Bind OrderID}"
-                ItemsSource="{x:Bind Details}" IsExpanded="True">
+                ItemsSource="{x:Bind Details}" IsExpanded="False">
                 <TextBlock Text="{x:Bind ShortDescription}" Margin="{StaticResource XXSmallTopRightBottomMargin}" />
             </winui:TreeViewItem>
         </DataTemplate>
@@ -295,7 +295,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock
-                    Text="TreeView"
+                    x:Uid="wts.ItemNameTitle"
                     Margin="{StaticResource SmallLeftMargin}"
                     Style="{StaticResource ListTitleStyle}"
                     VerticalAlignment="Center" />

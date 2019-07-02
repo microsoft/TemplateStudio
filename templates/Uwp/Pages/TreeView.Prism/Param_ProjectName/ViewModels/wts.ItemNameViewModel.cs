@@ -15,9 +15,7 @@ namespace Param_RootNamespace.ViewModels
     {
         private readonly ISampleDataService _sampleDataService;
         private ICommand _itemInvokedCommand;
-        private ICommand _collapseAllCommand;
         private object _selectedItem;
-        private bool _isCollapsed;
 
         public object SelectedItem
         {
@@ -25,20 +23,9 @@ namespace Param_RootNamespace.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        public bool IsCollapsed
-        {
-            get => _isCollapsed;
-            set
-            {
-                _isCollapsed = value;
-            }
-        }
-
         public ObservableCollection<SampleCompany> SampleItems { get; } = new ObservableCollection<SampleCompany>();
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new DelegateCommand<WinUI.TreeViewItemInvokedEventArgs>(OnItemInvoked));
-
-        public ICommand CollapseAllCommand => _collapseAllCommand ?? (_collapseAllCommand = new DelegateCommand(OnCollapseAll));
 
         public wts.ItemNameViewModel(ISampleDataService sampleDataServiceInstance)
         {
@@ -58,8 +45,5 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnItemInvoked(WinUI.TreeViewItemInvokedEventArgs args)
             => SelectedItem = args.InvokedItem;
-
-        private void OnCollapseAll()
-            => IsCollapsed = true;
     }
 }
