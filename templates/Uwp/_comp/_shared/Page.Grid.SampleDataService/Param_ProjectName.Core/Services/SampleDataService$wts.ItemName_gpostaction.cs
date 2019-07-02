@@ -12,8 +12,7 @@ namespace Param_RootNamespace.Core.Services
         public static async Task<ObservableCollection<SampleOrder>> GetGridDataAsync()
         {
             await Task.CompletedTask;
-            var allOrders = AllOrders();
-            return new ObservableCollection<SampleOrder>(allOrders);
+            return new ObservableCollection<SampleOrder>(AllOrders());
         }
 //}]}
     }

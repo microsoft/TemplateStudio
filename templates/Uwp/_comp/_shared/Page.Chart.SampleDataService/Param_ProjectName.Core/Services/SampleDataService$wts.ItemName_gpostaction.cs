@@ -12,8 +12,7 @@ namespace Param_RootNamespace.Core.Services
         public static async Task<ObservableCollection<DataPoint>> GetChartDataAsync()
         {
             await Task.CompletedTask;
-            var allOrders = AllOrders();
-            var data = allOrders.Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
+            var data = AllOrders().Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
                                   .OrderBy(dp => dp.Category);
 
             return new ObservableCollection<DataPoint>(data);

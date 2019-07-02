@@ -18,7 +18,6 @@ namespace Param_RootNamespace.Core.Services
         // TODO WTS: Remove this once your image gallery page is displaying real data.
         public static async Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
         {
-            await Task.CompletedTask;
             if (_gallerySampleData == null)
             {
                 _gallerySampleData = new ObservableCollection<SampleImage>();
@@ -33,6 +32,7 @@ namespace Param_RootNamespace.Core.Services
                 }
             }
 
+            await Task.CompletedTask;
             return _gallerySampleData;
         }
 //}]}

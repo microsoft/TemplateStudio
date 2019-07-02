@@ -26,6 +26,7 @@ namespace Param_RootNamespace.Core.Services
                 _allOrders = AllOrders();
             }
 
+            await Task.CompletedTask;
             return new ObservableCollection<SampleOrder>(_allOrders);
         }
 //}]}
