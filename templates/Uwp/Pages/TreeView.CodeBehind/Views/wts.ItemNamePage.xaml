@@ -7,7 +7,6 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:model="using:Param_RootNamespace.Core.Models"
     xmlns:templateSelectors="using:Param_RootNamespace.TemplateSelectors"
-    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">

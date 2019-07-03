@@ -44,26 +44,15 @@ namespace Param_RootNamespace.Views
         private void OnItemInvoked(WinUI.TreeView sender, WinUI.TreeViewItemInvokedEventArgs args)
             => SelectedItem = args.InvokedItem;
 
-        private void OnExpandAll(object sender, RoutedEventArgs e)
-            => ExpandOrCollapse(treeView.RootNodes, true);
-
         private void OnCollapseAll(object sender, RoutedEventArgs e)
-            => ExpandOrCollapse(treeView.RootNodes, false);
+            => CollapseNodes(treeView.RootNodes);
 
-        private void ExpandOrCollapse(IList<WinUI.TreeViewNode> nodes, bool expand)
+        private void CollapseNodes(IList<WinUI.TreeViewNode> nodes)
         {
             foreach (var node in nodes)
             {
-                ExpandOrCollapse(node.Children, expand);
-
-                if (expand)
-                {
-                    treeView.Expand(node);
-                }
-                else
-                {
-                    treeView.Collapse(node);
-                }
+                CollapseNodes(node.Children);
+                treeView.Collapse(node);
             }
         }
     }
