@@ -30,7 +30,7 @@ Namespace Views
 
         Public Async Sub ImageGalleryViewPage_OnLoaded(sender As Object, eventArgs As RoutedEventArgs)
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetImageGalleryDataAsync()
+            Source = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
         End Sub
 
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)
