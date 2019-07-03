@@ -3,8 +3,8 @@
 '**}
 Namespace Services
     Public Module SampleDataService
-        '^^
-        '{[{
+'^^
+'{[{
 
         ' TODO WTS: Remove this once your chart page is displaying real data.
         Public Async Function GetChartDataAsync() As Task(Of ObservableCollection(Of DataPoint))
@@ -17,6 +17,6 @@ Namespace Services
 
             Return New ObservableCollection(Of DataPoint)(data)
         End Function
-        '}]}
+'}]}
     End Module
 End Namespace

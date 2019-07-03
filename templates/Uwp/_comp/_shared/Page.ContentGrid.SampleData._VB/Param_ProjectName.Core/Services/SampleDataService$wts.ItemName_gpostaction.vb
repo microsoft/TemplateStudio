@@ -9,8 +9,10 @@ Namespace Services
 '{[{
         Private _allOrders As IEnumerable(Of SampleOrder)
 '}]}
-
         Public Function AllOrders() As IEnumerable(Of SampleOrder)
+        End Function
+
+        Public Function AllCompanies() As IEnumerable(Of SampleCompany)
         End Function
 '^^
 '{[{

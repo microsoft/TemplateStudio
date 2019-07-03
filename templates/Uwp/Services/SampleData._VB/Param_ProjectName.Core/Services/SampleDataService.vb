@@ -5,6 +5,7 @@ Namespace Services
     ' This module holds sample data used by some generated pages to show how they can be used.
     ' TODO WTS: Delete this file once your app is using real data.
     Public Module SampleDataService
+
         Public Function AllOrders() As IEnumerable(Of SampleOrder)
             Dim companies = AllCompanies()
             Return companies.SelectMany(Function(c) c.Orders)

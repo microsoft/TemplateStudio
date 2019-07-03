@@ -6,7 +6,11 @@ Namespace Services
 '{[{
         Private _gallerySampleData As ObservableCollection(Of SampleImage)
 '}]}
+        Public Function AllOrders() As IEnumerable(Of SampleOrder)
+        End Function
 
+        Public Function AllCompanies() As IEnumerable(Of SampleCompany)
+        End Function
 '^^
 '{[{
 

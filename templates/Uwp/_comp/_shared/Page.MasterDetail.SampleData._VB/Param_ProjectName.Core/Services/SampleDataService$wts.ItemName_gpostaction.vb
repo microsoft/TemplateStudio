@@ -3,8 +3,8 @@
 '**}
 Namespace Services
     Public Module SampleDataService
-        '^^
-        '{[{
+'^^
+'{[{
 
         ' TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         Public Async Function GetMasterDetailDataAsync() As Task(Of IEnumerable(Of SampleOrder))
@@ -12,6 +12,6 @@ Namespace Services
 
             Return AllOrders()
         End Function
-        '}]}
+'}]}
     End Module
 End Namespace
