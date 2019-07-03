@@ -2,6 +2,10 @@
 <!--^^-->
 <!--{[{-->
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+<!--}]}-->
+    xmlns:templateSelectors="using:Param_RootNamespace.TemplateSelectors"
+<!--^^-->
+<!--{[{-->
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
 <!--}]}-->
     mc:Ignorable="d">
