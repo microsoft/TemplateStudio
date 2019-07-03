@@ -28,7 +28,13 @@
       "path": ".\\Param_ProjectName.Core\\Services\\SampleDataService.vb"
     },
     {
+      "path": ".\\Param_ProjectName.Core\\Models\\SampleCompany.vb"
+    },
+    {
       "path": ".\\Param_ProjectName.Core\\Models\\SampleOrder.vb"
+    },
+    {
+      "path": ".\\Param_ProjectName.Core\\Models\\SampleOrderDetail.vb"
     }
   ],
   "symbols": {

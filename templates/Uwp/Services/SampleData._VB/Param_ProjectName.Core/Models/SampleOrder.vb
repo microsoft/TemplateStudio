@@ -7,6 +7,16 @@
 
         Public Property OrderDate As DateTime
 
+        Public Property RequiredDate As DateTime
+
+        Public Property ShippedDate As DateTime
+
+        Public Property ShipperName As String
+
+        Public Property ShipperPhone As String
+
+        Public Property Freight As Double
+
         Public Property Company As String
 
         Public Property ShipTo As String
@@ -15,10 +25,24 @@
 
         Public Property Status As String
 
-        Public Property Symbol As Char
+        Public ReadOnly Property Symbol As Char
+            Get
+                Return Convert.ToChar(SymbolCode)
+            End Get
+        End Property
+
+        Public Property SymbolCode As Integer
+
+        Public Property Details As IEnumerable(Of SampleOrderDetail)
 
         Public Overrides Function ToString() As String
             Return $"{Company} {Status}"
         End Function
+
+        Public ReadOnly Property ShortDescription As String
+            Get
+                Return $"Order ID: {OrderID}"
+            End Get
+        End Property
     End Class
 End Namespace
