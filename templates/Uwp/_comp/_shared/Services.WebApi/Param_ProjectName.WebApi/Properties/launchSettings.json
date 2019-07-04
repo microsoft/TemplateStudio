@@ -5,7 +5,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:53848",
-      "sslPort": 53849
+      "sslPort": 44340
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Param_ProjectName.MobileAppService": {
+    "Param_ProjectName.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
