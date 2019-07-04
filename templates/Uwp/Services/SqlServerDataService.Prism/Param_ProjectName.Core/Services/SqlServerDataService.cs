@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.Core.Services
-using System;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Param_RootNamespace.Core.Models;
 {
     // This class holds sample data used by some generated pages to show how they can be used.
     // More information on using and configuring this service can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/sql-server-data-service.md
