@@ -20,14 +20,13 @@ Namespace Services
                     .ContactTitle = "Sales Representative",
                     .Address = "Obere Str. 57",
                     .City = "Berlin",
-                    .Region = String.Empty,
                     .PostalCode = "12209",
                     .Country = "Germany",
                     .Phone = "030-0074321",
                     .Fax = "030-0076545",
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10643,
+                            .OrderID = 10643, // Symbol Globe
                             .OrderDate = New DateTime(1997, 8, 25),
                             .RequiredDate = New DateTime(1997, 9, 22),
                             .ShippedDate = New DateTime(1997, 9, 22),
@@ -41,7 +40,7 @@ Namespace Services
                             .SymbolCode = 57643,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "28",
+                                    .ProductID = 28,
                                     .ProductName = "Rössle Sauerkraut",
                                     .Quantity = 15,
                                     .Discount = 0.25,
@@ -52,7 +51,7 @@ Namespace Services
                                     .Total = 513.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "39",
+                                    .ProductID = 39,
                                     .ProductName = "Chartreuse verte",
                                     .Quantity = 21,
                                     .Discount = 0.25,
@@ -63,7 +62,7 @@ Namespace Services
                                     .Total = 283.5
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "46",
+                                    .ProductID = 46,
                                     .ProductName = "Spegesild",
                                     .Quantity = 2,
                                     .Discount = 0.25,
@@ -76,7 +75,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10835,
+                            .OrderID = 10835, // Symbol Music
                             .OrderDate = New DateTime(1998, 1, 15),
                             .RequiredDate = New DateTime(1998, 2, 12),
                             .ShippedDate = New DateTime(1998, 1, 21),
@@ -90,7 +89,7 @@ Namespace Services
                             .SymbolCode = 57737,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "59",
+                                    .ProductID = 59,
                                     .ProductName = "Raclette Courdavault",
                                     .Quantity = 15,
                                     .Discount = 0,
@@ -101,7 +100,7 @@ Namespace Services
                                     .Total = 825.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "77",
+                                    .ProductID = 77,
                                     .ProductName = "Original Frankfurter grüne Soße",
                                     .Quantity = 2,
                                     .Discount = 0.2,
@@ -114,7 +113,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10952,
+                            .OrderID = 10952, // Symbol Calendar
                             .OrderDate = New DateTime(1998, 3, 16),
                             .RequiredDate = New DateTime(1998, 4, 27),
                             .ShippedDate = New DateTime(1998, 3, 24),
@@ -128,7 +127,7 @@ Namespace Services
                             .SymbolCode = 57699,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "6",
+                                    .ProductID = 6,
                                     .ProductName = "Grandma's Boysenberry Spread",
                                     .Quantity = 16,
                                     .Discount = 0.05,
@@ -139,7 +138,7 @@ Namespace Services
                                     .Total = 380.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "28",
+                                    .ProductID = 28,
                                     .ProductName = "Rössle Sauerkraut",
                                     .Quantity = 2,
                                     .Discount = 0,
@@ -160,14 +159,13 @@ Namespace Services
                     .ContactTitle = "Owner",
                     .Address = "Avda. de la Constitución 2222",
                     .City = "México D.F.",
-                    .Region = String.Empty,
                     .PostalCode = "05021",
                     .Country = "Mexico",
                     .Phone = "(5) 555-4729",
                     .Fax = "(5) 555-3745",
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10625,
+                            .OrderID = 10625, // Symbol Camera
                             .OrderDate = New DateTime(1997, 8, 8),
                             .RequiredDate = New DateTime(1997, 9, 5),
                             .ShippedDate = New DateTime(1997, 8, 14),
@@ -181,7 +179,7 @@ Namespace Services
                             .SymbolCode = 57620,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "14",
+                                    .ProductID = 14,
                                     .ProductName = "Tofu",
                                     .Quantity = 3,
                                     .Discount = 0,
@@ -192,7 +190,7 @@ Namespace Services
                                     .Total = 69.75
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "42",
+                                    .ProductID = 42,
                                     .ProductName = "Singaporean Hokkien Fried Mee",
                                     .Quantity = 5,
                                     .Discount = 0,
@@ -203,7 +201,7 @@ Namespace Services
                                     .Total = 70.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "60",
+                                    .ProductID = 60,
                                     .ProductName = "Camembert Pierrot",
                                     .Quantity = 10,
                                     .Discount = 0,
@@ -216,7 +214,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10926,
+                            .OrderID = 10926, // Symbol Clock
                             .OrderDate = New DateTime(1998, 3, 4),
                             .RequiredDate = New DateTime(1998, 4, 1),
                             .ShippedDate = New DateTime(1998, 3, 11),
@@ -230,7 +228,7 @@ Namespace Services
                             .SymbolCode = 57633,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "11",
+                                    .ProductID = 11,
                                     .ProductName = "Queso Cabrales",
                                     .Quantity = 2,
                                     .Discount = 0,
@@ -241,7 +239,7 @@ Namespace Services
                                     .Total = 42.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "13",
+                                    .ProductID = 13,
                                     .ProductName = "Konbu",
                                     .Quantity = 10,
                                     .Discount = 0,
@@ -252,7 +250,7 @@ Namespace Services
                                     .Total = 60.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "19",
+                                    .ProductID = 19,
                                     .ProductName = "Teatime Chocolate Biscuits",
                                     .Quantity = 7,
                                     .Discount = 0,
@@ -263,7 +261,7 @@ Namespace Services
                                     .Total = 64.4
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "72",
+                                    .ProductID = 72,
                                     .ProductName = "Mozzarella di Giovanni",
                                     .Quantity = 10,
                                     .Discount = 0,
@@ -284,14 +282,13 @@ Namespace Services
                     .ContactTitle = "Owner",
                     .Address = "Mataderos  2312",
                     .City = "México D.F.",
-                    .Region = String.Empty,
                     .PostalCode = "05023",
                     .Country = "Mexico",
                     .Phone = "(5) 555-3932",
                     .Fax = String.Empty,
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10507,
+                            .OrderID = 10507, // Symbol Contact
                             .OrderDate = New DateTime(1997, 4, 15),
                             .RequiredDate = New DateTime(1997, 5, 13),
                             .ShippedDate = New DateTime(1997, 4, 22),
@@ -305,7 +302,7 @@ Namespace Services
                             .SymbolCode = 57661,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "43",
+                                    .ProductID = 43,
                                     .ProductName = "Ipoh Coffee",
                                     .Quantity = 15,
                                     .Discount = 0.15,
@@ -316,7 +313,7 @@ Namespace Services
                                     .Total = 816.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "48",
+                                    .ProductID = 48,
                                     .ProductName = "Chocolade",
                                     .Quantity = 15,
                                     .Discount = 0.15,
@@ -329,7 +326,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10573,
+                            .OrderID = 10573, // Symbol Star
                             .OrderDate = new DateTime(1997, 6, 19),
                             .RequiredDate = new DateTime(1997, 7, 17),
                             .ShippedDate = new DateTime(1997, 6, 20),
@@ -343,7 +340,7 @@ Namespace Services
                             .SymbolCode = 57619,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "17",
+                                    .ProductID = 17,
                                     .ProductName = "Alice Mutton",
                                     .Quantity = 18,
                                     .Discount = 0,
@@ -354,7 +351,7 @@ Namespace Services
                                     .Total = 702.00
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "34",
+                                    .ProductID = 34,
                                     .ProductName = "Sasquatch Ale",
                                     .Quantity = 40,
                                     .Discount = 0,
@@ -365,7 +362,7 @@ Namespace Services
                                     .Total = 560.00
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "53",
+                                    .ProductID = 53,
                                     .ProductName = "Perth Pasties",
                                     .Quantity = 25,
                                     .Discount = 0,
@@ -378,7 +375,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10682,
+                            .OrderID = 10682, // Symbol Home
                             .OrderDate = New DateTime(1997, 9, 25),
                             .RequiredDate = New DateTime(1997, 10, 23),
                             .ShippedDate = New DateTime(1997, 10, 1),
@@ -392,7 +389,7 @@ Namespace Services
                             .SymbolCode = 57615,
                             .Details = New ObservableCollection(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
-                                    .ProductID = "33",
+                                    .ProductID = 33,
                                     .ProductName = "Geitost",
                                     .Quantity = 30,
                                     .Discount = 0,
@@ -403,7 +400,7 @@ Namespace Services
                                     .Total = 75.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "66",
+                                    .ProductID = 66,
                                     .ProductName = "Louisiana Hot Spiced Okra",
                                     .Quantity = 4,
                                     .Discount = 0,
@@ -414,7 +411,7 @@ Namespace Services
                                     .Total = 68.0
                                 },
                                 New SampleOrderDetail() With {
-                                    .ProductID = "75",
+                                    .ProductID = 75,
                                     .ProductName = "Rhönbräu Klosterbier",
                                     .Quantity = 30,
                                     .Discount = 0,

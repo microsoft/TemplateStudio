@@ -30,7 +30,6 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Sales Representative",
                     Address = "Obere Str. 57",
                     City = "Berlin",
-                    Region = string.Empty,
                     PostalCode = "12209",
                     Country = "Germany",
                     Phone = "030-0074321",
@@ -39,7 +38,7 @@ namespace Param_RootNamespace.Core.Services
                     {
                         new SampleOrder()
                         {
-                            OrderID = 10643,
+                            OrderID = 10643, // Symbol Globe
                             OrderDate = new DateTime(1997, 8, 25),
                             RequiredDate = new DateTime(1997, 9, 22),
                             ShippedDate = new DateTime(1997, 9, 22),
@@ -55,7 +54,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "28",
+                                    ProductID = 28,
                                     ProductName = "Rössle Sauerkraut",
                                     Quantity = 15,
                                     Discount = 0.25,
@@ -67,7 +66,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "39",
+                                    ProductID = 39,
                                     ProductName = "Chartreuse verte",
                                     Quantity = 21,
                                     Discount = 0.25,
@@ -79,7 +78,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "46",
+                                    ProductID = 46,
                                     ProductName = "Spegesild",
                                     Quantity = 2,
                                     Discount = 0.25,
@@ -93,7 +92,7 @@ namespace Param_RootNamespace.Core.Services
                         },
                         new SampleOrder()
                         {
-                            OrderID = 10835,
+                            OrderID = 10835, // Symbol Music
                             OrderDate = new DateTime(1998, 1, 15),
                             RequiredDate = new DateTime(1998, 2, 12),
                             ShippedDate = new DateTime(1998, 1, 21),
@@ -109,7 +108,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "59",
+                                    ProductID = 59,
                                     ProductName = "Raclette Courdavault",
                                     Quantity = 15,
                                     Discount = 0,
@@ -121,7 +120,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "77",
+                                    ProductID = 77,
                                     ProductName = "Original Frankfurter grüne Soße",
                                     Quantity = 2,
                                     Discount = 0.2,
@@ -135,7 +134,7 @@ namespace Param_RootNamespace.Core.Services
                         },
                         new SampleOrder()
                         {
-                            OrderID = 10952,
+                            OrderID = 10952, // Symbol Calendar
                             OrderDate = new DateTime(1998, 3, 16),
                             RequiredDate = new DateTime(1998, 4, 27),
                             ShippedDate = new DateTime(1998, 3, 24),
@@ -151,7 +150,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "6",
+                                    ProductID = 6,
                                     ProductName = "Grandma's Boysenberry Spread",
                                     Quantity = 16,
                                     Discount = 0.05,
@@ -163,7 +162,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "28",
+                                    ProductID = 28,
                                     ProductName = "Rössle Sauerkraut",
                                     Quantity = 2,
                                     Discount = 0,
@@ -185,7 +184,6 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Owner",
                     Address = "Avda. de la Constitución 2222",
                     City = "México D.F.",
-                    Region = string.Empty,
                     PostalCode = "05021",
                     Country = "Mexico",
                     Phone = "(5) 555-4729",
@@ -194,7 +192,7 @@ namespace Param_RootNamespace.Core.Services
                     {
                         new SampleOrder()
                         {
-                            OrderID = 10625,
+                            OrderID = 10625, // Symbol Camera
                             OrderDate = new DateTime(1997, 8, 8),
                             RequiredDate = new DateTime(1997, 9, 5),
                             ShippedDate = new DateTime(1997, 8, 14),
@@ -210,7 +208,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "14",
+                                    ProductID = 14,
                                     ProductName = "Tofu",
                                     Quantity = 3,
                                     Discount = 0,
@@ -222,7 +220,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "42",
+                                    ProductID = 42,
                                     ProductName = "Singaporean Hokkien Fried Mee",
                                     Quantity = 5,
                                     Discount = 0,
@@ -234,7 +232,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "60",
+                                    ProductID = 60,
                                     ProductName = "Camembert Pierrot",
                                     Quantity = 10,
                                     Discount = 0,
@@ -248,7 +246,7 @@ namespace Param_RootNamespace.Core.Services
                         },
                         new SampleOrder()
                         {
-                            OrderID = 10926,
+                            OrderID = 10926, // Symbol Clock
                             OrderDate = new DateTime(1998, 3, 4),
                             RequiredDate = new DateTime(1998, 4, 1),
                             ShippedDate = new DateTime(1998, 3, 11),
@@ -264,7 +262,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "11",
+                                    ProductID = 11,
                                     ProductName = "Queso Cabrales",
                                     Quantity = 2,
                                     Discount = 0,
@@ -276,7 +274,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "13",
+                                    ProductID = 13,
                                     ProductName = "Konbu",
                                     Quantity = 10,
                                     Discount = 0,
@@ -288,7 +286,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "19",
+                                    ProductID = 19,
                                     ProductName = "Teatime Chocolate Biscuits",
                                     Quantity = 7,
                                     Discount = 0,
@@ -300,7 +298,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "72",
+                                    ProductID = 72,
                                     ProductName = "Mozzarella di Giovanni",
                                     Quantity = 10,
                                     Discount = 0,
@@ -322,7 +320,6 @@ namespace Param_RootNamespace.Core.Services
                     ContactTitle = "Owner",
                     Address = "Mataderos  2312",
                     City = "México D.F.",
-                    Region = string.Empty,
                     PostalCode = "05023",
                     Country = "Mexico",
                     Phone = "(5) 555-3932",
@@ -331,7 +328,7 @@ namespace Param_RootNamespace.Core.Services
                     {
                         new SampleOrder()
                         {
-                            OrderID = 10507,
+                            OrderID = 10507, // Symbol Contact
                             OrderDate = new DateTime(1997, 4, 15),
                             RequiredDate = new DateTime(1997, 5, 13),
                             ShippedDate = new DateTime(1997, 4, 22),
@@ -347,7 +344,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "43",
+                                    ProductID = 43,
                                     ProductName = "Ipoh Coffee",
                                     Quantity = 15,
                                     Discount = 0.15,
@@ -359,7 +356,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "48",
+                                    ProductID = 48,
                                     ProductName = "Chocolade",
                                     Quantity = 15,
                                     Discount = 0.15,
@@ -373,7 +370,7 @@ namespace Param_RootNamespace.Core.Services
                         },
                         new SampleOrder()
                         {
-                            OrderID = 10573,
+                            OrderID = 10573, // Symbol Star
                             OrderDate = new DateTime(1997, 6, 19),
                             RequiredDate = new DateTime(1997, 7, 17),
                             ShippedDate = new DateTime(1997, 6, 20),
@@ -389,7 +386,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "17",
+                                    ProductID = 17,
                                     ProductName = "Alice Mutton",
                                     Quantity = 18,
                                     Discount = 0,
@@ -401,7 +398,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "34",
+                                    ProductID = 34,
                                     ProductName = "Sasquatch Ale",
                                     Quantity = 40,
                                     Discount = 0,
@@ -413,7 +410,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "53",
+                                    ProductID = 53,
                                     ProductName = "Perth Pasties",
                                     Quantity = 25,
                                     Discount = 0,
@@ -427,7 +424,7 @@ namespace Param_RootNamespace.Core.Services
                         },
                         new SampleOrder()
                         {
-                            OrderID = 10682,
+                            OrderID = 10682, // Symbol Home
                             OrderDate = new DateTime(1997, 9, 25),
                             RequiredDate = new DateTime(1997, 10, 23),
                             ShippedDate = new DateTime(1997, 10, 1),
@@ -443,7 +440,7 @@ namespace Param_RootNamespace.Core.Services
                             {
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "33",
+                                    ProductID = 33,
                                     ProductName = "Geitost",
                                     Quantity = 30,
                                     Discount = 0,
@@ -455,7 +452,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "66",
+                                    ProductID = 66,
                                     ProductName = "Louisiana Hot Spiced Okra",
                                     Quantity = 4,
                                     Discount = 0,
@@ -467,7 +464,7 @@ namespace Param_RootNamespace.Core.Services
                                 },
                                 new SampleOrderDetail()
                                 {
-                                    ProductID = "75",
+                                    ProductID = 75,
                                     ProductName = "Rhönbräu Klosterbier",
                                     Quantity = 30,
                                     Discount = 0,
