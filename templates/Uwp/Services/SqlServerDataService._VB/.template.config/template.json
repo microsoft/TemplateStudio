@@ -14,7 +14,7 @@
     "wts.platform": "Uwp",
     "wts.group": "Data",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.defaultInstance": "SqlServerDataService",
     "wts.multipleInstance": "false",
     "wts.dependencies": "wts.Service.SampleDataService.VB|wts.Feat.AppDotConfig.VB",
