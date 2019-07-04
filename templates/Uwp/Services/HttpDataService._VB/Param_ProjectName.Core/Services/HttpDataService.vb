@@ -7,6 +7,8 @@ Imports System.Threading.Tasks
 Imports Newtonsoft.Json
 
 Namespace Core.Services
+    ' This class provides a wrapper around common functionality for HTTP actions.
+    ' Learn more at https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient
     Public Class HttpDataService
         Private client As HttpClient
         Private ReadOnly responseCache As Dictionary(Of String, Object)
@@ -42,6 +44,18 @@ Namespace Core.Services
             Return result
         End Function
 
+        Public Async Function PostAsync(Of T)(uri As String, item As T) As Task(Of Boolean)
+            If item Is Nothing Then
+                Return False
+            End If
+
+            Dim serializedItem = JsonConvert.SerializeObject(item)
+            Dim buffer = Encoding.UTF8.GetBytes(serializedItem)
+            Dim byteContent = New ByteArrayContent(buffer)
+            Dim response = Await client.PostAsync(uri, byteContent)
+            Return response.IsSuccessStatusCode
+        End Function
+
         Public Async Function PostAsJsonAsync(Of T)(uri As String, item As T) As Task(Of Boolean)
             If item Is Nothing Then
                 Return False
@@ -61,6 +75,16 @@ Namespace Core.Services
             Dim buffer = Encoding.UTF8.GetBytes(serializedItem)
             Dim byteContent = New ByteArrayContent(buffer)
             Dim response = Await client.PutAsync(uri, byteContent)
+            Return response.IsSuccessStatusCode
+        End Function
+
+        Public Async Function PutAsJsonAsync(Of T)(uri As String, item As T) As Task(Of Boolean)
+            If item Is Nothing Then
+                Return False
+            End If
+
+            Dim serializedItem = JsonConvert.SerializeObject(item)
+            Dim response = Await client.PutAsync(uri, New StringContent(serializedItem, Encoding.UTF8, "application/json"))
             Return response.IsSuccessStatusCode
         End Function
 
