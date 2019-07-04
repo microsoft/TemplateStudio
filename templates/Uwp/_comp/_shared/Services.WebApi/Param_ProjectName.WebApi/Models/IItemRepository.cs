@@ -7,14 +7,14 @@ namespace Param_RootNamespace.WebApi.Models
     // TODO WTS: Replace or update this interface when no longer using sample data.
     public interface IItemRepository
     {
-        void Add(SampleOrder item);
+        void Add(SampleCompany item);
 
-        void Update(SampleOrder item);
+        void Update(SampleCompany item);
 
-        SampleOrder Remove(long id);
+        SampleCompany Remove(string id);
 
-        SampleOrder Get(long id);
+        SampleCompany Get(string id);
 
-        IEnumerable<SampleOrder> GetAll();
+        IEnumerable<SampleCompany> GetAll();
     }
 }
