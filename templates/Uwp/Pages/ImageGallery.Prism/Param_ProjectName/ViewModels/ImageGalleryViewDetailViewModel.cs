@@ -53,7 +53,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnNavigatedTo(e, viewModelState);
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetGallerySampleDataAsync();
+            Source = await _sampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
 
             var selectedImageID = e.Parameter as string;
 

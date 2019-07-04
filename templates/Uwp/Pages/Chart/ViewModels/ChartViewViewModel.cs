@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
         public async Task LoadDataAsync()
         {
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetChartSampleDataAsync();
+            Source = await SampleDataService.GetChartDataAsync();
         }
     }
 }

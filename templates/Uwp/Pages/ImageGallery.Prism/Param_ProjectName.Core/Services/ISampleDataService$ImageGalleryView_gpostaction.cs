@@ -1,14 +1,12 @@
 ﻿//{**
-// This code block adds the method `GetGallerySampleDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetImageGalleryDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
     public interface ISampleDataService
     {
 //^^
 //{[{
 
-        void Initialize(string localResourcesPath);
-
-        Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync();
+        Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath);
 //}]}
     }
 }

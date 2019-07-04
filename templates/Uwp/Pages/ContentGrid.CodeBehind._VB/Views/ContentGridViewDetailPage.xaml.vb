@@ -25,10 +25,10 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Dim orderId As Long
-            orderId = CType(e.Parameter, Long)
+            Dim orderID As Long
+            orderID = CType(e.Parameter, Long)
             Dim data = Await SampleDataService.GetContentGridDataAsync()
-            Item = data.First(Function(i) i.OrderId = orderId)
+            Item = data.First(Function(i) i.OrderID = orderID)
         End Sub
 
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)

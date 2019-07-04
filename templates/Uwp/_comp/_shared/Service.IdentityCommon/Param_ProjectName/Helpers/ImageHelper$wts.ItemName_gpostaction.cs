@@ -9,6 +9,7 @@ namespace Param_RootNamespace.Helpers
     {
 //^^
 //{[{
+
         public static async Task<BitmapImage> ImageFromStringAsync(string data)
         {
             var byteArray = Convert.FromBase64String(data);

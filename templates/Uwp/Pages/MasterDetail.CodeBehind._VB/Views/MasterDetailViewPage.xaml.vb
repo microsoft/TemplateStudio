@@ -28,7 +28,7 @@ Namespace Views
         Private Async Sub MasterDetailViewPage_Loaded(sender As Object, e As RoutedEventArgs)
             SampleItems.Clear()
 
-            Dim data = Await SampleDataService.GetSampleModelDataAsync()
+            Dim data = Await SampleDataService.GetMasterDetailDataAsync()
 
             For Each item As SampleOrder In data
                 SampleItems.Add(item)

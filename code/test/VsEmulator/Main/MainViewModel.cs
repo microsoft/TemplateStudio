@@ -230,7 +230,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     TemplateId = styleCopTemplate,
                 };
 
-                userSelection.Add(userSelectionItem, TemplateType.Testing);
+                userSelection.Add(userSelectionItem, testingFeature.GetTemplateType());
             }
         }
 

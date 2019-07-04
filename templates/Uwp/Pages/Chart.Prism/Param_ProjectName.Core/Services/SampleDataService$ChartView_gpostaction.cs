@@ -10,13 +10,12 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your chart page is displaying real data.
-        public async Task<ObservableCollection<DataPoint>> GetChartSampleDataAsync()
+        public async Task<ObservableCollection<DataPoint>> GetChartDataAsync()
         {
             var data = AllOrders().Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
                                   .OrderBy(dp => dp.Category);
 
             await Task.CompletedTask;
-
             return new ObservableCollection<DataPoint>(data);
         }
 //}]}

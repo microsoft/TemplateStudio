@@ -21,9 +21,9 @@ namespace Param_RootNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is long orderId)
+            if (e.Parameter is long orderID)
             {
-                await ViewModel.InitializeAsync(orderId);
+                await ViewModel.InitializeAsync(orderID);
             }
         }
 

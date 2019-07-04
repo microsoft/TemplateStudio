@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
         public async void EnsureSampleDataServiceReturnsChartDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetChartSampleDataAsync();
+            var actual = await dataService.GetChartDataAsync();
 
             Assert.AreNotEqual(0, actual.Count);
         }

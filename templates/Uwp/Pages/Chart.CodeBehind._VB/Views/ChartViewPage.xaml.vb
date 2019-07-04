@@ -26,7 +26,7 @@ Namespace Views
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetChartSampleDataAsync()
+            Source = Await SampleDataService.GetChartDataAsync()
         End Sub
     End Class
 End Namespace

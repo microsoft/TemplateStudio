@@ -6,10 +6,16 @@ Imports System.Threading.Tasks
 '}]}
 Namespace Services
     Public Module SampleDataService
+'{[{
+        Private _allOrders As IEnumerable(Of SampleOrder)
+'}]}
+        Public Function AllOrders() As IEnumerable(Of SampleOrder)
+        End Function
+
+        Public Function AllCompanies() As IEnumerable(Of SampleCompany)
+        End Function
 '^^
 '{[{
-
-        Private _allOrders As IEnumerable(Of SampleOrder)
 
         ' TODO WTS: Remove this once your ContentGrid page is displaying real data.
         Public Async Function GetContentGridDataAsync() As Task(Of ObservableCollection(Of SampleOrder))

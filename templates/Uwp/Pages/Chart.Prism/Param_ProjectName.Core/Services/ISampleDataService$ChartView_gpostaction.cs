@@ -1,12 +1,12 @@
 ﻿//{**
-// This code block adds the method `GetChartSampleDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetChartDataAsync()` to the SampleDataService of your project.
 //**}
     public interface ISampleDataService
     {
 //^^
 //{[{
 
-        Task<ObservableCollection<DataPoint>> GetChartSampleDataAsync();
+        Task<ObservableCollection<DataPoint>> GetChartDataAsync();
 //}]}
     }
 }

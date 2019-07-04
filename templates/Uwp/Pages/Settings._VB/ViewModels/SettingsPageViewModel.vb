@@ -49,6 +49,7 @@ Namespace ViewModels
 
         Public Async Function InitializeAsync() As Task
             VersionDescription = GetVersionDescription()
+            Await Task.CompletedTask
         End Function
 
         Private Function GetVersionDescription() As String

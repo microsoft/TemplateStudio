@@ -59,7 +59,7 @@ Order BY Orders.OrderID"
 
                                 While Await reader.ReadAsync()
                                     Dim order = New SampleOrder With {
-                                        .OrderId = reader.GetInt32(0),
+                                        .OrderID = reader.GetInt32(0),
                                         .OrderDate = reader.GetDateTime(1),
                                         .Company = reader.GetString(2),
                                         .ShipTo = reader.GetString(3),

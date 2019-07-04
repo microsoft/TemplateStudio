@@ -34,7 +34,7 @@ namespace Param_RootNamespace.Views
         private async void ImageGalleryViewPage_OnLoaded(object sender, RoutedEventArgs e)
         {
             // TODO WTS: Replace this with your actual data
-             Source = await SampleDataService.GetGallerySampleDataAsync();
+             Source = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
         }
 
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)

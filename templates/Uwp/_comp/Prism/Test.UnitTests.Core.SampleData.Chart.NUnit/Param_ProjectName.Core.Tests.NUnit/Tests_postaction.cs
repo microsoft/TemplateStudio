@@ -1,6 +1,6 @@
 ﻿//{[{
-using Param_RootNamespace.Core.Services;
 using System.Threading.Tasks;
+using Param_RootNamespace.Core.Services;
 //}]}
 
 namespace Param_RootNamespace.Core.Tests.NUnit
@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         public async Task EnsureSampleDataServiceReturnsChartDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetChartSampleDataAsync();
+            var actual = await dataService.GetChartDataAsync();
 
             Assert.IsNotEmpty(actual);
         }

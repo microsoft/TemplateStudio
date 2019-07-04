@@ -76,7 +76,7 @@
 		"\"wts.rootNamespace\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_RootNamespace\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol rootNamespace block to be added on WTS template.json"
 	},
@@ -86,7 +86,7 @@
 		"\"wts.projectName\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_ProjectName\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol projectName block to be added on WTS template.json"
 	},
@@ -96,7 +96,7 @@
 		"\"baseclass\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"System.ComponentModel.INotifyPropertyChanged\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol baseclass block to be added on WTS template.json"
 	},
@@ -106,7 +106,7 @@
 		"\"setter\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_Setter\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol setter block to be added on WTS template.json"
 	},
@@ -120,7 +120,7 @@
 		"  \"parameters\": {",
 		"    \"format\": \"yyyy\"",
 		"  }",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol copyrightYear block to be added on WTS template.json"
 	},
@@ -130,7 +130,7 @@
 		"\"wts.homePageName\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_HomeName\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol homePageName block to be added on WTS template.json"
 	},
@@ -141,7 +141,7 @@
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_SettingsPageName\",",
 		"  \"fileRename\": \"Param_SettingsPageName\"",
-		"}",
+		"}"
 		],
 		"description": "Add a symbol page.settings block to be added on WTS template.json"
 	},
@@ -152,7 +152,7 @@
 		"body": [
 		"{",
 		"  \"path\": \".\\\\\\FolderName\\\\\\FileName.extension\"",
-		"}",
+		"}"
 		],
 		"description": "Add a primary output block to be added on WTS template.json"
 	},
@@ -161,7 +161,7 @@
 		"body": [
 		"{",
 		"  \"path\": \".\\\\\\Param_ProjectName\\\\\\FolderName\\\\\\FileName.extension\"",
-		"}",
+		"}"
 		],
 		"description": "Add a primary output to parent block to be added on WTS template.json"
 	},
@@ -192,6 +192,11 @@
 		"body": "\"wts.licenses\": \"[]()\"",
 		"description": "Add WTS tag licenses"
 	},
+	"wts.tag.dependencies": {
+		"prefix": "wts.tag.dependencies",
+		"body": "\"wts.dependencies\": \"\"",
+		"description": "Add WTS tag dependencies"
+	},
 
 	// POST ACTIONS
 	"wts.postActions": {
@@ -215,7 +220,8 @@
 		"    \"projectPath\": \"\"",
 		"  },",
 		"  \"continueOnError\": \"true\"",
-		"}",],
+		"}"
+		],
 		"description": "Add AddNugetPackage template.json postActions"
 	},
 	"wts.postAction.AddReferenceToThisProject": {
@@ -230,7 +236,8 @@
 		"    \"projectPath\": \"\"",
 		"  },",
 		"  \"continueOnError\": \"true\"",
-		"}",],
+		"}"
+		],
 		"description": "Add AddReferenceToThisProject template.json postActions"
 	},
 	"wts.postAction.AddSdkReference": {
@@ -246,7 +253,8 @@
 		"    \"projectPath\": \"\"",
 		"  },",
 		"  \"continueOnError\": \"true\"",
-		"}",],
+		"}"
+		],
 		"description": "Add AddReferenceToThisProject template.json postActions"
 	},
 	"wts.postAction.GenerateTestCertificate": {
@@ -260,7 +268,8 @@
 		"    \"files\": \"\"",
 		"  },",
 		"  \"continueOnError\": \"true\"",
-		"}",],
+		"}"
+		],
 		"description": "Add AddReferenceToThisProject template.json postActions"
 	}
 }

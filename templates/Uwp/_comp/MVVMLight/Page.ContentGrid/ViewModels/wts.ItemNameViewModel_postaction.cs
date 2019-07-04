@@ -16,7 +16,7 @@ namespace Param_RootNamespace.ViewModels
             {
 //^^
 //{[{
-                NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderId);
+                NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderID);
 //}]}
             }
         }

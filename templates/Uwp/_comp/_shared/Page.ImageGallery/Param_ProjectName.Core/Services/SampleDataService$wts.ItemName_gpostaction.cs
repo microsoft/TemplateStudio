@@ -1,29 +1,23 @@
 ﻿//{**
-// This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetImageGalleryDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
-//{[{
-using System.Threading.Tasks;
-//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public static class SampleDataService
     {
+//{[{
+        private static ObservableCollection<SampleImage> _gallerySampleData;
+//}]}
+
+        private static IEnumerable<SampleOrder> AllOrders()
+        {
+        }
 //^^
 //{[{
 
-        private static string _localResourcesPath;
-
-        private static ObservableCollection<SampleImage> _gallerySampleData;
-
-        public static void Initialize(string localResourcesPath)
-        {
-            _localResourcesPath = localResourcesPath;
-        }
-
         // TODO WTS: Remove this once your image gallery page is displaying real data.
-        public static async Task<ObservableCollection<SampleImage>> GetGallerySampleDataAsync()
+        public static async Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
         {
-            await Task.CompletedTask;
             if (_gallerySampleData == null)
             {
                 _gallerySampleData = new ObservableCollection<SampleImage>();
@@ -32,12 +26,13 @@ namespace Param_RootNamespace.Core.Services
                     _gallerySampleData.Add(new SampleImage()
                     {
                         ID = $"{i}",
-                        Source = $"{_localResourcesPath}/SampleData/SamplePhoto{i}.png",
+                        Source = $"{localResourcesPath}/SampleData/SamplePhoto{i}.png",
                         Name = $"Image sample {i}"
                     });
                 }
             }
 
+            await Task.CompletedTask;
             return _gallerySampleData;
         }
 //}]}

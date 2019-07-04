@@ -6,6 +6,7 @@ Namespace Helpers
     Module ImageHelper
 '^^
 '{[{
+
         Async Function ImageFromStringAsync(data As String) As Task(Of BitmapImage)
             Dim byteArray = Convert.FromBase64String(data)
             Dim image = New BitmapImage()

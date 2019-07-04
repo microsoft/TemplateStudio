@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Core.Tests.XUnit
         public async void EnsureSampleDataServiceReturnsGridDataAsync()
         {
             var dataService = new SampleDataService();
-            var actual = await dataService.GetGridSampleDataAsync();
+            var actual = await dataService.GetGridDataAsync();
 
             Assert.NotEmpty(actual);
         }

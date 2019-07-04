@@ -31,7 +31,13 @@
         "path": ".\\Param_ProjectName.Core\\Services\\SampleDataService.cs"
       },
       {
+        "path": ".\\Param_ProjectName.Core\\Models\\SampleCompany.cs"
+      },
+      {
         "path": ".\\Param_ProjectName.Core\\Models\\SampleOrder.cs"
+      },
+      {
+        "path": ".\\Param_ProjectName.Core\\Models\\SampleOrderDetail.cs"
       }
     ],
     "symbols": {
