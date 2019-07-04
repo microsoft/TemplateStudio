@@ -49,7 +49,7 @@ namespace Param_RootNamespace.WebApi.Controllers
         public ActionResult<SampleOrder> Create([FromBody] SampleOrder item)
         {
             _itemRepository.Add(item);
-            return CreatedAtAction(nameof(GetItem), new { item.OrderId }, item);
+            return CreatedAtAction(nameof(GetItem), new { item.OrderID }, item);
         }
 
         [HttpPut]

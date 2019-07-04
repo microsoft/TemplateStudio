@@ -15,7 +15,7 @@ Namespace Behaviors
             CollapseNodes(AssociatedObject.RootNodes)
         End Sub
 
-        Private Sub CollapseNodes(ByVal nodes As IList(Of WinUI.TreeViewNode))
+        Private Sub CollapseNodes(nodes As IList(Of WinUI.TreeViewNode))
             For Each node In nodes
                 CollapseNodes(node.Children)
                 AssociatedObject.Collapse(node)

@@ -37,7 +37,7 @@ Namespace Views
             CollapseNodes(treeView.RootNodes)
         End Sub
 
-        Private Sub CollapseNodes(ByVal nodes As IList(Of WinUI.TreeViewNode))
+        Private Sub CollapseNodes(nodes As IList(Of WinUI.TreeViewNode))
             For Each node In nodes
                 CollapseNodes(node.Children)
                 treeView.Collapse(node)

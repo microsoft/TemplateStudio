@@ -21,7 +21,7 @@ namespace Param_RootNamespace.WebApi.Models
 
                 foreach (var order in await dataService.GetWebApiSampleDataAsync())
                 {
-                    items.TryAdd(order.OrderId, order);
+                    items.TryAdd(order.OrderID, order);
                 }
             });
         }
@@ -33,7 +33,7 @@ namespace Param_RootNamespace.WebApi.Models
 
         public void Add(SampleOrder item)
         {
-            items[item.OrderId] = item;
+            items[item.OrderID] = item;
         }
 
         public SampleOrder Get(long id)
@@ -52,7 +52,7 @@ namespace Param_RootNamespace.WebApi.Models
 
         public void Update(SampleOrder item)
         {
-            items[item.OrderId] = item;
+            items[item.OrderID] = item;
         }
     }
 }
