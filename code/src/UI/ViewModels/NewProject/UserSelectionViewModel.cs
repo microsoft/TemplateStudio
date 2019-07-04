@@ -91,6 +91,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
+            if (template.IsGroupExclusiveSelection)
+            {
+                var collection = GetCollection(template.TemplateType);
+                var exclusiveSelectionAddedTemplates = collection.Where(f => f.Group == template.Group).ToList();
+                foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
+                {
+                    await RemoveAsync(exclusiveFeature);
+                }
+            }
+
             foreach (var dependency in template.Template.Dependencies)
             {
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);
@@ -104,16 +114,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
 
             template.IncreaseSelection();
-            if (template.IsGroupExclusiveSelection)
-            {
-                var collection = GetCollection(template.TemplateType);
-                var exclusiveSelectionAddedTemplates = collection.Where(f => f.Group == template.Group).ToList();
-                foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
-                {
-                    await RemoveAsync(exclusiveFeature);
-                }
-            }
-
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)
