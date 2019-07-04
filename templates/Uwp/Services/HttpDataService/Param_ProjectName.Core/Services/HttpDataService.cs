@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 
 namespace Param_RootNamespace.Core.Services
 {
+    // This class provides a wrapper around common functionality for HTTP actions.
+    // Learn more at https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient
     public class HttpDataService
     {
         private readonly Dictionary<string, object> responseCache;
