@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 
 namespace Param_RootNamespace.Core.Services
 {
+    // This class provides a wrapper around common functionality for HTTP actions.
+    // Learn more at https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient
     public class HttpDataService
     {
         private readonly Dictionary<string, object> responseCache;
@@ -53,6 +55,22 @@ namespace Param_RootNamespace.Core.Services
             return result;
         }
 
+        public async Task<bool> PostAsync<T>(string uri, T item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+
+            var serializedItem = JsonConvert.SerializeObject(item);
+            var buffer = Encoding.UTF8.GetBytes(serializedItem);
+            var byteContent = new ByteArrayContent(buffer);
+
+            var response = await client.PostAsync(uri, byteContent);
+
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> PostAsJsonAsync<T>(string uri, T item)
         {
             if (item == null)
@@ -79,6 +97,20 @@ namespace Param_RootNamespace.Core.Services
             var byteContent = new ByteArrayContent(buffer);
 
             var response = await client.PutAsync(uri, byteContent);
+
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> PutAsJsonAsync<T>(string uri, T item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+
+            var serializedItem = JsonConvert.SerializeObject(item);
+
+            var response = await client.PutAsync(uri, new StringContent(serializedItem, Encoding.UTF8, "application/json"));
 
             return response.IsSuccessStatusCode;
         }
