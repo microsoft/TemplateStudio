@@ -1,4 +1,7 @@
 ﻿Namespace Models
+    ' TODO WTS: Remove this class once your pages/features are using your data.
+    ' This is used by the SampleDataService.
+    ' It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     Public Class SampleCompany
         Public Property CompanyID As String
 
@@ -12,8 +15,6 @@
 
         Public Property City As String
 
-        Public Property Region As String
-
         Public Property PostalCode As String
 
         Public Property Country As String
@@ -22,6 +23,6 @@
 
         Public Property Fax As String
 
-        Public Property Orders As IEnumerable(Of SampleOrder)
+        Public Property Orders As ICollection(Of SampleOrder)
     End Class
 End Namespace

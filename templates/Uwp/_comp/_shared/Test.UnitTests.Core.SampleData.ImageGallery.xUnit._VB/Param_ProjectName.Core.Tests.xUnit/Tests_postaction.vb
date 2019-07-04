@@ -10,7 +10,7 @@ Public Class Tests
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <Fact>
     Public Async Sub EnsureSampleDataServiceReturnsImageGalleryDataAsync()
-        Dim actual = Await SampleDataService.GetImageGalleryDataAsync()
+        Dim actual = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
 
         Assert.NotEmpty(actual)
     End Sub

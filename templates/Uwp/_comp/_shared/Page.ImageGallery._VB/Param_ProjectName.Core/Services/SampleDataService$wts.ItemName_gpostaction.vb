@@ -1,5 +1,5 @@
 ﻿'{**
-' This code block adds the method `GetImageGalleryDataAsync()` to the SampleDataService of your project.
+' This code block adds the method `GetImageGalleryDataAsync(localResourcesPath As String)` to the SampleDataService of your project.
 '**}
 Namespace Services
     Public Module SampleDataService

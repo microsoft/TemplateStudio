@@ -86,13 +86,6 @@
                 <TextBlock
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Region" />
-                <TextBlock
-                    Style="{StaticResource DetailBodyBaseMediumStyle}"
-                    Text="{x:Bind Region}" />
-                <TextBlock
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{StaticResource DetailSubTitleStyle}"
                     Text="Country" />
                 <TextBlock
                     Style="{StaticResource DetailBodyBaseMediumStyle}"

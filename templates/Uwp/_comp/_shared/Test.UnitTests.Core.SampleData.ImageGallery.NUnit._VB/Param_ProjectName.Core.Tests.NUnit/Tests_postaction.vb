@@ -10,7 +10,7 @@ Public Class Tests
     ' This test serves only as a demonstration of testing functionality in the Core library.
     <Test>
     Public Async Function EnsureSampleDataServiceReturnsImageGalleryDataAsync() As Task
-        Dim actual = Await SampleDataService.GetImageGalleryDataAsync()
+        Dim actual = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
 
         Assert.AreNotEqual(0, actual.Count)
     End Function
