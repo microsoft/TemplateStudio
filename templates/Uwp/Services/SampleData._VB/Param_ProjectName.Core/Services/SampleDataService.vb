@@ -26,7 +26,7 @@ Namespace Services
                     .Fax = "030-0076545",
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10643, ' Symbol Globe
+                            .OrderID = 10643, ' Symbol-Globe
                             .OrderDate = New DateTime(1997, 8, 25),
                             .RequiredDate = New DateTime(1997, 9, 22),
                             .ShippedDate = New DateTime(1997, 9, 22),
@@ -75,7 +75,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10835, ' Symbol Music
+                            .OrderID = 10835, ' Symbol-Music
                             .OrderDate = New DateTime(1998, 1, 15),
                             .RequiredDate = New DateTime(1998, 2, 12),
                             .ShippedDate = New DateTime(1998, 1, 21),
@@ -113,7 +113,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10952, ' Symbol Calendar
+                            .OrderID = 10952, ' Symbol-Calendar
                             .OrderDate = New DateTime(1998, 3, 16),
                             .RequiredDate = New DateTime(1998, 4, 27),
                             .ShippedDate = New DateTime(1998, 3, 24),
@@ -165,7 +165,7 @@ Namespace Services
                     .Fax = "(5) 555-3745",
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10625, ' Symbol Camera
+                            .OrderID = 10625, ' Symbol-Camera
                             .OrderDate = New DateTime(1997, 8, 8),
                             .RequiredDate = New DateTime(1997, 9, 5),
                             .ShippedDate = New DateTime(1997, 8, 14),
@@ -214,7 +214,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10926, ' Symbol Clock
+                            .OrderID = 10926, ' Symbol-Clock
                             .OrderDate = New DateTime(1998, 3, 4),
                             .RequiredDate = New DateTime(1998, 4, 1),
                             .ShippedDate = New DateTime(1998, 3, 11),
@@ -288,7 +288,7 @@ Namespace Services
                     .Fax = String.Empty,
                     .Orders = New ObservableCollection(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10507, ' Symbol Contact
+                            .OrderID = 10507, ' Symbol-Contact
                             .OrderDate = New DateTime(1997, 4, 15),
                             .RequiredDate = New DateTime(1997, 5, 13),
                             .ShippedDate = New DateTime(1997, 4, 22),
@@ -326,7 +326,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10573, ' Symbol Star
+                            .OrderID = 10573, ' Symbol-Star
                             .OrderDate = new DateTime(1997, 6, 19),
                             .RequiredDate = new DateTime(1997, 7, 17),
                             .ShippedDate = new DateTime(1997, 6, 20),
@@ -375,7 +375,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10682, ' Symbol Home
+                            .OrderID = 10682, ' Symbol-Home
                             .OrderDate = New DateTime(1997, 9, 25),
                             .RequiredDate = New DateTime(1997, 10, 23),
                             .ShippedDate = New DateTime(1997, 10, 1),
