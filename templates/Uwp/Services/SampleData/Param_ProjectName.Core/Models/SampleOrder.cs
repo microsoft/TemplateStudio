@@ -34,7 +34,7 @@ namespace Param_RootNamespace.Core.Models
 
         public int SymbolCode { get; set; }
 
-        public IEnumerable<SampleOrderDetail> Details { get; set; }
+        public ICollection<SampleOrderDetail> Details { get; set; }
 
         public override string ToString()
         {

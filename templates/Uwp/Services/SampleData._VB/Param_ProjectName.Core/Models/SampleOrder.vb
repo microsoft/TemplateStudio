@@ -33,7 +33,7 @@
 
         Public Property SymbolCode As Integer
 
-        Public Property Details As IEnumerable(Of SampleOrderDetail)
+        Public Property Details As ICollection(Of SampleOrderDetail)
 
         Public Overrides Function ToString() As String
             Return $"{Company} {Status}"
