@@ -6,7 +6,7 @@
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleOrder>> GetWebApiSampleDataAsync();
+        Task<ObservableCollection<SampleCompany>> GetWebApiSampleDataAsync();
 //}]}
     }
 }

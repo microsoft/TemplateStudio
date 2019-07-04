@@ -23,15 +23,23 @@ namespace Param_RootNamespace.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<SampleOrder>> List()
+        public ActionResult<IEnumerable<SampleCompany>> List()
         {
             return _itemRepository.GetAll().ToList();
+        }
+
+        [HttpGet]
+        [Route("~/api/orders")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<IEnumerable<SampleOrder>> ListOrders()
+        {
+            return _itemRepository.GetAll().SelectMany(c => c.Orders).ToList();
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<SampleOrder> GetItem(long id)
+        public ActionResult<SampleCompany> GetItem(string id)
         {
             var item = _itemRepository.Get(id);
 
@@ -46,16 +54,16 @@ namespace Param_RootNamespace.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<SampleOrder> Create([FromBody] SampleOrder item)
+        public ActionResult<SampleCompany> Create([FromBody] SampleCompany item)
         {
             _itemRepository.Add(item);
-            return CreatedAtAction(nameof(GetItem), new { item.OrderID }, item);
+            return CreatedAtAction(nameof(GetItem), new { item.CompanyID }, item);
         }
 
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Edit([FromBody] SampleOrder item)
+        public ActionResult Edit([FromBody] SampleCompany item)
         {
             try
             {
@@ -72,7 +80,7 @@ namespace Param_RootNamespace.WebApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Delete(long id)
+        public ActionResult Delete(string id)
         {
             var item = _itemRepository.Remove(id);
 

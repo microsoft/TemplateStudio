@@ -10,47 +10,47 @@ namespace Param_RootNamespace.WebApi.Models
     // TODO WTS: Replace or update this class when no longer using sample data.
     public class ItemRepository : IItemRepository
     {
-        private static Dictionary<long, SampleOrder> items =
-            new Dictionary<long, SampleOrder>();
+        private static Dictionary<string, SampleCompany> items =
+            new Dictionary<string, SampleCompany>();
 
         public ItemRepository()
         {
             Task.Run(async () =>
             {
-                foreach (var order in await SampleDataService.GetWebApiSampleDataAsync())
+                foreach (var company in await SampleDataService.GetWebApiSampleDataAsync())
                 {
-                    items.TryAdd(order.OrderID, order);
+                    items.TryAdd(company.CompanyID, company);
                 }
             });
         }
 
-        public IEnumerable<SampleOrder> GetAll()
+        public IEnumerable<SampleCompany> GetAll()
         {
             return items.Values;
         }
 
-        public void Add(SampleOrder item)
+        public void Add(SampleCompany item)
         {
-            items[item.OrderID] = item;
+            items[item.CompanyID] = item;
         }
 
-        public SampleOrder Get(long id)
+        public SampleCompany Get(string id)
         {
-            items.TryGetValue(id, out SampleOrder item);
+            items.TryGetValue(id, out SampleCompany item);
 
             return item;
         }
 
-        public SampleOrder Remove(long id)
+        public SampleCompany Remove(string id)
         {
-            items.Remove(id, out SampleOrder item);
+            items.Remove(id, out SampleCompany item);
 
             return item;
         }
 
-        public void Update(SampleOrder item)
+        public void Update(SampleCompany item)
         {
-            items[item.OrderID] = item;
+            items[item.CompanyID] = item;
         }
     }
 }
