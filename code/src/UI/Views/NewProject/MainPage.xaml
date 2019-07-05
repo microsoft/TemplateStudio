@@ -59,7 +59,7 @@
                             Style="{StaticResource WtsTextBlockSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftTopRight}"
                             Text="{x:Static strings:StringRes.ProjectDetailsTitle}" />
-                            <TextBlock
+                        <TextBlock
                             Style="{StaticResource WtsTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
@@ -106,7 +106,7 @@
                                                 <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding MoveUpCommand}" />
                                                 <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding MoveDownCommand}" />
                                                 <KeyBinding  Key="F2" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
-                                                <KeyBinding  Key="Delete" Command="{Binding DeletePageCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
+                                                <KeyBinding  Key="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=itemsList, Path=SelectedItem}" />
                                             </ListView.InputBindings>
                                         </ListView>
                                     </StackPanel>

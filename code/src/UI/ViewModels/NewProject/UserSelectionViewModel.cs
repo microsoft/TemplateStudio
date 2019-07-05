@@ -188,6 +188,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             else if (group.Items.Any())
             {
+                newIndex = newIndex < group.Items.Count ? newIndex : group.Items.Count - 1;
                 group.SelectedItem = group.Items.ElementAt(newIndex);
                 group.SelectedItem.IsFocused = true;
             }
