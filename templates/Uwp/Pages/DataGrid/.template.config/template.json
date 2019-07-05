@@ -16,7 +16,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight|CaliburnMicro",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "7",
+    "wts.displayOrder": "8",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
     "wts.dependencies": "wts.Service.SampleDataService",
     "wts.genGroup": "0",
@@ -60,8 +60,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls.DataGrid",
-        "version" : "5.1.0",
+        "packageId": "Microsoft.Toolkit.Uwp.UI.Controls.DataGrid",
+        "version": "5.1.0",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

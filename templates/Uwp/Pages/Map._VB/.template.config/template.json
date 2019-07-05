@@ -1,6 +1,8 @@
 ﻿{
   "author": "Microsoft Community",
-  "classifications": [ "Universal" ],
+  "classifications": [
+    "Universal"
+  ],
   "name": "Map",
   "groupIdentity": "wts.Page.Map.VB",
   "identity": "wts.Page.Map.VB",
@@ -13,7 +15,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "11",
+    "wts.displayOrder": "12",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
@@ -21,11 +23,21 @@
   "preferNameDirectory": true,
   "PrimaryOutputs":
   [
-    { "path": ".\\Views\\MapPagePage.xaml" },
-    { "path": ".\\Views\\MapPagePage.xaml.vb" },
-    { "path": ".\\ViewModels\\MapPageViewModel.vb" },
-    { "path": ".\\Assets\\map.png" },
-    { "path": ".\\Services\\LocationService.vb" }
+    {
+      "path": ".\\Views\\MapPagePage.xaml"
+    },
+    {
+      "path": ".\\Views\\MapPagePage.xaml.vb"
+    },
+    {
+      "path": ".\\ViewModels\\MapPageViewModel.vb"
+    },
+    {
+      "path": ".\\Assets\\map.png"
+    },
+    {
+      "path": ".\\Services\\LocationService.vb"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

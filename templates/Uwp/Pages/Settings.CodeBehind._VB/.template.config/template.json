@@ -19,7 +19,7 @@
     "wts.dependencies":"wts.Feature.ThemeSelection.VB",
     "wts.multipleInstance": "false",
     "wts.genGroup": "1",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,
