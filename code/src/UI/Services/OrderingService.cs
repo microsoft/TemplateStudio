@@ -22,9 +22,9 @@ namespace Microsoft.Templates.UI.Services
 
         public OrderingService(ListView listView)
         {
+            _listView = listView;
             if (_listView != null)
             {
-                _listView = listView;
                 _dragAndDropService = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
                 _dragAndDropService.ProcessDrop += OnDrop;
             }
