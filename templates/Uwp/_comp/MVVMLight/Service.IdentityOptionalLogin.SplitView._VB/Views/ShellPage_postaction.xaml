@@ -43,8 +43,7 @@
                             Grid.Column="1"
                             Text="{x:Bind ViewModel.User.Name, Mode=OneWay}"
                             VerticalAlignment="Center"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            Margin="{StaticResource XSmallLeftMargin}" />
+                            Style="{ThemeResource BodyTextBlockStyle}" />
                     </Grid>
                 </Button>
                 <Button
@@ -73,7 +72,6 @@
                             Grid.Column="1"
                             x:Uid="Shell_LogIn"
                             VerticalAlignment="Center"
-                            Margin="{StaticResource XSmallLeftMargin}"
                             Style="{ThemeResource BodyTextBlockStyle}" />
                     </Grid>
                 </Button>

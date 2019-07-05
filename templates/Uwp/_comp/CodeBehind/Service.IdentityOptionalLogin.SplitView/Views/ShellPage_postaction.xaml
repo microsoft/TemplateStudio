@@ -46,7 +46,6 @@
                             Text="{x:Bind User.Name, Mode=OneWay}"
                             VerticalAlignment="Center"
                             Style="{ThemeResource BodyTextBlockStyle}"
-                            Margin="{StaticResource XSmallLeftMargin}"
                             Visibility="{x:Bind IsLoggedIn, Mode=OneWay}" />
                     </Grid>
                 </Button>
@@ -77,7 +76,6 @@
                             Grid.Column="1"
                             x:Uid="Shell_LogIn"
                             VerticalAlignment="Center"
-                            Margin="{StaticResource XSmallLeftMargin}"
                             Style="{ThemeResource BodyTextBlockStyle}"
                             Visibility="{x:Bind IsLoggedIn, Mode=OneWay, Converter={StaticResource ReverseBoolToVisibility}}" />
                     </Grid>

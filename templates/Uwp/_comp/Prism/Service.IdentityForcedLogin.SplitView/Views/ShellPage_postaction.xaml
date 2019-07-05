@@ -31,7 +31,6 @@
                             Grid.Column="1"
                             Text="{x:Bind ViewModel.User.Name, Mode=OneWay}"
                             VerticalAlignment="Center"
-                            Margin="{StaticResource XSmallLeftMargin}"
                             Style="{ThemeResource BodyTextBlockStyle}" />
                     </Grid>
                 </Button>
