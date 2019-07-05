@@ -21,6 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private ICommand _moveUpCommand;
         private ICommand _moveDownCommand;
         private ICommand _editCommand;
+        private ICommand _deleteCommand;
         private SavedTemplateViewModel _selectedItem;
         private OrderingService _orderingService;
         private bool _allowsOrdering;
@@ -46,6 +47,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ICommand MoveDownCommand => _moveDownCommand ?? (_moveDownCommand = new RelayCommand(OnMoveDown));
 
         public ICommand EditCommand => _editCommand ?? (_editCommand = new RelayCommand<SavedTemplateViewModel>(OnEdit, CanEdit));
+
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand<SavedTemplateViewModel>(OnDelete, CanDelete));
 
         public UserSelectionGroup(TemplateType templateType, string header, bool allowsOrdering = false)
         {
@@ -96,5 +99,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private bool CanEdit(SavedTemplateViewModel item) => item != null;
 
         private void OnEdit(SavedTemplateViewModel item) => item.IsTextSelected = true;
+
+        private bool CanDelete(SavedTemplateViewModel item) => item != null && item.DeleteCommand.CanExecute(null);
+
+        private void OnDelete(SavedTemplateViewModel item) => item.DeleteCommand.Execute(null);
     }
 }
