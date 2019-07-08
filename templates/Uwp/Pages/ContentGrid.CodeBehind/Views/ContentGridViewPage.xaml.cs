@@ -11,20 +11,7 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class ContentGridViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private ObservableCollection<SampleOrder> _source;
-
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                Set(ref _source, value);
-            }
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ContentGridViewPage()
         {
@@ -34,9 +21,14 @@ namespace Param_RootNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetContentGridDataAsync();
+            var data = await SampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnItemClick(object sender, ItemClickEventArgs e)
