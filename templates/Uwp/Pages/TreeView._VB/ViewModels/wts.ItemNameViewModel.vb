@@ -1,7 +1,6 @@
 ﻿Imports Param_RootNamespace.Core.Models
 Imports Param_RootNamespace.Core.Services
 Imports Param_RootNamespace.Helpers
-Imports Microsoft.UI.Xaml.Controls
 Imports WinUI = Microsoft.UI.Xaml.Controls
 
 Namespace ViewModels

@@ -21,7 +21,6 @@ Namespace ViewModels
             For Each item As SampleOrder In data
                 Source.Add(item)
             Next
-        End Sub
         End Function
 
         Public ReadOnly Property ItemClickCommand  As ICommand = New RelayCommand(Of SampleOrder)(Sub(order) OnItemClick(order))
