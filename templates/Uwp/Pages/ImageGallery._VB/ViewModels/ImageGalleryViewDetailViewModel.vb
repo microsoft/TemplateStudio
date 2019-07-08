@@ -10,8 +10,6 @@ Namespace ViewModels
 
         Private _selectedImage As Object
 
-        Private _source As ObservableCollection(Of SampleImage)
-
         Public Property SelectedImage As Object
             Get
                 Return _selectedImage
@@ -22,21 +20,19 @@ Namespace ViewModels
             End Set
         End Property
 
-        Public Property Source As ObservableCollection(Of SampleImage)
-            Get
-                Return _source
-            End Get
-            Set
-                [Param_Setter](_source, value)
-            End Set
-        End Property
+        Public Property Source As ObservableCollection(Of SampleImage) = New ObservableCollection(Of SampleImage)
 
         Public Sub New()
         End Sub
 
         Public Async Function LoadDataAsync() As Task
+            Source.Clear()
+
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            Dim data = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            For Each item As SampleImage In data
+                Source.Add(item)
+            Next
         End Function
 
         Public Sub Initialize(selectedImageId As String, navigationMode as NavigationMode)
