@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Core.Services
     public class SampleDataService : ISampleDataService
     {
 //{[{
-        private ObservableCollection<SampleImage> _gallerySampleData;
+        private ICollection<SampleImage> _gallerySampleData;
 //}]}
 
         private IEnumerable<SampleOrder> AllOrders()
@@ -19,11 +19,11 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your image gallery page is displaying real data.
-        public async Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
+        public async Task<IEnumerable<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
         {
             if (_gallerySampleData == null)
             {
-                _gallerySampleData = new ObservableCollection<SampleImage>();
+                _gallerySampleData = new Collection<SampleImage>();
                 for (int i = 1; i <= 10; i++)
                 {
                     _gallerySampleData.Add(new SampleImage()
