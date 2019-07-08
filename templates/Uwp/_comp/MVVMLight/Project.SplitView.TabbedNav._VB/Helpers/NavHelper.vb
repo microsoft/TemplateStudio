@@ -2,7 +2,13 @@
 
 Namespace Helpers
     Public Class NavHelper
-
+        ' This helper class allows to specify the page that will be shown when you click on a NavigationViewItem
+        '
+        ' Usage in xaml:
+        ' <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="AppName.ViewModels.MainViewModel" />
+        '
+        ' Usage in code:
+        ' NavHelper.SetNavigateTo(navigationViewItem, GetType(MainViewModel).FullName)
         Public Shared Function GetNavigateTo(item As NavigationViewItem) As String
             Return TryCast(item.GetValue(NavigateToProperty), String)
         End Function
