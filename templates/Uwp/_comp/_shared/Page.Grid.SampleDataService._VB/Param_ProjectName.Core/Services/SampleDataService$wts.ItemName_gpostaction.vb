@@ -10,10 +10,10 @@ Namespace Services
 '{[{
 
         ' TODO WTS: Remove this once your grid page is displaying real data.
-        Public Async Function GetGridDataAsync() As Task(Of ObservableCollection(Of SampleOrder))
+        Public Async Function GetGridDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             Await Task.CompletedTask
 
-            Return New ObservableCollection(Of SampleOrder)(AllOrders())
+            Return AllOrders()
         End Function
 '}]}
     End Module
