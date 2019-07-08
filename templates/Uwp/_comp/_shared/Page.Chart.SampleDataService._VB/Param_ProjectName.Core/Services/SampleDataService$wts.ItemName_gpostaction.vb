@@ -15,7 +15,7 @@ Namespace Services
 
             Await Task.CompletedTask
 
-            Return New ObservableCollection(Of DataPoint)(data)
+            Return data
         End Function
 '}]}
     End Module

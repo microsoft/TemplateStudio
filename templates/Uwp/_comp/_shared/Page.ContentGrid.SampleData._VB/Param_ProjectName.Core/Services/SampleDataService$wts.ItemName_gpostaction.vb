@@ -18,14 +18,14 @@ Namespace Services
 '{[{
 
         ' TODO WTS: Remove this once your ContentGrid page is displaying real data.
-        Public Async Function GetContentGridDataAsync() As Task(Of ObservableCollection(Of SampleOrder))
+        Public Async Function GetContentGridDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             If _allOrders Is Nothing Then
                 _allOrders = AllOrders()
             End If
 
             Await Task.CompletedTask
 
-            Return New ObservableCollection(Of SampleOrder)(_allOrders)
+            Return _allOrders
         End Function
 '}]}
     End Module
