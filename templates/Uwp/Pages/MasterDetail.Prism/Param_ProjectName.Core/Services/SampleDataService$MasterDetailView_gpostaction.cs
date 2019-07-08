@@ -1,7 +1,6 @@
-﻿//{[{
-using System.Threading.Tasks;
-//}]}
-
+﻿//{**
+// This code block adds the method `GetMasterDetailDataAsync()` to the SampleDataService of your project.
+//**}
 namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService

@@ -1,6 +1,9 @@
 ﻿//{**
 // This code block adds the method `GetImageGalleryDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
+//{[{
+using System.Collections.ObjectModel;
+//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public static class SampleDataService
