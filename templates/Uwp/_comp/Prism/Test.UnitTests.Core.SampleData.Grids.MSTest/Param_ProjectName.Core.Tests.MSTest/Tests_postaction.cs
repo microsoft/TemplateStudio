@@ -18,7 +18,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
             var dataService = new SampleDataService();
             var actual = await dataService.GetGridDataAsync();
 
-            Assert.AreNotEqual(0, actual.Count);
+            Assert.AreNotEqual(0, actual.Count());
         }
         //}]}
     }

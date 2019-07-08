@@ -34,7 +34,7 @@ namespace Param_RootNamespace.ViewModels
             Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            var data = await SampleDataService.GetContentGridDataAsync();
+            var data = await _sampleDataService.GetContentGridDataAsync();
             foreach (var item in data)
             {
                 Source.Add(item);

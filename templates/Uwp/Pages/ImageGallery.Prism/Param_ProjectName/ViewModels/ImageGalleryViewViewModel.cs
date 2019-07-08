@@ -41,7 +41,7 @@ namespace Param_RootNamespace.ViewModels
             Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+            var data = await _sampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
 
             foreach (var item in data)
             {

@@ -26,7 +26,7 @@ namespace Param_RootNamespace.ViewModels
             Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            var data = await SampleDataService.GetChartDataAsync();
+            var data = await _sampleDataService.GetChartDataAsync();
             foreach (var item in data)
             {
                 Source.Add(item);
