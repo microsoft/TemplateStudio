@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleOrder>> GetGridDataAsync();
+        Task<IEnumerable<SampleOrder>> GetGridDataAsync();
 //}]}
     }
 }

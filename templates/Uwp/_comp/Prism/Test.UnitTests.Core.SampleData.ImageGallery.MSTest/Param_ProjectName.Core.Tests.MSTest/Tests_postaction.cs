@@ -17,7 +17,7 @@ namespace Param_RootNamespace.Core.Tests.MSTest
             var dataService = new SampleDataService();
             var actual = await dataService.GetImageGalleryDataAsync("ms-appx:///Assets");
 
-            Assert.AreNotEqual(0, actual.Count);
+            Assert.AreNotEqual(0, actual.Count());
         }
         //}]}
     }

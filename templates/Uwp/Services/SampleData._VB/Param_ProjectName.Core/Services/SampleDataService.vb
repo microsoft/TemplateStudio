@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports Param_RootNamespace.Core.Models
+﻿Imports Param_RootNamespace.Core.Models
 
 Namespace Services
     ' This module holds sample data used by some generated pages to show how they can be used.
@@ -12,7 +11,7 @@ Namespace Services
         End Function
 
         Public Function AllCompanies() As IEnumerable(Of SampleCompany)
-            Return New ObservableCollection(Of SampleCompany)() From {
+            Return New List(Of SampleCompany)() From {
                 New SampleCompany() With {
                     .CompanyID = "ALFKI",
                     .CompanyName = "Company A",
@@ -24,7 +23,7 @@ Namespace Services
                     .Country = "Germany",
                     .Phone = "030-0074321",
                     .Fax = "030-0076545",
-                    .Orders = New ObservableCollection(Of SampleOrder)() From {
+                    .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
                             .OrderID = 10643, ' Symbol-Globe
                             .OrderDate = New DateTime(1997, 8, 25),
@@ -38,7 +37,7 @@ Namespace Services
                             .OrderTotal = 814.5,
                             .Status = "Shipped",
                             .SymbolCode = 57643,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 28,
                                     .ProductName = "Rössle Sauerkraut",
@@ -87,7 +86,7 @@ Namespace Services
                             .OrderTotal = 845.8,
                             .Status = "Closed",
                             .SymbolCode = 57737,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 59,
                                     .ProductName = "Raclette Courdavault",
@@ -125,7 +124,7 @@ Namespace Services
                             .OrderTotal = 471.2,
                             .Status = "Closed",
                             .SymbolCode = 57699,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 6,
                                     .ProductName = "Grandma's Boysenberry Spread",
@@ -163,7 +162,7 @@ Namespace Services
                     .Country = "Mexico",
                     .Phone = "(5) 555-4729",
                     .Fax = "(5) 555-3745",
-                    .Orders = New ObservableCollection(Of SampleOrder)() From {
+                    .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
                             .OrderID = 10625, ' Symbol-Camera
                             .OrderDate = New DateTime(1997, 8, 8),
@@ -177,7 +176,7 @@ Namespace Services
                             .OrderTotal = 469.75,
                             .Status = "Shipped",
                             .SymbolCode = 57620,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 14,
                                     .ProductName = "Tofu",
@@ -226,7 +225,7 @@ Namespace Services
                             .OrderTotal = 507.2,
                             .Status = "Shipped",
                             .SymbolCode = 57633,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 11,
                                     .ProductName = "Queso Cabrales",
@@ -286,7 +285,7 @@ Namespace Services
                     .Country = "Mexico",
                     .Phone = "(5) 555-3932",
                     .Fax = String.Empty,
-                    .Orders = New ObservableCollection(Of SampleOrder)() From {
+                    .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
                             .OrderID = 10507, ' Symbol-Contact
                             .OrderDate = New DateTime(1997, 4, 15),
@@ -300,7 +299,7 @@ Namespace Services
                             .OrderTotal = 978.5,
                             .Status = "Closed",
                             .SymbolCode = 57661,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 43,
                                     .ProductName = "Ipoh Coffee",
@@ -338,7 +337,7 @@ Namespace Services
                             .OrderTotal = 2082.00,
                             .Status = "Closed",
                             .SymbolCode = 57619,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 17,
                                     .ProductName = "Alice Mutton",
@@ -387,7 +386,7 @@ Namespace Services
                             .OrderTotal = 375.5,
                             .Status = "Closed",
                             .SymbolCode = 57615,
-                            .Details = New ObservableCollection(Of SampleOrderDetail)() From {
+                            .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 33,
                                     .ProductName = "Geitost",

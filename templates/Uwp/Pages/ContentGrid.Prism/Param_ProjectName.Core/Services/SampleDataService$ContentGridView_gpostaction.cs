@@ -1,9 +1,6 @@
 ﻿//{**
 // This code block adds the method `GetContentGridDataAsync()` to the SampleDataService of your project.
 //**}
-//{[{
-using System.Threading.Tasks;
-//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
@@ -19,7 +16,7 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your ContentGrid page is displaying real data.
-        public async Task<ObservableCollection<SampleOrder>> GetContentGridDataAsync()
+        public async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
         {
             if (_allOrders == null)
             {
@@ -27,7 +24,7 @@ namespace Param_RootNamespace.Core.Services
             }
 
             await Task.CompletedTask;
-            return new ObservableCollection<SampleOrder>(_allOrders);
+            return _allOrders;
         }
 //}]}
     }

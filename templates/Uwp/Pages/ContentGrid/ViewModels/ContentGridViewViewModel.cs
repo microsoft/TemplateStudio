@@ -12,22 +12,10 @@ namespace Param_RootNamespace.ViewModels
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private ICommand _itemClickCommand;
-        private ObservableCollection<SampleOrder> _source;
 
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                Set(ref _source, value);
-            }
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ContentGridViewViewModel()
         {
@@ -35,8 +23,14 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task LoadDataAsync()
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetContentGridDataAsync();
+            var data = await SampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnItemClick(SampleOrder clickedItem)

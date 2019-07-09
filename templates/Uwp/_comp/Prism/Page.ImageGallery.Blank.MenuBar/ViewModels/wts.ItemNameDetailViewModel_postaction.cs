@@ -7,15 +7,11 @@ namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : ViewModelBase
     {
-        private ObservableCollection<SampleImage> _source;
+        private object _selectedImage;
 //{[{
         private ICommand _goBackCommand;
 //}]}
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => SetProperty(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 //{[{
 
         public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack));

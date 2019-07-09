@@ -6,7 +6,7 @@
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath);
+        Task<IEnumerable<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath);
 //}]}
     }
 }

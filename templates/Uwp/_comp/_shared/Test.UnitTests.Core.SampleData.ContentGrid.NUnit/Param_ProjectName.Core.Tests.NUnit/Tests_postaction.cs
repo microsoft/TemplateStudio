@@ -17,7 +17,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         {
             var actual = await SampleDataService.GetContentGridDataAsync();
 
-            Assert.AreNotEqual(0, actual.Count);
+            Assert.AreNotEqual(0, actual.Count());
         }
         //}]}
     }

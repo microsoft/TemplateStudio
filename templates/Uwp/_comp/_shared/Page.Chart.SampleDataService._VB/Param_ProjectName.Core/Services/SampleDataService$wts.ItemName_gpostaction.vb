@@ -7,7 +7,7 @@ Namespace Services
 '{[{
 
         ' TODO WTS: Remove this once your chart page is displaying real data.
-        Public Async Function GetChartDataAsync() As Task(Of ObservableCollection(Of DataPoint))
+        Public Async Function GetChartDataAsync() As Task(Of IEnumerable(Of DataPoint))
             Dim data = AllOrders().[Select](Function(o) New DataPoint() With {
                 .Category = o.Company,
                 .Value = o.OrderTotal
@@ -15,7 +15,7 @@ Namespace Services
 
             Await Task.CompletedTask
 
-            Return New ObservableCollection(Of DataPoint)(data)
+            Return data
         End Function
 '}]}
     End Module

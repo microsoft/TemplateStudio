@@ -13,20 +13,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IConnectedAnimationService _connectedAnimationService;
 
-        private ObservableCollection<SampleOrder> _source;
-
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                Set(ref _source, value);
-            }
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ContentGridViewViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
         {
@@ -36,8 +23,14 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task LoadDataAsync()
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetContentGridDataAsync();
+            var data = await SampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         public void OnItemSelected(SampleOrder clickedItem)

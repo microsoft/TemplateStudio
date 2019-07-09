@@ -17,7 +17,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
         {
             var actual = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
 
-            Assert.AreNotEqual(0, actual.Count);
+            Assert.AreNotEqual(0, actual.Count());
         }
         //}]}
     }

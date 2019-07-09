@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class ChartViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private ObservableCollection<DataPoint> _source;
+        public ObservableCollection<DataPoint> Source { get; } = new ObservableCollection<DataPoint>();
 
         // TODO WTS: Change the chart as appropriate to your app.
         // For help see http://docs.telerik.com/windows-universal/controls/radchart/getting-started
@@ -18,25 +18,17 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<DataPoint> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                Set(ref _source, value);
-            }
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetChartDataAsync();
+            var data = await SampleDataService.GetChartDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
     }
 }

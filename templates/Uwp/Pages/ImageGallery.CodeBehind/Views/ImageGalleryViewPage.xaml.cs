@@ -17,13 +17,7 @@ namespace Param_RootNamespace.Views
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
-        private ObservableCollection<SampleImage> _source;
-
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ImageGalleryViewPage()
         {
@@ -33,8 +27,15 @@ namespace Param_RootNamespace.Views
 
         private async void ImageGalleryViewPage_OnLoaded(object sender, RoutedEventArgs e)
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-             Source = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)

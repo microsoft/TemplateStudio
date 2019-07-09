@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -31,17 +31,17 @@ namespace Param_RootNamespace.Core.Services
             }
         }
 
-        public static async Task<ObservableCollection<SampleOrder>> AllOrders()
+        public static async Task<IEnumerable<SampleOrder>> AllOrders()
         {
             // List orders from all companies
             var companies = await AllCompanies();
-            return new ObservableCollection<SampleOrder>(companies.SelectMany(c => c.Orders));
+            return companies.SelectMany(c => c.Orders);
         }
 
         // This method returns data with the same structure as the SampleDataService but based on the NORTHWIND sample database.
         // Use this as an alternative to the sample data to test using a different datasource without changing any other code.
         // TODO WTS: Remove this when or if it isn't needed.
-        public static async Task<ObservableCollection<SampleCompany>> AllCompanies()
+        public static async Task<IEnumerable<SampleCompany>> AllCompanies()
         {
             // This hard-coded SQL statement is included to make this sample simpler.
             // You can use Stored procedure, ORMs, or whatever is appropriate to access data in your app.
@@ -83,7 +83,7 @@ namespace Param_RootNamespace.Core.Services
                 inner join dbo.Products on dbo.Products.ProductID = dbo.[Order Details].ProductID
                 inner join dbo.Categories on dbo.Categories.CategoryID = dbo.Products.CategoryID";
 
-            var sampleCompanies = new ObservableCollection<SampleCompany>();
+            var sampleCompanies = new List<SampleCompany>();
 
             try
             {
@@ -128,7 +128,7 @@ namespace Param_RootNamespace.Core.Services
                                             Country = country,
                                             Phone = phone,
                                             Fax = fax,
-                                            Orders = new ObservableCollection<SampleOrder>()
+                                            Orders = new List<SampleOrder>()
                                         };
                                         sampleCompanies.Add(sampleCompany);
                                     }
@@ -163,7 +163,7 @@ namespace Param_RootNamespace.Core.Services
                                             Status = status,
                                             SymbolCode = symbolCode,
                                             OrderTotal = orderTotal,
-                                            Details = new ObservableCollection<SampleOrderDetail>()
+                                            Details = new List<SampleOrderDetail>()
                                         };
                                         sampleCompany.Orders.Add(sampleOrder);
                                     }

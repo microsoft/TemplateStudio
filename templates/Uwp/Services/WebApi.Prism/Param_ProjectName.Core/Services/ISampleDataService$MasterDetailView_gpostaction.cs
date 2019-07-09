@@ -6,7 +6,7 @@
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleCompany>> GetWebApiSampleDataAsync();
+        Task<IEnumerable<SampleCompany>> GetWebApiSampleDataAsync();
 //}]}
     }
 }

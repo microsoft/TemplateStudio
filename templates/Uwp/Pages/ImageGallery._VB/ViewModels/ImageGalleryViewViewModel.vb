@@ -9,16 +9,7 @@ Namespace ViewModels
 
         Public Const ImageGalleryViewSelectedIdKey As String = "ImageGalleryViewSelectedIdKey"
 
-        Private _source As ObservableCollection(Of SampleImage)
-
-        Public Property Source As ObservableCollection(Of SampleImage)
-            Get
-                Return _source
-            End Get
-            Set
-                [Param_Setter](_source, value)
-            End Set
-        End Property
+        Public Property Source As ObservableCollection(Of SampleImage) = New ObservableCollection(Of SampleImage)
 
         Public ReadOnly Property ItemSelectedCommand As ICommand = new RelayCommand(Of ItemClickEventArgs)(Sub(args) OnsItemSelected(args))
 
@@ -26,8 +17,13 @@ Namespace ViewModels
         End Sub
 
         Public Async Function LoadDataAsync() As Task
+            Source.Clear()
+
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            Dim data = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            For Each item As SampleImage In data
+                Source.Add(item)
+            Next
         End Function
     End Class
 End Namespace

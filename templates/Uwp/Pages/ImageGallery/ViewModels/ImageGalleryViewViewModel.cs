@@ -17,14 +17,9 @@ namespace Param_RootNamespace.ViewModels
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
-        private ObservableCollection<SampleImage> _source;
         private ICommand _itemSelectedCommand;
 
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnsItemSelected));
 
@@ -34,8 +29,15 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task LoadDataAsync()
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnsItemSelected(ItemClickEventArgs args)

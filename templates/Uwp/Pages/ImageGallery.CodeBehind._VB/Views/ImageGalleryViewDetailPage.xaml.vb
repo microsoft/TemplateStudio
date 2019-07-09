@@ -13,8 +13,6 @@ Namespace Views
 
         Private _selectedImage As Object
 
-        Private _source As ObservableCollection(Of SampleImage)
-
         Public Property SelectedImage As Object
             Get
                 Return _selectedImage
@@ -25,14 +23,7 @@ Namespace Views
             End Set
         End Property
 
-        Public Property Source As ObservableCollection(Of SampleImage)
-            Get
-                Return _source
-            End Get
-            Set
-                [Param_Setter](_source, value)
-            End Set
-        End Property
+        Public Property Source As ObservableCollection(Of SampleImage) = New ObservableCollection(Of SampleImage)
 
         Public Sub New()
             InitializeComponent()
@@ -40,9 +31,13 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+            Source.Clear()
 
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            Dim data = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            For Each item As SampleImage In data
+                Source.Add(item)
+            Next
 
             Dim selectedImageId = TryCast(e.Parameter, String)
             If Not String.IsNullOrEmpty(selectedImageId) AndAlso e.NavigationMode = NavigationMode.New Then
