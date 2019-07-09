@@ -6,7 +6,7 @@ Namespace Views
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
-        Private _source As ObservableCollection(Of SampleOrder)
+        Public Property Source As ObservableCollection(Of SampleOrder) = New ObservableCollection(Of SampleOrder)
 
         ' TODO WTS: Change the grid as appropriate to your app, adjust the column definitions on DataGridViewPage.xaml.
         ' For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid
@@ -14,20 +14,15 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Public Property Source As ObservableCollection(Of SampleOrder)
-            Get
-                Return _source
-            End Get
-            Set(value As ObservableCollection(Of SampleOrder))
-                [Set](_source, value)
-            End Set
-        End Property
-
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+            Source.Clear()
 
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetGridDataAsync()
+            Dim data = Await SampleDataService.GetGridDataAsync()
+            For Each item In data
+                Source.Add(item)
+            Next
         End Sub
     End Class
 End Namespace

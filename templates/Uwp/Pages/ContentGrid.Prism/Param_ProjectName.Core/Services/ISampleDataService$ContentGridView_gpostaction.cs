@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        Task<ObservableCollection<SampleOrder>> GetContentGridDataAsync();
+        Task<IEnumerable<SampleOrder>> GetContentGridDataAsync();
 //}]}
     }
 }

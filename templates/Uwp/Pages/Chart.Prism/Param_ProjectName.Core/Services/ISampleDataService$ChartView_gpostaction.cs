@@ -6,7 +6,7 @@
 //^^
 //{[{
 
-        Task<ObservableCollection<DataPoint>> GetChartDataAsync();
+        Task<IEnumerable<DataPoint>> GetChartDataAsync();
 //}]}
     }
 }

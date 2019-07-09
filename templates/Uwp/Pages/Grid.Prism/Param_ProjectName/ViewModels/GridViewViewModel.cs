@@ -11,32 +11,26 @@ namespace Param_RootNamespace.ViewModels
     public class GridViewViewModel : ViewModelBase
     {
         private readonly ISampleDataService _sampleDataService;
-        private ObservableCollection<SampleOrder> _source;
+
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public GridViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
             _sampleDataService = sampleDataServiceInstance;
         }
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                SetProperty(ref _source, value);
-            }
-        }
-
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetGridDataAsync();
+            var data = await _sampleDataService.GetGridDataAsync();
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
     }
 }

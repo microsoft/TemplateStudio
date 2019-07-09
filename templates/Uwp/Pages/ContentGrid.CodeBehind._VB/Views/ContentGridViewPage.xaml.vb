@@ -8,16 +8,7 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 
-        Private _source As ObservableCollection(Of SampleOrder)
-
-        Public Property Source As ObservableCollection(Of SampleOrder)
-            Get
-                Return _source
-            End Get
-            Set(value As ObservableCollection(Of SampleOrder))
-                [Set](_source, value)
-            End Set
-        End Property
+        Public Property Source As ObservableCollection(Of SampleOrder) = New ObservableCollection(Of SampleOrder)
 
         Public Sub New()
             InitializeComponent()
@@ -25,9 +16,14 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+            Source.Clear()
 
             ' TODO WTS: Replace this with your actual data
-            Source = Await SampleDataService.GetContentGridDataAsync()
+            Dim data = Await SampleDataService.GetContentGridDataAsync()
+
+            For Each item As SampleOrder In data
+                Source.Add(item)
+            Next
         End Sub
 
         Private Sub OnItemClick(sender As Object, e As ItemClickEventArgs)

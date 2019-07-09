@@ -22,14 +22,9 @@ namespace Param_RootNamespace.ViewModels
 
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
-        private ObservableCollection<SampleImage> _source;
         private ICommand _itemSelectedCommand;
 
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(OnsItemSelected));
 
@@ -43,9 +38,15 @@ namespace Param_RootNamespace.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+            var data = await _sampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnsItemSelected(ItemClickEventArgs args)

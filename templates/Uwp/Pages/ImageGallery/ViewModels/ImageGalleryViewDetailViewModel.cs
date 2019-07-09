@@ -12,7 +12,6 @@ namespace Param_RootNamespace.ViewModels
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private object _selectedImage;
-        private ObservableCollection<SampleImage> _source;
 
         public object SelectedImage
         {
@@ -24,11 +23,7 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ImageGalleryViewDetailViewModel()
         {
@@ -36,8 +31,15 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task LoadDataAsync()
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         public void Initialize(string selectedImageID, NavigationMode navigationMode)

@@ -15,15 +15,9 @@ namespace Param_RootNamespace.ViewModels
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
         private readonly IConnectedAnimationService _connectedAnimationService;
-
-        private ObservableCollection<SampleOrder> _source;
         private ICommand _itemClickCommand;
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get => _source;
-            set => SetProperty(ref _source, value);
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new DelegateCommand<SampleOrder>(OnItemClick));
 
@@ -37,9 +31,14 @@ namespace Param_RootNamespace.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetContentGridDataAsync();
+            var data = await _sampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnItemClick(SampleOrder clickedItem)

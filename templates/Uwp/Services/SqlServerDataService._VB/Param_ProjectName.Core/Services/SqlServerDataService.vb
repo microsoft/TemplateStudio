@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Configuration
+﻿Imports System.Configuration
 Imports System.Data.SqlClient
 Imports Param_RootNamespace.Core.Models
 
@@ -25,16 +24,16 @@ Namespace Services
         End Function
 
         ' List orders from all companies
-        Public Async Function AllOrders() As Task(Of ObservableCollection(Of SampleOrder))
+        Public Async Function AllOrders() As Task(Of IEnumerable(Of SampleOrder))
             Dim companies = Await AllCompanies()
             Dim orders = companies.SelectMany(Function(c) c.Orders)
-            Return New ObservableCollection(Of SampleOrder)(orders)
+            Return orders
         End Function
 
         ' This method returns data with the same structure as the SampleDataService but based on the NORTHWIND sample database.
         ' Use this as an alternative to the sample data to test using a different datasource without changing any other code.
         ' TODO WTS: Remove this when or if it isn't needed.
-        Public Async Function AllCompanies() As Task(Of ObservableCollection(Of SampleCompany))
+        Public Async Function AllCompanies() As Task(Of IEnumerable(Of SampleCompany))
             ' This hard-coded SQL statement is included to make this sample simpler.
             ' You can use Stored procedure, ORMs, or whatever is appropriate to access data in your app.
             Const getSampleDataQuery As String = "
@@ -75,7 +74,7 @@ Namespace Services
                 inner join dbo.Products on dbo.Products.ProductID = dbo.[Order Details].ProductID
                 inner join dbo.Categories on dbo.Categories.CategoryID = dbo.Products.CategoryID"
 
-            Dim sampleCompanies = New ObservableCollection(Of SampleCompany)()
+            Dim sampleCompanies = New List(Of SampleCompany)()
 
             Try
 
@@ -115,7 +114,7 @@ Namespace Services
                                             .Country = country,
                                             .Phone = phone,
                                             .Fax = fax,
-                                            .Orders = New ObservableCollection(Of SampleOrder)
+                                            .Orders = New List(Of SampleOrder)
                                         }
                                         sampleCompanies.Add(sampleCompany)
                                     End If
@@ -148,7 +147,7 @@ Namespace Services
                                             .Status = status,
                                             .SymbolCode = symbolCode,
                                             .OrderTotal = orderTotal,
-                                            .Details = New ObservableCollection(Of SampleOrderDetail)
+                                            .Details = New List(Of SampleOrderDetail)
                                         }
                                         sampleCompany.Orders.Add(sampleOrder)
                                     End If

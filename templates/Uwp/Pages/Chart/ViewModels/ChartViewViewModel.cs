@@ -8,29 +8,22 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ChartViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private ObservableCollection<DataPoint> _source;
+        public ObservableCollection<DataPoint> Source { get; } = new ObservableCollection<DataPoint>();
 
         public ChartViewViewModel()
         {
         }
 
-        public ObservableCollection<DataPoint> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                Param_Setter(ref _source, value);
-            }
-        }
-
         public async Task LoadDataAsync()
         {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetChartDataAsync();
+            var data = await SampleDataService.GetChartDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
     }
 }

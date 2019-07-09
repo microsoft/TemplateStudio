@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class DataGridViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private ObservableCollection<SampleOrder> _source;
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         // TODO WTS: Change the grid as appropriate to your app, adjust the column definitions on DataGridViewPage.xaml.
         // For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid
@@ -18,25 +18,18 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                 return _source;
-            }
-
-            set
-            {
-                Set(ref _source, value);
-            }
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await SampleDataService.GetGridDataAsync();
+            var data = await SampleDataService.GetGridDataAsync();
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
     }
 }

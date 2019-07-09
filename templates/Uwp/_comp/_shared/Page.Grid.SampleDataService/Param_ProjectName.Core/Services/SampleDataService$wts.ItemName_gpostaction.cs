@@ -9,10 +9,10 @@ namespace Param_RootNamespace.Core.Services
 //{[{
 
         // TODO WTS: Remove this once your grid page is displaying real data.
-        public static async Task<ObservableCollection<SampleOrder>> GetGridDataAsync()
+        public static async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         {
             await Task.CompletedTask;
-            return new ObservableCollection<SampleOrder>(AllOrders());
+            return AllOrders();
         }
 //}]}
     }

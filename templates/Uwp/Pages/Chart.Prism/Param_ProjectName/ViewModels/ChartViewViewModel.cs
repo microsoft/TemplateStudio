@@ -12,32 +12,25 @@ namespace Param_RootNamespace.ViewModels
     public class ChartViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly ISampleDataService _sampleDataService;
-        private ObservableCollection<DataPoint> _source;
+
+        public ObservableCollection<DataPoint> Source { get; } = new ObservableCollection<DataPoint>();
 
         public ChartViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
             _sampleDataService = sampleDataServiceInstance;
         }
 
-        public ObservableCollection<DataPoint> Source
-        {
-            get
-            {
-                return _source;
-            }
-
-            set
-            {
-                SetProperty(ref _source, value);
-            }
-        }
-
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = await _sampleDataService.GetChartDataAsync();
+            var data = await _sampleDataService.GetChartDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
     }
 }
