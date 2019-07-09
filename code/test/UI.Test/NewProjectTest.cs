@@ -39,6 +39,9 @@ namespace Microsoft.UI.Test
         // Features
         private const string FeatureSettingsStorage = "wts.Feat.SettingsStorage";
 
+        // Services
+        private const string ServiceWebApi = "wts.Service.WebApi";
+
         private TemplatesFixture _fixture;
 
         public NewProjectTest(TemplatesFixture fixture)
@@ -137,6 +140,21 @@ namespace Microsoft.UI.Test
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
+        }
+
+        [Fact]
+        public async Task RemoveTemplateWithHiddenDependencyAsync()
+        {
+            // Default configuration: SplitView, CodeBehind, Blank page
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, ServiceWebApi));
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.True(userSelection.Services.Count == 3);
+            DeleteTemplate(TemplateType.Service, viewModel.UserSelection, 2);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.True(userSelection.Services.Count == 1);
         }
 
         [Fact]
