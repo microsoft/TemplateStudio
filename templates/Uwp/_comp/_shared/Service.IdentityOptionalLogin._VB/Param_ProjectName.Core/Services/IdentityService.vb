@@ -21,11 +21,7 @@ Namespace Services
         ' TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
         ' Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        Private ReadOnly Property _clientId As String
-            Get
-                Return ConfigurationManager.AppSettings("IdentityClientId")
-            End Get
-        End Property
+        Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 
         Public Event LoggedIn As EventHandler
 

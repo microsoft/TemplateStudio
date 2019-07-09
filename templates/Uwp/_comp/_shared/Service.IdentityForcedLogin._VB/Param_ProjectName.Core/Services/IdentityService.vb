@@ -22,11 +22,7 @@ Namespace Services
         ' TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
         ' Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        Private ReadOnly Property ClientId As String
-            Get
-                Return ConfigurationManager.AppSettings("IdentityClientId")
-            End Get
-        End Property
+        Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 
         Public Event LoggedIn As EventHandler
 
@@ -34,17 +30,17 @@ Namespace Services
 
         Public Sub InitializeWithAadAndPersonalMsAccounts()
             _integratedAuthAvailable = False
-            _client = PublicClientApplicationBuilder.Create(ClientId).WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount).Build()
         End Sub
 
         Public Sub InitializeWithAadMultipleOrgs(Optional integratedAuth As Boolean = False)
             _integratedAuthAvailable = integratedAuth
-            _client = PublicClientApplicationBuilder.Create(ClientId).WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs).Build()
         End Sub
 
         Public Sub InitializeWithAadSingleOrg(tenant As String, Optional integratedAuth As Boolean = False)
             _integratedAuthAvailable = integratedAuth
-            _client = PublicClientApplicationBuilder.Create(ClientId).WithAuthority(AzureCloudInstance.AzurePublic, tenant).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AzureCloudInstance.AzurePublic, tenant).Build()
         End Sub
 
         Public Function IsLoggedIn() As Boolean

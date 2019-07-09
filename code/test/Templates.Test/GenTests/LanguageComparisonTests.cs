@@ -251,6 +251,14 @@ namespace Microsoft.Templates.Test
                         "map.MapServiceToken = String.Empty",
                         "map.MapServiceToken = string.Empty;"
                     },
+                    {
+                        "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainPage))",
+                        "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainPage));"
+                    },
+                    {
+                        "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainViewModel).FullName)",
+                        "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainViewModel).FullName);"
+                    }
                 };
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;
