@@ -1,7 +1,0 @@
-﻿<Page
-<!--^^-->
-<!--{[{-->
-    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
-<!--}]}-->
-    mc:Ignorable="d">
-</Page>
