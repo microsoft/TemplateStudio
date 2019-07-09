@@ -1,9 +1,6 @@
 ﻿//{**
 // This code block adds the method `GetImageGalleryDataAsync(string localResourcesPath)` to the SampleDataService of your project.
 //**}
-//{[{
-using System.Collections.ObjectModel;
-//}]}
 namespace Param_RootNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
@@ -23,7 +20,7 @@ namespace Param_RootNamespace.Core.Services
         {
             if (_gallerySampleData == null)
             {
-                _gallerySampleData = new Collection<SampleImage>();
+                _gallerySampleData = new List<SampleImage>();
                 for (int i = 1; i <= 10; i++)
                 {
                     _gallerySampleData.Add(new SampleImage()

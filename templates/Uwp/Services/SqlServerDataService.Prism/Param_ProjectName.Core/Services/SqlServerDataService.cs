@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -84,7 +83,7 @@ namespace Param_RootNamespace.Core.Services
                 inner join dbo.Products on dbo.Products.ProductID = dbo.[Order Details].ProductID
                 inner join dbo.Categories on dbo.Categories.CategoryID = dbo.Products.CategoryID";
 
-            var sampleCompanies = new Collection<SampleCompany>();
+            var sampleCompanies = new List<SampleCompany>();
 
             try
             {
@@ -129,7 +128,7 @@ namespace Param_RootNamespace.Core.Services
                                             Country = country,
                                             Phone = phone,
                                             Fax = fax,
-                                            Orders = new Collection<SampleOrder>()
+                                            Orders = new List<SampleOrder>()
                                         };
                                         sampleCompanies.Add(sampleCompany);
                                     }
@@ -164,7 +163,7 @@ namespace Param_RootNamespace.Core.Services
                                             Status = status,
                                             SymbolCode = symbolCode,
                                             OrderTotal = orderTotal,
-                                            Details = new Collection<SampleOrderDetail>()
+                                            Details = new List<SampleOrderDetail>()
                                         };
                                         sampleCompany.Orders.Add(sampleOrder);
                                     }

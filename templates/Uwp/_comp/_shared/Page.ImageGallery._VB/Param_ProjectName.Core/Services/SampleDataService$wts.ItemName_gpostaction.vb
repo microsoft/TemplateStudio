@@ -18,7 +18,7 @@ Namespace Services
         Public Async Function GetImageGalleryDataAsync(localResourcesPath As String) As Task(Of IEnumerable(Of SampleImage))
             Await Task.CompletedTask
             If _gallerySampleData Is Nothing Then
-                _gallerySampleData = New Collection(Of SampleImage)()
+                _gallerySampleData = New List(Of SampleImage)()
                 For i As Integer = 1 To 10
                     _gallerySampleData.Add(New SampleImage() With {
                         .ID = $"{i}",

@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Configuration
+﻿Imports System.Configuration
 Imports System.Data.SqlClient
 Imports Param_RootNamespace.Core.Models
 
@@ -75,7 +74,7 @@ Namespace Services
                 inner join dbo.Products on dbo.Products.ProductID = dbo.[Order Details].ProductID
                 inner join dbo.Categories on dbo.Categories.CategoryID = dbo.Products.CategoryID"
 
-            Dim sampleCompanies = New Collection(Of SampleCompany)()
+            Dim sampleCompanies = New List(Of SampleCompany)()
 
             Try
 
@@ -115,7 +114,7 @@ Namespace Services
                                             .Country = country,
                                             .Phone = phone,
                                             .Fax = fax,
-                                            .Orders = New Collection(Of SampleOrder)
+                                            .Orders = New List(Of SampleOrder)
                                         }
                                         sampleCompanies.Add(sampleCompany)
                                     End If
@@ -148,7 +147,7 @@ Namespace Services
                                             .Status = status,
                                             .SymbolCode = symbolCode,
                                             .OrderTotal = orderTotal,
-                                            .Details = New Collection(Of SampleOrderDetail)
+                                            .Details = New List(Of SampleOrderDetail)
                                         }
                                         sampleCompany.Orders.Add(sampleOrder)
                                     End If

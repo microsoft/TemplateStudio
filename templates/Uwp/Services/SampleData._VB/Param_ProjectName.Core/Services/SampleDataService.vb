@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports Param_RootNamespace.Core.Models
+﻿Imports Param_RootNamespace.Core.Models
 
 Namespace Services
     ' This module holds sample data used by some generated pages to show how they can be used.
