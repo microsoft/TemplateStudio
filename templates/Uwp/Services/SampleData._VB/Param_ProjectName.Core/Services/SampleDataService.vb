@@ -6,6 +6,7 @@ Namespace Services
     Public Module SampleDataService
 
         Public Function AllOrders() As IEnumerable(Of SampleOrder)
+            ' The following is order summary data
             Dim companies = AllCompanies()
             Return companies.SelectMany(Function(c) c.Orders)
         End Function

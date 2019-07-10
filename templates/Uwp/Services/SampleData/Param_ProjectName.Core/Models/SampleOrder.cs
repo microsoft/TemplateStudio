@@ -10,11 +10,11 @@ namespace Param_RootNamespace.Core.Models
     {
         public long OrderID { get; set; }
 
-        public DateTime? OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        public DateTime? RequiredDate { get; set; }
+        public DateTime RequiredDate { get; set; }
 
-        public DateTime? ShippedDate { get; set; }
+        public DateTime ShippedDate { get; set; }
 
         public string ShipperName { get; set; }
 
