@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.TreeView"
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.TreeView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
