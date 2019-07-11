@@ -4,9 +4,10 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            x:Uid="wts.ItemName"
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Services;
@@ -12,14 +13,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IConnectedAnimationService _connectedAnimationService;
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get
-            {
-                // TODO WTS: Replace this with your actual data
-                return SampleDataService.GetContentGridData();
-            }
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ContentGridViewViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
         {
@@ -27,12 +21,24 @@ namespace Param_RootNamespace.ViewModels
             _connectedAnimationService = connectedAnimationService;
         }
 
+        public async Task LoadDataAsync()
+        {
+            Source.Clear();
+
+            // TODO WTS: Replace this with your actual data
+            var data = await SampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
+        }
+
         public void OnItemSelected(SampleOrder clickedItem)
         {
             if (clickedItem != null)
             {
                 _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem.OrderId);
+                _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem.OrderID);
             }
         }
     }

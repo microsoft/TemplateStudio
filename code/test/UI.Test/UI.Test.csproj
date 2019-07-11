@@ -83,11 +83,15 @@
     </AdditionalFiles>
     <None Include=".codeclonesettings" />
     <None Include="app.config" />
+    <None Include="test.config.json">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Core\Core.csproj">
-      <Project>{51ddb424-2da2-4871-a042-4f4f9b622515}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
+      <Project>{5f7ee68f-e773-47f3-a490-af16985cdf6e}</Project>
+      <Name>CoreTemplateStudio.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\UI\UI.csproj">
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>

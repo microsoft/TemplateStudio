@@ -13,12 +13,12 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is long orderId)
+            if (e.Parameter is long orderID)
             {
-                ViewModel.Initialize(orderId);
+                await ViewModel.InitializeAsync(orderID);
             }
         }
 

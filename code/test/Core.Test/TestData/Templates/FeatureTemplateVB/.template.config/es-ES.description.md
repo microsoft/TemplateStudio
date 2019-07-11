@@ -1,1 +1,0 @@
-Descripción de la Feature de prueba

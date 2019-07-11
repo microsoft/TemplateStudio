@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Sample Data",
-    "description": "SampleDataService retiene datos de ejemplo utilizados por la versión generada de algunas páginas.",
-    "identity": "wts.Feat.SampleDataService.VB"
-}

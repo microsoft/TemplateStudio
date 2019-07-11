@@ -229,6 +229,9 @@ namespace TemplateValidator
                     case "wts.outputToParent":
                         VerifyWtsOutputToParentTagValue(tag, results);
                         break;
+                    case "wts.requiredVsWorkload":
+                        // No validation done here as we don't know all workload IDs.
+                        break;
                     default:
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
@@ -315,7 +318,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing", "Data", "Tools" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
             }
@@ -412,7 +415,7 @@ namespace TemplateValidator
             {
                 if (!AllFrameworks.Contains(frameworkValue))
                 {
-                    results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
+                    results.Add($"Invalid value '{tag.Value}' specified in the wts.framework tag.");
                 }
             }
         }
@@ -462,7 +465,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "composition", "page", "feature" }.Contains(tag.Value))
+            if (!new[] { "composition", "page", "feature", "service", "testing" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
             }

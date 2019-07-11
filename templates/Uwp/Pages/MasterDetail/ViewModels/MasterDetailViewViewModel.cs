@@ -28,7 +28,7 @@ namespace Param_RootNamespace.ViewModels
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await SampleDataService.GetMasterDetailDataAsync();
 
             foreach (var item in data)
             {

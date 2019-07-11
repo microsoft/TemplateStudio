@@ -1,0 +1,3 @@
+﻿'{[{
+Imports GalaSoft.MvvmLight.Command
+'}]}

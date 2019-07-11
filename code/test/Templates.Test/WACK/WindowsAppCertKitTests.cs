@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Fakes;
@@ -38,15 +39,15 @@ namespace Microsoft.Templates.Test
         {
             // Exclude background task from WACK tests until WACK is fixed
             Func<ITemplateInfo, bool> templateSelector =
-                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GroupIdentity != "wts.Feat.BackgroundTask"
-                    && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
-                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin"
-                    && t.GroupIdentity != "wts.Feat.IdentityForcedLogin.VB"
-                    && t.GetPlatform() == platform
-                    && !t.GetIsHidden();
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GroupIdentity != "wts.Feat.BackgroundTask"
+                && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
+                && t.GroupIdentity != "wts.Service.IdentityForcedLogin"
+                && t.GroupIdentity != "wts.Service.IdentityForcedLogin.VB"
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden();
 
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 

@@ -7,9 +7,7 @@
     xmlns:tc="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tc:RadCartesianChart>
@@ -19,7 +17,7 @@
                 <tc:RadCartesianChart.VerticalAxis>
                     <tc:LinearAxis />
                 </tc:RadCartesianChart.VerticalAxis>
-                <tc:BarSeries ItemsSource="{x:Bind ViewModel.Source}" ShowLabels="True">
+                <tc:BarSeries ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" ShowLabels="True">
                     <tc:BarSeries.CategoryBinding>
                         <tc:PropertyNameDataPointBinding PropertyName="Category" />
                     </tc:BarSeries.CategoryBinding>

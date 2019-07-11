@@ -40,15 +40,17 @@
         <!--}]}-->
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            x:Uid="wts.ItemName"
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
             <!--{--{-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
             <!--}--}-->
             <!--^^-->
             <!--{[{-->
-            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"
             <!--}]}-->
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
     </Grid>
 </Page>

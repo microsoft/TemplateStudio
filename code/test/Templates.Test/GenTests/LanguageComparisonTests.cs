@@ -32,9 +32,27 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentForcedLoginAsync(string projectType, string framework)
+        {
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityForcedLogin");
+        }
+
+        // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
+        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the VB changes are made.
+        [Theory]
+        [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "GenerationLanguageComparison")]
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentOptionalLoginAsync(string projectType, string framework)
+        {
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityOptionalLogin");
+        }
+
+        private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)
         {
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjects().ToList();
+
+            genIdentities.Add(extraIdentity);
 
             var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
@@ -163,7 +181,7 @@ namespace Microsoft.Templates.Test
                     continue;
                 }
 
-                var filesWithCommentsInDifferentOrder = new[] { "ToastNotificationsService.Samples.vb" };
+                var filesWithCommentsInDifferentOrder = new[] { "ToastNotificationsService.Samples.vb", "IdentityService.vb" };
 
                 if (filesWithCommentsInDifferentOrder.Contains(allVbFiles[i].Name))
                 {
@@ -233,6 +251,14 @@ namespace Microsoft.Templates.Test
                         "map.MapServiceToken = String.Empty",
                         "map.MapServiceToken = string.Empty;"
                     },
+                    {
+                        "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainPage))",
+                        "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainPage));"
+                    },
+                    {
+                        "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainViewModel).FullName)",
+                        "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainViewModel).FullName);"
+                    }
                 };
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;

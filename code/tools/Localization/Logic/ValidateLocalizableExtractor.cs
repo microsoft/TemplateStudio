@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using LibGit2Sharp;
 using Localization.Extensions;
 using Localization.Options;
 using Newtonsoft.Json;
@@ -123,20 +122,17 @@ namespace Localization
                 || !originalContent.SequenceEqual(actualContent);
         }
 
-        internal bool HasResourceChanges(string resPath)
+        // TODO: this method should not be in this class, since it is not a validating method,
+        // but the _routesManager contains the necessary paths
+        internal Dictionary<string, ResxItem> GetResourcesWithChanges(string resPath)
         {
-            if (!_routesManager.ExistInSourceAndDestination(resPath))
-            {
-                return true;
-            }
-
             var originalResxPath = _routesManager.GetFileFromSource(resPath);
-            var originalResx = ResourcesExtensions.GetResourcesByFile(originalResxPath.FullName);
+            var originalValues = ResourcesExtensions.GetResourcesByFile(originalResxPath.FullName);
 
             var actualResxPath = _routesManager.GetFileFromDestination(resPath);
-            var actualResx = ResourcesExtensions.GetResourcesByFile(actualResxPath.FullName);
+            var newValues = ResourcesExtensions.GetResourcesByFile(actualResxPath.FullName);
 
-            return !originalResx.AreEquals(actualResx);
+            return newValues.GetChangesFrom(originalValues);
         }
 
         private bool CompareNodesToXmlFilesAreEquals(string path, IEnumerable<string> nodes, string mode = "name")

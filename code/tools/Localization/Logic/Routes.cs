@@ -25,6 +25,8 @@ namespace Localization
         internal const string TemplatesRootDirPath = "templates";
         internal const string TemplatesPagesPatternPath = "Pages";
         internal const string TemplatesFeaturesPatternPath = "Features";
+        internal const string TemplatesServicesPatternPath = "Services";
+        internal const string TemplatesTestingPatternPath = "Testing";
 
         internal const string TemplateConfigDir = ".template.config";
         internal const string TemplateDescriptionFile = "description.md";
@@ -51,7 +53,7 @@ namespace Localization
 
         internal static string[] ResoureceDirectories { get; } =
         {
-            "code\\src\\Core\\Resources",
+            "code\\CoreTemplateStudio\\code\\src\\CoreTemplateStudio\\CoreTemplateStudio.Core\\Resources",
             "code\\src\\Installer\\Resources",
             "code\\src\\UI\\Resources",
         };

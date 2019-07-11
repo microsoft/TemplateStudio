@@ -1,0 +1,43 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Test.StyleCop.UnitTests.App.xUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Testing.UnitTests.App.xUnit & $feature == wts.Feat.StyleCop",
+    "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName.Tests.xUnit\\GlobalSuppressions.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

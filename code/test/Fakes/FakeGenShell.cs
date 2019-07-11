@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Fakes
             {
                 if (!IsCpsProject(files.Key))
                 {
-                     AddItems(files.Key, files.Value);
+                    AddItems(files.Key, files.Value);
                 }
             }
 
@@ -305,11 +305,11 @@ namespace Microsoft.Templates.Fakes
             };
         }
 
-        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
         }
 
-        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
         }
 

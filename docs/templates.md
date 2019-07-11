@@ -1,6 +1,6 @@
 # Understanding the Templates
 
-Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages and Features.
+Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
 
 For example, consider the following scenarios:
 
@@ -48,6 +48,8 @@ The [Templates Repository](../templates) has the following structure:
   * [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
   * [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
   * [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+  * [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
+  * [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
 ## Anatomy of templates
 
@@ -118,7 +120,9 @@ The replacements are done based on the configuration established in the `templat
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false",                      //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
-    "wts.outputToParent": "true"                  //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
+    "wts.outputToParent": "true",                 //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
+    "wts.casing.sourceName":"kebab|camel|pascal", // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.sourceName.casing.kebab)
+    "wts.casing.rootNamespace":"kebab|camel|pascal" // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.rootNamespace.casing.kebab)     
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
   "preferNameDirectory": true,
@@ -197,13 +201,20 @@ A template can define an "export parameter" that will be handled by the `Compose
 
 This template is defining two export parameters **baseclass** and **setter**. Those parameters will be provided to other templates where they will be used as the values for symbol replacements.
 
+### Filtering supported templates
+
+It's possible to filter the displayed templates based on installed Visual Studio workloads.
+This is done by adding the tag `wts.requiredVsWorkload` and specifying the ID of the required workload.
+This tag is optional. If specified, the template will only be displayed if the required workload is installed.
+This tag cannot be used with frameworks or project types.
+
 ## Composable Templates
 
 As we already have mentioned, templates can be composed to maximize the code reusability. Consider, for example,the Blank page template, the page's source code will remain the same no matter the project type it is used in. Moreover, there will be very few changes in the page source code depending on which framework we rely on. The idea behind having composable templates is to reuse as much as possible the existing code for a certain page or feature no matter the project type or framework used.
 
 Creating composable templates is like when you are developing software and try to generalize something; it fits within the 80-20 rule, meaning that the 80% of the code is common among the callers and easy to be generalized, but the 20% have more dependencies, specific details, etc. and, by the way, it is more complex to be generalized. Considering this, we have two groups of templates in the repository:
 
-1. **Standard templates**: *the 80 part*, these templates are the common part of the source code, corresponding with the shared source code for projects, pages and features. This templates live in the `Projects`, `Pages` or `Features` folders of our Templates repository. Through the wizard, a user can select which project type, which pages and which features wants, those selections can be shown as a user adding items to a "generation basket".
+1. **Standard templates**: *the 80 part*, these templates are the common part of the source code, corresponding with the shared source code for projects, pages and features. This templates live in the `Projects`, `Pages`, `Features`, `Services` and `Testing` folders of our Templates repository. Through the wizard, a user can select which project type, which pages and which features wants, those selections can be shown as a user adding items to a "generation basket".
 1. **Composition templates**: *the 20 part*, these templates are thought to include the specific details required by a concrete template (a page or feature) which is going to be generated in a certain context. The context is determined by the combination of project type and framework selected by the user. Required composition templates are added to the "generation basket" automatically by the `Composer`. The composition templates live in the project `_composition` folder of the Templates repository.
 
 The structure of files and folders within the `_composition` folder is just for organization, to exactly determine which *composition templates* are required to be added to the generation basket, the `Composer` evaluates all the templates available in the `_composition` folder, applying the **composition filter** defined in the `template.json` file (tag `wts.compositionFilter`). All the templates with composition filters resulting in positive matches are added to the generation basket. The following is a sample of composition filter.
@@ -272,7 +283,7 @@ Currently we support the following types of [Post-Actions](../code/src/Core/Post
 - Other postactions:
   * **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
   * **SearchAndReplace**: searches for the source code defined in the postaction file and replaces it with the specified code. This Post-Action requires a special (_searchreplace) configuration in the templates files.
-  
+
   * **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
   * **Set Default Solution Configuration**: sets the default solution configuration in the Visual Studio sln file. With this post-action we change the default solution configuration from Debug|ARM to Debug|x86.
 
@@ -355,7 +366,7 @@ Here is the content of the ShellPage_postaction.xaml:
             <!--{[{-->
             <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="views:wts.ItemNamePage" />
             <!--}]}-->
-        </NavigationView.MenuItems>        
+        </NavigationView.MenuItems>
     </NavigationView>
 </Page>
 
@@ -387,7 +398,7 @@ There are different merge directives to drive the code merging. Currently:
 
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
 * MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
-* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. 
+* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
 * MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
 * MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
 
@@ -400,7 +411,7 @@ This postaction does not work with directives but based on the x:keys contained 
 
 The postaction works in three steps:
 1. Locate the source resource dictionary file. (Imagine the postaction file is called Styles/Button_postaction.xaml, the source file would be Styles/Button.xaml)
-2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
+2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file.
 3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
 
 ## Supporting VB.Net and C# versions of Templates
@@ -429,7 +440,7 @@ When validating an individual template file it will look for missing required el
 
 ![TemplateValidator used in file mode](./resources/tools/templateValidator-f.png)
 
-If, as in the above image the file contains no issues the message "All looks good." will be displayed. If any issues are identified these will be listed. 
+If, as in the above image the file contains no issues the message "All looks good." will be displayed. If any issues are identified these will be listed.
 
 ### Testing directories containing template files
 
@@ -444,6 +455,23 @@ Any issues that start with "WARNING" are recommendations that should be addresse
 ### Automated testing of template validation
 
 The Templates.Test project includes tests to run all the checks from the TemplateValidator tool as part of the automated tests for the solution.
+
+## Authoring templates tooling
+
+### Visual Studio Code Snippets
+We've created some Visual Studio Code Snippets to help creating the template.json files.
+
+#### Adding code Snippets to Visual Studio Code
+ - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
+ - Open Json.json on language files list.
+ - Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
+ - Paste those code snippets on the opened Json.json file.
+
+#### Using the code snippets
+
+After creating an empty template.json file, type wts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
+There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
+
 
 ## Table of Contents
 

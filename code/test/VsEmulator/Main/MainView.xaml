@@ -7,16 +7,10 @@
         mc:Ignorable="d"
         KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
-        Height="480" Width="800" 
+        Height="480" Width="960" 
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
-        <Image x:Key="VsCodeImage" Source="/VsEmulator;component/Assets/vscode.jpg"/>
-        <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
-        <Image x:Key="NewFeatureImage" Source="/VsEmulator;component/Assets/newfeature.png"/>
-        <Image x:Key="NewPageImage" Source="/VsEmulator;component/Assets/newpage.png"/>
-        <Image x:Key="OpenFolderImage" Source="/VsEmulator;component/Assets/openfolder.png"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
 
@@ -25,7 +19,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Margin="12">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="Auto" />
@@ -37,23 +31,40 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <StackPanel>
-                    <TextBlock>
-                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
-                            <TextBlock Text="New Uwp C# project..."/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBlock>
-                        <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
-                            <TextBlock Text="New Uwp VB project..."/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBlock>
+                <StackPanel Margin="12,12,12,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock>
+                                <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
+                                    <TextBlock Text="New Uwp C# project..."/>
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock>
+                                <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
+                                    <TextBlock Text="New Uwp VB project..."/>
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                                <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" VerticalAlignment="Center" />
+                                <TextBlock Margin="6,0,0,0" Text="With style checks" VerticalAlignment="Center" />
+                                <Image Margin="3,0,0,0" Width="20" Source="/VsEmulator;component/Assets/stylecop.png" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Margin="0,12,0,0">
                         <Hyperlink Command="{Binding LoadProjectCommand}">
                             <TextBlock Text="Load project..."/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>
+
+                    <TextBlock Margin="0,12,0,0">
                         <Hyperlink Command="{Binding AnalyzeCSharpSelectionCommand}">
                             <TextBlock Text="Analyze C# project selection"/>
                         </Hyperlink>
@@ -71,34 +82,86 @@
                     </TextBlock>
                     <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,8,0,0" ToolTip="Refresh template cache"/>
                 </StackPanel>
-                <ScrollViewer x:Name="logScroll" Margin="0,8" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer x:Name="logScroll" Margin="0,8" Padding="12,0" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
-                <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom" Margin="12,0,12,12">
                     <TextBlock Text="Wizard Version: "></TextBlock>
                     <TextBlock Text="{Binding WizardVersion}"></TextBlock>
                     <TextBlock Margin="10,0,0,0" Text="Templates Version: "></TextBlock>
                     <TextBlock Text="{Binding TemplatesVersion}"></TextBlock>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
-            <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio"/>
-                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio Code" />
-                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}" ToolTip="Open in explorer" />
-                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new feature"/>
-                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new page"/>
-                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  ToolTip="Open temp folder in explorer"/>
-                </StackPanel>
-                <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
-                <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />
-            </Grid>
+            <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" Margin="0" />
+            <ScrollViewer Grid.Column="2">
+                <ItemsControl
+                    Margin="18,12,0,12"
+                    ItemsSource="{Binding Projects}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,24">
+                                <TextBlock Text="{Binding ProjectName}" Style="{StaticResource Header2}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                    <TextBlock Text="Platform: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Platform}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Language: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Language}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Project Type: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding ProjectType}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Framework: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Framework}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                    <TextBlock Text="Time: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding Time}" Style="{StaticResource Label1}" />
+                                </StackPanel>
+                                <TextBlock Margin="0,4,0,0" Text="Generated with style checks" Style="{StaticResource Label1}" Visibility="{Binding StyleCopTextVisibility}" />
+
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                    <Button Command="{Binding OpenInVsCommand}" Style="{StaticResource IconButton}">
+                                        <Button.ToolTip>Open in Visual Studio</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/vs.jpg" />
+                                    </Button>
+                                    <Button Command="{Binding OpenInVsCodeCommand}" Style="{StaticResource IconButton}">
+                                        <Button.ToolTip>Open in Visual Studio Code</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/vscode.jpg" />
+                                    </Button>
+                                    <Button Command="{Binding OpenInExplorerCommand}" Style="{StaticResource IconButton}">
+                                        <Button.ToolTip>Open in folder</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/folder.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewPageCommand}" Style="{StaticResource IconButton}" Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new page</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newpage.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewFeatureCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new feature</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newfeature.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new service</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newservice.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                        <Button.ToolTip>Add new testing</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newtesting.png" />
+                                    </Button>
+                                    <Button Command="{Binding OpenTempInExplorerCommand}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}">
+                                        <Button.ToolTip>Open temp folder in explorer</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/openfolder.png"/>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource StatusContainer}">
             <TextBlock Text="{Binding State}" Style="{StaticResource StatusText}" />

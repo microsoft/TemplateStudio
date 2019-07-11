@@ -1,12 +1,15 @@
 ﻿//{**
-// This code block adds the method `GetChartSampleData()` to the SampleDataService of your project.
+// This code block adds the method `GetGridDataAsync()` to the SampleDataService of your project.
 //**}
+//{[{
+using System.Threading.Tasks;
+//}]}
     public interface ISampleDataService
     {
 //^^
 //{[{
 
-        ObservableCollection<SampleOrder> GetGridSampleData();
+        Task<IEnumerable<SampleOrder>> GetGridDataAsync();
 //}]}
     }
 }

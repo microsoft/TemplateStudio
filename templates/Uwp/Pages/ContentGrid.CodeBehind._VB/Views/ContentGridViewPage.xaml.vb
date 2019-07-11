@@ -8,22 +8,29 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 
-        Public ReadOnly Property Source As ObservableCollection(Of SampleOrder)
-            Get
-                ' TODO WTS: Replace this with your actual data
-                Return SampleDataService.GetContentGridData()
-            End Get
-        End Property
+        Public Property Source As ObservableCollection(Of SampleOrder) = New ObservableCollection(Of SampleOrder)
 
         Public Sub New()
             InitializeComponent()
+        End Sub
+
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            Source.Clear()
+
+            ' TODO WTS: Replace this with your actual data
+            Dim data = Await SampleDataService.GetContentGridDataAsync()
+
+            For Each item As SampleOrder In data
+                Source.Add(item)
+            Next
         End Sub
 
         Private Sub OnItemClick(sender As Object, e As ItemClickEventArgs)
             Dim item = TryCast(e.ClickedItem, SampleOrder)
             If item IsNot Nothing Then
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(item)
-                NavigationService.Navigate(Of ContentGridViewDetailPage)(item.OrderId)
+                NavigationService.Navigate(Of ContentGridViewDetailPage)(item.OrderID)
             End If
         End Sub
 

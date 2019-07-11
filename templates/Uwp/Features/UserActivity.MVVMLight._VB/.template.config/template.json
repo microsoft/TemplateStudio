@@ -22,7 +22,7 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.dependencies":"wts.Feat.DeepLinking.MVVMLight.VB",
-    "wts.rightClickEnabled":"false"
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "wts.itemName",
   "preferNameDirectory": true,
@@ -46,10 +46,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type": "parameter",
-      "replaces": "Param_HomeName"
     }
   },
   "postActions": [
@@ -59,7 +55,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "AdaptiveCards",
-        "version": "1.1.2",
+        "version" : "1.2.0",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": "true"

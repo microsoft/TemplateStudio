@@ -12,21 +12,21 @@ Namespace Views
 
         Public Const ImageGalleryViewSelectedIdKey As String = "ImageGalleryViewSelectedIdKey"
 
-        Private _source As ObservableCollection(Of SampleImage)
-
-        Public Property Source As ObservableCollection(Of SampleImage)
-            Get
-                Return _source
-            End Get
-            Set
-                [Param_Setter](_source, value)
-            End Set
-        End Property
+        Public Property Source As ObservableCollection(Of SampleImage) = New ObservableCollection(Of SampleImage)
 
         Public Sub New()
-            ' TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData()
             InitializeComponent()
+            AddHandler Loaded, AddressOf ImageGalleryViewPage_OnLoaded
+        End Sub
+
+        Public Async Sub ImageGalleryViewPage_OnLoaded(sender As Object, eventArgs As RoutedEventArgs)
+            Source.Clear()
+
+            ' TODO WTS: Replace this with your actual data
+            Dim data = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
+            For Each item As SampleImage In data
+                Source.Add(item)
+            Next
         End Sub
 
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)

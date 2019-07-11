@@ -13,7 +13,7 @@ namespace Param_RootNamespace.ViewModels
             {
 //^^
 //{[{
-                NavigationService.Navigate<wts.ItemNameDetailPage>(clickedItem.OrderId);
+                NavigationService.Navigate<wts.ItemNameDetailPage>(clickedItem.OrderID);
 //}]}
             }
         }

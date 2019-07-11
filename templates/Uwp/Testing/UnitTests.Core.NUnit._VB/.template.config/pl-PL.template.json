@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Test Core library with NUnit",
+    "description": "Dodaj projekt, aby przetestować kod w bibliotece Core przy użyciu narzędzia NUnit.",
+    "identity": "wts.Testing.UnitTests.Core.NUnit.VB"
+}

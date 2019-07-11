@@ -79,6 +79,33 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
+        private Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
+        {
+            var instances = new List<ISetupInstance2>();
+
+            var setupConfiguration = new SetupConfiguration();
+            var instanceEnumerator = setupConfiguration.EnumInstances();
+
+            var setupInstance = new ISetupInstance2[1];
+            var count = 0;
+
+            while (true)
+            {
+                instanceEnumerator.Next(1, setupInstance, out count);
+
+                if (count == 0)
+                {
+                    break;
+                }
+
+                instances.Add(setupInstance[0]);
+            }
+
+            return instances[0];
+        });
+
+        private List<string> installedPackageIds = new List<string>();
+
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
@@ -97,6 +124,19 @@ namespace Microsoft.Templates.UI.VisualStudio
                     proj.Save();
                 }
             });
+        }
+
+        internal List<string> GetInstalledPackageIds()
+        {
+            if (!installedPackageIds.Any())
+            {
+                foreach (var package in this.vsInstance.Value.GetPackages())
+                {
+                    installedPackageIds.Add(package.GetId());
+                }
+            }
+
+            return installedPackageIds;
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
@@ -836,12 +876,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             return VSTelemetryService.VsTelemetryIsOptedIn();
         }
 
-        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
             VSTelemetryService.SafeTrackProjectVsTelemetry(properties, pages, features, metrics, success);
         }
 
-        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, Dictionary<string, double> metrics, bool success = true)
+        public override void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pages, string features, string services, string testing, Dictionary<string, double> metrics, bool success = true)
         {
             VSTelemetryService.SafeTrackNewItemVsTelemetry(properties, pages, features, metrics, success);
         }

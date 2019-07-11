@@ -14,7 +14,7 @@ namespace Localization
         private DirectoryInfo _destinationDir;
 
         private const string SourceDirNamePattern = "Commands";
-        private const string SourceDirRelPath = @"\code\src\Installer.2017\Commands";
+        private const string SourceDirRelPath = @"\code\src\Installer\Commands";
         private const string SourceFileRelayCommandPattern = "RelayCommandPackage.en-US.vsct";
         private const string SourceFileVSPackagePattern = "VSPackage.en-US.resx";
         private const string DestinationDirNamePattern = "Commands";

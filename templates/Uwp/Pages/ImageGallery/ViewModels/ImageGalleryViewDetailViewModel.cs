@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
@@ -11,7 +12,6 @@ namespace Param_RootNamespace.ViewModels
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private object _selectedImage;
-        private ObservableCollection<SampleImage> _source;
 
         public object SelectedImage
         {
@@ -23,16 +23,23 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ImageGalleryViewDetailViewModel()
         {
+        }
+
+        public async Task LoadDataAsync()
+        {
+            Source.Clear();
+
             // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         public void Initialize(string selectedImageID, NavigationMode navigationMode)

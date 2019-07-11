@@ -21,7 +21,6 @@ namespace Param_RootNamespace.Views
     public sealed partial class ImageGalleryViewDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private object _selectedImage;
-        private ObservableCollection<SampleImage> _source;
 
         public object SelectedImage
         {
@@ -33,22 +32,26 @@ namespace Param_RootNamespace.Views
             }
         }
 
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ImageGalleryViewDetailPage()
         {
-            // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Source.Clear();
+
+            // TODO WTS: Replace this with your actual data
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
+
             var selectedImageID = e.Parameter as string;
             if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {

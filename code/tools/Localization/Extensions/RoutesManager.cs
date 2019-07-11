@@ -2,7 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Localization.Extensions
 {
@@ -33,6 +35,11 @@ namespace Localization.Extensions
         public FileInfo GetFileFromSource(string path)
         {
             return RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, path));
+        }
+
+        public IEnumerable<FileInfo> GetAllFilesFromSource()
+        {
+            return _sourceDir.EnumerateFiles("*", SearchOption.AllDirectories);
         }
 
         public FileInfo GetFileFromSource(string relativePath, string fileName)
@@ -68,6 +75,20 @@ namespace Localization.Extensions
         public bool ExistInSourceAndDestination(string relativePath)
         {
             return ExistInSource(relativePath) && ExistInDestination(relativePath);
+        }
+
+        public string GetRelativePathFromSourceFile(FileInfo file)
+        {
+            return file.FullName.StartsWith(_sourceDir.FullName)
+                ? file.FullName.Substring(_sourceDir.FullName.Length + 1)
+                : string.Empty;
+        }
+
+        public string GetRelativeDirectoryFromSource(DirectoryInfo directory)
+        {
+            return directory.FullName.StartsWith(_sourceDir.FullName)
+                ? directory.FullName.Substring(_sourceDir.FullName.Length + 1)
+                : string.Empty;
         }
     }
 }

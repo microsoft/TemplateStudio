@@ -7,15 +7,21 @@ Namespace ViewModels
     Public Class ContentGridViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
-        Public ReadOnly Property Source As ObservableCollection(Of SampleOrder)
-            Get
-                ' TODO WTS: Replace this with your actual data
-                Return SampleDataService.GetContentGridData()
-            End Get
-        End Property
+        Public Property Source As ObservableCollection(Of SampleOrder) = New ObservableCollection(Of SampleOrder)
 
         Public Sub New()
         End Sub
+
+        Public Async Function LoadDataAsync() As Task
+            Source.Clear()
+
+            ' TODO WTS: Replace this with your actual data
+            Dim data = Await SampleDataService.GetContentGridDataAsync()
+
+            For Each item As SampleOrder In data
+                Source.Add(item)
+            Next
+        End Function
 
         Public ReadOnly Property ItemClickCommand  As ICommand = New RelayCommand(Of SampleOrder)(Sub(order) OnItemClick(order))
 

@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.Services
         {
             if (_updateStep)
             {
-                BaseMainViewModel.BaseInstance.RefreshStep(e.Content);
+                WizardNavigation.Current.RefreshStep(e.Content);
                 _updateStep = false;
             }
         }

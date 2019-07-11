@@ -10,31 +10,36 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public static class OrderingService
+    public class OrderingService
     {
-        private static ListView _listView;
-        private static DragAndDropService<SavedTemplateViewModel> _service;
+        private ListView _listView;
+        private DragAndDropService<SavedTemplateViewModel> _dragAndDropService;
 
-        private static ObservableCollection<SavedTemplateViewModel> Pages
+        private ObservableCollection<SavedTemplateViewModel> Pages
         {
-            get => MainViewModel.Instance.UserSelection.Pages;
+            get => MainViewModel.Instance.UserSelection.Groups.First(g => g.TemplateType == Core.TemplateType.Page).Items;
         }
 
-        public static void Initialize(ListView listView)
+        public OrderingService(ListView listView)
         {
             _listView = listView;
-
-            _service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
-            _service.ProcessDrop += OnDrop;
+            if (_listView != null)
+            {
+                _dragAndDropService = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
+                _dragAndDropService.ProcessDrop += OnDrop;
+            }
         }
 
-        public static void UnsubscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
-            _service.UnsubscribeEventHandlers();
-            _service.ProcessDrop -= OnDrop;
+            if (_dragAndDropService != null)
+            {
+                _dragAndDropService.UnsubscribeEventHandlers();
+                _dragAndDropService.ProcessDrop -= OnDrop;
+            }
         }
 
-        public static void MoveUp(SavedTemplateViewModel item)
+        public void MoveUp(SavedTemplateViewModel item)
         {
             if (Pages.Contains(item) && Pages.First() != item)
             {
@@ -43,7 +48,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public static void MoveDown(SavedTemplateViewModel item)
+        public void MoveDown(SavedTemplateViewModel item)
         {
             if (Pages.Contains(item) && Pages.Last() != item)
             {
@@ -52,17 +57,17 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool AreCompatibleItems(int indexOfItem1, int indexOfItem2)
+        private bool AreCompatibleItems(int indexOfItem1, int indexOfItem2)
         {
             return AreCompatibleItems(Pages.ElementAt(indexOfItem1), Pages.ElementAt(indexOfItem2));
         }
 
-        private static bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
+        private bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
         {
             return startItem.GenGroup == endItem.GenGroup;
         }
 
-        private static void OnDrop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
+        private void OnDrop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
             if (e.OldIndex > -1)
             {
@@ -70,7 +75,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static void MoveItemAndSetFocus(int oldIndex, int newIndex)
+        private void MoveItemAndSetFocus(int oldIndex, int newIndex)
         {
             if (AreCompatibleItems(oldIndex, newIndex))
             {

@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
@@ -80,13 +80,53 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
                 _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
+            }
+        }
+
+        public void AddNewService()
+        {
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
+            {
+                SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddServiceSuccess, userSelection.Services[0].Name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddServiceCancelled);
+            }
+        }
+
+        public void AddNewTesting()
+        {
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
+            {
+                SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddTestingSuccess, userSelection.Testing[0].Name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddTestingCancelled);
             }
         }
 

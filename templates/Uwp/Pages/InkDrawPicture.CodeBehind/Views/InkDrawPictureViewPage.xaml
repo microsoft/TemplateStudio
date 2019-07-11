@@ -15,10 +15,10 @@
                 <Grid Background="{StaticResource InkCanvasBackground}"
                         Width="{Binding ElementName=inkCanvas, Path=Width}"
                         Height="{Binding ElementName=inkCanvas, Path=Height}"> 
-                    <Image x:Name="image" Stretch="None"/>                       
+                    <Image x:Name="image" Stretch="None" />                       
                     <InkCanvas x:Name="inkCanvas"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
+                            VerticalAlignment="Stretch" />
             </Grid>
         </ScrollViewer>        
         <CommandBar

@@ -3,7 +3,7 @@
 
     <Grid>
         <FlipView
-            animations:Connected.AnchorElement="{Binding ElementName=detailImage}">
+            SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
         </FlipView>
 <!--{[{-->
         <Button

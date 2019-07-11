@@ -1,0 +1,50 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "wts.Service.WebApi.Shared",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "composition",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & groupidentity == wts.Service.WebApi",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "1",
+    "wts.defaultInstance": "WebApi",
+    "wts.multipleInstance": "false",
+    "wts.outputToParent": "true",
+    "wts.licenses": "[AspNetCore](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)|[DotNetCore](https://github.com/dotnet/core-setup/blob/master/LICENSE.TXT)|[Swashbuckle](https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE)"
+  },
+  "sourceName": "WebApiFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Swashbuckle.AspNetCore",
+        "version" : "4.0.1",
+        "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
+}

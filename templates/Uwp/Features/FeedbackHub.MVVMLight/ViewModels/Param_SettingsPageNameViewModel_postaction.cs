@@ -5,9 +5,8 @@ namespace Param_RootNamespace.ViewModels
 {
     public class Param_SettingsPageNameViewModel : ViewModelBase
     {
-
+//^^
 //{[{
-
         public Visibility FeedbackLinkVisibility => Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
 
         private ICommand _launchFeedbackHubCommand;
@@ -32,5 +31,8 @@ namespace Param_RootNamespace.ViewModels
         }
 
 //}]}
+        public Param_SettingsPageNameViewModel()
+        {
+        }
     }
 }

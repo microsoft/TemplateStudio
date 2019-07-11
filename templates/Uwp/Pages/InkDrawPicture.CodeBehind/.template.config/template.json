@@ -15,7 +15,7 @@
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "16",
+    "wts.displayOrder": "17",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.licenses": "[Win2D.uwp](https://github.com/Microsoft/Win2D/blob/master/LICENSE.txt)"
@@ -55,8 +55,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Win2D.uwp",
-        "version" : "1.23.0",
+        "packageId": "Win2D.uwp",
+        "version": "1.23.0",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"

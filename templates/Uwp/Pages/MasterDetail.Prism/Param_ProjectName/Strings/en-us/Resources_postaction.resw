@@ -9,5 +9,9 @@
     <value>Select an item from the list.</value>
     <comment>No selection text for MasterDetailView</comment>
   </data>
+  <data name="MasterDetailView.MasterHeader" xml:space="preserve">
+    <value>MasterDetailView</value>
+    <comment>Title for MasterDetailViewPage</comment>
+  </data>
   <!--}]}-->
 </root>

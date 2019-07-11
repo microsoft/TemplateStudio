@@ -13,12 +13,5 @@ namespace Localization.Options
             HelpText = "path to the folder that contains source files for Project Templates(it's root project folder).",
             Required = true)]
         public string SourceDirectory { get; set; }
-
-        [Option(
-            'd',
-            "dest",
-            HelpText = "path to the folder in which will be saved all localized Project Templates (parent for CSharp.UWP.2017.Solution directory).",
-            Required = true)]
-        public string DestinationDirectory { get; set; }
     }
 }

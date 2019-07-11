@@ -1,16 +1,14 @@
 ﻿<Page
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource SmallLeftRightMargin}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
 <!--{--{-->
         <Grid>
 <!--}--}-->
 <!--^^-->
 <!--{[{-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock

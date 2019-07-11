@@ -11,6 +11,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -23,20 +24,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        public const string NewProjectStepProjectType = "01ProjectType";
+        public const string NewProjectStepFramework = "02Framework";
+
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
 
         private TemplateInfoViewModel _selectedTemplate;
+
+        public Dictionary<TemplateType, TemplatesStepViewModel> StepsViewModels { get; } = new Dictionary<TemplateType, TemplatesStepViewModel>();
 
         public static MainViewModel Instance { get; private set; }
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType), () => Instance.OnProjectTypeSelectedAsync());
 
         public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework), () => Instance.OnFrameworkSelectedAsync());
-
-        public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
-
-        public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
@@ -60,10 +62,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public MainViewModel(Window mainView, BaseStyleValuesProvider provider)
-            : base(mainView, provider)
+            : base(mainView, provider, NewProjectSteps)
         {
             Instance = this;
             ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
+            Navigation.OnFinish += OnFinish;
+        }
+
+        public override void UnsubscribeEventHandlers()
+        {
+            base.UnsubscribeEventHandlers();
+            Navigation.OnFinish -= OnFinish;
+            UserSelection.UnsubscribeEventHandlers();
+        }
+
+        private static IEnumerable<StepData> NewProjectSteps
+        {
+            get
+            {
+                yield return StepData.MainStep(NewProjectStepProjectType, "1", StringRes.NewProjectStepProjectType, () => new ProjectTypePage(), true, true);
+                yield return StepData.MainStep(NewProjectStepFramework, "2", StringRes.NewProjectStepDesignPattern, () => new FrameworkPage());
+            }
         }
 
         public override async Task InitializeAsync(string platform, string language)
@@ -72,12 +91,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await base.InitializeAsync(platform, language);
         }
 
-        protected override void OnCancel() => WizardShell.Current.Close();
-
-        protected override void OnFinish()
+        private void OnFinish(object sender, EventArgs e)
         {
             WizardShell.Current.Result = UserSelection.GetUserSelection();
-            base.OnFinish();
         }
 
         public override bool IsSelectionEnabled(MetadataType metadataType)
@@ -107,8 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             if (result == true)
             {
-                AddPages.ResetUserSelection();
-                AddFeatures.ResetTemplatesCount();
+                StepsViewModels.Values.ToList().ForEach(vm => vm.ResetTemplatesCount());
             }
 
             return result;
@@ -116,7 +131,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
-            var groups = templateInfo.TemplateType == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
+            var groups = StepsViewModels[templateInfo.TemplateType].Groups;
             foreach (var group in groups)
             {
                 var template = group.GetTemplate(templateInfo);
@@ -141,14 +156,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             await ProjectType.LoadDataAsync(Platform);
             ShowNoContentPanel = !ProjectType.Items.Any();
-        }
-
-        protected override IEnumerable<Step> GetSteps()
-        {
-            yield return new Step(0, StringRes.NewProjectStepOne, () => new ProjectTypePage(), true, true);
-            yield return new Step(1, StringRes.NewProjectStepTwo, () => new FrameworkPage());
-            yield return new Step(2, StringRes.NewProjectStepThree, () => new AddPagesPage());
-            yield return new Step(3, StringRes.NewProjectStepFour, () => new AddFeaturesPage());
         }
 
         public override async Task ProcessItemAsync(object item)
@@ -177,10 +184,41 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private async Task OnFrameworkSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            AddPages.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
-            AddFeatures.LoadData(Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            await BuildStepViewModelAsync(TemplateType.Page);
+            await BuildStepViewModelAsync(TemplateType.Feature);
+            await BuildStepViewModelAsync(TemplateType.Service);
+            await BuildStepViewModelAsync(TemplateType.Testing);
             await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
+        }
+
+        private async Task BuildStepViewModelAsync(TemplateType templateType)
+        {
+            var hasTemplates = DataService.HasTemplatesFromType(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            var stepId = templateType.GetNewProjectStepId();
+            var isStepAdded = StepsViewModels.ContainsKey(templateType);
+            if (hasTemplates)
+            {
+                if (!isStepAdded)
+                {
+                    var stepTitle = templateType.GetNewProjectStepTitle();
+                    var pageTitle = templateType.GetStepPageTitle();
+                    var step = new TemplatesStepViewModel(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name, pageTitle);
+                    step.LoadData();
+                    StepsViewModels.Add(templateType, step);
+                    WizardNavigation.Current.AddNewStep(stepId, stepTitle, () => new TemplatesStepPage(templateType));
+                }
+                else
+                {
+                    var step = StepsViewModels[templateType];
+                    step.ResetData(ProjectType.Selected.Name, Framework.Selected.Name);
+                }
+            }
+            else if (!hasTemplates && isStepAdded)
+            {
+                StepsViewModels.Remove(templateType);
+                await WizardNavigation.Current.RemoveStepAsync(stepId);
+            }
         }
 
         protected async Task OnRefreshTemplatesCacheAsync()

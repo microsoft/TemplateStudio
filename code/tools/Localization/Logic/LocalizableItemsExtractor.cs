@@ -119,19 +119,34 @@ namespace Localization
             ExtractTemplateEngineTemplates(Routes.TemplatesFeaturesPatternPath);
         }
 
+        internal void ExtractTemplateServices()
+        {
+            ExtractTemplateEngineTemplates(Routes.TemplatesServicesPatternPath);
+        }
+
+        internal void ExtractTemplateTesting()
+        {
+            ExtractTemplateEngineTemplates(Routes.TemplatesTestingPatternPath);
+        }
+
         private void ExtractTemplateEngineTemplates(string patternPath)
         {
-            var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
-            var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase)));
-
-            foreach (var directory in templatesDirectories)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                var path = GetTemplateRelativePath(directory);
-                string pageSrcDirectory = Path.Combine(path, Routes.TemplateConfigDir);
+                var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
+                var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
+                var templatesDirectories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-                ExtractTemplateJson(pageSrcDirectory);
-                ExtractTemplateDescription(pageSrcDirectory);
+                foreach (var directory in templatesDirectories)
+                {
+                    string templateSrcDirectory = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+
+                    if (!IsTemplateHidden(templateSrcDirectory))
+                    {
+                        ExtractTemplateJson(templateSrcDirectory);
+                        ExtractTemplateDescription(templateSrcDirectory);
+                    }
+                }
             }
         }
 
@@ -249,29 +264,30 @@ namespace Localization
             foreach (string directory in Routes.ResoureceDirectories)
             {
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (_validator.HasResourceChanges(srcResFile))
+                var newResxValues = _validator.GetResourcesWithChanges(srcResFile);
+
+                if (newResxValues.Any())
                 {
-                    FileInfo resourceFile = _routesManager.GetFileFromSource(srcResFile);
-                    var desDirectory = _routesManager.GetOrCreateDestDirectory(directory);
+                    var desDirectory = _routesManager.GetOrCreateDestDirectory(directory).FullName;
+                    var resourceFile = ResourcesExtensions.CreateResxFile(Path.Combine(desDirectory, Routes.ResourcesFilePath), newResxValues);
 
                     foreach (string culture in _cultures)
                     {
-                        string destResFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ResourcesFilePathPattern, culture));
+                        string destResFile = Path.Combine(desDirectory, string.Format(Routes.ResourcesFilePathPattern, culture));
                         resourceFile.CopyTo(destResFile, true);
                     }
+
+                    resourceFile.Delete();
                 }
             }
         }
 
-        private string GetTemplateRelativePath(DirectoryInfo directory)
+        private bool IsTemplateHidden(string templatePath)
         {
-            if (directory.Name == Routes.TemplatesRootDirPath)
-            {
-                return directory.Name;
-            }
+            var jsonFile = _routesManager.GetFileFromSource(Path.Combine(templatePath, Routes.TemplateJsonFile));
+            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
 
-            var path = GetTemplateRelativePath(directory.Parent);
-            return Path.Combine(path, directory.Name);
+            return value != null && value is "true";
         }
     }
 }

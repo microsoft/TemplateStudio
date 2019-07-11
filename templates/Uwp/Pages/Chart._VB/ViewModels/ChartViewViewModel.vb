@@ -5,14 +5,20 @@ Namespace ViewModels
     Public Class ChartViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
+        Public Property Source As ObservableCollection(Of DataPoint) = New ObservableCollection(Of DataPoint)
+
         Public Sub New()
         End Sub
 
-        Public ReadOnly Property Source As ObservableCollection(Of DataPoint)
-            Get
-                ' TODO WTS: Replace this with your actual data
-                Return SampleDataService.GetChartSampleData()
-            End Get
-        End Property
+        Public Async Function LoadDataAsync() As Task
+            Source.Clear()
+
+            ' TODO WTS: Replace this with your actual data
+            Dim data = Await SampleDataService.GetChartDataAsync()
+
+            For Each item As DataPoint In data
+                Source.Add(item)
+            Next
+        End Function
     End Class
 End Namespace

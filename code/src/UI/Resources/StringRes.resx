@@ -121,6 +121,14 @@
     <value>Add features</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
+  <data name="AddServiceTitle" xml:space="preserve">
+    <value>Add services</value>
+    <comment>AddService title on AddServicePage</comment>
+  </data>
+  <data name="AddTestingTitle" xml:space="preserve">
+    <value>Add testing</value>
+    <comment>AddTesting title on AddTestingPage</comment>
+  </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>Add pages</value>
     <comment>Add pages title on AddPagesPage</comment>
@@ -225,10 +233,6 @@
     <value>Something went wrong :-(</value>
     <comment>Error dialog title</comment>
   </data>
-  <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
-    <comment>Error dialog window title</comment>
-  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>more info</value>
     <comment>Changes summary more info link</comment>
@@ -244,6 +248,14 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
     <comment>Page already added {0}: Page name</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another service.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another testing project.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Template selection</value>
@@ -277,21 +289,29 @@
     <value>New page</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectStepFour" xml:space="preserve">
+  <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>Features</value>
-    <comment>New project: Navigation step four</comment>
+    <comment>New project: Navigation step features</comment>
   </data>
-  <data name="NewProjectStepOne" xml:space="preserve">
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Services</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Testing</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
     <value>Project type</value>
-    <comment>New project: Navigation step one</comment>
+    <comment>New project: Navigation step project type</comment>
   </data>
-  <data name="NewProjectStepThree" xml:space="preserve">
+  <data name="NewProjectStepPages" xml:space="preserve">
     <value>Pages</value>
-    <comment>New project: Navigation step three</comment>
+    <comment>New project: Navigation step pages</comment>
   </data>
-  <data name="NewProjectStepTwo" xml:space="preserve">
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
     <value>Design pattern</value>
-    <comment>New project: Navigation step two</comment>
+    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>New Universal Windows Platform app</value>
@@ -364,7 +384,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Templates version:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>
     <comment>About section title</comment>
@@ -376,6 +396,14 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Features</value>
     <comment>Feature list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Services</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
@@ -398,7 +426,7 @@
     <comment>Page list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>You have changed your project type selection. The templates you have selected will be lost. Do you want to continue?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
@@ -468,6 +496,22 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>Page {0} successfully added</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Add new service cancelled</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Service {0} successfully added</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Add new testing project cancelled</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Testing project {0} successfully added</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>Unable to find project {0}</value>
@@ -579,7 +623,7 @@
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
     <value>Press enter to add {0}</value>
-    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
+    <comment>Help text to add template item. {0}: name of template</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
     <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
@@ -703,10 +747,6 @@ Please verify the following list of packages needed by your project's code and m
     <value>Windows Template Studio is now adding a core project. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="TemplateGroup_Testing" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Group header for Testing templates</comment>
-  </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
     <value>You can not remove **{0}** because it is readonly.</value>
     <comment>Remove error message: Template is read only</comment>
@@ -741,5 +781,21 @@ Please verify the following list of packages needed by your project's code and m
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>See documentation to update.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Tools</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>New service</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>New testing project</value>
+    <comment>New item: new testing project title</comment>
   </data>
 </root>

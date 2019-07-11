@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test Core library with xUnit",
-    "description": "Добавление проекта для тестирования кода в основной библиотеке с помощью xUnit.",
-    "identity": "wts.Feat.UnitTests.Core.xUnit.VB"
-}

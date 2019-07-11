@@ -20,7 +20,7 @@
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "Settings",
     "wts.genGroup": "1",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,

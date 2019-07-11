@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 using Microsoft.Toolkit.Uwp.UI.Animations;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 using Param_RootNamespace.Helpers;
@@ -16,19 +17,25 @@ namespace Param_RootNamespace.Views
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
-        private ObservableCollection<SampleImage> _source;
-
-        public ObservableCollection<SampleImage> Source
-        {
-            get => _source;
-            set => Param_Setter(ref _source, value);
-        }
+        public ObservableCollection<SampleImage> Source { get; } = new ObservableCollection<SampleImage>();
 
         public ImageGalleryViewPage()
         {
-            // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
             InitializeComponent();
+            Loaded += ImageGalleryViewPage_OnLoaded;
+        }
+
+        private async void ImageGalleryViewPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Source.Clear();
+
+            // TODO WTS: Replace this with your actual data
+            var data = await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets");
+
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)

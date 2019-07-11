@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
 
@@ -19,10 +20,10 @@ namespace Param_RootNamespace.ViewModels
         {
         }
 
-        public void Initialize(long orderId)
+        public async Task InitializeAsync(long orderID)
         {
-            var data = SampleDataService.GetContentGridData();
-            Item = data.First(i => i.OrderId == orderId);
+            var data = await SampleDataService.GetContentGridDataAsync();
+            Item = data.First(i => i.OrderID == orderID);
         }
     }
 }

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "TreeView",
+  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "identity": "wts.Page.TreeView.Prism"
+}

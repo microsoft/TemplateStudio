@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail.VB|wts.Page.ContentGrid.VB"
+    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail.VB|wts.Page.ContentGrid.VB|wts.Page.TreeView.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -20,10 +20,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

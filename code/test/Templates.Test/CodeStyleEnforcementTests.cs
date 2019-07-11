@@ -102,13 +102,16 @@ namespace Microsoft.Templates.Test
             var foundErrors = new List<string>();
 
             // Build tests will fail if these are included but this test is quicker than building everything
-            void CheckStringNotIncluded(string toSearchFor)
+            void CheckStringNotIncluded(string toSearchFor, string exception = null)
             {
                 var result = CodeIsNotUsed(toSearchFor, ".vb");
 
                 if (!result.Item1)
                 {
-                    foundErrors.Add(result.Item2);
+                    if (string.IsNullOrEmpty(exception) || !result.Item2.Contains(exception))
+                    {
+                        foundErrors.Add(result.Item2);
+                    }
                 }
             }
 
@@ -145,7 +148,7 @@ namespace Microsoft.Templates.Test
 
             CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
             CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
-            CheckStringNotIncluded(";");
+            CheckStringNotIncluded(";", exception: "SqlServerDataService.vb");
             CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
             CheckStringNotIncluded("Var "); // May be in commented our code included in template as an example
             CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers

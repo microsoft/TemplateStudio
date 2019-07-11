@@ -16,9 +16,15 @@ namespace Microsoft.Templates.UI.Extensions
     {
         public static readonly DependencyProperty SequentialFlowStepProperty = DependencyProperty.RegisterAttached(
           "SequentialFlowStep",
-          typeof(Step),
+          typeof(StepData),
           typeof(TextBlockExtensions),
           new PropertyMetadata(null, OnSequentialFlowStepChanged));
+
+        public static readonly DependencyProperty SequentialFlowStepIndexProperty = DependencyProperty.RegisterAttached(
+          "SequentialFlowStepIndex",
+          typeof(string),
+          typeof(TextBlockExtensions),
+          new PropertyMetadata(string.Empty, OnSequentialFlowStepChanged));
 
         public static readonly DependencyProperty SequentialFlowStepCompletedProperty = DependencyProperty.RegisterAttached(
           "SequentialFlowStepCompleted",
@@ -26,14 +32,24 @@ namespace Microsoft.Templates.UI.Extensions
           typeof(TextBlockExtensions),
           new PropertyMetadata(false, OnSequentialFlowStepChanged));
 
-        public static void SetSequentialFlowStep(UIElement element, Step value)
+        public static void SetSequentialFlowStep(UIElement element, StepData value)
         {
             element.SetValue(SequentialFlowStepProperty, value);
         }
 
-        public static Step GetSequentialFlowStep(UIElement element)
+        public static StepData GetSequentialFlowStep(UIElement element)
         {
-            return (Step)element.GetValue(SequentialFlowStepProperty);
+            return (StepData)element.GetValue(SequentialFlowStepProperty);
+        }
+
+        public static void SetSequentialFlowStepIndex(UIElement element, string value)
+        {
+            element.SetValue(SequentialFlowStepIndexProperty, value);
+        }
+
+        public static string GetSequentialFlowStepIndex(UIElement element)
+        {
+            return (string)element.GetValue(SequentialFlowStepIndexProperty);
         }
 
         public static void SetSequentialFlowStepCompleted(UIElement element, bool value)
@@ -50,22 +66,20 @@ namespace Microsoft.Templates.UI.Extensions
         {
             var textBlock = d as TextBlock;
             var step = GetSequentialFlowStep(textBlock);
+            var index = GetSequentialFlowStepIndex(textBlock);
             var completed = GetSequentialFlowStepCompleted(textBlock);
             textBlock.Inlines.Clear();
-            if (completed)
+            textBlock.Inlines.Add($"{index}. {step.Title}");
+        }
+
+        private static Run GetCheckMark()
+        {
+            return new Run()
             {
-                textBlock.Inlines.Add(new Run()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Text = char.ConvertFromUtf32(0xE001).ToString(),
-                    BaselineAlignment = BaselineAlignment.Center,
-                });
-                textBlock.Inlines.Add($" {step.Title}");
-            }
-            else
-            {
-                textBlock.Inlines.Add($"{step.Index + 1}.  {step.Title}");
-            }
+                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                Text = char.ConvertFromUtf32(0xE001).ToString(),
+                BaselineAlignment = BaselineAlignment.Center,
+            };
         }
     }
 }

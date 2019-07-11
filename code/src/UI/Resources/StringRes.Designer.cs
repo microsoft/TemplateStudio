@@ -178,6 +178,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add services.
+        /// </summary>
+        public static string AddServiceTitle {
+            get {
+                return ResourceManager.GetString("AddServiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add testing.
+        /// </summary>
+        public static string AddTestingTitle {
+            get {
+                return ResourceManager.GetString("AddTestingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Breaking changes.
         /// </summary>
         public static string BreakingChanges {
@@ -457,15 +475,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio Error.
-        /// </summary>
-        public static string ErrorDialogWindowTitle {
-            get {
-                return ResourceManager.GetString("ErrorDialogWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Install-Package -Id {0} -Version {1}.
         /// </summary>
         public static string ErrorMissingNugetPackagesInstallTemplate {
@@ -577,6 +586,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another service..
+        /// </summary>
+        public static string NewItemHasNoChangesService {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChangesService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another testing project..
+        /// </summary>
+        public static string NewItemHasNoChangesTesting {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChangesTesting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template selection.
         /// </summary>
         public static string NewItemStepOne {
@@ -649,38 +676,74 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Features.
+        ///   Looks up a localized string similar to New service.
         /// </summary>
-        public static string NewProjectStepFour {
+        public static string NewItemTitleService {
             get {
-                return ResourceManager.GetString("NewProjectStepFour", resourceCulture);
+                return ResourceManager.GetString("NewItemTitleService", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project type.
+        ///   Looks up a localized string similar to New testing project.
         /// </summary>
-        public static string NewProjectStepOne {
+        public static string NewItemTitleTesting {
             get {
-                return ResourceManager.GetString("NewProjectStepOne", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pages.
-        /// </summary>
-        public static string NewProjectStepThree {
-            get {
-                return ResourceManager.GetString("NewProjectStepThree", resourceCulture);
+                return ResourceManager.GetString("NewItemTitleTesting", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
-        public static string NewProjectStepTwo {
+        public static string NewProjectStepDesignPattern {
             get {
-                return ResourceManager.GetString("NewProjectStepTwo", resourceCulture);
+                return ResourceManager.GetString("NewProjectStepDesignPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string NewProjectStepFeatures {
+            get {
+                return ResourceManager.GetString("NewProjectStepFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        public static string NewProjectStepPages {
+            get {
+                return ResourceManager.GetString("NewProjectStepPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project type.
+        /// </summary>
+        public static string NewProjectStepProjectType {
+            get {
+                return ResourceManager.GetString("NewProjectStepProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        public static string NewProjectStepServices {
+            get {
+                return ResourceManager.GetString("NewProjectStepServices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing.
+        /// </summary>
+        public static string NewProjectStepTesting {
+            get {
+                return ResourceManager.GetString("NewProjectStepTesting", resourceCulture);
             }
         }
         
@@ -991,7 +1054,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?.
+        ///   Looks up a localized string similar to You have changed your project type selection. The templates you have selected will be lost. Do you want to continue?.
         /// </summary>
         public static string ProjectDetailsProjectTypeResetDescription {
             get {
@@ -1014,6 +1077,24 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectDetailsProjectTypeSectionTitle {
             get {
                 return ResourceManager.GetString("ProjectDetailsProjectTypeSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        public static string ProjectDetailsServicesSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsServicesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing.
+        /// </summary>
+        public static string ProjectDetailsTestingSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsTestingSectionTitle", resourceCulture);
             }
         }
         
@@ -1135,6 +1216,42 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new service cancelled.
+        /// </summary>
+        public static string StatusBarNewItemAddServiceCancelled {
+            get {
+                return ResourceManager.GetString("StatusBarNewItemAddServiceCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service {0} successfully added.
+        /// </summary>
+        public static string StatusBarNewItemAddServiceSuccess {
+            get {
+                return ResourceManager.GetString("StatusBarNewItemAddServiceSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new testing project cancelled.
+        /// </summary>
+        public static string StatusBarNewItemAddTestingCancelled {
+            get {
+                return ResourceManager.GetString("StatusBarNewItemAddTestingCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing project {0} successfully added.
+        /// </summary>
+        public static string StatusBarNewItemAddTestingSuccess {
+            get {
+                return ResourceManager.GetString("StatusBarNewItemAddTestingSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added.
         /// </summary>
         public static string TemplateAdded {
@@ -1252,6 +1369,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string TemplateGroup_Data {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identity (choose one).
         /// </summary>
         public static string TemplateGroup_Identity {
@@ -1261,11 +1387,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Testing.
+        ///   Looks up a localized string similar to Tools.
         /// </summary>
-        public static string TemplateGroup_Testing {
+        public static string TemplateGroup_Tools {
             get {
-                return ResourceManager.GetString("TemplateGroup_Testing", resourceCulture);
+                return ResourceManager.GetString("TemplateGroup_Tools", resourceCulture);
             }
         }
         

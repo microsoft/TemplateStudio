@@ -47,6 +47,8 @@ namespace Localization
             Execute(VerifyCommandTemplates, "Verifying command templates");
             Execute(VerifyTemplatePages, "Verifying template pages");
             Execute(VerifyTemplateFeatures, "Verifying template features");
+            Execute(VerifyTemplateServices, "Verifying template services");
+            Execute(VerifyTemplateTesting, "Verifying template testing");
             Execute(VerifyWtsProjectTypes, "Verifying project types");
             Execute(VerifyWtsFrameworks, "Verifying project frameworks");
             Execute(VerifyResourceFiles, "Verifying resources");
@@ -87,6 +89,16 @@ namespace Localization
             VerifyTemplateItem(Routes.TemplatesFeaturesPatternPath);
         }
 
+        private void VerifyTemplateServices()
+        {
+            VerifyTemplateItem(Routes.TemplatesServicesPatternPath);
+        }
+
+        private void VerifyTemplateTesting()
+        {
+            VerifyTemplateItem(Routes.TemplatesTestingPatternPath);
+        }
+
         private void VerifyWtsProjectTypes()
         {
             VerifyWtsItem(Routes.WtsProjectTypes);
@@ -114,7 +126,6 @@ namespace Localization
 
             if (!file.Exists)
             {
-                _verificationResult = false;
                 _errors.Add(string.Format("{0} not found.", file.FullName));
             }
         }
@@ -127,7 +138,6 @@ namespace Localization
 
                 if (!languageFile.Exists)
                 {
-                    _verificationResult = false;
                     _errors.Add(string.Format("{0} not found.", languageFile.FullName));
                 }
             }
@@ -135,19 +145,20 @@ namespace Localization
 
         private void VerifyTemplateItem(string patternPath)
         {
-            var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.TemplatesRootDirPath));
-            var directories = templatesDir.EnumerateDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories()).Select(d => GetTemplateRelativePath(d));
+            var templatesDirectories = GetPlatformsTemplatesDirectory(patternPath).ToList();
 
             foreach (var itemTemplate in templatesDirectories)
             {
                 var templateDirectory = Path.Combine(itemTemplate, Routes.TemplateConfigDir);
-
                 VerifyFile(templateDirectory, Routes.TemplateJsonFile);
-                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
 
-                VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
-                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
+                if (!IsTemplateHidden(itemTemplate))
+                {
+                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
+
+                    VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
+                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
+                }
             }
         }
 
@@ -204,12 +215,12 @@ namespace Localization
                 _warnings.Add(string.Format("Missing resource: {0} contain \"{1}\" resource name but not in {2}", cultureFile, name, resxFile)));
         }
 
-        private void VerifyResourcesFormat(Dictionary<string, string> resources, Dictionary<string, string> cultureResources, string resxFile, string cultureFile)
+        private void VerifyResourcesFormat(Dictionary<string, ResxItem> resources, Dictionary<string, ResxItem> cultureResources, string resxFile, string cultureFile)
         {
             string pattern = @"([.^{^}]*(?<p>{\d+}))+";
 
-            var resWithStringFormat = resources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
-            var resCultureWithStringFormat = cultureResources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
+            var resWithStringFormat = resources.Select(r => new { r.Key, Regex.Matches(r.Value.Text, pattern).Count });
+            var resCultureWithStringFormat = cultureResources.Select(r => new { r.Key, Regex.Matches(r.Value.Text, pattern).Count });
             var resWithDistinctFormats = resWithStringFormat.Where(r => resCultureWithStringFormat.Any(c => c.Key == r.Key && c.Count != r.Count));
 
             foreach (var res in resWithDistinctFormats)
@@ -228,6 +239,7 @@ namespace Localization
 
             if (_errors.Any())
             {
+                _verificationResult = false;
                 ConsoleExt.WriteError(" - ERROR");
             }
             else if (_warnings.Any())
@@ -243,15 +255,26 @@ namespace Localization
             _warnings.ToList().ForEach(e => ConsoleExt.WriteWarning(string.Concat(" - ", e)));
         }
 
-        private string GetTemplateRelativePath(DirectoryInfo directory)
+        private IEnumerable<string> GetPlatformsTemplatesDirectory(string patternPath)
         {
-            if (directory.Name == Routes.TemplatesRootDirPath)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                return directory.Name;
-            }
+                var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
+                var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, baseDir));
 
-            var path = GetTemplateRelativePath(directory.Parent);
-            return Path.Combine(path, directory.Name);
+                foreach (var directory in templatesDir.GetDirectories())
+                {
+                    yield return Path.Combine(baseDir, directory.Name);
+                }
+            }
+        }
+
+        private bool IsTemplateHidden(string templatePath)
+        {
+            var jsonFile = RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, templatePath, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
+            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
+
+            return value != null && value is "true";
         }
     }
 }

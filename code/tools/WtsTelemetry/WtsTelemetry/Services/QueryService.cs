@@ -36,6 +36,10 @@ queryTable
 
         public string Features => string.Format(DataQuery, year, month, "WtsFeatureGen", "WtsTemplateName");
 
+        public string Services => string.Format(DataQuery, year, month, "WtsServiceGen", "WtsTemplateName");
+
+        public string Testing => string.Format(DataQuery, year, month, "WtsTestingGen", "WtsTemplateName");
+
         public string EntryPoints => string.Format(DataQuery, year, month, "WtsWizard", "WtsWizardType");
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Prism.Commands;
@@ -14,15 +15,9 @@ namespace Param_RootNamespace.ViewModels
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
         private readonly IConnectedAnimationService _connectedAnimationService;
-
-        private ObservableCollection<SampleOrder> _source;
         private ICommand _itemClickCommand;
 
-        public ObservableCollection<SampleOrder> Source
-        {
-            get => _source;
-            set => SetProperty(ref _source, value);
-        }
+        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new DelegateCommand<SampleOrder>(OnItemClick));
 
@@ -31,9 +26,19 @@ namespace Param_RootNamespace.ViewModels
             _navigationService = navigationServiceInstance;
             _sampleDataService = sampleDataServiceInstance;
             _connectedAnimationService = connectedAnimationService;
+        }
+
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+            Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            Source = _sampleDataService.GetContentGridData();
+            var data = await _sampleDataService.GetContentGridDataAsync();
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
         }
 
         private void OnItemClick(SampleOrder clickedItem)
@@ -41,7 +46,7 @@ namespace Param_RootNamespace.ViewModels
             if (clickedItem != null)
             {
                 _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.Navigate(PageTokens.ContentGridViewDetailPage, clickedItem.OrderId);
+                _navigationService.Navigate(PageTokens.ContentGridViewDetailPage, clickedItem.OrderID);
             }
         }
     }

@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -12,26 +13,47 @@ namespace Localization.Extensions
 {
     public static class ResourcesExtensions
     {
-        public static Dictionary<string, string> GetResourcesByFile(string filePath)
+        public static Dictionary<string, ResxItem> GetResourcesByFile(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                return new Dictionary<string, string>();
+                return new Dictionary<string, ResxItem>();
             }
 
-            using (var resx = new ResXResourceReader(filePath))
+            using (var reader = new ResXResourceReader(filePath))
             {
-                return resx.Cast<DictionaryEntry>()
-                            .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
+                reader.UseResXDataNodes = true;
+                ITypeResolutionService typeres = null;
+
+                return reader
+                        .Cast<DictionaryEntry>()
+                        .ToDictionary(k => k.Key.ToString(), v => new ResxItem
+                        {
+                            Name = v.Key.ToString(),
+                            Text = ((ResXDataNode)v.Value).GetValue(typeres).ToString(),
+                            Comment = ((ResXDataNode)v.Value).Comment,
+                        });
             }
         }
 
-        public static string GetResourceValue(string filePath, string name)
+        public static FileInfo CreateResxFile(string path, Dictionary<string, ResxItem> resxItems)
         {
-            using (ResXResourceSet resxSet = new ResXResourceSet(filePath))
+            if (resxItems is null)
             {
-                return resxSet.GetString(name);
+                return null;
             }
+
+            using (var writer = new ResXResourceWriter(path))
+            {
+                foreach (var entry in resxItems.Values)
+                {
+                    writer.AddResource(entry.ToNode());
+                }
+
+                writer.Generate();
+            }
+
+            return new FileInfo(path);
         }
     }
 }

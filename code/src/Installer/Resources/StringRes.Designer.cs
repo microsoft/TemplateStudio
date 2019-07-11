@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Extension.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class StringRes {
@@ -84,6 +84,24 @@ namespace Microsoft.Templates.Extension.Resources {
         public static string AddProjectAction {
             get {
                 return ResourceManager.GetString("AddProjectAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Service.
+        /// </summary>
+        public static string AddServiceAction {
+            get {
+                return ResourceManager.GetString("AddServiceAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Testing.
+        /// </summary>
+        public static string AddTestingAction {
+            get {
+                return ResourceManager.GetString("AddTestingAction", resourceCulture);
             }
         }
         

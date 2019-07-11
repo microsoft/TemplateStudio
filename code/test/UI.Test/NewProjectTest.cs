@@ -39,6 +39,9 @@ namespace Microsoft.UI.Test
         // Features
         private const string FeatureSettingsStorage = "wts.Feat.SettingsStorage";
 
+        // Services
+        private const string ServiceWebApi = "wts.Service.WebApi";
+
         private TemplatesFixture _fixture;
 
         public NewProjectTest(TemplatesFixture fixture)
@@ -55,12 +58,17 @@ namespace Microsoft.UI.Test
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
 
+            var pages = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Page);
+            var features = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Feature);
+
             Assert.True(viewModel.ProjectType.Items.Count == 4);
             Assert.True(viewModel.Framework.Items.Count == 5);
-            Assert.True(viewModel.AddPages.Groups.Count > 0);
-            Assert.True(viewModel.AddFeatures.Groups.Count > 0);
-            Assert.True(viewModel.UserSelection.Pages.Count == 1);
-            Assert.True(viewModel.UserSelection.Features.Count == 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Page].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Service].Groups.Count > 0);
+            Assert.True(viewModel.StepsViewModels[TemplateType.Testing].Groups.Count > 0);
+            Assert.True(pages.Items.Count == 1);
+            Assert.True(features.Items.Count == 0);
         }
 
         [Fact]
@@ -90,7 +98,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -110,7 +118,7 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
             Assert.True(viewModel.UserSelection.Licenses.Count == 1);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             userSelection = viewModel.UserSelection.GetUserSelection();
@@ -126,12 +134,27 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            DeletePage(viewModel.UserSelection, 1);
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
+        }
+
+        [Fact]
+        public async Task RemoveTemplateWithHiddenDependencyAsync()
+        {
+            // Default configuration: SplitView, CodeBehind, Blank page
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, ServiceWebApi));
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.True(userSelection.Services.Count == 3);
+            DeleteTemplate(TemplateType.Service, viewModel.UserSelection, 2);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.True(userSelection.Services.Count == 1);
         }
 
         [Fact]
@@ -141,7 +164,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            DeletePage(viewModel.UserSelection, 0);
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 0);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
         }
@@ -153,12 +176,12 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Features.Count == numOfDependencies);
-            DeleteFeature(viewModel.UserSelection, 0);
+            DeleteTemplate(TemplateType.Feature, viewModel.UserSelection, 0);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Features.Count == numOfDependencies);
         }
@@ -170,25 +193,25 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            var chartTemplate = GetTemplate(viewModel.AddPages.Groups, PageChartCodeBehind);
-            var gridTemplate = GetTemplate(viewModel.AddPages.Groups, PageGridCodeBehind);
+            var chartTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageChartCodeBehind);
+            var gridTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageGridCodeBehind);
             var numOfDependencies = chartTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, chartTemplate);
             await AddTemplateAsync(viewModel, gridTemplate);
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 3);
-            Assert.True(userSelection.Features.Count == numOfDependencies);
+            Assert.True(userSelection.Services.Count == numOfDependencies);
 
-            DeletePage(viewModel.UserSelection, 2);
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 2);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            Assert.True(userSelection.Features.Count == numOfDependencies);
+            Assert.True(userSelection.Services.Count == numOfDependencies);
 
-            DeletePage(viewModel.UserSelection, 1);
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
-            Assert.True(userSelection.Features.Count == numOfDependencies - 1);
+            Assert.True(userSelection.Services.Count == numOfDependencies - 1);
         }
 
         [Fact]
@@ -198,23 +221,25 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.Pages[2].Name == "Blank1");
             Assert.True(userSelection.Pages[3].Name == "Blank2");
             Assert.True(userSelection.Pages[4].Name == "Blank3");
-            viewModel.UserSelection.SelectedPage = viewModel.UserSelection.Pages[2]; // Select Blank1
-            viewModel.UserSelection.MovePageDownCommand.Execute(null);
+            var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
+            pages.EnableOrdering(null);
+            pages.SelectedItem = pages.Items[2]; // Select Blank1
+            pages.MoveDownCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.Pages[2].Name == "Blank2");
             Assert.True(userSelection.Pages[3].Name == "Blank1");
             Assert.True(userSelection.Pages[4].Name == "Blank3");
-            viewModel.UserSelection.MovePageUpCommand.Execute(null);
+            pages.MoveUpCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.Pages[2].Name == "Blank1");
@@ -229,13 +254,15 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            await AddTemplateAsync(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[0].Name == "Main");
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.HomeName == "Main");
-            viewModel.UserSelection.SelectedPage = viewModel.UserSelection.Pages[1]; // Select Blank
-            viewModel.UserSelection.MovePageUpCommand.Execute(null);
+            var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
+            pages.EnableOrdering(null);
+            pages.SelectedItem = pages.Items[1]; // Select Blank
+            pages.MoveUpCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[0].Name == "Blank");
             Assert.True(userSelection.Pages[1].Name == "Main");
@@ -257,21 +284,13 @@ namespace Microsoft.UI.Test
             await viewModel.ProcessItemAsync(template);
         }
 
-        private void DeletePage(UserSelectionViewModel viewmodel, int index)
+        private void DeleteTemplate(TemplateType templateType, UserSelectionViewModel userSelection, int index)
         {
-            var page = viewmodel.Pages.ElementAt(index);
-            if (viewmodel.DeletePageCommand.CanExecute(page))
+            var items = userSelection.Groups.First(g => g.TemplateType == templateType);
+            var item = items.Items.ElementAt(index);
+            if (item.DeleteCommand.CanExecute(item))
             {
-                viewmodel.DeletePageCommand.Execute(page);
-            }
-        }
-
-        private void DeleteFeature(UserSelectionViewModel viewmodel, int index)
-        {
-            var feature = viewmodel.Features.ElementAt(index);
-            if (viewmodel.DeleteFeatureCommand.CanExecute(feature))
-            {
-                viewmodel.DeleteFeatureCommand.Execute(feature);
+                item.DeleteCommand.Execute(item);
             }
         }
 

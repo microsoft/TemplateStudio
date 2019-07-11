@@ -16,6 +16,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Xunit;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Core.Helpers;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Test
 {
@@ -43,7 +44,7 @@ namespace Microsoft.Templates.Test
             // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
             // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
-            return " -_.,@! (£)+=";
+            return " -_.,@! (Â£)+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -82,19 +83,19 @@ namespace Microsoft.Templates.Test
         {
             // get first item from each exclusive selection group
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+                t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
-            Func<ITemplateInfo, bool> templateSelector = 
-                    t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
-                    && t.GetPlatform() == platform
-                    && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
-                    && !t.GetIsHidden();
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
+                && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
 
@@ -245,12 +246,12 @@ namespace Microsoft.Templates.Test
             if (!emptyProject)
             {
                 var templates = _fixture.Templates().Where(
-                        t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                        && t.GetFrontEndFrameworkList().Contains(framework)
-                        && t.GetPlatform() == platform
-                        && t.GroupIdentity != excludedGroupIdentity
-                        && !t.GetIsHidden());
+                    t => t.GetTemplateType().IsItemTemplate()
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && t.GroupIdentity != excludedGroupIdentity
+                    && !t.GetIsHidden());
 
                 var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
 
@@ -268,12 +269,12 @@ namespace Microsoft.Templates.Test
             Assert.True(emptyProjecFileCount > 2);
 
             var rightClickTemplates = _fixture.Templates().Where(
-                        t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                        && t.GetFrontEndFrameworkList().Contains(framework)
-                        && t.GetPlatform() == platform
-                        && !t.GetIsHidden()
-                        && t.GetRightClickEnabled());
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && t.GetRightClickEnabled());
 
             await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
 
@@ -496,8 +497,9 @@ namespace Microsoft.Templates.Test
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                 "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                 "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
-                "wts.Feat.UnitTests.Core.MSTest", "wts.Feat.UnitTests.Core.NUnit", "wts.Feat.UnitTests.Core.xUnit",
-                "wts.Feat.UnitTests.App.MSTest", "wts.Feat.UnitTests.App.xUnit",
+                "wts.Testing.UnitTests.Core.MSTest", "wts.Testing.UnitTests.Core.NUnit", "wts.Testing.UnitTests.Core.xUnit",
+                "wts.Testing.UnitTests.App.MSTest", "wts.Testing.UnitTests.App.xUnit",
+                "wts.Service.HttpDataService", "wts.Service.SqlServerDataService",
             };
         }
 
