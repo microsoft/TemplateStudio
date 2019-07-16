@@ -17,7 +17,7 @@
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
                     id="AddTestingCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="OpenTempFolder" context="UICONTEXT_SolutionHasAppContainerProject" />  
+                    id="OpenTempFolder" context="UICONTEXT_SolutionHasAppContainerProject" />
   </VisibilityConstraints>
   
   <Commands package="guidRelayCommandPackage">
@@ -63,7 +63,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpService" />
         <Strings>
-          <ButtonText>New service...</ButtonText>
+          <ButtonText>Новый сервис...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
@@ -72,7 +72,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpTesting" />
         <Strings>
-          <ButtonText>New testing project...</ButtonText>
+          <ButtonText>Новый проект тестирования...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">

@@ -117,17 +117,93 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>Dodaj funkcje</value>
-    <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Add services</value>
+    <value>Dodaj usługi</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Add testing</value>
+    <value>Dodaj testowanie</value>
     <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} jest już elementem Twojego projektu. Proszę wybrać inną usługę.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} jest już elementem Twojego projektu. Proszę wybrać inny projekt testowy.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>Funkcje</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Usług</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Testowania</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Typ projektu</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Strony</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Usług</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Testowania</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>Zmieniono wybór typu projektu. Wybrane szablony zostaną utracone. Czy chcesz kontynuować?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Dodaj nową usługę anulowane</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Usługa {0} została pomyślnie dodana</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Dodaj nowy projekt testowy anulowany</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Projekt testowy {0} został pomyślnie dodany</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Danych</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Narzędzia</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Nowa usługa</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Nowy projekt testowy</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>Dodaj funkcje</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>Dodaj strony</value>
@@ -249,14 +325,6 @@
     <value>{0} jest już elementem Twojego projektu. Wybierz inną stronę.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
-  <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another service.</value>
-    <comment>Service already added {0}: Service name</comment>
-  </data>
-  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another testing project.</value>
-    <comment>Testing project already added {0}: Testing project name</comment>
-  </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Wybór szablonu</value>
     <comment>New Item: Naviagtion step one </comment>
@@ -288,38 +356,6 @@
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>Nowa strona</value>
     <comment>New item: new page title</comment>
-  </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>New service</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>New testing project</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepFeatures" xml:space="preserve">
-    <value>Funkcje</value>
-    <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Services</value>
-    <comment>New project: Navigation step services</comment>
-  </data>
-  <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Testing</value>
-    <comment>New project: Navigation step testing</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>Typ projektu</value>
-    <comment>New project: Navigation step project type</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>Strony</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>Nowa aplikacja na platformie uniwersalnej systemu Windows</value>
@@ -392,7 +428,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Wersja szablonów:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>Informacje</value>
     <comment>About section title</comment>
@@ -404,14 +440,6 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Funkcje</value>
     <comment>Feature list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Services</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>Zmieniono wybrany design pattern. Wybrane strony i funkcje zostaną utracone. Czy chcesz kontynuować?</value>
@@ -432,10 +460,6 @@
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>Strony</value>
     <comment>Page list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Zmieniono wybór typu projektu. Wybrane strony i funkcje zostaną utracone. Czy chcesz kontynuować?</value>
-    <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
     <value>Zmieniono typ projektu</value>
@@ -504,22 +528,6 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>Strona {0} została pomyślnie dodana</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Add new service cancelled</value>
-    <comment>Status bar message for Add new service cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Service {0} successfully added</value>
-    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Add new testing project cancelled</value>
-    <comment>Status bar message for Add new testing project cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testing project {0} successfully added</value>
-    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>Nie można znaleźć projektu {0}</value>
@@ -789,13 +797,5 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Data</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Tools</value>
-    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>
