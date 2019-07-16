@@ -117,17 +117,93 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>Adicionar recursos</value>
-    <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Add services</value>
+    <value>Adicionar serviços</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Add testing</value>
+    <value>Adicionar testes</value>
     <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} já faz parte do seu projeto. Por favor, escolha outro serviço.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} já faz parte do seu projeto. Por favor, escolha outro projeto de teste.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>Recursos</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Serviços</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Teste</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Tipo de projeto</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Páginas</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Serviços</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Teste</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>Você alterou a seleção de tipo de projeto. Os modelos selecionados serão perdidos. Você quer continuar?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Adicionar novo serviço cancelado</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Serviço {0} adicionado com êxito</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Adicionar novo projeto de teste cancelado</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Testando o projeto {0} adicionado com êxito</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Dados</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Ferramentas</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Novo serviço</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Novo projeto de teste</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>Adicionar recursos</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>Adicionar páginas</value>
@@ -232,7 +308,7 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>Houve algum problema :-(</value>
     <comment>Error dialog title</comment>
-  </data>  
+  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>mais informações</value>
     <comment>Changes summary more info link</comment>
@@ -248,14 +324,6 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} já faz parte do projeto. Escolha outra página.</value>
     <comment>Page already added {0}: Page name</comment>
-  </data>
-  <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another service.</value>
-    <comment>Service already added {0}: Service name</comment>
-  </data>
-  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another testing project.</value>
-    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Seleção de modelo</value>
@@ -288,38 +356,6 @@
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>Nova página</value>
     <comment>New item: new page title</comment>
-  </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>New service</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>New testing project</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepFeatures" xml:space="preserve">
-    <value>Recursos</value>
-    <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Services</value>
-    <comment>New project: Navigation step services</comment>
-  </data>
-  <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Testing</value>
-    <comment>New project: Navigation step testing</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>Tipo de projeto</value>
-    <comment>New project: Navigation step project type</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>Páginas</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>Novo aplicativo da Plataforma Universal do Windows</value>
@@ -392,7 +428,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Versão dos modelos:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>Sobre</value>
     <comment>About section title</comment>
@@ -404,14 +440,6 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Recursos</value>
     <comment>Feature list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Services</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>Você alterou a seleção do design pattern. As páginas e os recursos selecionados serão perdidos. Deseja continuar?</value>
@@ -432,10 +460,6 @@
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>Páginas</value>
     <comment>Page list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Você alterou a seleção de tipo de projeto. As páginas e os recursos selecionados serão perdidos. Deseja continuar?</value>
-    <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
     <value>Tipo de projeto alterado</value>
@@ -504,22 +528,6 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>Página {0} adicionada com êxito</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Add new service cancelled</value>
-    <comment>Status bar message for Add new service cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Service {0} successfully added</value>
-    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Add new testing project cancelled</value>
-    <comment>Status bar message for Add new testing project cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testing project {0} successfully added</value>
-    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>Não é possível localizar o projeto {0}</value>
@@ -789,13 +797,5 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Consulte a documentação para atualização.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Data</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Tools</value>
-    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>

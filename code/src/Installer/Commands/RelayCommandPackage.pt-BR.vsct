@@ -63,7 +63,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpService" />
         <Strings>
-          <ButtonText>New service...</ButtonText>
+          <ButtonText>Novo serviço...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
@@ -72,7 +72,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpTesting" />
         <Strings>
-          <ButtonText>New testing project...</ButtonText>
+          <ButtonText>Novo projeto de teste...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
