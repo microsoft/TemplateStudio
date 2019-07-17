@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddTestingAction" xml:space="preserve">
-    <value>Add Testing</value>
+    <value>테스트 추가</value>
   </data>
   <data name="AddServiceAction" xml:space="preserve">
-    <value>Add Service</value>
+    <value>서비스 추가</value>
   </data>
   <data name="AddFeatureAction" xml:space="preserve">
     <value>기능 추가</value>

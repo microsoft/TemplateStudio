@@ -117,17 +117,93 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>기능 추가</value>
-    <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Add services</value>
+    <value>서비스 추가</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Add testing</value>
+    <value>테스트 추가</value>
     <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0}은 이미 프로젝트의 일부입니다. 다른 서비스를 선택하십시오.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0}은 이미 프로젝트의 일부입니다. 다른 테스트 프로젝트를 선택하십시오.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>기능</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>서비스</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>테스트</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>프로젝트 유형</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>페이지</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>서비스</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>테스트</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>프로젝트 유형 선택을 변경했습니다. 선택한 템플릿이 손실됩니다. 계속하시겠습니까?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>취소된 새 서비스 추가</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>서비스 {0} 성공적으로 추가</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>취소된 새 테스트 프로젝트 추가</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>테스트 프로젝트 {0} 성공적으로 추가</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>데이터</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>도구</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>새로운 서비스</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>새로운 테스트 프로젝트</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>기능 추가</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>페이지 추가</value>
@@ -232,7 +308,7 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>문제가 발생했습니다.</value>
     <comment>Error dialog title</comment>
-  </data>  
+  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>자세한 정보</value>
     <comment>Changes summary more info link</comment>
@@ -248,14 +324,6 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0}은(는) 프로젝트의 일부입니다. 다른 페이지를 선택하십시오.</value>
     <comment>Page already added {0}: Page name</comment>
-  </data>
-  <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another service.</value>
-    <comment>Service already added {0}: Service name</comment>
-  </data>
-  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another testing project.</value>
-    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>템플릿 선택</value>
@@ -288,38 +356,6 @@
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>새 페이지</value>
     <comment>New item: new page title</comment>
-  </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>New service</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>New testing project</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepFeatures" xml:space="preserve">
-    <value>기능</value>
-    <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Services</value>
-    <comment>New project: Navigation step services</comment>
-  </data>
-  <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Testing</value>
-    <comment>New project: Navigation step testing</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>프로젝트 유형</value>
-    <comment>New project: Navigation step project type</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>페이지</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>새로운 유니버설 Windows 플랫폼 앱</value>
@@ -392,7 +428,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>템플릿 버전:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>소개</value>
     <comment>About section title</comment>
@@ -404,14 +440,6 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>기능</value>
     <comment>Feature list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Services</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>design pattern 선택이 변경되었습니다. 선택한 페이지와 기능은 모두 잃게 됩니다. 계속하시겠습니까?</value>
@@ -432,10 +460,6 @@
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>페이지</value>
     <comment>Page list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>프로젝트 유형 선택을 변경했습니다. 선택한 페이지와 기능은 모두 잃게 됩니다. 계속하시겠습니까?</value>
-    <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
     <value>프로젝트 유형이 변경됨</value>
@@ -504,22 +528,6 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>{0} 페이지가 추가됨</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Add new service cancelled</value>
-    <comment>Status bar message for Add new service cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Service {0} successfully added</value>
-    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Add new testing project cancelled</value>
-    <comment>Status bar message for Add new testing project cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testing project {0} successfully added</value>
-    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>{0} 프로젝트를 찾을 수 없음</value>
@@ -789,13 +797,5 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Data</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Tools</value>
-    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>
