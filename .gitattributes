@@ -4,6 +4,7 @@
 * text=auto
 
 *.vb text eol=crlf
+*.cs text eol=crlf
 
 ###############################################################################
 # Set default behavior for command prompt diff.
