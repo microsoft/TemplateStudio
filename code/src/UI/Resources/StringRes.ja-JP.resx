@@ -117,17 +117,93 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>機能の追加</value>
-    <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Add services</value>
+    <value>サービスの追加</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Add testing</value>
+    <value>テストの追加</value>
     <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} は既にプロジェクトの一部です。別のサービスを選択してください。</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} は既にプロジェクトの一部です。別のテスト プロジェクトを選択してください。</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>機能</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>サービス</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>テスト</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>プロジェクトの種類</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>ページ</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>サービス</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>テスト</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>プロジェクトの種類の選択を変更しました。選択したテンプレートは失われます。続行しますか?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>新しいサービスの追加がキャンセルされました</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>サービス {0} が正常に追加されました</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>新しいテスト プロジェクトの追加がキャンセルされました</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>テスト プロジェクト {0} が正常に追加されました</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>データ</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>ツール</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>新しいサービス</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>新しいテスト プロジェクト</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>機能の追加</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
     <value>ページの追加</value>
@@ -232,7 +308,7 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>問題が発生しました</value>
     <comment>Error dialog title</comment>
-  </data>  
+  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>詳細</value>
     <comment>Changes summary more info link</comment>
@@ -248,14 +324,6 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} は既にプロジェクトの一部です。別のページを選択してください。</value>
     <comment>Page already added {0}: Page name</comment>
-  </data>
-  <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another service.</value>
-    <comment>Service already added {0}: Service name</comment>
-  </data>
-  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another testing project.</value>
-    <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>テンプレートの選択</value>
@@ -288,38 +356,6 @@
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>新しいページ</value>
     <comment>New item: new page title</comment>
-  </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>New service</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>New testing project</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepFeatures" xml:space="preserve">
-    <value>機能</value>
-    <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Services</value>
-    <comment>New project: Navigation step services</comment>
-  </data>
-  <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Testing</value>
-    <comment>New project: Navigation step testing</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>プロジェクトの種類</value>
-    <comment>New project: Navigation step project type</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>ページ</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>新しい Windows ユニバーサル プラットフォーム アプリ</value>
@@ -392,7 +428,7 @@
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>テンプレート バージョン:</value>
     <comment>About section templates version</comment>
-  </data>  
+  </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>バージョン情報</value>
     <comment>About section title</comment>
@@ -404,14 +440,6 @@
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>機能</value>
     <comment>Feature list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Services</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Testing</value>
-    <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>design pattern の選択が変更されました。選択したページと機能は失われます。続行しますか?</value>
@@ -432,10 +460,6 @@
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>ページ</value>
     <comment>Page list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>プロジェクトの種類の選択が変更されました。選択したページと機能は失われます。続行しますか?</value>
-    <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
     <value>プロジェクトの種類が変更されました</value>
@@ -504,22 +528,6 @@
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>ページ {0} が追加されました</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Add new service cancelled</value>
-    <comment>Status bar message for Add new service cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Service {0} successfully added</value>
-    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Add new testing project cancelled</value>
-    <comment>Status bar message for Add new testing project cancelled</comment>
-  </data>
-  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testing project {0} successfully added</value>
-    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>プロジェクト {0} が見つかりません</value>
@@ -789,13 +797,5 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>更新するには、ドキュメントをご覧ください。</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Data</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Tools</value>
-    <comment>Group header for 'Tools' templates</comment>
   </data>
 </root>
