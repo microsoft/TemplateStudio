@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Security.Cryptography;
 
 namespace Param_RootNamespace
 {
