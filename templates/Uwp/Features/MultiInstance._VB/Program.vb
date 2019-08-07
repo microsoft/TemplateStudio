@@ -5,10 +5,9 @@ Imports Windows.ApplicationModel.Activation
 Public Module Program
     ' This project includes DISABLE_XAML_GENERATED_MAIN in the build properties,
     ' which prevents the build system from generating the default Main method:
-    'Sub Main(args As String())
-    '    Global.Windows.UI.Xaml.Application.Start(Function(p) New App())
-    'End Sub
-
+    ' Sub Main(args As String())
+    '     Global.Windows.UI.Xaml.Application.Start(Function(p) New App())
+    ' End Sub
     ' TODO WTS: Update the logic in this method if you want to control the launching of multiple instances.
     ' You may find the `AppInstance.GetActivatedEventArgs()` useful for your app-defined logic.
     <MTAThread>
@@ -22,7 +21,7 @@ Public Module Program
             ' Creating a unique key (as below) allows a new instance to always be created.
             ' Always using the same key will mean there's only one ever one instance.
             ' Or you can use your own logic to launch a new instance or switch to an existing one.
-            Dim key = Guid.NewGuid().ToString() ' always unique.
+            Dim key = Guid.NewGuid().ToString()
             Dim instance = AppInstance.FindOrRegisterInstanceForKey(key)
 
             If instance.IsCurrentInstance Then
