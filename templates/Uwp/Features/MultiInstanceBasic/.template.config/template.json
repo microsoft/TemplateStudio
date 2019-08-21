@@ -24,9 +24,6 @@
   "sourceName": "MultiInstance",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Program.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

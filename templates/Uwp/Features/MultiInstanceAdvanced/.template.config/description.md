@@ -1,4 +1,4 @@
-﻿Allow multiple instances of the app to be launched. This also includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
 
 This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
 
