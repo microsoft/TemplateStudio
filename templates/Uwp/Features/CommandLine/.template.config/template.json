@@ -25,7 +25,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Program.cs"
+      "path": ".\\Activation\\CommandLineActivationHandler.cs"
     }
   ],
   "symbols":{
