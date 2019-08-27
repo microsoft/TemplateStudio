@@ -17,11 +17,11 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "ApplicationLaunching",
-    "wts.defaultInstance": "CommandLine",
+    "wts.defaultInstance": "CommandLineLaunching",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0"
   },
-  "sourceName": "CommandLine",
+  "sourceName": "CommandLineLaunching",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

@@ -11,10 +11,9 @@
   IgnorableNamespaces="uap mp genTemplate">
   <Applications>
     <Application Id="App"
-       </uap:VisualElements>
+      <Extensions>
 <!--{[{-->
       
-      <Extensions>
           <uap5:Extension 
             Category="windows.appExecutionAlias" 
             Executable="Param_ProjectName.exe" 
@@ -23,8 +22,8 @@
               <uap5:ExecutionAlias Alias="Param_ProjectName.exe" />
             </uap5:AppExecutionAlias>
           </uap5:Extension>
-      </Extensions>
 <!--}]}-->
+      </Extensions>
     </Application>
   </Applications>
 </Package>
