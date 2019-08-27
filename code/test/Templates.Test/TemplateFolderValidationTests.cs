@@ -10,6 +10,8 @@ namespace Microsoft.Templates.Test
 {
     [Trait("ExecutionSet", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
+    [Trait("ExecutionSet", "_CIBuild")]
+    [Trait("ExecutionSet", "_Full")]
     public class TemplateFolderValidationTests
     {
         // Perform checks based on the entirety of the templates folder
