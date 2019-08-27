@@ -52,7 +52,6 @@ So we encourage to use this solution for the general template authoring or code 
 
 ### Accesible UI
 
-
 Both the UI and the templates (generated code) must be accesible by definition. If you are going to collaborate in this space, please, be sure you have verified all accesibility rules defined in [Accessibility checklist](accesibility.md).
 
 ## Inside the Code folder
@@ -85,36 +84,37 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=MinimumPrism
     * ExecutionSet=TemplateValidation
 
-* VSO 'Templates.Test.Full'	Build (Full Tests):
+* VSO 'Templates.Test.Full' Build (Full Tests):
   * Core.Tests
-  *	UI.Tests
-  *	Templates.Test
-      * ExecutionSet=MinimumCodebehind
-      * ExecutionSet=MinimumMVVMLight
-      * ExecutionSet=MinimumMVVMBasic
-      * ExecutionSet=MinimumCaliburnMicro
-      * ExecutionSet=MinimumPrism
-      * ExecutionSet=BuildVBStyle
-      * ExecutionSet=TemplateValidation
-      * ExecutionSet=BuildRightClickWithLegacy
-      * ExecutionSet=BuildMVVMBasic
-      * ExecutionSet=BuildCodeBehind
-      * ExecutionSet=BuildMVVMLight
-      * ExecutionSet=BuildCaliburnMicro
-      * ExecutionSet=BuildPrism
+  * UI.Tests
+  * Templates.Test
+    * ExecutionSet=MinimumCodebehind
+    * ExecutionSet=MinimumMVVMLight
+    * ExecutionSet=MinimumMVVMBasic
+    * ExecutionSet=MinimumCaliburnMicro
+    * ExecutionSet=MinimumPrism
+    * ExecutionSet=BuildVBStyle
+    * ExecutionSet=TemplateValidation
+    * ExecutionSet=BuildRightClickWithLegacy
+    * ExecutionSet=BuildMVVMBasic
+    * ExecutionSet=BuildCodeBehind
+    * ExecutionSet=BuildMVVMLight
+    * ExecutionSet=BuildCaliburnMicro
+    * ExecutionSet=BuildPrism
 
-
-* VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
-  *	Templates.Test
+* VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
+  * Templates.Test
     * ExecutionSet=BuildOneByOneMVVMBasic
     * ExecutionSet=BuildOneByOneCodeBehind
     * ExecutionSet=BuildOneByOneMVVMLight
     * ExecutionSet=BuildOneByOneCaliburnMicro
     * ExecutionSet=BuildOneByOnePrism
 
-* VSO 'Templates.Test.Wack'	Build (Wack Tests):
+* VSO 'Templates.Test.Wack' Build (Wack Tests):
   * Templates.Test
     * ExecutionSet=LongRunning
+
+The tests run for each of the above builds are also in the ExecutionSets '_CIBuild', '_Full', '_OneByOne', and '_Wack'.
 
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:
@@ -127,7 +127,8 @@ where
 * `<output directory>`: Directory where test xml result files will be generated
 
 ## Core
-Windows Template Studio relies on Core Template Studio for template synchronization and template composition, generation and postaction. Core Template Studio has it's own Github repository (https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project Web Template Studio (https://github.com/Microsoft/WebTemplateStudio).
+
+Windows Template Studio relies on Core Template Studio for template synchronization and template composition, generation and postaction. Core Template Studio has it's own Github repository [github.com/Microsoft/CoreTemplateStudio](https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project Web Template Studio [github.com/Microsoft/WebTemplateStudio](https://github.com/Microsoft/WebTemplateStudio).
 
 Core Template Studio is integrated into Windows Template Studio using a git submodule under the folder (`../code/CoreTemplateStudio`).
 The submodule points to a specific commit in Core Template Studio, that you can see in github:
@@ -137,9 +138,8 @@ The submodule points to a specific commit in Core Template Studio, that you can 
 When you clone WTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
 When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
 
-Changes on Core Template Studio should be done on the Core Template Studio repos. 
+Changes on Core Template Studio should be done on the Core Template Studio repos.
 In WinTS, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
-
 
 ## Table of Contents
 
