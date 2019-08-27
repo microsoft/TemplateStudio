@@ -24,16 +24,16 @@ namespace Param_RootNamespace.Activation
             // This is typically not the install location of the app itself, but could be any arbitrary path.
             string activationPath = operation.CurrentDirectoryPath;
 
-            // TODO WTS: parse the cmdLineString to determine what to do.
-            // If doing anything async, get a deferral first.
-            // using (var deferral = operation.GetDeferral())
-            // {
-            //     await ParseCmdString(cmdLineString, activationPath);
-            // }
-            //
-            // If the arguments warrant showing a different view on launch, that can be done here.
-            // NavigationService.Navigate(typeof(OtherPage), cmdLineString);
-            // If you do nothing, the app will launch like normal.
+            //// TODO WTS: parse the cmdLineString to determine what to do.
+            //// If doing anything async, get a deferral first.
+            //// using (var deferral = operation.GetDeferral())
+            //// {
+            ////     await ParseCmdString(cmdLineString, activationPath);
+            //// }
+            ////
+            //// If the arguments warrant showing a different view on launch, that can be done here.
+            //// NavigationService.Navigate(typeof(OtherPage), cmdLineString);
+            //// If you do nothing, the app will launch like normal.
 
             await Task.CompletedTask;
         }
