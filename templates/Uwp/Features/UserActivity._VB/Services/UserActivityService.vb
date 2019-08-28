@@ -3,9 +3,9 @@ Imports Windows.UI.Shell
 
 Namespace Services
     ' More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/user-activity.md
-    ' For more info about UserActivities in Timeline see https//docs.microsoft.com/windows/uwp/launch-resume/useractivities
+    ' For more info about UserActivities in Timeline see https://docs.microsoft.com/windows/uwp/launch-resume/useractivities
     ' For more info about UserActivities with AdaptiveCards see https://docs.microsoft.com/adaptive-cards/get-started/windows
-    ' Please note that user activities will only show on devices with Windows 10 Build 1803 Or higher
+    ' Please note that user activities will only show on devices with Windows 10 Build 1803 or higher
     Partial Public Module UserActivityService
         Private _currentUserActivitySession As UserActivitySession
 
@@ -26,7 +26,7 @@ Namespace Services
         Private Async Function SaveAsync(activity As UserActivity) As Task
             Await activity.SaveAsync()
 
-            ' Dispose of any current UserActivitySession, And create a New one.
+            ' Dispose of any current UserActivitySession, and create a new one.
             _currentUserActivitySession?.Dispose()
             _currentUserActivitySession = activity.CreateSession()
         End Function
