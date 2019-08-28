@@ -8,7 +8,7 @@ Namespace Behaviors
         Public ReadOnly Property CollapseAllCommand As ICommand
 
         Public Sub New()
-            CollapseAllCommand = New RelayCommand(New Sub
+            CollapseAllCommand = New RelayCommand(Sub()
                     CollapseNodes(AssociatedObject.RootNodes)
                 End Sub)
         End Sub
