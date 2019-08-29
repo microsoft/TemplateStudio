@@ -35,9 +35,14 @@ namespace Microsoft.Templates.Test
 
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
+                if (language == ProgrammingLanguages.Any)
+                {
+                    continue;
+                }
+
                 Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-                InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), language);
+                InitializeTemplates(new LegacyTemplatesSourceV2(language), language);
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(Platforms.Uwp)
                             .Where(m => !string.IsNullOrEmpty(m.Description))
