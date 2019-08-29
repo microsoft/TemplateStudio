@@ -7,7 +7,7 @@
 Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
 
 * Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WTS with the latest Visual Studio Update.
-* Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
+* Windows 10, version 1803 (version 10.0.17134.0) or later
 * .Net Framework 4.7
 * Windows Template Studio extension.  You have two ways of aquiring the extension.
    * Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
@@ -22,7 +22,7 @@ Windows Template Studio installs into your existing Windows 10 app development e
 on Visual Studio 2019 you can use the search box or the filters to get to the Windows Template Studio project template
 ![New Project](resources/vsix/newProject2019.PNG)
 
-3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → New page or New feature from the context menu. For more info on adding new items see [here](newitem.md).
+3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
 
 
