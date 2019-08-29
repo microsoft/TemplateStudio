@@ -2,7 +2,8 @@
 
 Projects created with Windows Template Studio are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
-## Understanding generated code from Windows Template Studio 
+## Understanding generated code from Windows Template Studio
+
 The final generated code is the result of a project configuration (project type and design pattern) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
 
 - [Application activation](activation.md)
@@ -14,6 +15,7 @@ The final generated code is the result of a project configuration (project type 
 Windows Template Studio approaches UWP app creation using the following four attribute sets to decide how to best generate your app.  Below we will describe everything you can do.
 
 ### Project Types
+
 **Project types** define the basic look and feel of your UWP app.
 
 | Project type | Description |
@@ -53,6 +55,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Content Grid | A page that allows you to add custom content in a [GridView](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview) which is responsive to the screen size change. |
 
 ### Features
+
 #### Analytics
 
 | Feature | Description |
@@ -60,6 +63,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | VS App Center Analytics | Adding analytics from the [Visual Studio App Center](https://appcenter.ms/) will help you understand more about your app users and their behavior when using your app. |
 
 #### Application Launching
+
 | Feature | Description |
 |-------------:|:-------------|
 | 3D App Launcher | Include a 3D app launcher when the app is used in a Mixed Reality environment. |
@@ -68,6 +72,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Web to App link           | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
 
 #### Application Lifecycle
+
 | Feature | Description |
 |-------------:|:-------------|
 | Settings Storage | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
@@ -75,17 +80,20 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Multiple Views | Enable different views within your app to be opened in separate windows. |
 
 #### Background Work
+
 | Feature | Description |
 |-------------:|:-------------|
 | Background Task     | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
 
 #### Connected Experiences
+
 | Feature | Description |
 |-------------:|:-------------|
 | Share Source | Support the Share Contract to share data from your app with others. |
 | Share Target | Allows you to receive data shared from other apps. |
 
 #### User Interactions
+
 | Feature | Description |
 |-------------:|:-------------|
 | Toast Notification    | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
@@ -98,6 +106,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Theme Selection | Adds theming support to your application. |
 
 ## Table of Contents
+
 * [Installing / Using the extension](getting-started-extension.md)
 * [**Using and extending your file->new**](getting-started-endusers.md)
 * [Concepts of Windows Template Studio](readme.md)
