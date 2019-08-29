@@ -12,7 +12,7 @@ The final generated code is the result of a project configuration (project type 
 
 ## Understanding concepts for Windows Template Studio
 
-Windows Template Studio approaches UWP app creation using the following four attribute sets to decide how to best generate your app.  Below we will describe everything you can do.
+Windows Template Studio approaches UWP app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
 
 ### Project Types
 
@@ -46,13 +46,18 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Web View | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
 | Media Player | A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.|
 | Master/Detail | The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books. |
+| TreeView | The tree-view page has a tree view control to show hierarchical content. |
+| Content Grid | A page that allows you to add custom content in a [GridView](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview) which is responsive to the screen size change. |
+| DataGrid | A page displaying a simple data grid. |
 | Telerik Data Grid | A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.|
 | Chart | A page displaying a [RadChart control](http://www.telerik.com/universal-windows-platform-ui/chart), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). RadChart control for Windows 10 apps features a rich set of chart series from Bar, Line, Area, Pie, Scatter and Polar charts to different financial series.|
 | Tabbed | The tabbed page is used for navigating frequently accessed, distinct content categories. |
 | Map | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
 | Camera | A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.|
 | Image Gallery | A page displaying a image gallery and allows user to navigate between gallery and image detail.|
-| Content Grid | A page that allows you to add custom content in a [GridView](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview) which is responsive to the screen size change. |
+| Ink Draw | A page that allows you to create notes using shape and image recognition with Windows Ink. |
+| Ink Smart Canvas | A page that allows you to create notes and drawings using Windows Ink. |
+| Ink Draw Picture | A page that allows you to load a picture and then draw on top of it using Windows Ink. |
 
 ### Features
 
@@ -67,9 +72,9 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Feature | Description |
 |-------------:|:-------------|
 | 3D App Launcher | Include a 3D app launcher when the app is used in a Mixed Reality environment. |
-| Deep Linking                | Add the ability to launch and deep link into the app with a custom URI Scheme. |
-| UserActivity | Add the ability to add user activities to the Windows Timeline. |
-| Web to App link           | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
+| Deep Linking    | Add the ability to launch and deep link into the app with a custom URI Scheme. |
+| UserActivity    | Add the ability to add user activities to the Windows Timeline. |
+| Web to App link | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
 
 #### Application Lifecycle
 
@@ -102,8 +107,36 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Live Tile | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
 | First Run Prompt | Display a prompt when the app is used for the first time. |
 | What's New Prompt | Display a prompt when the app is first used after an update. |
+| Feedback Hub Link | Add a link, on the Settings page, to the Feedback Hub. |
 | Drag & Drop | A service that simplifies the creation of drag and drop ready apps. |
 | Theme Selection | Adds theming support to your application. |
+
+### Services
+
+#### Data
+
+| Service | Description |
+|--------:|:------------|
+| HTTP Data Service | Access content over HTTP. |
+| Web API | Include ASP.NET Core Web API project. |
+| SQL Server Data | Get data from SQL Server to use in the app. |
+
+#### Tools
+
+| Service | Description |
+|--------:|:------------|
+| XAML Styler Config | Default [XAML Styler](https://marketplace.visualstudio.com/items?itemName=NicoVermeir.XAMLStyler) config file. |
+
+### Testing
+
+| Name | Description |
+|-----:|:------------|
+| Test App with MSTest | Add a project for unit tests against the app using [MSTest](https://github.com/Microsoft/testfx). |
+| Test App with xUnit | Add a project for unit tests against the app using [xUnit](https://xunit.net/). |
+| Test Core library with MSTest | Add a project to test code in the Core library with [MSTest](https://github.com/Microsoft/testfx). |
+| Test Core library with nUnit | Add a project to test code in the Core library with [nUnit](https://nunit.org/). |
+| Test Core library with xUnit | Add a project to test code in the Core library with [xUnit](https://xunit.net/). |
+| Win App Driver | Add project for UI tests using Appium via [Windows Application Driver](https://github.com/Microsoft/WinAppDriver). |
 
 ## Table of Contents
 
