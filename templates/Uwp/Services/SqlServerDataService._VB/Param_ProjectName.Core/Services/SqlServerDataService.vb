@@ -12,7 +12,7 @@ Namespace Services
         ' TODO WTS: Specify the connection string in a config file or below.
         Private Function GetConnectionString() As String
             ' Attempt to get the connection string from a config file
-            ' Learn more about specifying the connection string in a config file at https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?view=netframework-4.7.2
+            ' Learn more about specifying the connection string in a config file at https://docs.microsoft.com/dotnet/api/system.configuration.configurationmanager?view=netframework-4.7.2
             Dim conStr = ConfigurationManager.ConnectionStrings("MyAppConnectionString")?.ConnectionString
 
             If Not String.IsNullOrWhiteSpace(conStr) Then
