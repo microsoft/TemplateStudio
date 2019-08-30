@@ -10,7 +10,7 @@ This document covers:
 * [Modifying the menu items](#modifying-the-menu-items)
 * [Using the NavigationViewHeaderBehavior](#NavigationViewHeaderBehavior)
 * [Invoke code on NavigationView](#invoke-code-on-navigationview)
-* [Change the text for Settings](cChange-the-text-for-settings)
+* [Change the text for Settings](#change-the-text-for-settings)
 
 To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
 

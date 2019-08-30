@@ -13,7 +13,7 @@ For more info, read the [accessibility overview](https://docs.microsoft.com/wind
  
  
 ### Accesible Names and Narrator 
-- Check if all interactive UI elements set the accessible name. ([More info](https://docs.microsoft.com/en-us/windows/uwp/accessibility/basic-accessibility-information)) 
+- Check if all interactive UI elements set the accessible name. ([More info](https://docs.microsoft.com/windows/uwp/accessibility/basic-accessibility-information)) 
 - Narrator has been run to verify E2E programmatic access. ([See Narrator user guide](https://support.microsoft.com/en-us/help/22798/windows-10-narrator-get-started))  
 - Narrator: Launch of app results in correct default focus set which is automatically read out. Accessible name, role (control type) and value is read out for all controls. 
 - All elements (static text or interactive controls) can be reached with Narrator item navigation commands.  
