@@ -98,11 +98,9 @@ The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and 
 
 Each page can overwrite three properties of the `NavigationViewHeaderBehavior`:
 
- - `HeaderMode`: allows you to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
-
- - `HeaderContext`: contains the data that will be available for use from the `HeaderTemplate`.
-
- - `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
+- `HeaderMode`: allows you to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
+- `HeaderContext`: contains the data that will be available for use from the `HeaderTemplate`.
+- `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
 
 `HeaderMode="Never"` allows the page to hide the `Header` and occupy the whole window. You can see an example of how to use `HeaderMode="Never"` in the MapPage. If you use this mode the NavigationView Buttons will overlap with your content in small window sizes.
 
@@ -153,7 +151,7 @@ In the following example, we'll see how to modify the `Header` in a `MainPage` i
 </Page>
 ```
 
-We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page. 
+We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page.
 
 ```csharp
 public MainPage()
@@ -197,6 +195,7 @@ Extending the app to add this functionality requires making two changes.
 2. Add a Command to handle code on HyperLink click.
 
 **ShellPage.xaml**
+
 ```xml
 <winui:NavigationView>
     <winui:NavigationView.PaneFooter>
@@ -211,6 +210,7 @@ Extending the app to add this functionality requires making two changes.
 ```
 
 Add a command to run the code in `ShellViewModel.cs` (MVVMBasic or MVVMLight) or `ShellPage.xaml.cs` (CodeBehind)
+
 ```csharp
     private ICommand _showInfoCommand;
 
