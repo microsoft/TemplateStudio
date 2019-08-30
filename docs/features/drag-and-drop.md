@@ -21,7 +21,6 @@ which returns the different object types supported by drag and drop within UWP:
 |DropTextCommand			|DropTextAction				|string                      |
 |DropWebLinkCommand			|DropWebLinkAction			|Uri                         |
 
-
 The service maps the following events too:
 
 |Event     							|Command (MVVM pattern)	    |Action (code-behind)	|Return Type            |
@@ -46,7 +45,8 @@ To use the service, you need to follow these steps:
 
 2. Include the service reference within the page by adding the required namespace: `xmlns:dd="using:AppNameSpace.Services.DragAndDrop"`
 
-3. Configure the service appropiately:
+3. Configure the service appropiately
+
 - For an UIElement:
 
 ``` xml
@@ -152,7 +152,7 @@ public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
 }
 ```
 
-### Escenario 2: Drag and drop enabled ListView
+### Scenario 2: Drag and drop enabled ListView
 
 We will configure a ListView to allow drag items from it and drop items to it. We will also include some customizations.
 
@@ -171,7 +171,7 @@ public class CustomItem
 
 - XAML Page
 
-``` xml
+```xml
 <ListView
     AllowDrop="True"
     CanDragItems="True"
@@ -195,7 +195,7 @@ public class CustomItem
 
 - ViewModel code
 
-``` c#
+```csharp
 private ICommand _getStorageItemsCommand;
 private ICommand _dragItemStartingCommand;
 private ICommand _dragItemCompletedCommand;
@@ -242,7 +242,7 @@ private void OnDragItemCompleted(DragDropCompletedData completedData)
 
 - XAML Page
 
-``` xml
+```xml
 <ListView x:Name="listview"
             AllowDrop="True"
             CanDragItems="True"
@@ -266,7 +266,7 @@ private void OnDragItemCompleted(DragDropCompletedData completedData)
 
 - ViewModel code
 
-``` c#
+```csharp
 public Action<IReadOnlyList<IStorageItem>> GetStorageItems => (items) => OnGetStorageItems(items);
 public Action<DragDropStartingData> DragItemStarting => (startingData) => OnDragItemStarting(startingData);
 public Action<DragDropCompletedData> DragItemCompleted => (completedData) => OnDragItemCompleted(completedData);

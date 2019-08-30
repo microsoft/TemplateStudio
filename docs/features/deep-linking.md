@@ -1,6 +1,6 @@
 # Deep Linking Activation
 
-The custom Deep Linking feature builds upon the [ActivationService](../activation.md). Prism apps handle activation in the App.xaml.cs. 
+The custom Deep Linking feature builds upon the [ActivationService](../activation.md). Prism apps handle activation in the App.xaml.cs.
 
 ## Change the protocol from the default name
 
@@ -25,10 +25,9 @@ The protocol name you specify MUST meet these rules:
 ## Understanding the code
 Deep linking handles activation using the `SchemeActivationHandler.cs` class. Prism apps handle activation in the `OnActivateApplicationAsync` method in the `App.xaml.cs`. By default the handler expects URIs of the format _wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2_.
 
-To map from URI to Page/ViewModel and parameters, the class `SchemeActivationData.cs` is used. To do this mapping it relies on the property `_activationPages` in `SchemeActivationConfig.cs`. You should add here all pages that can be opened using deep linking with the corresponding uri path. 
+To map from URI to Page/ViewModel and parameters, the class `SchemeActivationData.cs` is used. To do this mapping it relies on the property `_activationPages` in `SchemeActivationConfig.cs`. You should add here all pages that can be opened using deep linking with the corresponding uri path.
 
-The deep linking feature also adds a sample page (SchemeActivationSamplePage.xaml) that will show if you activate your app using 
-_wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2_.
+The deep linking feature also adds a sample page (SchemeActivationSamplePage.xaml) that will show if you activate your app using `wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2`.
 
 ## Debugging the app being launched via the URI
 

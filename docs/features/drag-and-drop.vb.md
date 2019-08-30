@@ -45,7 +45,8 @@ To use the service, you need to follow these steps:
 
 2. Include the service reference within the page by adding the required namespace: `xmlns:dd="using:AppNameSpace.Services.DragAndDrop"`
 
-3. Configure the service appropiately:
+3. Configure the service appropiately
+
 - For an UIElement:
 
 ``` xml
@@ -100,7 +101,7 @@ In this section you can find some code snippets representing how to setup a basi
 
 - ViewModel code
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.Storage
 Imports System.Windows.Input
@@ -157,7 +158,7 @@ Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
 End Sub
 ```
 
-### Escenario 2: Drag and drop enabled ListView
+### Scenario 2: Drag and drop enabled ListView
 
 We will configure a ListView to allow drag items from it and drop items to it. We will also include some customizations.
 
@@ -202,7 +203,7 @@ End Class
 
 - ViewModel code
 
-```vbnet
+```vb
 Private _getStorageItemsCommand As ICommand
 
 Private _dragItemStartingCommand As ICommand
@@ -279,7 +280,7 @@ End Sub
 
 - ViewModel code
 
-```vbnet
+```vb
 Public Property GetStorageItems As Action(Of IReadOnlyList(Of IStorageItem))
     Get
         Return Function(items) OnGetStorageItems(items)
