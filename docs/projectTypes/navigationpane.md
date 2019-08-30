@@ -7,16 +7,14 @@ The navigation pane project type includes a navigation menu displayed in a panel
 
 This document covers:
 
-* [Modifying the menu items](#menu)
-* [Using the NavigationViewHeaderBehavior](#behavior)
-* [Invoke code on NavigationView](#invokecode)
-* [Change the text for Settings](#SettingsLabel)
+* [Modifying the menu items](#modifying-the-menu-items)
+* [Using the NavigationViewHeaderBehavior](#NavigationViewHeaderBehavior)
+* [Invoke code on NavigationView](#invoke-code-on-navigationview)
+* [Change the text for Settings](cChange-the-text-for-settings)
 
 To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
 
 To update to Win UI Navigation View from Navigation View read the following [document](./updatetowinuinavigationview.md).
-
-<a name="menu"></a>
 
 ## Modifying the menu items
 
@@ -70,15 +68,13 @@ You can also set the menu item to use an `IconElement` directly. Like this:
 
 The text for a shell navigation item comes from the localized string resources. For an item which defines the x:Uid `Shell_Main` the value `Shell_Main.Content` corresponds with an entry in `Resources.resw`. Change the value in the resources file to alter what is displayed in the NavigationView.
 
-<a name="behavior"></a>
-
 ## NavigationViewHeaderBehavior
 
 The navigation pane projects add a Behavior to the NavigationView that allows different pages to customize or hide the Header when that page is shown.
 
 ### Initial Configuration
 
-The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of` NavigationView` `Header` by default.
+The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of `NavigationView` `Header` by default.
 
 ```xml
 <behaviors:NavigationViewHeaderBehavior
@@ -185,8 +181,6 @@ Events and commands are not shown in the above code but can easily be added like
 
 The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/app-bars).
 
-<a name="invokecode"></a>
-
 ## Invoke code on NavigationView
 
 Extending the app to add this functionality requires making two changes.
@@ -221,8 +215,6 @@ Add a command to run the code in `ShellViewModel.cs` (MVVMBasic or MVVMLight) or
         // TODO: Run command code
     }
 ```
-
-<a name="SettingsLabel"></a>
 
 ## Change the text for Settings
 
