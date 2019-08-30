@@ -2,4 +2,4 @@
 
 이 기능에는 새로운 프로젝트를 솔루션에 추가하여 주요 앱에서 코드 유닛 테스트를 호스팅하도록 설정하는 기능이 포함되어 있습니다.
 
-[유닛 테스트의 MSTest framework 사용법에 대해 자세히 알아보십시오.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[유닛 테스트의 MSTest framework 사용법에 대해 자세히 알아보십시오.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

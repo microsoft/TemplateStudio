@@ -2,4 +2,4 @@
 
 Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the main app.
 
-[Learn more about using the MSTest framework in unit tests.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Learn more about using the MSTest framework in unit tests.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
