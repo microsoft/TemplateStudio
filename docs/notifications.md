@@ -51,7 +51,7 @@ public void Initialize(ToastNotificationActivatedEventArgs args)
 Full toast notification documentation for UWP [here](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent).
 
 ## Hub notifications
-HubNotificationsService is in change of configuring the application with the Azure notifications service to allow the application to receive push notifications from a remote service in Azure. The service contains the `InitializeAsync` method that sets up the Hub Notifications. You must specify the hub name and the access signature before start working with Hub Notifications. There is more documentation about how to create and connect an Azure notifications service [here](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push).
+HubNotificationsService is in change of configuring the application with the Azure notifications service to allow the application to receive push notifications from a remote service in Azure. The service contains the `InitializeAsync` method that sets up the Hub Notifications. You must specify the hub name and the access signature before start working with Hub Notifications. There is more documentation about how to create and connect an Azure notifications service [here](https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push).
 
 Toast Notifications sent from Azure notification service should be handled in the same way as locally generated ones. See the above referenced [ToastNotificationSample](/samples/notifications/ToastNotificationSample) for more.
 

@@ -19,5 +19,5 @@ Switch from HamburgerMenu to NavigationView is not a drop-in replacement, but we
 
 If you use actions on your menu, also look at this updated [document](./navigationpane.md#invokecode)
 
-You can find Community Toolkit's info regarding update from Hamburger Menu to Navigation view [here](https://docs.microsoft.com/en-us/windows/communitytoolkit/archive/hamburgermenu#navview)
-and NavigationView's doc [here](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview)
+You can find Community Toolkit's info regarding update from Hamburger Menu to Navigation view [here](https://docs.microsoft.com/windows/communitytoolkit/archive/hamburgermenu#navview)
+and NavigationView's doc [here](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/navigationview)

@@ -80,7 +80,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Feature | Description |
 |-------------:|:-------------|
-| Settings Storage | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
+| Settings Storage | [Setting storage](https://docs.microsoft.com/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
 | Suspend and Resume | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
 | Multiple Views | Enable different views within your app to be opened in separate windows. |
 
@@ -88,7 +88,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Feature | Description |
 |-------------:|:-------------|
-| Background Task     | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
+| Background Task     | Creates an [in-process background task](https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
 
 #### Connected Experiences
 
@@ -102,7 +102,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | Feature | Description |
 |-------------:|:-------------|
 | Toast Notification    | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
-| Azure Notifications   | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
+| Azure Notifications   | [Azure Notification Hubs](https://docs.microsoft.com/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
 | Dev Center Notification | Register your app to receive notifications from the store and handle them being used to launch the app. |
 | Live Tile | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
 | First Run Prompt | Display a prompt when the app is used for the first time. |

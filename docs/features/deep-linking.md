@@ -20,7 +20,7 @@ The protocol name you specify MUST meet these rules:
 - Be a string between 2 and 39 characters in length
 - Contain only numbers, lowercased letters, dots ('.'), pluses('+'), or hyphens ('-').
 - The string can't start with a dot ('.').
-- It cannot be a reserved value. ([list of reserved scheme names](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/reserved-uri-scheme-names#reserved-uri-scheme-names))
+- It cannot be a reserved value. ([list of reserved scheme names](https://docs.microsoft.com/windows/uwp/launch-resume/reserved-uri-scheme-names#reserved-uri-scheme-names))
 
 ## Understanding the code
 Deep linking handles activation using the `SchemeActivationHandler.cs` class. Prism apps handle activation in the `OnActivateApplicationAsync` method in the `App.xaml.cs`. By default the handler expects URIs of the format _wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2_.

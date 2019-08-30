@@ -29,7 +29,7 @@ Through Application Insights API, telemetry events are collected to track gather
 
 ## Telemetry Configuration
 
-The [TelemetryService](../code/src/Core/Diagnostics/TelemetryService.cs) class is based on Application Insights API. The Application Insights telemetry backend requires a telemetry instrumentation key to be able to track telemetry. If you want to track your own telemetry, you will need your own instrumentation key, obtain one by creating an [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net) instance in your Azure account, if you don't have an Azure account there are different options to [create one for free](https://azure.microsoft.com/en-us/free/).
+The [TelemetryService](../code/src/Core/Diagnostics/TelemetryService.cs) class is based on Application Insights API. The Application Insights telemetry backend requires a telemetry instrumentation key to be able to track telemetry. If you want to track your own telemetry, you will need your own instrumentation key, obtain one by creating an [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net) instance in your Azure account, if you don't have an Azure account there are different options to [create one for free](https://azure.microsoft.com/en-us/free/).
 
 The instrumentation key is setup through the wizard configuration. The default configuration values are those that are defined directly in the code:
 

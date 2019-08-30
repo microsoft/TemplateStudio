@@ -168,7 +168,7 @@ Creating an Application Instance
 --------------------------------
 
 The
-[PublicClientApplication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.publicclientapplication?view=azure-dotnet)
+[PublicClientApplication](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.publicclientapplication?view=azure-dotnet)
 MSAL object handles everything the app needs to direct the user to authenticate
 via the Microsoft authentication provider.
 
@@ -204,7 +204,7 @@ Global Variables
 ----------------
 
 The
-[AuthenticationResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.authenticationresult?view=azure-dotnet)
+[AuthenticationResult](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.authenticationresult?view=azure-dotnet)
 MSAL object handles the response from the Microsoft authentication provider,
 whether that is an error message or a payload containing an app token. This
 needs to be public or global, to facilitate app scenarios that have some
@@ -268,7 +268,7 @@ Logging In
 ----------
 
 The
-[GetAccountAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.clientapplicationbase.getaccountsasync?view=azure-dotnet)
+[GetAccountAsync](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.clientapplicationbase.getaccountsasync?view=azure-dotnet)
 MSAL method returns any valid access tokens in the application’s token cache.
 This allows the app to log in silently, if a valid token is returned. Using
 `FirstOrDefault` ensures null is returned if no tokens are available – without
@@ -414,15 +414,15 @@ The exception type provides clues as to what needs to be remedied, by either the
 application or the user.
 
 MSAL uses its own parent type,
-[MsalException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.msalexception?view=azure-dotnet),
+[MsalException](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.msalexception?view=azure-dotnet),
 from which the other exception types inherit. There are three potential
 exception types:
 
 | Type                                                                                                                                       | Purpose                                                                                          |
 |--------------------------------------------------------------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------|
-| [MsalClientException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.msalclientexception?view=azure-dotnet)         | Thrown when the client is unable to log in, e.g. user cancels, network errors on client machine. |
-| [MsalServiceException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.msalserviceexception?view=azure-dotnet)       | Thrown when AAD is unable to authenticate the user, e.g. wrong password, service outage.         |
-| [MsalUiRequiredException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.msaluirequiredexception?view=azure-dotnet) | Thrown when silent or integrated authentication fails.                                           |
+| [MsalClientException](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.msalclientexception?view=azure-dotnet)         | Thrown when the client is unable to log in, e.g. user cancels, network errors on client machine. |
+| [MsalServiceException](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.msalserviceexception?view=azure-dotnet)       | Thrown when AAD is unable to authenticate the user, e.g. wrong password, service outage.         |
+| [MsalUiRequiredException](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.msaluirequiredexception?view=azure-dotnet) | Thrown when silent or integrated authentication fails.                                           |
 
 All errors include a `Messages` property, which contains a human-readable string
 indicating the error. This is probably the most straightforward way to implement

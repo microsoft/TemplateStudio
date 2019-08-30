@@ -162,7 +162,7 @@ mind:
 
 ## Additional resources
 
-- [About Microsoft Identity Platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform)
-- [About V2](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview)
+- [About Microsoft Identity Platform](https://docs.microsoft.com/azure/active-directory/develop/about-microsoft-identity-platform)
+- [About V2](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)
 - [MSAL.NET wiki](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki)
 - [Microsoft Graph explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)

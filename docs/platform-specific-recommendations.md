@@ -6,15 +6,15 @@ Here is a compilation of useful links to the documentation that will help you to
 ## General
 
 **Overview**
- - [Universal Windows Platform documentation](https://docs.microsoft.com/en-us/windows/uwp/)
+ - [Universal Windows Platform documentation](https://docs.microsoft.com/windows/uwp/)
 
 **Links**
 
- - [Windows Developer Portal](https://developer.microsoft.com/en-us/windows)
+ - [Windows Developer Portal](https://developer.microsoft.com/windows)
 
- - [Device primer for Universal Windows Platform (UWP) apps](https://docs.microsoft.com/en-us/windows/uwp/design/devices/)
+ - [Device primer for Universal Windows Platform (UWP) apps](https://docs.microsoft.com/windows/uwp/design/devices/)
 
- - [Device families](https://docs.microsoft.com/en-us/uwp/extension-sdks/device-families-overview)
+ - [Device families](https://docs.microsoft.com/uwp/extension-sdks/device-families-overview)
 
 ## Desktop Recommendations
 
@@ -52,11 +52,11 @@ Here is a compilation of useful links to the documentation that will help you to
 
  - [Gamepad and remote control](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv#gamepad-and-remote-control)
 
- - [Change pointer mode](https://docs.microsoft.com/en-us/windows/uwp/design/devices/designing-for-tv#mouse-mode)
+ - [Change pointer mode](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv#mouse-mode)
 
  - [UWP features not yet supported on Xbox](https://docs.microsoft.com/uwp/extension-sdks/uwp-limitations-on-xbox)
 
- - [Device Portal for Xbox](https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/device-portal-xbox)
+ - [Device Portal for Xbox](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-xbox)
 
 ## Mixed Reality Recommendations
 **Overview**

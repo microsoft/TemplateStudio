@@ -50,7 +50,7 @@ The code below shows the symbols used to create the app shown in the image above
 </winui:NavigationView.MenuItems>
 ```
 
-The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>
+The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/uwp/api/windows.ui.xaml.controls.symbol>
 
 You can also set the menu item to use an `IconElement` directly. Like this:
 
@@ -175,7 +175,7 @@ If you want to be able to add a command bar at ShellPage level, you can add it i
 
 Events and commands are not shown in the above code but can easily be added like any other button click event or command. Note that if using the techniques for adding the bar to every page, the events or commands should be handled by the ShellPageViewModel (or in ShellPage.xaml.vb if using CodeBehind.)
 
-The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/app-bars).
+The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/windows/uwp/controls-and-patterns/app-bars).
 
 ## Invoke code on NavigationView
 
