@@ -25,7 +25,7 @@ Value: **Automatically report errors**
 
 When run it will now look like this:
 
-![](../resources/modifications/Settings_added_checkbox.png)
+![Partial screenshot of settings page showing new option](../resources/modifications/Settings_added_checkbox.png)
 
 But if you try and run it now you will get build errors as the code behind file hasn't been updated to add the new property and event handlers.
 

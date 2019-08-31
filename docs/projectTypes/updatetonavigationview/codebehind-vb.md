@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -117,7 +117,7 @@ End Namespace
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -218,7 +218,7 @@ Namespace Behaviors
         Private Sub OnNavigated(sender As Object, e As NavigationEventArgs)
             Dim frame = TryCast(sender, Frame)
             Dim page = TryCast(frame.Content, Page)
-            
+
             If page IsNot Nothing Then
                 _currentPage = page
                 UpdateHeader()
@@ -264,7 +264,7 @@ End Namespace
 
 ## 7. Add NavigationViewHeaderMode.vb
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```vb
 Namespace Behaviors
@@ -336,7 +336,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
@@ -413,7 +413,6 @@ Imports WinUI = Microsoft.UI.Xaml.Controls
 - `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
 - `_isBackEnabled` and `IsBackEnabled` properties.
 - `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
-
 
 ### VB code you will have to update (_Implementation below_):
 
@@ -556,7 +555,7 @@ End Namespace
 
 - GoBack method implementation.
 
-The resulting method code should look like this:
+The resulting method should look like this:
 
 ```vb
 Public Function GoBack() As Boolean
@@ -601,7 +600,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>
@@ -617,8 +616,8 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 
 If your project contains a SettingsPage you must perform the following steps:
 
-- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-- On **ShellPage.xaml.vb** go to **OnItemInvoked** method and add to the beginning:
+- In **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- In **ShellPage.xaml.vb** go to **OnItemInvoked** method and add to the beginning:
 
 ```vb
 If args.IsSettingsInvoked Then
@@ -627,7 +626,7 @@ If args.IsSettingsInvoked Then
 End If
 ```
 
-- On **ShellPage.xaml.vb** go to **Frame_Navigated** method and add to the beginning:
+- In **ShellPage.xaml.vb** go to **Frame_Navigated** method and add to the beginning:
 
 ```vb
 If e.SourcePageType = GetType(SettingsPage) Then

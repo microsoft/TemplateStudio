@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -39,7 +39,7 @@ Remove the code to manage back navigation from ActivationService, this code will
 - `ActivationService_BackRequested` and `Frame_Navigated` methods.
 - Remove unused `Imports statements`.
 
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -116,7 +116,7 @@ End Namespace
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -217,7 +217,7 @@ Namespace Behaviors
         Private Sub OnNavigated(sender As Object, e As NavigationEventArgs)
             Dim frame = TryCast(sender, Frame)
             Dim page = TryCast(frame.Content, Page)
-            
+
             If page IsNot Nothing Then
                 _currentPage = page
                 UpdateHeader()
@@ -340,7 +340,7 @@ The resulting code should look like this:
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-    
+
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="Loaded">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
@@ -378,7 +378,7 @@ The resulting code should look like this:
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
-    </winui:NavigationView>    
+    </winui:NavigationView>
 </Page>
 ```
 
@@ -407,7 +407,7 @@ Namespace Views
             DataContext = ViewModel
             ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators)
         End Sub
-        
+
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
             ' Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
             ' Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
@@ -643,7 +643,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>

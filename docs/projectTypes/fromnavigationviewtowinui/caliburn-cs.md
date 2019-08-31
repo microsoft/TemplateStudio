@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/fu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -40,8 +40,7 @@ Remove the code to manage back navigation from ActivationService, this code will
 - `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
 - Remove unused `using statements`.
 
-
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -66,7 +65,7 @@ namespace YourAppName.Services
     {
         private readonly WinRTContainer _container;
         private readonly Type _defaultNavItem;
-        private readonly Lazy<UIElement> _shell;        
+        private readonly Lazy<UIElement> _shell;
 
         public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
@@ -157,7 +156,7 @@ namespace YourAppName.Services
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -326,7 +325,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -378,7 +377,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -431,7 +430,7 @@ The resulting code should look like this:
 ### C# code you will have to add (_Implementation below_):
 
 - Add the following using statement:
- 
+
 ```csharp
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
@@ -480,7 +479,7 @@ namespace YourAppName.Views
         {
             return navigationView;
         }
-        
+
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
@@ -514,7 +513,6 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 ### C# code you will have to update (_Implementation below_):
 
 - Make _navigationService as static.
-
 
 ### C# code you will have to remove:
 

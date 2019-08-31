@@ -6,13 +6,13 @@ If you have an UWP project created with WinTS and the project type **Pivot** ple
 
 Windows UI library requires 17763 as target version in the project.
 
-![](../resources/project-types/fu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 

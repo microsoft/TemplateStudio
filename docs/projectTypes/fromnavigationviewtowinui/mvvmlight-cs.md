@@ -8,15 +8,15 @@ Update the ViewModelLocator instance mode in your MVVMLight project following th
 
 ## 2. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/fu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/fu-min-oct19-target.png)
 
 ## 3. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 4. Changes in App.xaml
 
@@ -44,7 +44,7 @@ Remove the code to manage back navigation from ActivationService, this code will
 - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
 - Remove unused `using statements`.
 
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -157,7 +157,7 @@ namespace YourAppName.Services
 ```
 
 ## 6. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -325,7 +325,7 @@ namespace YourAppName.Behaviors
 
 ## 8. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -377,7 +377,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -387,7 +387,7 @@ The resulting code should look like this:
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-    
+
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="Loaded">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
@@ -465,7 +465,7 @@ namespace YourAppName.Views
             DataContext = ViewModel;
             ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
         }
-        
+
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
@@ -493,7 +493,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 - Add `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator` `IsBackEnabled`, `_keyboardAccelerators`, `_loadedCommand` and `LoadedCommand` members.
 - Add `keyboardAccelerators` parameter to `Initialize` method.
 - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
- - Add `OnLoaded`, `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
+- Add `OnLoaded`, `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
 - Subscribe to `BackRequested` event handler in Initialize.
 - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 

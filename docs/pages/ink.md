@@ -37,16 +37,16 @@ InkAnalyzer (used in Smart Canvas Ink page) requires installation of Handwriting
 
 - Open Windows Settings and select Time & Language option.
 
-![](../resources/ink/windows-settings.png)
+![Screenshot of Windows Settings main page showing the Tiem and Language option](../resources/ink/windows-settings.png)
 
 - Select Region and Language. In the languages list, expand the language of which you want to recognize text and click on the Options button.
 
-![](../resources/ink/region-and-language.png)
+![Screenshot of the Region and Language settings page highlighting the Options button](../resources/ink/region-and-language.png)
 
 - In the Handwriting section, click on the download button and the download process will begin.
 
-![](../resources/ink/handwriting-download.png)
+![Screenshot highlighting the appropriate Download button](../resources/ink/handwriting-download.png)
 
 - Return to the previous window and verify that the Handwriting option has been installed correctly.
 
-![](../resources/ink/handwriting-installed.png)
+![Screenshot showing indication that handwriting support is installed](../resources/ink/handwriting-installed.png)

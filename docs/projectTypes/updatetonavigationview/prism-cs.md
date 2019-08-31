@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -30,7 +30,7 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```
 
 ## 4. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -273,7 +273,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
@@ -388,15 +388,15 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
-- Add `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_isBackEnabled`, `IsBackEnabled`, `ItemInvokedCommand` members. 
+- Add `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_isBackEnabled`, `IsBackEnabled`, `ItemInvokedCommand` members.
 
- - `OnItemInvoked`, `OnBackRequested` and `IsMenuItemForPageType` methods.
+- `OnItemInvoked`, `OnBackRequested` and `IsMenuItemForPageType` methods.
 
 ### C# code you will have to update _(implementation below)_:
 
 - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
 - Class constructor with the implementation below.
-- `Initialize` and `Frame_Navigated` methods with the implementation below. 
+- `Initialize` and `Frame_Navigated` methods with the implementation below.
 
 The resulting code should look like this:
 
@@ -530,7 +530,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>

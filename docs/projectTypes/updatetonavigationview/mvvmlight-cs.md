@@ -8,15 +8,15 @@ Update the ViewModelLocator instance mode in your MVVMLight project following th
 
 ## 2. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 3. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 4. Changes in App.xaml
 
@@ -40,11 +40,11 @@ Remove the code to manage back navigation from ActivationService, this code will
 ### C# code you will have to remove:
 
 - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-- `ActivationService_BackRequested` and `Frame_Navigated` methods. 
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
 - `NavigationService` member.
 - Remove unused `using statements`.
 
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -145,7 +145,7 @@ namespace YourAppName.Services
 ```
 
 ## 6. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -313,7 +313,7 @@ namespace YourAppName.Behaviors
 
 ## 8. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -381,13 +381,13 @@ xmlns:helpers="using:YourAppName.Helpers"
 - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
 - `NavigationViewHeaderBehavior` and `Loaded` behaviors inside of the `winui:NavigationView`.
 
- The resulting code should look like this:
+The resulting code should look like this:
 
 ```xml
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -498,7 +498,7 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 - `_itemSelected` and `ItemSelectedCommand` properties.
 - `ItemSelected`, `GoToState`, `InitializeState`, `PopulateNavItems`, `Navigate` and `ChangeSelected` methods.
 - `PopulateNavItems` method and method call from Initialize.
-- `InitializeState` method and method call from Initialize. 
+- `InitializeState` method and method call from Initialize.
 - Current `Frame_Navigated` and `Initialize` implementation.
 - Remove unused using statements.
 
@@ -517,7 +517,6 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 - `_isBackEnabled` and `IsBackEnabled` properties.
 - `_itemInvokedCommand` and `ItemInvokedCommand` properties.
 - `OnLoaded`, `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
-
 
 ### C# code you will have to update _(implementation below)_:
 
@@ -664,7 +663,7 @@ namespace YourAppName.ViewModels
 
 ### C# code you will have to update:
 
- - GoBack method implementation.
+- GoBack method implementation.
 
 The resulting method code should look like this:
 
@@ -713,7 +712,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>

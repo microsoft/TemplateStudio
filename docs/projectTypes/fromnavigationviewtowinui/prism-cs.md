@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/fu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -30,17 +30,17 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```
 
 ## 4. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
-### Thickness values you will have to update.
+### Thickness values you will have to update
 
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
-### Thickness values you will have to add.
+### Thickness values you will have to add
 
 ```xml
 <!--Medium size margins-->
@@ -196,7 +196,7 @@ namespace YourAppName.Behaviors
 
 ## 6. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -248,7 +248,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
@@ -336,7 +336,7 @@ namespace YourAppName.Views
             navigationViewHeaderBehavior.Initialize(frame);
             ViewModel.Initialize(frame, navigationView);
         }
-        
+
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
@@ -359,7 +359,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
 - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
- - Add `OnBackRequested` method.
+- Add `OnBackRequested` method.
 - Subscribe to `BackRequested` event handler in Initialize.
 - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 

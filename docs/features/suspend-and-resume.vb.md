@@ -153,4 +153,4 @@ End Sub
 
 App suspension with termination can be simulated in Visual Studio using the LifeCycle Event **Suspend and shutdown**. To simulate resume, you just restart the application again.
 
-![](../resources/suspend-and-resume/SuspendAndShutdown.png)
+![Screenshot of Visual Studio Lifecycle Events dropdown](../resources/suspend-and-resume/SuspendAndShutdown.png)

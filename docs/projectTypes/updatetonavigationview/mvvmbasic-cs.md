@@ -4,15 +4,15 @@ If you have an UWP project created with WinTS with project type **NavigationPane
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -39,7 +39,7 @@ Remove the code to manage back navigation from ActivationService, this code will
 - `ActivationService_BackRequested` and `Frame_Navigated` methods.
 - Remove unused `using statements`.
 
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -135,7 +135,7 @@ namespace YourAppName.Services
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -423,7 +423,7 @@ The resulting code should look like this:
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
-    </winui:NavigationView>    
+    </winui:NavigationView>
 </Page>
 ```
 
@@ -493,8 +493,7 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
-
+- Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
 - `ItemInvokedCommand` and handler method `OnItemInvoked`.
 - `OnLoaded`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
@@ -656,7 +655,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>

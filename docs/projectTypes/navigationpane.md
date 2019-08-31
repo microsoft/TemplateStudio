@@ -28,7 +28,7 @@ The menu can be modified in the following ways.
 By default every NavigationViewItem is displayed with the symbol for a document.
 When every item has the same icon it is hard to differentiate between them when the NavigationView is collapsed. In almost all cases you will want to change the icon used.
 
-![](../resources/modifications/NavMenu_Different_Symbols.png)
+![Screenshot of app with different menu icons](../resources/modifications/NavMenu_Different_Symbols.png)
 
 Navigate to `Views/ShellPage.xaml` and change the `NavigationViewItems` in the `NavigationView MenuItems` property.
 

@@ -8,7 +8,7 @@ The feature allows your app to include new entries to the user's activity feed. 
 
 The User Activity feature will add a sample activity on application startup created in the `UserActivityService.Sample.cs` class. It will show on your timeline like this:
 
-![](../resources/user-activity/sample-activity.png)
+![partial screenshot of sample toast in notification area](../resources/user-activity/sample-activity.png)
 
 The sample activity will update each time you open the application as it always uses the same ActivityId. If you need to create different activities you can do this by providing different ActivityIds. You can find more information about user activity best practices [here](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities-best-practices).
 

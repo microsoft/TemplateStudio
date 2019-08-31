@@ -7,10 +7,10 @@ The navigation pane project type includes a navigation menu displayed in a panel
 
 This document covers:
 
-* [Modifying the menu items](#modifying-the-menu-items)
-* [Using the NavigationViewHeaderBehavior](#NavigationViewHeaderBehavior)
-* [Invoke code on NavigationView](#invoke-code-on-navigationview)
-* [Change the text for Settings](#change-the-text-for-settings)
+- [Modifying the menu items](#modifying-the-menu-items)
+- [Using the NavigationViewHeaderBehavior](#NavigationViewHeaderBehavior)
+- [Invoke code on NavigationView](#invoke-code-on-navigationview)
+- [Change the text for Settings](#change-the-text-for-settings)
 
 To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
 
@@ -20,15 +20,15 @@ To update to Win UI Navigation View from Navigation View read the following [doc
 
 The menu can be modified in the following ways.
 
-* Change the icon for an NavigationViewItem in the menu.
-* Change the text for an NavigationViewItem in the menu.
+- Change the icon for an NavigationViewItem in the menu.
+- Change the text for an NavigationViewItem in the menu.
 
 ### Change the icon for an item
 
 By default every NavigationViewItem is displayed with the symbol for a document.
 When every item has the same icon it is hard to differentiate between them when the NavigationView is collapsed. In almost all cases you will want to change the icon used.
 
-![](../resources/modifications/NavMenu_Different_Symbols.png)
+![Screenshot of app with different menu icons](../resources/modifications/NavMenu_Different_Symbols.png)
 
 Navigate to `Views/ShellPage.xaml` and change the `NavigationViewItems` in the `NavigationView MenuItems` property.
 

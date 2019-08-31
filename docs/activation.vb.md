@@ -54,7 +54,7 @@ The following flowchart shows the Activation proccess that starts with one of th
 
 Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in ActivationService.ActivateAsync().
 
-![](resources/activation/AppLifecycleEvent.png)
+![app lifecycle steps](resources/activation/AppLifecycleEvent.png)
 
 ### ActivateAsync
 
@@ -62,7 +62,7 @@ The first calls in ActivateAsync are InitializeAsync() and the ShellCreation in 
 
 After this first block, HandleActivation is called (more details below).
 
-![](resources/activation/ActivateAsync.png)
+![activation flow](resources/activation/ActivateAsync.png)
 
 **IsInteractive**
 
@@ -80,7 +80,7 @@ StartupAsync contains initializations of other classes that do not need to happe
 
 HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. Before that creates a DefaultActivationHandler and execute if it possible (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
 
-![](resources/activation/HandleActivation.png)
+![flow for handling activation](resources/activation/HandleActivation.png)
 
 ## Sample: Add activation from File Association
 
@@ -211,7 +211,7 @@ You also should add a string resource for Markdown Title.
 
 Add a file type association declaration in the application manifest, to allow the App to be shown as a default handler for markdown files.
 
-![](resources/activation/DeclarationFileAssociation.PNG)
+![screenshot of package.appxmanifest editor showing file type extension being set](resources/activation/DeclarationFileAssociation.PNG)
 
 Handle the file activation event by implementing the override of OnFileActivated:
 
