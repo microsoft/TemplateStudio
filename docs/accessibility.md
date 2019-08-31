@@ -43,3 +43,12 @@ For more info, read the [accessibility overview](https://docs.microsoft.com/wind
 ## Accessibility tools
 
 - Use tools such as [Accessibility Insights](https://accessibilityinsights.io/) or [Inspect](https://msdn.microsoft.com/library/windows/desktop/Dd318521) to verify programmatic access, run diagnostic tools such as [AccChecker](https://msdn.microsoft.com/library/windows/desktop/Hh920985) to discover common errors, and verify the screen reading experience with Narrator. Other tools: [AccScope](https://msdn.microsoft.com/en-us/library/windows/desktop/dn433239.aspx) and [AccEvent](https://msdn.microsoft.com/en-us/library/windows/desktop/dd317979.aspx).
+
+---
+
+## Learn more
+
+- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Understanding and authoring Templates](./templates.md)
+- [Recording usage Telemetry](./telemetry.md)
+- [All docs](./readme.md)

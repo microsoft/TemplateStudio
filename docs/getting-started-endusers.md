@@ -145,10 +145,11 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | [Test Core library with xUnit](./testing/core-xunit.md) | Add a project to test code in the Core library with [xUnit](https://xunit.net/). |
 | [Win App Driver](./testing/win-app-driver.md) | Add project for UI tests using Appium via [Windows Application Driver](https://github.com/Microsoft/WinAppDriver). |
 
-## Table of Contents
+---
 
-- [Installing / Using the extension](getting-started-extension.md)
-- [**Using and extending your file->new**](getting-started-endusers.md)
-- [Concepts of Windows Template Studio](readme.md)
-- [Getting started with the generator codebase](getting-started-developers.md)
-- [Authoring Templates](templates.md)
+## Learn more
+
+- [Handling app activation](./activation.md)
+- [Handling navigation within the app](./navigation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)

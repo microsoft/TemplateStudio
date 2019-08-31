@@ -271,3 +271,12 @@ Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHa
     Yield Singleton(Of FileAssociationService).Instance
 End Function
 ```
+
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling navigation within the app](./navigation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)

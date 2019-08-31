@@ -122,7 +122,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.isHidden": "false",                      //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
     "wts.outputToParent": "true",                 //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
     "wts.casing.sourceName":"kebab|camel|pascal", // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.sourceName.casing.kebab)
-    "wts.casing.rootNamespace":"kebab|camel|pascal" // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.rootNamespace.casing.kebab)     
+    "wts.casing.rootNamespace":"kebab|camel|pascal" // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.rootNamespace.casing.kebab)
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
   "preferNameDirectory": true,
@@ -474,11 +474,11 @@ We've created some Visual Studio Code Snippets to help creating the template.jso
 After creating an empty template.json file, type wts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
 There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
 
+---
 
-## Table of Contents
+## Learn more
 
-- [Installing / Using the extension](getting-started-extension.md)
-- [Using and extending your file->new](getting-started-endusers.md)
-- [Concepts of Windows Template Studio](readme.md)
-- [Getting started with the generator codebase](getting-started-developers.md)
-- [**Authoring Templates**](templates.md)
+- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Recording usage Telemetry](./telemetry.md)
+- [Ensuring generated code is accessible](./accessibility.md)
+- [All docs](./readme.md)

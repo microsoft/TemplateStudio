@@ -68,3 +68,12 @@ WindowsTemplateStudio.config.json
   "DiagnosticsTraceLevel": "Warning"
 }
 ```
+
+---
+
+## Learn more
+
+- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Understanding and authoring Templates](./templates.md)
+- [Ensuring generated code is accessible](./accessibility.md)
+- [All docs](./readme.md)

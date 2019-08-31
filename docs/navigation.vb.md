@@ -88,3 +88,12 @@ End Class
 The three pages in this sample and the order in which they can be navigated to are shown below.
 
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)
