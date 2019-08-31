@@ -24,6 +24,6 @@ What really happened
 ### System
 
 * **VS Version:**
-* **WTS Wizard Version:**
-* **WTS Template Version:**
+* **WinTS Wizard Version:**
+* **WinTS Template Version:**
 * **Windows Build:**

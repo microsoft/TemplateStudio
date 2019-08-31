@@ -122,7 +122,7 @@ To execute this script locally use the following powershell command:
 
 where
 
-* `<wts directory>` : Directory where WTS is cloned
+* `<wts directory>` : Directory where WinTS is cloned
 * `<output directory>`: Directory where test xml result files will be generated
 
 ## Core
@@ -133,7 +133,7 @@ The submodule points to a specific commit in Core Template Studio, that you can 
 
  ![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
 
-When you clone WTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
+When you clone WinTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
 When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
 
 Changes on Core Template Studio should be done on the Core Template Studio repos. 

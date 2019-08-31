@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to WinUI NavigationView in MVVM Basic
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -35,11 +35,9 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### C# code you will have to remove:
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
- - Remove unused `using statements`.
+- `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- Remove unused `using statements`.
 
 The resulting code should look like this: 
 

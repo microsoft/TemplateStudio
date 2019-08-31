@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to WinUI NavigationView in Prism
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 

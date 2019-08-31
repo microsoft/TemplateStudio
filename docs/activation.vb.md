@@ -86,7 +86,7 @@ HandleActivation method gets the first ActivationHandler that can handle the arg
 
 We are going to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader to our app.
 
-The following code is thought to be added in a WTS MVVM Basic app.
+The following code is thought to be added in a WinTS MVVM Basic app.
 
 For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 

@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to WinUI NavigationView in MVVM Basic
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -36,9 +36,7 @@ Remove the code to manage back navigation from ActivationService, this code will
 ### VB code you will have to remove:
 
 - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
 - `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
 - Remove unused `Imports statements`.
 
 The resulting code should look like this: 
@@ -427,23 +425,14 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 ### VB code you will have to remove:
 
 - the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
 - private fields `_lastSelectedItem` and `_itemInvokedCommand`
-
 - `IsPaneOpen` observable property.
-
 - `DisplayMode` observable property.
-
 - ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
-
 - `OpenPaneCommand`.
-
 - `ItemSelectedCommand` and handler method `ItemSelected`.
-
 - `StateChangedCommand` and handler method `GoToState`.
-
 - `Navigate` and `ChangeSelected` methods.
-
 - Remove unused Imports statements.
 
 ### VB code you will have to add _(implementation below)_:

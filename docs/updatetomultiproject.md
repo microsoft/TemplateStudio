@@ -1,5 +1,5 @@
 # Update from single project to multiproject solution
-If you created your project with version 1.x or 2.x of WTS and have no core project please follow these steps to add a .NET Standard core project to your solution.
+If you created your project with version 1.x or 2.x of WinTS and have no core project please follow these steps to add a .NET Standard core project to your solution.
 
 ## 1. Add a .NET Standard Class Library project to your solution
 From the context menu of your solution file click "Add -> New Project" and choose "Class Library (.Net Standard)" from the .Net Standard Category

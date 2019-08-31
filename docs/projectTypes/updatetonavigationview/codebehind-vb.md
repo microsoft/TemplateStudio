@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to NavigationView in CodeBehind
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **CodeBehind**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **CodeBehind**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -35,11 +35,9 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### VB code you will have to remove:
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
- - Remove unused `Imports statements`.
+- `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- Remove unused `Imports statements`.
 
 The resulting code should look like this:
 
@@ -328,11 +326,8 @@ xmlns:i="using:Microsoft.Xaml.Interactivity"
 ```
 
 - `Loaded` event.
-
 - `winui:NavigationView` control.
-
 - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
 - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
 The resulting code should look like this:
@@ -395,19 +390,12 @@ ShellPage CodeBehind complexity will be reduced significantly, these are the cha
 ### VB code you will have to remove:
 
 - the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
 - `_lastSelectedItem` private field.
-
 - `_isPaneOpen` and `IsPaneOpen` properties.
-
 - `_displayMode` and `DisplayMode` properties.
-
 - `_primaryItems` and `PrimaryItems` properties.
-
 - `_secondaryItems` and `SecondaryItems` properties.
-
 - `ItemInvoked`, `OpenPane_Click`, `GoToState`, `InitializeState`, `PopulateNavItems`, `Navigate`, `WindowStates_CurrentStateChanged` and `ChangeSelected` methods.
-
 - Remove unused Imports statements.
 
 ### VB code you will have to add _(implementation below)_:
@@ -422,18 +410,14 @@ Imports WinUI = Microsoft.UI.Xaml.Controls
 ```
 
 - `OnLoaded` event.
-
 - `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
-
 - `_isBackEnabled` and `IsBackEnabled` properties.
-
 - `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 
 ### VB code you will have to update (_Implementation below_):
 
 - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
 - Current `Frame_Navigated` and `Initialize` implementation.
 
 The resulting code should look like this:
@@ -596,13 +580,9 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 ### XAML code you will have to remove:
 
 - **xmln namespaces** for fcu and cu.
-
 - Textblock **TitlePage**
-
 - ContentArea Grid **RowDefinitions**
-
 - VisualStateManager **VisualStateGroups**.
-
 - **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
@@ -638,7 +618,6 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 If your project contains a SettingsPage you must perform the following steps:
 
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
 - On **ShellPage.xaml.vb** go to **OnItemInvoked** method and add to the beginning:
 
 ```vb
