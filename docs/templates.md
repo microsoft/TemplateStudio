@@ -42,22 +42,22 @@ A template is just code (some source files and folders structure) with some meta
 
 The [Templates Repository](../templates) has the following structure:
 
-* [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
-* [Uwp](_templates/Uwp): this folder contains all templates used for UWP platform projects
-  * [_composition](../templates/Uwp/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
-  * [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
-  * [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
-  * [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
-  * [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
-  * [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
+- [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
+- [Uwp](_templates/Uwp): this folder contains all templates used for UWP platform projects
+  - [_composition](../templates/Uwp/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
+  - [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
+  - [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
+  - [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+  - [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
+  - [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
 ## Anatomy of templates
 
 As mentioned, a basic [dotnet Template Engine](https://github.com/dotnet/templating) template is defined by the following elements:
 
-* **Metadata**: a json file within the *".template.config"* folder  information which defines the template and its properties. The metadata includes the replacements to be done.
-* **Folder Structure**: A folder structure that will be maintained after the generation is done.
-* **Files**: Text files, basically, the source code, where replacements are made.
+- **Metadata**: a json file within the *".template.config"* folder  information which defines the template and its properties. The metadata includes the replacements to be done.
+- **Folder Structure**: A folder structure that will be maintained after the generation is done.
+- **Files**: Text files, basically, the source code, where replacements are made.
 
 The metadata drives how the generation is done, let's see a template content sample:
 
@@ -273,19 +273,18 @@ Post-Actions are designed to complement the standard generation enabling certain
 
 Currently we support the following types of [Post-Actions](../code/src/Core/PostActions):
 - Defined by template output type:
-  * **Add Item To Project**: this post-action is executed for templates with outputtype item to add the "PrimaryOutputs" to the target Visual Studio project (.csproj). The "PrimaryOutputs" are defined in the template.json file.
-  * **Add Project To Solution**: this post-action is executed for templates with outputtype project to add the a generated project to the current Visual Studio solution.
+  - **Add Item To Project**: this post-action is executed for templates with outputtype item to add the "PrimaryOutputs" to the target Visual Studio project (.csproj). The "PrimaryOutputs" are defined in the template.json file.
+  - **Add Project To Solution**: this post-action is executed for templates with outputtype project to add the a generated project to the current Visual Studio solution.
 
 - Defined by the template:
-  * **Add Reference To Project** this post-action is executed to add a reference from one project to another project.
-  * **Add Nuget Reference To Project**: this post-action is executed to add a nuget reference to the project.
-  * **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
+  - **Add Reference To Project** this post-action is executed to add a reference from one project to another project.
+  - **Add Nuget Reference To Project**: this post-action is executed to add a nuget reference to the project.
+  - **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
 
 - Other postactions:
-  * **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
-  * **SearchAndReplace**: searches for the source code defined in the postaction file and replaces it with the specified code. This Post-Action requires a special (_searchreplace) configuration in the templates files.
-
-  * **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
+  - **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
+  - **SearchAndReplace**: searches for the source code defined in the postaction file and replaces it with the specified code. This Post-Action requires a special (_searchreplace) configuration in the templates files.
+  - **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
   * **Set Default Solution Configuration**: sets the default solution configuration in the Visual Studio sln file. With this post-action we change the default solution configuration from Debug|ARM to Debug|x86.
 
 ### Merge Post-Action
@@ -376,10 +375,10 @@ The merge post action will do the following:
 
 1. Locate a file called "ShellPage_postaction.xaml" within the generated code.
 1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellPage.xaml` file and will insert it in the correct place. In this case:
-    * Locate the page tag
-    * Then a NavigationView tag
-    * Then the NavigationView.MenuItems tag
-    * The symbols `//^^` indicates that the merge must be done at the end, just before the closing `</NavigationView.MenuItems>`, without this directive the line would be inserted just below the opening `<NavigationView.MenuItems>`.
+    - Locate the page tag
+    - Then a NavigationView tag
+    - Then the NavigationView.MenuItems tag
+    - The symbols `//^^` indicates that the merge must be done at the end, just before the closing `</NavigationView.MenuItems>`, without this directive the line would be inserted just below the opening `<NavigationView.MenuItems>`.
 1. Once the place to insert the code has been found, the content contained between `{[{` and `}]}` is added in to the original source file.
 1. If any of the above directives are not found the merge is aborted and an merge failure is reported.
 
@@ -397,11 +396,11 @@ This allows generation of 1 gpostaction file per BackgroundTask selected and mer
 
 There are different merge directives to drive the code merging. Currently:
 
-* MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
-* MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
-* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
-* MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
-* MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
+- MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
+- MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
+- MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
+- MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
+- MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
 
 _The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`)_
 
@@ -465,10 +464,10 @@ We've created some Visual Studio Code Snippets to help creating the template.jso
 
 #### Adding code Snippets to Visual Studio Code
 
- - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
- - Open Json.json on language files list.
- - Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
- - Paste those code snippets on the opened Json.json file.
+- Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
+- Open Json.json on language files list.
+- Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
+- Paste those code snippets on the opened Json.json file.
 
 #### Using the code snippets
 
@@ -478,8 +477,8 @@ There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actio
 
 ## Table of Contents
 
-* [Installing / Using the extension](getting-started-extension.md)
-* [Using and extending your file->new](getting-started-endusers.md)
-* [Concepts of Windows Template Studio](readme.md)
-* [Getting started with the generator codebase](getting-started-developers.md)
-* [**Authoring Templates**](templates.md)
+- [Installing / Using the extension](getting-started-extension.md)
+- [Using and extending your file->new](getting-started-endusers.md)
+- [Concepts of Windows Template Studio](readme.md)
+- [Getting started with the generator codebase](getting-started-developers.md)
+- [**Authoring Templates**](templates.md)

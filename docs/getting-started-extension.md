@@ -6,12 +6,12 @@
 
 Windows Template Studio (WinTS) installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
 
-* Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
-* Windows 10, version 1803 (version 10.0.17134.0) or later
-* .Net Framework 4.7
-* Windows Template Studio extension.  You have two ways of aquiring the extension.
-   * Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
-   * Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
+- Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
+- Windows 10, version 1803 (version 10.0.17134.0) or later
+- .Net Framework 4.7
+- Windows Template Studio extension.  You have two ways of aquiring the extension.
+   - Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
+   - Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
 
 ## Public Release instructions
 
@@ -28,8 +28,8 @@ on Visual Studio 2019 you can use the search box or the filters to get to the Wi
 
 ## Nightly / Pre-release feeds for Windows Template Studio
 
-* **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
-* **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
+- **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
+- **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 
 ### Nightly / Pre-release instructions
 
@@ -57,8 +57,8 @@ If you want to have updates from in-progress changes.  This feed will have the r
 
 ## Table of Contents
 
-* [**Installing / Using the extension**](getting-started-extension.md)
-* [Using and extending your file->new](getting-started-endusers.md)
-* [Concepts of Windows Template Studio](readme.md)
-* [Getting started with the generator codebase](getting-started-developers.md)
-* [Authoring Templates](templates.md)
+- [**Installing / Using the extension**](getting-started-extension.md)
+- [Using and extending your file->new](getting-started-endusers.md)
+- [Concepts of Windows Template Studio](readme.md)
+- [Getting started with the generator codebase](getting-started-developers.md)
+- [Authoring Templates](templates.md)

@@ -12,8 +12,8 @@ Please head to our [Telemetry Data](telemetryData.md) where we show trends from 
 
 The Wizard for Windows Template Studio collects basic diagnostics telemetry and usage data:
 
-* **Diagnostics telemetry**: unhandled exceptions happened while running the Wizard. This enable the exception tracking and analysis.
-* **Usage telemetry**: including wizard usage and user selections.
+- **Diagnostics telemetry**: unhandled exceptions happened while running the Wizard. This enable the exception tracking and analysis.
+- **Usage telemetry**: including wizard usage and user selections.
 
 ## Usage telemetry collected
 
@@ -34,7 +34,6 @@ The [TelemetryService](../code/src/Core/Diagnostics/TelemetryService.cs) class i
 The instrumentation key is setup through the wizard configuration. The default configuration values are those that are defined directly in the code:
 
 ``` csharp
-
 public class Configuration
 {
     ...
@@ -54,7 +53,6 @@ Default configuration values can be overridden using two different mechanisms:
 1. *Redirected config file*: This works only for testing purposes. You can modify the configuration path and filename by specifying an appSetting in the App.Config for the Unit Tests or the VsEmulator app. The appSetting must be specified as follows:
 
 ``` xml
-
 <add key="JsonConfigFile" value="MyCustomFile.config.json.secret" />
 
 ```
@@ -64,11 +62,9 @@ If you add the ".secret" extension to your configuration file, it will not be pu
 As mentioned, the configuration files allow you to define only the configuration elements you want to override. Check the following sample content which overrides the RemoteTelemetryKey and DiagnosticsTraceLevel settings:
 
 ``` json
-
 WindowsTemplateStudio.config.json
 {
   "RemoteTelemetryKey": "your-key",
   "DiagnosticsTraceLevel": "Warning"
 }
-
 ```
