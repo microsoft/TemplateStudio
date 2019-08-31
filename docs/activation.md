@@ -94,8 +94,8 @@ The following sample code is thought to be added in a WTS MVVM Basic app.
 
 For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 
-
 ### 1. Add Page and ViewModel to show the opened file
+
 Add the following files to your project
 
 **Views/MarkdownPage.xaml**
@@ -220,7 +220,6 @@ You also should add a string resource for Markdown Title.
 </data>
 ```
 
-
 ### 2. Set up File Association Activation
 
 Add a file type association declaration in the application manifest, to allow the App to be shown as a default handler for markdown files.
@@ -237,6 +236,7 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
     await ActivationService.ActivateAsync(args);
 }
 ```
+
 ### 3. Add a FileAssociationService
 
 Add a FileAssociationService to your project that handles activation from files. It derives from `ApplicationHandler<T>`.
@@ -251,8 +251,7 @@ internal class FileAssociationService : ActivationHandler<File​Activated​Eve
 }
 ```
 
-
-Override HandleInternalAsync(), to evaluate the event args, and take action:
+Override `HandleInternalAsync()`, to evaluate the event args, and take action:
 
 ```csharp
 protected override async Task HandleInternalAsync(File​Activated​Event​Args args)
