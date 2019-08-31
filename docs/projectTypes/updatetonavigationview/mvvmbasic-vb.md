@@ -35,17 +35,17 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### VB code you will have to remove:
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
 
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
 
- - Remove unused `Imports statements`.
+- Remove unused `Imports statements`.
 
 The resulting code should look like this: 
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Core
 
@@ -149,7 +149,7 @@ Update and add new Margins that will be used in pages.
 
 This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.vb.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
 
-```vbnet
+```vb
 Imports Microsoft.Xaml.Interactivity
 
 Imports Windows.UI.Xaml
@@ -267,7 +267,7 @@ End Namespace
 
 Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
-```vbnet
+```vb
 Namespace Behaviors
     Public Enum NavigationViewHeaderMode
         Always
@@ -281,7 +281,7 @@ End Namespace
 
 Add this extension class to the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
 
-```vbnet
+```vb
 Imports Microsoft.UI.Xaml.Controls
 
 Namespace Helpers
@@ -307,11 +307,9 @@ The updated ShellPage will include the WinUI NavigationView and add the MenuItem
 
 ### XAML code you will have to remove:
 
- - xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
-
- - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
-
- - `HamburgerMenu` control.
+- xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
+- `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+- `HamburgerMenu` control.
 
 ### XAML code you will have to add:
 
@@ -324,11 +322,9 @@ xmlns:helpers="using:YourAppName.Helpers"
 xmlns:views="using:YourAppName.Views"
 ```
 
- - `winui:NavigationView` control.
-
- - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
+- `winui:NavigationView` control.
+- `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+- `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
 The resulting code should look like this:
 
@@ -394,11 +390,11 @@ ShellViewModel will need the WinUI `NavigationView` instance and `KeyboardAccele
 
 ### VB code you will have to update (_Implementation below_):
 
- - Add the `navigationView` control and `KeyboardAccelerators` to ViewModel `Initialize` call.
+- Add the `navigationView` control and `KeyboardAccelerators` to ViewModel `Initialize` call.
 
 The resulting code should look like this:
 
-```vbnet
+```vb
 Imports YourAppName.ViewModels
 
 Namespace Views
@@ -430,54 +426,50 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 
 ### VB code you will have to remove:
 
- - the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
 
- - private fields `_lastSelectedItem` and `_itemInvokedCommand`
+- private fields `_lastSelectedItem` and `_itemInvokedCommand`
 
- - `IsPaneOpen` observable property.
+- `IsPaneOpen` observable property.
 
- - `DisplayMode` observable property.
+- `DisplayMode` observable property.
 
- - ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
+- ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
 
- - `OpenPaneCommand`.
+- `OpenPaneCommand`.
 
- - `ItemSelectedCommand` and handler method `ItemSelected`.
+- `ItemSelectedCommand` and handler method `ItemSelected`.
 
- - `StateChangedCommand` and handler method `GoToState`.
+- `StateChangedCommand` and handler method `GoToState`.
 
- - `Navigate` and `ChangeSelected` methods.
+- `Navigate` and `ChangeSelected` methods.
 
- - Remove unused Imports statements.
+- Remove unused Imports statements.
 
 ### VB code you will have to add _(implementation below)_:
 
- - Add the following new usings statements:
+- Add the following new usings statements:
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.System
 Imports Windows.UI.Xaml.Input
 Imports WinUI = Microsoft.UI.Xaml.Controls
 ```
 
- - Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
-
- - `ItemInvokedCommand` and handler method `OnItemInvoked`.
-
- - `OnLoaded`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+- Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
+- `ItemInvokedCommand` and handler method `OnItemInvoked`.
+- `OnLoaded`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 ### VB code you will have to update _(implementation below)_:
 
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - `Initialize` method with the implementation below.
-
- - `Frame_Navigated` method with the implementation below.
+- `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
+- `Initialize` method with the implementation below.
+- `Frame_Navigated` method with the implementation below.
 
 The resulting code should look like this:
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
@@ -615,11 +607,11 @@ End Namespace
 
 ### VB code you will have to update:
 
- - GoBack method implementation.
+- GoBack method implementation.
 
 The resulting method code should look like this:
 
-```vbnet
+```vb
 Public Function GoBack() As Boolean
     If CanGoBack Then
         Frame.GoBack()
@@ -640,15 +632,11 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 
 ### XAML code you will have to remove:
 
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
+- **xml namespace aliases** for fcu and cu.
+- Textblock **TitlePage**
+- ContentArea Grid **RowDefinitions**
+- VisualStateManager **VisualStateGroups**.
+- **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
 
@@ -682,20 +670,19 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 
 If your project contains a SettingsPage you must perform the following steps:
 
- - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.vb** go to **OnItemInvoked** method and add to the beginning:
 
- - On **ShellViewModel.vb** go to **OnItemInvoked** method and add to the beginning:
-
-```vbnet
+```vb
  If args.IsSettingsInvoked Then
     NavigationService.Navigate(GetType(SettingsPage))
     Return
 End If
 ```
 
- - On **ShellViewModel.vb** go to **Frame_Navigated** method and add to the beginning:
+- On **ShellViewModel.vb** go to **Frame_Navigated** method and add to the beginning:
 
-```vbnet
+```vb
 If e.SourcePageType = GetType(SettingsPage) Then
     Selected = TryCast(_navigationView.SettingsItem, WinUI.NavigationViewItem)
     Return

@@ -410,7 +410,7 @@ internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
 
 - Change the method `ActivateAsync()` to
 
- ```csharp
+```csharp
 public async Task ActivateAsync(object activationArgs)
 {
     if (IsInteractive(activationArgs))
@@ -482,17 +482,17 @@ private UIElement CreateShell()
 - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
 
 ```csharp
- NavigationService.InitializeSecondaryFrame(frame);
+NavigationService.InitializeSecondaryFrame(frame);
 
- // Instead of
- // NavigationService.Frame = frame;
+// Instead of
+// NavigationService.Frame = frame;
 ```
 
 - Replace `e` parameter from `NavigationEventArgs` to `NavigationArgs` in `OnNavigated` method.
 - Add `NavigationService.IsPageInMainFrame` validation in method.
 
- ```csharp
- private void OnNavigated(object sender, NavigationArgs e)
+```csharp
+private void OnNavigated(object sender, NavigationArgs e)
 {
     // Handle navigation only when ShellPage in MainFrame
     if (NavigationService.IsPageInMainFrame<ShellPage>())

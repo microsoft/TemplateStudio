@@ -85,10 +85,10 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=MinimumPrism
     * ExecutionSet=TemplateValidation
 
-* VSO 'Templates.Test.Full'	Build (Full Tests):
+* VSO 'Templates.Test.Full' Build (Full Tests):
   * Core.Tests
-  *	UI.Tests
-  *	Templates.Test
+  * UI.Tests
+  * Templates.Test
       * ExecutionSet=MinimumCodebehind
       * ExecutionSet=MinimumMVVMLight
       * ExecutionSet=MinimumMVVMBasic
@@ -103,16 +103,15 @@ The following list shows which tests are executed in which build. Within the Tem
       * ExecutionSet=BuildCaliburnMicro
       * ExecutionSet=BuildPrism
 
-
-* VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
-  *	Templates.Test
+* VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
+  * Templates.Test
     * ExecutionSet=BuildOneByOneMVVMBasic
     * ExecutionSet=BuildOneByOneCodeBehind
     * ExecutionSet=BuildOneByOneMVVMLight
     * ExecutionSet=BuildOneByOneCaliburnMicro
     * ExecutionSet=BuildOneByOnePrism
 
-* VSO 'Templates.Test.Wack'	Build (Wack Tests):
+* VSO 'Templates.Test.Wack' Build (Wack Tests):
   * Templates.Test
     * ExecutionSet=LongRunning
 

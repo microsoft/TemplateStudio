@@ -21,13 +21,13 @@ Remove the ViewModelLocator from the Application.Resources ResourceDictionary:
 
 Change the ViewModelLocator constructor to be private:
 
-```vbnet
+```vb
 Private Sub New()
 ```
 
 Add a shared property that contains the current ViewModelLocator above the class contructor:
 
-```vbnet
+```vb
 Private Shared _current As ViewModelLocator
 
 Public Shared ReadOnly Property Current As ViewModelLocator
@@ -45,7 +45,8 @@ End Property
 Change the way to get the NavigationService from the ViewModelLocator:
 
 Remove the following code:
-```vbnet
+
+```vb
 Private ReadOnly Property Locator As ViewModels.ViewModelLocator
     Get
         Return TryCast(Application.Current.Resources("Locator"), ViewModels.ViewModelLocator)
@@ -60,7 +61,8 @@ End Property
 ```
 
 Add the following code:
-```vbnet
+
+```vb
 Private ReadOnly Property NavigationService As NavigationServiceEx
     Get
         Return ViewModelLocator.Current.NavigationService
@@ -69,6 +71,7 @@ End Property
 ```
 
 ## 4. Changes in all pages
+
 As the ViewModelLocator is no longer part of the ApplicationResources, you will have to change the way in which the pages obtain the ViewModel.
 
 ### 4.1 Page XAML files
@@ -83,8 +86,9 @@ DataContext="{Binding YourPageViewModel, Source={StaticResource Locator}}"
 
 Get the ViewModel from the ViewModelLocator **singleton** instance.
 
-Remove the following code: 
-```vbnet
+Remove the following code:
+
+```vb
 Private ReadOnly Property ViewModel As YourPageViewModel
     Get
         Return TryCast(DataContext, YourPageViewModel)
@@ -93,7 +97,8 @@ End Property
 ```
 
 Add the following code:
-```vbnet
+
+```vb
 Private ReadOnly Property ViewModel As YourPageViewModel
     Get
         Return ViewModelLocator.Current.YourPageViewModel

@@ -139,7 +139,7 @@ End Sub
 
 - ViewModel code
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.Storage
 
@@ -164,7 +164,7 @@ We will configure a ListView to allow drag items from it and drop items to it. W
 
 We will need a class to be used class model during the drag and drop operations, for example the `CustomItem` class:
 
-```vbnet
+```vb
 Public Class CustomItem
 
     Public ReadOnly Property Id As Guid = Guid.NewGuid()

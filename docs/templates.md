@@ -4,8 +4,8 @@ Templates are used to generate the code. In Windows Template Studio we have the 
 
 For example, consider the following scenarios:
 
-* **Scenario #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
-* **Scenario #2** you want to create as in *Scenario #1* but without depending on an external framework and adding Live Tiles support.
+- **Scenario #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
+- **Scenario #2** you want to create as in *Scenario #1* but without depending on an external framework and adding Live Tiles support.
 
 The Window Template Studio allow you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
 
@@ -229,11 +229,12 @@ The structure of files and folders within the `_composition` folder is just for 
     "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank",
     "wts.compositionOrder" : "1"
  },
- ```
+```
 
 In this case, the template which have this configuration will be added to the generation basket when the following conditions are meet:
-* The selected framework for the current generation is CodeBehind OR MVVMBasic
-* There is a template within the generation basket whose `identity` property is "wts.Proj.Blank".
+
+- The selected framework for the current generation is CodeBehind OR MVVMBasic
+- There is a template within the generation basket whose `identity` property is "wts.Proj.Blank".
 
 In other words, this template is designed to be added to the generation basket when we are generating a Blank Project Type with the CodeBehind or MVVMBasic framework.
 The wts.compositionOrder can be used to establish the order in which of composition templates are generated where necessary.
@@ -246,17 +247,17 @@ We have a basic pseudo-language to define the composition filters. The compositi
 
 Where
 
-* <operand field> := <queryable property> | <context parameter>
-* <literal> := <literal> [|<literal>]
-* <queryable property> -> template configuration property (`template.json`) among the following:
+- <operand field> := <queryable property> | <context parameter>
+- <literal> := <literal> [|<literal>]
+- <queryable property> -> template configuration property (`template.json`) among the following:
   - `name`
   - `identity`
   - `groupIdentity`
   - Any defined tag, i.e `language`, `type`, `language`, `wts.framework`, etc.
-* <operators>
+- <operators>
   - == -> Equals Equality
   - != -> Not equals
-* <context parameter>
+- <context parameter>
   - $framework -> current generation framework.
   - $projectType -> current generation project type.
   - $page -> current selection includes a page with the specified Id.
@@ -319,7 +320,6 @@ During the generation, each page must add the required code to register itself i
 The `template.json` is defined as follows:
 
 ```json
-
 {
   "author": "Microsoft",
   "classifications": [
@@ -373,6 +373,7 @@ Here is the content of the ShellPage_postaction.xaml:
 ```
 
 The merge post action will do the following:
+
 1. Locate a file called "ShellPage_postaction.xaml" within the generated code.
 1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellPage.xaml` file and will insert it in the correct place. In this case:
     * Locate the page tag
@@ -459,9 +460,11 @@ The Templates.Test project includes tests to run all the checks from the Templat
 ## Authoring templates tooling
 
 ### Visual Studio Code Snippets
+
 We've created some Visual Studio Code Snippets to help creating the template.json files.
 
 #### Adding code Snippets to Visual Studio Code
+
  - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
  - Open Json.json on language files list.
  - Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).

@@ -149,7 +149,7 @@ In the following example, we'll see how to modify the `Header` in a `MainPage` i
 
 We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page.
 
-```vbnet
+```vb
 Dim headerContextBinding As Binding = new Binding()
 headerContextBinding.Source = Me
 headerContextBinding.Mode = BindingMode.OneWay
@@ -201,7 +201,7 @@ Extending the app to add this functionality requires making two changes.
 
 Add a command to run the code in `ShellViewModel.vb` (MVVMBasic or MVVMLight) or `ShellPage.xaml.vb` (CodeBehind)
 
-```vbnet
+```vb
      Private _showInfoCommand as ICommand
     Public Property ShowInfoCommand As ICommand
         Get
@@ -222,7 +222,7 @@ Add a new resource with the name `Shell_SettingsItem`. (You can call it anything
 
 In `Shell.xaml.vb`modify the constructor so it matches this (add the loaded event handler)
 
-```vbnet
+```vb
 Public Sub New()
     InitializeComponent()
     DataContext = Me

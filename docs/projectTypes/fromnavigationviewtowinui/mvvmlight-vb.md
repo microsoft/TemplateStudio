@@ -1,4 +1,5 @@
 # Update NavigationView to WinUI in MVVMBasic apps
+
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update ViewModelLocator instance mode in your MVVMLight project
@@ -6,6 +7,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 Update the ViewModelLocator instance mode in your MVVMLight project following this [doc](../../frameworks/updatemvvmlightlocator.md).
 
 ## 2. Update target version in project properties
+
 Windows UI library requires 17763 as target version in the project.
 
 ![](../../resources/project-types/fu-min-oct19-target.png)
@@ -19,6 +21,7 @@ Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 ## 4. Changes in App.xaml
 
 Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
+
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -48,7 +51,7 @@ The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Core
 
@@ -126,12 +129,14 @@ End Namespace
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
+
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
+
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -151,7 +156,7 @@ Update and add new Margins that will be used in pages.
 
 This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
 
-```vbnet
+```vb
 Imports Microsoft.Xaml.Interactivity
 
 Imports Windows.UI.Xaml
@@ -269,7 +274,7 @@ End Namespace
 
 Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
 
-```vbnet
+```vb
 Namespace Behaviors
     Public Enum NavigationViewHeaderMode
         Always
@@ -387,7 +392,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
 The resulting code should look like this:
 
-```vbnet
+```vb
 Imports YourAppName.ViewModels
 
 Namespace Views
@@ -424,7 +429,7 @@ End Namespace
 
  - Add the following new imports statements:
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.System
 Imports Windows.UI.Xaml.Input
@@ -452,7 +457,7 @@ Imports WinUI = Microsoft.UI.Xaml.Controls
 
 The resulting code should look like this:
 
-```vbnet
+```vb
 Imports CommonServiceLocator
 
 Imports GalaSoft.MvvmLight

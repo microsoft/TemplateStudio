@@ -44,7 +44,7 @@ The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Core
 
@@ -122,12 +122,14 @@ End Namespace
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
+
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
+
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -147,7 +149,7 @@ Update and add new Margins that will be used in pages.
 
 This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.vb.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
 
-```vbnet
+```vb
 Imports Microsoft.Xaml.Interactivity
 
 Imports Windows.UI.Xaml
@@ -264,7 +266,7 @@ End Namespace
 
 Add the NavigationViewHeaderBehavior enum in Behaviors folder. 
 
-```vbnet
+```vb
 Namespace Behaviors
     Public Enum NavigationViewHeaderMode
         Always
@@ -367,7 +369,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
  - Add the following new Imports statements:
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Xaml.Input
 Imports WinUI = Microsoft.UI.Xaml.Controls
@@ -399,7 +401,7 @@ Imports WinUI = Microsoft.UI.Xaml.Controls
 
 The resulting code should look like this:
 
-```vbnet
+```vb
 Imports Windows.System
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls

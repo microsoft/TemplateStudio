@@ -101,6 +101,6 @@ The following code snippets show how to add a new menu "Help" with a menu entry 
     <comment>Menu item text for About</comment>
 </data>
 <!-- End of block -->
- ```
+```
 
 <a name="invokecode"></a>

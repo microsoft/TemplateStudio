@@ -459,23 +459,23 @@ The resulting code should look like this:
 
 ### C# code you will have to add (_Implementation below_):
 
- - Add the following namespaces:
+- Add the following namespaces:
 
 ```xml
 using Caliburn.Micro;
 using Windows.UI.Xaml;
 ```
 
- - Add `GetNavigationView` method.
+- Add `GetNavigationView` method.
 
 ### C# code you will have to update (_Implementation below_):
 
- - `CreateNavigationService` method implementation.
+- `CreateNavigationService` method implementation.
 
 The resulting code should look like this:
 
- ```csharp
- using Caliburn.Micro;
+```csharp
+using Caliburn.Micro;
 using YourAppName.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 
@@ -501,8 +501,8 @@ namespace YourAppName.Views
         {
             return navigationView;
         }
-	
-	private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
@@ -510,7 +510,7 @@ namespace YourAppName.Views
         }
     }
 }
- ```
+```
 
 ## 11. Changes in ShellViewModel.cs
 
@@ -518,23 +518,18 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 
 ### C# code you will have to remove:
 
- - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- `_lastSelectedItem` private property.
+- `_isPaneOpen` and `IsPaneOpen` properties.
+- `_displayMode` and `DisplayMode` properties.
+- ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
+- `Open`, `StateChanged`, `GoToState`, `InitializeState`, `PopulateNavItems`, `ChangeSelected`, `Navigate` and `ItemSelected` methods.
 
- - `_lastSelectedItem` private property.
-
- - `_isPaneOpen` and `IsPaneOpen` properties.
-
- - `_displayMode` and `DisplayMode` properties.
-
- - ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
-
- - `Open`, `StateChanged`, `GoToState`, `InitializeState`, `PopulateNavItems`, `ChangeSelected`, `Navigate` and `ItemSelected` methods.
-
- - Remove unused using statements.
+- Remove unused using statements.
 
 ### C# code you will have to add _(implementation below)_:
 
- - Add the following new usings statements:
+- Add the following new usings statements:
 
 ```csharp
 using System.Collections.Generic;
@@ -543,19 +538,15 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `_navigationView`, `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`, `_isBackEnabled` and `IsBackEnabled` members.
-
- - `ItemInvokedCommand` and handler method `OnItemInvoked`.
-
- - `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+- Add `_navigationView`, `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`, `_isBackEnabled` and `IsBackEnabled` members.
+- `ItemInvokedCommand` and handler method `OnItemInvoked`.
+- `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 ### C# code you will have to update _(implementation below)_:
 
- - Make `_navigationService` as static.
-
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - `OnInitialize` and `NavigationService_Navigated` methods with the implementation below.
+- Make `_navigationService` as static.
+- `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
+- `OnInitialize` and `NavigationService_Navigated` methods with the implementation below.
 
 The resulting code should look like this:
 
@@ -703,10 +694,10 @@ namespace YourAppName.ViewModels
 
 ### XAML code you will have to add _(implementation below)_:
 
- - Add `GetNavigationView` method.
+- Add `GetNavigationView` method.
 
- ```csharp
- using System;
+```csharp
+using System;
 
 using Caliburn.Micro;
 using Microsoft.UI.Xaml.Controls;
@@ -720,7 +711,7 @@ namespace YourAppName.Views
         NavigationView GetNavigationView();
     }
 }
- ```
+```
 
 ## 13. Remove ShellNavigationItem.cs
 
@@ -732,15 +723,11 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 
 ### XAML code you will have to remove:
 
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
+- **xmln namespaces** for fcu and cu.
+- Textblock **TitlePage**
+- ContentArea Grid **RowDefinitions**
+- VisualStateManager **VisualStateGroups**.
+- **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
 
@@ -774,9 +761,8 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 
 If your project contains a SettingsPage you must perform the following steps:
 
- - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
- - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
 
 ```csharp
 if (args.IsSettingsInvoked)
@@ -786,12 +772,12 @@ if (args.IsSettingsInvoked)
 }
 ```
 
- - On **ShellViewModel.cs** go to **NavigationService_Navigated** method and add to the beginning:
+- On **ShellViewModel.cs** go to **NavigationService_Navigated** method and add to the beginning:
 
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = _navigationView.SettingsItem as NavigationViewItem;
-	return;
+    Selected = _navigationView.SettingsItem as NavigationViewItem;
+    return;
 }
 ```

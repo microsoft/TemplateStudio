@@ -1,7 +1,9 @@
 # Update from HamburgerMenu to NavigationView in CodeBehind
+
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **CodeBehind**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
+
 Windows UI library requires 17763 as target version in the project.
 
 ![](../../resources/project-types/cu-min-oct19-target.png)
@@ -33,11 +35,9 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### C# code you will have to remove:
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
- - Remove unused `using statements`.
+- `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- Remove unused `using statements`.
 
 The resulting code should look like this:
 
@@ -139,12 +139,14 @@ namespace YourAppName.Services
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
+
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
+
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -350,11 +352,9 @@ The updated ShellPage will include the WinUI NavigationView and add the MenuItem
 
 ### XAML code you will have to remove:
 
- - xml namespaces for `fcu`, `cu`, `controls` and `local` (viewmodels).
-
- - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
-
- - `HamburgerMenu` control.
+- xml namespaces for `fcu`, `cu`, `controls` and `local` (viewmodels).
+- `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+- `HamburgerMenu` control.
 
 ### XAML code you will have to add:
 
@@ -368,13 +368,10 @@ xmlns:views="using:YourAppName.Views"
 xmlns:i="using:Microsoft.Xaml.Interactivity"
 ```
 
- - `Loaded` event.
-
- - `winui:NavigationView` control.
-
- - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
+- `Loaded` event.
+- `winui:NavigationView` control.
+- `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+- `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
  The resulting code should look like this:
 
@@ -435,25 +432,18 @@ ShellPage CodeBehind complexity will be reduced significantly, these are the cha
 
 ### C# code you will have to remove:
 
- - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
- - `_lastSelectedItem` private field.
-
- - `_isPaneOpen` and `IsPaneOpen` properties.
-
- - `_displayMode` and `DisplayMode` properties.
-
- - `_primaryItems` and `PrimaryItems` properties.
-
- - `_secondaryItems` and `SecondaryItems` properties.
-
- - `ItemInvoked`, `OpenPane_Click`, `GoToState`, `InitializeState`, `PopulateNavItems`, `Navigate`, `WindowStates_CurrentStateChanged` and `ChangeSelected` methods.
-
- - Remove unused using statements.
+- private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- `_lastSelectedItem` private field.
+- `_isPaneOpen` and `IsPaneOpen` properties.
+- `_displayMode` and `DisplayMode` properties.
+- `_primaryItems` and `PrimaryItems` properties.
+- `_secondaryItems` and `SecondaryItems` properties.
+- `ItemInvoked`, `OpenPane_Click`, `GoToState`, `InitializeState`, `PopulateNavItems`, `Navigate`, `WindowStates_CurrentStateChanged` and `ChangeSelected` methods.
+- Remove unused using statements.
 
 ### C# code you will have to add _(implementation below)_:
 
- - Add the following new usings statements:
+- Add the following new usings statements:
 
 ```csharp
 using System.Collections.Generic;
@@ -462,25 +452,21 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - `OnLoaded` event.
-
- - `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
-
- - `_isBackEnabled` and `IsBackEnabled` properties.
-
- - `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+- `OnLoaded` event.
+- `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
+- `_isBackEnabled` and `IsBackEnabled` properties.
+- `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 
 ### C# code you will have to update (_Implementation below_):
 
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - Current `Frame_Navigated` and `Initialize` implementation.
+- `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
+- Current `Frame_Navigated` and `Initialize` implementation.
 
 The resulting code should look like this:
 
- ```csharp
- using System;
+```csharp
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -612,13 +598,13 @@ namespace YourAppName.Views
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
- ```
+```
 
- ## 12. Changes in NavigationService
+## 12. Changes in NavigationService
 
 ### C# code you will have to update:
 
- - GoBack method implementation.
+- GoBack method implementation.
 
 The resulting method code should look like this:
 
@@ -645,17 +631,14 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 
 ### XAML code you will have to remove:
 
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
+- **xmln namespaces** for fcu and cu.
+- Textblock **TitlePage**
+- ContentArea Grid **RowDefinitions**
+- VisualStateManager **VisualStateGroups**.
+- **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
+
 ```xml
 <Page
     x:Class="SampleApp.Views.MainPage"
@@ -687,7 +670,6 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 If your project contains a SettingsPage you must perform the following steps:
 
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
 - On **ShellPage.xaml.cs** go to **OnItemInvoked** method and add to the beginning:
 
 ```csharp
@@ -702,7 +684,7 @@ if (args.IsSettingsInvoked)
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = _navigationView.SettingsItem as NavigationViewItem;
-	return;
+    Selected = _navigationView.SettingsItem as NavigationViewItem;
+    return;
 }
 ```
