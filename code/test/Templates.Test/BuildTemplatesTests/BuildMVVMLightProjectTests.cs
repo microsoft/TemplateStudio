@@ -134,6 +134,30 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
+        public async Task GenerateMinimumAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && t.GroupIdentity == "wts.Service.IdentityOptionalLogin"
+                || t.Identity == "wts.Feat.StyleCop";
+
+            var projectName = $"{projectType}{framework}MinStyleCopO";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "BuildMVVMLight")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
