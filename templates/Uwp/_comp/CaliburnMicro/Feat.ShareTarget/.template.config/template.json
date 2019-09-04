@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Feature.ShareTarget",
+  "identity": "CaliburnMicro.Feature.ShareTarget",
+  "shortName": "CaliburnMicro.Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Page.InkDrawPicture.AddHeader",
+  "identity": "CaliburnMicro.Page.InkDrawPicture.AddHeader",
+  "shortName": "CaliburnMicro.Page.InkDrawPicture.AddHeader",
   "tags": {
     "language": "C#",
     "type": "item",

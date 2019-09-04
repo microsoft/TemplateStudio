@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.SplitView.AddHeaderModeMinimal",
+  "identity": "Prism.Page.SplitView.AddHeaderModeMinimal",
+  "shortName": "Prism.Page.SplitView.AddHeaderModeMinimal",
   "tags": {
     "language": "C#",
     "type": "item",

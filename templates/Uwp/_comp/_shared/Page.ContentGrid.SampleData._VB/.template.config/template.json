@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.ContentGrid.SampleData.VB",
+  "identity": "Page.ContentGrid.SampleData.VB",
+  "shortName": "Page.ContentGrid.SampleData.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

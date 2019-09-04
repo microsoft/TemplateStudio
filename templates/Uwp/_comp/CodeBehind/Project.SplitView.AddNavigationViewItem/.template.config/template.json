@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.SplitView.AddNavigationViewItem",
+  "identity": "CodeBehind.Project.SplitView.AddNavigationViewItem",
+  "shortName": "CodeBehind.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",

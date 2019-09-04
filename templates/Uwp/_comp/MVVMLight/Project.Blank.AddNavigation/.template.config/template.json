@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.Blank.AddNavigation",
+  "identity": "MVVMLight.Project.Blank.AddNavigation",
+  "shortName": "MVVMLight.Project.Blank.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

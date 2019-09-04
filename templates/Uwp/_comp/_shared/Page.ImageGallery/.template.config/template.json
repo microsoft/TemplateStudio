@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.ImageGallery",
+  "identity": "Page.ImageGallery",
+  "shortName": "Page.ImageGallery",
   "tags": {
     "language": "C#",
     "type": "item",

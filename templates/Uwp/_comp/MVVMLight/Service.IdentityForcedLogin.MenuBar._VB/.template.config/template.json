@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityForcedLogin.MenuBar.VB",
+  "identity": "MVVMLight.Service.IdentityForcedLogin.MenuBar.VB",
+  "shortName": "MVVMLight.Service.IdentityForcedLogin.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

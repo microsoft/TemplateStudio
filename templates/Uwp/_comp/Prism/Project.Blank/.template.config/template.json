@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.Blank",
+  "identity": "Prism.Project.Blank",
+  "shortName": "Prism.Project.Blank",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle.TabbedNav.VB",
+    "identity": "Page.AddTitle.TabbedNav.VB",
+    "shortName": "Page.AddTitle.TabbedNav.VB",
     "tags": {
       "language": "VisualBasic",
       "type": "item",

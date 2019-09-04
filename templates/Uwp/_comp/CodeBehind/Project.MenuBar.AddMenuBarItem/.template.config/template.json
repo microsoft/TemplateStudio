@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.MenuBar.AddMenuBarItem",
+  "identity": "CodeBehind.Project.MenuBar.AddMenuBarItem",
+  "shortName": "CodeBehind.Project.MenuBar.AddMenuBarItem",
   "tags": {
     "language": "C#",
     "type": "item",

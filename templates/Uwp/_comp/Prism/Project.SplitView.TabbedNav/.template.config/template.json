@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.SplitView.TabbedNav",
+  "identity": "Prism.Project.SplitView.TabbedNav",
+  "shortName": "Prism.Project.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -51,7 +54,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

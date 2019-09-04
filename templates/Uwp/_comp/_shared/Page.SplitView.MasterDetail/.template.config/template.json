@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.SplitView.MasterDetail",
+  "identity": "Page.SplitView.MasterDetail",
+  "shortName": "Page.SplitView.MasterDetail",
   "tags": {
     "language": "C#",
     "type": "item",

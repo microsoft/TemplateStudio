@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [ "Universal" ],
   "name": "Feedback Hub Link",
+  "shortName": "Feedback Hub Link",
   "groupIdentity": "wts.Feat.FeedbackHub",
   "identity": "wts.Feat.FeedbackHub.CaliburnMicro",
   "description": "Add a link, on the settings page, to the Feedback Hub.",
@@ -51,7 +53,7 @@
         "version" : "10.1901.28001",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add sdk Reference",
@@ -62,7 +64,7 @@
         "sdk": "Microsoft.Services.Store.Engagement, Version=10.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add sdk Reference",
@@ -73,7 +75,7 @@
         "sdk": "Microsoft.VCLibs, Version=14.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

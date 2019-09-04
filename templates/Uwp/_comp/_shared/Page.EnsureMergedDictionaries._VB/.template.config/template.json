@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.EnsureMergedDictionaries.VB",
+  "identity": "Page.EnsureMergedDictionaries.VB",
+  "shortName": "Page.EnsureMergedDictionaries.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

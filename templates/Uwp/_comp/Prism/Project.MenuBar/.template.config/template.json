@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.MenuBar",
+  "identity": "Prism.Project.MenuBar",
+  "shortName": "Prism.Project.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

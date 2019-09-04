@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Service.IdentityOptionalLogin.SplitView.TabbedNav",
+  "identity": "Prism.Service.IdentityOptionalLogin.SplitView.TabbedNav",
+  "shortName": "Prism.Service.IdentityOptionalLogin.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

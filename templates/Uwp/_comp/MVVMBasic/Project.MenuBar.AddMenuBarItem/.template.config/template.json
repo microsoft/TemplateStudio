@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.MenuBar.AddMenuBarItem",
+  "identity": "MVVMBasic.Project.MenuBar.AddMenuBarItem",
+  "shortName": "MVVMBasic.Project.MenuBar.AddMenuBarItem",
   "tags": {
     "language": "C#",
     "type": "item",

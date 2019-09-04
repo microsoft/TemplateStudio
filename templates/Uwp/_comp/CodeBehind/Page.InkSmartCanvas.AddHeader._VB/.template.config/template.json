@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.InkSmartCanvas.AddHeader.VB",
+  "identity": "CodeBehind.Page.InkSmartCanvas.AddHeader.VB",
+  "shortName": "CodeBehind.Page.InkSmartCanvas.AddHeader.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

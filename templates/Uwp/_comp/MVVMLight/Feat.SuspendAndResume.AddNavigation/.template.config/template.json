@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Feature.SuspendAndResume.AddNavigation",
+  "identity": "MVVMLight.Feature.SuspendAndResume.AddNavigation",
+  "shortName": "MVVMLight.Feature.SuspendAndResume.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

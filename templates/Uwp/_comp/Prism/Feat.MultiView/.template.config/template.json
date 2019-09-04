@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Feature.MultiView",
+  "identity": "Prism.Feature.MultiView",
+  "shortName": "Prism.Feature.MultiView",
   "tags": {
     "language": "C#",
     "type": "item",

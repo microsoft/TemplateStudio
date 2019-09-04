@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.MasterDetail",
+  "identity": "Page.MasterDetail",
+  "shortName": "Page.MasterDetail",
   "tags": {
     "language": "C#",
     "type": "item",

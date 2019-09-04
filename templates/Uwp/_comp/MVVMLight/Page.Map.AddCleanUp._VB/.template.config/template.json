@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.Map.AddCleanUp.VB",
+  "identity": "MVVMLight.Page.Map.AddCleanUp.VB",
+  "shortName": "MVVMLight.Page.Map.AddCleanUp.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

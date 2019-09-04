@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Page.AddViewModel",
+  "identity": "MVVMBasic.Page.AddViewModel",
+  "shortName": "MVVMBasic.Page.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",

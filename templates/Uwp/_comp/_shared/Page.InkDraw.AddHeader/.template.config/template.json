@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.InkDraw.AddHeader",
+  "identity": "Page.InkDraw.AddHeader",
+  "shortName": "Page.InkDraw.AddHeader",
   "tags": {
     "language": "C#",
     "type": "item",

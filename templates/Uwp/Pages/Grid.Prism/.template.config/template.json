@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Telerik Data Grid",
+  "shortName": "Telerik Data Grid",
   "groupIdentity": "wts.Page.Grid",
   "identity": "wts.Page.Grid.Prism",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
@@ -60,7 +62,7 @@
         "version": "1.0.1.6",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

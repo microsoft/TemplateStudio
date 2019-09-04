@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Laurent Bugnion",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project",
+  "identity": "MVVMLight.Project",
+  "shortName": "MVVMLight.Project",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -42,7 +45,7 @@
         "version" : "5.4.1.2",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

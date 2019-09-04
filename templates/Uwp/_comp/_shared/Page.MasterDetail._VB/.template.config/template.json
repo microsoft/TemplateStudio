@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.MasterDetail.VB",
+  "identity": "Page.MasterDetail.VB",
+  "shortName": "Page.MasterDetail.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

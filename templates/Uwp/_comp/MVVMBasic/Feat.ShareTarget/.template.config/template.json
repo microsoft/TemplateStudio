@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Feature.ShareTarget",
+  "identity": "MVVMBasic.Feature.ShareTarget",
+  "shortName": "MVVMBasic.Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",

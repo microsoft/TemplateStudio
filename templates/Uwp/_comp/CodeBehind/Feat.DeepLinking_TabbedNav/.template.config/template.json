@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Feature.DeepLinking.TabbedNav",
+  "identity": "CodeBehind.Feature.DeepLinking.TabbedNav",
+  "shortName": "CodeBehind.Feature.DeepLinking.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

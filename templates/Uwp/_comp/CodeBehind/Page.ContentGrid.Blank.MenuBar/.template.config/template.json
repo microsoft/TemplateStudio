@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.ContentGrid.Blank.MenuBar",
+  "identity": "CodeBehind.Page.ContentGrid.Blank.MenuBar",
+  "shortName": "CodeBehind.Page.ContentGrid.Blank.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

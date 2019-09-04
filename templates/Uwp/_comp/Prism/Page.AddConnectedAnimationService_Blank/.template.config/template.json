@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.AddConnectedAnimationService.Blank",
+  "identity": "Prism.Page.AddConnectedAnimationService.Blank",
+  "shortName": "Prism.Page.AddConnectedAnimationService.Blank",
   "tags": {
     "language": "C#",
     "type": "item",

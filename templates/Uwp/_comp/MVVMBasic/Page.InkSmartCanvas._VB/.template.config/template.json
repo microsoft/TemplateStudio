@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Page.InkSmartCanvas.VB",
+  "identity": "MVVMBasic.Page.InkSmartCanvas.VB",
+  "shortName": "MVVMBasic.Page.InkSmartCanvas.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

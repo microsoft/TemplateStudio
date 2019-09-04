@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.MenuBar.AddMenuBarItem.Settings",
+  "identity": "MVVMLight.Project.MenuBar.AddMenuBarItem.Settings",
+  "shortName": "MVVMLight.Project.MenuBar.AddMenuBarItem.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
