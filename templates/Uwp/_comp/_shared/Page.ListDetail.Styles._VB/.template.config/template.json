@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.ListDetail.Styles.VB",
+  "identity": "Page.ListDetail.Styles.VB",
+  "shortName": "Page.ListDetail.Styles.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

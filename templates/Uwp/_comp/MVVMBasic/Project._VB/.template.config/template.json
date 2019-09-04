@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.VB",
+  "identity": "MVVMBasic.Project.VB",
+  "shortName": "MVVMBasic.Project.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

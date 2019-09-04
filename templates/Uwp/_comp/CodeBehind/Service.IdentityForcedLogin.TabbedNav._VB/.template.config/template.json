@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Service.IdentityForcedLogin.TabbedNav.VB",
+  "identity": "CodeBehind.Service.IdentityForcedLogin.TabbedNav.VB",
+  "shortName": "CodeBehind.Service.IdentityForcedLogin.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

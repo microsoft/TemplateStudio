@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.DeepLinking.SplitView",
+  "identity": "CodeBehind.DeepLinking.SplitView",
+  "shortName": "CodeBehind.DeepLinking.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

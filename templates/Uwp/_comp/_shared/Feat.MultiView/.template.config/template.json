@@ -1,9 +1,12 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Feature.MultiView",
+    "identity": "Feature.MultiView",
+    "shortName": "Feature.MultiView",
     "tags": {
       "language": "C#",
       "type": "item",

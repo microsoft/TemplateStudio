@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Testing.UnitTests.Core.SampleData.ImageGallery.NUnit",
+  "identity": "Testing.UnitTests.Core.SampleData.ImageGallery.NUnit",
+  "shortName": "Testing.UnitTests.Core.SampleData.ImageGallery.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

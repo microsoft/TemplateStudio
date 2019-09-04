@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.Settings.LoadData",
+  "identity": "Prism.Page.Settings.LoadData",
+  "shortName": "Prism.Page.Settings.LoadData",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Feature.DeepLinking",
+  "identity": "MVVMBasic.Feature.DeepLinking",
+  "shortName": "MVVMBasic.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",

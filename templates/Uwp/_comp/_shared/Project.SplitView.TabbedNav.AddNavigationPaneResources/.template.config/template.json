@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Project.SplitView.TabbedNav.AddNavigationPaneResources",
+  "identity": "Project.SplitView.TabbedNav.AddNavigationPaneResources",
+  "shortName": "Project.SplitView.TabbedNav.AddNavigationPaneResources",
   "tags": {
     "language": "C#",
     "type": "item",

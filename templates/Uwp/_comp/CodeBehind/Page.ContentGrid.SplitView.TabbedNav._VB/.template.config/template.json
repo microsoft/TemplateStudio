@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.ContentGrid.SplitView.TabbedNav.VB",
+  "identity": "CodeBehind.Page.ContentGrid.SplitView.TabbedNav.VB",
+  "shortName": "CodeBehind.Page.ContentGrid.SplitView.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

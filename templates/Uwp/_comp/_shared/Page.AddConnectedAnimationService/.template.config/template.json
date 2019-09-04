@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.AddConnectedAnimationService",
+  "identity": "Page.AddConnectedAnimationService",
+  "shortName": "Page.AddConnectedAnimationService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -20,7 +23,7 @@
     },
     {
       "path": ".\\Services\\IConnectedAnimationService.cs"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

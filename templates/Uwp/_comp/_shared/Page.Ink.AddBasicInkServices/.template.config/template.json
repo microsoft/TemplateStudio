@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddBasicInkServices",
+  "identity": "Page.Ink.AddBasicInkServices",
+  "shortName": "Page.Ink.AddBasicInkServices",
   "tags": {
     "language": "C#",
     "type": "item",

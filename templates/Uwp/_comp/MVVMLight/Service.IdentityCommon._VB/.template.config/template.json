@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityCommon.VB",
+  "identity": "MVVMLight.Service.IdentityCommon.VB",
+  "shortName": "MVVMLight.Service.IdentityCommon.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

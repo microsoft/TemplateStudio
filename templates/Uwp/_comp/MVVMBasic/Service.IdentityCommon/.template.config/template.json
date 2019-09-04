@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Service.IdentityCommon",
+  "identity": "MVVMBasic.Service.IdentityCommon",
+  "shortName": "MVVMBasic.Service.IdentityCommon",
   "tags": {
     "language": "C#",
     "type": "item",

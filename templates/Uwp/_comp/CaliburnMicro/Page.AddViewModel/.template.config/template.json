@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Page.AddViewModel",
+  "identity": "CaliburnMicro.Page.AddViewModel",
+  "shortName": "CaliburnMicro.Page.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",

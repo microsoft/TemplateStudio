@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Feature.DeepLinking.VB",
+  "identity": "CodeBehind.Feature.DeepLinking.VB",
+  "shortName": "CodeBehind.Feature.DeepLinking.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

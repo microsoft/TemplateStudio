@@ -1,4 +1,4 @@
-# Understanding the Templates
+﻿# Understanding the Templates
 
 Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
 
@@ -102,11 +102,13 @@ The replacements are done based on the configuration established in the `templat
 
 ``` json
 {
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Blank",                                //This is the displayed name in the wizard.
+  "shortName": "Blank",
   "groupIdentity": "wts.Page.Blank",              //Used for filtering and grouping in the wizard
   "identity": "wts.Page.Blank",                   //Must be unique
   "description": "This is the most basic page.",  //This is the short description displayed in the wizard.

@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "ImageGallery",
+  "shortName": "ImageGallery",
   "groupIdentity": "wts.Page.ImageGallery.VB",
   "identity": "wts.Page.ImageGallery.VB",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
@@ -73,7 +75,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

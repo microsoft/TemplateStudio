@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Web View",
+  "shortName": "Web View",
   "groupIdentity": "wts.Page.WebView.VB",
   "identity": "wts.Page.WebView.CodeBehind.VB",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",

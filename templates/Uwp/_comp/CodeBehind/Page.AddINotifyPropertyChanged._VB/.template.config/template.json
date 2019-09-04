@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.AddINotifyPropertyChanged.VB",
+  "identity": "CodeBehind.Page.AddINotifyPropertyChanged.VB",
+  "shortName": "CodeBehind.Page.AddINotifyPropertyChanged.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

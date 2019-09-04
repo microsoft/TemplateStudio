@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.AddNavigationService",
+  "identity": "MVVMBasic.Project.AddNavigationService",
+  "shortName": "MVVMBasic.Project.AddNavigationService",
   "tags": {
     "language": "C#",
     "type": "item",
