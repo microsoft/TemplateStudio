@@ -89,11 +89,11 @@ namespace Param_RootNamespace.Services.Ink
                 await Task.Delay(TimeSpan.FromMilliseconds(BusyWaitingTime));
             }
 
-                if (_selectionRectangleService.ContainsPosition(position))
-                {
-                    // Pressed on the selected rect, do nothing
-                    return;
-                }
+            if (_selectionRectangleService.ContainsPosition(position))
+            {
+                // Pressed on the selected rect, do nothing
+                return;
+            }
 
             selectedNode = _analyzer.FindHitNode(position);
             ShowOrHideSelection(selectedNode);
