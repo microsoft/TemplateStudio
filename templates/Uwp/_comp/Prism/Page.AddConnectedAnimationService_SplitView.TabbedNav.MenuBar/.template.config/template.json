@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.AddConnectedAnimationService.SplitView.TabbedNav.MenuBar",
+  "identity": "Prism.Page.AddConnectedAnimationService.SplitView.TabbedNav.MenuBar",
+  "shortName": "Prism.Page.AddConnectedAnimationService.SplitView.TabbedNav.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

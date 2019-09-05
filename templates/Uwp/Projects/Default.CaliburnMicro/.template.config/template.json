@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Default",
+  "shortName": "Default",
   "groupIdentity": "wts.Proj.Default",
   "identity": "wts.Proj.DefaultCaliburnMicro",
   "description": "",
@@ -84,7 +86,7 @@
       "args": {
         "files" : "0"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -95,7 +97,7 @@
         "version" : "2.0.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -106,7 +108,7 @@
         "version" : "3.2.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

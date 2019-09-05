@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Service.IdentityForcedLogin.SplitView",
+  "identity": "Prism.Service.IdentityForcedLogin.SplitView",
+  "shortName": "Prism.Service.IdentityForcedLogin.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

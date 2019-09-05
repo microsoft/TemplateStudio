@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Project.MenuBar.VB",
+  "identity": "Project.MenuBar.VB",
+  "shortName": "Project.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -34,7 +37,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

@@ -1,9 +1,12 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle.ContentGrid",
+    "identity": "Page.AddTitle.ContentGrid",
+    "shortName": "Page.AddTitle.ContentGrid",
     "tags": {
       "language": "C#",
       "type": "item",

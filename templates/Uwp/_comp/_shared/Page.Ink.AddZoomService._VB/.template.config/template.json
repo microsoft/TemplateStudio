@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddZoomService.VB",
+  "identity": "Page.Ink.AddZoomService.VB",
+  "shortName": "Page.Ink.AddZoomService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

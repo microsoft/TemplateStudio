@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Web API",
+  "shortName": "Web API",
   "groupIdentity": "wts.Service.WebApi",
   "identity": "wts.Service.WebApi.Prism",
   "description": "Include ASP.NET Core Web API project.",

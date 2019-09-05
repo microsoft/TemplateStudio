@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page._NoParams.UnitTests.App.MSTest",
+  "identity": "Prism.Page._NoParams.UnitTests.App.MSTest",
+  "shortName": "Prism.Page._NoParams.UnitTests.App.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",

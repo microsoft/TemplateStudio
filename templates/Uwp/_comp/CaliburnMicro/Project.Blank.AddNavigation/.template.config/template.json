@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Project.Blank.AddNavigation",
+  "identity": "CaliburnMicro.Project.Blank.AddNavigation",
+  "shortName": "CaliburnMicro.Project.Blank.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

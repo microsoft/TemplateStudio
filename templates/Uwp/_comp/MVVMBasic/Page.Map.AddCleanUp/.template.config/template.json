@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Page.Map.AddCleanUp",
+  "identity": "MVVMBasic.Page.Map.AddCleanUp",
+  "shortName": "MVVMBasic.Page.Map.AddCleanUp",
   "tags": {
     "language": "C#",
     "type": "item",

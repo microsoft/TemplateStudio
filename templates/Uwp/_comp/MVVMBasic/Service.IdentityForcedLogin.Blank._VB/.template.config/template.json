@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Service.IdentityForcedLogin.Blank.VB",
+  "identity": "MVVMBasic.Service.IdentityForcedLogin.Blank.VB",
+  "shortName": "MVVMBasic.Service.IdentityForcedLogin.Blank.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

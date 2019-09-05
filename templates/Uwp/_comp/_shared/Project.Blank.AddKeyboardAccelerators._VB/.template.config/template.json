@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Project.Blank.AddKeyboardAccelerators.VB",
+  "identity": "Project.Blank.AddKeyboardAccelerators.VB",
+  "shortName": "Project.Blank.AddKeyboardAccelerators.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

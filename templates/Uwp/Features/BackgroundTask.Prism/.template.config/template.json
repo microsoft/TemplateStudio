@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Background Task",
+  "shortName": "Background Task",
   "groupIdentity": "wts.Feat.BackgroundTask",
   "identity": "wts.Feat.BackgroundTask.Prism",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddTransformService.VB",
+  "identity": "Page.Ink.AddTransformService.VB",
+  "shortName": "Page.Ink.AddTransformService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

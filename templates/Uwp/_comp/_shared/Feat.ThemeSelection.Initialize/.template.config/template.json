@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.ThemeSelection.Initialize",
+  "identity": "Feature.ThemeSelection.Initialize",
+  "shortName": "Feature.ThemeSelection.Initialize",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Project.SplitView",
+  "identity": "CaliburnMicro.Project.SplitView",
+  "shortName": "CaliburnMicro.Project.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

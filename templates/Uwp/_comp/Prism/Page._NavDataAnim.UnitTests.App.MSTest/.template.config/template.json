@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page._NavDataAnim.UnitTests.App.MSTest",
+  "identity": "Prism.Page._NavDataAnim.UnitTests.App.MSTest",
+  "shortName": "Prism.Page._NavDataAnim.UnitTests.App.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -39,7 +42,7 @@
         "version" : "4.12.0",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add reference to the core project",
@@ -50,7 +53,7 @@
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
 
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

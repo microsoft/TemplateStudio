@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.DeepLinking.MenuBar.VB",
+  "identity": "MVVMLight.DeepLinking.MenuBar.VB",
+  "shortName": "MVVMLight.DeepLinking.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

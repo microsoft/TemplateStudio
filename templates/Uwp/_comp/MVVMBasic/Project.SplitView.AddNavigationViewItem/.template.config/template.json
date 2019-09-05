@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.SplitView.AddNavigationViewItem",
+  "identity": "MVVMBasic.Project.SplitView.AddNavigationViewItem",
+  "shortName": "MVVMBasic.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",

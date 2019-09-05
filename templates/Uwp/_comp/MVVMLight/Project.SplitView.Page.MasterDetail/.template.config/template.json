@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.SplitView.TabbedNav.Page.MasterDetail",
+  "identity": "MVVMLight.Project.SplitView.TabbedNav.Page.MasterDetail",
+  "shortName": "MVVMLight.Project.SplitView.TabbedNav.Page.MasterDetail",
   "tags": {
     "language": "C#",
     "type": "item",

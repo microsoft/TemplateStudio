@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Camera.AddResource.VB",
+  "identity": "Page.Camera.AddResource.VB",
+  "shortName": "Page.Camera.AddResource.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

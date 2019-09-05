@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.InkSmartCanvas.SplitView.AddHeaderDataTemplates",
+  "identity": "Page.InkSmartCanvas.SplitView.AddHeaderDataTemplates",
+  "shortName": "Page.InkSmartCanvas.SplitView.AddHeaderDataTemplates",
   "tags": {
     "language": "C#",
     "type": "item",

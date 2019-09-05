@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Camera.AddResource",
+  "identity": "Page.Camera.AddResource",
+  "shortName": "Page.Camera.AddResource",
   "tags": {
     "language": "C#",
     "type": "item",

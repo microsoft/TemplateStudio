@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Feature.SuspendAndResume.AddOnBackgroundEntered", 
+  "name": "CaliburnMicro.Feature.SuspendAndResume.AddOnBackgroundEntered",
+  "identity": "CaliburnMicro.Feature.SuspendAndResume.AddOnBackgroundEntered",
+  "shortName": "CaliburnMicro.Feature.SuspendAndResume.AddOnBackgroundEntered",
   "tags": {
     "language": "C#",
     "type": "item",

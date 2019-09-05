@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Project.SplitView.AddNavigationViewHeaderBehavior",
+  "identity": "Project.SplitView.AddNavigationViewHeaderBehavior",
+  "shortName": "Project.SplitView.AddNavigationViewHeaderBehavior",
   "tags": {
     "language": "C#",
     "type": "item",
