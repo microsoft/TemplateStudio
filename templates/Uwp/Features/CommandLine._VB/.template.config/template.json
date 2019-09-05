@@ -5,6 +5,7 @@
     "Universal"
   ],
   "name": "Command Line Launch",
+  "shortName": "Command Line Launch",
   "groupIdentity": "wts.Feat.CommandLine.VB",
   "identity": "wts.Feat.CommandLine.VB",
   "description": "Support passing arguments and launching from the command line.",

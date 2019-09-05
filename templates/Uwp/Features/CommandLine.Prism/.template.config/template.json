@@ -5,6 +5,7 @@
     "Universal"
   ],
   "name": "Command Line Launch",
+  "shortName": "Command Line Launch",
   "groupIdentity": "wts.Feat.CommandLine",
   "identity": "wts.Feat.CommandLine.Prism",
   "description": "Support passing arguments and launching from the command line.",
