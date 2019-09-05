@@ -30,10 +30,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\LiveTileFeatureService.vb"
+      "path": "Services/LiveTileFeatureService.vb"
     },
     {
-      "path": ".\\Services\\LiveTileFeatureService.Samples.vb"
+      "path": "Services/LiveTileFeatureService.Samples.vb"
     }
   ],
   "symbols": {

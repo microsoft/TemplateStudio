@@ -31,10 +31,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\AuthenticationHelper.cs"
+      "path": "Helpers/AuthenticationHelper.cs"
     },
     {
-      "path": ".\\Helpers\\Restricted.cs"
+      "path": "Helpers/Restricted.cs"
     }
   ],
   "symbols": {

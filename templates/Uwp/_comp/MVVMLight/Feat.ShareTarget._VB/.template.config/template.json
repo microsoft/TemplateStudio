@@ -19,13 +19,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\wts.ItemNameViewModel.vb"
+      "path": "ViewModels/wts.ItemNameViewModel.vb"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.vb"
+      "path": "Views/wts.ItemNamePage.xaml.vb"
     }
   ],
   "symbols": {

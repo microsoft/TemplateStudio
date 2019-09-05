@@ -28,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\App.config"
+      "path": "Param_ProjectName/App.config"
     }
   ],
   "symbols": {

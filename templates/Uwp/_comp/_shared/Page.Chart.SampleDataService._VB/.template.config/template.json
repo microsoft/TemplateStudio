@@ -20,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.vb"
+      "path": "Param_ProjectName.Core/Models/DataPoint.vb"
     }
   ],
   "symbols": {

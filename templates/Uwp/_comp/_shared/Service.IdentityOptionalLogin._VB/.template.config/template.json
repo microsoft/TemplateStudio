@@ -21,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\AuthenticationHelper.vb"
+      "path": "Param_ProjectName/Helpers/AuthenticationHelper.vb"
     },
     {
-      "path": ".\\Param_ProjectName\\Helpers\\Restricted.vb"
+      "path": "Param_ProjectName/Helpers/Restricted.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.vb"
+      "path": "Param_ProjectName.Core/Services/IdentityService.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.vb"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.vb"
     }
   ],
   "symbols": {

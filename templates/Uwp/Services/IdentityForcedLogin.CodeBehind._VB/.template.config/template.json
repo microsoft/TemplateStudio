@@ -31,10 +31,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\LogInPage.xaml"
+      "path": "Views/LogInPage.xaml"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml.vb"
+      "path": "Views/LogInPage.xaml.vb"
     }
   ],
   "symbols": {

@@ -27,7 +27,7 @@
   "preferNameDirectory": true,
   "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj" }
+    { "path": "Param_ProjectName.Tests.xUnit/Param_ProjectName.Tests.xUnit.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {

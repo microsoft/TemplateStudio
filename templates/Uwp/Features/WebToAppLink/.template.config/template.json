@@ -28,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\WebToAppLinkActivationHandler.cs"
+      "path": "Activation/WebToAppLinkActivationHandler.cs"
     }
   ],
   "symbols": {

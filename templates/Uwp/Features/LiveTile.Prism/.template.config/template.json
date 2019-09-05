@@ -30,13 +30,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ILiveTileFeatureService.cs"
+      "path": "Services/ILiveTileFeatureService.cs"
     },
     {
-      "path": ".\\Services\\LiveTileFeatureService.cs"
+      "path": "Services/LiveTileFeatureService.cs"
     },
     {
-      "path": ".\\Services\\LiveTileFeatureService.Samples.cs"
+      "path": "Services/LiveTileFeatureService.Samples.cs"
     }
   ],
   "symbols": {

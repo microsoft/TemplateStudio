@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkNodeSelectionService.vb"
+      "path": "Services/Ink/InkNodeSelectionService.vb"
     }
   ],
   "symbols": {

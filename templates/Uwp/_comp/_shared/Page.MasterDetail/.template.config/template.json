@@ -19,10 +19,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\wts.ItemNameDetailControl.xaml"
+      "path": "Views/wts.ItemNameDetailControl.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNameDetailControl.xaml.cs"
+      "path": "Views/wts.ItemNameDetailControl.xaml.cs"
     }
   ],
   "symbols": {

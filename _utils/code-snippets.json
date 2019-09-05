@@ -156,7 +156,7 @@
 		"prefix": "wts.primaryOutput",
 		"body": [
 		"{",
-		"  \"path\": \".\\\\\\FolderName\\\\\\FileName.extension\"",
+		"  \"path\": \"FolderName/FileName.extension\"",
 		"}"
 		],
 		"description": "Add a primary output block to be added on WTS template.json"
@@ -165,7 +165,7 @@
 		"prefix": "wts.primaryOutputToParent",
 		"body": [
 		"{",
-		"  \"path\": \".\\\\\\Param_ProjectName\\\\\\FolderName\\\\\\FileName.extension\"",
+		"  \"path\": \"Param_ProjectName/FolderName/FileName.extension\"",
 		"}"
 		],
 		"description": "Add a primary output to parent block to be added on WTS template.json"

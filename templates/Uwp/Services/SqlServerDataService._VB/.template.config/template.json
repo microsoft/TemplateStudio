@@ -30,7 +30,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\SqlServerDataService.vb"
+      "path": "Param_ProjectName.Core/Services/SqlServerDataService.vb"
     }
   ],
   "symbols": {

@@ -21,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core.Tests.NUnit\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName.Core.Tests.NUnit/WTSVBRules.ruleset"
     }
   ],
   "symbols": {

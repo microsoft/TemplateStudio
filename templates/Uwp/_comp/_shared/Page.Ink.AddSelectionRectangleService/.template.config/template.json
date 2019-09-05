@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkSelectionRectangleService.cs"
+      "path": "Services/Ink/InkSelectionRectangleService.cs"
     }
   ],
   "symbols": {

@@ -19,10 +19,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\UserDataService.vb"
+      "path": "Services/UserDataService.vb"
     },
     {
-      "path": ".\\ViewModels\\UserViewModel.vb"
+      "path": "ViewModels/UserViewModel.vb"
     }
   ],
   "symbols": {

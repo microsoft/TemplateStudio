@@ -26,22 +26,22 @@
   "PrimaryOutputs":
   [
     {
-      "path": ".\\Views\\IMapPageView.cs"
+      "path": "Views/IMapPageView.cs"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml"
+      "path": "Views/MapPagePage.xaml"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml.cs"
+      "path": "Views/MapPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MapPageViewModel.cs"
+      "path": "ViewModels/MapPageViewModel.cs"
     },
     {
-      "path": ".\\Assets\\map.png"
+      "path": "Assets/map.png"
     },
     {
-      "path": ".\\Services\\LocationService.cs"
+      "path": "Services/LocationService.cs"
     }
   ],
   "symbols": {

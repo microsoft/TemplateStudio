@@ -25,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\BlankViewPage.xaml"
+      "path": "Views/BlankViewPage.xaml"
     },
     {
-      "path": ".\\Views\\BlankViewPage.xaml.cs"
+      "path": "Views/BlankViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\BlankViewViewModel.cs"
+      "path": "ViewModels/BlankViewViewModel.cs"
     }
   ],
   "symbols": {

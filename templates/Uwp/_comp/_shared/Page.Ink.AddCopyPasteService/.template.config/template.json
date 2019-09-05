@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkCopyPasteService.cs"
+      "path": "Services/Ink/InkCopyPasteService.cs"
     }
   ],
   "symbols": {

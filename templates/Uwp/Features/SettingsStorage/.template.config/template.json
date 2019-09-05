@@ -28,10 +28,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\SettingsStorageExtensions.cs"
+      "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\Json.cs"
+      "path": "Param_ProjectName.Core/Helpers/Json.cs"
     }
   ],
   "symbols": {

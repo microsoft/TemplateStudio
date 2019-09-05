@@ -27,7 +27,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ThemeSelectorService.cs"
+      "path": "Services/ThemeSelectorService.cs"
     }
   ],
   "symbols": {

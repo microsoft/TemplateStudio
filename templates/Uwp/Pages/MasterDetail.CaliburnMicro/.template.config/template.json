@@ -27,28 +27,28 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml"
+      "path": "Views/MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml.cs"
+      "path": "Views/MasterDetailViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml"
+      "path": "Views/MasterDetailViewDetail/DetailsView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml.cs"
+      "path": "Views/MasterDetailViewDetail/DetailsView.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml"
+      "path": "Views/MasterDetailViewDetail/MasterView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml.cs"
+      "path": "Views/MasterDetailViewDetail/MasterView.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewViewModel.cs"
+      "path": "ViewModels/MasterDetailViewViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewDetailViewModel.cs"
+      "path": "ViewModels/MasterDetailViewDetailViewModel.cs"
     }
   ],
   "symbols": {

@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.vb"
+      "path": "Services/ToastNotificationsFeatureService.vb"
     },
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.Samples.vb"
+      "path": "Services/ToastNotificationsFeatureService.Samples.vb"
     }
   ],
   "symbols": {

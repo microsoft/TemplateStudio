@@ -19,19 +19,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkUndoRedoService.vb"
+      "path": "Services/Ink/InkUndoRedoService.vb"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\AddStrokeUndoRedoOperation.vb"
+      "path": "Services/Ink/UndoRedo/AddStrokeUndoRedoOperation.vb"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\IUndoRedoOperation.vb"
+      "path": "Services/Ink/UndoRedo/IUndoRedoOperation.vb"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\MoveStrokesUndoRedoOperation.vb"
+      "path": "Services/Ink/UndoRedo/MoveStrokesUndoRedoOperation.vb"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\RemoveStrokeUndoRedoOperation.vb"
+      "path": "Services/Ink/UndoRedo/RemoveStrokeUndoRedoOperation.vb"
     }
   ],
   "symbols": {

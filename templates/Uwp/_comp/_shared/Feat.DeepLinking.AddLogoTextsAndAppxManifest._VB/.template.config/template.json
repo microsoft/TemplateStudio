@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Assets\\Logo.png"
+      "path": "Assets/Logo.png"
     }
   ],
   "symbols": {

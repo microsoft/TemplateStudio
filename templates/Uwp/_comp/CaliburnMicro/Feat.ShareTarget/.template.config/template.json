@@ -21,25 +21,25 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": ".\\Views\\SharedDataStorageItemsView.xaml"
+      "path": "Views/SharedDataStorageItemsView.xaml"
     },
     {
-      "path": ".\\Views\\SharedDataStorageItemsView.xaml.cs"
+      "path": "Views/SharedDataStorageItemsView.xaml.cs"
     },
     {
-      "path": ".\\Views\\SharedDataWebLinkView.xaml"
+      "path": "Views/SharedDataWebLinkView.xaml"
     },
     {
-      "path": ".\\Views\\SharedDataWebLinkView.xaml.cs"
+      "path": "Views/SharedDataWebLinkView.xaml.cs"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
+      "path": "Views/wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

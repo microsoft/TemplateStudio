@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.vb"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.vb"
     }
   ],
   "symbols": {

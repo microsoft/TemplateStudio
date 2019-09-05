@@ -19,16 +19,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\EventHandlers\\CameraControlEventArgs.vb"
+      "path": "EventHandlers/CameraControlEventArgs.vb"
     },
     {
-      "path": ".\\Helpers\\CameraOrientationExtensions.vb"
+      "path": "Helpers/CameraOrientationExtensions.vb"
     },
     {
-      "path": ".\\Controls\\CameraControl.xaml"
+      "path": "Controls/CameraControl.xaml"
     },
     {
-      "path": ".\\Controls\\CameraControl.xaml.vb"
+      "path": "Controls/CameraControl.xaml.vb"
     }
   ],
   "symbols": {

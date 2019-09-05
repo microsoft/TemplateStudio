@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\HubNotificationsFeatureService.cs"
+      "path": "Services/HubNotificationsFeatureService.cs"
     },
     {
-      "path": ".\\Services\\IHubNotificationsFeatureService.cs"
+      "path": "Services/IHubNotificationsFeatureService.cs"
     }
   ],
   "symbols": {

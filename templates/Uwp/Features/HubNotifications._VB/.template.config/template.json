@@ -29,7 +29,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\HubNotificationsFeatureService.vb"
+      "path": "Services/HubNotificationsFeatureService.vb"
     }
   ],
   "symbols": {

@@ -27,22 +27,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\ContentGridViewViewModel.vb"
+      "path": "ViewModels/ContentGridViewViewModel.vb"
     },
     {
-      "path": ".\\ViewModels\\ContentGridViewDetailViewModel.vb"
+      "path": "ViewModels/ContentGridViewDetailViewModel.vb"
     },
     {
-      "path": ".\\Views\\ContentGridViewPage.xaml"
+      "path": "Views/ContentGridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ContentGridViewPage.xaml.vb"
+      "path": "Views/ContentGridViewPage.xaml.vb"
     },
     {
-      "path": ".\\Views\\ContentGridViewDetailPage.xaml"
+      "path": "Views/ContentGridViewDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\ContentGridViewDetailPage.xaml.vb"
+      "path": "Views/ContentGridViewDetailPage.xaml.vb"
     }
   ],
   "symbols": {

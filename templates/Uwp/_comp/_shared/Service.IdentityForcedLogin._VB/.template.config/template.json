@@ -20,10 +20,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.vb"
+      "path": "Param_ProjectName.Core/Services/IdentityService.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.vb"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.vb"
     }
   ],
   "symbols": {

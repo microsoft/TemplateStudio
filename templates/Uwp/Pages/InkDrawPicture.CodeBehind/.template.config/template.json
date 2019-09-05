@@ -26,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkDrawPictureViewPage.xaml"
+      "path": "Views/InkDrawPictureViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkDrawPictureViewPage.xaml.cs"
+      "path": "Views/InkDrawPictureViewPage.xaml.cs"
     }
   ],
   "symbols": {
