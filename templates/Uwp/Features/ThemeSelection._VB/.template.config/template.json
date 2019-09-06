@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Theme Selection",
+  "shortName": "Theme Selection",
   "groupIdentity": "wts.Feature.ThemeSelection.VB",
   "identity": "wts.Feature.ThemeSelection.VB",
   "description": "Adds theming support to your application.",
@@ -25,7 +27,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ThemeSelectorService.vb"
+      "path": "Services/ThemeSelectorService.vb"
     }
   ],
   "symbols": {

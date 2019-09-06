@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddCopyPasteService.VB",
+  "identity": "Page.Ink.AddCopyPasteService.VB",
+  "shortName": "Page.Ink.AddCopyPasteService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkCopyPasteService.vb"
+      "path": "Services/Ink/InkCopyPasteService.vb"
     }
   ],
   "symbols": {

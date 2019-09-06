@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Service.IdentityForcedLogin.MenuBar",
+  "identity": "CodeBehind.Service.IdentityForcedLogin.MenuBar",
+  "shortName": "CodeBehind.Service.IdentityForcedLogin.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",

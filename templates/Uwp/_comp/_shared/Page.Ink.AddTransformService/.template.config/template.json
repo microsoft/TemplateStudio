@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddTransformService",
+  "identity": "Page.Ink.AddTransformService",
+  "shortName": "Page.Ink.AddTransformService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,16 +19,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkTransformService.cs"
+      "path": "Services/Ink/InkTransformService.cs"
     },
     {
-      "path": ".\\Services\\Ink\\InkTransformResult.cs"
+      "path": "Services/Ink/InkTransformResult.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\TransformUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/TransformUndoRedoOperation.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\ClearStrokesAndShapesUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/ClearStrokesAndShapesUndoRedoOperation.cs"
     }
   ],
   "symbols": {

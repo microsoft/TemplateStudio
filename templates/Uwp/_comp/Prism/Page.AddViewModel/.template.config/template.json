@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.AddViewModel",
+  "identity": "Prism.Page.AddViewModel",
+  "shortName": "Prism.Page.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",

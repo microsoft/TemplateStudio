@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Suspend and Resume",
+  "shortName": "Suspend and Resume",
   "groupIdentity": "wts.Feat.SuspendAndResume",
   "identity": "wts.Feat.SuspendAndResume",
   "description": "A simple service you can hook into to handle when a user leaves and returns to the app.",
@@ -25,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SuspendAndResumeService.cs"
+      "path": "Services/SuspendAndResumeService.cs"
     },
     {
-      "path": ".\\Services\\SuspendAndResumeArgs.cs"
+      "path": "Services/SuspendAndResumeArgs.cs"
     },
     {
-      "path": ".\\Services\\SuspensionState.cs"
+      "path": "Services/SuspensionState.cs"
     }
   ],
   "symbols": {

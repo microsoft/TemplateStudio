@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test App with xUnit",
+  "shortName": "Test App with xUnit",
   "groupIdentity": "wts.Testing.UnitTests.App.xUnit.VB",
   "identity": "wts.Testing.UnitTests.App.xUnit.VB",
   "description": "Add a project for unit tests against the app using xUnit.",
@@ -25,7 +27,7 @@
   "preferNameDirectory": true,
   "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj" }
+    { "path": "Param_ProjectName.Tests.xUnit/Param_ProjectName.Tests.xUnit.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -60,7 +62,7 @@
       "args": {
         "files" : "0"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add reference to the main UWP app",
@@ -71,7 +73,7 @@
         "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj",
         "specifiedPathIsTarget": "true"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -82,7 +84,7 @@
         "version" : "2.0.1",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -93,7 +95,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -104,7 +106,7 @@
         "version" : "2.4.1",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -115,7 +117,7 @@
         "version" : "2.4.1",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

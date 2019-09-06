@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.TreeView.SampleData.VB",
+  "identity": "Page.TreeView.SampleData.VB",
+  "shortName": "Page.TreeView.SampleData.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

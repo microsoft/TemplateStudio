@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Service.IdentityForcedLogin.SplitView",
+  "identity": "CodeBehind.Service.IdentityForcedLogin.SplitView",
+  "shortName": "CodeBehind.Service.IdentityForcedLogin.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

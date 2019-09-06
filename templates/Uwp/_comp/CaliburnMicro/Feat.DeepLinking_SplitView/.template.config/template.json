@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.DeepLinking.SplitView",
+  "identity": "CaliburnMicro.DeepLinking.SplitView",
+  "shortName": "CaliburnMicro.DeepLinking.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Media Player",
+  "shortName": "Media Player",
   "groupIdentity": "wts.Page.MediaPlayer",
   "identity": "wts.Page.MediaPlayer.Prism",
   "description": "A page for showing video with system media controls enabled.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml"
+      "path": "Views/MediaPlayerViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml.cs"
+      "path": "Views/MediaPlayerViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MediaPlayerViewViewModel.cs"
+      "path": "ViewModels/MediaPlayerViewViewModel.cs"
     }
   ],
   "symbols": {

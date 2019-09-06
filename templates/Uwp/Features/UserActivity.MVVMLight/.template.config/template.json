@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "User Activity",
+  "shortName": "User Activity",
   "groupIdentity": "wts.Feat.UserActivity",
   "identity": "wts.Feat.UserActivity.MVVMLight",
   "description": "Add the ability to add user activities to the Windows Timeline.",
@@ -28,13 +30,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\UserActivityData.cs"
+      "path": "Services/UserActivityData.cs"
     },
     {
-      "path": ".\\Services\\UserActivityService.cs"
+      "path": "Services/UserActivityService.cs"
     },
     {
-      "path": ".\\Services\\UserActivityService.Sample.cs"
+      "path": "Services/UserActivityService.Sample.cs"
     }
   ],
   "symbols": {
@@ -58,7 +60,7 @@
         "version" : "1.2.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

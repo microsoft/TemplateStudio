@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddNodeSelectionService",
+  "identity": "Page.Ink.AddNodeSelectionService",
+  "shortName": "Page.Ink.AddNodeSelectionService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkNodeSelectionService.cs"
+      "path": "Services/Ink/InkNodeSelectionService.cs"
     }
   ],
   "symbols": {

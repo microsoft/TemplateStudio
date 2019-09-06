@@ -1,7 +1,10 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "wts.Service.WebApi.Shared",
+  "identity": "wts.Service.WebApi.Shared",
+  "shortName": "wts.Service.WebApi.Shared",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -20,7 +23,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
+      "path": "Param_ProjectName.WebApi/Param_ProjectName.WebApi.csproj"
     }
   ],
   "symbols": {
@@ -44,7 +47,7 @@
         "version" : "4.0.1",
         "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

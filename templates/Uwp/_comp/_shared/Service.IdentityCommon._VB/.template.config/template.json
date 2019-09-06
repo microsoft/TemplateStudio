@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Service.IdentityCommon.VB",
+  "identity": "Service.IdentityCommon.VB",
+  "shortName": "Service.IdentityCommon.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -18,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Assets\\DefaultIcon.png"
+      "path": "Param_ProjectName/Assets/DefaultIcon.png"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\StreamExtensions.vb"
+      "path": "Param_ProjectName.Core/Helpers/StreamExtensions.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\LoginResultType.vb"
+      "path": "Param_ProjectName.Core/Helpers/LoginResultType.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\User.vb"
+      "path": "Param_ProjectName.Core/Models/User.vb"
     }
   ],
   "symbols": {
@@ -55,7 +58,7 @@
         "version" : "4.0.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

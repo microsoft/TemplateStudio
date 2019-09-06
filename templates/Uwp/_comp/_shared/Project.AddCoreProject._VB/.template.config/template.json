@@ -1,7 +1,10 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Project.AddCoreProject.VB",
+  "identity": "Project.AddCoreProject.VB",
+  "shortName": "Project.AddCoreProject.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "project",
@@ -14,7 +17,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj" }
+    { "path": "Param_ProjectName.Core/Param_ProjectName.Core.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -44,7 +47,7 @@
         "fileIndex" : "0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

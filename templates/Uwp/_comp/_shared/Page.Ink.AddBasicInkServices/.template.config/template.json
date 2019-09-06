@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddBasicInkServices",
+  "identity": "Page.Ink.AddBasicInkServices",
+  "shortName": "Page.Ink.AddBasicInkServices",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,25 +19,25 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\EventHandlers\\Ink\\AddStrokeEventArgs.cs"
+      "path": "EventHandlers/Ink/AddStrokeEventArgs.cs"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\CopyPasteStrokesEventArgs.cs"
+      "path": "EventHandlers/Ink/CopyPasteStrokesEventArgs.cs"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\MoveStrokesEventArgs.cs"
+      "path": "EventHandlers/Ink/MoveStrokesEventArgs.cs"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\RemoveEventArgs.cs"
+      "path": "EventHandlers/Ink/RemoveEventArgs.cs"
     },
     {
-      "path": ".\\Services\\Ink\\InkStrokesService.cs"
+      "path": "Services/Ink/InkStrokesService.cs"
     },
     {
-      "path": ".\\Services\\Ink\\InkFileService.cs"
+      "path": "Services/Ink/InkFileService.cs"
     },
     {
-      "path": ".\\Services\\Ink\\InkPointerDeviceService.cs"
+      "path": "Services/Ink/InkPointerDeviceService.cs"
     }
   ],
   "symbols": {

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Page.ContentGrid.VB",
+  "identity": "MVVMBasic.Page.ContentGrid.VB",
+  "shortName": "MVVMBasic.Page.ContentGrid.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Project.Blank.AddKeyboardAccelerators",
+  "identity": "Project.Blank.AddKeyboardAccelerators",
+  "shortName": "Project.Blank.AddKeyboardAccelerators",
   "tags": {
     "language": "C#",
     "type": "item",

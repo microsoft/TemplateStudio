@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Service.IdentityOptionalLogin",
+  "identity": "Service.IdentityOptionalLogin",
+  "shortName": "Service.IdentityOptionalLogin",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\AuthenticationHelper.cs"
+      "path": "Param_ProjectName/Helpers/AuthenticationHelper.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Helpers\\Restricted.cs"
+      "path": "Param_ProjectName/Helpers/Restricted.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+      "path": "Param_ProjectName.Core/Services/IdentityService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.cs"
     }
   ],
   "symbols": {
@@ -51,7 +54,7 @@
         "version" : "5.1.1",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

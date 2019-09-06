@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [ "Universal" ],
   "name": "Share Source",
+  "shortName": "Share Source",
   "groupIdentity": "wts.Feat.ShareSource",
   "identity": "wts.Feat.ShareSource",
   "description": "Helps supporting the share contract in your UWP app to share data from your app with others.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\ShareSourceFeatureData.cs"
+      "path": "Models/ShareSourceFeatureData.cs"
     },
     {
-      "path": ".\\Models\\ShareSourceFeatureItem.cs"
+      "path": "Models/ShareSourceFeatureItem.cs"
     },
     {
-      "path": ".\\Helpers\\DataRequestExtensions.cs"
+      "path": "Helpers/DataRequestExtensions.cs"
     }
   ],
   "symbols": {

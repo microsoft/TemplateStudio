@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Laurent Bugnion",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.AddNavigationService",
+  "identity": "MVVMLight.Project.AddNavigationService",
+  "shortName": "MVVMLight.Project.AddNavigationService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationServiceEx.cs"
+      "path": "Services/NavigationServiceEx.cs"
     }
   ],
   "symbols": {
@@ -42,7 +45,7 @@
         "version" : "5.4.1.2",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

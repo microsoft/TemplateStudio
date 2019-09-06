@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.Blank.AddTitle.VB",
+  "identity": "Page.Ink.Blank.AddTitle.VB",
+  "shortName": "Page.Ink.Blank.AddTitle.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

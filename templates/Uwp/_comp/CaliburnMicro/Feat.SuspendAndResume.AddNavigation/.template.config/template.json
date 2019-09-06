@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Feature.SuspendAndResume.AddNavigation",
+  "identity": "CaliburnMicro.Feature.SuspendAndResume.AddNavigation",
+  "shortName": "CaliburnMicro.Feature.SuspendAndResume.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

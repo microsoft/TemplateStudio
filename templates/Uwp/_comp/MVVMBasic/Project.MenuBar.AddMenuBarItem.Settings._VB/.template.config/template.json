@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.MenuBar.AddMenuBarItem.Settings.VB",
+  "identity": "MVVMBasic.Project.MenuBar.AddMenuBarItem.Settings.VB",
+  "shortName": "MVVMBasic.Project.MenuBar.AddMenuBarItem.Settings.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Drag & Drop",
+  "shortName": "Drag & Drop",
   "groupIdentity": "wts.Feat.DragAndDrop",
   "identity": "wts.Feat.DragAndDrop.CodeBehind",
   "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
@@ -24,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\DragAndDrop\\DropConfiguration.cs"
+      "path": "Services/DragAndDrop/DropConfiguration.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\ListViewDropConfiguration.cs"
+      "path": "Services/DragAndDrop/ListViewDropConfiguration.cs"
     }
   ],
   "symbols": {

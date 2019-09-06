@@ -1,14 +1,17 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Project.SplitView.TabbedNav",
+  "identity": "CaliburnMicro.Project.SplitView.TabbedNav",
+  "shortName": "CaliburnMicro.Project.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-	"wts.platform" : "Uwp",
+	  "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
     "wts.compositionFilter": "$frontendframework == CaliburnMicro & $projectType == SplitView|TabbedNav & wts.type == project",
@@ -18,19 +21,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\NavHelper.cs"
+      "path": "Helpers/NavHelper.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
+      "path": "ViewModels/ShellViewModel.cs"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.cs"
+      "path": "Views/ShellPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\IShellView.cs"
+      "path": "Views/IShellView.cs"
     }
   ],
   "symbols": {
@@ -58,7 +61,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

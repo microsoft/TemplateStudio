@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Camera",
+  "shortName": "Camera",
   "groupIdentity": "wts.Page.Camera.VB",
   "identity": "wts.Page.Camera.VB",
   "description": "A page for capturing and displaying an image from the camera.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\CameraViewPage.xaml"
+      "path": "Views/CameraViewPage.xaml"
     },
     {
-      "path": ".\\Views\\CameraViewPage.xaml.vb"
+      "path": "Views/CameraViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\CameraViewViewModel.vb"
+      "path": "ViewModels/CameraViewViewModel.vb"
     }
   ],
   "symbols": {

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Project.TabbedNav.AddNavigationViewItem",
+  "identity": "CaliburnMicro.Project.TabbedNav.AddNavigationViewItem",
+  "shortName": "CaliburnMicro.Project.TabbedNav.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",

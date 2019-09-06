@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.TabbedNav.MasterDetail",
+  "identity": "Page.TabbedNav.MasterDetail",
+  "shortName": "Page.TabbedNav.MasterDetail",
   "tags": {
     "language": "C#",
     "type": "item",

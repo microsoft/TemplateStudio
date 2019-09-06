@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.AddBackCommand",
+  "identity": "MVVMLight.Page.AddBackCommand",
+  "shortName": "MVVMLight.Page.AddBackCommand",
   "tags": {
     "language": "C#",
     "type": "item",

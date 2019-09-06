@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Test.StyleCop.WebApi",
+  "identity": "Test.StyleCop.WebApi",
+  "shortName": "Test.StyleCop.WebApi",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.WebApi/GlobalSuppressions.cs"
     }
   ],
   "symbols": {
@@ -37,7 +40,7 @@
         "version" : "1.0.2",
         "projectPath": ".\\Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

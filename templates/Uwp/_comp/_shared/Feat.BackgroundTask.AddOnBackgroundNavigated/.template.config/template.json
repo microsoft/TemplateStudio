@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.BackgroundTask.AddOnBackgroundNavigated", 
+  "identity": "Feature.BackgroundTask.AddOnBackgroundNavigated", 
+  "shortName": "Feature.BackgroundTask.AddOnBackgroundNavigated", 
   "tags": {
     "language": "C#",
     "type": "item",

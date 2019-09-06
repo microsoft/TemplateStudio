@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Test.StyleCop.UnitTests.App.MSTest.VB",
+  "identity": "Test.StyleCop.UnitTests.App.MSTest.VB",
+  "shortName": "Test.StyleCop.UnitTests.App.MSTest.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Tests.MSTest\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName.Tests.MSTest/WTSVBRules.ruleset"
     }
   ],
   "symbols": {
@@ -37,7 +40,7 @@
         "version": "0.1.12",
         "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -48,7 +51,7 @@
         "version" : "7.2.0.5463",
         "projectPath": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

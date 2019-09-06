@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.ImageGallery.VB",
+  "identity": "MVVMLight.Page.ImageGallery.VB",
+  "shortName": "MVVMLight.Page.ImageGallery.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

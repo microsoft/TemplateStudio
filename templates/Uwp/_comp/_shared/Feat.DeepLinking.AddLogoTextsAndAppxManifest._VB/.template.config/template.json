@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.DeepLinking.AddLogoTextsAndAppxManifest.VB",
+  "identity": "Feature.DeepLinking.AddLogoTextsAndAppxManifest.VB",
+  "shortName": "Feature.DeepLinking.AddLogoTextsAndAppxManifest.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Assets\\Logo.png"
+      "path": "Assets/Logo.png"
     }
   ],
   "symbols": {

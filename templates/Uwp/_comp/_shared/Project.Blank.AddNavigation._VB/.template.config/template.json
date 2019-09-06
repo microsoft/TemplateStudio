@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Project.Blank.AddNavigation.VB",
+  "identity": "Project.Blank.AddNavigation.VB",
+  "shortName": "Project.Blank.AddNavigation.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

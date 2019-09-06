@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Multiple views",
+  "shortName": "Multiple views",
   "groupIdentity": "wts.Feat.MultiView.VB",
   "identity": "wts.Feat.MultiView.VB",
   "description": "Enable your users to view independent parts of your app in separate windows.",
@@ -27,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ViewLifetimeControl.vb"
+      "path": "Services/ViewLifetimeControl.vb"
     },
     {
-      "path": ".\\Services\\WindowManagerService.vb"
+      "path": "Services/WindowManagerService.vb"
     }
   ],
   "symbols": {
