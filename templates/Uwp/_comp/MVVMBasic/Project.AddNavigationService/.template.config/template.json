@@ -20,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationService.cs"
+      "path": "Services/NavigationService.cs"
     }
   ],
   "symbols": {

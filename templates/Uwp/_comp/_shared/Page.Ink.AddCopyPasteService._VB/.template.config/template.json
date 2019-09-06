@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkCopyPasteService.vb"
+      "path": "Services/Ink/InkCopyPasteService.vb"
     }
   ],
   "symbols": {

@@ -27,7 +27,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Assets\\3dlogo.glb"
+      "path": "Assets/3dlogo.glb"
     }
   ],
   "symbols": {

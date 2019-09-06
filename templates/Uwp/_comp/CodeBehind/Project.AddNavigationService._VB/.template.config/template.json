@@ -20,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationService.vb"
+      "path": "Services/NavigationService.vb"
     }
   ],
   "symbols": {

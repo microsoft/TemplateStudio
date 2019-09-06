@@ -26,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\DragAndDrop\\DropConfiguration.vb"
+      "path": "Services/DragAndDrop/DropConfiguration.vb"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\ListViewDropConfiguration.vb"
+      "path": "Services/DragAndDrop/ListViewDropConfiguration.vb"
     }
   ],
   "symbols": {

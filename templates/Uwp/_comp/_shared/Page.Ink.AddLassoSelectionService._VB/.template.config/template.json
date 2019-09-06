@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkLassoSelectionService.vb"
+      "path": "Services/Ink/InkLassoSelectionService.vb"
     }
   ],
   "symbols": {

@@ -28,22 +28,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\ContentGridViewDetailPage.xaml"
+      "path": "Param_ProjectName/Views/ContentGridViewDetailPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ContentGridViewDetailPage.xaml.cs"
+      "path": "Param_ProjectName/Views/ContentGridViewDetailPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ContentGridViewPage.xaml"
+      "path": "Param_ProjectName/Views/ContentGridViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ContentGridViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/ContentGridViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\ContentGridViewDetailViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/ContentGridViewDetailViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\ContentGridViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/ContentGridViewViewModel.cs"
     }
   ],
   "symbols": {

@@ -25,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\CameraViewPage.xaml"
+      "path": "Views/CameraViewPage.xaml"
     },
     {
-      "path": ".\\Views\\CameraViewPage.xaml.vb"
+      "path": "Views/CameraViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\CameraViewViewModel.vb"
+      "path": "ViewModels/CameraViewViewModel.vb"
     }
   ],
   "symbols": {

@@ -25,22 +25,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\SharedDataStorageItemsModel.cs"
+      "path": "Models/SharedDataStorageItemsModel.cs"
     },
     {
-      "path": ".\\Models\\SharedDataModelBase.cs"
+      "path": "Models/SharedDataModelBase.cs"
     },
     {
-      "path": ".\\Models\\SharedDataWebLinkModel.cs"
+      "path": "Models/SharedDataWebLinkModel.cs"
     },
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.cs"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+      "path": "Views/ShareTargetFeaturePage.xaml"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml.cs"
+      "path": "Views/ShareTargetFeaturePage.xaml.cs"
     }
   ],
   "symbols": {

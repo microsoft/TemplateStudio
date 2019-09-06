@@ -20,25 +20,25 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Services\\IUserDataService.cs"
+      "path": "Param_ProjectName/Services/IUserDataService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Services\\UserDataService.cs"
+      "path": "Param_ProjectName/Services/UserDataService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\UserViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/UserViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IIdentityService.cs"
+      "path": "Param_ProjectName.Core/Services/IIdentityService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+      "path": "Param_ProjectName.Core/Services/IdentityService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IMicrosoftGraphService.cs"
+      "path": "Param_ProjectName.Core/Services/IMicrosoftGraphService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.cs"
     }
   ],
   "symbols": {

@@ -27,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml"
+      "path": "Views/MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml.vb"
+      "path": "Views/MasterDetailViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewViewModel.vb"
+      "path": "ViewModels/MasterDetailViewViewModel.vb"
     }
   ],
   "symbols": {

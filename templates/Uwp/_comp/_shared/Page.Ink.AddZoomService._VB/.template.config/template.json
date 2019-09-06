@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkZoomService.vb"
+      "path": "Services/Ink/InkZoomService.vb"
     }
   ],
   "symbols": {

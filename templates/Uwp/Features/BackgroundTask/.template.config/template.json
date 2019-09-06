@@ -26,16 +26,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Services\\BackgroundTaskService.cs"
+      "path": "Param_ProjectName/Services/BackgroundTaskService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTask.cs"
+      "path": "Param_ProjectName/BackgroundTasks/BackgroundTask.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTaskFeature.cs"
+      "path": "Param_ProjectName/BackgroundTasks/BackgroundTaskFeature.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\TaskExtensions.cs"
+      "path": "Param_ProjectName.Core/Helpers/TaskExtensions.cs"
     }
   ],
   "symbols": {

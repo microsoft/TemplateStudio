@@ -19,10 +19,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\wts.ItemNameActivationHandler.vb"
+      "path": "Activation/wts.ItemNameActivationHandler.vb"
     },
     {
-    "path": ".\\Helpers\\ShareOperationExtensions.vb"
+    "path": "Helpers/ShareOperationExtensions.vb"
     }
   ],
   "symbols": {

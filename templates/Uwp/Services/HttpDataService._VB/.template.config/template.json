@@ -28,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\HttpDataService.vb"
+      "path": "Param_ProjectName.Core/Services/HttpDataService.vb"
     }
   ],
   "symbols": {

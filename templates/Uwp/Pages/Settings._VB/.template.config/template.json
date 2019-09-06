@@ -27,16 +27,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\EnumToBooleanConverter.vb"
+      "path": "Helpers/EnumToBooleanConverter.vb"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml"
+      "path": "Views/SettingsPagePage.xaml"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml.vb"
+      "path": "Views/SettingsPagePage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\SettingsPageViewModel.vb"
+      "path": "ViewModels/SettingsPageViewModel.vb"
     }
   ],
   "symbols": {

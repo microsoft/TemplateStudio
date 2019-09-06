@@ -26,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkDrawViewPage.xaml"
+      "path": "Views/InkDrawViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkDrawViewPage.xaml.vb"
+      "path": "Views/InkDrawViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\InkDrawViewViewModel.vb"
+      "path": "ViewModels/InkDrawViewViewModel.vb"
     }
   ],
   "symbols": {

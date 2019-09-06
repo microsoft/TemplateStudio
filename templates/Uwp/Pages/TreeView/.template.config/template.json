@@ -27,19 +27,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Behaviors\\TreeViewCollapseBehavior.cs"
+      "path": "Behaviors/TreeViewCollapseBehavior.cs"
     },
     {
-      "path": ".\\TemplateSelectors\\SampleDataTemplateSelector.cs"
+      "path": "TemplateSelectors/SampleDataTemplateSelector.cs"
     },
     {
-      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
+      "path": "Views/wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

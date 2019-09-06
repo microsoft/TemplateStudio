@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\SchemeActivationSampleViewModel.vb"
+      "path": "ViewModels/SchemeActivationSampleViewModel.vb"
     }
   ],
   "symbols": {

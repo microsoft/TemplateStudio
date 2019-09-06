@@ -27,7 +27,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ThemeSelectorService.vb"
+      "path": "Services/ThemeSelectorService.vb"
     }
   ],
   "symbols": {

@@ -28,19 +28,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\SchemeActivationConfig.cs"
+      "path": "Activation/SchemeActivationConfig.cs"
     },
     {
-      "path": ".\\Activation\\SchemeActivationData.cs"
+      "path": "Activation/SchemeActivationData.cs"
     },
     {
-      "path": ".\\ViewModels\\SchemeActivationSampleViewModel.cs"
+      "path": "ViewModels/SchemeActivationSampleViewModel.cs"
     },
     {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+      "path": "Views/SchemeActivationSamplePage.xaml"
     },
     {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml.cs"
+      "path": "Views/SchemeActivationSamplePage.xaml.cs"
     }
   ],
   "symbols": {

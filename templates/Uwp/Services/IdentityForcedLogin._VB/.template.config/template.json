@@ -31,13 +31,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\LogInViewModel.vb"
+      "path": "ViewModels/LogInViewModel.vb"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml"
+      "path": "Views/LogInPage.xaml"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml.vb"
+      "path": "Views/LogInPage.xaml.vb"
     }
   ],
   "symbols": {

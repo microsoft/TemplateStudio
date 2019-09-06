@@ -27,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ChartViewPage.xaml"
+      "path": "Views/ChartViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ChartViewPage.xaml.cs"
+      "path": "Views/ChartViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\ChartViewViewModel.cs"
+      "path": "ViewModels/ChartViewViewModel.cs"
     }
   ],
   "symbols": {

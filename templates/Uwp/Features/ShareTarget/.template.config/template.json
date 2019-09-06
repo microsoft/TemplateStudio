@@ -25,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\SharedDataStorageItemsViewModel.cs"
+      "path": "ViewModels/SharedDataStorageItemsViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataViewModelBase.cs"
+      "path": "ViewModels/SharedDataViewModelBase.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataWebLinkViewModel.cs"
+      "path": "ViewModels/SharedDataWebLinkViewModel.cs"
     }
   ],
   "symbols": {

@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkAsyncAnalyzer.vb"
+      "path": "Services/Ink/InkAsyncAnalyzer.vb"
     }
   ],
   "symbols": {

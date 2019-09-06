@@ -28,13 +28,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\EnumToBooleanConverter.cs"
+      "path": "Helpers/EnumToBooleanConverter.cs"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml"
+      "path": "Views/SettingsPagePage.xaml"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml.cs"
+      "path": "Views/SettingsPagePage.xaml.cs"
     }
   ],
   "symbols": {

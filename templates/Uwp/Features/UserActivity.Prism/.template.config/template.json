@@ -30,13 +30,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\UserActivityData.cs"
+      "path": "Services/UserActivityData.cs"
     },
     {
-      "path": ".\\Services\\UserActivityService.cs"
+      "path": "Services/UserActivityService.cs"
     },
     {
-      "path": ".\\Services\\UserActivityService.Sample.cs"
+      "path": "Services/UserActivityService.Sample.cs"
     }
   ],
   "symbols": {

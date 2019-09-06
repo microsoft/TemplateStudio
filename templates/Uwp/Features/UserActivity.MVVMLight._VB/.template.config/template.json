@@ -30,13 +30,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\UserActivityData.vb"
+      "path": "Services/UserActivityData.vb"
     },
     {
-      "path": ".\\Services\\UserActivityService.vb"
+      "path": "Services/UserActivityService.vb"
     },
     {
-      "path": ".\\Services\\UserActivityService.Sample.vb"
+      "path": "Services/UserActivityService.Sample.vb"
     }
   ],
   "symbols": {

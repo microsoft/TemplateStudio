@@ -19,16 +19,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkTransformService.cs"
+      "path": "Services/Ink/InkTransformService.cs"
     },
     {
-      "path": ".\\Services\\Ink\\InkTransformResult.cs"
+      "path": "Services/Ink/InkTransformResult.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\TransformUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/TransformUndoRedoOperation.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\ClearStrokesAndShapesUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/ClearStrokesAndShapesUndoRedoOperation.cs"
     }
   ],
   "symbols": {

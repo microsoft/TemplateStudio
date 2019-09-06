@@ -28,13 +28,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\MasterDetailViewPage.xaml"
+      "path": "Param_ProjectName/Views/MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\MasterDetailViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/MasterDetailViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\MasterDetailViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/MasterDetailViewViewModel.cs"
     }
   ],
   "symbols": {

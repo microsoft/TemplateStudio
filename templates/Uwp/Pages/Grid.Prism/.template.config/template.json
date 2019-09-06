@@ -28,13 +28,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\GridViewPage.xaml"
+      "path": "Param_ProjectName/Views/GridViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\GridViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/GridViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\GridViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/GridViewViewModel.cs"
     }
   ],
   "symbols": {

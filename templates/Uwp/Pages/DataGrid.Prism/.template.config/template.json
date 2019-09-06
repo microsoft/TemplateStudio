@@ -29,13 +29,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\DataGridViewPage.xaml"
+      "path": "Param_ProjectName/Views/DataGridViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\DataGridViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/DataGridViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\DataGridViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/DataGridViewViewModel.cs"
     }
   ],
   "symbols": {

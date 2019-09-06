@@ -27,16 +27,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ContentGridViewPage.xaml"
+      "path": "Views/ContentGridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ContentGridViewPage.xaml.vb"
+      "path": "Views/ContentGridViewPage.xaml.vb"
     },
     {
-      "path": ".\\Views\\ContentGridViewDetailPage.xaml"
+      "path": "Views/ContentGridViewDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\ContentGridViewDetailPage.xaml.vb"
+      "path": "Views/ContentGridViewDetailPage.xaml.vb"
     }
   ],
   "symbols": {

@@ -28,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\WebToAppLinkActivationHandler.vb"
+      "path": "Activation/WebToAppLinkActivationHandler.vb"
     }
   ],
   "symbols": {

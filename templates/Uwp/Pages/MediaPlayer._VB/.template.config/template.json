@@ -25,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml"
+      "path": "Views/MediaPlayerViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml.vb"
+      "path": "Views/MediaPlayerViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\MediaPlayerViewViewModel.vb"
+      "path": "ViewModels/MediaPlayerViewViewModel.vb"
     }
   ],
   "symbols": {

@@ -28,10 +28,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\SettingsStorageExtensions.vb"
+      "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\Json.vb"
+      "path": "Param_ProjectName.Core/Helpers/Json.vb"
     }
   ],
   "symbols": {

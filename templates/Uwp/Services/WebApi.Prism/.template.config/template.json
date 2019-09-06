@@ -31,7 +31,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\Models\\ItemRepository.cs"
+      "path": "Param_ProjectName.WebApi/Models/ItemRepository.cs"
     }
   ],
   "symbols": {
