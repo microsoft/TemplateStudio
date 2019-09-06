@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Multi-Instance Advanced",
+  "shortName": "Multi-Instance Advanced",
   "groupIdentity": "wts.Feat.MultiInstanceAdvanced",
   "identity": "wts.Feat.MultiInstanceAdvanced",
   "description": "Control how multiple instances of the app are launched.",
@@ -26,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Program.cs"
+      "path": "./Program.cs"
     }
   ],
   "symbols": {

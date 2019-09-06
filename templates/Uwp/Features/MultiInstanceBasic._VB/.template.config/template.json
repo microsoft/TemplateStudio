@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Multi-Instance",
+  "shortName": "Multi-Instance",
   "groupIdentity": "wts.Feat.MultiInstance.VB",
   "identity": "wts.Feat.MultiInstance.VB",
   "description": "Launch multiple instances of the app.",
