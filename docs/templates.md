@@ -130,13 +130,13 @@ The replacements are done based on the configuration established in the `templat
   "preferNameDirectory": true,
   "PrimaryOutputs": [                             //The primary outputs are the list of items that are returned to the caller after the generation.
     {
-      "path": ".\\Views\\BlankViewPage.xaml"
+      "path": "Views/BlankViewPage.xaml"
     },
     {
-      "path": ".\\Views\\BlankViewPage.xaml.cs"
+      "path": "Views/BlankViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\BlankViewViewModel.cs"
+      "path": "ViewModels/BlankViewViewModel.cs"
     }
   ],
   "symbols": {                                    //Symbols define a collection of replacements to be done while generating.
