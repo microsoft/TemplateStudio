@@ -7,7 +7,6 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{7CF740F7-735F-48EA-8B7B-3FFA4902371C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Param_RootNamespace</RootNamespace>
     <AssemblyName>wts.DefaultProject</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
