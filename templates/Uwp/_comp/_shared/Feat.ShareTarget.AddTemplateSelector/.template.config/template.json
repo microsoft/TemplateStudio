@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.ShareTarget.AddTemplateSelector",
+  "identity": "Feature.ShareTarget.AddTemplateSelector",
+  "shortName": "Feature.ShareTarget.AddTemplateSelector",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.cs"
     }
   ],
   "symbols": {

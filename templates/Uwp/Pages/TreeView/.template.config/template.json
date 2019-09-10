@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "TreeView",
+  "shortName": "TreeView",
   "groupIdentity": "wts.Page.TreeView",
   "identity": "wts.Page.TreeView",
   "description": "The tree-view page has a tree view control to show hierarchical content.",
@@ -22,22 +24,22 @@
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
-  "preferNameDirectory": "true",
+  "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Behaviors\\TreeViewCollapseBehavior.cs"
+      "path": "Behaviors/TreeViewCollapseBehavior.cs"
     },
     {
-      "path": ".\\TemplateSelectors\\SampleDataTemplateSelector.cs"
+      "path": "TemplateSelectors/SampleDataTemplateSelector.cs"
     },
     {
-      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
+      "path": "Views/wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {
@@ -68,7 +70,7 @@
         "version": "2.1.190606001",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -79,7 +81,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

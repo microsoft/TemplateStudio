@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Azure Notifications",
+  "shortName": "Azure Notifications",
   "groupIdentity": "wts.Feat.HubNotifications.VB",
   "identity": "wts.Feat.HubNotifications.VB",
   "description": "Register to receive and handle messages from Azure Notification Hubs.",
@@ -27,7 +29,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\HubNotificationsFeatureService.vb"
+      "path": "Services/HubNotificationsFeatureService.vb"
     }
   ],
   "symbols": {
@@ -51,7 +53,7 @@
         "version": "0.1.7.9",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

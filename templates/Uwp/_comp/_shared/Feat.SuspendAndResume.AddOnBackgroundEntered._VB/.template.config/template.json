@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.SuspendAndResume.AddOnBackgroundEntered.VB", 
+  "name": "Feature.SuspendAndResume.AddOnBackgroundEntered.VB",
+  "identity": "Feature.SuspendAndResume.AddOnBackgroundEntered.VB",
+  "shortName": "Feature.SuspendAndResume.AddOnBackgroundEntered.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

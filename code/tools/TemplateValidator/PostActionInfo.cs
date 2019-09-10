@@ -16,6 +16,6 @@ namespace TemplateValidator
 
         public Dictionary<string, string> Args { get; set; }
 
-        public string ContinueOnError { get; set; }
+        public bool ContinueOnError { get; set; }
     }
 }

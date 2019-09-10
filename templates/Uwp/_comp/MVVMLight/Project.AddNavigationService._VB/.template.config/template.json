@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.AddNavigationService.VB",
+  "identity": "MVVMLight.Project.AddNavigationService.VB",
+  "shortName": "MVVMLight.Project.AddNavigationService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationServiceEx.vb"
+      "path": "Services/NavigationServiceEx.vb"
     }
   ],
   "symbols": {
@@ -42,7 +45,7 @@
         "version" : "5.4.1.2",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Camera.AddResource",
+  "identity": "Page.Camera.AddResource",
+  "shortName": "Page.Camera.AddResource",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,16 +19,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\EventHandlers\\CameraControlEventArgs.cs"
+      "path": "EventHandlers/CameraControlEventArgs.cs"
     },
     {
-      "path": ".\\Helpers\\CameraOrientationExtensions.cs"
+      "path": "Helpers/CameraOrientationExtensions.cs"
     },
     {
-      "path": ".\\Controls\\CameraControl.xaml"
+      "path": "Controls/CameraControl.xaml"
     },
     {
-      "path": ".\\Controls\\CameraControl.xaml.cs"
+      "path": "Controls/CameraControl.xaml.cs"
     }
   ],
   "symbols": {

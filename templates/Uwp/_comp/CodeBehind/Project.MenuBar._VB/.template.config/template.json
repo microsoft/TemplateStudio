@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.MenuBar.VB",
+  "identity": "CodeBehind.Project.MenuBar.VB",
+  "shortName": "CodeBehind.Project.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -17,22 +20,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\MenuNavigationHelper.vb"
+      "path": "Helpers/MenuNavigationHelper.vb"
     },
     {
-      "path": ".\\Services\\NavigationService.vb"
+      "path": "Services/NavigationService.vb"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml"
+      "path": "Views/ShellContentDialog.xaml"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml.vb"
+      "path": "Views/ShellContentDialog.xaml.vb"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.vb"
+      "path": "Views/ShellPage.xaml.vb"
     }
   ],
   "symbols": {

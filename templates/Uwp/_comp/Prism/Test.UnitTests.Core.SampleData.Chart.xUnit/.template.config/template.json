@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Testing.UnitTests.Core.SampleData.Chart.xUnit",
+  "identity": "Prism.Testing.UnitTests.Core.SampleData.Chart.xUnit",
+  "shortName": "Prism.Testing.UnitTests.Core.SampleData.Chart.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",

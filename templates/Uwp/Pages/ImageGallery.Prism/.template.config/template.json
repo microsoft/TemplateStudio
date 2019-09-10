@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "ImageGallery",
+  "shortName": "ImageGallery",
   "groupIdentity": "wts.Page.ImageGallery",
   "identity": "wts.Page.ImageGallery.Prism",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
@@ -26,61 +28,61 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewPage.xaml"
+      "path": "Param_ProjectName/Views/ImageGalleryViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/ImageGalleryViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewDetailPage.xaml"
+      "path": "Param_ProjectName/Views/ImageGalleryViewDetailPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewDetailPage.xaml.cs"
+      "path": "Param_ProjectName/Views/ImageGalleryViewDetailPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\ImageGalleryViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/ImageGalleryViewViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\ImageGalleryViewDetailViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/ImageGalleryViewDetailViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleImage.cs"
+      "path": "Param_ProjectName.Core/Models/SampleImage.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Helpers\\ImagesNavigationHelper.cs"
+      "path": "Param_ProjectName/Helpers/ImagesNavigationHelper.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\PlaceholderImage.png"
+      "path": "Param_ProjectName/Assets/PlaceholderImage.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto1.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto1.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto2.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto2.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto3.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto3.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto4.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto4.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto5.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto5.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto6.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto6.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto7.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto7.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto8.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto8.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto9.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto9.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto10.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto10.png"
     }
   ],
   "symbols": {
@@ -112,7 +114,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

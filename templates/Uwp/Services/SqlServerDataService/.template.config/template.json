@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "SQL Server Data",
+  "shortName": "SQL Server Data",
   "groupIdentity": "wts.Service.SqlServerDataService",
   "identity": "wts.Service.SqlServerDataService",
   "description": "Get data from SQL Server to use in the app.",
@@ -28,7 +30,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\SqlServerDataService.cs"
+      "path": "Param_ProjectName.Core/Services/SqlServerDataService.cs"
     }
   ],
   "symbols": {
@@ -52,7 +54,7 @@
         "version" : "2.1.11",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -63,7 +65,7 @@
         "version" : "2.1.11",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

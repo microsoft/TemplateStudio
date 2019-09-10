@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Service.IdentityForcedLogin.Blank.VB",
+  "identity": "CodeBehind.Service.IdentityForcedLogin.Blank.VB",
+  "shortName": "CodeBehind.Service.IdentityForcedLogin.Blank.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

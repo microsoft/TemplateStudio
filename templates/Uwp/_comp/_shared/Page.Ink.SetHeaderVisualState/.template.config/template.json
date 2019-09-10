@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.SetHeaderVisualState",
+  "identity": "Page.Ink.SetHeaderVisualState",
+  "shortName": "Page.Ink.SetHeaderVisualState",
   "tags": {
     "language": "C#",
     "type": "item",

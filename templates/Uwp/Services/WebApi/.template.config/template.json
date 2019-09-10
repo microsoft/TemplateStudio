@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Web API",
+  "shortName": "Web API",
   "groupIdentity": "wts.Service.WebApi",
   "identity": "wts.Service.WebApi",
   "description": "Include ASP.NET Core Web API project.",
@@ -29,7 +31,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\Models\\ItemRepository.cs"
+      "path": "Param_ProjectName.WebApi/Models/ItemRepository.cs"
     }
   ],
   "symbols": {

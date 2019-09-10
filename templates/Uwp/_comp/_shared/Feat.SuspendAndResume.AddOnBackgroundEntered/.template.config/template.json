@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.SuspendAndResume.AddOnBackgroundEntered", 
+  "name": "Feature.SuspendAndResume.AddOnBackgroundEntered",
+  "identity": "Feature.SuspendAndResume.AddOnBackgroundEntered",
+  "shortName": "Feature.SuspendAndResume.AddOnBackgroundEntered",
   "tags": {
     "language": "C#",
     "type": "item",

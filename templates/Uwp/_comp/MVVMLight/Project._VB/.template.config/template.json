@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Laurent Bugnion + Community Contribution",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.VB",
+  "identity": "MVVMLight.Project.VB",
+  "shortName": "MVVMLight.Project.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\ViewModelLocator.vb"
+      "path": "ViewModels/ViewModelLocator.vb"
     }
   ],
   "symbols": {
@@ -42,7 +45,7 @@
         "version" : "5.4.1.2",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

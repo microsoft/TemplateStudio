@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddZoomService",
+  "identity": "Page.Ink.AddZoomService",
+  "shortName": "Page.Ink.AddZoomService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkZoomService.cs"
+      "path": "Services/Ink/InkZoomService.cs"
     }
   ],
   "symbols": {

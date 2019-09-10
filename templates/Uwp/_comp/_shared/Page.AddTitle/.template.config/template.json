@@ -1,10 +1,13 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle",
-  "tags": {
+    "identity": "Page.AddTitle",
+    "shortName": "Page.AddTitle",
+    "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",

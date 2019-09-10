@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Project.MenuBar.AddMenuBarItemResources.VB",
+  "identity": "Project.MenuBar.AddMenuBarItemResources.VB",
+  "shortName": "Project.MenuBar.AddMenuBarItemResources.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

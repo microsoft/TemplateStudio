@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.VB",
+  "identity": "CodeBehind.Project.VB",
+  "shortName": "CodeBehind.Project.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

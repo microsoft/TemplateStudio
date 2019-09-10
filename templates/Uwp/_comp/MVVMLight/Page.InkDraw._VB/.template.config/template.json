@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.InkDraw.VB",
+  "identity": "MVVMLight.Page.InkDraw.VB",
+  "shortName": "MVVMLight.Page.InkDraw.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

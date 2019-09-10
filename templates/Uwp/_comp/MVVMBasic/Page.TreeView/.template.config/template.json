@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Page.TreeView",
+  "identity": "MVVMBasic.Page.TreeView",
+  "shortName": "MVVMBasic.Page.TreeView",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.Ink.SplitView.SetBehaviorHeaderContext",
+  "identity": "CodeBehind.Page.Ink.SplitView.SetBehaviorHeaderContext",
+  "shortName": "CodeBehind.Page.Ink.SplitView.SetBehaviorHeaderContext",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.AddViewModel",
+  "identity": "MVVMLight.Page.AddViewModel",
+  "shortName": "MVVMLight.Page.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",

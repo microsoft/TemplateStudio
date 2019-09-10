@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.SplitView.TabbedNav.Page.Settings.VB",
+  "identity": "MVVMLight.Project.SplitView.TabbedNav.Page.Settings.VB",
+  "shortName": "MVVMLight.Project.SplitView.TabbedNav.Page.Settings.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

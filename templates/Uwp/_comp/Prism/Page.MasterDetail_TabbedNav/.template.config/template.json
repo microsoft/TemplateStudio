@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Page.MasterDetail_TabbedNav",
+  "identity": "Prism.Page.MasterDetail_TabbedNav",
+  "shortName": "Prism.Page.MasterDetail_TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

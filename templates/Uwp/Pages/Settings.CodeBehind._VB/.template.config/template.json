@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Settings",
+  "shortName": "Settings",
   "groupIdentity": "wts.Page.Settings.VB",
   "identity": "wts.Page.Settings.CodeBehind.VB",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
@@ -25,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\EnumToBooleanConverter.vb"
+      "path": "Helpers/EnumToBooleanConverter.vb"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml"
+      "path": "Views/SettingsPagePage.xaml"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml.vb"
+      "path": "Views/SettingsPagePage.xaml.vb"
     }
   ],
   "symbols": {

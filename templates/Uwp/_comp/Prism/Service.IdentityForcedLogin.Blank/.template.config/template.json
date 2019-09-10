@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Service.IdentityForcedLogin.Blank",
+  "identity": "Prism.Service.IdentityForcedLogin.Blank",
+  "shortName": "Prism.Service.IdentityForcedLogin.Blank",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,13 +19,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\LogInViewModel.cs"
+      "path": "ViewModels/LogInViewModel.cs"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml"
+      "path": "Views/LogInPage.xaml"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml.cs"
+      "path": "Views/LogInPage.xaml.cs"
     }
   ],
   "symbols": {

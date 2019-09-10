@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Chart.AddSampleData.VB",
+  "identity": "Page.Chart.AddSampleData.VB",
+  "shortName": "Page.Chart.AddSampleData.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -17,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.vb"
+      "path": "Param_ProjectName.Core/Models/DataPoint.vb"
     }
   ],
   "symbols": {

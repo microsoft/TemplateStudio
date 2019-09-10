@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Background Task",
+  "shortName": "Background Task",
   "groupIdentity": "wts.Feat.BackgroundTask",
   "identity": "wts.Feat.BackgroundTask.Prism",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
@@ -24,19 +26,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Services\\BackgroundTaskService.cs"
+      "path": "Param_ProjectName/Services/BackgroundTaskService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Services\\IBackgroundTaskService.cs"
+      "path": "Param_ProjectName/Services/IBackgroundTaskService.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTask.cs"
+      "path": "Param_ProjectName/BackgroundTasks/BackgroundTask.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\BackgroundTasks\\BackgroundTaskFeature.cs"
+      "path": "Param_ProjectName/BackgroundTasks/BackgroundTaskFeature.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\TaskExtensions.cs"
+      "path": "Param_ProjectName.Core/Helpers/TaskExtensions.cs"
     }
   ],
   "symbols": {

@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Ink Smart Canvas",
+  "shortName": "Ink Smart Canvas",
   "groupIdentity": "wts.Page.InkSmartCanvas",
   "identity": "wts.Page.InkSmartCanvas.CodeBehind",
   "description": "A page that allows you to create notes using shape and text recognition with Windows Ink.",
@@ -24,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkSmartCanvasViewPage.xaml"
+      "path": "Views/InkSmartCanvasViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkSmartCanvasViewPage.xaml.cs"
+      "path": "Views/InkSmartCanvasViewPage.xaml.cs"
     }
   ],
   "symbols": {
@@ -59,7 +61,7 @@
         "version": "1.23.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

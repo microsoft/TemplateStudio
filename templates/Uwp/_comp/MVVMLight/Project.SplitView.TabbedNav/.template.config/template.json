@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.SplitView.TabbedNav",
+  "identity": "MVVMLight.Project.SplitView.TabbedNav",
+  "shortName": "MVVMLight.Project.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\NavHelper.cs"
+      "path": "Helpers/NavHelper.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
+      "path": "ViewModels/ShellViewModel.cs"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.cs"
+      "path": "Views/ShellPage.xaml.cs"
     }
   ],
   "symbols": {
@@ -55,7 +58,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

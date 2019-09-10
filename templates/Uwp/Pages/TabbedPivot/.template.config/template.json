@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Tabbed",
+  "shortName": "Tabbed",
   "groupIdentity": "wts.Page.TabbedPivot",
   "identity": "wts.Page.TabbedPivot",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\TabbedPivotPagePage.xaml"
+      "path": "Views/TabbedPivotPagePage.xaml"
     },
     {
-      "path": ".\\Views\\TabbedPivotPagePage.xaml.cs"
+      "path": "Views/TabbedPivotPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\TabbedPivotPageViewModel.cs"
+      "path": "ViewModels/TabbedPivotPageViewModel.cs"
     }
   ],
   "symbols": {

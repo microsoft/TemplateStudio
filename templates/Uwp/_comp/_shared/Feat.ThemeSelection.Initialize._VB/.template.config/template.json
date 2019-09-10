@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.ThemeSelection.Initialize.VB",
+  "identity": "Feature.ThemeSelection.Initialize.VB",
+  "shortName": "Feature.ThemeSelection.Initialize.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

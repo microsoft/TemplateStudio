@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.AddNavigation",
+  "identity": "Prism.Project.AddNavigation",
+  "shortName": "Prism.Project.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

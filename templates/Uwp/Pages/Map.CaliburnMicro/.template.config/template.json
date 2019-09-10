@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Map",
+  "shortName": "Map",
   "groupIdentity": "wts.Page.Map",
   "identity": "wts.Page.Map.CaliburnMicro",
   "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
@@ -24,22 +26,22 @@
   "PrimaryOutputs":
   [
     {
-      "path": ".\\Views\\IMapPageView.cs"
+      "path": "Views/IMapPageView.cs"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml"
+      "path": "Views/MapPagePage.xaml"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml.cs"
+      "path": "Views/MapPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MapPageViewModel.cs"
+      "path": "ViewModels/MapPageViewModel.cs"
     },
     {
-      "path": ".\\Assets\\map.png"
+      "path": "Assets/map.png"
     },
     {
-      "path": ".\\Services\\LocationService.cs"
+      "path": "Services/LocationService.cs"
     }
   ],
   "symbols": {

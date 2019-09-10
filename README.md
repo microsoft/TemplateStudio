@@ -27,12 +27,14 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 ## Features
 
-Windows Template Studio approaches UWP app creation using the following four attribute sets:
+Windows Template Studio approaches UWP app creation using the following six attribute sets:
 
 * **Project type**: First, how do you want your app's UI navigation to behave? We currently support three project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, and *pivot and tabs*.
 * **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
 * **App pages**: To accelerate app creation, we provide a number of app page templates that you can use to add common UI pages into your new app. We currently include page templates from the *blank page* to the common layouts (*e.g., master/detail, tabbed, web view*) to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Using the wizard, add as many of the pages as you need, providing a name for each one, and we'll generate them for you.
-* **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Notification Hub*).
+* **Windows 10 features**: You specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
+* **Services**: You can connect to data services or setup identity logins for your application as well as enforce certain XAML style rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
+* **Automated Tests**:  Lastly, you can setup test projects for your application including Selenium-like UI test automation.
 
 Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
 
@@ -66,7 +68,7 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 3. Generated templates must be able to compile and run once generated.
 4. Generated templates should work on all device families.
 5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
+6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
 7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 

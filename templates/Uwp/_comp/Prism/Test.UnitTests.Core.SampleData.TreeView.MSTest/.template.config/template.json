@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Testing.UnitTests.Core.SampleData.TreeView.MSTest",
+  "identity": "Prism.Testing.UnitTests.Core.SampleData.TreeView.MSTest",
+  "shortName": "Prism.Testing.UnitTests.Core.SampleData.TreeView.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",

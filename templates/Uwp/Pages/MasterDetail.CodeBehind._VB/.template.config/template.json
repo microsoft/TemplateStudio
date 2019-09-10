@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Master/Detail",
+  "shortName": "Master/Detail",
   "groupIdentity": "wts.Page.MasterDetail.VB",
   "identity": "wts.Page.MasterDetail.CodeBehind.VB",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -25,10 +27,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml"
+      "path": "Views/MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml.vb"
+      "path": "Views/MasterDetailViewPage.xaml.vb"
     }
   ],
   "symbols": {
@@ -60,7 +62,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

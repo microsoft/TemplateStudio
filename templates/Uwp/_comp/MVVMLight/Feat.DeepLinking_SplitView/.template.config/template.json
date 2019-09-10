@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.DeepLinking.SplitView",
+  "identity": "MVVMLight.DeepLinking.SplitView",
+  "shortName": "MVVMLight.DeepLinking.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

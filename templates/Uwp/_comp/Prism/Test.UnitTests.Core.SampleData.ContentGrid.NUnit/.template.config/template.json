@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
+  "identity": "Prism.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
+  "shortName": "Prism.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

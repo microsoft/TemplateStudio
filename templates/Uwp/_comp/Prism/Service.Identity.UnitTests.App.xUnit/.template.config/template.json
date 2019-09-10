@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Service.Identity.UnitTests.App.xUnit",
+  "identity": "Prism.Service.Identity.UnitTests.App.xUnit",
+  "shortName": "Prism.Service.Identity.UnitTests.App.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -38,7 +41,7 @@
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
 
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

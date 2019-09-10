@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.MasterDetailPage.AddNavigationTransition.VB",
+  "identity": "Page.MasterDetailPage.AddNavigationTransition.VB",
+  "shortName": "Page.MasterDetailPage.AddNavigationTransition.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

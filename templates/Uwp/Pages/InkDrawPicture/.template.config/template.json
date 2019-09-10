@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Ink Draw Picture",
+  "shortName": "Ink Draw Picture",
   "groupIdentity": "wts.Page.InkDrawPicture",
   "identity": "wts.Page.InkDrawPicture",
   "description": "A page that allows you to load a picture and draw on top of it using Windows Ink.",
@@ -24,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkDrawPictureViewPage.xaml"
+      "path": "Views/InkDrawPictureViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkDrawPictureViewPage.xaml.cs"
+      "path": "Views/InkDrawPictureViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\InkDrawPictureViewViewModel.cs"
+      "path": "ViewModels/InkDrawPictureViewViewModel.cs"
     }
   ],
   "symbols": {
@@ -62,7 +64,7 @@
         "version": "1.23.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

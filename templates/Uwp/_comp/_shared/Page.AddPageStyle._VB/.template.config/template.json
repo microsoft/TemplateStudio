@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.AddPageStyle.VB",
+  "identity": "Page.AddPageStyle.VB",
+  "shortName": "Page.AddPageStyle.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

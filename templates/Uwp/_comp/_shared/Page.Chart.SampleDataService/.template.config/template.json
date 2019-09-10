@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Chart.AddSampleData",
+  "identity": "Page.Chart.AddSampleData",
+  "shortName": "Page.Chart.AddSampleData",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.cs"
+      "path": "Param_ProjectName.Core/Models/DataPoint.cs"
     }
   ],
   "symbols": {

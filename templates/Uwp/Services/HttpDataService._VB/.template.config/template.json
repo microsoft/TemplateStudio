@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "HTTP Data Service",
+  "shortName": "HTTP Data Service",
   "groupIdentity": "wts.Service.HttpDataService.VB",
   "identity": "wts.Service.HttpDataService.VB",
   "description": "Access content over HTTP.",
@@ -26,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\HttpDataService.vb"
+      "path": "Param_ProjectName.Core/Services/HttpDataService.vb"
     }
   ],
   "symbols": {

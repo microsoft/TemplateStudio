@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.InkSmartCanvas.Strings",
+  "identity": "Page.InkSmartCanvas.Strings",
+  "shortName": "Page.InkSmartCanvas.Strings",
   "tags": {
     "language": "C#",
     "type": "item",

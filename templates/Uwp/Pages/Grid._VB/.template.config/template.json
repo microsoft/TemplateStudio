@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Telerik Data Grid",
+  "shortName": "Telerik Data Grid",
   "groupIdentity": "wts.Page.Grid.VB",
   "identity": "wts.Page.Grid.VB",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
@@ -25,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\GridViewPage.xaml"
+      "path": "Views/GridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\GridViewPage.xaml.vb"
+      "path": "Views/GridViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\GridViewViewModel.vb"
+      "path": "ViewModels/GridViewViewModel.vb"
     }
   ],
   "symbols": {
@@ -59,7 +61,7 @@
         "version": "1.0.1.6",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

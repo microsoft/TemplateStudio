@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Service.IdentityCommon",
+  "identity": "Service.IdentityCommon",
+  "shortName": "Service.IdentityCommon",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Assets\\DefaultIcon.png"
+      "path": "Param_ProjectName/Assets/DefaultIcon.png"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\StreamExtensions.cs"
+      "path": "Param_ProjectName.Core/Helpers/StreamExtensions.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\LoginResultType.cs"
+      "path": "Param_ProjectName.Core/Helpers/LoginResultType.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\User.cs"
+      "path": "Param_ProjectName.Core/Models/User.cs"
     }
   ],
   "symbols": {
@@ -51,7 +54,7 @@
         "version" : "4.0.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

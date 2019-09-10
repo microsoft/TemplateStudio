@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.MenuBar",
+  "identity": "Prism.Project.MenuBar",
+  "shortName": "Prism.Project.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,28 +20,28 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\IMenuNavigationService.cs"
+      "path": "Services/IMenuNavigationService.cs"
     },
     {
-      "path": ".\\Services\\MenuNavigationService.cs"
+      "path": "Services/MenuNavigationService.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellContentDialogViewModel.cs"
+      "path": "ViewModels/ShellContentDialogViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
+      "path": "ViewModels/ShellViewModel.cs"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml"
+      "path": "Views/ShellContentDialog.xaml"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml.cs"
+      "path": "Views/ShellContentDialog.xaml.cs"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.cs"
+      "path": "Views/ShellPage.xaml.cs"
     }
   ],
   "symbols": {

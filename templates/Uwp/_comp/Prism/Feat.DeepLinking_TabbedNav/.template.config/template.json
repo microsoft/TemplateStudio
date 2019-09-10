@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.DeepLinking.TabbedNav",
+  "identity": "Prism.DeepLinking.TabbedNav",
+  "shortName": "Prism.DeepLinking.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

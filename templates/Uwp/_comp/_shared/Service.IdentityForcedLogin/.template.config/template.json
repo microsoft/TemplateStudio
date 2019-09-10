@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Service.IdentityForcedLogin",
+  "identity": "Service.IdentityForcedLogin",
+  "shortName": "Service.IdentityForcedLogin",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,10 +20,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+      "path": "Param_ProjectName.Core/Services/IdentityService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.cs"
     }
   ],
   "symbols": {

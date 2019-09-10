@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Feature.ThemeSelection.Initialize",
+  "identity": "Prism.Feature.ThemeSelection.Initialize",
+  "shortName": "Prism.Feature.ThemeSelection.Initialize",
   "tags": {
     "language": "C#",
     "type": "item",

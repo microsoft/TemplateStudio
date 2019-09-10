@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddInkAnalyzer.VB",
+  "identity": "Page.Ink.AddInkAnalyzer.VB",
+  "shortName": "Page.Ink.AddInkAnalyzer.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkAsyncAnalyzer.vb"
+      "path": "Services/Ink/InkAsyncAnalyzer.vb"
     }
   ],
   "symbols": {

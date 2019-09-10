@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test App with MSTest",
+  "shortName": "Test App with MSTest",
   "groupIdentity": "wts.Testing.UnitTests.App.MSTest",
   "identity": "wts.Testing.UnitTests.App.MSTest",
   "description": "Add a project for unit tests against the app using MSTest.",
@@ -25,7 +27,7 @@
   "preferNameDirectory": true,
   "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj" }
+    { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.csproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -60,7 +62,7 @@
       "args": {
         "files" : "0"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add reference to the main UWP app",
@@ -71,7 +73,7 @@
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj",
         "specifiedPathIsTarget": "true"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -82,7 +84,7 @@
         "version" : "2.0.1",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -93,7 +95,7 @@
         "version" : "2.1.190606001",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -104,7 +106,7 @@
         "version" : "1.4.0",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -115,7 +117,7 @@
         "version" : "1.4.0",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Test.StyleCop.UnitTests.Core.NUnit",
+  "identity": "Test.StyleCop.UnitTests.Core.NUnit",
+  "shortName": "Test.StyleCop.UnitTests.Core.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core.Tests.NUnit\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.Core.Tests.NUnit/GlobalSuppressions.cs"
     }
   ],
   "symbols": {
@@ -37,7 +40,7 @@
         "version" : "1.0.2",
         "projectPath": ".\\Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

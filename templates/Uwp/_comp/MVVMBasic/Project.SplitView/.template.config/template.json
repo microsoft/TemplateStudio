@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.SplitView",
+  "identity": "MVVMBasic.Project.SplitView",
+  "shortName": "MVVMBasic.Project.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
