@@ -4,7 +4,7 @@
 		"prefix": "wts.template",
 		"body": [
 		"{",
-		"  \"$schema\": \"http://json.schemastore.org/template\",",
+		"  \"\\$schema\": \"http://json.schemastore.org/template\",",
 		"  \"author\": \"$1\",",
 		"  \"classifications\": [",
 		"    \"Universal\"",
