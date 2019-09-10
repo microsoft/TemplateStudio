@@ -31,7 +31,7 @@ Value: **Automatically report errors**
 
 When run it will now look like this:
 
-![](../resources/modifications/Settings_added_checkbox.png)
+![Partial screenshot of settings page showing new option](../resources/modifications/Settings_added_checkbox.png)
 
 But if you try and run it now you will get build errors as the ViewModel hasn't been updated to add the new property.
 
@@ -46,7 +46,7 @@ The generated code in includes a Singleton helper class to provide access to a s
 With this knowledge we can now add the new property for accessing our stored setting. We also need to add a new, awaitable initializer for the property too.
 Add the following to **SettingsViewModel.vb**
 
-```vbnet
+```vb
 Imports {YourAppName}.Helpers
 Imports System.Threading.Tasks
 
@@ -79,7 +79,7 @@ End Function
 
 Then change the `SwitchThemeCommand` property to match this:
 
-```vbnet
+```vb
 Public Property SwitchThemeCommand As ICommand
     Get
         If _switchThemeCommand Is Nothing Then
@@ -101,7 +101,7 @@ We must now update our uses of the ViewModel.
 
 In **SettingsPage.xaml.vb** change the `OnNavigatedTo()` method so that instead of calling the old Initialize method, like this:
 
-```vbnet
+```vb
 Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
     ViewModel.Initialize()
 End Sub
@@ -109,7 +109,7 @@ End Sub
 
 It now awaits the call to the new Initializer like this:
 
-```vbnet
+```vb
 Protected Overrides Async Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
     Await ViewModel.EnsureInstanceInitializedAsync()
 End Sub
@@ -119,7 +119,7 @@ End Sub
 
 In **SettingsPage.xaml.vb** change the constructor so that it handles the `OnLoaded` event and add the following event handler, like this:
 
-```vbnet
+```vb
 Public Sub SettingsPage()
     InitializeComponent()
     ViewModel.Initialize()
@@ -139,7 +139,7 @@ Everything is now complete and you can run the app and it will remember the valu
 If you want to access the property elsewhere in the app, ensure you have called `await ServiceLocator.Current.GetInstance(Of SettingsViewModel)().EnsureInstanceInitializedAsync();`. Then you can get or set the property with `ServiceLocator.Current.GetInstance(Of SettingsViewModel)().IsAutoErrorReportingEnabled`.
 For example:
 
-```vbnet
+```vb
 Try
     ...
 Catch  exc as Exception

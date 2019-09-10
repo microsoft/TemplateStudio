@@ -51,8 +51,8 @@ namespace Param_RootNamespace.BackgroundTasks
                 //// This sample initializes a timer that counts to 100 in steps of 10.  It updates Message each time.
 
                 //// Documentation:
-                ////      * General: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/support-your-app-with-background-tasks
-                ////      * Debug: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/debug-a-background-task
+                ////      * General: https://docs.microsoft.com/windows/uwp/launch-resume/support-your-app-with-background-tasks
+                ////      * Debug: https://docs.microsoft.com/windows/uwp/launch-resume/debug-a-background-task
                 ////      * Monitoring: https://docs.microsoft.com/windows/uwp/launch-resume/monitor-background-task-progress-and-completion
 
                 //// To show the background progress and message on any page in the application,

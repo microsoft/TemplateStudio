@@ -1,16 +1,18 @@
 # Update from Pivot to Horizontal WinUI NavigationView
-If you have an UWP project created with WTS with project type **Pivot** please follow these steps to update from Pivot to Horizontal Windows UI NavigationView. Code examples are shown for framework MVVMBasic, if you have doubts about how to adjust the code to the framework you are using, please generate a new Horizontal NavigationView project for reference with your framework or open an issue.
+
+If you have an UWP project created with WinTS and the project type **Pivot** please follow these steps to update from Pivot to Horizontal Windows UI NavigationView. Code examples are shown for framework MVVMBasic, if you have doubts about how to adjust the code to the framework you are using, please generate a new Horizontal NavigationView project for reference with your framework or open an issue.
 
 ## 1. Ensure target version in project properties
+
 Windows UI library requires 17763 as target version in the project.
 
-![](../resources/project-types/fu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -51,19 +53,17 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### C# code you will have to remove:
 
- - `KeyboardAccelerator` static members.
-
- - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
- - `SystemNavigationManager.BackRequested` and `NavigationService.NavigationFailed` and `NavigationService.Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - Remove unused `using statements`.
+- `KeyboardAccelerator` static members.
+- `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- `SystemNavigationManager.BackRequested` and `NavigationService.NavigationFailed` and `NavigationService.Navigated` events handlers registration code inside `ActivateAsync` method.
+- Remove unused `using statements`.
 
 ## 7. Remove Pivot classes
- - Remove PivotPage.xaml and PivotPage.xaml.cs frow Views folder.
- - Remove PivotViewModel.cs from ViewModels folder.
- - Remove PivotBehavior.cs from Behavior folder.
- - Remove IPivotPage.cs and PivotItemExtensions.cs from Helpers folder.
+
+- Remove PivotPage.xaml and PivotPage.xaml.cs frow Views folder.
+- Remove PivotViewModel.cs from ViewModels folder.
+- Remove PivotBehavior.cs from Behavior folder.
+- Remove IPivotPage.cs and PivotItemExtensions.cs from Helpers folder.
 
 ## 8. Add New ShellPage and ShellViewModel
 
@@ -277,6 +277,7 @@ namespace YourAppName.ViewModels
     }
 }
 ```
+
 **NavHelper.cs**
 
 ```csharp
@@ -304,8 +305,8 @@ namespace YourAppName.Helpers
             DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
     }
 }
-
 ```
+
 **Note:** If your project hasn´t settings page, set `IsSettingsVisible="True"` in ShellPage.xaml and delete Settings page code in ShellViewModel.cs.
 
 ## 9. Update AppxManifest
@@ -322,4 +323,5 @@ Open Package.appxmanifest file in your project with: Open With... -> XML (Text) 
 ```
 
 ## 10. Move page logic
+
 All pages that have logic in the Loaded Event or OnPivotSelectedAsync method have to be modified. You will have to move that logic to the OnNavigatedTo method. You will also have to move the logic from the OnPivotUnselectedAsync method to the OnNavigatedFrom method.

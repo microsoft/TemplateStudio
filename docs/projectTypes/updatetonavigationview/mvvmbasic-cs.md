@@ -1,18 +1,18 @@
 # Update from HamburgerMenu to WinUI NavigationView in MVVM Basic
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -35,13 +35,11 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### C# code you will have to remove:
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- `ActivationService_BackRequested` and `Frame_Navigated` methods.
+- Remove unused `using statements`.
 
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
-
- - Remove unused `using statements`.
-
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -137,7 +135,7 @@ namespace YourAppName.Services
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -351,11 +349,9 @@ The updated ShellPage will include the WinUI NavigationView and add the MenuItem
 
 ### XAML code you will have to remove:
 
- - xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
-
- - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
-
- - `HamburgerMenu` control.
+- xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
+- `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+- `HamburgerMenu` control.
 
 ### XAML code you will have to add:
 
@@ -368,11 +364,9 @@ xmlns:helpers="using:YourAppName.Helpers"
 xmlns:views="using:YourAppName.Views"
 ```
 
- - `winui:NavigationView` control.
-
- - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
+- `winui:NavigationView` control.
+- `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+- `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
 The resulting code should look like this:
 
@@ -390,7 +384,7 @@ The resulting code should look like this:
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-	
+
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="Loaded">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
@@ -403,7 +397,7 @@ The resulting code should look like this:
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-	ItemInvoked="OnItemInvoked"
+        ItemInvoked="OnItemInvoked"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
 
@@ -429,7 +423,7 @@ The resulting code should look like this:
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
-    </winui:NavigationView>    
+    </winui:NavigationView>
 </Page>
 ```
 
@@ -439,11 +433,11 @@ ShellViewModel will need the WinUI `NavigationView` instance and `KeyboardAccele
 
 ### C# code you will have to update (_Implementation below_):
 
- - Add the `navigationView` control and `KeyboardAccelerators` to ViewModel `Initialize` call.
+- Add the `navigationView` control and `KeyboardAccelerators` to ViewModel `Initialize` call.
 
 The resulting code should look like this:
 
- ```csharp
+```csharp
 using System;
 using YourAppName.ViewModels;
 using Windows.UI.Xaml.Controls;
@@ -460,8 +454,8 @@ namespace YourAppName.Views
             DataContext = ViewModel;
             ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
         }
-	
-	private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
@@ -477,29 +471,20 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 
 ### C# code you will have to remove:
 
- - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
- - private fields `_lastSelectedItem` and `_itemInvokedCommand`
-
- - `IsPaneOpen` observable property.
-
- - `DisplayMode` observable property.
-
- - ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
-
- - `OpenPaneCommand`.
-
- - `ItemSelectedCommand` and handler method `ItemSelected`.
-
- - `StateChangedCommand` and handler method `GoToState`.
-
- - `Navigate` and `ChangeSelected` methods.
-
- - Remove unused using statements.
+- private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- private fields `_lastSelectedItem` and `_itemInvokedCommand`
+- `IsPaneOpen` observable property.
+- `DisplayMode` observable property.
+- ObservableCollections properties for `PrimaryItems` and `SecondaryItems`.
+- `OpenPaneCommand`.
+- `ItemSelectedCommand` and handler method `ItemSelected`.
+- `StateChangedCommand` and handler method `GoToState`.
+- `Navigate` and `ChangeSelected` methods.
+- Remove unused using statements.
 
 ### C# code you will have to add _(implementation below)_:
 
- - Add the following new usings statements:
+- Add the following new usings statements:
 
 ```csharp
 using System.Collections.Generic;
@@ -508,19 +493,15 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
-
- - `ItemInvokedCommand` and handler method `OnItemInvoked`.
-
- - `OnLoaded`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+- Add `_keyboardAccelerators`, `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
+- `ItemInvokedCommand` and handler method `OnItemInvoked`.
+- `OnLoaded`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 ### C# code you will have to update _(implementation below)_:
 
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - `Initialize` method with the implementation below.
-
- - `Frame_Navigated` method with the implementation below.
+- `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
+- `Initialize` method with the implementation below.
+- `Frame_Navigated` method with the implementation below.
 
 The resulting code should look like this:
 
@@ -625,7 +606,7 @@ public class ShellViewModel : Observable
 
 ### C# code you will have to update:
 
- - GoBack method implementation.
+- GoBack method implementation.
 
 The resulting method code should look like this:
 
@@ -652,15 +633,11 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 
 ### XAML code you will have to remove:
 
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
+- **xmln namespaces** for fcu and cu.
+- Textblock **TitlePage**
+- ContentArea Grid **RowDefinitions**
+- VisualStateManager **VisualStateGroups**.
+- **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
 
@@ -678,7 +655,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>
@@ -694,9 +671,8 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 
 If your project contains a SettingsPage you must perform the following steps:
 
- - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
- - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
 
 ```csharp
 if (args.IsSettingsInvoked)
@@ -706,12 +682,12 @@ if (args.IsSettingsInvoked)
 }
 ```
 
- - On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
 
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = _navigationView.SettingsItem as NavigationViewItem;
-	return;
+    Selected = _navigationView.SettingsItem as NavigationViewItem;
+    return;
 }
 ```

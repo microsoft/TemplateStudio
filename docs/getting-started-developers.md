@@ -8,10 +8,10 @@ If you just want to take advantage from Windows Template Studio extension, check
 
 Under the [code](../code/) folder, the repo have different solutions to aid developers get focused on certain development areas:
 
-* **Big.sln**: This is the solution which contains all the projects available, including test projects.
-* **Installer.sln**: This solution is focused on the Visual Studio extension, have the extension project and all the dependencies and is thought to run the extension in the Visual Studio Experimental IDE.
-* **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the Windows Template Studio wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
-* **Test.sln**: This solution is used to work with the project integration tests.
+- **Big.sln**: This is the solution which contains all the projects available, including test projects.
+- **Installer.sln**: This solution is focused on the Visual Studio extension, have the extension project and all the dependencies and is thought to run the extension in the Visual Studio Experimental IDE.
+- **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the Windows Template Studio wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
+- **Test.sln**: This solution is used to work with the project integration tests.
 
 ## Running the Extension Locally
 
@@ -52,69 +52,67 @@ So we encourage to use this solution for the general template authoring or code 
 
 ### Accesible UI
 
-
 Both the UI and the templates (generated code) must be accesible by definition. If you are going to collaborate in this space, please, be sure you have verified all accesibility rules defined in [Accessibility checklist](accesibility.md).
 
 ## Inside the Code folder
 
 Following are described the contents for each folder:
 
-* [_tools](../code/_tools): tooling required for testing / validations.
-* [src](../code/src): solution source code
-  * [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
-  * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
-  * [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
-* [test](../code/test)
-  * [Fakes](../code/test/Fakes): Common test elements.
-  * [Templates.Test](../code/test/Templates.Test): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
-  * [UI.Test](../code/test/UI.Test): Contains unit test for UI assembly.
-  * [VsEmulator](../code/test/VsEmulator): test application able to run End-To-End the generation using the local templates repository without deploying the VSIX to VS Experimental instance.
+- [_tools](../code/_tools): tooling required for testing / validations.
+- [src](../code/src): solution source code
+  - [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
+  - [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
+  - [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
+- [test](../code/test)
+  - [Fakes](../code/test/Fakes): Common test elements.
+  - [Templates.Test](../code/test/Templates.Test): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
+  - [UI.Test](../code/test/UI.Test): Contains unit test for UI assembly.
+  - [VsEmulator](../code/test/VsEmulator): test application able to run End-To-End the generation using the local templates repository without deploying the VSIX to VS Experimental instance.
 
 ## Test execution
 
 The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run.
 
-* AppVeyor 'CIBuild' Build (CI):
-  * Core.Tests
-  * UI.Test
-  * Templates.Tests
-    * ExecutionSet=MinimumCodebehind
-    * ExecutionSet=MinimumMVVMLight
-    * ExecutionSet=MinimumMVVMBasic
-    * ExecutionSet=MinimumCaliburnMicro
-    * ExecutionSet=MinimumPrism
-    * ExecutionSet=TemplateValidation
+- AppVeyor 'CIBuild' Build (CI):
+  - Core.Tests
+  - UI.Test
+  - Templates.Tests
+    - ExecutionSet=MinimumCodebehind
+    - ExecutionSet=MinimumMVVMLight
+    - ExecutionSet=MinimumMVVMBasic
+    - ExecutionSet=MinimumCaliburnMicro
+    - ExecutionSet=MinimumPrism
+    - ExecutionSet=TemplateValidation
 
-* VSO 'Templates.Test.Full'	Build (Full Tests):
-  * Core.Tests
-  *	UI.Tests
-  *	Templates.Test
-      * ExecutionSet=MinimumCodebehind
-      * ExecutionSet=MinimumMVVMLight
-      * ExecutionSet=MinimumMVVMBasic
-      * ExecutionSet=MinimumCaliburnMicro
-      * ExecutionSet=MinimumPrism
-      * ExecutionSet=BuildVBStyle
-      * ExecutionSet=TemplateValidation
-      * ExecutionSet=BuildRightClickWithLegacy
-      * ExecutionSet=BuildMVVMBasic
-      * ExecutionSet=BuildCodeBehind
-      * ExecutionSet=BuildMVVMLight
-      * ExecutionSet=BuildCaliburnMicro
-      * ExecutionSet=BuildPrism
+- VSO 'Templates.Test.Full' Build (Full Tests):
+  - Core.Tests
+  - UI.Tests
+  - Templates.Test
+    - ExecutionSet=MinimumCodebehind
+    - ExecutionSet=MinimumMVVMLight
+    - ExecutionSet=MinimumMVVMBasic
+    - ExecutionSet=MinimumCaliburnMicro
+    - ExecutionSet=MinimumPrism
+    - ExecutionSet=BuildVBStyle
+    - ExecutionSet=TemplateValidation
+    - ExecutionSet=BuildRightClickWithLegacy
+    - ExecutionSet=BuildMVVMBasic
+    - ExecutionSet=BuildCodeBehind
+    - ExecutionSet=BuildMVVMLight
+    - ExecutionSet=BuildCaliburnMicro
+    - ExecutionSet=BuildPrism
 
+- VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
+  - Templates.Test
+    - ExecutionSet=BuildOneByOneMVVMBasic
+    - ExecutionSet=BuildOneByOneCodeBehind
+    - ExecutionSet=BuildOneByOneMVVMLight
+    - ExecutionSet=BuildOneByOneCaliburnMicro
+    - ExecutionSet=BuildOneByOnePrism
 
-* VSO 'Templates.Test.OneByOne'	Build (OneByOne Tests):
-  *	Templates.Test
-    * ExecutionSet=BuildOneByOneMVVMBasic
-    * ExecutionSet=BuildOneByOneCodeBehind
-    * ExecutionSet=BuildOneByOneMVVMLight
-    * ExecutionSet=BuildOneByOneCaliburnMicro
-    * ExecutionSet=BuildOneByOnePrism
-
-* VSO 'Templates.Test.Wack'	Build (Wack Tests):
-  * Templates.Test
-    * ExecutionSet=LongRunning
+- VSO 'Templates.Test.Wack' Build (Wack Tests):
+  - Templates.Test
+    - ExecutionSet=LongRunning
 
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:
@@ -123,28 +121,29 @@ To execute this script locally use the following powershell command:
 
 where
 
-* `<wts directory>` : Directory where WTS is cloned
-* `<output directory>`: Directory where test xml result files will be generated
+- `<wts directory>` : Directory where WinTS is cloned
+- `<output directory>`: Directory where test xml result files will be generated
 
 ## Core
-Windows Template Studio relies on Core Template Studio for template synchronization and template composition, generation and postaction. Core Template Studio has it's own Github repository (https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project Web Template Studio (https://github.com/Microsoft/WebTemplateStudio).
+
+Windows Template Studio relies on Core Template Studio for template synchronization and template composition, generation and postaction. Core Template Studio has it's own Github repository [github.com/Microsoft/CoreTemplateStudio](https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project Web Template Studio [github.com/Microsoft/WebTemplateStudio](https://github.com/Microsoft/WebTemplateStudio).
 
 Core Template Studio is integrated into Windows Template Studio using a git submodule under the folder (`../code/CoreTemplateStudio`).
 The submodule points to a specific commit in Core Template Studio, that you can see in github:
 
- ![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
+![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
 
-When you clone WTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
+When you clone WinTS you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from Core Template Studio.
 When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
 
-Changes on Core Template Studio should be done on the Core Template Studio repos. 
+Changes on Core Template Studio should be done on the Core Template Studio repos.
 In WinTS, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
 
+---
 
-## Table of Contents
+## Learn more
 
-* [Installing / Using the extension](getting-started-extension.md)
-* [Using and extending your file->new](getting-started-endusers.md)
-* [**Getting started with the generator codebase**](getting-started-developers.md)
-* [Authoring Templates](templates.md)
-* [Concepts of Windows Template Studio](readme.md)
+- [Understanding and authoring Templates](./templates.md)
+- [Recording usage Telemetry](./telemetry.md)
+- [Ensuring generated code is accessible](./accessibility.md)
+- [All docs](./readme.md)

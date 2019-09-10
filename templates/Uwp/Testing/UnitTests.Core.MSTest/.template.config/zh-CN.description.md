@@ -2,4 +2,4 @@
 
 此工具可将新项目添加到核心库代码单元测试托管解决方案中。
 
-[了解有关在单元测试中使用 MSTest framework 的更多信息。](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[了解有关在单元测试中使用 MSTest framework 的更多信息。](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
