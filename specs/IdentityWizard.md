@@ -45,7 +45,7 @@ When a identity feature will be selected, a new step being available in Wizard t
 
 ![](./resources/identity/NoAzureSubscriptions.png)
 
-### 3.1 Chose AAD
+### 3.1 Chose existing App Registration
 
  - First Azure Active directory tenant selected by default.
  - App registrations in combobox will be filtered by the selected Azure Active Directory.
