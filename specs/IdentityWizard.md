@@ -8,19 +8,19 @@ When a identity feature will be selected, a new step being available in Wizard t
 
 ## Optional Login and Forced Login templates
 
-### 1. Select feature
+### 1. Select service
 
- - New Identity features category.
- - Two new login features, one for forced login in the app, one for optional login in the app. The difference between those two features is how the generated app will provide login/logout to the end user.
- - The two features must be mutually exclusive, if you add one you cannot add the other.
+ - New Identity services category.
+ - Two new login services, one for forced login in the app, one for optional login in the app. The difference between those two features is how the generated app will provide login/logout to the end user.
+ - The two services must be mutually exclusive, if you add one you cannot add the other.
 
 
 
 ![](./resources/identity/FeatureNoSelected.png)
 
-### 2. One of the identity features added
+### 2. One of the identity services added
 
- - New step “Identity configuration” in wizard is added that allows to configure the identity feature selected.
+ - New step “Identity configuration” in wizard is added that allows to configure the identity services selected.
  - Next button available.
  - Microsoft.Identity.Client (MSAL) license added.
  - At this point, if you choose to create (without configuring identity) we would generate the app with client_id set to xxxx and a TODO that tells you the steps necessary on Azure to create the application. The same thing happens if you do not finish the identity configuration explained below.
