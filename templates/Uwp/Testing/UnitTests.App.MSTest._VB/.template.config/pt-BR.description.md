@@ -2,4 +2,4 @@
 
 A inclusão desse recurso adiciona um projeto novo à solução que está configurada para hospedar testes de unidade do código no aplicativo principal.
 
-[Saiba mais sobre como usar a framework do MSTest em testes de unidade.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Saiba mais sobre como usar a framework do MSTest em testes de unidade.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

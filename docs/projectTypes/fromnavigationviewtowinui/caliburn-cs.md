@@ -1,20 +1,23 @@
 # Update NavigationView to WinUI in MVVMBasic apps
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **CaliburnMicro**  please follow these steps to update from NavigationView to Windows UI NavigationView:
+
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **CaliburnMicro** please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
-Windows UI library requires 17763 as target version in the project.
 
-![](../../resources/project-types/fu-min-oct19-target.png)
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
+
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
 Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
+
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -32,16 +35,12 @@ Remove the code to manage back navigation from ActivationService, this code will
 
 ### C# code you will have to remove:
 
- - `KeyboardAccelerator` static members.
+- `KeyboardAccelerator` static members.
+- `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnFrameNavigated` methods.
+- `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+- Remove unused `using statements`.
 
- - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnFrameNavigated` methods.
-
- - `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - Remove unused `using statements`.
-
-
-The resulting code should look like this: 
+The resulting code should look like this:
 
 (Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
@@ -66,7 +65,7 @@ namespace YourAppName.Services
     {
         private readonly WinRTContainer _container;
         private readonly Type _defaultNavItem;
-        private readonly Lazy<UIElement> _shell;        
+        private readonly Lazy<UIElement> _shell;
 
         public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
@@ -157,16 +156,18 @@ namespace YourAppName.Services
 ```
 
 ## 5. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
+
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
+
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -324,7 +325,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -358,27 +359,25 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
 ### Xaml code you will have to add (_Implementation below_):
 
- - `i`, `ic`, `winui` and `behaviors` namespaces in page declaration.
-
- - Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
-
- - Add `NavigationViewHeaderBehavior` with `DefaultHeader` and `DefaultHeaderTemplate` properties to NavigationView behaviors.
+- `i`, `ic`, `winui` and `behaviors` namespaces in page declaration.
+- Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
+- Add `NavigationViewHeaderBehavior` with `DefaultHeader` and `DefaultHeaderTemplate` properties to NavigationView behaviors.
 
 ### Xaml code you will have to update (_Implementation below_):
 
- - Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
+- Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
 
 ### Xaml code you will have to remove:
 
- - `Header` and `HeaderTemplate` properties from NavigationView.
+- `Header` and `HeaderTemplate` properties from NavigationView.
 
- The resulting code should look like this:
+The resulting code should look like this:
 
 ```xml
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -430,29 +429,25 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
 ### C# code you will have to add (_Implementation below_):
 
- - Add the following using statement:
- 
+- Add the following using statement:
+
 ```csharp
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `WinUI.` namespace alias to `NavigationView` Data Type.
+- Add `WinUI.` namespace alias to `NavigationView` Data Type.
 
 ### C# code you will have to remove:
 
- - Remove `HideNavViewBackButton` method.
-
- - Remove from the page constructor `HideNavViewBackButton` call.
-
- - Remove from the page constructor `KeyboardAccelerators` additions.
-
- - Remove unused using statements.
+- Remove `HideNavViewBackButton` method.
+- Remove from the page constructor `HideNavViewBackButton` call.
+- Remove from the page constructor `KeyboardAccelerators` additions.
+- Remove unused using statements.
 
 ### C# code you will have to update (_Implementation below_):
 
- - Add `KeyboardAccelerators` collection to ViewModel Initialize call.
-
- - Call to `navigationViewHeaderBehavior` `Initialize` from CreateNavigationService with `navigationService` as parameter
+- Add `KeyboardAccelerators` collection to ViewModel Initialize call.
+- Call to `navigationViewHeaderBehavior` `Initialize` from CreateNavigationService with `navigationService` as parameter
 
 The resulting code should look like this:
 
@@ -484,7 +479,7 @@ namespace YourAppName.Views
         {
             return navigationView;
         }
-        
+
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
@@ -500,7 +495,7 @@ namespace YourAppName.Views
 
 ### C# code you will have to add (_Implementation below_):
 
- - Add the following new usings statements:
+- Add the following new usings statements:
 
 ```csharp
 using Windows.System;
@@ -508,26 +503,20 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
-
- - Add `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator` and `IsBackEnabled` members.
-
- - Add `_altLeftKeyboardAccelerator` and `_backKeyboardAccelerator` to page in OnInitialize method.
- 
- - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
-
- - Subscribe to `BackRequested` event handler in Initialize.
-
- - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
+- Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
+- Add `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator` and `IsBackEnabled` members.
+- Add `_altLeftKeyboardAccelerator` and `_backKeyboardAccelerator` to page in OnInitialize method.
+- Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
+- Subscribe to `BackRequested` event handler in Initialize.
+- Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 
 ### C# code you will have to update (_Implementation below_):
 
- - Make _navigationService as static.
-
+- Make _navigationService as static.
 
 ### C# code you will have to remove:
 
- - Remove unused using statements.
+- Remove unused using statements.
 
 The resulting code should look like this:
 

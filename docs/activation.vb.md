@@ -8,7 +8,7 @@
 The ActivationService is in charge of handling the applications initialization and activation.
 
 With the method `ActivateAsync()` it has one common entry point that is called from the app lifecycle events `OnLaunched`, `OnActivated` and `OnBackgroundActivated`.
-For more information on application lifecycle and its events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle).
+For more information on application lifecycle and its events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle).
 
 ## ActivationHandlers
 
@@ -54,7 +54,7 @@ The following flowchart shows the Activation proccess that starts with one of th
 
 Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in ActivationService.ActivateAsync().
 
-![](resources/activation/AppLifecycleEvent.png)
+![app lifecycle steps](resources/activation/AppLifecycleEvent.png)
 
 ### ActivateAsync
 
@@ -62,7 +62,7 @@ The first calls in ActivateAsync are InitializeAsync() and the ShellCreation in 
 
 After this first block, HandleActivation is called (more details below).
 
-![](resources/activation/ActivateAsync.png)
+![activation flow](resources/activation/ActivateAsync.png)
 
 **IsInteractive**
 
@@ -80,19 +80,18 @@ StartupAsync contains initializations of other classes that do not need to happe
 
 HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. Before that creates a DefaultActivationHandler and execute if it possible (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
 
-![](resources/activation/HandleActivation.png)
+![flow for handling activation](resources/activation/HandleActivation.png)
 
 ## Sample: Add activation from File Association
 
 We are going to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader to our app.
 
-The following code is thought to be added in a WTS MVVM Basic app.
+The following code is thought to be added in a WinTS MVVM Basic app.
 
 For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 
-
-
 ### 1. Add Page and ViewModel to show the opened file
+
 Add the following files to your project
 
 **Views/MarkdownPage.xaml**
@@ -208,12 +207,11 @@ You also should add a string resource for Markdown Title.
 </data>
 ```
 
-
 ### 2. Set up File Association Activation
 
 Add a file type association declaration in the application manifest, to allow the App to be shown as a default handler for markdown files.
 
-![](resources/activation/DeclarationFileAssociation.PNG)
+![screenshot of package.appxmanifest editor showing file type extension being set](resources/activation/DeclarationFileAssociation.PNG)
 
 Handle the file activation event by implementing the override of OnFileActivated:
 
@@ -225,6 +223,7 @@ Protected Overrides Async Sub OnFileActivated(args As FileActivatedEventArgs)
     Await ActivationService.ActivateAsync(args)
 End Sub
 ```
+
 ### 3. Add a FileAssociationService
 
 Add a FileAssociationService to your project that handles activation from files. It derives from `ApplicationHandler<T>`.
@@ -243,8 +242,7 @@ Friend Class FileAssociationService
 End Class
 ```
 
-
-Override HandleInternalAsync(), to evaluate the event args, and take action:
+Override `HandleInternalAsync()`, to evaluate the event args, and take action:
 
 ```vb
 Imports YourAppName.Activation
@@ -273,3 +271,12 @@ Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHa
     Yield Singleton(Of FileAssociationService).Instance
 End Function
 ```
+
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling navigation within the app](./navigation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)

@@ -4,14 +4,14 @@
 
 ### Prerequisites
 
-Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
+Windows Template Studio (WinTS) installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
 
-* Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WTS with the latest Visual Studio Update.
-* Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
-* .Net Framework 4.7
-* Windows Template Studio extension.  You have two ways of aquiring the extension.
-   * Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
-   * Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
+- Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
+- Windows 10, version 1803 (version 10.0.17134.0) or later
+- .Net Framework 4.7
+- Windows Template Studio extension.  You have two ways of aquiring the extension.
+  - Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
+  - Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
 
 ## Public Release instructions
 
@@ -22,14 +22,13 @@ Windows Template Studio installs into your existing Windows 10 app development e
 on Visual Studio 2019 you can use the search box or the filters to get to the Windows Template Studio project template
 ![New Project](resources/vsix/newProject2019.PNG)
 
-3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → New page or New feature from the context menu. For more info on adding new items see [here](newitem.md).
+3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
-
 
 ## Nightly / Pre-release feeds for Windows Template Studio
 
-* **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
-* **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
+- **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
+- **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 
 ### Nightly / Pre-release instructions
 
@@ -55,10 +54,11 @@ You can start working with Windows Template Studio by cloning [our repo](https:/
 
 If you want to have updates from in-progress changes.  This feed will have the result of the daily dev-branch integration so expect some instability. This extension can be installed side by side with the official and pre-release, anyway, installing this extension is at your own risk.
 
-## Table of Contents
+---
 
-* [**Installing / Using the extension**](getting-started-extension.md)
-* [Using and extending your file->new](getting-started-endusers.md)
-* [Concepts of Windows Template Studio](readme.md)
-* [Getting started with the generator codebase](getting-started-developers.md)
-* [Authoring Templates](templates.md)
+## Learn more
+
+- [Core concepts](./concepts.md)
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [All docs](./readme.md)

@@ -2,4 +2,4 @@
 
 Se si include questa funzionalità, un nuovo progetto viene aggiunto alla soluzione configurata per l'hosting di unit test del codice nella libreria principale.
 
-[Scopri di più sull'uso del framework MSTest negli unit test.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Scopri di più sull'uso del framework MSTest negli unit test.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

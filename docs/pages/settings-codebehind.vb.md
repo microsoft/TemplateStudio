@@ -25,7 +25,7 @@ Value: **Automatically report errors**
 
 When run it will now look like this:
 
-![](../resources/modifications/Settings_added_checkbox.png)
+![Partial screenshot of settings page showing new option](../resources/modifications/Settings_added_checkbox.png)
 
 But if you try and run it now you will get build errors as the code behind file hasn't been updated to add the new property and event handlers.
 
@@ -35,7 +35,7 @@ If using the Blank or NavigationView project types.
 
 In **SettingsPage.xaml.vb**, change the `OnNavigatedTo` method to be like this
 
-```vbnet
+```vb
 Protected Overrides Async Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
     Initialize()
     IsAutoErrorReportingEnabled = Await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync(Of Boolean)(NameOf(IsAutoErrorReportingEnabled))
@@ -46,7 +46,7 @@ If using the Pivot&Tabs project type.
 
 In **SettingsPage.xaml.vb**, change the `OnLoaded` and `Initialize` methods to be like this
 
-```vbnet
+```vb
 Private Async Sub OnLoaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
     Await InitializeAsync()
 End Sub
@@ -59,7 +59,7 @@ End Function
 
 For all project types, also add the following to **SettingsPage.xaml.vb**.
 
-```vbnet
+```vb
 Imports {YourAppName}.Helpers
 
 Private _isAutoErrorReportingEnabled As Boolean
@@ -87,6 +87,6 @@ End Sub
 
 If you want to access the property elsewhere in the app, the easiest way to do this is to read the setting directly. The code below reads the value into a variable called `isEnabled` which you can then query as needed.
 
-```vbnet
+```vb
 Dim isEnabled = Await Helpers.SettingsStorageExtensions.ReadAsync(Of Boolean)(Windows.Storage.ApplicationData.Current.LocalSettings, "IsAutoErrorReportingEnabled")
 ```

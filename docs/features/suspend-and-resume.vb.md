@@ -8,6 +8,7 @@ The Suspend And Resume Feature allows you to save App data on suspension and bri
 ## Understanding the code
 
 ### SuspendAndResumeService.vb
+
 Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page to save App data.
 
 In case the App is terminated during supension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can suscribe to this event from your current Page to apply restored data.
@@ -17,17 +18,21 @@ To do this SuspendAndResumeService is implemented as ActivationHandler, that han
 In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario.
 
 ### SuspensionState.vb
+
 SuspensionState holds the App data and the SuspensionDate that indicates when this data was stored.
 
 ## Using SuspendAndResumeService
+
 In this example we are going to show how to save data on App suspension and restore it in case the App was terminated during suspension.
 
-### **1. Create a new app with two pages**
-Create a new application using WTS with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
+### 1. Create a new app with two pages
+
+Create a new application using WinTS with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
 
 The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes.
 
-### **2. Add a posibility to enter data on the DataPage**
+### 2. Add a posibility to enter data on the DataPage
+
 To enter data on the DataPage add the following TextBox and backing field.
 
 **`CodeBehind`**
@@ -42,6 +47,7 @@ Create a button in DataPage.xaml:
     HorizontalAlignment="Left"
     VerticalAlignment="Top"  />
 ```
+
 Add a Data property to DataPage.xaml.vb:
 
 ```vb
@@ -71,7 +77,6 @@ Create a button in DataPage.xaml:
     VerticalAlignment="Top"  />
 ```
 
-
 Add a Data property to DataViewModel.vb:
 
 ```vb
@@ -88,7 +93,8 @@ Public Property Data As String
 End Property
 ```
 
-### **2. Subscribe to OnBackgroundEntering and OnDataRestored to save and restore data**
+### 2. Subscribe to OnBackgroundEntering and OnDataRestored to save and restore data
+
 Subscribe to the `OnBackgroundEntering` and  `OnDataRestored` events to save and restore the data to `SuspensionState.Data` when the application enters background state or be restored from suspension.
 
 **`CodeBehind`**
@@ -143,7 +149,8 @@ Private Sub OnDataRestored(sender As Object, e As SuspendAndResumeArgs)
 End Sub
 ```
 
-### **3. Test from Visual Studio**
+### 3. Test from Visual Studio
+
 App suspension with termination can be simulated in Visual Studio using the LifeCycle Event **Suspend and shutdown**. To simulate resume, you just restart the application again.
 
-![](../resources/suspend-and-resume/SuspendAndShutdown.png)
+![Screenshot of Visual Studio Lifecycle Events dropdown](../resources/suspend-and-resume/SuspendAndShutdown.png)
