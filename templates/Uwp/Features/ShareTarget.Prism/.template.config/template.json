@@ -25,25 +25,25 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\SharedDataStorageItemsViewModel.cs"
+      "path": "ViewModels/SharedDataStorageItemsViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataViewModelBase.cs"
+      "path": "ViewModels/SharedDataViewModelBase.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataWebLinkViewModel.cs"
+      "path": "ViewModels/SharedDataWebLinkViewModel.cs"
     },
     {
-      "path": ".\\Helpers\\ShareOperationExtensions.cs"
+      "path": "Helpers/ShareOperationExtensions.cs"
     },
     {
-      "path": ".\\ViewModels\\ShareTargetFeatureViewModel.cs"
+      "path": "ViewModels/ShareTargetFeatureViewModel.cs"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+      "path": "Views/ShareTargetFeaturePage.xaml"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml.cs"
+      "path": "Views/ShareTargetFeaturePage.xaml.cs"
     }
   ],
   "symbols": {

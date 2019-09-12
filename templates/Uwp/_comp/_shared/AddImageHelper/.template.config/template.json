@@ -20,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\ImageHelper.cs"
+      "path": "Helpers/ImageHelper.cs"
     }
   ],
   "symbols": {

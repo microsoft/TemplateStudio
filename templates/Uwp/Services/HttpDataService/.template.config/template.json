@@ -29,7 +29,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\HttpDataService.cs"
+      "path": "Param_ProjectName.Core/Services/HttpDataService.cs"
     }
   ],
   "symbols": {

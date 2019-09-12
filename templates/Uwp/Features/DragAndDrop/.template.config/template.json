@@ -26,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\DragAndDrop\\DropConfiguration.cs"
+      "path": "Services/DragAndDrop/DropConfiguration.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\ListViewDropConfiguration.cs"
+      "path": "Services/DragAndDrop/ListViewDropConfiguration.cs"
     }
   ],
   "symbols": {

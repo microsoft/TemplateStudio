@@ -17,7 +17,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.csproj" }
+    { "path": "Param_ProjectName.Core/Param_ProjectName.Core.csproj" }
   ],
   "symbols": {
     "wts.projectName": {

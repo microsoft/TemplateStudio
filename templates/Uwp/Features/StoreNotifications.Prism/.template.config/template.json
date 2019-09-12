@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\StoreNotificationsFeatureService.cs"
+      "path": "Services/StoreNotificationsFeatureService.cs"
     },
     {
-      "path": ".\\Services\\IStoreNotificationsFeatureService.cs"
+      "path": "Services/IStoreNotificationsFeatureService.cs"
     }
   ],
   "symbols": {

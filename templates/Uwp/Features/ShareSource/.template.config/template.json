@@ -25,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\ShareSourceFeatureData.cs"
+      "path": "Models/ShareSourceFeatureData.cs"
     },
     {
-      "path": ".\\Models\\ShareSourceFeatureItem.cs"
+      "path": "Models/ShareSourceFeatureItem.cs"
     },
     {
-      "path": ".\\Helpers\\DataRequestExtensions.cs"
+      "path": "Helpers/DataRequestExtensions.cs"
     }
   ],
   "symbols": {

@@ -26,7 +26,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj" }
+    { "path": "Param_ProjectName.Core.Tests.xUnit/Param_ProjectName.Core.Tests.xUnit.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {

@@ -27,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SuspendAndResumeService.vb"
+      "path": "Services/SuspendAndResumeService.vb"
     },
     {
-      "path": ".\\Services\\SuspendAndResumeArgs.vb"
+      "path": "Services/SuspendAndResumeArgs.vb"
     },
     {
-      "path": ".\\Services\\SuspensionState.vb"
+      "path": "Services/SuspensionState.vb"
     }
   ],
   "symbols": {

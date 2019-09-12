@@ -24,10 +24,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName/GlobalSuppressions.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.Core/GlobalSuppressions.cs"
     }
   ],
   "symbols": {

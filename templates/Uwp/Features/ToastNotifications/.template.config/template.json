@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.cs"
+      "path": "Services/ToastNotificationsFeatureService.cs"
     },
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.Samples.cs"
+      "path": "Services/ToastNotificationsFeatureService.Samples.cs"
     }
   ],
   "symbols": {

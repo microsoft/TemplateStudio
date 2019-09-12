@@ -2,4 +2,4 @@
 
 Bu özellik dahil edildiğinde Çekirdek kitaplığındaki kodun Birim testlerini barındıracak şekilde ayarlanmış çözüme yeni bir proje eklenir.
 
-[Birim testlerinde MSTest framework kullanma hakkında daha fazla bilgi edinin.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Birim testlerinde MSTest framework kullanma hakkında daha fazla bilgi edinin.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

@@ -27,7 +27,7 @@
   "preferNameDirectory": true,
   "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj" }
+    { "path": "Param_ProjectName.Tests.WinAppDriver/Param_ProjectName.Tests.WinAppDriver.csproj" }
   ],
   "symbols": {
     "wts.projectName": {

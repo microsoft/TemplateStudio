@@ -19,25 +19,25 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\EventHandlers\\Ink\\AddStrokeEventArgs.vb"
+      "path": "EventHandlers/Ink/AddStrokeEventArgs.vb"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\CopyPasteStrokesEventArgs.vb"
+      "path": "EventHandlers/Ink/CopyPasteStrokesEventArgs.vb"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\MoveStrokesEventArgs.vb"
+      "path": "EventHandlers/Ink/MoveStrokesEventArgs.vb"
     },
     {
-      "path": ".\\EventHandlers\\Ink\\RemoveEventArgs.vb"
+      "path": "EventHandlers/Ink/RemoveEventArgs.vb"
     },
     {
-      "path": ".\\Services\\Ink\\InkStrokesService.vb"
+      "path": "Services/Ink/InkStrokesService.vb"
     },
     {
-      "path": ".\\Services\\Ink\\InkFileService.vb"
+      "path": "Services/Ink/InkFileService.vb"
     },
     {
-      "path": ".\\Services\\Ink\\InkPointerDeviceService.vb"
+      "path": "Services/Ink/InkPointerDeviceService.vb"
     }
   ],
   "symbols": {

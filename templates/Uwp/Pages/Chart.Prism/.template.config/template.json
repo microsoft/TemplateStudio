@@ -28,16 +28,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml"
+      "path": "Param_ProjectName/Views/ChartViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/ChartViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\ViewModels\\ChartViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/ChartViewViewModel.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.cs"
+      "path": "Param_ProjectName.Core/Models/DataPoint.cs"
     }
   ],
   "symbols": {

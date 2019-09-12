@@ -19,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.cs"
     }
   ],
   "symbols": {

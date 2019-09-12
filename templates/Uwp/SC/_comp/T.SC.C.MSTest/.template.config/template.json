@@ -21,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core.Tests.MSTest\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.Core.Tests.MSTest/GlobalSuppressions.cs"
     }
   ],
   "symbols": {

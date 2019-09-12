@@ -26,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\FirstRunDisplayService.vb"
+      "path": "Services/FirstRunDisplayService.vb"
     },
     {
-      "path": ".\\Views\\FirstRunDialog.xaml"
+      "path": "Views/FirstRunDialog.xaml"
     },
     {
-      "path": ".\\Views\\FirstRunDialog.xaml.vb"
+      "path": "Views/FirstRunDialog.xaml.vb"
     }
   ],
   "symbols": {

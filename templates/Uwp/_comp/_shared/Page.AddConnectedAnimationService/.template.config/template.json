@@ -19,10 +19,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ConnectedAnimationService.cs"
+      "path": "Services/ConnectedAnimationService.cs"
     },
     {
-      "path": ".\\Services\\IConnectedAnimationService.cs"
+      "path": "Services/IConnectedAnimationService.cs"
     }
   ],
   "symbols": {

@@ -29,7 +29,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Settings.XamlStyler"
+      "path": "Param_ProjectName/Settings.XamlStyler"
     }
   ],
   "symbols": {

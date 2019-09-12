@@ -23,7 +23,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
+      "path": "Param_ProjectName.WebApi/Param_ProjectName.WebApi.csproj"
     }
   ],
   "symbols": {

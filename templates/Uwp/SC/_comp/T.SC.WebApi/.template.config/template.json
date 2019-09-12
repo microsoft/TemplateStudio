@@ -21,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.WebApi\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.WebApi/GlobalSuppressions.cs"
     }
   ],
   "symbols": {

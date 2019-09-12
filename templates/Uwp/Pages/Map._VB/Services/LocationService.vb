@@ -20,7 +20,7 @@ Namespace Services
         End Function
 
         Public Async Function InitializeAsync(desiredAccuracyInMeters As UInteger, movementThreshold As Double) As Task(Of Boolean)
-            ' More about getting location at https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
+            ' More about getting location at https://docs.microsoft.com/windows/uwp/maps-and-location/get-location
             If geolocator IsNot Nothing Then
                 RemoveHandler geolocator.PositionChanged, AddressOf Geolocator_PositionChanged
                 geolocator = Nothing

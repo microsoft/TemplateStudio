@@ -20,19 +20,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\DragDropCompletedData.cs"
+      "path": "Models/DragDropCompletedData.cs"
     },
     {
-      "path": ".\\Models\\DragDropData.cs"
+      "path": "Models/DragDropData.cs"
     },
     {
-      "path": ".\\Models\\DragDropStartingData.cs"
+      "path": "Models/DragDropStartingData.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\DragDropService.cs"
+      "path": "Services/DragAndDrop/DragDropService.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\VisualDropConfiguration.cs"
+      "path": "Services/DragAndDrop/VisualDropConfiguration.cs"
     }
   ],
   "symbols": {

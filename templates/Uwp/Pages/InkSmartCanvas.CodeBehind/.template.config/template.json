@@ -26,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkSmartCanvasViewPage.xaml"
+      "path": "Views/InkSmartCanvasViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkSmartCanvasViewPage.xaml.cs"
+      "path": "Views/InkSmartCanvasViewPage.xaml.cs"
     }
   ],
   "symbols": {

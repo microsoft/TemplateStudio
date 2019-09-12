@@ -2,4 +2,4 @@
 
 L'ajout de cette fonctionnalité apporte une nouvelle dimension à la solution configurée pour héberger les tests unitaires du code dans l'application principale.
 
-[En savoir plus sur l'utilisation du framework MSTest pour les tests unitaires.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[En savoir plus sur l'utilisation du framework MSTest pour les tests unitaires.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

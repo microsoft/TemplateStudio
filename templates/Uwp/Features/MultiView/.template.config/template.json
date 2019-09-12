@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ViewLifetimeControl.cs"
+      "path": "Services/ViewLifetimeControl.cs"
     },
     {
-      "path": ".\\Services\\WindowManagerService.cs"
+      "path": "Services/WindowManagerService.cs"
     }
   ],
   "symbols": {

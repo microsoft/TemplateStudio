@@ -21,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\AuthenticationHelper.cs"
+      "path": "Param_ProjectName/Helpers/AuthenticationHelper.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Helpers\\Restricted.cs"
+      "path": "Param_ProjectName/Helpers/Restricted.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\IdentityService.cs"
+      "path": "Param_ProjectName.Core/Services/IdentityService.cs"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\MicrosoftGraphService.cs"
+      "path": "Param_ProjectName.Core/Services/MicrosoftGraphService.cs"
     }
   ],
   "symbols": {

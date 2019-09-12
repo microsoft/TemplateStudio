@@ -27,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TemplateSelectors\\SampleDataTemplateSelector.vb"
+      "path": "TemplateSelectors/SampleDataTemplateSelector.vb"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": ".\\Views\\wts.ItemNamePage.xaml.vb"
+      "path": "Views/wts.ItemNamePage.xaml.vb"
     }
   ],
   "symbols": {

@@ -28,16 +28,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ImageGalleryViewPage.xaml"
+      "path": "Views/ImageGalleryViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewPage.xaml.cs"
+      "path": "Views/ImageGalleryViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewDetailPage.xaml"
+      "path": "Views/ImageGalleryViewDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewDetailPage.xaml.cs"
+      "path": "Views/ImageGalleryViewDetailPage.xaml.cs"
     }
   ],
   "symbols": {

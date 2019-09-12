@@ -26,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\WhatsNewDialog.xaml"
+      "path": "Views/WhatsNewDialog.xaml"
     },
     {
-      "path": ".\\Views\\WhatsNewDialog.xaml.vb"
+      "path": "Views/WhatsNewDialog.xaml.vb"
     },
     {
-      "path": ".\\Services\\WhatsNewDisplayService.vb"
+      "path": "Services/WhatsNewDisplayService.vb"
     }
   ],
   "symbols": {

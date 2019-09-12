@@ -27,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SuspendAndResumeService.cs"
+      "path": "Services/SuspendAndResumeService.cs"
     },
     {
-      "path": ".\\Services\\SuspendAndResumeArgs.cs"
+      "path": "Services/SuspendAndResumeArgs.cs"
     },
     {
-      "path": ".\\Services\\SuspensionState.cs"
+      "path": "Services/SuspensionState.cs"
     }
   ],
   "symbols": {

@@ -24,10 +24,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName/WTSVBRules.ruleset"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName.Core/WTSVBRules.ruleset"
     }
   ],
   "symbols": {
@@ -49,7 +49,7 @@
       "args": {
         "packageId": "VBStyleAnalyzer",
         "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.vbproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
       },
       "continueOnError": true
     },
@@ -60,7 +60,7 @@
       "args": {
         "packageId": "VBStyleAnalyzer",
         "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
       "continueOnError": true
     },
@@ -71,7 +71,7 @@
       "args": {
         "packageId" : "SonarAnalyzer.VisualBasic",
         "version" : "7.2.0.5463",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.vbproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
       },
       "continueOnError": true
     },
@@ -82,7 +82,7 @@
       "args": {
         "packageId" : "SonarAnalyzer.VisualBasic",
         "version" : "7.2.0.5463",
-        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
       "continueOnError": true
     }

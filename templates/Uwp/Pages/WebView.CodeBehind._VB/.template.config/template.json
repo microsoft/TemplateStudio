@@ -25,10 +25,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\WebViewPagePage.xaml"
+      "path": "Views/WebViewPagePage.xaml"
     },
     {
-      "path": ".\\Views\\WebViewPagePage.xaml.vb"
+      "path": "Views/WebViewPagePage.xaml.vb"
     }
   ],
   "symbols": {

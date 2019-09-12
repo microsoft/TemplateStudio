@@ -29,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ViewLifetimeControl.vb"
+      "path": "Services/ViewLifetimeControl.vb"
     },
     {
-      "path": ".\\Services\\WindowManagerService.vb"
+      "path": "Services/WindowManagerService.vb"
     }
   ],
   "symbols": {

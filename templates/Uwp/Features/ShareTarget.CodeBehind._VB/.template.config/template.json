@@ -25,22 +25,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\SharedDataStorageItemsModel.vb"
+      "path": "Models/SharedDataStorageItemsModel.vb"
     },
     {
-      "path": ".\\Models\\SharedDataModelBase.vb"
+      "path": "Models/SharedDataModelBase.vb"
     },
     {
-      "path": ".\\Models\\SharedDataWebLinkModel.vb"
+      "path": "Models/SharedDataWebLinkModel.vb"
     },
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.vb"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.vb"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+      "path": "Views/ShareTargetFeaturePage.xaml"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml.vb"
+      "path": "Views/ShareTargetFeaturePage.xaml.vb"
     }
   ],
   "symbols": {

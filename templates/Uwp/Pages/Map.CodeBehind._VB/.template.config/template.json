@@ -25,16 +25,16 @@
   "PrimaryOutputs":
   [
     {
-      "path": ".\\Views\\MapPagePage.xaml"
+      "path": "Views/MapPagePage.xaml"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml.vb"
+      "path": "Views/MapPagePage.xaml.vb"
     },
     {
-      "path": ".\\Assets\\map.png"
+      "path": "Assets/map.png"
     },
     {
-      "path": ".\\Services\\LocationService.vb"
+      "path": "Services/LocationService.vb"
     }
   ],
   "symbols": {

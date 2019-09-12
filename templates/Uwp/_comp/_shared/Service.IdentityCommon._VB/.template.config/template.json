@@ -21,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Assets\\DefaultIcon.png"
+      "path": "Param_ProjectName/Assets/DefaultIcon.png"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\StreamExtensions.vb"
+      "path": "Param_ProjectName.Core/Helpers/StreamExtensions.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\LoginResultType.vb"
+      "path": "Param_ProjectName.Core/Helpers/LoginResultType.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\User.vb"
+      "path": "Param_ProjectName.Core/Models/User.vb"
     }
   ],
   "symbols": {

@@ -12,8 +12,8 @@ Please head to our [Telemetry Data](telemetryData.md) where we show trends from 
 
 The Wizard for Windows Template Studio collects basic diagnostics telemetry and usage data:
 
-* **Diagnostics telemetry**: unhandled exceptions happened while running the Wizard. This enable the exception tracking and analysis.
-* **Usage telemetry**: including wizard usage and user selections.
+- **Diagnostics telemetry**: unhandled exceptions happened while running the Wizard. This enable the exception tracking and analysis.
+- **Usage telemetry**: including wizard usage and user selections.
 
 ## Usage telemetry collected
 
@@ -29,12 +29,11 @@ Through Application Insights API, telemetry events are collected to track gather
 
 ## Telemetry Configuration
 
-The [TelemetryService](../code/src/Core/Diagnostics/TelemetryService.cs) class is based on Application Insights API. The Application Insights telemetry backend requires a telemetry instrumentation key to be able to track telemetry. If you want to track your own telemetry, you will need your own instrumentation key, obtain one by creating an [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net) instance in your Azure account, if you don't have an Azure account there are different options to [create one for free](https://azure.microsoft.com/en-us/free/).
+The [TelemetryService](../code/src/Core/Diagnostics/TelemetryService.cs) class is based on Application Insights API. The Application Insights telemetry backend requires a telemetry instrumentation key to be able to track telemetry. If you want to track your own telemetry, you will need your own instrumentation key, obtain one by creating an [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net) instance in your Azure account, if you don't have an Azure account there are different options to [create one for free](https://azure.microsoft.com/en-us/free/).
 
 The instrumentation key is setup through the wizard configuration. The default configuration values are those that are defined directly in the code:
 
 ``` csharp
-
 public class Configuration
 {
     ...
@@ -54,7 +53,6 @@ Default configuration values can be overridden using two different mechanisms:
 1. *Redirected config file*: This works only for testing purposes. You can modify the configuration path and filename by specifying an appSetting in the App.Config for the Unit Tests or the VsEmulator app. The appSetting must be specified as follows:
 
 ``` xml
-
 <add key="JsonConfigFile" value="MyCustomFile.config.json.secret" />
 
 ```
@@ -64,11 +62,18 @@ If you add the ".secret" extension to your configuration file, it will not be pu
 As mentioned, the configuration files allow you to define only the configuration elements you want to override. Check the following sample content which overrides the RemoteTelemetryKey and DiagnosticsTraceLevel settings:
 
 ``` json
-
 WindowsTemplateStudio.config.json
 {
   "RemoteTelemetryKey": "your-key",
   "DiagnosticsTraceLevel": "Warning"
 }
-
 ```
+
+---
+
+## Learn more
+
+- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Understanding and authoring Templates](./templates.md)
+- [Ensuring generated code is accessible](./accessibility.md)
+- [All docs](./readme.md)
