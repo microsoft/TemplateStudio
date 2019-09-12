@@ -1,24 +1,28 @@
 # Advanced App navigation
-This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios in a Navigation Pane project with frame work MVVM Basic or CodeBehind. 
+
+This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios in a Navigation Pane project with frame work MVVM Basic or CodeBehind.
 
 Scenarios covered in this document:
 
- - Show a Startup page on app launching and navigate to a navigation pane shell page from there. 
- - Navigate from the navigation pane to a page in full screen mode.
- - Navigate giving the possibility to go back using the back button or navigate without the posibility to go back.
- - Reset navigation.
+- Show a Startup page on app launching and navigate to a navigation pane shell page from there.
+- Navigate from the navigation pane to a page in full screen mode.
+- Navigate giving the possibility to go back using the back button or navigate without the posibility to go back.
+- Reset navigation.
 
-## Modifications in project (for all scenarios):
+## Modifications in project (for all scenarios)
 
 **Files to replace:**
+
 - NavigationService.cs
 
 **Files to add:**
+
 - NavigationConfig.cs
 - NavigationArgs.cs
 - NavigationBackStackEntry.cs
 
 **Files to modify:**
+
 - ActivationService.cs
 - DefaultActivationHandler.cs
 - App.xaml.cs
@@ -28,6 +32,7 @@ Scenarios covered in this document:
 The NavigationService allows you to handle different navigation levels and track the the whole navigation stack in different frames to go back across the navigation tree.
 
 You need to add this code replacing the current NavigationService class.
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -92,7 +97,6 @@ namespace YOUR_APP_NAME.Services
         {
             return IsInitialized(FrameKeySecondary);
         }
-
 
         private static bool IsInitialized(string frameKey)
         {
@@ -242,9 +246,11 @@ namespace YOUR_APP_NAME.Services
 ```
 
 ### 2. NavigationConfig.cs
+
 NavigationConfig represents the navigation configuration and allows you to specify navigation parameters and if you want to register the navigation on the back stack.
 
 You need to add this class.
+
 ```csharp
 using Windows.UI.Xaml.Media.Animation;
 
@@ -271,6 +277,7 @@ namespace YOUR_APP_NAME.Services
 ```
 
 ### 3. Add NavigationArgs.cs
+
 NavigationArgs contains navigation arguments and the framekey the navigation took place on.
 
 You need to add this class.
@@ -323,8 +330,10 @@ namespace YOUR_APP_NAME.Services
 ```
 
 ### 4. Add NavigationBackStackEntry.cs
+
 NavigationBackStackEntry represents an entry on the navigation backstack.
 You need to add this class.
+
 ```csharp
 using System;
 using Windows.UI.Xaml.Media.Animation;
@@ -353,6 +362,7 @@ namespace YOUR_APP_NAME.Services
 ```
 
 ### 5. Changes in DefaultActivationHandler.cs
+
 - Change the DefaultActivationHandler to:
 
 ```csharp
@@ -399,7 +409,8 @@ internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
 ```
 
 - Change the method `ActivateAsync()` to
- ```csharp
+
+```csharp
 public async Task ActivateAsync(object activationArgs)
 {
     if (IsInteractive(activationArgs))
@@ -432,12 +443,15 @@ public async Task ActivateAsync(object activationArgs)
     }
 }
 ```
+
 - Add `_shell` parameter in `DefaultActivationHandler` constructor in `HandleActivationAsync`.
 
 ### 7. Change App.xaml.cs
+
 #### 7.1 For startup on Startup page:
 
 - Change method `CreateActivationService()` to
+
 ```csharp
 private ActivationService CreateActivationService()
 {
@@ -446,7 +460,9 @@ private ActivationService CreateActivationService()
 ```
 
 #### 7.2 For startup on NavigationPane page:
+
 - Change method `CreateActivationService()` to
+
 ```csharp
 private ActivationService CreateActivationService()
 {
@@ -462,20 +478,21 @@ private UIElement CreateShell()
 
 ### 8. Changes in ShellPage.xaml, ShellPage.xaml.cs/ShellViewModel
 
- - Add `NavigationCacheMode="Required"` to ShellPage.xaml
- - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
- ```csharp
- NavigationService.InitializeSecondaryFrame(frame);
+- Add `NavigationCacheMode="Required"` to ShellPage.xaml
+- Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
 
- // Instead of
- // NavigationService.Frame = frame;
- ```
+```csharp
+NavigationService.InitializeSecondaryFrame(frame);
 
- - Replace `e` parameter from `NavigationEventArgs` to `NavigationArgs` in `OnNavigated` method.
- - Add `NavigationService.IsPageInMainFrame` validation in method.
+// Instead of
+// NavigationService.Frame = frame;
+```
 
- ```csharp
- private void OnNavigated(object sender, NavigationArgs e)
+- Replace `e` parameter from `NavigationEventArgs` to `NavigationArgs` in `OnNavigated` method.
+- Add `NavigationService.IsPageInMainFrame` validation in method.
+
+```csharp
+private void OnNavigated(object sender, NavigationArgs e)
 {
     // Handle navigation only when ShellPage in MainFrame
     if (NavigationService.IsPageInMainFrame<ShellPage>())
@@ -514,7 +531,8 @@ private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
 }
 ```
 
- - Update the `OnKeyboardAcceleratorInvoked` event handler.
+- Update the `OnKeyboardAcceleratorInvoked` event handler.
+
 ```csharp
 private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
 {
@@ -528,9 +546,9 @@ private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, Key
 
 ### 9. Changes in NavigationViewHeaderBehavior.cs
 
- - Update the `e` parameter from `NavigationEventArgs` to `NavigationArgs` in `OnNavigated` method.
+- Update the `e` parameter from `NavigationEventArgs` to `NavigationArgs` in `OnNavigated` method.
 
-##  Navigate from Startup Page to NavigationPane page
+## Navigate from Startup Page to NavigationPane page
 
 To navigate to the shell page in fullscreen mode use NavigationService.NavigateInMainFrame and NavigationService.NavigateInSecondaryFrame to show the mainpage in the naviagation pane
 
@@ -539,7 +557,7 @@ NavigationService.NavigateInMainFrame<ShellPage>(new NavigationConfig(disableBac
 NavigationService.NavigateInSecondaryFrame<MainPage>();
 ```
 
-##  Expand a Page to fullscreen/Navigate to a page in fullscreen
+## Expand a Page to fullscreen/Navigate to a page in fullscreen
 
 To navigate to a page in fullscreen mode use NavigationService.NavigateInMainFrame.
 
@@ -548,11 +566,13 @@ NavigationService.NavigateInMainFrame<MapPage>();
 ```
 
 To determine if page is already in fullscreen use the following code:
+
 ```csharp
 return !NavigationService.IsPageInMainFrame<MapPage>();
 ```
 
 ## Reset navigation
+
 To reset all frames and backstack (for example before navigating to the startup page) use the following code:
 
 ```csharp

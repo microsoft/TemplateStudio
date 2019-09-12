@@ -2,4 +2,4 @@
 
 La inclusión de esta característica añade un nuevo proyecto a la solución configurado para albergar pruebas unitarias en el código en la aplicación principal.
 
-[Más información sobre la utilización del framework MSTest en las pruebas unitarias.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Más información sobre la utilización del framework MSTest en las pruebas unitarias.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

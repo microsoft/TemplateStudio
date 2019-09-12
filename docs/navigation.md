@@ -94,3 +94,12 @@ The three pages in this sample and the order in which they can be navigated to a
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
 
 Additional navigation scenarios are covered [here](navigation-advanced.md).
+
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)

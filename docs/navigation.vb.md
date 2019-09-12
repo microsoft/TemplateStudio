@@ -15,7 +15,7 @@ NavigationService has different implementations for the different supported desi
 - **MVVM Light**
   - The ViewModelLocator creates the NavigationServiceEx instance and registers it with the SimpleIoC container. Each ViewModel and associated page must also be registered as navigation is done by passing the ViewModel name to the `Navigate` method.
 
-```vbnet
+```vb
 Private _navigationService As NavigationServiceEx = New NavigationServiceEx()
 
 Public Sub ViewModelLocator()
@@ -49,7 +49,7 @@ The following code uses [MVVM Basic](../samples/navigation/MixedNavigationSample
 
 In App.xaml.vb the ActivationService has been changed to start on the new page.
 
-```vbnet
+```vb
 Private Function CreateActivationService() As ActivationService
     ' This is the default navigation for a NavigationPane project type
     ' return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
@@ -65,8 +65,7 @@ Navigate to the `ShellPage` and this will reset the NavigationService Frame to i
 Then navigate to `HomePage` so something is displayed in the shell.
 All subsequent navigation just requires a single `Navigate()` call.
 
-```vbnet
-
+```vb
 Public Class StartViewModel
     Inherits Observable
 
@@ -89,3 +88,12 @@ End Class
 The three pages in this sample and the order in which they can be navigated to are shown below.
 
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
+- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+- [All docs](./readme.md)

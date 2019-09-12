@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SignConfigXML>
-  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="crutkas;ralarcon">
+  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="">
     <file src="__INPATHROOT__\itemsToSign\ru-RU/Microsoft.Templates.resources.dll" signType="400" dest="__OUTPATHROOT__\ru-RU/Microsoft.Templates.resources.dll" />
     <file src="__INPATHROOT__\itemsToSign\ru-RU/Microsoft.Templates.Core.resources.dll" signType="400" dest="__OUTPATHROOT__\ru-RU/Microsoft.Templates.Core.resources.dll" />
     <file src="__INPATHROOT__\itemsToSign\ru-RU/Microsoft.Templates.UI.resources.dll" signType="400" dest="__OUTPATHROOT__\ru-RU/Microsoft.Templates.UI.resources.dll" />

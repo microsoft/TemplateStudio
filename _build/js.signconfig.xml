@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SignConfigXML>
-  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="crutkas;ralarcon">
+  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="">
     <file src="__INPATHROOT__\itemsToSign\Assets/Html/min/vs/base/worker/workerMain.js" signType="400" dest="__OUTPATHROOT__\Assets/Html/min/vs/base/worker/workerMain.js" />
     <file src="__INPATHROOT__\itemsToSign\Assets/Html/min/vs/basic-languages/src/bat.js" signType="400" dest="__OUTPATHROOT__\Assets/Html/min/vs/basic-languages/src/bat.js" />
     <file src="__INPATHROOT__\itemsToSign\Assets/Html/min/vs/basic-languages/src/coffee.js" signType="400" dest="__OUTPATHROOT__\Assets/Html/min/vs/basic-languages/src/coffee.js" />
