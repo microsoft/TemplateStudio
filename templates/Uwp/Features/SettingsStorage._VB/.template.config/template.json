@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Settings Storage",
+  "shortName": "Settings Storage",
   "groupIdentity": "wts.Feat.SettingsStorage.VB",
   "identity": "wts.Feat.SettingsStorage.VB",
   "description": "Setting storage helps simplify storing data inside your application data folder.",
@@ -26,10 +28,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Helpers\\SettingsStorageExtensions.vb"
+      "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Helpers\\Json.vb"
+      "path": "Param_ProjectName.Core/Helpers/Json.vb"
     }
   ],
   "symbols": {
@@ -53,7 +55,7 @@
         "version": "12.0.2",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

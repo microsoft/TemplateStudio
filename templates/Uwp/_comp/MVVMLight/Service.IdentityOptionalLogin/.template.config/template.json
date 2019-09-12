@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityOptionalLogin",
+  "identity": "MVVMLight.Service.IdentityOptionalLogin",
+  "shortName": "MVVMLight.Service.IdentityOptionalLogin",
   "tags": {
     "language": "C#",
     "type": "item",

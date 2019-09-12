@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.DeepLinking.SplitView.TabbedNav",
+  "identity": "CodeBehind.DeepLinking.SplitView.TabbedNav",
+  "shortName": "CodeBehind.DeepLinking.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

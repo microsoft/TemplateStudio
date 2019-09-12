@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.SplitView",
+  "identity": "CodeBehind.Project.SplitView",
+  "shortName": "CodeBehind.Project.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

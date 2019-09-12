@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Ink Draw",
+  "shortName": "Ink Draw",
   "groupIdentity": "wts.Page.InkDraw",
   "identity": "wts.Page.InkDraw.Prism",
   "description": "A page that allows you to create notes and drawings using Windows Ink.",
@@ -24,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\InkDrawViewPage.xaml"
+      "path": "Views/InkDrawViewPage.xaml"
     },
     {
-      "path": ".\\Views\\InkDrawViewPage.xaml.cs"
+      "path": "Views/InkDrawViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\InkDrawViewViewModel.cs"
+      "path": "ViewModels/InkDrawViewViewModel.cs"
     }
   ],
   "symbols": {
@@ -62,7 +64,7 @@
         "version": "1.23.0",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

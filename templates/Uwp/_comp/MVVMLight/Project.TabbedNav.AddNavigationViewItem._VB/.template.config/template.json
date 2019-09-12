@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.TabbedNav.AddNavigationViewItem.VB",
+  "identity": "MVVMLight.Project.TabbedNav.AddNavigationViewItem.VB",
+  "shortName": "MVVMLight.Project.TabbedNav.AddNavigationViewItem.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

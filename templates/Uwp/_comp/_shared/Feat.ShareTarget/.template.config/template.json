@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.ShareTarget",
+  "identity": "Feature.ShareTarget",
+  "shortName": "Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,10 +19,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\wts.ItemNameActivationHandler.cs"
+      "path": "Activation/wts.ItemNameActivationHandler.cs"
     },
     {
-    "path": ".\\Helpers\\ShareOperationExtensions.cs"
+    "path": "Helpers/ShareOperationExtensions.cs"
     }
   ],
   "symbols": {

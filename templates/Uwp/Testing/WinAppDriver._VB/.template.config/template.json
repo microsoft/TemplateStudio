@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Win App Driver",
+  "shortName": "Win App Driver",
   "groupIdentity": "wts.Testing.WinAppDriver.VB",
   "identity": "wts.Testing.WinAppDriver.VB",
   "description": "Add project for UI tests using Appium via Windows Application Driver.",
@@ -24,7 +26,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.vbproj" }
+    { "path": "Param_ProjectName.Tests.WinAppDriver/Param_ProjectName.Tests.WinAppDriver.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -55,7 +57,7 @@
         "version" : "1.4.0",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -66,7 +68,7 @@
         "version" : "1.4.0",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -77,7 +79,7 @@
         "version" : "3.0.0.2",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

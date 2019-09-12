@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Map",
+  "shortName": "Map",
   "groupIdentity": "wts.Page.Map.VB",
   "identity": "wts.Page.Map.VB",
   "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
@@ -24,19 +26,19 @@
   "PrimaryOutputs":
   [
     {
-      "path": ".\\Views\\MapPagePage.xaml"
+      "path": "Views/MapPagePage.xaml"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml.vb"
+      "path": "Views/MapPagePage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\MapPageViewModel.vb"
+      "path": "ViewModels/MapPageViewModel.vb"
     },
     {
-      "path": ".\\Assets\\map.png"
+      "path": "Assets/map.png"
     },
     {
-      "path": ".\\Services\\LocationService.vb"
+      "path": "Services/LocationService.vb"
     }
   ],
   "symbols": {

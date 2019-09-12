@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Settings",
+  "shortName": "Settings",
   "groupIdentity": "wts.Page.Settings",
   "identity": "wts.Page.Settings.Prism",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
@@ -26,16 +28,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\EnumToBooleanConverter.cs"
+      "path": "Helpers/EnumToBooleanConverter.cs"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml"
+      "path": "Views/SettingsPagePage.xaml"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml.cs"
+      "path": "Views/SettingsPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\SettingsPageViewModel.cs"
+      "path": "ViewModels/SettingsPageViewModel.cs"
     }
   ],
   "symbols": {

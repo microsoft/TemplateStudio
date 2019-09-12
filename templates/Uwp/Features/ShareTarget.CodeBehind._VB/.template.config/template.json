@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [ "Universal" ],
   "name": "Share Target",
+  "shortName": "Share Target",
   "groupIdentity": "wts.Feat.ShareTarget.VB",
   "identity": "wts.Feat.ShareTarget.CodeBehind.VB",
   "description": "Allows you to receive data shared by other apps using the share contract in your UWP app.",
@@ -23,22 +25,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\SharedDataStorageItemsModel.vb"
+      "path": "Models/SharedDataStorageItemsModel.vb"
     },
     {
-      "path": ".\\Models\\SharedDataModelBase.vb"
+      "path": "Models/SharedDataModelBase.vb"
     },
     {
-      "path": ".\\Models\\SharedDataWebLinkModel.vb"
+      "path": "Models/SharedDataWebLinkModel.vb"
     },
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.vb"
+      "path": "TemplateSelectors/SharedContentTemplateSelector.vb"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+      "path": "Views/ShareTargetFeaturePage.xaml"
     },
     {
-      "path": ".\\Views\\ShareTargetFeaturePage.xaml.vb"
+      "path": "Views/ShareTargetFeaturePage.xaml.vb"
     }
   ],
   "symbols": {

@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Web View",
+  "shortName": "Web View",
   "groupIdentity": "wts.Page.WebView",
   "identity": "wts.Page.WebView.CaliburnMicro",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\WebViewPagePage.xaml"
+      "path": "Views/WebViewPagePage.xaml"
     },
     {
-      "path": ".\\Views\\WebViewPagePage.xaml.cs"
+      "path": "Views/WebViewPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\WebViewPageViewModel.cs"
+      "path": "ViewModels/WebViewPageViewModel.cs"
     }
   ],
   "symbols": {

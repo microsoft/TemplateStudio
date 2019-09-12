@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "VBStyleAnalysis",
+  "shortName": "VBStyleAnalysis",
   "groupIdentity": "wts.Feat.VBStyleAnalysis",
   "identity": "wts.Feat.VBStyleAnalysis",
   "tags": {
@@ -22,10 +24,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName/WTSVBRules.ruleset"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\WTSVBRules.ruleset"
+      "path": "Param_ProjectName.Core/WTSVBRules.ruleset"
     }
   ],
   "symbols": {
@@ -47,9 +49,9 @@
       "args": {
         "packageId": "VBStyleAnalyzer",
         "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.vbproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -58,9 +60,9 @@
       "args": {
         "packageId": "VBStyleAnalyzer",
         "version": "0.1.12",
-        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -69,9 +71,9 @@
       "args": {
         "packageId" : "SonarAnalyzer.VisualBasic",
         "version" : "7.2.0.5463",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.vbproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -80,9 +82,9 @@
       "args": {
         "packageId" : "SonarAnalyzer.VisualBasic",
         "version" : "7.2.0.5463",
-        "projectPath": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

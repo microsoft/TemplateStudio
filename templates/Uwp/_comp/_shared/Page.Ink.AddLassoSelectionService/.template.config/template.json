@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddLassoSelectionService",
+  "identity": "Page.Ink.AddLassoSelectionService",
+  "shortName": "Page.Ink.AddLassoSelectionService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkLassoSelectionService.cs"
+      "path": "Services/Ink/InkLassoSelectionService.cs"
     }
   ],
   "symbols": {

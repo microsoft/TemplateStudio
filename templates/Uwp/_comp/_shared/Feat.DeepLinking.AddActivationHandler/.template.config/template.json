@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.DeepLinking.AddActivationHandler",
+  "identity": "Feature.DeepLinking.AddActivationHandler",
+  "shortName": "Feature.DeepLinking.AddActivationHandler",
   "tags": {
     "language": "C#",
     "type": "item",

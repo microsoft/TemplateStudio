@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "App Config",
+  "shortName": "App Config",
   "groupIdentity": "wts.Feat.AppDotConfig.VB",
   "identity": "wts.Feat.AppDotConfig.VB",
   "description": "Adds an empty App.config file to the project.",
@@ -26,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\App.config"
+      "path": "Param_ProjectName/App.config"
     }
   ],
   "symbols": {
@@ -50,7 +52,7 @@
         "version" : "4.5.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

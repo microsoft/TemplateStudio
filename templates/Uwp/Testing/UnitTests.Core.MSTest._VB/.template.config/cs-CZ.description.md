@@ -2,4 +2,4 @@
 
 Tato funkce přidá do řešení nový projekt nastavený pro hostování testů částí kódu v knihovně kódu.
 
-[Další informace o používání rámce (framework) MSTest v testech částí](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Další informace o používání rámce (framework) MSTest v testech částí](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

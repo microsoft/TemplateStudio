@@ -4,11 +4,13 @@
 		"prefix": "wts.template",
 		"body": [
 		"{",
+		"  \"$schema\": \"http://json.schemastore.org/template\",",
 		"  \"author\": \"$1\",",
 		"  \"classifications\": [",
 		"    \"Universal\"",
 		"  ],",
 		"  \"name\": \"${3:name}\",",
+		"  \"shortName\": \"${3:name}\",",
 		"  \"groupIdentity\": \"wts.${2|Page,Feat,Service,Testing|}.${4:Identifier}\",",
 		"  \"identity\": \"wts.${2|Page,Feat,Service,Testing|}.${4:Identifier}\",",
 		"  \"description\": \"Description for ${3:name}\",",
@@ -24,7 +26,7 @@
 		"    \"wts.rightClickEnabled\": \"true\"",
 		"  },",
 		"  \"sourceName\": \"wts.ItemName\",",
-		"  \"preferNameDirectory\": \"true\",",
+		"  \"preferNameDirectory\": true,",
 		"  \"PrimaryOutputs\": [",
 		"  ],",
 		"  \"symbols\": {",
@@ -39,33 +41,36 @@
 	},
 	"wts.template.composition": {
 		"prefix": "wts.template.composition",
-		"body": [
-		"{",
-		"  \"author\": \"$1\",",
-		"  \"classifications\": [",
-		"    \"Universal\"",
-		"  ],",
-		"  \"name\": \"${2:name}\",",
-		"  \"tags\": {",
-		"    \"language\": \"${3|C#,VisualBasic|}\",",
-		"    \"type\": \"item\",",
-		"    \"wts.type\": \"composition\",",
-		"    \"wts.platform\": \"Uwp\",",
-		"    \"wts.version\": \"1.0.0\",",
-		"    \"wts.compositionFilter\": \"\",",
-		"  },",
-		"  \"sourceName\": \"wts.ItemName\",",
-		"  \"preferNameDirectory\": \"true\",",
-		"  \"PrimaryOutputs\": [",
-		"  ],",
-		"  \"symbols\": {",
-		"    \"wts.rootNamespace\": {",
-		"      \"type\": \"parameter\",",
-		"      \"replaces\": \"Param_RootNamespace\"",
-		"    }",
-		"  }",
-		"}"
-		],
+    "body": [
+      "{",
+      "  \"$schema\": \"http://json.schemastore.org/template\",",
+      "  \"author\": \"$1\",",
+      "  \"classifications\": [",
+      "    \"Universal\"",
+      "  ],",
+      "  \"name\": \"${2:name}\",",
+      "  \"identity\": \"${2:name}\",",
+      "  \"shortName\": \"${2:name}\",",
+      "  \"tags\": {",
+      "    \"language\": \"${3|C#,VisualBasic|}\",",
+      "    \"type\": \"item\",",
+      "    \"wts.type\": \"composition\",",
+      "    \"wts.platform\": \"Uwp\",",
+      "    \"wts.version\": \"1.0.0\",",
+      "    \"wts.compositionFilter\": \"\",",
+      "  },",
+      "  \"sourceName\": \"wts.ItemName\",",
+      "  \"preferNameDirectory\": true,",
+      "  \"PrimaryOutputs\": [",
+      "  ],",
+      "  \"symbols\": {",
+      "    \"wts.rootNamespace\": {",
+      "      \"type\": \"parameter\",",
+      "      \"replaces\": \"Param_RootNamespace\"",
+      "    }",
+      "  }",
+      "}"
+    ],
 		"description": "Add a WTS composition template.json"
 	},
 
@@ -151,7 +156,7 @@
 		"prefix": "wts.primaryOutput",
 		"body": [
 		"{",
-		"  \"path\": \".\\\\\\FolderName\\\\\\FileName.extension\"",
+		"  \"path\": \"FolderName/FileName.extension\"",
 		"}"
 		],
 		"description": "Add a primary output block to be added on WTS template.json"
@@ -160,7 +165,7 @@
 		"prefix": "wts.primaryOutputToParent",
 		"body": [
 		"{",
-		"  \"path\": \".\\\\\\Param_ProjectName\\\\\\FolderName\\\\\\FileName.extension\"",
+		"  \"path\": \"Param_ProjectName/FolderName/FileName.extension\"",
 		"}"
 		],
 		"description": "Add a primary output to parent block to be added on WTS template.json"
@@ -219,7 +224,7 @@
 		"    \"version\": \"\",",
 		"    \"projectPath\": \"\"",
 		"  },",
-		"  \"continueOnError\": \"true\"",
+		"  \"continueOnError\": true",
 		"}"
 		],
 		"description": "Add AddNugetPackage template.json postActions"
@@ -235,7 +240,7 @@
 		"    \"fileIndex\": \"\",",
 		"    \"projectPath\": \"\"",
 		"  },",
-		"  \"continueOnError\": \"true\"",
+		"  \"continueOnError\": true",
 		"}"
 		],
 		"description": "Add AddReferenceToThisProject template.json postActions"
@@ -252,7 +257,7 @@
 		"    \"sdk\": \"\",",
 		"    \"projectPath\": \"\"",
 		"  },",
-		"  \"continueOnError\": \"true\"",
+		"  \"continueOnError\": true",
 		"}"
 		],
 		"description": "Add AddReferenceToThisProject template.json postActions"
@@ -267,7 +272,7 @@
 		"  \"args\": {",
 		"    \"files\": \"\"",
 		"  },",
-		"  \"continueOnError\": \"true\"",
+		"  \"continueOnError\": true",
 		"}"
 		],
 		"description": "Add AddReferenceToThisProject template.json postActions"

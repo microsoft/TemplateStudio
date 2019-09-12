@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.AddCommandNS",
+  "identity": "MVVMLight.Page.AddCommandNS",
+  "shortName": "MVVMLight.Page.AddCommandNS",
   "tags": {
     "language": "C#",
     "type": "item",

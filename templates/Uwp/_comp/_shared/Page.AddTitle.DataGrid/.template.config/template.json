@@ -1,10 +1,13 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle.DataGrid",
-  "tags": {
+    "identity": "Page.AddTitle.DataGrid",
+    "shortName": "Page.AddTitle.DataGrid",
+    "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",

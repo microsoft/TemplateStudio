@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.ImageGallery",
+  "identity": "Page.ImageGallery",
+  "shortName": "Page.ImageGallery",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,43 +20,43 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Assets\\PlaceholderImage.png"
+      "path": "Param_ProjectName/Assets/PlaceholderImage.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto1.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto1.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto2.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto2.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto3.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto3.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto4.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto4.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto5.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto5.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto6.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto6.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto7.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto7.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto8.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto8.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto9.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto9.png"
     },
     {
-      "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto10.png"
+      "path": "Param_ProjectName/Assets/SampleData/SamplePhoto10.png"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleImage.cs"
+      "path": "Param_ProjectName.Core/Models/SampleImage.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Helpers\\ImagesNavigationHelper.cs"
+      "path": "Param_ProjectName/Helpers/ImagesNavigationHelper.cs"
     }
   ],
   "symbols": {

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.DragAndDrop",
+  "identity": "Feature.DragAndDrop",
+  "shortName": "Feature.DragAndDrop",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,19 +20,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\DragDropCompletedData.cs"
+      "path": "Models/DragDropCompletedData.cs"
     },
     {
-      "path": ".\\Models\\DragDropData.cs"
+      "path": "Models/DragDropData.cs"
     },
     {
-      "path": ".\\Models\\DragDropStartingData.cs"
+      "path": "Models/DragDropStartingData.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\DragDropService.cs"
+      "path": "Services/DragAndDrop/DragDropService.cs"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\VisualDropConfiguration.cs"
+      "path": "Services/DragAndDrop/VisualDropConfiguration.cs"
     }
   ],
   "symbols": {

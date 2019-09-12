@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Test.StyleCop.WinAppDriver",
+  "identity": "Test.StyleCop.WinAppDriver",
+  "shortName": "Test.StyleCop.WinAppDriver",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -18,7 +21,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Tests.WinAppDriver\\GlobalSuppressions.cs"
+      "path": "Param_ProjectName.Tests.WinAppDriver/GlobalSuppressions.cs"
     }
   ],
   "symbols": {
@@ -37,7 +40,7 @@
         "version" : "1.0.2",
         "projectPath": ".\\Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

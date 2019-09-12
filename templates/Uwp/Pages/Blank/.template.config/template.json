@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Blank",
+  "shortName": "Blank",
   "groupIdentity": "wts.Page.Blank",
   "identity": "wts.Page.Blank",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\BlankViewPage.xaml"
+      "path": "Views/BlankViewPage.xaml"
     },
     {
-      "path": ".\\Views\\BlankViewPage.xaml.cs"
+      "path": "Views/BlankViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\BlankViewViewModel.cs"
+      "path": "ViewModels/BlankViewViewModel.cs"
     }
   ],
   "symbols": {

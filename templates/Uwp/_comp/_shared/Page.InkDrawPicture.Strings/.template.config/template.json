@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.InkDrawPicture.Strings",
+  "identity": "Page.InkDrawPicture.Strings",
+  "shortName": "Page.InkDrawPicture.Strings",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "ImageGallery",
+  "shortName": "ImageGallery",
   "groupIdentity": "wts.Page.ImageGallery",
   "identity": "wts.Page.ImageGallery",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
@@ -26,22 +28,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ImageGalleryViewPage.xaml"
+      "path": "Views/ImageGalleryViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewPage.xaml.cs"
+      "path": "Views/ImageGalleryViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewDetailPage.xaml"
+      "path": "Views/ImageGalleryViewDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\ImageGalleryViewDetailPage.xaml.cs"
+      "path": "Views/ImageGalleryViewDetailPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\ImageGalleryViewViewModel.cs"
+      "path": "ViewModels/ImageGalleryViewViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\ImageGalleryViewDetailViewModel.cs"
+      "path": "ViewModels/ImageGalleryViewDetailViewModel.cs"
     }
   ],
     "symbols": {
@@ -73,7 +75,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

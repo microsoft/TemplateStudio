@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.DragAndDrop.VB",
+  "identity": "Feature.DragAndDrop.VB",
+  "shortName": "Feature.DragAndDrop.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -17,19 +20,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\DragDropCompletedData.vb"
+      "path": "Models/DragDropCompletedData.vb"
     },
     {
-      "path": ".\\Models\\DragDropData.vb"
+      "path": "Models/DragDropData.vb"
     },
     {
-      "path": ".\\Models\\DragDropStartingData.vb"
+      "path": "Models/DragDropStartingData.vb"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\DragDropService.vb"
+      "path": "Services/DragAndDrop/DragDropService.vb"
     },
     {
-      "path": ".\\Services\\DragAndDrop\\VisualDropConfiguration.vb"
+      "path": "Services/DragAndDrop/VisualDropConfiguration.vb"
     }
   ],
   "symbols": {

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.AddNavigationService.VB",
+  "identity": "CodeBehind.Project.AddNavigationService.VB",
+  "shortName": "CodeBehind.Project.AddNavigationService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -17,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NavigationService.vb"
+      "path": "Services/NavigationService.vb"
     }
   ],
   "symbols": {

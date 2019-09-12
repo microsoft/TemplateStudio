@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.ContentGrid.SampleData",
+  "identity": "Page.ContentGrid.SampleData",
+  "shortName": "Page.ContentGrid.SampleData",
   "tags": {
     "language": "C#",
     "type": "item",

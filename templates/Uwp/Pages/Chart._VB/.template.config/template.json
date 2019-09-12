@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Chart",
+  "shortName": "Chart",
   "groupIdentity": "wts.Page.Chart.VB",
   "identity": "wts.Page.Chart.VB",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
@@ -25,13 +27,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ChartViewPage.xaml"
+      "path": "Views/ChartViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ChartViewPage.xaml.vb"
+      "path": "Views/ChartViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\ChartViewViewModel.vb"
+      "path": "ViewModels/ChartViewViewModel.vb"
     }
   ],
   "symbols": {
@@ -63,7 +65,7 @@
         "version": "1.0.1.6",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

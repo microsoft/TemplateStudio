@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Toast Notifications",
+  "shortName": "Toast Notifications",
   "groupIdentity": "wts.Feat.ToastNotifications",
   "identity": "wts.Feat.ToastNotifications",
   "description": "Adds code to show displaying a toast and handling it being used to launch the app.",
@@ -27,10 +29,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.cs"
+      "path": "Services/ToastNotificationsFeatureService.cs"
     },
     {
-      "path": ".\\Services\\ToastNotificationsFeatureService.Samples.cs"
+      "path": "Services/ToastNotificationsFeatureService.Samples.cs"
     }
   ],
   "symbols": {
@@ -54,7 +56,7 @@
         "version" : "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.DeepLinking.SplitView.TabbedNav.VB",
+  "identity": "MVVMLight.DeepLinking.SplitView.TabbedNav.VB",
+  "shortName": "MVVMLight.DeepLinking.SplitView.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

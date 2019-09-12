@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test Core library with xUnit",
+  "shortName": "Test Core library with xUnit",
   "groupIdentity": "wts.Testing.UnitTests.Core.xUnit",
   "identity": "wts.Testing.UnitTests.Core.xUnit",
   "description": "Add a project to test code in the Core library with xUnit.",
@@ -24,7 +26,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj" }
+    { "path": "Param_ProjectName.Core.Tests.xUnit/Param_ProjectName.Core.Tests.xUnit.csproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -47,7 +49,7 @@
         "version" : "2.4.1",
         "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -58,7 +60,7 @@
         "version" : "2.4.1",
         "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -69,7 +71,7 @@
         "version" : "16.2.0",
         "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

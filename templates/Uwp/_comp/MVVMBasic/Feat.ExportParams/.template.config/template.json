@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Feature.ExportParams",
+  "identity": "MVVMBasic.Feature.ExportParams",
+  "shortName": "MVVMBasic.Feature.ExportParams",
   "tags": {
     "language": "C#",
     "type": "item",

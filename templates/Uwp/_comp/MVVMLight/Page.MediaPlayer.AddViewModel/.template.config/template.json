@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.MediaPlayer.AddViewModel",
+  "identity": "MVVMLight.Page.MediaPlayer.AddViewModel",
+  "shortName": "MVVMLight.Page.MediaPlayer.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Service.IdentityForcedLogin.TabbedNav",
+  "identity": "Prism.Service.IdentityForcedLogin.TabbedNav",
+  "shortName": "Prism.Service.IdentityForcedLogin.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

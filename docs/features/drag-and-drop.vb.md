@@ -3,7 +3,7 @@
 :heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./drag-and-drop.md) :heavy_exclamation_mark: |
 ---------------------------------------------------------------------------------------------------------------------------------------- |
 
-In Windows Template Studio, the Drag & Drop feature is a service that basically is a wrapper over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/design/input/drag-and-drop). This service simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+In Windows Template Studio, the Drag & Drop feature is a service that basically is a wrapper over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop). This service simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
 
 While using Code-Behind framework, the events will be handled by using actions. When using frameworks based on MVVM pattern (MVVM Light, Calliburn.Micro or MVVM Basic) the events will be handled by using commands.
 
@@ -41,11 +41,12 @@ The feature provides three configuration types as well to easily setup the Drag 
 
 To use the service, you need to follow these steps:
 
-1. Define your valid drag and drop areas: Use the elements AllowDrop and CanDrag properties to designate the elements of your app valid for dragging and dropping. (https://docs.microsoft.com/en-us/windows/uwp/design/input/drag-and-drop). In the ListView element you can use CanDragItems property.
+1. Define your valid drag and drop areas: Use the elements AllowDrop and CanDrag properties to designate the elements of your app valid for dragging and dropping. (https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop). In the ListView element you can use CanDragItems property.
 
 2. Include the service reference within the page by adding the required namespace: `xmlns:dd="using:AppNameSpace.Services.DragAndDrop"`
 
-3. Configure the service appropiately:
+3. Configure the service appropiately
+
 - For an UIElement:
 
 ``` xml
@@ -100,7 +101,7 @@ In this section you can find some code snippets representing how to setup a basi
 
 - ViewModel code
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.Storage
 Imports System.Windows.Input
@@ -138,7 +139,7 @@ End Sub
 
 - ViewModel code
 
-```vbnet
+```vb
 Imports System.Collections.Generic
 Imports Windows.Storage
 
@@ -157,13 +158,13 @@ Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
 End Sub
 ```
 
-### Escenario 2: Drag and drop enabled ListView
+### Scenario 2: Drag and drop enabled ListView
 
 We will configure a ListView to allow drag items from it and drop items to it. We will also include some customizations.
 
 We will need a class to be used class model during the drag and drop operations, for example the `CustomItem` class:
 
-```vbnet
+```vb
 Public Class CustomItem
 
     Public ReadOnly Property Id As Guid = Guid.NewGuid()
@@ -202,7 +203,7 @@ End Class
 
 - ViewModel code
 
-```vbnet
+```vb
 Private _getStorageItemsCommand As ICommand
 
 Private _dragItemStartingCommand As ICommand
@@ -279,7 +280,7 @@ End Sub
 
 - ViewModel code
 
-```vbnet
+```vb
 Public Property GetStorageItems As Action(Of IReadOnlyList(Of IStorageItem))
     Get
         Return Function(items) OnGetStorageItems(items)

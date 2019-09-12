@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Services
 
         public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
-            // More about getting location at https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
+            // More about getting location at https://docs.microsoft.com/windows/uwp/maps-and-location/get-location
             if (_geolocator != null)
             {
                 _geolocator.PositionChanged -= Geolocator_PositionChanged;

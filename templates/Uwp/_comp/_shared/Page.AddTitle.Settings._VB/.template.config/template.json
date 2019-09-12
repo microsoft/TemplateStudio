@@ -1,9 +1,12 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle.Settings.VB",
+    "identity": "Page.AddTitle.Settings.VB",
+    "shortName": "Page.AddTitle.Settings.VB",
     "tags": {
       "language": "VisualBasic",
       "type": "item",

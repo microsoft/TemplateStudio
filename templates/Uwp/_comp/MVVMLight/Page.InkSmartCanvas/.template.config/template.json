@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.InkSmartCanvas",
+  "identity": "MVVMLight.Page.InkSmartCanvas",
+  "shortName": "MVVMLight.Page.InkSmartCanvas",
   "tags": {
     "language": "C#",
     "type": "item",

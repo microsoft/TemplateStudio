@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "XAML Styler Config",
+  "shortName": "XAML Styler Config",
   "groupIdentity": "wts.Service.XAMLStyler.VB",
   "identity": "wts.Service.XAMLStyler.VB",
   "description": "Default XAML Styler config file.",
@@ -27,7 +29,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Settings.XamlStyler"
+      "path": "Param_ProjectName/Settings.XamlStyler"
     }
   ],
   "symbols": {

@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [ "Universal" ],
   "name": "First Run Prompt",
+  "shortName": "First Run Prompt",
   "groupIdentity": "wts.Feat.FirstRunPrompt",
   "identity": "wts.Feat.FirstRunPrompt.Prism",
   "description": "Display a prompt when the app is used for the first time.",
@@ -24,15 +26,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\FirstRunDisplayService.cs"
+      "path": "Services/FirstRunDisplayService.cs"
     },
     {
-      "path": ".\\Services\\IFirstRunDisplayService.cs"
-    },    {
-      "path": ".\\Views\\FirstRunDialog.xaml"
+      "path": "Services/IFirstRunDisplayService.cs"
+    },    
+    {
+      "path": "Views/FirstRunDialog.xaml"
     },
     {
-      "path": ".\\Views\\FirstRunDialog.xaml.cs"
+      "path": "Views/FirstRunDialog.xaml.cs"
     }
   ],
   "symbols": {
@@ -56,7 +59,7 @@
         "version" : "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

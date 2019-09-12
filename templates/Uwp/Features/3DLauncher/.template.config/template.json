@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "3D App Launcher",
+  "shortName": "3D App Launcher",
   "groupIdentity": "wts.Feat.3DLauncher",
   "identity": "wts.Feat.3DLauncher",
   "description": "Include a 3D app launcher when the app is used in a Mixed Reality environment.",
@@ -25,7 +27,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Assets\\3dlogo.glb"
+      "path": "Assets/3dlogo.glb"
     }
   ],
   "symbols": {

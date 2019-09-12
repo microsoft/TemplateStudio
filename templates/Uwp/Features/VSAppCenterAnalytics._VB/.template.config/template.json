@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "VS App Center Analytics",
+  "shortName": "VS App Center Analytics",
   "groupIdentity": "wts.Feat.VSAppCenterAnalytics.VB",
   "identity": "wts.Feat.VSAppCenterAnalytics.VB",
   "description": "Send analytics to the Visual Studio App Center.",
@@ -48,7 +50,7 @@
         "version": "2.1.1",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -59,7 +61,7 @@
         "version" : "2.1.1",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

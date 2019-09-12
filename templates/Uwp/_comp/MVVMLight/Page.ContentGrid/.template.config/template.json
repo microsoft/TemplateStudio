@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.ContentGrid",
+  "identity": "MVVMLight.Page.ContentGrid",
+  "shortName": "MVVMLight.Page.ContentGrid",
   "tags": {
     "language": "C#",
     "type": "item",

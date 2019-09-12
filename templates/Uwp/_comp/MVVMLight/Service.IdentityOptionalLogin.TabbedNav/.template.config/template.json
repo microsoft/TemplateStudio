@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityOptionalLogin.TabbedNav",
+  "identity": "MVVMLight.Service.IdentityOptionalLogin.TabbedNav",
+  "shortName": "MVVMLight.Service.IdentityOptionalLogin.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,7 +1,10 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Project.AddCoreProject",
+  "identity": "Project.AddCoreProject",
+  "shortName": "Project.AddCoreProject",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -14,7 +17,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core\\Param_ProjectName.Core.csproj" }
+    { "path": "Param_ProjectName.Core/Param_ProjectName.Core.csproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -44,7 +47,8 @@
         "fileIndex" : "0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
+      
     }
   ]
 }

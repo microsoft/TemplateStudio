@@ -108,6 +108,8 @@ namespace TemplateValidator
 
                 var templateRoot = filePath.Replace("\\.template.config\\template.json", string.Empty);
 
+                EnsureValidPrimaryOutputPaths(template, results);
+
                 EnsureAllDefinedPrimaryOutputsExist(template, templateRoot, results);
 
                 EnsureAllDefinedGuidsAreUsed(template, templateRoot, results);
@@ -553,6 +555,20 @@ namespace TemplateValidator
                 if (template.PostActions != null && template.PostActions.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
                 {
                     results.Add($"Missing license on template {template.Identity}");
+                }
+            }
+        }
+
+        private static void EnsureValidPrimaryOutputPaths(ValidationTemplateInfo template, List<string> results)
+        {
+            if (template.PrimaryOutputs != null)
+            {
+                foreach (var primaryOutput in template.PrimaryOutputs)
+                {
+                    if (primaryOutput.Path.Contains("\\"))
+                    {
+                        results.Add($"Primary output '{primaryOutput.Path}' should use '/' instead of '\\'.");
+                    }
                 }
             }
         }
