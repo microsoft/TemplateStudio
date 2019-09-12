@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SignConfigXML>
-  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="crutkas;ralarcon">
+  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="">
     <file src="__INPATHROOT__\templates\Uwp.VB.Templates.mstx" signType="100040160" dest="__OUTPATHROOT__\templates\Uwp.VB.Templates.mstx" />
     <file src="__INPATHROOT__\templates\Uwp.CS.Templates.mstx" signType="100040160" dest="__OUTPATHROOT__\templates\Uwp.CS.Templates.mstx" />
   </job>
