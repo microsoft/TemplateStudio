@@ -1,3 +1,3 @@
 ﻿タブ ページは、アクセス頻度の高い個別のコンテンツ カテゴリー間を移動するために使用されます。ピボットにより、2 つ以上のコンテンツ ウィンドウの間を移動することができます。コンテンツのセクションを区別するために、テキスト ヘッダーが使用されます。
 
-[ピボット コントロールが適している状況をご確認ください。](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/pivot)
+[ピボット コントロールが適している状況をご確認ください。](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/pivot)

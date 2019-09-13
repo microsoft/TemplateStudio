@@ -8,7 +8,7 @@ Imports Newtonsoft.Json
 
 Namespace Core.Services
     ' This class provides a wrapper around common functionality for HTTP actions.
-    ' Learn more at https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient
+    ' Learn more at https://docs.microsoft.com/windows/uwp/networking/httpclient
     Public Class HttpDataService
         Private client As HttpClient
         Private ReadOnly responseCache As Dictionary(Of String, Object)

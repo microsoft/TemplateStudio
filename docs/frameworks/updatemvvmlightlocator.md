@@ -2,7 +2,7 @@
 
 :heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./updatemvvmlightlocator-vb.md) :heavy_exclamation_mark: |
 
-We have changed the WTS ViewModelLocator implementation for MVVMLight to be able to support MultiView in apps. To avoid the ViewModelLocator from be instantiated more than once, we will used it as as a singleton instead of an application resource. 
+We have changed the WinTS ViewModelLocator implementation for MVVMLight to be able to support MultiView in apps. To avoid the ViewModelLocator from be instantiated more than once, we will used it as as a singleton instead of an application resource. 
 
 To adjust your code, please follow these steps:
 

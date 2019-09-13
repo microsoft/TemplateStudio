@@ -1,5 +1,5 @@
 ﻿Un mosaico es la representación de una aplicación en el menú Inicio. Todas las aplicaciones tienen un mosaico. Cuando creas un proyecto de aplicación para la Plataforma universal de Windows (UWP) en Microsoft Visual Studio, incluye un mosaico predeterminado que muestra el nombre y el logotipo de la aplicación. Windows muestra este mosaico cuando tu aplicación se instala por primera vez. Cuando la aplicación está instalada, puedes cambiar el contenido del mosaico a través de notificaciones; por ejemplo, puedes cambiar el mosaico para comunicar información nueva al usuario, como títulos de noticias, o el asunto del mensaje no leído más reciente.
 
-[Obtén más información acerca de los Iconos dinámicos.](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-creating-tiles)
+[Obtén más información acerca de los Iconos dinámicos.](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-creating-tiles)
 
-Utiliza la [aplicación de visualización](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) que ayuda a diseñar notificaciones y mosaicos dinámicos adaptables.
+Utiliza la [aplicación de visualización](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) que ayuda a diseñar notificaciones y mosaicos dinámicos adaptables.
