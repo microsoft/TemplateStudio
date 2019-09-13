@@ -11,7 +11,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class TabViewViewModel : ViewModelBase
+    public class wts.ItemNameViewModel : ViewModelBase
     {
         private ICommand _addTabCommand;
         private ICommand _closeTabCommand;
@@ -43,7 +43,7 @@ namespace Param_RootNamespace.ViewModels
             }
         };
 
-        public TabViewViewModel()
+        public wts.ItemNameViewModel()
         {
         }
 
