@@ -7,8 +7,9 @@ namespace Param_RootNamespace.Services
     {
         private async Task InitializeAsync()
         {
+//^^
 //{[{
-            await ThemeSelectorService.InitializeAsync();
+            await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
 //}]}
         }
 
