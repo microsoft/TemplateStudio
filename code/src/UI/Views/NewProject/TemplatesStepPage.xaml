@@ -29,7 +29,7 @@
             <ItemsControl
                 Focusable="False"
                 ItemsSource="{Binding Groups}"
-                ItemTemplate="{StaticResource WtsGroupTemplatePageFeature}"/>
+                ItemTemplate="{StaticResource WtsGroupTemplateCard}"/>
         </ScrollViewer>
     </Grid>
 </Page>
