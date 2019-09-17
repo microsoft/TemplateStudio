@@ -10,9 +10,9 @@ Imports Param_RootNamespace.Core.Helpers
 Namespace Services
     Friend Class ActivationService
         Private Async Function InitializeAsync() As Task
-'{[{
-            Await Singleton(Of BackgroundTaskService).Instance.RegisterBackgroundTasksAsync()
-'}]}
+            '{[{
+            Await Singleton(Of BackgroundTaskService).Instance.RegisterBackgroundTasksAsync().ConfigureAwait(False)
+            '}]}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
