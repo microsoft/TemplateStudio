@@ -12,31 +12,30 @@
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
-        <winui:TabView
-            TabItemsSource="{x:Bind ViewModel.Tabs}"
-            AddTabButtonCommand="{x:Bind ViewModel.AddTabCommand}">
-            <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="TabCloseRequested">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.CloseTabCommand}" />
-                </ic:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-            <winui:TabView.TabItemTemplate>
-                <DataTemplate x:DataType="models:TabViewItemData">
-                    <winui:TabViewItem
-                        Header="{x:Bind Header}"
-                        AutomationProperties.Name="{x:Bind Header}"
-                        Content="{x:Bind Content}">
-                        <winui:TabViewItem.ContentTemplate>
-                            <DataTemplate x:DataType="system:String">
-                                <Grid Padding="{StaticResource SmallLeftTopRightBottomMargin}">
-                                    <TextBlock Text="{x:Bind}" />
-                                </Grid>
-                            </DataTemplate>
-                        </winui:TabViewItem.ContentTemplate>
-                    </winui:TabViewItem>
-                </DataTemplate>
-            </winui:TabView.TabItemTemplate>
-        </winui:TabView>
-    </Grid>
+    <winui:TabView
+        AllowDropTabs="True"
+        TabItemsSource="{x:Bind ViewModel.Tabs}"
+        AddTabButtonCommand="{x:Bind ViewModel.AddTabCommand}">
+        <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="TabCloseRequested">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.CloseTabCommand}" />
+            </ic:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+        <winui:TabView.TabItemTemplate>
+            <DataTemplate x:DataType="models:TabViewItemData">
+                <winui:TabViewItem
+                    Header="{x:Bind Header}"
+                    AutomationProperties.Name="{x:Bind Header}"
+                    Content="{x:Bind Content}">
+                    <winui:TabViewItem.ContentTemplate>
+                        <DataTemplate x:DataType="system:String">
+                            <Grid Padding="{StaticResource SmallLeftTopRightBottomMargin}">
+                                <TextBlock Text="{x:Bind}" />
+                            </Grid>
+                        </DataTemplate>
+                    </winui:TabViewItem.ContentTemplate>
+                </winui:TabViewItem>
+            </DataTemplate>
+        </winui:TabView.TabItemTemplate>
+    </winui:TabView>
 </Page>
