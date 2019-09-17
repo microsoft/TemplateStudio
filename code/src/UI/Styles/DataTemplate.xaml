@@ -62,7 +62,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplatePageFeature">
+    <DataTemplate x:Key="WtsItemTemplateCard">
         <Grid>
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
@@ -122,7 +122,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsGroupTemplatePageFeature">
+    <DataTemplate x:Key="WtsGroupTemplateCard">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -137,7 +137,7 @@
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                ItemTemplate="{StaticResource WtsItemTemplateCard}"
                 AutomationProperties.Name="{Binding AccessibleName}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}" />
         </Grid>
