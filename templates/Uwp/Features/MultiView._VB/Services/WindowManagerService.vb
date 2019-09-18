@@ -30,7 +30,7 @@ Namespace Services
 
         Public Async Function InitializeAsync() As Task
             Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-            Async Sub()
+            Sub()
                 MainViewId = ApplicationView.GetForCurrentView().Id
                 MainDispatcher = Window.Current.Dispatcher
             End Sub)
