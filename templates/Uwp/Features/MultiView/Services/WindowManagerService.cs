@@ -28,10 +28,13 @@ namespace Param_RootNamespace.Services
 
         public CoreDispatcher MainDispatcher { get; private set; }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
-            MainViewId = ApplicationView.GetForCurrentView().Id;
-            MainDispatcher = Window.Current.Dispatcher;
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MainViewId = ApplicationView.GetForCurrentView().Id;
+                MainDispatcher = Window.Current.Dispatcher;
+            });
         }
 
         // Displays a view as a standalone

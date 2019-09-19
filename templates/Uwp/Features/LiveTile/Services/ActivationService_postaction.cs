@@ -15,20 +15,20 @@ namespace Param_RootNamespace.Services
     {
         private async Task InitializeAsync()
         {
-            //{[{
-            await Singleton<LiveTileFeatureService>.Instance.EnableQueueAsync();
-            //}]}
+//{[{
+            await Singleton<LiveTileFeatureService>.Instance.EnableQueueAsync().ConfigureAwait(false);
+//}]}
         }
 
         private async Task StartupAsync()
         {
-            //^^
-            //{[{
+//^^
+//{[{
             Singleton<LiveTileFeatureService>.Instance.SampleUpdate();
-            //}]}
-            //{??{
+//}]}
+//{??{
             await Task.CompletedTask;
-            //}??}
+//}??}
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

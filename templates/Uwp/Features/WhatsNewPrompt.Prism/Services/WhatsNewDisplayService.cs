@@ -1,7 +1,9 @@
-﻿using Param_RootNamespace.Views;
-using Microsoft.Toolkit.Uwp.Helpers;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Helpers;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace.Services
 {
@@ -12,12 +14,16 @@ namespace Param_RootNamespace.Services
 
         public async Task ShowIfAppropriateAsync()
         {
-            if (SystemInformation.IsAppUpdated && !shown)
-            {
-                shown = true;
-                var dialog = new WhatsNewDialog();
-                await dialog.ShowAsync();
-            }
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, async () =>
+                {
+                    if (SystemInformation.IsAppUpdated && !shown)
+                    {
+                        shown = true;
+                        var dialog = new WhatsNewDialog();
+                        await dialog.ShowAsync();
+                    }
+                });
         }
     }
 }
