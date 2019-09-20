@@ -15,7 +15,10 @@ namespace Microsoft.Templates.Fakes
     {
         private const string ProjectConfigurationPlatformsText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
 
-        private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
+        private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0}.Debug|Any CPU.Build.0 = Debug|x86
+		{0}.Debug|Any CPU.Deploy.0 = Debug|x86
+        {0}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0}.Debug|ARM.Build.0 = Debug|ARM
 		{0}.Debug|ARM.Deploy.0 = Debug|ARM
 		{0}.Debug|x64.ActiveCfg = Debug|x64
@@ -24,6 +27,9 @@ namespace Microsoft.Templates.Fakes
 		{0}.Debug|x86.ActiveCfg = Debug|x86
 		{0}.Debug|x86.Build.0 = Debug|x86
 		{0}.Debug|x86.Deploy.0 = Debug|x86
+        {0}.Release|Any CPU.ActiveCfg = Release|x86
+		{0}.Release|Any CPU.Build.0 = Release|x86
+		{0}.Release|Any CPU.Deploy.0 = Release|x86
 		{0}.Release|ARM.ActiveCfg = Release|ARM
 		{0}.Release|ARM.Build.0 = Release|ARM
 		{0}.Release|ARM.Deploy.0 = Release|ARM
