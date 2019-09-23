@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
     {
         private readonly string _emptyBackendFramework = string.Empty;
         //TODO: Remove once version 3.5 is released
-        private string[] excludedTemplates = { "wts.Feat.MultiView", "wts.Page.TabView", "wts.Page.TabView.VB" };
+        private string[] excludedTemplates = { "wts.Feat.MultiView", "wts.Page.TabView", "wts.Page.TabView.VB", "wts.Page.TreeView", "wts.Page.TreeView.VB" };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
             : base(fixture)
