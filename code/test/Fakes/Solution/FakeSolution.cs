@@ -21,6 +21,9 @@ namespace Microsoft.Templates.Fakes
         {0}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0}.Debug|ARM.Build.0 = Debug|ARM
 		{0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{0}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{0}.Debug|ARM64.Build.0 = Debug|ARM64
+		{0}.Debug|ARM64.Deploy.0 = Debug|ARM64
 		{0}.Debug|x64.ActiveCfg = Debug|x64
 		{0}.Debug|x64.Build.0 = Debug|x64
 		{0}.Debug|x64.Deploy.0 = Debug|x64
@@ -33,6 +36,9 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|ARM.ActiveCfg = Release|ARM
 		{0}.Release|ARM.Build.0 = Release|ARM
 		{0}.Release|ARM.Deploy.0 = Release|ARM
+        {0}.Release|ARM64.ActiveCfg = Release|ARM64
+		{0}.Release|ARM64.Build.0 = Release|ARM64
+		{0}.Release|ARM64.Deploy.0 = Release|ARM64
 		{0}.Release|x64.ActiveCfg = Release|x64
 		{0}.Release|x64.Build.0 = Release|x64
 		{0}.Release|x64.Deploy.0 = Release|x64
@@ -45,6 +51,8 @@ namespace Microsoft.Templates.Fakes
 		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{0}.Debug|ARM.Build.0 = Debug|Any CPU
+        {0}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{0}.Debug|ARM64.Build.0 = Debug|Any CPU
 		{0}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{0}.Debug|x64.Build.0 = Debug|Any CPU
 		{0}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -53,6 +61,8 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0}.Release|ARM.ActiveCfg = Release|Any CPU
 		{0}.Release|ARM.Build.0 = Release|Any CPU
+        {0}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{0}.Release|ARM64.Build.0 = Release|Any CPU
 		{0}.Release|x64.ActiveCfg = Release|Any CPU
 		{0}.Release|x64.Build.0 = Release|Any CPU
 		{0}.Release|x86.ActiveCfg = Release|Any CPU
