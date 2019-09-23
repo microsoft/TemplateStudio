@@ -3,7 +3,7 @@
     <Metadata>
         <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
         <DisplayName>WTS (local)</DisplayName>
-        <Description xml:space="preserve">Windows Template Studio</Description>
+        <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
         <License>Content\EULA.rtf</License>
         <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
