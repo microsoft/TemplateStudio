@@ -21,7 +21,8 @@
     "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "3DLauncher",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "3DLauncherAsset",
   "preferNameDirectory": true,
