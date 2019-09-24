@@ -28,10 +28,13 @@ Namespace Services
 
         Public Property MainDispatcher As CoreDispatcher
 
-        Public Sub Initialize()
-            MainViewId = ApplicationView.GetForCurrentView().Id
-            MainDispatcher = Window.Current.Dispatcher
-        End Sub
+        Public Async Function InitializeAsync() As Task
+            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            Sub()
+                MainViewId = ApplicationView.GetForCurrentView().Id
+                MainDispatcher = Window.Current.Dispatcher
+            End Sub)
+        End Function
 
         ' Displays a view as a standalone
         ' You can use the resulting ViewLifeTileControl to interact with the new window.

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "TabView",
+  "description": "Description for TabView",
+  "identity": "wts.Page.TabView.Prism"
+}

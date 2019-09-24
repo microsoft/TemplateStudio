@@ -3,7 +3,8 @@
 '**}
 
 Private Async Function InitializeAsync() As Task
-    '{[{
-    WindowManagerService.Current.Initialize()
-    '}]}
+'^^
+'{[{
+    Await WindowManagerService.Current.InitializeAsync()
+'}]}
 End Function

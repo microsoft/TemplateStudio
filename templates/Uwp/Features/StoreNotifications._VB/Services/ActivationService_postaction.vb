@@ -12,7 +12,7 @@ Namespace Services
         Private Async Function StartupAsync() As Task
 '^^
 '{[{
-            Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
+            Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync().ConfigureAwait(False)
 '}]}
 '{??{
             Await Task.CompletedTask
