@@ -10,6 +10,7 @@ Namespace Activation
     Friend Class CommandLineActivationHandler
         Inherits ActivationHandler(Of CommandLineActivatedEventArgs)
 
+        ' Learn more about these EventArgs at https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.activation.commandlineactivatedeventargs
         Protected Overrides Async Function HandleInternalAsync(args As CommandLineActivatedEventArgs) As Task
             Dim operation As CommandLineActivationOperation = args.Operation
 

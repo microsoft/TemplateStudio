@@ -13,6 +13,7 @@ namespace Param_RootNamespace.Activation
 {
     internal class CommandLineActivationHandler : ActivationHandler<CommandLineActivatedEventArgs>
     {
+        // Learn more about these EventArgs at https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.activation.commandlineactivatedeventargs
         protected override async Task HandleInternalAsync(CommandLineActivatedEventArgs args)
         {
             CommandLineActivationOperation operation = args.Operation;

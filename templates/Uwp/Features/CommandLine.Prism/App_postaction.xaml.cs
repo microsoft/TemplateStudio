@@ -35,6 +35,7 @@ namespace Param_RootNamespace
 //^^
 //{[{
             // Only handle a commandline launch if arguments are passed.
+            // Learn more about these EventArgs at https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.activation.commandlineactivatedeventargs
             if (args.Kind == ActivationKind.CommandLineLaunch && !string.IsNullOrWhiteSpace(cmdLineDetails.arguments) && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 // Because these are supplied by the caller, they should be treated as untrustworthy.
