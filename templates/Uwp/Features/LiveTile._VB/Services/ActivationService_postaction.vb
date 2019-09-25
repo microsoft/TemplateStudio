@@ -11,9 +11,9 @@ Imports Param_RootNamespace.Core.Helpers
 Namespace Services
     Friend Class ActivationService
         Private Async Function InitializeAsync() As Task
-'{[{
-            Await Singleton(Of LiveTileFeatureService).Instance.EnableQueueAsync()
-'}]}
+            '{[{
+            Await Singleton(Of LiveTileFeatureService).Instance.EnableQueueAsync().ConfigureAwait(False)
+            '}]}
         End Function
 
         Private Async Function StartupAsync() As Task

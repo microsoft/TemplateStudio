@@ -4,7 +4,8 @@
 
 private async Task InitializeAsync()
 {
-    //{[{
-    WindowManagerService.Current.Initialize();
-    //}]}
+//^^
+//{[{
+    await WindowManagerService.Current.InitializeAsync();
+//}]}
 }

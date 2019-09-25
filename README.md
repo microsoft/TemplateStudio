@@ -45,7 +45,7 @@ After selecting the items wanted in your UWP app, you can [extend the generated 
 
 ## Known issues
 
-- You can't have side-by-side versions (nightly/pre-release/release) of Windows TemplateS tudio VSPackage into a single instance of Visual Studio.
+- You can't have side-by-side versions (nightly/pre-release/release) of Windows Template Studio VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
 

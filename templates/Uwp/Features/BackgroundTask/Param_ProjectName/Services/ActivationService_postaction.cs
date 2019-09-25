@@ -14,16 +14,16 @@ namespace Param_RootNamespace.Services
     {
         private async Task InitializeAsync()
         {
-            //{[{
-            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
-            //}]}
+//{[{
+            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync().ConfigureAwait(false);
+//}]}
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            //{[{
+//{[{
             yield return Singleton<BackgroundTaskService>.Instance;
-            //}]}
+//}]}
 //{--{
             yield break;
 //}--}
