@@ -12,6 +12,8 @@ The following features are supported in UWP apps.
 - [Deep Linking](./deep-linking.md)
 - [User Activity](./user-activity.md)
 - [Web to App Link](./web-to-app-link.md)
+- [Multi-Instance](./multi-instance.md)
+- [Multi-Instance Advanced](./multi-instance-advanced.md)
 
 ## Application Lifecycle
 
