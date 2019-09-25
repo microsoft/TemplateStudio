@@ -33,7 +33,7 @@ namespace Param_RootNamespace.Activation
             //// }
             ////
             //// If the arguments warrant showing a different view on launch, that can be done here.
-            //// NavigationService.Navigate(typeof(OtherPage), cmdLineString);
+            //// NavigationService.Navigate(typeof(CmdLineActivationSamplePage), cmdLineString);
             //// If you do nothing, the app will launch like normal.
 
             await Task.CompletedTask;

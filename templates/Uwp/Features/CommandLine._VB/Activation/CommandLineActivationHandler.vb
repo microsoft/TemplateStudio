@@ -28,7 +28,7 @@ Namespace Activation
             ' End Using
             '
             ' If the arguments warrant showing a different view on launch, that can be done here.
-            ' NavigationService.Navigate(GetType(OtherPage), cmdLineString)
+            ' NavigationService.Navigate(GetType(CmdLineActivationSamplePage), cmdLineString)
             ' If you do nothing, the app will launch like normal.
 
             Await Task.CompletedTask

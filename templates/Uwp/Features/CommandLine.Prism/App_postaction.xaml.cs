@@ -47,7 +47,7 @@ namespace Param_RootNamespace
 
                 //// TODO WTS: parse the cmdLineString to determine what to do.
                 //// If the arguments warrant showing a different view on launch, that can be done here.
-                //// await LaunchApplicationAsync(PageTokens.OtherPage, cmdLineString);
+                //// await LaunchApplicationAsync(PageTokens.CmdLineActivationSamplePage, cmdLineString);
                 //// If you do nothing, the app will launch like normal.
             }
 //}]}

@@ -27,6 +27,12 @@
   "sourceName": "CommandLineLaunching",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml"
+    },
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml.cs"
+    }
   ],
   "symbols":{
     "wts.projectName": {

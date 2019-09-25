@@ -28,7 +28,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\CommandLineActivationHandler.vb"
+      "path": "./Activation/CommandLineActivationHandler.vb"
+    },
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml"
+    },
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml.vb"
     }
   ],
   "symbols":{
