@@ -169,6 +169,12 @@ namespace Microsoft.Templates.Test
 
             for (var i = 0; i < allVbFiles.Count; i++)
             {
+                if (allVbFiles[i].Name.Contains("CommandLineActivationHandler.vb"))
+                {
+                    // This file contains code samples in comments that have different numbers of lines
+                    continue;
+                }
+
                 var vbLines = File.ReadAllLines(allVbFiles[i].FullName);
                 var vbCommentLines = vbLines.Where(l => l.TrimStart().StartsWith("'", StringComparison.Ordinal)).ToArray();
                 var csLines = File.ReadAllLines(VbFileToCsEquivalent(allVbFiles[i].FullName));
@@ -267,6 +273,10 @@ namespace Microsoft.Templates.Test
                     {
                         "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainViewModel).FullName)",
                         "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainViewModel).FullName);"
+                    },
+                    {
+                        "Await Singleton(Of HubNotificationsService).Instance.InitializeAsync().ConfigureAwait(False)",
+                        "await Singleton<HubNotificationsService>.Instance.InitializeAsync().ConfigureAwait(false);"
                     }
                 };
 
