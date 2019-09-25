@@ -19,7 +19,7 @@ namespace Param_RootNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            
+
             PassedArguments.Text = e.Parameter?.ToString();
         }
     }
