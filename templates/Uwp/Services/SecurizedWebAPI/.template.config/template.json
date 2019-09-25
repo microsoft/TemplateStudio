@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Securized Web API",
+  "shortName": "Securized Web API",
+  "groupIdentity": "wts.Service.SecurizedWebApi",
+  "identity": "wts.Service.SecurizedWebApi",
+  "description": "Include a ASP.NET Core Web API project that validates a JWToken.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "service",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Uwp",
+    "wts.group": "Data",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "SecurizedWebAPI",
+    "wts.multipleInstance": "false",
+    "wts.dependencies":"wts.Service.WebApi",
+    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
+    "wts.isHidden": "true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"false",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "SecurizedWebApi",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
