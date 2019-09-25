@@ -22,7 +22,8 @@
     "wts.defaultInstance": "MultiInstanceAdvanced",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
-    "wts.dependencies": "wts.Feat.MultiInstance.VB"
+    "wts.dependencies": "wts.Feat.MultiInstance.VB",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "MultiInstanceAdvanced",
   "preferNameDirectory": true,

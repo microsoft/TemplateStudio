@@ -21,7 +21,8 @@
     "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "MultiInstance",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "MultiInstance",
   "preferNameDirectory": true,
