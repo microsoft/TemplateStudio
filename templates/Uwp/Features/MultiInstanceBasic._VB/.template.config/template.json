@@ -1,0 +1,37 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Multi-Instance",
+  "shortName": "Multi-Instance",
+  "groupIdentity": "wts.Feat.MultiInstance.VB",
+  "identity": "wts.Feat.MultiInstance.VB",
+  "description": "Launch multiple instances of the app.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "3",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "MultiInstance",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "MultiInstance",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

@@ -182,8 +182,17 @@ namespace Microsoft.Templates.Test
 
                 if (vbCommentLines.Length != csCommentLines.Length)
                 {
-                    failures.Add(
-                        $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent. C# version has {csCommentLines.Length} while VB version has {vbCommentLines.Length}.");
+                    // Exception for comment which contains a sample code method.
+                    if (allVbFiles[i].Name == "Program.vb" && ((vbCommentLines.Length + 1) == csCommentLines.Length))
+                    {
+                        // Do not report this as difference is expected
+                    }
+                    else
+                    {
+                        failures.Add(
+                            $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent. C# version has {csCommentLines.Length} while VB version has {vbCommentLines.Length}.");
+                    }
+
                     continue;
                 }
 
