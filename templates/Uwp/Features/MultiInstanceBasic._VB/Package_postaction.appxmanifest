@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+<!--{[{-->
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4" 
+  xmlns:iot2="http://schemas.microsoft.com/appx/manifest/iot/windows10/2" 
+<!--}]}-->
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
+  IgnorableNamespaces="uap mp genTemplate">
+  <Applications>
+    <Application Id="App"
+<!--{[{-->
+      desktop4:SupportsMultipleInstances="true"
+      iot2:SupportsMultipleInstances="true"
+<!--}]}-->
+    </Application>
+  </Applications>
+</Package>

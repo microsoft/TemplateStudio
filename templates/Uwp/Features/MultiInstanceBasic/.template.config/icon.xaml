@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Width="48" Height="48">
+    <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+    <Path.Data>
+      <PathGeometry Figures="m 4.7218214 10.38415 c 29.3129496 0.16704 29.8864066 0.12878 29.8864066 0.12878 v 0" FillRule="NonZero"/>
+    </Path.Data>
+    </Path>
+    <Rectangle Canvas.Left="12.467916" Canvas.Top="16.1308" Width="30.196093" Height="21.108938" StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1"/>
+      <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+        <Path.Data>
+          <PathGeometry Figures="m 12.732506 20.87214 29.048654 0.15725" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+    <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+    <Path.Data>
+      <PathGeometry Figures="m 4.488073 5.50901 c 29.31295 0.16704 29.886406 0.12878 29.886406 0.12878 v 0" FillRule="NonZero"/>
+    </Path.Data>
+    </Path>
+    <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+    <Path.Data>
+      <PathGeometry Figures="m 4.5011544 26.74593 c 7.9244166 0.18247 8.0794436 0.14067 8.0794436 0.14067 v 0" FillRule="NonZero"/>
+    </Path.Data>
+    </Path>
+    <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+    <Path.Data>
+      <PathGeometry Figures="m 4.5011543 26.74593 c -0.037462 -21.24665 1e-7 0 -0.037462 -21.24665" FillRule="NonZero"/>
+    </Path.Data>
+    </Path>
+    <Path StrokeThickness="2.5" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+    <Path.Data>
+      <PathGeometry Figures="m 34.411941 15.70319 c -0.03746 -10.0654 0 0 -0.03746 -10.0654" FillRule="NonZero"/>
+    </Path.Data>
+    </Path>
+  </Canvas>
+</Viewbox>
