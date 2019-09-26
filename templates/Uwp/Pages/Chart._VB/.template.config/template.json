@@ -62,7 +62,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Telerik.UI.for.UniversalWindowsPlatform",
-        "version": "1.0.1.6",
+        "version": "1.0.1.7",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true
