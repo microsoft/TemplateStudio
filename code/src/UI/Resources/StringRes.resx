@@ -806,4 +806,7 @@ Please verify the following list of packages needed by your project's code and m
     <value>You can not remove **{0}** because it is required for: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>or</value>
+  </data>
 </root>

@@ -1144,6 +1144,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string SeparatorOr {
+            get {
+                return ResourceManager.GetString("SeparatorOr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding {0} to project ....
         /// </summary>
         public static string StatusAddingItem {
