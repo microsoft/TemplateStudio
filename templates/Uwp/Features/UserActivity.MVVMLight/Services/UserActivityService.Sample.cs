@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AdaptiveCards;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Shell;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Views;
@@ -15,15 +17,19 @@ namespace Param_RootNamespace.Services
     {
         public static async Task AddSampleUserActivity()
         {
-            var activityId = nameof(SchemeActivationSamplePage);
-            var displayText = "Sample Activity";
-            var description = $"Sample UserActivity added from Application '{Package.Current.DisplayName}' at {DateTime.Now.ToShortTimeString()}";
-            var imageUrl = "http://adaptivecards.io/content/cats/2.png";
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, async () =>
+                {
+                    var activityId = nameof(SchemeActivationSamplePage);
+                    var displayText = "Sample Activity";
+                    var description = $"Sample UserActivity added from Application '{Package.Current.DisplayName}' at {DateTime.Now.ToShortTimeString()}";
+                    var imageUrl = "http://adaptivecards.io/content/cats/2.png";
 
-            var activityData = new UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed);
-            var adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl);
+                    var activityData = new UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed);
+                    var adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl);
 
-            await UserActivityService.CreateUserActivityAsync(activityData, adaptiveCard);
+                    await UserActivityService.CreateUserActivityAsync(activityData, adaptiveCard);
+                });
         }
 
         private static SchemeActivationData CreateActivationDataSample()
