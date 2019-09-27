@@ -25,7 +25,8 @@ Namespace Services
             Await SaveAsync(activity)
         End Function
 
-        Private Async Function SaveAsync(activity As UserActivity) As TaskAwait CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+        Private Async Function SaveAsync(activity As UserActivity) As Task
+            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             Async Sub()
                 Await activity.SaveAsync()
 

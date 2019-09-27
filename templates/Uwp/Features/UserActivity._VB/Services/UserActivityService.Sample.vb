@@ -13,6 +13,7 @@ Namespace Services
                 Dim imageUrl = "http://adaptivecards.io/content/cats/2.png"
                 Dim activityData = New UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed)
                 Dim adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl)
+                Await CreateUserActivityAsync(activityData, adaptiveCard)
             End Sub)
         End Function
 
