@@ -57,7 +57,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "NUnit3TestAdapter",
-        "version" : "3.13.0",
+        "version" : "3.15.1",
         "projectPath": "Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
       },
       "continueOnError": true
@@ -68,7 +68,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.NET.Test.Sdk",
-        "version" : "16.2.0",
+        "version" : "16.3.0",
         "projectPath": "Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
       },
       "continueOnError": true

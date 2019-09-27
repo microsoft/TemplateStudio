@@ -51,7 +51,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Identity.Client",
-        "version" : "4.0.0",
+        "version" : "4.4.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
