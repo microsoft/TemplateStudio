@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.UserActivities;
+using Windows.UI.Core;
 using Windows.UI.Shell;
 
 namespace Param_RootNamespace.Services
@@ -32,11 +34,15 @@ namespace Param_RootNamespace.Services
 
         private static async Task SaveAsync(UserActivity activity)
         {
-            await activity.SaveAsync();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, async () =>
+                {
+                    await activity.SaveAsync();
 
-            // Dispose of any current UserActivitySession, and create a new one.
-            _currentUserActivitySession?.Dispose();
-            _currentUserActivitySession = activity.CreateSession();
+                    // Dispose of any current UserActivitySession, and create a new one.
+                    _currentUserActivitySession?.Dispose();
+                    _currentUserActivitySession = activity.CreateSession();
+                });
         }
     }
 }
