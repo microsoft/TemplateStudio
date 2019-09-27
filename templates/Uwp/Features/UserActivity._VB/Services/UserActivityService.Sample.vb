@@ -1,23 +1,18 @@
 ﻿Imports AdaptiveCards
 Imports Param_RootNamespace.Activation
 Imports Param_RootNamespace.Views
-Imports Windows.ApplicationModel.Core
 Imports Windows.UI
-Imports Windows.UI.Core
 Imports Windows.UI.Shell
 
 Namespace Services
     Partial Public Module UserActivityService
         Async Function AddSampleUserActivity() As Task
-            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-            Async Sub()
                 Dim activityId = NameOf(SchemeActivationSamplePage)
                 Dim displayText = "Sample Activity"
                 Dim description = $"Sample UserActivity added from Application '{Package.Current.DisplayName}' at {DateTime.Now.ToShortTimeString()}"
                 Dim imageUrl = "http://adaptivecards.io/content/cats/2.png"
                 Dim activityData = New UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed)
                 Dim adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl)
-                Await CreateUserActivityAsync(activityData, adaptiveCard)
             End Sub)
         End Function
 

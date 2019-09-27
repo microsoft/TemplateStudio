@@ -1,4 +1,6 @@
-﻿Imports Windows.ApplicationModel.UserActivities
+﻿Imports Windows.ApplicationModel.Core
+Imports Windows.ApplicationModel.UserActivities
+Imports Windows.UI.Core
 Imports Windows.UI.Shell
 
 Namespace Services
@@ -23,12 +25,14 @@ Namespace Services
             Await SaveAsync(activity)
         End Function
 
-        Private Async Function SaveAsync(activity As UserActivity) As Task
-            Await activity.SaveAsync()
+        Private Async Function SaveAsync(activity As UserActivity) As TaskAwait CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            Async Sub()
+                Await activity.SaveAsync()
 
-            ' Dispose of any current UserActivitySession, And create a New one.
-            _currentUserActivitySession?.Dispose()
-            _currentUserActivitySession = activity.CreateSession()
+                ' Dispose of any current UserActivitySession, And create a New one.
+                _currentUserActivitySession?.Dispose()
+                _currentUserActivitySession = activity.CreateSession()
+            End Sub)
         End Function
     End Module
 End Namespace
