@@ -13,13 +13,12 @@
     <Application Id="App"
       <Extensions>
 <!--{[{-->
-      
-          <uap5:Extension 
-            Category="windows.appExecutionAlias" 
-            Executable="Param_ProjectName.exe" 
-            EntryPoint="Param_ProjectName.App">
+          <uap5:Extension
+            Category="windows.appExecutionAlias"
+            Executable="SafeProjectName.exe"
+            EntryPoint="SafeProjectName.App">
             <uap5:AppExecutionAlias>
-              <uap5:ExecutionAlias Alias="Param_ProjectName.exe" />
+              <uap5:ExecutionAlias Alias="SafeProjectName.exe" />
             </uap5:AppExecutionAlias>
           </uap5:Extension>
 <!--}]}-->

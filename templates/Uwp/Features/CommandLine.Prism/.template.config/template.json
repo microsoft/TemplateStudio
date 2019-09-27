@@ -43,6 +43,22 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
+    },
+    "wts.safeprojectName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "SafeProjectName",
+      "parameters": {
+          "source": "wts.projectName",
+          "steps": [
+              {
+                  "regex": "([-_,@! (£)+=])",
+                  "replacement": "_"
+              }
+          ],
+          "action":"replace"
+      }
     }
   }
 }
