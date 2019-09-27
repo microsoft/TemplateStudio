@@ -7,14 +7,13 @@ Imports Windows.UI.Shell
 Namespace Services
     Partial Public Module UserActivityService
         Async Function AddSampleUserActivity() As Task
-                Dim activityId = NameOf(SchemeActivationSamplePage)
-                Dim displayText = "Sample Activity"
-                Dim description = $"Sample UserActivity added from Application '{Package.Current.DisplayName}' at {DateTime.Now.ToShortTimeString()}"
-                Dim imageUrl = "http://adaptivecards.io/content/cats/2.png"
-                Dim activityData = New UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed)
-                Dim adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl)
-                Await CreateUserActivityAsync(activityData, adaptiveCard)
-            End Sub)
+            Dim activityId = NameOf(SchemeActivationSamplePage)
+            Dim displayText = "Sample Activity"
+            Dim description = $"Sample UserActivity added from Application '{Package.Current.DisplayName}' at {DateTime.Now.ToShortTimeString()}"
+            Dim imageUrl = "http://adaptivecards.io/content/cats/2.png"
+            Dim activityData = New UserActivityData(activityId, CreateActivationDataSample(), displayText, Colors.DarkRed)
+            Dim adaptiveCard = CreateAdaptiveCardSample(displayText, description, imageUrl)
+            Await CreateUserActivityAsync(activityData, adaptiveCard)
         End Function
 
         Private Function CreateActivationDataSample() As SchemeActivationData
