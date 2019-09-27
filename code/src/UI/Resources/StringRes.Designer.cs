@@ -766,6 +766,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not add **{0}** because it is requires one of the following templates to be added first: {1}.
+        /// </summary>
+        public static string NotificationAdditionError_Requirement {
+            get {
+                return ResourceManager.GetString("NotificationAdditionError_Requirement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not remove **{0}** because these templates depend on it: {1}.
         /// </summary>
         public static string NotificationRemoveError_Dependency {
@@ -780,6 +789,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NotificationRemoveError_ReadOnly {
             get {
                 return ResourceManager.GetString("NotificationRemoveError_ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is required for: {1}.
+        /// </summary>
+        public static string NotificationRemoveError_Requirement {
+            get {
+                return ResourceManager.GetString("NotificationRemoveError_Requirement", resourceCulture);
             }
         }
         
@@ -1122,6 +1140,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ReorderPageHelpText {
             get {
                 return ResourceManager.GetString("ReorderPageHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string SeparatorOr {
+            get {
+                return ResourceManager.GetString("SeparatorOr", resourceCulture);
             }
         }
         

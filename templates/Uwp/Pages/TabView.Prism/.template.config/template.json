@@ -8,7 +8,7 @@
   "shortName": "TabView",
   "groupIdentity": "wts.Page.TabView",
   "identity": "wts.Page.TabView.Prism",
-  "description": "Description for TabView",
+  "description": "The tab view page has a TabView control to show contents in different tabs.",
   "tags": {
     "language": "C#",
     "type": "item",

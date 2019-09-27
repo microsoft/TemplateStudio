@@ -1,0 +1,41 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Multi-Instance Advanced",
+  "shortName": "Multi-Instance Advanced",
+  "groupIdentity": "wts.Feat.MultiInstanceAdvanced",
+  "identity": "wts.Feat.MultiInstanceAdvanced",
+  "description": "Control how multiple instances of the app are launched.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "4",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "MultiInstanceAdvanced",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.dependencies": "wts.Feat.MultiInstance",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "MultiInstanceAdvanced",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "./Program.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

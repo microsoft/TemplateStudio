@@ -497,9 +497,11 @@ namespace Microsoft.Templates.Test
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                 "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                 "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
+                "wts.Feat.MultiInstance", "wts.Feat.MultiInstanceAdvanced",
                 "wts.Testing.UnitTests.Core.MSTest", "wts.Testing.UnitTests.Core.NUnit", "wts.Testing.UnitTests.Core.xUnit",
                 "wts.Testing.UnitTests.App.MSTest", "wts.Testing.UnitTests.App.xUnit",
                 "wts.Service.HttpDataService", "wts.Service.SqlServerDataService",
+                "wts.Feat.CommandLine"
             };
         }
 
