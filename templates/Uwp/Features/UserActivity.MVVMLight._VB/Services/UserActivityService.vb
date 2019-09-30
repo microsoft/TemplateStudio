@@ -30,7 +30,7 @@ Namespace Services
             Async Sub()
                 Await activity.SaveAsync()
 
-                ' Dispose of any current UserActivitySession, And create a New one.
+                ' Dispose of any current UserActivitySession, and create a new one.
                 _currentUserActivitySession?.Dispose()
                 _currentUserActivitySession = activity.CreateSession()
             End Sub)

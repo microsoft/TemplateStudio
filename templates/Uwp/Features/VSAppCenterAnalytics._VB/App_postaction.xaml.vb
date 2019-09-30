@@ -11,7 +11,7 @@ NotInheritable Partial Class App
         InitializeComponent()
         '{[{
 
-        ' TODO WTS: Add your app in the app center And set your secret here. More at https://docs.microsoft.com/appcenter/sdk/getting-started/uwp
+        ' TODO WTS: Add your app in the app center and set your secret here. More at https://docs.microsoft.com/appcenter/sdk/getting-started/uwp
         AppCenter.Start("<Your App Secret>", GetType(Analytics), GetType(Crashes))
         '}]}
     End Sub
