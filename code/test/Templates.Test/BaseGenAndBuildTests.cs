@@ -486,7 +486,11 @@ namespace Microsoft.Templates.Test
         {
             return new[]
             {
+                "wts.Page.TabView",
+                "wts.Page.TabView.CodeBehind",
                 "wts.Service.WebApi",
+                "wts.Service.SecurizedWebApi",
+                "wts.Service.SecurizedWebApi.CodeBehind",
             };
         }
 
