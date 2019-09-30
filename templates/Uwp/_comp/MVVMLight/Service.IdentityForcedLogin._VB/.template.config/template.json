@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityForcedLogin.VB",
+  "identity": "MVVMLight.Service.IdentityForcedLogin.VB",
+  "shortName": "MVVMLight.Service.IdentityForcedLogin.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

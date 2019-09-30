@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Page.ImageGallery.UnitTests.App.xUnit",
+  "identity": "CaliburnMicro.Page.ImageGallery.UnitTests.App.xUnit",
+  "shortName": "CaliburnMicro.Page.ImageGallery.UnitTests.App.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -31,10 +34,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Moq",
-        "version" : "4.12.0",
+        "version" : "4.13.0",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

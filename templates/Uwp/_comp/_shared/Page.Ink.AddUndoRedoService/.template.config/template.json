@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddUndoRedoService",
+  "identity": "Page.Ink.AddUndoRedoService",
+  "shortName": "Page.Ink.AddUndoRedoService",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,19 +19,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkUndoRedoService.cs"
+      "path": "Services/Ink/InkUndoRedoService.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\AddStrokeUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/AddStrokeUndoRedoOperation.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\IUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/IUndoRedoOperation.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\MoveStrokesUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/MoveStrokesUndoRedoOperation.cs"
     },
     {
-      "path": ".\\Services\\Ink\\UndoRedo\\RemoveStrokeUndoRedoOperation.cs"
+      "path": "Services/Ink/UndoRedo/RemoveStrokeUndoRedoOperation.cs"
     }
   ],
   "symbols": {

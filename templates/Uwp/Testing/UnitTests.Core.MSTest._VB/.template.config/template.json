@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Test Core library with MSTest",
+  "shortName": "Test Core library with MSTest",
   "groupIdentity": "wts.Testing.UnitTests.Core.MSTest.VB",
   "identity": "wts.Testing.UnitTests.Core.MSTest.VB",
   "description": "Add a project to test code in the Core library with MSTest.",
@@ -24,7 +26,7 @@
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj" }
+    { "path": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.vbproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -44,10 +46,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestFramework",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -55,10 +57,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestAdapter",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -66,10 +68,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.NET.Test.Sdk",
-        "version" : "16.2.0",
+        "version" : "16.3.0",
         "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

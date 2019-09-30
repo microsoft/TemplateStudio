@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Forced Login",
+  "shortName": "Forced Login",
   "groupIdentity": "wts.Service.IdentityForcedLogin",
   "identity": "wts.Service.IdentityForcedLogin",
   "description": "Make your application require the user to login.",
@@ -29,13 +31,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\LogInViewModel.cs"
+      "path": "ViewModels/LogInViewModel.cs"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml"
+      "path": "Views/LogInPage.xaml"
     },
     {
-      "path": ".\\Views\\LogInPage.xaml.cs"
+      "path": "Views/LogInPage.xaml.cs"
     }
   ],
   "symbols": {

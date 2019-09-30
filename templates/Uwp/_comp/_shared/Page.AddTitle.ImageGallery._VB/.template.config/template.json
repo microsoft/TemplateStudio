@@ -1,9 +1,12 @@
 ﻿{
-    "author": "Microsoft Community",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
     "classifications": [
       "Universal"
     ],
     "name": "Page.AddTitle.ImageGallery.VB",
+    "identity": "Page.AddTitle.ImageGallery.VB",
+    "shortName": "Page.AddTitle.ImageGallery.VB",
     "tags": {
       "language": "VisualBasic",
       "type": "item",

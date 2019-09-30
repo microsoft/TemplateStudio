@@ -1,93 +1,94 @@
 # Platform Specific Recommendations
 
 The Universal Windows Platform (UWP) lets you build apps for any Windows device (PCs, phones, Xbox One, HoloLens, Surface Hub, IoT and more).
-Here is a compilation of useful links to the documentation that will help you to adapt your WTS application to add some platform-specific features.
+Here is a compilation of useful links to the documentation that will help you to adapt your WinTS generated application to add some platform-specific features.
 
 ## General
 
-**Overview**
- - [Universal Windows Platform documentation](https://docs.microsoft.com/en-us/windows/uwp/)
+### Overview
 
-**Links**
+- [Universal Windows Platform documentation](https://docs.microsoft.com/windows/uwp/)
 
- - [Windows Developer Portal](https://developer.microsoft.com/en-us/windows)
+### More Information
 
- - [Device primer for Universal Windows Platform (UWP) apps](https://docs.microsoft.com/en-us/windows/uwp/design/devices/)
-
- - [Device families](https://docs.microsoft.com/en-us/uwp/extension-sdks/device-families-overview)
+- [Windows Developer Portal](https://developer.microsoft.com/windows)
+- [Device primer for Universal Windows Platform (UWP) apps](https://docs.microsoft.com/windows/uwp/design/devices/)
+- [Device families](https://docs.microsoft.com/uwp/extension-sdks/device-families-overview)
 
 ## Desktop Recommendations
 
-**API Extensions**
+### API Extensions
 
- - [UWP API Desktop Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-desktop-extension-sdk)
+- [UWP API Desktop Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-desktop-extension-sdk)
 
-**More links**
+### More Information
 
- - [Device Portal for Desktop](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-desktop)
+- [Device Portal for Desktop](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-desktop)
 
 ## Mobile Recommendations
-**Overview**
 
-**API Extensions**
+### API Extensions
 
- - [UWP API Windows Mobile Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-mobile-extension-sdk)
+- [UWP API Windows Mobile Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-mobile-extension-sdk)
 
-**More links**
+### More Information
 
- - [Device Portal for Mobile](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-mobile)
+- [Device Portal for Mobile](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-mobile)
 
 ## Xbox Recommendations
-**Overview**
 
- - [Xbox UWP development doc](https://docs.microsoft.com/windows/uwp/xbox-apps)
+### Overview
 
-**API Extensions**
+- [Xbox UWP development doc](https://docs.microsoft.com/windows/uwp/xbox-apps)
 
- - [UWP API Xbox Live Extensions](https://docs.microsoft.com/uwp/extension-sdks/xbox-live-extensions)
+### API Extensions
 
-**More links**
+- [UWP API Xbox Live Extensions](https://docs.microsoft.com/uwp/extension-sdks/xbox-live-extensions)
 
- - [Designing for Xbox and TV](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv)
+### More Information
 
- - [Gamepad and remote control](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv#gamepad-and-remote-control)
-
- - [Change pointer mode](https://docs.microsoft.com/en-us/windows/uwp/design/devices/designing-for-tv#mouse-mode)
-
- - [UWP features not yet supported on Xbox](https://docs.microsoft.com/uwp/extension-sdks/uwp-limitations-on-xbox)
-
- - [Device Portal for Xbox](https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/device-portal-xbox)
+- [Designing for Xbox and TV](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv)
+- [Gamepad and remote control](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv#gamepad-and-remote-control)
+- [Change pointer mode](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-tv#mouse-mode)
+- [UWP features not yet supported on Xbox](https://docs.microsoft.com/uwp/extension-sdks/uwp-limitations-on-xbox)
+- [Device Portal for Xbox](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-xbox)
 
 ## Mixed Reality Recommendations
-**Overview**
 
- - [Windows Mixed Reality doc](https://docs.microsoft.com/windows/mixed-reality/)
+### Overview
 
-**More links**
+- [Windows Mixed Reality doc](https://docs.microsoft.com/windows/mixed-reality/)
 
- - [What is mixed reality?](https://docs.microsoft.com/windows/mixed-reality/mixed-reality)
+### More Information
 
- - [Mixed Reality Development launchpad](https://docs.microsoft.com/windows/mixed-reality/development)
-
- - [Designing for Mixed Reality](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-mr)
-
- - [HoloLens doc](https://docs.microsoft.com/hololens/)
-
- - [Device Portal for HoloLens](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-hololens)
+- [What is mixed reality?](https://docs.microsoft.com/windows/mixed-reality/mixed-reality)
+- [Mixed Reality Development launchpad](https://docs.microsoft.com/windows/mixed-reality/development)
+- [Designing for Mixed Reality](https://docs.microsoft.com/windows/uwp/design/devices/designing-for-mr)
+- [HoloLens doc](https://docs.microsoft.com/hololens/)
+- [Device Portal for HoloLens](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-hololens)
 
 ## IoT Devices Recommendations
-**Overview**
 
- - [Windows 10 IoT doc](https://docs.microsoft.com/windows/iot-core/)
+### Overview
 
-**API Extensions**
+- [Windows 10 IoT doc](https://docs.microsoft.com/windows/iot-core/)
 
- - [UWP API IoT Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-iot-extension-sdk)
+### API Extensions
+
+- [UWP API IoT Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-iot-extension-sdk)
 
 ## Surface Hub devices Recommendations
 
-**Overview**
+### Overview
 
- - [Surface Hub doc](https://docs.microsoft.com/surface-hub/)
+- [Surface Hub doc](https://docs.microsoft.com/surface-hub/)
+- [Build apps for Surface Hub](https://developer.microsoft.com/windows/surfacehub)
 
- - [Build apps for Surface Hub](https://developer.microsoft.com/windows/surfacehub)
+---
+
+## Learn more
+
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
+- [Handling navigation within the app](./navigation.md)
+- [All docs](./readme.md)

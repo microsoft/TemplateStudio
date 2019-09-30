@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Master/Detail",
+  "shortName": "Master/Detail",
   "groupIdentity": "wts.Page.MasterDetail",
   "identity": "wts.Page.MasterDetail.CaliburnMicro",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -25,28 +27,28 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml"
+      "path": "Views/MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewPage.xaml.cs"
+      "path": "Views/MasterDetailViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml"
+      "path": "Views/MasterDetailViewDetail/DetailsView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml.cs"
+      "path": "Views/MasterDetailViewDetail/DetailsView.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml"
+      "path": "Views/MasterDetailViewDetail/MasterView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml.cs"
+      "path": "Views/MasterDetailViewDetail/MasterView.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewViewModel.cs"
+      "path": "ViewModels/MasterDetailViewViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewDetailViewModel.cs"
+      "path": "ViewModels/MasterDetailViewDetailViewModel.cs"
     }
   ],
   "symbols": {
@@ -78,7 +80,7 @@
         "version": "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

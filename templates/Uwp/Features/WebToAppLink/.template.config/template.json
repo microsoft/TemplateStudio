@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Web to App link",
+  "shortName": "Web to App link",
   "groupIdentity": "wts.Feat.WebToAppLink",
   "identity": "wts.Feat.WebToAppLink",
   "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
@@ -26,7 +28,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\WebToAppLinkActivationHandler.cs"
+      "path": "Activation/WebToAppLinkActivationHandler.cs"
     }
   ],
   "symbols": {

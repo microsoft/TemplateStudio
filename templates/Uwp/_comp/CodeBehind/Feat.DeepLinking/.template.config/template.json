@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Feature.DeepLinking",
+  "identity": "CodeBehind.Feature.DeepLinking",
+  "shortName": "CodeBehind.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",

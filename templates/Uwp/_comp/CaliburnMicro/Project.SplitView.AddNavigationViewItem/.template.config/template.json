@@ -1,14 +1,17 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Nigel Sampson",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Project.SplitView.AddNavigationViewItem",
+  "identity": "CaliburnMicro.Project.SplitView.AddNavigationViewItem",
+  "shortName": "CaliburnMicro.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-	"wts.platform" : "Uwp",
+	  "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CaliburnMicro & $frontendframework == CaliburnMicro & $projectType == SplitView"
   },

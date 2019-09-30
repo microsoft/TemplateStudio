@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.AddPageStyle",
+  "identity": "Page.AddPageStyle",
+  "shortName": "Page.AddPageStyle",
   "tags": {
     "language": "C#",
     "type": "item",

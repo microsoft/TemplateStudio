@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Win App Driver",
+  "shortName": "Win App Driver",
   "groupIdentity": "wts.Testing.WinAppDriver",
   "identity": "wts.Testing.WinAppDriver",
   "description": "Add project for UI tests using Appium via Windows Application Driver.",
@@ -25,7 +27,7 @@
   "preferNameDirectory": true,
   "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
-    { "path": ".\\Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj" }
+    { "path": "Param_ProjectName.Tests.WinAppDriver/Param_ProjectName.Tests.WinAppDriver.csproj" }
   ],
   "symbols": {
     "wts.projectName": {
@@ -53,10 +55,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestFramework",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -64,10 +66,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestAdapter",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     },
     {
       "description": "Add nuget package",
@@ -75,10 +77,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Appium.WebDriver",
-        "version" : "3.0.0.2",
+        "version" : "4.0.0",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

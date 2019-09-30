@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.Page.ContentGrid.SplitView.TabbedNav",
+  "identity": "CaliburnMicro.Page.ContentGrid.SplitView.TabbedNav",
+  "shortName": "CaliburnMicro.Page.ContentGrid.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

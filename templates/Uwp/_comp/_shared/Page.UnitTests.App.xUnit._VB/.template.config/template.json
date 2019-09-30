@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.UnitTests.App.xUnit.VB",
+  "identity": "Page.UnitTests.App.xUnit.VB",
+  "shortName": "Page.UnitTests.App.xUnit.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

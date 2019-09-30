@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Project.Blank.AddNavigation",
+  "identity": "Project.Blank.AddNavigation",
+  "shortName": "Project.Blank.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

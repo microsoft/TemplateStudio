@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Test
                                     {
                                         if (!csItem.Value.Contains("Prism") && !csItem.Value.Contains("Caliburn"))
                                         {
-                                            errors.Add($"{template[0].ToString()}: check {vbItem.Field}.");
+                                            errors.Add($"{template[0].ToString()}: check {vbItem.Field} in composition query.");
                                         }
                                     }
                                 }

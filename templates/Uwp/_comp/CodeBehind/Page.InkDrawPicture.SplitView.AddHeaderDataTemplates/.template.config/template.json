@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Page.InkDrawPicture.SplitView.AddHeaderDataTemplates",
+  "identity": "CodeBehind.Page.InkDrawPicture.SplitView.AddHeaderDataTemplates",
+  "shortName": "CodeBehind.Page.InkDrawPicture.SplitView.AddHeaderDataTemplates",
   "tags": {
     "language": "C#",
     "type": "item",

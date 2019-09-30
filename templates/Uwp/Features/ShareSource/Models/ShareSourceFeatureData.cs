@@ -49,7 +49,7 @@ namespace Param_RootNamespace.Models
         }
 
         // To share a link to your app you must first register it to handle URI activation
-        // More details at https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation
+        // More details at https://docs.microsoft.com/windows/uwp/launch-resume/handle-uri-activation
         public void SetApplicationLink(Uri applicationLink)
         {
             if (applicationLink == null)

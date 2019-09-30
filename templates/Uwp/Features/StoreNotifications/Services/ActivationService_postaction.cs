@@ -14,20 +14,20 @@ namespace Param_RootNamespace.Services
     {
         private async Task StartupAsync()
         {
-            //^^
-            //{[{
-            await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync();
-            //}]}
-            //{??{
+//^^
+//{[{
+            await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync().ConfigureAwait(false);
+//}]}
+//{??{
             await Task.CompletedTask;
-            //}??}
+//}??}
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            //{[{
+//{[{
             yield return Singleton<StoreNotificationsFeatureService>.Instance;
-            //}]}
+//}]}
 //{--{
             yield break;
 //}--}

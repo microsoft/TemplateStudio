@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.InkDraw.AddHeader.VB",
+  "identity": "Page.InkDraw.AddHeader.VB",
+  "shortName": "Page.InkDraw.AddHeader.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

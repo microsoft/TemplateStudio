@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.SuspendAndResume.AddNavigation.VB", 
+  "name": "Feature.SuspendAndResume.AddNavigation.VB",
+  "identity": "Feature.SuspendAndResume.AddNavigation.VB",
+  "shortName": "Feature.SuspendAndResume.AddNavigation.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

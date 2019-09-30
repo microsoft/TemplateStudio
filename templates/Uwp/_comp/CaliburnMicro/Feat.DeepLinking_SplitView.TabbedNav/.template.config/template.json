@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CaliburnMicro.DeepLinking.SplitView.TabbedNav",
+  "identity": "CaliburnMicro.DeepLinking.SplitView.TabbedNav",
+  "shortName": "CaliburnMicro.DeepLinking.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",

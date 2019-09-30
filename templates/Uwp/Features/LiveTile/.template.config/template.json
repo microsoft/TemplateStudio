@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Live Tile",
+  "shortName": "Live Tile",
   "groupIdentity": "wts.Feat.LiveTile",
   "identity": "wts.Feat.LiveTile",
   "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
@@ -28,10 +30,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\LiveTileFeatureService.cs"
+      "path": "Services/LiveTileFeatureService.cs"
     },
     {
-      "path": ".\\Services\\LiveTileFeatureService.Samples.cs"
+      "path": "Services/LiveTileFeatureService.Samples.cs"
     }
   ],
   "symbols": {
@@ -55,7 +57,7 @@
         "version" : "5.1.1",
         "projectPath": "Param_ProjectName.csproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.SplitView.AddHeaderModeNever.VB",
+  "identity": "Page.SplitView.AddHeaderModeNever.VB",
+  "shortName": "Page.SplitView.AddHeaderModeNever.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

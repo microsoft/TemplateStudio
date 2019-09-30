@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+<!--{[{-->
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+<!--}]}-->
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
+  IgnorableNamespaces="uap mp genTemplate">
+  <Applications>
+    <Application Id="App"
+      <Extensions>
+<!--{[{-->
+          <uap5:Extension
+            Category="windows.appExecutionAlias"
+            Executable="SafeProjectName.exe"
+            EntryPoint="SafeProjectName.App">
+            <uap5:AppExecutionAlias>
+              <uap5:ExecutionAlias Alias="SafeProjectName.exe" />
+            </uap5:AppExecutionAlias>
+          </uap5:Extension>
+<!--}]}-->
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

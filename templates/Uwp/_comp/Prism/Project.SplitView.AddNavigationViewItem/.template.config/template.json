@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Prism.Project.SplitView.AddNavigationViewItem",
+  "identity": "Prism.Project.SplitView.AddNavigationViewItem",
+  "shortName": "Prism.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",

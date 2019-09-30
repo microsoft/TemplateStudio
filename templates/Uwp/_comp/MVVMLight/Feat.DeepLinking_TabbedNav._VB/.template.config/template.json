@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.DeepLinking.TabbedNav.VB",
+  "identity": "MVVMLight.DeepLinking.TabbedNav.VB",
+  "shortName": "MVVMLight.DeepLinking.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

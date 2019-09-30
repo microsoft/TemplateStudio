@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.TabbedNav.AddNavigationViewItem.VB",
+  "identity": "CodeBehind.Project.TabbedNav.AddNavigationViewItem.VB",
+  "shortName": "CodeBehind.Project.TabbedNav.AddNavigationViewItem.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

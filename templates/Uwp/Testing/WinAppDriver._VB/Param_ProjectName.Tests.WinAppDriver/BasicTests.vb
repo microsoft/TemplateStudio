@@ -1,6 +1,7 @@
-﻿Imports System.Drawing.Imaging
-Imports System.IO
+﻿Imports System.IO
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports OpenQA.Selenium
+Imports OpenQA.Selenium.Appium
 Imports OpenQA.Selenium.Appium.Windows
 Imports OpenQA.Selenium.Remote
 
@@ -34,14 +35,14 @@ Public Class BasicTests
     <TestInitialize>
     Public Sub LaunchApp()
         If AppSession Is Nothing Then
-            Dim appCapabilities As DesiredCapabilities = New DesiredCapabilities()
-            appCapabilities.SetCapability("app", AppToLaunch)
-            appCapabilities.SetCapability("deviceName", "WindowsPC")
-            AppSession = New WindowsDriver(Of WindowsElement)(New Uri(WindowsApplicationDriverUrl), appCapabilities)
+            Dim appiumOptions = New AppiumOptions()
+            appiumOptions.AddAdditionalCapability("app", AppToLaunch)
+            appiumOptions.AddAdditionalCapability("deviceName", "WindowsPC")
+            AppSession = New WindowsDriver(Of WindowsElement)(New Uri(WindowsApplicationDriverUrl), appiumOptions)
 
             Assert.IsNotNull(AppSession, "Unable to launch app.")
 
-            AppSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(4))
+            AppSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4)
 
             ' Maximize the window to have a consistent size and position.
             AppSession.Manage().Window.Maximize()
@@ -53,7 +54,7 @@ Public Class BasicTests
     Public Sub TakeScreenshotOfLaunchPage()
         Dim screenshotFileName = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png")
         Dim screenshot = AppSession.GetScreenshot()
-        screenshot.SaveAsFile(screenshotFileName, ImageFormat.Png)
+        screenshot.SaveAsFile(screenshotFileName, ScreenshotImageFormat.Png)
         Assert.IsTrue(File.Exists(screenshotFileName))
     End Sub
 

@@ -37,7 +37,7 @@ Namespace Models
         End Sub
 
         ' To share a link to your app you must first register it to handle URI activation
-        ' More details at https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation
+        ' More details at https://docs.microsoft.com/windows/uwp/launch-resume/handle-uri-activation
         Public Sub SetApplicationLink(applicationLink As Uri)
             If applicationLink Is Nothing Then
                 Throw New ArgumentNullException(NameOf(applicationLink))

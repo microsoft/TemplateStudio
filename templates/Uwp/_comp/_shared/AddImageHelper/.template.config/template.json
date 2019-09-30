@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "AddImageHelper",
+  "identity": "AddImageHelper",
+  "shortName": "AddImageHelper",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\ImageHelper.cs"
+      "path": "Helpers/ImageHelper.cs"
     }
   ],
   "symbols": {

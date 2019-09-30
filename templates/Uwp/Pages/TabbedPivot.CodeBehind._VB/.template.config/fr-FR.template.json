@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Tabbed",
+    "name": "TabbedPivot",
     "description": "La page à tabulations permet de naviguer entre différentes catégories de contenus fréquemment visitées.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

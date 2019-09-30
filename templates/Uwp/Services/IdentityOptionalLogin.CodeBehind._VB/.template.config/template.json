@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Optional Login",
+  "shortName": "Optional Login",
   "groupIdentity": "wts.Service.IdentityOptionalLogin.VB",
   "identity": "wts.Service.IdentityOptionalLogin.CodeBehind.VB",
   "description": "Make your application have an optional login and restricted features.",

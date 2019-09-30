@@ -2,4 +2,4 @@
 
 Dieses Feature fügt der Lösung darüber hinaus ein neues Projekt hinzu, das für das Hosten von Einheitentests des Codes in der Kernbibliothek eingerichtet ist.
 
-[Erfahren Sie mehr über die Verwendung von MSTest framework in Einheitentests.](https://docs.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)
+[Erfahren Sie mehr über die Verwendung von MSTest framework in Einheitentests.](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests?view=vs-2017)

@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Sample Data",
+  "shortName": "Sample Data",
   "groupIdentity": "wts.Service.SampleDataService.VB",
   "identity": "wts.Service.SampleDataService.VB",
   "description": "SampleDataService holds sample data used by the generated version of some pages.",
@@ -25,16 +27,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName.Core\\Services\\SampleDataService.vb"
+      "path": "Param_ProjectName.Core/Services/SampleDataService.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleCompany.vb"
+      "path": "Param_ProjectName.Core/Models/SampleCompany.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleOrder.vb"
+      "path": "Param_ProjectName.Core/Models/SampleOrder.vb"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleOrderDetail.vb"
+      "path": "Param_ProjectName.Core/Models/SampleOrderDetail.vb"
     }
   ],
   "symbols": {

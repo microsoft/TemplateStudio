@@ -9,7 +9,7 @@ Namespace Views
         Implements System.ComponentModel.INotifyPropertyChanged
 
         ' TODO WTS: Set your default video and image URIs
-        ' For more on the MediaPlayer and adjusting controls and behavior see https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback
+        ' For more on the MediaPlayer and adjusting controls and behavior see https://docs.microsoft.com/windows/uwp/controls-and-patterns/media-playback
         Private Const DefaultSource As String = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4"
 
         ' The poster image is displayed until the video is started

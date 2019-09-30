@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.WebView.AddNotifyPropertyChanged",
+  "identity": "MVVMLight.Page.WebView.AddNotifyPropertyChanged",
+  "shortName": "MVVMLight.Page.WebView.AddNotifyPropertyChanged",
   "tags": {
     "language": "C#",
     "type": "item",

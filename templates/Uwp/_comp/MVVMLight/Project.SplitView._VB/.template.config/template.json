@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Project.SplitView.VB",
+  "identity": "MVVMLight.Project.SplitView.VB",
+  "shortName": "MVVMLight.Project.SplitView.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

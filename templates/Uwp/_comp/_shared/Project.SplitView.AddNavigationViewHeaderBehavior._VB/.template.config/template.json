@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Project.SplitView.AddNavigationViewHeaderBehavior.VB",
+  "identity": "Project.SplitView.AddNavigationViewHeaderBehavior.VB",
+  "shortName": "Project.SplitView.AddNavigationViewHeaderBehavior.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -17,10 +20,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Behaviors\\NavigationViewHeaderBehavior.vb"
+      "path": "Behaviors/NavigationViewHeaderBehavior.vb"
     },
     {
-      "path": ".\\Behaviors\\NavigationViewHeaderMode.vb"
+      "path": "Behaviors/NavigationViewHeaderMode.vb"
     }
   ],
   "symbols": {

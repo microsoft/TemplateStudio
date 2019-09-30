@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "CodeBehind.Project.SplitView.TabbedNav.VB",
+  "identity": "CodeBehind.Project.SplitView.TabbedNav.VB",
+  "shortName": "CodeBehind.Project.SplitView.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -18,13 +21,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\NavHelper.vb"
+      "path": "Helpers/NavHelper.vb"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.vb"
+      "path": "Views/ShellPage.xaml.vb"
     }
   ],
   "symbols": {
@@ -49,10 +52,10 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.1.190606001",
+        "version" : "2.2.190917002",
         "projectPath": "Param_ProjectName.vbproj"
       },
-      "continueOnError": "true"
+      "continueOnError": true
     }
   ]
 }

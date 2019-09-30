@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.MasterDetail.Blank.MenuBar.VB",
+  "identity": "Page.MasterDetail.Blank.MenuBar.VB",
+  "shortName": "Page.MasterDetail.Blank.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

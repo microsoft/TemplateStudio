@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Deep Linking",
+  "shortName": "Deep Linking",
   "groupIdentity": "wts.Feat.DeepLinking.VB",
   "identity": "wts.Feat.DeepLinking.VB",
   "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
@@ -26,19 +28,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\SchemeActivationConfig.vb"
+      "path": "Activation/SchemeActivationConfig.vb"
     },
     {
-      "path": ".\\Activation\\SchemeActivationData.vb"
+      "path": "Activation/SchemeActivationData.vb"
     },
     {
-      "path": ".\\Activation\\SchemeActivationHandler.vb"
+      "path": "Activation/SchemeActivationHandler.vb"
     },
     {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+      "path": "Views/SchemeActivationSamplePage.xaml"
     },
     {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml.vb"
+      "path": "Views/SchemeActivationSamplePage.xaml.vb"
     }
   ],
   "symbols": {

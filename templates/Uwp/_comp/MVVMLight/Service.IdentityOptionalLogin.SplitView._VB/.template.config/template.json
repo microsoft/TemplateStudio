@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Service.IdentityOptionalLogin.SplitView.VB",
+  "identity": "MVVMLight.Service.IdentityOptionalLogin.SplitView.VB",
+  "shortName": "MVVMLight.Service.IdentityOptionalLogin.SplitView.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

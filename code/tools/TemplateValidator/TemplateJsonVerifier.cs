@@ -108,6 +108,8 @@ namespace TemplateValidator
 
                 var templateRoot = filePath.Replace("\\.template.config\\template.json", string.Empty);
 
+                EnsureValidPrimaryOutputPaths(template, results);
+
                 EnsureAllDefinedPrimaryOutputsExist(template, templateRoot, results);
 
                 EnsureAllDefinedGuidsAreUsed(template, templateRoot, results);
@@ -137,7 +139,7 @@ namespace TemplateValidator
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
             // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.Prism", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB", "copyrightYear" };
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.Prism", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB", "copyrightYear", "wts.safeprojectName" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -553,6 +555,20 @@ namespace TemplateValidator
                 if (template.PostActions != null && template.PostActions.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
                 {
                     results.Add($"Missing license on template {template.Identity}");
+                }
+            }
+        }
+
+        private static void EnsureValidPrimaryOutputPaths(ValidationTemplateInfo template, List<string> results)
+        {
+            if (template.PrimaryOutputs != null)
+            {
+                foreach (var primaryOutput in template.PrimaryOutputs)
+                {
+                    if (primaryOutput.Path.Contains("\\"))
+                    {
+                        results.Add($"Primary output '{primaryOutput.Path}' should use '/' instead of '\\'.");
+                    }
                 }
             }
         }

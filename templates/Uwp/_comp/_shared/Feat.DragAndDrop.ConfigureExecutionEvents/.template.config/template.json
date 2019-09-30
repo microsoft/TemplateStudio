@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Feature.DragAndDrop.ConfigureExecutionEvents",
+  "identity": "Feature.DragAndDrop.ConfigureExecutionEvents",
+  "shortName": "Feature.DragAndDrop.ConfigureExecutionEvents",
   "tags": {
     "language": "C#",
     "type": "item",

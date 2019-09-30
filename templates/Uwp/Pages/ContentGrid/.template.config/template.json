@@ -1,9 +1,11 @@
 ﻿{
-    "author": "Microsoft",
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
     "classifications": [
       "Universal"
     ],
     "name": "Content Grid",
+    "shortName": "Content Grid",
     "groupIdentity": "wts.Page.ContentGrid",
     "identity": "wts.Page.ContentGrid",
     "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
@@ -25,22 +27,22 @@
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
-        "path": ".\\Views\\ContentGridViewDetailPage.xaml"
+        "path": "Views/ContentGridViewDetailPage.xaml"
       },
       {
-        "path": ".\\Views\\ContentGridViewDetailPage.xaml.cs"
+        "path": "Views/ContentGridViewDetailPage.xaml.cs"
       },
       {
-        "path": ".\\Views\\ContentGridViewPage.xaml"
+        "path": "Views/ContentGridViewPage.xaml"
       },
       {
-        "path": ".\\Views\\ContentGridViewPage.xaml.cs"
+        "path": "Views/ContentGridViewPage.xaml.cs"
       },
       {
-        "path": ".\\ViewModels\\ContentGridViewDetailViewModel.cs"
+        "path": "ViewModels/ContentGridViewDetailViewModel.cs"
       },
       {
-        "path": ".\\ViewModels\\ContentGridViewViewModel.cs"
+        "path": "ViewModels/ContentGridViewViewModel.cs"
       }
     ],
   "symbols": {
@@ -72,7 +74,7 @@
           "version": "5.1.1",
           "projectPath": "Param_ProjectName.csproj"
         },
-        "continueOnError": "true"
+        "continueOnError": true
       },
       {
         "description": "Add nuget package",
@@ -83,7 +85,7 @@
           "version": "5.1.1",
           "projectPath": "Param_ProjectName.csproj"
         },
-        "continueOnError": "true"
+        "continueOnError": true
       }
     ]
   }

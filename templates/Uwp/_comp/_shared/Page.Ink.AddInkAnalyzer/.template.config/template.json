@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddInkAnalyzer",
+  "identity": "Page.Ink.AddInkAnalyzer",
+  "shortName": "Page.Ink.AddInkAnalyzer",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkAsyncAnalyzer.cs"
+      "path": "Services/Ink/InkAsyncAnalyzer.cs"
     }
   ],
   "symbols": {

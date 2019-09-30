@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMBasic.Project.MenuBar",
+  "identity": "MVVMBasic.Project.MenuBar",
+  "shortName": "MVVMBasic.Project.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,28 +20,28 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\MenuNavigationHelper.cs"
+      "path": "Helpers/MenuNavigationHelper.cs"
     },
     {
-      "path": ".\\Services\\NavigationService.cs"
+      "path": "Services/NavigationService.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellContentDialogViewModel.cs"
+      "path": "ViewModels/ShellContentDialogViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
+      "path": "ViewModels/ShellViewModel.cs"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml"
+      "path": "Views/ShellContentDialog.xaml"
     },
     {
-      "path": ".\\Views\\ShellContentDialog.xaml.cs"
+      "path": "Views/ShellContentDialog.xaml.cs"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml"
+      "path": "Views/ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.cs"
+      "path": "Views/ShellPage.xaml.cs"
     }
   ],
   "symbols": {

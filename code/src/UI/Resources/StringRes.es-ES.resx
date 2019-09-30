@@ -798,4 +798,15 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>You can not remove **{0}** because it is required for: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>or</value>
+  </data>
 </root>

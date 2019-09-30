@@ -1,16 +1,19 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "MVVMLight.Page.AddCommandNS",
+  "identity": "MVVMLight.Page.AddCommandNS",
+  "shortName": "MVVMLight.Page.AddCommandNS",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMLight & identity == wts.Page.Settings|wts.Page.Camera|wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture"
+    "wts.compositionFilter": "$frontendframework == MVVMLight & identity == wts.Page.Settings|wts.Page.Camera|wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture|wts.Page.TabView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

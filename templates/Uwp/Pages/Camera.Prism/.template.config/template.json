@@ -1,9 +1,11 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Camera",
+  "shortName": "Camera",
   "groupIdentity": "wts.Page.Camera",
   "identity": "wts.Page.Camera.Prism",
   "description": "A page for capturing and displaying an image from the camera.",
@@ -15,7 +17,7 @@
     "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "13",
+    "wts.displayOrder": "14",
     "wts.genGroup": "0",
     "wts.rightClickEnabled": "true"
   },
@@ -23,13 +25,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\CameraViewPage.xaml"
+      "path": "Views/CameraViewPage.xaml"
     },
     {
-      "path": ".\\Views\\CameraViewPage.xaml.cs"
+      "path": "Views/CameraViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\CameraViewViewModel.cs"
+      "path": "ViewModels/CameraViewViewModel.cs"
     }
   ],
   "symbols": {

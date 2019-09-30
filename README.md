@@ -1,9 +1,6 @@
 # Windows Template Studio
 
-Windows Template Studio (WTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WTS supports creating apps in C# or VB.Net.
-
-**Example scenario:**
-I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
+Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
 
 ![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
@@ -20,34 +17,35 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 |dev|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/128.md)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/153/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/153.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/142.md)
 
 > The builds include test verifications to validate the contributions:
-> * *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
-> * *Full Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
-> * *One By One Tests*: Includes tests to verify every template individually from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
-> * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
+>
+> - *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
+> - *Full Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
+> - *One By One Tests*: Includes tests to verify every template individually from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
+> - *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
 
 ## Features
 
 Windows Template Studio approaches UWP app creation using the following six attribute sets:
 
-* **Project type**: First, how do you want your app's UI navigation to behave? We currently support three project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, and *pivot and tabs*.
-* **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
-* **App pages**: To accelerate app creation, we provide a number of app page templates that you can use to add common UI pages into your new app. We currently include page templates from the *blank page* to the common layouts (*e.g., master/detail, tabbed, web view*) to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Using the wizard, add as many of the pages as you need, providing a name for each one, and we'll generate them for you.
-* **Windows 10 features**: You specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
-* **Services**: You can connect to data services or setup identity logins for your application as well as enforce certain XAML style rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
-* **Automated Tests**:  Lastly, you can setup test projects for your application including Selenium-like UI test automation.
+- **Project type**: First, how do you want your app's UI navigation to behave? We support four project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
+- **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support five common patterns: *code behind*, *basic MVVM*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
+- **App pages**: To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, tabbed, web view*), to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
+- **Windows 10 features**: Specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
+- **Services**: Connect to data services, setup identity logins for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
+- **Automated Tests**:  Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
 
-Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
+After selecting the items wanted in your UWP app, you can [extend the generated code](docs/getting-started-endusers.md).
 
 ## Documentation
 
-* [Installing / Using the extension](docs/getting-started-extension.md)
-* [Using and extending your generated project](docs/getting-started-endusers.md)
-* [Concepts of Windows Template Studio](docs/readme.md)
-* [Getting started with the generator codebase](docs/getting-started-developers.md)
-* [Authoring Templates](docs/templates.md)
+- [Installing the extension](docs/getting-started-extension.md)
+- [Understand the core concepts](docs/concepts.md)
+- [Using WinTS to build apps](docs/getting-started-endusers.md)
+- [Working on WinTS](docs/getting-started-developers.md)
 
 ## Known issues
-* You can't have side-by-side versions (nightly/pre-release/release) of WindowsTemplateStudio VSPackage into a single instance of Visual Studio.
+
+- You can't have side-by-side versions (nightly/pre-release/release) of Windows Template Studio VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
 
@@ -81,7 +79,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension logs [basic telemetry](docs/telemetry.md) regading what is selected in the wizard. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
@@ -93,14 +91,18 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
 - [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
+- [XAML Styler](https://github.com/Xavalon/XamlStyler)
 
 ## Frameworks and libraries in generated code not created by our team
-**Frameworks**
+
+### Frameworks
+
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
 - [MVVMLight](https://github.com/lbugnion/mvvmlight)
 - [Prism](https://github.com/PrismLibrary/Prism)
 
-**Libraries**
+### Libraries
+
 - [Microsoft AppCenter SDK](https://github.com/Microsoft/AppCenter-SDK-DotNet)
 - [Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)
 - [Microsoft Win2D](https://github.com/Microsoft/Win2D)

@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.AddSelectionRectangleService.VB",
+  "identity": "Page.Ink.AddSelectionRectangleService.VB",
+  "shortName": "Page.Ink.AddSelectionRectangleService.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -16,7 +19,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkSelectionRectangleService.vb"
+      "path": "Services/Ink/InkSelectionRectangleService.vb"
     }
   ],
   "symbols": {

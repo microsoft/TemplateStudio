@@ -1,7 +1,9 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Map",
+  "shortName": "Map",
   "groupIdentity": "wts.Page.Map",
   "identity": "wts.Page.Map.CodeBehind",
   "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
@@ -14,7 +16,7 @@
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "12",
+    "wts.displayOrder": "13",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
@@ -23,16 +25,16 @@
   "PrimaryOutputs":
   [
     {
-      "path": ".\\Views\\MapPagePage.xaml"
+      "path": "Views/MapPagePage.xaml"
     },
     {
-      "path": ".\\Views\\MapPagePage.xaml.cs"
+      "path": "Views/MapPagePage.xaml.cs"
     },
     {
-      "path": ".\\Assets\\map.png"
+      "path": "Assets/map.png"
     },
     {
-      "path": ".\\Services\\LocationService.cs"
+      "path": "Services/LocationService.cs"
     }
   ],
   "symbols": {

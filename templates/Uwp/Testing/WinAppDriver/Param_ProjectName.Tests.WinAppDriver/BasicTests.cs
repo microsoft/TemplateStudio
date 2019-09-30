@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
 
 namespace Param_RootNamespace.Tests.WinAppDriver
 {
@@ -41,14 +41,14 @@ namespace Param_RootNamespace.Tests.WinAppDriver
         {
             if (AppSession == null)
             {
-                DesiredCapabilities appCapabilities = new DesiredCapabilities();
-                appCapabilities.SetCapability("app", AppToLaunch);
-                appCapabilities.SetCapability("deviceName", "WindowsPC");
-                AppSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
+                var appiumOptions = new AppiumOptions();
+                appiumOptions.AddAdditionalCapability("app", AppToLaunch);
+                appiumOptions.AddAdditionalCapability("deviceName", "WindowsPC");
+                AppSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appiumOptions);
 
                 Assert.IsNotNull(AppSession, "Unable to launch app.");
 
-                AppSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(4));
+                AppSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
 
                 // Maximize the window to have a consistent size and position.
                 AppSession.Manage().Window.Maximize();
@@ -62,7 +62,7 @@ namespace Param_RootNamespace.Tests.WinAppDriver
             var screenshotFileName = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png");
 
             var screenshot = AppSession.GetScreenshot();
-            screenshot.SaveAsFile(screenshotFileName, ImageFormat.Png);
+            screenshot.SaveAsFile(screenshotFileName, ScreenshotImageFormat.Png);
 
             Assert.IsTrue(File.Exists(screenshotFileName));
         }

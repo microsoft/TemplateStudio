@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
   "name": "Page.Ink.Blank.AddTitle",
+  "identity": "Page.Ink.Blank.AddTitle",
+  "shortName": "Page.Ink.Blank.AddTitle",
   "tags": {
     "language": "C#",
     "type": "item",

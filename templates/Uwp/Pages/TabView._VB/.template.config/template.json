@@ -1,0 +1,55 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "TabView",
+  "shortName": "TabView",
+  "groupIdentity": "wts.Page.TabView.VB",
+  "identity": "wts.Page.TabView.VB",
+  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "12",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.isHidden": "true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Models/TabViewItemData.vb"
+    },
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.vb"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Command Line Launch",
+  "description": "Support passing arguments and launching from the command line.",
+  "identity": "wts.Feat.CommandLine.Prism"
+}

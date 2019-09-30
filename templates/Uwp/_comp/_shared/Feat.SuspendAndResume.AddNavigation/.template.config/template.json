@@ -1,9 +1,12 @@
 ﻿{
+  "$schema": "http://json.schemastore.org/template",
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.SuspendAndResume.AddNavigation", 
+  "name": "Feature.SuspendAndResume.AddNavigation",
+  "identity": "Feature.SuspendAndResume.AddNavigation",
+  "shortName": "Feature.SuspendAndResume.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -20,7 +20,7 @@ namespace Param_RootNamespace.Services
             // TODO WTS: Configure and enable Azure Notification Hub integration.
             //  1. Go to the HubNotificationsFeatureService class, in the InitializeAsync() method, provide the Hub Name and DefaultListenSharedAccessSignature.
             //  2. Uncomment the following line (an exception will be thrown if it is executed and the above information is not provided).
-            // await Singleton<HubNotificationsFeatureService>.Instance.InitializeAsync();
+            // await Singleton<HubNotificationsFeatureService>.Instance.InitializeAsync().ConfigureAwait(false);
 //}]}
 //{??{
             await Task.CompletedTask;
