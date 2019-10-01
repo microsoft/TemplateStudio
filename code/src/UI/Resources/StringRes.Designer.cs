@@ -1342,6 +1342,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Requirements:.
+        /// </summary>
+        public static string TemplateDetailsRequirements {
+            get {
+                return ResourceManager.GetString("TemplateDetailsRequirements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version:.
         /// </summary>
         public static string TemplateDetailsVersion {

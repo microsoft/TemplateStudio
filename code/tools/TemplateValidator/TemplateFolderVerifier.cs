@@ -45,6 +45,7 @@ namespace TemplateValidator
 
                 var allIdentities = new Dictionary<string, string>();   // identity, filepath
                 var allDependencies = new Dictionary<string, string>(); // filepath, dependency
+                var allRequirements = new Dictionary<string, string>(); // filepath, requirement
                 var allFileHashes = new Dictionary<string, string>();   // filehash, filepath
                 var allCompFilters = new Dictionary<string, string>();  // filepath, filter
                 var allPageIdentities = new List<string>();
@@ -121,6 +122,12 @@ namespace TemplateValidator
                         allDependencies.Add(templateFilePath, template.TemplateTags["wts.dependencies"]);
                     }
 
+                    // Get list of dependencies while the file is open. These are all checked later
+                    if (template.TemplateTags.ContainsKey("wts.requirements"))
+                    {
+                        allRequirements.Add(templateFilePath, template.TemplateTags["wts.requirements"]);
+                    }
+
                     // Get list of filters while the file is open. These are all checked later
                     if (template.TemplateTags.ContainsKey("wts.compositionFilter"))
                     {
@@ -181,6 +188,17 @@ namespace TemplateValidator
                         if (!allIdentities.ContainsKey(dependency))
                         {
                             results.Add($"'{dependencies.Key}' contains dependency '{dependency}' that does not exist.");
+                        }
+                    }
+                }
+
+                foreach (var requirements in allRequirements)
+                {
+                    foreach (var requirement in requirements.Value.Split('|'))
+                    {
+                        if (!allIdentities.ContainsKey(requirement))
+                        {
+                            results.Add($"'{requirements.Key}' contains requirement '{requirements}' that does not exist.");
                         }
                     }
                 }

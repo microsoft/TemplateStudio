@@ -103,6 +103,12 @@ namespace Microsoft.Templates.Test
                     AddItem(userSelection, item.DefaultName, item);
                 }
             }
+
+            if (template.Requirements.Count() > 0 && !userSelection.Items.Any(u => template.Requirements.Select(r => r.TemplateId).Contains(u.TemplateId)))
+            {
+                AddItem(userSelection, template.Requirements.FirstOrDefault().DefaultName, template.Requirements.FirstOrDefault());
+            }
+           
         }
 
         public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
