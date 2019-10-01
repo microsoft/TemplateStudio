@@ -30,6 +30,7 @@ Namespace ViewModels
             End Get
         End Property
 
+        ' In this sample the content shown in the Tab is a string, set the content to the model you want to show
         Public ReadOnly Property Tabs As ObservableCollection(Of TabViewItemData) = New ObservableCollection(Of TabViewItemData)() From {
             New TabViewItemData() With {
                 .Index = 1,

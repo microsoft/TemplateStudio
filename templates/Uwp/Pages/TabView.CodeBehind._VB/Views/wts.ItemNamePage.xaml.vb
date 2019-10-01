@@ -6,10 +6,14 @@ Imports Windows.UI.Xaml.Controls
 Imports WinUI = Microsoft.UI.Xaml.Controls
 
 Namespace Views
+    ' For more info about the TabView Control see
+    ' https://docs.microsoft.com/uwp/api/microsoft.ui.xaml.controls.tabview?view=winui-2.2
+    ' For other samples, get the XAML Controls Gallery app http://aka.ms/XamlControlsGallery
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
+        ' In this sample the content shown in the Tab is a string, set the content to the model you want to show
         Public ReadOnly Property Tabs As ObservableCollection(Of TabViewItemData) = New ObservableCollection(Of TabViewItemData)() From {
             New TabViewItemData() With {
                 .Index = 1,
