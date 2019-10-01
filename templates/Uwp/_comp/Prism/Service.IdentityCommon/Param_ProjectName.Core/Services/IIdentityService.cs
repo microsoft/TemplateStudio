@@ -26,7 +26,7 @@ namespace Param_RootNamespace.Core.Services
 
         Task LogoutAsync();
 
-        Task<string> GetAccessTokenAsync();
+        Task<string> GetAccessTokenForGraphAsync();
 
         Task<bool> AcquireTokenSilentAsync();
     }

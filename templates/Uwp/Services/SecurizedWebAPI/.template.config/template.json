@@ -20,16 +20,16 @@
     "wts.defaultInstance": "SecurizedWebAPI",
     "wts.multipleInstance": "false",
     "wts.dependencies":"wts.Service.WebApi",
+    "wts.requirements":"wts.Service.IdentityOptionalLogin|wts.Service.IdentityForcedLogin",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
-    "wts.isHidden": "true",
+    "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
     "wts.outputToParent": "true"
   },
-  "sourceName": "SecurizedWebApi",
+  "sourceName": "WebApiFeature",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [
-  ],
+  "PrimaryOutputs": [ ],
   "symbols": {
     "wts.projectName": {
       "type": "parameter",
