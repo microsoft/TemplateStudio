@@ -1,1 +1,41 @@
-﻿
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:models="using:Param_RootNamespace.Models"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:system="using:System"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+
+    <winui:TabView
+        AllowDropTabs="True"
+        TabItemsSource="{x:Bind ViewModel.Tabs}"
+        AddTabButtonCommand="{x:Bind ViewModel.AddTabCommand}">
+        <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="TabCloseRequested">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.CloseTabCommand}" />
+            </ic:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+        <winui:TabView.TabItemTemplate>
+            <DataTemplate x:DataType="models:TabViewItemData">
+                <winui:TabViewItem
+                    Header="{x:Bind Header}"
+                    AutomationProperties.Name="{x:Bind Header}"
+                    Content="{x:Bind Content}">
+                    <winui:TabViewItem.ContentTemplate>
+                        <DataTemplate x:DataType="system:String">
+                            <Grid Padding="{StaticResource SmallLeftTopRightBottomMargin}">
+                                <TextBlock Text="{x:Bind}" />
+                            </Grid>
+                        </DataTemplate>
+                    </winui:TabViewItem.ContentTemplate>
+                </winui:TabViewItem>
+            </DataTemplate>
+        </winui:TabView.TabItemTemplate>
+    </winui:TabView>
+</Page>
