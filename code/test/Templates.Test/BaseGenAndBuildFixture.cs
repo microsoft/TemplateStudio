@@ -94,7 +94,6 @@ namespace Microsoft.Templates.Test
         public void AddItem(UserSelection userSelection, string itemName, TemplateInfo template)
         {
             var selectedTemplate = new UserSelectionItem { Name = itemName, TemplateId = template.TemplateId };
-            userSelection.Add(selectedTemplate, template.TemplateType);
 
             foreach (var item in template.Dependencies)
             {
@@ -108,7 +107,8 @@ namespace Microsoft.Templates.Test
             {
                 AddItem(userSelection, template.Requirements.FirstOrDefault().DefaultName, template.Requirements.FirstOrDefault());
             }
-           
+
+            userSelection.Add(selectedTemplate, template.TemplateType);
         }
 
         public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
