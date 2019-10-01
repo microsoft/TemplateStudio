@@ -41,7 +41,7 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 }
 ```
 
-You can learn more about Navigation within a project [here](./navigation.md).
+You can learn more about Navigation within a project [here](../navigation.md).
 
 ## ViewModel persistence and lifetime
 
