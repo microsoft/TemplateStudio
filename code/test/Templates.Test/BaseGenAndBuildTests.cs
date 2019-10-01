@@ -546,15 +546,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "CaliburnMicro":
