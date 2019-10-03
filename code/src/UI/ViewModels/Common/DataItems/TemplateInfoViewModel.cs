@@ -85,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = template.DisplayOrder;
             IsHidden = template.IsHidden;
             Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
