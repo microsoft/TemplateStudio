@@ -31,7 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
                 $"https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
                 new OpenIdConnectConfigurationRetriever());
-            var openIdConfig = configurationManager.GetConfigurationAsync(CancellationToken.None).GetAwaiter().GetResult();;
+            var openIdConfig = configurationManager.GetConfigurationAsync(CancellationToken.None).GetAwaiter().GetResult();
 
             // You can get a list of issuers for the various Azure AD deployments (global & sovereign) from the following endpoint
             // https://login.microsoftonline.com/common/discovery/instance?authorization_endpoint=https://login.microsoftonline.com/common/oauth2/v2.0/authorize&api-version=1.1;
