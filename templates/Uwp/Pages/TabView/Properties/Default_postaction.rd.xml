@@ -1,0 +1,13 @@
+﻿<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+<!--^^-->
+<!--{[{-->
+    <Type Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.TabView,Microsoft.UI.Xaml.Controls.TabViewTabCloseRequestedEventArgs}" MarshalObject="Public" />
+
+    <Type Name="Microsoft.UI.Xaml.Controls.TabView">
+      <Event Name="TabCloseRequested" Dynamic="Required"/>
+    </Type>
+
+<!--}]}-->
+  </Application>
+</Directives>
