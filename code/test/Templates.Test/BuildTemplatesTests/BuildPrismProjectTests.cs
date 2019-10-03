@@ -9,7 +9,6 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
-using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Core.Gen;
 using System.Linq;
 using Microsoft.Templates.Core.Extensions;
@@ -27,6 +26,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -38,6 +38,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
@@ -50,6 +51,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -61,6 +63,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
         {
@@ -72,6 +75,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
         {
@@ -102,6 +106,8 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumPrism")]
+        [Trait("ExecutionSet", "_CIBuild")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithForcedLogin(string projectType, string framework, string platform, string language)
         {
@@ -125,6 +131,32 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumPrism")]
+        [Trait("ExecutionSet", "_CIBuild")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateMinimumAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && t.GroupIdentity == "wts.Service.IdentityOptionalLogin"
+                || t.Identity == "wts.Feat.StyleCop";
+
+            var projectName = $"{projectType}{framework}MinStyleCopO";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
         {
@@ -149,6 +181,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
             // get first item from each exclusive selection group
@@ -177,6 +210,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -190,6 +224,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsWithForcedLoginAsync(string projectType, string framework, string platform, string language)
         {
@@ -203,6 +238,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsWithOptionalLoginAsync(string projectType, string framework, string platform, string language)
         {
@@ -216,6 +252,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp)]
         [Trait("ExecutionSet", "BuildOneByOnePrism")]
+        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOnePrism")]
         public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

@@ -3,16 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -32,6 +28,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {

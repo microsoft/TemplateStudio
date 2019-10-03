@@ -4,6 +4,9 @@ Imports Param_RootNamespace.Core.Models
 Imports Param_RootNamespace.Core.Services
 
 Namespace Views
+    ' For more info about the TreeView Control see
+    ' https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view
+    ' For other samples, get the XAML Controls Gallery app http://aka.ms/XamlControlsGallery
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
         Implements INotifyPropertyChanged

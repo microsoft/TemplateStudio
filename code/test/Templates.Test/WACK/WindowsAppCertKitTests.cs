@@ -3,23 +3,21 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildCollection")]
     [Trait("ExecutionSet", "LongRunning")]
+    [Trait("ExecutionSet", "_Wack")]
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(BuildFixture fixture)

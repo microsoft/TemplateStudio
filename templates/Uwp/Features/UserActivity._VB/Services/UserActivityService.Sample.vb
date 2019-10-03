@@ -24,7 +24,7 @@ Namespace Services
             Return New SchemeActivationData(GetType(SchemeActivationSamplePage), parameters)
         End Function
 
-        ' TODO WTS: Change this To configure your own adaptive card
+        ' TODO WTS: Change this to configure your own adaptive card
         ' For more info about adaptive cards see http://adaptivecards.io/
         Private Function CreateAdaptiveCardSample(displayText As String, description As String, imageUrl As String) As IAdaptiveCard
             Dim adaptiveCard = New AdaptiveCard("1.0")

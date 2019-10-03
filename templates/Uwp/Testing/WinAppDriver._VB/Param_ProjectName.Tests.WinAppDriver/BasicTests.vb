@@ -26,7 +26,7 @@ Public Class BasicTests
         ' Create separate folders for saving the results of each test run.
         _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now.ToString("dd_HHmm")}\\"
 
-        ' Make sure the folder exists or saving screenshots will fail
+        ' Make sure the folder exists or saving screenshots will fail.
         If Not Directory.Exists(_screenshotFolder) Then
             Directory.CreateDirectory(_screenshotFolder)
         End If

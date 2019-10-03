@@ -114,6 +114,8 @@ The following list shows which tests are executed in which build. Within the Tem
   - Templates.Test
     - ExecutionSet=LongRunning
 
+The tests run for each of the above builds are also in the ExecutionSets '_CIBuild', '_Full', '_OneByOne', and '_Wack'.
+
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:
 

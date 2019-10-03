@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
 {
     [Collection("VBStyleCollection")]
     [Trait("ExecutionSet", "BuildVBStyle")]
+    [Trait("ExecutionSet", "_Full")]
     public class VBStyleProjectGenerationTests : BaseGenAndBuildTests
     {
         public VBStyleProjectGenerationTests(VBStyleGenerationTestsFixture fixture)
