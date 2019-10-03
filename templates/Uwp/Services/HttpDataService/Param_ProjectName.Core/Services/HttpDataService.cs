@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace Param_RootNamespace.Core.Services
             responseCache = new Dictionary<string, object>();
         }
 
-        public async Task<T> GetAsync<T>(string uri, bool forceRefresh = false)
+        public async Task<T> GetAsync<T>(string uri, string accessToken = null, bool forceRefresh = false)
         {
             T result = default(T);
 
@@ -35,6 +36,7 @@ namespace Param_RootNamespace.Core.Services
             // Feel free to remove it or extend this request logic as appropraite for your app.
             if (forceRefresh || !responseCache.ContainsKey(uri))
             {
+                AddAuthorizationHeader(accessToken);
                 var json = await client.GetStringAsync(uri);
                 result = await Task.Run(() => JsonConvert.DeserializeObject<T>(json));
 
@@ -120,6 +122,18 @@ namespace Param_RootNamespace.Core.Services
             var response = await client.DeleteAsync(uri);
 
             return response.IsSuccessStatusCode;
+        }
+
+        // Add this to all public methods
+        private void AddAuthorizationHeader(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization = null;
+                return;
+            }
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
     }
 }

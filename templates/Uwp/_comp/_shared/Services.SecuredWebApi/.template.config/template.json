@@ -1,0 +1,41 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "wts.Service.SecuredWebApi.Shared",
+  "identity": "wts.Service.SecuredWebApi.Shared",
+  "shortName": "wts.Service.SecuredWebApi.Shared",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.platform": "Uwp",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & groupidentity == wts.Service.SecuredWebApi",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "1",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "WebApiFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName.WebApi/Extensions/ServiceCollectionExtensions.cs"
+    },
+    {
+      "path": "Param_ProjectName.WebApi/Models/AuthenticationSettings.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [ ]
+}
