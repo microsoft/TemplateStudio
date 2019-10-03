@@ -12,8 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -50,7 +51,12 @@ namespace Microsoft.Templates.Test
 
         private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)
         {
-            var genIdentities = GetPagesAndFeaturesForMultiLanguageProjects().ToList();
+            var genIdentities = GetAllItemTemplateIdentites(projectType, framework);
+
+            foreach (var csOnly in GetTemplatesThatDoNotSupportVB())
+            {
+                genIdentities.Remove(csOnly);
+            }
 
             genIdentities.Add(extraIdentity);
 
@@ -67,6 +73,18 @@ namespace Microsoft.Templates.Test
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
+        }
+
+        private List<string> GetAllItemTemplateIdentites(string projectType, string framework)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                             .Where(t =>t.GetTemplateType().IsItemTemplate()
+                                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                                && t.GetFrontEndFrameworkList().Contains(framework)
+                                && t.GetPlatform() == Platforms.Uwp
+                                && !t.GetIsGroupExclusiveSelection())
+                             .Select(t => t.Identity)
+                             .ToList();
         }
 
         private static void EnsureAllEquivalentFileNamesAreUsed(string csResultPath, string vbResultPath)

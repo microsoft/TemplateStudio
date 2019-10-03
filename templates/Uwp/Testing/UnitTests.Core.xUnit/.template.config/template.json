@@ -21,7 +21,7 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/license.txt)"
+    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/LICENSE)"
   },
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,

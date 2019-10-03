@@ -19,8 +19,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "12",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled": "true",
-    "wts.isHidden": "true"
+    "wts.rightClickEnabled": "true"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

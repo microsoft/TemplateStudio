@@ -482,26 +482,13 @@ namespace Microsoft.Templates.Test
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
-        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjects()
+        protected static IEnumerable<string> GetTemplatesThatDoNotSupportVB()
         {
             return new[]
             {
-                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
-                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
-                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
-                "wts.Page.ContentGrid", "wts.Page.DataGrid",
-                "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
-                "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
-                "wts.Feat.MultiInstance", "wts.Feat.MultiInstanceAdvanced",
-                "wts.Testing.UnitTests.Core.MSTest", "wts.Testing.UnitTests.Core.NUnit", "wts.Testing.UnitTests.Core.xUnit",
-                "wts.Testing.UnitTests.App.MSTest", "wts.Testing.UnitTests.App.xUnit",
-                "wts.Service.HttpDataService", "wts.Service.SqlServerDataService",
-                "wts.Feat.CommandLine"
+                "wts.Service.WebApi",
+                "wts.Service.SecurizedWebApi",
+                "wts.Service.SecurizedWebApi.CodeBehind",
             };
         }
 
@@ -557,15 +544,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "CaliburnMicro":
