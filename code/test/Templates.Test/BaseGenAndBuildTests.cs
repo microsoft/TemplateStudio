@@ -487,8 +487,8 @@ namespace Microsoft.Templates.Test
             return new[]
             {
                 "wts.Service.WebApi",
-                "wts.Service.SecurizedWebApi",
-                "wts.Service.SecurizedWebApi.CodeBehind",
+                "wts.Service.SecuredWebApi",
+                "wts.Service.SecuredWebApi.CodeBehind",
             };
         }
 
