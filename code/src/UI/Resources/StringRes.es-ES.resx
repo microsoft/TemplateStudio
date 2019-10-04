@@ -809,4 +809,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="SeparatorOr" xml:space="preserve">
     <value>or</value>
   </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
 </root>

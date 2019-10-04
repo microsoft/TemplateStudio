@@ -809,4 +809,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="SeparatorOr" xml:space="preserve">
     <value>or</value>
   </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
 </root>

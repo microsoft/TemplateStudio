@@ -809,4 +809,7 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
   <data name="SeparatorOr" xml:space="preserve">
     <value>or</value>
   </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
 </root>
