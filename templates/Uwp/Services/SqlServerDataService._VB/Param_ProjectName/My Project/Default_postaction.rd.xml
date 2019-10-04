@@ -2,7 +2,7 @@
   <Application>
 <!--^^-->
 <!--{[{-->
-    <Type Name="System.Configuration.AppSettingsSection" Serialize="Required Public" />
+    <Namespace Name="System.Configuration" Serialize="Required PublicAndInternal" />
 <!--}]}-->
   </Application>
 </Directives>
