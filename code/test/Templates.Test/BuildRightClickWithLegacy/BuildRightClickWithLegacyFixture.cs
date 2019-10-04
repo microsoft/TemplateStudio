@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource LocalSource => new LocalTemplatesSource(null, "BldRClickLegacy");
 
-        private static bool syncExecuted;
+        private static Dictionary<string, bool> syncExecuted = new Dictionary<string, bool>();
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
@@ -75,12 +75,15 @@ namespace Microsoft.Templates.Test
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, Platforms.Uwp, language);
-            if (!syncExecuted)
+            if (syncExecuted.ContainsKey(language) && syncExecuted[language] == true)
             {
-                GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
-
-                syncExecuted = true;
+                return;
             }
+
+            GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
+
+            syncExecuted.Add(language,true);
+            
         }
 
         [SuppressMessage(
