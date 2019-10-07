@@ -3,14 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.TemplateEngine.Abstractions;
-
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -77,26 +74,43 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildMVVMBasic")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
+        public async Task BuildAllPagesAndFeaturesProjectNameValidationG1Async(string projectType, string framework, string platform, string language)
         {
-
-            // get first item from each exclusive selection group
-            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
-
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
-                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
+                && t.GetItemNameEditable() == true
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
+                && !excludedTemplatesGroup2VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
 
-            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
+        [Trait("ExecutionSet", "BuildMVVMBasic")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "BuildAllPagesAndFeatures")]
+        public async Task BuildAllPagesAndFeaturesProjectNameValidationG2Async(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && t.GetItemNameEditable() == true
+                && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
+                && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
+                && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -118,7 +132,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityOptionalLogin"
+                && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopF";
@@ -143,7 +157,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity == "wts.Service.IdentityOptionalLogin"
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}MinStyleCopO";
@@ -167,7 +181,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityForcedLogin"
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopO";
@@ -202,23 +216,15 @@ namespace Microsoft.Templates.Test
 
         private async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
-            // get first item from each exclusive selection group
-            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
+            var projectName = $"{ShortProjectType(projectType)}AllRandomG2{ShortLanguageName(language)}";
 
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
-                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
+                && t.GetItemNameEditable()
                 && !t.GetIsHidden();
-
-            var projectName = $"{ShortProjectType(projectType)}AllRandom{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
@@ -248,7 +254,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCF{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityOptionalLogin");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -262,7 +268,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCO{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityForcedLogin");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -276,7 +282,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCF{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityOptionalLogin.VB");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1VB);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -290,7 +296,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCO{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityForcedLogin.VB");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2VB);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }

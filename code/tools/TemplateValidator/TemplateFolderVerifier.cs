@@ -44,8 +44,10 @@ namespace TemplateValidator
                 }
 
                 var allIdentities = new Dictionary<string, string>();   // identity, filepath
+                var allGroupIdentities = new List<string>();   // identity, identity
                 var allDependencies = new Dictionary<string, string>(); // filepath, dependency
                 var allRequirements = new Dictionary<string, string>(); // filepath, requirement
+                var allExclusions = new Dictionary<string, string>(); // filepath, exclusion
                 var allFileHashes = new Dictionary<string, string>();   // filehash, filepath
                 var allCompFilters = new Dictionary<string, string>();  // filepath, filter
                 var allPageIdentities = new List<string>();
@@ -68,6 +70,11 @@ namespace TemplateValidator
                         else
                         {
                             allIdentities.Add(template.Identity, templateFilePath);
+
+                            if (!allGroupIdentities.Contains(template.GroupIdentity))
+                            {
+                                allGroupIdentities.Add(template.GroupIdentity);
+                            }
 
                             if (template.GetTemplateType() == TemplateType.Page)
                             {
@@ -122,10 +129,16 @@ namespace TemplateValidator
                         allDependencies.Add(templateFilePath, template.TemplateTags["wts.dependencies"]);
                     }
 
-                    // Get list of dependencies while the file is open. These are all checked later
+                    // Get list of requirements while the file is open. These are all checked later
                     if (template.TemplateTags.ContainsKey("wts.requirements"))
                     {
                         allRequirements.Add(templateFilePath, template.TemplateTags["wts.requirements"]);
+                    }
+
+                    // Get list of exclusions while the file is open. These are all checked later
+                    if (template.TemplateTags.ContainsKey("wts.exclusions"))
+                    {
+                        allExclusions.Add(templateFilePath, template.TemplateTags["wts.exclusions"]);
                     }
 
                     // Get list of filters while the file is open. These are all checked later
@@ -199,6 +212,17 @@ namespace TemplateValidator
                         if (!allIdentities.ContainsKey(requirement))
                         {
                             results.Add($"'{requirements.Key}' contains requirement '{requirements}' that does not exist.");
+                        }
+                    }
+                }
+
+                foreach (var exclusions in allExclusions)
+                {
+                    foreach (var exclusion in exclusions.Value.Split('|'))
+                    {
+                        if (!allGroupIdentities.Contains(exclusion))
+                        {
+                            results.Add($"'{exclusions.Key}' contains exclusion '{exclusion}' that does not exist.");
                         }
                     }
                 }
