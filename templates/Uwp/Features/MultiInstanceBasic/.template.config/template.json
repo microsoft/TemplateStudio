@@ -22,7 +22,8 @@
     "wts.defaultInstance": "MultiInstance",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"false",
+    "wts.exclusions" : "wts.Feat.BackgroundTask"
   },
   "sourceName": "MultiInstance",
   "preferNameDirectory": true,

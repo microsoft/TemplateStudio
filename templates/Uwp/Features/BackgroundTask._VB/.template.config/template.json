@@ -19,8 +19,10 @@
     "wts.group": "BackgroundWork",
     "wts.multipleInstance": "true",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
-    "wts.outputToParent":"true"
+    "wts.rightClickEnabled": "false",
+    "wts.outputToParent": "true",
+    "wts.exclusions": "wts.Feat.MultiInstance.VB|wts.Feat.MultiInstanceAdvanced.VB"
+
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,
