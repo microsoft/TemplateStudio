@@ -91,6 +91,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
+            if (template.Exclusions.Count() > 0)
+            {
+                var exlusionsTemplateNames = AllTemplates.Where(t => template.Exclusions.Select(e => e.Identity).Contains(t.Identity)).Select(t => t.Template.Name).Distinct();
+                if (exlusionsTemplateNames.Count() > 0 )
+                {
+                    await ShowAddTemplateExclusionsNotificationAsync(template.Name, exlusionsTemplateNames);
+                    return;
+                }
+            }
+
             if (template.Requirements.Count() > 0)
             {
                 if (!AllTemplates.Any(t => template.Requirements.Select(r => r.Identity).Contains(t.Identity)))
@@ -337,6 +347,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var message = string.Format(StringRes.NotificationRemoveError_ReadOnly, name);
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
+        }
+
+        private async Task ShowAddTemplateExclusionsNotificationAsync(string name, IEnumerable<string> exludedTemplateNames)
+        {
+            var allExludedTemplateNames = ConcatTemplateNames(exludedTemplateNames);
+
+            var message = string.Format(StringRes.NotificationAdditionError_Exclusion, name, allExludedTemplateNames);
+
+            var notification = Notification.Warning(message, Category.AddTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
         }
 

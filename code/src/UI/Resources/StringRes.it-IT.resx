@@ -812,4 +812,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>
   </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
 </root>
