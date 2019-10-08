@@ -1315,6 +1315,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclusions:.
+        /// </summary>
+        public static string TemplateDetailsExclusions {
+            get {
+                return ResourceManager.GetString("TemplateDetailsExclusions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Frameworks:.
         /// </summary>
         public static string TemplateDetailsFrameworks {

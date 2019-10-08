@@ -816,4 +816,7 @@
     <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
     <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
   </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Exclusions:</value>
+  </data>
 </root>
