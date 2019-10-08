@@ -23,7 +23,8 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.dependencies": "wts.Feat.MultiInstance",
-    "wts.rightClickEnabled":"true"
+    "wts.exclusions" : "wts.Feat.BackgroundTask",
+    "wts.rightClickEnabled":"false"
   },
   "sourceName": "MultiInstanceAdvanced",
   "preferNameDirectory": true,

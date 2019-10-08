@@ -78,6 +78,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public IEnumerable<BasicInfoViewModel> Requirements { get; protected set; }
 
+        public IEnumerable<BasicInfoViewModel> Exclusions { get; protected set; }
+
         public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !WizardStatus.Current.IsBusy));

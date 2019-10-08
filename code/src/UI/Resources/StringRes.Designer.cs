@@ -766,6 +766,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not add **{0}** because the following templates are not compatible: {1}..
+        /// </summary>
+        public static string NotificationAdditionError_Exclusion {
+            get {
+                return ResourceManager.GetString("NotificationAdditionError_Exclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not add **{0}** because it is requires one of the following templates to be added first: {1}.
         /// </summary>
         public static string NotificationAdditionError_Requirement {
@@ -1302,6 +1311,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsDependencies {
             get {
                 return ResourceManager.GetString("TemplateDetailsDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclusions:.
+        /// </summary>
+        public static string TemplateDetailsExclusions {
+            get {
+                return ResourceManager.GetString("TemplateDetailsExclusions", resourceCulture);
             }
         }
         

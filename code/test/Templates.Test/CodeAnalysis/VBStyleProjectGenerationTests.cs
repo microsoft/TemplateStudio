@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForVBStyle))]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesForcedLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
+        public async Task GenerateAllPagesAndFeaturesG1AndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -33,10 +33,10 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityOptionalLogin.VB"
+                && !excludedTemplatesGroup2VB.Contains(t.GroupIdentity)
                 || (t.Identity == "wts.Feat.VBStyleAnalysis");
 
-            var projectName = $"{projectType}{framework}AllVBStyle";
+            var projectName = $"{projectType}{framework}AllVBStyleG1";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForVBStyle))]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesOptionalLoginAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
+        public async Task GenerateAllPagesAndFeaturesG2AndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -54,10 +54,10 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityForcedLogin.VB"
+                && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 || (t.Identity == "wts.Feat.VBStyleAnalysis");
 
-            var projectName = $"{projectType}{framework}AllVBStyle";
+            var projectName = $"{projectType}{framework}AllVBStyleG2";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 

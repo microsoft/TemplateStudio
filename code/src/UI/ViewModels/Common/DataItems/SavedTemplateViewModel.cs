@@ -51,6 +51,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public IEnumerable<BasicInfoViewModel> Requirements { get; }
 
+        public IEnumerable<BasicInfoViewModel> Exclusions { get; }
+
         public string Name
         {
             get => _name;

@@ -26,6 +26,10 @@ namespace Microsoft.Templates.Test
         private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
+        protected List<string> excludedTemplatesGroup1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
+        protected List<string> excludedTemplatesGroup2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
+        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" };
 
         public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
         {
@@ -89,11 +93,13 @@ namespace Microsoft.Templates.Test
                 && t.GetPlatform() == platform
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
+            // this selector excludes templates with exclusions
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
+                && t.GetExclusionsList().Count() == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                 && !t.GetIsHidden();
 
@@ -228,7 +234,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, string excludedGroupIdentity = "")
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, List<string> excludedGroupIdentity = null)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -250,7 +256,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
-                    && t.GroupIdentity != excludedGroupIdentity
+                    && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
                 var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
@@ -274,6 +280,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
+                && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                 && t.GetRightClickEnabled());
 
             await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
