@@ -204,11 +204,25 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCaliburnMicro")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
+        public async Task BuildCompleteProjectWithAllRightClickItemsG1Async(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{ShortProjectType(projectType)}AllRC2";
+            var projectName = $"{ShortProjectType(projectType)}AllRCG1";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2);
+
+            AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro")]
+        [Trait("ExecutionSet", "BuildCaliburnMicro")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "BuildRightClick")]
+        public async Task BuildCompleteProjectWithAllRightClickItemsG2Async(string projectType, string framework, string platform, string language)
+        {
+            var projectName = $"{ShortProjectType(projectType)}AllRCG2";
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
