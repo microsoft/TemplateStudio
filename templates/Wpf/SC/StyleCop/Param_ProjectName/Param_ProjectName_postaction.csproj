@@ -1,0 +1,13 @@
+﻿<!--/-:msbuild-conditional:noEmit -->
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+  </PropertyGroup>
+<!--{[{-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1701;1702;NU1701</NoWarn>
+  </PropertyGroup>
+<!--}]}-->
+</Project>
+<!--/+:msbuild-conditional:noEmit -->
