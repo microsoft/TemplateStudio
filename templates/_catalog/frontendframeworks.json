@@ -6,7 +6,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
