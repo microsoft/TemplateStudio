@@ -1,4 +1,4 @@
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using Prism.Regions;
 using Param_RootNamespace.Models;
 

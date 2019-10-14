@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "MVVMBasic.Project.SplitView.AddHamburgerMenuItem",
+    "identity": "MVVMBasic.Project.SplitView.AddHamburgerMenuItem",
+    "shortName": "MVVMBasic.Project.SplitView.AddHamburgerMenuItem",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $frontendframework == MVVMBasic & $projectType == SplitView"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

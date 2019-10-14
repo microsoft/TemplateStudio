@@ -1,4 +1,4 @@
-using Prism.Regions;
+﻿using Prism.Regions;
 
 namespace Param_RootNamespace.Helpers
 {

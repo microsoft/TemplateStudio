@@ -16,7 +16,7 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {

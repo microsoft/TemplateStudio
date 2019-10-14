@@ -18,7 +18,8 @@
     "wts.platform": "Wpf",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "0"
+    "wts.displayOrder": "0",
+    "wts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)|[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)|[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
