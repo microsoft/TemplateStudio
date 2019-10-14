@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Project.Blank",
-    "shortName": "wts.Wpf.MVVMBasic.Project.Blank",
-    "identity": "wts.Wpf.MVVMBasic.Project.Blank",
+    "name": "wts.Wpf.MVVMLight.Project.Blank",
+    "shortName": "wts.Wpf.MVVMLight.Project.Blank",
+    "identity": "wts.Wpf.MVVMLight.Project.Blank",
     "tags": {
       "language": "C#",
       "type": "item",
@@ -14,7 +14,7 @@
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == Blank & wts.type == project"
+      "wts.compositionFilter": "$frontendframework == MVVMLight & $projectType == Blank & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

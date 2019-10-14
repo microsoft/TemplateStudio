@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "Page.AddTitle",
-    "identity": "Page.AddTitle",
-    "shortName": "Page.AddTitle",
+    "name": "wts.Wpf.Page.AddTitle",
+    "shortName": "wts.Wpf.Page.AddTitle",
+    "identity": "wts.Wpf.Page.AddTitle",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.Blank"
+    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

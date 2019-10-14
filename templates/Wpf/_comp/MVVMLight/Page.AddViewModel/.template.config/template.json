@@ -4,17 +4,18 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Project.Blank",
-    "shortName": "wts.Wpf.MVVMBasic.Project.Blank",
-    "identity": "wts.Wpf.MVVMBasic.Project.Blank",
+    "name": "wts.Wpf.MVVMLight.Page.AddViewModel",
+    "shortName": "wts.Wpf.MVVMLight.Page.AddViewModel",
+    "identity": "wts.Wpf.MVVMLight.Page.AddViewModel",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == Blank & wts.type == project"
+      "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type==page",
+      "wts.export.baseclass": "ViewModelBase",
+      "wts.export.setter": "Set"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

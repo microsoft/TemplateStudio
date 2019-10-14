@@ -16,7 +16,7 @@
         "author": "Laurent Bugnion",
         "order": "2",
         "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {

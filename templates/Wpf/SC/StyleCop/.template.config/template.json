@@ -6,8 +6,8 @@
     ],
     "name": "StyleCop",
     "shortName": "StyleCop",
-    "groupIdentity": "wts.Feat.StyleCop",
-    "identity": "wts.Feat.StyleCop",
+    "identity": "wts.Wpf.Feat.StyleCop",
+    "groupIdentity": "wts.Wpf.Feat.StyleCop",
     "tags": {
       "language": "C#",
       "type": "item",

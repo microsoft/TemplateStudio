@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Helpers;
 using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
 

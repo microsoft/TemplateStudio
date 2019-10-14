@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "Project",
-    "identity": "Project",
-    "shortName": "Project",
+    "name": "wts.Wpf.Project",
+    "shortName": "wts.Wpf.Project",
+    "identity": "wts.Wpf.Project",
     "tags": {
       "language": "C#",
       "type": "item",
@@ -36,6 +36,10 @@
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
+      },
+      "canExecute": {
+        "type": "parameter",
+        "replaces": "CanExecuteChangedMethodName"
       }
     }
   }

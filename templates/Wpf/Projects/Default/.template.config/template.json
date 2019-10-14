@@ -4,17 +4,17 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Default",
-  "shortName": "Default",
-  "groupIdentity": "wts.Proj.Default",
-  "identity": "wts.Proj.Default",
+  "name": "wts.Wpf.Proj.Default",
+  "shortName": "wts.Wpf.Proj.Default",
+  "identity": "wts.Wpf.Proj.Default",
+  "groupIdentity": "wts.Wpf.Proj.Default",
   "description": "",
   "tags": {
     "language": "C#",
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "Blank",
-    "wts.frontendframework": "MVVMBasic",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Wpf",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",

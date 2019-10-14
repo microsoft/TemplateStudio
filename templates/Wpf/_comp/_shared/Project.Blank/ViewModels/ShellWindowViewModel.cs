@@ -1,6 +1,5 @@
 ﻿using System;
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -30,7 +29,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnNavigated(object sender, string viewModelName)
         {
-            GoBackCommand.OnCanExecuteChanged();
+            GoBackCommand.CanExecuteChangedMethodName();
         }
     }
 }

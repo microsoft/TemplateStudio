@@ -6,15 +6,15 @@
   ],
   "name": "Blank",
   "shortName": "Blank",
-  "groupIdentity": "wts.Page.Blank",
-  "identity": "wts.Page.Blank",
+  "identity": "wts.Wpf.Page.Blank",
+  "groupIdentity": "wts.Wpf.Page.Blank",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -24,15 +24,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": "Views/wts.ItemNamePage.xaml"
-    },
-    {
-      "path": "Views/wts.ItemNamePage.xaml.cs"
-    },
-    {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

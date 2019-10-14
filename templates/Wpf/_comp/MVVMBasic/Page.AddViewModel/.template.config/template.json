@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "MVVMBasic.Page.AddViewModel",
-    "identity": "MVVMBasic.Page.AddViewModel",
-    "shortName": "MVVMBasic.Page.AddViewModel",
+    "name": "wts.Wpf.MVVMBasic.Page.AddViewModel",
+    "shortName": "wts.Wpf.MVVMBasic.Page.AddViewModel",
+    "identity": "wts.Wpf.MVVMBasic.Page.AddViewModel",
     "tags": {
       "language": "C#",
       "type": "item",
