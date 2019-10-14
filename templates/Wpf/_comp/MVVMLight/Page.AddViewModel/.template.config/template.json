@@ -15,7 +15,8 @@
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type==page",
       "wts.export.baseclass": "ViewModelBase",
-      "wts.export.setter": "Set"
+      "wts.export.setter": "Set",
+      "wts.export.pagetype": "Page"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

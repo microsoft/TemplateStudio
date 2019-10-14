@@ -3,14 +3,14 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellWindowViewModel : System.ComponentModel.INotifyPropertyChanged, IDisposable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged, IDisposable
     {
         private readonly INavigationService _navigationService;
         private System.Windows.Input.ICommand _goBackCommand;
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
-        public ShellWindowViewModel(INavigationService navigationService)
+        public ShellViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             _navigationService.Navigated += OnNavigated;

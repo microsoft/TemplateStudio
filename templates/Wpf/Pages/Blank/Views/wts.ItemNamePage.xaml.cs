@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Views
 {
-    public partial class wts.ItemNamePage : Page
+    public partial class wts.ItemNamePage : System.Windows.Controls.Page
     {
         public wts.ItemNamePage()
         {

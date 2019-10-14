@@ -52,8 +52,8 @@ namespace Param_RootNamespace
             services.AddSingleton<INavigationService, NavigationService>();
 
             // Views and ViewModels
-            services.AddTransient<IShellWindow, ShellWindow>();
-            services.AddTransient<ShellWindowViewModel>();
+            services.AddTransient<IShellPage, ShellPage>();
+            services.AddTransient<ShellViewModel>();
 
             // Configuration
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

@@ -17,16 +17,16 @@ namespace Param_RootNamespace.ViewModels
         private IPageService PageService
             => SimpleIoc.Default.GetInstance<IPageService>();
 
-        public ShellWindowViewModel ShellViewModel
-            => SimpleIoc.Default.GetInstance<ShellWindowViewModel>();
+        public ShellViewModel ShellViewModel
+            => SimpleIoc.Default.GetInstance<ShellViewModel>();
 
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<IFilesService, FilesService>();
             SimpleIoc.Default.Register<IPageService, PageService>();
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
-            SimpleIoc.Default.Register<IShellWindow, ShellWindow>();
-            SimpleIoc.Default.Register<ShellWindowViewModel>();
+            SimpleIoc.Default.Register<IShellPage, ShellPage>();
+            SimpleIoc.Default.Register<ShellViewModel>();
             SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
         }
 

@@ -4,19 +4,17 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Page.AddViewModel",
-    "shortName": "wts.Wpf.MVVMBasic.Page.AddViewModel",
-    "identity": "wts.Wpf.MVVMBasic.Page.AddViewModel",
+    "name": "wts.Wpf.Prism.Project.Blank",
+    "shortName": "wts.Wpf.Prism.Project.Blank",
+    "identity": "wts.Wpf.Prism.Project.Blank",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type==page",
-      "wts.export.baseclass": "Observable",
-      "wts.export.setter": "Set",
-      "wts.export.pagetype": "Page"
+      "wts.compositionOrder": "1",
+      "wts.compositionFilter": "$frontendframework == Prism & $projectType == Blank & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -26,6 +24,10 @@
       "wts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
-      }
+      },
+      "wts.homePageName": {
+        "type":"parameter",
+        "replaces":"Param_HomeName"
+      },
     }
   }

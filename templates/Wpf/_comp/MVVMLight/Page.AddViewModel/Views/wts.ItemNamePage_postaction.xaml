@@ -5,5 +5,5 @@
 <!--}]}-->
     Style="{DynamicResource MetroPage}"
     mc:Ignorable="d"
-    Title="wts.ItemNamePage">
+    d:DesignHeight="450" d:DesignWidth="800">
 </Page>

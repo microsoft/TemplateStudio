@@ -46,7 +46,7 @@
         "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
         "order": "5",
         "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#" ]
     }
 ]
