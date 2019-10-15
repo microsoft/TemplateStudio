@@ -13,7 +13,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.projecttype": "Blank",
+    "wts.projecttype": "Blank|SplitView",
     "wts.frontendframework": "Prism",
     "wts.platform": "Wpf",
     "wts.outputToParent": "true",
