@@ -33,9 +33,10 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuViewsMainCommand { get; }
 
-        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        public ShellViewModel(/*{[{*/INavigationService navigationService, IIdentityService identityService/*}]}*/)
         {
             _menuNavigationService = menuNavigationService;
+//^^
 //{[{
             _navigationService = navigationService;
             _identityService = identityService;
