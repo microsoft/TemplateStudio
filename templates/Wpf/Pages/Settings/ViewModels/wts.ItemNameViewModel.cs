@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Input;
-using Microsoft.Extensions.Options;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Models;

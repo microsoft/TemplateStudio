@@ -14,17 +14,7 @@
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == project",
-      "wts.export.baseclass": "Observable",
-      "wts.export.setter": "Set",
-      "wts.export.pagetype": "Page",
-      "wts.export.commandclass": "RelayCommand",
-      "wts.export.navigateMethodName": "Navigate",
-      "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged",
-      "wts.export.configtype": "IOptions<AppConfig>",
-      "wts.export.configvalue": "config.Value",
-      "wts.export.onnavigatedtoparams": "object parameter",
-      "wts.export.onnavigatedfromparams": ""
+      "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

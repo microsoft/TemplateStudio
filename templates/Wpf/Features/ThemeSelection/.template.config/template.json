@@ -12,7 +12,7 @@
     "type": "item",
     "wts.type": "feature",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",

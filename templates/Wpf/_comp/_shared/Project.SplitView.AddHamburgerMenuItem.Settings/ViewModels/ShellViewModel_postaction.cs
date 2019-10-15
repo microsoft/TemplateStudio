@@ -45,7 +45,7 @@
 //^^
 //{[{
         private void OptionsMenuItemInvoked()
-            => _navigationService.Navigate(SelectedOptionsMenuItem.TargetPageType.FullName);
+            => _navigationService.NavigateMethodName(SelectedOptionsMenuItem.TargetPageType.FullName);
 //}]}
         private void OnNavigated(object sender, string viewModelName)
         {

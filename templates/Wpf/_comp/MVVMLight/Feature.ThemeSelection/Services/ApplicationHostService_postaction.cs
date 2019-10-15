@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.Services
 {
-    public class ApplicationHostService : IHostedService
+    public class ApplicationHostService : IApplicationHostService
     {
         private readonly INavigationService _navigationService;
 //{[{

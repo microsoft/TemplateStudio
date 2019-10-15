@@ -15,12 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
       "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == project",
-      "wts.licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
-      "wts.export.baseclass": "ViewModelBase",
-      "wts.export.setter": "Set",
-      "wts.export.commandclass": "RelayCommand",
-      "wts.export.navigateMethodName": "NavigateTo",
-      "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged"
+      "wts.licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

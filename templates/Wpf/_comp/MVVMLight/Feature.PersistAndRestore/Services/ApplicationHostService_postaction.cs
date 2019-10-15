@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.Services
 {
-    public class ApplicationHostService : IHostedService
+    public class ApplicationHostService : IApplicationHostService
     {
         private readonly INavigationService _navigationService;
 //{[{
@@ -15,7 +15,7 @@
 //}]}
         }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync()
         {
             await Task.CompletedTask;
 //{[{

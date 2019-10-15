@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Param_RootNamespace.Services
 {
-    internal class ApplicationHostService : IHostedService
+    public class ApplicationHostService : IHostedService
     {
         private readonly INavigationService _navigationService;
         private readonly IShellPage _shellPage;

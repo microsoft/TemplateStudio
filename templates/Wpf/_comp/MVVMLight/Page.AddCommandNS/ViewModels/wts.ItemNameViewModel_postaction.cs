@@ -1,0 +1,3 @@
+﻿//{[{
+using GalaSoft.MvvmLight.Command;
+//}]}

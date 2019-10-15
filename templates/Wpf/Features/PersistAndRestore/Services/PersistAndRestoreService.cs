@@ -14,10 +14,10 @@ namespace Param_RootNamespace.Services
         private readonly AppConfig _config;
         private readonly string _localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-        public PersistAndRestoreService(IFilesService filesService, IOptions<AppConfig> config)
+        public PersistAndRestoreService(IFilesService filesService, Param_ConfigType config)
         {
             _filesService = filesService;
-            _config = config.Value;
+            _config = Param_ConfigValue;
         }
 
         public void PersistData()
