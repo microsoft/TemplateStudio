@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "설정 페이지는 앱에 권장하는 구성 요소를 설정하는 페이지입니다.",
+  "identity": "wts.Wpf.Page.Settings"
+}

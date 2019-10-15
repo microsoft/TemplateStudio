@@ -1,4 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project
+  Sdk="Microsoft.NET.Sdk.WindowsDesktop"
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>

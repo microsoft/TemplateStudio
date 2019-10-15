@@ -15,7 +15,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 {
     public class NewProjectViewModel : Observable
     {
-        private const string DefaultName = "App1";
+        private const string DefaultName = "EmulatorApp";
 
         private readonly Window _host;
 
