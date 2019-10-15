@@ -37,7 +37,7 @@
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
       },
-      "canExecute": {
+      "canexecute": {
         "type": "parameter",
         "replaces": "CanExecuteChangedMethodName"
       }

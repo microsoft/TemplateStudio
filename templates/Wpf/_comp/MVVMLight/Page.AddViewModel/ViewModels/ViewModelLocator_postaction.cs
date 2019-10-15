@@ -9,7 +9,7 @@
     {
 //^^
 //{[{
-        Register<MainViewModel, MainPage>();
+        Register<wts.ItemNameViewModel, wts.ItemNamePage>();
 //}]}
     }
 }

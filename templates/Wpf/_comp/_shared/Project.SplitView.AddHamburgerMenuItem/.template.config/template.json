@@ -4,17 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Project.Blank",
-    "shortName": "wts.Wpf.MVVMBasic.Project.Blank",
-    "identity": "wts.Wpf.MVVMBasic.Project.Blank",
+    "name": "Project.SplitView.AddHamburgerMenuItem",
+    "identity": "Project.SplitView.AddHamburgerMenuItem",
+    "shortName": "Project.SplitView.AddHamburgerMenuItem",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == Blank & wts.type == project"
+      "wts.compositionFilter": "wts.type == page & identity != wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight & $projectType == SplitView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

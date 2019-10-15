@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Strings;
 
 namespace Param_RootNamespace.ViewModels
@@ -49,7 +48,7 @@ namespace Param_RootNamespace.ViewModels
             => _navigationService.GoBack();
 
         private void MenuItemInvoked()
-            => _navigationService.Navigate(SelectedMenuItem.TargetPageType.FullName);
+            => _navigationService.NavigateMethodName(SelectedMenuItem.TargetPageType.FullName);
 
         private void OnNavigated(object sender, string viewModelName)
         {

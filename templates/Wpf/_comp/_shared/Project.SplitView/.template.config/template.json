@@ -41,7 +41,11 @@
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
       },
-      "canExecute": {
+      "navigateMethodName": {
+        "type": "parameter",
+        "replaces": "NavigateMethodName"
+      },
+      "canExecuteChangedMethodName": {
         "type": "parameter",
         "replaces": "CanExecuteChangedMethodName"
       }
