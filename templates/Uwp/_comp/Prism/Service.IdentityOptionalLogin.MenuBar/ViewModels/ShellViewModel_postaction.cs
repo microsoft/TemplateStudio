@@ -41,6 +41,7 @@ namespace Param_RootNamespace.ViewModels
             _navigationService = navigationService;
             _identityService = identityService;
 //}]}
+            MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
 
         public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)

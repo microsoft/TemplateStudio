@@ -65,6 +65,7 @@ namespace Param_RootNamespace.ViewModels
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
             UserProfileCommand = new DelegateCommand(OnUserProfile);
 //}]}
+            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
         }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
