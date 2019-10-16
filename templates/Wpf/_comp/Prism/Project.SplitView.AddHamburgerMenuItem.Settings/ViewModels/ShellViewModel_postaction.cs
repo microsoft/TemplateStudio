@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged, IDisposable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private HamburgerMenuItem _selectedMenuItem;
 //{[{
@@ -31,7 +31,7 @@
         public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
         {
 
-            new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE713", TargetPageType = typeof(wts.ItemNameViewModel) }
+            new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE713", Tag = "wts.ItemName" }
         };
 //}]}
         public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(OnMenuItemInvoked));
@@ -39,17 +39,16 @@
 
         public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new System.Windows.Input.ICommand(OnOptionsMenuItemInvoked));
 //}]}
-
 //^^
 //{[{
         private void OnOptionsMenuItemInvoked()
-            => _navigationService.NavigateMethodName(SelectedOptionsMenuItem.TargetPageType.FullName);
+            => RequestNavigate(SelectedOptionsMenuItem.Tag.ToString());
 //}]}
-        private void OnNavigated(object sender, string viewModelName)
+        private void OnNavigated(object sender, RegionNavigationEventArgs e)
         {
             var item = MenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
+                        .FirstOrDefault(i => e.Uri.ToString() == i.Tag.ToString());
             if (item != null)
             {
                 SelectedMenuItem = item;
@@ -59,7 +58,7 @@
             {
                 SelectedOptionsMenuItem = OptionMenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
+                        .FirstOrDefault(i => e.Uri.ToString() == i.Tag.ToString());
             }
 //}]}
         }

@@ -11,9 +11,9 @@
     Style="{DynamicResource MetroPage}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
-    <Page.Resources>
+    <System.Windows.Controls.Page.Resources>
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="models:AppTheme" />
-    </Page.Resources>
+    </System.Windows.Controls.Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

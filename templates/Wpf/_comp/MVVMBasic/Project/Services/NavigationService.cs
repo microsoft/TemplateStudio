@@ -39,18 +39,17 @@ namespace Param_RootNamespace.Services
 
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
-                var dataContext = _frame.GetDataContext();
-                if (dataContext is INavigationAware navigationAware)
-                {
-                    navigationAware.OnNavigatingFrom();
-                }
-
                 _frame.Tag = clearNavigation;
                 var page = _pageService.GetPage(pageKey);
                 var navigated = _frame.Navigate(page, parameter);
                 if (navigated)
                 {
                     _lastParameterUsed = parameter;
+                    var dataContext = _frame.GetDataContext();
+                    if (dataContext is INavigationAware navigationAware)
+                    {
+                        navigationAware.OnNavigatedFrom();
+                    }
                 }
 
                 return navigated;

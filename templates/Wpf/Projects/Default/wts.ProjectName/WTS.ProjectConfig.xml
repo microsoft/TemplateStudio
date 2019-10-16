@@ -1,4 +1,4 @@
-<xml
+﻿<xml
     xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio">
     <genTemplate:Metadata>
         <genTemplate:Item Name="generator" Value="Windows Template Studio"/>

@@ -4,6 +4,6 @@
     {
         void OnNavigatedTo(object parameter);
 
-        void OnNavigatingFrom();
+        void OnNavigatedFrom();
     }
 }

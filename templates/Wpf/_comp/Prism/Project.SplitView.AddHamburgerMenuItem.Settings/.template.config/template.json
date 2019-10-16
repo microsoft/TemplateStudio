@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem.Settings",
-    "identity": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem.Settings",
-    "shortName": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem.Settings",
+    "name": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
+    "identity": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
+    "shortName": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "wts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight & $projectType == SplitView"
+      "wts.compositionFilter": "wts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == Prism & $projectType == SplitView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -35,10 +35,6 @@
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
-      },
-      "navigateMethodName": {
-        "type": "parameter",
-        "replaces": "NavigateMethodName"
-      },
+      }
     }
   }

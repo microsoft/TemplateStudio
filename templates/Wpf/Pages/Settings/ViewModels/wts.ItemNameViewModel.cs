@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.ViewModels
@@ -20,13 +19,13 @@ namespace Param_RootNamespace.ViewModels
         public AppTheme Theme
         {
             get { return _theme; }
-            set { Set(ref _theme, value); }
+            set { Param_Setter(ref _theme, value); }
         }
 
         public string VersionDescription
         {
             get { return _versionDescription; }
-            set { Set(ref _versionDescription, value); }
+            set { Param_Setter(ref _versionDescription, value); }
         }
 
         public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new System.Windows.Input.ICommand<string>(OnSetTheme));
@@ -45,7 +44,7 @@ namespace Param_RootNamespace.ViewModels
             Theme = _themeSelectorService.GetCurrentTheme();
         }
 
-        public void OnNavigatingFrom(Param_OnNavigatedFromParams)
+        public void OnNavigatedFrom(Param_OnNavigatedFromParams)
         {
         }
 

@@ -28,7 +28,7 @@ namespace Param_RootNamespace.ViewModels
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
-        public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(MenuItemInvoked));
+        public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(OnMenuItemInvoked));
 
         public ShellViewModel(INavigationService navigationService)
         {
@@ -47,7 +47,7 @@ namespace Param_RootNamespace.ViewModels
         private void OnGoBack()
             => _navigationService.GoBack();
 
-        private void MenuItemInvoked()
+        private void OnMenuItemInvoked()
             => _navigationService.NavigateMethodName(SelectedMenuItem.TargetPageType.FullName);
 
         private void OnNavigated(object sender, string viewModelName)
