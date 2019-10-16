@@ -19,7 +19,6 @@
       "wts.export.pagetype": "Page",
       "wts.export.commandclass": "RelayCommand",
       "wts.export.navigateMethodName": "NavigateTo",
-      "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged",
       "wts.export.configtype": "AppConfig",
       "wts.export.configvalue": "config",
       "wts.export.onnavigatedtoparams": "object parameter",

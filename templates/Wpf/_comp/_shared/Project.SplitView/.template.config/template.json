@@ -39,11 +39,11 @@
       },
       "navigateMethodName": {
         "type": "parameter",
-        "replaces": "NavigateMethodName"
+        "replaces": "Param_NavigateMethodName"
       },
       "canExecuteChangedMethodName": {
         "type": "parameter",
-        "replaces": "CanExecuteChangedMethodName"
+        "replaces": "Param_CanExecuteChangedMethodName"
       }
     }
   }

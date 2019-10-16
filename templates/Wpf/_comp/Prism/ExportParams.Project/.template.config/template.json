@@ -16,14 +16,7 @@
       "wts.compositionFilter": "$frontendframework == Prism & wts.type == project",
       "wts.export.baseclass": "BindableBase",
       "wts.export.setter": "SetProperty",
-      "wts.export.pagetype": "UserControl",
-      "wts.export.commandclass": "DelegateCommand",
-      "wts.export.navigateMethodName": "",
-      "wts.export.canExecuteChangedMethodName": "",
-      "wts.export.configtype": "AppConfig",
-      "wts.export.configvalue": "config",
-      "wts.export.onnavigatedtoparams": "NavigationContext navigationContext",
-      "wts.export.onnavigatedfromparams": "NavigationContext navigationContext"
+      "wts.export.commandclass": "DelegateCommand"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

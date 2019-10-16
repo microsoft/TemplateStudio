@@ -38,7 +38,7 @@
       },
       "navigateMethodName": {
         "type": "parameter",
-        "replaces": "NavigateMethodName"
+        "replaces": "Param_NavigateMethodName"
       },
     }
   }

@@ -29,7 +29,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnNavigated(object sender, string viewModelName)
         {
-            GoBackCommand.CanExecuteChangedMethodName();
+            GoBackCommand.Param_CanExecuteChangedMethodName();
         }
     }
 }

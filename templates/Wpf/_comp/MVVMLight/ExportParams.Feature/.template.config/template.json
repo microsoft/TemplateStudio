@@ -14,16 +14,9 @@
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == feature",
-      "wts.export.baseclass": "ViewModelBase",
-      "wts.export.setter": "Set",
-      "wts.export.pagetype": "Page",
-      "wts.export.commandclass": "RelayCommand",
       "wts.export.navigateMethodName": "NavigateTo",
-      "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged",
       "wts.export.configtype": "AppConfig",
-      "wts.export.configvalue": "config",
-      "wts.export.onnavigatedtoparams": "object parameter",
-      "wts.export.onnavigatedfromparams": ""
+      "wts.export.configvalue": "config"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -48,7 +48,7 @@ namespace Param_RootNamespace.ViewModels
             => _navigationService.GoBack();
 
         private void OnMenuItemInvoked()
-            => _navigationService.NavigateMethodName(SelectedMenuItem.TargetPageType.FullName);
+            => _navigationService.Param_NavigateMethodName(SelectedMenuItem.TargetPageType.FullName);
 
         private void OnNavigated(object sender, string viewModelName)
         {
@@ -60,7 +60,7 @@ namespace Param_RootNamespace.ViewModels
                 SelectedMenuItem = item;
             }
 
-            GoBackCommand.CanExecuteChangedMethodName();
+            GoBackCommand.Param_CanExecuteChangedMethodName();
         }
     }
 }

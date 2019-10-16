@@ -35,7 +35,7 @@
       },
       "canexecute": {
         "type": "parameter",
-        "replaces": "CanExecuteChangedMethodName"
+        "replaces": "Param_CanExecuteChangedMethodName"
       }
     }
   }
