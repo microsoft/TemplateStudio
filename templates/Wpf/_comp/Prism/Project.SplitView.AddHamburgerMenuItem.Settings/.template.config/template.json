@@ -23,18 +23,6 @@
       "wts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
-      },
-      "baseclass": {
-        "type": "parameter",
-        "replaces": "System.ComponentModel.INotifyPropertyChanged"
-      },
-      "setter": {
-        "type": "parameter",
-        "replaces": "Param_Setter"
-      },
-      "commandclass": {
-        "type": "parameter",
-        "replaces": "System.Windows.Input.ICommand"
       }
     }
   }

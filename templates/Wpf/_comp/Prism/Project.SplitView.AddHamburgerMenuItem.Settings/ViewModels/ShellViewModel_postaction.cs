@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class ShellViewModel : BindableBase
     {
         private HamburgerMenuItem _selectedMenuItem;
 //{[{
@@ -13,14 +13,14 @@
         public HamburgerMenuItem SelectedMenuItem
         {
             get { return _selectedMenuItem; }
-            set { Param_Setter(ref _selectedMenuItem, value); }
+            set { SetProperty(ref _selectedMenuItem, value); }
         }
 //{[{
 
         public HamburgerMenuItem SelectedOptionsMenuItem
         {
             get { return _selectedOptionsMenuItem; }
-            set { Param_Setter(ref _selectedOptionsMenuItem, value); }
+            set { SetProperty(ref _selectedOptionsMenuItem, value); }
         }
 //}]}
         public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
@@ -34,10 +34,10 @@
             new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE713", Tag = "wts.ItemName" }
         };
 //}]}
-        public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(OnMenuItemInvoked));
+        public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked));
 //{[{
 
-        public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new System.Windows.Input.ICommand(OnOptionsMenuItemInvoked));
+        public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked));
 //}]}
 //^^
 //{[{
