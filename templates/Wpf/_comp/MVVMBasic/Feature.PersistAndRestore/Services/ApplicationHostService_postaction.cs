@@ -7,9 +7,9 @@
         private readonly IPersistAndRestoreService _persistAndRestoreService;
 //}]}
 
-        public ApplicationHostService(INavigationService navigationService, IShellPage shellPage, IThemeSelectorService themeSelectorService)
+        public ApplicationHostService(/*{[{*/IPersistAndRestoreService persistAndRestoreService/*}]}*/)
         {
-            _navigationService = navigationService;
+//^^
 //{[{
             _persistAndRestoreService = persistAndRestoreService;
 //}]}

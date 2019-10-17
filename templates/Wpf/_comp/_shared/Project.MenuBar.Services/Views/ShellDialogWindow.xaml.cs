@@ -1,4 +1,4 @@
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.ViewModels;

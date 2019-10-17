@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "0",
+      "wts.compositionOrder": "2",
       "wts.compositionFilter": "$projectType == MenuBar & $frontendframework == MVVMLight & wts.type == project"
     },
     "sourceName": "wts.ItemName",

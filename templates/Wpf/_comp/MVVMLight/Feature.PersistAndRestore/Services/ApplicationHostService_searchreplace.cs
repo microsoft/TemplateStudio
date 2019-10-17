@@ -1,3 +1,0 @@
-﻿public ApplicationHostService(INavigationService navigationService, IShellPage shellPage, IThemeSelectorService themeSelectorService)
-^^^-searchabove-replacebelow-vvv
-public ApplicationHostService(INavigationService navigationService, IShellPage shellPage, IThemeSelectorService themeSelectorService, IPersistAndRestoreService persistAndRestoreService)

@@ -1,4 +1,4 @@
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using MahApps.Metro.Controls;
 
 namespace Param_RootNamespace.Contracts.Services

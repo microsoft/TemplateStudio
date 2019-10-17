@@ -6,7 +6,7 @@ namespace Param_RootNamespace.Views
 {
     public partial class wts.ItemNamePage : Page
     {
-        public wts.ItemNamePage()
+        public wts.ItemNamePage(/*{[{*/wts.ItemNameViewModel viewModel/*}]}*/)
         {
             InitializeComponent();
 //{[{

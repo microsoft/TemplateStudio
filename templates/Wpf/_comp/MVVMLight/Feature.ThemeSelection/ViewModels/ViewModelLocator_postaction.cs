@@ -1,6 +1,6 @@
 ﻿public ViewModelLocator()
 {
 //{[{
-        SimpleIoc.Default.Register<IThemeSelectorService, ThemeSelectorService>();
+    SimpleIoc.Default.Register<IThemeSelectorService, ThemeSelectorService>();
 //}]}
 }

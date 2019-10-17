@@ -16,8 +16,9 @@
 //{[{
         public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuFilewts.ItemName));
 //}]}
-        public ShellViewModel(INavigationService navigationService)
+        public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
+//^^
 //{[{
             _rightPaneService = rightPaneService;
 //}]}

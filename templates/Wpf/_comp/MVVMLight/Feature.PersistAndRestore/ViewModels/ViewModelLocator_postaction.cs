@@ -1,6 +1,6 @@
 ﻿public ViewModelLocator()
 {
 //{[{
-        SimpleIoc.Default.Register<IPersistAndRestoreService, PersistAndRestoreService>();
+    SimpleIoc.Default.Register<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
 }

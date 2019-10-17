@@ -1,4 +1,4 @@
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Navigation;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Contracts.Services;
@@ -30,17 +30,16 @@ namespace Param_RootNamespace.Services
             var pageType = _pageService.GetPageType(pageKey);
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
-                var dataContext = _frame.GetDataContext();
-                if (dataContext is INavigationAware navigationAware)
-                {
-                    navigationAware.OnNavigatingFrom();
-                }
-
                 var page = _pageService.GetPage(pageKey);
                 var navigated = _frame.Navigate(page, parameter);
                 if (navigated)
                 {
                     _lastParameterUsed = parameter;
+                    var dataContext = _frame.GetDataContext();
+                    if (dataContext is INavigationAware navigationAware)
+                    {
+                        navigationAware.OnNavigatedFrom();
+                    }
                 }
             }
 

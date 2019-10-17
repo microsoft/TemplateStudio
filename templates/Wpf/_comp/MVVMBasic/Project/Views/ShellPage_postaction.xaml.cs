@@ -6,7 +6,7 @@ namespace Param_RootNamespace.Views
 {
     public partial class ShellPage : MetroWindow, IShellPage
     {
-        public ShellPage()
+        public ShellPage(/*{[{*/ShellViewModel viewModel/*}]}*/)
         {
             InitializeComponent();
 //{[{

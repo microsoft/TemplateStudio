@@ -7,9 +7,9 @@
         private readonly IThemeSelectorService _themeSelectorService;
 //}]}
 
-        public ApplicationHostService(INavigationService navigationService, IShellPage shellPage)
+        public ApplicationHostService(/*{[{*/IThemeSelectorService themeSelectorService/*}]}*/)
         {
-            _navigationService = navigationService;
+//^^
 //{[{
             _themeSelectorService = themeSelectorService;
 //}]}
