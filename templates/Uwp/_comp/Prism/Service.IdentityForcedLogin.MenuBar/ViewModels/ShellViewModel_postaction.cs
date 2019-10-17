@@ -42,7 +42,7 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        public ShellViewModel(/*{[{*/IIdentityService identityService/*}]}*/)
         {
 //^^
 //{[{

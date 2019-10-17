@@ -1,3 +1,0 @@
-﻿public ShellViewModel(IMenuNavigationService menuNavigationService)
-^^^-searchabove-replacebelow-vvv
-public ShellViewModel(IMenuNavigationService menuNavigationService, INavigationService navigationService, IIdentityService identityService)

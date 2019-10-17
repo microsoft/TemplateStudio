@@ -54,9 +54,10 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-        public ShellViewModel(INavigationService navigationServiceInstance)
+        public ShellViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)
         {
             _navigationService = navigationServiceInstance;
+//^^
 //{[{
             _userDataService = userDataService;
             _identityService = identityService;
