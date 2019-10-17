@@ -6,7 +6,7 @@
         {
 //^^
 //{[{
-            rightPaneService.Initialize(_shellPage.GetRightPaneFrame(), _shellPage.GetSplitView());
+            rightPaneService.Initialize(_shellWindow.GetRightPaneFrame(), _shellWindow.GetSplitView());
 //}]}
         }
     }

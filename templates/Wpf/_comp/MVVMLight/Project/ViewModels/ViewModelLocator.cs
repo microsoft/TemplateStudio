@@ -25,7 +25,7 @@ namespace Param_RootNamespace.ViewModels
             SimpleIoc.Default.Register<IFilesService, FilesService>();
             SimpleIoc.Default.Register<IPageService, PageService>();
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
-            SimpleIoc.Default.Register<IShellPage, ShellPage>();
+            SimpleIoc.Default.Register<IShellWindow, ShellWindow>();
             SimpleIoc.Default.Register<ShellViewModel>();
             SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
         }

@@ -4,9 +4,9 @@ using MahApps.Metro.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    public partial class ShellPage : MetroWindow, IShellPage
+    public partial class ShellWindow : MetroWindow, IShellWindow
     {
-        public ShellPage()
+        public ShellWindow()
         {
             InitializeComponent();
         }
@@ -14,7 +14,13 @@ namespace Param_RootNamespace.Views
         public Frame GetNavigationFrame()
             => shellFrame;
 
+        public Frame GetRightPaneFrame()
+            => rightPaneFrame;
+
         public void ShowWindow()
             => Show();
+
+        public SplitView GetSplitView()
+            => splitView;
     }
 }

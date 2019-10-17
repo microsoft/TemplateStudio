@@ -10,13 +10,13 @@ namespace Param_RootNamespace.Services
     public class ApplicationHostService : IHostedService
     {
         private readonly INavigationService _navigationService;
-        private readonly IShellPage _shellPage;
+        private readonly IShellWindow _shellWindow;
 
-        public ApplicationHostService(INavigationService navigationService, IShellPage shellPage)
+        public ApplicationHostService(INavigationService navigationService, IShellWindow shellWindow)
         {
             _navigationService = navigationService;
-            _shellPage = shellPage;
-            _navigationService.Initialize(_shellPage.GetNavigationFrame());
+            _shellWindow = shellWindow;
+            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ namespace Param_RootNamespace.Services
             // Initialize services that you need before app activation
             await InitializeAsync();
 
-            _shellPage.ShowWindow();
+            _shellWindow.ShowWindow();
             _navigationService.Navigate(typeof(Param_HomeNameViewModel).FullName);
 
             // Tasks after activation

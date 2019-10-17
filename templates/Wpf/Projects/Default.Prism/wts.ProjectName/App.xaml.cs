@@ -11,6 +11,7 @@ using Prism.Unity;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Models;
+using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
 
 
@@ -25,7 +26,7 @@ namespace Param_RootNamespace
         }
 
         protected override Window CreateShell()
-            => Container.Resolve<ShellPage>();
+            => Container.Resolve<ShellWindow>();
 
         public override void Initialize()
         {
@@ -46,7 +47,7 @@ namespace Param_RootNamespace
             // App Services
 
             // Views
-            containerRegistry.RegisterForNavigation<ShellPage>();
+            containerRegistry.RegisterForNavigation<ShellWindow>();
 
             // Configuration
             var configuration = BuildConfiguration();
@@ -79,6 +80,7 @@ namespace Param_RootNamespace
                 var viewModelName = string.Format(CultureInfo.InvariantCulture, "Param_RootNamespace.ViewModels.{0}ViewModel, Param_RootNamespace", viewType.Name[0..^4]);
                 return Type.GetType(viewModelName);
             });
+            ViewModelLocationProvider.Register(typeof(ShellWindow).FullName, typeof(ShellViewModel));
         }
 
         private void OnExit(object sender, ExitEventArgs e)

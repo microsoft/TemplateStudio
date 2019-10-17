@@ -39,6 +39,6 @@
       "navigateMethodName": {
         "type": "parameter",
         "replaces": "Param_NavigateMethodName"
-      },
+      }
     }
   }
