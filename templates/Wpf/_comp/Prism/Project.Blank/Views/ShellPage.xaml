@@ -20,7 +20,6 @@
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button
-                Foreground="White"
                 Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
                 Command="{Binding GoBackCommand}">
                 <TextBlock
