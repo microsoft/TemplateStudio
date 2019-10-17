@@ -36,10 +36,6 @@
       "canExecuteChangedMethodName": {
         "type": "parameter",
         "replaces": "Param_CanExecuteChangedMethodName"
-      },
-      "navigateMethodName": {
-        "type": "parameter",
-        "replaces": "Param_NavigateMethodName"
       }
     }
   }

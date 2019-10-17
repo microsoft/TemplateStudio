@@ -33,7 +33,7 @@ namespace Param_RootNamespace.Services
         public void GoBack()
             => _frame.GoBack();
 
-        public bool Navigate(string pageKey, object parameter = null, bool clearNavigation = false)
+        public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
         {
             var pageType = _pageService.GetPageType(pageKey);
 

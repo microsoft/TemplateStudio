@@ -31,10 +31,6 @@
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
-      },
-      "navigateMethodName": {
-        "type": "parameter",
-        "replaces": "Param_NavigateMethodName"
       }
     }
   }

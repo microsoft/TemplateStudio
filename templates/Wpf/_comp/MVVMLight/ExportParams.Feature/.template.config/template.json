@@ -14,7 +14,6 @@
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == feature",
-      "wts.export.navigateMethodName": "NavigateTo",
       "wts.export.configtype": "AppConfig",
       "wts.export.configvalue": "config"
     },

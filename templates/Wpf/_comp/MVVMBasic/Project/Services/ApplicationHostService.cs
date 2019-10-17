@@ -25,7 +25,7 @@ namespace Param_RootNamespace.Services
             await InitializeAsync();
 
             _shellWindow.ShowWindow();
-            _navigationService.Navigate(typeof(Param_HomeNameViewModel).FullName);
+            _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
 
             // Tasks after activation
             await StartupAsync();

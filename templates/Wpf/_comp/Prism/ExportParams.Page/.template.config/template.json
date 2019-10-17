@@ -18,7 +18,6 @@
       "wts.export.setter": "SetProperty",
       "wts.export.pagetype": "UserControl",
       "wts.export.commandclass": "DelegateCommand",
-      "wts.export.navigateMethodName": "",
       "wts.export.configtype": "AppConfig",
       "wts.export.configvalue": "config",
       "wts.export.onnavigatedtoparams": "NavigationContext navigationContext",

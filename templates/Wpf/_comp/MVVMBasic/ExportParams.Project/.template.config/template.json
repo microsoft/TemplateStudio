@@ -17,7 +17,6 @@
       "wts.export.baseclass": "Observable",
       "wts.export.setter": "Set",
       "wts.export.commandclass": "RelayCommand",
-      "wts.export.navigateMethodName": "Navigate",
       "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged"
     },
     "sourceName": "wts.ItemName",

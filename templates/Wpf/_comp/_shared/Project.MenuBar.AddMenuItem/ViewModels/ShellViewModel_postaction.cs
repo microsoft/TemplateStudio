@@ -17,7 +17,7 @@
 //^^
 //{[{
         private void OnMenuViewswts.ItemName()
-            => _navigationService.Param_NavigateMethodName(typeof(wts.ItemNameViewModel).FullName, null, true);
+            => _navigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName, null, true);
 //}]}
         private void OnMenuFileExit()
             => Application.Current.Shutdown();

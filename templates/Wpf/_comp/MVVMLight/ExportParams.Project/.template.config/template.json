@@ -17,7 +17,6 @@
       "wts.export.baseclass": "ViewModelBase",
       "wts.export.setter": "Set",
       "wts.export.commandclass": "RelayCommand",
-      "wts.export.navigateMethodName": "NavigateTo",
       "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged"
     },
     "sourceName": "wts.ItemName",
