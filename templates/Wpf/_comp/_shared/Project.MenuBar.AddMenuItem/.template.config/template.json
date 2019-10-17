@@ -4,17 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.SplitView",
-    "shortName": "wts.Wpf.Project.SplitView",
-    "identity": "wts.Wpf.Project.SplitView",
+    "name": "wts.Wpf.Project.MenuBar.AddMenuItem",
+    "identity": "wts.Wpf.Project.MenuBar.AddMenuItem",
+    "shortName": "wts.Wpf.Project.MenuBar.AddMenuItem",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "0",
-      "wts.compositionFilter": "$projectType == SplitView & $frontendframework == MVVMBasic|MVVMLight & wts.type == project"
+      "wts.compositionFilter": "wts.type == page & identity != wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight & $projectType == MenuBar"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -29,17 +28,13 @@
         "type": "parameter",
         "replaces": "System.ComponentModel.INotifyPropertyChanged"
       },
-      "setter": {
-        "type": "parameter",
-        "replaces": "Param_Setter"
-      },
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
       },
-      "canExecuteChangedMethodName": {
+      "navigateMethodName": {
         "type": "parameter",
-        "replaces": "Param_CanExecuteChangedMethodName"
+        "replaces": "Param_NavigateMethodName"
       }
     }
   }

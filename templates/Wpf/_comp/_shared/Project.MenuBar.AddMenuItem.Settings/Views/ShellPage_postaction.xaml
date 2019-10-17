@@ -1,0 +1,14 @@
+﻿<controls:MetroWindow
+    <controls:MetroWindow.Content>
+        <Grid>
+            <Menu>
+                <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
+<!--^^-->
+<!--{[{-->
+                    <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFilewts.ItemNamePageHeader}" Command="{Binding MenuFilewts.ItemNameCommand}" CommandParameter="Param_RootNamespace.ViewModels.wts.ItemNameViewModel" />
+<!--}]}-->
+                </MenuItem>
+            </Menu>
+        </Grid>
+    </controls:MetroWindow.Content>
+</controls:MetroWindow>
