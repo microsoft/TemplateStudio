@@ -5,10 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     Title="{x:Static strings:Resources.AppDisplayName}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button
@@ -42,19 +50,14 @@
                 <controls:SplitView.Pane>
                     <Border
                         BorderThickness="1,1,0,0"
-                        Background="{DynamicResource MahApps.Brushes.Control.Background}"
                         BorderBrush="{DynamicResource MahApps.Brushes.Controls.Border}">
-                        <Frame
-                            x:Name="rightPaneFrame"
-                            Focusable="False"
-                            NavigationUIVisibility="Hidden" />
+                        <ContentControl
+                            x:Name="rightPaneContentControl" />
                     </Border>
                 </controls:SplitView.Pane>
                 <controls:SplitView.Content>
-                    <Frame
-                        x:Name="shellFrame"
-                        Focusable="False"
-                        NavigationUIVisibility="Hidden" />
+                    <ContentControl
+                        x:Name="menuContentControl" />
                 </controls:SplitView.Content>
             </controls:SplitView>
         </Grid>

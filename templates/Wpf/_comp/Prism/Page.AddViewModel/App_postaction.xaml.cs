@@ -2,7 +2,7 @@
 {
 //^^
 //{[{
-    containerRegistry.RegisterForNavigation<wts.ItemNamePage>("wts.ItemName");
+    containerRegistry.RegisterForNavigation<wts.ItemNamePage>(PageKeys.wts.ItemName);
 //}]}
     // Configuration
 }

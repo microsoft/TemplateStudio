@@ -1,6 +1,4 @@
-﻿using Prism.Regions;
-
-namespace Param_RootNamespace.Helpers
+﻿namespace Prism.Regions
 {
     public static class IRegionNavigationServiceExtensions
     {

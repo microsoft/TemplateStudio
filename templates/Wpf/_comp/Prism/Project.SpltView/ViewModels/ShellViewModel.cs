@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Constants;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Strings;
 using Prism.Commands;
@@ -13,7 +13,6 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : BindableBase
     {
-        private readonly AppConfig _config;
         private readonly IRegionManager _regionManager;
         private IRegionNavigationService _navigationService;
         private HamburgerMenuItem _selectedMenuItem;
@@ -38,15 +37,14 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked));
 
-        public ShellViewModel(AppConfig config, IRegionManager regionManager)
+        public ShellViewModel(IRegionManager regionManager)
         {
-            _config = config;
             _regionManager = regionManager;
         }
 
         private void OnLoaded()
         {
-            _navigationService = _regionManager.Regions[_config.MainRegion].NavigationService;
+            _navigationService = _regionManager.Regions[Regions.Main].NavigationService;
             _navigationService.Navigated += OnNavigated;
             SelectedMenuItem = MenuItems.First();
         }

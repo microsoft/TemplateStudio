@@ -1,15 +1,15 @@
 ﻿using MahApps.Metro.Controls;
 using Prism.Regions;
-using Param_RootNamespace.Models;
+using Param_RootNamespace.Constants;
 
 namespace Param_RootNamespace.Views
 {
     public partial class ShellWindow : MetroWindow
     {
-        public ShellWindow(IRegionManager regionManager, AppConfig config)
+        public ShellWindow(IRegionManager regionManager)
         {
             InitializeComponent();
-            RegionManager.SetRegionName(shellContentControl, config.MainRegion);
+            RegionManager.SetRegionName(shellContentControl, Regions.Main);
             RegionManager.SetRegionManager(shellContentControl, regionManager);
         }
     }

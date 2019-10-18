@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<!--{[{-->
+    <data name="ShellMenuFileHeader" xml:space="preserve">
+        <value>File</value>
+    </data>
+    <data name="ShellMenuViewsHeader" xml:space="preserve">
+        <value>Views</value>
+    </data>
+    <data name="ShellMenuItemFileExitHeader" xml:space="preserve">
+        <value>Exit</value>
+    </data>
+<!--}]}-->
+</root>

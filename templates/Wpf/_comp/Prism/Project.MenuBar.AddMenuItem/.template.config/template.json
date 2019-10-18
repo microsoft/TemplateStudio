@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Page.AddViewModel",
-    "shortName": "wts.Wpf.Prism.Page.AddViewModel",
-    "identity": "wts.Wpf.Prism.Page.AddViewModel",
+    "name": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
+    "identity": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
+    "shortName": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == Prism & wts.type==page"
+      "wts.compositionFilter": "wts.type == page & identity != wts.Wpf.Page.Settings & $frontendframework == Prism & $projectType == MenuBar"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,16 +4,17 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Page.AddViewModel",
-    "shortName": "wts.Wpf.Prism.Page.AddViewModel",
-    "identity": "wts.Wpf.Prism.Page.AddViewModel",
+    "name": "wts.Wpf.Project.MenuBar.Common",
+    "shortName": "wts.Wpf.Project.MenuBar.Common",
+    "identity": "wts.Wpf.Project.MenuBar.Common",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == Prism & wts.type==page"
+      "wts.compositionOrder": "0",
+      "wts.compositionFilter": "$projectType == MenuBar & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -23,6 +24,14 @@
       "wts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
+      },
+      "baseclass": {
+        "type": "parameter",
+        "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      },
+      "commandclass": {
+        "type": "parameter",
+        "replaces": "System.Windows.Input.ICommand"
       }
     }
   }

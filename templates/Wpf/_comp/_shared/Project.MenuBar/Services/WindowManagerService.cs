@@ -35,7 +35,7 @@ namespace Param_RootNamespace.Services
                 window = new MetroWindow()
                 {
                     Title = "Param_RootNamespace",
-                    Style = Application.Current.FindResource("MetroWindow") as Style
+                    Style = Application.Current.FindResource("CustomMetroWindow") as Style
                 };
                 var frame = new Frame()
                 {
