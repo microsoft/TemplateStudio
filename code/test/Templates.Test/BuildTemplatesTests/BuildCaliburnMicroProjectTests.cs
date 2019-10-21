@@ -65,6 +65,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCaliburnMicro")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
+        [Trait("Type", "BuildRandomNames")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationG1Async(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
@@ -77,7 +78,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -87,6 +88,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCaliburnMicro")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
+        [Trait("Type", "BuildRandomNames")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationG2Async(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
@@ -99,7 +101,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -147,30 +149,6 @@ namespace Microsoft.Templates.Test
             var projectName = $"{ShortProjectType(projectType)}{ShortProjectType(framework)}AllStyleCopG2";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro")]
-        [Trait("Type", "BuildRandomNames")]
-        [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumCaliburnMicro")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
-        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
-        {
-            var projectName = $"{ShortProjectType(projectType)}AllRandom";
-
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && t.GetItemNameEditable()
-                && !t.GetIsHidden();
-
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
