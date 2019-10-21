@@ -59,17 +59,17 @@ namespace Microsoft.Templates.Test
 
             // Create APPXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var bundleResult = _fixture.BuildAppxBundle(projectName, projectPath, GetProjectExtension(language));
+            var bundleResult = _fixture.BuildMsixBundle(projectName, projectPath, GetProjectExtension(language));
 
-            Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
+            Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
 
             var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.msixbundle", SearchOption.AllDirectories).First().FullName;
 
             // Run WACK test
             // NOTE. This requires elevation. If not elevated you'll get a UAC prompt
-            var wackResult = _fixture.RunWackTestOnAppxBundle(bundleFile, projectPath);
+            var wackResult = _fixture.RunWackTestOnMsixBundle(bundleFile, projectPath);
 
-            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
+            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
 
             var overallSuccessXml = @"OVERALL_RESULT=""PASS""";
 
