@@ -26,21 +26,12 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCodeBehind")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
+        public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildProjects")]
-        public async Task InferConfigEmptyProjectAsync(string projectType, string framework, string platform, string language)
-        {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            // Don't delete after build test as used in inference test, which will then delete.
+            AssertBuildProjectAsync(projectPath, projectName, platform, deleteAfterBuild: false);
 
             EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
         }

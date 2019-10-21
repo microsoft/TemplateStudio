@@ -25,22 +25,12 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildMVVMBasic")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
-        {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
-        [Trait("ExecutionSet", "BuildMVVMBasic")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
-            _fixture.BuildSolution(projectName, projectPath, platform);
+
+            // Don't delete after build test as used in inference test, which will then delete.
+            AssertBuildProjectAsync(projectPath, projectName, platform, deleteAfterBuild: false);
 
             EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
         }

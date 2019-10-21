@@ -199,7 +199,7 @@ namespace Microsoft.Templates.Test
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             // Build solution
             var result = _fixture.BuildSolution(projectName, projectPath, platform);
@@ -208,7 +208,10 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Fs.SafeDeleteDirectory(projectPath);
+            if (deleteAfterBuild)
+            {
+                Fs.SafeDeleteDirectory(projectPath);
+            }
         }
 
         protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
