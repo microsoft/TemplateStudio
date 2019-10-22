@@ -32,5 +32,6 @@
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Utilities" Path="|Utilities|" AssemblyName="|Utilities;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Extensions.2017" Path="|Extensions.2017|" TargetVersion="[15.0,16.0)" />
         <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Extensions.2019" Path="|Extensions.2019|" TargetVersion="[16.0,17.0)"/>
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WPF.Solution" d:TargetPath="|CSharp.WPF.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     </Assets>
 </PackageManifest>
