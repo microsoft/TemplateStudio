@@ -41,18 +41,6 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildPrism")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
-        {
-            var (projectName, projectPath) = await GenerateAllPagesAndFeaturesAsync(projectType, framework, platform, language);
-
-            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task BuildAllPagesAndFeaturesProjectNameValidationG1Async(string projectType, string framework, string platform, string language)
         {
@@ -101,7 +89,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithForcedLogin(string projectType, string framework, string platform, string language)
+        public async Task GenerateAllWithForcedLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -116,7 +104,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -126,7 +114,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateMinimumAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
+        public async Task GenerateAllWithOptionalLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -141,7 +129,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
         }
 
         [Theory]
