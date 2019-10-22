@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<!--{[{-->
+    <data name="wts.ItemNamePageBackButtonTooltip" xml:space="preserve">
+        <value>Back</value>
+    </data>
+    <data name="wts.ItemNamePageForwardButtonTooltip" xml:space="preserve">
+        <value>Forward</value>
+    </data>
+    <data name="wts.ItemNamePageLoadingText" xml:space="preserve">
+        <value>Loading...</value>
+    </data>
+    <data name="wts.ItemNamePageFaildedMessage" xml:space="preserve">
+        <value>Page failed to load. Check connection and retry.</value>
+    </data>
+    <data name="wts.ItemNamePageRefreshButtonTooltip" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="wts.ItemNamePageOpenInBrowserButtonTooltip" xml:space="preserve">
+        <value>Open in browser</value>
+    </data>
+<!--}]}-->
+</root>
