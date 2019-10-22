@@ -41,18 +41,6 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCaliburnMicro")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
-        {
-            var (projectName, projectPath) = await GenerateAllPagesAndFeaturesAsync(projectType, framework, platform, language);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CaliburnMicro")]
-        [Trait("ExecutionSet", "BuildCaliburnMicro")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateAllPagesAndFeaturesAsync(projectType, framework, platform, language);
