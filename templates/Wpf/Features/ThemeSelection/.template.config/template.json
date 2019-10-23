@@ -4,9 +4,9 @@
   "classifications": ["Universal"],
   "name": "Theme Selection",
   "shortName": "Theme Selection",
-  "groupIdentity": "wts.Wpf.Feature.ThemeSelection",
-  "identity": "wts.Wpf.Feature.ThemeSelection",
-  "description": "Adds theming support to your application.",
+  "groupIdentity": "wts.Wpf.Feat.ThemeSelection",
+  "identity": "wts.Wpf.Feat.ThemeSelection",
+  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -15,13 +15,13 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "10",
+    "wts.displayOrder": "1",
     "wts.group": "UserInteraction",
     "wts.defaultInstance": "ThemeSelection",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.dependencies":"wts.Wpf.Feature.PersistAndRestore"
+    "wts.dependencies":"wts.Wpf.Feat.PersistAndRestore"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

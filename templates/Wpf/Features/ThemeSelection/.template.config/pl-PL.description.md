@@ -1,1 +1,1 @@
-﻿Ta funkcja pozwala zmieniać motyw aplikacji pomiędzy Jasnym, Ciemnym i domyślnym systemu Windows.
+﻿
