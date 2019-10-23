@@ -17,11 +17,10 @@ namespace Param_RootNamespace
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-//^^
+            // App Services
 //{[{
             containerRegistry.Register<IThemeSelectorService, ThemeSelectorService>();
 //}]}
-            // Views
         }
     }
 }

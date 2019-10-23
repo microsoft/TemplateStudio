@@ -23,13 +23,6 @@
             _rightPanenavigationService = _regionManager.Regions[Regions.RightPane].NavigationService;
 //}]}
         }
-//^^
-//{[{
-        private void OnMenuFilewts.ItemName()
-            => RequestNavigateOnRightPane(PageKeys.wts.ItemName);
-//}]}
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
 
         private bool RequestNavigate(string target)
         {
@@ -47,9 +40,14 @@
             return false;
         }
 //}]}
-
         private void RequestNavigateAndCleanJournal(string target)
         {
         }
+//^^
+//{[{
+
+        private void OnMenuFilewts.ItemName()
+            => RequestNavigateOnRightPane(PageKeys.wts.ItemName);
+//}]}
     }
 }

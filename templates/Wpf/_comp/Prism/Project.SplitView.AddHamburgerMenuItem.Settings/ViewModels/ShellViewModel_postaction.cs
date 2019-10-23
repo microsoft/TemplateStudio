@@ -38,11 +38,15 @@
 
         public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked));
 //}]}
+        public ShellViewModel(IRegionManager regionManager)
+        {
+        }
 //^^
 //{[{
         private void OnOptionsMenuItemInvoked()
             => RequestNavigate(SelectedOptionsMenuItem.Tag.ToString());
 //}]}
+
         private void OnNavigated(object sender, RegionNavigationEventArgs e)
         {
             var item = MenuItems

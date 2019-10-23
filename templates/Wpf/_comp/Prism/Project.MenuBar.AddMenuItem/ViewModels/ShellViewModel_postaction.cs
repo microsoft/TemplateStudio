@@ -8,8 +8,8 @@
 //}]}
 
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
-
 //{[{
+
         public ICommand MenuViewswts.ItemNameCommand => _menuViewswts.ItemNameCommand ?? (_menuViewswts.ItemNameCommand = new DelegateCommand(OnMenuViewswts.ItemName));
 //}]}
         private void OnGoBack()
@@ -20,7 +20,5 @@
         private void OnMenuViewswts.ItemName()
             => RequestNavigateAndCleanJournal(PageKeys.wts.ItemName);
 //}]}
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
     }
 }

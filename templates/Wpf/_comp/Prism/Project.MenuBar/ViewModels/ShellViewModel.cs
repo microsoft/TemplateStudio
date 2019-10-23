@@ -44,9 +44,6 @@ namespace Param_RootNamespace.ViewModels
         private void OnGoBack()
             => _navigationService.Journal.GoBack();
 
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
-
         private bool RequestNavigate(string target)
         {
             if (_navigationService.CanNavigate(target))
@@ -69,5 +66,8 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnNavigated(object sender, RegionNavigationEventArgs e)
             => GoBackCommand.RaiseCanExecuteChanged();
+
+        private void OnMenuFileExit()
+            => Application.Current.Shutdown();
     }
 }

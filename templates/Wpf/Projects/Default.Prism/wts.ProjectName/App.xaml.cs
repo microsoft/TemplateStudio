@@ -74,6 +74,7 @@ namespace Param_RootNamespace
         protected override void ConfigureViewModelLocator()
         {
             base.ConfigureViewModelLocator();
+
             // We are remapping the default ViewName and ViewNameViewModel naming to ViewNamePage and ViewNameViewModel to
             // gain better code reuse with other frameworks and pages within Windows Template Studio
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
