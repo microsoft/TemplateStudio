@@ -60,7 +60,6 @@ namespace Param_RootNamespace.Services
 
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
-
                 _frame.Tag = clearNavigation;
                 var page = _pageService.GetPage(pageKey);
                 var navigated = _frame.Navigate(page, parameter);

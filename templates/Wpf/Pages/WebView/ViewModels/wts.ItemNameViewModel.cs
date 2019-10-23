@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
-using CommunityToolkit = Microsoft.Toolkit.Wpf.UI.Controls;
+using Microsoft.Toolkit.Wpf.UI.Controls;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -20,8 +20,7 @@ namespace Param_RootNamespace.ViewModels
         private System.Windows.Input.ICommand _browserBackCommand;
         private System.Windows.Input.ICommand _browserForwardCommand;
         private ICommand _openInBrowserCommand;
-
-        private CommunityToolkit.WebView _webView;
+        private WebView _webView;
 
         public string Source
         {
@@ -74,7 +73,7 @@ namespace Param_RootNamespace.ViewModels
             Source = DefaultUrl;
         }
 
-        public void Initialize(CommunityToolkit.WebView webView)
+        public void Initialize(WebView webView)
         {
             _webView = webView;
         }

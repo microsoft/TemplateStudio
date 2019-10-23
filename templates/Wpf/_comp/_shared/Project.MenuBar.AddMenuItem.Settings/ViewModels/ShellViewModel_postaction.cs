@@ -12,8 +12,8 @@
 //}]}
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
-
 //{[{
+
         public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuFilewts.ItemName));
 //}]}
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
@@ -23,15 +23,11 @@
             _rightPaneService = rightPaneService;
 //}]}
         }
-
-        private void OnGoBack()
-            => _navigationService.GoBack();
 //^^
 //{[{
+
         private void OnMenuFilewts.ItemName()
             => _rightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
 //}]}
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
     }
 }

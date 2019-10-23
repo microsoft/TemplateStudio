@@ -8,18 +8,18 @@
 //}]}
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
-
 //{[{
+
         public ICommand MenuViewswts.ItemNameCommand => _menuViewswts.ItemNameCommand ?? (_menuViewswts.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuViewswts.ItemName));
 //}]}
-        private void OnGoBack()
-            => _navigationService.GoBack();
+        public ShellViewModel(INavigationService navigationService)
+        {
+        }
 //^^
 //{[{
+
         private void OnMenuViewswts.ItemName()
             => _navigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName, null, true);
 //}]}
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
     }
 }

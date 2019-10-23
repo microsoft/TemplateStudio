@@ -30,7 +30,6 @@
 
         public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
         {
-
             new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE713", Tag = PageKeys.wts.ItemName }
         };
 //}]}
@@ -51,7 +50,6 @@
                         .FirstOrDefault(i => e.Uri.ToString() == i.Tag.ToString());
             if (item != null)
             {
-                SelectedMenuItem = item;
             }
 //{[{
             else

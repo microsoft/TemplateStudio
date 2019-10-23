@@ -193,7 +193,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(userSelection, language);
+                            AddStyleCop(userSelection, platform, language);
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
@@ -214,20 +214,29 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void AddStyleCop(UserSelection userSelection, string language)
+        private void AddStyleCop(UserSelection userSelection, string platform, string language)
         {
             var styleCopTemplate = string.Empty;
-            switch (language)
+            switch (platform)
             {
-                case "C#":
-                    styleCopTemplate = "wts.Feat.StyleCop";
+                case "Uwp":
+                    switch (language)
+                    {
+                        case "C#":
+                            styleCopTemplate = "wts.Feat.StyleCop";
+                            break;
+                        case "VisualBasic":
+                            styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                            break;
+                        default:
+                            return;
+                    }
                     break;
-                case "VisualBasic":
-                    styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                case "Wpf":
+                    styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
-                default:
-                    return;
             }
+
 
             var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
             if (testingFeature != null)

@@ -16,6 +16,7 @@
             => _navigationService.Journal.GoBack();
 //^^
 //{[{
+
         private void OnMenuViewswts.ItemName()
             => RequestNavigateAndCleanJournal(PageKeys.wts.ItemName);
 //}]}

@@ -10,6 +10,7 @@ namespace Param_RootNamespace.Views
 //{[{
         private wts.ItemNameViewModel ViewModel
             => DataContext as wts.ItemNameViewModel;
+
 //}]}
         public wts.ItemNamePage()
         {

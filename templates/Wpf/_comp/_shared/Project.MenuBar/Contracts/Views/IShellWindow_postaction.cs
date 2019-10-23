@@ -8,9 +8,9 @@ namespace Param_RootNamespace.Contracts.Views
 //^^
 //{[{
 
-    Frame GetRightPaneFrame();
+        Frame GetRightPaneFrame();
 
-    SplitView GetSplitView();
+        SplitView GetSplitView();
 //}]}
     }
 }

@@ -30,7 +30,6 @@
 
         public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
         {
-
             new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE713", TargetPageType = typeof(wts.ItemNameViewModel) }
         };
 //}]}
@@ -39,12 +38,15 @@
 
         public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new System.Windows.Input.ICommand(OnOptionsMenuItemInvoked));
 //}]}
-
+        public ShellViewModel(INavigationService navigationService)
+        {
+        }
 //^^
 //{[{
         private void OnOptionsMenuItemInvoked()
             => _navigationService.NavigateTo(SelectedOptionsMenuItem.TargetPageType.FullName);
 //}]}
+
         private void OnNavigated(object sender, string viewModelName)
         {
             var item = MenuItems
@@ -52,7 +54,6 @@
                         .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
             if (item != null)
             {
-                SelectedMenuItem = item;
             }
 //{[{
             else
