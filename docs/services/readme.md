@@ -6,6 +6,7 @@ The following services are supported in UWP apps.
 
 - [HTTP Data Service](./http-data-service.md)
 - [Web API](./web-api.md)
+- [Secured Web API](./secured-web-api.md)
 - [SQL Server Data](./sql-server-data-service.md)
 
 ## Identity
