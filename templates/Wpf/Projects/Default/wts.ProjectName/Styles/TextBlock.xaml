@@ -41,10 +41,6 @@
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 
-    <Style x:Key="XSmallIconStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseIconStyle}">
-        <Setter Property="FontSize" Value="14" />
-    </Style>
-
     <Style x:Key="SmallIconStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseIconStyle}">
         <Setter Property="FontSize" Value="16" />
     </Style>

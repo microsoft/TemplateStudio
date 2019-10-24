@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Sample Data",
+  "description": "V úložišti Sample Data jsou uchovávána ukázková data používaná generovanou verzí některých stránek.",
+  "identity": "wts.Wpf.Feat.SampleData"
+}
