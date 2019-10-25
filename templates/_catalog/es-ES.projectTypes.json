@@ -10,6 +10,11 @@
     "summary": "Se incluye un panel de navegación (o 'menú de hamburguesa') para poder navegar entre las páginas."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Los elementos de navegación que aparecen en la parte superior permiten navegar rápidamente entre las páginas."

@@ -10,6 +10,11 @@
     "summary": "Zahrnuje také navigační podokno (nebo nabídku typu „hamburger“) pro navigaci mezi stránkami."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigační položky podél horního okraje zajišťují rychlou navigaci mezi stránkami."

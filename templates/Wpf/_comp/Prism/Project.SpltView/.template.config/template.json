@@ -14,7 +14,7 @@
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & wts.type == project"
+      "wts.compositionFilter": "$frontendframework == Prism & $projectType == SplitViewWpf & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

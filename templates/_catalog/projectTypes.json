@@ -16,9 +16,18 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
-        "platforms": ["Uwp", "Wpf"],
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
+    {
+      "name": "SplitViewWpf",
+      "displayName": "Navigation Pane",
+      "summary": "Short description for SplitView in WPF.",
+      "author": "Microsoft",
+      "order": "1",
+      "platforms": ["Wpf"],
+      "languages": [ "C#"]
+  },
     {
       "name": "TabbedNav",
       "displayName": "Horizontal Navigation Pane",

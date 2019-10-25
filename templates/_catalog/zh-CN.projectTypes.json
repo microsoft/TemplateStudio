@@ -10,6 +10,11 @@
     "summary": "提供导航窗格（或“汉堡菜单”），用于在页面之间进行导航。"
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "顶部的导航项可用于在页面之间快速导航。"

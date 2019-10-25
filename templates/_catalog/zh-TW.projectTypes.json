@@ -10,6 +10,11 @@
     "summary": "包含導覽窗格 (或「漢堡功能表」) 好讓您在不同頁面之間導覽。"
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "上方的導覽項目可讓您在不同頁面之間快速導覽。"

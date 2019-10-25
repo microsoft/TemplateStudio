@@ -13,12 +13,12 @@
         "name": "CodeBehind",
         "displayName": "Code Behind",
         "summary": "This is the traditional model for an application where logic is handled in the code-behind."
-    }, 
+    },
     {
         "name": "CaliburnMicro",
         "displayName": "Caliburn.Micro",
         "summary": "Caliburn.Micro is a popular MVVM framework emphasising conventions and composability."
-    },  
+    },
     {
         "name": "Prism",
         "displayName": "Prism",

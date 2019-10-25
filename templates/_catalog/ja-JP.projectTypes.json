@@ -10,6 +10,11 @@
     "summary": "ページ間の移動に使用する、ナビゲーション ウィンドウ (通称「ハンバーガー メニュー」) が含まれています。"
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "ナビゲーション項目を上部に表示することで、ページ間をすばやく移動できます。"

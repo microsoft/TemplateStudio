@@ -10,6 +10,11 @@
     "summary": "Sayfalar arasında gezinti için bir gezinti bölmesi (veya 'hamburger menüsü') bulunmaktadır."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Üst kısımdaki Gezinti Öğeleri, sayfalar arasında hızlı gezinti olanağı sağlar."
