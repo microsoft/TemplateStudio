@@ -23,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Добавленное меню позволяет перемещаться между страницами."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

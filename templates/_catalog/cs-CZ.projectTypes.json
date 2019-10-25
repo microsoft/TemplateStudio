@@ -23,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Je přidána nabídka pro přecházení mezi stránkami."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

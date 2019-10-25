@@ -3,6 +3,6 @@
         "name": "Main",
         "templateGroupIdentity": "wts.Wpf.Page.Blank",
         "readonly": "false",
-        "projecttype": "Blank|SplitViewWpf|MenuBar"
+        "projecttype": "Blank|SplitViewWpf|MenuBarWpf"
     }
 ]

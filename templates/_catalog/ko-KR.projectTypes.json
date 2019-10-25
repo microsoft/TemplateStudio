@@ -23,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "다른 페이지로 이동할 수 있는 메뉴가 추가되었습니다."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]
