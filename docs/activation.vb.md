@@ -48,7 +48,7 @@ The `HandleInternalAsync()` method gets the ActivationData from argument's Uri a
 
 ### Activation flow
 
-The following flowchart shows the Activation proccess that starts with one of the app lifecycle event and ends with the StartupAsync call.
+The following flowchart shows the Activation process that starts with one of the app lifecycle event and ends with the StartupAsync call.
 
 ### Lifecycle event  `OnLaunched`, `OnActivated` or `OnBackgroundActivated`
 
@@ -66,7 +66,7 @@ After this first block, HandleActivation is called (more details below).
 
 **IsInteractive**
 
-Interactions with the app window and navigations are only available when the activation arguments extend from IActivatedEventArgs. An example for non-interactive activation is activation from a background Task.
+Interacting with the app window and navigating is only available when the activation arguments extend from IActivatedEventArgs. An example for non-interactive activation is activation from a background Task.
 
 **InitializeAsync**
 

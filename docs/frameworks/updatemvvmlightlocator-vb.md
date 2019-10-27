@@ -26,7 +26,7 @@ Change the ViewModelLocator constructor to be private:
 Private Sub New()
 ```
 
-Add a shared property that contains the current ViewModelLocator above the class contructor:
+Add a shared property that contains the current ViewModelLocator above the class constructor:
 
 ```vb
 Private Shared _current As ViewModelLocator

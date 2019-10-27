@@ -50,9 +50,9 @@ Using this solution while authoring templates or improving the Wizard have the f
 
 So we encourage to use this solution for the general template authoring or code development and, once you are done, make some final local tests using the Installer.sln or Big.sln solution.
 
-### Accesible UI
+### Accessible UI
 
-Both the UI and the templates (generated code) must be accesible by definition. If you are going to collaborate in this space, please, be sure you have verified all accesibility rules defined in [Accessibility checklist](accesibility.md).
+Both the UI and the templates (generated code) must be accessible by definition. If you are going to collaborate in this space, please, be sure you have verified all accessibility rules defined in [Accessibility checklist](accessibility.md).
 
 ## Inside the Code folder
 
