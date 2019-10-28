@@ -3,12 +3,9 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+	<RootNamespace>Param_RootNamespace</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\wts.ProjectName.Core\wts.ProjectName.Core.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Strings\Resources.Designer.cs">
