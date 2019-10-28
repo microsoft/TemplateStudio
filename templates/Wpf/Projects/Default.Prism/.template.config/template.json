@@ -159,6 +159,17 @@
         "projectPath": "Param_ProjectName.Core/Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
+    },
+    {
+      "description": "Add reference to core project",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
+        "specifiedPathIsTarget": "true"
+      },
+      "continueOnError": true
     }
   ]
 }

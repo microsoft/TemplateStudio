@@ -78,11 +78,11 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp)
         {
             InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
-            return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter, language);
+            return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter, language, platform);
         }
 
         [SuppressMessage(

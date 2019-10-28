@@ -12,12 +12,9 @@
 
         public ICommand MenuViewswts.ItemNameCommand => _menuViewswts.ItemNameCommand ?? (_menuViewswts.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuViewswts.ItemName));
 //}]}
-        public ShellViewModel(INavigationService navigationService)
-        {
-        }
+
 //^^
 //{[{
-
         private void OnMenuViewswts.ItemName()
             => _navigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName, null, true);
 //}]}
