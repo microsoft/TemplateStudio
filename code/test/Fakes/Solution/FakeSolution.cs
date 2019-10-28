@@ -108,6 +108,7 @@ EndProject
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTypeGuid = GetProjectGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                projectGuid = projectGuid.Contains("{") ? projectGuid : "{" + projectGuid + "}";
                 var projectContent = ProjectTemplate
                                             .Replace("{guid}", projectTypeGuid)
                                             .Replace("{name}", projectName)
