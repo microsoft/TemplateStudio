@@ -15,6 +15,12 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
+    //// *** WARNING ***
+    //// Running this requires:
+    //// - Lots of time (as .Net Native compilation is slow)
+    //// - Lots of disk space (as the artifacts of each test may use >2GB)
+    //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
+    //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
     [Collection("BuildCollection")]
     [Trait("ExecutionSet", "LongRunning")]
     [Trait("ExecutionSet", "_Wack")]
@@ -25,25 +31,74 @@ namespace Microsoft.Templates.Test
         {
         }
 
-        //// *** WARNING ***
-        //// Running this requires:
-        //// - Lots of time (as .Net Native compilation is slow)
-        //// - Lots of disk space (as the artifacts of each test may use >2GB)
-        //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
-        //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "", "", "Uwp")]
-        public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_CodeBehind_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_CodeBehind_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MvvmBasic_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MvvmBasic_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MVVMLight_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MVVMLight_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_CaliburnMicro_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_Prism_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        private async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             // Exclude background task from WACK tests until WACK is fixed
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GroupIdentity != "wts.Feat.BackgroundTask"
-                && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
-                && t.GroupIdentity != "wts.Service.IdentityForcedLogin"
-                && t.GroupIdentity != "wts.Service.IdentityForcedLogin.VB"
+                && !t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask")
+                && !t.GroupIdentity.StartsWith("wts.Service.IdentityForcedLogin")
+                & !t.GroupIdentity.Contains("Test")
+                & !t.GroupIdentity.Contains("WinAppDriver")
+                & !t.GroupIdentity.Contains("WebApi")
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden();
 
@@ -57,7 +112,7 @@ namespace Microsoft.Templates.Test
                 File.Copy(assetFile.FullName, Path.Combine(GenContext.Current.DestinationPath, "Assets", assetFile.Name), overwrite: true);
             }
 
-            // Create APPXBundle
+            // Create MSIXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
             var bundleResult = _fixture.BuildMsixBundle(projectName, projectPath, GetProjectExtension(language));
 
