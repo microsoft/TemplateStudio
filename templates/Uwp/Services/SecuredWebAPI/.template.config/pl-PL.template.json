@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Secured Web API",
-  "description": "Include a ASP.NET Core Web API project that validates a JWToken.",
+  "description": "Uwzględnij projekt internetowego interfejsu API platformy ASP.NET Core, który uwierzytelnia JWToken.",
   "identity": "wts.Service.SecuredWebApi"
 }

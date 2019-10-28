@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "SQL Server Data",
-  "description": "Get data from SQL Server to use in the app.",
+  "description": "Получение данных от SQL Server для использования в приложении.",
   "identity": "wts.Service.SqlServerDataService.Prism"
 }

@@ -20,16 +20,16 @@
     "wts.defaultInstance": "SecuredWebAPI",
     "wts.multipleInstance": "false",
     "wts.dependencies":"wts.Service.WebApi.Prism",
-    "wts.requirements":"wts.Service.IdentityOptionalLogin.Prism|wts.Service.IdentityForcedLogin.Prism",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
     "wts.outputToParent": "true"
   },
-  "sourceName": "WebApiFeature",
+  "sourceName": "SecuredWebApi",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [ ],
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "wts.projectName": {
       "type": "parameter",

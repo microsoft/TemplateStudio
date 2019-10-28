@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿Un contenedor sencillo sobre la funcionalidad HTTP básica.
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+También se incluye el almacenamiento en caché sencillo de las solicitudes GET que se pueden quitar o modificar fácilmente según las necesidades de la aplicación.

@@ -1,7 +1,7 @@
-﻿This template will add a ASP.NET Core Web API that validates the JWToken passed by the UWP application.
+﻿Esta plantilla agregará una API web de ASP.NET que valida el JWToken que ha pasado la aplicación para UWP.
 
-The protection ensures that the API can only be called by:
+La protección garantiza que la API solo la puedan llamar:
 
-* Applications that on behalf of the user request the right scopes.
-* Users that have the right application roles.
+* Aplicaciones que en nombre del usuario solicitan los ámbitos adecuados.
+* Usuarios que tengan los roles de aplicación correctos.
 

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Web API",
-  "description": "Include ASP.NET Core Web API project.",
+  "description": "ASP.NET 코어 웹 API 프로젝트를 포함합니다.",
   "identity": "wts.Service.WebApi"
 }

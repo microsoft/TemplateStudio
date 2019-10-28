@@ -1,3 +1,3 @@
-﻿An ASP.NET Core application with an example controller for a RESTful HTTP service.
+﻿Un'applicazione ASP.NET Core con un controller di esempio per un servizio HTTP RESTful.
 
-[Learn more](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2)
+[Scopri di più](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2)

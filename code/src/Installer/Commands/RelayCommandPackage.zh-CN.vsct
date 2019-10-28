@@ -72,7 +72,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpTesting" />
         <Strings>
-          <ButtonText>新的测试项目...</ButtonText>
+          <ButtonText>新测试项目...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">

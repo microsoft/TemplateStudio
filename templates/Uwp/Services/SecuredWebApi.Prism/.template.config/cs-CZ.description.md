@@ -1,7 +1,7 @@
-﻿This template will add a ASP.NET Core Web API that validates the JWToken passed by the UWP application.
+﻿Tato šablona přidá rozhraní ASP.NET Core Web API, které ověřuje tokeny JWToken předávané aplikací pro UWP.
 
-The protection ensures that the API can only be called by:
+Ochrana zajišťuje, že toto rozhraní API mohou volat pouze:
 
-* Applications that on behalf of the user request the right scopes.
-* Users that have the right application roles.
+* Aplikace, které za uživatele žádají o vhodné rozsahy
+* Uživatelé, kteří mají vhodné aplikační role
 

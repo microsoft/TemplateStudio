@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "description": "Страница иерархического представления содержит элемент управления иерархического представления для отображения иерархического содержимого.",
   "identity": "wts.Page.TreeView.CodeBehind"
 }

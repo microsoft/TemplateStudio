@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "description": "Stránka stromového zobrazení obsahuje ovládací prvek stromového zobrazení, který umožňuje zobrazení hierarchicky řazeného obsahu.",
   "identity": "wts.Page.TreeView.Prism"
 }
