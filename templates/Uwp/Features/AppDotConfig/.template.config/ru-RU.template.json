@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Sample Data",
+  "name": "App Config",
   "description": "Добавляет пустой файл App.config в проект.",
   "identity": "wts.Feat.AppDotConfig"
 }

@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "SQL Server Data",
-  "description": "Get data from SQL Server to use in the app.",
-  "identity": "wts.Service.SqlServerDataService.VB"
+    "author": "Microsoft Community",
+    "name": "SQL Server Data",
+    "description": "Obtient des données depuis SQL Server à utiliser dans l’application.",
+    "identity": "wts.Service.SqlServerDataService.VB"
 }

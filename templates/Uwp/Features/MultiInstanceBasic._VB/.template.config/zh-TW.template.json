@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Multi-Instance",
-  "description": "Launch multiple instances of the app.",
-  "identity": "wts.Feat.MultiInstance.VB"
+    "author": "Microsoft Community",
+    "name": "Multi-Instance",
+    "description": "啟動應用程式的多個執行個體。",
+    "identity": "wts.Feat.MultiInstance.VB"
 }

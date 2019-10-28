@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿Разрешить запуск нескольких экземпляров приложения. В этой версии каждый раз при запуске приложения будет всегда создаваться новый экземпляр приложения.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Эта функция применяется только при запуске приложения на настольном компьютере или на устройстве Интернета вещей.
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+Обратите внимание на то, что в [официальной документации](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) приведены конкретные указания, с которыми следует ознакомиться при использовании [фоновых задач](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing), а также [общие соображения](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).

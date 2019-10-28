@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
-  "identity": "wts.Page.TreeView.VB"
+    "author": "Microsoft",
+    "name": "TreeView",
+    "description": "La pagina di visualizzazione ad albero include un controllo di visualizzazione ad albero che consente di mostrare contenuto gerarchico.",
+    "identity": "wts.Page.TreeView.VB"
 }

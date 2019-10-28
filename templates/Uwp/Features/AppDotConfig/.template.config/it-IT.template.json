@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Sample Data",
+  "name": "App Config",
   "description": "Aggiunge un file App.config vuoto al progetto.",
   "identity": "wts.Feat.AppDotConfig"
 }

@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿Umožňuje spustit více instancí aplikace a určit, zda mají být spuštěny nové instance, nebo opakovaně použity existující. Součástí je také zástupný kód, který umožňuje určit, zda při spuštění aplikace znovu použít existující instanci, nebo otevřít novou.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Tato funkce se projeví, pouze pokud vaše aplikace běží na desktopovém zařízení nebo zařízení pro internet věcí (IoT).
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+Poznámka: [Oficiální dokumentace](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) obsahuje specifická upozornění, která je třeba zohlednit v případě, že používáte [úlohy na pozadí](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing), a dále také [obecné požadavky](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
