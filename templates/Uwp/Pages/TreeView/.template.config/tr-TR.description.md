@@ -1,3 +1,3 @@
-﻿The tree-view page has a tree view control to show hierarchical content. When an item in the tree view is selected, it's details are shown in a details pane. This pattern is frequently used to show hierarchical relationship between items.
+﻿Ağaç görünümü sayfasında hiyerarşik içeriğin gösterilmesini sağlayan bir ağaç görünümü denetimi bulunmaktadır. Ağaç görünümünde bir öğe seçildiğinde ayrıntılar bölmesinde bu öğenin ayrıntıları gösterilir. Bu desen çoğunlukla öğeler arasındaki hiyerarşik ilişkiyi göstermek için kullanılır.
 
-More information about the tree-view control can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).
+Ağaç görünümü denetimi hakkında daha fazla bilgiye [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view) adresinden ulaşabilirsiniz.

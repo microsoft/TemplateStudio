@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿La commande TabView permet d’afficher un ensemble d’onglets avec leurs contenus respectifs. Les commandes d’onglet sont utiles si vous voulez afficher plusieurs pages (ou documents) de contenu tout en donnant à un utilisateur la possibilité de réorganiser, d’ouvrir ou de fermer de nouveaux onglets.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[En savoir plus sur la commande TabView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

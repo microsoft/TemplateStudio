@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿コマンド ラインからアプリを起動し、渡された引数を処理できるようにします。

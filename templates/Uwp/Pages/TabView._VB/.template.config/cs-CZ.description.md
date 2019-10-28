@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿Ovládací prvek TabView umožňuje zobrazení sady karet a jejich obsahu. Ovládací prvky karet jsou vhodné k zobrazování stránek (neboli dokumentů) obsahu, přičemž uživatel může měnit uspořádání karet a otevírat a zavírat nové karty.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[Další informace o ovládacím prvku TabView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

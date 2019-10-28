@@ -1,1 +1,1 @@
-﻿An empty app.config file.
+﻿空白的 app.config 檔案。

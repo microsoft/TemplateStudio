@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "description": "트리 뷰 페이지에는 계층적 콘텐츠를 표시하는 트리 뷰 컨트롤이 있습니다.",
   "identity": "wts.Page.TreeView.CodeBehind"
 }

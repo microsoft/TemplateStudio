@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "HTTP Data Service",
-  "description": "Access content over HTTP.",
+  "description": "Zpřístupňuje obsah přes protokol HTTP.",
   "identity": "wts.Service.HttpDataService"
 }

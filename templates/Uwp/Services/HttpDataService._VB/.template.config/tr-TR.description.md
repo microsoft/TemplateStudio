@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿Temel HTTP işlevleri üzerine basit bir sarmalayıcı.
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+Ayrıca uygulamanın gereklerine bağlı olarak kolayca kaldırılabilen veya değiştirilebilen GET isteklerinin basit bir önbelleğini de ekleyin.

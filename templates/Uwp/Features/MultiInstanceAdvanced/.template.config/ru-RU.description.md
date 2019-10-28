@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿Разрешить запуск нескольких экземпляров приложения и управлять тем, следует ли запускать новые экземпляры или повторно использовать существующие экземпляры. Включает код заполнителя, который позволяет управлять тем, следует ли повторно использовать существующий экземпляр или открыть новый экземпляр при запуске приложения.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Эта функция применяется только при запуске приложения на настольном компьютере или на устройстве Интернета вещей.
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+Обратите внимание на то, что в [официальной документации](https://docs.microsoft.com/ru-ru/windows/uwp/launch-resume/multi-instance-uwp) приведены конкретные указания, с которыми следует ознакомиться при использовании [фоновых задач](https://docs.microsoft.com/ru-ru/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing), а также [общие соображения](https://docs.microsoft.com/ru-ru/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
