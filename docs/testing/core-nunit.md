@@ -6,4 +6,4 @@ Including this feature adds a new project to the solution that is set up for hos
 
 [Learn more about using NUnit.](https://github.com/nunit/docs/wiki/NUnit-Documentation)
 
-An option for using nUnit is only included for the Core library as nUnit does not support testing UWP apps diretly.
+An option for using nUnit is only included for the Core library as nUnit does not support testing UWP apps directly.

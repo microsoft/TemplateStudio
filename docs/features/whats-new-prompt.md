@@ -11,7 +11,7 @@ Test this feature by following these steps:
 
 - Run the app. (You'll see no prompt.)
 - Close the  app
-- In the projecct open `package.appxmanifest`
+- In the project open `package.appxmanifest`
 - Under **Packaging** change the version number (one or more of the major, minor, or build.)
 - Run the app again and you'll see the dialog.
 - Run it again without changing the version number and you won't see the dialog.

@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             // afterwards populate the appsettings.json with ClientId, Tenant, Audience and Scope
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-            // To assign users to your web api: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users
+            // To assign users to your web api: https://docs.microsoft.com/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users
             var settings = new AuthenticationSettings();
             configuration.GetSection("AuthenticationSettings").Bind(settings);
 
@@ -32,6 +32,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 $"https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
                 new OpenIdConnectConfigurationRetriever());
             var openIdConfig = configurationManager.GetConfigurationAsync(CancellationToken.None).GetAwaiter().GetResult();
+
+            // For multitenant scenarios and issuer validation please see
+            // https://docs.microsoft.com/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#update-your-code-to-handle-multiple-issuer-values
 
             // You can get a list of issuers for the various Azure AD deployments (global & sovereign) from the following endpoint
             // https://login.microsoftonline.com/common/discovery/instance?authorization_endpoint=https://login.microsoftonline.com/common/oauth2/v2.0/authorize&api-version=1.1;

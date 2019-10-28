@@ -16,7 +16,7 @@
     "wts.platform": "Uwp",
     "wts.group": "Data",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.defaultInstance": "SecuredWebAPI",
     "wts.multipleInstance": "false",
     "wts.dependencies":"wts.Service.WebApi.Prism",
