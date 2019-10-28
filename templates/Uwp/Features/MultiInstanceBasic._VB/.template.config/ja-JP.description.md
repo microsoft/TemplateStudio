@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿アプリが複数のインスタンスを起動できるようにします。このバージョンでは、起動するたびにアプリの新しいインスタンスが常に作成されます。
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+この機能は、アプリがデスクトップまたはモノのインターネット (IoT) デバイス上で実行されている場合にのみ有効です。
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+[公式ドキュメント] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp) には、[一般的な考慮事項] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations) だけでなく、[バックグラウンド タスク] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) を使用している場合に注意すべき具体的な注意事項が記載されています。

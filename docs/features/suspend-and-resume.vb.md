@@ -9,9 +9,9 @@ The Suspend And Resume Feature allows you to save App data on suspension and bri
 
 ### SuspendAndResumeService.vb
 
-Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page to save App data.
+Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can subscribe to this event from your current Page to save App data.
 
-In case the App is terminated during supension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can suscribe to this event from your current Page to apply restored data.
+In case the App is terminated during suspension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can subscribe to this event from your current Page to apply restored data.
 
 To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../activation.md).
 
@@ -31,7 +31,7 @@ Create a new application using WinTS with ProjectType Navigation Pane. Apart fro
 
 The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes.
 
-### 2. Add a posibility to enter data on the DataPage
+### 2. Add a possibility to enter data on the DataPage
 
 To enter data on the DataPage add the following TextBox and backing field.
 

@@ -1,3 +1,3 @@
-﻿The tree-view page has a tree view control to show hierarchical content. When an item in the tree view is selected, it's details are shown in a details pane. This pattern is frequently used to show hierarchical relationship between items.
+﻿Страница иерархического представления содержит элемент управления иерархического представления для отображения иерархического содержимого. При выборе элемента в иерархическом представлении сведения об этом элементе отображаются в области действий. Этот шаблон часто используется для отображения иерархической связи между элементами.
 
-More information about the tree-view control can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).
+Дополнительные сведения об элементе управления иерархического представления см. на странице [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).

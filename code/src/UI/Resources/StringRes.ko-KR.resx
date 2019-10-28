@@ -126,11 +126,11 @@
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0}은 이미 프로젝트의 일부입니다. 다른 서비스를 선택하십시오.</value>
+    <value>{0}은(는) 프로젝트의 일부입니다. 다른 서비스를 선택하십시오.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0}은 이미 프로젝트의 일부입니다. 다른 테스트 프로젝트를 선택하십시오.</value>
+    <value>{0}은(는) 프로젝트의 일부입니다. 다른 테스트 프로젝트를 선택하십시오.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>New project: Navigation step services</comment>
   </data>
   <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>테스트</value>
+    <value>테스트하기</value>
     <comment>New project: Navigation step testing</comment>
   </data>
   <data name="NewProjectStepProjectType" xml:space="preserve">
@@ -162,27 +162,27 @@
     <comment>Services list header on project details</comment>
   </data>
   <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>테스트</value>
+    <value>테스트하기</value>
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>프로젝트 유형 선택을 변경했습니다. 선택한 템플릿이 손실됩니다. 계속하시겠습니까?</value>
+    <value>프로젝트 유형 선택을 변경했습니다. 선택한 템플릿을 잃게 됩니다. 계속하시겠습니까?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>취소된 새 서비스 추가</value>
+    <value>새 서비스 추가가 취소됨</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>서비스 {0} 성공적으로 추가</value>
+    <value>{0} 서비스가 추가됨</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>취소된 새 테스트 프로젝트 추가</value>
+    <value>새 테스트 프로젝트 추가가 취소됨</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>테스트 프로젝트 {0} 성공적으로 추가</value>
+    <value>{0} 테스트 프로젝트가 추가됨</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -194,12 +194,23 @@
     <comment>Group header for 'Tools' templates</comment>
   </data>
   <data name="NewItemTitleService" xml:space="preserve">
-    <value>새로운 서비스</value>
+    <value>새 서비스</value>
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>새로운 테스트 프로젝트</value>
+    <value>새 테스트 프로젝트</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>다음 템플릿 중 하나를 먼저 추가해야 하기 때문에 **{0}**을(를) 추가할 수 없습니다. {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>필요하기 때문에 **{0}**을(를) 제거할 수 없습니다. {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>또는</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>기능 추가</value>
@@ -797,17 +808,6 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

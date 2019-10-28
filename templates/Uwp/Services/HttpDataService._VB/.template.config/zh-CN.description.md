@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿基本 HTTP 功能的简单包装器。
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+还包括对 GET 请求的简单缓存，这些请求可以根据应用的需求轻松地删除或修改。

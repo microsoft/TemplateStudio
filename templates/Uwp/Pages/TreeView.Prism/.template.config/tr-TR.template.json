@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "description": "Ağaç görünümü sayfasında hiyerarşik içeriğin gösterilmesini sağlayan bir ağaç görünümü denetimi bulunmaktadır.",
   "identity": "wts.Page.TreeView.Prism"
 }

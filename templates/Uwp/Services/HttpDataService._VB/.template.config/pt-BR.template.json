@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "HTTP Data Service",
-  "description": "Access content over HTTP.",
-  "identity": "wts.Service.HttpDataService.VB"
+    "author": "Microsoft Community",
+    "name": "HTTP Data Service",
+    "description": "Acesse o conteúdo via HTTP.",
+    "identity": "wts.Service.HttpDataService.VB"
 }

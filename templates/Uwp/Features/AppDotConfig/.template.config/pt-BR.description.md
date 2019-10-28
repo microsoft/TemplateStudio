@@ -1,1 +1,1 @@
-﻿An empty app.config file.
+﻿Um arquivo app.config vazio.

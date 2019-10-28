@@ -3,9 +3,9 @@
 :heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./drag-and-drop.vb.md) :heavy_exclamation_mark: |
 ----------------------------------------------------------------------------------------------------------------------------------------------- |
 
-In Windows Template Studio, the Drag & Drop feature is a service that basically is a wrapper over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop). This service simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+In Windows Template Studio, the Drag & Drop feature is a service that basically is a wrapper over the [standard UWP drag and drop functionality](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop). This service simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
 
-While using Code-Behind framework, the events will be handled by using actions. When using frameworks based on MVVM pattern (MVVM Light, Calliburn.Micro or MVVM Basic) the events will be handled by using commands.
+While using Code-Behind framework, the events will be handled by using actions. When using frameworks based on MVVM pattern (MVVM Light, Caliburn.Micro or MVVM Basic) the events will be handled by using commands.
 
 Following you find the actions, for code-behind framework, or commands, for MVVM based frameworks,
 which returns the different object types supported by drag and drop within UWP:
@@ -45,7 +45,7 @@ To use the service, you need to follow these steps:
 
 2. Include the service reference within the page by adding the required namespace: `xmlns:dd="using:AppNameSpace.Services.DragAndDrop"`
 
-3. Configure the service appropiately
+3. Configure the service appropriately
 
 - For an UIElement:
 

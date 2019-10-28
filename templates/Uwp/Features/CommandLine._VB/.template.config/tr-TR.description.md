@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿Uygulamanın komut satırından başlatılmasına ve kendisine geçirilen bağımsız değişkenleri işlemesine izin verin.

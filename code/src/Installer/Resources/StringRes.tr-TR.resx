@@ -121,7 +121,7 @@
     <value>Test Ekle</value>
   </data>
   <data name="AddServiceAction" xml:space="preserve">
-    <value>Servis Ekle</value>
+    <value>Hizmet Ekle</value>
   </data>
   <data name="AddFeatureAction" xml:space="preserve">
     <value>Özellik Ekle</value>

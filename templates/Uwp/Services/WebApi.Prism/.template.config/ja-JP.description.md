@@ -1,3 +1,3 @@
-﻿An ASP.NET Core application with an example controller for a RESTful HTTP service.
+﻿RESTful HTTP サービスのコントローラの例を備えた ASP.NET Core アプリケーション。
 
-[Learn more](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2)
+[詳細をご覧ください](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2)

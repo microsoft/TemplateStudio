@@ -6,7 +6,7 @@ Scenarios covered in this document:
 
 - Show a Startup page on app launching and navigate to a navigation pane shell page from there.
 - Navigate from the navigation pane to a page in full screen mode.
-- Navigate giving the possibility to go back using the back button or navigate without the posibility to go back.
+- Navigate giving the possibility to go back using the back button or navigate without the possibility to go back.
 - Reset navigation.
 
 ## Modifications in project (for all scenarios)
@@ -47,7 +47,7 @@ namespace YOUR_APP_NAME.Services
     {
         // This NavigationService can handle navigation in an application that uses various frames.
         // The NavigationService manages a global backstack with entries from all frames.
-        // Internally the NavigationService uses these frame keys to idenitify the frame in navigation and manage the navigation back stack.
+        // Internally the NavigationService uses these frame keys to identify the frame in navigation and manage the navigation back stack.
         private const string FrameKeyMain = "Main";
         private const string FrameKeySecondary = "Secondary";
         // You can add more frame key constants if your app manage more frames.
@@ -212,7 +212,7 @@ namespace YOUR_APP_NAME.Services
             var frame = _frames.GetValueOrDefault(frameKey);
             if (frame == null)
             {
-                // throw error if the frame is not initialzed
+                // throw error if the frame is not initialized
                 var methodName = frameKey == FrameKeyMain ? nameof(InitializeMainFrame) : nameof(InitializeFrame);
                 throw new Exception($"Frame is not initialized, please call {methodName} before navigating.");
             }
@@ -512,7 +512,7 @@ private void OnNavigated(object sender, NavigationArgs e)
 ```
 
 - Change OnItemInvoked to navigate among pages with the new NavigationService.
-Specify disableBackNavigation = true to specify that there will be no possibility to navigate back (use NavigateInSecondaryFrame intead of Navigate).
+Specify disableBackNavigation = true to specify that there will be no possibility to navigate back (use NavigateInSecondaryFrame instead of Navigate).
 
 ```csharp
 private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
@@ -550,22 +550,22 @@ private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, Key
 
 ## Navigate from Startup Page to NavigationPane page
 
-To navigate to the shell page in fullscreen mode use NavigationService.NavigateInMainFrame and NavigationService.NavigateInSecondaryFrame to show the mainpage in the naviagation pane
+To navigate to the shell page in full screen mode use NavigationService.NavigateInMainFrame and NavigationService.NavigateInSecondaryFrame to show the mainpage in the navigation pane
 
 ```csharp
 NavigationService.NavigateInMainFrame<ShellPage>(new NavigationConfig(disableBackNavigation: true));
 NavigationService.NavigateInSecondaryFrame<MainPage>();
 ```
 
-## Expand a Page to fullscreen/Navigate to a page in fullscreen
+## Expand a Page to fullscreen/Navigate to a page in full screen
 
-To navigate to a page in fullscreen mode use NavigationService.NavigateInMainFrame.
+To navigate to a page in full screen mode use NavigationService.NavigateInMainFrame.
 
 ```csharp
 NavigationService.NavigateInMainFrame<MapPage>();
 ```
 
-To determine if page is already in fullscreen use the following code:
+To determine if page is already in full screen use the following code:
 
 ```csharp
 return !NavigationService.IsPageInMainFrame<MapPage>();

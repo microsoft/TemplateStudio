@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿Uygulamanın birden çok kurulumunun başlatılmasına izin verin. Bu sürüm, uygulama her başlatıldığında uygulamanın her zaman yeni bir kurulumunu oluşturur.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Bu özellik yalnızca uygulamanız bir Masaüstü veya Nesnelerin İnterneti (IoT) cihazında çalışıyorsa kullanılabilir.
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+[Arka plan görevleri](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) kullanıyorsanız dikkat etmeniz gereken özel notları ve [genel hususları](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations) [resmi belgelerde](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) bulabilirsiniz.

@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "App Config",
-  "description": "Adds an empty App.config file to the project.",
-  "identity": "wts.Feat.AppDotConfig.VB"
+    "author": "Microsoft Community",
+    "name": "App Config",
+    "description": "Projeye boş bir App.config dosyası ekler.",
+    "identity": "wts.Feat.AppDotConfig.VB"
 }

@@ -1,3 +1,3 @@
-﻿The SQLServerDataService provides a central access point for data stored in a SQL Server database.
+﻿Služba SQLServerDataService představuje centrální přístupový bod k datům uloženým v databázi SQL Serveru.
 
-This features also adds references to access a SQL Server database via EntityFramework.Core and accessing the connection string with ConnectionManager.
+Tato funkce také přidává odkazy pro přístup k databázi SQL Serveru prostřednictvím rámce EntityFramework.Core a pomocí Správce připojení načítá připojovací řetězec.

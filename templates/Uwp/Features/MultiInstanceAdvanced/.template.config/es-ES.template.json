@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Multi-Instance Advanced",
-  "description": "Control how multiple instances of the app are launched.",
+  "description": "Controla cómo se lanzan varias instancias de la aplicación.",
   "identity": "wts.Feat.MultiInstanceAdvanced"
 }

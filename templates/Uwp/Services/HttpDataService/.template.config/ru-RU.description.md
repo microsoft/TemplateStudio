@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿Простая оболочка для базовых функций HTTP.
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+Также включает простое кэширование запросов GET, которое легко может быть отключено или изменено в зависимости от потребностей приложения.

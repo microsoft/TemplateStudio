@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿Kontrolka TabView pozwala wyświetlić zestaw kart z ich odpowiednią zawartością. Kontrolki karty przydają się do wyświetlania kilku stron (lub dokumentów) zawartości, jednocześnie zapewniając użytkownikowi możliwość otwierania, zamykania i segregowania kart.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[Więcej informacji o kontrolce TabView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
