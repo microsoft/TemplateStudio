@@ -11,14 +11,14 @@ When the feature is added it sets the supported scheme (or protocol) to `wtsapp`
 - Choose the 'Protocol' declaration if not already selected.
 - Change the name as appropriate. (highlighted in image below)
 
-![screenshot of pacakge.appxmanifest dialog shoing where to set the protocol](../resources/deep-linking/change-protocol-name.png)
+![screenshot of package.appxmanifest dialog showing where to set the protocol](../resources/deep-linking/change-protocol-name.png)
 
 You also have to update the constant **ProtocolName** in **Activation/SchemeActivationData.cs** file.
 
 The protocol name you specify MUST meet these rules:
 
 - Be a string between 2 and 39 characters in length
-- Contain only numbers, lowercased letters, dots ('.'), pluses('+'), or hyphens ('-').
+- Contain only numbers, lower-cased letters, dots ('.'), pluses('+'), or hyphens ('-').
 - The string can't start with a dot ('.').
 - It cannot be a reserved value. ([list of reserved scheme names](https://docs.microsoft.com/windows/uwp/launch-resume/reserved-uri-scheme-names#reserved-uri-scheme-names))
 

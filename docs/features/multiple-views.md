@@ -111,7 +111,7 @@ public async void OpenSecondaryPage()
 
 ## 3. Handle the SecondaryPage released event.
 
- WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
+ WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Subscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
 
 **`MVVMBasic, MVVMLight, Prism and Caliburn.Micro`**
 
