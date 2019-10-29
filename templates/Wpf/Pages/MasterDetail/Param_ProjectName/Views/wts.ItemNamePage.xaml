@@ -114,7 +114,7 @@
             <TextBlock
                 Style="{StaticResource PageTitleStyle}"
                 Margin="{StaticResource MediumLeftMargin}"
-                Text="{x:Static strings:Resources.MasterDetailPageTitle}" />
+                Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
             <ListView
                 Grid.Row="1"
                 ItemsSource="{Binding SampleItems}"

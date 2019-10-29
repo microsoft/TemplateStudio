@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Test.Wpf
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
-                && t.Identity != "wts.Feat.MSIXPackaging"
+                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
@@ -70,7 +70,7 @@ namespace Microsoft.Templates.Test.Wpf
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.Identity != "wts.Feat.MSIXPackaging"
+                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 || t.Identity == "wts.Wpf.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}All";
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Feat.MSIXPackaging")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
         [Trait("ExecutionSet", "BuildOneByOnePrismWpf")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOnePrismWpf")]
