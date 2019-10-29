@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Multi-Instance Advanced",
-  "description": "Control how multiple instances of the app are launched.",
+  "description": "Uygulamanın birden çok kurulumunun nasıl başlatılacağını denetleyin.",
   "identity": "wts.Feat.MultiInstanceAdvanced"
 }

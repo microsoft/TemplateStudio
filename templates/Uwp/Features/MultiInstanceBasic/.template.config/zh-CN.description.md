@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿允许启动应用的多个实例。每次启动时，此版本都将始终创建该应用的新实例。
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+只有在你的应用运行在台式机或物联网 (IoT) 设备上时，此功能才起作用。
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+请注意，如果你正在使用[后台任务](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing)，则应注意[官方文档](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) 包含的特定注释和[一般注意事项](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations)。

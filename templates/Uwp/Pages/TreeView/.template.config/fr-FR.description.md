@@ -1,3 +1,3 @@
-﻿The tree-view page has a tree view control to show hierarchical content. When an item in the tree view is selected, it's details are shown in a details pane. This pattern is frequently used to show hierarchical relationship between items.
+﻿La page d’affichage en arborescence permet d’afficher le contenu selon une classification hiérarchique. Lorsqu’un élément de la vue en arborescence est sélectionné, les détails de cet élément sont affichés dans un volet. Ce modèle est souvent utilisé pour voir les relations hiérarchiques entre les éléments.
 
-More information about the tree-view control can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).
+Plus d’informations sur la commande d’affichage en arborescence sont disponibles à l’adresse [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).

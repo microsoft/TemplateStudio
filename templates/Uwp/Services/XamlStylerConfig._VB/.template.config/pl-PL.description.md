@@ -1,5 +1,5 @@
-﻿XAML Styler is a visual studio extension that formats XAML source code based on a set of styling rules. This tool can help you/your team maintain a better XAML coding style as well as a much better XAML readability.
+﻿XAML Styler to rozszerzenie Visual Studio, które formatuje kod źródłowy XAML na podstawie zestawu reguł stylu. To narzędzie może pomóc w zachowaniu lepszego kodowania stylu XAML, jak również lepszej czytelności XAML.
 
-This feature adds a default configuration file to the project to help you define coding style policies.
+Ta funkcja dodaje domyślny plik konfiguracji do projektu, który pomaga w definiowaniu zasad stylu kodowania.
 
-Note. You must have the [XAML Styler extension](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler) installed to make use of this feature.
+Uwaga. Aby używać tej funkcji, musisz mieć zainstalowane [rozszerzenie XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler).

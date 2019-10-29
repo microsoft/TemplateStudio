@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Multi-Instance",
-  "description": "Launch multiple instances of the app.",
+  "description": "Avvia più istanze dell'app.",
   "identity": "wts.Feat.MultiInstance"
 }

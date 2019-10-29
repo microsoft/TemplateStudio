@@ -1,3 +1,3 @@
-﻿The SQLServerDataService provides a central access point for data stored in a SQL Server database.
+﻿SQLServerDataService fornisce un punto di accesso centrale per i dati archiviati in un database di SQL Server.
 
-This features also adds references to access a SQL Server database via EntityFramework.Core and accessing the connection string with ConnectionManager.
+Questa funzionalità aggiunge anche riferimenti per accedere a un database di SQL Server tramite EntityFramework.Core e per accedere alla stringa di connessione con ConnectionManager.

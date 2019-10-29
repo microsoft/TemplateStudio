@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿TabView 控制項是顯示一組索引標籤及其個別內容的方式。索引標籤控制項適合用於顯示數個頁面的內容 (或文件)，同時讓使用者能夠重新排列、開啟或關閉新索引標籤。
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[請參閱 TabView 控制項的詳細資訊](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

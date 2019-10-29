@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿앱이 명령줄에서 실행되도록 허용하고 어떤 인수도 이에 전달될 수 있도록 처리합니다.

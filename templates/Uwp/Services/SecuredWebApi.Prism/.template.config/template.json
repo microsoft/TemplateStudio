@@ -27,9 +27,10 @@
     "wts.rightClickEnabled":"false",
     "wts.outputToParent": "true"
   },
-  "sourceName": "WebApiFeature",
+  "sourceName": "SecuredWebApi",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [ ],
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "wts.projectName": {
       "type": "parameter",

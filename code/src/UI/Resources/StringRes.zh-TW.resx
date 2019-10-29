@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>添加服務</value>
+    <value>新增服務</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>添加測試</value>
+    <value>新增測試</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} 已是專案的一部分。請選擇其他服務。</value>
+    <value>{0} 已經是您專案的一部分。請選擇另一個服務。</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} 已是專案的一部分。請選擇其他測試專案。</value>
+    <value>{0} 已經是您專案的一部分。請選擇另一個測試專案。</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -166,23 +166,23 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>您更改了專案類型選擇。您選擇的範本將丟失。是否要繼續?</value>
+    <value>您已變更您的專案類型選擇。您已選取的範本將會遺失。是否要繼續?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>添加已取消的新服務</value>
+    <value>加入新服務已取消</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>服務 {0} 已成功添加</value>
+    <value>服務 {0} 已新增成功</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>添加新已取消的測試專案</value>
+    <value>加入新測試專案已取消</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>已成功添加測試專案 {0}</value>
+    <value>測試專案 {0} 已新增成功</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -194,12 +194,23 @@
     <comment>Group header for 'Tools' templates</comment>
   </data>
   <data name="NewItemTitleService" xml:space="preserve">
-    <value>新服務</value>
+    <value>新增服務</value>
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>新的測試專案</value>
+    <value>新增測試專案</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>您無法新增 **{0}**，因為必須先新增下列範本之一：{1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>您不可移除 **{0}** 因為以下項目需要用到它：{1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>或</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>新增功能</value>
@@ -797,17 +808,6 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>請參閱文件以進行更新。</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

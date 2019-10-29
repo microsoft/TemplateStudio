@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿Umožní spuštění aplikace z příkazového řádku a zpracování případných argumentů, které jsou jí předány.

@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿El control TabView es una forma de mostrar un conjunto de pestañas y su contenido correspondiente. Los controles de pestaña son útiles para mostrar varias páginas (o documentos) de contenido a la vez que se ofrece al usuario la capacidad de reorganizar, abrir o cerrar nuevas pestañas.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[Consulta más información acerca del control TabView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

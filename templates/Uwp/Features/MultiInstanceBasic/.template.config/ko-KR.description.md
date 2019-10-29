@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿앱의 여러 인스턴스가 실행되도록 허용합니다. 이 버전은 앱을 실행할 때마다 항상 새 인스턴스를 만듭니다.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+이 기능은 앱이 데스크톱 또는 IoT(사물 인터넷) 장치에서 실행 중인 경우에만 영향을 줍니다.
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+[공식 문서](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp)에는 [백그라운드 작업](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) 및 [일반적인 고려사항](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations)을 사용하는 경우, 주의해야 할 특정 메모가 있습니다.

@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿允许启动此应用的多个实例，并控制是启动新实例还是重用现有实例。这包括占位符代码，可让你控制在启动应用时是重用现有实例还是打开新实例。
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+只有在你的应用运行在台式机或物联网 (IoT) 设备上时，此功能才起作用。
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+请注意，如果你正在使用[后台任务](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing)，则应注意[官方文档](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) 包含的特定注释和[一般注意事项](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations)。

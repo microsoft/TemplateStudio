@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TabView",
-  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "description": "A página de exibição de guia tem um controle TabView para mostrar o conteúdo em diferentes guias.",
   "identity": "wts.Page.TabView.Prism"
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TabView",
-  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "description": "Die Seite „Registerkartenansicht“ besitzt ein TabView-Steuerelement, um Inhalte auf verschiedenen Registerkarten anzuzeigen.",
   "identity": "wts.Page.TabView"
 }

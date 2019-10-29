@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TabView",
-  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "description": "La pagina di visualizzazione scheda include un controllo TabView che consente di mostrare i contenuti in diverse schede.",
   "identity": "wts.Page.TabView.CodeBehind"
 }
