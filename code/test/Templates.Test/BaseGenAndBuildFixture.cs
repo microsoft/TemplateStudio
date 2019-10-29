@@ -350,7 +350,7 @@ namespace Microsoft.Templates.Test
             fakeShell.SetCurrentPlatform(platform);
         }
 
-        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp)
+        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp, string excludedItem = "")
         {
             List<object[]> result = new List<object[]>();
 
@@ -376,6 +376,7 @@ namespace Microsoft.Templates.Test
                         && t.GetTemplateType().IsItemTemplate()
                         && t.GetPlatform() == platform
                         && t.GetLanguage() == language
+                        && t.Identity != excludedItem
                         && !t.GetIsHidden());
 
                     foreach (var itemTemplate in itemTemplates)
