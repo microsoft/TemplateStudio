@@ -6,7 +6,7 @@
   "shortName": "Theme Selection",
   "groupIdentity": "wts.Wpf.Feat.ThemeSelection",
   "identity": "wts.Wpf.Feat.ThemeSelection",
-  "description": "",
+  "description": "Adds theming support to your application.",
   "tags": {
     "language": "C#",
     "type": "item",

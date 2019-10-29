@@ -6,7 +6,7 @@
   "shortName": "Multiple views",
   "groupIdentity": "wts.Wpf.Feat.MultiView",
   "identity": "wts.Wpf.Feat.MultiView",
-  "description": "",
+  "description": "Enable your users to view independent parts of your app in separate windows.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -8,7 +8,7 @@
   "shortName": "MasterDetail",
   "identity": "wts.Wpf.Page.MasterDetail",
   "groupIdentity": "wts.Wpf.Page.MasterDetail",
-  "description": "",
+  "description": "The master-detail page has a master pane and a details pane for content.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Theme Selection",
-  "description": "",
+  "description": "Agrega compatibilidad de temas a tu aplicación.",
   "identity": "wts.Wpf.Feat.ThemeSelection"
 }

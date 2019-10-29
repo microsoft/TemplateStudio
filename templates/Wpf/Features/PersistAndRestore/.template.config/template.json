@@ -6,7 +6,7 @@
     "shortName": "Persist And Restore",
     "groupIdentity": "wts.Wpf.Feat.PersistAndRestore",
     "identity": "wts.Wpf.Feat.PersistAndRestore",
-    "description": "",
+    "description": "Persist And Restore helps simplify storing data inside User Local AppData folder.",
     "tags": {
       "language": "C#",
       "type": "item",
