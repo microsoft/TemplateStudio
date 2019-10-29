@@ -87,9 +87,65 @@ namespace Microsoft.Templates.Test
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
         }
 
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_CodeBehind_Other_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_CodeBehind_Other_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MvvmBasic_Other_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MvvmBasic_Other_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MVVMLight_Other_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MVVMLight_Other_VB(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_CaliburnMicro_Other_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_Prism_Other_CS(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
         private async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
-            // Exclude background task from WACK tests until WACK is fixed
+            // Exclude options that cannot be combined with others
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
@@ -102,6 +158,31 @@ namespace Microsoft.Templates.Test
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden();
 
+            await BuildProjectAndRunWackAsync(projectType, framework, platform, language, templateSelector);
+        }
+
+        private async Task RunWackOnProjectWithExcludedFeaturesAsync(string projectType, string framework, string platform, string language)
+        {
+            // Skip these options as they don't present anything that isn't tested by other combinations
+            if (projectType == "Blank" || projectType == "TabbedNav")
+            {
+                return;
+            }
+
+            // This should pick up the minimum required items for a project plus those identified below (and excluded above).
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                     && t.GetFrontEndFrameworkList().Contains(framework)
+                     && (t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask") || t.GroupIdentity.StartsWith("wts.Service.IdentityForcedLogin"))
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden();
+
+            await BuildProjectAndRunWackAsync(projectType, framework, platform, language, templateSelector);
+        }
+
+        private async Task BuildProjectAndRunWackAsync(string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> templateSelector)
+        {
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName);
