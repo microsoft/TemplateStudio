@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Command Line Launch",
+  "description": "支持从命令行传递参数和启动。",
+  "identity": "wts.Feat.CommandLine"
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Multi-Instance Advanced",
+  "description": "Uygulamanın birden çok kurulumunun nasıl başlatılacağını denetleyin.",
+  "identity": "wts.Feat.MultiInstanceAdvanced"
+}

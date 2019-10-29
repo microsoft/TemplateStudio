@@ -91,6 +91,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
+            if (template.Exclusions.Count() > 0)
+            {
+                var exlusionsTemplateNames = AllTemplates.Where(t => template.Exclusions.Select(e => e.Identity).Contains(t.Identity)).Select(t => t.Template.Name).Distinct();
+                if (exlusionsTemplateNames.Count() > 0 )
+                {
+                    await ShowAddTemplateExclusionsNotificationAsync(template.Name, exlusionsTemplateNames);
+                    return;
+                }
+            }
+
+            if (template.Requirements.Count() > 0)
+            {
+                if (!AllTemplates.Any(t => template.Requirements.Select(r => r.Identity).Contains(t.Identity)))
+                {
+                    await ShowAddTemplateWithRequirementNotificationAsync(template.Name, template.Requirements.Select(r => r.Name));
+                    return;
+                }
+            }
+
             if (template.IsGroupExclusiveSelection)
             {
                 var collection = GetCollection(template.TemplateType);
@@ -180,6 +199,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             int newIndex = group.Items.IndexOf(template) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
+
+            var requirements = AllTemplates.Where(t => t.Template.Requirements.Select(r => r.TemplateId).Contains(template.Identity));
+            if (requirements != null && requirements.Any())
+            {
+                await ShowRemoveRequirementNotificationAsync(template.Name, requirements.Select(t => t.Name));
+                return;
+            }
 
             var dependencies = await RemoveAsync(template);
             if (dependencies != null && dependencies.Any())
@@ -324,23 +350,60 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await NotificationsControl.AddNotificationAsync(notification);
         }
 
-        private async Task ShowDependencyNotificationAsync(string name, IEnumerable<string> dependencyNames)
+        private async Task ShowAddTemplateExclusionsNotificationAsync(string name, IEnumerable<string> exludedTemplateNames)
         {
-            var dependencyNamesFormated = string.Empty;
-            foreach (var dependencyName in dependencyNames.Take(3))
-            {
-                dependencyNamesFormated += $" **{dependencyName}**,";
-            }
+            var allExludedTemplateNames = ConcatTemplateNames(exludedTemplateNames);
 
-            dependencyNamesFormated = dependencyNamesFormated.Remove(dependencyNamesFormated.Length - 1);
-            if (dependencyNames.Count() > 3)
-            {
-                dependencyNamesFormated += "...";
-            }
+            var message = string.Format(StringRes.NotificationAdditionError_Exclusion, name, allExludedTemplateNames);
 
-            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, dependencyNamesFormated);
+            var notification = Notification.Warning(message, Category.AddTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
+        }
+
+        private async Task ShowAddTemplateWithRequirementNotificationAsync(string name, IEnumerable<string> requiredTemplateNames)
+        {
+            var allRequiredTemplateNames = ConcatTemplateNames(requiredTemplateNames);
+
+            var message = string.Format(StringRes.NotificationAdditionError_Requirement, name, allRequiredTemplateNames);
+
+            var notification = Notification.Warning(message, Category.AddTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
+        }
+
+        private async Task ShowRemoveRequirementNotificationAsync(string name, IEnumerable<string> requiredForNames)
+        {
+            var allRequiredForNames = ConcatTemplateNames(requiredForNames);
+
+            var message = string.Format(StringRes.NotificationRemoveError_Requirement, name, allRequiredForNames);
+
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
+        }
+
+        private async Task ShowDependencyNotificationAsync(string name, IEnumerable<string> dependencyNames)
+        {
+            var allDependencyNames = ConcatTemplateNames(dependencyNames);
+
+            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, allDependencyNames);
+            var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
+        }
+
+        private string ConcatTemplateNames(IEnumerable<string> templateNames)
+        {
+            var formatedNames = string.Empty;
+            foreach (var templateName in templateNames.Take(3))
+            {
+                formatedNames += $" **{templateName}**,";
+            }
+
+            formatedNames = formatedNames.Remove(formatedNames.Length - 1);
+            if (templateNames.Count() > 3)
+            {
+                formatedNames += "...";
+            }
+
+            return formatedNames;
         }
     }
 }

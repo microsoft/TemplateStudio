@@ -49,6 +49,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public IEnumerable<BasicInfoViewModel> Dependencies { get; }
 
+        public IEnumerable<BasicInfoViewModel> Requirements { get; }
+
+        public IEnumerable<BasicInfoViewModel> Exclusions { get; }
+
         public string Name
         {
             get => _name;
@@ -141,6 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             TemplateType = template.TemplateType;
             GenGroup = template.GenGroup;
             Dependencies = template.Dependencies;
+            Requirements = template.Requirements;
             Icon = template.Icon;
             ItemNameEditable = template.ItemNameEditable;
             IsHidden = template.IsHidden;

@@ -16,16 +16,17 @@ namespace Param_RootNamespace.Core.Services
         //// Read more about Microsoft Identity Client here
         //// https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         //// https://docs.microsoft.com/azure/active-directory/develop/v2-overview
-        private readonly string[] _scopes = new string[] { "user.read" };
-
-        private bool _integratedAuthAvailable;
-        private IPublicClientApplication _client;
-        private AuthenticationResult _authenticationResult;
 
         // TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
         // Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
         // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        private string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
+        private readonly string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
+
+        private readonly string[] _graphScopes = new string[] { "user.read" };
+
+        private bool _integratedAuthAvailable;
+        private IPublicClientApplication _client;
+        private AuthenticationResult _authenticationResult;
 
         public event EventHandler LoggedIn;
 
@@ -67,7 +68,7 @@ namespace Param_RootNamespace.Core.Services
             try
             {
                 var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenInteractive(_scopes)
+                _authenticationResult = await _client.AcquireTokenInteractive(_graphScopes)
                                                      .WithAccount(accounts.FirstOrDefault())
                                                      .ExecuteAsync();
                 if (!IsAuthorized())
@@ -128,9 +129,11 @@ namespace Param_RootNamespace.Core.Services
             }
         }
 
-        public async Task<string> GetAccessTokenAsync()
+        public async Task<string> GetAccessTokenForGraphAsync() => await GetAccessTokenAsync(_graphScopes);
+
+        public async Task<string> GetAccessTokenAsync(string[] scopes)
         {
-            var acquireTokenSuccess = await AcquireTokenSilentAsync();
+            var acquireTokenSuccess = await AcquireTokenSilentAsync(scopes);
             if (acquireTokenSuccess)
             {
                 return _authenticationResult.AccessToken;
@@ -141,7 +144,7 @@ namespace Param_RootNamespace.Core.Services
                 {
                     // Interactive authentication is required
                     var accounts = await _client.GetAccountsAsync();
-                    _authenticationResult = await _client.AcquireTokenInteractive(_scopes)
+                    _authenticationResult = await _client.AcquireTokenInteractive(scopes)
                                                          .WithAccount(accounts.FirstOrDefault())
                                                          .ExecuteAsync();
                     return _authenticationResult.AccessToken;
@@ -156,7 +159,9 @@ namespace Param_RootNamespace.Core.Services
             }
         }
 
-        public async Task<bool> AcquireTokenSilentAsync()
+        public async Task<bool> AcquireTokenSilentAsync() => await AcquireTokenSilentAsync(_graphScopes);
+
+        private async Task<bool> AcquireTokenSilentAsync(string[] scopes)
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
@@ -166,7 +171,7 @@ namespace Param_RootNamespace.Core.Services
             try
             {
                 var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenSilent(_scopes, accounts.FirstOrDefault())
+                _authenticationResult = await _client.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
                                                      .ExecuteAsync();
                 return true;
             }
@@ -176,7 +181,7 @@ namespace Param_RootNamespace.Core.Services
                 {
                     try
                     {
-                        _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_scopes)
+                        _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_graphScopes)
                                                              .ExecuteAsync();
                         return true;
                     }

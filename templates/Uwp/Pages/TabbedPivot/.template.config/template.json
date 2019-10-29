@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Tabbed",
-  "shortName": "Tabbed",
+  "name": "TabbedPivot",
+  "shortName": "TabbedPivot",
   "groupIdentity": "wts.Page.TabbedPivot",
   "identity": "wts.Page.TabbedPivot",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",

@@ -92,7 +92,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.1.190606001",
+        "version" : "2.2.190917002",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": true
@@ -103,7 +103,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestFramework",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": true
@@ -114,7 +114,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestAdapter",
-        "version" : "1.4.0",
+        "version" : "2.0.0",
         "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
       },
       "continueOnError": true

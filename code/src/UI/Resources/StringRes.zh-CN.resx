@@ -166,19 +166,19 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>您更改了项目类型选择。您选择的模板将丢失。是否要继续?</value>
+    <value>你已更改所选的项目类型。你选择的模板将会丢失。是否要继续?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>添加已取消的新服务</value>
+    <value>已取消添加新服务</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>服务 {0} 已成功添加</value>
+    <value>已成功添加服务 {0}</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>添加新已取消的测试项目</value>
+    <value>已取消添加新测试项目</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
@@ -198,8 +198,19 @@
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>新的测试项目</value>
+    <value>新测试项目</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>无法添加 **{0}**，因为它要求先添加以下模板之一:{1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>无法删除 **{0}**，因为它是以下项所需的:{1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>或</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>添加功能</value>
@@ -797,5 +808,15 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>请参阅文档进行更新。</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Exclusions:</value>
   </data>
 </root>

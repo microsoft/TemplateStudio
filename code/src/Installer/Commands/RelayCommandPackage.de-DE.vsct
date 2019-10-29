@@ -63,7 +63,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpService" />
         <Strings>
-          <ButtonText>Neuer Service...</ButtonText>
+          <ButtonText>Neuer Dienst...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">

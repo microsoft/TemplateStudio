@@ -21,7 +21,7 @@ namespace Param_RootNamespace.Views
         //{[{
         private async void FeedbackLink_Click(object sender, RoutedEventArgs e)
         {
-            // This launcher is part of the Store Services SDK https://docs.microsoft.com/en-us/windows/uwp/monetize/microsoft-store-services-sdk
+            // This launcher is part of the Store Services SDK https://docs.microsoft.com/windows/uwp/monetize/microsoft-store-services-sdk
             var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
         }

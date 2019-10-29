@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "タブ ビュー ページには、さまざまなタブにコンテンツを表示する TabView コントロールがあります。",
+    "identity": "wts.Page.TabView.CodeBehind.VB"
+}

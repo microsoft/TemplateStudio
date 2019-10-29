@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Web API",
-  "description": "Include ASP.NET Core Web API project.",
+  "description": "Enthält ein ASP.NET Core Web-API-Projekt.",
   "identity": "wts.Service.WebApi.Prism"
 }

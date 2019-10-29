@@ -36,11 +36,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             get => _count;
             private set
             {
-                HasMoreThanOne = value > 1;
-                HasMoreThanTwo = value > 2;
+                HasMoreThanOne = MultipleInstance && value > 1;
+                HasMoreThanTwo = MultipleInstance && value > 2;
                 ShowAddedText = !MultipleInstance && value > 0;
                 CanBeAdded = MultipleInstance || value == 0;
-                if (MultipleInstance)
+                if (MultipleInstance || value <= 1)
                 {
                     SetProperty(ref _count, value);
                 }
@@ -85,6 +85,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = template.DisplayOrder;
             IsHidden = template.IsHidden;
             Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties

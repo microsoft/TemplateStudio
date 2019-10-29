@@ -26,6 +26,10 @@ namespace Microsoft.Templates.Test
         private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
+        protected List<string> excludedTemplatesGroup1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
+        protected List<string> excludedTemplatesGroup2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
+        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" };
 
         public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
         {
@@ -89,11 +93,13 @@ namespace Microsoft.Templates.Test
                 && t.GetPlatform() == platform
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
+            // this selector excludes templates with exclusions
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
+                && t.GetExclusionsList().Count() == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                 && !t.GetIsHidden();
 
@@ -193,7 +199,7 @@ namespace Microsoft.Templates.Test
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             // Build solution
             var result = _fixture.BuildSolution(projectName, projectPath, platform);
@@ -202,7 +208,10 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Fs.SafeDeleteDirectory(projectPath);
+            if (deleteAfterBuild)
+            {
+                Fs.SafeDeleteDirectory(projectPath);
+            }
         }
 
         protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
@@ -228,7 +237,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, string excludedGroupIdentity = "")
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, List<string> excludedGroupIdentity = null)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -250,7 +259,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && t.GetFrontEndFrameworkList().Contains(framework)
                     && t.GetPlatform() == platform
-                    && t.GroupIdentity != excludedGroupIdentity
+                    && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
                 var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
@@ -274,6 +283,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
+                && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                 && t.GetRightClickEnabled());
 
             await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
@@ -482,24 +492,13 @@ namespace Microsoft.Templates.Test
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
-        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjects()
+        protected static IEnumerable<string> GetTemplatesThatDoNotSupportVB()
         {
             return new[]
             {
-                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
-                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
-                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
-                "wts.Page.ContentGrid", "wts.Page.DataGrid",
-                "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
-                "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
-                "wts.Testing.UnitTests.Core.MSTest", "wts.Testing.UnitTests.Core.NUnit", "wts.Testing.UnitTests.Core.xUnit",
-                "wts.Testing.UnitTests.App.MSTest", "wts.Testing.UnitTests.App.xUnit",
-                "wts.Service.HttpDataService", "wts.Service.SqlServerDataService",
+                "wts.Service.WebApi",
+                "wts.Service.SecuredWebApi",
+                "wts.Service.SecuredWebApi.CodeBehind",
             };
         }
 
@@ -555,15 +554,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
                     break;
 
                 case "CaliburnMicro":

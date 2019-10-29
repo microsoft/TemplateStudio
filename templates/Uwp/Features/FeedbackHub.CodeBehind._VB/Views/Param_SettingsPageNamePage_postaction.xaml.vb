@@ -19,7 +19,7 @@ Namespace Views
 '^^
 '{[{
         Private Async Sub FeedbackLink_Click(sender As Object, e As RoutedEventArgs)
-            ' This launcher is part of the Store Services SDK https://docs.microsoft.com/en-us/windows/uwp/monetize/microsoft-store-services-sdk
+            ' This launcher is part of the Store Services SDK https://docs.microsoft.com/windows/uwp/monetize/microsoft-store-services-sdk
             Dim launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault()
             Await launcher.LaunchAsync()
         End Sub

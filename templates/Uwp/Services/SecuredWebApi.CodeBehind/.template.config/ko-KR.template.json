@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Secured Web API",
+  "description": "JWToken을 검증하는 ASP.NET 코어 웹 API 프로젝트를 포함합니다.",
+  "identity": "wts.Service.SecuredWebApi.CodeBehind"
+}

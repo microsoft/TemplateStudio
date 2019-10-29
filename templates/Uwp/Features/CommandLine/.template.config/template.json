@@ -1,0 +1,67 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Command Line Launch",
+  "shortName": "Command Line Launch",
+  "groupIdentity": "wts.Feat.CommandLine",
+  "identity": "wts.Feat.CommandLine",
+  "description": "Support passing arguments and launching from the command line.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "CommandLineLaunching",
+    "wts.multipleInstance": "false",
+    "wts.rightClickEnabled":"true",
+    "wts.genGroup": "0"
+  },
+  "sourceName": "CommandLineLaunching",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "./Activation/CommandLineActivationHandler.cs"
+    },
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml"
+    },
+    {
+      "path": "./Views/CmdLineActivationSamplePage.xaml.cs"
+    }
+  ],
+  "symbols":{
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.safeprojectName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "SafeProjectName",
+      "parameters": {
+          "source": "wts.projectName",
+          "steps": [
+              {
+                  "regex": "([-_,@! (£)+=])",
+                  "replacement": "_"
+              }
+          ],
+          "action":"replace"
+      }
+    }
+  }
+}

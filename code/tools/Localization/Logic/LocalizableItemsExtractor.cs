@@ -141,11 +141,8 @@ namespace Localization
                 {
                     string templateSrcDirectory = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
 
-                    if (!IsTemplateHidden(templateSrcDirectory))
-                    {
-                        ExtractTemplateJson(templateSrcDirectory);
-                        ExtractTemplateDescription(templateSrcDirectory);
-                    }
+                    ExtractTemplateJson(templateSrcDirectory);
+                    ExtractTemplateDescription(templateSrcDirectory);
                 }
             }
         }
@@ -280,14 +277,6 @@ namespace Localization
                     resourceFile.Delete();
                 }
             }
-        }
-
-        private bool IsTemplateHidden(string templatePath)
-        {
-            var jsonFile = _routesManager.GetFileFromSource(Path.Combine(templatePath, Routes.TemplateJsonFile));
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-
-            return value != null && value is "true";
         }
     }
 }

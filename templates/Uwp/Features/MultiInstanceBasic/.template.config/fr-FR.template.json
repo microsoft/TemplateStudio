@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Multi-Instance",
+  "description": "Lance plusieurs instances de l’application.",
+  "identity": "wts.Feat.MultiInstance"
+}

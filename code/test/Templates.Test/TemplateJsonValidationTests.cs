@@ -17,6 +17,8 @@ namespace Microsoft.Templates.Test
     [Trait("Type", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "TemplateValidation")]
+    [Trait("ExecutionSet", "_CIBuild")]
+    [Trait("ExecutionSet", "_Full")]
     public class TemplateJsonValidationTests
     {
         public static IEnumerable<object[]> GetAllTemplateJsonFiles()
@@ -63,7 +65,6 @@ namespace Microsoft.Templates.Test
     }
 
     [Trait("Type", "TemplateValidation")]
-    [Trait("ExecutionSet", "TemplateValidation")]
     [Trait("ExecutionSet", "ManualOnly")]
     public class TemplateJsonLanguageConsistencyTests
     {
@@ -114,7 +115,7 @@ namespace Microsoft.Templates.Test
                                     {
                                         if (!csItem.Value.Contains("Prism") && !csItem.Value.Contains("Caliburn"))
                                         {
-                                            errors.Add($"{template[0].ToString()}: check {vbItem.Field}.");
+                                            errors.Add($"{template[0].ToString()}: check {vbItem.Field} in composition query.");
                                         }
                                     }
                                 }

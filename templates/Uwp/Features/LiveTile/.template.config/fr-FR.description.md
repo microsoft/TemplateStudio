@@ -1,5 +1,5 @@
 ﻿Une vignette est une représentation d'application sur le menu Démarrer. Chaque application est associée à une vignette. Lorsque vous créez un projet d'application UWP (plateforme Windows universelle) dans Microsoft Visual Studio, celui-ci est pourvu d'une vignette par défaut qui affiche le nom et le logo de votre application. Windows affiche cette vignette lors de la première installation de votre application. Une fois votre application installée, vous pouvez modifier le contenu de sa vignette via des notifications ; par exemple, vous pouvez modifier la vignette pour communiquer de nouvelles informations à l'utilisateur, comme des en-têtes d'actualité ou l'objet du message non lu le plus récent.
 
-[En savoir plus au sujet des vignettes dynamiques.](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-creating-tiles)
+[En savoir plus au sujet des vignettes dynamiques.](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-creating-tiles)
 
-Utilisez l'[application de visualisation](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) qui vous aidera à concevoir des vignettes dynamiques et des notifications adaptées.
+Utilisez l'[application de visualisation](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) qui vous aidera à concevoir des vignettes dynamiques et des notifications adaptées.

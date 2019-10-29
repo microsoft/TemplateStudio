@@ -7,16 +7,14 @@ The navigation pane project type includes a navigation menu displayed in a panel
 
 This document covers:
 
-* [Modifying the menu items](#menu)
-* [Using the NavigationViewHeaderBehavior](#behavior)
-* [Invoke code on NavigationView](#invokecode)
-* [Change the text for Settings](#SettingsLabel)
+- [Modifying the menu items](#modifying-the-menu-items)
+- [Using the NavigationViewHeaderBehavior](#NavigationViewHeaderBehavior)
+- [Invoke code on NavigationView](#invoke-code-on-navigationview)
+- [Change the text for Settings](#change-the-text-for-settings)
 
 To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
 
 To update to Win UI Navigation View from Navigation View read the following [document](./updatetowinuinavigationview.md).
-
-<a name="menu"></a>
 
 ## Modifying the menu items
 
@@ -30,7 +28,7 @@ The menu can be modified in the following ways.
 By default every NavigationViewItem is displayed with the symbol for a document.
 When every item has the same icon it is hard to differentiate between them when the NavigationView is collapsed. In almost all cases you will want to change the icon used.
 
-![](../resources/modifications/NavMenu_Different_Symbols.png)
+![Screenshot of app with different menu icons](../resources/modifications/NavMenu_Different_Symbols.png)
 
 Navigate to `Views/ShellPage.xaml` and change the `NavigationViewItems` in the `NavigationView MenuItems` property.
 
@@ -52,7 +50,7 @@ The code below shows the symbols used to create the app shown in the image above
 </winui:NavigationView.MenuItems>
 ```
 
-The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>
+The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/uwp/api/windows.ui.xaml.controls.symbol>
 
 You can also set the menu item to use an `IconElement` directly. Like this:
 
@@ -70,15 +68,13 @@ You can also set the menu item to use an `IconElement` directly. Like this:
 
 The text for a shell navigation item comes from the localized string resources. For an item which defines the x:Uid `Shell_Main` the value `Shell_Main.Content` corresponds with an entry in `Resources.resw`. Change the value in the resources file to alter what is displayed in the NavigationView.
 
-<a name="behavior"></a>
-
 ## NavigationViewHeaderBehavior
 
 The navigation pane projects add a Behavior to the NavigationView that allows different pages to customize or hide the Header when that page is shown.
 
 ### Initial Configuration
 
-The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of` NavigationView` `Header` by default.
+The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of `NavigationView` `Header` by default.
 
 ```xml
 <behaviors:NavigationViewHeaderBehavior
@@ -98,11 +94,9 @@ The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and 
 
 Each page can overwrite three properties of the `NavigationViewHeaderBehavior`:
 
- - `HeaderMode`: allows you to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
-
- - `HeaderContext`: contains the data that will be available for use from the `HeaderTemplate`.
-
- - `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
+- `HeaderMode`: allows you to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
+- `HeaderContext`: contains the data that will be available for use from the `HeaderTemplate`.
+- `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
 
 `HeaderMode="Never"` allows the page to hide the `Header` and occupy the whole window. You can see an example of how to use `HeaderMode="Never"` in the MapPage. If you use this mode the NavigationView Buttons will overlap with your content in small window sizes.
 
@@ -153,7 +147,7 @@ In the following example, we'll see how to modify the `Header` in a `MainPage` i
 </Page>
 ```
 
-We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page. 
+We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page.
 
 ```csharp
 public MainPage()
@@ -167,7 +161,7 @@ public MainPage()
 }
 ```
 
-You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in the InkPages in WTS.
+You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in the InkPages in WinTS.
 
 When using MVVMBasic, MVVMLight, Caliburn or Prism, you can use x:Bind to bind properties to your ViewModel, associated to the HeaderContext.
 
@@ -185,9 +179,7 @@ If you want to be able to add a command bar at ShellPage level, you can add it i
 
 Events and commands are not shown in the above code but can easily be added like any other button click event or command. Note that if using the techniques for adding the bar to every page, the events or commands should be handled by the ShellPageViewModel (or in ShellPage.xaml.cs if using CodeBehind.)
 
-The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/app-bars).
-
-<a name="invokecode"></a>
+The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/windows/uwp/controls-and-patterns/app-bars).
 
 ## Invoke code on NavigationView
 
@@ -197,6 +189,7 @@ Extending the app to add this functionality requires making two changes.
 2. Add a Command to handle code on HyperLink click.
 
 **ShellPage.xaml**
+
 ```xml
 <winui:NavigationView>
     <winui:NavigationView.PaneFooter>
@@ -211,6 +204,7 @@ Extending the app to add this functionality requires making two changes.
 ```
 
 Add a command to run the code in `ShellViewModel.cs` (MVVMBasic or MVVMLight) or `ShellPage.xaml.cs` (CodeBehind)
+
 ```csharp
     private ICommand _showInfoCommand;
 
@@ -221,8 +215,6 @@ Add a command to run the code in `ShellViewModel.cs` (MVVMBasic or MVVMLight) or
         // TODO: Run command code
     }
 ```
-
-<a name="SettingsLabel"></a>
 
 ## Change the text for Settings
 

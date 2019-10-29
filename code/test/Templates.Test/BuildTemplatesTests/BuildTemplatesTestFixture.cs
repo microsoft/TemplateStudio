@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Test
         {
             InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
 
-            return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter);
+            return BaseGenAndBuildFixture.GetPageAndFeatureTemplates(frameworkFilter, language);
         }
 
         [SuppressMessage(

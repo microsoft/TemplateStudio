@@ -1,18 +1,18 @@
 # Update from HamburgerMenu to WinUI NavigationView in Prism
 
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with WinTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![Partial screenshot of project properties dialog showing targeting configuration](../../resources/project-types/cu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
-![](../../resources/project-types/winui-nugetpackage.png)
+![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../../resources/project-types/winui-nugetpackage.png)
 
 ## 3. Changes in App.xaml
 
@@ -30,7 +30,7 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```
 
 ## 4. Changes in _Thickness.xaml
- 
+
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
@@ -249,11 +249,9 @@ The updated ShellPage will include the WinUI NavigationView and add the MenuItem
 
 ### XAML code you will have to remove:
 
- - xml namespaces for `fcu`, `cu`, `controls`, and `vm` (viewmodels).
-
- - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
-
- - `HamburgerMenu` control.
+- xml namespaces for `fcu`, `cu`, `controls`, and `vm` (viewmodels).
+- `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+- `HamburgerMenu` control.
 
 ### XAML code you will have to add:
 
@@ -265,11 +263,9 @@ xmlns:behaviors="using:YourAppName.Behaviors"
 xmlns:helpers="using:YourAppName.Helpers"
 ```
 
- - `winui:NavigationView` control.
-
- - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
+- `winui:NavigationView` control.
+- `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+- `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
 The resulting code should look like this:
 
@@ -277,7 +273,7 @@ The resulting code should look like this:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
@@ -296,7 +292,7 @@ The resulting code should look like this:
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="True"
-	ItemInvoked="OnItemInvoked"
+        ItemInvoked="OnItemInvoked"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
 
@@ -331,12 +327,12 @@ The resulting code should look like this:
 
 ### C# code you will have to update (_Implementation below_):
 
- - `SetRootFrame` method implementation.
+- `SetRootFrame` method implementation.
 
 The resulting code should look like this:
 
- ```csharp
- using YourAppName.ViewModels;
+```csharp
+using YourAppName.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace YourAppName.Views
@@ -357,8 +353,8 @@ namespace YourAppName.Views
             shellFrame.Content = frame;
             ViewModel.Initialize(frame);
         }
-	
-	private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
@@ -366,51 +362,41 @@ namespace YourAppName.Views
         }
     }
 }
- ```
+```
 
- ## 10. Changes in ShellViewModel.cs
+## 10. Changes in ShellViewModel.cs
 
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
 
 ### C# code you will have to remove:
 
- - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
- - `_isPaneOpen` and `IsPaneOpen` properties.
-
- - `_displayMode` and `DisplayMode` properties.
-
- - `_primaryItems` and `PrimaryItems` properties.
-
- - `_secondaryItems` and `SecondaryItems` properties.
-
- - `OpenPaneCommand`, `ItemSelectedCommand` and `StateChangedCommand`.
-
- - `GoToState`, `InitializeState`, `PopulateNavItems`, `ChangeSelected`, `ItemSelected` and `Navigate` methods.
-
- - private fields `_lastSelectedItem``
-
- - Remove unused using statements.
+- private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
+- `_isPaneOpen` and `IsPaneOpen` properties.
+- `_displayMode` and `DisplayMode` properties.
+- `_primaryItems` and `PrimaryItems` properties.
+- `_secondaryItems` and `SecondaryItems` properties.
+- `OpenPaneCommand`, `ItemSelectedCommand` and `StateChangedCommand`.
+- `GoToState`, `InitializeState`, `PopulateNavItems`, `ChangeSelected`, `ItemSelected` and `Navigate` methods.
+- private fields `_lastSelectedItem``
+- Remove unused using statements.
 
 ### C# code you will have to add _(implementation below)_:
 
- - Add the following new usings statement:
+- Add the following new usings statement:
 
 ```csharp
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_isBackEnabled`, `IsBackEnabled`, `ItemInvokedCommand` members. 
+- Add `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_isBackEnabled`, `IsBackEnabled`, `ItemInvokedCommand` members.
 
- - `OnItemInvoked`, `OnBackRequested` and `IsMenuItemForPageType` methods.
+- `OnItemInvoked`, `OnBackRequested` and `IsMenuItemForPageType` methods.
 
 ### C# code you will have to update _(implementation below)_:
 
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - Class constructor with the implementation below.
-
- - `Initialize` and `Frame_Navigated` methods with the implementation below. 
+- `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
+- Class constructor with the implementation below.
+- `Initialize` and `Frame_Navigated` methods with the implementation below.
 
 The resulting code should look like this:
 
@@ -522,15 +508,11 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 
 ### XAML code you will have to remove:
 
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
+- **xmln namespaces** for fcu and cu.
+- Textblock **TitlePage**
+- ContentArea Grid **RowDefinitions**
+- VisualStateManager **VisualStateGroups**.
+- **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
 
@@ -548,7 +530,7 @@ The resulting code should look like this:
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.-->
         </Grid>
     </Grid>
@@ -564,9 +546,8 @@ As NavigationItems and their names are defined in xaml now, you need to add `.Co
 
 If your project contains a SettingsPage you must perform the following steps:
 
- - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
- - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
 
 ```csharp
 if (args.IsSettingsInvoked)
@@ -576,13 +557,13 @@ if (args.IsSettingsInvoked)
 }
 ```
 
- - On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
 
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = _navigationView.SettingsItem as NavigationViewItem;
-	return;
+    Selected = _navigationView.SettingsItem as NavigationViewItem;
+    return;
 }
 ```
 
@@ -590,7 +571,7 @@ if (e.SourcePageType == typeof(SettingsPage))
 
 ### C# code you will have to add _(implementation below)_:
 
- - `OnCreateDeviceGestureService` method.
+- `OnCreateDeviceGestureService` method.
 
 ```csharp
 protected override IDeviceGestureService OnCreateDeviceGestureService()

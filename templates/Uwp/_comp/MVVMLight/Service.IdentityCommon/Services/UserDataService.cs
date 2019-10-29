@@ -66,7 +66,7 @@ namespace Param_RootNamespace.Services
 
         private async Task<UserViewModel> GetUserFromGraphApiAsync()
         {
-            var accessToken = await IdentityService.GetAccessTokenAsync();
+            var accessToken = await IdentityService.GetAccessTokenForGraphAsync();
             if (string.IsNullOrEmpty(accessToken))
             {
                 return null;

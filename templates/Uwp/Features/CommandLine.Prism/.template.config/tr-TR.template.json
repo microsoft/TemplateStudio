@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Command Line Launch",
+  "description": "Bağımsız değişkenlerin geçirilmesini ve komut satırından başlatmayı destekleyin.",
+  "identity": "wts.Feat.CommandLine.Prism"
+}

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.UserActivities;
+using Windows.UI.Core;
 using Windows.UI.Shell;
 
 namespace Param_RootNamespace.Services
 {
-    // More details about this functionality can be found at  https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/user-activity.md
+    // More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/user-activity.md
     // For more info about UserActivities in Timeline see https://docs.microsoft.com/windows/uwp/launch-resume/useractivities
     // For more info about UserActivities with AdaptiveCards see https://docs.microsoft.com/adaptive-cards/get-started/windows
     // Please note that user activities will only show on devices with Windows 10 Build 1803 or higher
@@ -32,11 +34,15 @@ namespace Param_RootNamespace.Services
 
         private static async Task SaveAsync(UserActivity activity)
         {
-            await activity.SaveAsync();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, async () =>
+                {
+                    await activity.SaveAsync();
 
-            // Dispose of any current UserActivitySession, and create a new one.
-            _currentUserActivitySession?.Dispose();
-            _currentUserActivitySession = activity.CreateSession();
+                    // Dispose of any current UserActivitySession, and create a new one.
+                    _currentUserActivitySession?.Dispose();
+                    _currentUserActivitySession = activity.CreateSession();
+                });
         }
     }
 }

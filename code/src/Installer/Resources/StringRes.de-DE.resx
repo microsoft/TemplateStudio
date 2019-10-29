@@ -121,7 +121,7 @@
     <value>Test hinzufügen</value>
   </data>
   <data name="AddServiceAction" xml:space="preserve">
-    <value>Service hinzufügen</value>
+    <value>Dienst hinzufügen</value>
   </data>
   <data name="AddFeatureAction" xml:space="preserve">
     <value>Feature hinzufügen</value>

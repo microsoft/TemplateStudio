@@ -64,6 +64,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource WtsTextBlockTemplateDetailsTitle}" />
@@ -126,30 +128,60 @@
                     ItemsSource="{Binding Dependencies}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
                     Visibility="{Binding Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}" />
-
+                
                 <TextBlock
                     Grid.Row="6"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsFrameworks}"
+                    Text="{x:Static res:StringRes.TemplateDetailsRequirements}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
-                    Visibility="{Binding HasLayout, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
                     Grid.Row="6"
                     Grid.Column="2"
                     Margin="-4,8,0,0"
                     Style="{StaticResource WtsItemsControl}"
-                    ItemsSource="{Binding Frameworks}"
+                    ItemsSource="{Binding Requirements}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
-                    Visibility="{Binding HasLayout, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
 
                 <TextBlock
                     Grid.Row="7"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Text="{x:Static res:StringRes.TemplateDetailsRequirements}"
+                    Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
+                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                <ItemsControl
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Margin="-4,8,0,0"
+                    Style="{StaticResource WtsItemsControl}"
+                    ItemsSource="{Binding Requirements}"
+                    ItemTemplate="{StaticResource WtsItemTemplateDependency}"
+                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
+
+                <TextBlock
+                    Grid.Row="8"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Text="{x:Static res:StringRes.TemplateDetailsExclusions}"
+                    Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
+                    Visibility="{Binding Exclusions, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                <ItemsControl
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Margin="-4,8,0,0"
+                    Style="{StaticResource WtsItemsControl}"
+                    ItemsSource="{Binding Exclusions}"
+                    ItemTemplate="{StaticResource WtsItemTemplateDependency}"
+                    Visibility="{Binding Exclusions, Converter={StaticResource HasItemsVisibilityConverter}}" />
+
+                <TextBlock
+                    Grid.Row="9"
                     Margin="{StaticResource Margin_M_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsLayout}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding HasLayout, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <ItemsControl
-                    Grid.Row="7"
+                    Grid.Row="9"
                     Grid.Column="2"
                     Margin="-4,8,0,0"
                     Style="{StaticResource WtsItemsControl}"

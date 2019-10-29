@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Añadir servicios</value>
+    <value>Agregar servicios</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Añadir pruebas</value>
+    <value>Agregar pruebas</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} ya forma parte de su proyecto. Por favor, elija otro servicio.</value>
+    <value>{0} ya es parte de tu proyecto. Elige otro servicio.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Por favor, elija otro proyecto de prueba</value>
+    <value>{0} ya es parte de tu proyecto. Elige otro proyecto de prueba.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -166,23 +166,23 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Ha modificado la selección de tipo de proyecto. Las plantillas que haya seleccionado se perderán. ¿Quieres continuar?</value>
+    <value>Has cambiado la selección del tipo de proyecto. Se perderán las plantillas que has seleccionado. ¿Quieres continuar?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Añadir nuevo servicio cancelado</value>
+    <value>Se ha cancelado agregar servicio nuevo</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>El servicio '{0}' se ha añadido correctamente</value>
+    <value>El servicio {0} se ha agregado correctamente</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Añadir nuevo proyecto de prueba cancelado</value>
+    <value>Se ha cancelado agregar proyecto de prueba nuevo</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>El proyecto de prueba '{0}' se ha añadido correctamente</value>
+    <value>El proyecto de prueba {0} se ha agregado correctamente</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -198,8 +198,19 @@
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>Nuevo proyecto de pruebas</value>
+    <value>Nuevo proyecto de prueba</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>No puedes agregar **{0}** porque requiere que se agregue primero una de las siguientes plantillas: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>No puedes eliminar **{0}** porque se requiere para: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>o</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Agregar características</value>
@@ -797,5 +808,15 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Exclusions:</value>
   </data>
 </root>

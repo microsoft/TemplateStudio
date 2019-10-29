@@ -63,7 +63,7 @@ namespace TemplateValidator
 
         // We just use strings for tags. The template engine uses a converter but this is fine for testing purposes
         [ApiAnalysisMandatoryKeys("language", "type", "wts.type", "wts.platform")]
-        [ApiAnalysisOptionalKeys("wts.displayOrder", "wts.compositionOrder", "wts.frontendframework", "wts.backendframework", "wts.projecttype", "wts.version", "wts.genGroup", "wts.rightClickEnabled", "wts.compositionFilter", "wts.licenses", "wts.group", "wts.multipleInstance", "wts.dependencies", "wts.defaultInstance", "wts.export.baseclass", "wts.export.setter", "wts.isHidden", "wts.telemName", "wts.outputToParent", "wts.isGroupExclusiveSelection", "wts.requiredVsWorkload")]
+        [ApiAnalysisOptionalKeys("wts.displayOrder", "wts.compositionOrder", "wts.frontendframework", "wts.backendframework", "wts.projecttype", "wts.version", "wts.genGroup", "wts.rightClickEnabled", "wts.compositionFilter", "wts.licenses", "wts.group", "wts.multipleInstance", "wts.dependencies", "wts.requirements", "wts.exclusions", "wts.defaultInstance", "wts.export.baseclass", "wts.export.setter", "wts.isHidden", "wts.telemName", "wts.outputToParent", "wts.isGroupExclusiveSelection", "wts.requiredVsWorkload")]
         [JsonProperty("tags")]
         public IReadOnlyDictionary<string, string> TemplateTags { get; set; }
 

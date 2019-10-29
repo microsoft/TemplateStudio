@@ -13,6 +13,8 @@ namespace Microsoft.Templates.Test
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "TemplateValidation")]
+    [Trait("ExecutionSet", "_CIBuild")]
+    [Trait("ExecutionSet", "_Full")]
     public class FileEncodingTests
     {
         [Fact]

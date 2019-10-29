@@ -21,7 +21,7 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/license.txt)"
+    "wts.licenses": "[xUnit](https://raw.githubusercontent.com/xunit/xunit/master/LICENSE)"
   },
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
@@ -92,7 +92,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
-        "version" : "2.1.190606001",
+        "version" : "2.2.190917002",
         "projectPath": "Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
       "continueOnError": true

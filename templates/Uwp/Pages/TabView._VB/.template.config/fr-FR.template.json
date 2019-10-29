@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "La page d’affichage en onglets dispose d’une commande TabView pour afficher le contenu dans différents onglets.",
+    "identity": "wts.Page.TabView.VB"
+}

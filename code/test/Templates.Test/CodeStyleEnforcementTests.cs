@@ -15,6 +15,8 @@ namespace Microsoft.Templates.Test
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "TemplateValidation")]
+    [Trait("ExecutionSet", "_CIBuild")]
+    [Trait("ExecutionSet", "_Full")]
     public class CodeStyleEnforcementTests
     {
         // This is the relative path from where the test assembly will run from

@@ -8,11 +8,9 @@ Namespace Behaviors
         Public ReadOnly Property CollapseAllCommand As ICommand
 
         Public Sub New()
-            CollapseAllCommand = New RelayCommand(AddressOf OnCollapseAll)
-        End Sub
-
-        Private Sub OnCollapseAll()
-            CollapseNodes(AssociatedObject.RootNodes)
+            CollapseAllCommand = New RelayCommand(Sub()
+                    CollapseNodes(AssociatedObject.RootNodes)
+                End Sub)
         End Sub
 
         Private Sub CollapseNodes(nodes As IList(Of WinUI.TreeViewNode))

@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.TabView.Blank.WinUIResources.VB",
+  "identity": "Page.TabView.Blank.WinUIResources.VB",
+  "shortName": "Page.TabView.Blank.WinUIResources.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TabView.VB"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+  }
+}

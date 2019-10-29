@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "La página de vista de pestañas tiene un control TabView para mostrar el contenido en diferentes pestañas.",
+    "identity": "wts.Page.TabView.VB"
+}

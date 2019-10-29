@@ -139,7 +139,7 @@ namespace TemplateValidator
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
             // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.Prism", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB", "copyrightYear" };
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.Prism", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB", "copyrightYear", "wts.safeprojectName" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -210,6 +210,11 @@ namespace TemplateValidator
                     case "wts.dependencies":
                         // This value is checked with the TemplateFolderVerifier
                         break;
+                    case "wts.requirements":
+                        // This value is checked with the TemplateFolderVerifier
+                        break;
+                    case "wts.exclusions":
+                    // This value is checked with the TemplateFolderVerifier
                     case "wts.defaultInstance":
                         VerifyWtsDefaultinstanceTagValue(tag, results);
                         break;

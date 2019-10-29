@@ -12,8 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -50,7 +51,12 @@ namespace Microsoft.Templates.Test
 
         private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)
         {
-            var genIdentities = GetPagesAndFeaturesForMultiLanguageProjects().ToList();
+            var genIdentities = GetAllItemTemplateIdentites(projectType, framework);
+
+            foreach (var csOnly in GetTemplatesThatDoNotSupportVB())
+            {
+                genIdentities.Remove(csOnly);
+            }
 
             genIdentities.Add(extraIdentity);
 
@@ -67,6 +73,18 @@ namespace Microsoft.Templates.Test
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
+        }
+
+        private List<string> GetAllItemTemplateIdentites(string projectType, string framework)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                             .Where(t =>t.GetTemplateType().IsItemTemplate()
+                                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                                && t.GetFrontEndFrameworkList().Contains(framework)
+                                && t.GetPlatform() == Platforms.Uwp
+                                && !t.GetIsGroupExclusiveSelection())
+                             .Select(t => t.Identity)
+                             .ToList();
         }
 
         private static void EnsureAllEquivalentFileNamesAreUsed(string csResultPath, string vbResultPath)
@@ -169,6 +187,12 @@ namespace Microsoft.Templates.Test
 
             for (var i = 0; i < allVbFiles.Count; i++)
             {
+                if (allVbFiles[i].Name.Contains("CommandLineActivationHandler.vb"))
+                {
+                    // This file contains code samples in comments that have different numbers of lines
+                    continue;
+                }
+
                 var vbLines = File.ReadAllLines(allVbFiles[i].FullName);
                 var vbCommentLines = vbLines.Where(l => l.TrimStart().StartsWith("'", StringComparison.Ordinal)).ToArray();
                 var csLines = File.ReadAllLines(VbFileToCsEquivalent(allVbFiles[i].FullName));
@@ -176,8 +200,17 @@ namespace Microsoft.Templates.Test
 
                 if (vbCommentLines.Length != csCommentLines.Length)
                 {
-                    failures.Add(
-                        $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent. C# version has {csCommentLines.Length} while VB version has {vbCommentLines.Length}.");
+                    // Exception for comment which contains a sample code method.
+                    if (allVbFiles[i].Name == "Program.vb" && ((vbCommentLines.Length + 1) == csCommentLines.Length))
+                    {
+                        // Do not report this as difference is expected
+                    }
+                    else
+                    {
+                        failures.Add(
+                            $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent. C# version has {csCommentLines.Length} while VB version has {vbCommentLines.Length}.");
+                    }
+
                     continue;
                 }
 
@@ -258,6 +291,10 @@ namespace Microsoft.Templates.Test
                     {
                         "NavHelper.SetNavigateTo(navigationViewItem, GetType(MainViewModel).FullName)",
                         "NavHelper.SetNavigateTo(navigationViewItem, typeof(MainViewModel).FullName);"
+                    },
+                    {
+                        "Await Singleton(Of HubNotificationsService).Instance.InitializeAsync().ConfigureAwait(False)",
+                        "await Singleton<HubNotificationsService>.Instance.InitializeAsync().ConfigureAwait(false);"
                     }
                 };
 

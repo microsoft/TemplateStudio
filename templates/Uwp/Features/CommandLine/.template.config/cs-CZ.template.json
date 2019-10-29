@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Command Line Launch",
+  "description": "Podporuje předávání argumentů a spouštění z příkazového řádku.",
+  "identity": "wts.Feat.CommandLine"
+}

@@ -3,16 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -21,7 +17,8 @@ namespace Microsoft.Templates.Test
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
         private readonly string _emptyBackendFramework = string.Empty;
-        private string[] excludedTemplates = { };
+        //TODO: Remove once version 3.5 is released
+        private string[] excludedTemplates = { "wts.Feat.MultiView", "wts.Feat.MultiView.VB", "wts.Page.TabView", "wts.Page.TabView.VB", "wts.Page.TreeView", "wts.Page.TreeView.VB" };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
             : base(fixture)
@@ -31,6 +28,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {

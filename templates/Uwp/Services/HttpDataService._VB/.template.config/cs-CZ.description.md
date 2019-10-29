@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿Jednoduchá obálka (wrapper) pro základní funkce protokolu HTTP
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+Zahrnuje také jednoduché ukládání požadavků GET do mezipaměti, které je možné podle potřeb aplikace snadno odebrat nebo upravit.

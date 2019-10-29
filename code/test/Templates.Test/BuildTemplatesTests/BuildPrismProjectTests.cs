@@ -9,9 +9,6 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
-using Microsoft.Templates.Fakes;
-using Microsoft.Templates.Core.Gen;
-using System.Linq;
 using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Test
@@ -27,22 +24,14 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
-        {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
-        [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
-            _fixture.BuildSolution(projectName, projectPath, platform);
+
+            // Don't delete after build test as used in inference test, which will then delete.
+            AssertBuildProjectAsync(projectPath, projectName, platform, deleteAfterBuild: false);
 
             EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
         }
@@ -50,10 +39,22 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        [Trait("Type", "BuildRandomNames")]
+        public async Task BuildAllPagesAndFeaturesProjectNameValidationG1Async(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
+                && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -61,39 +62,22 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesThenRunTestsAsync(string projectType, string framework, string platform, string language)
+        [Trait("Type", "BuildRandomNames")]
+        public async Task BuildAllPagesAndFeaturesProjectNameValidationG2Async(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateAllPagesAndFeaturesAsync(projectType, framework, platform, language);
-
-            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationAsync(string projectType, string framework, string platform, string language)
-        {
-            // get first item from each exclusive selection group
-            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
-
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
-                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
+                && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
 
-            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -102,8 +86,10 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumPrism")]
+        [Trait("ExecutionSet", "_CIBuild")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithForcedLogin(string projectType, string framework, string platform, string language)
+        public async Task GenerateAllWithForcedLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -111,20 +97,46 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityOptionalLogin"
+                && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopF";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
         }
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumPrism")]
+        [Trait("ExecutionSet", "_CIBuild")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "CodeStyle")]
+        public async Task GenerateAllWithOptionalLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && t.GetFrontEndFrameworkList().Contains(framework)
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
+                || t.Identity == "wts.Feat.StyleCop";
+
+            var projectName = $"{projectType}{framework}MinStyleCopO";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
         {
@@ -134,7 +146,7 @@ namespace Microsoft.Templates.Test
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
-                && t.GroupIdentity != "wts.Service.IdentityForcedLogin"
+                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopO";
@@ -146,37 +158,8 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
-        [Trait("Type", "BuildRandomNames")]
-        [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildPrism")]
-        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
-        {
-            // get first item from each exclusive selection group
-            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
-                t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
-
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
-                && t.GetPlatform() == platform
-                && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
-                && !t.GetIsHidden();
-
-            var projectName = $"{ShortProjectType(projectType)}AllRandom";
-
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetRandomName);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
-        [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -190,12 +173,13 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsWithForcedLoginAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCF";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityOptionalLogin");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -203,12 +187,13 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
         [Trait("ExecutionSet", "BuildPrism")]
+        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsWithOptionalLoginAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRCO";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, "wts.Service.IdentityForcedLogin");
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -216,6 +201,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp)]
         [Trait("ExecutionSet", "BuildOneByOnePrism")]
+        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOnePrism")]
         public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

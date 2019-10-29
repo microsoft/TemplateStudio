@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Secured Web API",
+  "description": "包含可驗證 JWToken 的 ASP.NET Core Web API 專案。",
+  "identity": "wts.Service.SecuredWebApi"
+}

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Aggiungere servizi</value>
+    <value>Aggiungi servizi</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
@@ -126,11 +126,11 @@
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>L'elemento "{0}" fa già parte del progetto. Si prega di scegliere un altro servizio.</value>
+    <value>{0} fa già parte del progetto. Scegli un altro servizio.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>L'elemento "{0}" fa già parte del progetto. Scegliere un altro progetto di test.</value>
+    <value>{0} fa già parte del progetto. Scegli un altro progetto di test.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -166,23 +166,23 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>È stata modificata la selezione del tipo di progetto. I modelli selezionati andranno persi. Vuoi continuare?</value>
+    <value>Hai modificato la scelta del tipo di progetto. I modelli selezionati andranno persi. Vuoi continuare?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Aggiungi nuovo servizio annullato</value>
+    <value>Aggiunta nuovo servizio annullata</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Servizio "{0}" aggiunto correttamente</value>
+    <value>Servizio {0} aggiunto</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Aggiungi nuovo progetto di test annullato</value>
+    <value>Aggiunta nuovo progetto di test annullata</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Progetto di test "{0}" aggiunto correttamente</value>
+    <value>Progetto di test {0} aggiunto</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -200,6 +200,17 @@
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Nuovo progetto di test</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Impossibile aggiungere **{0}**. È prima necessario aggiungere uno dei seguenti modelli: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Impossibile rimuovere **{0}** perché è necessario per: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>o</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Aggiungi funzionalità</value>
@@ -797,5 +808,15 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Guarda la documentazione per l'aggiornamento.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requirements:</value>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Exclusions:</value>
   </data>
 </root>

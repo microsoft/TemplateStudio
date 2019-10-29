@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "Strona z widokiem kart ma kontrolkę TabView służącą do wyświetlania zawartości na różnych kartach.",
+    "identity": "wts.Page.TabView.VB"
+}

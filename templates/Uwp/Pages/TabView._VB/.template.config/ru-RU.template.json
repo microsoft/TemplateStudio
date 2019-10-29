@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "Страница представления вкладок содержит элемент управления TabView для отображения содержимого на различных вкладках.",
+    "identity": "wts.Page.TabView.VB"
+}

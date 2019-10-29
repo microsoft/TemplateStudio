@@ -35,6 +35,7 @@ namespace Microsoft.Templates.UI.Controls
         None,
         TemplatesSync,
         TemplatesSyncError,
+        AddTemplateValidation,
         RemoveTemplateValidation,
         RightClickItemHasNoChanges,
         ViewSufixValidation,

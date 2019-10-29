@@ -3,23 +3,21 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildCollection")]
     [Trait("ExecutionSet", "LongRunning")]
+    [Trait("ExecutionSet", "_Wack")]
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(BuildFixture fixture)
@@ -65,7 +63,7 @@ namespace Microsoft.Templates.Test
 
             Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
 
-            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.appxbundle", SearchOption.AllDirectories).First().FullName;
+            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.msixbundle", SearchOption.AllDirectories).First().FullName;
 
             // Run WACK test
             // NOTE. This requires elevation. If not elevated you'll get a UAC prompt

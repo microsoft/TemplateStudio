@@ -6,7 +6,7 @@ Namespace Activation
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
 
         ' See detailed documentation and samples about Web to App link
-        ' https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
+        ' https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking
         ' https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/
         '
         ' TODO WTS: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
