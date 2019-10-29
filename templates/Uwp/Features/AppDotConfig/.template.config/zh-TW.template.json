@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "App Config",
-  "description": "Adds an empty App.config file to the project.",
+  "description": "新增空白的 App.config 檔案到專案。",
   "identity": "wts.Feat.AppDotConfig"
 }

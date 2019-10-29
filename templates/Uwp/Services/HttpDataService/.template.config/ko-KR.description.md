@@ -1,3 +1,3 @@
-﻿A simple wrapper over basic HTTP functionality.
+﻿기본 HTTP 기능을 가진 간단한 래퍼입니다.
 
-Also include simple caching of GET requests that can easily be removed or modified based on the needs of the app.
+또한 앱의 요구에 따라 쉽게 제거하거나 수정할 수 있는 GET 요청의 간단한 캐싱도 포함됩니다.

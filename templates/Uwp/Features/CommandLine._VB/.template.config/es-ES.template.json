@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Command Line Launch",
-  "description": "Support passing arguments and launching from the command line.",
-  "identity": "wts.Feat.CommandLine.VB"
+    "author": "Microsoft Community",
+    "name": "Command Line Launch",
+    "description": "Admite el envío de argumentos y el lanzamiento desde la línea de comandos.",
+    "identity": "wts.Feat.CommandLine.VB"
 }

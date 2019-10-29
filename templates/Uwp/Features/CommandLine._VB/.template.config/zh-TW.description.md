@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿允許應用程式從命令列啟動以及處理傳遞給它的任何引數。

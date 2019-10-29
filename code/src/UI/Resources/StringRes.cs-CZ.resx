@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Přidat služeb</value>
+    <value>Přidat služby</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
@@ -126,11 +126,11 @@
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} je již součástí projektu. Zvolte jinou službu.</value>
+    <value>Služba {0} je už součástí vašeho projektu. Zvolte jinou službu.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} je již součástí projektu. Zvolte prosím jiný testovací projekt.</value>
+    <value>Testování {0} je už součástí vašeho projektu. Zvolte jiný testovací projekt.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Změnili jste výběr typu projektu. Vybrané šablony budou ztraceny. Chcete pokračovat?</value>
+    <value>Změnili jste svůj výběr typu projektu. Přijdete o šablony, které jste zvolili. Chcete pokračovat?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
@@ -178,11 +178,11 @@
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Přidat nový testovací projekt zrušen</value>
+    <value>Přidání nového testovacího projektu bylo zrušeno.</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testování projektu {0} bylo úspěšně přidáno.</value>
+    <value>Testovací projekt {0} byl úspěšně přidán.</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -200,6 +200,17 @@
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Nový testovací projekt</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Není možné přidat šablonu **{0}**, protože její přidání požaduje, aby byly nejprve přidány následující šablony: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Nelze odebrat šablonu **{0}**, protože je požadována pro: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>nebo</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Přidat funkce</value>
@@ -797,17 +808,6 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

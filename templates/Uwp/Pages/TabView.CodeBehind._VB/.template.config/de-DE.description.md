@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿Über das Steuerelement „TabView“ können mehrere Registerkarten und ihre jeweiligen Inhalte angezeigt werden. Registerkartensteuerelemente sind nützlich, um mehrere Seiten (oder Dokumente) von Inhalten anzuzeigen. Gleichzeitig können Benutzer neue Registerkarten neu anordnen, öffnen oder schließen.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[Weitere Informationen zum Steuerelement „TabView“](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

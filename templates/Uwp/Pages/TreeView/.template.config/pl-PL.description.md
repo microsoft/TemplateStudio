@@ -1,3 +1,3 @@
-﻿The tree-view page has a tree view control to show hierarchical content. When an item in the tree view is selected, it's details are shown in a details pane. This pattern is frequently used to show hierarchical relationship between items.
+﻿Strona z widokiem drzewa ma kontrolkę widoku drzewa służącą do wyświetlania zawartości hierarchicznej. Kiedy element w widoku drzewa jest wybrany, jego szczegóły są wyświetlane w okienku szczegółów. Ta strona jest często używana do wyświetlania zależności hierarchicznych między elementami.
 
-More information about the tree-view control can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).
+Więcej informacji na temat kontrolki widoku drzewa można znaleźć na stronie [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).

@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿Il controllo TabView consente di visualizzare un set di schede con il relativo contenuto. I controlli scheda sono utili per visualizzare diverse pagine (o documenti) di contenuto, offrendo al contempo all'utente la possibilità di riorganizzare, aprire o chiudere nuove schede.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[Scopri di più sul controllo TabView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)

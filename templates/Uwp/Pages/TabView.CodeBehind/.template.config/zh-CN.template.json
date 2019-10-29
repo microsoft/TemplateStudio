@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TabView",
-  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "description": "选项卡视图页面具有一个 TabView 控件，用于显示不同选项卡中的内容。",
   "identity": "wts.Page.TabView.CodeBehind"
 }

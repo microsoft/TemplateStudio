@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Command Line Launch",
-  "description": "Support passing arguments and launching from the command line.",
-  "identity": "wts.Feat.CommandLine.VB"
+    "author": "Microsoft Community",
+    "name": "Command Line Launch",
+    "description": "인수 전달 및 명령줄에서 실행을 지원합니다.",
+    "identity": "wts.Feat.CommandLine.VB"
 }

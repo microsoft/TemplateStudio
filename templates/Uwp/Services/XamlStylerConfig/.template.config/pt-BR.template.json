@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "XAML Styler Config",
-  "description": "Default XAML Styler config file.",
+  "description": "Arquivo de configuração padrão do XAML Styler.",
   "identity": "wts.Service.XAMLStyler"
 }

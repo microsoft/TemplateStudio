@@ -31,7 +31,7 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public ICommand MenuViewsMainCommand { get; }
+        public ICommand MenuViewsParam_HomeNameCommand { get; }
 
         public ShellViewModel(/*{[{*/INavigationService navigationService, IIdentityService identityService/*}]}*/)
         {
@@ -100,7 +100,7 @@ namespace Param_RootNamespace.ViewModels
                 }
                 else
                 {
-                    _menuNavigationService.UpdateView(PageTokens.MainPage);
+                    _menuNavigationService.UpdateView(PageTokens.Param_HomeNamePage);
                 }
             }
         }

@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿Permita que várias instâncias do aplicativo sejam iniciadas e controle se novas instâncias são iniciadas ou instâncias existentes são reutilizadas. Isso inclui código de espaço reservado para permitir que você controle se reutiliza uma instância existente ou abre uma nova quando o aplicativo é iniciado.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Esse recurso só terá efeito se seu aplicativo estiver sendo executado em um dispositivo de Área de Trabalho ou IoT (Internet das Coisas).
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+Observe que a [documentação oficial](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) tem notas específicas que você deve conhecer caso esteja usando [tarefas em segundo plano](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing), bem como [considerações gerais](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).

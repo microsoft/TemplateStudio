@@ -28,7 +28,7 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 Windows Template Studio approaches UWP app creation using the following six attribute sets:
 
 - **Project type**: First, how do you want your app's UI navigation to behave? We support four project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
-- **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support five common patterns: *code behind*, *basic MVVM*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
+- **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support five common patterns: *code behind*, *[basic MVVM](./docs/frameworks/mvvmbasic.md)*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
 - **App pages**: To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, tabbed, web view*), to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
 - **Windows 10 features**: Specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
 - **Services**: Connect to data services, setup identity logins for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
@@ -79,7 +79,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension logs [basic telemetry](docs/telemetry.md) regading what is selected in the wizard. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension logs [basic telemetry](docs/telemetry.md) regarding what is selected in the wizard. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 

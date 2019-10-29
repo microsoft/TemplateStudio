@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
-  "identity": "wts.Page.TreeView.CodeBehind.VB"
+    "author": "Microsoft",
+    "name": "TreeView",
+    "description": "Die Seite „Strukturansicht“ besitzt ein Strukturansicht-Steuerelement, um hierarchisch angeordnete Inhalte anzuzeigen.",
+    "identity": "wts.Page.TreeView.CodeBehind.VB"
 }
