@@ -20,6 +20,7 @@
     "wts.defaultInstance": "SecuredWebAPI",
     "wts.multipleInstance": "false",
     "wts.dependencies":"wts.Service.WebApi",
+    "wts.requirements":"wts.Service.IdentityOptionalLogin|wts.Service.IdentityForcedLogin",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.NetWeb",
     "wts.isHidden": "false",
     "wts.genGroup": "0",
