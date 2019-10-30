@@ -65,19 +65,56 @@
   <ItemGroup>
     <VSTemplate Include="CSharp.WPF.Solution.cs-CZ.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1029</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.de-DE.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.ru-RU.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.es-ES.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.fr-FR.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.it-IT.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.ja-JP.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.ko-KR.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.pl-PL.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.pt-BR.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.zh-CN.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.tr-TR.vstemplate" />
-    <VSTemplate Include="CSharp.WPF.Solution.zh-TW.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.de-DE.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1031</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.ru-RU.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1049</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.es-ES.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>3082</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.fr-FR.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1036</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.it-IT.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1040</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.ja-JP.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1041</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.ko-KR.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1042</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.pl-PL.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1045</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.pt-BR.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1046</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.zh-CN.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>2052</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.tr-TR.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1055</Culture>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.zh-TW.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+      <Culture>1028</Culture>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
