@@ -399,12 +399,12 @@ This allows generation of 1 gpostaction file per BackgroundTask selected and mer
 There are different merge directives to drive the code merging. Currently:
 
 - MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
-- MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
+- MacroStartGroup `//{[{` and MarcoEndGroup `//}]}`: The content between `{[{` and `}]}` is inserted. You can use `/*{[{*/` and `/*}]}*/` do do inline additions.
 - MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
 - MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
 - MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
 
-_The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`)_
+_The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`). For xml files (xaml, appxmanifest, resw, resx, config) use (`<!-- -->`).
 
 ### Merge Resource Dictionary PostActions
 

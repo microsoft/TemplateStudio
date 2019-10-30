@@ -10,4 +10,16 @@
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
   IgnorableNamespaces="uap mp genTemplate">
 
+  <Applications>
+      <uap:VisualElements
+<!--{--{-->
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+<!--}--}-->
+<!--{[{-->
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+          <uap5:MixedRealityModel Path="Assets\3dlogo.glb"/>
+        </uap:DefaultTile>
+<!--}]}-->
+      </uap:VisualElements>
+  </Applications>
 </Package>

@@ -53,8 +53,9 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public SettingsViewModel()
+        public SettingsViewModel(/*{[{*/IIdentityService identityService, IUserDataService userDataService/*}]}*/)
         {
+//^^
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;

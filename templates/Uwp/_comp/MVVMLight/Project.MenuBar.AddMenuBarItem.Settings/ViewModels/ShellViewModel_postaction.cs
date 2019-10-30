@@ -4,12 +4,12 @@
     {
         private IList<KeyboardAccelerator> _keyboardAccelerators;
 //^^
-// {[{
+//{[{
         private ICommand _menuFilewts.ItemNameCommand;
 //}]}
         private ICommand _menuFileExitCommand;
 //^^
-// {[{
+//{[{
         public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new RelayCommand(OnMenuFilewts.ItemName));
 
 //}]}
@@ -19,7 +19,7 @@
         {
         }
 //^^
-// {[{
+//{[{
         private void OnMenuFilewts.ItemName() => MenuNavigationHelper.OpenInRightPane(typeof(Views.wts.ItemNamePage));
 
 //}]}

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 //}]}
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class SchemeActivationSamplePage : Page
+    public sealed partial class SchemeActivationSamplePage /*{[{*/INotifyPropertyChanged/*}]}*/
     {
 //{[{
         public ObservableCollection<string> Parameters { get; } = new ObservableCollection<string>();

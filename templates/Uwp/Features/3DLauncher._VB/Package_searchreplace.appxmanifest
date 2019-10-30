@@ -1,5 +1,0 @@
-﻿<uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-^^^-searchabove-replacebelow-vvv
-<uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
-  <uap5:MixedRealityModel Path="Assets\3dlogo.glb"/>
-</uap:DefaultTile>
