@@ -63,6 +63,21 @@
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
+    <VSTemplate Include="CSharp.WPF.Solution.cs-CZ.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WPF.Solution.de-DE.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.ru-RU.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.es-ES.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.fr-FR.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.it-IT.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.ja-JP.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.ko-KR.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.pl-PL.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.pt-BR.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.zh-CN.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.tr-TR.vstemplate" />
+    <VSTemplate Include="CSharp.WPF.Solution.zh-TW.vstemplate" />
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
