@@ -15,7 +15,6 @@
     "wts.frontendframework": "all",
 	  "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
     "wts.defaultInstance": "SampleData",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
