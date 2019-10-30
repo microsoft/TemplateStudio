@@ -1,1 +1,1 @@
-﻿An empty app.config file.
+﻿Prázdný konfigurační soubor app.config

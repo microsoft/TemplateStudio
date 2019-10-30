@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Multiple views",
+  "description": "Permet à vos utilisateurs de voir des sections indépendantes de votre application dans des fenêtres distinctes.",
+  "identity": "wts.Wpf.Feat.MultiView"
+}

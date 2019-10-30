@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Hizmetler Ekle</value>
+    <value>Hizmet ekle</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Test Ekle</value>
+    <value>Test ekle</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçasıdır. Lütfen başka bir hizmet seçin.</value>
+    <value>{0} zaten projenizin bir parçası. Lütfen başka bir hizmet seçin.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçasıdır. Lütfen başka bir test projesi seçin.</value>
+    <value>{0} zaten projenizin bir parçası. Lütfen başka bir test projesi seçin.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>New project: Navigation step features</comment>
   </data>
   <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Hizmetleri</value>
+    <value>Hizmetler</value>
     <comment>New project: Navigation step services</comment>
   </data>
   <data name="NewProjectStepTesting" xml:space="preserve">
@@ -158,7 +158,7 @@
     <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Hizmetleri</value>
+    <value>Hizmetler</value>
     <comment>Services list header on project details</comment>
   </data>
   <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
@@ -166,11 +166,11 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Proje türü seçiminizi değiştirdiniz. Seçtiğiniz şablonlar kaybolur. Devam etmek istiyor musunuz?</value>
+    <value>Proje türü seçiminizi değiştirdiniz. Seçtiğiniz şablonlar kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Yeni hizmet iptal Ekle</value>
+    <value>Yeni hizmet ekleme işlemi iptal edildi</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
@@ -178,28 +178,39 @@
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Yeni test projesini iptal Ekle</value>
+    <value>Yeni test projesi ekleme işlemi iptal edildi</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>'{0}' sınama projesi başarıyla eklendi</value>
+    <value>{0} test projesi başarıyla eklendi</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Veri</value>
+    <value>Veriler</value>
     <comment>Group header for Data templates</comment>
   </data>
   <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Araçları</value>
+    <value>Araçlar</value>
     <comment>Group header for 'Tools' templates</comment>
   </data>
   <data name="NewItemTitleService" xml:space="preserve">
-    <value>Yeni servis</value>
+    <value>Yeni hizmet</value>
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Yeni test projesi</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Önce aşağıdaki şablonlardan birinin eklenmesini gerektirdiğinden **{0}** şablonunu ekleyemezsiniz: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Aşağıdakiler için gerekli olduğundan **{0}** şablonunu kaldıramazsınız. {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>veya</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Özellik ekle</value>
@@ -357,9 +368,13 @@
     <value>Yeni sayfa</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Yeni Evrensel Windows Platformu uygulaması</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Bu şablonlar bağımlı olduğundan **{0}** öğesini kaldıramazsınız: {1}</value>
@@ -797,17 +812,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

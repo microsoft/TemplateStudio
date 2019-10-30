@@ -10,6 +10,11 @@
     "summary": "Включает панель навигации (или \"меню-гамбургер\") для перехода между страницами."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Элементы навигации в верхней части позволяют быстро перемещаться между страницами."
@@ -18,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Добавленное меню позволяет перемещаться между страницами."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

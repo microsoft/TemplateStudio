@@ -1,0 +1,129 @@
+﻿<System.Windows.Controls.Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <System.Windows.Controls.Page.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Text="{Binding Symbol}"
+                    Style="{StaticResource MediumIconStyle}"
+                    Margin="{StaticResource XSmallLeftMargin}" />
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource ListTitleStyle}" Text="{Binding Company}" />
+                    <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{Binding Status}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DetailTemplate">
+            <ScrollViewer
+                Name="ForegroundElement"
+                HorizontalAlignment="Stretch">
+                <StackPanel HorizontalAlignment="Left" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock
+                            Text="{Binding Symbol}"
+                            Style="{StaticResource BigIconStyle}" />
+                        <TextBlock
+                            Margin="{StaticResource SmallLeftMargin}"
+                            VerticalAlignment="Center"
+                            Text="{Binding Company, Mode=OneWay}"
+                            Style="{StaticResource PageTitleStyle}" />
+                    </StackPanel>
+                    <StackPanel Margin="{StaticResource SmallTopMargin}">
+                        <TextBlock
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Status" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{Binding MasterMenuItem.Status, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="{StaticResource SmallTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Order date" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{Binding OrderDate, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="{StaticResource SmallTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Company" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{Binding Company, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="{StaticResource SmallTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Ship to" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{Binding ShipTo, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="{StaticResource SmallTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Order total" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{Binding OrderTotal, Mode=OneWay}" />
+
+                        <TextBlock
+                            Margin="{StaticResource MediumTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Note 1" />
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+
+                        <TextBlock
+                            Margin="{StaticResource SmallTopMargin}"
+                            Style="{StaticResource SubtitleTextStyle}"
+                            Text="Note 2" />
+                        <TextBlock
+                            Margin="{StaticResource MediumBottomMargin}"
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+    </System.Windows.Controls.Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="180" MaxWidth="300" Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Style="{StaticResource PageTitleStyle}"
+                Margin="{StaticResource MediumLeftMargin}"
+                Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding SampleItems}"
+                ItemTemplate="{StaticResource ItemTemplate}"
+                SelectedItem="{Binding Selected, Mode=TwoWay}" />
+        </Grid>
+        <ContentControl
+            Grid.Column="1"
+            Content="{Binding Selected}"
+            ContentTemplate="{StaticResource DetailTemplate}" />
+    </Grid>
+</System.Windows.Controls.Page>

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Theme Selection",
+  "description": "Ergänzt Ihre Anwendung mit Designunterstützung.",
+  "identity": "wts.Wpf.Feat.ThemeSelection"
+}

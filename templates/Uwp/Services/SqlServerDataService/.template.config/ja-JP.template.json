@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "SQL Server Data",
-  "description": "Get data from SQL Server to use in the app.",
+  "description": "アプリで使用するデータを SQL Server から取得します。",
   "identity": "wts.Service.SqlServerDataService"
 }

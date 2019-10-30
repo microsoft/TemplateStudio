@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched and control whether new instances are launched or existing instances are reused. This includes placeholder code to allow you to control whether to re-use an existing instance or open a new one when the app is launched.
+﻿アプリの複数のインスタンスの起動を許可し、新しいインスタンスを起動するか、既存のインスタンスを再利用するかをコントロールします。これには、アプリの起動時に既存のインスタンスを再利用するか、新しいインスタンスを開くかをコントロールできるプレースホルダ コードが含まれます。
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+この機能は、アプリがデスクトップまたはモノのインターネット (IoT) デバイス上で実行されている場合にのみ有効です。
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+[公式ドキュメント] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp) には、[一般的な考慮事項] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations) だけでなく、[バックグラウンド タスク] (https://docs.microsoft.com/ja-jp/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) を使用している場合に注意すべき具体的な注意事項が記載されています。

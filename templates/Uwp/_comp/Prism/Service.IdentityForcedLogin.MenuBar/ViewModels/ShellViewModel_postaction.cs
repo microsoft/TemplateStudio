@@ -42,13 +42,14 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        public ShellViewModel(/*{[{*/IIdentityService identityService/*}]}*/)
         {
 //^^
 //{[{
             _identityService = identityService;
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
 //}]}
+            MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
         public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
         {

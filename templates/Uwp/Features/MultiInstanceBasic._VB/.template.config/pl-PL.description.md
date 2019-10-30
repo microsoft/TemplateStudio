@@ -1,5 +1,5 @@
-﻿Allow multiple instances of the app to be launched. This version will always create a new instance of the app each time it is launched.
+﻿Zezwalaj na uruchamianie wielu instancji aplikacji. Ta wersja będzie zawsze tworzyć nowe instancje aplikacji przy każdym uruchomieniu.
 
-This feature will only have an affect if your app is running on a Desktop or Internet of Things (IoT) device.
+Ta funkcja działa tylko wtedy, gdy aplikacja jest uruchomiona na urządzeniu typu Desktop lub Internet of Things (IoT).
 
-Please note that the [official documentation](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) has specific notes you should be aware of if you are using [background tasks](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) as well as [general considerations](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).
+Uwaga: [oficjalny dokument](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp) zawiera szczegółowe uwagi, o których należy pamiętać podczas używania [zadań w tle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#background-tasks-and-multi-instancing) jak również [uwagi ogólne](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/multi-instance-uwp#additional-considerations).

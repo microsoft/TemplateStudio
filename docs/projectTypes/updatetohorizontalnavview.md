@@ -8,9 +8,9 @@ Windows UI library requires 17763 as target version in the project.
 
 ![Partial screenshot of project properties dialog showing targeting configuration](../resources/project-types/fu-min-oct19-target.png)
 
-## 2. Add the Nuget package reference
+## 2. Add the NuGet package reference
 
-Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
+Add the Windows UI Library NuGet Package Reference (Microsoft.UI.Xaml):
 
 ![screenshot of NuGet Package Manager showing the 'Microsoft.UI.Xaml' package](../resources/project-types/winui-nugetpackage.png)
 
@@ -51,7 +51,7 @@ private UIElement CreateShell()
 
 Remove the code to manage back navigation from ActivationService, this code will later be added to the ShellPage.
 
-### C# code you will have to remove:
+### C# code you will have to remove
 
 - `KeyboardAccelerator` static members.
 - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `ActivationService_BackRequested` and `Frame_Navigated` methods.
@@ -307,11 +307,11 @@ namespace YourAppName.Helpers
 }
 ```
 
-**Note:** If your project hasn´t settings page, set `IsSettingsVisible="True"` in ShellPage.xaml and delete Settings page code in ShellViewModel.cs.
+**Note:** If your project hasn't settings page, set `IsSettingsVisible="True"` in ShellPage.xaml and delete Settings page code in ShellViewModel.cs.
 
 ## 9. Update AppxManifest
 
-Open Package.appxmanifest file in your project with: Open With... -> XML (Text) Editor. Locate the `genTemplate:Metadata` section and ppdate projectType value from TabbedPivot to TabbedNav.
+Open Package.appxmanifest file in your project with: Open With... -> XML (Text) Editor. Locate the `genTemplate:Metadata` section and update projectType value from TabbedPivot to TabbedNav.
 
 ```xml
 <genTemplate:Metadata>

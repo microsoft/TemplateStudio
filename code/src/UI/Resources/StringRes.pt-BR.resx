@@ -126,11 +126,11 @@
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} já faz parte do seu projeto. Por favor, escolha outro serviço.</value>
+    <value>{0} já faz parte do projeto. Escolha outro serviço.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} já faz parte do seu projeto. Por favor, escolha outro projeto de teste.</value>
+    <value>{0} já faz parte do projeto. Escolha outro projeto de testes.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -166,11 +166,11 @@
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Você alterou a seleção de tipo de projeto. Os modelos selecionados serão perdidos. Você quer continuar?</value>
+    <value>Você alterou a seleção de tipo de projeto. Os modelos selecionados serão perdidos. Deseja continuar?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Adicionar novo serviço cancelado</value>
+    <value>Adição de novo serviço cancelada</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
@@ -178,11 +178,11 @@
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Adicionar novo projeto de teste cancelado</value>
+    <value>Adição de novo projeto de testes cancelada</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Testando o projeto {0} adicionado com êxito</value>
+    <value>Projeto de testes {0} adicionado com êxito</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -200,6 +200,17 @@
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Novo projeto de teste</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Você não pode adicionar **{0}** porque é necessário que um dos seguintes modelos seja adicionado primeiro: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Você não pode remover **{0}** porque ele é necessário para: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>ou</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Adicionar recursos</value>
@@ -357,9 +368,13 @@
     <value>Nova página</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Novo aplicativo da Plataforma Universal do Windows</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Você não pode remover **{0}** porque estes modelos dependem dele: {1}</value>
@@ -797,17 +812,6 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Consulte a documentação para atualização.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

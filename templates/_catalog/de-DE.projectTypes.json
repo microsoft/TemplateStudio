@@ -10,6 +10,11 @@
     "summary": "Um zwischen den Seiten navigieren zu können, ist ein Navigationsbereich („Hamburger-Menü“) enthalten."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigationselemente oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten."
@@ -18,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Für die Navigation zwischen Seiten wurde ein Menü hinzugefügt."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

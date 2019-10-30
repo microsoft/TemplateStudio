@@ -1,3 +1,3 @@
-﻿The tree-view page has a tree view control to show hierarchical content. When an item in the tree view is selected, it's details are shown in a details pane. This pattern is frequently used to show hierarchical relationship between items.
+﻿Stránka stromového zobrazení obsahuje ovládací prvek stromového zobrazení, který umožňuje zobrazení hierarchicky řazeného obsahu. Po výběru položky ve stromovém zobrazení se její podrobnosti zobrazí v podokně podrobností. Tento ovládací prvek se často používá k zobrazování hierarchického vztahu mezi položkami.
 
-More information about the tree-view control can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).
+Další informace o ovládacím prvku stromového zobrazení najdete na stránce [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view).

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "HTTP Data Service",
-  "description": "Access content over HTTP.",
+  "description": "HTTP로 콘텐츠에 액세스합니다.",
   "identity": "wts.Service.HttpDataService"
 }

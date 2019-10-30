@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "TabView",
-  "description": "The tab view page has a TabView control to show contents in different tabs.",
+  "description": "탭 보기 페이지에는 다른 탭에서 콘텐츠를 표시하는 TabView 컨트롤이 있습니다.",
   "identity": "wts.Page.TabView.CodeBehind"
 }

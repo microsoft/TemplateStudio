@@ -122,15 +122,15 @@
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
-    <value>Ajouter des tests</value>
+    <value>Ajouter un test</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} fait déjà partie de votre projet. S'il vous plaît choisir un autre service.</value>
+    <value>{0} fait déjà partie de votre projet. Veuillez sélectionner un autre service.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} fait déjà partie de votre projet. S'il vous plaît choisir un autre projet de test.</value>
+    <value>{0} fait déjà partie de votre projet. Veuillez sélectionner un autre projet de test.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>New project: Navigation step services</comment>
   </data>
   <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Projet d'essai</value>
+    <value>Test</value>
     <comment>New project: Navigation step testing</comment>
   </data>
   <data name="NewProjectStepProjectType" xml:space="preserve">
@@ -162,27 +162,27 @@
     <comment>Services list header on project details</comment>
   </data>
   <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Projet d'essai</value>
+    <value>Test</value>
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Vous avez modifié votre sélection de type de projet. Les modèles que vous avez sélectionnés seront perdus. Voulez-vous continuer?</value>
+    <value>Vous avez modifié votre sélection de type de projet. Les modèles que vous avez sélectionnés seront perdus. Voulez-vous poursuivre ?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Ajouter un nouveau service annulé</value>
+    <value>Annulation de l’ajout d’un nouveau service</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Service '{0}' ajouté avec succès</value>
+    <value>Le service {0} a bien été ajouté</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
-    <value>Ajouter un nouveau projet de test annulé</value>
+    <value>Annulation de l’ajout d’un nouveau projet de test</value>
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Projet d'essai '{0}' ajouté avec succès</value>
+    <value>Le projet de test {0} a bien été ajouté</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
@@ -200,6 +200,17 @@
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Nouveau projet de test</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Vous ne pouvez pas ajouter **{0}** car cela nécessite l’ajout préalable d’un des modèles suivants : {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Vous ne pouvez pas supprimer **{0}** parce qu’il est requis pour : {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>ou</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Ajouter des fonctionnalités</value>
@@ -357,9 +368,13 @@
     <value>Nouvelle page</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nouvelle application Plateforme Windows universelle</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Vous ne pouvez pas supprimer **{0}** parce que ces modèles en dépendent : {1}</value>
@@ -797,17 +812,6 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

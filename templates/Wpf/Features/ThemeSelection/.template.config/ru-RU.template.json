@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Theme Selection",
+  "description": "Добавляет поддержку настройки тем в приложение.",
+  "identity": "wts.Wpf.Feat.ThemeSelection"
+}

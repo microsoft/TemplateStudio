@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "TreeView",
-  "description": "The tree-view page has a tree view control to show hierarchical content.",
-  "identity": "wts.Page.TreeView.CodeBehind.VB"
+    "author": "Microsoft",
+    "name": "TreeView",
+    "description": "La page d’affichage en arborescence permet d’afficher le contenu selon une classification hiérarchique.",
+    "identity": "wts.Page.TreeView.CodeBehind.VB"
 }

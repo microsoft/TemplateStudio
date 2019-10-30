@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Command Line Launch",
-  "description": "Support passing arguments and launching from the command line.",
+  "description": "支持从命令行传递参数和启动。",
   "identity": "wts.Feat.CommandLine"
 }

@@ -7,7 +7,7 @@
 - [Understanding the authentication flow](#understanding-the-authentication-flow)
   - [Silent LogIn](#silent-login)
   - [Interactive LogIn](#interactive-login)
-- [Further resticting access to authorized users](#further-resticting-access-to-authorized-users)
+- [Further restricting access to authorized users](#further-restricting-access-to-authorized-users)
 - [Understanding the code](#understanding-the-code)
   - [Forced Login code](#forced-login-code)
   - [Optional Login code](#optional-login-code)
@@ -19,7 +19,7 @@
 
 The Identity features add user authentication to your app and enable you to restrict your app (Forced Login) or provide restricted content (Optional Login) to authenticated users.
 
-Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) nuget package to authenticate the user using Azure Active Directory.
+Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) NuGet package to authenticate the user using Azure Active Directory.
 
 Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. This info is displayed on the Navigation View (for project types Navigation Pane and Horizontal Navigation Pane), and also on the SettingsPage that also allows the user to log out.
 
@@ -58,7 +58,7 @@ The following graphics explain the silent and interactive login process:
 
 ![Interactive Silent Login](../resources/identity/identity-interactive-login.png)
 
-## Further resticting access to authorized users
+## Further restricting access to authorized users
 
 If you want to further restrict app access, the IdentityService provides a method called IsAuthorized() where you can include further authorization checks (i.e. check permissions in a database).
 
@@ -68,7 +68,7 @@ In Forced Login apps unauthorized users cannot log into the app, in Optional Log
 
 ### IdentityService (Core project)
 
-This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL Nuget library to connect with Azure Active Directory. The app includes a ClientID that is for testing purposes only. It has to be replaced by a new one before going to production following the steps provided in https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The app includes a ClientID that is for testing purposes only. It has to be replaced by a new one before going to production following the steps provided in https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 
 ### MicrosoftGraphService (Core project)
 
@@ -88,7 +88,7 @@ If the app is activated from activations other than LaunchActivation (for exampl
 
 Optional login allows the user to log in from the SettingsPage and the NavigationView (if available).
 
-To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attibute to the page and limit its visiblity on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
+To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attribute to the page and limit its visibility on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
 
 #### 1. Add the **Restricted** Attribute to the Views CodeBehind code
 

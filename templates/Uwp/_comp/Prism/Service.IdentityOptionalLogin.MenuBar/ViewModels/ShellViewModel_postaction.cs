@@ -31,15 +31,17 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
 
-        public ICommand MenuViewsMainCommand { get; }
+        public ICommand MenuViewsParam_HomeNameCommand { get; }
 
-        public ShellViewModel(IMenuNavigationService menuNavigationService)
+        public ShellViewModel(/*{[{*/INavigationService navigationService, IIdentityService identityService/*}]}*/)
         {
             _menuNavigationService = menuNavigationService;
+//^^
 //{[{
             _navigationService = navigationService;
             _identityService = identityService;
 //}]}
+            MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
 
         public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
@@ -98,7 +100,7 @@ namespace Param_RootNamespace.ViewModels
                 }
                 else
                 {
-                    _menuNavigationService.UpdateView(PageTokens.MainPage);
+                    _menuNavigationService.UpdateView(PageTokens.Param_HomeNamePage);
                 }
             }
         }

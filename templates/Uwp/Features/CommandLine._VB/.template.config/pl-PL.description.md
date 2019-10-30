@@ -1,1 +1,1 @@
-﻿Allow the app to be launched from the command line and handle any arguments passed to it.
+﻿Zezwól aplikacji na uruchamianie z wiersza polecenia i obsługiwanie dowolnych argumentów wysyłanych do niej.

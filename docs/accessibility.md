@@ -11,7 +11,7 @@ For more info, read the [accessibility overview](https://docs.microsoft.com/wind
 - Keyboard activation of interactive controls can be accomplished. Enter key invokes default action. Spacebar activates the control which has focus.
 - Keyboard shortcuts work & are documented.
 
-## Accesible Names and Narrator
+## Accessible Names and Narrator
 
 - Check if all interactive UI elements set the accessible name. ([More info](https://docs.microsoft.com/windows/uwp/accessibility/basic-accessibility-information))
 - Narrator has been run to verify E2E programmatic access. ([See Narrator user guide](https://support.microsoft.com/en-us/help/22798/windows-10-narrator-get-started))

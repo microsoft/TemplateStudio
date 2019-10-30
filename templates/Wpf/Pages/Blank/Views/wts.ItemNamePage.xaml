@@ -1,0 +1,29 @@
+﻿<System.Windows.Controls.Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Margin="{StaticResource MediumLeftMargin}"
+            Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
+        <Grid
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <!--
+            The Mahapps Gray10 color represents where you should place your content.
+            Place your content here.
+            -->
+        </Grid>
+    </Grid>
+</System.Windows.Controls.Page>

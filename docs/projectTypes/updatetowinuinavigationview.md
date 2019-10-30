@@ -7,7 +7,7 @@ Switch from NavigationView to WinUI.NavigationView is not a drop-in replacement,
 - [Framework: MVVMBasic, Language: C#](./fromnavigationviewtowinui/mvvmbasic-cs.md)
 - [Framework: MVVMLight, Language: C#](./fromnavigationviewtowinui/mvvmlight-cs.md)
 - [Framework: CodeBehind, Language: C#](./fromnavigationviewtowinui/codebehind-cs.md)
-- [Framework: CaliburMicro, Language: C#](./fromnavigationviewtowinui/caliburn-cs.md)
+- [Framework: CaliburnMicro, Language: C#](./fromnavigationviewtowinui/caliburn-cs.md)
 - [Framework: Prism, Language: C#](./fromnavigationviewtowinui/prism-cs.md)
 - [Framework: MVVMBasic, Language: VB](./fromnavigationviewtowinui/mvvmbasic-vb.md)
 - [Framework: MVVMLight, Language: VB](./fromnavigationviewtowinui/mvvmlight-vb.md)

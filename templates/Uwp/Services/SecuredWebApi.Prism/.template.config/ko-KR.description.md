@@ -1,7 +1,7 @@
-﻿This template will add a ASP.NET Core Web API that validates the JWToken passed by the UWP application.
+﻿이 템플릿은 UWP 애플리케이션에서 전달된 JWToken을 검증하는 ASP.NET 코어 웹 API를 추가합니다.
 
-The protection ensures that the API can only be called by:
+보호는 API가 다음 방법으로만 호출될 수 있도록 합니다.
 
-* Applications that on behalf of the user request the right scopes.
-* Users that have the right application roles.
+* 사용자를 대신하여 올바른 범주를 요청하는 애플리케이션입니다.
+* 올바른 애플리케이션 역할을 가진 사용자입니다.
 

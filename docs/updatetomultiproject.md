@@ -1,4 +1,4 @@
-# Update from single project to multiproject solution
+# Update from single project to multi-project solution
 
 If you created your project with version 1.x or 2.x of WinTS and have no core project please follow these steps to add a .NET Standard core project to your solution.
 
@@ -22,9 +22,9 @@ From the context menu of your Uwp project choose "Add -> Reference" and check th
 
 After adding the reference, save your changes.
 
-## 3. Move platform independant logic to the core project
+## 3. Move platform independent logic to the core project
 
-There are some classes and nuget packages that were created in the Uwp project in version 1.x/2.x and now have been moved to the core project. If you find them in your project, move them manually to the core project. Remember to adapt the namespaces too.
+There are some classes and NuGet packages that were created in the Uwp project in version 1.x/2.x and now have been moved to the core project. If you find them in your project, move them manually to the core project. Remember to adapt the namespaces too.
 
 Classes that should be moved to the core project are:
 
@@ -32,10 +32,10 @@ Classes that should be moved to the core project are:
 - Helpers/Singleton.cs
 - Models/DataPoint.cs
 - Models/SampleImage.cs
-- Models/SamleOrder.cs
+- Models/SampleOrder.cs
 - Services/SampleDataService.cs
 
-Nuget Packages that should be moved to the core project are:
+NuGet Packages that should be moved to the core project are:
 
 - Newtonsoft.json
 

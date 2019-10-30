@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Theme Selection",
+  "description": "Dodaje obsługę motywów do aplikacji.",
+  "identity": "wts.Wpf.Feat.ThemeSelection"
+}

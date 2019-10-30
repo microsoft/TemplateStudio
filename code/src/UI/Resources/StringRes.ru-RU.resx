@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddServiceTitle" xml:space="preserve">
-    <value>Добавление услуг</value>
+    <value>Добавление служб</value>
     <comment>AddService title on AddServicePage</comment>
   </data>
   <data name="AddTestingTitle" xml:space="preserve">
@@ -126,11 +126,11 @@
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} уже является частью вашего проекта. Пожалуйста, выберите другую услугу.</value>
+    <value>{0} уже является частью проекта. Выберите другую службу.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} уже является частью вашего проекта. Пожалуйста, выберите другой проект тестирования.</value>
+    <value>{0} уже является частью проекта. Выберите другой проект тестирования.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
@@ -138,11 +138,11 @@
     <comment>New project: Navigation step features</comment>
   </data>
   <data name="NewProjectStepServices" xml:space="preserve">
-    <value>Услуги</value>
+    <value>Службы</value>
     <comment>New project: Navigation step services</comment>
   </data>
   <data name="NewProjectStepTesting" xml:space="preserve">
-    <value>Тестирования</value>
+    <value>Тестирование</value>
     <comment>New project: Navigation step testing</comment>
   </data>
   <data name="NewProjectStepProjectType" xml:space="preserve">
@@ -158,23 +158,23 @@
     <comment>New project: Navigation step design pattern</comment>
   </data>
   <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Услуги</value>
+    <value>Службы</value>
     <comment>Services list header on project details</comment>
   </data>
   <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Тестирования</value>
+    <value>Тестирование</value>
     <comment>Testing list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>Вы изменили выбор типа проекта. Выбранные шаблоны будут потеряны. Вы хотите продолжить?</value>
+    <value>Вы изменили выбранный тип проекта. Это приведет к потере выбранных шаблонов. Продолжить?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
-    <value>Добавить новый сервис отменен</value>
+    <value>Добавление новой службы отменено</value>
     <comment>Status bar message for Add new service cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
-    <value>Служба {0} успешно добавлена</value>
+    <value>Служба {0} добавлена</value>
     <comment>Status bar message for Service successfully added, {0}: Service name</comment>
   </data>
   <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
@@ -182,11 +182,11 @@
     <comment>Status bar message for Add new testing project cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
-    <value>Успешно добавленпроект тестирования '{0}'</value>
+    <value>Проект тестирования {0} добавлен</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
   <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>данные</value>
+    <value>Данные</value>
     <comment>Group header for Data templates</comment>
   </data>
   <data name="TemplateGroup_Tools" xml:space="preserve">
@@ -194,12 +194,23 @@
     <comment>Group header for 'Tools' templates</comment>
   </data>
   <data name="NewItemTitleService" xml:space="preserve">
-    <value>Новая услуга</value>
+    <value>Новая служба</value>
     <comment>New item: new service title</comment>
   </data>
   <data name="NewItemTitleTesting" xml:space="preserve">
     <value>Новый проект тестирования</value>
     <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Вы не можете добавить **{0}**, так как для этого сначала необходимо добавить один из следующих шаблонов: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Невозможно удалить **{0}**, так как он необходим для: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>или</value>
   </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Добавить компоненты</value>
@@ -357,9 +368,13 @@
     <value>Новая страница</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Новое приложение универсальной платформы Windows</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Невозможно удалить **{0}**, так как от него зависят следующие шаблоны: {1}</value>
@@ -797,17 +812,6 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>You can not add **{0}** because it is requires one of the following templates to be added first: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
-  </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>or</value>
   </data>
   <data name="TemplateDetailsRequirements" xml:space="preserve">
     <value>Requirements:</value>

@@ -1,0 +1,86 @@
+﻿<System.Windows.Controls.Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="clr-namespace:Param_RootNamespace.Converters"
+    xmlns:models="clr-namespace:Param_RootNamespace.Models"
+    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <System.Windows.Controls.Page.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="models:AppTheme" />
+    </System.Windows.Controls.Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
+        <StackPanel
+            x:Name="ContentArea"
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}">
+
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource SubtitleTextStyle}"
+                Text="{x:Static strings:Resources.wts.ItemNamePagePersonalizationTitle}" />
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <TextBlock
+                    Style="{StaticResource BodyTextStyle}"
+                    Text="{x:Static strings:Resources.wts.ItemNamePageChooseThemeText}" />
+                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                    <RadioButton
+                        GroupName="AppTheme"
+                        Content="{x:Static strings:Resources.wts.ItemNamePageRadioButtonLightTheme}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Light" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                    <RadioButton
+                        GroupName="AppTheme"
+                        Content="{x:Static strings:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
+                        Margin="{StaticResource XSmallTopMargin}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Dark" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource SubtitleTextStyle}"
+                Text="{x:Static strings:Resources.wts.ItemNamePageAboutTitle}" />
+            <TextBlock
+                Text="{Binding VersionDescription, Mode=OneWay}"
+                Margin="{StaticResource XSmallTopMargin}"
+                Style="{StaticResource BodyTextStyle}" />
+            <TextBlock
+                Margin="{StaticResource XSmallTopMargin}"
+                Style="{StaticResource BodyTextStyle}"
+                Text="{x:Static strings:Resources.wts.ItemNamePageAboutText}" />
+
+            <TextBlock Margin="{StaticResource SmallTopMargin}">
+                <Hyperlink Command="{Binding PrivacyStatementCommand}">
+                    <TextBlock
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Static strings:Resources.wts.ItemNamePagePrivacyStatementText}" />
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</System.Windows.Controls.Page>

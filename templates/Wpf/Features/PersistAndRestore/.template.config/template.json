@@ -1,0 +1,43 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": ["Universal"],
+    "name": "Persist And Restore",
+    "shortName": "Persist And Restore",
+    "groupIdentity": "wts.Wpf.Feat.PersistAndRestore",
+    "identity": "wts.Wpf.Feat.PersistAndRestore",
+    "description": "Persist And Restore helps simplify storing data inside User Local AppData folder.",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "feature",
+      "wts.projecttype": "all",
+      "wts.frontendframework": "all",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.displayOrder": "2",
+      "wts.group": "UserInteraction",
+      "wts.defaultInstance": "PersistAndRestore",
+      "wts.multipleInstance": "false",
+      "wts.genGroup": "0",
+      "wts.rightClickEnabled":"true"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "configtype":{
+        "type": "parameter",
+        "replaces": "Param_ConfigType"
+      },
+      "configvalue":{
+        "type": "parameter",
+        "replaces": "Param_ConfigValue"
+      }
+    }
+  }

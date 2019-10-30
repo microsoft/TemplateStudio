@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Theme Selection",
+  "description": "將佈景主題支援加入到您的應用程式。",
+  "identity": "wts.Wpf.Feat.ThemeSelection"
+}

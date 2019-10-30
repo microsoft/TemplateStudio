@@ -122,7 +122,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false",                      //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
-    "wts.outputToParent": "true",                 //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
+    "wts.outputToParent": "true",                 //If set to 'true' then this will be generated one folder above the usual output folder. Use Param_ProjectName to compose                                                      folder names
     "wts.casing.sourceName":"kebab|camel|pascal", // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.sourceName.casing.kebab)
     "wts.casing.rootNamespace":"kebab|camel|pascal" // Allows to add casing variations from templates sourceName to parameters ( corresponding parameter name will be wts.rootNamespace.casing.kebab)
   },
@@ -280,7 +280,7 @@ Currently we support the following types of [Post-Actions](../code/src/Core/Post
 
 - Defined by the template:
   - **Add Reference To Project** this post-action is executed to add a reference from one project to another project.
-  - **Add Nuget Reference To Project**: this post-action is executed to add a nuget reference to the project.
+  - **Add Nuget Reference To Project**: this post-action is executed to add a NuGet reference to the project.
   - **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
 
 - Other postactions:
@@ -399,12 +399,12 @@ This allows generation of 1 gpostaction file per BackgroundTask selected and mer
 There are different merge directives to drive the code merging. Currently:
 
 - MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
-- MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
+- MacroStartGroup `//{[{` and MarcoEndGroup `//}]}`: The content between `{[{` and `}]}` is inserted. You can use `/*{[{*/` and `/*}]}*/` do do inline additions.
 - MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored.
 - MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
 - MacroStartOptionalContext `{??{` and MacroEndOptionalContext `}??}`: The content between `{??{` and `}??}` is optional, if the line is not found the next line is taken as context line.
 
-_The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`)_
+_The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`). For xml files (xaml, appxmanifest, resw, resx, config) use (`<!-- -->`).
 
 ### Merge Resource Dictionary PostActions
 

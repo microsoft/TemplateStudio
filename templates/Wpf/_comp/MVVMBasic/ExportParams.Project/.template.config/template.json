@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMBasic.ExportParams.Project",
+    "shortName": "wts.Wpf.MVVMBasic.ExportParams.Project",
+    "identity": "wts.Wpf.MVVMBasic.ExportParams.Project",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == project",
+      "wts.export.baseclass": "Observable",
+      "wts.export.setter": "Set",
+      "wts.export.commandclass": "RelayCommand",
+      "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

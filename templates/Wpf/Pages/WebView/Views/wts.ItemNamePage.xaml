@@ -1,0 +1,82 @@
+﻿<System.Windows.Controls.Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:communityToolkit="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <communityToolkit:WebView
+            x:Name="webView"
+            Source="{Binding Source}"
+            NavigationCompleted="OnNavigationCompleted"/>
+        <Grid
+            VerticalAlignment="Bottom"
+            Grid.Row="1"
+            Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button
+                    Command="{Binding BrowserBackCommand}"
+                    Style="{StaticResource WebViewButtonStyle}"
+                    ToolTip="{x:Static strings:Resources.wts.ItemNamePageBackButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE72B;" />
+                </Button>
+                <Button
+                    Command="{Binding BrowserForwardCommand}"
+                    Style="{StaticResource WebViewButtonStyle}"
+                    ToolTip="{x:Static strings:Resources.wts.ItemNamePageForwardButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE72A;" />
+                </Button>
+            </StackPanel >
+
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Style="{StaticResource BodyTextStyle}"
+                Margin="{StaticResource SmallLeftMargin}"
+                Visibility="{Binding IsLoadingVisibility}"
+                Text="{x:Static strings:Resources.wts.ItemNamePageLoadingText}" />
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Style="{StaticResource BodyTextStyle}"
+                Margin="{StaticResource SmallLeftMargin}"
+                Visibility="{Binding FailedMesageVisibility}"
+                Text="{x:Static strings:Resources.wts.ItemNamePageFaildedMessage}" />
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button
+                    Command="{Binding RefreshCommand}"
+                    Style="{StaticResource WebViewButtonStyle}"
+                    ToolTip="{x:Static strings:Resources.wts.ItemNamePageRefreshButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE72C;" />
+                </Button>
+                <Button
+                    Command="{Binding OpenInBrowserCommand}"
+                    Style="{StaticResource WebViewButtonStyle}"
+                    ToolTip="{x:Static strings:Resources.wts.ItemNamePageOpenInBrowserButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE774;" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</System.Windows.Controls.Page>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
-        Height="480" Width="960" 
+        Height="600" Width="1200" 
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -28,71 +28,88 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <StackPanel Margin="12,12,12,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBlock>
-                                <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
-                                    <TextBlock Text="New Uwp C# project..."/>
-                                </Hyperlink>
-                            </TextBlock>
-                            <TextBlock>
-                                <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
-                                    <TextBlock Text="New Uwp VB project..."/>
-                                </Hyperlink>
-                            </TextBlock>
+                <Grid Margin="12,12,12,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Universal Windows Platform" FontWeight="Bold" FontSize="12" />
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink x:Name="newCSharpUwpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
+                                <TextBlock Text="New project C#"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
+                                <TextBlock Text="New project VB"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding AnalyzeCSharpSelectionCommand}">
+                                <TextBlock Text="Analyze C#"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding AnalyzeVisualBasicSelectionCommand}">
+                                <TextBlock Text="Analyze VB"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding LoadProjectCommand}">
+                                <TextBlock Text="Load project..."/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Windows Presentation Foundation" FontWeight="Bold" FontSize="12" />
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink x:Name="newCSharpWpfProjectButton" Command="{Binding NewWpfCSharpProjectCommand}">
+                                <TextBlock Text="New project C#"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding LoadProjectCommand}">
+                                <TextBlock Text="Load project..."/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Generation options" FontWeight="Bold" FontSize="12" />
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" VerticalAlignment="Center" />
+                            <TextBlock Margin="6,0,0,0" Text="With style checks" VerticalAlignment="Center" />
+                            <Image Margin="3,0,0,0" Width="20" Source="/VsEmulator;component/Assets/stylecop.png" VerticalAlignment="Center" />
                         </StackPanel>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
-                                <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" VerticalAlignment="Center" />
-                                <TextBlock Margin="6,0,0,0" Text="With style checks" VerticalAlignment="Center" />
-                                <Image Margin="3,0,0,0" Width="20" Source="/VsEmulator;component/Assets/stylecop.png" VerticalAlignment="Center" />
-                            </StackPanel>
+                        <TextBlock Text="Theme" FontWeight="Bold" FontSize="12" Margin="0,12,0,0" />
+                        <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Style="{StaticResource VSEmulatorComboBox}" Margin="0,6,0,0" />
+                        <TextBlock Text="Version" FontWeight="Bold" FontSize="12" Margin="0,16,0,0" />
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding ConfigureVersionsCommand}">
+                                <TextBlock Text="Configure versions..."/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,8,0,0" ToolTip="Refresh template cache" />
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,12,0,0">
+                            <TextBlock Text="Wizard Version:" />
+                            <TextBlock Text="{Binding WizardVersion}" Margin="6,0,0,0" />
                         </StackPanel>
-                    </Grid>
-
-                    <TextBlock Margin="0,12,0,0">
-                        <Hyperlink Command="{Binding LoadProjectCommand}">
-                            <TextBlock Text="Load project..."/>
-                        </Hyperlink>
-                    </TextBlock>
-
-                    <TextBlock Margin="0,12,0,0">
-                        <Hyperlink Command="{Binding AnalyzeCSharpSelectionCommand}">
-                            <TextBlock Text="Analyze C# project selection"/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBlock>
-                        <Hyperlink Command="{Binding AnalyzeVisualBasicSelectionCommand}">
-                            <TextBlock Text="Analyze VB project selection"/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,12,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
-                    <TextBlock Margin="0,20,0,0">
-                        <Hyperlink Command="{Binding ConfigureVersionsCommand}">
-                            <TextBlock Text="Configure versions..."/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,8,0,0" ToolTip="Refresh template cache"/>
-                </StackPanel>
-                <ScrollViewer x:Name="logScroll" Margin="0,8" Padding="12,0" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto">
-                    <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,6,0,0">
+                            <TextBlock Text="Templates Version:" />
+                            <TextBlock Text="{Binding TemplatesVersion}" Margin="6,0,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
+                <ScrollViewer x:Name="logScroll" Margin="0,8" Padding="12,0" Grid.Row="2">
+                    <TextBlock Text="{Binding Log}" TextWrapping="Wrap" />
                 </ScrollViewer>
-                <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom" Margin="12,0,12,12">
-                    <TextBlock Text="Wizard Version: "></TextBlock>
-                    <TextBlock Text="{Binding WizardVersion}"></TextBlock>
-                    <TextBlock Margin="10,0,0,0" Text="Templates Version: "></TextBlock>
-                    <TextBlock Text="{Binding TemplatesVersion}"></TextBlock>
-                </StackPanel>
             </Grid>
-            <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" Margin="0" />
+            <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
             <ScrollViewer Grid.Column="2">
                 <ItemsControl
                     Margin="18,12,0,12"

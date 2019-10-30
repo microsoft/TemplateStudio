@@ -1,3 +1,3 @@
-﻿The TabView control is a way to display a set of tabs and their respective content. Tab controls are useful for displaying several pages (or documents) of content while giving a user the capability to rearrange, open, or close new tabs.
+﻿TabView denetimi bir dizi sekmeyi ve ilgili içeriği görüntülemenin bir yoludur. Sekme denetimleri birden fazla içerik sayfasının (ya da belgenin) görüntülenmesini sağlar ve kullanıcıya yeni sekmeleri yeniden düzenleme, açma veya kapatma olanağı tanır.
 
-[See more about TabView control](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
+[TabView denetimi hakkında daha fazla bilgi edinin](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tab-view)
