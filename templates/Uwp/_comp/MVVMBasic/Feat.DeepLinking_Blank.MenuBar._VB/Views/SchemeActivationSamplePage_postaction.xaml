@@ -21,6 +21,16 @@
 <!--{[{-->
             Grid.Row="1"
 <!--}]}-->
+            x:Uid="SchemeActivationSamplePage_Description"
             Style="{StaticResource BodyTextStyle}" />
+<!--{--{-->
+        <ScrollViewer Grid.Row="1" Margin="{StaticResource SmallTopBottomMargin}">
+<!--}--}-->
+<!--{[{-->
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource SmallTopBottomMargin}">
+<!--}]}-->
+            <ItemsControl
+                ItemTemplate="{StaticResource ActivationParameterDateTemplate}" />
+        </ScrollViewer>
     </Grid>
 </Page>

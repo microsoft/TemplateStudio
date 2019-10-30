@@ -49,6 +49,7 @@ namespace Param_RootNamespace.ViewModels
             _identityService = identityService;
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
 //}]}
+            MenuFileExitCommand = new DelegateCommand(OnMenuFileExit);
         }
         public void Initialize(Frame frame, SplitView splitView, Frame rightFrame)
         {
