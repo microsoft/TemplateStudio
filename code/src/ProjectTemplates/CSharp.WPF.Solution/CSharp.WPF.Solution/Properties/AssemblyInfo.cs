@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CSharp.WPF.Solution")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sibille Metzler")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("CSharp.WPF.Solution")]
 [assembly: AssemblyCopyright("Microsoft 2019")]
 [assembly: AssemblyTrademark("")]
