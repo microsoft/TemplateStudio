@@ -84,7 +84,7 @@
       "args": {
         "packageId" : "Prism.Unity",
         "version" : "7.2.0.1367",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -95,7 +95,7 @@
       "args": {
         "packageId" : "Microsoft.Extensions.Configuration",
         "version" : "3.0.0",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -106,7 +106,7 @@
       "args": {
         "packageId" : "Microsoft.Extensions.Configuration.Binder",
         "version" : "3.0.0",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -117,7 +117,7 @@
       "args": {
         "packageId" : "Microsoft.Extensions.Configuration.CommandLine",
         "version" : "3.0.0",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -128,7 +128,7 @@
       "args": {
         "packageId" : "Microsoft.Extensions.Configuration.Json",
         "version" : "3.0.0",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -139,7 +139,7 @@
       "args": {
         "packageId" : "MahApps.Metro",
         "version" : "2.0.0-alpha0531",
-        "projectPath": ".\\Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -150,7 +150,7 @@
       "args": {
         "packageId" : "Newtonsoft.Json",
         "version" : "12.0.2",
-        "projectPath": "Param_ProjectName.Core/Param_ProjectName.Core.csproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
     },
