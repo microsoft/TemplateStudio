@@ -42,8 +42,9 @@ namespace Param_RootNamespace
                 await OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
             }
 //}]}
-
+//{--{
             await Task.CompletedTask;
+//}--}
         }
     }
 }

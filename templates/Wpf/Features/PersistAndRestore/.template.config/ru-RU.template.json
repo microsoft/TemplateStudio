@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Persist And Restore",
+  "description": "Persist And Restore helps simplify storing data inside User Local AppData folder.",
+  "identity": "wts.Wpf.Feat.PersistAndRestore"
+}

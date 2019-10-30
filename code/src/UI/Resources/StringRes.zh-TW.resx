@@ -368,9 +368,13 @@
     <value>新增頁面</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>新增通用 Windows 平台應用程式</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>您無法移除 **{0}**，因為這些範本與它相依：{1}</value>
@@ -818,5 +822,9 @@
   </data>
   <data name="TemplateDetailsExclusions" xml:space="preserve">
     <value>Exclusions:</value>
+  </data>
+  <data name="CanNotGenerateWPFProjectsMessage" xml:space="preserve">
+    <value>Visual Studio 2017 doesn't support WPF .NET Core project creation, please use Visual Studio 2019.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
   </data>
 </root>

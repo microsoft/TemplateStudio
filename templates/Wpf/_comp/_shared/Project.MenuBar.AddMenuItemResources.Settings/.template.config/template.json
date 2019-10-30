@@ -1,0 +1,24 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Project.MenuBar.AddMenuItemResources.Settings",
+    "identity": "wts.Wpf.Project.MenuBar.AddMenuItemResources.Settings",
+    "shortName": "wts.Wpf.Project.MenuBar.AddMenuItemResources.Settings",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "wts.type==page & identity == wts.Wpf.Page.Settings & $projectType == MenuBarWpf"
+   },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

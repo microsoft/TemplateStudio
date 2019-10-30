@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Test
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
                 t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && t.GetExclusionsList().Count() == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
@@ -257,7 +257,7 @@ namespace Microsoft.Templates.Test
                 var templates = _fixture.Templates().Where(
                     t => t.GetTemplateType().IsItemTemplate()
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                     && t.GetPlatform() == platform
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
@@ -280,7 +280,7 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = _fixture.Templates().Where(
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
@@ -430,7 +430,7 @@ namespace Microsoft.Templates.Test
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t
                     => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework));
+                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
                 var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
@@ -547,30 +547,30 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp, string excludedItem = "")
         {
             IEnumerable<object[]> result = new List<object[]>();
 
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, excludedItem);
                     break;
 
                 case "Prism":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
             }
 

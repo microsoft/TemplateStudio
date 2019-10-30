@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Web View",
+  "description": "La página de vista web presenta contenido web usando el motor de representación de Microsoft Edge.",
+  "identity": "wts.Wpf.Page.WebView"
+}

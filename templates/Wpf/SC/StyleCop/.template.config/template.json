@@ -1,0 +1,68 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "StyleCop",
+    "shortName": "StyleCop",
+    "identity": "wts.Wpf.Feat.StyleCop",
+    "groupIdentity": "wts.Wpf.Feat.StyleCop",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.platform": "Wpf",
+      "wts.type": "feature",
+      "wts.outputToParent": "true",
+      "wts.version": "1.0.0",
+      "wts.multipleInstance": "false",
+      "wts.isHidden": "true",
+      "wts.compositionFilter": "wts.type == project",
+      "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Param_ProjectName/GlobalSuppressions.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/GlobalSuppressions.cs"
+      }
+    ],
+    "symbols": {
+      "wts.projectName": {
+        "type": "parameter",
+        "replaces": "Param_ProjectName",
+        "fileRename": "Param_ProjectName"
+      },
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId" : "StyleCop.Analyzers",
+          "version" : "1.1.118",
+          "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+      },
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId" : "StyleCop.Analyzers",
+          "version" : "1.1.118",
+          "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        },
+        "continueOnError": true
+      }
+    ]
+  }

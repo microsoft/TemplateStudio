@@ -54,9 +54,10 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _user, value); }
         }
 //}]}
-        public ShellViewModel(INavigationService navigationServiceInstance)
+        public ShellViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)
         {
             _navigationService = navigationServiceInstance;
+//^^
 //{[{
             _userDataService = userDataService;
             _identityService = identityService;
@@ -64,6 +65,7 @@ namespace Param_RootNamespace.ViewModels
             LoginCommand = new DelegateCommand(OnLogin, () => !IsBusy);
             UserProfileCommand = new DelegateCommand(OnUserProfile);
 //}]}
+            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
         }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)

@@ -1,0 +1,14 @@
+﻿<controls:MetroWindow
+    <controls:MetroWindow.Content>
+        <Grid>
+            <Menu>
+                <MenuItem Header="{x:Static strings:Resources.ShellMenuViewsHeader}">
+<!--^^-->
+<!--{[{-->
+                    <MenuItem Header="{x:Static strings:Resources.ShellMenuItemViewswts.ItemNamePageHeader}" Command="{Binding MenuViewswts.ItemNameCommand}" />
+<!--}]}-->
+                </MenuItem>
+            </Menu>
+        </Grid>
+    </controls:MetroWindow.Content>
+</controls:MetroWindow>

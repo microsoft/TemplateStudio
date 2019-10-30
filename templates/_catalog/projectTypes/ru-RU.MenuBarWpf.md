@@ -1,0 +1,1 @@
+﻿Detailed description for MenuBar in WPF.

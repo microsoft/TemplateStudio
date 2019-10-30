@@ -21,8 +21,9 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand LogoutCommand { get; }
 //}]}
-        public SettingsViewModel()
+        public SettingsViewModel(/*{[{*/IIdentityService identityService, IUserDataService userDataService/*}]}*/)
         {
+//^^
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;

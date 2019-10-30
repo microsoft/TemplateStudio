@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "Ayarlar sayfası, uygulamanız için yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır.",
+  "identity": "wts.Wpf.Page.Settings"
+}

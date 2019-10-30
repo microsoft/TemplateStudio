@@ -45,22 +45,18 @@
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" /> <!-- 10% Wizard Header-->
-            <RowDefinition Height="Auto" /> <!--Separator-->
-            <RowDefinition Height="90*" />  <!--90%-->
+            <RowDefinition Height="10*" />
+            <!-- 10% Wizard Header-->
+            <RowDefinition Height="Auto" />
+            <!--Separator-->
+            <RowDefinition Height="90*" />
+            <!--90%-->
         </Grid.RowDefinitions>
-
-        <StackPanel
-                Grid.Row="0"
-                Orientation="Horizontal"
-                Margin="{StaticResource Margin_L_Left}">
-            <TextBlock
-                    Text="{x:Static strings:StringRes.NewProjectTitle}"
-                    Style="{StaticResource WtsTextBlockWizardTitle}" />
-            <TextBlock
-                    Text="{Binding WizardStatus.Title}"
-                    Style="{StaticResource WtsTextBlockWizardTitleSecondary}" />
-        </StackPanel>
+        <TextBlock
+            Grid.Row="0"
+            Margin="{StaticResource Margin_L_Left}"
+            Text="{Binding WizardStatus.Title}"
+            Style="{StaticResource WtsTextBlockWizardTitleSecondary}" />
 
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />
 

@@ -368,9 +368,13 @@
     <value>Nuova pagina</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nuova app per la piattaforma UWP (Universal Windows Platform)</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Impossibile rimuovere **{0}** perché questi modelli dipendono da esso: {1}</value>
@@ -818,5 +822,9 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   </data>
   <data name="TemplateDetailsExclusions" xml:space="preserve">
     <value>Exclusions:</value>
+  </data>
+  <data name="CanNotGenerateWPFProjectsMessage" xml:space="preserve">
+    <value>Visual Studio 2017 doesn't support WPF .NET Core project creation, please use Visual Studio 2019.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
   </data>
 </root>

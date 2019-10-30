@@ -1,0 +1,77 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Web View",
+  "shortName": "Web View",
+  "identity": "wts.Wpf.Page.WebView",
+  "groupIdentity": "wts.Wpf.Page.WebView",
+  "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    },
+    "pagetype": {
+      "type": "parameter",
+      "replaces": "System.Windows.Controls.Page"
+    },
+    "commandclass": {
+      "type": "parameter",
+      "replaces": "System.Windows.Input.ICommand"
+    },
+    "canExecuteChangedMethodName": {
+      "type": "parameter",
+      "replaces": "Param_CanExecuteChangedMethodName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Wpf.UI.Controls.WebView",
+        "version" : "6.0.0-preview9.1",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

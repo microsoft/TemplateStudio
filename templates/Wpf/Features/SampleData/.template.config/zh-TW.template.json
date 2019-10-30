@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Sample Data",
+  "description": "Sample Data 會保存部分頁面的產生版本所使用的範例資料。",
+  "identity": "wts.Wpf.Feat.SampleData"
+}

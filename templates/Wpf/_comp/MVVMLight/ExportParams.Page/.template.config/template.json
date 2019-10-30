@@ -1,0 +1,33 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMLight.ExportParams.Page",
+    "shortName": "wts.Wpf.MVVMLight.ExportParams.Page",
+    "identity": "wts.Wpf.MVVMLight.ExportParams.Page",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == page",
+      "wts.export.baseclass": "ViewModelBase",
+      "wts.export.setter": "Set",
+      "wts.export.pagetype": "Page",
+      "wts.export.commandclass": "RelayCommand",
+      "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged",
+      "wts.export.configtype": "AppConfig",
+      "wts.export.configvalue": "config",
+      "wts.export.onnavigatedtoparams": "object parameter",
+      "wts.export.onnavigatedfromparams": ""
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

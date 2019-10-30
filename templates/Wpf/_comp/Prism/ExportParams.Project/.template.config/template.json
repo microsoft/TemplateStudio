@@ -1,0 +1,27 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Prism.ExportParams.Project",
+    "shortName": "wts.Wpf.Prism.ExportParams.Project",
+    "identity": "wts.Wpf.Prism.ExportParams.Project",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == Prism & wts.type == project",
+      "wts.export.baseclass": "BindableBase",
+      "wts.export.setter": "SetProperty",
+      "wts.export.commandclass": "DelegateCommand"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

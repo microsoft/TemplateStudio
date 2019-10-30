@@ -331,6 +331,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visual Studio 2017 doesn&apos;t support WPF .NET Core project creation, please use Visual Studio 2019..
+        /// </summary>
+        public static string CanNotGenerateWPFProjectsMessage {
+            get {
+                return ResourceManager.GetString("CanNotGenerateWPFProjectsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
         /// </summary>
         public static string ChangesSummaryCheckBoxText {
@@ -750,9 +759,18 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New Universal Windows Platform app.
         /// </summary>
-        public static string NewProjectTitle {
+        public static string NewProjectTitleUWP {
             get {
-                return ResourceManager.GetString("NewProjectTitle", resourceCulture);
+                return ResourceManager.GetString("NewProjectTitleUWP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New WPF app.
+        /// </summary>
+        public static string NewProjectTitleWPF {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWPF", resourceCulture);
             }
         }
         

@@ -1,0 +1,129 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Wpf.Proj.Default",
+  "shortName": "wts.Wpf.Proj.Default",
+  "identity": "wts.Wpf.Proj.Default",
+  "groupIdentity": "wts.Wpf.Proj.Default",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "Blank|SplitViewWpf|MenuBarWpf",
+    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Wpf",
+    "wts.outputToParent": "true",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "0",
+    "wts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)|[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)"
+  },
+  "sourceName": "wts.ProjectName",
+  "preferNameDirectory": true,
+  "guids": [
+  ],
+  "PrimaryOutputs": [
+    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
+    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFrontEndFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Extensions.Hosting",
+        "version" : "3.0.0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "MahApps.Metro",
+        "version" : "2.0.0-alpha0531",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Newtonsoft.Json",
+        "version" : "12.0.2",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add reference to core project",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
+        "specifiedPathIsTarget": "true"
+      },
+      "continueOnError": true
+    }
+  ]
+}

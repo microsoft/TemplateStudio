@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Multiple views",
+  "description": "Kullanıcılarınızın uygulamanızın bağımsız parçalarını ayrı pencerelerde görüntülemelerine olanak tanıyın.",
+  "identity": "wts.Wpf.Feat.MultiView"
+}

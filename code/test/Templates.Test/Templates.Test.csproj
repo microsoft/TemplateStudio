@@ -81,6 +81,9 @@
     <Compile Include="BuildTemplatesTests\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildTemplatesTests\Wpf\BuildPrismProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMLightProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
     <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
@@ -94,6 +97,9 @@
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
+    <None Include="RestoreAndBuildWpf.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="RunTests.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -253,6 +259,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

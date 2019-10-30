@@ -37,6 +37,14 @@
                 Style="{StaticResource WtsTextBlockSectionTitle}"
                 Text="{x:Static strings:StringRes.NoContentPanelMessage}" />
         </StackPanel>
+        <StackPanel
+            Visibility="{Binding WizardStatus.CanNotGenerateProjectsMessage, Converter={StaticResource StringVisibilityConverter}}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock 
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Text="{Binding WizardStatus.CanNotGenerateProjectsMessage}" />
+        </StackPanel>
         <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                 <Grid.ColumnDefinitions>

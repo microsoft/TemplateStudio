@@ -342,6 +342,7 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />

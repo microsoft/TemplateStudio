@@ -1,0 +1,6 @@
+﻿<controls:MetroWindow
+<!--^^-->
+<!--{[{-->
+    DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
+<!--}]}-->
+    mc:Ignorable="d"
