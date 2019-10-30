@@ -23,6 +23,12 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "Param_ProjectName/GlobalSuppressions.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/GlobalSuppressions.cs"
+      }
     ],
     "symbols": {
       "wts.projectName": {

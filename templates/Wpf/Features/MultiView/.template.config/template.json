@@ -25,6 +25,27 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Contracts/Services/IWindowManagerService.cs"
+    },
+    {
+      "path": "Contracts/Views/IShellDialogWindow.cs"
+    },
+    {
+      "path": "Helpers/WindowExtensions.cs"
+    },
+    {
+      "path": "Services/WindowManagerService.cs"
+    },
+    {
+      "path": "ViewModels/ShellDialogViewModel.cs"
+    },
+    {
+      "path": "Views/ShellDialogWindow.xaml"
+    },
+    {
+      "path": "Views/ShellDialogWindow.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
