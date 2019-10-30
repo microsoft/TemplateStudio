@@ -285,11 +285,16 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
     </Content>
+    <Content Include="Content\Wpf.CS.Templates.mstx">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
     <Content Include="cs-CZ\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="de-DE\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
