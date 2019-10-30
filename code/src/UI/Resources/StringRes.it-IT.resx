@@ -823,4 +823,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="TemplateDetailsExclusions" xml:space="preserve">
     <value>Exclusions:</value>
   </data>
+  <data name="CanNotGenerateWPFProjectsMessage" xml:space="preserve">
+    <value>Visual Studio 2017 doesn't support WPF .NET Core project creation, please use Visual Studio 2019.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
+  </data>
 </root>

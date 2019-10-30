@@ -13,6 +13,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 
@@ -64,6 +65,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             Platform = platform;
             Language = language;
+
+            // Templates generation is not suported in following cases:
+            // - WPF Projects from VisualStudio 2017
+            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            if (Platform == Platforms.Wpf && vsInfo.VisualStudioExeVersion.StartsWith("15"))
+            {
+                WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
+                return;
+            }
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             SystemService.Initialize();
