@@ -69,7 +69,7 @@
       "args": {
         "packageId" : "Microsoft.Toolkit.Wpf.UI.Controls.WebView",
         "version" : "6.0.0-preview9.1",
-        "projectPath": ".\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": true
     }
