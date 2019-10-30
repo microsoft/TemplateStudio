@@ -25,6 +25,12 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "Contracts/Services/IPersistAndRestoreService.cs"
+      },
+      {
+        "path": "Services/PersistAndRestoreService.cs"
+      }
     ],
     "symbols": {
       "wts.rootNamespace": {

@@ -20,6 +20,30 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "Contracts/Services/IApplicationHostService.cs"
+      },
+      {
+        "path": "Contracts/Services/INavigationService.cs"
+      },
+      {
+        "path": "Contracts/Services/IPageService.cs"
+      },
+      {
+        "path": "Helpers/FrameExtensions.cs"
+      },
+      {
+        "path": "Services/ApplicationHostService.cs"
+      },
+      {
+        "path": "Services/NavigationService.cs"
+      },
+      {
+        "path": "Services/PageService.cs"
+      },
+      {
+        "path": "ViewModels/ViewModelLocator.cs"
+      }
     ],
     "symbols": {
       "wts.rootNamespace": {

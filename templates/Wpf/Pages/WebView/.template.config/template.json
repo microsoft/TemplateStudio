@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "WebView",
-  "shortName": "WebView",
+  "name": "Web View",
+  "shortName": "Web View",
   "identity": "wts.Wpf.Page.WebView",
   "groupIdentity": "wts.Wpf.Page.WebView",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
@@ -25,6 +25,15 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

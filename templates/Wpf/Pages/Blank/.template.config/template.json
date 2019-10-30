@@ -24,6 +24,15 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

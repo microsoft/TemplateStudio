@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MasterDetail",
-  "shortName": "MasterDetail",
+  "name": "Master Detail",
+  "shortName": "Master Detail",
   "identity": "wts.Wpf.Page.MasterDetail",
   "groupIdentity": "wts.Wpf.Page.MasterDetail",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -26,6 +26,15 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

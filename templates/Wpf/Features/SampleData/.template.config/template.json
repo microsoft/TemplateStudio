@@ -26,6 +26,21 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName.Core/Contracts/Services/ISampleDataService.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Models/SampleCompany.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Models/SampleOrder.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Models/SampleOrderDetail.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Services/SampleDataService.cs"
+    }
   ],
   "symbols": {
     "wts.projectName": {

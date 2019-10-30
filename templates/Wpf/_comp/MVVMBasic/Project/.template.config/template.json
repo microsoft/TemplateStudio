@@ -19,6 +19,30 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "Contracts/Services/INavigationService.cs"
+      },
+      {
+        "path": "Contracts/Services/IPageService.cs"
+      },
+      {
+        "path": "Helpers/FrameExtensions.cs"
+      },
+      {
+        "path": "Helpers/Observable.cs"
+      },
+      {
+        "path": "Helpers/RelayCommand.cs"
+      },
+      {
+        "path": "Services/ApplicationHostService.cs"
+      },
+      {
+        "path": "Services/NavigationService.cs"
+      },
+      {
+        "path": "Services/PageService.cs"
+      }
     ],
     "symbols": {
       "wts.rootNamespace": {

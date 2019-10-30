@@ -27,6 +27,18 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Converters/EnumToBooleanConverter.cs"
+    },
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.projectName": {

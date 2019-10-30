@@ -26,6 +26,15 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Contracts/Services/IThemeSelectorService.cs"
+    },
+    {
+      "path": "Models/AppTheme.cs"
+    },
+    {
+      "path": "Services/ThemeSelectorService.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

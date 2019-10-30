@@ -19,6 +19,15 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "ViewModels/ShellViewModel.cs"
+      },
+      {
+        "path": "Views/ShellWindow.xaml"
+      },
+      {
+        "path": "Views/ShellWindow.xaml.cs"
+      }
     ],
     "symbols": {
       "wts.rootNamespace": {
