@@ -1,0 +1,45 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Theme Selection",
+  "shortName": "Theme Selection",
+  "groupIdentity": "wts.Wpf.Feat.ThemeSelection",
+  "identity": "wts.Wpf.Feat.ThemeSelection",
+  "description": "Adds theming support to your application.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "UserInteraction",
+    "wts.defaultInstance": "ThemeSelection",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.dependencies":"wts.Wpf.Feat.PersistAndRestore"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Contracts/Services/IThemeSelectorService.cs"
+    },
+    {
+      "path": "Models/AppTheme.cs"
+    },
+    {
+      "path": "Services/ThemeSelectorService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

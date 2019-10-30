@@ -69,6 +69,12 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
+        private const string WpfProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0}.Release|Any CPU.Build.0 = Release|Any CPU
+";
+
         private const string ProjectTemplate = @"Project(""{{guid}}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
@@ -102,6 +108,7 @@ EndProject
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTypeGuid = GetProjectGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                projectGuid = projectGuid.Contains("{") ? projectGuid : "{" + projectGuid + "}";
                 var projectContent = ProjectTemplate
                                             .Replace("{guid}", projectTypeGuid)
                                             .Replace("{name}", projectName)
@@ -221,19 +228,23 @@ EndProject
 
         private static string GetProjectConfigurationTemplate(string platform, string projectName, bool isCPSProject)
         {
-            if (platform == Platforms.Uwp)
+            switch (platform)
             {
-                if (isCPSProject)
-                {
-                    return UwpProjectConfigurationTemplateForAnyCpu;
-                }
-                else
-                {
-                    return UwpProjectConfigurationTemplate;
-                }
-            }
+                case Platforms.Uwp:
+                    if (isCPSProject)
+                    {
+                        return UwpProjectConfigurationTemplateForAnyCpu;
+                    }
+                    else
+                    {
+                        return UwpProjectConfigurationTemplate;
+                    }
 
-            return string.Empty;
+                case Platforms.Wpf:
+                    return WpfProjectConfigurationTemplate;
+                default:
+                    return string.Empty;
+            }
         }
 
         private static string ReadTemplate(string platform)
@@ -242,6 +253,8 @@ EndProject
             {
                 case Platforms.Uwp:
                     return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
+                case Platforms.Wpf:
+                    return File.ReadAllText(@"Solution\WpfSolutionTemplate.txt");
             }
 
             throw new InvalidDataException(nameof(platform));

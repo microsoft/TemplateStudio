@@ -313,9 +313,13 @@
     <value>Design pattern</value>
     <comment>New project: Navigation step design pattern</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>New Universal Windows Platform app</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>You can not remove **{0}** because these templates depend on it: {1}</value>

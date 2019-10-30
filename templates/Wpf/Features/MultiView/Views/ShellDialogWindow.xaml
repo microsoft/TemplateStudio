@@ -1,0 +1,29 @@
+﻿<controls:MetroWindow
+    x:Class="Param_RootNamespace.Views.ShellDialogWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d"
+    Style="{StaticResource MetroWindow}">
+    <controls:MetroWindow.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame
+                x:Name="dialogFrame"
+                Focusable="False"
+                NavigationUIVisibility="Hidden" />
+            <Button
+                Grid.Row="1"
+                Content="Close"
+                HorizontalAlignment="Right"
+                Command="{Binding CloseCommand}"
+                Width="200"
+                Margin="{StaticResource SmallLeftTopRightBottomMargin}" />
+        </Grid>
+    </controls:MetroWindow.Content>
+</controls:MetroWindow>

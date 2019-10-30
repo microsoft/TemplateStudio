@@ -1,0 +1,86 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Settings",
+  "shortName": "Settings",
+  "identity": "wts.Wpf.Page.Settings",
+  "groupIdentity": "wts.Wpf.Page.Settings",
+  "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "2",
+    "wts.dependencies":"wts.Wpf.Feat.ThemeSelection",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "Settings",
+    "wts.genGroup": "1",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Converters/EnumToBooleanConverter.cs"
+    },
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    },
+    "commandclass": {
+      "type": "parameter",
+      "replaces": "System.Windows.Input.ICommand"
+    },
+    "pagetype": {
+      "type": "parameter",
+      "replaces": "System.Windows.Controls.Page"
+    },
+    "configtype":{
+      "type": "parameter",
+      "replaces": "Param_ConfigType"
+    },
+    "configvalue":{
+      "type": "parameter",
+      "replaces": "Param_ConfigValue"
+    },
+    "onnavigatedtoparams":{
+      "type": "parameter",
+      "replaces": "Param_OnNavigatedToParams"
+    },
+    "onnavigatedfromparams":{
+      "type": "parameter",
+      "replaces": "Param_OnNavigatedFromParams"
+    }
+  }
+}

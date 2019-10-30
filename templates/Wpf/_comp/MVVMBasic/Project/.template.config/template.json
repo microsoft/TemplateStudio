@@ -1,0 +1,57 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMBasic.Project",
+    "shortName": "wts.Wpf.MVVMBasic.Project",
+    "identity": "wts.Wpf.MVVMBasic.Project",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "1",
+      "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Contracts/Services/INavigationService.cs"
+      },
+      {
+        "path": "Contracts/Services/IPageService.cs"
+      },
+      {
+        "path": "Helpers/FrameExtensions.cs"
+      },
+      {
+        "path": "Helpers/Observable.cs"
+      },
+      {
+        "path": "Helpers/RelayCommand.cs"
+      },
+      {
+        "path": "Services/ApplicationHostService.cs"
+      },
+      {
+        "path": "Services/NavigationService.cs"
+      },
+      {
+        "path": "Services/PageService.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "wts.homePageName": {
+        "type":"parameter",
+        "replaces":"Param_HomeName"
+      }
+    }
+  }

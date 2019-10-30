@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "La página de configuración es la página en la que recomendamos poner las opciones de configuración para tu aplicación.",
+  "identity": "wts.Wpf.Page.Settings"
+}

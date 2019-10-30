@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GroupIdentity != "wts.Feat.BackgroundTask"
                 && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
                 && t.GroupIdentity != "wts.Service.IdentityForcedLogin"

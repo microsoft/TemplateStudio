@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "この設定ページに、アプリの設定を含めることをお勧めします。",
+  "identity": "wts.Wpf.Page.Settings"
+}

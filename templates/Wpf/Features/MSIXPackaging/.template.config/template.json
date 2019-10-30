@@ -1,0 +1,57 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MSIX Packaging",
+  "shortName": "MSIX Packaging",
+  "groupIdentity": "wts.Wpf.Feat.MSIXPackaging",
+  "identity": "wts.Wpf.Feat.MSIXPackaging",
+  "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "guids": ["86bd6ace-0448-48d7-9ae6-7c914cfab635"],
+  "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Packaging/Param_ProjectName.Packaging.wapproj" }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName"
+    },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Generate Test Certificate",
+      "manualInstructions": [ ],
+      "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+      "args": {
+        "files" : "0"
+      },
+      "continueOnError": true
+    }
+  ]
+}

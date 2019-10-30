@@ -32,11 +32,10 @@ namespace Microsoft.Templates.VsEmulator.Main
     public class MainViewModel : Observable
     {
         private readonly MainView _host;
+        private readonly GenerationService _generationService = GenerationService.Instance;
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
         private bool _useStyleCop;
-
-        private GenerationService _generationService = GenerationService.Instance;
 
         private RelayCommand _refreshTemplateCacheCommand;
 
@@ -74,6 +73,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public ObservableCollection<GeneratedProjectInfo> Projects { get; } = new ObservableCollection<GeneratedProjectInfo>();
 
         public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
+
+        public RelayCommand NewWpfCSharpProjectCommand => new RelayCommand(NewWpfCSharpProject);
 
         public RelayCommand AnalyzeCSharpSelectionCommand => new RelayCommand(AnalyzeCSharpSelection);
 
@@ -136,7 +137,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-
+        private void NewWpfCSharpProject()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(Platforms.Wpf, ProgrammingLanguages.CSharp);
+            });
+        }
 
         private void AnalyzeCSharpSelection()
         {
@@ -185,7 +193,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(userSelection, language);
+                            AddStyleCop(userSelection, platform, language);
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
@@ -206,20 +214,29 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void AddStyleCop(UserSelection userSelection, string language)
+        private void AddStyleCop(UserSelection userSelection, string platform, string language)
         {
             var styleCopTemplate = string.Empty;
-            switch (language)
+            switch (platform)
             {
-                case "C#":
-                    styleCopTemplate = "wts.Feat.StyleCop";
+                case "Uwp":
+                    switch (language)
+                    {
+                        case "C#":
+                            styleCopTemplate = "wts.Feat.StyleCop";
+                            break;
+                        case "VisualBasic":
+                            styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                            break;
+                        default:
+                            return;
+                    }
                     break;
-                case "VisualBasic":
-                    styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                case "Wpf":
+                    styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
-                default:
-                    return;
             }
+
 
             var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
             if (testingFeature != null)
@@ -434,6 +451,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void SetCurrentPlatform(string platform)
         {
+            GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
         }

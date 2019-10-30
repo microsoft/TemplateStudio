@@ -1,0 +1,24 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Wpf.Prism.Page.AddCommandNS",
+  "identity": "wts.Wpf.Prism.Page.AddCommandNS",
+  "shortName": "wts.Wpf.Prism.Page.AddCommandNS",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Page.Settings|wts.Wpf.Page.WebView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+  }
+}

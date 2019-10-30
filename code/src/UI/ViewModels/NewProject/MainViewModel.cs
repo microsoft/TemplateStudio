@@ -87,7 +87,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public override async Task InitializeAsync(string platform, string language)
         {
-            WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    WizardStatus.Title = $"{StringRes.NewProjectTitleUWP} ({GenContext.Current.ProjectName})";
+                    break;
+                case Platforms.Wpf:
+                    WizardStatus.Title = $"{StringRes.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
+                    break;
+                default:
+                    break;
+            }
+
             await base.InitializeAsync(platform, language);
         }
 

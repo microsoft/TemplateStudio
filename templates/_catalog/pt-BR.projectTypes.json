@@ -10,6 +10,11 @@
     "summary": "Um painel de navegação (ou \"menu hambúrguer\") é incluído para a navegação entre as páginas."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Os itens de navegação na parte superior permitem a navegação rápida entre as páginas."
@@ -18,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Um menu é adicionado para se mover entre as páginas."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

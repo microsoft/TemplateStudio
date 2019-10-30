@@ -1,0 +1,50 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Project",
+    "shortName": "wts.Wpf.Project",
+    "identity": "wts.Wpf.Project",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "0",
+      "wts.compositionFilter": "$projectType == Blank & $frontendframework == MVVMBasic|MVVMLight & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "ViewModels/ShellViewModel.cs"
+      },
+      {
+        "path": "Views/ShellWindow.xaml"
+      },
+      {
+        "path": "Views/ShellWindow.xaml.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "baseclass": {
+        "type": "parameter",
+        "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      },
+      "commandclass": {
+        "type": "parameter",
+        "replaces": "System.Windows.Input.ICommand"
+      },
+      "canExecuteChangedMethodName": {
+        "type": "parameter",
+        "replaces": "Param_CanExecuteChangedMethodName"
+      },
+    }
+  }

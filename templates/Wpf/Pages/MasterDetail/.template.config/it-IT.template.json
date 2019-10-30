@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Master Detail",
+  "description": "La pagina master-dettagli ha un riquadro master e un riquadro dettagli per il contenuto.",
+  "identity": "wts.Wpf.Page.MasterDetail"
+}

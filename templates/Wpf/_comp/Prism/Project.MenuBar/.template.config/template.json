@@ -1,0 +1,38 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Prism.Project.MenuBar",
+    "shortName": "wts.Wpf.Prism.Project.MenuBar",
+    "identity": "wts.Wpf.Prism.Project.MenuBar",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "1",
+      "wts.compositionFilter": "$frontendframework == Prism & $projectType == MenuBarWpf & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "ViewModels/ShellViewModel.cs"
+      },
+      {
+        "path": "Views/ShellWindow.xaml"
+      },
+      {
+        "path": "Views/ShellWindow.xaml.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

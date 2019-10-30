@@ -1,0 +1,9 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+<!--{[{-->
+    DataContext="{Binding wts.ItemNameViewModel, Source={StaticResource Locator}}"
+    Style="{DynamicResource MetroPage}"
+<!--}]}-->
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+</Page>

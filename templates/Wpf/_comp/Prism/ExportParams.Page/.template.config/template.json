@@ -1,0 +1,33 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Prism.ExportParams.Page",
+    "shortName": "wts.Wpf.Prism.ExportParams.Page",
+    "identity": "wts.Wpf.Prism.ExportParams.Page",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == Prism & wts.type == page",
+      "wts.export.baseclass": "BindableBase",
+      "wts.export.setter": "SetProperty",
+      "wts.export.pagetype": "UserControl",
+      "wts.export.commandclass": "DelegateCommand",
+      "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged",
+      "wts.export.configtype": "AppConfig",
+      "wts.export.configvalue": "config",
+      "wts.export.onnavigatedtoparams": "NavigationContext navigationContext",
+      "wts.export.onnavigatedfromparams": "NavigationContext navigationContext"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

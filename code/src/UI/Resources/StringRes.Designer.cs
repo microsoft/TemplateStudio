@@ -750,9 +750,18 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New Universal Windows Platform app.
         /// </summary>
-        public static string NewProjectTitle {
+        public static string NewProjectTitleUWP {
             get {
-                return ResourceManager.GetString("NewProjectTitle", resourceCulture);
+                return ResourceManager.GetString("NewProjectTitleUWP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New WPF app.
+        /// </summary>
+        public static string NewProjectTitleWPF {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWPF", resourceCulture);
             }
         }
         

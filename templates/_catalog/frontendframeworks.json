@@ -6,7 +6,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -16,7 +16,7 @@
         "author": "Laurent Bugnion",
         "order": "2",
         "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -46,7 +46,7 @@
         "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
         "order": "5",
         "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
-        "platforms": ["Uwp"],
+        "platforms": ["Uwp", "Wpf"],
         "languages": [ "C#" ]
     }
 ]

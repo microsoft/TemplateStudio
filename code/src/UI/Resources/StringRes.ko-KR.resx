@@ -368,9 +368,13 @@
     <value>새 페이지</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>새로운 유니버설 Windows 플랫폼 앱</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>이 템플릿의 의존성 때문에 **{0}**를 제거할 수 없습니다: {1}</value>

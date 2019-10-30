@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Master Detail",
+  "description": "マスター/詳細ページには、マスター ウィンドウと、コンテンツ用の詳細ウィンドウがあります。",
+  "identity": "wts.Wpf.Page.MasterDetail"
+}

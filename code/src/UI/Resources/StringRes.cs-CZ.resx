@@ -368,9 +368,13 @@
     <value>Nová stránka</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitle" xml:space="preserve">
+  <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nová aplikace UPW</value>
-    <comment>Wizard title on WizardShell page</comment>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>New WPF app</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Šablonu **{0}** nelze odebrat, protože na ní závisejí tyto šablony: {1}</value>

@@ -10,6 +10,11 @@
     "summary": "Un riquadro di spostamento (o \"menu Hamburger\") è incluso per spostarsi tra le pagine."
   },
   {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "Short description for SplitView in WPF."
+  },
+  {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Elementi di spostamento nella parte superiore permettono di spostarsi velocemente tra le pagine."
@@ -18,5 +23,10 @@
     "name": "MenuBar",
     "displayName": "MenuBar",
     "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
+  },
+  {
+    "name": "MenuBarWpf",
+    "displayName": "MenuBar",
+    "summary": "Short description for MenuBar in WPF."
   }
 ]

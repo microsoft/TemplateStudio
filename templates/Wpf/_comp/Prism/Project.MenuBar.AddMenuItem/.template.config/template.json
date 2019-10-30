@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
+    "identity": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
+    "shortName": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "wts.type == page & identity != wts.Wpf.Page.Settings & $frontendframework == Prism & $projectType == MenuBarWpf"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }
