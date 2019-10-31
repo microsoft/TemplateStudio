@@ -27,6 +27,6 @@
   {
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
-    "summary": "Short description for MenuBar in WPF."
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
   }
 ]

@@ -27,6 +27,6 @@
   {
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
-    "summary": "Short description for MenuBar in WPF."
+    "summary": "Aby poruszać się między stronami, można dodać menu."
   }
 ]

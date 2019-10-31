@@ -27,6 +27,6 @@
   {
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
-    "summary": "Short description for MenuBar in WPF."
+    "summary": "ページ間を移動するためのメニューが追加されます。"
   }
 ]

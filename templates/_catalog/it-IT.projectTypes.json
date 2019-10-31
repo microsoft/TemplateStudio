@@ -27,6 +27,6 @@
   {
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
-    "summary": "Short description for MenuBar in WPF."
+    "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
   }
 ]
