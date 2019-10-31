@@ -22,7 +22,7 @@
   {
     "name": "SplitViewWpf",
     "displayName": "Navigation Pane",
-    "summary": "Short description for SplitView in WPF.",
+    "summary": "A Hamburger Menu is included for navigation between pages.",
     "author": "Microsoft",
     "order": "1",
     "platforms": [ "Wpf" ],
