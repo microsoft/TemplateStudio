@@ -26,6 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isNotBusy;
         private bool _hasValidationErrors;
         private bool _isLoading = true;
+        private string _canNotGenerateProjectsMessage;
         private ICommand _openWebSiteCommand;
         private ICommand _createIssueCommand;
 
@@ -79,6 +80,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 SetProperty(ref _isLoading, value);
                 UpdateIsBusy();
             }
+        }
+
+        public string CanNotGenerateProjectsMessage
+        {
+            get => _canNotGenerateProjectsMessage;
+            set => SetProperty(ref _canNotGenerateProjectsMessage, value);
         }
 
         public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
