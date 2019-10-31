@@ -10,7 +10,7 @@ namespace Param_RootNamespace.ViewModels
     public class WebViewPageViewModel : Screen
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
+        private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 
         private Uri _source;
 
