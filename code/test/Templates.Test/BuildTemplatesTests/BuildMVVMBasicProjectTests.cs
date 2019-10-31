@@ -230,7 +230,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMBasic")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
@@ -242,7 +242,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMBasic")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMBasic")]

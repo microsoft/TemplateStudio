@@ -172,7 +172,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CaliburnMicro", ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneCaliburnMicro")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneCaliburnMicro")]
