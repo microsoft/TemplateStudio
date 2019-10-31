@@ -1,19 +1,22 @@
 [CmdletBinding()]
 Param(
+  [Parameter(Mandatory=$True,Position=1)]
+  [string]$uwpname,
+
   [Parameter(Mandatory=$True,Position=2)]
-  [string]$name,
+  [string]$wpfname,
 
   [Parameter(Mandatory=$True,Position=3)]
-  [string]$csharptemplateId,
+  [string]$csharpuwptemplateId,
 
   [Parameter(Mandatory=$True,Position=4)]
-  [string]$visualbasictemplateId,
+  [string]$csharpwpftemplateId,
 
   [Parameter(Mandatory=$True,Position=5)]
-  [string]$buildNumber,
+  [string]$visualbasictemplateId,
 
-  [Parameter(Mandatory=$false,Position=6)]
-  [string]$description
+  [Parameter(Mandatory=$True,Position=6)]
+  [string]$buildNumber
 )
 
 $VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
@@ -29,7 +32,7 @@ else{
 }
 
 ## SET DATA IN PROJECT TEMPLATE 
-if($name){
+if($uwpname -and $wpfname){
   Write-Host "Setting data in vs project template files"
 
   $projectTemplates = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
@@ -43,27 +46,36 @@ if($name){
     foreach( $projectTemplate in $projectTemplates){
       if(Test-Path($projectTemplate)){
         [xml]$templateContent = Get-Content $projectTemplate
-        $templateContent.VSTemplate.TemplateData.Name = $name
-        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'CSharp')
-        {
-           $templateContent.VSTemplate.TemplateData.TemplateID = $csharptemplateId
-        }
-
-        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'VisualBasic')
-        {
-           $templateContent.VSTemplate.TemplateData.TemplateID = $visualbasictemplateId
-        }
-
 
         $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2].Value = $versionNumber
-      
-        if($description)
+        if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.UWP.WindowsTemplateStudio.local')
         {
-          $templateContent.VSTemplate.TemplateData.Description = $description
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpuwptemplateId
+           $templateContent.VSTemplate.TemplateData.Name = $uwpname
+                   
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($name, $csharpuwptemplateId, $versionNumber)"
+
+        }
+
+        if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.WPF.WindowsTemplateStudio.local')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpwpftemplateId
+           $templateContent.VSTemplate.TemplateData.Name = $wpfname
+
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($wpfname, $csharpwpftemplateId, $versionNumber)"
+        }
+
+        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $visualbasictemplateId
+           $templateContent.VSTemplate.TemplateData.Name = $uwpname
+
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($uwpname, $visualbasictemplateId, $versionNumber)"
+
         }
 
         $templateContent.Save($projectTemplate) 
-        Write-Host "$projectTemplate - Name, TemplateId, Version & Description applied ($name, $csharptemplateId/$visualbasictemplateId, $versionNumber, $description)"
+
       }
     }
   }
