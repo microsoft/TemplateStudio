@@ -15,7 +15,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.group": "ApplicationLifecycle",
     "wts.defaultInstance": "MultiView",
     "wts.multipleInstance": "false",
