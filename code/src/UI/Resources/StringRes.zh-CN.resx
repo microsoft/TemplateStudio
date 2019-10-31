@@ -564,6 +564,10 @@
     <value>应用程序启动</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Packaging</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>应用程序生命周期</value>
     <comment>Group header for application lifecycle templates</comment>

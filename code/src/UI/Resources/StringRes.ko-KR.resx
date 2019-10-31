@@ -564,6 +564,10 @@
     <value>애플리케이션 시작하기</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Packaging</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>애플리케이션 수명 주기</value>
     <comment>Group header for application lifecycle templates</comment>

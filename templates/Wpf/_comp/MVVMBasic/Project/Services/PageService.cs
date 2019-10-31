@@ -40,7 +40,7 @@ namespace Param_RootNamespace.Services
         }
 
         private void Configure<VM, V>()
-            where VM : System.ComponentModel.INotifyPropertyChanged
+            where VM : Observable
             where V : Page
         {
             lock (_pages)
