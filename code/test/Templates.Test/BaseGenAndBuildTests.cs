@@ -566,7 +566,7 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, excludedItem);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "Prism":
