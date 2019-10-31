@@ -12,7 +12,7 @@
   {
     "name": "SplitViewWpf",
     "displayName": "Navigation Pane",
-    "summary": "Short description for SplitView in WPF."
+    "summary": "A Hamburger Menu is included for navigation between pages."
   },
   {
     "name": "TabbedNav",
@@ -27,6 +27,6 @@
   {
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
-    "summary": "Short description for MenuBar in WPF."
+    "summary": "Se añade un menú para desplazarse entre las páginas."
   }
 ]

@@ -18,7 +18,7 @@
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.genGroup": "0",
-    "wts.group": "ApplicationLaunching",
+    "wts.group": "Packaging",
     "wts.displayOrder": "1",
     "wts.defaultInstance": "MultiView",
     "wts.multipleInstance": "false",

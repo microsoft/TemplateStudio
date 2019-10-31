@@ -9,7 +9,7 @@ namespace Param_RootNamespace.ViewModels
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
+        private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 
         private string _source;
         private bool _isLoading = true;

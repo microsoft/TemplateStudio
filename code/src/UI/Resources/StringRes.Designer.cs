@@ -1459,6 +1459,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Packaging.
+        /// </summary>
+        public static string TemplateGroup_Packaging {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Packaging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tools.
         /// </summary>
         public static string TemplateGroup_Tools {

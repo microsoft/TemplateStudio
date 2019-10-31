@@ -19,14 +19,14 @@
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
-    {
-      "name": "SplitViewWpf",
-      "displayName": "Navigation Pane",
-      "summary": "Short description for SplitView in WPF.",
-      "author": "Microsoft",
-      "order": "1",
-      "platforms": ["Wpf"],
-      "languages": [ "C#"]
+  {
+    "name": "SplitViewWpf",
+    "displayName": "Navigation Pane",
+    "summary": "A Hamburger Menu is included for navigation between pages.",
+    "author": "Microsoft",
+    "order": "1",
+    "platforms": [ "Wpf" ],
+    "languages": [ "C#" ]
   },
     {
       "name": "TabbedNav",
@@ -51,7 +51,7 @@
     {
       "name": "MenuBarWpf",
       "displayName": "MenuBar",
-      "summary": "Short description for MenuBar in WPF.",
+      "summary": "A menu is added to move around between pages.",
       "author": "Microsoft",
       "order": "3",
       "platforms": [ "Wpf" ],

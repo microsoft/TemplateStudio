@@ -564,6 +564,10 @@
     <value>Запуск приложения</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Packaging</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>Жизненный цикл приложения</value>
     <comment>Group header for application lifecycle templates</comment>

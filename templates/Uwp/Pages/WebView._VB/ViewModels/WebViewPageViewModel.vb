@@ -3,7 +3,7 @@
         Inherits System.ComponentModel.INotifyPropertyChanged
 
         ' TODO WTS: Set the URI of the page to show by default
-        Private Const DefaultUrl As String = "https://developer.microsoft.com/en-us/windows/apps"
+        Private Const DefaultUrl As String = "https://docs.microsoft.com/windows/apps/"
 
         Private _source As Uri
 
