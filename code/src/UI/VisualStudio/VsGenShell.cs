@@ -139,14 +139,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             return installedPackageIds;
         }
 
-        public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
+        public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
             try
             {
-                var defaultProject = GetProjectByGuid(projectGuid);
+              var defaultProject = GetProjectByName(projectName);
 
-                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
-                SetStartupProject(defaultProject);
+              SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+              SetStartupProject(defaultProject);
             }
             catch (Exception ex)
             {
@@ -667,6 +667,25 @@ namespace Microsoft.Templates.UI.VisualStudio
                     var projectGuid = GetProjectTypeGuid(p);
 
                     if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                    {
+                        return p;
+                    }
+                }
+
+                return null;
+            });
+        }
+
+        private Project GetProjectByName(string projectName)
+        {
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+
+                foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
+                {
+                    if (p.Name == projectName)
                     {
                         return p;
                     }
