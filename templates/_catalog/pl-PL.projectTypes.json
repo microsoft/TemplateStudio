@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "Aby poruszać się między stronami, można dodać menu."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Short descrition for Ribbon project type."
   }
 ]

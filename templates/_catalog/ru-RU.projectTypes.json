@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "Добавленное меню позволяет перемещаться между страницами."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Short descrition for Ribbon project type."
   }
 ]

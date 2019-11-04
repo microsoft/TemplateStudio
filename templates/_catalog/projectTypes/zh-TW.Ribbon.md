@@ -1,0 +1,1 @@
+﻿Long descrition for Ribbon project type.
