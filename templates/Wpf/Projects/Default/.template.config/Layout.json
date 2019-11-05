@@ -9,6 +9,6 @@
         "name": "Multiple views",
         "templateGroupIdentity": "wts.Wpf.Feat.MultiView",
         "readonly": "false",
-        "projecttype": "MenuBarWpf"
+        "projecttype": "MenuBarWpf|Ribbon"
     }
 ]

@@ -63,6 +63,7 @@
       "summary": "Short descrition for Ribbon project type.",
       "author": "Microsoft",
       "order": "4",
+      "licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)",
       "platforms": [ "Wpf" ],
       "languages": [ "C#" ]
     }
