@@ -3,15 +3,6 @@
 //{[{
 
     /// <summary>
-    ///   Looks up a localized string similar to ShellPageRibbonBackstageTabSettingsHeader.
-    /// </summary>
-    public static string ShellPageRibbonBackstageTabSettingsHeader {
-        get {
-            return ResourceManager.GetString("ShellPageRibbonBackstageTabSettingsHeader", resourceCulture);
-        }
-    }
-
-    /// <summary>
     ///   Looks up a localized string similar to ShellPageRibbonHomeGroupCommon1Header.
     /// </summary>
     public static string ShellPageRibbonHomeGroupCommon1Header {
