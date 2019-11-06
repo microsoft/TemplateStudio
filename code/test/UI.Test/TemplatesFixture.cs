@@ -25,7 +25,7 @@ namespace Microsoft.UI.Test
         public void InitializeFixture(string platform, string language)
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
-            var source = new LocalTemplatesSource(null);
+            var source = new LocalTemplatesSource(null, "UITest");
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
             GenContext.Current = new FakeContextProvider
             {
