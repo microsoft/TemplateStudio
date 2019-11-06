@@ -1,5 +1,5 @@
 {
-  "Environment": "LocalEnv",
+  "Environment": "LocalEnvWinTS",
   "CdnUrl": "",
   "RemoteTelemetryKey": "VSIX Key",
   "LogFileFolderPath": "WinTS\\Logs",
