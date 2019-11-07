@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Fluent;
 using Microsoft.Xaml.Behaviors;
-using Param_RootNamespace.Contracts.Services;
+using Prism.Regions;
+using Param_RootNamespace.Constants;
 using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.Behaviors
@@ -12,6 +13,8 @@ namespace Param_RootNamespace.Behaviors
     // See how to add new Tabs and new groups in Home Tab from your pages https://aka.ms/wts
     public class RibbonTabsBehavior : Behavior<Ribbon>
     {
+        private IRegionManager _regionManager;
+
         public static bool GetIsTabFromPage(RibbonTabItem item)
             => (bool)item.GetValue(IsTabFromPageProperty);
 
@@ -30,30 +33,29 @@ namespace Param_RootNamespace.Behaviors
         public static readonly DependencyProperty IsGroupFromPageProperty =
             DependencyProperty.RegisterAttached("IsGroupFromPage", typeof(bool), typeof(RibbonGroupBox), new PropertyMetadata(false));
 
-        public static RibbonPageConfiguration GetPageConfiguration(Page item)
+        public static RibbonPageConfiguration GetPageConfiguration(UserControl item)
             => (RibbonPageConfiguration)item.GetValue(PageConfigurationProperty);
 
-        public static void SetPageConfiguration(Page item, RibbonPageConfiguration value)
+        public static void SetPageConfiguration(UserControl item, RibbonPageConfiguration value)
             => item.SetValue(PageConfigurationProperty, value);
 
         public static readonly DependencyProperty PageConfigurationProperty =
-            DependencyProperty.Register("PageConfiguration", typeof(RibbonPageConfiguration), typeof(Page), new PropertyMetadata(new RibbonPageConfiguration()));
+            DependencyProperty.Register("PageConfiguration", typeof(RibbonPageConfiguration), typeof(UserControl), new PropertyMetadata(new RibbonPageConfiguration()));
 
-        public void Initialize(INavigationService navigationService)
+        public void Initialize(IRegionManager regionManager)
         {
+            _regionManager = regionManager;
+            var navigationService = _regionManager.Regions[Regions.Main].NavigationService;
             navigationService.Navigated += OnNavigated;
         }
 
-        private void OnNavigated(object sender, string e)
+        private void OnNavigated(object sender, RegionNavigationEventArgs e)
         {
-            var frame = sender as Frame;
-            if (frame.Content is Page page)
-            {
-                UpdateTabs(page);
-            }
+            var page = _regionManager.Regions[Regions.Main].ActiveViews.First() as UserControl;
+            UpdateTabs(page);
         }
 
-        private void UpdateTabs(Page page)
+        private void UpdateTabs(UserControl page)
         {
             if (page != null)
             {

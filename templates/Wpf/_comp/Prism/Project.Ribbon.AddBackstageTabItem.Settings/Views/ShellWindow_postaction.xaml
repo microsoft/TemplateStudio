@@ -1,0 +1,10 @@
+﻿<Fluent:Backstage UseHighestAvailableAdornerLayer="False">
+    <Fluent:BackstageTabControl x:Name="backstageTabControl">
+<!--^^-->
+<!--{[{-->
+        <Fluent:BackstageTabItem
+            Tag="wts.ItemName"
+            Header="{x:Static strings:Resources.ShellPageRibbonBackstageTabwts.ItemNameHeader}" />
+<!--}]}-->
+    </Fluent:BackstageTabControl>
+</Fluent:Backstage>

@@ -2,6 +2,6 @@
 {
 //^^
 //{[{
-    new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE8A5", Tag = "wts.ItemName" },
+    new HamburgerMenuGlyphItem() { Label = Resources.Shellwts.ItemNamePage, Glyph = "\uE8A5", Tag = PageKeys.wts.ItemName },
 //}]}
 };

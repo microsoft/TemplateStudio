@@ -4,17 +4,17 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.Ribbon",
-    "shortName": "wts.Wpf.Project.Ribbon",
-    "identity": "wts.Wpf.Project.Ribbon",
+    "name": "wts.Wpf.Prism.Project.Ribbon",
+    "shortName": "wts.Wpf.Prism.Project.Ribbon",
+    "identity": "wts.Wpf.Prism.Project.Ribbon",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform" : "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "0",
-      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMBasic|MVVMLight & wts.type == project",
+      "wts.compositionOrder": "1",
+      "wts.compositionFilter": "$frontendframework == Prism & $projectType == Ribbon & wts.type == project",
       "wts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)"
     },
     "sourceName": "wts.ItemName",
@@ -28,12 +28,6 @@
       },
       {
         "path": "Behaviors/RibbonTabsBehavior.cs"
-      },
-      {
-        "path": "Contracts/Services/IRightPaneService.cs"
-      },
-      {
-        "path": "Services/RightPaneService.cs"
       },
       {
         "path": "ViewModels/ShellViewModel.cs"
@@ -50,9 +44,9 @@
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },
-      "baseclass": {
-        "type": "parameter",
-        "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      "wts.homePageName": {
+        "type":"parameter",
+        "replaces":"Param_HomeName"
       }
     },
     "postActions": [

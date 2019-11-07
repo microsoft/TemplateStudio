@@ -1,0 +1,13 @@
+﻿<prism:PrismApplication
+    DispatcherUnhandledException="OnDispatcherUnhandledException">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+<!--^^-->
+<!--{[{-->
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Generic.xaml" />
+<!--}]}-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>
