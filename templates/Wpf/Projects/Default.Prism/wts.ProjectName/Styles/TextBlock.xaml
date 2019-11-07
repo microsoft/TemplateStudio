@@ -5,7 +5,6 @@
     <!--Base Styles-->
     <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
@@ -15,7 +14,6 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
     </Style>
 
     <Style x:Key="PageTitleStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
