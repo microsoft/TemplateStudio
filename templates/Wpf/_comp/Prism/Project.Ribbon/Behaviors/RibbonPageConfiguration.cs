@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Data;
-using Param_RootNamespace.Helpers;
 using Fluent;
+using Prism.Mvvm;
 
 namespace Param_RootNamespace.Behaviors
 {
@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Behaviors
         {
         }
 
-        public void SetDataContext(Observable viewModel, BindingMode bindingMode = BindingMode.OneWay)
+        public void SetDataContext(BindableBase viewModel, BindingMode bindingMode = BindingMode.OneWay)
         {
             foreach (var groups in HomeGroups)
             {
