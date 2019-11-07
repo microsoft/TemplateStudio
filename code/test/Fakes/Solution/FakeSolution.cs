@@ -281,6 +281,7 @@ EndProject
                     {
                         return WpfProjectConfigurationTemplate;
                     }
+
                 default:
                     return string.Empty;
             }
