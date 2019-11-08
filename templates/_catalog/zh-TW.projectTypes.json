@@ -32,6 +32,6 @@
   {
     "name": "Ribbon",
     "displayName": "Ribbon",
-    "summary": "Short descrition for Ribbon project type."
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
   }
 ]
