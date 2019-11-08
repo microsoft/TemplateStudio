@@ -216,7 +216,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static string GetTempGenerationFolder()
         {
-            string projectGuid = _shell.GetVsProjectId().ToString();
+            string projectGuid = _shell.GetProjectGuidByName(GenContext.Current.ProjectName).ToString();
             return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 
