@@ -37,7 +37,8 @@ namespace Param_RootNamespace.Views
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _titleBar = this.FindChild<RibbonTitleBar>("RibbonTitleBar");
+            var window = sender as MetroWindow;
+            _titleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
             _titleBar.InvalidateArrange();
             _titleBar.UpdateLayout();
         }
