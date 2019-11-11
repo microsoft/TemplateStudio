@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "Für die Navigation zwischen Seiten wurde ein Menü hinzugefügt."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
   }
 ]

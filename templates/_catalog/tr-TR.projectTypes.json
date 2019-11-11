@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
   }
 ]

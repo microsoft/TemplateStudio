@@ -26,7 +26,7 @@ namespace Param_RootNamespace.ViewModels
         private void OnLoaded()
         {
             _navigationService = _regionManager.Regions[Regions.Main].NavigationService;
-            _navigationService.RequestNavigate("Param_HomeName");
+            _navigationService.RequestNavigate(PageKeys.Param_HomeName);
         }
 
         private bool CanGoBack()

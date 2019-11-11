@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "新增一個功能表，好讓您在不同頁面之間移動。"
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
   }
 ]

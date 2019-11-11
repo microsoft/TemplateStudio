@@ -59,10 +59,16 @@ namespace Microsoft.Templates.Test
                     return "B";
                 case "SplitView":
                     return "SV";
+                case "SplitViewWpf":
+                    return "SVWpf";
                 case "TabbedNav":
                     return "TN";
                 case "MenuBar":
                     return "MB";
+                case "MenuBarWpf":
+                    return "MBWpf";
+                case "Ribbon":
+                    return "RB";
                 default:
                     return projectType;
             }

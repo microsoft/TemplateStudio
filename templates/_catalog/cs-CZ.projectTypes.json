@@ -28,5 +28,10 @@
     "name": "MenuBarWpf",
     "displayName": "MenuBar",
     "summary": "Je přidána nabídka pro přecházení mezi stránkami."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
   }
 ]

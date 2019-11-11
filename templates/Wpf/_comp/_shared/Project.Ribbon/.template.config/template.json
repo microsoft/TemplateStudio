@@ -1,0 +1,82 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.Project.Ribbon",
+    "shortName": "wts.Wpf.Project.Ribbon",
+    "identity": "wts.Wpf.Project.Ribbon",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "0",
+      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMBasic|MVVMLight & wts.type == project",
+      "wts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Behaviors/BackstageTabNavigationBehavior.cs"
+      },
+      {
+        "path": "Behaviors/RibbonPageConfiguration.cs"
+      },
+      {
+        "path": "Behaviors/RibbonTabsBehavior.cs"
+      },
+      {
+        "path": "Contracts/Services/IRightPaneService.cs"
+      },
+      {
+        "path": "Services/RightPaneService.cs"
+      },
+      {
+        "path": "ViewModels/ShellViewModel.cs"
+      },
+      {
+        "path": "Views/ShellWindow.xaml"
+      },
+      {
+        "path": "Views/ShellWindow.xaml.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "baseclass": {
+        "type": "parameter",
+        "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      }
+    },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId": "Fluent.Ribbon",
+          "version": "7.0.0",
+          "projectPath": "Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+      },
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId": "Microsoft.Xaml.Behaviors.Wpf",
+          "version": "1.1.3",
+          "projectPath": "Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+      }
+    ]
+  }

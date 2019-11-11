@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="svg52" Width="390.000000" Height="300.000000">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: sodipodi:namedview-->
+    <!--Unknown tag: metadata-->
+    <Canvas Name="g50">
+      <Canvas.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform ScaleX="0.100000" ScaleY="-0.100000"/>
+          <TranslateTransform X="0.000000" Y="300.000000"/>
+        </TransformGroup>
+      </Canvas.RenderTransform>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path36" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M0 1500 l0 -1500 1950 0 1950 0 0 1500 0 1500 -1950 0 -1950 0 0 -1500z m3600 450 l0 -750 -1650 0 -1650 0 0 750 0 750 1650 0 1650 0 0 -750z m0 -1350 l0 -300 -1650 0 -1650 0 0 300 0 300 1650 0 1650 0 0 -300z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path38" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M600 2250 l0 -150 150 0 150 0 0 150 0 150 -150 0 -150 0 0 -150z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path40" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M1200 1955 l0 -445 450 0 450 0 0 445 0 445 -450 0 -450 0 0 -445z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path42" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M2410 2250 l0 -150 445 0 445 0 0 150 0 150 -445 0 -445 0 0 -150z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path44" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M600 1655 l0 -145 150 0 150 0 0 145 0 145 -150 0 -150 0 0 -145z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path46" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M2410 1655 l0 -145 145 0 145 0 0 145 0 145 -145 0 -145 0 0 -145z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path48" Fill="#FF000000">
+        <Path.Data>
+          <PathGeometry Figures="M3000 1655 l0 -145 150 0 150 0 0 145 0 145 -150 0 -150 0 0 -145z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+    </Canvas>
+  </Canvas>
+</Viewbox>
