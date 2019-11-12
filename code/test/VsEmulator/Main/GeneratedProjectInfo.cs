@@ -253,7 +253,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
-            Guid guid = GenContext.ToolBox.Shell.GetVsProjectId();
+            Guid guid = GenContext.ToolBox.Shell.GetProjectGuidByName(GenContext.Current.ProjectName);
             return Path.Combine(path, guid.ToString());
         }
     }
