@@ -2,4 +2,4 @@
 
 Funkce Přetahování poskytuje službu, která zabaluje [standardní funkci platformy UPW pro přetahování](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop) a zjednodušuje tak kód potřebný pro vytvoření aplikace podporující přetahování, a dodržuje také vzor pro rámec (framework), který vaše aplikace používá.
 
-[Další informace](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Další informace](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

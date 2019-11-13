@@ -9,7 +9,7 @@ using Param_RootNamespace.Core.Models;
 namespace Param_RootNamespace.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
-    // More information on using and configuring this service can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/sql-server-data-service.md
+    // More information on using and configuring this service can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/sql-server-data-service.md
     // TODO WTS: Change your code to use this instead of the SampleDataService.
     public static class SqlServerDataService
     {

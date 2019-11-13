@@ -2,4 +2,4 @@
 
 [Uygulama için çoklu görünümleri ne zaman ve nasıl göstereceğinizi öğrenin.](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[Bu işlevi uygulamanızda kullanmayı ve genişletmeyi öğrenin.](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[Bu işlevi uygulamanızda kullanmayı ve genişletmeyi öğrenin.](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

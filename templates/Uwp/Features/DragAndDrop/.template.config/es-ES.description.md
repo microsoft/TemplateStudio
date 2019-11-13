@@ -2,4 +2,4 @@
 
 La función de arrastrar y colocar proporciona un servicio de contenedor para la [funcionalidad estándar de arrastrar y colocar de UWP](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop) que simplifica el código necesario para crear aplicaciones listas para arrastrar y colocar y que sigue el patrón del framework que utiliza tu aplicación.
 
-[Más información](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Más información](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

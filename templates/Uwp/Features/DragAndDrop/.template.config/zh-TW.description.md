@@ -2,4 +2,4 @@
 
 「拖放」功能為[標準 UWP 拖放功能](https://docs.microsoft.com/zh-tw/windows/uwp/design/input/drag-and-drop) 提供包裝函式服務來簡化建立具備拖放功能之應用程式所需的程式碼，也會遵循您的應用程式所使用的framework模式。
 
-[詳細資訊](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[詳細資訊](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

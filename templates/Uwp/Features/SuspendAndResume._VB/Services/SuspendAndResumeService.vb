@@ -10,7 +10,7 @@ Namespace Services
     ' In case the App is resumed without being terminated no data should be lost, a resume event is fired that allows you to refresh App data that might
     ' be outdated (e.g data from online feeds)
     ' Documentation:
-    '     * How to implement and test: https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/suspend-and-resume.md
+    '     * How to implement and test: https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/suspend-and-resume.md
     '     * Application Lifecycle: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
     Friend Class SuspendAndResumeService
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
