@@ -1531,7 +1531,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}projectTypes/updatetonavigationview.md.
+        ///   Looks up a localized string similar to {0}UWP/projectTypes/updatetonavigationview.md.
         /// </summary>
         public static string ValidatorHasHamburgerMenuLink {
             get {
@@ -1585,7 +1585,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}frameworks/updatemvvmlightlocator.md.
+        ///   Looks up a localized string similar to {0}UWP/frameworks/updatemvvmlightlocator.md.
         /// </summary>
         public static string ValidatorHasOldMvvmLightLocatorLink {
             get {
@@ -1612,7 +1612,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}projectTypes/updatetowinuinavigationview.md.
+        ///   Looks up a localized string similar to {0}UWP/projectTypes/updatetowinuinavigationview.md.
         /// </summary>
         public static string ValidatorHasOldNavigationViewLink {
             get {
@@ -1639,7 +1639,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}projectTypes/updatetohorizontalnavview.md.
+        ///   Looks up a localized string similar to {0}UWP/projectTypes/updatetohorizontalnavview.md.
         /// </summary>
         public static string ValidatorHasPivotLink {
             get {
