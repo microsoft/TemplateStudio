@@ -1,4 +1,4 @@
-﻿# 3d-app-launcher
+﻿# 3D App Launcher
 
 Include a 3D app launcher for when the app is used in a Mixed Reality environment.
 
