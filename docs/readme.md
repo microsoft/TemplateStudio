@@ -15,7 +15,8 @@ These will help if using WinTS to build apps.
 
 ### Universal Windows Platform
 
-- [Using and extending the generated app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
 - [Handling app activation](./UWP/activation.md)
 - [Handling navigation within the app](./UWP/navigation.md)
 - [Adapt the app for specific platforms](./UWP/platform-specific-recommendations.md)

@@ -60,13 +60,14 @@ Connect to data services, setup cloud connected services for your application, a
 
 Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
 
-After selecting the items wanted in your app, you can extend the generated code on [UWP](docs/UWP/getting-started-endusers.md) or WPF.
+After selecting the items wanted in your app, you can extend the generated code on [UWP](docs/UWP/getting-started-endusers.md) or [WPF](docs/WPF/getting-started-endusers.md).
 
 ## Documentation
 
 - [Installing the extension](docs/getting-started-extension.md)
 - [Understand the core concepts](docs/concepts.md)
-- [Using WinTS to build apps](docs/UWP/getting-started-endusers.md)
+- [Using WinTS to build UWP apps](docs/UWP/getting-started-endusers.md)
+- [Using WinTS to build WPF apps](docs/WPF/getting-started-endusers.md)
 - [Working on WinTS](docs/getting-started-developers.md)
 
 ## Known issues

@@ -69,6 +69,7 @@ If you want to have updates from in-progress changes.  This feed will have the r
 ## Learn more
 
 - [Core concepts](./concepts.md)
-- [Using and extending the generated app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
 - [Getting started with the WinTS codebase](./getting-started-developers.md)
 - [All docs](./readme.md)
