@@ -2,7 +2,9 @@
 
 Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
 
-![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+![Windows Template Studio UWP screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+
+![Windows Template Studio WPF screenshot](docs/resources/getting-started/WTSProjectTypeWPF.png)
 
 ## Build Status
 
@@ -50,7 +52,7 @@ To accelerate app creation, we provide a number of app page templates you can us
 
 ### **Features**
 
-Specify which capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Here you can add features that enables your app to interact with storage, notifications, layout themming, etc.
+Specify which capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Here you can add features that enable your app to interact with storage, notifications, layout theming, etc.
 
 ### **Services**
 
@@ -92,8 +94,8 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 2. Generated templates are a starting point, not a completed application.
 3. Generated templates must be able to compile and run once generated.
 4. Generated templates should work on all device families.
-5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
+5. Templates should have comments to aid developers. This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+6. All UWP features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
 7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 
