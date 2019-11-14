@@ -31,7 +31,7 @@ Windows Template Studio approaches UWP and WPF app creation using the following 
 
 First, how do you want your app's UI navigation to behave?
 
-- **UWP**: *Blank*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
+- **UWP**: *Blank*, *[navigation pane](docs/UWP/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
 
 - **WPF**: *Blank*, *navigation pane*, *menu bar* and a *ribbon*.
 
