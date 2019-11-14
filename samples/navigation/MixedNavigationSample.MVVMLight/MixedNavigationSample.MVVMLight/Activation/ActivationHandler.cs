@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MixedNavigationSample.MVVMLight.Activation
 {
-    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/activation.md
     internal abstract class ActivationHandler
     {
         public abstract bool CanHandle(object args);

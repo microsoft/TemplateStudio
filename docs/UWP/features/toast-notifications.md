@@ -10,7 +10,7 @@ Adaptive and interactive toast notifications let you create flexible pop-up noti
 The `ToastNotificationService` is in charge of sending notifications directly from code in the application. The service contains a method `ShowToastNotification()` that sends a notification to the Windows action center. The code in this feature also includes a `ShowToastNotificationSample` class that shows how to create and send a notification from code.
 
 `ToastNotificationsService` extends `ActivationHandler` to handle application activation from a toast notification. This code is not implemented on the template because the logic is application dependent. The following contains an example of one way to handle application activation from a toast notification.
-Check out the [activation documentation](../activation.md) to learn more about handling app activation.
+Check out the [activation documentation](../UWP/activation.md) to learn more about handling app activation.
 The relevant parts of the sample app that handle activation are shown below.
 
 ```csharp

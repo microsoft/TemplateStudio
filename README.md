@@ -1,6 +1,6 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
+Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
 
 ![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
@@ -25,22 +25,48 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 ## Features
 
-Windows Template Studio approaches UWP app creation using the following six attribute sets:
+Windows Template Studio approaches UWP and WPF app creation using the following six attribute sets:
 
-- **Project type**: First, how do you want your app's UI navigation to behave? We support four project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
-- **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support five common patterns: *code behind*, *[basic MVVM](./docs/frameworks/mvvmbasic.md)*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
-- **App pages**: To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, tabbed, web view*), to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
-- **Windows 10 features**: Specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
-- **Services**: Connect to data services, setup identity logins for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
-- **Automated Tests**:  Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
+### **Project type**
 
-After selecting the items wanted in your UWP app, you can [extend the generated code](docs/getting-started-endusers.md).
+First, how do you want your app's UI navigation to behave?
+
+- **UWP**: *Blank*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
+
+- **WPF**: *Blank*, *navigation pane*, *menu bar* and a *ribbon*.
+
+
+### **App design pattern**
+
+Next, what coding pattern do you want to use in your project.
+
+- **UWP**: *code behind*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
+
+- **WPF**: *MVVM Basic*, *[MVVMLight](http://www.mvvmlight.net/)* and *[Prism](https://github.com/PrismLibrary/Prism)*.
+
+### **App pages**
+
+To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, web view*), to pages that implement common patterns (*e.g., app settings*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
+
+### **Features**
+
+Specify which capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Here you can add features that enables your app to interact with storage, notifications, layout themming, etc.
+
+### **Services**
+
+Connect to data services, setup cloud connected services for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
+
+### **Automated Tests**
+
+Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
+
+After selecting the items wanted in your app, you can extend the generated code on [UWP](docs/UWP/getting-started-endusers.md) or WPF.
 
 ## Documentation
 
 - [Installing the extension](docs/getting-started-extension.md)
 - [Understand the core concepts](docs/concepts.md)
-- [Using WinTS to build apps](docs/getting-started-endusers.md)
+- [Using WinTS to build apps](docs/UWP/getting-started-endusers.md)
 - [Working on WinTS](docs/getting-started-developers.md)
 
 ## Known issues

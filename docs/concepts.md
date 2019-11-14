@@ -45,6 +45,6 @@ The Templates Repository is the place where all templates are made available (ho
 ## Learn more
 
 - [Installing the extension](./getting-started-extension.md)
-- [Using and extending the generated app](./getting-started-endusers.md)
+- [Using and extending the generated app](./UWP/getting-started-endusers.md)
 - [Getting started with the WinTS codebase](./getting-started-developers.md)
 - [All docs](./readme.md)
