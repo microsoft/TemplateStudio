@@ -279,4 +279,4 @@ End Function
 - [Using and extending the generated app](./UWP/getting-started-endusers.md)
 - [Handling navigation within the app](./navigation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](./readme.md)
+- [All docs](../readme.md)

@@ -96,4 +96,4 @@ The three pages in this sample and the order in which they can be navigated to a
 - [Using and extending the generated app](./UWP/getting-started-endusers.md)
 - [Handling app activation](./UWP/activation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](./readme.md)
+- [All docs](../readme.md)

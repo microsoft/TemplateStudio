@@ -1,6 +1,6 @@
 # Using and extending your generated project
 
-Projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+UWP projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Windows Template Studio
 
@@ -27,7 +27,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ### Design patterns
 
-**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the three most common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the five most common patterns:
 
 | Design pattern| Description |
 |--------------:|:------------|
@@ -157,4 +157,4 @@ Windows Template Studio approaches UWP app creation using the following attribut
 - [Handling app activation](./UWP/activation.md)
 - [Handling navigation within the app](./navigation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](./readme.md)
+- [All docs](../readme.md)
