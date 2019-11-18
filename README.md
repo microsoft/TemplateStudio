@@ -2,9 +2,9 @@
 
 Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
 
-![Windows Template Studio UWP screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
-![Windows Template Studio WPF screenshot](docs/resources/getting-started/WTSProjectTypeWPF.png)
+![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
 ## Build Status
 
@@ -33,18 +33,18 @@ Windows Template Studio approaches UWP and WPF app creation using the following 
 
 First, how do you want your app's UI navigation to behave?
 
-- **UWP**: *Blank*, *[navigation pane](docs/UWP/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
+- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[navigation pane](./docs/UWP/projectTypes/navigationpane.md)*, *[pivot and tabs](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[menu bar](./docs/UWP/projectTypes/menubar.md)*.
 
-- **WPF**: *Blank*, *navigation pane*, *menu bar* and a *ribbon*.
+- **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[navigation pane](./docs/WPF/projectTypes/navigationpane.md)*, *[menu bar](./docs/WPF/projectTypes/menubar.md)* and a *[ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
 
 ### **App design pattern**
 
 Next, what coding pattern do you want to use in your project.
 
-- **UWP**: *code behind*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
+- **UWP**: *[code behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
-- **WPF**: *MVVM Basic*, *[MVVMLight](http://www.mvvmlight.net/)* and *[Prism](https://github.com/PrismLibrary/Prism)*.
+- **WPF**: *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
 
 ### **App pages**
 
@@ -62,15 +62,15 @@ Connect to data services, setup cloud connected services for your application, a
 
 Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
 
-After selecting the items wanted in your app, you can extend the generated code on [UWP](docs/UWP/getting-started-endusers.md) or [WPF](docs/WPF/getting-started-endusers.md).
+After selecting the items wanted in your app, you can extend the generated code on [UWP](./docs/UWP/getting-started-endusers.md) or [WPF](./docs/WPF/getting-started-endusers.md).
 
 ## Documentation
 
-- [Installing the extension](docs/getting-started-extension.md)
-- [Understand the core concepts](docs/concepts.md)
-- [Using WinTS to build UWP apps](docs/UWP/getting-started-endusers.md)
-- [Using WinTS to build WPF apps](docs/WPF/getting-started-endusers.md)
-- [Working on WinTS](docs/getting-started-developers.md)
+- [Installing the extension](./docs/getting-started-extension.md)
+- [Understand the core concepts](./docs/concepts.md)
+- [Using WinTS to build UWP apps](./docs/UWP/getting-started-endusers.md)
+- [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
+- [Working on WinTS](./docs/getting-started-developers.md)
 
 ## Known issues
 
@@ -82,7 +82,7 @@ Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/is
 
 If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
 
-Here is what we're currently thinking in our [roadmap](docs/roadmap.md).
+Here is what we're currently thinking in our [roadmap](./docs/roadmap.md).
 
 ## Contributing
 
@@ -108,7 +108,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension logs [basic telemetry](docs/telemetry.md) regarding what is selected in the wizard. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension logs [basic telemetry](./docs/telemetry.md) regarding what is selected in the wizard. Our [Telemetry Data](./docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
