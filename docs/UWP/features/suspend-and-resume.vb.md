@@ -13,7 +13,7 @@ Before the App enters background state, SuspendAndResumeService fires an OnBackg
 
 In case the App is terminated during suspension the previous application state has to be restored during re-launch. The SuspendAndResumeService will navigate to the suspended page and also fires an OnDataRestored event. You can subscribe to this event from your current Page to apply restored data.
 
-To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../UWP/activation.md).
+To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](../activation.md).
 
 In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario.
 

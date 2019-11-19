@@ -91,9 +91,9 @@ public class StartViewModel : Observable
 
 The three pages in this sample and the order in which they can be navigated to are shown below.
 
-![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+![Mixed navigation sample](./resources/navigation/MixedNavigationSample.png)
 
-Additional navigation scenarios are covered [here](navigation-advanced.md).
+Additional navigation scenarios are covered [here](./navigation-advanced.md).
 
 ---
 

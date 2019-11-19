@@ -88,7 +88,7 @@ Here is a compilation of useful links to the documentation that will help you to
 
 ## Learn more
 
-- [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
-- [Handling app activation](./UWP/activation.md)
-- [Handling navigation within the app](./UWP/navigation.md)
+- [Using and extending the generated UWP app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
+- [Handling navigation within the app](./navigation.md)
 - [All docs](../readme.md)

@@ -6,9 +6,9 @@ UWP projects created with Windows Template Studio (WinTS) are intended as a star
 
 The final generated code is the result of a project configuration (project type and design pattern) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
 
-- [Application activation](activation.md)
-- [Navigation between pages](navigation.md)
-- [Notifications in Windows Template Studio](notifications.md)
+- [Application activation](./activation.md)
+- [Navigation between pages](./navigation.md)
+- [Notifications in Windows Template Studio](./notifications.md)
 
 ## Understanding concepts for Windows Template Studio
 

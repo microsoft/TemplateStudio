@@ -4,7 +4,7 @@ This feature will display a customizable prompt when the app is used for the fir
 
 ## Testing this feature
 
-This feature works by storing the current version number of the app being used and displaying the dialog when the version number of the app is different to what it stored previously.  
+This feature works by storing the current version number of the app being used and displaying the dialog when the version number of the app is different to what it stored previously.
 The version number of the app will change every time you release a new update through the store but you can recreate this by manually changing the version number.
 
 Test this feature by following these steps:

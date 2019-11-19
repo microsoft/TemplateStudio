@@ -1,6 +1,6 @@
 # Deep Linking Activation
 
-The custom Deep Linking feature builds upon the [ActivationService](../UWP/activation.md). Prism apps handle activation in the App.xaml.cs.
+The custom Deep Linking feature builds upon the [ActivationService](../activation.md). Prism apps handle activation in the App.xaml.cs.
 
 ## Change the protocol from the default name
 

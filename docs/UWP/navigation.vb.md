@@ -87,7 +87,7 @@ End Class
 
 The three pages in this sample and the order in which they can be navigated to are shown below.
 
-![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+![Mixed navigation sample](./resources/navigation/MixedNavigationSample.png)
 
 ---
 
