@@ -41,24 +41,24 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Page        | Description |
 |------------:|:------------|
-| [Blank](./pages/blank.md) | This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you. |
-| [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.|
-| [Web View](./pages/webview.md)  | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
-| [Media Player](./pages/mediaplayer.md)  | A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.|
-| [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books. |
+| [Blank](./pages/blank.md) | This is the most basic page. A blank canvas to mold into whatever you wish. |
+| [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your app. |
+| [Web View](./pages/webview.md)  | The web view page renders web content using the Microsoft Edge rendering engine. |
+| [Media Player](./pages/mediaplayer.md)  | A page for showing video with system media controls enabled. |
+| [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. |
 | [TreeView](./pages/treeview.md)  | The tree-view page has a tree view control to show hierarchical content. |
-| [Content Grid](./pages/contentgrid.md)  | A page that allows you to add custom content in a [GridView](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview) which is responsive to the screen size change. |
+| [Content Grid](./pages/contentgrid.md)  | This page allows you to add custom items in the form of an Adaptive Grid. |
 | [DataGrid](./pages/datagrid.md)  | A page displaying a simple data grid. |
-| [Telerik Data Grid](./pages/telerikdatagrid.md)  | A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.|
-| [Chart](./pages/chart.md)  | A page displaying a [RadChart control](http://www.telerik.com/universal-windows-platform-ui/chart), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). RadChart control for Windows 10 apps features a rich set of chart series from Bar, Line, Area, Pie, Scatter and Polar charts to different financial series.|
-| [TabbedPivot](./pages/tabbed.md)  | The TabbedPivot page is used for navigating frequently accessed, distinct content categories. |
+| [Telerik Data Grid](./pages/telerikdatagrid.md)  | A page displaying a simple grid, powered by Telerik UI controls for UWP. |
+| [Chart](./pages/chart.md)  | A page displaying a simple chart, powered by Telerik UI controls for UWP. |
+| [TabbedPivot](./pages/tabbed.md)  | The tabbed page is used for navigating frequently accessed, distinct content categories. |
 | [TabView](./pages/tabview.md)  | The tab view page has a TabView control to show contents in different tabs. |
 | [Map](./pages/map.md)  | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
-| [Camera](./pages/camera.md)  | A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.|
-| [Image Gallery](./pages/imagegallery.md)  | A page displaying a image gallery and allows user to navigate between gallery and image detail.|
-| [Ink Draw](./pages/inkdraw.md)  | A page that allows you to create notes using shape and image recognition with Windows Ink. |
-| [Ink Smart Canvas](./pages/inksmartcanvas.md)  | A page that allows you to create notes and drawings using Windows Ink. |
-| [Ink Draw Picture](./pages/inkdrawpicture.md)  | A page that allows you to load a picture and then draw on top of it using Windows Ink. |
+| [Camera](./pages/camera.md)  | A page for capturing and displaying an image from the camera. |
+| [Image Gallery](./pages/imagegallery.md)  | A page displaying a image gallery and allows user to navigate between gallery and image detail. |
+| [Ink Draw](./pages/inkdraw.md)  | A page that allows you to create notes and drawings using Windows Ink. |
+| [Ink Smart Canvas](./pages/inksmartcanvas.md)  | A page that allows you to create notes using shape and text recognition with Windows Ink. |
+| [Ink Draw Picture](./pages/inkdrawpicture.md)  | A page that allows you to load a picture and draw on top of it using Windows Ink. |
 
 ### Features
 
@@ -66,16 +66,16 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Feature | Description |
 |-------------:|:-------------|
-| [VS App Center Analytics](./features/vs-app-center-analytics.md) | Adding analytics from the [Visual Studio App Center](https://appcenter.ms/) will help you understand more about your app users and their behavior when using your app. |
+| [VS App Center Analytics](./features/vs-app-center-analytics.md) | Send analytics to the Visual Studio App Center. |
 
 #### Application Launching
 
 | Feature | Description |
 |-------------:|:-------------|
 | [3D App Launcher](./features/3d-app-launcher.md) | Include a 3D app launcher when the app is used in a Mixed Reality environment. |
-| [Deep Linking](./features/deep-linking.md) | Add the ability to launch and deep link into the app with a custom URI Scheme. |
+| [Deep Linking](./features/deep-linking.md) | Add the ability to launch and deep link into the app with a custom URI scheme. |
 | [UserActivity](./features/user-activity.md) | Add the ability to add user activities to the Windows Timeline. |
-| [Web to App link](./features/web-to-app-link.md) | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
+| [Web to App link](./features/web-to-app-link.md) | Web to App link associates your app with a website so that when someone opens a link to your website. |
 | [Command Line Launch](./features/command-line.md) | Support passing arguments and launching from the command line. |
 | [Multi-Instance](./features/multi-instance.md) | Launch multiple instances of the app. |
 | [Multi-Instance Advanced](./features/multi-instance-advanced.md) | Control how multiple instances of the app are launched. |
@@ -84,35 +84,35 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Feature | Description |
 |-------------:|:-------------|
-| [Settings Storage](./features/setting-storage.md) | [Setting storage](https://docs.microsoft.com/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
-| [Suspend and Resume](./features/suspend-and-resume.md) | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
-| [Multiple Views](./features/multiple-views.md) | Enable different views within your app to be opened in separate windows. |
+| [Settings Storage](./features/setting-storage.md) | Setting storage helps simplify storing data inside your application data folder. |
+| [Suspend and Resume](./features/suspend-and-resume.md) | A simple service you can hook into to handle when a user leaves and returns to the app. |
+| [Multiple Views](./features/multiple-views.md) | Enable your users to view independent parts of your app in separate windows. |
 
 #### Background Work
 
 | Feature | Description |
 |-------------:|:-------------|
-| [Background Task](./features/background-task.md) | Creates an [in-process background task](https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
+| [Background Task](./features/background-task.md) | Add an in-process background task ready to run code even while the app is not in the foreground. |
 
 #### Connected Experiences
 
 | Feature | Description |
 |-------------:|:-------------|
-| [Share Source](./features/share-source.md) | Support the Share Contract to share data from your app with others. |
-| [Share Target](./features/share-target.md) | Allows you to receive data shared from other apps. |
+| [Share Source](./features/share-source.md) | Helps supporting the share contract in your UWP app to share data from your app with others. |
+| [Share Target](./features/share-target.md) | Allows you to receive data shared by other apps using the share contract in your UWP app. |
 
 #### User Interactions
 
 | Feature | Description |
 |-------------:|:-------------|
-| [Toast Notification](./features/toast-notifications.md) | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
-| [Azure Notifications](./features/azure-notifications.md) | [Azure Notification Hubs](https://docs.microsoft.com/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
-| [Dev Center Notification](./features/dev-center-notifications.md) | Register your app to receive notifications from the store and handle them being used to launch the app. |
-| [Live Tile](./features/live-tile.md) | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
+| [Toast Notification](./features/toast-notifications.md) | Adds code to show displaying a toast and handling it being used to launch the app. |
+| [Azure Notifications](./features/azure-notifications.md) | Register to receive and handle messages from Azure Notification Hubs. |
+| [Dev Center Notification](./features/dev-center-notifications.md) | Register your app to receive notifications from the store. |
+| [Live Tile](./features/live-tile.md) | Adds a sample to show updating the tile as well as code for working with multiple tiles. |
 | [First Run Prompt](./features/first-run-prompt.md) | Display a prompt when the app is used for the first time. |
 | [What's New Prompt](./features/whats-new-prompt.md) | Display a prompt when the app is first used after an update. |
-| [Feedback Hub Link](./features/feedback-hub-link.md) | Add a link, on the Settings page, to the Feedback Hub. |
-| [Drag & Drop](./features/drag-and-drop.md) | A service that simplifies the creation of drag and drop ready apps. |
+| [Feedback Hub Link](./features/feedback-hub-link.md) | Add a link, on the settings page, to the Feedback Hub. |
+| [Drag & Drop](./features/drag-and-drop.md) | The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps. |
 | [Theme Selection](./features/theme-selection.md) | Adds theming support to your application. |
 
 ### Services
@@ -130,7 +130,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Service | Description |
 |--------:|:------------|
-| [Forced Login](./services/forced-login.md) | Make your application require the user to log in. |
+| [Forced Login](./services/forced-login.md) | Make your application require the user to login. |
 | [Optional Login](./services/optional-login.md) | Make your application have an optional login and restricted features. |
 
 #### Tools
