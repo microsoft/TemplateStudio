@@ -91,7 +91,7 @@ Subscribe to the `OnBackgroundEntering` and  `OnDataRestored` events to save and
 
 **`CodeBehind`**
 
-Subscribe to the OnBackgroundEntering and OnDataRestored event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
+Subscribe to the OnBackgroundEntering and OnDataRestored event when navigating to the Page and unsubscribe when navigating from the Page in DataPage.xaml.cs:
 
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -120,7 +120,7 @@ private void OnDataRestored(object sender, SuspendAndResumeArgs e)
 
 **`MVVMBasic and MVVMLight`**
 
-Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
+Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page in DataPage.xaml.cs:
 
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -152,7 +152,7 @@ private void OnDataRestored(object sender, SuspendAndResumeArgs e)
 
 Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page.
 The subscription to the event has to be on the ViewModel, as the navigation is using ViewModel as parameter.
-Data.xaml.cs:
+DataPage.xaml.cs:
 
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using WtsTelemetry.Helpers;
+using System.Linq;
 
 namespace WtsTelemetry.Services
 {
@@ -22,24 +23,29 @@ namespace WtsTelemetry.Services
         {
             try
             {
-                stringBuilder.AppendLine($"## {title}");
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine($"|{firstColumnName}|Percentage|");
-                stringBuilder.AppendLine("|:---|:---:|");
-
-                foreach (var value in json.ToQueryData())
+                var data = json.ToQueryData();
+                if (data.Any())
                 {
-                    stringBuilder.AppendLine($"|{value.DisplayName}|{Math.Round(value.Value, 1)}%|");
-                }
+                    stringBuilder.AppendLine($"## {title}");
+                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine($"|{firstColumnName}|Percentage|");
+                    stringBuilder.AppendLine("|:---|:---:|");
+
+                    foreach (var value in data)
+                    {
+                        stringBuilder.AppendLine($"|{value.DisplayName}|{Math.Round(value.Value, 1)}%|");
+                    }
+                    stringBuilder.AppendLine();
+                }               
             }
             catch(Exception ex)
             {
                 stringBuilder.AppendLine($"Error to process {title} table.");
                 stringBuilder.AppendLine($"Entry data: {json}.");
                 stringBuilder.AppendLine($"Exception: {ex.Message}.");
+                stringBuilder.AppendLine();
             }
-
-            stringBuilder.AppendLine();
+            
             return this;
         }
 
