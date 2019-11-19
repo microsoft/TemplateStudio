@@ -102,5 +102,3 @@ The following code snippets show how to add a new menu "Help" with a menu entry 
 </data>
 <!-- End of block -->
 ```
-
-<a name="invokecode"></a>

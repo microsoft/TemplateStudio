@@ -35,10 +35,10 @@ Windows Template Studio approaches WPF app creation using the following attribut
 
 | Page        | Description |
 |------------:|:------------|
-| [Blank](./pages/blank.md) | This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you. |
-| [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.|
-| [Web View](./pages/webview.md)  | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
-| [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books. |
+| [Blank](./pages/blank.md) | This is the most basic page. A blank canvas to mold into whatever you wish. |
+| [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your app. |
+| [Web View](./pages/webview.md)  | The web view page renders web content using the Microsoft Edge rendering engine. |
+| [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. |
 
 ### Features
 
@@ -46,14 +46,14 @@ Windows Template Studio approaches WPF app creation using the following attribut
 
 | Feature | Description |
 |-------------:|:-------------|
-| [Persist And Restore](./features/persist-and-restore.md) | Persist And Restore provides a service that makes working with application data simpler. It handles loading, saving, and serializing both files and individual pieces of data in the user's local app data folder. |
-| [Multiple views](./features/multiple-views.md) | Help your users be more productive by letting them view independent parts of your app in separate windows. When you create multiple windows for an app, each window behaves independently. The taskbar shows each window separately. Users can move, resize, show, and hide app windows independently and can switch between app windows as if they were separate apps. Each window operates in its own thread. |
+| [Persist And Restore](./features/persist-and-restore.md) | Persist And Restore helps simplify storing data inside User Local AppData folder. |
+| [Multiple views](./features/multiple-views.md) | Enable your users to view independent parts of your app in separate windows. |
 
 #### Packaging
 
 | Feature | Description |
 |-------------:|:-------------|
-| [MSIX Packaging](./features/msix-packaging.md) | This feature adds a new project to the solution. This project allows the creation of MSIX packages containing Windows applications for side-loading or distribution via Microsoft Store.<br />Read more about [MSIX Packaging](https://aka.ms/msix) and [packaging desktop apps.](https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-packaging-dot-net) |
+| [MSIX Packaging](./features/msix-packaging.md) | Allows packages creation for side-loading or distribution via Microsoft Store. |
 
 #### User Interactions
 
