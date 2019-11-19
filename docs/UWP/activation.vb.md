@@ -1,6 +1,6 @@
 # ActivationService & ActivationHandlers
 
-:heavy_exclamation_mark: There is also a version of [this document with code in C#](./UWP/activation.md) :heavy_exclamation_mark: |
+:heavy_exclamation_mark: There is also a version of [this document with code in C#](./activation.md) :heavy_exclamation_mark: |
 -------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## ActivationService
@@ -276,7 +276,7 @@ End Function
 
 ## Learn more
 
-- [Using and extending the generated app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated app](./getting-started-endusers.md)
 - [Handling navigation within the app](./navigation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
 - [All docs](../readme.md)

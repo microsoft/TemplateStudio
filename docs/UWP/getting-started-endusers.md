@@ -76,9 +76,9 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | [Deep Linking](./features/deep-linking.md) | Add the ability to launch and deep link into the app with a custom URI Scheme. |
 | [UserActivity](./features/user-activity.md) | Add the ability to add user activities to the Windows Timeline. |
 | [Web to App link](./features/web-to-app-link.md) | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
-| [Command Line Launch](./command-line.md) | Support passing arguments and launching from the command line. |
-| [Multi-Instance](./multi-instance.md) | Launch multiple instances of the app. |
-| [Multi-Instance Advanced](./multi-instance-advanced.md) | Control how multiple instances of the app are launched. |
+| [Command Line Launch](./features/command-line.md) | Support passing arguments and launching from the command line. |
+| [Multi-Instance](./features/multi-instance.md) | Launch multiple instances of the app. |
+| [Multi-Instance Advanced](./features/multi-instance-advanced.md) | Control how multiple instances of the app are launched. |
 
 #### Application Lifecycle
 
@@ -123,7 +123,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 |--------:|:------------|
 | [HTTP Data Service](./services/http-data-service.md) | Access content over HTTP. |
 | [Web API](./services/web-api.md) | Include ASP.NET Core Web API project. |
-| [Secured Web API](./secured-web-api.md) | Include a ASP.NET Core Web API project that validates a JWToken. |
+| [Secured Web API](./services/secured-web-api.md) | Include a ASP.NET Core Web API project that validates a JWToken. |
 | [SQL Server Data](./services/sql-server-data-service.md) | Get data from SQL Server to use in the app. |
 
 #### Authentication (Select one)
@@ -143,7 +143,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 | Name | Description |
 |-----:|:------------|
-| [Test App with MSTest](./testing/app-mstes.md) | Add a project for unit tests against the app using [MSTest](https://github.com/Microsoft/testfx). |
+| [Test App with MSTest](./testing/app-mstest.md) | Add a project for unit tests against the app using [MSTest](https://github.com/Microsoft/testfx). |
 | [Test App with xUnit](./testing/app-xunit.md) | Add a project for unit tests against the app using [xUnit](https://xunit.net/). |
 | [Test Core library with MSTest](./testing/core-mstest.md) | Add a project to test code in the Core library with [MSTest](https://github.com/Microsoft/testfx). |
 | [Test Core library with nUnit](./testing/core-nunit.md) | Add a project to test code in the Core library with [nUnit](https://nunit.org/). |
@@ -154,7 +154,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ## Learn more
 
-- [Handling app activation](./UWP/activation.md)
+- [Handling app activation](./activation.md)
 - [Handling navigation within the app](./navigation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
 - [All docs](../readme.md)

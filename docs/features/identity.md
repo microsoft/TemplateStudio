@@ -1,3 +1,3 @@
 ﻿# Identity
 
-These details have [moved here](../UWP/services/services.md).
+These details have [moved here](../UWP/services/identity.md).

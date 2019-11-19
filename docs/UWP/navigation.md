@@ -45,7 +45,7 @@ You can find more on configuring code generated with this project type [here](./
 ## Mixed navigation sample
 
 This sample is based on Windows Template Studio 1.3 release and shows an app which includes a _startup page_ that is displayed before navigating to a shell page and then behaving like a Navigation Pane project.
-The following code uses [MVVM Basic](../samples/navigation/MixedNavigationSample.MVVMBasic), versions for [MVVM Light](../samples/navigation/MixedNavigationSample.MVVMLight) and [Code Behind](../samples/navigation/MixedNavigationSample.CodeBehind) are also available.
+The following code uses [MVVM Basic](../../samples/navigation/MixedNavigationSample.MVVMBasic), versions for [MVVM Light](../../samples/navigation/MixedNavigationSample.MVVMLight) and [Code Behind](../../samples/navigation/MixedNavigationSample.CodeBehind) are also available.
 
 - Step 1. Navigate to the Start Page
 
@@ -99,7 +99,7 @@ Additional navigation scenarios are covered [here](navigation-advanced.md).
 
 ## Learn more
 
-- [Using and extending the generated app](./UWP/getting-started-endusers.md)
-- [Handling app activation](./UWP/activation.md)
+- [Using and extending the generated app](./getting-started-endusers.md)
+- [Handling app activation](./activation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
 - [All docs](../readme.md)
