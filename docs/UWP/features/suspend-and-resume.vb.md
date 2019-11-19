@@ -99,7 +99,7 @@ Subscribe to the `OnBackgroundEntering` and  `OnDataRestored` events to save and
 
 **`CodeBehind`**
 
-Subscribe to the OnBackgroundEntering and OnDataRestored event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.vb:
+Subscribe to the OnBackgroundEntering and OnDataRestored event when navigating to the Page and unsubscribe when navigating from the Page in DataPage.xaml.vb:
 
 ```vb
 Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
@@ -125,7 +125,7 @@ End Sub
 
 **`MVVMBasic or MVVMLight`**
 
-Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.vb:
+Subscribe to the OnBackgroundEntering and OnDataRestored events when navigating to the Page and unsubscribe when navigating from the Page in DataPage.xaml.vb:
 
 ```vb
 Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
