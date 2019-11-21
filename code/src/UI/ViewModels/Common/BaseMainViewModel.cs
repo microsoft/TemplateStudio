@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
@@ -69,7 +70,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             // Templates generation is not suported in following cases:
             // - WPF Projects from VisualStudio 2017
             var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            if (Platform == Platforms.Wpf && vsInfo.VisualStudioExeVersion.StartsWith("15"))
+            var version = vsInfo.VisualStudioExeVersion.Split('.').Select(n => int.Parse(n)).ToList();
+            if (Platform == Platforms.Wpf && (version[0] < 16 || version[1] < 3))
             {
                 WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
                 return;
