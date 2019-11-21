@@ -46,4 +46,13 @@
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
+
+  <genTemplate:Metadata>
+    <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
+    <genTemplate:Item Name="wizardVersion" Version="Param_Wizard.Version" />
+    <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
+    <genTemplate:Item Name="projectType" Value="Param_ProjectType" />
+    <genTemplate:Item Name="framework" Value="Param_Framework" />
+    <genTemplate:Item Name="platform" Value="Param_Platform" />
+  </genTemplate:Metadata>
 </Package>

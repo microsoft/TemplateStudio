@@ -45,6 +45,33 @@
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFrontEndFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
     }
   },
   "postActions": [
