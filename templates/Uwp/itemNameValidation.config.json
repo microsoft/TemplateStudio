@@ -1,0 +1,26 @@
+﻿{  
+    "regexs" : [
+      {
+        "name" : "itemEndsWithPage",
+        "pattern" : ".*(?<!page)$"
+      },
+      {
+        "name" : "badFormat",
+        "pattern" : "^((?!\\d)\\w+)$"
+      }
+    ],
+    "reservedNames" : [
+      "Page",
+      "BackgroundTask",
+      "Pivot",
+      "Shell",
+      "User",
+      "LogIn",
+      "SharedDataWebLink",
+      "SharedDataStorageItems",
+      "SchemeActivationSample"
+      ],
+    "validateExistingNames": true,
+    "validateDefaultNames": true,
+    "validateEmptyNames": true
+}

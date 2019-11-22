@@ -4,6 +4,7 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
@@ -116,7 +117,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 template.IsSelected = true;
                 NameEditable = template.ItemNameEditable;
-                Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
+                if (template.ItemNameEditable)
+                {
+                    Name = ValidationService.InferTemplateName(template.Name);
+                }
+                else
+                {
+                    Name = template.Template.DefaultName;
+                }
+
                 HasErrors = false;
                 Template = template.Template;
                 var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
@@ -142,7 +151,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (NameEditable)
             {
-                var validationResult = ValidationService.ValidateTemplateName(newName, NameEditable, false);
+                var validationResult = ValidationService.ValidateTemplateName(newName);
                 HasErrors = !validationResult.IsValid;
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)

@@ -92,6 +92,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public async Task SetStepAsync(StepData newStep, bool navigate = true)
         {
+            if (WizardStatus.Current.HasValidationErrors)
+            {
+                return;
+            }
+
             _origStep = _currentStep;
             if (newStep != _currentStep)
             {

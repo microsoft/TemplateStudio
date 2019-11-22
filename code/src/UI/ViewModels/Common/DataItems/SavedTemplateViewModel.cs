@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
@@ -160,7 +161,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             if (ItemNameEditable)
             {
-                var validationResult = ValidationService.ValidateTemplateName(newName, ItemNameEditable, true);
+                var validationResult = ValidationService.ValidateTemplateName(newName);
                 HasErrors = !validationResult.IsValid;
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)

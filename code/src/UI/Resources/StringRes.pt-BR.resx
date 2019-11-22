@@ -831,4 +831,8 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <value>Visual Studio 2017 doesn't support WPF .NET Core project creation, please use Visual Studio 2019.</value>
     <comment>Error message for WPF .NET Core in VS2017</comment>
   </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>RegEx validation {0} failed.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
 </root>

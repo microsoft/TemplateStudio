@@ -143,10 +143,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
                 else
                 {
-                    savedTemplate.SetName(ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable), true);
-                    if (savedTemplate.ItemNameEditable)
+                    if (template.ItemNameEditable)
                     {
+                        savedTemplate.SetName(ValidationService.InferTemplateName(template.Name));
                         focus = true;
+                    }
+                    else
+                    {
+                        savedTemplate.SetName(template.Template.DefaultName);
                     }
                 }
 

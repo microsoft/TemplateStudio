@@ -5,8 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Naming;
+using Microsoft.Templates.UI.Threading;
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -14,50 +18,25 @@ namespace Microsoft.Templates.UI.Services
     {
         private static Func<IEnumerable<string>> _getNames;
         private static Func<IEnumerable<string>> _getPageNames;
+        private static ItemNameValidationConfig _config;
 
         public static void Initialize(Func<IEnumerable<string>> getNames, Func<IEnumerable<string>> getPageNames)
         {
             _getNames = getNames;
             _getPageNames = getPageNames;
+            _config = GenContext.ToolBox.Repo.ItemNameValidationConfig;
         }
 
-        public static ValidationResult ValidateTemplateName(string templateName, bool includesDefaultNamesValidation, bool includesExistingNamesValidation)
+        public static ValidationResult ValidateTemplateName(string templateName)
         {
-            var validators = new List<Validator>()
-            {
-                new EmptyNameValidator(),
-                new BadFormatValidator(),
-                new ReservedNamesValidator(),
-                new PageSuffixValidator(),
-            };
-
-            if (includesExistingNamesValidation)
-            {
-                validators.Add(new ExistingNamesValidator(_getNames.Invoke()));
-            }
-
-            if (includesDefaultNamesValidation)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-
-            return Naming.Validate(templateName, validators);
+            var itemValidationService = new ItemNameService(_config, _getNames);
+            return itemValidationService.Validate(templateName);
         }
 
-        public static string InferTemplateName(string templateName, bool includesExistingNamesValidation, bool includesDefaultNamesValidation)
+        public static string InferTemplateName(string templateName)
         {
-            var validators = new List<Validator>() { new ReservedNamesValidator() };
-            if (includesDefaultNamesValidation)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-
-            if (includesExistingNamesValidation)
-            {
-                validators.Add(new ExistingNamesValidator(_getNames.Invoke()));
-            }
-
-            return Naming.Infer(templateName, validators);
+            var itemValidationService = new ItemNameService(_config, _getNames);
+            return itemValidationService.Infer(templateName);
         }
 
         public static bool HasAllPagesViewSuffix(bool fromNewTemplate, string newName)
