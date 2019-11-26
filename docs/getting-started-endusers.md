@@ -76,9 +76,9 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | [Deep Linking](./features/deep-linking.md) | Add the ability to launch and deep link into the app with a custom URI Scheme. |
 | [UserActivity](./features/user-activity.md) | Add the ability to add user activities to the Windows Timeline. |
 | [Web to App link](./features/web-to-app-link.md) | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
-| [Command Line Launch](./command-line.md) | Support passing arguments and launching from the command line. |
-| [Multi-Instance](./multi-instance.md) | Launch multiple instances of the app. |
-| [Multi-Instance Advanced](./multi-instance-advanced.md) | Control how multiple instances of the app are launched. |
+| [Command Line Launch](./features/command-line.md) | Support passing arguments and launching from the command line. |
+| [Multi-Instance](./features/multi-instance.md) | Launch multiple instances of the app. |
+| [Multi-Instance Advanced](./features/multi-instance-advanced.md) | Control how multiple instances of the app are launched. |
 
 #### Application Lifecycle
 
