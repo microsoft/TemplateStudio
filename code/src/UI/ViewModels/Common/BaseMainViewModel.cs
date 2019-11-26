@@ -70,11 +70,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             // Templates generation is not suported in following cases:
             // - WPF Projects from VisualStudio 2017
             var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            var version = vsInfo.VisualStudioExeVersion.Split('.').Select(n => int.Parse(n)).ToList();
-            if (Platform == Platforms.Wpf && (version[0] < 16 || version[1] < 3))
+            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
             {
-                WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
-                return;
+                // VisualStudioExeVersion is Empty on UI Test execution
+                var version = vsInfo.VisualStudioExeVersion.Split('.').Select(n => int.Parse(n)).ToList();
+                if (Platform == Platforms.Wpf && (version[0] < 16 || version[1] < 3))
+                {
+                    WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
+                    return;
+                }
             }
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
