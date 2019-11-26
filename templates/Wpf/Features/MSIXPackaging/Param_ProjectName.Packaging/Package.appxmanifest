@@ -4,7 +4,7 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  IgnorableNamespaces="uap rescap genTemplate">
 
   <Identity
     Name="07ad151b-a614-4a13-aef0-5378d3f98e67"
@@ -46,4 +46,13 @@
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
+
+  <genTemplate:Metadata>
+    <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
+    <genTemplate:Item Name="wizardVersion" Version="Param_Wizard.Version" />
+    <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
+    <genTemplate:Item Name="projectType" Value="Param_ProjectType" />
+    <genTemplate:Item Name="framework" Value="Param_Framework" />
+    <genTemplate:Item Name="platform" Value="Param_Platform" />
+  </genTemplate:Metadata>
 </Package>
