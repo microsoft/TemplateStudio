@@ -72,9 +72,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
             if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
             {
-                // VisualStudioExeVersion is Empty on UI Test execution
-                var version = vsInfo.VisualStudioExeVersion.Split('.').Select(n => int.Parse(n)).ToList();
-                if (Platform == Platforms.Wpf && (version[0] < 16 || version[1] < 3))
+                // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
+                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
+                if (Platform == Platforms.Wpf && (version.Major < 16 || version.Minor < 3))
                 {
                     WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
                     return;
