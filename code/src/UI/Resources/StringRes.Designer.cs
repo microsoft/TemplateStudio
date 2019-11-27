@@ -331,7 +331,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visual Studio 2017 doesn&apos;t support WPF .NET Core project creation, please use Visual Studio 2019..
+        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
         /// </summary>
         public static string CanNotGenerateWPFProjectsMessage {
             get {
