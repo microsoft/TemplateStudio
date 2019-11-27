@@ -1,25 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
-  IgnorableNamespaces="uap mp genTemplate">
-
-  <Applications>
-      <Extensions>
-      <!--^^-->
-      <!--{[{-->
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="wtsapp">
-            <uap:Logo>Assets\Icon.png</uap:Logo>
-            <uap:DisplayName>Param_RootNamespace</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-      <!--}]}-->
-      </Extensions>
-    </Application>
-  </Applications>
-
-</Package>
+﻿<Extensions>
+<!--^^-->
+<!--{[{-->
+  <uap:Extension Category="windows.protocol">
+    <uap:Protocol Name="wtsapp">
+      <uap:Logo>Assets\Icon.png</uap:Logo>
+      <uap:DisplayName>Param_RootNamespace</uap:DisplayName>
+    </uap:Protocol>
+  </uap:Extension>
+<!--}]}-->
+</Extensions>
