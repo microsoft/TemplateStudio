@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
                 var version = Version.Parse(vsInfo.VisualStudioExeVersion);
-                if (Platform == Platforms.Wpf && (version.Major < 16 || version.Minor < 3))
+                if (Platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
                 {
                     WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
                     return;
