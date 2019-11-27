@@ -33,16 +33,16 @@ Windows Template Studio approaches UWP and WPF app creation using the following 
 
 First, how do you want your app's UI navigation to behave?
 
-- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[navigation pane](./docs/UWP/projectTypes/navigationpane.md)*, *[pivot and tabs](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[menu bar](./docs/UWP/projectTypes/menubar.md)*.
+- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[Navigation Pane](./docs/UWP/projectTypes/navigationpane.md)*, *[Horizontal Navigation Pane](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[Menu Bar](./docs/UWP/projectTypes/menubar.md)*.
 
-- **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[navigation pane](./docs/WPF/projectTypes/navigationpane.md)*, *[menu bar](./docs/WPF/projectTypes/menubar.md)* and a *[ribbon](./docs/WPF/projectTypes/ribbon.md)*.
+- **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
 
 ### **App design pattern**
 
 Next, what coding pattern do you want to use in your project.
 
-- **UWP**: *[code behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
+- **UWP**: *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
 - **WPF**: *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
 

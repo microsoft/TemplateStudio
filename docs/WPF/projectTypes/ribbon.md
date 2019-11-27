@@ -64,9 +64,11 @@ We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see commen
     <Page.Resources>
         <!--Page Resources-->
     </Page.Resources>
-    <Grid>
-        <!--Page content-->
-    </Grid>
+    <Page.Content>
+        <Grid>
+            <!--Page content-->
+        </Grid>
+    </Page.Content>
 </Page>
 ```
 
@@ -126,13 +128,17 @@ We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see commen
     <Page.Resources>
         <!--Page Resources-->
     </Page.Resources>
-    <Grid>
-        <!--Page content-->
-    </Grid>
+    <Page.Content>
+        <Grid>
+            <!--Page content-->
+        </Grid>
+    </Page.Content>
 </Page>
 ```
 
 You also need to set groupBox DataContext to ViewModel from page constructor.
+
+**MVVVM Basic**
 
 ```csharp
 public MasterDetailPage(MasterDetailViewModel viewModel)
@@ -140,6 +146,16 @@ public MasterDetailPage(MasterDetailViewModel viewModel)
     InitializeComponent();
     DataContext = viewModel;
     groupBox.DataContext = viewModel;
+}
+```
+
+**MVVVM Light or Prism**
+
+```csharp
+public MasterDetailPage()
+{
+    InitializeComponent();
+    groupBox.DataContext = DataContext;
 }
 ```
 
@@ -157,6 +173,24 @@ private void OnRefresh()
     // TODO: Add here your refresh data code.
 }
 ```
+
+## Navigation in Ribbon projects
+
+### 1. Navigate
+
+Ribbon projects are configured to allow showing pages in two different ways. The main way to navigate is using the Navigate method on the NavigationService, this method shows the page passed as a parameter in the main area (all space at the bottom of the ribbon menu).
+
+### 2. Show in Backstage
+
+Additionally, you can add pages that will be shown in the Ribbon Backstage, adding BackstageTabItem and setting the Tag with the Page identifier that you want to navigate to. The BackstageTabNavigationBehavior indicates to the Ribbon Backstage how to show that pages as navigable items.
+
+### 4. Open in a new window
+
+Shows a page in a separate Window. This is done with the help of the MultiView feature. You should use the OpenInNewWindow method in the WindowManagerService class. (Except in Prism where you should use the Prism dialog service.) You should add a dependency injection to this service in the ShellViewModel constructor.
+
+### 5. Open in a dialog
+
+Shows a page in a dialog over the app window with a button on the bottom to dismiss the dialog. You should use the OpenInDialog method in the WindowManagerService class. (Except in Prism where you should use the Prism DialogService.) You should add a dependency injection to this service in the ShellViewModel constructor.
 
 Ribbon projects use [MahApps.Metro](../mahapps-metro.md) to add modern styles to the user interface.
 View `Fluent.Ribbon` license [here](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license).

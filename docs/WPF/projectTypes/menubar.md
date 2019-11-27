@@ -31,7 +31,7 @@ Shows a page in the frame below the menu without the possibility to navigate bac
 
 ### 2. Navigate
 
-Navigates to a page in the frame below the menu with the possibility to navigate back to previous pages. This option is used in pages with master and detail like ImageGallery and ContentGrid, where detail pages should add a back navigation button.
+Navigates to a page in the frame below the menu with the possibility to navigate back to previous pages.
 
 ### 3. Open in the right pane
 
@@ -39,11 +39,11 @@ Shows a page in the right pane of the SplitView contained in the ShellWindow. Th
 
 ### 4. Open in a new window
 
-Shows a page in a separate Window. This is done with the help of the MultiView feature. You should use the OpenInNewWindow method in the WindowManagerService class. (Except in Prism where you should use the Prism dialog service.)
+Shows a page in a separate Window. This is done with the help of the MultiView feature. You should use the OpenInNewWindow method in the WindowManagerService class. (Except in Prism where you should use the Prism dialog service.) You should add a dependency injection to this service in the ShellViewModel constructor.
 
 ### 5. Open in a dialog
 
-Shows a page in a dialog over the app window with a button on the bottom to dismiss the dialog. You should use the OpenInDialog method in the WindowManagerService class. (Except in Prism where you should use the Prism dialog service.)
+Shows a page in a dialog over the app window with a button on the bottom to dismiss the dialog. You should use the OpenInDialog method in the WindowManagerService class. (Except in Prism where you should use the Prism DialogService.) You should add a dependency injection to this service in the ShellViewModel constructor.
 
 <a name="newmenuitems"></a>
 
@@ -72,7 +72,7 @@ The menu bar project adds all your pages to the views menu entry by default (exc
 
 The following code snippets show how to add a new menu "Help" with a menu entry "About" :
 
-**ShellPage.xaml**
+**ShellWindow .xaml**
 
 ```xml
 <Menu>
