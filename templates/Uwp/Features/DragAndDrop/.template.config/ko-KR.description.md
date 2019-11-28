@@ -2,4 +2,4 @@
 
 끌어서 놓기 기능은 [표준 UWP 끌어서 놓기 기능](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop)에 래퍼 서비스를 제공하여 앱에 끌어서 놓기 기능을 만들 수 있는 코드 작업을 간소화하고 앱에서 사용하는 framework 패턴을 적용할 수 있습니다.
 
-[자세한 정보](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[자세한 정보](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

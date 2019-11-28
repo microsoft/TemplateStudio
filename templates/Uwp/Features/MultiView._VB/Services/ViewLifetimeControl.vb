@@ -137,7 +137,7 @@ Namespace Services
                 UnregisterForEvents()
 
                 If InternalReleasedEvent Is Nothing Then
-                    ' For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
+                    ' For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md
                     Throw New InvalidOperationException("ExceptionViewLifeTimeControlMissingReleasedSubscription".GetLocalized())
                 End If
 

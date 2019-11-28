@@ -2,4 +2,4 @@
 
 La funzionalità Trascinamento fornisce un servizio wrapper basato sulla [funzionalità di trascinamento della selezione UWP standard](https://docs.microsoft.com/it-it/windows/uwp/design/input/drag-and-drop) al fine di semplificare il codice necessario per creare app che includano tale funzionalità e rispettare il modello di framework della tua app.
 
-[Maggiori informazioni](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Maggiori informazioni](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

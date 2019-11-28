@@ -2,4 +2,4 @@
 
 [앱의 다중 창 보기로 표시하는 때와 방법을 알아보십시오.](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[앱에서 이 기능을 사용하고 확장하는 방법을 알아보십시오.](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[앱에서 이 기능을 사용하고 확장하는 방법을 알아보십시오.](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

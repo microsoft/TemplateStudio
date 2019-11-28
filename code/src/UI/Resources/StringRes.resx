@@ -661,7 +661,7 @@
     <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetonavigationview.md</value>
+    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
     <comment>Has hamburger menu validation link documentation</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
@@ -669,7 +669,7 @@
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
     <comment>Has pivot validation link documentation</comment>
   </data>
   <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
@@ -677,7 +677,7 @@
     <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
     <comment>Has old navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
@@ -709,7 +709,7 @@
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">

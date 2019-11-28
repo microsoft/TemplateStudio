@@ -2,4 +2,4 @@
 
 [了解何時及如何顯示應用程式的多個檢視。](https://docs.microsoft.com/zh-tw/windows/uwp/design/layout/show-multiple-views)
 
-[了解如何在您的應用程式中使用及擴充此功能。](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[了解如何在您的應用程式中使用及擴充此功能。](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

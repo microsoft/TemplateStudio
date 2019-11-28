@@ -1,8 +1,10 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
+Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
 
-![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+
+![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
 ## Build Status
 
@@ -25,23 +27,50 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 ## Features
 
-Windows Template Studio approaches UWP app creation using the following six attribute sets:
+Windows Template Studio approaches UWP and WPF app creation using the following six attribute sets:
 
-- **Project type**: First, how do you want your app's UI navigation to behave? We support four project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, *pivot and tabs*, and a *menu bar*.
-- **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support five common patterns: *code behind*, *[basic MVVM](./docs/frameworks/mvvmbasic.md)*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
-- **App pages**: To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, tabbed, web view*), to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
-- **Windows 10 features**: Specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Currently supported features cover analytics, application launching, application lifecycle (*settings storage, suspend and resume, multiple views*), background work, connected experiences (*share source and target*), and user interaction (*app notifications, Live tiles, prompts, feedback, drag & drop and theme selection*).
-- **Services**: Connect to data services, setup identity logins for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
-- **Automated Tests**:  Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
+### **Project type**
 
-After selecting the items wanted in your UWP app, you can [extend the generated code](docs/getting-started-endusers.md).
+First, how do you want your app's UI navigation to behave?
+
+- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[Navigation Pane](./docs/UWP/projectTypes/navigationpane.md)*, *[Horizontal Navigation Pane](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[Menu Bar](./docs/UWP/projectTypes/menubar.md)*.
+
+- **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
+
+
+### **App design pattern**
+
+Next, what coding pattern do you want to use in your project.
+
+- **UWP**: *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
+
+- **WPF**: *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
+
+### **App pages**
+
+To accelerate app creation, we provide a number of app page templates you can use to add common UI pages into your new app. We currently include everything from a *blank page*, to common layouts (*e.g., master/detail, web view*), to pages that implement common patterns (*e.g., app settings*). Use the wizard to add as many of each page as you need, providing a name for each one, and we'll generate them for you.
+
+### **Features**
+
+Specify which capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging `TODO` items. Here you can add features that enable your app to interact with storage, notifications, layout theming, etc.
+
+### **Services**
+
+Connect to data services, setup cloud connected services for your application, and enforce rules with the [XAML Styler](https://github.com/Xavalon/XamlStyler) extension.
+
+### **Automated Tests**
+
+Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
+
+After selecting the items wanted in your app, you can extend the generated code on [UWP](./docs/UWP/getting-started-endusers.md) or [WPF](./docs/WPF/getting-started-endusers.md).
 
 ## Documentation
 
-- [Installing the extension](docs/getting-started-extension.md)
-- [Understand the core concepts](docs/concepts.md)
-- [Using WinTS to build apps](docs/getting-started-endusers.md)
-- [Working on WinTS](docs/getting-started-developers.md)
+- [Installing the extension](./docs/getting-started-extension.md)
+- [Understand the core concepts](./docs/concepts.md)
+- [Using WinTS to build UWP apps](./docs/UWP/getting-started-endusers.md)
+- [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
+- [Working on WinTS](./docs/getting-started-developers.md)
 
 ## Known issues
 
@@ -53,7 +82,7 @@ Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/is
 
 If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
 
-Here is what we're currently thinking in our [roadmap](docs/roadmap.md).
+Here is what we're currently thinking in our [roadmap](./docs/roadmap.md).
 
 ## Contributing
 
@@ -65,8 +94,8 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 2. Generated templates are a starting point, not a completed application.
 3. Generated templates must be able to compile and run once generated.
 4. Generated templates should work on all device families.
-5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
+5. Templates should have comments to aid developers. This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+6. All UWP features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
 7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 
@@ -79,7 +108,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension logs [basic telemetry](docs/telemetry.md) regarding what is selected in the wizard. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension logs [basic telemetry](./docs/telemetry.md) regarding what is selected in the wizard. Our [Telemetry Data](./docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 

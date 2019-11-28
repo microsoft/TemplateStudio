@@ -13,7 +13,7 @@ namespace Param_RootNamespace.Services
 {
     public delegate void ViewClosedHandler(ViewLifetimeControl viewControl, EventArgs e);
 
-    // For instructions on using this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
+    // For instructions on using this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md
     // More details about showing multiple views at https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
     public class WindowManagerService
     {

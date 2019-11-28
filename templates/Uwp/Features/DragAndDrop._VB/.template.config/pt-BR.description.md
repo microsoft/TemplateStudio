@@ -2,4 +2,4 @@
 
 O recurso Arrastar e Soltar fornece um serviço wrapper sobre a [funcionalidade arrastar e soltar padrão do UWP](https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop) a fim de simplificar o código exigido para criar aplicativos prontos para o recurso. Além disso, ele segue o padrão da framework utilizada por seu aplicativo.
 
-[Mais informações](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Mais informações](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

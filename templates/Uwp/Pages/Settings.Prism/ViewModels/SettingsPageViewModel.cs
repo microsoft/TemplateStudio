@@ -9,7 +9,7 @@ using Param_RootNamespace.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+    // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/settings.md
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;

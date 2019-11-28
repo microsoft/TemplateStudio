@@ -2,4 +2,4 @@
 
 [アプリの複数のビューを表示する状況と方法をご覧ください。] (https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[アプリでこの機能を使用および拡張する方法をご覧ください。](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[アプリでこの機能を使用および拡張する方法をご覧ください。](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

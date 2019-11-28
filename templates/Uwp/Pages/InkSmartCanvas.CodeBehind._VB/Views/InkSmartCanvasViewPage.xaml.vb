@@ -2,7 +2,7 @@
 Imports Param_RootNamespace.Services.Ink.UndoRedo
 
 Namespace Views
-    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
+    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/ink.md
     Public NotInheritable Partial Class InkSmartCanvasViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged

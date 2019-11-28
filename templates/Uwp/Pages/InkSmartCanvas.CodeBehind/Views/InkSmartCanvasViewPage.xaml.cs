@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    // For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
+    // For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/ink.md
     public sealed partial class InkSmartCanvasViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private bool lassoSelectionButtonIsChecked;
