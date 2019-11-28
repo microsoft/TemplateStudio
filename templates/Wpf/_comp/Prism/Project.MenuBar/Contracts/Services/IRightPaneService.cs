@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Windows.Controls;
 using MahApps.Metro.Controls;
+using Prism.Regions;
 
 namespace Param_RootNamespace.Contracts.Services
 {
@@ -10,8 +11,8 @@ namespace Param_RootNamespace.Contracts.Services
 
         event EventHandler PaneClosed;
 
-        void OpenInRightPane(string pageKey, object parameter = null);
+        void OpenInRightPane(string pageKey, NavigationParameters navigationParameters = null);
 
-        void Initialize(Frame rightPaneFrame, SplitView splitView);
+        void Initialize(SplitView splitView, ContentControl rightPaneContentControl);
     }
 }

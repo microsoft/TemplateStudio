@@ -1,10 +1,13 @@
-﻿namespace Param_RootNamespace.ViewModels
+﻿//{[{
+using Param_RootNamespace.Contracts.Services;
+//}]}
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : BindableBase, IDisposable
     {
-        private IRegionNavigationService _navigationService;
+        private readonly IRegionManager _regionManager;
 //{[{
-        private IRegionNavigationService _rightPanenavigationService;
+        private readonly IRightPaneService _rightPaneService;
 //}]}
         private DelegateCommand _goBackCommand;
 //{[{
@@ -16,11 +19,12 @@
 //{[{
         public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new DelegateCommand(OnMenuFilewts.ItemName));
 //}]}
-        private void OnLoaded()
+
+        public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
-            _navigationService = _regionManager.Regions[Regions.Main].NavigationService;
+//^^
 //{[{
-            _rightPanenavigationService = _regionManager.Regions[Regions.RightPane].NavigationService;
+            _rightPaneService = rightPaneService;
 //}]}
         }
 
@@ -29,16 +33,8 @@
         }
 //{[{
 
-        private bool RequestNavigateOnRightPane(string target)
-        {
-            if (_rightPanenavigationService.CanNavigate(target))
-            {
-                _rightPanenavigationService.RequestNavigate(target);
-                return true;
-            }
-
-            return false;
-        }
+        private void RequestNavigateOnRightPane(string target)
+            => _rightPaneService.OpenInRightPane(target);
 //}]}
         private void RequestNavigateAndCleanJournal(string target)
         {
