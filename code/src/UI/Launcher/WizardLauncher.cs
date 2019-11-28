@@ -10,6 +10,7 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.UI.Services;
@@ -33,9 +34,8 @@ namespace Microsoft.Templates.UI.Launcher
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
             var rootDir = Directory.GetParent(Directory.GetParent(GenContext.Current.DestinationPath).FullName).FullName;
-            Func<IEnumerable<string>> existingProjectNames = () => Directory.EnumerateDirectories(rootDir, "*", SearchOption.TopDirectoryOnly).Select(d => Path.GetFileName(d));
 
-            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, existingProjectNames);
+            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => Fs.GetExistingFolderNames(rootDir));
             var projectName = GenContext.Current.ProjectName;
             var projectNameValidation = validationService.Validate(projectName);
 

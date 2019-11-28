@@ -25,22 +25,24 @@ namespace Microsoft.UI.Test
         public void InitializeFixture(string platform, string language)
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
-            var source = new LocalTemplatesSource(null, "UITest");
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
+
+            if (!syncExecuted)
+            {
+                var source = new LocalTemplatesSource(null, "UITest");
+                GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
+
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+                syncExecuted = true;
+            }
+
+            Repository = GenContext.ToolBox.Repo;
+
             GenContext.Current = new FakeContextProvider
             {
                 ProjectName = "Test",
                 DestinationPath = path,
                 GenerationOutputPath = path,
             };
-
-            if (!syncExecuted)
-            {
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
-                syncExecuted = true;
-            }
-
-            Repository = GenContext.ToolBox.Repo;
         }
     }
 }

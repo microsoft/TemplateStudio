@@ -74,11 +74,12 @@ namespace Microsoft.Templates.Test
             source.LoadConfigAsync(default(CancellationToken)).Wait();
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, Platforms.Uwp, language);
             if (syncExecuted.ContainsKey(language) && syncExecuted[language] == true)
             {
                 return;
             }
+
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, Platforms.Uwp, language);
 
             GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
 
