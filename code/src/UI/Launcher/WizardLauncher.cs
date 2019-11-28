@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -31,7 +32,10 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new string[] { });
+            var rootDir = Directory.GetParent(Directory.GetParent(GenContext.Current.DestinationPath).FullName).FullName;
+            Func<IEnumerable<string>> existingProjectNames = () => Directory.EnumerateDirectories(rootDir, "*", SearchOption.TopDirectoryOnly).Select(d => Path.GetFileName(d));
+
+            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, existingProjectNames);
             var projectName = GenContext.Current.ProjectName;
             var projectNameValidation = validationService.Validate(projectName);
 
@@ -50,6 +54,9 @@ namespace Microsoft.Templates.UI.Launcher
                         break;
                     case ValidationErrorType.Regex:
                         message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
+                        break;
+                    case ValidationErrorType.AlreadyExists:
+                        message = string.Format(StringRes.ErrorProjectAlreadyExists, projectName, rootDir);
                         break;
                 }
 
