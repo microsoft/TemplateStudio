@@ -18,25 +18,23 @@ namespace Microsoft.Templates.UI.Services
     {
         private static Func<IEnumerable<string>> _getNames;
         private static Func<IEnumerable<string>> _getPageNames;
-        private static ItemNameValidationConfig _config;
+        private static ItemNameService _itemValidationService;
 
         public static void Initialize(Func<IEnumerable<string>> getNames, Func<IEnumerable<string>> getPageNames)
         {
             _getNames = getNames;
             _getPageNames = getPageNames;
-            _config = GenContext.ToolBox.Repo.ItemNameValidationConfig;
+            _itemValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, _getNames);
         }
 
         public static ValidationResult ValidateTemplateName(string templateName)
         {
-            var itemValidationService = new ItemNameService(_config, _getNames);
-            return itemValidationService.Validate(templateName);
+           return _itemValidationService.Validate(templateName);
         }
 
         public static string InferTemplateName(string templateName)
         {
-            var itemValidationService = new ItemNameService(_config, _getNames);
-            return itemValidationService.Infer(templateName);
+            return _itemValidationService.Infer(templateName);
         }
 
         public static bool HasAllPagesViewSuffix(bool fromNewTemplate, string newName)
