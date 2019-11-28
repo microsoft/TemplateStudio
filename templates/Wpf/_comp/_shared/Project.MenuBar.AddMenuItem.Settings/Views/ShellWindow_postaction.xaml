@@ -1,14 +1,6 @@
-﻿<controls:MetroWindow
-    <controls:MetroWindow.Content>
-        <Grid>
-            <Menu>
-                <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
+﻿<MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
 <!--{[{-->
-                    <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFilewts.ItemNamePageHeader}" Command="{Binding MenuFilewts.ItemNameCommand}" />
-                    <Separator />
+    <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFilewts.ItemNamePageHeader}" Command="{Binding MenuFilewts.ItemNameCommand}" />
+    <Separator />
 <!--}]}-->
-                </MenuItem>
-            </Menu>
-        </Grid>
-    </controls:MetroWindow.Content>
-</controls:MetroWindow>
+</MenuItem>
