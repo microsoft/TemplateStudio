@@ -41,6 +41,7 @@ namespace Param_RootNamespace.Services
             _splitView.IsPaneOpen = true;
             PaneOpened?.Invoke(_splitView, EventArgs.Empty);
         }
+
         private void OnPaneClosed(object sender, EventArgs e)
            => PaneClosed?.Invoke(sender, e);
     }

@@ -6,11 +6,10 @@ namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private WebView _webView;
+        private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 //{[{
         private readonly IRightPaneService _rightPaneService;
 //}]}
-
         public wts.ItemNameViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
 //^^

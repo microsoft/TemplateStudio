@@ -5,7 +5,6 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : BindableBase, IDisposable
     {
-        private readonly IRegionManager _regionManager;
 //{[{
         private readonly IRightPaneService _rightPaneService;
 //}]}
@@ -15,11 +14,10 @@ namespace Param_RootNamespace.ViewModels
 //}]}
 
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
-
 //{[{
+
         public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new DelegateCommand(OnMenuFilewts.ItemName));
 //}]}
-
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
 //^^
