@@ -143,10 +143,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-              var defaultProject = GetProjectByName(projectName);
+                var defaultProject = GetProjectByName(projectName);
 
-              SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
-              SetStartupProject(defaultProject);
+                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+                SetStartupProject(defaultProject);
             }
             catch (Exception ex)
             {
@@ -390,6 +390,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                     }
                 }
             });
+        }
+
+        public override bool GetActiveProjectIsWts()
+        {
+            bool result = false;
+            var activeProjectPath = GetActiveProjectPath();
+            if (!string.IsNullOrEmpty(activeProjectPath))
+            {
+                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
+                if (!string.IsNullOrEmpty(metadataFile))
+                {
+                    var fileContent = File.ReadAllText(metadataFile);
+                    result = fileContent.Contains("genTemplate:Metadata");
+                }
+            }
+
+            return result;
         }
 
         public override bool IsDebuggerEnabled()

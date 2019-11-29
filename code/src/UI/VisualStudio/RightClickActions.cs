@@ -5,7 +5,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -15,7 +14,6 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -159,7 +157,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             EnsureGenContextInitialized();
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
-                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
+                var projectConfig = ProjectConfigInfoService.ReadProjectConfiguration();
                 if (projectConfig.Platform == Platforms.Uwp)
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
