@@ -2,7 +2,7 @@
 Imports Param_RootNamespace.Services
 
 Namespace Views
-    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.vb.md
+    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/settings-codebehind.vb.md
     ' TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     Public NotInheritable Partial Class SettingsPagePage
         Inherits Page

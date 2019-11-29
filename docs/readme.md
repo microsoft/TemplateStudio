@@ -13,10 +13,18 @@ Everyone should read these.
 
 These will help if using WinTS to build apps.
 
-- [Using and extending the generated app](./getting-started-endusers.md)
-- [Handling app activation](./activation.md)
-- [Handling navigation within the app](./navigation.md)
-- [Adapt the app for specific platforms](./platform-specific-recommendations.md)
+### Universal Windows Platform
+
+- [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
+- [Handling app activation](./UWP/activation.md)
+- [Handling navigation within the app](./UWP/navigation.md)
+- [Adapt the app for specific platforms](./UWP/platform-specific-recommendations.md)
+
+### WPF
+
+- [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
+- [Using MahApps.Metro](./WPF/mahapps-metro.md)
+- [Adapt the app for specific platforms](./UWP/platform-specific-recommendations.md)
 
 ## Working on WinTS
 

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     mc:Ignorable="d"
-    Style="{StaticResource MetroWindow}">
+    Style="{StaticResource CustomMetroWindow}">
     <controls:MetroWindow.Content>
         <Grid>
             <Grid.RowDefinitions>

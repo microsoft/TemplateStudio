@@ -2,16 +2,26 @@
 
 ## Installing the Visual Studio Extension
 
-### Prerequisites
+### Prerequisites for Universal Windows Platform
 
 Windows Template Studio (WinTS) installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
 
 - Visual Studio 2017 Update 3 or higher (any edition) or Visual Studio 2019 - Although VS 2017.3 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
-- Windows 10, version 1803 (version 10.0.17134.0) or later
+- Windows 10, version 1803 (version 10.0.17134.0) or later.
 - .Net Framework 4.7
-- Windows Template Studio extension.  You have two ways of acquiring the extension.
-  - Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
-  - Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
+
+### Prerequisites for WPF
+
+ - Get [Visual Studio 2019](https://visualstudio.microsoft.com/vs/) Update 3 and install `Microsoft.NET.Sdk.WindowsDesktop` to use WPF with .NET Core.
+ - Download the [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0).
+
+### Download the extension
+
+ - Windows Template Studio extension.  You have two ways of acquiring the extension.
+  - Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**.
+  - Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
+
+
 
 ## Public Release instructions
 
@@ -59,6 +69,7 @@ If you want to have updates from in-progress changes.  This feed will have the r
 ## Learn more
 
 - [Core concepts](./concepts.md)
-- [Using and extending the generated app](./getting-started-endusers.md)
+- [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
+- [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
 - [Getting started with the WinTS codebase](./getting-started-developers.md)
 - [All docs](./readme.md)

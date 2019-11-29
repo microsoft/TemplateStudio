@@ -2,4 +2,4 @@
 
 La fonctionnalité de glisser-déposer fournit un Service Wrapper sur la [fonctionnalité de glisser-déposer UWP standard] (https://docs.microsoft.com/windows/uwp/design/input/drag-and-drop) afin de simplifier le code requis pour créer des applications prêtes à prendre en charge les fonctions de glisser-déposer et à suivre le modèle framework de structure utilisé par votre application.
 
-[Plus d'informations](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Plus d'informations](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

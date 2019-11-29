@@ -51,6 +51,14 @@ The [Templates Repository](../templates) has the following structure:
   - [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
   - [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
+- [WPF](_templates/WPF): this folder contains all templates used for UWP platform projects
+  - [_composition](../templates/WPF/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
+  - [Projects](../templates/WPF/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
+  - [Pages](../templates/WPF/Pages): Page templates define the source files needed to create a page of a certain type.
+  - [Features](../templates/WPF/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+  - [Services](../templates/WPF/Services): Service templates with the sources required to add different services to the target app.
+  - [Testing](../templates/WPF/Testing): Testing templates with the sources required to add testing projects to the target solution.
+
 ## Anatomy of templates
 
 As mentioned, a basic [dotnet Template Engine](https://github.com/dotnet/templating) template is defined by the following elements:
@@ -303,7 +311,7 @@ For example, consider a SplitView project type with MVVM Basic framework, and ad
             <!--
               TODO WTS: Change the symbols for each item as appropriate for your app
               More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-              Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
+              Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/projectTypes/navigationpane.md
               Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
