@@ -7,7 +7,6 @@
     ],
     "reservedNames" : [
         "Prism",
-        "CaliburnMicro",
         "MVVMLight"
     ],
     "validateEmptyNames": true

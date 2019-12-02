@@ -486,6 +486,26 @@ There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actio
 
 ---
 
+## Template Name Validation
+Name validation rules vary among different platforms, and may change with the addition od new tempplates. Each platforms root template directory contains platform specific name validation configuration files.
+
+This config files allow the addition and configuration of different project and item name validators that are used to infer and validate template and project names both in the Wizard and before Generation.
+
+The two files allow to configure the following naming rules:
+
+- Project name (configured in projectNameValidation.config.json)
+  - validateEmptyNames : boolean that indicates if empty name validation should be applied
+  - validateExistingNames: boolean that indicates if empty name validation should be applied
+  - reservedNames: defines the reserved names that cannot be used as project names.
+  - regexs: define regexs that have to be met by the project name
+
+- Item name (configured in itemNameValidation.config.json):
+  - validateEmptyNames : boolean that indicates if empty name validation should be applied
+  - validateDefaultNames : boolean that indicates if empty name validation should be applied. DefaultNameValidator is checking against defaultNames from all templates
+  - validateExistingNames : boolean that indicates if empty name validation should be applied
+  - reservedNames: defines the reserved names that cannot be used as item names.
+  - regexs: define regexs that have to be met by the item name
+
 ## Learn more
 
 - [Getting started with the WinTS codebase](./getting-started-developers.md)

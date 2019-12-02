@@ -33,9 +33,7 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var rootDir = Directory.GetParent(Directory.GetParent(GenContext.Current.DestinationPath).FullName).FullName;
-
-            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => Fs.GetExistingFolderNames(rootDir));
+            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new List<string>());
             var projectName = GenContext.Current.ProjectName;
             var projectNameValidation = validationService.Validate(projectName);
 
@@ -54,9 +52,6 @@ namespace Microsoft.Templates.UI.Launcher
                         break;
                     case ValidationErrorType.Regex:
                         message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
-                        break;
-                    case ValidationErrorType.AlreadyExists:
-                        message = string.Format(StringRes.ErrorProjectAlreadyExists, projectName, rootDir);
                         break;
                 }
 
