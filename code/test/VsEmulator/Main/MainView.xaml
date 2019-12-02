@@ -153,24 +153,22 @@
                                         <Button.ToolTip>Open in folder</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/folder.png" />
                                     </Button>
-                                    <Button Command="{Binding AddNewPageCommand}" Style="{StaticResource IconButton}" Visibility="{Binding IsWtsProject}">
+                                    <Button Command="{Binding AddNewPageCommand}" Style="{StaticResource IconButton}" Visibility="{Binding IsAddNewPageCommandVisible}">
                                         <Button.ToolTip>Add new page</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/newpage.png" />
                                     </Button>
-                                    <Button Command="{Binding AddNewFeatureCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                    <Button Command="{Binding AddNewFeatureCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsAddNewFeatureCommandVisible}">
                                         <Button.ToolTip>Add new feature</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/newfeature.png" />
                                     </Button>
-                                    <StackPanel Orientation="Horizontal" Visibility="{Binding IsUwpProject}">
-                                        <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
-                                            <Button.ToolTip>Add new service</Button.ToolTip>
-                                            <Image Source="/VsEmulator;component/Assets/newservice.png" />
-                                        </Button>
-                                        <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
-                                            <Button.ToolTip>Add new testing</Button.ToolTip>
-                                            <Image Source="/VsEmulator;component/Assets/newtesting.png" />
-                                        </Button>
-                                    </StackPanel>
+                                    <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsAddNewServiceCommandVisible}">
+                                        <Button.ToolTip>Add new service</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newservice.png" />
+                                    </Button>
+                                    <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsAddNewTestingCommandVisible}">
+                                        <Button.ToolTip>Add new testing</Button.ToolTip>
+                                        <Image Source="/VsEmulator;component/Assets/newtesting.png" />
+                                    </Button>
                                     <Button Command="{Binding OpenTempInExplorerCommand}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}">
                                         <Button.ToolTip>Open temp folder in explorer</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/openfolder.png"/>

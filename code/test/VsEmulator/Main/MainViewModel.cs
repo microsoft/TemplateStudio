@@ -370,7 +370,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var config = ProjectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
-                newProject.SetProjectData(config.ProjectType, config.Framework, string.Empty, language, false);
+                newProject.SetProjectData(config.ProjectType, config.Framework, config.Platform, language, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }

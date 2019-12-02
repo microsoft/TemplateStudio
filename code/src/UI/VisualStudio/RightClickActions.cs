@@ -128,6 +128,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public bool Visible(TemplateType templateType)
+        {
+            return _shell.GetActiveProjectIsWts() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
+        }
+
         public bool Visible()
         {
             return _shell.GetActiveProjectIsWts();
@@ -158,12 +163,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
                 var projectConfig = ProjectConfigInfoService.ReadProjectConfiguration();
-                if (projectConfig.Platform == Platforms.Uwp)
-                {
-                    DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                    SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
-                }
+                DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectInfo = new ProjectInfo();
