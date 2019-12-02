@@ -60,6 +60,7 @@ namespace Microsoft.UI.Test
 
             var pages = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Page);
             var features = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Feature);
+            viewModel.UnsubscribeEventHandlers();
 
             Assert.True(viewModel.ProjectType.Items.Count == 4);
             Assert.True(viewModel.Framework.Items.Count == 5);
@@ -86,6 +87,8 @@ namespace Microsoft.UI.Test
             await SetProjectTypeAsync(viewModel, Blank);
             await SetFrameworkAsync(viewModel, MVVMLight);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.ProjectType == Blank);
             Assert.True(userSelection.FrontEndFramework == MVVMLight);
             Assert.True(userSelection.Pages.First().TemplateId == PageBlank);
@@ -102,6 +105,8 @@ namespace Microsoft.UI.Test
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages.Count == 2);
             Assert.True(userSelection.Features.Count == numOfDependencies);
             Assert.True(userSelection.Features.First().TemplateId == FeatureSettingsStorage);
@@ -122,6 +127,8 @@ namespace Microsoft.UI.Test
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages.Count == 2);
             Assert.True(userSelection.Features.Count == numOfDependencies);
             Assert.True(viewModel.UserSelection.Licenses.Count == 2);
@@ -139,6 +146,9 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages.Count == 2);
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
+
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages.Count == 1);
         }
 
@@ -154,6 +164,8 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Services.Count == 3);
             DeleteTemplate(TemplateType.Service, viewModel.UserSelection, 2);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Services.Count == 1);
         }
 
@@ -166,6 +178,8 @@ namespace Microsoft.UI.Test
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 0);
             var userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages.Count == 1);
         }
 
@@ -175,6 +189,7 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
+            viewModel.UserSelection.ResetUserSelection();
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
@@ -183,6 +198,8 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Features.Count == numOfDependencies);
             DeleteTemplate(TemplateType.Feature, viewModel.UserSelection, 0);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Features.Count == numOfDependencies);
         }
 
@@ -210,6 +227,8 @@ namespace Microsoft.UI.Test
 
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Services.Count == numOfDependencies - 1);
         }
@@ -241,6 +260,8 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages[4].Name == "Blank3");
             pages.MoveUpCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages[1].Name == "Blank");
             Assert.True(userSelection.Pages[2].Name == "Blank1");
             Assert.True(userSelection.Pages[3].Name == "Blank2");
@@ -264,6 +285,8 @@ namespace Microsoft.UI.Test
             pages.SelectedItem = pages.Items[1]; // Select Blank
             pages.MoveUpCommand.Execute(null);
             userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
             Assert.True(userSelection.Pages[0].Name == "Blank");
             Assert.True(userSelection.Pages[1].Name == "Main");
             Assert.True(userSelection.HomeName == "Blank");
