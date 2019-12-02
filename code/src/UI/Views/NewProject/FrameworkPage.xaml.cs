@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public FrameworkPage()
         {
-            DataContext = MainViewModel.Instance.Framework;
+            DataContext = MainViewModel.Instance;
             InitializeComponent();
         }
     }
