@@ -17,6 +17,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class UserSelectionGroup : Observable
     {
+        private readonly bool _allowsOrdering;
         private string _header;
         private ICommand _moveUpCommand;
         private ICommand _moveDownCommand;
@@ -24,7 +25,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private ICommand _deleteCommand;
         private SavedTemplateViewModel _selectedItem;
         private OrderingService _orderingService;
-        private bool _allowsOrdering;
 
         public string Header
         {

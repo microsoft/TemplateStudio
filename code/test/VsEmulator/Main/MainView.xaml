@@ -161,14 +161,16 @@
                                         <Button.ToolTip>Add new feature</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/newfeature.png" />
                                     </Button>
-                                    <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
-                                        <Button.ToolTip>Add new service</Button.ToolTip>
-                                        <Image Source="/VsEmulator;component/Assets/newservice.png" />
-                                    </Button>
-                                    <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
-                                        <Button.ToolTip>Add new testing</Button.ToolTip>
-                                        <Image Source="/VsEmulator;component/Assets/newtesting.png" />
-                                    </Button>
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding IsUwpProject}">
+                                        <Button Command="{Binding AddNewServiceCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                            <Button.ToolTip>Add new service</Button.ToolTip>
+                                            <Image Source="/VsEmulator;component/Assets/newservice.png" />
+                                        </Button>
+                                        <Button Command="{Binding AddNewTestingCommand}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}">
+                                            <Button.ToolTip>Add new testing</Button.ToolTip>
+                                            <Image Source="/VsEmulator;component/Assets/newtesting.png" />
+                                        </Button>
+                                    </StackPanel>
                                     <Button Command="{Binding OpenTempInExplorerCommand}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}">
                                         <Button.ToolTip>Open temp folder in explorer</Button.ToolTip>
                                         <Image Source="/VsEmulator;component/Assets/openfolder.png"/>

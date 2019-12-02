@@ -72,6 +72,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _isWtsProject, value);
         }
 
+        public Visibility IsUwpProject
+            => Platform == Platforms.Uwp ? Visibility.Visible : Visibility.Collapsed;
+
         public Visibility StyleCopTextVisibility
         {
             get => _styleCopTextVisibility;

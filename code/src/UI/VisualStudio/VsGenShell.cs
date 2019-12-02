@@ -400,7 +400,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
                 var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
-                if (!string.IsNullOrEmpty(metadataFile))
+                if (File.Exists(metadataFile))
                 {
                     var fileContent = File.ReadAllText(metadataFile);
                     result = fileContent.Contains("genTemplate:Metadata");
