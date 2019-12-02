@@ -30,6 +30,12 @@
         "path": "Behaviors/RibbonTabsBehavior.cs"
       },
       {
+        "path": "Contracts/Services/IRightPaneService.cs"
+      },
+      {
+        "path": "Services/RightPaneService.cs"
+      },
+      {
         "path": "ViewModels/ShellViewModel.cs"
       },
       {

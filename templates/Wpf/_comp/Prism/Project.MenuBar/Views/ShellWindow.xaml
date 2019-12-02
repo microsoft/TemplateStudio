@@ -30,36 +30,36 @@
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
     <controls:MetroWindow.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Menu>
-                <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
-                    <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFileExitHeader}" Command="{Binding MenuFileExitCommand}" />
-                </MenuItem>
-                <MenuItem Header="{x:Static strings:Resources.ShellMenuViewsHeader}">
-                </MenuItem>
-            </Menu>
-            <controls:SplitView
-                Grid.Row="1"
-                x:Name="splitView"
-                PanePlacement="Right"
-                OpenPaneLength="400">
-                <controls:SplitView.Pane>
-                    <Border
-                        BorderThickness="1,1,0,0"
-                        BorderBrush="{DynamicResource MahApps.Brushes.Controls.Border}">
-                        <ContentControl
-                            x:Name="rightPaneContentControl" />
-                    </Border>
-                </controls:SplitView.Pane>
-                <controls:SplitView.Content>
+        <controls:SplitView
+            x:Name="splitView"
+            PanePlacement="Right"
+            OpenPaneLength="400">
+            <controls:SplitView.Pane>
+                <Border
+                    BorderThickness="1,1,0,0"
+                    BorderBrush="{DynamicResource MahApps.Brushes.Controls.Border}">
                     <ContentControl
+                        x:Name="rightPaneContentControl" />
+                </Border>
+            </controls:SplitView.Pane>
+            <controls:SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Menu Grid.Row="0">
+                        <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
+                            <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFileExitHeader}" Command="{Binding MenuFileExitCommand}" />
+                        </MenuItem>
+                        <MenuItem Header="{x:Static strings:Resources.ShellMenuViewsHeader}">
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl
+                        Grid.Row="1"
                         x:Name="menuContentControl" />
-                </controls:SplitView.Content>
-            </controls:SplitView>
-        </Grid>
+                </Grid>
+            </controls:SplitView.Content>
+        </controls:SplitView>
     </controls:MetroWindow.Content>
 </controls:MetroWindow>
