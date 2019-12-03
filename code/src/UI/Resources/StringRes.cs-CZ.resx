@@ -831,4 +831,8 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
     <comment>Error message for WPF .NET Core in VS2017</comment>
   </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>RegEx validation {0} failed.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
 </root>

@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
                 fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
             }
 
-            var projectName = $"{projectType}{framework}Legacy";
+            var projectName = $"{projectType}{framework}Legacy{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Uwp, language, null, null);
 

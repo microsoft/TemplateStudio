@@ -15,6 +15,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
@@ -76,17 +77,15 @@ namespace Microsoft.Templates.Test
                     .Concat(userSelection.Features.Select(f => f.Name))
                     .Concat(userSelection.Services.Select(f => f.Name))
                     .Concat(userSelection.Testing.Select(f => f.Name));
-                var validators = new List<Validator>()
-                    {
-                        new ExistingNamesValidator(usedNames),
-                        new ReservedNamesValidator(),
-                    };
+                
                 if (template.ItemNameEditable)
                 {
-                    validators.Add(new DefaultNamesValidator());
+                    var itemBameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => usedNames);
+                    itemName = itemBameValidationService.Infer(itemName);
                 }
+                
 
-                itemName = Naming.Infer(itemName, validators);
+               
                 AddItem(userSelection, itemName, template);
             }
         }
@@ -186,13 +185,9 @@ namespace Microsoft.Templates.Test
         {
             for (int i = 0; i < 10; i++)
             {
-                var validators = new List<Validator>()
-                {
-                    new EmptyNameValidator(),
-                    new BadFormatValidator(),
-                };
+                var itemNameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => new string[] { });
                 var randomName = Path.GetRandomFileName().Replace(".", string.Empty);
-                if (Naming.Validate(randomName, validators).IsValid)
+                if (itemNameValidationService.Validate(randomName).IsValid)
                 {
                     return randomName;
                 }

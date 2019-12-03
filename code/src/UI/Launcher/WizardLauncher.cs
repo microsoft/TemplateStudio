@@ -4,15 +4,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
+using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using Microsoft.VisualStudio.TemplateWizard;
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.Launcher
 {
@@ -29,13 +33,10 @@ namespace Microsoft.Templates.UI.Launcher
 
         public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var validators = new List<Validator>()
-            {
-                new ProjectReservedNamesValidator(),
-                new ProjectStartsWithValidator(),
-            };
+            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new List<string>());
             var projectName = GenContext.Current.ProjectName;
-            var projectNameValidation = Naming.Validate(projectName, validators);
+            var projectNameValidation = validationService.Validate(projectName);
+
             if (projectNameValidation.IsValid)
             {
                 var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
@@ -46,10 +47,10 @@ namespace Microsoft.Templates.UI.Launcher
                 var message = string.Empty;
                 switch (projectNameValidation.ErrorType)
                 {
-                    case ValidationErrorType.ProjectReservedName:
+                    case ValidationErrorType.ReservedName:
                         message = string.Format(StringRes.ErrorProjectReservedName, projectName);
                         break;
-                    case ValidationErrorType.ProjectStartsWith:
+                    case ValidationErrorType.Regex:
                         message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
                         break;
                 }

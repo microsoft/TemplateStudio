@@ -937,6 +937,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RegEx validation {0} failed..
+        /// </summary>
+        public static string NotificationValidationError_Regex {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_Regex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name is reserved.
         /// </summary>
         public static string NotificationValidationError_ReservedName {

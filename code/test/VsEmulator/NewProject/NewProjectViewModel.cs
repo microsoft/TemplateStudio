@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
@@ -87,9 +88,9 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         private static string GetSuggestedSolution(string path)
         {
-            var validator = new List<Validator>() { new SuggestedDirectoryNameValidator(path) };
+            var validator = new List<Validator>() { new FolderNameValidator(path) };
 
-            return Naming.Infer(DefaultName, validator);
+            return NamingService.Infer(DefaultName, validator);
         }
 
         private void ShowFileDialog()
