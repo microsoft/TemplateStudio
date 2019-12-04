@@ -4,6 +4,8 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
+:heavy_exclamation_mark: WPF Templates are still in development and will be available from version 3.6 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
+
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
 ## Build Status
