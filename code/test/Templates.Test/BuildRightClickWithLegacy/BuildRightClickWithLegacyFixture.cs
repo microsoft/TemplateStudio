@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -64,9 +64,9 @@ namespace Microsoft.Templates.Test
         }
 
         [SuppressMessage(
-         "Usage",
-         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
-         Justification = "Required for unit testing.")]
+ "Usage",
+ "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+ Justification = "Required for unit testing.")]
         private static void InitializeTemplates(TemplatesSource source, string language)
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
@@ -87,24 +87,11 @@ namespace Microsoft.Templates.Test
             
         }
 
-        [SuppressMessage(
-         "Usage",
-         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
-         Justification = "Required for unit testing.")]
-        public void ChangeTemplatesSource(TemplatesSource source, string language, string platform)
-        {
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), new Version(GenContext.ToolBox.WizardVersion), platform, language);
-            GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
-        }
 
-        [SuppressMessage(
-         "Usage",
-         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
-         Justification = "Required for unit testing.")]
-        public void ChangeToLocalTemplatesSource(TemplatesSource source, string language, string platform)
+        public async Task ChangeToLocalTemplatesSource(TemplatesSource source, string language, string platform)
         {
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
-            GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
+            await GenContext.ToolBox.Repo.SynchronizeAsync(true, true);
         }
 
         // Renamed second parameter as this fixture needs the language while others don't

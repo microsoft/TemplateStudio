@@ -17,8 +17,7 @@ namespace Microsoft.Templates.Test
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
         private readonly string _emptyBackendFramework = string.Empty;
-        //TODO: Remove once version 3.5 is released
-        private string[] excludedTemplates = { "wts.Feat.MultiView", "wts.Feat.MultiView.VB", "wts.Page.TabView", "wts.Page.TabView.VB", "wts.Page.TreeView", "wts.Page.TreeView.VB" };
+        private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
             : base(fixture)
@@ -34,16 +33,11 @@ namespace Microsoft.Templates.Test
         {
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
 
-            if (language == ProgrammingLanguages.VisualBasic)
-            {
-                fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
-            }
-
             var projectName = $"{projectType}{framework}Legacy{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Uwp, language, null, null);
 
-            fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
+            await fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
             var rightClickTemplates = _fixture.Templates().Where(
                 t => t.GetTemplateType().IsItemTemplate()
@@ -67,11 +61,6 @@ namespace Microsoft.Templates.Test
 #pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
-
-            if (language == ProgrammingLanguages.VisualBasic)
-            {
-                fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
-            }
 
             var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 
