@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public ProjectTypePage()
         {
-            DataContext = MainViewModel.Instance.ProjectType;
+            DataContext = MainViewModel.Instance;
             InitializeComponent();
         }
     }

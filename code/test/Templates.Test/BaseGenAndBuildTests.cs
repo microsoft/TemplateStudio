@@ -18,6 +18,7 @@ using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Naming;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.Test
 {
@@ -187,7 +188,7 @@ namespace Microsoft.Templates.Test
 
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
-            var info = ProjectConfigInfo.ReadProjectConfiguration();
+            var info = ProjectConfigInfoService.ReadProjectConfiguration();
 
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);

@@ -5,6 +5,7 @@
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
+using Microsoft.Templates.Core;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -17,19 +18,16 @@ namespace Microsoft.Templates.Extension.Commands
     {
         private readonly Package _package;
 
-        public RelayCommand(Package package, int commandId, Guid commandSet, Action<object, EventArgs> menuCallback, Action<object, EventArgs> beforeQueryStatus = null)
+        public RelayCommand(Package package, int commandId, Guid commandSet, Action<object, EventArgs> menuCallback, Action<object, TemplateType> beforeQueryStatus, TemplateType templateType)
         {
             _package = package;
-
-            OleMenuCommandService commandService = ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-
-            if (commandService != null)
+            if (ServiceProvider.GetService(typeof(IMenuCommandService)) is OleMenuCommandService commandService)
             {
                 var menuCommandID = new CommandID(commandSet, commandId);
                 var menuItem = new OleMenuCommand(menuCallback.Invoke, menuCommandID);
                 if (beforeQueryStatus != null)
                 {
-                    menuItem.BeforeQueryStatus += beforeQueryStatus.Invoke;
+                    menuItem.BeforeQueryStatus += (s, e) => beforeQueryStatus.Invoke(s, templateType);
                 }
 
                 commandService.AddCommand(menuItem);

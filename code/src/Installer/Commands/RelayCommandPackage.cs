@@ -6,14 +6,14 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.Extension.Commands
 {
-    [ProvideAutoLoad(Microsoft.VisualStudio.VSConstants.UICONTEXT.SolutionHasAppContainerProject_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.VSConstants.UICONTEXT.SolutionHasMultipleProjects_string, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "0.0.0.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
@@ -51,40 +51,45 @@ namespace Microsoft.Templates.Extension.Commands
                  PackageIds.AddPageCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddPage,
-                 RightClickAvailable);
+                 RightClickAvailable,
+                 TemplateType.Page);
 
             addFeatureCommand = new RelayCommand(
                 this,
                 PackageIds.AddFeatureCommand,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 AddFeature,
-                RightClickAvailable);
+                RightClickAvailable,
+                TemplateType.Feature);
 
             addServiceCommand = new RelayCommand(
                  this,
                  PackageIds.AddServiceCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddService,
-                 RightClickAvailable);
+                 RightClickAvailable,
+                 TemplateType.Service);
 
             addTestingCommand = new RelayCommand(
                  this,
                  PackageIds.AddTestingCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddTesting,
-                 RightClickAvailable);
+                 RightClickAvailable,
+                 TemplateType.Testing);
 
             openTempFolderCommand = new RelayCommand(
                 this,
                 PackageIds.OpenTempFolder,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 OpenTempFolder,
-                TempFolderAvailable);
+                TempFolderAvailable,
+                TemplateType.Unspecified);
         }
 
         private void AddPage(object sender, EventArgs e)
         {
-            if (RightClickActions.Visible())
+            if (RightClickActions.Visible(TemplateType.Page))
             {
                 RightClickActions.AddNewPage();
             }
@@ -92,7 +97,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddFeature(object sender, EventArgs e)
         {
-            if (RightClickActions.Visible())
+            if (RightClickActions.Visible(TemplateType.Feature))
             {
                 RightClickActions.AddNewFeature();
             }
@@ -100,7 +105,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddService(object sender, EventArgs e)
         {
-            if (RightClickActions.Visible())
+            if (RightClickActions.Visible(TemplateType.Service))
             {
                 RightClickActions.AddNewService();
             }
@@ -108,7 +113,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddTesting(object sender, EventArgs e)
         {
-            if (RightClickActions.Visible())
+            if (RightClickActions.Visible(TemplateType.Testing))
             {
                 RightClickActions.AddNewTesting();
             }
@@ -122,14 +127,14 @@ namespace Microsoft.Templates.Extension.Commands
             }
         }
 
-        private void RightClickAvailable(object sender, EventArgs e)
+        private void RightClickAvailable(object sender, TemplateType templateType)
         {
             var cmd = (OleMenuCommand)sender;
             cmd.Enabled = RightClickActions.Enabled();
-            cmd.Visible = RightClickActions.Visible();
+            cmd.Visible = RightClickActions.Visible(templateType);
         }
 
-        private void TempFolderAvailable(object sender, EventArgs e)
+        private void TempFolderAvailable(object sender, TemplateType templateType)
         {
             var cmd = (OleMenuCommand)sender;
             cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Visible();

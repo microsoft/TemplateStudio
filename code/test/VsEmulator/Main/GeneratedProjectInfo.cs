@@ -27,7 +27,10 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _language;
         private string _time;
         private GenerationService _generationService = GenerationService.Instance;
-        private Visibility _isWtsProject;
+        private Visibility _isAddNewPageCommandVisible;
+        private Visibility _isAddNewFeatureCommandVisible;
+        private Visibility _isAddNewServiceCommandVisible;
+        private Visibility _isAddNewTestingCommandVisible;
         private Visibility _styleCopTextVisibility = Visibility.Visible;
 
         public string ProjectName { get; private set; }
@@ -66,10 +69,30 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand OpenTempInExplorerCommand { get; }
 
-        public Visibility IsWtsProject
+        public Visibility IsAddNewPageCommandVisible
         {
-            get => _isWtsProject;
-            set => SetProperty(ref _isWtsProject, value);
+            get => _isAddNewPageCommandVisible;
+            set => SetProperty(ref _isAddNewPageCommandVisible, value);
+        }
+
+        public Visibility IsAddNewFeatureCommandVisible
+        {
+            get => _isAddNewFeatureCommandVisible;
+            set => SetProperty(ref _isAddNewFeatureCommandVisible, value);
+        }
+
+
+        public Visibility IsAddNewServiceCommandVisible
+        {
+            get => _isAddNewServiceCommandVisible;
+            set => SetProperty(ref _isAddNewServiceCommandVisible, value);
+        }
+
+
+        public Visibility IsAddNewTestingCommandVisible
+        {
+            get => _isAddNewTestingCommandVisible;
+            set => SetProperty(ref _isAddNewTestingCommandVisible, value);
         }
 
         public Visibility StyleCopTextVisibility
@@ -153,8 +176,14 @@ namespace Microsoft.Templates.VsEmulator.Main
         public void SetContextInfo()
         {
             SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-            IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+            IsAddNewPageCommandVisible = HasTemplates(TemplateType.Page) ? Visibility.Visible : Visibility.Collapsed;
+            IsAddNewFeatureCommandVisible = HasTemplates(TemplateType.Feature) ? Visibility.Visible : Visibility.Collapsed;
+            IsAddNewServiceCommandVisible = HasTemplates(TemplateType.Service) ? Visibility.Visible : Visibility.Collapsed;
+            IsAddNewTestingCommandVisible = HasTemplates(TemplateType.Testing) ? Visibility.Visible : Visibility.Collapsed;
         }
+
+        private bool HasTemplates(TemplateType templateType)
+            => GenContext.ToolBox.Shell.GetActiveProjectIsWts() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
 
         public void SetContext()
         {

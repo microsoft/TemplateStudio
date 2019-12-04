@@ -5,7 +5,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -15,7 +14,6 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -130,6 +128,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public bool Visible(TemplateType templateType)
+        {
+            return _shell.GetActiveProjectIsWts() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
+        }
+
         public bool Visible()
         {
             return _shell.GetActiveProjectIsWts();
@@ -159,13 +162,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             EnsureGenContextInitialized();
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
-                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
-                if (projectConfig.Platform == Platforms.Uwp)
-                {
-                    DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                    SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
-                }
+                var projectConfig = ProjectConfigInfoService.ReadProjectConfiguration();
+                DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectInfo = new ProjectInfo();

@@ -306,5 +306,10 @@ namespace Microsoft.Templates.Fakes
         public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
         {
         }
+
+        public override bool GetActiveProjectIsWts()
+        {
+            return true;
+        }
     }
 }

@@ -240,7 +240,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void SetProjectConfigInfo()
         {
-            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
