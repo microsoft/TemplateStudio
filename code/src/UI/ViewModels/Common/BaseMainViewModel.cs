@@ -96,7 +96,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             WizardStatus.SetVersions();
 
             var notification = args.GetNotification();
