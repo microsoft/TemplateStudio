@@ -18,10 +18,6 @@ namespace Microsoft.UI.Test
 
         public TemplatesRepository Repository { get; private set; }
 
-        [SuppressMessage(
-        "Usage",
-        "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
-        Justification = "Required por unit testing.")]
         public void InitializeFixture(string platform, string language)
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
@@ -31,7 +27,7 @@ namespace Microsoft.UI.Test
                 var source = new LocalTemplatesSource(null, "UITest");
                 GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
 
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).GetAwaiter().GetResult();
                 syncExecuted = true;
             }
 
