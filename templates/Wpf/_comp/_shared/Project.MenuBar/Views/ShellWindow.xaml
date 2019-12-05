@@ -27,7 +27,8 @@
         <controls:SplitView
             x:Name="splitView"
             PanePlacement="Right"
-            OpenPaneLength="400">
+            OpenPaneLength="400"
+            Focusable="False">
             <controls:SplitView.Pane>
                 <Border
                     BorderThickness="1,1,0,0"
@@ -45,11 +46,12 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Menu Grid.Row="0">
-                        <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}">
-                            <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFileExitHeader}" Command="{Binding MenuFileExitCommand}" />
+                    <Menu Grid.Row="0" Focusable="False">
+                        <MenuItem Header="{x:Static strings:Resources.ShellMenuFileHeader}" AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="{x:Static strings:Resources.ShellMenuItemFileExitHeader}" Command="{Binding MenuFileExitCommand}" AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource Self}}" />
                         </MenuItem>
-                        <MenuItem Header="{x:Static strings:Resources.ShellMenuViewsHeader}">
+                        <MenuItem Header="{x:Static strings:Resources.ShellMenuViewsHeader}" AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource Self}}">
+                            <!--TODO WTS: Review the MenuItem headers in Resources.resx file for all of your views and place '_' before the letter that you want to use for menu keyboard usage-->
                         </MenuItem>
                     </Menu>
                     <Frame

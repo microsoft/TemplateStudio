@@ -2,7 +2,7 @@
 <root>
 <!--{[{-->
     <data name="ShellMenuItemFilewts.ItemNamePageHeader" xml:space="preserve">
-		    <value>wts.ItemName</value>
+		    <value>_wts.ItemName</value>
     </data>
 <!--}]}-->
 </root>

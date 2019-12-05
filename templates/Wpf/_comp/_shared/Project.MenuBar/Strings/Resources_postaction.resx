@@ -2,13 +2,13 @@
 <root>
 <!--{[{-->
     <data name="ShellMenuFileHeader" xml:space="preserve">
-        <value>File</value>
+        <value>_File</value>
     </data>
     <data name="ShellMenuViewsHeader" xml:space="preserve">
-        <value>Views</value>
+        <value>_Views</value>
     </data>
     <data name="ShellMenuItemFileExitHeader" xml:space="preserve">
-        <value>Exit</value>
+        <value>_Exit</value>
     </data>
 <!--}]}-->
 </root>
