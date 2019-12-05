@@ -97,6 +97,9 @@
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
+    <None Include="RestoreAndBuildWithMsixWpf.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="RestoreAndBuildWpf.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
