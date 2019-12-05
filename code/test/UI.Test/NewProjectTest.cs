@@ -277,7 +277,7 @@ namespace Microsoft.UI.Test
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
 
             // give template cache time to refresh
-            await Task.Delay(2000);
+            await Task.Delay(6000);
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[0].Name == "Main");
