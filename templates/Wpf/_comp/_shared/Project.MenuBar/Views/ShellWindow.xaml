@@ -13,11 +13,13 @@
         <controls:WindowCommands>
             <Button
                 Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
+                AutomationProperties.Name="Go back"
                 Command="{Binding GoBackCommand}">
                 <TextBlock
                     Text="&#xE72B;"
                     FontSize="14"
-                    FontFamily="Segoe MDL2 Assets" />
+                    FontFamily="Segoe MDL2 Assets"
+                    AutomationProperties.Name="Go back icon" />
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
