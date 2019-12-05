@@ -506,12 +506,6 @@ namespace Microsoft.Templates.Test
             };
         }
 
-        // Need overload with different number of params to work with XUnit.MemberData
-        public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
-        {
-            return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);
-        }
-
         // Set a single programming language to stop the fixture using all languages available to it
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework, string programmingLanguage, string platform)
         {

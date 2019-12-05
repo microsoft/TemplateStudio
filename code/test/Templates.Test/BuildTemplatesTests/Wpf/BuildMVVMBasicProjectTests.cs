@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "BuildMVVMBasicWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_EmptyProject_Wpf(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_Wpf(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
-        public async Task GenerateAllAndCheckWithStyleCopWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_All_CheckWithStyleCop_Wpf(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "BuildOneByOneMVVMBasicWpf")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMBasicWpf")]
-        public async Task BuildMVVMBasicOneByOneItemsWpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMBasic_OneByOneItems_Wpf(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
