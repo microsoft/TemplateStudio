@@ -74,6 +74,8 @@ After selecting the items wanted in your app, you can extend the generated code 
 - [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
 - [Working on WinTS](./docs/getting-started-developers.md)
 
+Note. When reading the documentation, some markdown files have not been copied to the dev branch, if you find a link is 404'ing change to the 'master' branch.
+
 ## Known issues
 
 - You can't have side-by-side versions (nightly/pre-release/release) of Windows Template Studio VSPackage into a single instance of Visual Studio.
