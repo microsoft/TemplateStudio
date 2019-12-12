@@ -214,7 +214,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             WizardStatus.IsLoading = false;
         }
 
-        public async Task BuildStepViewModelAsync(TemplateType templateType)
+        private async Task BuildStepViewModelAsync(TemplateType templateType)
         {
             var hasTemplates = DataService.HasTemplatesFromType(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name);
             var stepId = templateType.GetNewProjectStepId();
