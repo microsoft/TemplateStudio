@@ -1,5 +1,5 @@
 ﻿<Fluent:Backstage UseHighestAvailableAdornerLayer="False">
-    <Fluent:BackstageTabControl x:Name="backstageTabControl">
+    <Fluent:BackstageTabControl x:Name="backstageTabControl" SelectedContentMargin="0">
 <!--^^-->
 <!--{[{-->
         <Fluent:BackstageTabItem
