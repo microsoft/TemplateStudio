@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewProject;
@@ -56,7 +57,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
 
             var pages = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Page);
             var features = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Feature);
@@ -78,7 +80,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.ProjectType == SplitView);
@@ -100,7 +103,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
@@ -118,7 +123,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
@@ -140,7 +147,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
@@ -158,7 +167,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, ServiceWebApi));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Services.Count == 3);
@@ -175,7 +186,10 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+
+            await viewModel.OnTemplatesAvailableAsync();
+
             DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 0);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             viewModel.UnsubscribeEventHandlers();
@@ -190,7 +204,9 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.UserSelection.ResetUserSelection();
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
@@ -209,7 +225,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             var chartTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageChartCodeBehind);
             var gridTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageGridCodeBehind);
             var numOfDependencies = chartTemplate.Dependencies?.Count();
@@ -239,7 +257,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
@@ -274,7 +294,9 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
+            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            await viewModel.OnTemplatesAvailableAsync();
+
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages[0].Name == "Main");
