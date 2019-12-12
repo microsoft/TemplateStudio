@@ -9,9 +9,18 @@ using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.Behaviors
 {
-    // See how to add new Tabs and new groups in Home Tab from your pages https://aka.ms/wts
+    // See how to add new Tabs and new groups in Home Tab from your pages https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/projectTypes/ribbon.md
     public class RibbonTabsBehavior : Behavior<Ribbon>
     {
+        public static readonly DependencyProperty IsHomeTabProperty = DependencyProperty.RegisterAttached(
+            "IsHomeTab", typeof(bool), typeof(RibbonTabsBehavior), new PropertyMetadata(default(bool)));
+
+        public static void SetIsHomeTab(DependencyObject element, bool value)
+            => element.SetValue(IsHomeTabProperty, value);
+
+        public static bool GetIsHomeTab(DependencyObject element)
+            => (bool)element.GetValue(IsHomeTabProperty);
+
         public static bool GetIsTabFromPage(RibbonTabItem item)
             => (bool)item.GetValue(IsTabFromPageProperty);
 
@@ -47,7 +56,7 @@ namespace Param_RootNamespace.Behaviors
         private void OnNavigated(object sender, string e)
         {
             var frame = sender as Frame;
-            if (frame.Content is Page page)
+            if (frame != null && frame.Content is Page page)
             {
                 UpdateTabs(page);
             }
@@ -65,15 +74,17 @@ namespace Param_RootNamespace.Behaviors
 
         private void SetupHomeGroups(Collection<RibbonGroupBox> homeGroups)
         {
-            var homeTab = AssociatedObject.Tabs.FirstOrDefault();
-            if (homeTab != null)
+            var homeTab = AssociatedObject.Tabs.FirstOrDefault(GetIsHomeTab);
+            if (homeTab == null)
             {
-                for (int i = homeTab.Groups.Count - 1; i >= 0; i--)
+                return;
+            }
+
+            for (int i = homeTab.Groups.Count - 1; i >= 0; i--)
+            {
+                if (GetIsGroupFromPage(homeTab.Groups[i]))
                 {
-                    if (GetIsGroupFromPage(homeTab.Groups[i]))
-                    {
-                        homeTab.Groups.RemoveAt(i);
-                    }
+                    homeTab.Groups.RemoveAt(i);
                 }
             }
 

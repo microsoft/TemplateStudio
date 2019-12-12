@@ -32,7 +32,7 @@
                 <!--Backstage-->
                 <Fluent:Ribbon.Menu>
                     <Fluent:Backstage UseHighestAvailableAdornerLayer="False">
-                        <Fluent:BackstageTabControl x:Name="backstageTabControl">
+                        <Fluent:BackstageTabControl x:Name="backstageTabControl" SelectedContentMargin="0">
                             <i:Interaction.Behaviors>
                                 <behaviors:BackstageTabNavigationBehavior x:Name="navigationBehavior" />
                             </i:Interaction.Behaviors>
@@ -47,6 +47,7 @@
                 <!--Tabs-->
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
+                    behaviors:RibbonTabsBehavior.IsHomeTab="True"
                     Header="{x:Static strings:Resources.ShellPageRibbonTabHomeHeader}">
                     <Fluent:RibbonGroupBox
                         State="Large"

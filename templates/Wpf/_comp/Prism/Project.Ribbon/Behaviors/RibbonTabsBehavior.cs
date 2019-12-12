@@ -10,10 +10,19 @@ using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.Behaviors
 {
-    // See how to add new Tabs and new groups in Home Tab from your pages https://aka.ms/wts
+    // See how to add new Tabs and new groups in Home Tab from your pages https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/projectTypes/ribbon.md
     public class RibbonTabsBehavior : Behavior<Ribbon>
     {
         private IRegionManager _regionManager;
+
+        public static readonly DependencyProperty IsHomeTabProperty = DependencyProperty.RegisterAttached(
+            "IsHomeTab", typeof(bool), typeof(RibbonTabsBehavior), new PropertyMetadata(default(bool)));
+
+        public static void SetIsHomeTab(DependencyObject element, bool value)
+            => element.SetValue(IsHomeTabProperty, value);
+
+        public static bool GetIsHomeTab(DependencyObject element)
+            => (bool)element.GetValue(IsHomeTabProperty);
 
         public static bool GetIsTabFromPage(RibbonTabItem item)
             => (bool)item.GetValue(IsTabFromPageProperty);
