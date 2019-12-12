@@ -196,32 +196,35 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
+        public (int exitCode, string outputFile) BuildSolutionUwp(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuild.bat", "Debug", "x86");
+        }
+
+        public (int exitCode, string outputFile) BuildSolutionWpf(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuildWpf.bat", "Debug", "Any CPU" );
+        }
+
+        public (int exitCode, string outputFile) BuildSolutionWpfWithMsix(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuildWithMsixWpf.bat", "Debug", "x86");
+        }
+
+        private (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform, string batfile, string config, string buildPlatform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
-            var config = "Debug";
-            var batFile = "RestoreAndBuild.bat";
-            var buildPlatform = "x86";
-
-
-            if (platform == Platforms.Wpf)
-            {
-                batFile = "RestoreAndBuildWpf.bat";
-                buildPlatform = "Any CPU";
-            }
-
-
-            var batPath = Path.GetDirectoryName(GetPath(batFile));
+            var batPath = Path.GetDirectoryName(GetPath(batfile));
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batFile)} \"{solutionFile}\" {buildPlatform} {config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
 
-            var startInfo = new ProcessStartInfo(GetPath(batFile))
+            var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
                 Arguments = $"\"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{batPath}\"",
                 UseShellExecute = false,

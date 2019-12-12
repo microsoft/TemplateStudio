@@ -92,12 +92,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public async Task InitializeAsync(TemplateType templateType, string language)
+        public void Initialize(TemplateType templateType, string language)
         {
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
-            await InitializeAsync(ConfigPlatform, language);
+            Initialize(ConfigPlatform, language);
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -202,7 +202,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
 
-        protected override async Task OnTemplatesAvailableAsync()
+        public override async Task OnTemplatesAvailableAsync()
         {
             TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;

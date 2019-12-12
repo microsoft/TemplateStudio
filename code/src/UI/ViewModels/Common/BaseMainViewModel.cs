@@ -53,7 +53,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public abstract Task ProcessItemAsync(object item);
 
-        protected abstract Task OnTemplatesAvailableAsync();
+        public abstract Task OnTemplatesAvailableAsync();
 
         public virtual void UnsubscribeEventHandlers()
         {
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual async Task InitializeAsync(string platform, string language)
+        public virtual void Initialize(string platform, string language)
         {
             Platform = platform;
             Language = language;
@@ -81,8 +81,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 }
             }
 
-            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             SystemService.Initialize();
+        }
+
+        public virtual async Task SynchronizeAsync()
+        {
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
+
             try
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
