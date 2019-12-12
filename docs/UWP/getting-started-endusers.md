@@ -152,6 +152,10 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ---
 
+## Pre-requisies
+
+The minimum support Windows 10 version that your visual studio needs to be installed on is the Fall Creators Update. As the Microsoft.Toolkit.Uwp.UI.Controls 5.1.1 (https://www.nuget.org/packages/Microsoft.Toolkit.Uwp.UI.Controls/) support is for UAP 10.0.16299, this limits how far back you can support Windows 10 OSs for your app.
+
 ## Learn more
 
 - [Handling app activation](./activation.md)
