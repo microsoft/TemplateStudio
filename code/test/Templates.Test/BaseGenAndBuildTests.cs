@@ -209,8 +209,35 @@ namespace Microsoft.Templates.Test
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
+            (int exitCode, string outputFile) result = (1, string.Empty);
+
             // Build solution
-            var result = _fixture.BuildSolution(projectName, projectPath, platform);
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    result = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
+                    break;
+                case Platforms.Wpf:
+                    result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
+                    break;
+            }
+
+
+            // Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+
+            // Clean
+            if (deleteAfterBuild)
+            {
+                Fs.SafeDeleteDirectory(projectPath);
+            }
+        }
+
+
+        protected void AssertBuildProjectWpfWithMsixAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        {
+            // Build solution
+            var result = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
@@ -224,7 +251,7 @@ namespace Microsoft.Templates.Test
 
         protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
         {
-            var (buildExitCode, buildOutputFile) = _fixture.BuildSolution(projectName, projectPath, platform);
+            var (buildExitCode, buildOutputFile) = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
 
             if (buildExitCode.Equals(0))
             {
@@ -504,12 +531,6 @@ namespace Microsoft.Templates.Test
                 "wts.Service.SecuredWebApi",
                 "wts.Service.SecuredWebApi.CodeBehind",
             };
-        }
-
-        // Need overload with different number of params to work with XUnit.MemberData
-        public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
-        {
-            return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);
         }
 
         // Set a single programming language to stop the fixture using all languages available to it
