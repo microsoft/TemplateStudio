@@ -170,7 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 }
                 else
                 {
-                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                   NotificationsControl.AddNotificationAsync(validationResult.Errors.FirstOrDefault()?.GetNotification()).FireAndForget();
                 }
             }
 
