@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", "", Platforms.Uwp)]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
