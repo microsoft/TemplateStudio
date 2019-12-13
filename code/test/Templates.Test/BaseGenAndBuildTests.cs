@@ -565,8 +565,7 @@ namespace Microsoft.Templates.Test
                     break;
 
                 default:
-                    result = BuildFixture.GetProjectTemplates();
-                    break;
+                    throw new ArgumentOutOfRangeException(nameof(framework));
             }
 
             return result;

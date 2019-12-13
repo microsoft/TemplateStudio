@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMPrism", ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "BuildPrismWpf")]
         [Trait("ExecutionSet", "_Full")]
         public async Task Build_AllWithMsix_Wpf(string projectType, string framework, string platform, string language)
