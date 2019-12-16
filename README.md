@@ -97,7 +97,7 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 3. Generated templates must be able to compile and run once generated.
 4. Generated templates should work on all device families.
 5. Templates should have comments to aid developers. This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-6. All UWP features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 October 2018 Update (version 1809) and Windows 10 April 2018 Update (version 1803).
+6. All UWP features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 November 2019 Update (version 1909) and Windows 10 May 2019 Update (version 1903).
 7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 

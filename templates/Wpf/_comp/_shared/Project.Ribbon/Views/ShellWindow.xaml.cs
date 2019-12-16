@@ -10,9 +10,17 @@ using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views
 {
-    public partial class ShellWindow : MetroWindow, IShellWindow
+    public partial class ShellWindow : MetroWindow, IShellWindow, IRibbonWindow
     {
-        private RibbonTitleBar _titleBar;
+        public RibbonTitleBar TitleBar
+        {
+            get => (RibbonTitleBar)GetValue(TitleBarProperty);
+            private set => SetValue(TitleBarPropertyKey, value);
+        }
+
+        private static readonly DependencyPropertyKey TitleBarPropertyKey = DependencyProperty.RegisterReadOnly(nameof(TitleBar), typeof(RibbonTitleBar), typeof(ShellWindow), new PropertyMetadata());
+
+        public static readonly DependencyProperty TitleBarProperty = TitleBarPropertyKey.DependencyProperty;
 
         public ShellWindow(IPageService pageService)
         {
@@ -38,9 +46,9 @@ namespace Param_RootNamespace.Views
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var window = sender as MetroWindow;
-            _titleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
-            _titleBar.InvalidateArrange();
-            _titleBar.UpdateLayout();
+            TitleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
+            TitleBar.InvalidateArrange();
+            TitleBar.UpdateLayout();
         }
     }
 }

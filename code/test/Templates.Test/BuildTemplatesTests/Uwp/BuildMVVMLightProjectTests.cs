@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_EmptyProject_InferConfig_Uwp(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationG1Async(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G1_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationG2Async(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G2_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllWithForcedLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G2_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -112,35 +112,10 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumMVVMLight")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllWithOptionalLoginRunTestsAndCheckWithStyleCopAsync(string projectType, string framework, string platform, string language)
-        {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                && t.GetPlatform() == platform
-                && !t.GetIsHidden()
-                && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
-                || t.Identity == "wts.Feat.StyleCop";
-
-            var projectName = $"{projectType}{framework}MinStyleCopO";
-
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
-
-            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsyncWithOptionalLogin(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G1_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -155,7 +130,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -163,7 +138,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_Empty_AddRightClick_Uwp(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
 
@@ -173,67 +148,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildMVVMLight")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsWithForcedLoginAsync(string projectType, string framework, string platform, string language)
-        {
-            var projectName = $"{ShortProjectType(projectType)}AllRCF{ShortLanguageName(language)}";
-
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildMVVMLight")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsWithOptionalLoginAsync(string projectType, string framework, string platform, string language)
-        {
-            var projectName = $"{ShortProjectType(projectType)}AllRCO{ShortLanguageName(language)}";
-
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildMVVMLight")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsWithForcedLogin_VBAsync(string projectType, string framework, string platform, string language)
-        {
-            var projectName = $"{ShortProjectType(projectType)}AllRCF{ShortLanguageName(language)}";
-
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup1VB);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildMVVMLight")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsWithOptionalLogin_VBAsync(string projectType, string framework, string platform, string language)
-        {
-            var projectName = $"{ShortProjectType(projectType)}AllRCF{ShortLanguageName(language)}";
-
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, excludedTemplatesGroup2VB);
-
-            AssertBuildProjectAsync(projectPath, projectName, platform);
-        }
-
-        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
-        public async Task BuildMVVMLightOneByOneItemsCSAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMLight_CS_OneByOneItems_Uwp(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
@@ -245,7 +164,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
-        public async Task BuildMVVMLightOneByOneItemsVBAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMLight_VB_OneByOneItems_Uwp(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 

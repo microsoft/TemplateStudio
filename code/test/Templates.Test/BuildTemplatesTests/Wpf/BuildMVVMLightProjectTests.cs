@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "BuildMVVMLightWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_EmptyProject_Wpf(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
-        public async Task BuildAllPagesAndFeaturesProjectNameValidationWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_Wpf(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test.Wpf
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
-        public async Task GenerateAllAndCheckWithStyleCopWpfAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_All_CheckWithStyleCop_Wpf(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -81,11 +81,32 @@ namespace Microsoft.Templates.Test.Wpf
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMLightWpf")]
+        [Trait("ExecutionSet", "_Full")]
+        public async Task Build_AllWithMsix_Wpf(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> templateSelector =
+                t => t.GetTemplateType().IsItemTemplate()
+                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
+                && t.GetPlatform() == platform
+                && !t.GetIsHidden()
+                || t.Identity == "wts.Wpf.Feat.StyleCop";
+
+            var projectName = $"{projectType}{framework}AllMsix";
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+
+            AssertBuildProjectWpfWithMsixAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMLightWpf")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLightWpf")]
-        public async Task BuildMVVMLightOneByOneItemsWpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMLight_OneByOneItems_Wpf(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 

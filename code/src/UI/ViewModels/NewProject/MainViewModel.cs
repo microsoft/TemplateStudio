@@ -85,7 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public override async Task InitializeAsync(string platform, string language)
+        public override void Initialize(string platform, string language)
         {
             switch (platform)
             {
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     break;
             }
 
-            await base.InitializeAsync(platform, language);
+            base.Initialize(platform, language);
         }
 
         private void OnFinish(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        protected override async Task OnTemplatesAvailableAsync()
+        public override async Task OnTemplatesAvailableAsync()
         {
             ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
             await ProjectType.LoadDataAsync(Platform);
