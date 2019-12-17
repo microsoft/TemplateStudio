@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Test
         protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
 
-            var projectName = $"{ShortProjectType(projectType)}";
+            var projectName = $"{ShortProjectType(projectType)}Empty{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, null, null);
 
