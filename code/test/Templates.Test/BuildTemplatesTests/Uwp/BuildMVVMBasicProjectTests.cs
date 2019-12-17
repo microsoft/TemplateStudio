@@ -48,7 +48,6 @@ namespace Microsoft.Templates.Test
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
-                && t.GetItemNameEditable() == true
                 && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 && !excludedTemplatesGroup2VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
@@ -73,7 +72,6 @@ namespace Microsoft.Templates.Test
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
-                && t.GetItemNameEditable() == true
                 && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
@@ -103,7 +101,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopF";
+            var projectName = $"{projectType}{framework}AllStyleCopG2";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -127,7 +125,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopO";
+            var projectName = $"{projectType}{framework}AllStyleCopG1";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 

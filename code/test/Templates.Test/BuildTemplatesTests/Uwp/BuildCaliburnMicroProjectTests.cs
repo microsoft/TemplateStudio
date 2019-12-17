@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "BuildCaliburnMicro")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task Build_All_CheckWithStyleCop_G1_Uwp(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G1_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
