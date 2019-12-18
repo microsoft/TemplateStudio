@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Test
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
-                && !excludedTemplatesGroup2VB.Contains(t.GroupIdentity)
+                && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopF";
+            var projectName = $"{projectType}{framework}AllStyleCopG2";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopO";
+            var projectName = $"{projectType}{framework}AllStyleCopG1";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 

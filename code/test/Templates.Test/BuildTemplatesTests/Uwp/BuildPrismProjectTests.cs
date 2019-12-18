@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Test
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task Build_All_CheckWithStyleCop_G2_Uwp(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G2_Uwp(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup1.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopF";
+            var projectName = $"{projectType}{framework}AllStyleCopG2";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup2.Contains(t.GroupIdentity)
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}AllStyleCopO";
+            var projectName = $"{projectType}{framework}AllStyleCopG1";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
