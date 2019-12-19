@@ -484,27 +484,64 @@ We've created some Visual Studio Code Snippets to help creating the template.jso
 After creating an empty template.json file, type wts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
 There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
 
----
 
 ## Template Name Validation
-Name validation rules vary among different platforms, and may change with the addition od new tempplates. Each platforms root template directory contains platform specific name validation configuration files.
+Name validation rules vary among different platforms and may change with the addition of new templates. Each platforms root template directory contains platform specific name validation configuration files.
 
-This config files allow the addition and configuration of different project and item name validators that are used to infer and validate template and project names both in the Wizard and before Generation.
+Theese config files allow the addition and configuration of different project and item name validators that are used to infer and validate template and project names both in the Wizard and before Generation.
 
 The two files allow to configure the following naming rules:
 
-- Project name (configured in projectNameValidation.config.json)
-  - validateEmptyNames : boolean that indicates if empty name validation should be applied
-  - validateExistingNames: boolean that indicates if empty name validation should be applied
-  - reservedNames: defines the reserved names that cannot be used as project names.
-  - regexs: define regexs that have to be met by the project name
+- Project name (configured in projectNameValidation.config.json):
+  - validateEmptyNames: boolean that indicates if empty name validation should be applied. The EmptyNameValidator ensures that the suggested name is not empty.
+  - validateExistingNames: boolean that indicates if exisiting name validation should be applied. This is done by checking if a folder with the suggested project name in the suggested path exists. The FolderNameValidator checks the suggested project name against existings project names.
+  - reservedNames: defines the reserved names that cannot be used as project names. The ReservedNamesValidator checks the suggested project name against the reserved names. 
+  - regexs: defines the regular expressions that have to be met by the project name. The RegExValidator checks the suggested name meets the regular expressions.
+
+Sample projectNameValidation.config.json:
+ 
+ ```
+ {  
+    "regexs" : [
+      {
+        "name" : "projectStartWith$",
+        "pattern" : "^[^\\$]"
+      }
+    ],
+    "reservedNames" : [
+        "ReseredProjectName1",
+        "ReseredProjectName2",
+    ],
+    "validateEmptyNames": true
+}
+ ```
 
 - Item name (configured in itemNameValidation.config.json):
-  - validateEmptyNames : boolean that indicates if empty name validation should be applied
-  - validateDefaultNames : boolean that indicates if empty name validation should be applied. DefaultNameValidator is checking against defaultNames from all templates
-  - validateExistingNames : boolean that indicates if empty name validation should be applied
-  - reservedNames: defines the reserved names that cannot be used as item names.
-  - regexs: define regexs that have to be met by the item name
+  - validateEmptyNames : boolean that indicates if empty name validation should be applied. The EmptyNameValidator ensures that the suggested name is not empty.
+  - validateDefaultNames : boolean that indicates if default name validation should be applied. DefaultNameValidator is checking the suggest name against the names defined in the tag wts.defaultInstance of all templates.
+  - validateExistingNames : boolean that indicates if existing name validation should be applied. ExistingNameValidator is checking the suggested name against all other items in the user selection.
+  - reservedNames: defines the reserved names that cannot be used as item names. The ReservedNamesValidator checks the suggested project name against the reserved names. 
+  - regexs: define the regular expressions that have to be met by the item name. The RegExValidator checks the suggested name meets the regular expressions.
+  
+Sample itemNameValidation.config.json:
+ 
+ ```
+ {  
+      {
+        "name" : "itemNameFormat",
+        "pattern" : "^((?!\\d)\\w+)$"
+      }
+    ],
+    "reservedNames" : [
+      "ReservedItemName1"
+      "ReservedItemName2"
+      ],
+    "validateExistingNames": true,
+    "validateDefaultNames": true,
+    "validateEmptyNames": true
+}
+ ```
+ 
 
 ## Learn more
 
