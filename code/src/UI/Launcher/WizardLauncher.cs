@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.Launcher
             else
             {
                 var message = string.Empty;
-                switch (projectNameValidation.ErrorType)
+                switch (projectNameValidation.Errors.FirstOrDefault()?.ErrorType)
                 {
                     case ValidationErrorType.ReservedName:
                         message = string.Format(StringRes.ErrorProjectReservedName, projectName);

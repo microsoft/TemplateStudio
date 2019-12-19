@@ -12,23 +12,23 @@ namespace Microsoft.Templates.UI.Extensions
 {
     public static class ValidationResultExtensions
     {
-        public static Notification GetNotification(this ValidationResult validationResult)
+        public static Notification GetNotification(this ValidationError validationError)
         {
-            switch (validationResult.ErrorType)
+            switch (validationError.ErrorType)
             {
                 case ValidationErrorType.EmptyName:
                     return Notification.Error(StringRes.NotificationValidationError_Empty, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.AlreadyExists:
                     return Notification.Error(StringRes.NotificationValidationError_AlreadyExists, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.Regex:
-                    switch (validationResult.ValidatorName)
+                    switch (validationError.ValidatorName)
                     {
                         case "badFormat":
                             return Notification.Error(StringRes.NotificationValidationError_BadFormat, ErrorCategory.NamingValidation, CategoriesToOverride);
                         case "itemEndsWithPage":
                             return Notification.Error(string.Format(StringRes.NotificationValidationError_PageSuffix, Configuration.Current.GitHubDocsUrl), ErrorCategory.NamingValidation, CategoriesToOverride);
                         default:
-                            return Notification.Error(string.Format(StringRes.NotificationValidationError_Regex, validationResult.ValidatorName));
+                            return Notification.Error(string.Format(StringRes.NotificationValidationError_Regex, validationError.ValidatorName));
                     }
 
                 case ValidationErrorType.ReservedName:
