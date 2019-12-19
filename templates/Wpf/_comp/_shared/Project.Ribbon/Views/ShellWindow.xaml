@@ -65,7 +65,8 @@
                 Grid.Row="1"
                 x:Name="splitView"
                 PanePlacement="Right"
-                OpenPaneLength="400">
+                OpenPaneLength="400"
+                Focusable="False">
                 <controls:SplitView.Pane>
                     <Frame
                         x:Name="rightPaneFrame"

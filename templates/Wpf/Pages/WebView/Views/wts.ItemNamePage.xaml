@@ -8,6 +8,12 @@
     xmlns:communityToolkit="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
+    <System.Windows.Controls.Page.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding RefreshCommand}" />
+        <KeyBinding Modifiers="Alt" Key="Left" Command="{Binding BrowserBackCommand}" />
+        <KeyBinding Modifiers="Alt" Key="Right" Command="{Binding BrowserForwardCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="T" Command="{Binding OpenInBrowserCommand}" />
+    </System.Windows.Controls.Page.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

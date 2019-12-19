@@ -2,10 +2,10 @@
 <root>
 <!--{[{-->
     <data name="wts.ItemNamePageBackButtonTooltip" xml:space="preserve">
-        <value>Back</value>
+        <value>Back (Alt + Left)</value>
     </data>
     <data name="wts.ItemNamePageForwardButtonTooltip" xml:space="preserve">
-        <value>Forward</value>
+        <value>Forward (Alt + Right)</value>
     </data>
     <data name="wts.ItemNamePageLoadingText" xml:space="preserve">
         <value>Loading...</value>
@@ -14,10 +14,10 @@
         <value>Page failed to load. Check connection and retry.</value>
     </data>
     <data name="wts.ItemNamePageRefreshButtonTooltip" xml:space="preserve">
-        <value>Refresh</value>
+        <value>Refresh (F5)</value>
     </data>
     <data name="wts.ItemNamePageOpenInBrowserButtonTooltip" xml:space="preserve">
-        <value>Open in browser</value>
+        <value>Open in browser (Ctrl + T)</value>
     </data>
 <!--}]}-->
 </root>

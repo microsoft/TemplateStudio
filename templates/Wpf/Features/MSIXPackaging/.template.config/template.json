@@ -20,7 +20,7 @@
     "wts.genGroup": "0",
     "wts.group": "Packaging",
     "wts.displayOrder": "1",
-    "wts.defaultInstance": "MSIXPackaging",
+    "wts.defaultInstance": "MSIX Packaging",
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled": "true",
     "wts.outputToParent": "true"
