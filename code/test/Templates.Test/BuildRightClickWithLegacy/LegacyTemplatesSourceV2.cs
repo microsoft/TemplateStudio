@@ -10,7 +10,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Utilities.Services;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.BuildWithLegacy
 {
     public sealed class LegacyTemplatesSourceV2 : RemoteTemplatesSource
     {

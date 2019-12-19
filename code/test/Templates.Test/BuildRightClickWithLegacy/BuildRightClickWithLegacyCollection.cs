@@ -4,7 +4,7 @@
 
 using Xunit;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.BuildWithLegacy
 {
     [CollectionDefinition("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyCollection : ICollectionFixture<BuildRightClickWithLegacyFixture>

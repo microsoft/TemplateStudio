@@ -10,7 +10,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Xunit;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.Build.Uwp
 {
     [Collection("BuildTemplateTestCollection")]
     public class BuildMVVMBasicProjectTests : BaseGenAndBuildTests

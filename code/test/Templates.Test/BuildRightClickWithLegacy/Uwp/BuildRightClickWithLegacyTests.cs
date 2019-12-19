@@ -11,7 +11,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Xunit;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 {
     [Collection("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests

@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.Test.BuildWithLegacy;
 
 namespace Microsoft.Templates.Test
 {

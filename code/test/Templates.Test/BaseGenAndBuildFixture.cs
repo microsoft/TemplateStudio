@@ -110,18 +110,18 @@ namespace Microsoft.Templates.Test
             userSelection.Add(selectedTemplate, template.TemplateType);
         }
 
-        public (int exitCode, string outputFile) BuildMsixBundle(string projectName, string outputPath, string projectExtension)
+        public (int exitCode, string outputFile) BuildMsixBundle(string projectName, string outputPath, string packagingProjectName, string packagingProjectExtension, string batfile)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
-            var projectFile = Path.GetFullPath(outputPath + @"\" + projectName + @"\" + projectName + $".{projectExtension}");
+            var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuildAppx.bat")} \"{projectFile}\"");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\"");
 
-            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuildAppx.bat"))
+            var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
                 Arguments = $"\"{solutionFile}\" \"{projectFile}\" ",
                 UseShellExecute = false,
@@ -146,9 +146,9 @@ namespace Microsoft.Templates.Test
 
             Console.Out.WriteLine();
             Console.Out.WriteLine("### > Ready to run WACK test");
-            Console.Out.Write($"### > Running following command: {GetPath("RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
+            Console.Out.Write($"### > Running following command: {GetPath("bat\\RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
 
-            var startInfo = new ProcessStartInfo(GetPath("RunWackTest.bat"))
+            var startInfo = new ProcessStartInfo(GetPath("bat\\RunWackTest.bat"))
             {
                 Arguments = $"\"{bundleFilePath}\" \"{resultFile}\" ",
                 UseShellExecute = false,
@@ -198,17 +198,17 @@ namespace Microsoft.Templates.Test
 
         public (int exitCode, string outputFile) BuildSolutionUwp(string solutionName, string outputPath, string platform)
         {
-            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuild.bat", "Debug", "x86");
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Uwp\\RestoreAndBuild.bat", "Debug", "x86");
         }
 
         public (int exitCode, string outputFile) BuildSolutionWpf(string solutionName, string outputPath, string platform)
         {
-            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuildWpf.bat", "Debug", "Any CPU" );
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuild.bat", "Debug", "Any CPU" );
         }
 
         public (int exitCode, string outputFile) BuildSolutionWpfWithMsix(string solutionName, string outputPath, string platform)
         {
-            return BuildSolution(solutionName, outputPath, platform, "RestoreAndBuildWithMsixWpf.bat", "Debug", "x86");
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuildWithMsix.bat", "Debug", "x86");
         }
 
         private (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform, string batfile, string config, string buildPlatform)
@@ -248,7 +248,7 @@ namespace Microsoft.Templates.Test
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
 
-            const string batFile = "RunTests.bat";
+            const string batFile = "bat\\Uwp\\RunTests.bat";
 
             // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
             var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";

@@ -11,7 +11,7 @@ using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.Build.Uwp
 {
     [Collection("BuildTemplateTestCollection")]
     public class BuildCaliburnMicroProjectTests : BaseGenAndBuildTests

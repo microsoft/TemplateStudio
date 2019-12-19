@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.BuildWithLegacy
 {
     public sealed class BuildRightClickWithLegacyFixture : BaseGenAndBuildFixture, IDisposable
     {

@@ -11,7 +11,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Xunit;
 using Microsoft.Templates.Core.Extensions;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.Build.Uwp
 {
     [Collection("BuildTemplateTestCollection")]
     public class BuildPrismProjectTests : BaseGenAndBuildTests
