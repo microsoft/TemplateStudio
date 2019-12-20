@@ -71,7 +71,7 @@
   <ItemGroup>
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
-    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSourceV2.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMLightProjectTests.cs" />
@@ -84,9 +84,9 @@
     <Compile Include="BuildTemplatesTests\Wpf\BuildPrismProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMBasicProjectTests.cs" />
-    <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
-    <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
+    <Compile Include="VBCodeAnalysis\VBStyleProjectGenerationTests.cs" />
+    <Compile Include="VBCodeAnalysis\VBStyleGenerationTestsFixture.cs" />
+    <Compile Include="VBCodeAnalysis\VBStyleCollection.cs" />
     <Compile Include="ExternalLinksTests.cs" />
     <Compile Include="TemplatePathTests.cs" />
     <Compile Include="GenTests\ResourceUsageTests.cs" />
@@ -95,15 +95,19 @@
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
+    <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
-    <None Include="RestoreAndBuildWithMsixWpf.bat">
+    <None Include="bat\Wpf\RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="RestoreAndBuildWpf.bat">
+    <None Include="bat\Wpf\RestoreAndBuildWithMsix.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="RunTests.bat">
+    <None Include="bat\Wpf\RestoreAndBuild.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\Uwp\RunTests.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="test.config.json">
@@ -140,14 +144,14 @@
     </AdditionalFiles>
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
-    <Compile Include="WACK\WindowsAppCertKitTests.cs" />
-    <None Include="RestoreAndBuildXamarin.bat">
+    <Compile Include="WACK\Uwp\WindowsAppCertKitTests.cs" />
+    <None Include="bat\RestoreAndBuildXamarin.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="RunWackTest.bat">
+    <None Include="bat\RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="RestoreAndBuildAppx.bat">
+    <None Include="bat\Uwp\RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VisualTests\TestProjectSource\packages.config">
@@ -155,7 +159,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RestoreAndBuild.bat">
+    <None Include="bat\Uwp\RestoreAndBuild.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

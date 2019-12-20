@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Xunit;
 
-namespace Microsoft.Templates.Test
+namespace Microsoft.Templates.Test.Uwp
 {
     //// *** WARNING ***
     //// Running this requires:
@@ -183,19 +183,19 @@ namespace Microsoft.Templates.Test
 
         private async Task BuildProjectAndRunWackAsync(string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> templateSelector)
         {
-            var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
+            var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}Uwp";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName);
 
             // Replace the default assets in the generated project or they will cause WACK to fail
-            foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))
+            foreach (var assetFile in new DirectoryInfo("../../TestData/NonDefaultAssets").GetFiles("*.png"))
             {
                 File.Copy(assetFile.FullName, Path.Combine(GenContext.Current.DestinationPath, "Assets", assetFile.Name), overwrite: true);
             }
 
             // Create MSIXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var bundleResult = _fixture.BuildMsixBundle(projectName, projectPath, GetProjectExtension(language));
+            var bundleResult = _fixture.BuildMsixBundle(projectName, projectPath, projectName, GetProjectExtension(language), "bat\\Uwp\\RestoreAndBuildAppx.bat");
 
             Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
 

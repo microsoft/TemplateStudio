@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.Test.BuildWithLegacy;
 
 namespace Microsoft.Templates.Test
 {
@@ -84,7 +85,7 @@ namespace Microsoft.Templates.Test
         protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
 
-            var projectName = $"{ShortProjectType(projectType)}";
+            var projectName = $"{ShortProjectType(projectType)}Empty{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, null, null);
 
