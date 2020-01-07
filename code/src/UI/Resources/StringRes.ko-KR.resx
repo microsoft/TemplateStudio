@@ -548,10 +548,6 @@
     <value>{0} 프로젝트를 찾을 수 없음</value>
     <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>파일과 프로젝트를 추가할 수 없습니다.</value>
-    <comment>Error message for unable to add files and projects</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>솔루션 트리가 접히는 오류가 발생했습니다. 예:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -834,5 +830,21 @@
   <data name="NotificationValidationError_Regex" xml:space="preserve">
     <value>RegEx validation {0} failed.</value>
     <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Error adding items to project {0}.</value>
+    <comment>Error message for adding items to project. {0}: projectPath</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Error adding project {0}.</value>
+    <comment>Error message for adding project. {0}: projectPath</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Error adding references between projects</value>
+    <comment>Error message for adding references between projects</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Error adding sdks to project {0}.</value>
+    <comment>Error message for adding sdks to project. {0}: projectPath</comment>
   </data>
 </root>

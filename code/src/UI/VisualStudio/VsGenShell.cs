@@ -106,24 +106,50 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private List<string> installedPackageIds = new List<string>();
 
+        private void AddProject(string project)
+        {
+            try
+            {
+                SafeThreading.JoinableTaskFactory.Run(async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
+
+                    var dte = await _dte.GetValueAsync();
+                    dte.Solution.AddFromFile(project);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format(StringRes.ErrorAddingProject, project), ex);
+            }
+        }
+
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
+            try
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var proj = await GetProjectByPathAsync(projPath);
-                if (proj != null && proj.ProjectItems != null)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    foreach (var file in projFiles)
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var proj = await GetProjectByPathAsync(projPath);
+                    if (proj != null && proj.ProjectItems != null)
                     {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
+                        foreach (var file in projFiles)
+                        {
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
 
-                        var newItem = proj.ProjectItems.AddFromFile(file);
+                            var newItem = proj.ProjectItems.AddFromFile(file);
+                        }
+
+                        proj.Save();
                     }
-
-                    proj.Save();
-                }
-            });
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format(StringRes.ErrorAddingItemsToProject, projPath), ex);
+            }
         }
 
         internal List<string> GetInstalledPackageIds()
@@ -459,142 +485,140 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
+            try
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
-
-                foreach (var project in groupedReferences)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    var parentProject = await GetProjectByPathAsync(project.Key);
-                    if (project != null)
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
+
+                    foreach (var project in groupedReferences)
                     {
-                        var proj = (VSProject)parentProject.Object;
-
-                        foreach (var referenceToAdd in project)
+                        var parentProject = await GetProjectByPathAsync(project.Key);
+                        if (project != null)
                         {
-                            var referenceProject = await GetProjectByPathAsync(referenceToAdd.ReferencedProject);
-                            if (referenceProject != null)
-                            {
-                                proj.References.AddProject(referenceProject);
-                            }
-                        }
+                            var proj = (VSProject)parentProject.Object;
 
-                        parentProject.Save();
+                            foreach (var referenceToAdd in project)
+                            {
+                                var referenceProject = await GetProjectByPathAsync(referenceToAdd.ReferencedProject);
+                                if (referenceProject != null)
+                                {
+                                    proj.References.AddProject(referenceProject);
+                                }
+                            }
+
+                            parentProject.Save();
+                        }
                     }
-                }
-            });
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(StringRes.ErrorAddingReferencesBetweenProjects, ex);
+            }
         }
 
         private void AddSdksForProject(string projectPath, IEnumerable<SdkReference> sdkReferences)
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
+            try
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var project = await GetProjectByPathAsync(projectPath);
-                var proj = (VSProject)project.Object;
-
-                foreach (var referenceValue in sdkReferences)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    var refs = proj.References as VSLangProj110.References2;
-                    refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
-                }
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var project = await GetProjectByPathAsync(projectPath);
+                    var proj = (VSProject)project.Object;
 
-                project.Save();
-            });
+                    foreach (var referenceValue in sdkReferences)
+                    {
+                        var refs = proj.References as VSLangProj110.References2;
+                        refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
+                    }
+
+                    project.Save();
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format(StringRes.ErrorAddingSdksToProject, projectPath), ex);
+            }
         }
 
         public override void AddContextItemsToSolution(ProjectInfo projectInfo)
         {
-            try
+            var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
+
+            var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
+            var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+            var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+
+            foreach (var files in filesForExistingProjects)
             {
-                var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
-
-                var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
-                var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
-                var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
-
-                foreach (var files in filesForExistingProjects)
+                if (!IsCpsProject(files.Key))
                 {
-                    if (!IsCpsProject(files.Key))
-                    {
-                        AddItems(files.Key, files.Value);
-                    }
+                    AddItems(files.Key, files.Value);
                 }
-
-                foreach (var nuget in nugetsForExistingProjects)
-                {
-                    AddNugetsForProject(nuget.Key, nuget);
-                }
-
-                foreach (var sdk in sdksForExistingProjects)
-                {
-                    AddSdksForProject(sdk.Key, sdk);
-                }
-
-                // Ensure projectsToAdd are ordered correctly.
-                // projects from old project system should be added before project from CPS project system, as otherwise nuget restore will fail
-                var orderedProject = projectInfo.Projects.OrderBy(p => IsCpsProject(p));
-
-                double secAddProjects = 0;
-                double secAddFiles = 0;
-                double secAddNuget = 0;
-
-                foreach (var project in orderedProject)
-                {
-                    var chrono = Stopwatch.StartNew();
-
-                    SafeThreading.JoinableTaskFactory.Run(async () =>
-                    {
-                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
-
-                        var dte = await _dte.GetValueAsync();
-                        dte.Solution.AddFromFile(project);
-                    });
-
-                    secAddProjects += chrono.Elapsed.TotalSeconds;
-                    chrono.Restart();
-
-                    if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
-                    {
-                        AddItems(project, filesByProject[project]);
-                    }
-
-                    secAddFiles += chrono.Elapsed.TotalSeconds;
-                    chrono.Restart();
-
-                    var projNugetReferences = projectInfo.NugetReferences.Where(n => n.Project == project);
-                    if (projNugetReferences.Any())
-                    {
-                        AddNugetsForProject(project, projNugetReferences);
-                    }
-
-                    secAddNuget += chrono.Elapsed.TotalSeconds;
-
-                    var projSdksReferences = projectInfo.SdkReferences.Where(n => n.Project == project);
-                    if (projSdksReferences.Any())
-                    {
-                        AddSdksForProject(project, projSdksReferences);
-                    }
-
-                    chrono.Stop();
-                }
-
-                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjectReferences);
-
-                AddReferencesToProjects(projectInfo.ProjectReferences);
-
-                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
-                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
-                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
             }
-            catch (Exception ex)
+
+            foreach (var nuget in nugetsForExistingProjects)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddFilesAndProjects, ex).FireAndForget();
-                throw;
+                AddNugetsForProject(nuget.Key, nuget);
             }
-        }
+
+            foreach (var sdk in sdksForExistingProjects)
+            {
+                AddSdksForProject(sdk.Key, sdk);
+            }
+
+            // Ensure projectsToAdd are ordered correctly.
+            // projects from old project system should be added before project from CPS project system, as otherwise nuget restore will fail
+            var orderedProject = projectInfo.Projects.OrderBy(p => IsCpsProject(p));
+
+            double secAddProjects = 0;
+            double secAddFiles = 0;
+            double secAddNuget = 0;
+
+            foreach (var project in orderedProject)
+            {
+                var chrono = Stopwatch.StartNew();
+                AddProject(project);
+
+                secAddProjects += chrono.Elapsed.TotalSeconds;
+                chrono.Restart();
+
+                if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
+                {
+                    AddItems(project, filesByProject[project]);
+                }
+
+                secAddFiles += chrono.Elapsed.TotalSeconds;
+                chrono.Restart();
+
+                var projNugetReferences = projectInfo.NugetReferences.Where(n => n.Project == project);
+                if (projNugetReferences.Any())
+                {
+                    AddNugetsForProject(project, projNugetReferences);
+                }
+
+                secAddNuget += chrono.Elapsed.TotalSeconds;
+
+                var projSdksReferences = projectInfo.SdkReferences.Where(n => n.Project == project);
+                if (projSdksReferences.Any())
+                {
+                    AddSdksForProject(project, projSdksReferences);
+                }
+
+                chrono.Stop();
+            }
+
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjectReferences);
+
+            AddReferencesToProjects(projectInfo.ProjectReferences);
+
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
+       }
 
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {

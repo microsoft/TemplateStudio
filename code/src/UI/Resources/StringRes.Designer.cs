@@ -466,6 +466,42 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error adding items to project {0}.
+        /// </summary>
+        public static string ErrorAddingItemsToProject {
+            get {
+                return ResourceManager.GetString("ErrorAddingItemsToProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding project {0}.
+        /// </summary>
+        public static string ErrorAddingProject {
+            get {
+                return ResourceManager.GetString("ErrorAddingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding references between projects.
+        /// </summary>
+        public static string ErrorAddingReferencesBetweenProjects {
+            get {
+                return ResourceManager.GetString("ErrorAddingReferencesBetweenProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding sdks to project {0}..
+        /// </summary>
+        public static string ErrorAddingSdksToProject {
+            get {
+                return ResourceManager.GetString("ErrorAddingSdksToProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show details.
         /// </summary>
         public static string ErrorDialogShowDetails {
@@ -501,15 +537,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ErrorMissingNugetPackagesTemplate {
             get {
                 return ResourceManager.GetString("ErrorMissingNugetPackagesTemplate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to add files and projects..
-        /// </summary>
-        public static string ErrorUnableAddFilesAndProjects {
-            get {
-                return ResourceManager.GetString("ErrorUnableAddFilesAndProjects", resourceCulture);
             }
         }
         
