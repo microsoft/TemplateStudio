@@ -77,6 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 if (Platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
                 {
                     WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
+                    WizardStatus.BlockTemplateSync = true;
                     return;
                 }
             }
@@ -86,6 +87,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public virtual async Task SynchronizeAsync()
         {
+            if (WizardStatus.BlockTemplateSync)
+            {
+                return;
+            }
+
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
 
             try
