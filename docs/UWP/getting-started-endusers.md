@@ -154,7 +154,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ## Pre-requisies
 
-The minimum supported Windows 10 version and which SDKs should be pre-installed are detailed in the [WinTS Principles](../../../README.md#principles).
+The minimum supported Windows 10 version and which SDKs should be pre-installed are detailed in the [WinTS Principles](../../README.md#principles).
 
 ## Learn more
 
