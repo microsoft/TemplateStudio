@@ -257,7 +257,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var licenses = GenComposer.GetAllLicences(userSelection);
             LicensesService.SyncLicenses(licenses, Licenses);
 
-            // Notiffy Licenses name to update the visibillity on the layout
+            // Notify Licenses name to update the visibillity on the layout
             OnPropertyChanged(nameof(Licenses));
         }
 
