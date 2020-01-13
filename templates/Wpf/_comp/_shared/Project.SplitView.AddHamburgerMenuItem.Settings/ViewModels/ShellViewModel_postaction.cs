@@ -44,14 +44,14 @@
 //^^
 //{[{
         private void OnOptionsMenuItemInvoked()
-            => _navigationService.NavigateTo(SelectedOptionsMenuItem.TargetPageType.FullName);
+            => NavigateTo(SelectedOptionsMenuItem.TargetPageType);
 //}]}
 
         private void OnNavigated(object sender, string viewModelName)
         {
             var item = MenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
+                        .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
             if (item != null)
             {
             }
@@ -60,7 +60,7 @@
             {
                 SelectedOptionsMenuItem = OptionMenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
+                        .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
             }
 //}]}
         }

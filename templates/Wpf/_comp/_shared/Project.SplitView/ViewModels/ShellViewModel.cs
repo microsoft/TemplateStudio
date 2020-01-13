@@ -48,13 +48,21 @@ namespace Param_RootNamespace.ViewModels
             => _navigationService.GoBack();
 
         private void OnMenuItemInvoked()
-            => _navigationService.NavigateTo(SelectedMenuItem.TargetPageType.FullName);
+            => NavigateTo(SelectedMenuItem.TargetPageType);
+
+        private void NavigateTo(Type targetViewModel)
+        {
+            if (targetViewModel != null)
+            {
+                _navigationService.NavigateTo(targetViewModel.FullName);
+            }
+        }
 
         private void OnNavigated(object sender, string viewModelName)
         {
             var item = MenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => viewModelName == i.TargetPageType.FullName);
+                        .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
             if (item != null)
             {
                 SelectedMenuItem = item;

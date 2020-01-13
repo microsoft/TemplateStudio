@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
@@ -9,14 +10,14 @@ namespace Param_RootNamespace.Services
 {
     public class ApplicationHostService : IHostedService
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
-        private readonly IShellWindow _shellWindow;
+        private IShellWindow _shellWindow;
 
-        public ApplicationHostService(INavigationService navigationService, IShellWindow shellWindow)
+        public ApplicationHostService(IServiceProvider serviceProvider, INavigationService navigationService)
         {
+            _serviceProvider = serviceProvider;
             _navigationService = navigationService;
-            _shellWindow = shellWindow;
-            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -24,6 +25,8 @@ namespace Param_RootNamespace.Services
             // Initialize services that you need before app activation
             await InitializeAsync();
 
+            _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
+            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
             _shellWindow.ShowWindow();
             _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
 
