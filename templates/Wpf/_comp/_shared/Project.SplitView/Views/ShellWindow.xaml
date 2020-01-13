@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:templateSelectors="clr-namespace:Param_RootNamespace.TemplateSelectors"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     Title="{x:Static strings:Resources.AppDisplayName}">
@@ -24,27 +25,56 @@
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
     <controls:MetroWindow.Resources>
-        <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type controls:HamburgerMenuGlyphItem}">
-            <Grid Height="48">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="48" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock
-                    Grid.Column="0"
-                    FontSize="16"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="Segoe MDL2 Assets"
-                    Text="{Binding Glyph}"
-                    AutomationProperties.Name="Menu item icon" />
-                <TextBlock
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    FontSize="16"
-                    Text="{Binding Label}" />
-            </Grid>
-        </DataTemplate>
+        <templateSelectors:MenuItemTemplateSelector
+            x:Key="MenuItemTemplateSelector">
+            <templateSelectors:MenuItemTemplateSelector.GlyphDataTemplate>
+                <DataTemplate DataType="{x:Type controls:HamburgerMenuGlyphItem}">
+                    <Grid Height="48">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            FontSize="16"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            Text="{Binding Glyph}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            Text="{Binding Label}" />
+                    </Grid>
+                </DataTemplate>
+            </templateSelectors:MenuItemTemplateSelector.GlyphDataTemplate>
+            <templateSelectors:MenuItemTemplateSelector.ImageDataTemplate>
+                <DataTemplate DataType="{x:Type controls:HamburgerMenuImageItem}">
+                    <Grid Height="48">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Ellipse
+                            Grid.Column="0"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Thumbnail}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            Text="{Binding Label}" />
+                    </Grid>
+                </DataTemplate>
+            </templateSelectors:MenuItemTemplateSelector.ImageDataTemplate>
+        </templateSelectors:MenuItemTemplateSelector>
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
@@ -57,8 +87,8 @@
             SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
             ItemCommand="{Binding MenuItemInvokedCommand}"
             OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
-            ItemTemplate="{StaticResource MenuItemTemplate}"
-            OptionsItemTemplate="{StaticResource MenuItemTemplate}">
+            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
+            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
             <controls:HamburgerMenu.Content>
                 <Frame
                     x:Name="shellFrame"
