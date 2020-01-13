@@ -847,4 +847,10 @@ Please verify the following list of packages needed by your project's code and m
     <value>Error adding sdks to project {0}.</value>
     <comment>Error message for adding items to project</comment>
   </data>
+  <data name="NotificationMissingSdk" xml:space="preserve">
+    <value>Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding.</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Required Windows Sdks:</value>
+  </data>
 </root>

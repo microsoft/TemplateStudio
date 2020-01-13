@@ -829,6 +829,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding..
+        /// </summary>
+        public static string NotificationMissingSdk {
+            get {
+                return ResourceManager.GetString("NotificationMissingSdk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not remove **{0}** because these templates depend on it: {1}.
         /// </summary>
         public static string NotificationRemoveError_Dependency {
@@ -1410,6 +1419,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsLicenses {
             get {
                 return ResourceManager.GetString("TemplateDetailsLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required Windows Sdks:.
+        /// </summary>
+        public static string TemplateDetailsRequiredSdks {
+            get {
+                return ResourceManager.GetString("TemplateDetailsRequiredSdks", resourceCulture);
             }
         }
         

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EnvDTE;
+using Microsoft.Build.Utilities;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -163,6 +164,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return installedPackageIds;
+        }
+
+        public override bool IsSdkInstalled(string name)
+        {
+            var sdks = ToolLocationHelper.GetTargetPlatformSdks();
+
+            if (sdks.Any(sdk => ToolLocationHelper.GetPlatformsForSDK(sdk.TargetPlatformIdentifier, sdk.TargetPlatformVersion).Contains(name)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)

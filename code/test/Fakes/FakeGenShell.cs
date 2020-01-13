@@ -311,5 +311,10 @@ namespace Microsoft.Templates.Fakes
         {
             return true;
         }
+
+        public override bool IsSdkInstalled(string name)
+        {
+            return true;
+        }
     }
 }
