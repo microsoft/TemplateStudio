@@ -30,6 +30,12 @@ namespace Param_RootNamespace.Services
             }
         }
 
+        public void UnsubscribeNavigation()
+        {
+            _frame.Navigated -= OnNavigated;
+            _frame = null;
+        }
+
         public void GoBack()
             => _frame.GoBack();
 
@@ -76,12 +82,6 @@ namespace Param_RootNamespace.Services
 
                 Navigated?.Invoke(sender, dataContext.GetType().FullName);
             }
-        }
-
-        public void UnsubscribeNavigation()
-        {
-            _frame.Navigated -= OnNavigated;
-            _frame = null;
         }
     }
 }
