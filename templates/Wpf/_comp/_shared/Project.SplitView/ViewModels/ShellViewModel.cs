@@ -8,12 +8,13 @@ using Param_RootNamespace.Strings;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged, IDisposable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
         private HamburgerMenuItem _selectedMenuItem;
         private System.Windows.Input.ICommand _goBackCommand;
         private ICommand _menuItemInvokedCommand;
+        private ICommand _unloadedCommand;
 
         public HamburgerMenuItem SelectedMenuItem
         {
@@ -30,13 +31,15 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(OnMenuItemInvoked));
 
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloadedCommand));
+
         public ShellViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void Dispose()
+        public void OnUnloadedCommand()
         {
             _navigationService.Navigated -= OnNavigated;
         }

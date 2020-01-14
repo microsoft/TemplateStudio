@@ -3,7 +3,7 @@ using Param_RootNamespace.Contracts.Services;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : BindableBase, IDisposable
+    public class ShellViewModel : BindableBase
     {
 //{[{
         private readonly IRightPaneService _rightPaneService;

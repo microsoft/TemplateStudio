@@ -6,16 +6,19 @@ using Param_RootNamespace.Strings;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged, IDisposable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
 
         private System.Windows.Input.ICommand _goBackCommand;
         private ICommand _menuFileExitCommand;
+        private ICommand _unloadedCommand;
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new System.Windows.Input.ICommand(OnMenuFileExit));
+
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
 
         public ShellViewModel(INavigationService navigationService)
         {
@@ -23,7 +26,7 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void Dispose()
+        public void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }

@@ -18,6 +18,7 @@ namespace Param_RootNamespace.ViewModels
         private HamburgerMenuItem _selectedMenuItem;
         private DelegateCommand _goBackCommand;
         private ICommand _loadedCommand;
+        private ICommand _unloadedCommand;
         private ICommand _menuItemInvokedCommand;
 
         public HamburgerMenuItem SelectedMenuItem
@@ -35,6 +36,8 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new DelegateCommand(OnLoaded));
 
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new DelegateCommand(OnUnloaded));
+
         public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked));
 
         public ShellViewModel(IRegionManager regionManager)
@@ -47,6 +50,11 @@ namespace Param_RootNamespace.ViewModels
             _navigationService = _regionManager.Regions[Regions.Main].NavigationService;
             _navigationService.Navigated += OnNavigated;
             SelectedMenuItem = MenuItems.First();
+        }
+
+        private void OnUnloaded()
+        {
+            _navigationService.Navigated -= OnNavigated;
         }
 
         private bool CanGoBack()
