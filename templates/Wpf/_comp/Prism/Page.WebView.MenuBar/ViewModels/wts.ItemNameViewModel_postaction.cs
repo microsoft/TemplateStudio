@@ -1,7 +1,7 @@
 ﻿//{[{
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Contracts.ViewModels;
 using MahApps.Metro.Controls;
+using Prism.Regions;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
@@ -21,16 +21,21 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
 
-        public void OnNavigatedTo(Param_OnNavigatedToParams)
+        public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _rightPaneService.PaneOpened += OnRightPaneOpened;
             _rightPaneService.PaneClosed += OnRightPaneClosed;
         }
 
-        public void OnNavigatedFrom()
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             _rightPaneService.PaneOpened -= OnRightPaneOpened;
             _rightPaneService.PaneClosed -= OnRightPaneClosed;
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
         }
 
         private void OnRightPaneOpened(object sender, System.EventArgs e)

@@ -74,11 +74,11 @@
       "type": "parameter",
       "replaces": "Param_ConfigValue"
     },
-    "onnavigatedtoparams":{
+    "onNavigatedToParams":{
       "type": "parameter",
       "replaces": "Param_OnNavigatedToParams"
     },
-    "onnavigatedfromparams":{
+    "onNavigatedFromParams":{
       "type": "parameter",
       "replaces": "Param_OnNavigatedFromParams"
     }

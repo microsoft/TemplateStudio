@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Page.WebView.MenuBar",
-    "shortName": "wts.Wpf.Page.WebView.MenuBar",
-    "identity": "wts.Wpf.Page.WebView.MenuBar",
+    "name": "wts.Wpf.Prism.Page.WebView.MenuBar",
+    "shortName": "wts.Wpf.Prism.Page.WebView.MenuBar",
+    "identity": "wts.Wpf.Prism.Page.WebView.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & groupidentity == wts.Wpf.Page.WebView & $projectType == MenuBarWpf"
+    "wts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Page.WebView & $projectType == MenuBarWpf"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -27,14 +27,6 @@
       "baseclass": {
         "type": "parameter",
         "replaces": "System.ComponentModel.INotifyPropertyChanged"
-      },
-      "onNavigatedToParams":{
-        "type": "parameter",
-        "replaces": "Param_OnNavigatedToParams"
-      },
-      "onNavigatedFromParams":{
-        "type": "parameter",
-        "replaces": "Param_OnNavigatedFromParams"
       }
     }
   }
