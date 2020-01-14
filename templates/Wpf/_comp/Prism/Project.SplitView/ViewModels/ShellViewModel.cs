@@ -78,7 +78,7 @@ namespace Param_RootNamespace.ViewModels
         {
             var item = MenuItems
                         .OfType<HamburgerMenuItem>()
-                        .FirstOrDefault(i => e.Uri.ToString() == i.Tag.ToString());
+                        .FirstOrDefault(i => e.Uri.ToString() == i.Tag?.ToString());
             if (item != null)
             {
                 SelectedMenuItem = item;
