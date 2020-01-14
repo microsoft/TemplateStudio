@@ -37,5 +37,10 @@ namespace Param_RootNamespace.Views
             TitleBar.InvalidateArrange();
             TitleBar.UpdateLayout();
         }
+
+        private void MetroWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            tabsBehavior.Unsubscribe();
+        }
     }
 }
