@@ -263,16 +263,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void CheckForMissingSdks()
         {
-            var missingSdks = new List<string>();
             var sdks = GenComposer.GetAllRequiredSdks(GetUserSelection());
 
-            foreach (var sdk in sdks)
-            {
-                if (!GenContext.ToolBox.Shell.IsSdkInstalled(sdk))
-                {
-                    missingSdks.Add(Regex.Match(sdk, @"\d+(\.\d+)+").Value);
-                }
-            }
+            var missingSdks = sdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
 
             if (missingSdks.Any())
             {
