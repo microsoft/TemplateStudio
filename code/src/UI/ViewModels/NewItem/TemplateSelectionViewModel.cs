@@ -4,6 +4,7 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -82,6 +84,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
 
+        public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
+
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
@@ -136,14 +140,38 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     Dependencies.Add(dependency);
                 }
 
+                RequiredSdks.Clear();
+                foreach (var requiredSdk in template.RequiredSdks)
+                {
+                    RequiredSdks.Add(requiredSdk);
+                }
+
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
+                OnPropertyChanged("RequiredSdks");
+                CheckForMissingSdks();
+
                 NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 WizardStatus.Current.HasValidationErrors = false;
                 if (NameEditable)
                 {
                     Focus();
                 }
+            }
+        }
+
+        private void CheckForMissingSdks()
+        {
+            var missingSdks = RequiredSdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
+
+            if (missingSdks.Any())
+            {
+                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingSdk, missingSdks.Aggregate((i, j) => $"{i},{j}")), Category.MissingSdk, TimerType.None);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+            }
+            else
+            {
+                NotificationsControl.CleanCategoryNotificationsAsync(Category.MissingSdk).FireAndForget();
             }
         }
 
