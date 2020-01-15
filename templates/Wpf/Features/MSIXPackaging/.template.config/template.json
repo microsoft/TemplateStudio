@@ -23,7 +23,8 @@
     "wts.defaultInstance": "MSIX Packaging",
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled": "true",
-    "wts.outputToParent": "true"
+    "wts.outputToParent": "true",
+    "wts.requiredSdks":"UAP, Version=10.0.18362.0"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

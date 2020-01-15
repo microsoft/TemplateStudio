@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -157,6 +158,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 AddToGroup(template.TemplateType, savedTemplate);
                 UpdateHasItemsAddedByUser();
                 BuildLicenses();
+                CheckForMissingSdks();
+
                 if (focus)
                 {
                     savedTemplate.IsTextSelected = true;
@@ -254,8 +257,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var licenses = GenComposer.GetAllLicences(userSelection);
             LicensesService.SyncLicenses(licenses, Licenses);
 
-            // Notiffy Licenses name to update the visibillity on the layout
+            // Notify Licenses name to update the visibillity on the layout
             OnPropertyChanged(nameof(Licenses));
+        }
+
+        private void CheckForMissingSdks()
+        {
+            var sdks = GenComposer.GetAllRequiredSdks(GetUserSelection());
+
+            var missingSdks = sdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
+
+            if (missingSdks.Any())
+            {
+                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingSdk, missingSdks.Aggregate((i, j) => $"{i},{j}")), Category.MissingSdk, TimerType.None);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+            }
+            else
+            {
+                NotificationsControl.CleanCategoryNotificationsAsync(Category.MissingSdk).FireAndForget();
+            }
         }
 
         private async Task<IEnumerable<SavedTemplateViewModel>> RemoveAsync(SavedTemplateViewModel savedTemplate)
@@ -283,6 +303,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 UpdateHasItemsAddedByUser();
 
                 BuildLicenses();
+                CheckForMissingSdks();
+
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
 

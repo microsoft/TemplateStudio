@@ -548,10 +548,6 @@
     <value>Não é possível localizar o projeto {0}</value>
     <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Não é possível adicionar arquivos e projetos.</value>
-    <comment>Error message for unable to add files and projects</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Erro ao recolher a árvore de solução. Ex.:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -834,5 +830,27 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
   <data name="NotificationValidationError_Regex" xml:space="preserve">
     <value>RegEx validation {0} failed.</value>
     <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Error adding items to project {0}.</value>
+    <comment>Error message for adding items to project. {0}: projectPath</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Error adding project {0}.</value>
+    <comment>Error message for adding project. {0}: projectPath</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Error adding references between projects</value>
+    <comment>Error message for adding references between projects</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Error adding sdks to project {0}.</value>
+    <comment>Error message for adding sdks to project. {0}: projectPath</comment>
+  </data>
+  <data name="NotificationMissingSdk" xml:space="preserve">
+    <value>Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding.</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Required Windows Sdks:</value>
   </data>
 </root>

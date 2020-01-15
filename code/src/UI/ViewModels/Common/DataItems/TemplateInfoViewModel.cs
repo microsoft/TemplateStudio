@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 
@@ -87,6 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            RequiredSdks = template.RequiredSdks.Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
