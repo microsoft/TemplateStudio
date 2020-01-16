@@ -11,7 +11,7 @@
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
-      "wts.platform" : "Wpf",
+      "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == Prism & wts.type == page",
       "wts.export.baseclass": "BindableBase",
@@ -21,8 +21,8 @@
       "wts.export.canExecuteChangedMethodName": "RaiseCanExecuteChanged",
       "wts.export.configtype": "AppConfig",
       "wts.export.configvalue": "config",
-      "wts.export.onnavigatedtoparams": "NavigationContext navigationContext",
-      "wts.export.onnavigatedfromparams": "NavigationContext navigationContext"
+      "wts.export.onNavigatedToParams": "NavigationContext navigationContext",
+      "wts.export.onNavigatedFromParams": "NavigationContext navigationContext"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : BindableBase, IDisposable
+    public class ShellViewModel : BindableBase
     {
         private DelegateCommand _goBackCommand;
 //{[{

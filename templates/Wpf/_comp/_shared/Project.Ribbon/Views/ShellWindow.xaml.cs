@@ -43,12 +43,20 @@ namespace Param_RootNamespace.Views
         public void ShowWindow()
             => Show();
 
+        public void CloseWindow()
+            => Close();
+
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var window = sender as MetroWindow;
             TitleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
             TitleBar.InvalidateArrange();
             TitleBar.UpdateLayout();
+        }
+
+        private void MetroWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            tabsBehavior.Unsubscribe();
         }
     }
 }

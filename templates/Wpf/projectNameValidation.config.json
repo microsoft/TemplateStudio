@@ -1,8 +1,8 @@
-﻿{  
+﻿{ 
     "regexs" : [
       {
-        "name" : "projectStartWith$",
-        "pattern" : "^[^\\$]"
+        "name": "projectStartWith$",
+        "pattern": "^[^\\$]"
       }
     ],
     "reservedNames" : [

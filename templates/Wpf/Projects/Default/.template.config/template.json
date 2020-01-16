@@ -86,8 +86,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.Extensions.Hosting",
-        "version" : "3.0.0",
+        "packageId": "Microsoft.Extensions.Hosting",
+        "version": "3.0.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -97,8 +97,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "MahApps.Metro",
-        "version" : "2.0.0-alpha0605",
+        "packageId": "MahApps.Metro",
+        "version": "2.0.0-alpha0605",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -108,8 +108,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Newtonsoft.Json",
-        "version" : "12.0.2",
+        "packageId": "Newtonsoft.Json",
+        "version": "12.0.2",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
@@ -119,7 +119,7 @@
       "manualInstructions": [ ],
       "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
       "args": {
-        "fileIndex" : "0",
+        "fileIndex": "0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
         "specifiedPathIsTarget": "true"
       },

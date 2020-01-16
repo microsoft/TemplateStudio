@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.ViewModels;
@@ -8,13 +10,11 @@ namespace Param_RootNamespace.Services
     public class ApplicationHostService : IApplicationHostService
     {
         private readonly INavigationService _navigationService;
-        private readonly IShellWindow _shellWindow;
+        private IShellWindow _shellWindow;
 
-        public ApplicationHostService(INavigationService navigationService, IShellWindow shellWindow)
+        public ApplicationHostService(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            _shellWindow = shellWindow;
-            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
         }
 
         public async Task StartAsync()
@@ -22,6 +22,8 @@ namespace Param_RootNamespace.Services
             // Initialize services that you need before app activation
             await InitializeAsync();
 
+            _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>();
+            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
             _shellWindow.ShowWindow();
             _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
 

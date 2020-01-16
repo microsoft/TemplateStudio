@@ -1,10 +1,11 @@
 ﻿//{[{
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Contracts.ViewModels;
 using MahApps.Metro.Controls;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class wts.ItemNameViewModel : /*{[{*/INavigationAware/*}]}*/
     {
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 //{[{
@@ -17,17 +18,20 @@ namespace Param_RootNamespace.ViewModels
             _rightPaneService = rightPaneService;
 //}]}
         }
-
-        public void Initialize(WebView webView)
-        {
 //^^
 //{[{
+
+        public void OnNavigatedTo(Param_OnNavigatedToParams)
+        {
             _rightPaneService.PaneOpened += OnRightPaneOpened;
             _rightPaneService.PaneClosed += OnRightPaneClosed;
-//}]}
         }
-//^^
-//{[{
+
+        public void OnNavigatedFrom()
+        {
+            _rightPaneService.PaneOpened -= OnRightPaneOpened;
+            _rightPaneService.PaneClosed -= OnRightPaneClosed;
+        }
 
         private void OnRightPaneOpened(object sender, System.EventArgs e)
         {

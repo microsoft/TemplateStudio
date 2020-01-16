@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Extensions.Configuration;
@@ -22,12 +23,21 @@ namespace Param_RootNamespace.ViewModels
 
         public ViewModelLocator()
         {
+            // App Host
+            SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
+
+            // Core Services
             SimpleIoc.Default.Register<IFilesService, FilesService>();
+
+            // Services
             SimpleIoc.Default.Register<IPageService, PageService>();
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
+
+            // Window
             SimpleIoc.Default.Register<IShellWindow, ShellWindow>();
             SimpleIoc.Default.Register<ShellViewModel>();
-            SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
+
+            // Pages
         }
 
         private void Register<VM, V>()

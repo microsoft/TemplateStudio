@@ -53,11 +53,11 @@
       "type": "parameter",
       "replaces": "Param_Setter"
     },
-    "onnavigatedtoparams":{
+    "onNavigatedToParams":{
       "type": "parameter",
       "replaces": "Param_OnNavigatedToParams"
     },
-    "onnavigatedfromparams":{
+    "onNavigatedFromParams":{
       "type": "parameter",
       "replaces": "Param_OnNavigatedFromParams"
     }

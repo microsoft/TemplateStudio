@@ -1,4 +1,4 @@
-﻿protected override void RegisterTypes(IContainerRegistry containerRegistry)
+﻿protected async override void RegisterTypes(IContainerRegistry containerRegistry)
 {
 //^^
 //{[{

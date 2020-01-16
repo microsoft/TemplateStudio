@@ -11,7 +11,7 @@
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
-      "wts.platform" : "Wpf",
+      "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionFilter": "wts.type==page & $projectType == SplitViewWpf"
    },

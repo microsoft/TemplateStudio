@@ -8,17 +8,20 @@ using Param_RootNamespace.Constants;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : BindableBase, IDisposable
+    public class ShellViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
         private IRegionNavigationService _navigationService;
         private DelegateCommand _goBackCommand;
         private ICommand _loadedCommand;
+        private ICommand _unloadedCommand;
         private ICommand _menuFileExitCommand;
 
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
 
         public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new DelegateCommand(OnLoaded));
+
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new DelegateCommand(OnUnloaded));
 
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new DelegateCommand(OnMenuFileExit));
 
@@ -33,7 +36,7 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void Dispose()
+        public void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }
