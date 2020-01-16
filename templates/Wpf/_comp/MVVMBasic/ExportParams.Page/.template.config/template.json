@@ -21,8 +21,8 @@
       "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged",
       "wts.export.configtype": "IOptions<AppConfig>",
       "wts.export.configvalue": "config.Value",
-      "wts.export.onnavigatedtoparams": "object parameter",
-      "wts.export.onnavigatedfromparams": ""
+      "wts.export.onNavigatedToParams": "object parameter",
+      "wts.export.onNavigatedFromParams": ""
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -2,7 +2,7 @@
 {
     public partial class App : PrismApplication
     {
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // App Services
 //{[{

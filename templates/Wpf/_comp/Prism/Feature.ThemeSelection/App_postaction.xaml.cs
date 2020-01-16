@@ -6,7 +6,7 @@ namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        public override void Initialize()
+        protected async override void InitializeShell(Window shell)
         {
 //^^
 //{[{
@@ -15,7 +15,7 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // App Services
 //{[{

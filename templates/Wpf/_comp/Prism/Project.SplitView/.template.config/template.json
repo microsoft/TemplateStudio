@@ -20,6 +20,9 @@
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
+        "path": "TemplateSelectors/MenuItemTemplateSelector.cs"
+      },
+      {
         "path": "ViewModels/ShellViewModel.cs"
       },
       {

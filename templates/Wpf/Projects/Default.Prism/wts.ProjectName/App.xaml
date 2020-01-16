@@ -6,7 +6,7 @@
     Exit="OnExit"
     DispatcherUnhandledException="OnDispatcherUnhandledException">
 
-    <prism:PrismApplication.Resources>
+    <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml" />
@@ -20,5 +20,5 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </prism:PrismApplication.Resources>
+    </Application.Resources>
 </prism:PrismApplication>

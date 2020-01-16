@@ -58,6 +58,12 @@ namespace Param_RootNamespace.Behaviors
             navigationService.Navigated += OnNavigated;
         }
 
+        public void Unsubscribe()
+        {
+            var navigationService = _regionManager.Regions[Regions.Main].NavigationService;
+            navigationService.Navigated -= OnNavigated;
+        }
+
         private void OnNavigated(object sender, RegionNavigationEventArgs e)
         {
             var page = _regionManager.Regions[Regions.Main].ActiveViews.First() as UserControl;

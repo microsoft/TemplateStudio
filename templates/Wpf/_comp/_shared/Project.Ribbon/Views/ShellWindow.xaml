@@ -11,6 +11,7 @@
     xmlns:Fluent="urn:fluent-ribbon"
     ShowSystemMenuOnRightClick="False"
     Loaded="MetroWindow_Loaded"
+    Unloaded="MetroWindow_Unloaded"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     Title="{x:Static strings:Resources.AppDisplayName}">

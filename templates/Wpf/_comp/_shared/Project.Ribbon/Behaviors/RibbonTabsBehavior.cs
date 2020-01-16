@@ -12,6 +12,8 @@ namespace Param_RootNamespace.Behaviors
     // See how to add new Tabs and new groups in Home Tab from your pages https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/projectTypes/ribbon.md
     public class RibbonTabsBehavior : Behavior<Ribbon>
     {
+        private INavigationService _navigationService;
+
         public static readonly DependencyProperty IsHomeTabProperty = DependencyProperty.RegisterAttached(
             "IsHomeTab", typeof(bool), typeof(RibbonTabsBehavior), new PropertyMetadata(default(bool)));
 
@@ -50,7 +52,13 @@ namespace Param_RootNamespace.Behaviors
 
         public void Initialize(INavigationService navigationService)
         {
-            navigationService.Navigated += OnNavigated;
+            _navigationService = navigationService;
+            _navigationService.Navigated += OnNavigated;
+        }
+
+        public void Unsubscribe()
+        {
+            _navigationService.Navigated -= OnNavigated;
         }
 
         private void OnNavigated(object sender, string e)

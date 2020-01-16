@@ -6,16 +6,16 @@ namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        public override void Initialize()
+        protected async override void InitializeShell(Window shell)
         {
-            base.Initialize();
+            base.InitializeShell(shell);
 //{[{
             var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
             persistAndRestoreService.RestoreData();
 //}]}
         }
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // App Services
 //{[{
@@ -23,7 +23,7 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        private void OnExit(object sender, ExitEventArgs e)
+        private async void OnExit(object sender, ExitEventArgs e)
         {
 //^^
 //{[{
