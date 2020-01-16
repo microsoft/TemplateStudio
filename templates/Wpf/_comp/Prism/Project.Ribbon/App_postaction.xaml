@@ -1,6 +1,6 @@
 ﻿<prism:PrismApplication
     DispatcherUnhandledException="OnDispatcherUnhandledException">
-    <prism:PrismApplication.Resources>
+    <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 <!--^^-->
@@ -9,5 +9,5 @@
 <!--}]}-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </prism:PrismApplication.Resources>
+    </Application.Resources>
 </prism:PrismApplication>
