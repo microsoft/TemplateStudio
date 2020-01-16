@@ -48,7 +48,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "SonarAnalyzer.VisualBasic",
-        "version" : "8.2.0.14119",
+        "version" : "7.2.0.5463",
         "projectPath": ".\\Param_ProjectName.Tests.xUnit\\Param_ProjectName.Tests.xUnit.vbproj"
       },
       "continueOnError": true
