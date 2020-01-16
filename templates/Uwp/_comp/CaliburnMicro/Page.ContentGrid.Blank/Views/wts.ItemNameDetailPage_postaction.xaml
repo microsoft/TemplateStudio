@@ -36,12 +36,12 @@
             <SymbolIcon Symbol="Back" />
         </Button>
 <!--}]}-->
-        <StackPanel
+        <ScrollViewer
 <!--{[{-->
             Grid.Row="1"
             Grid.Column="1"
 <!--}]}-->
-            x:Name="contentPanel">
-        </StackPanel>
+            x:Name="contentScroll">
+        </ScrollViewer>
     </Grid>
 </Page>

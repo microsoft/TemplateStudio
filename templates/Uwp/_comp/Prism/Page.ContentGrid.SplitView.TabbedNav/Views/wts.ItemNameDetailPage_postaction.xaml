@@ -10,8 +10,5 @@
 
         <VisualStateManager.VisualStateGroups>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel
-            x:Name="contentPanel">
-        </StackPanel>
     </Grid>
 </Page>
