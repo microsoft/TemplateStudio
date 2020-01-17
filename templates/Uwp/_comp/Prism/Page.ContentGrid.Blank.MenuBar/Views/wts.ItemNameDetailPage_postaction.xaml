@@ -3,9 +3,6 @@
 
     <Grid
         x:Name="ContentArea"
-<!--{[{-->
-        Margin="{StaticResource MediumRightMargin}"
-<!--}]}-->
         animations:Connected.AnchorElement="{x:Bind itemHero}">
 <!--{[{-->
         <Grid.ColumnDefinitions>
@@ -38,6 +35,12 @@
             Grid.Column="1"
 <!--}]}-->
             x:Name="contentScroll">
+            <StackPanel
+<!--{[{-->
+                Margin="{StaticResource MediumRightMargin}"
+<!--}]}-->
+                x:Name="contentScroll">
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

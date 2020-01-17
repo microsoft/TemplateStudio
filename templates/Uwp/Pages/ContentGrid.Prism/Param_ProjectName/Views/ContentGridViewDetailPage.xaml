@@ -34,7 +34,8 @@
 
         <ScrollViewer
             x:Name="contentScroll">
-            <StackPanel>
+            <StackPanel
+                x:Name="contentPanel">
                 <RelativePanel>
                     <Grid
                         RelativePanel.AlignTopWithPanel="True"

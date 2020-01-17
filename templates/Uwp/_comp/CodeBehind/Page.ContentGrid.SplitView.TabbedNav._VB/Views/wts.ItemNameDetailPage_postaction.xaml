@@ -3,12 +3,18 @@
 
     <Grid
         x:Name="ContentArea"
-<!--{[{-->
-        Margin="{StaticResource MediumLeftRightMargin}"
-<!--}]}-->
         animations:Connected.AnchorElement="{x:Bind itemHero}">
 
         <VisualStateManager.VisualStateGroups>
         </VisualStateManager.VisualStateGroups>
+        <ScrollViewer
+            x:Name="contentScroll">
+            <StackPanel
+<!--{[{-->
+                Margin="{StaticResource MediumLeftRightMargin}"
+<!--}]}-->
+                x:Name="contentScroll">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

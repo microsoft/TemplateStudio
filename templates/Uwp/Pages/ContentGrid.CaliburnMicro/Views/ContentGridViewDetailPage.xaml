@@ -32,7 +32,8 @@
 
         <ScrollViewer
             x:Name="contentScroll">
-            <StackPanel>
+            <StackPanel
+                x:Name="contentPanel">
                 <RelativePanel>
                     <Grid
                         x:Name="itemHero"
