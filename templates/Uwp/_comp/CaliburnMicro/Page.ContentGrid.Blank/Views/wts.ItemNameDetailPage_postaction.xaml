@@ -43,7 +43,7 @@
 <!--{[{-->
                 Margin="{StaticResource MediumRightMargin}"
 <!--}]}-->
-                x:Name="contentScroll">
+                x:Name="contentPanel">
             </StackPanel>
         </ScrollViewer>
     </Grid>
