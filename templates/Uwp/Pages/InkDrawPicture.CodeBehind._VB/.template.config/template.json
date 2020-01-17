@@ -58,7 +58,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Win2D.uwp",
-        "version": "1.23.0",
+        "version": "1.24.0",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true

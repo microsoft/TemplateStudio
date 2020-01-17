@@ -2,3 +2,4 @@
 ^^^-searchabove-replacebelow-vvv
 <TargetFramework>netcoreapp3.0</TargetFramework>
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+<NoWarn>CS0618</NoWarn>

@@ -1,12 +1,12 @@
-﻿{  
+﻿{
     "regexs" : [
       {
-        "name" : "itemEndsWithPage",
-        "pattern" : ".*(?<!page)$"
+        "name": "itemEndsWithPage",
+        "pattern": ".*(?<!page)$"
       },
       {
-        "name" : "badFormat",
-        "pattern" : "^((?!\\d)\\w+)$"
+        "name": "badFormat",
+        "pattern": "^((?!\\d)\\w+)$"
       }
     ],
     "reservedNames" : [
