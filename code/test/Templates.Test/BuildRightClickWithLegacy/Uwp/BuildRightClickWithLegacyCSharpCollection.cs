@@ -6,8 +6,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.BuildWithLegacy
 {
-    [CollectionDefinition("BuildRightClickWithLegacyCollection")]
-    public class BuildRightClickWithLegacyCollection : ICollectionFixture<BuildRightClickWithLegacyFixture>
+    [CollectionDefinition("BuildRightClickWithLegacyCSharpCollection")]
+    public class BuildRightClickWithLegacyCSharpCollection : ICollectionFixture<BuildRightClickWithLegacyCSharpFixture>
     {
     }
 }

@@ -98,13 +98,21 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
-
             XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCpsProject);
             ApplyNs(element);
-            itemsContainer.Add(element);
 
-            _root.Add(itemsContainer);
+            var firstPackageReference = _root.Descendants().FirstOrDefault(d => d.Name.LocalName == "PackageReference");
+
+            if (firstPackageReference != null)
+            {
+                firstPackageReference.AddBeforeSelf(element);
+            }
+            else
+            {
+                var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+                itemsContainer.Add(element);
+                _root.Add(itemsContainer);
+            }
         }
 
         public void AddSDKReference(SdkReference sdkReference)
