@@ -202,8 +202,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
 
+        public IEnumerable<string> GetNames()
+        {
+            return TemplateSelection.Dependencies.Select(i => i.DefaultName);
+        }
+
         public override async Task OnTemplatesAvailableAsync()
         {
+            ValidationService.Initialize(GetNames, null);
             TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;
 

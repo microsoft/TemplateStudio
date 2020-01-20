@@ -188,6 +188,15 @@ namespace Microsoft.Templates.VsEmulator.Main
         public void SetContext()
         {
             GenContext.Current = this;
+            if (!string.IsNullOrEmpty(Language) && GenContext.CurrentLanguage != Language)
+            {
+                GenContext.SetCurrentLanguage(Language);
+            }
+
+            if (!string.IsNullOrEmpty(Platform) && GenContext.CurrentPlatform != Platform)
+            {
+                GenContext.SetCurrentPlatform(Platform);
+            }
         }
 
         private void OpenInVs()

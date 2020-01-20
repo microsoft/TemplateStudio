@@ -26,6 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public string Name { get; protected set; }
 
+        public string DefaultName { get; protected set; }
+
         public string Title
         {
             get => _title;

@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Extension.Commands
         private void TempFolderAvailable(object sender, TemplateType templateType)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Visible();
+            cmd.Visible = RightClickActions.Visible() && RightClickActions.TempFolderAvailable();
         }
     }
 }
