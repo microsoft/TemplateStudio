@@ -48,6 +48,8 @@ namespace Param_RootNamespace
 
             // App Host
             services.AddHostedService<ApplicationHostService>();
+
+            // Core Services
             services.AddSingleton<IFilesService, FilesService>();
 
             // Services
