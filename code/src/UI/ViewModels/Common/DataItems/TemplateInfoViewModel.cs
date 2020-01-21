@@ -85,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Icon = template.Icon;
             Order = template.DisplayOrder;
             IsHidden = template.IsHidden;
+            DefaultName = template.DefaultName;
             Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));

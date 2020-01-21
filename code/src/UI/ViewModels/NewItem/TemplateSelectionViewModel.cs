@@ -162,7 +162,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void CheckForMissingSdks()
         {
-            var missingSdks = RequiredSdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
+            var missingSdks = Template.RequiredSdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
 
             if (missingSdks.Any())
             {

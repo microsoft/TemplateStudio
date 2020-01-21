@@ -7,9 +7,6 @@
 
     <Grid
         x:Name="ContentArea"
-<!--{[{-->
-        Margin="{StaticResource MediumRightMargin}"
-<!--}]}-->
         animations:Connected.AnchorElement="{x:Bind itemHero}">
 <!--{[{-->
         <Grid.ColumnDefinitions>
@@ -36,12 +33,18 @@
             <SymbolIcon Symbol="Back" />
         </Button>
 <!--}]}-->
-        <StackPanel
+        <ScrollViewer
 <!--{[{-->
             Grid.Row="1"
             Grid.Column="1"
 <!--}]}-->
-            x:Name="contentPanel">
-        </StackPanel>
+            x:Name="contentScroll">
+            <StackPanel
+<!--{[{-->
+                Margin="{StaticResource MediumRightMargin}"
+<!--}]}-->
+                x:Name="contentPanel">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
