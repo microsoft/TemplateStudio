@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var framework = ProjectMetadataService.GetProjectMetadata().Framework;
+            var framework = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).Framework;
             if (framework == "MVVMLight" && HasLocatorAsApplicationResource())
             {
                 var message = new ValidationMessage

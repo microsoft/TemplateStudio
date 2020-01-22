@@ -200,29 +200,18 @@ namespace Microsoft.Templates.UI.VisualStudio
         private bool EnsureGenContextInitialized()
         {
             var projectLanguage = _shell.GetActiveProjectLanguage();
+            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
 
             if (!string.IsNullOrEmpty(projectLanguage))
             {
-                if (GenContext.CurrentLanguage != projectLanguage)
+                if (GenContext.CurrentLanguage != projectLanguage || GenContext.CurrentPlatform != projectPlatform)
                 {
 #if DEBUG
-                    GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), _shell, Platforms.Uwp, projectLanguage);
+                    GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), _shell, projectPlatform, projectLanguage);
 #else
                     var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
-                    GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage, mstxFilePath, new DigitalSignatureService()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                    GenContext.Bootstrap(new RemoteTemplatesSource(projectPlatform, projectLanguage, mstxFilePath, new DigitalSignatureService()), _shell, projectPlatform, projectLanguage);
 #endif
-                }
-
-                if (GenContext.CurrentLanguage != projectLanguage)
-                {
-                    GenContext.SetCurrentLanguage(projectLanguage);
-                }
-
-                var projectPlatform = ProjectMetadataService.GetProjectMetadata().Platform;
-
-                if (GenContext.CurrentPlatform != projectPlatform)
-                {
-                    GenContext.SetCurrentPlatform(projectPlatform);
                 }
 
                 return true;
