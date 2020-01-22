@@ -1,4 +1,5 @@
 ﻿//{[{
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client.Extensions.Msal;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Core.Contracts.Services;

@@ -1,0 +1,43 @@
+﻿<System.Windows.Controls.Page
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel
+            Margin="{StaticResource MediumLeftRightMargin}">
+<!--^^-->
+<!--{[{-->
+
+            <TextBlock
+                Text="{x:Static strings:Resources.SettingsPageUserTitle}"
+                Style="{StaticResource SubtitleTextStyle}" />
+
+            <StackPanel Margin="{StaticResource SmallTopMargin}" Orientation="Horizontal">
+                <Ellipse Width="64" Height="64">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding User.Photo}" Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Margin="{StaticResource SmallLeftMargin}">
+                    <TextBlock
+                        Text="{Binding User.Name}"
+                        Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock
+                        Text="{Binding User.UserPrincipalName}"
+                        Margin="{StaticResource XSmallTopMargin}"
+                        Style="{StaticResource BodyTextStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Margin="{StaticResource SmallTopMargin}">
+                <Hyperlink Command="{Binding LogoutCommand}">
+                    <TextBlock
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Static strings:Resources.SettingsPageLogOutButtonText}" />
+                </Hyperlink>
+            </TextBlock>
+<!--}]}-->
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource SubtitleTextStyle}"
+                Text="{x:Static strings:Resources.SettingsPageAboutTitle}" />
+        </StackPanel>
+    </Grid>
+</System.Windows.Controls.Page>

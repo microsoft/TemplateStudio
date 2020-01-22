@@ -7,5 +7,7 @@ namespace Param_RootNamespace.Contracts.Views
         Frame GetNavigationFrame();
 
         void ShowWindow();
+
+        void CloseWindow();
     }
 }

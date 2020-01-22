@@ -16,8 +16,11 @@
       "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == service",
       "wts.export.baseclass": "Observable",
       "wts.export.setter": "Set",
+      "wts.export.pagetype": "Page",
       "wts.export.commandclass": "RelayCommand",
-      "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged"
+      "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged",
+      "wts.export.onNavigatedToParams": "object parameter",
+      "wts.export.onNavigatedFromParams": ""
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
