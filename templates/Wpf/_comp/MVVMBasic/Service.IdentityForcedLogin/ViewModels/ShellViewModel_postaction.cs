@@ -27,13 +27,11 @@
             _userDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
-
 //{[{
 
         public void Dispose()
         {
             _userDataService.UserDataUpdated -= OnUserDataUpdated;
-
         }
 
         private void OnLoad()

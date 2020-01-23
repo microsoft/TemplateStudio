@@ -22,12 +22,12 @@ namespace Param_RootNamespace.Services
 
         public event EventHandler<UserViewModel> UserDataUpdated;
 
-        public UserDataService(IFilesService filesService, IIdentityService identityService, IMicrosoftGraphService microsoftGraphService, IOptions<AppConfig> config)
+        public UserDataService(IFilesService filesService, IIdentityService identityService, IMicrosoftGraphService microsoftGraphService, Param_ConfigType config)
         {
             _filesService = filesService;
             _identityService = identityService;
             _microsoftGraphService = microsoftGraphService;
-            _config = config.Value;
+            _config = Param_ConfigValue;
         }
 
         public void Initialize()

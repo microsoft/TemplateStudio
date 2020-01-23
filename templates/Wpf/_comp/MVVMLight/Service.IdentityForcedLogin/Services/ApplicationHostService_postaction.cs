@@ -1,35 +1,34 @@
 ﻿//{[{
-using Microsoft.Extensions.Options;
-using Microsoft.Identity.Client.Extensions.Msal;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Core.Contracts.Services;
+using Microsoft.Identity.Client.Extensions.Msal;
 //}]}
 
 namespace Param_RootNamespace.Services
 {
-    public class ApplicationHostService : IHostedService
+    public class ApplicationHostService : IApplicationHostService
     {
+        private readonly IThemeSelectorService _themeSelectorService;
 //{[{
         private readonly IIdentityService _identityService;
         private readonly IUserDataService _userDataService;
         private readonly AppConfig _config;
 //}]}
-
         private IShellWindow _shellWindow;
 //{[{
         private ILogInWindow _logInWindow;
 //}]}
-        public ApplicationHostService(/*{[{*/IIdentityService identityService, IUserDataService userDataService, IOptions<AppConfig> config/*}]}*/)
+        public ApplicationHostService(/*{[{*/IIdentityService identityService, IUserDataService userDataService, AppConfig config/*}]}*/)
         {
 //^^
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;
-            _config = config.Value;
+            _config = config;
 //}]}
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync()
         {
             await InitializeAsync();
 //{[{
@@ -41,7 +40,7 @@ namespace Param_RootNamespace.Services
             var silentLoginSuccess = await _identityService.AcquireTokenSilentAsync();
             if (!silentLoginSuccess || !_identityService.IsAuthorized())
             {
-                _logInWindow = _serviceProvider.GetService(typeof(ILogInWindow)) as ILogInWindow;
+                _logInWindow = SimpleIoc.Default.GetInstance<ILogInWindow>();
                 _logInWindow.ShowWindow();
                 await StartupAsync();
                 return;
@@ -49,7 +48,7 @@ namespace Param_RootNamespace.Services
 //}]}
         }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync()
         {
 //^^
 //{[{
@@ -67,22 +66,23 @@ namespace Param_RootNamespace.Services
             _identityService.LoggedOut += OnLoggedOut;
 //}]}
         }
-
 //^^
 //{[{
+
         private void OnLoggedIn(object sender, EventArgs e)
         {
-            _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
+            _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>(Guid.NewGuid().ToString());
             _navigationService.Initialize(_shellWindow.GetNavigationFrame());
             _shellWindow.ShowWindow();
             _navigationService.NavigateTo(typeof(MainViewModel).FullName);
             _logInWindow.CloseWindow();
+            _logInWindow = null;
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
             // Show the LogIn Window
-            _logInWindow = _serviceProvider.GetService(typeof(ILogInWindow)) as ILogInWindow;
+            _logInWindow = SimpleIoc.Default.GetInstance<ILogInWindow>(Guid.NewGuid().ToString());
             _logInWindow.ShowWindow();
 
             // Close the Shell Window and

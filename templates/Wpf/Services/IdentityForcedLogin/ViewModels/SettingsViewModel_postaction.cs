@@ -30,7 +30,6 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _user, value); }
         }
 //}]}
-
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
 //^^
 //{[{
