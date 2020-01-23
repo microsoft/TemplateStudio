@@ -27,13 +27,13 @@ namespace Param_RootNamespace.ViewModels
         public UserViewModel User
         {
             get { return _user; }
-            set { Set(ref _user, value); }
+            set { Param_Setter(ref _user, value); }
         }
 //}]}
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
 //^^
 //{[{
-        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new RelayCommand(OnLogout));
+        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new System.Windows.Input.ICommand(OnLogout));
 //}]}
 
         public SettingsViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)

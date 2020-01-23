@@ -11,19 +11,19 @@ namespace Param_RootNamespace.ViewModels
         public string Name
         {
             get => _name;
-            set => Set(ref _name, value);
+            set => Param_Setter(ref _name, value);
         }
 
         public string UserPrincipalName
         {
             get => _userPrincipalName;
-            set => Set(ref _userPrincipalName, value);
+            set => Param_Setter(ref _userPrincipalName, value);
         }
 
         public BitmapImage Photo
         {
             get => _photo;
-            set => Set(ref _photo, value);
+            set => Param_Setter(ref _photo, value);
         }
 
         public UserViewModel()

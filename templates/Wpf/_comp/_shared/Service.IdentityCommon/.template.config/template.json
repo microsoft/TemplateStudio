@@ -60,6 +60,10 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
