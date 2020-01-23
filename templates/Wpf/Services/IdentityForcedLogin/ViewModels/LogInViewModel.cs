@@ -10,7 +10,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly IIdentityService _identityService;
         private string _statusMessage;
         private bool _isBusy;
-        private RelayCommand _loginCommand;
+        private System.Windows.Input.ICommand _loginCommand;
 
         public string StatusMessage
         {
@@ -28,7 +28,7 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        public RelayCommand LoginCommand => _loginCommand ?? (_loginCommand = new RelayCommand(OnLogin, () => !IsBusy));
+        public System.Windows.Input.ICommand LoginCommand => _loginCommand ?? (_loginCommand = new System.Windows.Input.ICommand(OnLogin, () => !IsBusy));
 
         public LogInViewModel(IIdentityService identityService)
         {

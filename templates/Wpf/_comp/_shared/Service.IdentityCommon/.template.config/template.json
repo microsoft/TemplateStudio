@@ -13,6 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
+    "wts.compositionOrder": "0",
     "wts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
     "wts.outputToParent": "true",
     "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Identity.Client.Extensions.Msal](https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/master/LICENSE)"
@@ -58,6 +59,10 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
     }
   },
   "postActions": [

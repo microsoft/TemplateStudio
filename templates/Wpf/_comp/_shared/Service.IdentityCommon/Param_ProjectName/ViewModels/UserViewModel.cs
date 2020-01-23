@@ -1,9 +1,8 @@
 ﻿using System.Windows.Media.Imaging;
-using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class UserViewModel : Observable
+    public class UserViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private string _name;
         private string _userPrincipalName;
