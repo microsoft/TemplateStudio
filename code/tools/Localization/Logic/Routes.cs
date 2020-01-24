@@ -32,7 +32,7 @@ namespace Localization
         internal const string TemplateDescriptionFile = "description.md";
         internal const string TemplateJsonFile = "template.json";
 
-        internal const string WtsTemplatesRootDirPath = "templates\\_catalog";
+        internal const string CatalogPath = "_catalog";
         internal const string WtsProjectTypes = "projectTypes";
         internal const string WtsFrameworks = "frontendframeworks";
 
@@ -61,6 +61,7 @@ namespace Localization
         internal static string[] TemplatesPlatforms { get; } =
         {
             "Uwp",
+            "Wpf",
         };
 
         // Validate Routes
@@ -69,8 +70,8 @@ namespace Localization
         internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution\\VBNet.UWP.Solution.vstemplate";
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer\\Commands\\RelayCommandPackage.en-US.vsct";
         internal const string VspackageFileNameValidate = "code\\src\\Installer\\Commands\\VSPackage.en-US.resx";
-        internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
-        internal const string WtsFrameworksValidate = "templates\\_catalog\\frontendframeworks.json";
+        internal const string WtsProjectTypesValidate = "_catalog\\projectTypes.json";
+        internal const string WtsFrameworksValidate = "_catalog\\frontendframeworks.json";
 
         // Extract files folders
         internal const string OriginalExtractDirectory = "original";

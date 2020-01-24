@@ -39,11 +39,11 @@ namespace Localization
                 CopyTemplatesFiles(platform, Routes.TemplatesFeaturesPatternPath);
                 CopyTemplatesFiles(platform, Routes.TemplatesServicesPatternPath);
                 CopyTemplatesFiles(platform, Routes.TemplatesTestingPatternPath);
-            }
 
-            // _catalog
-            CopyCatalogType(Routes.WtsProjectTypes);
-            CopyCatalogType(Routes.WtsFrameworks);
+                // _catalog
+                CopyCatalogType(platform, Routes.WtsProjectTypes);
+                CopyCatalogType(platform, Routes.WtsFrameworks);
+            }
 
             // resources
             foreach (string directory in Routes.ResoureceDirectories)
@@ -56,34 +56,44 @@ namespace Localization
         {
             var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, templateType);
             var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
-            var directories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-            foreach (var directory in directories)
+            if (templatesDirectory.Exists)
             {
-                var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+                var directories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-                if (!IsTemplateHidden(templatePath))
+                foreach (var directory in directories)
                 {
-                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
-                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
+                    var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+
+                    if (!IsTemplateHidden(templatePath))
+                    {
+                        _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
+                        _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
+                    }
                 }
             }
         }
 
-        private void CopyCatalogType(string routeType)
+        private void CopyCatalogType(string platform, string routeType)
         {
-            _routesManager.CopyFromSourceToDest(Routes.WtsTemplatesRootDirPath, routeType + ".json");
-
-            var path = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType);
-            foreach (var name in GetNamesByRouteType(routeType))
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+            if (Directory.Exists(baseDir))
             {
-                _routesManager.CopyFromSourceToDest(path, name + ".md");
+                _routesManager.CopyFromSourceToDest(baseDir, routeType + ".json");
+
+                var path = Path.Combine(baseDir, routeType);
+                foreach (var name in GetNamesByRouteType(platform, routeType))
+                {
+                    _routesManager.CopyFromSourceToDest(path, name + ".md");
+                }
             }
         }
 
-        private IEnumerable<string> GetNamesByRouteType(string routeType)
+        private IEnumerable<string> GetNamesByRouteType(string platform, string routeType)
         {
-            var jsonFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+
+            var jsonFile = _routesManager.GetFileFromSource(baseDir, routeType + ".json");
             return JsonExtensions.GetValuesByName(jsonFile.FullName, "name");
         }
 
