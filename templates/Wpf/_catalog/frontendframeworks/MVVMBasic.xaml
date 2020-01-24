@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="svg3814" Width="48" Height="48">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: metadata-->
+    <!--Unknown tag: sodipodi:namedview-->
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="5" Canvas.Top="5" Width="14" Height="14" Name="rect3804" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Polygon xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Points="29 19 43 19 36 5 29 19" Name="polygon3806" FillRule="NonZero" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="29" Canvas.Top="28" Width="14" Height="14" Name="circle3808" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="19" Y1="12" X2="32.5" Y2="12" Name="line3810" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="36" Y1="19.25" X2="36" Y2="29" Name="line3812" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+  </Canvas>
+</Viewbox>

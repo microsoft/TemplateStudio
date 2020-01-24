@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "此基本项目是空白画布，你的应用要基于该画布构建。"
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "提供导航窗格（或“汉堡菜单”），用于在页面之间进行导航。"
+  },
+  {
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "顶部的导航项可用于在页面之间快速导航。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "添加了菜单，以在页面之间转换。"
+  }
+]

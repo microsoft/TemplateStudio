@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Bu temel proje, uygulamanız için temel olarak kullanabileceğiniz boş bir tuvaldir."
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "Sayfalar arasında gezinti için bir gezinti bölmesi (veya 'hamburger menüsü') bulunmaktadır."
+  },
+  {
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Üst kısımdaki Gezinti Öğeleri, sayfalar arasında hızlı gezinti olanağı sağlar."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
+  }
+]

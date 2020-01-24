@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMBasic",
+    "displayName": "MVVM Basic",
+    "summary": "这是 MVVM 模式的通用版本。Model-View-ViewModel 模式可在所有的 XAML 平台上使用。"
+  },
+  {
+    "name": "MVVMLight",
+    "displayName": "MVVM Light",
+    "summary": "MVVM Light 是一种基于 Model-View-ViewModel 模式的常用第三方 framework。"
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism 是一种用于构建松散耦合、可维护且可测试的 XAML 应用程序的 framework。"
+  }
+]
