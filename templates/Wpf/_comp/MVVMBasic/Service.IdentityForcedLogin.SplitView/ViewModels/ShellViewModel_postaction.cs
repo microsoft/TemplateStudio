@@ -14,10 +14,10 @@
         private RelayCommand _goBackCommand;
 //^^
 //{[{
-        public ICommand LoadCommand => _loadCommand ?? (_loadCommand = new System.Windows.Input.ICommand(OnLoad));
+        public ICommand LoadCommand => _loadCommand ?? (_loadCommand = new RelayCommand(OnLoad));
 
 //}]}
-        public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
 
         public ShellViewModel(/*{[{*/IUserDataService userDataService/*}]}*/)
         {

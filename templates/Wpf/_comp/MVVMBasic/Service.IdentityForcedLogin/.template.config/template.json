@@ -23,10 +23,6 @@
       "wts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
-      },
-      "commandclass": {
-        "type": "parameter",
-        "replaces": "System.Windows.Input.ICommand"
       }
     }
   }

@@ -4,17 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin",
-    "shortName": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin",
-    "identity": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin",
+    "name": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.SplitView",
+    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.SplitView",
+    "identity": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.SplitView",
     "tags": {
     "language": "C#",
     "type": "item",
-    "wts.compositionOrder": "1",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMLight & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == SplitViewWpf & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
