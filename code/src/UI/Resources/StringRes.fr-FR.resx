@@ -548,10 +548,6 @@
     <value>Impossible de trouver le projet {0}</value>
     <comment>{0}: projectPath</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Impossible d'ajouter des fichiers et des projets.</value>
-    <comment>Error message for unable to add files and projects</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la réduction de l'arborescence de solutions. Ex. :</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
