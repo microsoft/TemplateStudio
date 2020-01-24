@@ -29,8 +29,10 @@ namespace Microsoft.Templates.Test
         private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
-        protected List<string> excludedTemplatesGroup1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
-        protected List<string> excludedTemplatesGroup2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
+        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "wts.Wpf.Service.IdentityOptionalLogin" };
+        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "wts.Wpf.Service.IdentityForcedLogin" };
         protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
         protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" };
 
