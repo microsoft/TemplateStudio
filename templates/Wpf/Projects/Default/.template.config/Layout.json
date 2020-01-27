@@ -3,12 +3,12 @@
         "name": "Main",
         "templateGroupIdentity": "wts.Wpf.Page.Blank",
         "readonly": "false",
-        "projecttype": "Blank|SplitViewWpf|MenuBarWpf|Ribbon"
+        "projecttype": "Blank|SplitView|MenuBar|Ribbon"
     },
     {
         "name": "Multiple views",
         "templateGroupIdentity": "wts.Wpf.Feat.MultiView",
         "readonly": "true",
-        "projecttype": "MenuBarWpf|Ribbon"
+        "projecttype": "MenuBar|Ribbon"
     }
 ]

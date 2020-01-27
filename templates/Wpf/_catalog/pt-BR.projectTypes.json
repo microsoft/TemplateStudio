@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Este projeto básico é uma tela em branco na qual criar seu aplicativo."
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "A Hamburger Menu is included for navigation between pages."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Um menu é adicionado para se mover entre as páginas."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
+  }
+]

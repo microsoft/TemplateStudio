@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Dieses Basisprojekt ist ein leerer Zeichenbereich, in dem Sie Ihre App erstellen können."
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "Um zwischen den Seiten navigieren zu können, ist ein Navigationsbereich („Hamburger-Menü“) enthalten."
+  },
+  {
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigationselemente oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Für die Navigation zwischen Seiten wurde ein Menü hinzugefügt."
+  }
+]

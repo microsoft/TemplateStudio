@@ -30,7 +30,8 @@ namespace Microsoft.Templates.UI.Services
 
         public static ProjectMetadata ReadProjectConfiguration()
         {
-            var projectMetadata = ProjectMetadataService.GetProjectMetadata();
+            var projectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+            var projectMetadata = ProjectMetadataService.GetProjectMetadata(projectPath);
 
             if (IsValid(projectMetadata))
             {
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.UI.Services
 
             if (IsValid(inferredConfig))
             {
-                ProjectMetadataService.SaveProjectMetadata(inferredConfig);
+                ProjectMetadataService.SaveProjectMetadata(inferredConfig, projectPath);
             }
 
             return inferredConfig;

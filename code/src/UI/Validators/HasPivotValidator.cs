@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectType = ProjectMetadataService.GetProjectMetadata().ProjectType;
+            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).ProjectType;
 
             if (projectType == "TabbedPivot" && HasPivot())
             {

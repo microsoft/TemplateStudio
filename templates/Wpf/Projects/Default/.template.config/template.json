@@ -13,7 +13,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.projecttype": "Blank|SplitViewWpf|MenuBarWpf|Ribbon",
+    "wts.projecttype": "Blank|SplitView|MenuBar|Ribbon",
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Wpf",
     "wts.outputToParent": "true",
