@@ -24,11 +24,6 @@ namespace Localization.Extensions
         {
             var directory = new DirectoryInfo(path);
 
-            if (!directory.Exists)
-            {
-                throw new DirectoryNotFoundException($"Source directory \"{directory.FullName}\" not found.");
-            }
-
             return directory;
         }
 

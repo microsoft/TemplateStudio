@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMBasic",
+    "displayName": "MVVM Basic",
+    "summary": "Toto je obecná verze vzoru MVVM. Vzor Model-View-ViewModel je možné používat na všech platformách XAML."
+  },
+  {
+    "name": "MVVMLight",
+    "displayName": "MVVM Light",
+    "summary": "MVVM Light je oblíbený rámec (framework) třetí strany, založený na vzoru Model-View-ViewModel."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism je rámec (framework) pro vytváření volně provázaných, udržovatelných a testovatelných aplikací XAML."
+  }
+]

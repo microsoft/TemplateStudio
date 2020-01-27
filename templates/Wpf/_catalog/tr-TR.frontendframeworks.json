@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMBasic",
+    "displayName": "MVVM Basic",
+    "summary": "Bu, MVVM deseninin genel bir sürümü. Model-View-ViewModel deseni tüm XAML platformlarında kullanılabilir."
+  },
+  {
+    "name": "MVVMLight",
+    "displayName": "MVVM Light",
+    "summary": "MVVM Light, Model-View-ViewModel desenine dayalı olan popüler bir üçüncü taraf framework'tür."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism gevşek bağlı, sürdürülebilir ve test edilebilir XAML uygulamaları oluşturmak için kullanılan bir framework'tür."
+  }
+]
