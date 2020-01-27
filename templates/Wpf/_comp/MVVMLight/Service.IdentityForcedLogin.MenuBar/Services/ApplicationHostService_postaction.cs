@@ -2,19 +2,7 @@
 {
     public class ApplicationHostService : IApplicationHostService
     {
-        private readonly INavigationService _navigationService;
-//{[{
-        private readonly IRightPaneService _rightPaneService;
-//}]}
-        public ApplicationHostService(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
-        {
-//^^
-//{[{
-            _rightPaneService = rightPaneService;
-//}]}
-        }
-
-        public async Task StartAsync()
+        private void OnLoggedIn(object sender, EventArgs e)
         {
             _navigationService.Initialize(_shellWindow.GetNavigationFrame());
 //{[{

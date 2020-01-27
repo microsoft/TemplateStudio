@@ -3,6 +3,10 @@
     <Grid>
         <StackPanel
             Margin="{StaticResource MediumLeftRightMargin}">
+            <TextBlock
+                Text="{x:Static strings:Resources.SettingsPagePersonalizationTitle}" />
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+            </StackPanel>
 <!--^^-->
 <!--{[{-->
 

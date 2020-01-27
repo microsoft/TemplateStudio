@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
-    "shortName": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
-    "identity": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
+    "name": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar",
+    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar",
+    "identity": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
