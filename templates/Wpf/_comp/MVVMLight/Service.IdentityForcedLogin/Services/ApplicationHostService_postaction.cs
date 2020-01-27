@@ -74,7 +74,7 @@ namespace Param_RootNamespace.Services
             _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>(Guid.NewGuid().ToString());
             _navigationService.Initialize(_shellWindow.GetNavigationFrame());
             _shellWindow.ShowWindow();
-            _navigationService.NavigateTo(typeof(MainViewModel).FullName);
+            _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
             _logInWindow.CloseWindow();
             _logInWindow = null;
         }
