@@ -23,6 +23,7 @@
       "displayName": "MenuBar",
       "summary": "A menu is added to move around between pages.",
       "author": "Microsoft",
+      "order": "3",
       "platform": "Wpf",
       "languages": [ "C#" ]
     },
