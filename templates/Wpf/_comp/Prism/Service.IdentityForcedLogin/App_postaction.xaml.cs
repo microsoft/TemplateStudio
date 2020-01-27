@@ -13,6 +13,8 @@ namespace Param_RootNamespace
         {
 //^^
 //{[{
+            var userDataService = Container.Resolve<IUserDataService>();
+            userDataService.Initialize();
             var identityService = Container.Resolve<IIdentityService>();
             identityService.LoggedIn += OnLoggedIn;
             identityService.LoggedOut += OnLoggedOut;
@@ -21,9 +23,6 @@ namespace Param_RootNamespace
             {
                 ShowLogInWindow();
             }
-
-            var userDataService = Container.Resolve<IUserDataService>();
-            userDataService.Initialize();
 //}]}
         }
 //{[{
