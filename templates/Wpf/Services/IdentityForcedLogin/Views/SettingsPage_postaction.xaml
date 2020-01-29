@@ -31,7 +31,7 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="{StaticResource SmallTopMargin}">
-                <Hyperlink Command="{Binding LogoutCommand}">
+                <Hyperlink Command="{Binding LogOutCommand}">
                     <TextBlock
                         Style="{StaticResource BodyTextStyle}"
                         Text="{x:Static strings:Resources.SettingsPageLogOutButtonText}" />

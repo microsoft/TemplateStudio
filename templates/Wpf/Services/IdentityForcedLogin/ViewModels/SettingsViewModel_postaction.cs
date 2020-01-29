@@ -12,7 +12,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly IThemeSelectorService _themeSelectorService;
 //^^
 //{[{
-        private ICommand _logoutCommand;
+        private ICommand _logOutCommand;
         private UserViewModel _user;
 //}]}
 
@@ -33,7 +33,7 @@ namespace Param_RootNamespace.ViewModels
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
 //^^
 //{[{
-        public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new System.Windows.Input.ICommand(OnLogout));
+        public ICommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new System.Windows.Input.ICommand(OnLogOut));
 //}]}
 
         public SettingsViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)
@@ -76,7 +76,7 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
 
-        private async void OnLogout()
+        private async void OnLogOut()
         {
             await _identityService.LogoutAsync();
         }
