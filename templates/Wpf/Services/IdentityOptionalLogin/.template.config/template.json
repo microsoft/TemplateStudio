@@ -31,13 +31,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "ViewModels/LogInViewModel.cs"
-    },
-    {
-      "path": "Views/LogInWindow.xaml"
-    },
-    {
-      "path": "Views/LogInWindow.xaml.cs"
+      "path": "Helpers/AuthenticationHelper.cs"
     }
   ],
   "symbols": {
@@ -49,13 +43,29 @@
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
     },
+    "commandclass": {
+      "type": "parameter",
+      "replaces": "System.Windows.Input.ICommand"
+    },
     "setter": {
       "type": "parameter",
       "replaces": "Param_Setter"
     },
+    "pagetype": {
+      "type": "parameter",
+      "replaces": "System.Windows.Controls.Page"
+    },
     "canExecuteChangedMethodName": {
       "type": "parameter",
       "replaces": "Param_CanExecuteChangedMethodName"
+    },
+    "onNavigatedToParams":{
+      "type": "parameter",
+      "replaces": "Param_OnNavigatedToParams"
+    },
+    "onNavigatedFromParams":{
+      "type": "parameter",
+      "replaces": "Param_OnNavigatedFromParams"
     }
   }
 }

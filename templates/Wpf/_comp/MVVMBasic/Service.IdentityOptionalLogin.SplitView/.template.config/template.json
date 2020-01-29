@@ -1,0 +1,31 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.SplitView",
+    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.SplitView",
+    "identity": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.SplitView",
+    "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+  },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Helpers/Restricted.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

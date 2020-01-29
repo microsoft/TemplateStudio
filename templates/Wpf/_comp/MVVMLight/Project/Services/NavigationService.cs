@@ -10,19 +10,20 @@ namespace Param_RootNamespace.Services
     public class NavigationService : INavigationService
     {
         private readonly IPageService _pageService;
-        private Frame _frame;
         private object _lastParameterUsed;
 
         public event EventHandler<string> Navigated;
 
+        public Frame Frame { get; private set; }
+
         public bool CanGoBack
-            => _frame != null && _frame.CanGoBack;
+            => Frame != null && Frame.CanGoBack;
 
         public string CurrentPageKey
         {
             get
             {
-                if (_frame.Content is FrameworkElement element)
+                if (Frame.Content is FrameworkElement element)
                 {
                     return element.DataContext.GetType().FullName;
                 }
@@ -38,21 +39,21 @@ namespace Param_RootNamespace.Services
 
         public void Initialize(Frame shellFrame)
         {
-            if (_frame == null)
+            if (Frame == null)
             {
-                _frame = shellFrame;
-                _frame.Navigated += OnNavigated;
+                Frame = shellFrame;
+                Frame.Navigated += OnNavigated;
             }
         }
 
         public void UnsubscribeNavigation()
         {
-            _frame.Navigated -= OnNavigated;
-            _frame = null;
+            Frame.Navigated -= OnNavigated;
+            Frame = null;
         }
 
         public void GoBack()
-            => _frame.GoBack();
+            => Frame.GoBack();
 
         public void NavigateTo(string pageKey)
             => NavigateTo(pageKey, null, false);
@@ -64,15 +65,15 @@ namespace Param_RootNamespace.Services
         {
             var pageType = _pageService.GetPageType(pageKey);
 
-            if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
+            if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
-                _frame.Tag = clearNavigation;
+                Frame.Tag = clearNavigation;
                 var page = _pageService.GetPage(pageKey);
-                var navigated = _frame.Navigate(page, parameter);
+                var navigated = Frame.Navigate(page, parameter);
                 if (navigated)
                 {
                     _lastParameterUsed = parameter;
-                    var dataContext = _frame.GetDataContext();
+                    var dataContext = Frame.GetDataContext();
                     if (dataContext is INavigationAware navigationAware)
                     {
                         navigationAware.OnNavigatedFrom();
