@@ -19,6 +19,9 @@
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
+        "path": "Behaviors/MenuItemsEnabledBehavior.cs"
+      },
+      {
         "path": "Helpers/Restricted.cs"
       }
     ],

@@ -23,6 +23,9 @@ namespace Param_RootNamespace.ViewModels
         private RelayCommand _goBackCommand;
 //^^
 //{[{
+        public Func<HamburgerMenuItem, bool> IsPageRestricted { get; } =
+            (menuItem) => Attribute.IsDefined(menuItem.TargetPageType, typeof(Restricted));
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -70,7 +73,7 @@ namespace Param_RootNamespace.ViewModels
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
             var userMenuItem = new HamburgerMenuImageItem()
             {
-                Command = new RelayCommand(OnUserItemSelected)
+                Command = new RelayCommand(OnUserItemSelected, () => !IsBusy)
             };
             if (IsAuthorized)
             {
@@ -107,32 +110,17 @@ namespace Param_RootNamespace.ViewModels
         {
             IsLoggedIn = false;
             IsAuthorized = false;
+            RemoveUserInformation();
+            _navigationService.Frame.CleanNavigation();
+        }
+
+        private void RemoveUserInformation()
+        {
             var userMenuItem = OptionMenuItems.OfType<HamburgerMenuImageItem>().FirstOrDefault();
             if (userMenuItem != null)
             {
                 userMenuItem.Thumbnail = ImageHelper.ImageFromAssetsFile("DefaultIcon.png");
                 userMenuItem.Label = Resources.Shell_LogIn;
-            }
-
-            CleanRestrictedPagesFromNavigationHistory();
-            GoBackToLastUnrestrictedPage();
-        }
-
-        private void CleanRestrictedPagesFromNavigationHistory()
-        {
-            //_navigationService.Frame.BackStack
-            //    .Where(b => Attribute.IsDefined(b.SourcePageType, typeof(Restricted)))
-            //    .ToList()
-            //    .ForEach(page => NavigationService.Frame.BackStack.Remove(page));
-        }
-
-        private void GoBackToLastUnrestrictedPage()
-        {
-            var currentPage = _navigationService.Frame.Content as Page;
-            var isCurrentPageRestricted = Attribute.IsDefined(currentPage.GetType(), typeof(Restricted));
-            if (isCurrentPageRestricted)
-            {
-                _navigationService.GoBack();
             }
         }
 //}]}
@@ -142,11 +130,7 @@ namespace Param_RootNamespace.ViewModels
 
         private async void OnUserItemSelected()
         {
-            if (IsLoggedIn)
-            {
-                NavigateTo(typeof(SettingsViewModel));
-            }
-            else
+            if (!IsLoggedIn)
             {
                 IsBusy = true;
                 var loginResult = await _identityService.LoginAsync();
@@ -156,6 +140,8 @@ namespace Param_RootNamespace.ViewModels
                     IsBusy = false;
                 }
             }
+
+            NavigateTo(typeof(SettingsViewModel));
         }
 //}]}
     }

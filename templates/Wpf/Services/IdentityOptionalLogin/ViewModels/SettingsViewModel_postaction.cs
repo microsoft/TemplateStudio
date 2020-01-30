@@ -1,5 +1,4 @@
 ﻿//{[{
-using System.Windows;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
 //}]}
@@ -15,8 +14,7 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
         private bool _isBusy;
-        private Visibility _isLoggedIn;
-        private Visibility _isLoggedOut;
+        private bool _isLoggedIn;
         private System.Windows.Input.ICommand _logInCommand;
         private System.Windows.Input.ICommand _logOutCommand;
         private UserViewModel _user;
@@ -41,16 +39,10 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        public Visibility IsLoggedIn
+        public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
             set { Param_Setter(ref _isLoggedIn, value); }
-        }
-
-        public Visibility IsLoggedOut
-        {
-            get { return _isLoggedOut; }
-            set { Param_Setter(ref _isLoggedOut, value); }
         }
 
         public UserViewModel User
@@ -82,8 +74,7 @@ namespace Param_RootNamespace.ViewModels
 //{[{
             _identityService.LoggedIn += OnLoggedIn;
             _identityService.LoggedOut += OnLoggedOut;
-            IsLoggedIn = _identityService.IsLoggedIn() ? Visibility.Visible : Visibility.Collapsed;
-            IsLoggedOut = _identityService.IsLoggedIn() ? Visibility.Collapsed : Visibility.Visible;
+            IsLoggedIn = _identityService.IsLoggedIn();
             _userDataService.UserDataUpdated += OnUserDataUpdated;
             User = _userDataService.GetUser();
 //}]}
@@ -134,16 +125,14 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnLoggedIn(object sender, EventArgs e)
         {
-            IsLoggedIn = Visibility.Visible;
-            IsLoggedOut = Visibility.Collapsed;
+            IsLoggedIn = true;
             IsBusy = false;
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
             User = null;
-            IsLoggedIn = Visibility.Collapsed;
-            IsLoggedOut = Visibility.Visible;
+            IsLoggedIn = false;
             IsBusy = false;
         }
 //}]}

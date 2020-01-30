@@ -31,6 +31,9 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": "Converters/BooleanToVisibilityConverter.cs"
+    },
+    {
       "path": "Helpers/AuthenticationHelper.cs"
     }
   ],
