@@ -287,7 +287,7 @@ namespace Microsoft.Templates.Test
         public string GetTestSummary(string filePath)
         {
             var outputLines = File.ReadAllLines(filePath);
-            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests") || l.StartsWith("Test "));
+            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests", StringComparison.OrdinalIgnoreCase) || l.StartsWith("Test ", StringComparison.OrdinalIgnoreCase));
 
             return summaryLines.Any() ? summaryLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }

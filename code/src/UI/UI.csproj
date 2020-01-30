@@ -106,6 +106,7 @@
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
       <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StepDataEventsArgs.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
