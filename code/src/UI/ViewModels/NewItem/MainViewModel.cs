@@ -117,14 +117,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void OnStepUpdated(object sender, StepData step)
+        private void OnStepUpdated(object sender, StepDataEventsArgs e)
         {
-            if (step.Id == NewItemStepTemplateSelection)
+            if (e.StepData.Id == NewItemStepTemplateSelection)
             {
                 ChangesSummary.ClearSelected();
                 WizardNavigation.Current.SetCanFinish(false);
             }
-            else if (step.Id == NewItemStepChangesSummary)
+            else if (e.StepData.Id == NewItemStepChangesSummary)
             {
                 WizardNavigation.Current.SetCanFinish(true);
             }
