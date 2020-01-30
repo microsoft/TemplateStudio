@@ -48,7 +48,7 @@ namespace Param_RootNamespace
 
             // App Host
             services.AddHostedService<ApplicationHostService>();
-            services.AddSingleton<IFilesService, FilesService>();
+            services.AddSingleton<IFileService, FileService>();
 
             // Services
             services.AddSingleton<IPageService, PageService>();
