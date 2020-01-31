@@ -38,11 +38,14 @@ namespace Param_RootNamespace.Behaviors
 
         private void RestrictItems()
         {
-            foreach (HamburgerMenuItem menuItem in AssociatedObject.Items)
+            if (AssociatedObject != null)
             {
-                if (ApplyTo != null && ApplyTo(menuItem))
+                foreach (HamburgerMenuItem menuItem in AssociatedObject.Items)
                 {
-                    menuItem.IsEnabled = IsEnabled;
+                    if (ApplyTo != null && ApplyTo(menuItem))
+                    {
+                        menuItem.IsEnabled = IsEnabled;
+                    }
                 }
             }
         }

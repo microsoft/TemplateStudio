@@ -1,0 +1,26 @@
+﻿<controls:MetroWindow
+<!--{[{-->
+    xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
+<!--}]}-->
+    xmlns:templateSelectors="clr-namespace:Param_RootNamespace.TemplateSelectors"
+    Title="{x:Static strings:Resources.AppDisplayName}">
+    <i:Interaction.Triggers>
+<!--{[{-->
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" />
+        </i:EventTrigger>
+<!--}]}-->
+    </i:Interaction.Triggers>
+    <controls:MetroWindow.Content>
+        <controls:HamburgerMenu
+            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+<!--{[{-->
+            <i:Interaction.Behaviors>
+                <behaviors:MenuItemsEnabledBehavior
+                    IsEnabled="{Binding IsAuthorized}"
+                    ApplyTo="{Binding IsPageRestricted}" />
+            </i:Interaction.Behaviors>
+<!--}]}-->
+        </controls:HamburgerMenu>
+    </controls:MetroWindow.Content>
+</controls:MetroWindow>
