@@ -1,8 +1,4 @@
 ﻿<Page
-    <!--^^-->
-    <!--{[{-->
-   Loaded="Page_Loaded"
-    <!--}]}-->
     mc:Ignorable="d">
 
         <controls:MasterDetailsView
