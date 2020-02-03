@@ -64,7 +64,7 @@ namespace Param_RootNamespace.ViewModels
             => _navigationService.Journal.GoBack();
 
         private void OnMenuItemInvoked()
-            => RequestNavigate(SelectedMenuItem.Tag.ToString());
+            => RequestNavigate(SelectedMenuItem.Tag?.ToString());
 
         private void RequestNavigate(string target)
         {

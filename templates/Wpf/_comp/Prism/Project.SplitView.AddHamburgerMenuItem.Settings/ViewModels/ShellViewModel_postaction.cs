@@ -44,7 +44,7 @@
 //^^
 //{[{
         private void OnOptionsMenuItemInvoked()
-            => RequestNavigate(SelectedOptionsMenuItem.Tag.ToString());
+            => RequestNavigate(SelectedOptionsMenuItem.Tag?.ToString());
 //}]}
 
         private void OnNavigated(object sender, RegionNavigationEventArgs e)

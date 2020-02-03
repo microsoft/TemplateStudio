@@ -33,7 +33,7 @@ namespace Param_RootNamespace
             // App Services
 //^^
 //{[{
-            containerRegistry.Register<IUserDataService, UserDataService>();
+            containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
 //}]}
             // Views
         }
