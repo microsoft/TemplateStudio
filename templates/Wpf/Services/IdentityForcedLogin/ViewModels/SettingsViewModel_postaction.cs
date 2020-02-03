@@ -12,17 +12,17 @@ namespace Param_RootNamespace.ViewModels
         private readonly IThemeSelectorService _themeSelectorService;
 //^^
 //{[{
-        private ICommand _logOutCommand;
         private UserViewModel _user;
 //}]}
-
-        public AppTheme Theme
-        {
-        }
-
+        private ICommand _setThemeCommand;
+        private ICommand _privacyStatementCommand;
+//{[{
+        private ICommand _logOutCommand;
+//}]}
         public string VersionDescription
         {
         }
+//^^
 //{[{
         public UserViewModel User
         {
@@ -30,12 +30,13 @@ namespace Param_RootNamespace.ViewModels
             set { Param_Setter(ref _user, value); }
         }
 //}]}
+        public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new System.Windows.Input.ICommand<string>(OnSetTheme));
+
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
-//^^
 //{[{
+
         public ICommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new System.Windows.Input.ICommand(OnLogOut));
 //}]}
-
         public SettingsViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)
         {
 //^^

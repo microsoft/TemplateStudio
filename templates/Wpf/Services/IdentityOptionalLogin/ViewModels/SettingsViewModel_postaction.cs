@@ -16,18 +16,18 @@ namespace Param_RootNamespace.ViewModels
 //{[{
         private bool _isBusy;
         private bool _isLoggedIn;
-        private System.Windows.Input.ICommand _logInCommand;
-        private System.Windows.Input.ICommand _logOutCommand;
         private UserViewModel _user;
 //}]}
-
-        public AppTheme Theme
-        {
-        }
-
+        private ICommand _setThemeCommand;
+        private ICommand _privacyStatementCommand;
+//{[{
+        private System.Windows.Input.ICommand _logInCommand;
+        private System.Windows.Input.ICommand _logOutCommand;
+//}]}
         public string VersionDescription
         {
         }
+//^^
 //{[{
         public bool IsBusy
         {
@@ -52,14 +52,15 @@ namespace Param_RootNamespace.ViewModels
             set { Param_Setter(ref _user, value); }
         }
 //}]}
+        public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new System.Windows.Input.ICommand<string>(OnSetTheme));
+
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
-//^^
 //{[{
+
         public System.Windows.Input.ICommand LogInCommand => _logInCommand ?? (_logInCommand = new System.Windows.Input.ICommand(OnLogIn, () => !IsBusy));
 
         public System.Windows.Input.ICommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new System.Windows.Input.ICommand(OnLogOut, () => !IsBusy));
 //}]}
-
         public SettingsViewModel(/*{[{*/IUserDataService userDataService, IIdentityService identityService/*}]}*/)
         {
 //^^
