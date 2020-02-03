@@ -5,7 +5,7 @@ using Param_RootNamespace.Core.Helpers;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : Observable
+    public class ShellViewModel : ViewModelBase
     {
 //{[{
         private readonly IIdentityService _identityService;

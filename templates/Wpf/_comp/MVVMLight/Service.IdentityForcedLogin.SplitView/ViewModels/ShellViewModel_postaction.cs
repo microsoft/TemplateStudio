@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : Observable
+    public class ShellViewModel : ViewModelBase
     {
 //^^
 //{[{

@@ -6,7 +6,7 @@ using Param_RootNamespace.Core.Helpers;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : /*{[{*/IDisposable/*}]}*/
+    public class ShellViewModel : ViewModelBase
     {
 //^^
 //{[{
@@ -19,7 +19,6 @@ namespace Param_RootNamespace.ViewModels
         private bool _isBusy;
         private bool _isLoggedIn;
         private bool _isAuthorized;
-        private ICommand _loadCommand;
 //}]}
         private RelayCommand _goBackCommand;
 //^^
@@ -45,8 +44,6 @@ namespace Param_RootNamespace.ViewModels
             set { Set(ref _isAuthorized, value); }
         }
 
-        public ICommand LoadCommand => _loadCommand ?? (_loadCommand = new RelayCommand(OnLoad));
-
 //}]}
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
 
@@ -61,15 +58,11 @@ namespace Param_RootNamespace.ViewModels
             _userDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
+
+        private void OnLoaded()
+        {
+//^^
 //{[{
-
-        public void Dispose()
-        {
-            _userDataService.UserDataUpdated -= OnUserDataUpdated;
-        }
-
-        private void OnLoad()
-        {
             IsLoggedIn = _identityService.IsLoggedIn();
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
             var userMenuItem = new HamburgerMenuImageItem()
@@ -89,7 +82,17 @@ namespace Param_RootNamespace.ViewModels
             }
 
             OptionMenuItems.Insert(0, userMenuItem);
+//}]}
         }
+
+        private void OnUnloaded()
+        {
+//^^
+//{[{
+            _userDataService.UserDataUpdated -= OnUserDataUpdated;
+//}]}
+        }
+//{[{
 
         private void OnUserDataUpdated(object sender, UserViewModel user)
         {

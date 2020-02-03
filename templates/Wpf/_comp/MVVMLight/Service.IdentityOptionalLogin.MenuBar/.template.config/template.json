@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
-    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
-    "identity": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
+    "name": "wts.Wpf.MVVVMLight.Service.IdentityOptionalLogin.MenuBar",
+    "shortName": "wts.Wpf.MVVVMLight.Service.IdentityOptionalLogin.MenuBar",
+    "identity": "wts.Wpf.MVVVMLight.Service.IdentityOptionalLogin.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVVMLight & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
