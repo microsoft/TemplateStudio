@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
-    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
-    "identity": "wts.Wpf.MVVMBasic.Service.IdentityOptionalLogin.MenuBar",
+    "name": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
+    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
+    "identity": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -30,6 +30,18 @@
       "wts.homePageName": {
         "type":"parameter",
         "replaces":"Param_HomeName"
+      },
+      "baseclass": {
+        "type": "parameter",
+        "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      },
+      "commandclass": {
+        "type": "parameter",
+        "replaces": "System.Windows.Input.ICommand"
+      },
+      "setter": {
+        "type": "parameter",
+        "replaces": "Param_Setter"
       }
     }
   }

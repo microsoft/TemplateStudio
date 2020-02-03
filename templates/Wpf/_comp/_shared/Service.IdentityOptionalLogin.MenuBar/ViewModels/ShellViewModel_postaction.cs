@@ -5,7 +5,7 @@ using Param_RootNamespace.Core.Helpers;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : Observable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
 //{[{
         private readonly IIdentityService _identityService;
@@ -15,24 +15,21 @@ namespace Param_RootNamespace.ViewModels
 //{[{
         private bool _isLoggedIn;
         private bool _isAuthorized;
-        private ICommand _loadedCommand;
 
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
-            set { Set(ref _isLoggedIn, value); }
+            set { Param_Setter(ref _isLoggedIn, value); }
         }
 
         public bool IsAuthorized
         {
             get { return _isAuthorized; }
-            set { Set(ref _isAuthorized, value); }
+            set { Param_Setter(ref _isAuthorized, value); }
         }
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoad));
-
 //}]}
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
+        public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
         public ShellViewModel(/*{[{*/IIdentityService identityService/*}]}*/)
         {
