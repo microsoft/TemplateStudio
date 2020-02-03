@@ -13,7 +13,7 @@ namespace Param_RootNamespace.Services
 {
     public class UserDataService : IUserDataService
     {
-        private readonly IFilesService _filesService;
+        private readonly IFileService _fileService;
         private readonly IIdentityService _identityService;
         private readonly IMicrosoftGraphService _microsoftGraphService;
         private readonly AppConfig _config;
@@ -22,9 +22,9 @@ namespace Param_RootNamespace.Services
 
         public event EventHandler<UserViewModel> UserDataUpdated;
 
-        public UserDataService(IFilesService filesService, IIdentityService identityService, IMicrosoftGraphService microsoftGraphService, Param_ConfigType config)
+        public UserDataService(IFileService fileService, IIdentityService identityService, IMicrosoftGraphService microsoftGraphService, Param_ConfigType config)
         {
-            _filesService = filesService;
+            _fileService = fileService;
             _identityService = identityService;
             _microsoftGraphService = microsoftGraphService;
             _config = Param_ConfigValue;
@@ -61,14 +61,14 @@ namespace Param_RootNamespace.Services
             _user = null;
             var folderPath = Path.Combine(_localAppData, _config.ConfigurationsFolder);
             var fileName = _config.UserFileName;
-            _filesService.Save<User>(folderPath, fileName, null);
+            _fileService.Save<User>(folderPath, fileName, null);
         }
 
         private UserViewModel GetUserFromCache()
         {
             var folderPath = Path.Combine(_localAppData, _config.ConfigurationsFolder);
             var fileName = _config.UserFileName;
-            var cacheData = _filesService.Read<User>(folderPath, fileName);
+            var cacheData = _fileService.Read<User>(folderPath, fileName);
             return GetUserViewModelFromData(cacheData);
         }
 
@@ -86,7 +86,7 @@ namespace Param_RootNamespace.Services
                 userData.Photo = await _microsoftGraphService.GetUserPhoto(accessToken);
                 var folderPath = Path.Combine(_localAppData, _config.ConfigurationsFolder);
                 var fileName = _config.UserFileName;
-                _filesService.Save<User>(folderPath, fileName, userData);
+                _fileService.Save<User>(folderPath, fileName, userData);
             }
 
             return GetUserViewModelFromData(userData);
