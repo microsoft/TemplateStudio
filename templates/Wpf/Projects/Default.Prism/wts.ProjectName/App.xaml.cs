@@ -52,7 +52,7 @@ namespace Param_RootNamespace
         protected async override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
-            containerRegistry.Register<IFilesService, FilesService>();
+            containerRegistry.Register<IFileService, FileService>();
 
             // App Services
 

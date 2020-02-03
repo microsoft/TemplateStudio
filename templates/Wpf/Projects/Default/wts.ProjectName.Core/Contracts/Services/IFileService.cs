@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.Core.Contracts.Services
 {
-    public interface IFilesService
+    public interface IFileService
     {
         T Read<T>(string folderPath, string fileName);
 

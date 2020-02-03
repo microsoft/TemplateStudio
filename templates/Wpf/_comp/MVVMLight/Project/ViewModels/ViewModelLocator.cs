@@ -27,7 +27,7 @@ namespace Param_RootNamespace.ViewModels
             SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
 
             // Core Services
-            SimpleIoc.Default.Register<IFilesService, FilesService>();
+            SimpleIoc.Default.Register<IFileService, FileService>();
 
             // Services
             SimpleIoc.Default.Register<IPageService, PageService>();

@@ -50,7 +50,7 @@ namespace Param_RootNamespace
             services.AddHostedService<ApplicationHostService>();
 
             // Core Services
-            services.AddSingleton<IFilesService, FilesService>();
+            services.AddSingleton<IFileService, FileService>();
 
             // Services
             services.AddSingleton<IPageService, PageService>();
