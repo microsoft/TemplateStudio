@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : Observable
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
 //^^
 //{[{
@@ -26,7 +26,7 @@
             {
                 Thumbnail = user.Photo,
                 Label = user.Name,
-                Command = new RelayCommand(OnUserItemSelected)
+                Command = new System.Windows.Input.ICommand(OnUserItemSelected)
             };
 
             OptionMenuItems.Insert(0, userMenuItem);

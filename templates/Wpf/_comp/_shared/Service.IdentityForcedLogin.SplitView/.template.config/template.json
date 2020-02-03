@@ -4,26 +4,20 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
-    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
-    "identity": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
+    "name": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
+    "shortName": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
+    "identity": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      {
-        "path": "Behaviors/MenuItemsEnabledBehavior.cs"
-      },
-      {
-        "path": "Helpers/Restricted.cs"
-      }
     ],
     "symbols": {
       "wts.rootNamespace": {
@@ -37,10 +31,6 @@
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
-      },
-      "setter": {
-        "type": "parameter",
-        "replaces": "Param_Setter"
       }
     }
   }

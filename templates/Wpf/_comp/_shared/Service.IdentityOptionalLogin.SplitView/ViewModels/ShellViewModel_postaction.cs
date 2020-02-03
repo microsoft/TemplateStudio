@@ -6,7 +6,7 @@ using Param_RootNamespace.Core.Helpers;
 //}]}
 namespace Param_RootNamespace.ViewModels
 {
-    public class ShellViewModel : ViewModelBase
+    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
 //^^
 //{[{
@@ -20,7 +20,7 @@ namespace Param_RootNamespace.ViewModels
         private bool _isLoggedIn;
         private bool _isAuthorized;
 //}]}
-        private RelayCommand _goBackCommand;
+        private System.Windows.Input.ICommand _goBackCommand;
 //^^
 //{[{
         public Func<HamburgerMenuItem, bool> IsPageRestricted { get; } =
@@ -29,23 +29,23 @@ namespace Param_RootNamespace.ViewModels
         public bool IsBusy
         {
             get { return _isBusy; }
-            set { Set(ref _isBusy, value); }
+            set { Param_Setter(ref _isBusy, value); }
         }
 
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
-            set { Set(ref _isLoggedIn, value); }
+            set { Param_Setter(ref _isLoggedIn, value); }
         }
 
         public bool IsAuthorized
         {
             get { return _isAuthorized; }
-            set { Set(ref _isAuthorized, value); }
+            set { Param_Setter(ref _isAuthorized, value); }
         }
 
 //}]}
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
+        public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
         public ShellViewModel(/*{[{*/IIdentityService identityService, IUserDataService userDataService/*}]}*/)
         {
@@ -67,7 +67,7 @@ namespace Param_RootNamespace.ViewModels
             IsAuthorized = IsLoggedIn && _identityService.IsAuthorized();
             var userMenuItem = new HamburgerMenuImageItem()
             {
-                Command = new RelayCommand(OnUserItemSelected, () => !IsBusy)
+                Command = new System.Windows.Input.ICommand(OnUserItemSelected, () => !IsBusy)
             };
             if (IsAuthorized)
             {
