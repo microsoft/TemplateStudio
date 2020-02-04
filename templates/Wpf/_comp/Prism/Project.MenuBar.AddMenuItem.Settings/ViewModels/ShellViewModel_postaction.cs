@@ -12,7 +12,7 @@ namespace Param_RootNamespace.ViewModels
 //{[{
         private ICommand _menuFilewts.ItemNameCommand;
 //}]}
-
+        private ICommand _loadedCommand;
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
 //{[{
 

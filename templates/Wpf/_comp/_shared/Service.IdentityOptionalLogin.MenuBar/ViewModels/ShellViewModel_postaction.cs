@@ -7,14 +7,16 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private readonly IRightPaneService _rightPaneService;
 //{[{
         private readonly IIdentityService _identityService;
-//}]}
-        private ICommand _unloadedCommand;
-//^^
-//{[{
+
         private bool _isLoggedIn;
         private bool _isAuthorized;
+//}]}
+        private RelayCommand _goBackCommand;
+        private ICommand _unloadedCommand;
+//{[{
 
         public bool IsLoggedIn
         {
@@ -27,9 +29,8 @@ namespace Param_RootNamespace.ViewModels
             get { return _isAuthorized; }
             set { Param_Setter(ref _isAuthorized, value); }
         }
-
 //}]}
-        public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
 
         public ShellViewModel(/*{[{*/IIdentityService identityService/*}]}*/)
         {

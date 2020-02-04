@@ -6,7 +6,6 @@
 //{[{
         private readonly IRightPaneService _rightPaneService;
 //}]}
-
         public ApplicationHostService(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
 //^^

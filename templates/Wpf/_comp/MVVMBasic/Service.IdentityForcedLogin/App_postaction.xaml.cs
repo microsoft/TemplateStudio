@@ -1,16 +1,14 @@
 ﻿private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
 {
-//^^
+    // Core Services
 //{[{
     services.AddSingleton<IMicrosoftGraphService, MicrosoftGraphService>();
     services.AddSingleton<IIdentityService, IdentityService>();
 //}]}
     // Services
-//^^
 //{[{
     services.AddSingleton<IUserDataService, UserDataService>();
 //}]}
-    // Views and ViewModels
 //^^
 //{[{
     services.AddTransient<ILogInWindow, LogInWindow>();

@@ -9,6 +9,7 @@ namespace Param_RootNamespace.Services
 {
     public class ApplicationHostService : IHostedService
     {
+        private readonly IThemeSelectorService _themeSelectorService;
 //{[{
         private readonly IIdentityService _identityService;
         private readonly IUserDataService _userDataService;
