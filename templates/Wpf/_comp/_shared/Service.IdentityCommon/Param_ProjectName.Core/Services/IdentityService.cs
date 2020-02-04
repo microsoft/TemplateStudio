@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Services
     public class IdentityService : IIdentityService
     {
         //// For more information about using Identity, see
-        //// https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/identity.md
+        //// https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/services/identity.md
         ////
         //// Read more about Microsoft Identity Client here
         //// https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
