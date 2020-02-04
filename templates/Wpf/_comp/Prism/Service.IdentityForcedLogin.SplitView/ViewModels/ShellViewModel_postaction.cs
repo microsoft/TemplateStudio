@@ -22,6 +22,7 @@ namespace Param_RootNamespace.ViewModels
         {
 //^^
 //{[{
+            _userDataService.UserDataUpdated += OnUserDataUpdated;
             var user = _userDataService.GetUser();
             var userMenuItem = new HamburgerMenuImageItem()
             {
@@ -33,13 +34,32 @@ namespace Param_RootNamespace.ViewModels
             OptionMenuItems.Insert(0, userMenuItem);
 //}]}
         }
+
+        private void OnUnloaded()
+        {
+//^^
+//{[{
+            _userDataService.UserDataUpdated -= OnUserDataUpdated;
+//}]}
+        }
+//{[{
+        private void OnUserDataUpdated(object sender, UserViewModel user)
+        {
+            var userMenuItem = OptionMenuItems.OfType<HamburgerMenuImageItem>().FirstOrDefault();
+            if (userMenuItem != null)
+            {
+                userMenuItem.Thumbnail = user.Photo;
+            }
+        }
+
+//}]}
 //^^
 //{[{
         private void OnUserItemSelected()
             => RequestNavigate(PageKeys.Settings);
 //}]}
 
-        private void OnNavigated(object sender, RegionNavigationEventArgs e)
+        private void RequestNavigate(string target)
         {
         }
     }

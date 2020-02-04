@@ -19,7 +19,6 @@ namespace Param_RootNamespace
         protected async override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
-//^^
 //{[{
             containerRegistry.Register<IMicrosoftGraphService, MicrosoftGraphService>();
 
@@ -31,11 +30,9 @@ namespace Param_RootNamespace
             containerRegistry.RegisterInstance<IIdentityService>(identityService);
 //}]}
             // App Services
-//^^
 //{[{
             containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
 //}]}
-            // Views
         }
     }
 }
