@@ -18,6 +18,12 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
+      {
+        "path": "Behaviors/MenuItemsEnabledBehavior.cs"
+      },
+      {
+        "path": "Helpers/Restricted.cs"
+      }
     ],
     "symbols": {
       "wts.rootNamespace": {

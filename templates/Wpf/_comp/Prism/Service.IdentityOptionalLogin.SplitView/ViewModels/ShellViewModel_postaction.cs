@@ -8,7 +8,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : /*{[{*/IDisposable/*}]}*/
     {
-//^^
+        private readonly IRegionManager _regionManager;
 //{[{
         private readonly IIdentityService _identityService;
         private readonly IUserDataService _userDataService;
@@ -24,7 +24,11 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
         public Func<HamburgerMenuItem, bool> IsPageRestricted { get; } =
-            (menuItem) => Attribute.IsDefined(menuItem.TargetPageType, typeof(Restricted));
+        (menuItem) =>
+        {
+            var viewName = $"Param_RootNamespace.Views.{menuItem.Tag}Page";
+            return Attribute.IsDefined(Type.GetType(viewName), typeof(Restricted));
+        };
 
         public bool IsBusy
         {
@@ -99,7 +103,6 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 //}]}
-
         private void OnLoaded()
         {
 //^^
