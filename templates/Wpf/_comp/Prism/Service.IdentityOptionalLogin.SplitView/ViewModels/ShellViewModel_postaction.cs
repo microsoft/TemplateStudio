@@ -23,11 +23,11 @@ namespace Param_RootNamespace.ViewModels
         private DelegateCommand _goBackCommand;
 //^^
 //{[{
-        public Func<HamburgerMenuItem, bool> IsPageRestricted { get; } =
-        (menuItem) =>
+        public Func<HamburgerMenuItem, bool> IsPageRestricted { get; } = (menuItem) =>
         {
-            var viewName = $"Param_RootNamespace.Views.{menuItem.Tag}Page";
-            return Attribute.IsDefined(Type.GetType(viewName), typeof(Restricted));
+            var app = App.Current as App;
+            var page = app.GetPageType(menuItem.Tag.ToString());
+            return Attribute.IsDefined(page.GetType(), typeof(Restricted));
         };
 
         public bool IsBusy
