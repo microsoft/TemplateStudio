@@ -75,6 +75,7 @@ namespace Param_RootNamespace.ViewModels
             if (userMenuItem != null)
             {
                 userMenuItem.Thumbnail = user.Photo;
+                userMenuItem.Label = user.Name;
             }
         }
 
