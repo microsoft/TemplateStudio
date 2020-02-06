@@ -14,6 +14,7 @@ namespace Param_RootNamespace.ViewModels
         private HamburgerMenuItem _selectedMenuItem;
         private System.Windows.Input.ICommand _goBackCommand;
         private ICommand _menuItemInvokedCommand;
+        private ICommand _loadedCommand;
         private ICommand _unloadedCommand;
 
         public HamburgerMenuItem SelectedMenuItem
@@ -31,7 +32,9 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new System.Windows.Input.ICommand(OnMenuItemInvoked));
 
-        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloadedCommand));
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new System.Windows.Input.ICommand(OnLoaded));
+
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
 
         public ShellViewModel(INavigationService navigationService)
         {
@@ -39,7 +42,11 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void OnUnloadedCommand()
+        private void OnLoaded()
+        {
+        }
+
+        private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }

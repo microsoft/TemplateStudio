@@ -6,7 +6,7 @@
 //{[{
         private ICommand _menuViewswts.ItemNameCommand;
 //}]}
-
+        private ICommand _loadedCommand;
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
 //{[{
 

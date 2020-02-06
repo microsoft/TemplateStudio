@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Constants;
-using Param_RootNamespace.Models;
 using Param_RootNamespace.Strings;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -64,7 +64,7 @@ namespace Param_RootNamespace.ViewModels
             => _navigationService.Journal.GoBack();
 
         private void OnMenuItemInvoked()
-            => RequestNavigate(SelectedMenuItem.Tag.ToString());
+            => RequestNavigate(SelectedMenuItem.Tag?.ToString());
 
         private void RequestNavigate(string target)
         {

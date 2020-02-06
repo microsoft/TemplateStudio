@@ -12,11 +12,14 @@ namespace Param_RootNamespace.ViewModels
 
         private System.Windows.Input.ICommand _goBackCommand;
         private ICommand _menuFileExitCommand;
+        private ICommand _loadedCommand;
         private ICommand _unloadedCommand;
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new System.Windows.Input.ICommand(OnMenuFileExit));
+
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new System.Windows.Input.ICommand(OnLoaded));
 
         public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
 
@@ -26,7 +29,11 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void OnUnloaded()
+        private void OnLoaded()
+        {
+        }
+
+        private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }

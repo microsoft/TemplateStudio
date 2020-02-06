@@ -10,7 +10,7 @@
 //{[{
         private ICommand _menuFilewts.ItemNameCommand;
 //}]}
-
+        private ICommand _loadedCommand;
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 //{[{
 

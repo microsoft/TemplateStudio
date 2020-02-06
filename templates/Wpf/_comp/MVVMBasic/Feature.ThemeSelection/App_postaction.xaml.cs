@@ -1,9 +1,7 @@
 ﻿private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
 {
-//^^
+    // Services
 //{[{
     services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 //}]}
-
-    // Views and ViewModels
 }

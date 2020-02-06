@@ -36,7 +36,7 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void OnUnloaded()
+        private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }

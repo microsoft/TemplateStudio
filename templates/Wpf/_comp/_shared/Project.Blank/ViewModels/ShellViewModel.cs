@@ -8,9 +8,12 @@ namespace Param_RootNamespace.ViewModels
     {
         private readonly INavigationService _navigationService;
         private System.Windows.Input.ICommand _goBackCommand;
+        private System.Windows.Input.ICommand _loadedCommand;
         private System.Windows.Input.ICommand _unloadedCommand;
 
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
+
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new System.Windows.Input.ICommand(OnLoaded));
 
         public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
 
@@ -20,7 +23,11 @@ namespace Param_RootNamespace.ViewModels
             _navigationService.Navigated += OnNavigated;
         }
 
-        public void OnUnloaded()
+        private void OnLoaded()
+        {
+        }
+
+        private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
         }
