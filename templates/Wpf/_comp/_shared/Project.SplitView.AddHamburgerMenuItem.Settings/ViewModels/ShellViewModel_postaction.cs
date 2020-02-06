@@ -47,6 +47,10 @@
             => NavigateTo(SelectedOptionsMenuItem.TargetPageType);
 //}]}
 
+        private void NavigateTo(Type targetViewModel)
+        {
+        }
+
         private void OnNavigated(object sender, string viewModelName)
         {
             var item = MenuItems

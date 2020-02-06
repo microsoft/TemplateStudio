@@ -12,6 +12,9 @@
     mc:Ignorable="d"
     Title="{x:Static strings:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
         <i:EventTrigger EventName="Unloaded">
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}" />
         </i:EventTrigger>

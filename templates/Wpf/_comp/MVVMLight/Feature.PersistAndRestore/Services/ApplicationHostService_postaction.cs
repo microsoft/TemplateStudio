@@ -6,7 +6,6 @@
 //{[{
         private readonly IPersistAndRestoreService _persistAndRestoreService;
 //}]}
-
         public ApplicationHostService(/*{[{*/IPersistAndRestoreService persistAndRestoreService/*}]}*/)
         {
 //^^

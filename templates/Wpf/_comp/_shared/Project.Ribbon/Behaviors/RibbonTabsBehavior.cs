@@ -58,7 +58,10 @@ namespace Param_RootNamespace.Behaviors
 
         public void Unsubscribe()
         {
-            _navigationService.Navigated -= OnNavigated;
+            if (_navigationService != null)
+            {
+                _navigationService.Navigated -= OnNavigated;
+            }
         }
 
         private void OnNavigated(object sender, string e)

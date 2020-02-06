@@ -6,7 +6,6 @@
 //{[{
         private readonly IThemeSelectorService _themeSelectorService;
 //}]}
-
         public ApplicationHostService(/*{[{*/IThemeSelectorService themeSelectorService/*}]}*/)
         {
 //^^
