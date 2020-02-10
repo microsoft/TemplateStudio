@@ -11,6 +11,7 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
+            RegisterElementForConnectedAnimation("animationKeyContentGridView", itemHero)
             Dim orderID As Long
             orderID = CType(e.Parameter, Long)
             Await ViewModel.InitializeAsync(orderID)

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_RootNamespace.Core.Models;
@@ -14,5 +15,11 @@ namespace Param_RootNamespace.Views
         }
 
         private ContentGridViewDetailViewModel ViewModel => DataContext as ContentGridViewDetailViewModel;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.RegisterElementForConnectedAnimation("animationKeyContentGridView", itemHero);
+        }
     }
 }
