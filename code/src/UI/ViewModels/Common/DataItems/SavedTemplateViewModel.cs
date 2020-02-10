@@ -174,7 +174,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                         AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
                         _renameReported = true;
                     }
-
                 }
                 else
                 {
