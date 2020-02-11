@@ -6,7 +6,7 @@ using Param_RootNamespace.Strings;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // You can show pages in different ways (update main view, navigate, right pane, new windows or dialog) 
+    // You can show pages in different ways (update main view, navigate, right pane, new windows or dialog)
     // using the NavigationService, RightPaneService and WindowManagerService.
     // Read more about MenuBar project type here:
     // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/WPF/projectTypes/menubar.md
