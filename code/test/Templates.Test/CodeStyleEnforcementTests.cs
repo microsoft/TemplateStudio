@@ -25,7 +25,11 @@ namespace Microsoft.Templates.Test
         [Fact]
         public void EnsureCSharpCodeDoesNotUseThis()
         {
-            var result = CodeIsNotUsed("this.", ".cs");
+            var filesNeedsToUseThis = new List<string>()
+            {
+                "ContentGridViewDetailPage.xaml.cs"
+            };
+            var result = CodeIsNotUsed("this.", ".cs", filesNeedsToUseThis);
 
             Assert.True(result.Item1, result.Item2);
         }
@@ -238,9 +242,9 @@ namespace Microsoft.Templates.Test
             Assert.True(errorFiles.Count == 0, $"The following files don't end with a single NewLine{Environment.NewLine}{string.Join(Environment.NewLine, errorFiles)}");
         }
 
-        private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeInTheFile, string fileExtension)
+        private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeInTheFile, string fileExtension, IEnumerable<string> filesToExclude = null)
         {
-            foreach (var file in GetFiles(TemplatesRoot, fileExtension))
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude != null && !filesToExclude.Any(fe => f.Contains(fe))))
             {
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeInTheFile))
                 {

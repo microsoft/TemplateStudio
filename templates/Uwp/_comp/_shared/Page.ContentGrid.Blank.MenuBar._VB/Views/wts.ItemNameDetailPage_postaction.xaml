@@ -2,8 +2,7 @@
     mc:Ignorable="d">
 
     <Grid
-        x:Name="ContentArea"
-        animations:Connected.AnchorElement="{x:Bind itemHero}">
+        x:Name="ContentArea">
 <!--{[{-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
