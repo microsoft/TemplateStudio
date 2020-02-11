@@ -7,6 +7,7 @@ using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
+    // TODO WTS: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         private readonly AppConfig _config;
@@ -64,8 +65,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnPrivacyStatement()
         {
-            // There is an open Issue on this
-            // https://github.com/dotnet/corefx/issues/10361
+            // For more info see https://github.com/dotnet/corefx/issues/10361
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = _config.PrivacyStatement,

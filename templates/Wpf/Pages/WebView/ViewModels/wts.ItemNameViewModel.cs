@@ -99,8 +99,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnOpenInBrowser()
         {
-            // There is an open Issue on this
-            // https://github.com/dotnet/corefx/issues/10361
+            // For more info see https://github.com/dotnet/corefx/issues/10361
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = Source,
