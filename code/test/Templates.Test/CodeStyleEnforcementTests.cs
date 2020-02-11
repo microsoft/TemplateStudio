@@ -244,7 +244,7 @@ namespace Microsoft.Templates.Test
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeInTheFile, string fileExtension, IEnumerable<string> filesToExclude = null)
         {
-            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude != null && !filesToExclude.Contains(f)))
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude != null && !filesToExclude.Any(fe => f.Contains(fe))))
             {
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeInTheFile))
                 {
