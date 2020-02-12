@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_RootNamespace.Core.Models;
