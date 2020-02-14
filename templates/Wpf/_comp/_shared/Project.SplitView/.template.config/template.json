@@ -48,10 +48,6 @@
       "commandclass": {
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
-      },
-      "canExecuteChangedMethodName": {
-        "type": "parameter",
-        "replaces": "Param_CanExecuteChangedMethodName"
       }
     }
   }

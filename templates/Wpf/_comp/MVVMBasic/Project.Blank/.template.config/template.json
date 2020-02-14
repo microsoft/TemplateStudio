@@ -4,24 +4,25 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMLight.ExportParams.Project",
-    "shortName": "wts.Wpf.MVVMLight.ExportParams.Project",
-    "identity": "wts.Wpf.MVVMLight.ExportParams.Project",
+    "name": "wts.Wpf.MVVMBasic.Project.Blank",
+    "shortName": "wts.Wpf.MVVMBasic.Project.Blank",
+    "identity": "wts.Wpf.MVVMBasic.Project.Blank",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMLight & wts.type == project",
-      "wts.export.baseclass": "ViewModelBase",
-      "wts.export.setter": "Set",
-      "wts.export.commandclass": "RelayCommand"
+      "wts.compositionFilter": "$projectType == Blank & $frontendframework == MVVMBasic & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
     }
   }
