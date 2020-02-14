@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
 using Microsoft.Toolkit.Wpf.UI.Controls;
+using Param_RootNamespace.Core.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -10,6 +11,8 @@ namespace Param_RootNamespace.ViewModels
     {
         // TODO WTS: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
+
+        private readonly ISystemService _systemService;
 
         private string _source;
         private bool _isLoading = true;
@@ -68,8 +71,9 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new System.Windows.Input.ICommand(OnOpenInBrowser));
 
-        public wts.ItemNameViewModel()
+        public wts.ItemNameViewModel(ISystemService systemService)
         {
+            _systemService = systemService;
             Source = DefaultUrl;
         }
 
@@ -81,8 +85,6 @@ namespace Param_RootNamespace.ViewModels
         public void OnNavigationCompleted(WebViewControlNavigationCompletedEventArgs e)
         {
             IsLoading = false;
-            BrowserBackCommand.Param_CanExecuteChangedMethodName();
-            BrowserForwardCommand.Param_CanExecuteChangedMethodName();
             if (e != null && !e.IsSuccess)
             {
                 // Use `args.WebErrorStatus` to vary the displayed message based on the error reason
@@ -98,14 +100,6 @@ namespace Param_RootNamespace.ViewModels
         }
 
         private void OnOpenInBrowser()
-        {
-            // For more info see https://github.com/dotnet/corefx/issues/10361
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = Source,
-                UseShellExecute = true
-            };
-            Process.Start(psi);
-        }
+            => _systemService.OpenInWebBrowser(Source);
     }
 }

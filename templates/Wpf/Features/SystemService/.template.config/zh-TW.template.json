@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "System Service",
+  "description": "",
+  "identity": "wts.Wpf.Feat.SystemService"
+}

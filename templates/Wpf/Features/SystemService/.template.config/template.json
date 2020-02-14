@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "System Service",
+  "shortName": "SystemService",
+  "groupIdentity": "wts.Wpf.Feat.SystemService",
+  "identity": "wts.Wpf.Feat.SystemService",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+	  "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.defaultInstance": "SystemService",
+    "wts.multipleInstance": "false",
+    "wts.isHidden": "true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName.Core/Contracts/Services/ISystemService.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Services/SystemService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
