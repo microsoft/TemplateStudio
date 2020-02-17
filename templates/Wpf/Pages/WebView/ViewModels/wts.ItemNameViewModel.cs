@@ -1,9 +1,8 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
 using Microsoft.Toolkit.Wpf.UI.Controls;
-using Param_RootNamespace.Core.Contracts.Services;
+using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {

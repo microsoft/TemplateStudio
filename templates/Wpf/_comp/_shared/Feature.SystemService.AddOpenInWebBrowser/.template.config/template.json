@@ -18,5 +18,11 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-    ]
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
   }

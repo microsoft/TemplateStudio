@@ -19,17 +19,16 @@
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
-    "wts.outputToParent": "true"
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName.Core/Contracts/Services/ISystemService.cs"
+      "path": "Contracts/Services/ISystemService.cs"
     },
     {
-      "path": "Param_ProjectName.Core/Services/SystemService.cs"
+      "path": "Services/SystemService.cs"
     }
   ],
   "symbols": {

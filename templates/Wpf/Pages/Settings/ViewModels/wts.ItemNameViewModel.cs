@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
-using Param_RootNamespace.Core.Contracts.Services;
+using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
