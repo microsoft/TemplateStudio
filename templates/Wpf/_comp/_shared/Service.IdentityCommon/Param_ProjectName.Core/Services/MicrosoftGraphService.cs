@@ -16,18 +16,19 @@ namespace Param_RootNamespace.Core.Services
         //// You can test calls to the Microsoft Graph with the Microsoft Graph Explorer
         //// https://developer.microsoft.com/graph/graph-explorer
 
-        private const string _graphAPIEndpoint = "https://graph.microsoft.com/v1.0/";
         private const string _apiServiceMe = "me/";
         private const string _apiServiceMePhoto = "me/photo/$value";
+        private readonly HttpClient _client;
 
-        public MicrosoftGraphService()
+        public MicrosoftGraphService(IHttpClientFactory client)
         {
+            _client = client.CreateClient("msgraph");
         }
 
         public async Task<User> GetUserInfoAsync(string accessToken)
         {
             User user = null;
-            var httpContent = await GetDataAsync($"{_graphAPIEndpoint}{_apiServiceMe}", accessToken);
+            var httpContent = await GetDataAsync($"{_apiServiceMe}", accessToken);
             if (httpContent != null)
             {
                 var userData = await httpContent.ReadAsStringAsync();
@@ -42,7 +43,7 @@ namespace Param_RootNamespace.Core.Services
 
         public async Task<string> GetUserPhoto(string accessToken)
         {
-            var httpContent = await GetDataAsync($"{_graphAPIEndpoint}{_apiServiceMePhoto}", accessToken);
+            var httpContent = await GetDataAsync($"{_apiServiceMePhoto}", accessToken);
 
             if (httpContent == null)
             {
@@ -57,19 +58,16 @@ namespace Param_RootNamespace.Core.Services
         {
             try
             {
-                using (var httpClient = new HttpClient())
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                var response = await _client.SendAsync(request);
+                if (response.IsSuccessStatusCode)
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Get, url);
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                    var response = await httpClient.SendAsync(request);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return response.Content;
-                    }
-                    else
-                    {
-                        // TODO WTS: Please handle other status codes as appropriate to your scenario
-                    }
+                    return response.Content;
+                }
+                else
+                {
+                    // TODO WTS: Please handle other status codes as appropriate to your scenario
                 }
             }
             catch (HttpRequestException)

@@ -62,7 +62,7 @@ namespace Param_RootNamespace.ViewModels
         {
             IsLoggedIn = false;
             IsAuthorized = false;
-            _navigationService.Frame.CleanNavigation();
+            _navigationService.CleanNavigation();
             _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName, null, true);
         }
 //}]}

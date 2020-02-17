@@ -1,5 +1,5 @@
 ﻿//{[{
-using Microsoft.Identity.Client.Extensions.Msal;
+using Microsoft.Extensions.DependencyInjection;
 //}]}
 namespace Param_RootNamespace
 {
@@ -12,6 +12,7 @@ namespace Param_RootNamespace
             var userDataService = Container.Resolve<IUserDataService>();
             userDataService.Initialize();
             var identityService = Container.Resolve<IIdentityService>();
+            identityService.InitializeWithAadAndPersonalMsAccounts("c804973e-54f9-44e0-b49a-05c935435eac", "http://localhost");
             await identityService.AcquireTokenSilentAsync();
 //}]}
         }
@@ -22,12 +23,17 @@ namespace Param_RootNamespace
 //{[{
             containerRegistry.Register<IMicrosoftGraphService, MicrosoftGraphService>();
 
-            // https://aka.ms/msal-net-token-cache-serialization
-            var identityService = new IdentityService();
-            var storageCreationProperties = new StorageCreationPropertiesBuilder(".msalcache.dat", "MSAL_CACHE", "31f2256a-e9aa-4626-be94-21c17add8fd9").Build();
-            var cacheHelper = await MsalCacheHelper.CreateAsync(storageCreationProperties).ConfigureAwait(false);
-            identityService.InitializeWithAadAndPersonalMsAccounts("31f2256a-e9aa-4626-be94-21c17add8fd9", "http://localhost", cacheHelper);
-            containerRegistry.RegisterInstance<IIdentityService>(identityService);
+            PrismContainerExtension.Create(Container.GetContainer());
+            PrismContainerExtension.Current.RegisterServices(s =>
+            {
+                s.AddHttpClient("msgraph", client =>
+                {
+                    client.BaseAddress = new System.Uri("https://graph.microsoft.com/v1.0/");
+                });
+            });
+
+            containerRegistry.Register<IIdentityCacheService, IdentityCacheService>();
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 //}]}
             // App Services
 //{[{

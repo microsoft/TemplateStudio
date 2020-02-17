@@ -16,7 +16,7 @@
     "wts.compositionOrder": "0",
     "wts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
     "wts.outputToParent": "true",
-    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Identity.Client.Extensions.Msal](https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/master/LICENSE)"
+    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -32,6 +32,9 @@
     },
     {
       "path": "Param_ProjectName/ViewModels/UserViewModel.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Contracts/Services/IIdentityCacheService.cs"
     },
     {
       "path": "Param_ProjectName.Core/Contracts/Services/IIdentityService.cs"
@@ -94,8 +97,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Microsoft.Identity.Client.Extensions.Msal",
-        "version" : "2.3.0-preview",
+        "packageId" : "Microsoft.Extensions.Http",
+        "version" : "3.1.1",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
