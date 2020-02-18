@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
+using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -12,6 +13,7 @@ namespace Param_RootNamespace.ViewModels
     {
         private readonly AppConfig _config;
         private readonly IThemeSelectorService _themeSelectorService;
+        private readonly ISystemService _systemService;
         private AppTheme _theme;
         private string _versionDescription;
         private ICommand _setThemeCommand;
@@ -33,10 +35,11 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
 
-        public wts.ItemNameViewModel(Param_ConfigType config, IThemeSelectorService themeSelectorService)
+        public wts.ItemNameViewModel(Param_ConfigType config, IThemeSelectorService themeSelectorService, ISystemService systemService)
         {
             _config = Param_ConfigValue;
             _themeSelectorService = themeSelectorService;
+            _systemService = systemService;
         }
 
         public void OnNavigatedTo(Param_OnNavigatedToParams)
@@ -64,14 +67,6 @@ namespace Param_RootNamespace.ViewModels
         }
 
         private void OnPrivacyStatement()
-        {
-            // For more info see https://github.com/dotnet/corefx/issues/10361
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = _config.PrivacyStatement,
-                UseShellExecute = true
-            };
-            Process.Start(psi);
-        }
+            => _systemService.OpenInWebBrowser(_config.PrivacyStatement);
     }
 }

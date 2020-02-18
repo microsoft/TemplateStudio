@@ -23,7 +23,7 @@
     "name": "Prism",
     "displayName": "Prism",
     "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications.",
-    "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
+    "author": "Brian Lagunas, Dan Siegel",
     "order": "3",
     "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
     "platform": "Wpf",

@@ -20,7 +20,8 @@
     "wts.displayOrder": "1",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
+    "wts.dependencies":"wts.Wpf.Feat.SystemService"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -55,10 +56,6 @@
     "commandclass": {
       "type": "parameter",
       "replaces": "System.Windows.Input.ICommand"
-    },
-    "canExecuteChangedMethodName": {
-      "type": "parameter",
-      "replaces": "Param_CanExecuteChangedMethodName"
     }
   },
   "postActions": [

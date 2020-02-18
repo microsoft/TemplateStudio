@@ -77,8 +77,6 @@ namespace Param_RootNamespace.ViewModels
             {
                 SelectedMenuItem = item;
             }
-
-            GoBackCommand.Param_CanExecuteChangedMethodName();
         }
     }
 }
