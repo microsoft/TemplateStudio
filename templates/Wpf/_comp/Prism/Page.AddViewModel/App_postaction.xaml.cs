@@ -2,6 +2,6 @@
 {
     // Views
 //{[{
-    containerRegistry.RegisterForNavigation<wts.ItemNamePage>(PageKeys.wts.ItemName);
+    containerRegistry.RegisterForNavigation<wts.ItemNamePage, wts.ItemNameViewModel>(PageKeys.wts.ItemName);
 //}]}
 }

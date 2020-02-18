@@ -16,5 +16,7 @@ namespace Param_RootNamespace.Contracts.Services
         void GoBack();
 
         void UnsubscribeNavigation();
+
+        void CleanNavigation();
     }
 }

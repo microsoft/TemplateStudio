@@ -116,7 +116,7 @@ namespace Param_RootNamespace.ViewModels
             IsLoggedIn = false;
             IsAuthorized = false;
             RemoveUserInformation();
-            _navigationService.Frame.CleanNavigation();
+            _navigationService.CleanNavigation();
         }
 
         private void RemoveUserInformation()

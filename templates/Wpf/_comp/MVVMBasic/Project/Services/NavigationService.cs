@@ -64,6 +64,9 @@ namespace Param_RootNamespace.Services
             return false;
         }
 
+        public void CleanNavigation()
+            => _frame.CleanNavigation();
+
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
             if (sender is Frame frame)

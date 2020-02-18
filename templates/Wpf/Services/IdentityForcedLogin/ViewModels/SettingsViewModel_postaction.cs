@@ -72,8 +72,7 @@ namespace Param_RootNamespace.ViewModels
         }
 //}]}
         private void OnPrivacyStatement()
-        {
-        }
+            => _systemService.OpenInWebBrowser(_config.PrivacyStatement);
 //^^
 //{[{
 

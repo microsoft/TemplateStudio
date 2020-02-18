@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Identity.Client.Extensions.Msal;
 using Param_RootNamespace.Core.Helpers;
 
 namespace Param_RootNamespace.Core.Contracts.Services
@@ -11,11 +10,11 @@ namespace Param_RootNamespace.Core.Contracts.Services
 
         event EventHandler LoggedOut;
 
-        void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null, MsalCacheHelper cacheHelper = null);
+        void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null);
 
-        void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null, MsalCacheHelper cacheHelper = null);
+        void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null);
 
-        void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null, MsalCacheHelper cacheHelper = null);
+        void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null);
 
         bool IsLoggedIn();
 

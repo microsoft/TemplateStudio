@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Strings;

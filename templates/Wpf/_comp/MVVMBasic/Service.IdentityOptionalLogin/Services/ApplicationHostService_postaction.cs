@@ -1,6 +1,5 @@
 ﻿//{[{
 using Microsoft.Extensions.Options;
-using Microsoft.Identity.Client.Extensions.Msal;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Core.Contracts.Services;
 //}]}
@@ -30,10 +29,7 @@ namespace Param_RootNamespace.Services
             await InitializeAsync();
 //{[{
 
-            // https://aka.ms/msal-net-token-cache-serialization
-            var storageCreationProperties = new StorageCreationPropertiesBuilder(_config.IdentityCacheFileName, _config.IdentityCacheDirectoryName, _config.IdentityClientId).Build();
-            var cacheHelper = await MsalCacheHelper.CreateAsync(storageCreationProperties).ConfigureAwait(false);
-            _identityService.InitializeWithAadAndPersonalMsAccounts(_config.IdentityClientId, "http://localhost", cacheHelper);
+            _identityService.InitializeWithAadAndPersonalMsAccounts(_config.IdentityClientId, "http://localhost");
             await _identityService.AcquireTokenSilentAsync();
 //}]}
         }

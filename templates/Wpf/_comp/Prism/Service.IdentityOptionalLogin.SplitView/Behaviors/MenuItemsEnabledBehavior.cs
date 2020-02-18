@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows;
 using MahApps.Metro.Controls;
 using Microsoft.Xaml.Behaviors;

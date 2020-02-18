@@ -13,7 +13,8 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Service.IdentityForcedLogin",
+    "wts.licenses": "[Prism.Container.Extensions](https://github.com/dansiegel/Prism.Container.Extensions/blob/master/LICENSE)"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -28,5 +29,29 @@
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
       }
-    }
+    },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId" : "Prism.Unity.Extensions",
+          "version" : "7.2.0.898",
+          "projectPath": "Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+      },
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId" : "Prism.Container.Extensions",
+          "version" : "7.2.0.898",
+          "projectPath": "Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+      }
+    ]
   }

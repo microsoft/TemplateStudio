@@ -25,7 +25,7 @@
     "wts.defaultInstance": "IdentityOptionalLogin",
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled":"false",
-    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Identity.Client.Extensions.Msal](https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/master/LICENSE)"
+    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
