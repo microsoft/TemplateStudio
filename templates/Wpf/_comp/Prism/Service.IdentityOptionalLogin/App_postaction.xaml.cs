@@ -12,7 +12,8 @@ namespace Param_RootNamespace
             var userDataService = Container.Resolve<IUserDataService>();
             userDataService.Initialize();
             var identityService = Container.Resolve<IIdentityService>();
-            identityService.InitializeWithAadAndPersonalMsAccounts("c804973e-54f9-44e0-b49a-05c935435eac", "http://localhost");
+            var config = Container.Resolve<AppConfig>();
+            identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
             await identityService.AcquireTokenSilentAsync();
 //}]}
         }

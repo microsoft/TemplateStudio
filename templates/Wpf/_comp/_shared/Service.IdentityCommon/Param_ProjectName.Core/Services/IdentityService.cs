@@ -13,18 +13,23 @@ namespace Param_RootNamespace.Core.Services
 {
     public class IdentityService : IIdentityService
     {
-        //// For more information about using Identity, see
-        //// https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/services/identity.md
-        ////
-        //// Read more about Microsoft Identity Client here
-        //// https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
-        //// https://docs.microsoft.com/azure/active-directory/develop/v2-overview
+        /*
+        For more information about using Identity, see
+        https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WPF/services/identity.md
 
-        //// TODO WTS: The IdentityClientId in appsettings.json is provided to test the project in development environments.
-        //// Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
-        //// https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        //// The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
-        //// For more info about admin consent please see https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience
+        Read more about Microsoft Identity Client here
+        https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
+        https://docs.microsoft.com/azure/active-directory/develop/v2-overview
+
+        TODO WTS: The IdentityClientId in appsettings.json is provided for demo purpose only.
+        You have to create your own ClientID following the steps in
+        https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and replace the value.
+
+        The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
+        For more info about admin consent please see https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience
+        For more info creating protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
+        For more info on desktop apps that call protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-desktop-overview
+        */
         private readonly string[] _graphScopes = new string[] { "user.read" };
         private readonly IIdentityCacheService _identityCacheService;
         private bool _integratedAuthAvailable;
