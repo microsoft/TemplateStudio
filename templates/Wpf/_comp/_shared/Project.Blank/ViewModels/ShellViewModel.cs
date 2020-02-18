@@ -37,10 +37,5 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnGoBack()
             => _navigationService.GoBack();
-
-        private void OnNavigated(object sender, string viewModelName)
-        {
-            GoBackCommand.Param_CanExecuteChangedMethodName();
-        }
     }
 }

@@ -18,7 +18,6 @@
       "wts.export.setter": "Set",
       "wts.export.pagetype": "Page",
       "wts.export.commandclass": "RelayCommand",
-      "wts.export.canExecuteChangedMethodName": "OnCanExecuteChanged",
       "wts.export.configtype": "IOptions<AppConfig>",
       "wts.export.configvalue": "config.Value",
       "wts.export.onNavigatedToParams": "object parameter",

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "System Service",
+  "description": "SystemService contains operations that interact with functionalities and native APIs of the operating system.",
+  "identity": "wts.Wpf.Feat.SystemService"
+}

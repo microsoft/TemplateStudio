@@ -57,7 +57,7 @@ namespace Param_RootNamespace
             // App Services
 
             // Views
-            containerRegistry.RegisterForNavigation<ShellWindow>();
+            containerRegistry.RegisterForNavigation<ShellWindow, ShellViewModel>();
 
             // Configuration
             var configuration = BuildConfiguration();
@@ -80,20 +80,6 @@ namespace Param_RootNamespace
                 .AddJsonFile("appsettings.json")
                 .AddCommandLine(_startUpArgs)
                 .Build();
-        }
-
-        protected override void ConfigureViewModelLocator()
-        {
-            base.ConfigureViewModelLocator();
-
-            // We are remapping the default ViewName and ViewNameViewModel naming to ViewNamePage and ViewNameViewModel to
-            // gain better code reuse with other frameworks and pages within Windows Template Studio
-            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
-            {
-                var viewModelName = string.Format(CultureInfo.InvariantCulture, "Param_RootNamespace.ViewModels.{0}ViewModel, Param_RootNamespace", viewType.Name[0..^4]);
-                return Type.GetType(viewModelName);
-            });
-            ViewModelLocationProvider.Register(typeof(ShellWindow).FullName, typeof(ShellViewModel));
         }
 
         private async void OnExit(object sender, ExitEventArgs e)
