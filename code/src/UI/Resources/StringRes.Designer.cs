@@ -577,6 +577,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        /// </summary>
+        public static string ErrrorRequiredWorkloadNotFoundMessage {
+            get {
+                return ResourceManager.GetString("ErrrorRequiredWorkloadNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open in a new browser tab.
         /// </summary>
         public static string ExternalHyperlinkTooltipMessage {
@@ -1725,6 +1734,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WindowsTemplateStudio {
             get {
                 return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET desktop development.
+        /// </summary>
+        public static string WorkloadDisplayNameManagedDesktop {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameManagedDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSIX Packaging Tools.
+        /// </summary>
+        public static string WorkloadDisplayNameMsixPackaging {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameMsixPackaging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ASP.NET and web development.
+        /// </summary>
+        public static string WorkloadDisplayNameNetWeb {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameNetWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Universal Windows Platform development.
+        /// </summary>
+        public static string WorkloadDisplayNameUniversal {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameUniversal", resourceCulture);
             }
         }
     }

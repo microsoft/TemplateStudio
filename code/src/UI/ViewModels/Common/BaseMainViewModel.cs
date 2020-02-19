@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -62,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual void Initialize(string platform, string language)
+        public virtual void Initialize(string platform, string language, string requiredWorkload)
         {
             Platform = platform;
             Language = language;
@@ -82,7 +83,36 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 }
             }
 
+            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+            if (vsShell != null)
+            {
+                if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
+                {
+                    WizardStatus.CanNotGenerateProjectsMessage = string.Format(StringRes.ErrrorRequiredWorkloadNotFoundMessage, GetRequiredWorkloadDisplayName(requiredWorkload), Platform);
+                    WizardStatus.BlockTemplateSync = true;
+                    return;
+                }
+            }
+
             SystemService.Initialize();
+        }
+
+        private static string GetRequiredWorkloadDisplayName(string requiredWorkload)
+        {
+            switch (requiredWorkload)
+            {
+                case "Microsoft.VisualStudio.Workload.ManagedDesktop":
+                    return StringRes.WorkloadDisplayNameManagedDesktop;
+                case "Microsoft.VisualStudio.Workload.Universal":
+                    return StringRes.WorkloadDisplayNameUniversal;
+                case "Microsoft.VisualStudio.Workload.NetWeb":
+                    return StringRes.WorkloadDisplayNameNetWeb;
+                case "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging":
+                    return StringRes.WorkloadDisplayNameMsixPackaging;
+                default:
+                    return requiredWorkload;
+                    break;
+            }
         }
 
         public virtual async Task SynchronizeAsync()

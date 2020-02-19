@@ -85,7 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public override void Initialize(string platform, string language)
+        public override void Initialize(string platform, string language, string requiredWorkload)
         {
             switch (platform)
             {
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     break;
             }
 
-            base.Initialize(platform, language);
+            base.Initialize(platform, language, requiredWorkload);
         }
 
         private void OnFinish(object sender, EventArgs e)

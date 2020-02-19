@@ -20,7 +20,6 @@
     </Dependencies>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,)" DisplayName="Visual Studio core editor" />
-        <Prerequisite Id="Microsoft.VisualStudio.Workload.Universal" Version="[15.0,)" DisplayName="Universal Windows Platform development" />
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="CoreTemplateStudio.Core" Path="|CoreTemplateStudio.Core|" AssemblyName="|CoreTemplateStudio.Core;AssemblyName|" />

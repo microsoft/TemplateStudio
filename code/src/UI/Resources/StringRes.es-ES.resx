@@ -853,4 +853,19 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Required Windows Sdks:</value>
   </data>
+  <data name="ErrrorRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the workload "{0}” to create a {1} project. Please install this workload using the Visual Studio Installer.</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>.NET desktop development</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>MSIX Packaging Tools</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>ASP.NET and web development</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>Universal Windows Platform development</value>
+  </data>
 </root>

@@ -16,6 +16,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         private string _language;
         private string _platform;
+        private string _requiredWorkload;
 
         public static WizardShell Current { get; private set; }
 
@@ -23,11 +24,12 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(string platform, string language, BaseStyleValuesProvider provider)
+        public WizardShell(string platform, string language, string requiredWorkload, BaseStyleValuesProvider provider)
         {
             Current = this;
             _platform = platform;
             _language = language;
+            _requiredWorkload = requiredWorkload;
             ViewModel = new MainViewModel(this, provider);
             DataContext = ViewModel;
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainViewModel.Instance.Initialize(_platform, _language);
+            MainViewModel.Instance.Initialize(_platform, _language, _requiredWorkload);
             await MainViewModel.Instance.SynchronizeAsync();
         }
 
