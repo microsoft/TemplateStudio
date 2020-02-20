@@ -9,23 +9,28 @@ namespace Param_RootNamespace
         private LogInWindow _logInWindow;
 //}]}
 
-        protected async override void InitializeShell(Window shell)
+        protected override async void OnInitialized()
         {
 //^^
 //{[{
             var userDataService = Container.Resolve<IUserDataService>();
             userDataService.Initialize();
-            var identityService = Container.Resolve<IIdentityService>();
+
             var config = Container.Resolve<AppConfig>();
+            var identityService = Container.Resolve<IIdentityService>();
             identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
             identityService.LoggedIn += OnLoggedIn;
             identityService.LoggedOut += OnLoggedOut;
+
             var silentLoginSuccess = await identityService.AcquireTokenSilentAsync();
             if (!silentLoginSuccess || !identityService.IsAuthorized())
             {
                 ShowLogInWindow();
+                return;
             }
+
 //}]}
+            base.OnInitialized();
         }
 //{[{
 
@@ -61,7 +66,7 @@ namespace Param_RootNamespace
             }
         }
 //}]}
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
 //{[{
