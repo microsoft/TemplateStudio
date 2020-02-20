@@ -9,6 +9,9 @@ IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional" (
 IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise" (
 	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
 )
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview" (
+	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\Common7\Tools\VsMSBuildCmd.bat"
+)
 	
 ECHO ON
 	
