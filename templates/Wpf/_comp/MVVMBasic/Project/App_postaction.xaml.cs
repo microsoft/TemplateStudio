@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
-using Param_RootNamespace.Core.Contracts.Services;
-using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Services;
 using Param_RootNamespace.Views;
@@ -50,7 +48,6 @@ namespace Param_RootNamespace
             services.AddHostedService<ApplicationHostService>();
 
             // Core Services
-            services.AddSingleton<IFileService, FileService>();
 
             // Services
             services.AddSingleton<IPageService, PageService>();

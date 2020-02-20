@@ -10,8 +10,6 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
 using Param_RootNamespace.Constants;
-using Param_RootNamespace.Core.Contracts.Services;
-using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
@@ -45,7 +43,6 @@ namespace Param_RootNamespace
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
-            containerRegistry.Register<IFileService, FileService>();
 
             // App Services
 
