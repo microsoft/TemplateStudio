@@ -16,7 +16,6 @@
 
         public async Task StopAsync()
         {
-            await Task.CompletedTask;
 //{[{
             _persistAndRestoreService.PersistData();
 //}]}
@@ -24,7 +23,6 @@
 
         private async Task InitializeAsync()
         {
-            await Task.CompletedTask;
 //{[{
             _persistAndRestoreService.RestoreData();
 //}]}

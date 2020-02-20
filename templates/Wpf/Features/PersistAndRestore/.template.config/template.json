@@ -20,16 +20,24 @@
       "wts.defaultInstance": "PersistAndRestore",
       "wts.multipleInstance": "false",
       "wts.genGroup": "0",
-      "wts.rightClickEnabled":"true"
+      "wts.rightClickEnabled":"true",
+      "wts.outputToParent": "true",
+      "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
-        "path": "Contracts/Services/IPersistAndRestoreService.cs"
+        "path": "Param_ProjectName/Contracts/Services/IPersistAndRestoreService.cs"
       },
       {
-        "path": "Services/PersistAndRestoreService.cs"
+        "path": "Param_ProjectName/Services/PersistAndRestoreService.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/Contracts/Services/IFileService.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/Services/FileService.cs"
       }
     ],
     "symbols": {
@@ -45,5 +53,18 @@
         "type": "parameter",
         "replaces": "Param_ConfigValue"
       }
-    }
+    },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId": "Newtonsoft.Json",
+          "version": "12.0.3",
+          "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        },
+        "continueOnError": true
+      }
+    ]
   }
