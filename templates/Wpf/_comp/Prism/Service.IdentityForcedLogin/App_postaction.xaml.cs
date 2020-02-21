@@ -1,5 +1,6 @@
 ﻿//{[{
 using Microsoft.Extensions.DependencyInjection;
+using Prism.Regions;
 //}]}
 namespace Param_RootNamespace
 {
@@ -36,34 +37,26 @@ namespace Param_RootNamespace
 
         private void OnLoggedIn(object sender, EventArgs e)
         {
+            if (!(Application.Current.MainWindow is ShellWindow))
+            {
+                Application.Current.MainWindow = CreateShell();
+                RegionManager.UpdateRegions();
+            }
+
             Application.Current.MainWindow.Show();
             _logInWindow.Close();
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            Application.Current.MainWindow.Hide();
             ShowLogInWindow();
+            Application.Current.MainWindow.Close();
         }
 
         private void ShowLogInWindow()
         {
             _logInWindow = Container.Resolve<LogInWindow>();
-            _logInWindow.Closed += OnLogInWindowClosed;
-            _logInWindow.ShowDialog();
-        }
-
-        private void OnLogInWindowClosed(object sender, EventArgs e)
-        {
-            if (sender is Window window)
-            {
-                window.Closed -= OnLogInWindowClosed;
-                var identityService = Container.Resolve<IIdentityService>();
-                if (!identityService.IsLoggedIn())
-                {
-                    Application.Current.Shutdown();
-                }
-            }
+            _logInWindow.Show();
         }
 //}]}
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

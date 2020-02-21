@@ -13,6 +13,7 @@ namespace Param_RootNamespace.ViewModels
     public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
+        private readonly IRightPaneService _rightPaneService;
 
         private System.Windows.Input.ICommand _goBackCommand;
         private ICommand _menuFileExitCommand;
@@ -27,9 +28,10 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
 
-        public ShellViewModel(INavigationService navigationService)
+        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)
         {
             _navigationService = navigationService;
+            _rightPaneService = rightPaneService;
             _navigationService.Navigated += OnNavigated;
         }
 
@@ -39,6 +41,7 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnUnloaded()
         {
+            _rightPaneService.CleanUp();
             _navigationService.Navigated -= OnNavigated;
         }
 

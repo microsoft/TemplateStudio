@@ -31,6 +31,12 @@ namespace Param_RootNamespace.Services
             _splitView.PaneClosed += OnPaneClosed;
         }
 
+        public void CleanUp()
+        {
+            _frame.Navigated -= OnNavigated;
+            _splitView.PaneClosed -= OnPaneClosed;
+        }
+
         public void OpenInRightPane(string pageKey, object parameter = null)
         {
             var pageType = _pageService.GetPageType(pageKey);

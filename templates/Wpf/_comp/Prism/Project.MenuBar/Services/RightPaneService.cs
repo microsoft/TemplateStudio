@@ -31,6 +31,12 @@ namespace Param_RootNamespace.Services
             _splitView.PaneClosed += OnPaneClosed;
         }
 
+        public void CleanUp()
+        {
+            _splitView.PaneClosed -= OnPaneClosed;
+            _regionManager.Regions.Remove(Regions.RightPane);
+        }
+
         public void OpenInRightPane(string pageKey, NavigationParameters navigationParameters = null)
         {
             if (_rightPaneNavigationService.CanNavigate(pageKey))
