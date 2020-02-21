@@ -4,5 +4,5 @@
     ShutdownMode="OnLastWindowClose"
 <!--}]}-->
     Exit="OnExit"
-    DispatcherUnhandledException="OnDispatcherUnhandledException">    
+    DispatcherUnhandledException="OnDispatcherUnhandledException">
 </prism:PrismApplication>

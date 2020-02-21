@@ -20,6 +20,9 @@ namespace Param_RootNamespace
 
 //}]}
             base.OnInitialized();
+//{--{
+            await Task.CompletedTask;
+//}--}
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

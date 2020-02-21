@@ -32,6 +32,9 @@ namespace Param_RootNamespace
 
 //}]}
             base.OnInitialized();
+//{--{
+            await Task.CompletedTask;
+//}--}
         }
 //{[{
 
