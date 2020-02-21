@@ -3,8 +3,6 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Extensions.Configuration;
-using Param_RootNamespace.Core.Contracts.Services;
-using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Models;
@@ -27,7 +25,6 @@ namespace Param_RootNamespace.ViewModels
             SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
 
             // Core Services
-            SimpleIoc.Default.Register<IFileService, FileService>();
 
             // Services
             SimpleIoc.Default.Register<IPageService, PageService>();

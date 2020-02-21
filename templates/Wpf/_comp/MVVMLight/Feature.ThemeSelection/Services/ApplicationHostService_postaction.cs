@@ -20,6 +20,7 @@
 //{[{
             _themeSelectorService.SetTheme();
 //}]}
+            await Task.CompletedTask;
         }
     }
 }
