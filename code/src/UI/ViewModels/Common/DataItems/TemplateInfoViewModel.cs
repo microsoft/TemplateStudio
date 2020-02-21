@@ -16,6 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _hasMoreThanTwo;
         private bool _showAddedText;
         private bool _canBeAdded;
+        private bool _disabled;
         private string _emptyBackendFramework = string.Empty;
 
         public TemplateInfo Template { get; }
@@ -70,6 +71,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             private get => _canBeAdded;
             set => SetProperty(ref _canBeAdded, value);
+        }
+
+        public bool Disabled
+        {
+            private get => _disabled;
+            set => SetProperty(ref _disabled, value);
         }
 
         public TemplateInfoViewModel(TemplateInfo template,  string platform, string projectType, string frameworkName)

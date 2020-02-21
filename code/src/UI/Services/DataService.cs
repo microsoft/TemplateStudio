@@ -77,8 +77,7 @@ namespace Microsoft.Templates.UI.Services
             if (!templatesGroups.Any())
             {
                 var templates = GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
-                    .Where(t => !t.IsHidden
-                             && (!t.RequiredVisualStudioWorkloads.Any() || HasAllVisualStudioWorkloads(t.RequiredVisualStudioWorkloads)));
+                    .Where(t => !t.IsHidden);
 
                 if (loadFromRightClick)
                 {

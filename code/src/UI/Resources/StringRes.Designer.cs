@@ -331,15 +331,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
-        /// </summary>
-        public static string CanNotGenerateWPFProjectsMessage {
-            get {
-                return ResourceManager.GetString("CanNotGenerateWPFProjectsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
         /// </summary>
         public static string ChangesSummaryCheckBoxText {
@@ -577,15 +568,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
-        /// </summary>
-        public static string ErrrorRequiredWorkloadNotFoundMessage {
-            get {
-                return ResourceManager.GetString("ErrrorRequiredWorkloadNotFoundMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open in a new browser tab.
         /// </summary>
         public static string ExternalHyperlinkTooltipMessage {
@@ -609,6 +591,51 @@ namespace Microsoft.Templates.UI.Resources {
         public static string HelpTextPressEnterToAddItem {
             get {
                 return ResourceManager.GetString("HelpTextPressEnterToAddItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Higher version required.
+        /// </summary>
+        public static string InfoDialogInvalidVersionTitle {
+            get {
+                return ResourceManager.GetString("InfoDialogInvalidVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
+        /// </summary>
+        public static string InfoDialogInvalidVSVersionForWPF {
+            get {
+                return ResourceManager.GetString("InfoDialogInvalidVSVersionForWPF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing workload.
+        /// </summary>
+        public static string InfoDialogMissingWorkloadTitle {
+            get {
+                return ResourceManager.GetString("InfoDialogMissingWorkloadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More info.
+        /// </summary>
+        public static string InfoDialogMoreInfoLinkText {
+            get {
+                return ResourceManager.GetString("InfoDialogMoreInfoLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        /// </summary>
+        public static string InfoDialogRequiredWorkloadNotFoundMessage {
+            get {
+                return ResourceManager.GetString("InfoDialogRequiredWorkloadNotFoundMessage", resourceCulture);
             }
         }
         
@@ -1567,6 +1594,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UWP.
+        /// </summary>
+        public static string UWP {
+            get {
+                return ResourceManager.GetString("UWP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}update-activationservice-for-identity.md.
         /// </summary>
         public static string ValidatorHasActivationServiceBeforeIdentityLink {
@@ -1770,6 +1806,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WorkloadDisplayNameUniversal {
             get {
                 return ResourceManager.GetString("WorkloadDisplayNameUniversal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF (.NET Core).
+        /// </summary>
+        public static string WPF {
+            get {
+                return ResourceManager.GetString("WPF", resourceCulture);
             }
         }
     }

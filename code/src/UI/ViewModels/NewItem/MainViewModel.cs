@@ -97,7 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
-            Initialize(ConfigPlatform, language, string.Empty);
+            Initialize(ConfigPlatform, language);
         }
 
         private string GetNewItemTitle(TemplateType templateType)

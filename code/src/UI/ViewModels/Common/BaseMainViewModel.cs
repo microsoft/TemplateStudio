@@ -63,65 +63,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual void Initialize(string platform, string language, string requiredWorkload)
+        public virtual void Initialize(string platform, string language)
         {
             Platform = platform;
             Language = language;
 
-            // Templates generation is not suported in following cases:
-            // - WPF Projects from VisualStudio 2017
-            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
-            {
-                // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
-                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
-                if (Platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
-                {
-                    WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
-                    WizardStatus.BlockTemplateSync = true;
-                    return;
-                }
-            }
-
-            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-            if (vsShell != null)
-            {
-                if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
-                {
-                    WizardStatus.CanNotGenerateProjectsMessage = string.Format(StringRes.ErrrorRequiredWorkloadNotFoundMessage, GetRequiredWorkloadDisplayName(requiredWorkload), Platform);
-                    WizardStatus.BlockTemplateSync = true;
-                    return;
-                }
-            }
-
             SystemService.Initialize();
-        }
-
-        private static string GetRequiredWorkloadDisplayName(string requiredWorkload)
-        {
-            switch (requiredWorkload)
-            {
-                case "Microsoft.VisualStudio.Workload.ManagedDesktop":
-                    return StringRes.WorkloadDisplayNameManagedDesktop;
-                case "Microsoft.VisualStudio.Workload.Universal":
-                    return StringRes.WorkloadDisplayNameUniversal;
-                case "Microsoft.VisualStudio.Workload.NetWeb":
-                    return StringRes.WorkloadDisplayNameNetWeb;
-                case "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging":
-                    return StringRes.WorkloadDisplayNameMsixPackaging;
-                default:
-                    return requiredWorkload;
-                    break;
-            }
         }
 
         public virtual async Task SynchronizeAsync()
         {
-            if (WizardStatus.BlockTemplateSync)
-            {
-                return;
-            }
-
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
 
             try
