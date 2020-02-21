@@ -887,4 +887,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="WPF" xml:space="preserve">
     <value>WPF (.NET Core)</value>
   </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Required Visual Studio Workloads / Components:</value>
+  </data>
 </root>

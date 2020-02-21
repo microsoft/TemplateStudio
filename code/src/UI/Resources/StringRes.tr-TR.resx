@@ -883,4 +883,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="WPF" xml:space="preserve">
     <value>WPF (.NET Core)</value>
   </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Required Visual Studio Workloads / Components:</value>
+  </data>
 </root>

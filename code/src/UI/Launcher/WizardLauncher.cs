@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
 using UIStringRes = Microsoft.Templates.UI.Resources.StringRes;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Launcher
 {
@@ -156,7 +157,7 @@ namespace Microsoft.Templates.UI.Launcher
                 if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
                 {
                     var title = UIStringRes.InfoDialogMissingWorkloadTitle;
-                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, GetRequiredWorkloadDisplayName(requiredWorkload), GetPlatformDisplayName(platform));
+                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, requiredWorkload.GetRequiredWorkloadDisplayName(), platform.GetPlatformDisplayName());
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
@@ -194,36 +195,6 @@ namespace Microsoft.Templates.UI.Launcher
                 GenContext.ToolBox.Shell.ShowModal(info);
 
                 CancelWizard();
-            }
-        }
-
-        private static string GetRequiredWorkloadDisplayName(string requiredWorkload)
-        {
-            switch (requiredWorkload)
-            {
-                case "Microsoft.VisualStudio.Workload.ManagedDesktop":
-                    return UIStringRes.WorkloadDisplayNameManagedDesktop;
-                case "Microsoft.VisualStudio.Workload.Universal":
-                    return UIStringRes.WorkloadDisplayNameUniversal;
-                case "Microsoft.VisualStudio.Workload.NetWeb":
-                    return UIStringRes.WorkloadDisplayNameNetWeb;
-                case "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging":
-                    return UIStringRes.WorkloadDisplayNameMsixPackaging;
-                default:
-                    return requiredWorkload;
-            }
-        }
-
-        private static string GetPlatformDisplayName(string platform)
-        {
-            switch (platform)
-            {
-                case Platforms.Uwp:
-                    return UIStringRes.UWP;
-                case Platforms.Wpf:
-                    return UIStringRes.WPF;
-                default:
-                    return platform;
             }
         }
     }
