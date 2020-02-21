@@ -1,5 +1,6 @@
 ﻿//{[{
 using Microsoft.Extensions.DependencyInjection;
+using Prism.Regions;
 //}]}
 namespace Param_RootNamespace
 {
@@ -9,59 +10,59 @@ namespace Param_RootNamespace
         private LogInWindow _logInWindow;
 //}]}
 
-        protected async override void InitializeShell(Window shell)
+        protected override async void OnInitialized()
         {
 //^^
 //{[{
             var userDataService = Container.Resolve<IUserDataService>();
             userDataService.Initialize();
-            var identityService = Container.Resolve<IIdentityService>();
+
             var config = Container.Resolve<AppConfig>();
+            var identityService = Container.Resolve<IIdentityService>();
             identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
             identityService.LoggedIn += OnLoggedIn;
             identityService.LoggedOut += OnLoggedOut;
+
             var silentLoginSuccess = await identityService.AcquireTokenSilentAsync();
             if (!silentLoginSuccess || !identityService.IsAuthorized())
             {
                 ShowLogInWindow();
+                return;
             }
+
 //}]}
+            base.OnInitialized();
+//{--{
+            await Task.CompletedTask;
+//}--}
         }
 //{[{
 
         private void OnLoggedIn(object sender, EventArgs e)
         {
+            if (!(Application.Current.MainWindow is ShellWindow))
+            {
+                Application.Current.MainWindow = CreateShell();
+                RegionManager.UpdateRegions();
+            }
+
             Application.Current.MainWindow.Show();
             _logInWindow.Close();
         }
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            Application.Current.MainWindow.Hide();
             ShowLogInWindow();
+            Application.Current.MainWindow.Close();
         }
 
         private void ShowLogInWindow()
         {
             _logInWindow = Container.Resolve<LogInWindow>();
-            _logInWindow.Closed += OnLogInWindowClosed;
-            _logInWindow.ShowDialog();
-        }
-
-        private void OnLogInWindowClosed(object sender, EventArgs e)
-        {
-            if (sender is Window window)
-            {
-                window.Closed -= OnLogInWindowClosed;
-                var identityService = Container.Resolve<IIdentityService>();
-                if (!identityService.IsLoggedIn())
-                {
-                    Application.Current.Shutdown();
-                }
-            }
+            _logInWindow.Show();
         }
 //}]}
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
 //{[{

@@ -1,29 +1,35 @@
 ﻿//{[{
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Services;
+using Param_RootNamespace.Core.Contracts.Services;
+using Param_RootNamespace.Core.Services;
 //}]}
 namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        protected async override void InitializeShell(Window shell)
+        protected override async void OnInitialized()
         {
-            base.InitializeShell(shell);
 //{[{
             var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
             persistAndRestoreService.RestoreData();
+
 //}]}
         }
 
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Core Services
+//{[{
+            containerRegistry.Register<IFileService, FileService>();
+//}]}
             // App Services
 //{[{
             containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
         }
 
-        private async void OnExit(object sender, ExitEventArgs e)
+        private void OnExit(object sender, ExitEventArgs e)
         {
 //^^
 //{[{

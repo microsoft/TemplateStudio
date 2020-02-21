@@ -10,8 +10,6 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
 using Param_RootNamespace.Constants;
-using Param_RootNamespace.Core.Contracts.Services;
-using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
@@ -30,29 +28,21 @@ namespace Param_RootNamespace
         protected override Window CreateShell()
             => Container.Resolve<ShellWindow>();
 
-        protected async override void InitializeShell(Window shell)
+        protected override async void OnInitialized()
         {
-            base.InitializeShell(shell);
+            base.OnInitialized();
             await Task.CompletedTask;
         }
 
-        public async override void Initialize()
-        {
-            base.Initialize();
-            await Task.CompletedTask;
-        }
-
-        protected async override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             _startUpArgs = e.Args;
             base.OnStartup(e);
-            await Task.CompletedTask;
         }
 
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
-            containerRegistry.Register<IFileService, FileService>();
 
             // App Services
 
@@ -68,8 +58,6 @@ namespace Param_RootNamespace
             // Register configurations to IoC
             containerRegistry.RegisterInstance<IConfiguration>(configuration);
             containerRegistry.RegisterInstance<AppConfig>(appConfig);
-
-            await Task.CompletedTask;
         }
 
         private IConfiguration BuildConfiguration()
@@ -82,9 +70,8 @@ namespace Param_RootNamespace
                 .Build();
         }
 
-        private async void OnExit(object sender, ExitEventArgs e)
+        private void OnExit(object sender, ExitEventArgs e)
         {
-            await Task.CompletedTask;
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

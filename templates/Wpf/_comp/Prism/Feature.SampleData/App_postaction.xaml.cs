@@ -1,8 +1,12 @@
-﻿namespace Param_RootNamespace
+﻿//{[{
+using Param_RootNamespace.Core.Contracts.Services;
+using Param_RootNamespace.Core.Services;
+//}]}
+namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // App Services
 //{[{

@@ -5,6 +5,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Param_RootNamespace.Constants;
+using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -15,6 +16,7 @@ namespace Param_RootNamespace.ViewModels
     public class ShellViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        private readonly IRightPaneService _rightPaneService;
         private IRegionNavigationService _navigationService;
         private DelegateCommand _goBackCommand;
         private ICommand _loadedCommand;
@@ -29,9 +31,10 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new DelegateCommand(OnMenuFileExit));
 
-        public ShellViewModel(IRegionManager regionManager)
+        public ShellViewModel(IRegionManager regionManager, IRightPaneService rightPaneService)
         {
             _regionManager = regionManager;
+            _rightPaneService = rightPaneService;
         }
 
         private void OnLoaded()
@@ -43,6 +46,8 @@ namespace Param_RootNamespace.ViewModels
         private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
+            _regionManager.Regions.Remove(Regions.Main);
+            _rightPaneService.CleanUp();
         }
 
         private bool CanGoBack()

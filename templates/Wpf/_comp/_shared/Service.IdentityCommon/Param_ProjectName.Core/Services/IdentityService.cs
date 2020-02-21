@@ -21,9 +21,8 @@ namespace Param_RootNamespace.Core.Services
         https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         https://docs.microsoft.com/azure/active-directory/develop/v2-overview
 
-        TODO WTS: The IdentityClientId in appsettings.json is provided for demo purpose only.
-        You have to create your own ClientID following the steps in
-        https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and replace the value.
+        WTS TODO: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
+        https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 
         The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
         For more info about admin consent please see https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience

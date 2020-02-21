@@ -13,5 +13,7 @@ namespace Param_RootNamespace.Contracts.Services
         void OpenInRightPane(string pageKey, object parameter = null);
 
         void Initialize(Frame rightPaneFrame, SplitView splitView);
+
+        void CleanUp();
     }
 }

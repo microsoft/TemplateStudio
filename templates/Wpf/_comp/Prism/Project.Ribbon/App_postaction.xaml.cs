@@ -6,7 +6,7 @@ namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // App Services
 //{[{

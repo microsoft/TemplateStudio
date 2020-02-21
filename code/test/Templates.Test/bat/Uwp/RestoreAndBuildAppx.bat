@@ -16,6 +16,9 @@ ELSE (
 	IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise" (
 		call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
 	)
+	IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Preview" (
+		call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Preview\Common7\Tools\VsMSBuildCmd.bat"
+	)
 
 	ECHO ON
 	

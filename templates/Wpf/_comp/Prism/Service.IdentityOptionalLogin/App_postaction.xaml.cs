@@ -5,20 +5,27 @@ namespace Param_RootNamespace
 {
     public partial class App : PrismApplication
     {
-        protected async override void InitializeShell(Window shell)
+        protected override async void OnInitialized()
         {
 //^^
 //{[{
             var userDataService = Container.Resolve<IUserDataService>();
             userDataService.Initialize();
-            var identityService = Container.Resolve<IIdentityService>();
+
             var config = Container.Resolve<AppConfig>();
+            var identityService = Container.Resolve<IIdentityService>();
             identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
+
             await identityService.AcquireTokenSilentAsync();
+
 //}]}
+            base.OnInitialized();
+//{--{
+            await Task.CompletedTask;
+//}--}
         }
 
-        protected async override void RegisterTypes(IContainerRegistry containerRegistry)
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Core Services
 //{[{

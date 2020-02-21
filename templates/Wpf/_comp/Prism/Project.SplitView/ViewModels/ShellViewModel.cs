@@ -55,6 +55,7 @@ namespace Param_RootNamespace.ViewModels
         private void OnUnloaded()
         {
             _navigationService.Navigated -= OnNavigated;
+            _regionManager.Regions.Remove(Regions.Main);
         }
 
         private bool CanGoBack()
