@@ -1432,6 +1432,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This item is currently not available due to missing Visual Studio Workloads / Components..
+        /// </summary>
+        public static string TemplateDetailsInfoUnavailableDueToMissingVSWorkload {
+            get {
+                return ResourceManager.GetString("TemplateDetailsInfoUnavailableDueToMissingVSWorkload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layout:.
         /// </summary>
         public static string TemplateDetailsLayout {

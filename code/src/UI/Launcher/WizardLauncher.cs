@@ -9,7 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
-
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views;
@@ -17,7 +17,6 @@ using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
 using UIStringRes = Microsoft.Templates.UI.Resources.StringRes;
-using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Launcher
 {

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
@@ -19,6 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _showAddedText;
         private bool _canBeAdded;
         private bool _disabled;
+        private string _disabledMessage;
         private string _emptyBackendFramework = string.Empty;
 
         public TemplateInfo Template { get; }
@@ -81,6 +83,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _disabled, value);
         }
 
+        public string DisabledMessage
+        {
+            get => _disabledMessage;
+            set => SetProperty(ref _disabledMessage, value);
+        }
+
         public TemplateInfoViewModel(TemplateInfo template,  string platform, string projectType, string frameworkName)
         {
             // BasicInfo properties
@@ -111,7 +119,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             MultipleInstance = template.MultipleInstance;
             ItemNameEditable = template.ItemNameEditable;
             CanBeAdded = MultipleInstance || Count == 0;
-            Disabled = !DataService.HasAllVisualStudioWorkloads(template.RequiredVisualStudioWorkloads);
+            if (!DataService.HasAllVisualStudioWorkloads(template.RequiredVisualStudioWorkloads))
+            {
+                Disabled = true;
+                DisabledMessage = StringRes.TemplateDetailsInfoUnavailableDueToMissingVSWorkload;
+            }
         }
 
         public void IncreaseSelection()

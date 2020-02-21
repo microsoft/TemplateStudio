@@ -239,6 +239,12 @@
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsDisabledText">
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyLabel">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Light" />

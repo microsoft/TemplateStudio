@@ -890,4 +890,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
     <value>Required Visual Studio Workloads / Components:</value>
   </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
+  </data>
 </root>
