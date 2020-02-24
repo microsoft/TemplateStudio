@@ -162,7 +162,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private async Task AddTemplateAsync(TemplateInfoViewModel selectedTemplate)
         {
-            if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
+            if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
             {
                 await UserSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
             }

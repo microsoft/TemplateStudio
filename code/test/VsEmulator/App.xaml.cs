@@ -116,7 +116,7 @@ namespace Microsoft.Templates.VsEmulator
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
+                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(Platforms.Uwp, progLanguage, string.Empty, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }

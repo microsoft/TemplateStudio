@@ -823,10 +823,6 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
   <data name="TemplateDetailsExclusions" xml:space="preserve">
     <value>Exclusions:</value>
   </data>
-  <data name="CanNotGenerateWPFProjectsMessage" xml:space="preserve">
-    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="NotificationValidationError_Regex" xml:space="preserve">
     <value>RegEx validation {0} failed.</value>
     <comment>Validation error message: RegEx</comment>
@@ -852,5 +848,45 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
   </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Required Windows Sdks:</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>.NET desktop development</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>MSIX Packaging Tools</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>ASP.NET and web development</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>Universal Windows Platform development</value>
+  </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Higher version required</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
+    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>Missing workload</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>More info</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the workload "{0}” to create a {1} project. Please install this workload using the Visual Studio Installer.</value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
+  <data name="WPF" xml:space="preserve">
+    <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Required Visual Studio Workloads / Components:</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
   </data>
 </root>

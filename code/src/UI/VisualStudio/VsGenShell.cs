@@ -82,27 +82,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
         {
-            var instances = new List<ISetupInstance2>();
-
             var setupConfiguration = new SetupConfiguration();
-            var instanceEnumerator = setupConfiguration.EnumInstances();
-
-            var setupInstance = new ISetupInstance2[1];
-            var count = 0;
-
-            while (true)
-            {
-                instanceEnumerator.Next(1, setupInstance, out count);
-
-                if (count == 0)
-                {
-                    break;
-                }
-
-                instances.Add(setupInstance[0]);
-            }
-
-            return instances[0];
+            return setupConfiguration.GetInstanceForCurrentProcess() as ISetupInstance2;
         });
 
         private List<string> installedPackageIds = new List<string>();

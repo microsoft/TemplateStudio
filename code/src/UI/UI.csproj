@@ -112,6 +112,7 @@
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\SelectableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TemplateTypeExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\InfoDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\ErrorDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\Selectable.cs" />
@@ -299,6 +301,9 @@
     <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
     <Compile Include="Views\Common\CompositionToolWindow.xaml.cs">
       <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common\InfoDialog.xaml.cs">
+      <DependentUpon>InfoDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
@@ -483,6 +488,10 @@
     <Page Include="Views\Common\CompositionToolWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Common\InfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
