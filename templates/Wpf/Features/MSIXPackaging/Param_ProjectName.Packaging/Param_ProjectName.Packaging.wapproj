@@ -59,6 +59,7 @@
     <EntryPointProjectUniqueName>..\Param_ProjectName\Param_ProjectName.csproj</EntryPointProjectUniqueName>
     <PackageCertificateKeyFile>Param_ProjectName.Packaging_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxBuildConfigurationSelection>x86|x64</AppxBuildConfigurationSelection>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -73,7 +74,7 @@
     <Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Images\StoreLogo.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
-	<None Include="Param_ProjectName.Packaging_TemporaryKey.pfx" />
+	  <None Include="Param_ProjectName.Packaging_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Param_ProjectName\Param_ProjectName.csproj">
