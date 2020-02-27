@@ -186,10 +186,14 @@
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundDisabled, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderDisabled, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Disabled}" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                        </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding CanBeAdded}" Value="true" />
+                                <Condition Binding="{Binding Disabled}" Value="false" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter Property="Visibility" TargetName="addIcon" Value="Visible" />

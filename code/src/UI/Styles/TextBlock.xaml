@@ -105,6 +105,12 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Disabled}" Value="true">
+                <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+            </DataTrigger>
+        </Style.Triggers>
+
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockCardDescription">
@@ -115,6 +121,11 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Disabled}" Value="true">
+                <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockCardAddedText">
@@ -228,9 +239,16 @@
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsDisabledText">
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyLabel">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 

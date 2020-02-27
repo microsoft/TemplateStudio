@@ -187,7 +187,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(newProjectInfo);
                     newProject.SetContext();
-                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
+                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
@@ -261,7 +261,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProject = new GeneratedProjectInfo();
                 newProject.SetBasicInfo((newProjectName, newProjectName, newProjectLocation));
                 newProject.SetContext();
-                var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
