@@ -77,15 +77,17 @@ namespace Microsoft.Templates.Test
                     .Concat(userSelection.Features.Select(f => f.Name))
                     .Concat(userSelection.Services.Select(f => f.Name))
                     .Concat(userSelection.Testing.Select(f => f.Name));
-                
+
                 if (template.ItemNameEditable)
                 {
                     var itemBameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => usedNames);
                     itemName = itemBameValidationService.Infer(itemName);
                 }
+                else
+                {
+                    itemName = template.DefaultName;
+                }
                 
-
-               
                 AddItem(userSelection, itemName, template);
             }
         }
