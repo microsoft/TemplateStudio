@@ -84,6 +84,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public IEnumerable<string> RequiredSdks { get; protected set; }
 
+        public IEnumerable<string> RequiredVisualStudioWorkloads { get; protected set; }
+
         public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !WizardStatus.Current.IsBusy));

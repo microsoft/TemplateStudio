@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class StringRes {
@@ -331,15 +331,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
-        /// </summary>
-        public static string CanNotGenerateWPFProjectsMessage {
-            get {
-                return ResourceManager.GetString("CanNotGenerateWPFProjectsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
         /// </summary>
         public static string ChangesSummaryCheckBoxText {
@@ -600,6 +591,51 @@ namespace Microsoft.Templates.UI.Resources {
         public static string HelpTextPressEnterToAddItem {
             get {
                 return ResourceManager.GetString("HelpTextPressEnterToAddItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Higher version required.
+        /// </summary>
+        public static string InfoDialogInvalidVersionTitle {
+            get {
+                return ResourceManager.GetString("InfoDialogInvalidVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
+        /// </summary>
+        public static string InfoDialogInvalidVSVersionForWPF {
+            get {
+                return ResourceManager.GetString("InfoDialogInvalidVSVersionForWPF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing workload.
+        /// </summary>
+        public static string InfoDialogMissingWorkloadTitle {
+            get {
+                return ResourceManager.GetString("InfoDialogMissingWorkloadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More info.
+        /// </summary>
+        public static string InfoDialogMoreInfoLinkText {
+            get {
+                return ResourceManager.GetString("InfoDialogMoreInfoLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        /// </summary>
+        public static string InfoDialogRequiredWorkloadNotFoundMessage {
+            get {
+                return ResourceManager.GetString("InfoDialogRequiredWorkloadNotFoundMessage", resourceCulture);
             }
         }
         
@@ -1396,6 +1432,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This item is currently not available due to missing Visual Studio Workloads / Components..
+        /// </summary>
+        public static string TemplateDetailsInfoUnavailableDueToMissingVSWorkload {
+            get {
+                return ResourceManager.GetString("TemplateDetailsInfoUnavailableDueToMissingVSWorkload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layout:.
         /// </summary>
         public static string TemplateDetailsLayout {
@@ -1428,6 +1473,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsRequiredSdks {
             get {
                 return ResourceManager.GetString("TemplateDetailsRequiredSdks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required Visual Studio Workloads / Components:.
+        /// </summary>
+        public static string TemplateDetailsRequiredVSWorkloads {
+            get {
+                return ResourceManager.GetString("TemplateDetailsRequiredVSWorkloads", resourceCulture);
             }
         }
         
@@ -1554,6 +1608,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UWP.
+        /// </summary>
+        public static string UWP {
+            get {
+                return ResourceManager.GetString("UWP", resourceCulture);
             }
         }
         
@@ -1725,6 +1788,51 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WindowsTemplateStudio {
             get {
                 return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET desktop development.
+        /// </summary>
+        public static string WorkloadDisplayNameManagedDesktop {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameManagedDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSIX Packaging Tools.
+        /// </summary>
+        public static string WorkloadDisplayNameMsixPackaging {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameMsixPackaging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ASP.NET and web development.
+        /// </summary>
+        public static string WorkloadDisplayNameNetWeb {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameNetWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Universal Windows Platform development.
+        /// </summary>
+        public static string WorkloadDisplayNameUniversal {
+            get {
+                return ResourceManager.GetString("WorkloadDisplayNameUniversal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF (.NET Core).
+        /// </summary>
+        public static string WPF {
+            get {
+                return ResourceManager.GetString("WPF", resourceCulture);
             }
         }
     }

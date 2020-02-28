@@ -4,25 +4,26 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
-using Newtonsoft.Json;
+using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
+using UIStringRes = Microsoft.Templates.UI.Resources.StringRes;
 
 namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
         private DialogService _dialogService = DialogService.Instance;
+        private BaseStyleValuesProvider _styleProvider;
         private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
         public static WizardLauncher Instance => _instance.Value;
@@ -31,35 +32,16 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(string platform, string language, string requiredWorkload, BaseStyleValuesProvider provider)
         {
-            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new List<string>());
-            var projectName = GenContext.Current.ProjectName;
-            var projectNameValidation = validationService.Validate(projectName);
+            _styleProvider = provider;
 
-            if (projectNameValidation.IsValid)
-            {
-                var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
-                return StartWizard(newProjectView, WizardTypeEnum.NewProject);
-            }
-            else
-            {
-                var message = string.Empty;
-                switch (projectNameValidation.Errors.FirstOrDefault()?.ErrorType)
-                {
-                    case ValidationErrorType.ReservedName:
-                        message = string.Format(StringRes.ErrorProjectReservedName, projectName);
-                        break;
-                    case ValidationErrorType.Regex:
-                        message = string.Format(StringRes.ErrorProjectStartsWith, projectName, projectName[0]);
-                        break;
-                }
+            CheckVSVersion(platform);
+            CheckForMissingWorkloads(platform, requiredWorkload);
+            CheckForInvalidProjectName();
 
-                var title = StringRes.ErrorTitleInvalidProjectName;
-                MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
-                CancelWizard();
-                return null;
-            }
+            var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
+            return StartWizard(newProjectView, WizardTypeEnum.NewProject);
         }
 
         public UserSelection StartAddTemplate(string language, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
@@ -142,6 +124,77 @@ namespace Microsoft.Templates.UI.Launcher
                 GenContext.ToolBox.Shell.GetVsVersion(),
                 GenContext.ToolBox.Repo.SyncInProgress)
                 .FireAndForget();
+        }
+
+        private void CheckVSVersion(string platform)
+        {
+            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
+            {
+                // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
+                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
+                if (platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
+                {
+                    var title = UIStringRes.InfoDialogInvalidVersionTitle;
+                    var message = UIStringRes.InfoDialogInvalidVSVersionForWPF;
+                    var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
+
+                    var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
+                    var info = new Views.Common.InfoDialog(vm);
+                    GenContext.ToolBox.Shell.ShowModal(info);
+
+                    CancelWizard();
+                }
+            }
+        }
+
+        private void CheckForMissingWorkloads(string platform, string requiredWorkload)
+        {
+            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+            if (vsShell != null)
+            {
+                if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
+                {
+                    var title = UIStringRes.InfoDialogMissingWorkloadTitle;
+                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, requiredWorkload.GetRequiredWorkloadDisplayName(), platform.GetPlatformDisplayName());
+                    var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
+
+                    var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
+                    var info = new Views.Common.InfoDialog(vm);
+                    GenContext.ToolBox.Shell.ShowModal(info);
+
+                    CancelWizard();
+                }
+            }
+        }
+
+        private void CheckForInvalidProjectName()
+        {
+            var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new List<string>());
+            var projectName = GenContext.Current.ProjectName;
+            var projectNameValidation = validationService.Validate(projectName);
+
+            if (!projectNameValidation.IsValid)
+            {
+                var message = string.Empty;
+                switch (projectNameValidation.Errors.FirstOrDefault()?.ErrorType)
+                {
+                    case ValidationErrorType.ReservedName:
+                        message = string.Format(CoreStringRes.ErrorProjectReservedName, projectName);
+                        break;
+                    case ValidationErrorType.Regex:
+                        message = string.Format(CoreStringRes.ErrorProjectStartsWith, projectName, projectName[0]);
+                        break;
+                }
+
+                var title = CoreStringRes.ErrorTitleInvalidProjectName;
+                var link = "https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WTSNaming.md";
+                var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
+                var info = new Views.Common.InfoDialog(vm);
+                GenContext.ToolBox.Shell.ShowModal(info);
+
+                CancelWizard();
+            }
         }
     }
 }

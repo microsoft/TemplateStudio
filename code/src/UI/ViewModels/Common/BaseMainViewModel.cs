@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -67,31 +68,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Platform = platform;
             Language = language;
 
-            // Templates generation is not suported in following cases:
-            // - WPF Projects from VisualStudio 2017
-            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
-            {
-                // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
-                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
-                if (Platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
-                {
-                    WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
-                    WizardStatus.BlockTemplateSync = true;
-                    return;
-                }
-            }
-
             SystemService.Initialize();
         }
 
         public virtual async Task SynchronizeAsync()
         {
-            if (WizardStatus.BlockTemplateSync)
-            {
-                return;
-            }
-
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
 
             try
