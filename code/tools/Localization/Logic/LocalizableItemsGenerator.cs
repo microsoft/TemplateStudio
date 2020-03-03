@@ -70,13 +70,10 @@ namespace Localization
                     {
                         var jsonFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
 
-                        if (!IsTemplateHidden(jsonFile))
-                        {
-                            GenerateTemplateJsonFiles(jsonFile);
+                        GenerateTemplateJsonFiles(jsonFile);
 
-                            var mdFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateDescriptionFile));
-                            GenerateTemplateMdFiles(mdFile);
-                        }
+                        var mdFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateDescriptionFile));
+                        GenerateTemplateMdFiles(mdFile);
                     }
                 }
             }
@@ -199,12 +196,6 @@ namespace Localization
                     }
                 }
             }
-        }
-
-        private bool IsTemplateHidden(FileInfo jsonFile)
-        {
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-            return value != null && value is "true";
         }
     }
 }

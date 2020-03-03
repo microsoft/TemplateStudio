@@ -31,11 +31,6 @@ namespace Localization.Extensions
         {
             var file = new FileInfo(path);
 
-            if (!file.Exists)
-            {
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
-            }
-
             return file;
         }
     }
