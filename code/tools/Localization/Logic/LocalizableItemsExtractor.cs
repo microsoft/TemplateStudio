@@ -54,22 +54,31 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            var csPath = Path.Combine(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
+            var csPath = Path.Combine(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
             if (_validator.HasVsTemplatesChanges(csPath))
             {
                 ExtractProjectTemplatesByLanguage(
-                    Routes.ProjectTemplatePathCS,
-                    Routes.ProjectTemplateFileCS,
-                    Routes.ProjectTemplateFileNamePatternCS);
+                    Routes.ProjectTemplatePathCSUwp,
+                    Routes.ProjectTemplateFileCSUwp,
+                    Routes.ProjectTemplateFileNamePatternCSUwp);
             }
 
-            var vbPath = Path.Combine(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            var csPathWpf = Path.Combine(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            if (_validator.HasVsTemplatesChanges(csPathWpf))
+            {
+                ExtractProjectTemplatesByLanguage(
+                    Routes.ProjectTemplatePathCSWpf,
+                    Routes.ProjectTemplateFileCSWpf,
+                    Routes.ProjectTemplateFileNamePatternCSWpf);
+            }
+
+            var vbPath = Path.Combine(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
             if (_validator.HasVsTemplatesChanges(vbPath))
             {
                 ExtractProjectTemplatesByLanguage(
-                    Routes.ProjectTemplatePathVB,
-                    Routes.ProjectTemplateFileVB,
-                    Routes.ProjectTemplateFileNamePatternVB);
+                    Routes.ProjectTemplatePathVBUwp,
+                    Routes.ProjectTemplateFileVBUwp,
+                    Routes.ProjectTemplateFileNamePatternVBUwp);
             }
         }
 
@@ -134,9 +143,10 @@ namespace Localization
             foreach (string platform in Routes.TemplatesPlatforms)
             {
                 var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
-                if (Directory.Exists(baseDir))
+
+                var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
+                if (templatesDirectory.Exists)
                 {
-                    var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
                     var templatesDirectories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
                     foreach (var directory in templatesDirectories)

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTemplateStudio.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "CoreTemplateStudio\code\src\Utilities\Utilities.csproj", "{356EADB6-D826-494D-B5E1-41245159D5AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

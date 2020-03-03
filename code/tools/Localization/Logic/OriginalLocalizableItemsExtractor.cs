@@ -25,8 +25,9 @@ namespace Localization
             _routesManager.CopyFromSourceToDest(Routes.VsixRootDirPath, Routes.VsixManifestFile);
 
             // project templates
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
 
             // command templates
             _routesManager.CopyFromSourceToDest(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile);
@@ -65,11 +66,8 @@ namespace Localization
                 {
                     var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
 
-                    if (!IsTemplateHidden(templatePath))
-                    {
-                        _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
-                        _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
-                    }
+                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
+                    _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
                 }
             }
         }
@@ -95,14 +93,6 @@ namespace Localization
 
             var jsonFile = _routesManager.GetFileFromSource(baseDir, routeType + ".json");
             return JsonExtensions.GetValuesByName(jsonFile.FullName, "name");
-        }
-
-        private bool IsTemplateHidden(string templatePath)
-        {
-            var jsonFile = _routesManager.GetFileFromSource(Path.Combine(templatePath, Routes.TemplateJsonFile));
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-
-            return value != null && value is "true";
         }
     }
 }

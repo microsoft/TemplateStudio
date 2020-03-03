@@ -522,12 +522,9 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
-      <Project>{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}</Project>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
+      <Project>{f8dbfd78-6a5b-41e0-a197-5aaa50c51dcb}</Project>
       <Name>CSharp.WPF.Solution</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\VBNet.UWP.Solution\VBNet.UWP.Solution.csproj">
       <Project>{2b997e0a-16c8-4b8e-810a-d1d7dafbd760}</Project>

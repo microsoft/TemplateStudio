@@ -64,11 +64,14 @@ namespace Localization
 
         private void VerifyProjectTemplates()
         {
-            VerifyFile(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileNamePatternCS);
+            VerifyFile(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileNamePatternCSUwp);
 
-            VerifyFile(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileNamePatternVB);
+            VerifyFile(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileNamePatternCSWpf);
+
+            VerifyFile(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileNamePatternVBUwp);
         }
 
         private void VerifyCommandTemplates()
@@ -152,13 +155,10 @@ namespace Localization
                 var templateDirectory = Path.Combine(itemTemplate, Routes.TemplateConfigDir);
                 VerifyFile(templateDirectory, Routes.TemplateJsonFile);
 
-                if (!IsTemplateHidden(itemTemplate))
-                {
-                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
+                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
 
-                    VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
-                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
-                }
+                VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
+                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
             }
         }
 
@@ -274,14 +274,6 @@ namespace Localization
                     }
                 }
             }
-        }
-
-        private bool IsTemplateHidden(string templatePath)
-        {
-            var jsonFile = RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, templatePath, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-
-            return value != null && value is "true";
         }
     }
 }
