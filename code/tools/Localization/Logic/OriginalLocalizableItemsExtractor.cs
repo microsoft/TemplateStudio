@@ -75,15 +75,12 @@ namespace Localization
         private void CopyCatalogType(string platform, string routeType)
         {
             var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
-            if (Directory.Exists(baseDir))
-            {
-                _routesManager.CopyFromSourceToDest(baseDir, routeType + ".json");
+            _routesManager.CopyFromSourceToDest(baseDir, routeType + ".json");
 
-                var path = Path.Combine(baseDir, routeType);
-                foreach (var name in GetNamesByRouteType(platform, routeType))
-                {
-                    _routesManager.CopyFromSourceToDest(path, name + ".md");
-                }
+            var path = Path.Combine(baseDir, routeType);
+            foreach (var name in GetNamesByRouteType(platform, routeType))
+            {
+                _routesManager.CopyFromSourceToDest(path, name + ".md");
             }
         }
 
