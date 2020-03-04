@@ -24,12 +24,22 @@ namespace Localization.Extensions
         {
             var directory = new DirectoryInfo(path);
 
+            if (!directory.Exists)
+            {
+                ConsoleExt.WriteWarning($"Directory \"{directory.FullName}\" not found.");
+            }
+
             return directory;
         }
 
         public static FileInfo GetFile(string path)
         {
             var file = new FileInfo(path);
+
+            if (!file.Exists)
+            {
+                ConsoleExt.WriteWarning($"File \"{file.FullName}\" not found.");
+            }
 
             return file;
         }
