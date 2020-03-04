@@ -68,9 +68,6 @@ namespace Localization
         };
 
         // Validate Routes
-        internal const string VsixValidatePath = "code\\src\\Installer\\source.extension.vsixmanifest";
-        internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution\\CSharp.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution\\VBNet.UWP.Solution.vstemplate";
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer\\Commands\\RelayCommandPackage.en-US.vsct";
         internal const string VspackageFileNameValidate = "code\\src\\Installer\\Commands\\VSPackage.en-US.resx";
         internal const string WtsProjectTypesValidate = "_catalog\\projectTypes.json";
