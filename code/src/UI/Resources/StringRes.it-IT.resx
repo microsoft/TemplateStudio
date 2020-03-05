@@ -823,10 +823,6 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="TemplateDetailsExclusions" xml:space="preserve">
     <value>Exclusions:</value>
   </data>
-  <data name="CanNotGenerateWPFProjectsMessage" xml:space="preserve">
-    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="NotificationValidationError_Regex" xml:space="preserve">
     <value>RegEx validation {0} failed.</value>
     <comment>Validation error message: RegEx</comment>

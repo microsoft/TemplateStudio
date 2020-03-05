@@ -24,6 +24,11 @@ namespace Localization.Extensions
         {
             var directory = new DirectoryInfo(path);
 
+            if (!directory.Exists)
+            {
+                ConsoleExt.WriteWarning($"Directory \"{directory.FullName}\" not found.");
+            }
+
             return directory;
         }
 
@@ -33,7 +38,7 @@ namespace Localization.Extensions
 
             if (!file.Exists)
             {
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
+                ConsoleExt.WriteWarning($"File \"{file.FullName}\" not found.");
             }
 
             return file;
