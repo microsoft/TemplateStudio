@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{481CC407-92E7-42A9-AD6E-AA157E5D40C3}"
 EndProject
@@ -56,7 +56,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test", "CoreTempl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "CoreTemplateStudio\code\tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
