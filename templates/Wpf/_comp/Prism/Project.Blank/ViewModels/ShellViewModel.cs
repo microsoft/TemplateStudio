@@ -13,10 +13,13 @@ namespace Param_RootNamespace.ViewModels
         private IRegionNavigationService _navigationService;
         private DelegateCommand _goBackCommand;
         private ICommand _loadedCommand;
+        private ICommand _unloadedCommand;
 
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
 
         public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new DelegateCommand(OnLoaded));
+
+        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new DelegateCommand(OnUnloaded));
 
         public ShellViewModel(IRegionManager regionManager)
         {
@@ -27,6 +30,11 @@ namespace Param_RootNamespace.ViewModels
         {
             _navigationService = _regionManager.Regions[Regions.Main].NavigationService;
             _navigationService.RequestNavigate(PageKeys.Param_HomeName);
+        }
+
+        private void OnUnloaded()
+        {
+            _regionManager.Regions.Remove(Regions.Main);
         }
 
         private bool CanGoBack()

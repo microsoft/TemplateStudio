@@ -53,6 +53,10 @@
       "baseclass": {
         "type": "parameter",
         "replaces": "System.ComponentModel.INotifyPropertyChanged"
+      },
+      "commandclass": {
+        "type": "parameter",
+        "replaces": "System.Windows.Input.ICommand"
       }
     },
     "postActions": [

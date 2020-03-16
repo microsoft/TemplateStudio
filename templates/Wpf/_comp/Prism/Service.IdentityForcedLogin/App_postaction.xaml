@@ -1,0 +1,8 @@
+﻿<prism:PrismApplication
+<!--^^-->
+<!--{[{-->
+    ShutdownMode="OnLastWindowClose"
+<!--}]}-->
+    Exit="OnExit"
+    DispatcherUnhandledException="OnDispatcherUnhandledException">
+</prism:PrismApplication>

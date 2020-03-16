@@ -14,5 +14,7 @@ namespace Param_RootNamespace.Contracts.Services
         void NavigateTo(string pageKey, object parameter, bool clearNavigation);
 
         void UnsubscribeNavigation();
+
+        void CleanNavigation();
     }
 }
