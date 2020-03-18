@@ -1,20 +1,20 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Page.ListDetail.Styles",
-  "identity": "Page.ListDetail.Styles",
-  "shortName": "Page.ListDetail.Styles",
+  "name": "MVVMBasic.Page.TwoPaneView.AddBackCommand",
+  "identity": "MVVMBasic.Page.TwoPaneView.AddBackCommand",
+  "shortName": "MVVMBasic.Page.TwoPaneView.AddBackCommand",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail|wts.Page.ContentGrid|wts.Page.TreeView|wts.Page.TwoPaneView"
- },
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == Blank|MenuBar & groupidentity == wts.Page.TwoPaneView"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

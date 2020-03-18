@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.ListDetail.Styles",
-  "identity": "Page.ListDetail.Styles",
-  "shortName": "Page.ListDetail.Styles",
+  "name": "Page.TwoPaneView.SampleData.Strings",
+  "identity": "Page.TwoPaneView.SampleData.Strings",
+  "shortName": "Page.TwoPaneView.SampleData.Strings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail|wts.Page.ContentGrid|wts.Page.TreeView|wts.Page.TwoPaneView"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind  & groupidentity == wts.Page.TwoPaneView"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

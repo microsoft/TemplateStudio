@@ -1,20 +1,20 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Page.ListDetail.Styles",
-  "identity": "Page.ListDetail.Styles",
-  "shortName": "Page.ListDetail.Styles",
+  "name": "Page.SplitView.TwoPaneView",
+  "identity": "Page.SplitView.TwoPaneView",
+  "shortName": "Page.SplitView.TwoPaneView",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail|wts.Page.ContentGrid|wts.Page.TreeView|wts.Page.TwoPaneView"
- },
+    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.TwoPaneView"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
