@@ -1,0 +1,83 @@
+﻿<UserControl
+    x:Class="Param_RootNamespace.Views.wts.ItemNameListItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Param_RootNamespace.Converters"
+    xmlns:stateTriggers="using:Param_RootNamespace.StateTriggers"
+    mc:Ignorable="d"
+    Margin="{StaticResource SmallLeftRightMargin}"
+    Height="80"
+    d:DesignHeight="80"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:DateTimeFormatConverter x:Name="dateTimeFormatConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="mainGrid">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <stateTriggers:ControlSizeTrigger MinWidth="480" TargetElement="{x:Bind Path=mainGrid}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="extendedItemPanel.Visibility" Value="Visible" />
+                        <Setter Target="shortItemPanel.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <FontIcon
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            FontSize="32"
+            Glyph="{x:Bind Item.Symbol, Mode=OneWay}" />
+
+        <Grid Grid.Column="1" Width="1000"/>
+
+        <StackPanel
+            x:Name="shortItemPanel"
+            Grid.Column="1"
+            Margin="{StaticResource SmallLeftMargin}"
+            VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{ThemeResource ListTitleStyle}" Text="ID:" />
+                <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Item.OrderID, Mode=OneWay}" Margin="{StaticResource XSmallLeftMargin}" />
+                <TextBlock Style="{ThemeResource ListTitleStyle}" Text="Status:" Margin="{StaticResource SmallLeftMargin}" />
+                <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Item.Status, Mode=OneWay}" Margin="{StaticResource XSmallLeftMargin}" />
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind Item.Company, Mode=OneWay}" />
+        </StackPanel>
+
+        <StackPanel
+            x:Name="extendedItemPanel"
+            Grid.Column="1"
+            Margin="{StaticResource SmallLeftMargin}"
+            VerticalAlignment="Center"
+            Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="ID:"/>
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Item.OrderID, Mode=OneWay}" Margin="{StaticResource XSmallLeftMargin}" />
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="Status: " Margin="{StaticResource SmallLeftMargin}" />
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Item.Status, Mode=OneWay}" Margin="{StaticResource XSmallLeftMargin}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="{StaticResource XSmallLeftMargin}">
+                    <TextBlock Style="{ThemeResource ListSubTitleStyle}" Text="{x:Bind Item.OrderDate, Converter={StaticResource dateTimeFormatConverter}, ConverterParameter='dd/MM/yy hh:mm', Mode=OneWay}" />
+                </StackPanel>
+            </Grid>
+            <Grid Width="680" />
+            <TextBlock Style="{ThemeResource ListSubTitleStyle}" Text="{x:Bind Item.ShipTo, Mode=OneWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

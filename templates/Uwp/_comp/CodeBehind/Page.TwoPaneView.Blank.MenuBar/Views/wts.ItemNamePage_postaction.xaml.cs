@@ -1,17 +1,10 @@
-﻿//{[{
-using System.Windows.Input;
-using Param_RootNamespace.Helpers;
-using Param_RootNamespace.Services;
-//}]}
-
-namespace Param_RootNamespace.ViewModels
+﻿namespace Param_RootNamespace.Views
 {
-    public class wts.ItemNameViewModel : Observable
+    public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {
 //^^
 //{[{
         private bool _isGoBackButtonVisible;
-        private ICommand _goBackCommand;
 //}]}
         private SampleOrder _selected;
 //^^
@@ -24,12 +17,8 @@ namespace Param_RootNamespace.ViewModels
 //}]}
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
-//^^
-//{[{
-        public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
-//}]}
 
-        public wts.ItemNameViewModel()
+        public wts.ItemNamePage()
         {
         }
 
@@ -45,9 +34,9 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        private void OnItemClick()
+        private void OnItemClick(object sender, ItemClickEventArgs e)
         {
-            if (_twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane)
+            if (twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane)
             {
 //^^
 //{[{
@@ -56,7 +45,7 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        private void OnModeChanged(WinUI.TwoPaneView twoPaneView)
+        private void OnModeChanged(WinUI.TwoPaneView sender, object args)
         {
 //^^
 //{[{
@@ -67,11 +56,11 @@ namespace Param_RootNamespace.ViewModels
 
 //^^
 //{[{
-        private void OnGoBack()
+        private void OnGoBack(object sender, ItemClickEventArgs e)
             => TryCloseDetail();
 
         private void RefreshIsGoBackButtonVisible()
-            => IsGoBackButtonVisible = _twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane && TwoPanePriority == WinUI.TwoPaneViewPriority.Pane2;
+            => IsGoBackButtonVisible = twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane && TwoPanePriority == WinUI.TwoPaneViewPriority.Pane2;
 //}]}
     }
 }

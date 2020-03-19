@@ -7,14 +7,14 @@
   "name": "Two pane view",
   "shortName": "Two pane view",
   "groupIdentity": "wts.Page.TwoPaneView",
-  "identity": "wts.Page.TwoPaneView",
+  "identity": "wts.Page.TwoPaneView.CodeBehind",
   "description": "Description for TwoPaneView Page",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "19",
@@ -26,9 +26,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
-    },
     {
       "path": "Views/wts.ItemNameDetailControl.xaml"
     },
@@ -52,10 +49,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
     }
   },
   "postActions": [

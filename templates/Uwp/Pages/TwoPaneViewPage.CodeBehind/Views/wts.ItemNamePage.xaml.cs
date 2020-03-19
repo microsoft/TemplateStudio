@@ -1,20 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
-using WinUI = Microsoft.UI.Xaml.Controls;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.Views
 {
-    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {
-        private WinUI.TwoPaneView _twoPaneView;
         private SampleOrder _selected;
-        private ICommand _itemClickCommand;
-        private ICommand _modeChangedCommand;
-
         private WinUI.TwoPaneViewPriority _twoPanePriority;
 
         public SampleOrder Selected
@@ -31,21 +27,14 @@ namespace Param_RootNamespace.ViewModels
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand(OnItemClick));
-
-        public ICommand ModeChangedCommand => _modeChangedCommand ?? (_modeChangedCommand = new RelayCommand<WinUI.TwoPaneView>(OnModeChanged));
-
-        public wts.ItemNameViewModel()
+        public wts.ItemNamePage()
         {
+            InitializeComponent();
         }
 
-        public void Initialize(WinUI.TwoPaneView twoPaneView)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            _twoPaneView = twoPaneView;
-        }
-
-        public async Task LoadDataAsync()
-        {
+            base.OnNavigatedTo(e);
             SampleItems.Clear();
 
             var data = await SampleDataService.GetTwoPaneViewDataAsync();
@@ -56,6 +45,15 @@ namespace Param_RootNamespace.ViewModels
             }
 
             Selected = SampleItems.First();
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back && TryCloseDetail())
+            {
+                e.Cancel = true;
+            }
         }
 
         public bool TryCloseDetail()
@@ -69,15 +67,15 @@ namespace Param_RootNamespace.ViewModels
             return false;
         }
 
-        private void OnItemClick()
+        private void OnItemClick(object sender, ItemClickEventArgs e)
         {
-            if (_twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane)
+            if (twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane)
             {
                 TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2;
             }
         }
 
-        private void OnModeChanged(WinUI.TwoPaneView twoPaneView)
+        private void OnModeChanged(WinUI.TwoPaneView sender, object args)
         {
             if (twoPaneView.Mode == WinUI.TwoPaneViewMode.SinglePane)
             {

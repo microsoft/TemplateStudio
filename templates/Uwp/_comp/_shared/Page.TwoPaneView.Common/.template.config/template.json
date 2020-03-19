@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.TwoPaneView.SampleData",
-  "identity": "Page.TwoPaneView.SampleData",
-  "shortName": "Page.TwoPaneView.SampleData",
+  "name": "Page.TwoPaneView.Common",
+  "identity": "Page.TwoPaneView.Common",
+  "shortName": "Page.TwoPaneView.Common",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -19,6 +19,12 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName/Converters/DateTimeFormatConverter.cs"
+    },
+    {
+      "path": "Param_ProjectName/StateTriggers/ControlSizeTrigger.cs"
+    }
   ],
   "symbols": {
     "wts.projectName": {
