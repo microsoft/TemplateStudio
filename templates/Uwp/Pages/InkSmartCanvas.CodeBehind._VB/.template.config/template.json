@@ -17,7 +17,7 @@
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "17",
+    "wts.displayOrder": "18",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.licenses": "[Win2D.uwp](https://github.com/Microsoft/Win2D/blob/master/LICENSE.txt)"

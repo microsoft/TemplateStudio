@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "TwoPaneView",
-  "description": "Master-Detail page optimized for dual-screen devices",
+  "name": "Two Pane View",
+  "description": "Master-Detail page optimized for dual-screen devices.",
   "identity": "wts.Page.TwoPaneView"
 }

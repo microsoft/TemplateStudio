@@ -4,11 +4,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Two pane view",
-  "shortName": "Two pane view",
+  "name": "Two Pane View",
+  "shortName": "Two Pane View",
   "groupIdentity": "wts.Page.TwoPaneView",
   "identity": "wts.Page.TwoPaneView",
-  "description": "Master-Detail page optimized for dual-screen devices",
+  "description": "Master-Detail page optimized for dual-screen devices.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,7 +17,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "19",
+    "wts.displayOrder": "6",
     "wts.genGroup": "0",
     "wts.rightClickEnabled": "true",
     "wts.dependencies": "wts.Service.SampleDataService",
