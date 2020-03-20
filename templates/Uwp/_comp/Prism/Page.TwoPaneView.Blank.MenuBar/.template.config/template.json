@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.SplitView.TwoPaneView",
-  "identity": "Page.SplitView.TwoPaneView",
-  "shortName": "Page.SplitView.TwoPaneView",
+  "name": "PrismPage.TwoPaneView.Blank.MenuBar",
+  "identity": "PrismPage.Page.TwoPaneView.Blank.MenuBar",
+  "shortName": "PrismPage.Page.TwoPaneView.Blank.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.TwoPaneView"
+    "wts.compositionFilter": "$frontendframework == Prism & $projectType == Blank|MenuBar & groupidentity == wts.Page.TwoPaneView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
