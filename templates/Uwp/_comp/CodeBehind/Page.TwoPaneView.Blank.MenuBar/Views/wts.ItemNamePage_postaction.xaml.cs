@@ -1,4 +1,8 @@
-﻿namespace Param_RootNamespace.Views
+﻿//{[{
+using Windows.UI.Xaml;
+//}]}
+
+namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {
@@ -56,7 +60,7 @@
 
 //^^
 //{[{
-        private void OnGoBack(object sender, ItemClickEventArgs e)
+        private void OnGoBack(object sender, RoutedEventArgs e)
             => TryCloseDetail();
 
         private void RefreshIsGoBackButtonVisible()
