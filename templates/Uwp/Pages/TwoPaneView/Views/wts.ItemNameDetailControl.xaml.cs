@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Views
 
         public wts.ItemNameDetailControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private static void OnSelectedItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
