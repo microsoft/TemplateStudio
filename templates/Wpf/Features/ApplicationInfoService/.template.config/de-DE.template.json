@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Application Info Service",
+  "description": "",
+  "identity": "wts.Wpf.Feat.ApplicationInfoService"
+}
