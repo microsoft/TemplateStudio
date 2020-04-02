@@ -1,0 +1,45 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Application Info Service",
+  "shortName": "ApplicationInfoService",
+  "groupIdentity": "wts.Wpf.Feat.ApplicationInfoService",
+  "identity": "wts.Wpf.Feat.ApplicationInfoService",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+	  "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.defaultInstance": "ApplicationInfoService",
+    "wts.multipleInstance": "false",
+    "wts.isHidden": "true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Contracts/Services/IApplicationInfoService.cs"
+    },
+    {
+      "path": "Services/ApplicationInfoService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

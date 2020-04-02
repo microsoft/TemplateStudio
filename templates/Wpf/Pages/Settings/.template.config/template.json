@@ -18,7 +18,7 @@
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
-    "wts.dependencies":"wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.SystemService",
+    "wts.dependencies":"wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.SystemService|wts.Wpf.Feat.ApplicationInfoService",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "Settings",
     "wts.genGroup": "1",

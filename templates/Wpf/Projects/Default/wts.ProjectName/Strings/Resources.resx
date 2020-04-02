@@ -101,7 +101,4 @@
     <data name="AppDisplayName" xml:space="preserve">
 		<value>wts.ProjectName</value>
 	</data>
-    <data name="AppDescription" xml:space="preserve">
-		<value>wts.ProjectName</value>
-	</data>
 </root>

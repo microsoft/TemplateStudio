@@ -67,14 +67,5 @@ namespace Param_RootNamespace.Strings {
                 return ResourceManager.GetString("AppDisplayName", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to wts.ItemName.
-        /// </summary>
-        public static string AppDescription {
-            get {
-                return ResourceManager.GetString("AppDescription", resourceCulture);
-            }
-        }
     }
 }
