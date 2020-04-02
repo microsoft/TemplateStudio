@@ -24,7 +24,7 @@
             Pane1Length="280"
             Pane2Length="*"
             PanePriority="{x:Bind ViewModel.TwoPanePriority, Mode=OneWay}"
-            MinWideModeWidth="680"
+            MinWideModeWidth="772"
             WideModeConfiguration="LeftRight"
             TallModeConfiguration="SinglePane"
             HorizontalAlignment="Stretch"
@@ -50,7 +50,8 @@
                         Grid.Row="1"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind ViewModel.SampleItems}"
-                        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                         <i:Interaction.Behaviors>
                             <ic:EventTriggerBehavior EventName="ItemClick">
                                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />

@@ -25,7 +25,7 @@
             Pane2Length="*"
             PanePriority="{x:Bind TwoPanePriority, Mode=OneWay}"
             ModeChanged="OnModeChanged"
-            MinWideModeWidth="680"
+            MinWideModeWidth="772"
             WideModeConfiguration="LeftRight"
             TallModeConfiguration="SinglePane"
             HorizontalAlignment="Stretch"
@@ -45,9 +45,10 @@
                     <ListView
                         Grid.Row="1"
                         IsItemClickEnabled="True"
+                        ItemClick="OnItemClick"
                         ItemsSource="{x:Bind SampleItems}"
                         SelectedItem="{x:Bind Selected, Mode=TwoWay}"
-                        ItemClick="OnItemClick">
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
                                 <views:wts.ItemNameListItemControl Item="{Binding}" />
