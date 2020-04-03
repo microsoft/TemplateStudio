@@ -21,7 +21,7 @@
     <Grid x:Name="ContentArea">
         <winui:TwoPaneView
             x:Name="twoPaneView"
-            Pane1Length="280"
+            Pane1Length="320"
             Pane2Length="*"
             PanePriority="{x:Bind TwoPanePriority, Mode=OneWay}"
             ModeChanged="OnModeChanged"
@@ -31,7 +31,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             <winui:TwoPaneView.Pane1>
-                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition Height="*" />
@@ -47,8 +47,7 @@
                         IsItemClickEnabled="True"
                         ItemClick="OnItemClick"
                         ItemsSource="{x:Bind SampleItems}"
-                        SelectedItem="{x:Bind Selected, Mode=TwoWay}"
-                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        SelectedItem="{x:Bind Selected, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
                                 <views:wts.ItemNameListItemControl Item="{Binding}" />

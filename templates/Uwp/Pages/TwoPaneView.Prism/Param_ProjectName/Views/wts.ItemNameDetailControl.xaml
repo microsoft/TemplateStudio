@@ -21,12 +21,14 @@
         <StackPanel HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <FontIcon
-                    FontSize="80"
-                    HorizontalAlignment="Left"
+                    FontSize="48"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Glyph="{x:Bind SelectedItem.Symbol, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
-                    Style="{ThemeResource TitleTextBlockStyle}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource TitleTextBlockStyle}"
                     Text="{x:Bind SelectedItem.Company, Mode=OneWay}" />
             </StackPanel>
             <TextBlock
@@ -36,6 +38,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.Status, Mode=OneWay}" />
+            
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -43,6 +46,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.OrderDate, Converter={StaticResource dateTimeFormatConverter}, ConverterParameter='dd/MM/yy hh:mm', Mode=OneWay}" />
+            
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -50,6 +54,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.Company, Mode=OneWay}" />
+            
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -57,6 +62,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.ShipTo, Mode=OneWay}" />
+            
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -64,6 +70,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.ShippedDate, Converter={StaticResource dateTimeFormatConverter}, ConverterParameter='dd/MM/yy hh:mm', Mode=OneWay}" />
+            
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -71,6 +78,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                 Text="{x:Bind SelectedItem.OrderTotal, Mode=OneWay}" />
+
             <TextBlock
                 Margin="{StaticResource LargeTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"
@@ -151,6 +159,7 @@
             <TextBlock
                 Style="{StaticResource DetailBodyStyle}"
                 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource DetailSubTitleStyle}"

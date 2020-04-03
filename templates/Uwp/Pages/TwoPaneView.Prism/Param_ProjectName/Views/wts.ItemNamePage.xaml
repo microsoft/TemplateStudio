@@ -21,7 +21,7 @@
     <Grid x:Name="ContentArea">
         <winui:TwoPaneView
             x:Name="twoPaneView"
-            Pane1Length="280"
+            Pane1Length="320"
             Pane2Length="*"
             PanePriority="{x:Bind ViewModel.TwoPanePriority, Mode=OneWay}"
             MinWideModeWidth="772"
@@ -35,7 +35,7 @@
                 </ic:EventTriggerBehavior>
             </i:Interaction.Behaviors>
             <winui:TwoPaneView.Pane1>
-                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition Height="*" />
@@ -50,8 +50,7 @@
                         Grid.Row="1"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind ViewModel.SampleItems}"
-                        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
-                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
                         <i:Interaction.Behaviors>
                             <ic:EventTriggerBehavior EventName="ItemClick">
                                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
