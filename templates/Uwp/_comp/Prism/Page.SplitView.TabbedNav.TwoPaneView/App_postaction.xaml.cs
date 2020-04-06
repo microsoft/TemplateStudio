@@ -1,5 +1,5 @@
 ﻿//{[{
-using Param_RootNamespace.Core.Services;
+using Param_RootNamespace.Services;
 //}]}
 namespace Param_RootNamespace
 {

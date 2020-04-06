@@ -1,4 +1,5 @@
 ﻿//{[{
+using Windows.UI.Xaml;
 using Param_RootNamespace.Services;
 //}]}
 namespace Param_RootNamespace.ViewModels
@@ -6,7 +7,11 @@ namespace Param_RootNamespace.ViewModels
     public class ShellViewModel : ViewModelBase
     {
 //{[{
-        private readonly IBackNavigationService _backNavigationService;
+        private IBackNavigationService _backNavigationService;
+//}]}
+        private WinUI.NavigationViewItem _selected;
+//{[{
+        private bool _currentPageCanGoBack;
 //}]}
         public ShellViewModel(/*{[{*/IBackNavigationService backNavigationService/*}]}*/)
         {
@@ -25,22 +30,10 @@ namespace Param_RootNamespace.ViewModels
 //}]}
             _navigationView.BackRequested += OnBackRequested;
         }
-//{--{
-        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
-        {
-            _navigationService.GoBack();
-        }
-//--}
-//^^
-//{[{
-        private void OnCurrentPageCanGoBackChanged(object sender, bool currentPageCanGoBack)
-        {
-            _currentPageCanGoBack = currentPageCanGoBack;
-            IsBackEnabled = _navigationService.CanGoBack() || currentPageCanGoBack;
-        }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
         {
+//{[{
             if (_currentPageCanGoBack)
             {
                 if (_frame.Content is FrameworkElement element && element.DataContext is IBackNavigationHandler navigationHandler)
@@ -50,7 +43,16 @@ namespace Param_RootNamespace.ViewModels
                 }
             }
 
+//}]}
             _navigationService.GoBack();
+        }
+//^^
+//{[{
+
+        private void OnCurrentPageCanGoBackChanged(object sender, bool currentPageCanGoBack)
+        {
+            _currentPageCanGoBack = currentPageCanGoBack;
+            IsBackEnabled = _navigationService.CanGoBack() || currentPageCanGoBack;
         }
 //}]}
     }
