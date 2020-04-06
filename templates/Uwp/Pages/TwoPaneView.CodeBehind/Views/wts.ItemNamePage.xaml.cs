@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -45,15 +46,6 @@ namespace Param_RootNamespace.Views
             }
 
             Selected = SampleItems.First();
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back && TryCloseDetail())
-            {
-                e.Cancel = true;
-            }
         }
 
         public bool TryCloseDetail()

@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.SplitView.ExpandedModeThresholdWidth",
-  "identity": "Page.SplitView.ExpandedModeThresholdWidth",
-  "shortName": "Page.SplitView.ExpandedModeThresholdWidth",
+  "name": "Prism.Page.SplitView.ExpandedModeThresholdWidth",
+  "identity": "Prism.Page.SplitView.ExpandedModeThresholdWidth",
+  "shortName": "Prism.Page.SplitView.ExpandedModeThresholdWidth",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.TwoPaneView|wts.Page.MasterDetail"
+    "wts.compositionFilter": "$projectType == SplitView & $frontendframework == Prism & groupidentity == wts.Page.TwoPaneView|wts.Page.MasterDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

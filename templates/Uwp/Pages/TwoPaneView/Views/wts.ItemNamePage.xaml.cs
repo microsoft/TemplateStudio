@@ -9,6 +9,7 @@ namespace Param_RootNamespace.Views
         public wts.ItemNamePage()
         {
             InitializeComponent();
+            DataContext = ViewModel;
             ViewModel.Initialize(twoPaneView);
         }
 
@@ -16,15 +17,6 @@ namespace Param_RootNamespace.Views
         {
             base.OnNavigatedTo(e);
             await ViewModel.LoadDataAsync();
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back && ViewModel.TryCloseDetail())
-            {
-                e.Cancel = true;
-            }
         }
     }
 }

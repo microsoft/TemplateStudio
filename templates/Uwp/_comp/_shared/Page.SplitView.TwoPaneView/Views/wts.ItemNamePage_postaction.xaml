@@ -26,7 +26,7 @@
             x:Name="twoPaneView"
             VerticalAlignment="Stretch">
             <winui:TwoPaneView.Pane1>
-                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <TextBlock
                         <!--{--{-->
                         Margin="{StaticResource SmallLeftMargin}"
