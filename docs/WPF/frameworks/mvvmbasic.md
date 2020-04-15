@@ -10,7 +10,7 @@ MVVM Basic uses the `Microsoft.Extensions.Hosting` NuGet Package as application 
 
 ## Core files
 
-Projects created with MVVM Basic contain two important classes:
+Projects created with MVVM Basic contain four important classes:
 
 - `Observable`
 - `RelayCommand`
@@ -21,15 +21,15 @@ Projects created with MVVM Basic contain two important classes:
 
 `RelayCommand` contains an implementation of the `ICommand` interface and allows the **View** to call commands on the **ViewModel**, rather than handle UI events directly. You can see examples of `RelayCommand` in use in a generated project.
 
-`INavigationAware` is an interface to be implemented on **ViewModels** you want to react with the navigation events **OnNavigatedTo** and **OnNavigatedFrom**.
+`INavigationAware` is an interface to be implemented on **ViewModels**. It provides you with the navigation events **OnNavigatedTo** and **OnNavigatedFrom**.
 
-`ApplicationHostService` is the startup service of the app, it's created on App.xaml.cs file and it handles the app initialization and the main window creation.
+`ApplicationHostService` is the startup service of the app, it's created on App.xaml.cs file and handles the app initialization and the main window creation.
 
 ## Working with dependency injection
 
 MVVMBasic projects use dependency injection (DI) to register and consume object instances in the App (Views, ViewModels, Services, etc.).
 
-All classes you want to use with DI must be registered in ConfigureServices method of App.xaml.cs file.
+All classes you want to use with DI must be registered in the ConfigureServices method of App.xaml.cs file.
 
 ```csharp
 private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
@@ -42,7 +42,7 @@ private void ConfigureServices(HostBuilderContext context, IServiceCollection se
 }
 ```
 
-Once these services are registered you can retrieve instances in any class constructor, like a ViewModel.
+Once these services are registered you can retrieve instances in any class constructor, like for example a ViewModel.
 
 ```csharp
 public class MainViewModel : Observable
@@ -74,7 +74,7 @@ _navigationService.NavigateTo(typeof(MainViewModel).FullName);
 
 **Reacting to navigation events**
 
-ViewModels can react to the navigation events overriding the `INavigationAware` and use the `OnNavigatedTo` to initialize data (i.e. SettingsViewModel). On this method, you can also read the navigation parameter.
+ViewModels can react to the navigation events implementing the `INavigationAware` and use the `OnNavigatedTo` to initialize data (i.e. SettingsViewModel). On this method, you can also read the navigation parameter.
 
 ```csharp
 public void OnNavigatedTo(object parameter)
