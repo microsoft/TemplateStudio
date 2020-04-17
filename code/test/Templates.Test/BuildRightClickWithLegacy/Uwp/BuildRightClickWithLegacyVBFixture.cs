@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
 {
     public sealed class BuildRightClickWithLegacyVBFixture : BaseGenAndBuildFixture, IDisposable
     {
-        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
+        private readonly string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LegacyTemplatesSourceV2(ProgrammingLanguages.VisualBasic);
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            source.LoadConfigAsync(default(CancellationToken)).Wait();
+            source.LoadConfigAsync(default).Wait();
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
             if (syncExecuted)
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
         }
 
 
-        public async Task ChangeToLocalTemplatesSource()
+        public async Task ChangeToLocalTemplatesSourceAsync()
         {
             GenContext.Bootstrap(LocalSource, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), Platforms.Uwp, ProgrammingLanguages.VisualBasic);
             await GenContext.ToolBox.Repo.SynchronizeAsync(true, true);

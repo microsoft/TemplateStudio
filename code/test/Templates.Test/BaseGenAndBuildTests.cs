@@ -105,8 +105,7 @@ namespace Microsoft.Templates.Test
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
             // this selector excludes templates with exclusions
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -210,7 +209,7 @@ namespace Microsoft.Templates.Test
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        protected void AssertBuildProject(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             (int exitCode, string outputFile) result = (1, string.Empty);
 
@@ -237,13 +236,13 @@ namespace Microsoft.Templates.Test
         }
 
 
-        protected void AssertBuildProjectWpfWithMsixAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        protected void AssertBuildProjectWpfWithMsix(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             // Build solution
-            var result = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
+            var (exitCode, outputFile) = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
 
             // Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            Assert.True(exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
 
             // Clean
             if (deleteAfterBuild)
@@ -252,7 +251,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
+        protected void AssertBuildProjectThenRunTests(string projectPath, string projectName, string platform)
         {
             var (buildExitCode, buildOutputFile) = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
 
@@ -415,12 +414,12 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForGeneration()
         {
             return GenerationFixture.GetProjectTemplates();
         }
 
-        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGenerationAsync()
+        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGeneration()
         {
             var result = GenerationFixture.GetProjectTemplates();
 

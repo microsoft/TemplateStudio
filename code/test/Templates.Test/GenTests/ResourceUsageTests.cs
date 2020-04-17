@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGenerationAsync))]
+        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGeneration))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureReswResourceInGeneratedProjectsAreUsedAsync(string projectType, string framework, string platform, string language)
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGenerationAsync))]
+        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGeneration))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureDefinedUidsHaveResourceEntriesAsync(string projectType, string framework, string platform, string language)

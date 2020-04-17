@@ -5,51 +5,15 @@
 using System;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using EnvDTE;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public static class VsShellExtensions
     {
-        public static string GetSafeValue(this Properties props, string propertyName)
-        {
-            if (props != null)
-            {
-                if (props.Cast<Property>().Where(p => p.Name == propertyName).Any())
-                {
-                    return props.Item(propertyName).Value.ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public static T GetSafeValue<T>(this Properties props, string propertyName)
-        {
-            if (props != null)
-            {
-                if (props.Cast<Property>().Where(p => p.Name == propertyName).Any())
-                {
-                    return (T)props.Item(propertyName).Value;
-                }
-                else
-                {
-                    return default(T);
-                }
-            }
-            else
-            {
-                return default(T);
-            }
-        }
-
         public static string RemoveTailDirectorySparator(this string target)
         {
             if (target.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
@@ -76,6 +40,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public static string SafeGetFileName(this EnvDTE.Project p)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
                 return p.FullName;

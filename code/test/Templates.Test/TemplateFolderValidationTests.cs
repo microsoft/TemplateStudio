@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Test
     {
         // Perform checks based on the entirety of the templates folder
         [Fact]
-        public void VerifyTemplateFolderContentsAsync()
+        public void VerifyTemplateFolderContents()
         {
             // This is the relative path from where the test assembly will run from
             const string templatesRoot = "../../../../../Templates";

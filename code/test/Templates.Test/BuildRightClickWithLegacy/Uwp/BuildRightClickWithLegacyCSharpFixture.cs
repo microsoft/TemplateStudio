@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
 {
     public sealed class BuildRightClickWithLegacyCSharpFixture : BaseGenAndBuildFixture, IDisposable
     {
-        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
+        private readonly string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp);
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
 
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp));
 
             var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(Platforms.Uwp)
                         .Where(m => !string.IsNullOrEmpty(m.Description))
@@ -57,11 +57,11 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
  "Usage",
  "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
  Justification = "Required for unit testing.")]
-        private static void InitializeTemplates(TemplatesSource source, string language)
+        private static void InitializeTemplates(TemplatesSource source)
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            source.LoadConfigAsync(default(CancellationToken)).Wait();
+            source.LoadConfigAsync(default).Wait();
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
             if (syncExecuted)
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
         }
 
 
-        public async Task ChangeToLocalTemplatesSource()
+        public async Task ChangeToLocalTemplatesSourceAsync()
         {
             GenContext.Bootstrap(LocalSource, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
             await GenContext.ToolBox.Repo.SynchronizeAsync(true, true);
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
             GenContext.Current = contextProvider;
             Configuration.Current.Environment = "Pro";
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
-            InitializeTemplates(Source, ProgrammingLanguages.CSharp);
+            InitializeTemplates(Source);
         }
     }
 }

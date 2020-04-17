@@ -10,8 +10,8 @@ namespace Localization.Extensions
 {
     public class RoutesManager
     {
-        private DirectoryInfo _sourceDir;
-        private DirectoryInfo _destinationDir;
+        private readonly DirectoryInfo _sourceDir;
+        private readonly DirectoryInfo _destinationDir;
 
         public RoutesManager(string sourceDirPath, string destinationDirPath)
         {

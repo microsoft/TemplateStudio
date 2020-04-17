@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.Threading
             }
             catch (NullReferenceException)
             {
-                JoinableTaskContext context = new JoinableTaskContext(System.Threading.Thread.CurrentThread);
+                JoinableTaskContext context = ThreadHelper.JoinableTaskContext;
                 JoinableTaskCollection collection = context.CreateCollection();
                 JoinableTaskFactory = context.CreateFactory(collection);
             }

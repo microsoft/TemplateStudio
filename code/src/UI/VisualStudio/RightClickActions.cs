@@ -24,9 +24,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private static VsGenShell _shell;
+        private readonly GenerationService _generationService = GenerationService.Instance;
 
-        private GenerationService _generationService = GenerationService.Instance;
+        private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
 

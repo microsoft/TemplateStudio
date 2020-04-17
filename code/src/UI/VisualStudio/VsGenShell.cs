@@ -22,6 +22,7 @@ using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -30,21 +31,13 @@ using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 using NuGet.VisualStudio;
 using VSLangProj;
+using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
-        private AsyncLazy<IPackageInstallerService> _packageInstallerService = new AsyncLazy<IPackageInstallerService>(
-            async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var componentModel = (IComponentModel)ServiceProvider.GlobalProvider.GetService(typeof(SComponentModel));
-                return componentModel.GetService<IPackageInstallerService>();
-            },
-            SafeThreading.JoinableTaskFactory);
-
-        private AsyncLazy<DTE> _dte = new AsyncLazy<DTE>(
+        private readonly AsyncLazy<DTE> _dte = new AsyncLazy<DTE>(
              async () =>
              {
                  await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -52,11 +45,7 @@ namespace Microsoft.Templates.UI.VisualStudio
              },
              SafeThreading.JoinableTaskFactory);
 
-        private string _vsVersionInstance = string.Empty;
-
-        private string _vsProductVersion = string.Empty;
-
-        private AsyncLazy<IVsUIShell> _uiShell = new AsyncLazy<IVsUIShell>(
+        private readonly AsyncLazy<IVsUIShell> _uiShell = new AsyncLazy<IVsUIShell>(
            async () =>
            {
                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -64,7 +53,7 @@ namespace Microsoft.Templates.UI.VisualStudio
            },
            SafeThreading.JoinableTaskFactory);
 
-        private AsyncLazy<IVsSolution> _vssolution = new AsyncLazy<IVsSolution>(
+        private readonly AsyncLazy<IVsSolution> _vssolution = new AsyncLazy<IVsSolution>(
             async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -72,21 +61,25 @@ namespace Microsoft.Templates.UI.VisualStudio
             },
             SafeThreading.JoinableTaskFactory);
 
-        private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
-
-        private VsOutputPane OutputPane => _outputPane.Value;
-
-        private Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
-
-        private VSTelemetryService VSTelemetryService => telemetryService.Value;
-
-        private Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
+        private readonly Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
         {
             var setupConfiguration = new SetupConfiguration();
             return setupConfiguration.GetInstanceForCurrentProcess() as ISetupInstance2;
         });
 
-        private List<string> installedPackageIds = new List<string>();
+        private readonly List<string> installedPackageIds = new List<string>();
+
+        private readonly Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+
+        private readonly Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
+
+        private string _vsVersionInstance = string.Empty;
+
+        private string _vsProductVersion = string.Empty;
+
+        private VsOutputPane OutputPane => _outputPane.Value;
+
+        private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
         private void AddProject(string project)
         {
@@ -163,29 +156,39 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
-            try
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
             {
-                var defaultProject = GetProjectByName(projectName);
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
-                SetStartupProject(defaultProject);
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
-            }
+                try
+                {
+                    var defaultProject = GetProjectByName(projectName);
+
+                    await SetActiveConfigurationAndPlatformAsync(configurationName, platformName, defaultProject);
+                    await SetStartupProjectAsync(defaultProject);
+                }
+                catch (Exception ex)
+                {
+                    AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
+                }
+            });
         }
 
         public override string GetActiveProjectNamespace()
         {
-            var p = GetActiveProject();
-
-            if (p != null)
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                return p.Properties.GetSafeValue("DefaultNamespace");
-            }
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var p = GetActiveProject();
 
-            return null;
+                if (p != null && p.Properties != null)
+                {
+                    return p.Properties.Item("DefaultNamespace")?.Value?.ToString();
+                }
+
+                return null;
+            });
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -276,16 +279,20 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectPath()
         {
-            var p = GetActiveProject();
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var p = GetActiveProject();
 
-            if (p != null)
-            {
-                return Path.GetDirectoryName(p.FileName);
-            }
-            else
-            {
-                return null;
-            }
+                if (p != null)
+                {
+                    return Path.GetDirectoryName(p.FileName);
+                }
+                else
+                {
+                    return null;
+                }
+            });
         }
 
         public override string GetActiveProjectLanguage()
@@ -314,7 +321,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void WriteOutput(string data)
         {
-            OutputPane.Write(data);
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                OutputPane.Write(data);
+            });
         }
 
         public override void CloseSolution()
@@ -340,7 +351,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
                     {
-                        Collapse(item);
+                        await CollapseAsync(item);
                     }
                 });
             }
@@ -352,7 +363,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetProjectGuidByName(string projectName)
         {
-            return ThreadHelper.JoinableTaskFactory.Run(async () =>
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 var project = GetProjectByName(projectName);
@@ -361,16 +372,17 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     if (project != null)
                     {
-                        var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
-
-                        solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                        if (hierarchy != null)
+                        if (ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) is IVsSolution solution)
                         {
-                            hierarchy.GetGuidProperty(
-                                        VSConstants.VSITEMID_ROOT,
-                                        (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
-                                        out projectGuid);
+                            solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                            if (hierarchy != null)
+                            {
+                                hierarchy.GetGuidProperty(
+                                            VSConstants.VSITEMID_ROOT,
+                                            (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                            out projectGuid);
+                            }
                         }
                     }
                 }
@@ -416,25 +428,30 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override bool GetActiveProjectIsWts()
         {
-            bool result = false;
-            var activeProjectPath = GetActiveProjectPath();
-            if (!string.IsNullOrEmpty(activeProjectPath))
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
-                var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                if (!string.IsNullOrEmpty(metadataFile))
+                bool result = false;
+                var activeProjectPath = GetActiveProjectPath();
+                if (!string.IsNullOrEmpty(activeProjectPath))
                 {
-                    var metadataFilePath = Path.Combine(activeProjectPath, metadataFile);
-                    if (File.Exists(metadataFilePath))
+                    var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                    var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
+
+                    if (!string.IsNullOrEmpty(metadataFile))
                     {
-                        var fileContent = File.ReadAllText(metadataFilePath);
-                        result = fileContent.Contains("genTemplate:Metadata");
+                        var metadataFilePath = Path.Combine(activeProjectPath, metadataFile);
+                        if (File.Exists(metadataFilePath))
+                        {
+                            var fileContent = File.ReadAllText(metadataFilePath);
+                            result = fileContent.Contains("genTemplate:Metadata");
+                        }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            });
         }
 
         public override bool IsDebuggerEnabled()
@@ -620,32 +637,30 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
        }
 
-        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
+        private async Task<bool> SetActiveConfigurationAndPlatformAsync(string configurationName, string platformName, Project project)
         {
-            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var dte = await _dte.GetValueAsync();
+            foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
-                foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
+                if (solConfiguration.Name == configurationName)
                 {
-                    if (solConfiguration.Name == configurationName)
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
                     {
-                        foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
                         {
-                            if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
-                            {
-                                solConfiguration.Activate();
-                            }
+                            solConfiguration.Activate();
                         }
                     }
                 }
+            }
 
-                return false;
-            });
+            return false;
         }
 
-        private void SetStartupProject(Project project)
+        private async Task SetStartupProjectAsync(Project project)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (project != null)
             {
                 var solution = GetSolution();
@@ -784,7 +799,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void SolutionEvents_Opened()
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 var dte = await _dte.GetValueAsync();
@@ -794,11 +810,13 @@ namespace Microsoft.Templates.UI.VisualStudio
             });
         }
 
-        private void Collapse(UIHierarchyItem item)
+        private async Task CollapseAsync(UIHierarchyItem item)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
             {
-                Collapse(subitem);
+                await CollapseAsync(subitem);
             }
 
             item.UIHierarchyItems.Expanded = false;
@@ -814,8 +832,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     var project = await GetProjectByPathAsync(projectPath);
                     if (IsCpsProject(projectPath))
                     {
-                        var packageInstallerService = await _packageInstallerService.GetValueAsync();
-                        packageInstallerService.AddNugetToCPSProject(project, projectNugets);
+                        AddNugetToCPSProject(project, projectNugets);
                     }
                     else
                     {
@@ -841,6 +858,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 WriteMissingNugetPackagesInfo(projectPath, projectNugets);
+            }
+        }
+
+        private void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
+        {
+            if (project is IVsBrowseObjectContext browseObjectContext)
+            {
+                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
+
+                threadingService.ExecuteSynchronously(
+                async () =>
+                {
+                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
+
+                    foreach (var reference in projectNugets)
+                    {
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
+                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                    }
+                });
             }
         }
 

@@ -17,25 +17,6 @@ namespace Microsoft.Templates.Extension
     [Export(typeof(IPackageInstallerService))]
     public class PackageInstallerService : IPackageInstallerService
     {
-        public void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
-        {
-            if (project is IVsBrowseObjectContext browseObjectContext)
-            {
-                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
-
-                threadingService.ExecuteSynchronously(
-                async () =>
-                {
-                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
-
-                    foreach (var reference in projectNugets)
-                    {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-                    }
-                });
-            }
-        }
+        
     }
 }
