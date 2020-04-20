@@ -24,27 +24,25 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public VsOutputPane()
         {
-           SafeThreading.JoinableTaskFactory.Run(
-           async () =>
-           {
-               await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-               _pane = await GetOrCreatePaneAsync(Guid.Parse(TemplatesPaneGuid), true, false);
+        }
 
-               if (_pane != null)
-               {
-                   _pane.Activate();
-               }
-           });
+        public async Task InitializeAsync()
+        {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            _pane = await GetOrCreatePaneAsync(Guid.Parse(TemplatesPaneGuid), true, false);
+
+            if (_pane != null)
+            {
+                _pane.Activate();
+            }
         }
 
         public void Write(string data)
         {
-            SafeThreading.JoinableTaskFactory.Run(
-            async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _pane.OutputString(data);
-            });
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            _pane.OutputString(data);
         }
 
         private static async Task<OutputWindowPane> GetOrCreatePaneAsync(Guid paneGuid, bool visible, bool clearWithSolution)

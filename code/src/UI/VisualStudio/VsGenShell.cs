@@ -69,15 +69,21 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private readonly List<string> installedPackageIds = new List<string>();
 
-        private readonly Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+        private readonly AsyncLazy<VsOutputPane> _outputPane = new AsyncLazy<VsOutputPane>(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var pane = new VsOutputPane();
+                await pane.InitializeAsync();
+                return pane;
+            },
+            SafeThreading.JoinableTaskFactory);
 
         private readonly Lazy<VSTelemetryService> telemetryService = new Lazy<VSTelemetryService>(() => new VSTelemetryService());
 
         private string _vsVersionInstance = string.Empty;
 
         private string _vsProductVersion = string.Empty;
-
-        private VsOutputPane OutputPane => _outputPane.Value;
 
         private VSTelemetryService VSTelemetryService => telemetryService.Value;
 
@@ -156,39 +162,32 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
-            SafeThreading.JoinableTaskFactory.Run(
-            async () =>
+            ThreadHelper.ThrowIfNotOnUIThread();
+            try
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var defaultProject = GetProjectByName(projectName);
 
-                try
-                {
-                    var defaultProject = GetProjectByName(projectName);
-
-                    await SetActiveConfigurationAndPlatformAsync(configurationName, platformName, defaultProject);
-                    await SetStartupProjectAsync(defaultProject);
-                }
-                catch (Exception ex)
-                {
-                    AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
-                }
-            });
+                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+                SetStartupProject(defaultProject);
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
+            }
         }
 
         public override string GetActiveProjectNamespace()
         {
-            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            var p = GetActiveProject();
+
+            if (p != null && p.Properties != null)
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var p = GetActiveProject();
+                return p.Properties.Item("DefaultNamespace")?.Value?.ToString();
+            }
 
-                if (p != null && p.Properties != null)
-                {
-                    return p.Properties.Item("DefaultNamespace")?.Value?.ToString();
-                }
-
-                return null;
-            });
+            return null;
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -318,7 +317,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void WriteOutput(string data)
         {
-            OutputPane.Write(data);
+            SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var output = await _outputPane.GetValueAsync();
+                output.Write(data);
+            });
         }
 
         public override void CloseSolution()
@@ -625,30 +629,35 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
        }
 
-        private async Task<bool> SetActiveConfigurationAndPlatformAsync(string configurationName, string platformName, Project project)
+        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
-            foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
+            return SafeThreading.JoinableTaskFactory.Run(
+            async () =>
             {
-                if (solConfiguration.Name == configurationName)
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                var dte = await _dte.GetValueAsync();
+                foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
                 {
-                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    if (solConfiguration.Name == configurationName)
                     {
-                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                        foreach (SolutionContext context in solConfiguration.SolutionContexts)
                         {
-                            solConfiguration.Activate();
+                            if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                            {
+                                solConfiguration.Activate();
+                            }
                         }
                     }
                 }
-            }
 
-            return false;
+                return false;
+            });
         }
 
-        private async Task SetStartupProjectAsync(Project project)
+        private void SetStartupProject(Project project)
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (project != null)
             {
                 var solution = GetSolution();
