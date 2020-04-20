@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:model="using:Param_RootNamespace.Core.Models"
+    xmlns:views="using:Param_RootNamespace.Views"
+    xmlns:toolkitConverters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:converters="using:Param_RootNamespace.Converters"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <toolkitConverters:BoolToVisibilityConverter x:Name="ReverseBoolToVisibility" TrueValue="Collapsed" FalseValue="Visible" />
+        <converters:DateTimeFormatConverter x:Name="dateTimeFormatConverter" />
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <winui:TwoPaneView
+            x:Name="twoPaneView"
+            Pane1Length="320"
+            Pane2Length="*"
+            PanePriority="{x:Bind ViewModel.TwoPanePriority, Mode=OneWay}"
+            MinWideModeWidth="772"
+            WideModeConfiguration="LeftRight"
+            TallModeConfiguration="SinglePane"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="ModeChanged">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ModeChangedCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <winui:TwoPaneView.Pane1>
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        x:Name="titleTextBlock"
+                        x:Uid="wts.ItemNameTitle"
+                        Margin="{StaticResource SmallLeftMargin}"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource ListTitleStyle}" />
+                    <ListView
+                        Grid.Row="1"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind ViewModel.SampleItems}"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
+                        <i:Interaction.Behaviors>
+                            <ic:EventTriggerBehavior EventName="ItemClick">
+                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
+                            </ic:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:SampleOrder">
+                                <views:wts.ItemNameListItemControl Item="{Binding}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </winui:TwoPaneView.Pane1>
+            <winui:TwoPaneView.Pane2>
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <views:wts.ItemNameDetailControl SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}" />
+                </Grid>
+            </winui:TwoPaneView.Pane2>
+        </winui:TwoPaneView>
+    </Grid>
+</Page>
