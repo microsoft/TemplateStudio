@@ -1,0 +1,10 @@
+﻿<Page
+    mc:Ignorable="d">
+    <winui:NavigationView
+<!--^^-->
+<!--{[{-->
+        ExpandedModeThresholdWidth="1280"
+<!--}]}-->
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+    </winui:NavigationView>
+</Page>

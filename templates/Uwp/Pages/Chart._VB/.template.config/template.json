@@ -17,7 +17,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "10",
+    "wts.displayOrder": "11",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Service.SampleDataService.VB",
     "wts.genGroup": "0",
