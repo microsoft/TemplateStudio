@@ -13,6 +13,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -23,17 +24,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public VsOutputPane()
         {
-            SafeThreading.JoinableTaskFactory.Run(
-            async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _pane = await GetOrCreatePaneAsync(Guid.Parse(TemplatesPaneGuid), true, false);
+           SafeThreading.JoinableTaskFactory.Run(
+           async () =>
+           {
+               await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+               _pane = await GetOrCreatePaneAsync(Guid.Parse(TemplatesPaneGuid), true, false);
 
-                if (_pane != null)
-                {
-                    _pane.Activate();
-                }
-            });
+               if (_pane != null)
+               {
+                   _pane.Activate();
+               }
+           });
         }
 
         public void Write(string data)
@@ -42,28 +43,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
                 _pane.OutputString(data);
             });
         }
 
         private static async Task<OutputWindowPane> GetOrCreatePaneAsync(Guid paneGuid, bool visible, bool clearWithSolution)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             OutputWindowPane result = null;
 
             try
             {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
-                    {
-                        result = await GetUwpPaneAsync(dte, paneGuid);
+                if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
+                {
+                    result = await GetUwpPaneAsync(dte, paneGuid);
 
-                        if (result == null)
-                        {
-                            await CreateUwpPaneAsync(paneGuid, visible, clearWithSolution, StringRes.WindowsTemplateStudio);
-                            result = await GetUwpPaneAsync(dte, paneGuid);
-                        }
+                    if (result == null)
+                    {
+                        await CreateUwpPaneAsync(paneGuid, visible, clearWithSolution, StringRes.WindowsTemplateStudio);
+                        result = await GetUwpPaneAsync(dte, paneGuid);
                     }
+                }
             }
             catch (Exception ex)
             {
@@ -73,10 +74,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             return result;
         }
 
-        private static async System.Threading.Tasks.Task CreateUwpPaneAsync(Guid paneGuid, bool visible, bool clearWithSolution, string title)
+        private static async Task CreateUwpPaneAsync(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
             if (ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) is IVsOutputWindow output)
             {
                 // Create a new pane.

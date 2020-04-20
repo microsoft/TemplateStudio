@@ -279,20 +279,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectPath()
         {
-            return SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var p = GetActiveProject();
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var p = GetActiveProject();
 
-                if (p != null)
-                {
-                    return Path.GetDirectoryName(p.FileName);
-                }
-                else
-                {
-                    return null;
-                }
-            });
+            if (p != null)
+            {
+                return Path.GetDirectoryName(p.FileName);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override string GetActiveProjectLanguage()
@@ -321,11 +318,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void WriteOutput(string data)
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                OutputPane.Write(data);
-            });
+            OutputPane.Write(data);
         }
 
         public override void CloseSolution()
@@ -363,36 +356,34 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetProjectGuidByName(string projectName)
         {
-            return SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var project = GetProjectByName(projectName);
-                Guid projectGuid = Guid.Empty;
-                try
-                {
-                    if (project != null)
-                    {
-                        if (ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) is IVsSolution solution)
-                        {
-                            solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+            ThreadHelper.ThrowIfNotOnUIThread();
 
-                            if (hierarchy != null)
-                            {
-                                hierarchy.GetGuidProperty(
-                                            VSConstants.VSITEMID_ROOT,
-                                            (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
-                                            out projectGuid);
-                            }
+            var project = GetProjectByName(projectName);
+            Guid projectGuid = Guid.Empty;
+            try
+            {
+                if (project != null)
+                {
+                    if (ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) is IVsSolution solution)
+                    {
+                        solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                        if (hierarchy != null)
+                        {
+                            hierarchy.GetGuidProperty(
+                                        VSConstants.VSITEMID_ROOT,
+                                        (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                        out projectGuid);
                         }
                     }
                 }
-                catch
-                {
-                    projectGuid = Guid.Empty;
-                }
+            }
+            catch
+            {
+                projectGuid = Guid.Empty;
+            }
 
-                return projectGuid;
-            });
+            return projectGuid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
@@ -428,30 +419,27 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override bool GetActiveProjectIsWts()
         {
-            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            bool result = false;
+            var activeProjectPath = GetActiveProjectPath();
+            if (!string.IsNullOrEmpty(activeProjectPath))
             {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
 
-                bool result = false;
-                var activeProjectPath = GetActiveProjectPath();
-                if (!string.IsNullOrEmpty(activeProjectPath))
+                if (!string.IsNullOrEmpty(metadataFile))
                 {
-                    var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
-                    var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
-
-                    if (!string.IsNullOrEmpty(metadataFile))
+                    var metadataFilePath = Path.Combine(activeProjectPath, metadataFile);
+                    if (File.Exists(metadataFilePath))
                     {
-                        var metadataFilePath = Path.Combine(activeProjectPath, metadataFile);
-                        if (File.Exists(metadataFilePath))
-                        {
-                            var fileContent = File.ReadAllText(metadataFilePath);
-                            result = fileContent.Contains("genTemplate:Metadata");
-                        }
+                        var fileContent = File.ReadAllText(metadataFilePath);
+                        result = fileContent.Contains("genTemplate:Metadata");
                     }
                 }
+            }
 
-                return result;
-            });
+            return result;
         }
 
         public override bool IsDebuggerEnabled()
