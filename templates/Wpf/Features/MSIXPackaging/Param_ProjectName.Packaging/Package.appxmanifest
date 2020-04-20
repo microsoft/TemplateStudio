@@ -10,7 +10,7 @@
   <Identity
     Name="07ad151b-a614-4a13-aef0-5378d3f98e67"
     Publisher="CN=Param_UserName"
-    Version="1.0.5.0" />
+    Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>Param_ProjectName.Packaging</DisplayName>
