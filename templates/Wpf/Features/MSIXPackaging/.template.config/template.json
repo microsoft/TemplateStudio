@@ -40,7 +40,8 @@
     },
     "wts.projectName": {
       "type": "parameter",
-      "replaces": "Param_ProjectName"
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
     },
     "wts.userName":
     {
