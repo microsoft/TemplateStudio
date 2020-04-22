@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Microsoft.Internal.VisualStudio.Shell.TableControl;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
@@ -34,8 +35,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
         private readonly GenerationService _generationService = GenerationService.Instance;
         private bool _canRefreshTemplateCache;
+        private bool _canRecreateProject;
         private string _selectedTheme;
         private bool _useStyleCop;
+        private string _language;
+        private string _platform;
+        private UserSelection _userSelection;
+        private (string name, string solutionName, string location) _projectLocation;
 
         private RelayCommand _refreshTemplateCacheCommand;
 
@@ -83,6 +89,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
+        public RelayCommand RecreateProjectCommand => new RelayCommand(RecreateProject, () => _canRecreateProject);
 
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
@@ -146,6 +154,16 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void RecreateProject()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                _projectLocation = NewProjectViewModel.GetNewProjectInfo();
+                await RecreateProjectAsync();
+            });
+        }
+
         private void AnalyzeCSharpSelection()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
@@ -173,31 +191,71 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private async Task NewProjectAsync(string platform, string language)
+
+        private async Task RecreateProjectAsync()
         {
-            SetCurrentLanguage(language);
-            SetCurrentPlatform(platform);
+            SetCurrentLanguage(_language);
+            SetCurrentPlatform(_platform);
 
             try
             {
-                var newProjectInfo = ShowNewProjectDialog();
-
-                if (!string.IsNullOrEmpty(newProjectInfo.name))
+                if (!string.IsNullOrEmpty(_projectLocation.name))
                 {
                     var newProject = new GeneratedProjectInfo();
-                    newProject.SetBasicInfo(newProjectInfo);
+                    newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
-
-                    if (userSelection != null)
+                    if (_userSelection != null)
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(userSelection, platform, language);
+                            AddStyleCop(_userSelection, Platforms.Wpf, ProgrammingLanguages.CSharp);
                         }
-                        await _generationService.GenerateProjectAsync(userSelection);
+                        await _generationService.GenerateProjectAsync(_userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(_userSelection.ProjectType, _userSelection.FrontEndFramework, Platforms.Wpf, ProgrammingLanguages.CSharp, UseStyleCop);
+                        newProject.SetContextInfo();
+                        Projects.Insert(0, newProject);
+                    }
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                CleanUp();
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private async Task NewProjectAsync(string platform, string language)
+        {
+            _platform = platform;
+            _language = language;
+            SetCurrentLanguage(_language);
+            SetCurrentPlatform(_platform);
+
+            try
+            {
+                _projectLocation = ShowNewProjectDialog();
+
+                if (!string.IsNullOrEmpty(_projectLocation.name))
+                {
+                    var newProject = new GeneratedProjectInfo();
+                    newProject.SetBasicInfo(_projectLocation);
+                    newProject.SetContext();
+                    _userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+                    _canRecreateProject = true;
+                    if (_userSelection != null)
+                    {
+                        if (UseStyleCop)
+                        {
+                            AddStyleCop(_userSelection, platform, language);
+                        }
+                        await _generationService.GenerateProjectAsync(_userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                        newProject.SetProjectData(_userSelection.ProjectType, _userSelection.FrontEndFramework, platform, language, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }

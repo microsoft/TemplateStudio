@@ -161,7 +161,7 @@ EndProject
             if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
-                var projectTypeGuid = GetProjectGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                var projectTypeGuid = GetProjectTypeGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
                 projectGuid = projectGuid.Contains("{") ? projectGuid : "{" + projectGuid + "}";
                 var projectContent = ProjectTemplate
                                             .Replace("{guid}", projectTypeGuid)
@@ -266,7 +266,7 @@ EndProject
             return slnContent;
         }
 
-        private static string GetProjectGuid(string projectExtension, bool isCPSProject)
+        private static string GetProjectTypeGuid(string projectExtension, bool isCPSProject)
         {
             // See https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
             switch (projectExtension)
