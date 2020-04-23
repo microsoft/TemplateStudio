@@ -65,7 +65,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         public void Initialize()
         {
-            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Studio 2017", "Projects");
+            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Studio 2019", "Projects");
 
             SetName();
 

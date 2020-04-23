@@ -148,9 +148,6 @@
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
     <Compile Include="WACK\Uwp\WindowsAppCertKitTests.cs" />
-    <None Include="bat\RestoreAndBuildXamarin.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="bat\RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
