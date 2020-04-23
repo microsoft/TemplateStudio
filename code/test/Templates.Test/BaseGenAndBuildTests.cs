@@ -262,7 +262,7 @@ namespace Microsoft.Templates.Test
                 var summary = _fixture.GetTestSummary(testOutputFile);
 
                 Assert.True(
-                    summary.Contains("Failed: 0."),
+                    summary.Contains("Failed: 0.") || !summary.Contains("Failed"),
                     $"Tests failed. {Environment.NewLine}{summary}{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
             }
             else
