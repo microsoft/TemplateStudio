@@ -21,7 +21,9 @@ namespace Microsoft.Templates.UI.Threading
             }
             catch (NullReferenceException)
             {
-                JoinableTaskContext context = ThreadHelper.JoinableTaskContext;
+#pragma warning disable VSSDK005 // Avoid instantiating JoinableTaskContext
+                JoinableTaskContext context = new JoinableTaskContext(System.Threading.Thread.CurrentThread);
+#pragma warning restore VSSDK005 // Avoid instantiating JoinableTaskContext
                 JoinableTaskCollection collection = context.CreateCollection();
                 JoinableTaskFactory = context.CreateFactory(collection);
             }
