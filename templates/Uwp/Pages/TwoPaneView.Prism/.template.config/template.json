@@ -73,7 +73,7 @@
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
         "version" : "2.3.200213001",
-        "projectPath": "Param_ProjectName/Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     },
@@ -84,7 +84,7 @@
       "args": {
         "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
         "version" : "6.0.0",
-        "projectPath": "Param_ProjectName/Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     }
