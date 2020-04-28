@@ -4,7 +4,7 @@
 <!--{[{-->
         <Fluent:BackstageTabItem
             Tag="Param_RootNamespace.ViewModels.wts.ItemNameViewModel"
-            Header="{x:Static strings:Resources.ShellPageRibbonBackstageTabwts.ItemNameHeader}" />
+            Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabwts.ItemNameHeader}" />
 <!--}]}-->
     </Fluent:BackstageTabControl>
 </Fluent:Backstage>

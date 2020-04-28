@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
     xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -16,7 +16,7 @@
     Unloaded="MetroWindow_Unloaded"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
-    Title="{x:Static strings:Resources.AppDisplayName}">
+    Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -59,16 +59,16 @@
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
-                    Header="{x:Static strings:Resources.ShellPageRibbonTabHomeHeader}">
+                    Header="{x:Static properties:Resources.ShellPageRibbonTabHomeHeader}">
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="150"
-                        Header="{x:Static strings:Resources.ShellPageRibbonHomeGroupCommon1Header}">
+                        Header="{x:Static properties:Resources.ShellPageRibbonHomeGroupCommon1Header}">
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox
                         State="Middle"
                         MinWidth="150"
-                        Header="{x:Static strings:Resources.ShellPageRibbonHomeGroupCommon2Header}">
+                        Header="{x:Static properties:Resources.ShellPageRibbonHomeGroupCommon2Header}">
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>

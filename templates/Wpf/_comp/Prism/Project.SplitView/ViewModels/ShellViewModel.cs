@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Constants;
-using Param_RootNamespace.Strings;
+using Param_RootNamespace.Properties;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;

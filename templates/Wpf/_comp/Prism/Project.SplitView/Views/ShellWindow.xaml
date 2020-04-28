@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
     xmlns:templateSelectors="clr-namespace:Param_RootNamespace.TemplateSelectors"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
-    Title="{x:Static strings:Resources.AppDisplayName}">
+    Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
