@@ -4,7 +4,7 @@
     xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
 <!--}]}-->
     Style="{StaticResource CustomMetroWindow}"
-    Title="{x:Static strings:Resources.AppDisplayName}">
+    Title="{x:Static properties:Resources.AppDisplayName}">
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
             OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
