@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "Bu, MVVM deseninin genel bir sürümü. Model-View-ViewModel deseni tüm XAML platformlarında kullanılabilir."
+    "summary": "Bu, genel bir MVVM pattern sürümüdür. Model-View-ViewModel deseni tüm XAML platformlarında kullanılabilir."
   },
   {
     "name": "MVVMLight",

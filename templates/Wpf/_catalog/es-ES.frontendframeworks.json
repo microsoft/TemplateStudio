@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "Esta es una versión genérica de un patrón MVVM. El patrón Model-View-ViewModel se puede usar en todas las plataformas XAML."
+    "summary": "Esta es una versión genérica de un MVVM pattern. El patrón Model-View-ViewModel se puede usar en todas las plataformas XAML."
   },
   {
     "name": "MVVMLight",
@@ -12,6 +12,6 @@
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism es un framework para compilar aplicaciones XAML acopladas de forma imprecisa, fácil de mantener y con capacidad de prueba."
+    "summary": "Prism es un framework para compilar aplicaciones XAML acopladas de forma imprecisa, fáciles de mantener y con capacidad de prueba."
   }
 ]

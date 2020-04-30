@@ -1,5 +1,5 @@
-﻿This page allows you to add content to a TwoPaneView to automatically rearrange content as it best fits the window.
+﻿ Tato stránka umožňuje přidávat do zobrazení TwoPaneView obsah, který se bude automaticky uspořádávat tak, aby se co nejlépe přizpůsobil oknu.
 
-The TwoPaneView control is designed to help you take full advantage of dual-screen devices automatically, with no special coding needed.
+ Ovládací prvek TwoPaneView umožňuje automaticky plně využívat výhod dvoudisplejových zařízení bez nutnosti vývoje speciálního kódu.
 
-On a dual-screen device, the two-pane view ensures that the user interface (UI) is split cleanly when it spans the gap between screens, so that your content is presented on either side of the gap. [Learn more about the Two Pane View](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view).
+ Na dvoudisplejových zařízeních zobrazení dvou panelů zajišťuje, že uživatelské rozhraní (UI) bude čistě rozděleno s ohledem na mezeru mezi oběma displeji. Obsah se tak bude zobrazovat na jednom z displejů.  [Další informace o ovládacím prvku TwoPaneView](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view)

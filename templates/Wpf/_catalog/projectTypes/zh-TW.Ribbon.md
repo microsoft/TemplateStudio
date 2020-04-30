@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿新增由幾個索引標籤所組成的功能區控制項，其分組方式為代表應用程式功能表動作的功能。

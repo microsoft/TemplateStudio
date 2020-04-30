@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿アプリケーションのメニュー アクションを表現する、機能別にグループ化された数個のタブを備えているリボン コントロールを追加します。

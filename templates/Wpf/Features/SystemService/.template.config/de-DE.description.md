@@ -1,1 +1,1 @@
-﻿SystemService contains operations that interact with functionalities and native APIs of the operating system.
+﻿„SystemService“ enthält Verfahren, die mit Funktionen und nativen APIs des Betriebssystems interagieren.

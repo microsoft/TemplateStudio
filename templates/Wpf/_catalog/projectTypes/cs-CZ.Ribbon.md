@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Přidává ovládací prvek Pás karet, který obsahuje určitý počet karet seskupených podle funkce. Karty představují akce v nabídce aplikace.

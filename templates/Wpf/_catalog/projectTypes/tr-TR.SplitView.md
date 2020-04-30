@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿Bu proje, sayfalar arasında gezinti için ekranın kenarında bir Hamburger Menüsü içerir.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+Bu stil, mobil uygulamalarda popülerdir ancak daha büyük ekranlarda da sorunsuz çalışır. Menü, hamburger düğmesine tıklayarak genişletilebilir veya daraltılabilir.
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+Menü, öğeleri bir simge ve metinle gösterir. Menüde simge veya simge ve metin bir arada gösterilebilir.

@@ -117,6 +117,110 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NewProjectTitleUWP" xml:space="preserve">
+    <value>새로운 유니버설 Windows 플랫폼 앱</value>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>새 WPF 앱</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>패키징</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
+    <comment>Has hamburger menu validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>요구 사항:</value>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>다음 템플릿은 호환되지 않으므로 **{0}**을(를) 추가할 수 없습니다. {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>제외 항목:</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>{0} RegEx 유효성 검사 실패.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>{0} 프로젝트에 항목 추가 중 오류 발생</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>{0}프로젝트 추가 중 오류 발생</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>프로젝트 간 참조 추가 중 오류 발생</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>{0} 프로젝트에 SDK 추가 중 오류 발생.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="NotificationMissingSdk" xml:space="preserve">
+    <value>다음 타겟 플랫폼에 대한 필수 Windows SDK가 없음: {0}.  [설치](https://developer.microsoft.com/windows/downloads/windows-10-sdk)를 진행한 후 Visual Studio를 다시 시작하십시오.</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>필수 Windows SDK:</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>.NET 데스크톱 개발</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>MSIX 패키징 도구</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>ASP.NET 및 웹 개발</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>유니버설 Windows 플랫폼 개발</value>
+  </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>상위 버전 필요</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
+    <value>WPF에서 .NET Core 프로젝트를 만들려면 Visual Studio 2019 Update 3 이상의 버전이 필요합니다.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>워크로드 누락</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>자세한 정보</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>{1} 프로젝트를 생성하려면 "{0}” 워크로드를 설치해야 합니다. Visual Studio 설치 관리자를 사용하여 이 워크로드를 설치하십시오.</value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
+  <data name="WPF" xml:space="preserve">
+    <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>필수 Visual Studio 워크로드 / 구성요소:</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Visual Studio 워크로드/구성 요소가 누락되었으므로 이 항목을 지금 사용할 수 없습니다.</value>
+  </data>
   <data name="AddServiceTitle" xml:space="preserve">
     <value>서비스 추가</value>
     <comment>AddService title on AddServicePage</comment>
@@ -368,14 +472,6 @@
     <value>새 페이지</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitleUWP" xml:space="preserve">
-    <value>새로운 유니버설 Windows 플랫폼 앱</value>
-    <comment>Wizard title on WizardShell page for UWP projects</comment>
-  </data>
-  <data name="NewProjectTitleWPF" xml:space="preserve">
-    <value>New WPF app</value>
-    <comment>Wizard title on WizardShell page for WPF projects</comment>
-  </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>이 템플릿의 의존성 때문에 **{0}**를 제거할 수 없습니다: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
@@ -560,10 +656,6 @@
     <value>애플리케이션 시작하기</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
-  <data name="TemplateGroup_Packaging" xml:space="preserve">
-    <value>Packaging</value>
-    <comment>Group header for Packaging templates</comment>
-  </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>애플리케이션 수명 주기</value>
     <comment>Group header for application lifecycle templates</comment>
@@ -683,25 +775,13 @@
     <value>사용 가능한 콘텐츠 없음.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
-    <comment>Has hamburger menu validation link documentation</comment>
-  </data>
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
   <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
-    <comment>Has old navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
@@ -730,10 +810,6 @@
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
     <value>MVVMLight의 MultiView를 지원하기 위해 MVVMLight ViewModelLocator 구현을 변경했습니다. </value>
     <comment>Has old MvvmLight Locator error message</comment>
-  </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
@@ -812,81 +888,5 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateDetailsRequirements" xml:space="preserve">
-    <value>Requirements:</value>
-  </data>
-  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
-    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
-  </data>
-  <data name="TemplateDetailsExclusions" xml:space="preserve">
-    <value>Exclusions:</value>
-  </data>
-  <data name="NotificationValidationError_Regex" xml:space="preserve">
-    <value>RegEx validation {0} failed.</value>
-    <comment>Validation error message: RegEx</comment>
-  </data>
-  <data name="ErrorAddingItemsToProject" xml:space="preserve">
-    <value>Error adding items to project {0}.</value>
-    <comment>Error message for adding items to project. {0}: projectPath</comment>
-  </data>
-  <data name="ErrorAddingProject" xml:space="preserve">
-    <value>Error adding project {0}.</value>
-    <comment>Error message for adding project. {0}: projectPath</comment>
-  </data>
-  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
-    <value>Error adding references between projects</value>
-    <comment>Error message for adding references between projects</comment>
-  </data>
-  <data name="ErrorAddingSdksToProject" xml:space="preserve">
-    <value>Error adding sdks to project {0}.</value>
-    <comment>Error message for adding sdks to project. {0}: projectPath</comment>
-  </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding.</value>
-  </data>
-  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
-    <value>Required Windows Sdks:</value>
-  </data>
-  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
-    <value>.NET desktop development</value>
-  </data>
-  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
-    <value>MSIX Packaging Tools</value>
-  </data>
-  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
-    <value>ASP.NET and web development</value>
-  </data>
-  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
-    <value>Universal Windows Platform development</value>
-  </data>
-  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
-    <value>Higher version required</value>
-  </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
-  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
-    <value>Missing workload</value>
-  </data>
-  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
-    <value>More info</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the workload "{0}” to create a {1} project. Please install this workload using the Visual Studio Installer.</value>
-  </data>
-  <data name="UWP" xml:space="preserve">
-    <value>UWP</value>
-  </data>
-  <data name="WPF" xml:space="preserve">
-    <value>WPF (.NET Core)</value>
-  </data>
-  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
-    <value>Required Visual Studio Workloads / Components:</value>
-  </data>
-  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
-    <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
   </data>
 </root>

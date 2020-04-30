@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Добавляет элемент управления в виде ленты, которая состоит из нескольких закладок, сгруппированных по функциональности, для представления действий меню приложения.

@@ -1,1 +1,1 @@
-﻿This feature allows you to change your app's theme between Light and Dark.
+﻿Эта функция позволяет менять тему вашего приложения, выбирая между светлой и темной схемой.

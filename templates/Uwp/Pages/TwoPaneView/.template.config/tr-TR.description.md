@@ -1,5 +1,5 @@
-﻿This page allows you to add content to a TwoPaneView to automatically rearrange content as it best fits the window.
+﻿ Bu sayfa, içeriği pencereye uyacak şekilde otomatik olarak yeniden düzenlemek için bir TwoPaneView öğesine içerik eklemenize olanak tanır.
 
-The TwoPaneView control is designed to help you take full advantage of dual-screen devices automatically, with no special coding needed.
+ TwoPaneView denetimi herhangi bir özel kodlama gerekmeden, çift ekranlı cihazlardan otomatik olarak en iyi şekilde yararlanmanıza yardımcı olmak amacıyla tasarlanmıştır.
 
-On a dual-screen device, the two-pane view ensures that the user interface (UI) is split cleanly when it spans the gap between screens, so that your content is presented on either side of the gap. [Learn more about the Two Pane View](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view).
+ Çift ekranlı bir cihazda iki bölmeli görünüm, kullanıcı arabiriminin ekranlar arasındaki boşluğa denk gelmeyecek şekilde kesintisiz görüntülenmesini ve böylece içeriğinizin boşluğun iki tarafından birinde bulunmasını sağlar.  [İki Bölmeli Görünüm hakkında daha fazla bilgi edinin.](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view)

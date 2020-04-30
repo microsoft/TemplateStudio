@@ -1,6 +1,6 @@
-﻿Il s'agit d'une version générique d'un modèle MVVM.  Le modèle MVVM [modèle-vue-vue modèle]https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-vue_mod%C3%A8le) peut être utilisé sur toutes les plateformes XAML. Il est destiné à séparer de manière distincte les éléments relevant des commandes de l'interface utilisateur et leur logique.
+﻿Il s'agit d'une version générique d'un MVVM pattern.  Le modèle MVVM [modèle-vue-vue modèle]https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-vue_mod%C3%A8le) peut être utilisé sur toutes les plateformes XAML. Il est destiné à séparer de manière distincte les éléments relevant des commandes de l'interface utilisateur et leur logique.
 
-Il existe trois composants principaux dans le modèle MVVM : le modèle, la vue et le modèle de vue. Chacun d'eux joue un rôle bien défini.
+Il existe trois composants principaux dans le MVVM pattern : le modèle, la vue et le modèle de vue. Chacun d'eux joue un rôle bien défini.
 
 MVVM Basic n'est pas une framework, mais fournit les fonctionnalités minimales pour créer une application à l'aide du modèle MVVM (modèle-vue-vue modèle).
 Utilisez-le si vous ne parvenez ou ne souhaitez pas utiliser une Framework MVVM tierce.

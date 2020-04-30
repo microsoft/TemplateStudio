@@ -1,1 +1,3 @@
-﻿
+﻿Die Webansichtseite integriert eine Ansicht in Ihre App, die Webinhalte mithilfe des Microsoft Edge-Renderingmoduls über das Steuerelement WebView im Microsoft-Toolkit für WPF rendert. Darüber hinaus können in einem Webansichtsteuerelement Hyperlinks angezeigt und ausgeführt werden.  Sie können ein Webansichtsteuerelement verwenden, um in Ihrem App-Paket umfangreich formatierte HTML-Inhalte aus einem Remotewebserver, dynamisch generierten Code oder Inhaltsdateien anzuzeigen. Umfangreich formatierte Inhalte können auch Skriptcode enthalten und zwischen dem Skript und dem Code Ihrer App kommunizieren.
+
+[Ist das Webansichtsteuerelement für Sie geeignet?](https://docs.microsoft.com/windows/communitytoolkit/controls/wpf-winforms/webview)

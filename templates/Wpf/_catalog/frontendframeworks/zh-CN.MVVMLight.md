@@ -2,4 +2,4 @@
 
 此工具包特别注重已创建应用程序的“混合能力”（即可在 Blend 中打开和编辑用户界面），包括创建设计时数据，使 Blend 用户可在使用数据控件时“查看特定内容”。
 
-你可以在 [MVVM Light 主页](http://www.mvvmlight.net/)上了解更多信息
+你可以在 [MVVM Light 主页] (http://www.mvvmlight.net/) 上了解更多信息

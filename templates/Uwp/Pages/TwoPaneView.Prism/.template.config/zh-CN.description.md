@@ -1,5 +1,5 @@
-﻿This page allows you to add content to a TwoPaneView to automatically rearrange content as it best fits the window.
+﻿此页允许你添加内容到 TwoPaneView 中，以便按照最合适的窗口显示方式自动重新排列内容。
 
-The TwoPaneView control is designed to help you take full advantage of dual-screen devices automatically, with no special coding needed.
+ TwoPaneView 控件旨在自动帮助你充分利用双屏设备，无需特殊编码。
 
-On a dual-screen device, the two-pane view ensures that the user interface (UI) is split cleanly when it spans the gap between screens, so that your content is presented on either side of the gap. [Learn more about the Two Pane View](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view).
+ 在双屏设备上，双窗格视图确保用户界面 (UI) 在跨越屏幕间的间隙时能够清晰地拆分，以便将内容显示在间隙的两侧。[详细了解双窗格视图。](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view)
