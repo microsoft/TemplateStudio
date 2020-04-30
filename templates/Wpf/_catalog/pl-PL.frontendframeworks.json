@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "To jest ogólna wersja wzorca MVVM. Wzorzec Model-View-ViewModel może być używany na wszystkich platformach XAML."
+    "summary": "To jest ogólna wersja obiektu MVVM pattern. Wzorzec Model-View-ViewModel może być używany na wszystkich platformach XAML."
   },
   {
     "name": "MVVMLight",

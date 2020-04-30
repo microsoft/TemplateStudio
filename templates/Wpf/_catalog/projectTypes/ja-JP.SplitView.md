@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿このプロジェクトには、画面の横に表示される、ページ間を移動するためのハンバーガー メニューが含まれています。
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+このスタイルは、モバイル アプリでよく使用されますが、大きな画面でも便利に使用できます。ハンバーガー ボタンをクリックすると、メニューの展開表示と折りたたみ表示が切り替わります。
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+メニュー内の項目はアイコンとテキストで表示されます。アイコンだけを表示することも、アイコンとテキストを表示することもできます。

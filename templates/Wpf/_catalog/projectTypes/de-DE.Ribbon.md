@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Fügt ein Menüband-Steuerelement hinzu, das aus verschiedenen nach Funktionalität gruppierten Registerkarten besteht, die die Menüaktionen einer Anwendung darstellen.

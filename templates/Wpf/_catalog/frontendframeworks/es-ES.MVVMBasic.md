@@ -1,6 +1,6 @@
-﻿Esta es una versión genérica de un patrón MVVM.  El [patrón Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) se puede usar en todas las plataformas XAML. Su intención es separar de forma precisa los problemas de los controles de la interfaz de usuario de su lógica.
+﻿Esta es una versión genérica de un MVVM pattern.  El [patrón Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) se puede usar en todas las plataformas XAML. Su intención es separar de forma precisa los problemas de los controles de la interfaz de usuario de su lógica.
 
-Hay tres componentes principales en el patrón MVVM: el modelo, la vista y el modelo de vista. Cada uno tiene un rol diferente e independiente.
+Hay tres componentes principales en el MVVM pattern: el modelo, la vista y el modelo de vista. Cada uno tiene un rol diferente e independiente.
 
 MVVM Basic no es un framework, pero proporciona la funcionalidad mínima para crear una aplicación usando el patrón Model-View-ViewModel (MVVM).
 Úsalo si no puedes o no quieres usar un Framework MVVM de terceros.

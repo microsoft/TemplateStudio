@@ -1,6 +1,6 @@
-﻿MVVM 패턴의 일반 버전입니다.  [Model-View-ViewModel 패턴](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)은 XAML 플랫폼에서 사용합니다. 사용자 인터페이스 컨트롤과 논리 간의 고려 사항을 명확하게 분리하는 데 의도를 두고 있습니다.
+﻿MVVM pattern의 일반 버전입니다.  [Model-View-ViewModel 패턴](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)은 XAML 플랫폼에서 사용합니다. 그 목적은 사용자 인터페이스 컨트롤과 논리 간의 고려 사항을 명확하게 분리하는 것입니다.
 
-MVVM 패턴의 3가지 핵심 구성 요소는 모델, 뷰, 뷰 모델입니다. 각각 서로 다른 역할을 수행합니다.
+MVVM pattern의 3가지 핵심 구성 요소는 모델, 뷰, 뷰 모델입니다. 각기 서로 다른 역할을 수행합니다.
 
 MVVM BasicMVVM Basic은 framework프레임워크는 아니지만 MVVM(Model-View-ViewModel) 패턴을 이용해 앱을 만드는 최소 기능을 제공합니다.
 타사의 MVVM Framework프레임워크를 사용하고 싶지 않거나 사용할 수 없을 때 사용하십시오.

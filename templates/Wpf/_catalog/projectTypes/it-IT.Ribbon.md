@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Aggiunge un controllo barra multifunzione costituita da diverse schede, raggruppate per funzionalità per rappresentare le azioni di menu di un'applicazione.

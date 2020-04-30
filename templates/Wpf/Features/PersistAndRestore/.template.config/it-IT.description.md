@@ -1,1 +1,1 @@
-﻿Persist And Restore provides a service that makes working with application data simpler. It handles loading, saving, and serializing both files and individual pieces of data in the user's local app data folder.
+﻿Il servizio di rendere persistenti e di ripristinare gli elementi semplifica l'utilizzo dei dati delle applicazioni. Gestisce carico, salvataggio e serializzazione di file e di singoli dati in una qualsiasi delle cartelle AppData locali dell'utente.

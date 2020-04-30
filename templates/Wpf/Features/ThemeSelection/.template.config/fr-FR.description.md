@@ -1,1 +1,1 @@
-﻿This feature allows you to change your app's theme between Light and Dark.
+﻿Cette fonctionnalité vous permet de changer le thème de votre application en sombre ou clair.

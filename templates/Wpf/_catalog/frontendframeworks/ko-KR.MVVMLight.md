@@ -2,4 +2,4 @@
 
 이 툴킷은 애플리케이션의 "혼합 기능"(사용자 인터페이스를 열어 Blend로 편집하는 기능)에 특별히 중점을 두고 있습니다. 또한 데이터 컨트롤 작동 시 Blend 사용자가 볼 수 있는 디자인 타임 데이터가 생성됩니다.
 
-자세한 내용은[ MVVM LightMVVM Light ]홈페이지에서 알아보십시오. (http://www.mvvmlight.net/)
+자세한 내용은 [MVVM Light 홈페이지]에서 알아보십시오. (http://www.mvvmlight.net/)

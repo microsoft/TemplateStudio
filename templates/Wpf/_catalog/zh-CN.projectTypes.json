@@ -7,7 +7,7 @@
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A Hamburger Menu is included for navigation between pages."
+    "summary": "提供“汉堡菜单”用于在页面之间进行导航。"
   },
   {
     "name": "MenuBar",
@@ -17,6 +17,6 @@
   {
     "name": "Ribbon",
     "displayName": "Ribbon",
-    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
+    "summary": "带有选项卡的功能区，按功能分组以显示菜单操作。"
   }
 ]

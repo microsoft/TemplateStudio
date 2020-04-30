@@ -1,5 +1,5 @@
-﻿This page allows you to add content to a TwoPaneView to automatically rearrange content as it best fits the window.
+﻿ Questa pagina consente di aggiungere contenuto a un controllo TwoPaneView per disporlo in modo che si adatti alle dimensioni della finestra.
 
-The TwoPaneView control is designed to help you take full advantage of dual-screen devices automatically, with no special coding needed.
+ Il controllo TwoPaneView è progettato per sfruttare al meglio i dispositivi a doppio schermo in modo automatico, senza la necessità di codice speciale.
 
-On a dual-screen device, the two-pane view ensures that the user interface (UI) is split cleanly when it spans the gap between screens, so that your content is presented on either side of the gap. [Learn more about the Two Pane View](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view).
+ In un dispositivo a doppio schermo la visualizzazione a due riquadri assicura che l'interfaccia utente venga divisa correttamente quando attraversa lo spazio vuoto tra le schermate, in modo che il contenuto sia visualizzato su entrambi i lati.  [Scopri di più sulla visualizzazione a due riquadri.](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view)

@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿此專案在螢幕的一側包含「漢堡功能表」，好讓您在不同頁面之間導覽。
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+此樣式在行動應用程式中十分普遍，但也適用於較大的螢幕。您可以按一下「漢堡按鈕」來展開或摺疊此功能表。
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+此功能表會顯示包含圖示和文字的項目。此功能表可以僅顯示圖示或同時顯示圖示和文字。

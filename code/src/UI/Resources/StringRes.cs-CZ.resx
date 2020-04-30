@@ -117,6 +117,110 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NewProjectTitleUWP" xml:space="preserve">
+    <value>Nová aplikace UWP</value>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>Nová aplikace WPF</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Vytváření balíčků</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
+    <comment>Has hamburger menu validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Požadavky:</value>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>Není možné přidat šablonu **{0}**, protože následující šablony nejsou kompatibilní: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Vyloučení:</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>Ověření regulárního výrazu {0} se nezdařilo.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Při přidávání položek do projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Při přidávání projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Při přidávání referencí mezi projekty došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Při přidávání sad SDK do projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="NotificationMissingSdk" xml:space="preserve">
+    <value>Chybí požadované sady Windows SDK pro následující cílové platformy TargetPlatforms: {0}.  Pokud chcete pokračovat, [nainstalujte sadu](https://developer.microsoft.com/windows/downloads/windows-10-sdk) a restartujte Visual Studio.</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Požadované sady Windows SDK:</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>Vývoj desktopových aplikací .NET</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>MSIX Packaging Tools</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>Vývoj aplikací ASP.NET a webových aplikací</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>Vývoj aplikací UWP</value>
+  </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Je požadována novější verze</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
+    <value>Pro vytvoření projektu WPF s .NET Core je požadována verze Visual Studio 2019 Update 3 nebo novější.</value>
+    <comment>Error message for WPF .NET Core in VS2017</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>Chybí aplikační úloha</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>Další informace</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>Pro vytvoření projektu {1} musíte nainstalovat aplikační úlohu {0}. Nainstalujte ji pomocí služby Visual Studio Installer.</value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
+  <data name="WPF" xml:space="preserve">
+    <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Požadované aplikační úlohy / komponenty sady Visual Studio:</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Tato položka není nyní k dispozici, protože chybí aplikační úloha / komponenta sady Visual Studio.</value>
+  </data>
   <data name="AddServiceTitle" xml:space="preserve">
     <value>Přidat služby</value>
     <comment>AddService title on AddServicePage</comment>
@@ -368,14 +472,6 @@
     <value>Nová stránka</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewProjectTitleUWP" xml:space="preserve">
-    <value>Nová aplikace UPW</value>
-    <comment>Wizard title on WizardShell page for UWP projects</comment>
-  </data>
-  <data name="NewProjectTitleWPF" xml:space="preserve">
-    <value>New WPF app</value>
-    <comment>Wizard title on WizardShell page for WPF projects</comment>
-  </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Šablonu **{0}** nelze odebrat, protože na ní závisejí tyto šablony: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
@@ -560,10 +656,6 @@
     <value>Spuštění aplikace</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
-  <data name="TemplateGroup_Packaging" xml:space="preserve">
-    <value>Packaging</value>
-    <comment>Group header for Packaging templates</comment>
-  </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>Životní cyklus aplikace</value>
     <comment>Group header for application lifecycle templates</comment>
@@ -683,25 +775,13 @@
     <value>Není k dispozici žádný obsah.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
-    <comment>Has hamburger menu validation link documentation</comment>
-  </data>
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
   <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
-    <comment>Has old navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
@@ -730,10 +810,6 @@
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
     <value>Změnili jsme naši implementaci třídy ViewModelLocator, která je součástí rámce MVVMLight, tak aby podporovala vícenásobné zobrazení v rámci MVVMLight. </value>
     <comment>Has old MvvmLight Locator error message</comment>
-  </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
@@ -812,81 +888,5 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="TemplateDetailsRequirements" xml:space="preserve">
-    <value>Requirements:</value>
-  </data>
-  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
-    <value>You can not add **{0}** because the following templates are not compatible: {1}.</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
-  </data>
-  <data name="TemplateDetailsExclusions" xml:space="preserve">
-    <value>Exclusions:</value>
-  </data>
-  <data name="NotificationValidationError_Regex" xml:space="preserve">
-    <value>RegEx validation {0} failed.</value>
-    <comment>Validation error message: RegEx</comment>
-  </data>
-  <data name="ErrorAddingItemsToProject" xml:space="preserve">
-    <value>Error adding items to project {0}.</value>
-    <comment>Error message for adding items to project. {0}: projectPath</comment>
-  </data>
-  <data name="ErrorAddingProject" xml:space="preserve">
-    <value>Error adding project {0}.</value>
-    <comment>Error message for adding project. {0}: projectPath</comment>
-  </data>
-  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
-    <value>Error adding references between projects</value>
-    <comment>Error message for adding references between projects</comment>
-  </data>
-  <data name="ErrorAddingSdksToProject" xml:space="preserve">
-    <value>Error adding sdks to project {0}.</value>
-    <comment>Error message for adding sdks to project. {0}: projectPath</comment>
-  </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding.</value>
-  </data>
-  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
-    <value>Required Windows Sdks:</value>
-  </data>
-  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
-    <value>.NET desktop development</value>
-  </data>
-  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
-    <value>MSIX Packaging Tools</value>
-  </data>
-  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
-    <value>ASP.NET and web development</value>
-  </data>
-  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
-    <value>Universal Windows Platform development</value>
-  </data>
-  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
-    <value>Higher version required</value>
-  </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
-  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
-    <value>Missing workload</value>
-  </data>
-  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
-    <value>More info</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the workload "{0}” to create a {1} project. Please install this workload using the Visual Studio Installer.</value>
-  </data>
-  <data name="UWP" xml:space="preserve">
-    <value>UWP</value>
-  </data>
-  <data name="WPF" xml:space="preserve">
-    <value>WPF (.NET Core)</value>
-  </data>
-  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
-    <value>Required Visual Studio Workloads / Components:</value>
-  </data>
-  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
-    <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
   </data>
 </root>

@@ -1,5 +1,5 @@
-﻿This page allows you to add content to a TwoPaneView to automatically rearrange content as it best fits the window.
+﻿ Cette page vous permet d'ajouter du contenu à une vue sur deux volets pour réorganiser automatiquement le contenu en fonction de la fenêtre.
 
-The TwoPaneView control is designed to help you take full advantage of dual-screen devices automatically, with no special coding needed.
+ La commande Vue sur deux volets est conçue pour permettre de tirer le plein parti des appareils à double écran, sans qu'aucun codage spécifique ne soit nécessaire.
 
-On a dual-screen device, the two-pane view ensures that the user interface (UI) is split cleanly when it spans the gap between screens, so that your content is presented on either side of the gap. [Learn more about the Two Pane View](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view).
+ Sur un appareil à double écran, la vue à deux volets permet de s'assurer que l'interface utilisateur est nettement divisée lorsqu'elle recouvre l'écart entre les deux écrans, de sorte que votre contenu s'affiche des deux côtés identiquement.  [Apprenez-en davantage sur la vue à deux volets.](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/two-pane-view)

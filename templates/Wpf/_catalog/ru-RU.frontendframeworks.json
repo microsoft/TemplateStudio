@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "Это универсальная версия шаблона MVVM. Шаблон Model-View-ViewModel можно использовать на всех платформах XAML."
+    "summary": "Это универсальная версия шаблона MVVM pattern. Шаблон Model-View-ViewModel можно использовать на всех платформах XAML."
   },
   {
     "name": "MVVMLight",

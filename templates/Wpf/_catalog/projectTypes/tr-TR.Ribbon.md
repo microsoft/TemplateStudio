@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Uygulamanın menü eylemlerini temsil edecek şekilde işlevselliğe göre gruplanmış birkaç sekmeden oluşan bir şerit denetimi ekler.
