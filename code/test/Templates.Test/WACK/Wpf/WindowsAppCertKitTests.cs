@@ -40,24 +40,10 @@ namespace Microsoft.Templates.Test.Wack.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        public async Task WackTests_MvvmBasic_Excluded_WPF(string projectType, string framework, string platform, string language)
-        {
-            await RunWackOnProjectWithExcludedPagesAndFeaturesAsync(projectType, framework, platform, language);
-        }
-
-        [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf)]
         public async Task WackTests_MVVMLight_All_WPF(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
-        }
-
-        [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        public async Task WackTests_MVVMLight_Excluded_WPF(string projectType, string framework, string platform, string language)
-        {
-            await RunWackOnProjectWithExcludedPagesAndFeaturesAsync(projectType, framework, platform, language);
         }
 
         [Theory]
@@ -67,14 +53,6 @@ namespace Microsoft.Templates.Test.Wack.Wpf
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
         }
 
-        [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), "Prism", ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        public async Task WackTests_Prism_Excluded_WPF(string projectType, string framework, string platform, string language)
-        {
-            await RunWackOnProjectWithExcludedPagesAndFeaturesAsync(projectType, framework, platform, language);
-        }
-
-
 
         private async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -82,26 +60,12 @@ namespace Microsoft.Templates.Test.Wack.Wpf
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)
-                && !t.GroupIdentity.StartsWith("wts.Wpf.Service.IdentityForcedLogin")
+                && !t.GroupIdentity.StartsWith("wts.Wpf.Service.Identity")
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden();
 
             await BuildProjectAndRunWackAsync(projectType, framework, platform, language, templateSelector);
         }
-
-        private async Task RunWackOnProjectWithExcludedPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
-        {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)
-                && (t.GroupIdentity.StartsWith("wts.Wpf.Service.IdentityForcedLogin") || t.GroupIdentity.StartsWith("wts.Wpf.Feat.MSIXPackaging"))
-                && t.GetPlatform() == platform
-                && !t.GetIsHidden();
-
-            await BuildProjectAndRunWackAsync(projectType, framework, platform, language, templateSelector);
-        }
-
 
 
         private async Task BuildProjectAndRunWackAsync(string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> templateSelector)
