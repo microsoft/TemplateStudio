@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using MahApps.Metro;
+using ControlzEx.Theming;
 using Microsoft.Win32;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
@@ -38,10 +38,10 @@ namespace Param_RootNamespace.Services
                 }
             }
 
-            var currentTheme = ThemeManager.DetectTheme(Application.Current);
+            var currentTheme = ThemeManager.Current.DetectTheme(Application.Current);
             if (currentTheme == null || currentTheme.Name != theme.ToString())
             {
-                ThemeManager.ChangeTheme(Application.Current, $"{theme}.Blue");
+                ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
                 App.Current.Properties["Theme"] = theme.ToString();
                 return true;
             }
