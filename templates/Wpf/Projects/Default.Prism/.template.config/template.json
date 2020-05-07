@@ -138,7 +138,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "MahApps.Metro",
-        "version": "2.0.0-alpha0748",
+        "version": "2.0.0-alpha0775",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
