@@ -151,7 +151,7 @@ namespace Microsoft.Templates.Test.Uwp
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && !t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask")
-                && !t.GroupIdentity.StartsWith("wts.Service.IdentityForcedLogin")
+                && !t.GroupIdentity.StartsWith("wts.Service.Identity")
                 & !t.GroupIdentity.Contains("Test")
                 & !t.GroupIdentity.Contains("WinAppDriver")
                 & !t.GroupIdentity.Contains("WebApi")
@@ -174,7 +174,7 @@ namespace Microsoft.Templates.Test.Uwp
                 t => t.GetTemplateType().IsItemTemplate()
                      && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                      && t.GetFrontEndFrameworkList().Contains(framework)
-                     && (t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask") || t.GroupIdentity.StartsWith("wts.Service.IdentityForcedLogin"))
+                     && (t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask"))
                      && t.GetPlatform() == platform
                      && !t.GetIsHidden();
 
