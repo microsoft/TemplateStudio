@@ -35,12 +35,14 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
         private readonly GenerationService _generationService = GenerationService.Instance;
         private bool _canRefreshTemplateCache;
-        private bool _canRecreateProject;
+        private bool _canRecreateUwpProject;
+        private bool _canRecreateWpfProject;
         private string _selectedTheme;
         private bool _useStyleCop;
         private string _language;
         private string _platform;
-        private UserSelection _userSelection;
+        private UserSelection _userSelectionUwp;
+        private UserSelection _userSelectionWpf;
         private (string name, string solutionName, string location) _projectLocation;
 
         private RelayCommand _refreshTemplateCacheCommand;
@@ -90,7 +92,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
-        public RelayCommand RecreateProjectCommand => new RelayCommand(RecreateProject, () => _canRecreateProject);
+        public RelayCommand RecreateUwpProjectCommand => new RelayCommand(RecreateUwpProject, () => _canRecreateUwpProject);
+
+        public RelayCommand RecreateWpfProjectCommand => new RelayCommand(RecreateWpfProject, () => _canRecreateWpfProject);
 
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
@@ -141,7 +145,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
+                _userSelectionUwp = await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
             });
         }
 
@@ -150,17 +154,29 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(Platforms.Wpf, ProgrammingLanguages.CSharp);
+                _userSelectionWpf = await NewProjectAsync(Platforms.Wpf, ProgrammingLanguages.CSharp);
             });
         }
 
-        private void RecreateProject()
+        private void RecreateUwpProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 _projectLocation = NewProjectViewModel.GetNewProjectInfo();
-                await RecreateProjectAsync();
+                _platform = Platforms.Uwp;
+                _userSelectionUwp = await RecreateProjectAsync();
+            });
+        }
+
+        private void RecreateWpfProject()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                _projectLocation = NewProjectViewModel.GetNewProjectInfo();
+                _platform = Platforms.Wpf;
+                _userSelectionWpf = await RecreateProjectAsync();
             });
         }
 
@@ -187,12 +203,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
+                _userSelectionUwp = await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
             });
         }
 
 
-        private async Task RecreateProjectAsync()
+        private async Task<UserSelection> RecreateProjectAsync()
         {
             SetCurrentLanguage(_language);
             SetCurrentPlatform(_platform);
@@ -204,18 +220,21 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    if (_userSelection != null)
+                    var userSelection = _platform == Platforms.Uwp ? _userSelectionUwp : _userSelectionWpf;
+                    if (userSelection != null)
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(_userSelection, Platforms.Wpf, ProgrammingLanguages.CSharp);
+                            AddStyleCop(userSelection, Platforms.Wpf, ProgrammingLanguages.CSharp);
                         }
-                        await _generationService.GenerateProjectAsync(_userSelection);
+                        await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(_userSelection.ProjectType, _userSelection.FrontEndFramework, Platforms.Wpf, ProgrammingLanguages.CSharp, UseStyleCop);
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, Platforms.Wpf, ProgrammingLanguages.CSharp, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
+
+                    return userSelection;
                 }
             }
             catch (WizardBackoutException)
@@ -227,9 +246,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
+
+            return null;
         }
 
-        private async Task NewProjectAsync(string platform, string language)
+        private async Task<UserSelection> NewProjectAsync(string platform, string language)
         {
             _platform = platform;
             _language = language;
@@ -245,20 +266,31 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    _userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
-                    _canRecreateProject = true;
-                    if (_userSelection != null)
+                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+                    switch (_platform)
+                    {
+                        case Platforms.Uwp:
+                            _canRecreateUwpProject = true;
+                            break;
+                        case Platforms.Wpf:
+                            _canRecreateWpfProject = true;
+                            break;
+                    }
+
+                    if (userSelection != null)
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(_userSelection, platform, language);
+                            AddStyleCop(userSelection, platform, language);
                         }
-                        await _generationService.GenerateProjectAsync(_userSelection);
+                        await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(_userSelection.ProjectType, _userSelection.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
+
+                    return userSelection;
                 }
             }
             catch (WizardBackoutException)
@@ -270,6 +302,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
+
+            return null;
         }
 
         private void AddStyleCop(UserSelection userSelection, string platform, string language)
