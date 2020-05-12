@@ -78,15 +78,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<GeneratedProjectInfo> Projects { get; } = new ObservableCollection<GeneratedProjectInfo>();
 
-        public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
+        public RelayCommand<string> NewProjectCommand => new RelayCommand<string>(NewProject);
 
-        public RelayCommand NewWpfCSharpProjectCommand => new RelayCommand(NewWpfCSharpProject);
-
-        public RelayCommand AnalyzeCSharpSelectionCommand => new RelayCommand(AnalyzeCSharpSelection);
-
-        public RelayCommand AnalyzeVisualBasicSelectionCommand => new RelayCommand(AnalyzeVisualBasicSelection);
-
-        public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
+        public RelayCommand<string> AnalyzeSelectionCommand => new RelayCommand<string>(AnalyzeSelection);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
@@ -138,30 +132,21 @@ namespace Microsoft.Templates.VsEmulator.Main
             await ConfigureGenContextAsync();
         }
 
-        private void NewUwpCSharpProject()
+        private void NewProject(string parameter)
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _userSelectionUwp = await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
-            });
-        }
-
-        private void NewUwpVisualBasicProject()
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _userSelectionUwp = await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
-            });
-        }
-
-        private void NewWpfCSharpProject()
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _userSelectionWpf = await NewProjectAsync(Platforms.Wpf, ProgrammingLanguages.CSharp);
+                var parameters = parameter.Split(',');
+                var userSelection = await NewProjectAsync(parameters[0], parameters[1]);
+                if (parameters[0] == Platforms.Uwp)
+                {
+                    _userSelectionUwp = userSelection;
+                }
+                else if (parameters[0] == Platforms.Wpf)
+                {
+                    _userSelectionWpf = userSelection;
+                }
             });
         }
 
@@ -185,23 +170,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private void AnalyzeCSharpSelection()
+        private void AnalyzeSelection(string parameter)
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                AnalyzeNewProject(Platforms.Uwp, ProgrammingLanguages.CSharp);
+                var parameters = parameter.Split(',');
+                AnalyzeNewProject(parameters[0], parameters[1]);
             });
-        }
-
-        private void AnalyzeVisualBasicSelection()
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                AnalyzeNewProject(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
-            });
-        }        
+        }     
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language)
         {
@@ -333,6 +310,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AnalyzeNewProject(string platform, string language)
         {
             SetCurrentLanguage(language);
+            SetCurrentPlatform(platform);
             try
             {
                 var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
