@@ -17,6 +17,9 @@ using Xunit;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Naming;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.Test.BuildWithLegacy;
 
 namespace Microsoft.Templates.Test
 {
@@ -26,8 +29,10 @@ namespace Microsoft.Templates.Test
         private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
-        protected List<string> excludedTemplatesGroup1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
-        protected List<string> excludedTemplatesGroup2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
+        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "wts.Wpf.Service.IdentityOptionalLogin" };
+        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "wts.Wpf.Service.IdentityForcedLogin" };
         protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
         protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" };
 
@@ -59,10 +64,16 @@ namespace Microsoft.Templates.Test
                     return "B";
                 case "SplitView":
                     return "SV";
+                case "SplitViewWpf":
+                    return "SVWpf";
                 case "TabbedNav":
                     return "TN";
                 case "MenuBar":
                     return "MB";
+                case "MenuBarWpf":
+                    return "MBWpf";
+                case "Ribbon":
+                    return "RB";
                 default:
                     return projectType;
             }
@@ -76,7 +87,7 @@ namespace Microsoft.Templates.Test
         protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
 
-            var projectName = $"{ShortProjectType(projectType)}";
+            var projectName = $"{ShortProjectType(projectType)}Empty{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, null, null);
 
@@ -89,7 +100,7 @@ namespace Microsoft.Templates.Test
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
                 t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
@@ -97,7 +108,7 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> templateSelector =
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && t.GetExclusionsList().Count() == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
@@ -180,7 +191,7 @@ namespace Microsoft.Templates.Test
 
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
-            var info = ProjectConfigInfo.ReadProjectConfiguration();
+            var info = ProjectConfigInfoService.ReadProjectConfiguration();
 
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
@@ -201,8 +212,35 @@ namespace Microsoft.Templates.Test
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
+            (int exitCode, string outputFile) result = (1, string.Empty);
+
             // Build solution
-            var result = _fixture.BuildSolution(projectName, projectPath, platform);
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    result = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
+                    break;
+                case Platforms.Wpf:
+                    result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
+                    break;
+            }
+
+
+            // Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+
+            // Clean
+            if (deleteAfterBuild)
+            {
+                Fs.SafeDeleteDirectory(projectPath);
+            }
+        }
+
+
+        protected void AssertBuildProjectWpfWithMsixAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        {
+            // Build solution
+            var result = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
@@ -216,7 +254,7 @@ namespace Microsoft.Templates.Test
 
         protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
         {
-            var (buildExitCode, buildOutputFile) = _fixture.BuildSolution(projectName, projectPath, platform);
+            var (buildExitCode, buildOutputFile) = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
 
             if (buildExitCode.Equals(0))
             {
@@ -257,7 +295,7 @@ namespace Microsoft.Templates.Test
                 var templates = _fixture.Templates().Where(
                     t => t.GetTemplateType().IsItemTemplate()
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework)
+                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                     && t.GetPlatform() == platform
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
@@ -280,7 +318,7 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = _fixture.Templates().Where(
                 t => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && t.GetFrontEndFrameworkList().Contains(framework)
+                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
@@ -338,16 +376,12 @@ namespace Microsoft.Templates.Test
 
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
-            var validators = new List<Validator>
-            {
-                new ReservedNamesValidator(),
-            };
+
             if (itemTemplate.GetItemNameEditable())
             {
-                validators.Add(new DefaultNamesValidator());
+                var nameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => new string[] { });
+                finalName = nameValidationService.Infer(finalName);
             }
-
-            finalName = Naming.Infer(finalName, validators);
 
             var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
             var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -430,7 +464,7 @@ namespace Microsoft.Templates.Test
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t
                     => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && t.GetFrontEndFrameworkList().Contains(framework));
+                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
                 var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
@@ -502,12 +536,6 @@ namespace Microsoft.Templates.Test
             };
         }
 
-        // Need overload with different number of params to work with XUnit.MemberData
-        public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
-        {
-            return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);
-        }
-
         // Set a single programming language to stop the fixture using all languages available to it
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework, string programmingLanguage, string platform)
         {
@@ -532,7 +560,14 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case "LegacyFrameworks":
-                    result = BuildRightClickWithLegacyFixture.GetProjectTemplates();
+                    if (programmingLanguage == ProgrammingLanguages.CSharp)
+                    {
+                        result = BuildRightClickWithLegacyCSharpFixture.GetProjectTemplates();
+                    }
+                    if (programmingLanguage == ProgrammingLanguages.VisualBasic)
+                    {
+                        result = BuildRightClickWithLegacyVBFixture.GetProjectTemplates();
+                    }
                     break;
 
                 case "Prism":
@@ -540,37 +575,36 @@ namespace Microsoft.Templates.Test
                     break;
 
                 default:
-                    result = BuildFixture.GetProjectTemplates();
-                    break;
+                    throw new ArgumentOutOfRangeException(nameof(framework));
             }
 
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp, string excludedItem = "")
         {
             IEnumerable<object[]> result = new List<object[]>();
 
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
                 case "Prism":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
             }
 

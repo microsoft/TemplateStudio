@@ -15,14 +15,15 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
     public abstract class BaseGenAndBuildFixture
     {
-        private const string Platform = "x86";
-        private const string Config = "Debug";
+        protected const string All = "all";
+
         private readonly string _emptyBackendFramework = string.Empty;
 
         public abstract string GetTestRunPath();
@@ -76,17 +77,17 @@ namespace Microsoft.Templates.Test
                     .Concat(userSelection.Features.Select(f => f.Name))
                     .Concat(userSelection.Services.Select(f => f.Name))
                     .Concat(userSelection.Testing.Select(f => f.Name));
-                var validators = new List<Validator>()
-                    {
-                        new ExistingNamesValidator(usedNames),
-                        new ReservedNamesValidator(),
-                    };
+
                 if (template.ItemNameEditable)
                 {
-                    validators.Add(new DefaultNamesValidator());
+                    var itemBameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => usedNames);
+                    itemName = itemBameValidationService.Infer(itemName);
                 }
-
-                itemName = Naming.Infer(itemName, validators);
+                else
+                {
+                    itemName = template.DefaultName;
+                }
+                
                 AddItem(userSelection, itemName, template);
             }
         }
@@ -111,18 +112,18 @@ namespace Microsoft.Templates.Test
             userSelection.Add(selectedTemplate, template.TemplateType);
         }
 
-        public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
+        public (int exitCode, string outputFile) BuildMsixBundle(string projectName, string outputPath, string packagingProjectName, string packagingProjectExtension, string batfile)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
-            var projectFile = Path.GetFullPath(outputPath + @"\" + projectName + @"\" + projectName + $".{projectExtension}");
+            var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuildAppx.bat")} \"{projectFile}\"");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\"");
 
-            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuildAppx.bat"))
+            var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
                 Arguments = $"\"{solutionFile}\" \"{projectFile}\" ",
                 UseShellExecute = false,
@@ -140,16 +141,16 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
-        public (int exitCode, string outputFile, string resultFile) RunWackTestOnAppxBundle(string bundleFilePath, string outputPath)
+        public (int exitCode, string outputFile, string resultFile) RunWackTestOnMsixBundle(string bundleFilePath, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_wackOutput_{Path.GetFileName(bundleFilePath)}.txt");
             var resultFile = Path.Combine(outputPath, "_wackresults.xml");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine("### > Ready to run WACK test");
-            Console.Out.Write($"### > Running following command: {GetPath("RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
+            Console.Out.Write($"### > Running following command: {GetPath("bat\\RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
 
-            var startInfo = new ProcessStartInfo(GetPath("RunWackTest.bat"))
+            var startInfo = new ProcessStartInfo(GetPath("bat\\RunWackTest.bat"))
             {
                 Arguments = $"\"{bundleFilePath}\" \"{resultFile}\" ",
                 UseShellExecute = false,
@@ -186,13 +187,9 @@ namespace Microsoft.Templates.Test
         {
             for (int i = 0; i < 10; i++)
             {
-                var validators = new List<Validator>()
-                {
-                    new EmptyNameValidator(),
-                    new BadFormatValidator(),
-                };
+                var itemNameValidationService = new ItemNameService(GenContext.ToolBox.Repo.ItemNameValidationConfig, () => new string[] { });
                 var randomName = Path.GetRandomFileName().Replace(".", string.Empty);
-                if (Naming.Validate(randomName, validators).IsValid)
+                if (itemNameValidationService.Validate(randomName).IsValid)
                 {
                     return randomName;
                 }
@@ -201,24 +198,37 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
+        public (int exitCode, string outputFile) BuildSolutionUwp(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Uwp\\RestoreAndBuild.bat", "Debug", "x86");
+        }
+
+        public (int exitCode, string outputFile) BuildSolutionWpf(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuild.bat", "Debug", "Any CPU" );
+        }
+
+        public (int exitCode, string outputFile) BuildSolutionWpfWithMsix(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuildWithMsix.bat", "Debug", "x86");
+        }
+
+        private (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform, string batfile, string config, string buildPlatform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
-            var batFile = "RestoreAndBuild.bat";
-
-            var batPath = Path.GetDirectoryName(GetPath(batFile));
+            var batPath = Path.GetDirectoryName(GetPath(batfile));
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batFile)} \"{solutionFile}\" {Platform} {Config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
 
-            var startInfo = new ProcessStartInfo(GetPath(batFile))
+            var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" {Platform} {Config} {batPath}",
+                Arguments = $"\"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{batPath}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
@@ -240,7 +250,7 @@ namespace Microsoft.Templates.Test
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
 
-            const string batFile = "RunTests.bat";
+            const string batFile = "bat\\Uwp\\RunTests.bat";
 
             // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
             var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
@@ -279,7 +289,7 @@ namespace Microsoft.Templates.Test
         public string GetTestSummary(string filePath)
         {
             var outputLines = File.ReadAllLines(filePath);
-            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests") || l.StartsWith("Test "));
+            var summaryLines = outputLines.Where(l => l.StartsWith("Total tests", StringComparison.OrdinalIgnoreCase) || l.StartsWith("Test ", StringComparison.OrdinalIgnoreCase));
 
             return summaryLines.Any() ? summaryLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
@@ -335,53 +345,53 @@ namespace Microsoft.Templates.Test
 
         public static void SetCurrentPlatform(string platform)
         {
+            GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
         }
 
-        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp)
+        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp, string excludedItem = "")
         {
             List<object[]> result = new List<object[]>();
 
             SetCurrentLanguage(language);
 
-            foreach (var platform in Platforms.GetAllPlatforms())
+            SetCurrentPlatform(platform);
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                                        .Where(m => !string.IsNullOrEmpty(m.Description))
+                                                        .Select(m => m.Name);
+
+            foreach (var projectType in projectTypes)
             {
-                SetCurrentPlatform(platform);
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                                                                .Where(m => m.Name == frameworkFilter)
+                                                                .Select(m => m.Name).ToList();
 
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                                          .Where(m => !string.IsNullOrEmpty(m.Description))
-                                                          .Select(m => m.Name);
-
-                foreach (var projectType in projectTypes)
+                foreach (var framework in targetFrameworks)
                 {
-                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
-                                                                  .Where(m => m.Name == frameworkFilter)
-                                                                  .Select(m => m.Name).ToList();
+                    var itemTemplates = GenContext.ToolBox.Repo.GetAll()
+                        .Where(t =>
+                        (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
+                        && t.GetTemplateType().IsItemTemplate()
+                        && t.GetPlatform() == platform
+                        && t.GetLanguage() == language
+                        && t.Identity != excludedItem
+                        && !t.GetIsHidden());
 
-                    foreach (var framework in targetFrameworks)
+                    foreach (var itemTemplate in itemTemplates)
                     {
-                        var itemTemplates = GenContext.ToolBox.Repo.GetAll()
-                            .Where(t => t.GetFrontEndFrameworkList().Contains(framework)
-                            && t.GetTemplateType().IsItemTemplate()
-                            && t.GetPlatform() == platform
-                            && t.GetLanguage() == language
-                            && !t.GetIsHidden());
-
-                        foreach (var itemTemplate in itemTemplates)
+                        result.Add(new object[]
                         {
-                            result.Add(new object[]
-                            {
-                                itemTemplate.Name,
-                                projectType,
-                                framework,
-                                platform,
-                                itemTemplate.Identity,
-                                language,
-                            });
-                        }
+                            itemTemplate.Name,
+                            projectType,
+                            framework,
+                            platform,
+                            itemTemplate.Identity,
+                            language,
+                        });
                     }
-                }
+                }    
             }
 
             return result;

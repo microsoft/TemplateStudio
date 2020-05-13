@@ -22,7 +22,6 @@ namespace Microsoft.Templates.UI.Services
 
         public void ShowError(Exception ex, string message = null)
         {
-            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
             AppHealth.Current.Exception.TrackAsync(ex, message).FireAndForget();
 
             var vm = new ErrorDialogViewModel(ex);

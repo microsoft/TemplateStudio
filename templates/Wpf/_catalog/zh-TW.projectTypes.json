@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "此基本專案是用來打造您應用程式的空白畫布。"
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "包含「漢堡功能表」好讓您在不同頁面之間導覽。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "新增一個功能表，好讓您在不同頁面之間移動。"
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "包含索引標籤的功能區，其分組方式為代表功能表動作的功能。"
+  }
+]

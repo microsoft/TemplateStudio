@@ -8,7 +8,7 @@ Imports Param_RootNamespace.Core.Helpers
 Namespace Services
     Public Class IdentityService
         ' For more information about using Identity, see
-        ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/identity.md
+        ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/services/identity.md
         '
         ' Read more about Microsoft Identity Client here
         ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
@@ -18,8 +18,7 @@ Namespace Services
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
 
-        ' TODO WTS: The IdentityClientId in App.config is provided to test the project in development environments.
-        ' Please, follow these steps to create a new one with Azure Active Directory and replace it before going to production.
+        ' WTS TODO: Please create a ClientID following these steps and update the app.config IdentityClientId.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
         Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 

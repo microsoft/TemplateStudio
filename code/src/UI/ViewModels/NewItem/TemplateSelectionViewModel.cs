@@ -4,6 +4,8 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
@@ -11,6 +13,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -81,6 +84,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
 
+        public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
+
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
@@ -116,7 +121,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 template.IsSelected = true;
                 NameEditable = template.ItemNameEditable;
-                Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
+                if (template.ItemNameEditable)
+                {
+                    Name = ValidationService.InferTemplateName(template.Name);
+                }
+                else
+                {
+                    Name = template.Template.DefaultName;
+                }
+
                 HasErrors = false;
                 Template = template.Template;
                 var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
@@ -127,8 +140,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     Dependencies.Add(dependency);
                 }
 
+                RequiredSdks.Clear();
+                foreach (var requiredSdk in template.RequiredSdks)
+                {
+                    RequiredSdks.Add(requiredSdk);
+                }
+
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
+                OnPropertyChanged("RequiredSdks");
+                CheckForMissingSdks();
+
                 NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 WizardStatus.Current.HasValidationErrors = false;
                 if (NameEditable)
@@ -138,11 +160,26 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
+        private void CheckForMissingSdks()
+        {
+            var missingSdks = Template.RequiredSdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
+
+            if (missingSdks.Any())
+            {
+                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingSdk, missingSdks.Aggregate((i, j) => $"{i},{j}")), Category.MissingSdk, TimerType.None);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+            }
+            else
+            {
+                NotificationsControl.CleanCategoryNotificationsAsync(Category.MissingSdk).FireAndForget();
+            }
+        }
+
         private void SetName(string newName)
         {
             if (NameEditable)
             {
-                var validationResult = ValidationService.ValidateTemplateName(newName, NameEditable, false);
+                var validationResult = ValidationService.ValidateTemplateName(newName);
                 HasErrors = !validationResult.IsValid;
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)
@@ -151,7 +188,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
                 else
                 {
-                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(validationResult.Errors.FirstOrDefault()?.GetNotification()).FireAndForget();
                 }
             }
 

@@ -1,0 +1,1 @@
+﻿Fügt ein Menüband-Steuerelement hinzu, das aus verschiedenen nach Funktionalität gruppierten Registerkarten besteht, die die Menüaktionen einer Anwendung darstellen.

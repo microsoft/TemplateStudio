@@ -2,4 +2,4 @@
 
 [Kdy a jak používat více zobrazení v aplikaci](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[Používání a rozšíření této funkce ve vaší aplikaci](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[Používání a rozšíření této funkce ve vaší aplikaci](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

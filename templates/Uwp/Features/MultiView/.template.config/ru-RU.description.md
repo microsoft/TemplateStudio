@@ -2,4 +2,4 @@
 
 [Узнайте больше об использовании множества представлений приложения.](https://docs.microsoft.com/ru-ru/windows/uwp/design/layout/show-multiple-views)
 
-[Научитесь использовать и расширять эти функции в своем приложении.](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[Научитесь использовать и расширять эти функции в своем приложении.](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

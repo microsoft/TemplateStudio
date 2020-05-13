@@ -2,4 +2,4 @@
 
 拖放功能通过[标准 UWP 拖放功能] (https://docs.microsoft.com/zh-cn/windows/uwp/design/input/drag-and-drop) 提供包覆服务，以简化创建支持拖放的应用所需的代码；该功能同时遵循你的应用所使用的 framework 模式。
 
-[详细信息](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[详细信息](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md)

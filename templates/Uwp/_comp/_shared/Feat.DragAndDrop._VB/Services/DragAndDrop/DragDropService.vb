@@ -4,7 +4,7 @@ Imports Param_RootNamespace.Models
 
 Namespace Services.DragAndDrop
 
-    ' For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/drag-and-drop.md
+    ' For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/drag-and-drop.md
     Public Class DragDropService
 
         Private Shared configurationProperty As DependencyProperty = DependencyProperty.RegisterAttached("Configuration", GetType(DropConfiguration), GetType(DragDropService), New PropertyMetadata(Nothing, AddressOf OnConfigurationPropertyChanged))

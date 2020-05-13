@@ -26,6 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public string Name { get; protected set; }
 
+        public string DefaultName { get; protected set; }
+
         public string Title
         {
             get => _title;
@@ -79,6 +81,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public IEnumerable<BasicInfoViewModel> Requirements { get; protected set; }
 
         public IEnumerable<BasicInfoViewModel> Exclusions { get; protected set; }
+
+        public IEnumerable<string> RequiredSdks { get; protected set; }
+
+        public IEnumerable<string> RequiredVisualStudioWorkloads { get; protected set; }
 
         public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 

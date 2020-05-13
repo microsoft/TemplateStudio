@@ -25,8 +25,9 @@ namespace Localization
             _routesManager.CopyFromSourceToDest(Routes.VsixRootDirPath, Routes.VsixManifestFile);
 
             // project templates
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
 
             // command templates
             _routesManager.CopyFromSourceToDest(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile);
@@ -39,11 +40,11 @@ namespace Localization
                 CopyTemplatesFiles(platform, Routes.TemplatesFeaturesPatternPath);
                 CopyTemplatesFiles(platform, Routes.TemplatesServicesPatternPath);
                 CopyTemplatesFiles(platform, Routes.TemplatesTestingPatternPath);
-            }
 
-            // _catalog
-            CopyCatalogType(Routes.WtsProjectTypes);
-            CopyCatalogType(Routes.WtsFrameworks);
+                // _catalog
+                CopyCatalogType(platform, Routes.WtsProjectTypes);
+                CopyCatalogType(platform, Routes.WtsFrameworks);
+            }
 
             // resources
             foreach (string directory in Routes.ResoureceDirectories)
@@ -56,43 +57,39 @@ namespace Localization
         {
             var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, templateType);
             var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
-            var directories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-            foreach (var directory in directories)
+            if (templatesDirectory.Exists)
             {
-                var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+                var directories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-                if (!IsTemplateHidden(templatePath))
+                foreach (var directory in directories)
                 {
+                    var templatePath = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+
                     _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
                     _routesManager.CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
                 }
             }
         }
 
-        private void CopyCatalogType(string routeType)
+        private void CopyCatalogType(string platform, string routeType)
         {
-            _routesManager.CopyFromSourceToDest(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+            _routesManager.CopyFromSourceToDest(baseDir, routeType + ".json");
 
-            var path = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType);
-            foreach (var name in GetNamesByRouteType(routeType))
+            var path = Path.Combine(baseDir, routeType);
+            foreach (var name in GetNamesByRouteType(platform, routeType))
             {
                 _routesManager.CopyFromSourceToDest(path, name + ".md");
             }
         }
 
-        private IEnumerable<string> GetNamesByRouteType(string routeType)
+        private IEnumerable<string> GetNamesByRouteType(string platform, string routeType)
         {
-            var jsonFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+
+            var jsonFile = _routesManager.GetFileFromSource(baseDir, routeType + ".json");
             return JsonExtensions.GetValuesByName(jsonFile.FullName, "name");
-        }
-
-        private bool IsTemplateHidden(string templatePath)
-        {
-            var jsonFile = _routesManager.GetFileFromSource(Path.Combine(templatePath, Routes.TemplateJsonFile));
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-
-            return value != null && value is "true";
         }
     }
 }

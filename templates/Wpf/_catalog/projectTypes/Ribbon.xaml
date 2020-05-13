@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="SVGRoot" Width="48" Height="48">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: sodipodi:namedview-->
+    <!--Unknown tag: metadata-->
+    <Canvas Name="layer1">
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path20" Fill="#FF000000" StrokeThickness="0.04266667">
+        <Path.Data>
+          <PathGeometry Figures="M 0 24.01333 V 5.02667 H 24 48 V 24.01333 43 H 24 0 Z m 44.8 0 V 8.22667 H 30.4 16 v 1.6 1.6 H 9.6 3.2 V 25.61333 39.8 H 24 44.8 Z M 6.3573333 22.62667 v -1.6 H 11.178667 16 v 1.6 1.6 H 11.178667 6.3573333 Z m 12.7999997 -3.2 v -4.8 H 23.978667 28.8 v 4.8 4.8 h -4.821333 -4.821334 z m 12.8 0 v -4.8 H 36.778667 41.6 v 4.8 4.8 h -4.821333 -4.821334 z m -25.5999997 -3.2 v -1.6 H 11.178667 16 v 1.6 1.6 H 11.178667 6.3573333 Z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+    </Canvas>
+  </Canvas>
+</Viewbox>

@@ -1,0 +1,1 @@
+﻿SystemService zawiera operacje wykonywane na funkcjach oraz macierzyste interfejsy API systemu operacyjnego.

@@ -2,4 +2,4 @@
 
 [Scopri come e quando mostrare più visualizzazioni di un'app.](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[Scopri come utilizzare ed estendere questa funzionalità nella tua app.](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/multiple-views.md)
+[Scopri come utilizzare ed estendere questa funzionalità nella tua app.](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/features/multiple-views.md)

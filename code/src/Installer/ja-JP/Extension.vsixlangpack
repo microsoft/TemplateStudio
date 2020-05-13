@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>  
+<?xml version="1.0" encoding="utf-8"?>  
 <VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
   <LocalizedName>WTS (local)</LocalizedName>
-  <LocalizedDescription>Windows Template Studio は、ウィザードベースの UI を活用して、新しい UWP アプリの作成を高速化します。</LocalizedDescription>  
+  <LocalizedDescription>Windows Template Studio では、ウィザードベースの UI を使用して新しい UWP アプリを迅速に作成できます。</LocalizedDescription>  
   <License>..\Content\EULA.ja-JP.rtf</License>
   <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

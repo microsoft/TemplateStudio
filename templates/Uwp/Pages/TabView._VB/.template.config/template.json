@@ -17,7 +17,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "12",
+    "wts.displayOrder": "13",
     "wts.genGroup": "0",
     "wts.rightClickEnabled": "true",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
@@ -59,7 +59,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.UI.Xaml",
-        "version": "2.2.190917002",
+        "version" : "2.3.200213001",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true

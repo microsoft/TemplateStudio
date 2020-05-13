@@ -69,6 +69,66 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
+        private const string WpfProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{0}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0}.Debug|x64.Build.0 = Debug|Any CPU
+		{0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0}.Debug|x86.Build.0 = Debug|Any CPU
+		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0}.Release|ARM.Build.0 = Release|Any CPU
+		{0}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{0}.Release|ARM64.Build.0 = Release|Any CPU
+		{0}.Release|x64.ActiveCfg = Release|Any CPU
+		{0}.Release|x64.Build.0 = Release|Any CPU
+		{0}.Release|x86.ActiveCfg = Release|Any CPU
+		{0}.Release|x86.Build.0 = Release|Any CPU
+	";
+
+        private const string WpfCoreProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0}.Release|Any CPU.Build.0 = Release|Any CPU
+	";
+
+        private const string MSIXProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0}.Debug|ARM.Build.0 = Debug|ARM
+		{0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{0}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{0}.Debug|ARM64.Build.0 = Debug|ARM64
+		{0}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{0}.Debug|x64.ActiveCfg = Debug|x64
+		{0}.Debug|x64.Build.0 = Debug|x64
+		{0}.Debug|x64.Deploy.0 = Debug|x64
+		{0}.Debug|x86.ActiveCfg = Debug|x86
+		{0}.Debug|x86.Build.0 = Debug|x86
+		{0}.Debug|x86.Deploy.0 = Debug|x86
+		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0}.Release|ARM.ActiveCfg = Release|ARM
+		{0}.Release|ARM.Build.0 = Release|ARM
+		{0}.Release|ARM.Deploy.0 = Release|ARM
+		{0}.Release|ARM64.ActiveCfg = Release|ARM64
+		{0}.Release|ARM64.Build.0 = Release|ARM64
+		{0}.Release|ARM64.Deploy.0 = Release|ARM64
+		{0}.Release|x64.ActiveCfg = Release|x64
+		{0}.Release|x64.Build.0 = Release|x64
+		{0}.Release|x64.Deploy.0 = Release|x64
+		{0}.Release|x86.ActiveCfg = Release|x86
+		{0}.Release|x86.Build.0 = Release|x86
+		{0}.Release|x86.Deploy.0 = Release|x86
+";
+
         private const string ProjectTemplate = @"Project(""{{guid}}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
@@ -101,7 +161,8 @@ EndProject
             if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
-                var projectTypeGuid = GetProjectGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                var projectTypeGuid = GetProjectTypeGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                projectGuid = projectGuid.Contains("{") ? projectGuid : "{" + projectGuid + "}";
                 var projectContent = ProjectTemplate
                                             .Replace("{guid}", projectTypeGuid)
                                             .Replace("{name}", projectName)
@@ -110,7 +171,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, isCPSProject);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, projectRelativeToSolutionPath, isCPSProject);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -205,7 +266,7 @@ EndProject
             return slnContent;
         }
 
-        private static string GetProjectGuid(string projectExtension, bool isCPSProject)
+        private static string GetProjectTypeGuid(string projectExtension, bool isCPSProject)
         {
             // See https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
             switch (projectExtension)
@@ -219,21 +280,37 @@ EndProject
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectName, bool isCPSProject)
+        private static string GetProjectConfigurationTemplate(string platform, string projectName, string projectRelativeToSolutionPath, bool isCPSProject)
         {
-            if (platform == Platforms.Uwp)
+            switch (platform)
             {
-                if (isCPSProject)
-                {
-                    return UwpProjectConfigurationTemplateForAnyCpu;
-                }
-                else
-                {
-                    return UwpProjectConfigurationTemplate;
-                }
-            }
+                case Platforms.Uwp:
+                    if (isCPSProject)
+                    {
+                        return UwpProjectConfigurationTemplateForAnyCpu;
+                    }
+                    else
+                    {
+                        return UwpProjectConfigurationTemplate;
+                    }
 
-            return string.Empty;
+                case Platforms.Wpf:
+                    if (projectRelativeToSolutionPath.Contains("wapproj"))
+                    {
+                        return MSIXProjectConfigurationTemplate;
+                    }
+                    else if (projectRelativeToSolutionPath.Contains(".Core."))
+                    {
+                        return WpfCoreProjectConfigurationTemplate;
+                    }
+                    else
+                    {
+                        return WpfProjectConfigurationTemplate;
+                    }
+
+                default:
+                    return string.Empty;
+            }
         }
 
         private static string ReadTemplate(string platform)
@@ -242,6 +319,8 @@ EndProject
             {
                 case Platforms.Uwp:
                     return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
+                case Platforms.Wpf:
+                    return File.ReadAllText(@"Solution\WpfSolutionTemplate.txt");
             }
 
             throw new InvalidDataException(nameof(platform));

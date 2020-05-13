@@ -173,6 +173,16 @@
         </TextBlock>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsItemTemplateRequiredSdk">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+        </TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsItemTemplateRequiredVisualStudioWorkload">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+        </TextBlock>
+    </DataTemplate>
+    
     <DataTemplate x:Key="WtsItemTemplateLayout">
         <TextBlock AutomationProperties.Name="{Binding Template.Title}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Title}">

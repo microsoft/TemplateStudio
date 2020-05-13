@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMBasic",
+    "displayName": "MVVM Basic",
+    "summary": "Il s'agit d'une version générique d'un MVVM pattern. Le modèle MVVM (modèle-vue-vue modèle) peut être utilisé sur toutes les plateformes XAML."
+  },
+  {
+    "name": "MVVMLight",
+    "displayName": "MVVM Light",
+    "summary": "MVVM Light est une framework tierce populaire, basée sur le modèle MVVM."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism est une framework permettant de concevoir des applications XAML avec couplage lâche, maintenables et testables."
+  }
+]

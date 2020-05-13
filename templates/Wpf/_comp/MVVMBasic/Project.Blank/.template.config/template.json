@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMBasic.Project.Blank",
+    "shortName": "wts.Wpf.MVVMBasic.Project.Blank",
+    "identity": "wts.Wpf.MVVMBasic.Project.Blank",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$projectType == Blank & $frontendframework == MVVMBasic & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

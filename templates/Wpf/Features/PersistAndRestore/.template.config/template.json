@@ -1,0 +1,70 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": ["Universal"],
+    "name": "Persist And Restore",
+    "shortName": "Persist And Restore",
+    "groupIdentity": "wts.Wpf.Feat.PersistAndRestore",
+    "identity": "wts.Wpf.Feat.PersistAndRestore",
+    "description": "Persist And Restore helps simplify storing data inside User Local AppData folder.",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "feature",
+      "wts.projecttype": "all",
+      "wts.frontendframework": "all",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.displayOrder": "1",
+      "wts.group": "ApplicationLifecycle",
+      "wts.defaultInstance": "PersistAndRestore",
+      "wts.multipleInstance": "false",
+      "wts.genGroup": "0",
+      "wts.rightClickEnabled":"true",
+      "wts.outputToParent": "true",
+      "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Param_ProjectName/Contracts/Services/IPersistAndRestoreService.cs"
+      },
+      {
+        "path": "Param_ProjectName/Services/PersistAndRestoreService.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/Contracts/Services/IFileService.cs"
+      },
+      {
+        "path": "Param_ProjectName.Core/Services/FileService.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "configtype":{
+        "type": "parameter",
+        "replaces": "Param_ConfigType"
+      },
+      "configvalue":{
+        "type": "parameter",
+        "replaces": "Param_ConfigValue"
+      }
+    },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId": "Newtonsoft.Json",
+          "version": "12.0.3",
+          "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        },
+        "continueOnError": true
+      }
+    ]
+  }

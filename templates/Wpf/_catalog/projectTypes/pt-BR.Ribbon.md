@@ -1,0 +1,1 @@
+﻿Adiciona um controle de faixa de opções que consiste em várias guias, agrupadas por funcionalidade para representar as ações de menu de um aplicativo.

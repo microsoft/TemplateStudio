@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Multiple views",
+  "description": "Позволяет пользователям просматривать независимые компоненты приложения в отдельных окнах.",
+  "identity": "wts.Wpf.Feat.MultiView"
+}

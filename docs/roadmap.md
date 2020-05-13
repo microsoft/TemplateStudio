@@ -6,19 +6,15 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 3.5 - September 2019
+#### 3.6
 
-- Update target platform version to 18362
-- Add ARM64 configuration
-- New Pages: TabView Page
-- New Services: Securized Web API
-- Review calls on app initialization
+- WPF with .NET Core 3 project creation
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.5)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.6)
 
 ## Upcoming releases
 
-### 3.6 and beyond
+### 3.7 and beyond
 
 - Identity Login to support B2C (Twitter, Facebook, ...)
 - Azure cloud features (Functions, SendGrid, Easy Table, ...)
@@ -32,6 +28,7 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
+- [3.5 - November 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.5)
 - [3.4 - September 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A%22Hotfix+3.4%22)
 - [3.3 - July 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.3)
 - [3.2 - April 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.2)

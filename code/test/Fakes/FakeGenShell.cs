@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Fakes
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid ?? Guid.NewGuid().ToString(), projectRelativeToSolutionPath, IsCpsProject(project));
 
                 if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
@@ -136,19 +136,6 @@ namespace Microsoft.Templates.Fakes
         public override void ShowStatusBarMessage(string message)
         {
             _changeStatus?.Invoke(message);
-        }
-
-        public override string GetActiveProjectGuid()
-        {
-            var projectFileName = FindProject(GenContext.Current.DestinationPath);
-
-            if (string.IsNullOrEmpty(projectFileName))
-            {
-                throw new Exception($"There is not project file in {GenContext.Current.DestinationPath}");
-            }
-
-            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
-            return msbuildProj.Guid;
         }
 
         public override string GetActiveProjectTypeGuids()
@@ -222,10 +209,19 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override Guid GetVsProjectId()
+        public override Guid GetProjectGuidByName(string projectName)
         {
-            Guid.TryParse(GetActiveProjectGuid(), out Guid guid);
-            return guid;
+            var projectFileName = FindProject(GenContext.Current.DestinationPath);
+            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
+            var guid = msbuildProj.Guid;
+            if (string.IsNullOrEmpty(guid))
+            {
+                var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+                guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
+            }
+
+            Guid.TryParse(guid, out Guid parsedGuid);
+            return parsedGuid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
@@ -263,6 +259,11 @@ namespace Microsoft.Templates.Fakes
 
                     var name = referenceProject.Name;
                     var guid = projectGuids[name];
+                    if (guid == "{}")
+                    {
+                        guid = Guid.NewGuid().ToString();
+                    }
+
                     parentProject.AddProjectReference(referenceToAdd.ReferencedProject, guid, name);
                 }
 
@@ -315,6 +316,16 @@ namespace Microsoft.Templates.Fakes
 
         public override void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
         {
+        }
+
+        public override bool GetActiveProjectIsWts()
+        {
+            return true;
+        }
+
+        public override bool IsSdkInstalled(string name)
+        {
+            return true;
         }
     }
 }

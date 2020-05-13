@@ -29,6 +29,7 @@ namespace Param_RootNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            this.RegisterElementForConnectedAnimation("animationKeyContentGridView", itemHero);
             if (e.Parameter is long orderID)
             {
                 var data = await SampleDataService.GetContentGridDataAsync();

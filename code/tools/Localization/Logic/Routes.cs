@@ -6,12 +6,15 @@ namespace Localization
 {
     public static class Routes
     {
-        internal const string ProjectTemplatePathCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution";
-        internal const string ProjectTemplatePathVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution";
-        internal const string ProjectTemplateFileCS = "CSharp.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileVB = "VBNet.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileNamePatternCS = "CSharp.UWP.Solution.{0}.vstemplate";
-        internal const string ProjectTemplateFileNamePatternVB = "VBNet.UWP.Solution.{0}.vstemplate";
+        internal const string ProjectTemplatePathCSUwp = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution";
+        internal const string ProjectTemplatePathVBUwp = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution";
+        internal const string ProjectTemplatePathCSWpf = "code\\src\\ProjectTemplates\\CSharp.WPF.Solution";
+        internal const string ProjectTemplateFileCSUwp = "CSharp.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileVBUwp = "VBNet.UWP.Solution.vstemplate";
+        internal const string ProjectTemplateFileCSWpf = "CSharp.WPF.Solution.vstemplate";
+        internal const string ProjectTemplateFileNamePatternCSUwp = "CSharp.UWP.Solution.{0}.vstemplate";
+        internal const string ProjectTemplateFileNamePatternVBUwp = "VBNet.UWP.Solution.{0}.vstemplate";
+        internal const string ProjectTemplateFileNamePatternCSWpf = "CSharp.WPF.Solution.{0}.vstemplate";
 
         internal const string CommandTemplateRootDirPath = "code\\src\\Installer\\Commands";
         internal const string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
@@ -32,7 +35,7 @@ namespace Localization
         internal const string TemplateDescriptionFile = "description.md";
         internal const string TemplateJsonFile = "template.json";
 
-        internal const string WtsTemplatesRootDirPath = "templates\\_catalog";
+        internal const string CatalogPath = "_catalog";
         internal const string WtsProjectTypes = "projectTypes";
         internal const string WtsFrameworks = "frontendframeworks";
 
@@ -61,16 +64,14 @@ namespace Localization
         internal static string[] TemplatesPlatforms { get; } =
         {
             "Uwp",
+            "Wpf",
         };
 
         // Validate Routes
-        internal const string VsixValidatePath = "code\\src\\Installer\\source.extension.vsixmanifest";
-        internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution\\CSharp.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution\\VBNet.UWP.Solution.vstemplate";
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer\\Commands\\RelayCommandPackage.en-US.vsct";
         internal const string VspackageFileNameValidate = "code\\src\\Installer\\Commands\\VSPackage.en-US.resx";
-        internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
-        internal const string WtsFrameworksValidate = "templates\\_catalog\\frontendframeworks.json";
+        internal const string WtsProjectTypesValidate = "_catalog\\projectTypes.json";
+        internal const string WtsFrameworksValidate = "_catalog\\frontendframeworks.json";
 
         // Extract files folders
         internal const string OriginalExtractDirectory = "original";

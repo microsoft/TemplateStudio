@@ -28,7 +28,7 @@
         <ListView            
             Grid.Row="1"
             Style="{StaticResource WtsListViewSingleSelection}"
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding ProjectType.Items}"
             ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
             AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityProjectTypesList}" />
     </Grid>

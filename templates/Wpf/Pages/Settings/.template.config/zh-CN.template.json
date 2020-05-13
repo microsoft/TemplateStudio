@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "设置页面是我们建议放置应用的配置设置的页面。",
+  "identity": "wts.Wpf.Page.Settings"
+}

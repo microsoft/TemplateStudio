@@ -1,0 +1,1 @@
+﻿Agrega un control en la cinta que consiste en varias pestañas, agrupadas por funcionalidad, que representan las acciones del menú de una aplicación.

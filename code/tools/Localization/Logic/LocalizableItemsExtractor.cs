@@ -54,22 +54,31 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            var csPath = Path.Combine(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
+            var csPath = Path.Combine(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
             if (_validator.HasVsTemplatesChanges(csPath))
             {
                 ExtractProjectTemplatesByLanguage(
-                    Routes.ProjectTemplatePathCS,
-                    Routes.ProjectTemplateFileCS,
-                    Routes.ProjectTemplateFileNamePatternCS);
+                    Routes.ProjectTemplatePathCSUwp,
+                    Routes.ProjectTemplateFileCSUwp,
+                    Routes.ProjectTemplateFileNamePatternCSUwp);
             }
 
-            var vbPath = Path.Combine(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            var csPathWpf = Path.Combine(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            if (_validator.HasVsTemplatesChanges(csPathWpf))
+            {
+                ExtractProjectTemplatesByLanguage(
+                    Routes.ProjectTemplatePathCSWpf,
+                    Routes.ProjectTemplateFileCSWpf,
+                    Routes.ProjectTemplateFileNamePatternCSWpf);
+            }
+
+            var vbPath = Path.Combine(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
             if (_validator.HasVsTemplatesChanges(vbPath))
             {
                 ExtractProjectTemplatesByLanguage(
-                    Routes.ProjectTemplatePathVB,
-                    Routes.ProjectTemplateFileVB,
-                    Routes.ProjectTemplateFileNamePatternVB);
+                    Routes.ProjectTemplatePathVBUwp,
+                    Routes.ProjectTemplateFileVBUwp,
+                    Routes.ProjectTemplateFileNamePatternVBUwp);
             }
         }
 
@@ -134,15 +143,19 @@ namespace Localization
             foreach (string platform in Routes.TemplatesPlatforms)
             {
                 var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
+
                 var templatesDirectory = _routesManager.GetDirectoryFromSource(baseDir);
-                var templatesDirectories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
-
-                foreach (var directory in templatesDirectories)
+                if (templatesDirectory.Exists)
                 {
-                    string templateSrcDirectory = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+                    var templatesDirectories = templatesDirectory.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase));
 
-                    ExtractTemplateJson(templateSrcDirectory);
-                    ExtractTemplateDescription(templateSrcDirectory);
+                    foreach (var directory in templatesDirectories)
+                    {
+                        string templateSrcDirectory = Path.Combine(baseDir, directory.Name, Routes.TemplateConfigDir);
+
+                        ExtractTemplateJson(templateSrcDirectory);
+                        ExtractTemplateDescription(templateSrcDirectory);
+                    }
                 }
             }
         }
@@ -192,28 +205,38 @@ namespace Localization
 
         internal void ExtractWtsProjectTypes()
         {
-            if (_validator.HasCatalogJsonChanges(Routes.WtsProjectTypesValidate))
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
-            }
+                var projectTypesPath = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.WtsProjectTypesValidate);
+                if (_validator.HasCatalogJsonChanges(projectTypesPath))
+                {
+                    ExtractWtsTemplateFiles(platform, Routes.WtsProjectTypes);
+                }
 
-            ExtractWtsTemplateSubfolderFiles(Routes.WtsProjectTypes);
+                ExtractWtsTemplateSubfolderFiles(platform, Routes.WtsProjectTypes);
+            }
         }
 
         internal void ExtractWtsFrameworks()
         {
-            if (_validator.HasCatalogJsonChanges(Routes.WtsFrameworksValidate))
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                ExtractWtsTemplateFiles(Routes.WtsFrameworks);
-            }
+                var frameworksPath = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.WtsFrameworksValidate);
 
-            ExtractWtsTemplateSubfolderFiles(Routes.WtsFrameworks);
+                if (_validator.HasCatalogJsonChanges(frameworksPath))
+                {
+                    ExtractWtsTemplateFiles(platform, Routes.WtsFrameworks);
+                }
+
+                ExtractWtsTemplateSubfolderFiles(platform, Routes.WtsFrameworks);
+            }
         }
 
-        private void ExtractWtsTemplateFiles(string routeType)
+        private void ExtractWtsTemplateFiles(string platform, string routeType)
         {
-            var desDirectory = _routesManager.GetOrCreateDestDirectory(Routes.WtsTemplatesRootDirPath);
-            var srcFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+            var desDirectory = _routesManager.GetOrCreateDestDirectory(baseDir);
+            var srcFile = _routesManager.GetFileFromSource(baseDir, routeType + ".json");
 
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
@@ -233,20 +256,22 @@ namespace Localization
             }
         }
 
-        private void ExtractWtsTemplateSubfolderFiles(string routeType)
+        private void ExtractWtsTemplateSubfolderFiles(string platform, string routeType)
         {
-            var srcFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+            var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+
+            var srcFile = _routesManager.GetFileFromSource(baseDir, routeType + ".json");
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projectNames = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
 
             foreach (var name in projectNames)
             {
-                var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
+                var mdFilePath = Path.Combine(baseDir, routeType, name + ".md");
                 if (_validator.HasTemplateMdChanges(mdFilePath))
                 {
                     var mdFile = _routesManager.GetFileFromSource(mdFilePath);
-                    var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.WtsTemplatesRootDirPath, routeType));
+                    var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(baseDir, routeType));
 
                     foreach (string culture in _cultures)
                     {

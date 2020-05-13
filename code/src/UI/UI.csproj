@@ -106,11 +106,13 @@
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
       <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StepDataEventsArgs.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\SelectableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TemplateTypeExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Services\BreakingChangesValidatorService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\GenerationService.cs" />
+    <Compile Include="Services\ProjectConfigInfoService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -278,6 +281,7 @@
     <Compile Include="ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\InfoDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\ErrorDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\Selectable.cs" />
@@ -297,6 +301,9 @@
     <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
     <Compile Include="Views\Common\CompositionToolWindow.xaml.cs">
       <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common\InfoDialog.xaml.cs">
+      <DependentUpon>InfoDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
@@ -342,6 +349,7 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />
@@ -480,6 +488,10 @@
     <Page Include="Views\Common\CompositionToolWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Common\InfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
@@ -803,6 +815,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Build">
+      <Version>15.3.409</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Runtime">
+      <Version>15.3.409</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Diagnostics.Tracing.EventSource">
       <Version>1.1.24</Version>
     </PackageReference>

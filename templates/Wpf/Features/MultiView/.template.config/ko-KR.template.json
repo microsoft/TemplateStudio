@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Multiple views",
+  "description": "사용자는 앱의 일부를 독립적인 별도의 창에서 볼 수 있습니다.",
+  "identity": "wts.Wpf.Feat.MultiView"
+}

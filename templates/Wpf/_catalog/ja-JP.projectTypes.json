@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "これは、アプリ構築の基盤となる空白のキャンバスを作成する基本的なプロジェクトです。"
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "ページ間を移動するためのメニューが付加されます。"
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "メニューのアクションを表現する、機能別にグループ化されたタブ付きリボンです。"
+  }
+]

@@ -92,12 +92,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public async Task InitializeAsync(TemplateType templateType, string language)
+        public void Initialize(TemplateType templateType, string language)
         {
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
-            await InitializeAsync(ConfigPlatform, language);
+            Initialize(ConfigPlatform, language);
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -117,14 +117,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void OnStepUpdated(object sender, StepData step)
+        private void OnStepUpdated(object sender, StepDataEventsArgs e)
         {
-            if (step.Id == NewItemStepTemplateSelection)
+            if (e.StepData.Id == NewItemStepTemplateSelection)
             {
                 ChangesSummary.ClearSelected();
                 WizardNavigation.Current.SetCanFinish(false);
             }
-            else if (step.Id == NewItemStepChangesSummary)
+            else if (e.StepData.Id == NewItemStepChangesSummary)
             {
                 WizardNavigation.Current.SetCanFinish(true);
             }
@@ -202,8 +202,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
 
-        protected override async Task OnTemplatesAvailableAsync()
+        public IEnumerable<string> GetNames()
         {
+            return TemplateSelection.Dependencies.Select(i => i.DefaultName);
+        }
+
+        public override async Task OnTemplatesAvailableAsync()
+        {
+            ValidationService.Initialize(GetNames, null);
             TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
             WizardStatus.IsLoading = false;
 
@@ -240,7 +246,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void SetProjectConfigInfo()
         {
-            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
@@ -253,7 +259,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                     ConfigPlatform = configInfo.Platform;

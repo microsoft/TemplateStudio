@@ -10,7 +10,7 @@ Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink
     ' TODO WTS: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
-    ' For more info see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md#install-handwriting-recognition
+    ' For more info see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/ink.md#install-handwriting-recognition
     Public Class InkAsyncAnalyzer
         Private Const IdleWaitingTime As Double = 400
         Private ReadOnly _inkCanvas As InkCanvas

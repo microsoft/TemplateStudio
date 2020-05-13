@@ -8,7 +8,7 @@
   <!--}]}-->
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
-  IgnorableNamespaces="uap mp genTemplate">
+  IgnorableNamespaces="uap mp genTemplate<!--{[{--> uap3<!--}]}-->">
   <Applications>
       <Extensions>
         <!--{[{-->

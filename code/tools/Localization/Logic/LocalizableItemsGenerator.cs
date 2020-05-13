@@ -61,15 +61,15 @@ namespace Localization
             foreach (string platform in Routes.TemplatesPlatforms)
             {
                 var baseDir = Path.Combine(_path, Routes.TemplatesRootDirPath, platform, patternPath);
-                var srcDirectory = new DirectoryInfo(baseDir);
-                var templatesDirectories = srcDirectory.GetDirectories();
-
-                foreach (var directory in templatesDirectories)
+                if (Directory.Exists(baseDir))
                 {
-                    var jsonFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
+                    var srcDirectory = new DirectoryInfo(baseDir);
+                    var templatesDirectories = srcDirectory.GetDirectories();
 
-                    if (!IsTemplateHidden(jsonFile))
+                    foreach (var directory in templatesDirectories)
                     {
+                        var jsonFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
+
                         GenerateTemplateJsonFiles(jsonFile);
 
                         var mdFile = new FileInfo(Path.Combine(directory.FullName, Routes.TemplateConfigDir, Routes.TemplateDescriptionFile));
@@ -130,72 +130,72 @@ namespace Localization
 
         private void GenerateCatalogFiles(string fileName)
         {
-            var destDirectory = Path.Combine(_path, Routes.WtsTemplatesRootDirPath);
-            var jsonFile = new FileInfo(Path.Combine(destDirectory, fileName + ".json"));
-
-            if (jsonFile is null || !jsonFile.Exists)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                return;
-            }
+                var destDirectory = Path.Combine(_path, platform, Routes.CatalogPath);
+                var jsonFile = new FileInfo(Path.Combine(destDirectory, fileName + ".json"));
 
-            var fileContent = File.ReadAllText(jsonFile.FullName);
-            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var projects = content.Select(json => new
-            {
-                name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
-                displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
-                summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>(),
-            });
-
-            var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
-            foreach (string culture in _cultures)
-            {
-                var desFile = Path.Combine(destDirectory, culture + "." + jsonFile.Name);
-                if (!File.Exists(desFile))
+                if (jsonFile is null || !jsonFile.Exists)
                 {
-                    File.WriteAllText(desFile, data, Encoding.UTF8);
-                    Console.WriteLine($"Generate {desFile}");
+                    return;
+                }
+
+                var fileContent = File.ReadAllText(jsonFile.FullName);
+                var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+                var projects = content.Select(json => new
+                {
+                    name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
+                    displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
+                    summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>(),
+                });
+
+                var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
+                foreach (string culture in _cultures)
+                {
+                    var desFile = Path.Combine(destDirectory, culture + "." + jsonFile.Name);
+                    if (!File.Exists(desFile))
+                    {
+                        File.WriteAllText(desFile, data, Encoding.UTF8);
+                        Console.WriteLine($"Generate {desFile}");
+                    }
                 }
             }
         }
 
         private void GenerateCatalogSubfolderFile(string routeType)
         {
-            var jsonFile = Path.Combine(_path, Routes.WtsTemplatesRootDirPath, routeType + ".json");
-
-            if (!File.Exists(jsonFile))
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                return;
-            }
+                var jsonFile = Path.Combine(_path, Routes.TemplatesRootDirPath, platform, Routes.CatalogPath, routeType + ".json");
 
-            var fileContent = File.ReadAllText(jsonFile);
-            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var names = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
-
-            foreach (var name in names)
-            {
-                var destDirectory = Path.Combine(_path, Routes.WtsTemplatesRootDirPath, routeType);
-                var mdFile = new FileInfo(Path.Combine(destDirectory, name + ".md"));
-
-                if (mdFile.Exists)
+                if (!File.Exists(jsonFile))
                 {
-                    foreach (string culture in _cultures)
+                    return;
+                }
+
+                var fileContent = File.ReadAllText(jsonFile);
+                var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+                var names = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
+
+                foreach (var name in names)
+                {
+                    var destDirectory = Path.Combine(_path, Routes.TemplatesRootDirPath, platform, Routes.CatalogPath, routeType);
+                    var mdFile = new FileInfo(Path.Combine(destDirectory, name + ".md"));
+
+                    if (mdFile.Exists)
                     {
-                        var desFile = Path.Combine(destDirectory, culture + "." + mdFile.Name);
-                        if (!File.Exists(desFile))
+                        foreach (string culture in _cultures)
                         {
-                            mdFile.CopyTo(desFile, true);
-                            Console.WriteLine($"Generate {desFile}");
+                            var desFile = Path.Combine(destDirectory, culture + "." + mdFile.Name);
+                            if (!File.Exists(desFile))
+                            {
+                                mdFile.CopyTo(desFile, true);
+                                Console.WriteLine($"Generate {desFile}");
+                            }
                         }
                     }
                 }
             }
-        }
-
-        private bool IsTemplateHidden(FileInfo jsonFile)
-        {
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-            return value != null && value is "true";
         }
     }
 }

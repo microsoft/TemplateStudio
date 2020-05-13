@@ -52,7 +52,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public event EventHandler OnFinish;
 
-        public event EventHandler<StepData> OnStepUpdated;
+        public event EventHandler<StepDataEventsArgs> OnStepUpdated;
 
         public WizardNavigation(Window wizardShell, IEnumerable<StepData> steps, bool canFinish)
         {
@@ -92,6 +92,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public async Task SetStepAsync(StepData newStep, bool navigate = true)
         {
+            if (WizardStatus.Current.HasValidationErrors)
+            {
+                return;
+            }
+
             _origStep = _currentStep;
             if (newStep != _currentStep)
             {
@@ -135,7 +140,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
 
             UpdateBackForward();
-            OnStepUpdated?.Invoke(this, CurrentStep);
+            OnStepUpdated?.Invoke(this, new StepDataEventsArgs(CurrentStep));
         }
 
         private bool IsPrevious(StepData value1, StepData value2)
@@ -165,7 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public void AddNewStep(string stepId, string title, Func<object> getPage)
         {
             var newStep = StepData.MainStep(stepId, (Steps.Count + 1).ToString(), title, getPage);
-            var nextStep = Steps.FirstOrDefault(s => s.Id.CompareTo(stepId) > 0);
+            var nextStep = Steps.FirstOrDefault(s => string.Compare(s.Id, stepId, StringComparison.OrdinalIgnoreCase) > 0);
             if (nextStep != null)
             {
                 int position = Steps.IndexOf(nextStep);

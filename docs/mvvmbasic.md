@@ -1,3 +1,3 @@
 # MVVMBasic
 
-These details have [moved here](./frameworks/mvvmbasic.md).
+These details have [moved here](./UWP/frameworks/mvvmbasic.md).

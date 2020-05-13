@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "System Service",
+  "description": "SystemService obsahuje operace, které interagují s funkcemi a nativními rozhraními API operačního systému.",
+  "identity": "wts.Wpf.Feat.SystemService"
+}

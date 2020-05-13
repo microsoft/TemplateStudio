@@ -5,9 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
@@ -34,6 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _setFocusCommand;
         private Guid _id;
         private ICommand _deleteCommand;
+        private bool _renameReported;
 
         public TemplateInfo Template { get; }
 
@@ -160,16 +163,21 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             if (ItemNameEditable)
             {
-                var validationResult = ValidationService.ValidateTemplateName(newName, ItemNameEditable, true);
+                var validationResult = ValidationService.ValidateTemplateName(newName);
                 HasErrors = !validationResult.IsValid;
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)
                 {
                     NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                    if (_name != null && !_renameReported)
+                    {
+                        AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
+                        _renameReported = true;
+                    }
                 }
                 else
                 {
-                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                   NotificationsControl.AddNotificationAsync(validationResult.Errors.FirstOrDefault()?.GetNotification()).FireAndForget();
                 }
             }
 

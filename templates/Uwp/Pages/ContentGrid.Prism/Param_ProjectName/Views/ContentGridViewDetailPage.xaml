@@ -4,15 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid
-        x:Name="ContentArea"
-        animations:Connected.AnchorElement="{x:Bind itemHero}">
+        x:Name="ContentArea">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -32,66 +30,67 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <StackPanel
-            x:Name="contentPanel">
+        <ScrollViewer
+            x:Name="contentScroll">
+            <StackPanel
+                x:Name="contentPanel">
+                <RelativePanel>
+                    <Grid
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        x:Name="itemHero"
+                        Width="200"
+                        Height="200"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
+                        Margin="{StaticResource SmallRightMargin}"
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        <FontIcon
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Glyph="{x:Bind ViewModel.Item.Symbol}" FontSize="70" />
+                    </Grid>
 
-            <RelativePanel>
-                <Grid
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    x:Name="itemHero"
-                    animations:Connected.Key="animationKeyContentGridView"
-                    Width="200"
-                    Height="200"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Margin="{StaticResource SmallRightMargin}"
-                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <FontIcon
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Glyph="{x:Bind ViewModel.Item.Symbol}" FontSize="70" />
-                </Grid>
+                    <TextBlock
+                        x:Name="title"
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.RightOf="itemHero"
+                        Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}"
+                        Style="{ThemeResource TitleTextBlockStyle}"
+                        Margin="{StaticResource XXSmallTopMargin}" />
 
-                <TextBlock
-                    x:Name="title"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}"
-                    Margin="{StaticResource XXSmallTopMargin}" />
+                    <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
+                        <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Item.Status}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
 
-                <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
-                    <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.Status}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Item.OrderDate}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
                     </StackPanel>
 
-                    <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.OrderDate}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
+                        <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Ship to" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Item.ShipTo}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Item.OrderTotal}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
 
-                <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
-                    <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Ship to" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.ShipTo}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                    </StackPanel>
+                </RelativePanel>
 
-                    <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.OrderTotal}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                    </StackPanel>
-                </StackPanel>
+                <TextBlock Text="Note 1" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
 
-            </RelativePanel>
-
-            <TextBlock Text="Note 1" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
-
-            <TextBlock Text="Note 2" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <TextBlock Style="{StaticResource DetailBodyStyle}" Margin="{StaticResource MediumBottomMargin}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
-        </StackPanel>
+                <TextBlock Text="Note 2" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Margin="{StaticResource MediumBottomMargin}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

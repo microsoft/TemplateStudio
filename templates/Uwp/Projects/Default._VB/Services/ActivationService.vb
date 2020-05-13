@@ -5,7 +5,7 @@ Imports Param_RootNamespace.Activation
 
 Namespace Services
     ' For more information on understanding and extending activation flow see
-    ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    ' https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/activation.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _defaultNavItem As Type

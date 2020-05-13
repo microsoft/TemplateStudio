@@ -47,7 +47,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.AppCenter.Analytics",
-        "version": "2.1.1",
+        "version" : "3.1.0",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -58,7 +58,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.AppCenter.Crashes",
-        "version" : "2.1.1",
+        "version" : "3.1.0",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": true

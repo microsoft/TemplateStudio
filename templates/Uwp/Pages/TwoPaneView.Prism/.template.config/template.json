@@ -1,0 +1,92 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Two Pane View",
+  "shortName": "Two Pane View",
+  "groupIdentity": "wts.Page.TwoPaneView",
+  "identity": "wts.Page.TwoPaneView.Prism",
+  "description": "Master-Detail page optimized for dual-screen devices.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "6",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.outputToParent": "true",
+    "wts.dependencies": "wts.Service.SampleDataService.Prism",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)|[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName/Converters/DateTimeFormatConverter.cs"
+    },
+    {
+      "path": "Param_ProjectName/StateTriggers/ControlSizeTrigger.cs"
+    },
+    {
+      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNameDetailControl.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNameDetailControl.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNameListItemControl.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNameListItemControl.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.UI.Xaml",
+        "version" : "2.3.200213001",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
+        "version" : "6.0.0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

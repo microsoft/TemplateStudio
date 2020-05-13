@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Fakes
                 var nsElement = _root.Descendants().FirstOrDefault(e => e.Name.LocalName == "ProjectGuid");
 
                 // Generate a GUID if the proj file doesn't include one (such as NetStandard projects)
-                return nsElement?.Value ?? $"{{{System.Guid.NewGuid().ToString()}}}";
+                return nsElement?.Value ?? string.Empty;
             }
         }
 
@@ -98,13 +98,21 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
-
             XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCpsProject);
             ApplyNs(element);
-            itemsContainer.Add(element);
 
-            _root.Add(itemsContainer);
+            var firstPackageReference = _root.Descendants().FirstOrDefault(d => d.Name.LocalName == "PackageReference");
+
+            if (firstPackageReference != null)
+            {
+                firstPackageReference.AddBeforeSelf(element);
+            }
+            else
+            {
+                var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+                itemsContainer.Add(element);
+                _root.Add(itemsContainer);
+            }
         }
 
         public void AddSDKReference(SdkReference sdkReference)

@@ -50,12 +50,13 @@
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="150"  />
                     <ColumnDefinition Width="36" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -143,37 +144,37 @@
                     ItemsSource="{Binding Requirements}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
                     Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
-
+                
                 <TextBlock
                     Grid.Row="7"
-                    Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsRequirements}"
-                    Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
-                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
-                <ItemsControl
-                    Grid.Row="7"
-                    Grid.Column="2"
-                    Margin="-4,8,0,0"
-                    Style="{StaticResource WtsItemsControl}"
-                    ItemsSource="{Binding Requirements}"
-                    ItemTemplate="{StaticResource WtsItemTemplateDependency}"
-                    Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
-
-                <TextBlock
-                    Grid.Row="8"
                     Margin="{StaticResource Margin_M_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsExclusions}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Exclusions, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
-                    Grid.Row="8"
+                    Grid.Row="7"
                     Grid.Column="2"
                     Margin="-4,8,0,0"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Exclusions}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
                     Visibility="{Binding Exclusions, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                <TextBlock
+                    Grid.Row="8"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Text="{x:Static res:StringRes.TemplateDetailsRequiredVSWorkloads}"
+                    Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
+                    Visibility="{Binding RequiredVisualStudioWorkloads, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                <ItemsControl
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Style="{StaticResource WtsItemsControl}"
+                    ItemsSource="{Binding RequiredVisualStudioWorkloads}"
+                    ItemTemplate="{StaticResource WtsItemTemplateRequiredVisualStudioWorkload}"
+                    Visibility="{Binding RequiredVisualStudioWorkloads, Converter={StaticResource HasItemsVisibilityConverter}}" />
 
+               
                 <TextBlock
                     Grid.Row="9"
                     Margin="{StaticResource Margin_M_Top}"
@@ -188,6 +189,12 @@
                     ItemsSource="{Binding Layout}"
                     ItemTemplate="{StaticResource WtsItemTemplateLayout}"
                     Visibility="{Binding HasLayout, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <TextBlock Grid.Row="10" Grid.ColumnSpan="3"
+                           Margin="{StaticResource Margin_L_Top}"
+                           Text="{Binding DisabledMessage}"
+                           Style="{StaticResource WtsTextBlockTemplateDetailsDisabledText}"
+                           Visibility="{Binding DisabledMessage, Converter={StaticResource StringVisibilityConverter}}"/>
+
             </Grid>
         </ScrollViewer>
     </Grid>

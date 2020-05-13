@@ -117,6 +117,8 @@ namespace TemplateValidator
                 VerifySymbols(template, results);
 
                 VerifyLicensesAndProjPostactions(template, templateRoot, results);
+
+                VerifyPostactionsPath(template, results);
             }
             catch (Exception ex)
             {
@@ -561,6 +563,14 @@ namespace TemplateValidator
                 {
                     results.Add($"Missing license on template {template.Identity}");
                 }
+            }
+        }
+
+        private static void VerifyPostactionsPath(ValidationTemplateInfo template, List<string> results)
+        {
+            if (template.PostActions != null && template.PostActions.Any(p => p.Args.Any(a => a.Key == "projectPath" && a.Value.Contains("/"))))
+            {
+                results.Add("Post-action projectPath should use '\\' instead of '/' to indicate the project file path");
             }
         }
 

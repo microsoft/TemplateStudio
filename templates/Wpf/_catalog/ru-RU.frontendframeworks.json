@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMBasic",
+    "displayName": "MVVM Basic",
+    "summary": "Это универсальная версия шаблона MVVM pattern. Шаблон Model-View-ViewModel можно использовать на всех платформах XAML."
+  },
+  {
+    "name": "MVVMLight",
+    "displayName": "MVVM Light",
+    "summary": "MVVM Light — это популярная сторонняя платформа (framework) на основе шаблона Model-View-ViewModel."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism — это framework для создания приложений XAML со слабым связыванием и возможностями тестирования и поддержки."
+  }
+]

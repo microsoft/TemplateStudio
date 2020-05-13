@@ -60,7 +60,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await MainViewModel.Instance.InitializeAsync(_templateType, _language);
+            MainViewModel.Instance.Initialize(_templateType, _language);
+            await MainViewModel.Instance.SynchronizeAsync();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)

@@ -2,16 +2,18 @@
     mc:Ignorable="d">
 
     <Grid
-        x:Name="ContentArea"
-<!--{[{-->
-        Margin="{StaticResource MediumLeftRightMargin}"
-<!--}]}-->
-        animations:Connected.AnchorElement="{x:Bind itemHero}">
+        x:Name="ContentArea">
 
         <VisualStateManager.VisualStateGroups>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel
-            x:Name="contentPanel">
-        </StackPanel>
+        <ScrollViewer
+            x:Name="contentScroll">
+            <StackPanel
+<!--{[{-->
+                Margin="{StaticResource MediumLeftRightMargin}"
+<!--}]}-->
+                x:Name="contentPanel">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

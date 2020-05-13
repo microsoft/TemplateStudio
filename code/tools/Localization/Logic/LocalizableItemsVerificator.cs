@@ -64,11 +64,14 @@ namespace Localization
 
         private void VerifyProjectTemplates()
         {
-            VerifyFile(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileNamePatternCS);
+            VerifyFile(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileNamePatternCSUwp);
 
-            VerifyFile(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileNamePatternVB);
+            VerifyFile(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileNamePatternCSWpf);
+
+            VerifyFile(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
+            VerifyFilesByCulture(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileNamePatternVBUwp);
         }
 
         private void VerifyCommandTemplates()
@@ -152,35 +155,36 @@ namespace Localization
                 var templateDirectory = Path.Combine(itemTemplate, Routes.TemplateConfigDir);
                 VerifyFile(templateDirectory, Routes.TemplateJsonFile);
 
-                if (!IsTemplateHidden(itemTemplate))
-                {
-                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
+                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
 
-                    VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
-                    VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
-                }
+                VerifyFile(templateDirectory, Routes.TemplateDescriptionFile);
+                VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateDescriptionFile));
             }
         }
 
         private void VerifyWtsItem(string wtsTemplateName)
         {
             var fileName = string.Concat(wtsTemplateName, ".json");
-
-            VerifyFile(Routes.WtsTemplatesRootDirPath, fileName);
-            VerifyFilesByCulture(Routes.WtsTemplatesRootDirPath, string.Concat("{0}.", fileName));
-
-            var filePath = Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, fileName);
-            var fileContent = File.ReadAllText(filePath);
-            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var wtsItems = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
-
-            var wtsItemDirectory = Path.Combine(Routes.WtsTemplatesRootDirPath, wtsTemplateName);
-
-            foreach (var wtsItem in wtsItems)
+            foreach (string platform in Routes.TemplatesPlatforms)
             {
-                var itemFileName = string.Concat(wtsItem, ".md");
-                VerifyFile(wtsItemDirectory, itemFileName);
-                VerifyFilesByCulture(wtsItemDirectory, string.Concat("{0}.", itemFileName));
+                var catalogDir = Path.Combine(Routes.TemplatesRootDirPath, platform, Routes.CatalogPath);
+
+                VerifyFile(catalogDir, fileName);
+                VerifyFilesByCulture(catalogDir, string.Concat("{0}.", fileName));
+
+                var filePath = Path.Combine(_sourceDir.FullName, catalogDir, fileName);
+                var fileContent = File.ReadAllText(filePath);
+                var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+                var wtsItems = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
+
+                var wtsItemDirectory = Path.Combine(catalogDir, wtsTemplateName);
+
+                foreach (var wtsItem in wtsItems)
+                {
+                    var itemFileName = string.Concat(wtsItem, ".md");
+                    VerifyFile(wtsItemDirectory, itemFileName);
+                    VerifyFilesByCulture(wtsItemDirectory, string.Concat("{0}.", itemFileName));
+                }
             }
         }
 
@@ -262,19 +266,14 @@ namespace Localization
                 var baseDir = Path.Combine(Routes.TemplatesRootDirPath, platform, patternPath);
                 var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, baseDir));
 
-                foreach (var directory in templatesDir.GetDirectories())
+                if (templatesDir.Exists)
                 {
-                    yield return Path.Combine(baseDir, directory.Name);
+                    foreach (var directory in templatesDir.GetDirectories())
+                    {
+                        yield return Path.Combine(baseDir, directory.Name);
+                    }
                 }
             }
-        }
-
-        private bool IsTemplateHidden(string templatePath)
-        {
-            var jsonFile = RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, templatePath, Routes.TemplateConfigDir, Routes.TemplateJsonFile));
-            var value = JsonExtensions.GetTemplateTag(jsonFile.FullName, "wts.isHidden");
-
-            return value != null && value is "true";
         }
     }
 }

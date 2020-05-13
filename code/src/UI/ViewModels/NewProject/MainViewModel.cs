@@ -19,6 +19,7 @@ using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewProject;
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -65,7 +66,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             : base(mainView, provider, NewProjectSteps)
         {
             Instance = this;
-            ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
             Navigation.OnFinish += OnFinish;
         }
 
@@ -85,10 +85,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public override async Task InitializeAsync(string platform, string language)
+        public override void Initialize(string platform, string language)
         {
-            WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
-            await base.InitializeAsync(platform, language);
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    WizardStatus.Title = $"{StringRes.NewProjectTitleUWP} ({GenContext.Current.ProjectName})";
+                    break;
+                case Platforms.Wpf:
+                    WizardStatus.Title = $"{StringRes.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
+                    break;
+                default:
+                    break;
+            }
+
+            base.Initialize(platform, language);
         }
 
         private void OnFinish(object sender, EventArgs e)
@@ -98,6 +109,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public override bool IsSelectionEnabled(MetadataType metadataType)
         {
+            if (WizardStatus.HasValidationErrors)
+            {
+                return false;
+            }
+
             bool result = false;
             if (!UserSelection.HasItemsAddedByUser)
             {
@@ -146,20 +162,26 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private async Task AddTemplateAsync(TemplateInfoViewModel selectedTemplate)
         {
-            if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
+            if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
             {
                 await UserSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }
 
-        protected override async Task OnTemplatesAvailableAsync()
+        public override async Task OnTemplatesAvailableAsync()
         {
+            ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
             await ProjectType.LoadDataAsync(Platform);
             ShowNoContentPanel = !ProjectType.Items.Any();
         }
 
         public override async Task ProcessItemAsync(object item)
         {
+            if (WizardStatus.HasValidationErrors)
+            {
+                return;
+            }
+
             if (item is ProjectTypeMetaDataViewModel projectTypeMetaData)
             {
                 ProjectType.Selected = projectTypeMetaData;

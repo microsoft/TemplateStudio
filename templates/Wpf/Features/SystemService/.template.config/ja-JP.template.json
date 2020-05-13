@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "System Service",
+  "description": "SystemService には、オペレーティング システムの機能やネイティブ API を使用するための操作機能が含まれています。",
+  "identity": "wts.Wpf.Feat.SystemService"
+}

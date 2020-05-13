@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Settings",
+  "description": "Stránka nastavení je stránka, na kterou doporučujeme umístit konfigurační nastavení pro vaši aplikaci.",
+  "identity": "wts.Wpf.Page.Settings"
+}

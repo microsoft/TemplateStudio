@@ -3,7 +3,7 @@
     public class ShellViewModel : ViewModelBase
     {
 //^^
-// {[{
+//{[{
         public ICommand MenuFilewts.ItemNameCommand { get; }
 
 //}]}
@@ -13,7 +13,7 @@
         {
         }
 //^^
-// {[{
+//{[{
 
         private void OnMenuFilewts.ItemName()
         {

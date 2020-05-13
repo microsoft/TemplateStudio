@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Theme Selection",
+  "description": "Uygulamanıza tema oluşturma desteği ekler.",
+  "identity": "wts.Wpf.Feat.ThemeSelection"
+}

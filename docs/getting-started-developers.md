@@ -73,7 +73,7 @@ Following are described the contents for each folder:
 
 The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run.
 
-- AppVeyor 'CIBuild' Build (CI):
+- VSO 'PRBuild' Build (PR):
   - Core.Tests
   - UI.Test
   - Templates.Tests
@@ -82,7 +82,15 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumMVVMLightWPF
+    - ExecutionSet=MinimumMVVMBasicWPF
+    - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=TemplateValidation
+
+- VSO 'CIBuild' Build (CI):
+  - Core.Tests
+  - Utilities.Test
+
 
 - VSO 'Templates.Test.Full' Build (Full Tests):
   - Core.Tests
@@ -93,6 +101,9 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumMVVMLightWPF
+    - ExecutionSet=MinimumMVVMBasicWPF
+    - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=BuildVBStyle
     - ExecutionSet=TemplateValidation
     - ExecutionSet=BuildRightClickWithLegacy
@@ -101,6 +112,9 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildMVVMLight
     - ExecutionSet=BuildCaliburnMicro
     - ExecutionSet=BuildPrism
+    - ExecutionSet=BuildMVVMBasicWpf
+    - ExecutionSet=BuildPrismWpf
+    - ExecutionSet=BuildMVVMLightWpf
 
 - VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
   - Templates.Test
@@ -109,10 +123,14 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildOneByOneMVVMLight
     - ExecutionSet=BuildOneByOneCaliburnMicro
     - ExecutionSet=BuildOneByOnePrism
+    - ExecutionSet=BuildOneByOneMVVMBasicWpf
+    - ExecutionSet=BuildOneByOneMVVMLightWpf 
+    - ExecutionSet=BuildOneByOnePrismWpf
 
 - VSO 'Templates.Test.Wack' Build (Wack Tests):
-  - Templates.Test
+    - Templates.Test
     - ExecutionSet=LongRunning
+    - ExecutionSet=LongRunningWPF
 
 The tests run for each of the above builds are also in the ExecutionSets '_CIBuild', '_Full', '_OneByOne', and '_Wack'.
 

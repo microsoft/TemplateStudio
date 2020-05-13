@@ -11,6 +11,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -130,6 +131,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public bool Visible(TemplateType templateType)
+        {
+            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
+        }
+
         public bool Visible()
         {
             return _shell.GetActiveProjectIsWts();
@@ -159,13 +165,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             EnsureGenContextInitialized();
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
-                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
-                if (projectConfig.Platform == Platforms.Uwp)
-                {
-                    DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                    SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
-                }
+                GenContext.Current = this;
+
+                DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectInfo = new ProjectInfo();
@@ -173,8 +177,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
                 ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
-
-                GenContext.Current = this;
             }
         }
 
@@ -195,28 +197,32 @@ namespace Microsoft.Templates.UI.VisualStudio
             JoinableTaskCreationOptions.LongRunning);
         }
 
-        private void EnsureGenContextInitialized()
+        private bool EnsureGenContextInitialized()
         {
             var projectLanguage = _shell.GetActiveProjectLanguage();
-            if (GenContext.CurrentLanguage != projectLanguage)
+            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
+
+            if (!string.IsNullOrEmpty(projectLanguage))
             {
+                if (GenContext.CurrentLanguage != projectLanguage || GenContext.CurrentPlatform != projectPlatform)
+                {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), _shell, Platforms.Uwp, projectLanguage);
+                    GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), _shell, projectPlatform, projectLanguage);
 #else
-                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
-                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage, mstxFilePath, new DigitalSignatureService()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                    var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
+                    GenContext.Bootstrap(new RemoteTemplatesSource(projectPlatform, projectLanguage, mstxFilePath, new DigitalSignatureService()), _shell, projectPlatform, projectLanguage);
 #endif
+                }
+
+                return true;
             }
 
-            if (GenContext.CurrentLanguage != projectLanguage)
-            {
-                GenContext.SetCurrentLanguage(projectLanguage);
-            }
+            return false;
         }
 
         private static string GetTempGenerationFolder()
         {
-            string projectGuid = _shell.GetVsProjectId().ToString();
+            string projectGuid = _shell.GetProjectGuidByName(_shell.GetActiveProjectName()).ToString();
             return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 
