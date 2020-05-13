@@ -4,7 +4,7 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
-:heavy_exclamation_mark: WPF Templates are still in development and will be available from version 3.6 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
+:heavy_exclamation_mark: WPF Templates are still in development and will be available from version 3.7 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
@@ -12,8 +12,8 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 |Branch   |CI                |Test Version|Version|
 |:--------|:----------------:|:---------------:|:---------------:|
-|master|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WebTemplateStudio/webts.ci?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?maxAge=600)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
-|dev|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WebTemplateStudio/webts.ci?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+|master|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.ci?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?maxAge=600)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.ci?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 |Branch   |Full Tests       |OneByOne Tests       |WACK Tests       |
 |:--------|:---------------:|:---------------:|:---------------:|
