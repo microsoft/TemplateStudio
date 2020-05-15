@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Threading;
-
+using System.Windows.Markup;
+using System.Threading;
+using System.Globalization;
 
 namespace Param_RootNamespace
 {
@@ -8,11 +10,15 @@ namespace Param_RootNamespace
     public partial class App : Application
     {
         public App()
-        {
-        }
+        {}
 
         private async void OnStartup(object sender, StartupEventArgs e)
         {
+            //Sets culture in the entire app depending on system settings automatically
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentCulture;
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
+                XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name)));
         }
 
         private async void OnExit(object sender, ExitEventArgs e)
