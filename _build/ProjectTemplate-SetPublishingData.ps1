@@ -53,7 +53,7 @@ if($uwpname -and $wpfname){
            $templateContent.VSTemplate.TemplateData.TemplateID = $csharpuwptemplateId
            $templateContent.VSTemplate.TemplateData.Name = $uwpname
                    
-           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($name, $csharpuwptemplateId, $versionNumber)"
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($uwpname, $csharpuwptemplateId, $versionNumber)"
 
         }
 
@@ -65,7 +65,7 @@ if($uwpname -and $wpfname){
            Write-Host "$projectTemplate - Name, TemplateId & Version applied ($wpfname, $csharpwpftemplateId, $versionNumber)"
         }
 
-        if($templateContent.VSTemplate.TemplateData.ProjectType -eq 'Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local')
+        if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local')
         {
            $templateContent.VSTemplate.TemplateData.TemplateID = $visualbasictemplateId
            $templateContent.VSTemplate.TemplateData.Name = $uwpname
