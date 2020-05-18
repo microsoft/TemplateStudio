@@ -15,13 +15,12 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Upcoming releases
 
-### 3.8 and beyond
-- Add More WPF templates
+### 3.8 / 3.9
+- Add more WPF templates (Xaml Islands Page, Desktop Notifications,...)
+  
+### 4.0
 - WinUI 3 Desktop Application creation
-- Identity Login to support B2C (Twitter, Facebook, ...)
-- Azure cloud features (Functions, SendGrid, Easy Table, ...)
-- Tooling for writing templates
-- +more
+
 
 
 ## Future Releases
