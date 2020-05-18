@@ -6,16 +6,18 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 3.6
+#### 3.7
 
-- WPF with .NET Core 3 project creation
+- WPF (.NET Core 3) project creation
+- Remove VS 2017 support
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.6)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.7)
 
 ## Upcoming releases
 
-### 3.7 and beyond
-
+### 3.8 and beyond
+- Add More WPF templates
+- WinUI 3 Desktop Application creation
 - Identity Login to support B2C (Twitter, Facebook, ...)
 - Azure cloud features (Functions, SendGrid, Easy Table, ...)
 - Tooling for writing templates
@@ -28,6 +30,7 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
+- [3.6 - May 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.6)
 - [3.5 - November 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.5)
 - [3.4 - September 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A%22Hotfix+3.4%22)
 - [3.3 - July 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.3)
