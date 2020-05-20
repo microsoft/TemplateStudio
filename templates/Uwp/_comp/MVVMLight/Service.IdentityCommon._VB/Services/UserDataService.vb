@@ -62,7 +62,7 @@ Namespace Services
         End Function
 
         Private Async Function GetUserFromGraphApiAsync() As Task(Of UserViewModel)
-            Dim accessToken = Await IdentityService.GetAccessTokenAsync()
+            Dim accessToken = Await IdentityService.GetAccessTokenForGraphAsync()
 
             If String.IsNullOrEmpty(accessToken) Then
                 Return Nothing
