@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MSIX Packaging",
-  "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
+  "description": "Permite la creación de paquetes para transferir localmente o distribuir mediante Microsoft Store.",
   "identity": "wts.Wpf.Feat.MSIXPackaging"
 }

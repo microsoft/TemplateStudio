@@ -1,7 +1,7 @@
 ﻿using System;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
-using Param_RootNamespace.Strings;
+using Param_RootNamespace.Properties;
 
 namespace Param_RootNamespace.ViewModels
 {

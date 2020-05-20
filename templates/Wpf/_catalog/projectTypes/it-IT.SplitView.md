@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿Questo progetto include un menu Hamburger nella parte laterale dello schermo per la navigazione tra le pagine.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+Lo stile è molto usato nelle app per dispositivi mobili, ma anche per schermi più ampi. Per espandere o comprimere il menu, fare clic sul pulsante relativo.
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+Il menu mostra le voci con un'icona e testo. Può essere visualizzata l'icona o possono essere visualizzati sia l'icona sia il testo.

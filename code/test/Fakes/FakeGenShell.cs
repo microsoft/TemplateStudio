@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Fakes
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid ?? Guid.NewGuid().ToString(), projectRelativeToSolutionPath, IsCpsProject(project));
 
                 if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
@@ -213,9 +213,15 @@ namespace Microsoft.Templates.Fakes
         {
             var projectFileName = FindProject(GenContext.Current.DestinationPath);
             var msbuildProj = FakeMsBuildProject.Load(projectFileName);
+            var guid = msbuildProj.Guid;
+            if (string.IsNullOrEmpty(guid))
+            {
+                var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+                guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
+            }
 
-            Guid.TryParse(msbuildProj.Guid, out Guid guid);
-            return guid;
+            Guid.TryParse(guid, out Guid parsedGuid);
+            return parsedGuid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
@@ -253,6 +259,11 @@ namespace Microsoft.Templates.Fakes
 
                     var name = referenceProject.Name;
                     var guid = projectGuids[name];
+                    if (guid == "{}")
+                    {
+                        guid = Guid.NewGuid().ToString();
+                    }
+
                     parentProject.AddProjectReference(referenceToAdd.ReferencedProject, guid, name);
                 }
 

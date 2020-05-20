@@ -17,7 +17,7 @@
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "6",
+    "wts.displayOrder": "7",
     "wts.genGroup": "0",
     "wts.rightClickEnabled": "true",
     "wts.dependencies": "wts.Service.SampleDataService.VB",
@@ -68,7 +68,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.UI.Xaml",
-        "version" : "2.3.191211002",
+        "version" : "2.4.0",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true

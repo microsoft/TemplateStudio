@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿Этот проект включает "меню-гамбургер" сбоку экрана для навигации по страницам.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+Этот стиль популярен в мобильных приложениях, но также отлично работает на больших экранах. Меню можно развернуть или свернуть, нажав кнопку "гамбургера".
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+В меню отображаются пункты со значком и текстом. В нем можно отобразить значок или значок и текст.

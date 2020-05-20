@@ -1,6 +1,6 @@
-﻿這是 MVVM 模式的一般版本。[Model-View-ViewModel 模式](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) 可在所有 XAML 平台上使用。其目的是為了清楚分割使用者介面控制項與其邏輯的考量。
+﻿這是 MVVM pattern的一般版本。[Model-View-ViewModel 模式](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) 可在所有 XAML 平台上使用。其目的是為了清楚分割使用者介面控制項與其邏輯的考量。
 
-MVVM 模式中有三個核心元件：模型、檢視及檢視模型。每一個元件各有其獨特的作用。
+MVVM pattern中有三個核心元件：模型、檢視及檢視模型。每一個元件各有其獨特的作用。
 
 MVVM Basic 不是framework，但是會提供使用 Model-View-ViewModel (MVVM) 模式建立應用程式所需的最少功能。
 如果您無法或不想使用第三方 MVVM Framework，請使用 MVVM Basic。

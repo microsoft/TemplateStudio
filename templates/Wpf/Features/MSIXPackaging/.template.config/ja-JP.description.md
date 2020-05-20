@@ -1,3 +1,3 @@
-﻿This feature adds a new project to the solution. This project allows the creation of MSIX packages containing Windows applications for side-loading or distribution via Microsoft Store.
+﻿この機能を使用すると、ソリューションに新しいプロジェクトが 1 つ追加されます。追加されるプロジェクトは、サイドローディングまたは Microsoft Store での配布を目的とする Windows アプリケーションを含んだ MSIX パッケージの作成を可能にするものです。
 
-Read more about [MSIX Packaging](https://aka.ms/msix) and [packaging desktop apps.](https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-packaging-dot-net)
+[MSIX パッケージ形式の詳細](https://aka.ms/msix)、[デスクトップ アプリ用パッケージ形式の詳細](https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-packaging-dot-net)

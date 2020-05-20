@@ -2,12 +2,12 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Questo progetto di base è una tela vuota su cui creare un'app."
+    "summary": "Questo progetto di base è un'area vuota su cui creare un'app."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A Hamburger Menu is included for navigation between pages."
+    "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."
   },
   {
     "name": "MenuBar",
@@ -17,6 +17,6 @@
   {
     "name": "Ribbon",
     "displayName": "Ribbon",
-    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
+    "summary": "Barra multifunzione con schede raggruppate per funzionalità per rappresentare le azioni di menu."
   }
 ]

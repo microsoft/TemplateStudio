@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Agrega un control en la cinta que consiste en varias pestañas, agrupadas por funcionalidad, que representan las acciones del menú de una aplicación.

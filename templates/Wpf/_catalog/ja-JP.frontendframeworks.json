@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "一般的な MVVM パターンの 1 つです。Model-View-ViewModel パターンは、すべての XAML プラットフォームで使用することができます。"
+    "summary": "これは MVVM patternの汎用バージョンです。Model-View-ViewModel パターンは、すべての XAML プラットフォームで使用することができます。"
   },
   {
     "name": "MVVMLight",
@@ -12,6 +12,6 @@
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism は、メンテナンス可能かつテスト可能な疎結合型の XAML アプリケーションをビルドするための framework です。"
+    "summary": "Prism は、メンテナンス可能かつテスト可能な疎結合型の XAML アプリケーションを構築するためのframeworkです。"
   }
 ]

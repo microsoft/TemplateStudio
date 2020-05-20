@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <System.Windows.Controls.Page.Resources>
@@ -120,7 +120,7 @@
             <TextBlock
                 Style="{StaticResource PageTitleStyle}"
                 Margin="{StaticResource MediumLeftMargin}"
-                Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
+                Text="{x:Static properties:Resources.wts.ItemNamePageTitle}" />
             <ListView
                 Grid.Row="1"
                 ItemsSource="{Binding SampleItems}"

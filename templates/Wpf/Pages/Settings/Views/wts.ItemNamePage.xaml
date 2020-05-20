@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:converters="clr-namespace:Param_RootNamespace.Converters"
     xmlns:models="clr-namespace:Param_RootNamespace.Models"
-    xmlns:strings="clr-namespace:Param_RootNamespace.Strings"
+    xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
-            Text="{x:Static strings:Resources.wts.ItemNamePageTitle}" />
+            Text="{x:Static properties:Resources.wts.ItemNamePageTitle}" />
         <StackPanel
             x:Name="ContentArea"
             Grid.Row="1"
@@ -29,15 +29,15 @@
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static strings:Resources.wts.ItemNamePagePersonalizationTitle}" />
+                Text="{x:Static properties:Resources.wts.ItemNamePagePersonalizationTitle}" />
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                 <TextBlock
                     Style="{StaticResource BodyTextStyle}"
-                    Text="{x:Static strings:Resources.wts.ItemNamePageChooseThemeText}" />
+                    Text="{x:Static properties:Resources.wts.ItemNamePageChooseThemeText}" />
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
                     <RadioButton
                         GroupName="AppTheme"
-                        Content="{x:Static strings:Resources.wts.ItemNamePageRadioButtonLightTheme}"
+                        Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonLightTheme}"
                         FontSize="{StaticResource MediumFontSize}"
                         IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
                         <i:Interaction.Triggers>
@@ -48,7 +48,7 @@
                     </RadioButton>
                     <RadioButton
                         GroupName="AppTheme"
-                        Content="{x:Static strings:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
+                        Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
                         Margin="{StaticResource XSmallTopMargin}"
                         FontSize="{StaticResource MediumFontSize}"
                         IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
@@ -64,7 +64,7 @@
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
                 Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static strings:Resources.wts.ItemNamePageAboutTitle}" />
+                Text="{x:Static properties:Resources.wts.ItemNamePageAboutTitle}" />
             <TextBlock
                 Text="{Binding VersionDescription, Mode=OneWay}"
                 Margin="{StaticResource XSmallTopMargin}"
@@ -72,7 +72,7 @@
             <TextBlock
                 Margin="{StaticResource XSmallTopMargin}"
                 Style="{StaticResource BodyTextStyle}"
-                Text="{x:Static strings:Resources.wts.ItemNamePageAboutText}" />
+                Text="{x:Static properties:Resources.wts.ItemNamePageAboutText}" />
 
             <TextBlock
                 Margin="{StaticResource SmallTopMargin}"
@@ -83,7 +83,7 @@
                     <TextBlock
                         x:Name="settingsPrivacyStatement"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static strings:Resources.wts.ItemNamePagePrivacyStatementText}" />
+                        Text="{x:Static properties:Resources.wts.ItemNamePagePrivacyStatementText}" />
                 </Hyperlink>
             </TextBlock>
         </StackPanel>

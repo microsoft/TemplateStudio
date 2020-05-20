@@ -12,7 +12,7 @@ Namespace ViewModels
         Private Sub OnItemInvoked(args As WinUI.NavigationViewItemInvokedEventArgs)
             '{[{
             If args.IsSettingsInvoked Then
-                NavigationService.Navigate(GetType(wts.ItemNamePage))
+                NavigationService.Navigate(GetType(wts.ItemNamePage), Nothing, args.RecommendedNavigationTransitionInfo)
                 Return
             End If
 

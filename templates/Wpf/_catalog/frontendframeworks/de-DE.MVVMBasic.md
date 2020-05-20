@@ -1,6 +1,6 @@
-﻿Dies ist eine generische Version eines MVVM-Musters.  Das [Model-View-ViewModel-Muster](https://de.wikipedia.org/wiki/Model_View_ViewModel) kann auf allen XAML-Plattformen verwendet werden. Es soll eine klare Trennung zwischen den Steuerelementen der Benutzeroberfläche und ihrer Logik sicherstellen.
+﻿Dies ist eine generische Version eines MVVM pattern.  Das [Model-View-ViewModel-Muster](https://de.wikipedia.org/wiki/Model_View_ViewModel) kann auf allen XAML-Plattformen verwendet werden. Es soll eine klare Trennung zwischen den Steuerelementen der Benutzeroberfläche und ihrer Logik sicherstellen.
 
-Im MVVM-Muster gibt es drei Kernkomponenten: Modell, Ansicht und Ansichtmodell. Jede Komponente hat eine andere und eigene Rolle.
+Im MVVM pattern gibt es drei Kernkomponenten: Modell, Ansicht und Ansichtmodell. Jede Komponente hat eine andere und eigene Rolle.
 
 MVVM Basic ist kein framework, sondern bietet die Mindestfunktionalität, die für die Erstellung einer App mittels des Model-View-ViewModel (MVVM)-Musters erforderlich ist.
 Verwenden Sie das Modell, wenn Sie kein MVVM-Framework eines Drittanbieters verwenden können oder möchten.

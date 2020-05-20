@@ -2,7 +2,7 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "這是 MVVM 模式的一般版本。Model-View-ViewModel 模式可在所有 XAML 平台上使用。"
+    "summary": "這是 MVVM pattern的一般版本。Model-View-ViewModel 模式可在所有 XAML 平台上使用。"
   },
   {
     "name": "MVVMLight",
@@ -12,6 +12,6 @@
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism framework是用來建置相依性低、可維護和測試的 XAML 應用程式。"
+    "summary": "Prism framework是用來建置鬆散式連結、可維護和測試的 XAML 應用程式。"
   }
 ]

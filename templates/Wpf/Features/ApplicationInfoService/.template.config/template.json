@@ -6,7 +6,7 @@
   "shortName": "ApplicationInfoService",
   "groupIdentity": "wts.Wpf.Feat.ApplicationInfoService",
   "identity": "wts.Wpf.Feat.ApplicationInfoService",
-  "description": "",
+  "description": "ApplicationInfoService contains operations that return information about the current application.",
   "tags": {
     "language": "C#",
     "type": "item",

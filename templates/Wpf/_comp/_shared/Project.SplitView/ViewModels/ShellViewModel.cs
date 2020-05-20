@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Strings;
+using Param_RootNamespace.Properties;
 
 namespace Param_RootNamespace.ViewModels
 {

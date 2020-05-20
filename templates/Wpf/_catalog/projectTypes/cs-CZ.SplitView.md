@@ -1,5 +1,5 @@
-﻿This project includes a Hamburger Menu at the side of the screen, for navigation between pages.
+﻿Tento projekt obsahuje nabídku typu „hamburger“, která se nachází na boční straně obrazovky a umožňuje navigovat mezi stránkami.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be expanded or collapsed by clicking on the hamburger button.
+Tento styl je oblíbený u mobilních aplikací, ale je také vhodný pro větší obrazovky. Kliknutím na tlačítko hamburgeru je možné nabídku rozbalit nebo sbalit.
 
-The menu shows items with an icon and text. The menu can show the icon, or show the icon and text.
+Položky nabídky se zobrazují formou ikon a textu. Nabídka může zobrazovat jenom ikonu nebo ikonu a text.

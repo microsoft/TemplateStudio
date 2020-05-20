@@ -1,1 +1,1 @@
-﻿Persist And Restore provides a service that makes working with application data simpler. It handles loading, saving, and serializing both files and individual pieces of data in the user's local app data folder.
+﻿Funkce Uchovat a obnovit usnadňuje práci s daty aplikací. Zajišťuje načítání, ukládání a serializaci jak souborů, tak i samostatných dat v místní složce AppData uživatele.

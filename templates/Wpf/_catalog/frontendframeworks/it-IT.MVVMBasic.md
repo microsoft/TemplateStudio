@@ -1,6 +1,6 @@
-﻿È una versione generica di uno schema MVVM.  Il [criterio Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) può essere utilizzato su tutte le piattaforme XAML. Intende fornire una separazione chiara dei problemi tra controlli dell'interfaccia utente e relativa logica.
+﻿È una versione generica di uno schema MVVM pattern.  Lo [schema Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) può essere utilizzato su tutte le piattaforme XAML. Intende fornire una separazione chiara dei problemi tra controlli dell'interfaccia utente e relativa logica.
 
-Lo schema MVVM ha tre componenti fondamentali: modello, visualizzazione e modello di visualizzazione. Ciascuno ha un ruolo separato e distinto.
+Lo schema MVVM pattern è costituito da tre componenti fondamentali, ovvero modello, visualizzazione e modello di visualizzazione. Ciascuno ha un ruolo separato e distinto.
 
 MVVM Basic non è un framework ma offre le funzionalità minime per creare un'app utilizzando lo schema Model-View-ViewModel (MVVM).
 Usalo se non puoi o non desideri utilizzare un Framework MVVM di terze parti.

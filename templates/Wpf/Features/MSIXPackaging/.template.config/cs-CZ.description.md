@@ -1,3 +1,3 @@
-﻿This feature adds a new project to the solution. This project allows the creation of MSIX packages containing Windows applications for side-loading or distribution via Microsoft Store.
+﻿Tato funkce přidává do řešení nový projekt. Tento projekt umožňuje vytváření balíčků MSIX obsahujících aplikace pro Windows určené pro side-loading nebo distribuci prostřednictvím Microsoft Storu.
 
-Read more about [MSIX Packaging](https://aka.ms/msix) and [packaging desktop apps.](https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-packaging-dot-net)
+Další informace o nástroji [MSIX Packaging](https://aka.ms/msix) a [vytváření balíčků desktopových aplikací](https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-packaging-dot-net)

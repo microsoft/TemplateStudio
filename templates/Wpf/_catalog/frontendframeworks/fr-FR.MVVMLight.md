@@ -2,4 +2,4 @@
 
 Cette boîte à outils met précisément l'accent sur la « capacité Blend » de l'application créée (c'est-à-dire, la capacité d'ouvrir et de modifier l'interface utilisateur dans Blend), y compris sur la création de données conception-temps afin de permettre aux utilisateurs de Blend de « voir quelque chose » lorsqu'ils travaillent avec les commandes de données.
 
-Apprenez-en davantage sur la [page d'accueil MVVM Light] (http://www.mvvmlight.net/)
+Apprenez-en davantage sur la page d'accueil de [MVVM Light](http://www.mvvmlight.net/)

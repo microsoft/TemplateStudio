@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Adiciona um controle de faixa de opções que consiste em várias guias, agrupadas por funcionalidade para representar as ações de menu de um aplicativo.

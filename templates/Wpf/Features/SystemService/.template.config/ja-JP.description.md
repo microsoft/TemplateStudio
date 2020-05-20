@@ -1,1 +1,1 @@
-﻿SystemService contains operations that interact with functionalities and native APIs of the operating system.
+﻿SystemService には、オペレーティング システムの機能やネイティブ API を使用するための操作機能が含まれています。

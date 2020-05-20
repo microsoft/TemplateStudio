@@ -33,7 +33,7 @@ Every contribution has to come with:
 * If you've included a new template:
   - Be sure you reviewed the [Template Verification Checklist](https://github.com/Microsoft/WindowsTemplateStudio/wiki/Template-Verification-Checklist).
 
-* You tested your code with two most recent Windows 10 SDKs. (Build 17763 and 18362)
+* You tested your code with two most recent Windows 10 SDKs. (Build 18362 and 19041)
 * You've run all existing tests to make sure you've not broken anything.
 * PR has to target dev branch.
 

@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail|wts.Page.ContentGrid|wts.Page.TreeView"
+    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail|wts.Page.ContentGrid|wts.Page.TreeView|wts.Page.TwoPaneView"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

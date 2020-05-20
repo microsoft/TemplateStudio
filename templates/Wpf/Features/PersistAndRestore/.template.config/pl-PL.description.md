@@ -1,1 +1,1 @@
-﻿Persist And Restore provides a service that makes working with application data simpler. It handles loading, saving, and serializing both files and individual pieces of data in the user's local app data folder.
+﻿Funkcja Utrwal i przywróć udostępnia usługę, która upraszcza pracę z danymi aplikacji. Obsługuje procesy ładowania, zapisu i szeregowania zarówno plików, jak i poszczególnych elementów danych w folderze danych aplikacji na komputerze użytkownika.

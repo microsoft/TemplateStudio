@@ -7,7 +7,7 @@
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A Hamburger Menu is included for navigation between pages."
+    "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."
   },
   {
     "name": "MenuBar",
@@ -17,6 +17,6 @@
   {
     "name": "Ribbon",
     "displayName": "Ribbon",
-    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
+    "summary": "기능을 그룹화한 탭에 있는 리본은 메뉴 작업을 표시합니다."
   }
 ]

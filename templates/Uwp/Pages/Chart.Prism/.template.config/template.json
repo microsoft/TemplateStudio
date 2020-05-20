@@ -17,7 +17,7 @@
     "wts.frontendframework": "Prism",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "10",
+    "wts.displayOrder": "11",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Service.SampleDataService.Prism",
     "wts.genGroup": "0",
@@ -66,7 +66,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Telerik.UI.for.UniversalWindowsPlatform",
-        "version": "1.0.1.8",
+        "version": "1.0.1.9",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

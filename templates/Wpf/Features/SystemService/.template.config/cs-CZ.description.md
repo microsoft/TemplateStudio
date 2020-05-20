@@ -1,1 +1,1 @@
-﻿SystemService contains operations that interact with functionalities and native APIs of the operating system.
+﻿SystemService obsahuje operace, které interagují s funkcemi a nativními rozhraními API operačního systému.

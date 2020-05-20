@@ -1,1 +1,1 @@
-﻿This feature allows you to change your app's theme between Light and Dark.
+﻿이 기능으로 앱의 테마 명암을 변경할 수 있습니다.

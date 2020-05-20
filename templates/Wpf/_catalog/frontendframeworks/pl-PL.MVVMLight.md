@@ -2,4 +2,4 @@
 
 Zestaw narzędzi w szczególności pozwala otwierać i edytować interfejs użytkownika w systemie Blend, w tym tworzyć dane w czasie projektowania, tak aby można było od razu zobaczyć efekt zastosowania kontrolek danych.
 
-Więcej informacji można znaleźć na stronie [MVVM Light] (http://www.mvvmlight.net/)
+Więcej informacji można znaleźć na [stronie głównej biblioteki MVVM Light](http://www.mvvmlight.net/)

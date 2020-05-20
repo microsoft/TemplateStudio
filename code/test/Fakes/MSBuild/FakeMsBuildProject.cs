@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Fakes
                 var nsElement = _root.Descendants().FirstOrDefault(e => e.Name.LocalName == "ProjectGuid");
 
                 // Generate a GUID if the proj file doesn't include one (such as NetStandard projects)
-                return nsElement?.Value ?? $"{{{System.Guid.NewGuid().ToString()}}}";
+                return nsElement?.Value ?? string.Empty;
             }
         }
 

@@ -1,1 +1,1 @@
-﻿Adds a ribbon control which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+﻿Dodaje kontrolkę wstążki, która zawiera kilka kart pogrupowanych według funkcji reprezentujących akcje w menu aplikacji.

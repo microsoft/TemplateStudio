@@ -22,9 +22,9 @@
     "wts.displayOrder": "1",
     "wts.defaultInstance": "MSIX Packaging",
     "wts.multipleInstance": "false",
-    "wts.rightClickEnabled": "true",
+    "wts.rightClickEnabled": "false",
     "wts.outputToParent": "true",
-    "wts.requiredSdks":"UAP, Version=10.0.18362.0",
+    "wts.requiredSdks":"UAP, Version=10.0.19041.0",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging"
   },
   "sourceName": "wts.ItemName",

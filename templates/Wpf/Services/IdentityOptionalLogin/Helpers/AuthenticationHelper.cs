@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using Param_RootNamespace.Core.Helpers;
-using Param_RootNamespace.Strings;
+using Param_RootNamespace.Properties;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 

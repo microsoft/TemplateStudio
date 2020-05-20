@@ -40,22 +40,22 @@
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Universal Windows Platform" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink x:Name="newCSharpUwpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
+                            <Hyperlink x:Name="newCSharpUwpProjectButton" Command="{Binding NewProjectCommand}" CommandParameter="Uwp,C#">
                                 <TextBlock Text="New project C#"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="Uwp,VisualBasic">
                                 <TextBlock Text="New project VB"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">
-                            <Hyperlink Command="{Binding AnalyzeCSharpSelectionCommand}">
+                            <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="Uwp,C#">
                                 <TextBlock Text="Analyze C#"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink Command="{Binding AnalyzeVisualBasicSelectionCommand}">
+                            <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="Uwp,VisualBasic">
                                 <TextBlock Text="Analyze VB"/>
                             </Hyperlink>
                         </TextBlock>
@@ -64,17 +64,32 @@
                                 <TextBlock Text="Load project..."/>
                             </Hyperlink>
                         </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding RecreateUwpProjectCommand}">
+                                <TextBlock Text="Re-create last user selection"/>
+                            </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <TextBlock Text="Windows Presentation Foundation" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink x:Name="newCSharpWpfProjectButton" Command="{Binding NewWpfCSharpProjectCommand}">
+                            <Hyperlink x:Name="newCSharpWpfProjectButton" Command="{Binding NewProjectCommand}" CommandParameter="Wpf,C#">
                                 <TextBlock Text="New project C#"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="Wpf,C#">
+                                <TextBlock Text="Analyze C#"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">
                             <Hyperlink Command="{Binding LoadProjectCommand}">
                                 <TextBlock Text="Load project..."/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,12,0,0">
+                            <Hyperlink Command="{Binding RecreateWpfProjectCommand}">
+                                <TextBlock Text="Re-create last user selection"/>
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>

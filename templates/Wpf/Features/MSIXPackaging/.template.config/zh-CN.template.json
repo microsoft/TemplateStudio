@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MSIX Packaging",
-  "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
+  "description": "允许通过 Microsoft Store 创建旁加载或分发包。",
   "identity": "wts.Wpf.Feat.MSIXPackaging"
 }

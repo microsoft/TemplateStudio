@@ -7,7 +7,7 @@
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A Hamburger Menu is included for navigation between pages."
+    "summary": "Für die Navigation zwischen den Seiten ist ein Hamburger-Menü enthalten."
   },
   {
     "name": "MenuBar",
@@ -17,6 +17,6 @@
   {
     "name": "Ribbon",
     "displayName": "Ribbon",
-    "summary": "Ribbon with tabs, grouped by functionality to represent the menu actions."
+    "summary": "Menüband mit nach Funktionalität gruppierten Registerkarten, die die Menüaktionen darstellen."
   }
 ]

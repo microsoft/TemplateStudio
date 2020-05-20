@@ -22,11 +22,13 @@ namespace Microsoft.Templates.UI.Services
         public const string FxPrism = "Prism";
 
         private const string PlUwp = "Uwp";
+        private const string PlWpf = "Wpf";
 
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedNav = "TabbedNav";
         private const string ProjTypeMenuBar = "MenuBar";
+        private const string ProjTypeRibbon = "Ribbon";
 
         public static ProjectMetadata ReadProjectConfiguration()
         {
@@ -66,12 +68,26 @@ namespace Microsoft.Templates.UI.Services
             {
                 if (string.IsNullOrEmpty(data.ProjectType))
                 {
-                    data.ProjectType = InferProjectType();
+                    data.ProjectType = InferUwpProjectType();
                 }
 
                 if (string.IsNullOrEmpty(data.Framework))
                 {
-                    data.Framework = InferFramework();
+                    data.Framework = InferUwpFramework();
+                }
+
+                return data;
+            }
+            else if (data.Platform == PlWpf)
+            {
+                if (string.IsNullOrEmpty(data.ProjectType))
+                {
+                    data.ProjectType = InferWpfProjectType();
+                }
+
+                if (string.IsNullOrEmpty(data.Framework))
+                {
+                    data.Framework = InferWpfFramework();
                 }
 
                 return data;
@@ -86,6 +102,10 @@ namespace Microsoft.Templates.UI.Services
             {
                 return Platforms.Uwp;
             }
+            else if (IsWpf())
+            {
+                return Platforms.Wpf;
+            }
 
             throw new Exception(StringRes.ErrorUnableResolvePlatform);
         }
@@ -94,35 +114,38 @@ namespace Microsoft.Templates.UI.Services
         {
             var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
 
-            if (projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
+            if (projectTypeGuids != null && projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        private static string InferFramework()
+        private static bool IsWpf()
         {
-            if (IsMVVMBasic())
+            return ContainsSDK("Microsoft.NET.Sdk.WindowsDesktop");
+        }
+
+        private static string InferUwpFramework()
+        {
+            if (IsUwpMVVMBasic())
             {
                 return FxMVVMBasic;
             }
-            else if (IsMVVMLight())
+            else if (IsUwpMVVMLight())
             {
                 return FxMVVMLight;
             }
-            else if (IsCodeBehind())
+            else if (IsUwpCodeBehind())
             {
                 return FxCodeBehid;
             }
-            else if (IsCaliburnMicro())
+            else if (IsUwpCaliburnMicro())
             {
                 return FxCaliburnMicro;
             }
-            else if (IsPrism())
+            else if (IsUwpPrism())
             {
                 return FxPrism;
             }
@@ -132,21 +155,41 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static string InferProjectType()
+        private static string InferWpfFramework()
         {
-            if (IsTabbedNav())
+            if (IsWpfMVVMBasic())
+            {
+                return FxMVVMBasic;
+            }
+            else if (IsWpfMVVMLight())
+            {
+                return FxMVVMLight;
+            }
+            else if (IsWpfPrism())
+            {
+                return FxPrism;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private static string InferUwpProjectType()
+        {
+            if (IsUwpTabbedNav())
             {
                 return ProjTypeTabbedNav;
             }
-            else if (IsMenuBar())
+            else if (IsUwpMenuBar())
             {
                 return ProjTypeMenuBar;
             }
-            else if (IsSplitView())
+            else if (IsUwpSplitView())
             {
                 return ProjTypeSplitView;
             }
-            else if (IsBlank())
+            else if (IsUwpBlank())
             {
                 return ProjTypeBlank;
             }
@@ -156,37 +199,76 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsBlank()
+        private static string InferWpfProjectType()
+        {
+            if (IsWpfMenuBar())
+            {
+                return ProjTypeMenuBar;
+            }
+            else if (IsWpfSplitView())
+            {
+                return ProjTypeSplitView;
+            }
+            else if (IsWpfBlank())
+            {
+                return ProjTypeBlank;
+            }
+            else if (IsWpfRibbon())
+            {
+                return ProjTypeRibbon;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private static bool IsUwpBlank()
         {
             return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
                 || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
         }
 
-        private static bool IsMenuBar()
+        private static bool IsWpfBlank()
+        {
+            return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                && !FileContainsLine("Views", "ShellWindow.xaml", "<Menu Grid.Row=\"0\" Focusable=\"False\">")
+                && !FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu")
+                && !FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
+        }
+
+        private static bool IsWpfRibbon()
+        {
+            return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                && FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
+        }
+
+        private static bool IsUwpMenuBar()
         {
             return ExistsFileInProjectPath("Views", "ShellPage.xaml")
                 && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs") || ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.vb") || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
         }
 
-        private static bool IsMVVMLight()
+        private static bool IsWpfMenuBar()
         {
-            if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
-            {
-                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
-                foreach (string file in files)
-                {
-                    // Allow for reference names "MvvmLight" & "MvvmLightStd10"
-                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight"))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                && FileContainsLine("Views", "ShellWindow.xaml", "<Menu Grid.Row=\"0\" Focusable=\"False\">");
         }
 
-        private static bool IsMVVMBasic()
+        private static bool IsUwpMVVMLight()
+        {
+            return (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                && ContainsNugetPackage("MvvmLight");
+        }
+
+        private static bool IsWpfMVVMLight()
+        {
+            return ExistsFileInProjectPath("Services", "ApplicationHostService.cs")
+                && ExistsFileInProjectPath("ViewModels", "ViewModelLocator.cs")
+                && ContainsNugetPackage("MvvmLight");
+        }
+
+        private static bool IsUwpMVVMBasic()
         {
             if (IsCSharpProject())
             {
@@ -200,11 +282,18 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsTabbedNav()
+        private static bool IsWpfMVVMBasic()
+        {
+            return ExistsFileInProjectPath("Services", "ApplicationHostService.cs")
+                    && ExistsFileInProjectPath("Helpers", "Observable.cs")
+                    && ExistsFileInProjectPath("Helpers", "RelayCommand.cs");
+        }
+
+        private static bool IsUwpTabbedNav()
         {
             // TabbedNav implementation is equal to SplitView but winui:NavigationView contains
             // a property PaneDisplayMode="Top"
-            if (IsSplitView())
+            if (IsUwpSplitView())
             {
                 return FileContainsLine("Views", "ShellPage.xaml", "PaneDisplayMode=\"Top\"");
             }
@@ -212,7 +301,7 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsCodeBehind()
+        private static bool IsUwpCodeBehind()
         {
             if (IsCSharpProject())
             {
@@ -244,41 +333,24 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsCaliburnMicro()
+        private static bool IsUwpCaliburnMicro()
         {
-            if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
-            {
-                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
-                foreach (string file in files)
-                {
-                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            return (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                && ContainsNugetPackage("Caliburn.Micro");
         }
 
-        private static bool IsPrism()
+        private static bool IsUwpPrism()
         {
-            if (ExistsFileInProjectPath("Constants", "PageTokens.cs"))
-            {
-                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
-                foreach (string file in files)
-                {
-                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Prism.Unity\">"))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            return ExistsFileInProjectPath("Constants", "PageTokens.cs")
+                && ContainsNugetPackage("Prism.Unity");
         }
 
-        private static bool IsSplitView()
+        private static bool IsWpfPrism()
+        {
+            return ContainsNugetPackage("Prism.Unity");
+        }
+
+        private static bool IsUwpSplitView()
         {
             if (IsCSharpProject())
             {
@@ -291,6 +363,12 @@ namespace Microsoft.Templates.UI.Services
                 return ExistsFileInProjectPath("Services", "ActivationService.vb")
                     && ExistsFileInProjectPath("Views", "ShellPage.xaml");
             }
+        }
+
+        private static bool IsWpfSplitView()
+        {
+            return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                && FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu");
         }
 
         private static bool IsCSharpProject()
@@ -330,6 +408,34 @@ namespace Microsoft.Templates.UI.Services
             {
                 return false;
             }
+        }
+
+        private static bool ContainsNugetPackage(string packageId)
+        {
+            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            foreach (string file in files)
+            {
+                if (File.ReadAllText(file).Contains($"<PackageReference Include=\"{packageId}"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool ContainsSDK(string sdkId)
+        {
+            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            foreach (string file in files)
+            {
+                if (File.ReadAllText(file).Contains($"Sdk=\"{sdkId}\""))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿Bu, MVVM deseninin genel bir sürümü.  [Model-View-ViewModel deseni](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) tüm XAML platformlarında kullanılabilir. Bunun amacı, kullanıcı arabirimi denetimleri ve bunların mantığı arasındaki endişeleri açık bir şekilde ayırmaktır.
+﻿Bu, genel bir MVVM pattern sürümüdür.  [Model-View-ViewModel deseni](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) tüm XAML platformlarında kullanılabilir. Bunun amacı, kullanıcı arabirimi denetimleri ve bunların mantığı arasındaki endişeleri açık bir şekilde ayırmaktır.
 
-MVVM deseninde üç temel bileşen bulunmaktadır: model, görünüm ve görünüm modeli. Her biri farklı bir rol oynar.
+MVVM pattern üç temel bileşenden oluşmaktadır: model, görünüm ve görünüm modeli. Her biri farklı bir rol oynar.
 
 MVVM Basic bir framework değildir ancak Model-View-ViewModel (MVVM) deseni kullanarak bir uygulama oluşturmak için minimum işlevsellik sağlar.
 Üçüncü taraf MVVM Framework kullanamıyorsanız veya kullanmak istemiyorsanız bunu kullanabilirsiniz.

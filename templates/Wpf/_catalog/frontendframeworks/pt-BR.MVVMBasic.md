@@ -1,6 +1,6 @@
-﻿Esta é uma versão genérica de um padrão MVVM.  O [padrão Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pode ser usado em todas as plataformas XAML. Sua intenção é fornecer uma separação sem preocupações entre os controles da interface do usuário e sua lógica.
+﻿Esta é uma versão genérica de um MVVM pattern.  O [padrão Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pode ser usado em todas as plataformas XAML. Sua intenção é fornecer uma separação sem preocupações entre os controles da interface do usuário e sua lógica.
 
-Há três componentes principais no padrão MVVM: o modelo, a exibição e o modelo de exibição. Cada um deles desempenha uma função distinta e separada.
+Há três componentes principais no MVVM pattern: o modelo, a exibição e o modelo de exibição. Cada um deles desempenha uma função distinta e separada.
 
 O MVVM Basic não é uma framework, mas fornece a funcionalidade mínima para criar um aplicativo usando o padrão Model-View-ViewModel (MVVM).
 Use-o se você não puder ou não quiser usar uma Framework MVVM de terceiros.

@@ -1,1 +1,1 @@
-﻿This feature allows you to change your app's theme between Light and Dark.
+﻿此功能可讓您在淺色與深色之間切換應用程式的佈景主題。

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "System Service",
-  "description": "SystemService contains operations that interact with functionalities and native APIs of the operating system.",
+  "description": "SystemService には、オペレーティング システムの機能やネイティブ API を使用するための操作機能が含まれています。",
   "identity": "wts.Wpf.Feat.SystemService"
 }

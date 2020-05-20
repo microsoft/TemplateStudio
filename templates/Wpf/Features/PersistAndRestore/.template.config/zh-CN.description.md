@@ -1,1 +1,1 @@
-﻿Persist And Restore provides a service that makes working with application data simpler. It handles loading, saving, and serializing both files and individual pieces of data in the user's local app data folder.
+﻿Persist And Restore 提供了一种可简化应用程序数据处理的服务。它可以加载、保存和序列化任何用户本地应用数据文件夹中的文件和各个数据片断。
