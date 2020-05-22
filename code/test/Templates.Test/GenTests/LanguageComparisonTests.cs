@@ -33,9 +33,9 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentForcedLoginAsync(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G1_Async(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityForcedLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group2);
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
@@ -44,21 +44,22 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentOptionalLoginAsync(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G2_Async(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityOptionalLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group1);
         }
 
-        private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)
+        private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, List<string> excludedTemplates)
         {
-            var genIdentities = GetAllItemTemplateIdentites(projectType, framework);
+            BaseGenAndBuildFixture.SetCurrentLanguage(ProgrammingLanguages.CSharp);
+            BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
+
+            var genIdentities = GetAllItemTemplateIdentites(projectType, framework, excludedTemplates);
 
             foreach (var csOnly in GetTemplatesThatDoNotSupportVB())
             {
                 genIdentities.Remove(csOnly);
             }
-
-            genIdentities.Add(extraIdentity);
 
             var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
@@ -75,14 +76,14 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(vbResultPath);
         }
 
-        private List<string> GetAllItemTemplateIdentites(string projectType, string framework)
+        private List<string> GetAllItemTemplateIdentites(string projectType, string framework, List<string> excludedTemplates)
         {
             return GenContext.ToolBox.Repo.GetAll()
                              .Where(t =>t.GetTemplateType().IsItemTemplate()
                                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                                 && t.GetPlatform() == Platforms.Uwp
-                                && !t.GetIsGroupExclusiveSelection())
+                                && !excludedTemplates.Contains(t.GroupIdentity))
                              .Select(t => t.Identity)
                              .ToList();
         }
