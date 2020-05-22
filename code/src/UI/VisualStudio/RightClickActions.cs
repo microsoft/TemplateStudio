@@ -213,7 +213,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             var projectLanguage = _shell.GetActiveProjectLanguage();
             var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
 
-            if (!string.IsNullOrEmpty(projectLanguage))
+            if (!string.IsNullOrEmpty(projectLanguage) && !string.IsNullOrEmpty(projectPlatform))
             {
                 if (GenContext.CurrentLanguage != projectLanguage || GenContext.CurrentPlatform != projectPlatform)
                 {
