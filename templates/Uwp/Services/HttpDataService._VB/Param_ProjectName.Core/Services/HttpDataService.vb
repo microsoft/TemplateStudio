@@ -2,6 +2,7 @@
 Imports System
 Imports System.Collections.Generic
 Imports System.Net.Http
+Imports System.Net.Http.Headers
 Imports System.Text
 Imports System.Threading.Tasks
 Imports Newtonsoft.Json
@@ -23,12 +24,13 @@ Namespace Core.Services
             responseCache = New Dictionary(Of String, Object)()
         End Sub
 
-        Public Async Function GetAsync(Of T)(uri As String, Optional forceRefresh As Boolean = False) As Task(Of T)
+        Public Async Function GetAsync(Of T)(uri As String, Optional accessToken As String = Nothing, Optional forceRefresh As Boolean = False) As Task(Of T)
             Dim result As T = Nothing
 
             ' The responseCache is a simple store of past responses to avoid unnecessary requests for the same resource.
             ' Feel free to remove it or extend this request logic as appropraite for your app.
             If forceRefresh OrElse Not responseCache.ContainsKey(uri) Then
+                AddAuthorizationHeader(accessToken)
                 Dim json = Await client.GetStringAsync(uri)
                 result = Await Task.Run(Function() JsonConvert.DeserializeObject(Of T)(json))
 
@@ -92,5 +94,15 @@ Namespace Core.Services
             Dim response = Await client.DeleteAsync(uri)
             Return response.IsSuccessStatusCode
         End Function
+
+        ' Add this to all public methods
+        Private Sub AddAuthorizationHeader(ByVal token As String)
+            If String.IsNullOrEmpty(token) Then
+                client.DefaultRequestHeaders.Authorization = Nothing
+                Return
+            End If
+
+            client.DefaultRequestHeaders.Authorization = New AuthenticationHeaderValue("Bearer", token)
+        End Sub
     End Class
 End Namespace

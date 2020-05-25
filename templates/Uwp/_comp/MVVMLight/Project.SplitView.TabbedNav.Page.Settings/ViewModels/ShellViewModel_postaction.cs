@@ -13,7 +13,7 @@ namespace Param_RootNamespace.ViewModels
             //{[{
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate(typeof(wts.ItemNameViewModel).FullName);
+                NavigationService.Navigate(typeof(wts.ItemNameViewModel).FullName, null, args.RecommendedNavigationTransitionInfo);
                 return;
             }
 

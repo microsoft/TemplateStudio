@@ -261,7 +261,7 @@ namespace Microsoft.Templates.Fakes
                     var guid = projectGuids[name];
                     if (guid == "{}")
                     {
-                        guid = Guid.NewGuid().ToString();
+                        guid = "{" + Guid.NewGuid().ToString() + "}";
                     }
 
                     parentProject.AddProjectReference(referenceToAdd.ReferencedProject, guid, name);

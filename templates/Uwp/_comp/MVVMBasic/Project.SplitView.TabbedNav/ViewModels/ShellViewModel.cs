@@ -66,11 +66,11 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            var item = _navigationView.MenuItems
-                            .OfType<WinUI.NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+            if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            {
+                var pageType = selectedItem.GetValue(NavHelper.NavigateToProperty) as Type;
+                NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+            }
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
@@ -86,9 +86,30 @@ namespace Param_RootNamespace.ViewModels
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            Selected = _navigationView.MenuItems
-                            .OfType<WinUI.NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+            var selectedItem = GetSelectedItem(_navigationView.MenuItems, e.SourcePageType);
+            if (selectedItem != null)
+            {
+                Selected = selectedItem;
+            }
+        }
+
+        private WinUI.NavigationViewItem GetSelectedItem(IEnumerable<object> menuItems, Type pageType)
+        {
+            foreach (var item in menuItems.OfType<WinUI.NavigationViewItem>())
+            {
+                if (IsMenuItemForPageType(item, pageType))
+                {
+                    return item;
+                }
+
+                var selectedChild = GetSelectedItem(item.MenuItems, pageType);
+                if (selectedChild != null)
+                {
+                    return selectedChild;
+                }
+            }
+
+            return null;
         }
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
