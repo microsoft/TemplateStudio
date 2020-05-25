@@ -65,7 +65,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         public void Initialize()
         {
-            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Studio 2019", "Projects");
+            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "source", "repos");
 
             SetName();
 
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         public static (string name, string solutionName, string location) GetNewProjectInfo()
         {
-            var location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Studio 2017", "Projects");
+            var location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "source", "repos");
             var validator = new List<Validator>() { new FolderNameValidator(location) };
             var name = NamingService.Infer(DefaultName, validator);
             return (name, name, location);
