@@ -13,7 +13,10 @@
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
                 <ResourceDictionary Source="/Styles/MetroWindow.xaml" />
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
-                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <!--
+                MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!
+                Learn more about using MahApps.Metro at  https://mahapps.com/
+                -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!-- Accent and AppTheme setting -->
