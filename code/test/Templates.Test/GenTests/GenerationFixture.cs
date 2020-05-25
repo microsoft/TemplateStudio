@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource Source => new LocalTemplatesSource(null, "TestGen");
 
-        private static bool syncExecuted;
+        private static Dictionary<string, bool> syncExecuted = new Dictionary<string, bool>();
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
@@ -43,13 +43,15 @@ namespace Microsoft.Templates.Test
         private static void InitializeTemplates(TemplatesSource source)
         {
 
-            if (!syncExecuted)
+            if (syncExecuted.ContainsKey(source.Id) && syncExecuted[source.Id] == true)
             {
-                GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
-
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
-                syncExecuted = true;
+                return;
             }
+
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
+
+            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+            syncExecuted.Add(source.Id, true);
         }
 
         public override void InitializeFixture(IContextProvider contextProvider, string framework = "")

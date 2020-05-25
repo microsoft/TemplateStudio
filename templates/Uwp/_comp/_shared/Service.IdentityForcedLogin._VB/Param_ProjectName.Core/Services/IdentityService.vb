@@ -14,7 +14,7 @@ Namespace Services
         ' Read more about Microsoft Identity Client here
         ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         ' https://docs.microsoft.com/azure/active-directory/develop/v2-overview
-        Private ReadOnly _scopes As String() = {"user.read"}
+        Private ReadOnly _graphScopes As String() = {"user.read"}
         Private _integratedAuthAvailable As Boolean
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
@@ -53,7 +53,7 @@ Namespace Services
 
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
-                _authenticationResult = Await _client.AcquireTokenInteractive(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
+                _authenticationResult = Await _client.AcquireTokenInteractive(_graphScopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
 
                 If Not IsAuthorized() Then
                     _authenticationResult = Nothing
@@ -102,8 +102,8 @@ Namespace Services
             End Try
         End Function
 
-        Public Async Function GetAccessTokenAsync() As Task(Of String)
-            Dim acquireTokenSuccess = Await AcquireTokenSilentAsync()
+        Public Async Function GetAccessTokenAsync(scopes As String()) As Task(Of String)
+            Dim acquireTokenSuccess = Await AcquireTokenSilentAsync(scopes)
 
             If acquireTokenSuccess Then
                 Return _authenticationResult.AccessToken
@@ -111,7 +111,7 @@ Namespace Services
                 Try
                     ' Interactive authentication is required
                     Dim accounts = Await _client.GetAccountsAsync()
-                    _authenticationResult = Await _client.AcquireTokenInteractive(_scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
+                    _authenticationResult = Await _client.AcquireTokenInteractive(scopes).WithAccount(accounts.FirstOrDefault()).ExecuteAsync()
                     Return _authenticationResult.AccessToken
                 Catch msalException As MsalException
                     ' AcquireTokenSilent and AcquireTokenInteractive failed, the session will be closed.
@@ -122,7 +122,16 @@ Namespace Services
             End If
         End Function
 
+        Public Async Function GetAccessTokenForGraphAsync() As Task(Of String)
+            Return Await GetAccessTokenAsync(_graphScopes)
+        End Function
+
+
         Public Async Function AcquireTokenSilentAsync() As Task(Of Boolean)
+            Return Await AcquireTokenSilentAsync(_graphScopes)
+        End Function
+
+        Private Async Function AcquireTokenSilentAsync(ByVal scopes As String()) As Task(Of Boolean)
             If Not NetworkInterface.GetIsNetworkAvailable() Then
                 Return False
             End If
@@ -131,7 +140,7 @@ Namespace Services
 
             Try
                 Dim accounts = Await _client.GetAccountsAsync()
-                _authenticationResult = Await _client.AcquireTokenSilent(_scopes, accounts.FirstOrDefault()).ExecuteAsync()
+                _authenticationResult = Await _client.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync()
                 Return True
             Catch ex As MsalUiRequiredException
 
@@ -151,14 +160,14 @@ Namespace Services
 
             If retryWithUI Then
                 Try
-                    _authenticationResult = Await _client.AcquireTokenByIntegratedWindowsAuth(_scopes).ExecuteAsync()
+                    _authenticationResult = Await _client.AcquireTokenByIntegratedWindowsAuth(scopes).ExecuteAsync()
                     Return True
                 Catch ex As MsalUiRequiredException
                     ' Interactive authentication is required
                     Return False
                 End Try
             Else
-                Return false
+                Return False
             End If
         End Function
     End Class
