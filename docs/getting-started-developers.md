@@ -23,7 +23,7 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 1. Configure the "Installer" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
    1. Open the "Installer" project properties.
    1. Go to "Debug" properties.
-   1. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\" or C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\"
+   1. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\" 
    1. In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
    1. Save the changes.
     ![Installer Configuration](./resources/getting-started/Installer2017.Debug.Config.JPG)

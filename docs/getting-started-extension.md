@@ -26,11 +26,13 @@ Windows Template Studio (WinTS) installs into your existing Windows 10 app devel
 ## Public Release instructions
 
 1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
-2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project template
+2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project template.
 ![New Project](resources/vsix/newProject2019.PNG)
 
-3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
+3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
+For more info on adding new items see [here](newitem.md).
+
 
 ## Nightly / Pre-release feeds for Windows Template Studio
 
