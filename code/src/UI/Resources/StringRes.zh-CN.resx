@@ -823,7 +823,7 @@
     <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
   <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -ID {0} -版本 {1}</value>
+    <value>Install-Package -ID {0} -Version {1}</value>
     <comment>{0}: package id, {1}: version</comment>
   </data>
   <data name="StatusAddingItem" xml:space="preserve">
