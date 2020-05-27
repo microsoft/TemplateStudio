@@ -25,11 +25,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public abstract class SolutionWizard : IWizard, IContextProvider
     {
-        private UserSelection _userSelection;
-        private Dictionary<string, string> _replacementsDictionary;
+        private readonly GenerationService _generationService = GenerationService.Instance;
         private string _platform;
         private string _language;
-        private GenerationService _generationService = GenerationService.Instance;
+
+        private UserSelection _userSelection;
+        private Dictionary<string, string> _replacementsDictionary;
 
         public string SafeProjectName => _replacementsDictionary["$safeprojectname$"];
 

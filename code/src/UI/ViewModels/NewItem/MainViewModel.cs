@@ -28,13 +28,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public const string NewItemStepTemplateSelection = "TemplateSelection";
         public const string NewItemStepChangesSummary = "ChangesSummary";
 
+        private readonly GenerationService _generationService = GenerationService.Instance;
+
+        private readonly string _emptyBackendFramework = string.Empty;
+
         private RelayCommand _refreshTemplatesCacheCommand;
 
         private static NewItemGenerationResult _output;
-
-        private GenerationService _generationService = GenerationService.Instance;
-
-        private string _emptyBackendFramework = string.Empty;
 
         public TemplateType TemplateType { get; set; }
 
@@ -250,8 +250,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
-                ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
-                projectConfig.Owner = WizardShell.Current;
+                var projectConfig = new ProjectConfigurationDialog(vm)
+                {
+                    Owner = WizardShell.Current,
+                };
+
                 projectConfig.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)

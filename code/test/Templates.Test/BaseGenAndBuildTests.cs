@@ -53,7 +53,8 @@ namespace Microsoft.Templates.Test
             // $ is technically valid in a project name but cannot be used with WTS as it is used as an identifier in global post action file names.
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
             // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
-            return " -_.,@! (£)+=";
+            // , is technically valid in project names but breaks vb test projects in VS 2019 if used in the name so don't test for it
+            return " -_.@! (£)+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -105,8 +106,7 @@ namespace Microsoft.Templates.Test
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
             // this selector excludes templates with exclusions
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -210,7 +210,7 @@ namespace Microsoft.Templates.Test
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        protected void AssertBuildProject(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             (int exitCode, string outputFile) result = (1, string.Empty);
 
@@ -237,13 +237,13 @@ namespace Microsoft.Templates.Test
         }
 
 
-        protected void AssertBuildProjectWpfWithMsixAsync(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        protected void AssertBuildProjectWpfWithMsix(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
         {
             // Build solution
-            var result = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
+            var (exitCode, outputFile) = _fixture.BuildSolutionWpfWithMsix(projectName, projectPath, platform);
 
             // Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            Assert.True(exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
 
             // Clean
             if (deleteAfterBuild)
@@ -252,7 +252,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
+        protected void AssertBuildProjectThenRunTests(string projectPath, string projectName, string platform)
         {
             var (buildExitCode, buildOutputFile) = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
 
@@ -263,7 +263,7 @@ namespace Microsoft.Templates.Test
                 var summary = _fixture.GetTestSummary(testOutputFile);
 
                 Assert.True(
-                    summary.Contains("Failed: 0."),
+                    summary.Contains("Failed: 0.") || !summary.Contains("Failed"),
                     $"Tests failed. {Environment.NewLine}{summary}{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
             }
             else
@@ -415,12 +415,12 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForGeneration()
         {
             return GenerationFixture.GetProjectTemplates();
         }
 
-        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGenerationAsync()
+        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGeneration()
         {
             var result = GenerationFixture.GetProjectTemplates();
 

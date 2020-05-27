@@ -15,8 +15,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 {
     public partial class WizardShell : Window, IWindow, IWizardShell
     {
-        private TemplateType _templateType;
-        private string _language;
+        private readonly TemplateType _templateType;
+        private readonly string _language;
 
         public static WizardShell Current { get; private set; }
 
