@@ -17,7 +17,7 @@
     "wts.defaultInstance": "WebApi",
     "wts.multipleInstance": "false",
     "wts.outputToParent": "true",
-    "wts.licenses": "[AspNetCore](https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt)|[DotNetCore](https://github.com/dotnet/core-setup/blob/master/LICENSE.TXT)|[Swashbuckle](https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE)"
+    "wts.licenses": "[AspNetCore](https://github.com/dotnet/aspnetcore/blob/master/LICENSE.txt)|[Swashbuckle](https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE)"
   },
   "sourceName": "WebApiFeature",
   "preferNameDirectory": true,
