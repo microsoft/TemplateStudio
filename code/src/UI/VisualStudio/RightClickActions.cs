@@ -139,7 +139,11 @@ namespace Microsoft.Templates.UI.VisualStudio
         public bool Visible(TemplateType templateType)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
+            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() &&
+                GenContext.ToolBox.Repo.GetAll().Any(
+                    t => t.GetTemplateType() == templateType &&
+                    t.GetRightClickEnabled() == true &&
+                    t.GetIsHidden() == false);
         }
 
         public bool Visible()
