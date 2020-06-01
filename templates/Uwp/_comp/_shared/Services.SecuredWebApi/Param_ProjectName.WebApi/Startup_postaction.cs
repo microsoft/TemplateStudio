@@ -4,17 +4,17 @@
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 //{[{
             services.ProtectWebApiWithJwtBearer(Configuration);
 //}]}
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseHttpsRedirection();
+            app.UseRouting();
 //{[{
             app.UseAuthentication();
+            app.UseAuthorization();
 //}]}
         }
     }
