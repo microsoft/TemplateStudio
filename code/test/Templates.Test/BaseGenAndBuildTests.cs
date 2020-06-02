@@ -532,9 +532,7 @@ namespace Microsoft.Templates.Test
             {
                 "wts.Service.WebApi",
                 "wts.Service.SecuredWebApi",
-                "wts.Service.SecuredWebApi.CodeBehind",
-                "wts.Page.TwoPaneView",
-                "wts.Page.TwoPaneView.CodeBehind"
+                "wts.Service.SecuredWebApi.CodeBehind"
             };
         }
 
