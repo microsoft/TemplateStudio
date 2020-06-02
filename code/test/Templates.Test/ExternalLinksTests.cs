@@ -241,7 +241,9 @@ namespace Microsoft.Templates.Test
 
                 foreach (var url in links)
                 {
-                    if (url == "https://YourPrivacyUrlGoesHere")
+                    // The login.microsoftonline address is from the SecureWebAPI code and calls to it may be affected by proxy settings
+                    if (url == "https://YourPrivacyUrlGoesHere"
+                     || url.StartsWith("https://login.microsoftonline.com/common/discovery/instance?authorization_endpoint=https"))
                     {
                         continue;
                     }
