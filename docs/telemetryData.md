@@ -1,4 +1,4 @@
-# Telemetry for Windows Template Studio - 2020.04
+# Telemetry for Windows Template Studio - 2020.05
 
 As new features and pages roll out, percentages  will adjust.
 
@@ -6,113 +6,111 @@ As new features and pages roll out, percentages  will adjust.
 
 |Project|Percentage|
 |:---|:---:|
-|Navigation View|65.1%|
-|Blank|16.8%|
-|Horizontal Navigation View|10%|
-|MenuBar|8.1%|
+|Navigation View|65.5%|
+|Blank|12.7%|
+|MenuBar|11.3%|
+|Horizontal Navigation View|10.5%|
 
 ## Framework
 
 |Framework Type|Percentage|
 |:---|:---:|
-|CodeBehind|53.8%|
-|MVVM Basic|19.8%|
-|MVVM Light|11.3%|
-|Prism|8.3%|
-|Caliburn.Micro|6.7%|
+|CodeBehind|56.2%|
+|MVVM Basic|17.9%|
+|MVVM Light|11.2%|
+|Prism|7.6%|
+|Caliburn.Micro|7.2%|
 
 ## Pages
 
 |Pages|Percentage|
 |:---|:---:|
-|Blank|34.5%|
+|Blank|34.6%|
 |Settings|13.7%|
-|Master/Detail|8.7%|
-|DataGrid|5.8%|
-|Content Grid|5.7%|
-|Web View|4.9%|
-|TreeView|3.6%|
-|Chart|3.4%|
-|TabView|3.1%|
-|Telerik Data Grid|2.7%|
-|Map|2.5%|
-|ImageGallery|2.5%|
-|Tabbed / Pivot|2.4%|
-|Media Player|2%|
-|Camera|1.7%|
-|Ink Draw|1%|
-|Ink Draw Picture|1%|
+|Master/Detail|8.2%|
+|DataGrid|6.7%|
+|Content Grid|5.9%|
+|Web View|3.7%|
+|Chart|2.9%|
+|TreeView|2.9%|
+|TabView|2.9%|
+|Map|2.8%|
+|Two Pane View|2.4%|
+|Media Player|2.3%|
+|Telerik Data Grid|2.2%|
+|Tabbed / Pivot|2.1%|
+|ImageGallery|1.9%|
+|Camera|1.5%|
+|Ink Draw Picture|1.2%|
+|Ink Draw|1.1%|
 |Ink Smart Canvas|0.9%|
-|Tabbed|0%|
 
 ## Features
 
 |Features|Percentage|
 |:---|:---:|
 |Settings Storage|22.7%|
-|Theme Selection|21.7%|
-|App Config|9.4%|
-|Toast Notifications|5.3%|
-|Multiple views|5%|
-|Background Task|3.9%|
+|Theme Selection|21.9%|
+|App Config|7.7%|
+|Toast Notifications|6.5%|
+|Multiple views|5.5%|
 |First Run Prompt|3.6%|
-|Drag & Drop|3.2%|
-|Deep Linking|3.1%|
-|What's New Prompt|2.8%|
-|Suspend and Resume|2.6%|
-|Live Tile|2.3%|
-|User Activity|2%|
-|VS App Center Analytics|1.9%|
-|Command Line Launch|1.8%|
-|Share Source|1.5%|
-|Web to App link|1.4%|
-|Multi-Instance|1.2%|
-|Feedback Hub Link|1.2%|
+|Suspend and Resume|3.4%|
+|Drag & Drop|3.3%|
+|Deep Linking|3.2%|
+|Background Task|3%|
+|What's New Prompt|2.6%|
+|Live Tile|2.5%|
+|User Activity|2.1%|
+|Share Source|1.8%|
+|VS App Center Analytics|1.7%|
+|Command Line Launch|1.5%|
+|Multi-Instance|1.4%|
+|Web to App link|1.2%|
+|Feedback Hub Link|1.1%|
 |Share Target|1%|
-|Multi-Instance Advanced|0.7%|
-|Dev Center Notifications|0.6%|
-|3D App Launcher|0.5%|
-|Azure Notifications|0.4%|
-|Uri Scheme|0%|
+|Multi-Instance Advanced|0.6%|
+|3D App Launcher|0.6%|
+|Dev Center Notifications|0.5%|
+|Azure Notifications|0.5%|
 
 ## Services
 
 |Services|Percentage|
 |:---|:---:|
-|Sample Data|47.6%|
-|SQL Server Data|12.5%|
-|HTTP Data Service|12.4%|
-|XAML Styler Config|8.5%|
-|Optional Login|7.3%|
-|Forced Login|5.4%|
-|Web API|4.6%|
-|Secured Web API|1.6%|
+|Sample Data|49.9%|
+|HTTP Data Service|13.2%|
+|SQL Server Data|10.8%|
+|XAML Styler Config|7.3%|
+|Web API|5.7%|
+|Optional Login|5.6%|
+|Forced Login|5.6%|
+|Secured Web API|1.9%|
 
 ## Testing
 
 |Testing|Percentage|
 |:---|:---:|
-|Test App with MSTest|29.2%|
-|Test App with xUnit|28.4%|
-|Test Core library with xUnit|21%|
-|Test Core library with MSTest|7.5%|
-|Win App Driver|7.3%|
-|Test Core library with NUnit|6.6%|
+|Test App with MSTest|27%|
+|Test App with xUnit|24.9%|
+|Test Core library with xUnit|18.3%|
+|Win App Driver|12.5%|
+|Test Core library with MSTest|9.3%|
+|Test Core library with NUnit|8.1%|
 
 ## Windows Template Studio entry point
 
 |Entry point|Percentage|
 |:---|:---:|
-|New Project|85.6%|
-|Add Page|9.7%|
-|Add Feature|3%|
-|Add Service|1.7%|
-|Add Testing|0%|
+|New Project|86.9%|
+|Add Page|8.5%|
+|Add Feature|2.9%|
+|Add Service|1.4%|
+|Add Testing|0.3%|
 
 ## Programming languages
 
 |Languages|Percentage|
 |:---|:---:|
-|C#|91.1%|
-|VisualBasic|8.9%|
-
+|C#|91.5%|
+|VisualBasic|8.5%|
