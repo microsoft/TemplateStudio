@@ -31,6 +31,7 @@ Windows Template Studio (WinTS) installs into your existing Windows 10 app devel
 
 3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
+
 For more info on adding new items see [here](newitem.md).
 
 
