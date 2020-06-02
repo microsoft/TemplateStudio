@@ -59,7 +59,7 @@ Namespace Services
 '}--}
 '^^
 '{[{
-        Private Sub Frame_Navigated(ByVal sender As Object, ByVal e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim element As FrameworkElement = Nothing, backNavigationHandler As IBackNavigationHandler = Nothing
 
             element = TryCast(Frame.Content, FrameworkElement)
@@ -73,7 +73,7 @@ Namespace Services
             RaiseEvent Navigated(sender, e)
         End Sub
 
-        Private Sub Frame_Navigating(ByVal sender As Object, ByVal e As NavigatingCancelEventArgs)
+        Private Sub Frame_Navigating(sender As Object, e As NavigatingCancelEventArgs)
             Dim element As FrameworkElement = Nothing, backNavigationHandler As IBackNavigationHandler = Nothing
 
             element = TryCast(Frame.Content, FrameworkElement)
@@ -86,7 +86,7 @@ Namespace Services
             End If
         End Sub
 
-        Private Sub OnPageCanGoBackChanged(ByVal sender As Object, ByVal canCurrentPageGoBack As Boolean)
+        Private Sub OnPageCanGoBackChanged(sender As Object, canCurrentPageGoBack As Boolean)
             _canCurrentPageGoBack = canCurrentPageGoBack
             RaiseEvent OnCurrentPageCanGoBackChanged(sender, canCurrentPageGoBack)
         End Sub

@@ -12,7 +12,7 @@ Namespace StateTriggers
             Get
                 Return _targetElement
             End Get
-            Set(ByVal value As FrameworkElement)
+            Set(value As FrameworkElement)
 
                 If _targetElement IsNot Nothing Then
                     RemoveHandler _targetElement.SizeChanged, AddressOf OnTargetElementSizeChanged

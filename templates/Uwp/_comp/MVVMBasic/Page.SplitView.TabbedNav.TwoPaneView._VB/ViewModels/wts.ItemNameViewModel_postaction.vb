@@ -18,7 +18,7 @@
             End If
         End Sub
 
-        Private Sub OnModeChanged(ByVal twoPaneView As WinUI.TwoPaneView)
+        Private Sub OnModeChanged(twoPaneView As WinUI.TwoPaneView)
             If twoPaneView.Mode = WinUI.TwoPaneViewMode.SinglePane Then
 //^^
 //{[{

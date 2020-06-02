@@ -1,6 +1,6 @@
 ﻿Namespace ViewModels
     Public Class wts.ItemNameViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
 '^^
 '{[{
@@ -37,9 +37,6 @@
         End Property
 '}]}
 
-        Public Sub New()
-        End Sub
-
         Public Function TryCloseDetail() As Boolean
             If TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2 Then
 '^^
@@ -59,7 +56,7 @@
             End If
         End Sub
 
-        Private Sub OnModeChanged(ByVal twoPaneView As WinUI.TwoPaneView)
+        Private Sub OnModeChanged(twoPaneView As WinUI.TwoPaneView)
 '^^
 '{[{
             RefreshIsGoBackButtonVisible()
