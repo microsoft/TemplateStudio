@@ -16,11 +16,10 @@ Namespace Services
 
         Function GoBack() As Boolean
 '{[{
-            Dim navigationHandler As IBackNavigationHandler = Nothing
-
             If _canCurrentPageGoBack Then
+                Dim navigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
 
-                If CSharpImpl.__Assign(navigationHandler, TryCast(Frame.Content, IBackNavigationHandler)) IsNot Nothing Then
+                If navigationHandler IsNot Nothing Then
                     navigationHandler.GoBack()
                     Return True
                 End If
