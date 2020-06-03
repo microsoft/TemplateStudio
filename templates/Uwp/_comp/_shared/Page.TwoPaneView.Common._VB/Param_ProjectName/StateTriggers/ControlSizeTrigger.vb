@@ -6,6 +6,7 @@ Namespace StateTriggers
 
         Private _currentWidth As Double
         Private _targetElement As FrameworkElement
+
         Public Property MinWidth As Double = -1
 
         Public Property TargetElement As FrameworkElement
