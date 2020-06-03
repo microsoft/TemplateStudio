@@ -166,6 +166,8 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded(" -= AddressOf"); // Use RemoveHandler instead
             CheckStringNotIncluded("Param_Setter("); // ParamSetter should be in square brackets
             CheckStringNotIncluded("CSharpImpl"); // Output by converter
+            CheckStringNotIncluded("//"); // C# comment
+            CheckStringNotIncluded("?.Invoke"); //use RaiseEvent instead
 
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync", "OnPivotActivatedAsync", "TaskCanceledException" });
 
