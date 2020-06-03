@@ -27,7 +27,6 @@ namespace Param_RootNamespace
 //{[{
             await Container.Resolve<IStoreNotificationsFeatureService>().InitializeAsync();
 //}]}
-            await Task.CompletedTask;
         }
 
         protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
