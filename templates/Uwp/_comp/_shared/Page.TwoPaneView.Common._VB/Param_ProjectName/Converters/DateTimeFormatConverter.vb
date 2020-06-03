@@ -1,25 +1,26 @@
-﻿Imports Windows.UI.Xaml.Data
-
-Namespace Converters
+﻿Namespace Converters
     Public Class DateTimeFormatConverter
-        Inherits IValueConverter
+        Implements IValueConverter
 
-        Public Function Convert(value As Object, targetType As Type, parameter As Object, language As String) As Object
-            Dim dt As DateTime = TryCast(value, DateTime)
+        Public Function Convert(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.Convert
+            Try
+                Dim dt As DateTime = CType(value, DateTime)
 
-            If dt IsNot Nothing AndAlso parameter IsNot Nothing Then
-                Return dt.ToString(parameter.ToString())
-            End If
+                If parameter IsNot Nothing Then
+                    Return dt.ToString(parameter.ToString())
+                End If
+            Catch ex As InvalidCastException
+            End Try
 
             Return value
         End Function
 
-        Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, language As String) As Object
+        Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.ConvertBack
             If value IsNot Nothing Then
                 Return DateTime.Parse(value.ToString())
             End If
 
-            Return default(DateTime)
+            Return Nothing
         End Function
     End Class
 End Namespace

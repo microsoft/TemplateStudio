@@ -56,13 +56,11 @@ Namespace Views
 '^^
 '{[{
         Private Sub OnGoBack(sender As Object, e As RoutedEventArgs)
-            Return TryCloseDetail()
+            TryCloseDetail()
         End Sub
 
         Private Sub RefreshIsGoBackButtonVisible()
-            IsGoBackButtonVisible = twoPaneView.Mode = WinUI.TwoPaneViewMode.SinglePane
-
-            Return IsGoBackButtonVisible AndAlso TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2
+            IsGoBackButtonVisible = twoPaneView.Mode = WinUI.TwoPaneViewMode.SinglePane AndAlso TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2
         End Sub
 '}]}
     End Class
