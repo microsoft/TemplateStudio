@@ -35,7 +35,7 @@ Namespace ViewModels
         Public ReadOnly Property ItemClickCommand As ICommand
             Get
                 If _itemClickCommand Is Nothing Then
-                    _itemClickCommand = New RelayCommand(Of _itemClickCommand)(AddressOf OnItemClick)
+                    _itemClickCommand = New RelayCommand(AddressOf OnItemClick)
                 End If
 
                 Return _itemClickCommand

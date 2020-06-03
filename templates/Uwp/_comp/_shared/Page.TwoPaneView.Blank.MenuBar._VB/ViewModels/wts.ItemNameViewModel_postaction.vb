@@ -64,16 +64,13 @@
         End Sub
 '^^
 '{[{
+
         Private Sub OnGoBack()
-            Return TryCloseDetail()
+            TryCloseDetail()
         End Sub
 
         Private Sub RefreshIsGoBackButtonVisible()
-            If IsGoBackButtonVisible Is Nothing Then
-                IsGoBackButtonVisible = _twoPaneView.Mode = WinUI.TwoPaneViewMode.SinglePane
-            End If
-
-            Return IsGoBackButtonVisible AndAlso TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2)
+            IsGoBackButtonVisible = _twoPaneView.Mode = WinUI.TwoPaneViewMode.SinglePane AndAlso TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2
         End Sub
 '}]}
     End Class
