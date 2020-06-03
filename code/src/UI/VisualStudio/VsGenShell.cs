@@ -37,6 +37,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
+        private const string PackagingProjectTypeGuid = "{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}";
+
         private readonly AsyncLazy<DTE> _dte = new AsyncLazy<DTE>(
              async () =>
              {
@@ -165,10 +167,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             ThreadHelper.ThrowIfNotOnUIThread();
             try
             {
-                var defaultProject = GetProjectByName(projectName);
+                var startupProject = GetProjectByProjectTypeGuid(PackagingProjectTypeGuid);
+                if (startupProject == null)
+                {
+                    startupProject = GetProjectByName(projectName);
+                }
 
-                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
-                SetStartupProject(defaultProject);
+                SetActiveConfigurationAndPlatform(configurationName, platformName, startupProject);
+                SetStartupProject(startupProject);
             }
             catch (Exception ex)
             {
@@ -697,6 +703,25 @@ namespace Microsoft.Templates.UI.VisualStudio
                 foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
                 {
                     if (p.Name == projectName)
+                    {
+                        return p;
+                    }
+                }
+
+                return null;
+            });
+        }
+
+        private Project GetProjectByProjectTypeGuid(string projectTypeGuid)
+        {
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+
+                foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
+                {
+                    if (p.Kind == projectTypeGuid)
                     {
                         return p;
                     }
