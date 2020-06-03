@@ -126,7 +126,6 @@ Namespace Services
             Return Await GetAccessTokenAsync(_graphScopes)
         End Function
 
-
         Public Async Function AcquireTokenSilentAsync() As Task(Of Boolean)
             Return Await AcquireTokenSilentAsync(_graphScopes)
         End Function

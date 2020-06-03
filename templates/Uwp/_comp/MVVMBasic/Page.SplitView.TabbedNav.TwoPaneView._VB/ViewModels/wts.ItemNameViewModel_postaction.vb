@@ -1,4 +1,4 @@
-﻿Namespace Param_RootNamespace.ViewModels
+﻿Namespace ViewModels
     Public Class wts.ItemNameViewModel
         Inherits IBackNavigationHandler
 
