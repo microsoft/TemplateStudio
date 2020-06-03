@@ -59,7 +59,7 @@
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
         "version" : "2.4.0",
-        "projectPath": "Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true
     },
@@ -70,7 +70,7 @@
       "args": {
         "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
         "version" : "6.0.0",
-        "projectPath": "Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true
     }
