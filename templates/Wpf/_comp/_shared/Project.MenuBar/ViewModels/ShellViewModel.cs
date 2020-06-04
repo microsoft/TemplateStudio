@@ -32,11 +32,11 @@ namespace Param_RootNamespace.ViewModels
         {
             _navigationService = navigationService;
             _rightPaneService = rightPaneService;
-            _navigationService.Navigated += OnNavigated;
         }
 
         private void OnLoaded()
         {
+            _navigationService.Navigated += OnNavigated;
         }
 
         private void OnUnloaded()
