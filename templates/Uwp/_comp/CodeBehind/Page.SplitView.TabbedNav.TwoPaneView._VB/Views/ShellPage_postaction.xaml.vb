@@ -8,19 +8,17 @@
 '{[{
             AddHandler NavigationService.OnCurrentPageCanGoBackChanged, AddressOf OnCurrentPageCanGoBackChanged
 '}]}
-            AddHandler navigationView.BackRequested, OnBackRequested
+            AddHandler navigationView.BackRequested, AddressOf OnBackRequested
         End Sub
 
 '^^
 '{[{
         Private Sub OnCurrentPageCanGoBackChanged(sender As Object, currentPageCanGoBack As Boolean)
-            IsBackEnabled = NavigationService.CanGoBack
-
-            Return IsBackEnabled OrElse currentPageCanGoBack
+            IsBackEnabled = NavigationService.CanGoBack OrElse currentPageCanGoBack
         End Sub
 
 '}]}
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
         End Sub
     End Class
 End Namespace

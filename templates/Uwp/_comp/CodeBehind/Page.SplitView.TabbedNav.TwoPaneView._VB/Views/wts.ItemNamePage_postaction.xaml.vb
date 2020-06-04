@@ -4,13 +4,15 @@ Imports Param_RootNamespace.Helpers
 
 Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
+        Inherits Page
 '{[{
-        Inherits IBackNavigationHandler
+        Implements IBackNavigationHandler
 '}]}
 
 '^^
 '{[{
-        Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean)
+        Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean) Implements IBackNavigationHandler.OnPageCanGoBackChanged
+
 '}]}
         Public Property Selected As SampleOrder
 
@@ -42,14 +44,14 @@ Namespace Views
 
 '^^
 '{[{
-        Public Sub GoBack()
+        Public Sub GoBack() Implements IBackNavigationHandler.GoBack
             If TwoPanePriority = WinUI.TwoPaneViewPriority.Pane2 Then
                 TwoPanePriority = WinUI.TwoPaneViewPriority.Pane1
-                OnPageCanGoBackChanged?.Invoke(Me, False)
+                RaiseEvent OnPageCanGoBackChanged(Me, False)
             End If
         End Sub
 '}]}
 
-        Public Event PropertyChanged As PropertyChangedEventHandler
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     End Class
 End Namespace

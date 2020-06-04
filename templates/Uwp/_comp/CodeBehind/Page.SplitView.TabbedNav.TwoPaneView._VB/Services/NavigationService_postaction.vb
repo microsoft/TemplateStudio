@@ -6,12 +6,13 @@ Namespace Services
     Module NavigationService
 '^^
 '{[{
-        Public Shared Event OnCurrentPageCanGoBackChanged As EventHandler(Of Boolean)
+        Public Event OnCurrentPageCanGoBackChanged As EventHandler(Of Boolean)
+
 '}]}
-        Public Shared Event NavigationFailed As NavigationFailedEventHandler
-        Private Shared _lastParamUsed As Object
+        Public Event NavigationFailed As NavigationFailedEventHandler
+        Private _lastParamUsed As Object
 '{[{
-        Private Shared _canCurrentPageGoBack As Boolean
+        Private _canCurrentPageGoBack As Boolean
 '}]}
 
         Function GoBack() As Boolean
@@ -46,15 +47,15 @@ Namespace Services
         End Sub
 
 '{--{
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             RaiseEvent Navigated(sender, e)
         End Sub
 '}--}
 '^^
 '{[{
 
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler))
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
 
             If backNavigationHandler IsNot Nothing Then
                 AddHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
@@ -64,7 +65,7 @@ Namespace Services
         End Sub
 
         Private Sub Frame_Navigating(sender As Object, e As NavigatingCancelEventArgs)
-            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler))
+            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
 
             If backNavigationHandler IsNot Nothing Then
                 RemoveHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
@@ -74,7 +75,7 @@ Namespace Services
 
         Private Sub OnPageCanGoBackChanged(sender As Object, canCurrentPageGoBack As Boolean)
             _canCurrentPageGoBack = canCurrentPageGoBack
-            OnCurrentPageCanGoBackChanged?.Invoke(sender, canCurrentPageGoBack)
+            RaiseEvent OnCurrentPageCanGoBackChanged(sender, canCurrentPageGoBack)
         End Sub
 '}]}
     End Module

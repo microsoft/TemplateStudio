@@ -1,8 +1,15 @@
-﻿Namespace ViewModels
+﻿'{[{
+Imports Param_RootNamespace.Helpers
+'}]}
+
+Namespace ViewModels
     Public Class wts.ItemNameViewModel
+        Inherits ViewModelBase
+'^^
 '{[{
         Implements IBackNavigationHandler
 '}]}
+
 '^^
 '{[{
         Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean) Implements IBackNavigationHandler.OnPageCanGoBackChanged
@@ -43,7 +50,7 @@
                 TwoPanePriority = WinUI.TwoPaneViewPriority.Pane1
                 RaiseEvent OnPageCanGoBackChanged(Me, False)
             End If
-'}]}
         End Sub
+'}]}
     End Class
 End Namespace

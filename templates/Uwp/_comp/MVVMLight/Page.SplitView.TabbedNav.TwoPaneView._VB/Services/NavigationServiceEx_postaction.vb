@@ -4,13 +4,14 @@ Imports Param_RootNamespace.Helpers
 
 Namespace Services
     Public Class NavigationServiceEx
-//^^
-//{[{
+'^^
+'{[{
         Public Event OnCurrentPageCanGoBackChanged As EventHandler(Of Boolean)
+
 '}]}
         Public Event NavigationFailed As NavigationFailedEventHandler
         Private _lastParamUsed As Object
-//{[{
+'{[{
         Private _canCurrentPageGoBack As Boolean
 '}]}
 
@@ -53,13 +54,13 @@ Namespace Services
         End Sub
 
 '{--{
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             RaiseEvent Navigated(sender, e)
         End Sub
 '}--}
 '^^
 '{[{
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim element As FrameworkElement = Nothing, backNavigationHandler As IBackNavigationHandler = Nothing
 
             element = TryCast(Frame.Content, FrameworkElement)
