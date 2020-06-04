@@ -57,7 +57,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "xunit.runner.visualstudio",
-        "version" : "2.4.1",
+        "version" : "2.4.2",
         "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.vbproj"
       },
       "continueOnError": true
