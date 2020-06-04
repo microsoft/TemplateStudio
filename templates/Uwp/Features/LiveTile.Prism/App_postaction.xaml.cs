@@ -26,8 +26,7 @@ namespace Param_RootNamespace
             Window.Current.Activate();
 //{[{
             Container.Resolve<ILiveTileFeatureService>().SampleUpdate();
-//}]}
-            await Task.CompletedTask;
+//}]}      
         }
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
