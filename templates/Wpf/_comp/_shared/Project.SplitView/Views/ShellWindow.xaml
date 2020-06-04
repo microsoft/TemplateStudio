@@ -24,6 +24,7 @@
             <Button
                 Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
                 AutomationProperties.Name="Go back"
+                ToolTip="Go back"
                 Command="{Binding GoBackCommand}">
                 <TextBlock
                     Text="&#xE72B;"
