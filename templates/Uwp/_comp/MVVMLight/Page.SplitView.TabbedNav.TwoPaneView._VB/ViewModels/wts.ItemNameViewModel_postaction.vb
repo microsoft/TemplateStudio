@@ -5,11 +5,11 @@ Imports Param_RootNamespace.Helpers
 Namespace ViewModels
     Public Class wts.ItemNameViewModel
         Inherits ViewModelBase
-'^^
 '{[{
         Implements IBackNavigationHandler
 '}]}
 
+        Private _twoPaneView As WinUI.TwoPaneView
 '^^
 '{[{
         Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean) Implements IBackNavigationHandler.OnPageCanGoBackChanged

@@ -1,8 +1,11 @@
 ﻿Namespace ViewModels
     Public Class wts.ItemNameViewModel
+        Inherits Observable
 '{[{
         Implements IBackNavigationHandler
 '}]}
+
+        Private _twoPaneView As WinUI.TwoPaneView
 '^^
 '{[{
         Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean) Implements IBackNavigationHandler.OnPageCanGoBackChanged
@@ -43,7 +46,7 @@
                 TwoPanePriority = WinUI.TwoPaneViewPriority.Pane1
                 RaiseEvent OnPageCanGoBackChanged(Me, False)
             End If
-'}]}
         End Sub
+'}]}
     End Class
 End Namespace

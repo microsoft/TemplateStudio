@@ -9,6 +9,7 @@ Namespace Views
         Implements IBackNavigationHandler
 '}]}
 
+        Private _selected As SampleOrder
 '^^
 '{[{
         Public Event OnPageCanGoBackChanged As EventHandler(Of Boolean) Implements IBackNavigationHandler.OnPageCanGoBackChanged

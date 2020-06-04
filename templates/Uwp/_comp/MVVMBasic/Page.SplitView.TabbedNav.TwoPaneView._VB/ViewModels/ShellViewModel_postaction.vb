@@ -11,9 +11,11 @@
         End Sub
 '^^
 '{[{
+
         Private Sub OnCurrentPageCanGoBackChanged(sender As Object, currentPageCanGoBack As Boolean)
             IsBackEnabled = NavigationService.CanGoBack OrElse currentPageCanGoBack
         End Sub
+
 '}]}
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
         End Sub
