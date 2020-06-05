@@ -3,14 +3,11 @@
         Implements IValueConverter
 
         Public Function Convert(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.Convert
-            Try
-                Dim dt As DateTime = CType(value, DateTime)
+            Dim dt As DateTime = CType(value, DateTime)
 
-                If parameter IsNot Nothing Then
-                    Return dt.ToString(parameter.ToString())
-                End If
-            Catch ex As InvalidCastException
-            End Try
+            If parameter IsNot Nothing Then
+                Return dt.ToString(parameter.ToString())
+            End If
 
             Return value
         End Function
