@@ -3,6 +3,15 @@
 //{[{
 
     /// <summary>
+    ///   Looks up a localized string similar to ShellGoBackButton.
+    /// </summary>
+    public static string ShellGoBackButton {
+        get {
+            return ResourceManager.GetString("ShellGoBackButton", resourceCulture);
+        }
+    }
+
+    /// <summary>
     ///   Looks up a localized string similar to MenuFileHeader.
     /// </summary>
     public static string ShellMenuFileHeader {

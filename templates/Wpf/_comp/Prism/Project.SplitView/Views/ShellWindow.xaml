@@ -25,14 +25,14 @@
         <controls:WindowCommands>
             <Button
                 Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
-                AutomationProperties.Name="Go back"
-                ToolTip="Go back"
+                AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}"
+                ToolTip="{x:Static properties:Resources.ShellGoBackButton}"
                 Command="{Binding GoBackCommand}">
                 <TextBlock
                     Text="&#xE72B;"
                     FontSize="14"
                     FontFamily="Segoe MDL2 Assets"
-                    AutomationProperties.Name="Go back icon" />
+                    AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}" />
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
