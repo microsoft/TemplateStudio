@@ -13,79 +13,81 @@
     <System.Windows.Controls.Page.Resources>
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="models:AppTheme" />
     </System.Windows.Controls.Page.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock
-            Style="{StaticResource PageTitleStyle}"
-            Text="{x:Static properties:Resources.wts.ItemNamePageTitle}" />
-        <StackPanel
-            x:Name="ContentArea"
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}">
-
+    <ScrollViewer>
+        <Grid Margin="{StaticResource SmallTopBottomMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static properties:Resources.wts.ItemNamePagePersonalizationTitle}" />
-            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                Style="{StaticResource PageTitleStyle}"
+                Text="{x:Static properties:Resources.wts.ItemNamePageTitle}" />
+            <StackPanel
+                x:Name="ContentArea"
+                Grid.Row="1"
+                Margin="{StaticResource MediumLeftRightMargin}">
+
                 <TextBlock
-                    Style="{StaticResource BodyTextStyle}"
-                    Text="{x:Static properties:Resources.wts.ItemNamePageChooseThemeText}" />
-                <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                    <RadioButton
-                        GroupName="AppTheme"
-                        Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonLightTheme}"
-                        FontSize="{StaticResource MediumFontSize}"
-                        IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Checked">
-                                <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Light" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </RadioButton>
-                    <RadioButton
-                        GroupName="AppTheme"
-                        Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
-                        Margin="{StaticResource XSmallTopMargin}"
-                        FontSize="{StaticResource MediumFontSize}"
-                        IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Checked">
-                                <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Dark" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </RadioButton>
-                </StackPanel>
-            </StackPanel>
-
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static properties:Resources.wts.ItemNamePageAboutTitle}" />
-            <TextBlock
-                Text="{Binding VersionDescription, Mode=OneWay}"
-                Margin="{StaticResource XSmallTopMargin}"
-                Style="{StaticResource BodyTextStyle}" />
-            <TextBlock
-                Margin="{StaticResource XSmallTopMargin}"
-                Style="{StaticResource BodyTextStyle}"
-                Text="{x:Static properties:Resources.wts.ItemNamePageAboutText}" />
-
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                AutomationProperties.Name="{Binding Text, ElementName=settingsPrivacyStatement}">
-                <Hyperlink
-                    Command="{Binding PrivacyStatementCommand}"
-                    AutomationProperties.Name="{Binding Text, ElementName=settingsPrivacyStatement}">
+                    Margin="{StaticResource SmallTopMargin}"
+                    Style="{StaticResource SubtitleTextStyle}"
+                    Text="{x:Static properties:Resources.wts.ItemNamePagePersonalizationTitle}" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock
-                        x:Name="settingsPrivacyStatement"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static properties:Resources.wts.ItemNamePagePrivacyStatementText}" />
-                </Hyperlink>
-            </TextBlock>
-        </StackPanel>
-    </Grid>
+                        Text="{x:Static properties:Resources.wts.ItemNamePageChooseThemeText}" />
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                        <RadioButton
+                            GroupName="AppTheme"
+                            Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonLightTheme}"
+                            FontSize="{StaticResource MediumFontSize}"
+                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Light" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RadioButton>
+                        <RadioButton
+                            GroupName="AppTheme"
+                            Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
+                            Margin="{StaticResource XSmallTopMargin}"
+                            FontSize="{StaticResource MediumFontSize}"
+                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Dark" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RadioButton>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Style="{StaticResource SubtitleTextStyle}"
+                    Text="{x:Static properties:Resources.wts.ItemNamePageAboutTitle}" />
+                <TextBlock
+                    Text="{Binding VersionDescription, Mode=OneWay}"
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Style="{StaticResource BodyTextStyle}" />
+                <TextBlock
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Style="{StaticResource BodyTextStyle}"
+                    Text="{x:Static properties:Resources.wts.ItemNamePageAboutText}" />
+
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    AutomationProperties.Name="{Binding Text, ElementName=settingsPrivacyStatement}">
+                    <Hyperlink
+                        Command="{Binding PrivacyStatementCommand}"
+                        AutomationProperties.Name="{Binding Text, ElementName=settingsPrivacyStatement}">
+                        <TextBlock
+                            x:Name="settingsPrivacyStatement"
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{x:Static properties:Resources.wts.ItemNamePagePrivacyStatementText}" />
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </System.Windows.Controls.Page>
