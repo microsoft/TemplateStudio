@@ -105,15 +105,15 @@ namespace Microsoft.Templates.Test
         [Fact]
         public void EnsureCodeDoesNotUseInvalidTodoCommentIdentifier()
         {
-            void EnsureUwpTemplatesNotUsed(string fileExtension)
+            void EnsureWTSTODONotUsed(string fileExtension)
             {
                 var result = CodeIsNotUsed("WTS TODO", fileExtension);
 
                 Assert.True(result.Item1, result.Item2);
             }
 
-            EnsureUwpTemplatesNotUsed("*.cs");
-            EnsureUwpTemplatesNotUsed("*.vb");
+            EnsureWTSTODONotUsed("*.cs");
+            EnsureWTSTODONotUsed("*.vb");
         }
 
         [Fact]
