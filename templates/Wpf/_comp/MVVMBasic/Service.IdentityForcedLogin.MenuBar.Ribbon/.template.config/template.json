@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin.MenuBar",
-    "shortName": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin.MenuBar",
-    "identity": "wts.Wpf.MVVMLight.Service.IdentityForcedLogin.MenuBar",
+    "name": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar.Ribbon",
+    "shortName": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar.Ribbon",
+    "identity": "wts.Wpf.MVVMBasic.Service.IdentityForcedLogin.MenuBar.Ribbon",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMLight & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $projectType == MenuBar|Ribbon & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

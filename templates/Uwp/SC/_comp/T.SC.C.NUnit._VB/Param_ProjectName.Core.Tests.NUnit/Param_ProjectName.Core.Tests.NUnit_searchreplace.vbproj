@@ -1,6 +1,6 @@
-﻿    <TargetFramework>netcoreapp2.1</TargetFramework>
+﻿    <TargetFramework>netcoreapp3.1</TargetFramework>
 ^^^-searchabove-replacebelow-vvv
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <NoWarn>VBSAC002</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>WTSVBRules.ruleset</CodeAnalysisRuleSet>

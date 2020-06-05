@@ -253,9 +253,9 @@ namespace Microsoft.Templates.Test
             const string batFile = "bat\\Uwp\\RunTests.bat";
 
             // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
-            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
-            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.NUnit.dll\" ";
-            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.xUnit.dll\" ";
+            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.MSTest.dll\" ";
+            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.NUnit.dll\" ";
+            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.xUnit.dll\" ";
 
             var batPath = Path.GetDirectoryName(GetPath(batFile));
 
