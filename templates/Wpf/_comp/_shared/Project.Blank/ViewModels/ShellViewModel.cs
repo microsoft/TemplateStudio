@@ -20,11 +20,11 @@ namespace Param_RootNamespace.ViewModels
         public ShellViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            _navigationService.Navigated += OnNavigated;
         }
 
         private void OnLoaded()
         {
+            _navigationService.Navigated += OnNavigated;
         }
 
         private void OnUnloaded()

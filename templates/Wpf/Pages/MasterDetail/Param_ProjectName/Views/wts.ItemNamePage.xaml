@@ -33,6 +33,7 @@
         <DataTemplate x:Key="DetailTemplate">
             <ScrollViewer
                 Name="ForegroundElement"
+                IsTabStop="True"
                 HorizontalAlignment="Stretch">
                 <StackPanel HorizontalAlignment="Left" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -129,6 +130,7 @@
         </Grid>
         <ContentControl
             Grid.Column="1"
+            IsTabStop="False"
             Content="{Binding Selected}"
             ContentTemplate="{StaticResource DetailTemplate}" />
     </Grid>
