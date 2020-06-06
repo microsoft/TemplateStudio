@@ -46,15 +46,12 @@ Namespace Services
             End If
         End Sub
 
-'{--{
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+'{--{
             RaiseEvent Navigated(sender, e)
-        End Sub
 '}--}
 '^^
 '{[{
-
-        Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
 
             If backNavigationHandler IsNot Nothing Then
@@ -62,7 +59,10 @@ Namespace Services
             End If
 
             RaiseEvent Navigated(sender, e)
+'}]}
         End Sub
+'^^
+'{[{
 
         Private Sub Frame_Navigating(sender As Object, e As NavigatingCancelEventArgs)
             Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
