@@ -65,8 +65,11 @@ namespace Microsoft.Templates.Test
                 "wts.Page.InkDrawPicture",
                 "wts.Page.InkSmartCanvas",
                 "wts.Page.MasterDetail",
-                "wts.Page.TabbedPivot",
                 "wts.Page.Settings",
+                "wts.Page.TabbedPivot",
+                "wts.Page.TabView",
+                "wts.Page.TreeView",
+                "wts.Page.TwoPaneView",
             };
         }
 
@@ -906,15 +909,27 @@ namespace Microsoft.Templates.Test
 
             var outputText = new List<string>();
 
+            var testCount = -1;
+            var passCount = -1;
+
             foreach (var outputLine in output)
             {
                 var outputLineString = outputLine.ToString();
 
                 outputText.Add(outputLineString);
 
-                if (outputLineString.StartsWith("Total tests: ", StringComparison.OrdinalIgnoreCase) && outputLineString.Contains("Failed: 0."))
+                if (outputLineString.StartsWith("Total tests: ", StringComparison.OrdinalIgnoreCase))
                 {
-                    result = true;
+                    testCount = int.Parse(outputLineString.Substring(12).Trim());
+                }
+                else if (outputLineString.Trim().StartsWith("Passed: ", StringComparison.OrdinalIgnoreCase))
+                {
+                    passCount = int.Parse(outputLineString.Trim().Substring(7).Trim());
+
+                    if (testCount > 0)
+                    {
+                        result = testCount == passCount;
+                    }
                 }
             }
 
@@ -975,7 +990,7 @@ namespace Microsoft.Templates.Test
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -1037,7 +1052,7 @@ namespace Microsoft.Templates.Test
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -1099,7 +1114,7 @@ namespace Microsoft.Templates.Test
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -1155,13 +1170,13 @@ ForEach ($i in $dump)
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
             var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
             ExecutePowerShellScript(buildSolutionScript);
 
             result.CertificatePath = InstallCertificate(baseSetup);
 
             // install appx
-            var appxFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.appx";
+            var appxFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.msix";
             ExecutePowerShellScript($"Add-AppxPackage -Path {appxFile}");
 
             // get app package name
