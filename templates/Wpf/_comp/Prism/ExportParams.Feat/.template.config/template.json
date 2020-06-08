@@ -15,7 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == Prism & wts.type == feature",
       "wts.export.configtype": "AppConfig",
-      "wts.export.configvalue": "config"
+      "wts.export.configvalue": "appConfig"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
