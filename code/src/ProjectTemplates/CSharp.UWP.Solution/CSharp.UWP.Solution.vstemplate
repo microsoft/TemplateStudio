@@ -13,7 +13,7 @@
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <LanguageTag>C#</LanguageTag>
+    <LanguageTag>csharp</LanguageTag>
     <PlatformTag>windows</PlatformTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
