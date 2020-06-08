@@ -21,7 +21,7 @@ namespace Param_RootNamespace.Core.Services
         https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         https://docs.microsoft.com/azure/active-directory/develop/v2-overview
 
-        WTS TODO: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
+        TODO WTS: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
         https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 
         The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.

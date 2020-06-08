@@ -19,7 +19,7 @@ Namespace Services
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
 
-        ' WTS TODO: Please create a ClientID following these steps and update the app.config IdentityClientId.
+        ' TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
         Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 

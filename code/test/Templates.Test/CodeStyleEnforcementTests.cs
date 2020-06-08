@@ -103,6 +103,20 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureCodeDoesNotUseInvalidTodoCommentIdentifier()
+        {
+            void EnsureWTSTODONotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed("WTS TODO", fileExtension);
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureWTSTODONotUsed("*.cs");
+            EnsureWTSTODONotUsed("*.vb");
+        }
+
+        [Fact]
         public void EnsureVisualBasicCodeDoesNotIncludeCommonPortingIssues()
         {
             var foundErrors = new List<string>();
