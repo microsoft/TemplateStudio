@@ -15,6 +15,7 @@ namespace Param_RootNamespace
         public App()
         {
             InitializeComponent();
+            UnhandledException += OnAppUnhandledException;
         }
 
         protected override void ConfigureContainer()
@@ -34,6 +35,12 @@ namespace Param_RootNamespace
             var service = base.OnCreateDeviceGestureService();
             service.UseTitleBarBackButton = false;
             return service;
+        }
+
+        private void OnAppUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            // TODO WTS: Please handle the exception as appropriate to your scenario
+            // For more info see https://docs.microsoft.com/uwp/api/windows.ui.xaml.application.unhandledexception
         }
     }
 }

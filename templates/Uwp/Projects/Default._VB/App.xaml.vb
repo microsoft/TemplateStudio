@@ -13,6 +13,7 @@ NotInheritable Partial Class App
 
     Public Sub New()
         InitializeComponent()
+        AddHandler UnhandledException, AddressOf OnAppUnhandledException
 
         ' Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
         _activationService = New Lazy(Of ActivationService)(AddressOf CreateActivationService)
@@ -26,5 +27,10 @@ NotInheritable Partial Class App
 
     Protected Overrides Async Sub OnActivated(args As IActivatedEventArgs)
         Await ActivationService.ActivateAsync(args)
+    End Sub
+
+    Private Sub OnAppUnhandledException(sender As Object, e As Windows.UI.Xaml.UnhandledExceptionEventArgs)
+        ' TODO WTS: Please handle the exception as appropriate to your scenario
+        ' For more info see https://docs.microsoft.com/uwp/api/windows.ui.xaml.application.unhandledexception
     End Sub
 End Class
