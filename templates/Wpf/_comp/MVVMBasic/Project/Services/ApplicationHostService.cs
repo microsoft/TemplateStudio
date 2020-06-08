@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Param_RootNamespace.Contracts.Services;
@@ -25,10 +26,7 @@ namespace Param_RootNamespace.Services
             // Initialize services that you need before app activation
             await InitializeAsync();
 
-            _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
-            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
-            _shellWindow.ShowWindow();
-            _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
+            await HandleActivationAsync();
 
             // Tasks after activation
             await StartupAsync();
@@ -47,6 +45,19 @@ namespace Param_RootNamespace.Services
         private async Task StartupAsync()
         {
             await Task.CompletedTask;
+        }
+
+        private async Task HandleActivationAsync()
+        {
+            if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
+            {
+                // Default activation
+                _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
+                _navigationService.Initialize(_shellWindow.GetNavigationFrame());
+                _shellWindow.ShowWindow();
+                _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
+                await Task.CompletedTask;
+            }
         }
     }
 }

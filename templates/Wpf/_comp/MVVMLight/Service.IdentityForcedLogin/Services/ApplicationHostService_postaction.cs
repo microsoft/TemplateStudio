@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Services
 //{[{
         private readonly IIdentityService _identityService;
         private readonly IUserDataService _userDataService;
-        private readonly AppConfig _config;
+        private readonly AppConfig _appConfig;
 //}]}
         private IShellWindow _shellWindow;
 //{[{
@@ -23,7 +23,7 @@ namespace Param_RootNamespace.Services
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;
-            _config = config;
+            _appConfig = config;
 //}]}
         }
 
@@ -32,7 +32,7 @@ namespace Param_RootNamespace.Services
             await InitializeAsync();
 //{[{
 
-            _identityService.InitializeWithAadAndPersonalMsAccounts(_config.IdentityClientId, "http://localhost");
+            _identityService.InitializeWithAadAndPersonalMsAccounts(_appConfig.IdentityClientId, "http://localhost");
             var silentLoginSuccess = await _identityService.AcquireTokenSilentAsync();
             if (!silentLoginSuccess || !_identityService.IsAuthorized())
             {
