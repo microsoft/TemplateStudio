@@ -65,12 +65,9 @@ namespace Param_RootNamespace.Services
 //^^
 //{[{
 
-        private void OnLoggedIn(object sender, EventArgs e)
+        private async void OnLoggedIn(object sender, EventArgs e)
         {
-            _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>(Guid.NewGuid().ToString());
-            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
-            _shellWindow.ShowWindow();
-            _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
+            await HandleActivationAsync();
             _logInWindow.CloseWindow();
             _logInWindow = null;
         }

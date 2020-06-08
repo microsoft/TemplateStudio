@@ -49,7 +49,7 @@ namespace Param_RootNamespace.Services
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
             {
                 // Default activation
-                _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>();
+                _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>(Guid.NewGuid().ToString());
                 _navigationService.Initialize(_shellWindow.GetNavigationFrame());
                 _shellWindow.ShowWindow();
                 _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName);
