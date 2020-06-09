@@ -14,13 +14,16 @@
 //}]}
         }
 
-        public async Task StartAsync()
+        private async Task HandleActivationAsync()
         {
-            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
+            if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
+            {
+                _navigationService.Initialize(_shellWindow.GetNavigationFrame());
 //{[{
-            _rightPaneService.Initialize(_shellWindow.GetRightPaneFrame(), _shellWindow.GetSplitView());
+                _rightPaneService.Initialize(_shellWindow.GetRightPaneFrame(), _shellWindow.GetSplitView());
 //}]}
-            _shellWindow.ShowWindow();
+                _shellWindow.ShowWindow();
+            }
         }
     }
 }

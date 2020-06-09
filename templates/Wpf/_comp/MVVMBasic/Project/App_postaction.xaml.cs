@@ -18,6 +18,10 @@ namespace Param_RootNamespace
     {
 //{[{
         private IHost _host;
+
+        public T GetService<T>()
+            where T : class
+            => _host.Services.GetService(typeof(T)) as T;
 //}]}
 
         public App()
@@ -31,7 +35,10 @@ namespace Param_RootNamespace
 
             // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
             _host = Host.CreateDefaultBuilder(e.Args)
-                    .ConfigureAppConfiguration(c => c.SetBasePath(appLocation))
+                    .ConfigureAppConfiguration(c =>
+                    {
+                        c.SetBasePath(appLocation);
+                    })
                     .ConfigureServices(ConfigureServices)
                     .Build();
 
