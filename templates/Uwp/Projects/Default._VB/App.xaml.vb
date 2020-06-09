@@ -30,7 +30,7 @@ NotInheritable Partial Class App
     End Sub
 
     Private Sub OnAppUnhandledException(sender As Object, e As Windows.UI.Xaml.UnhandledExceptionEventArgs)
-        ' TODO WTS: Please handle the exception as appropriate to your scenario
+        ' TODO WTS: Please log and handle the exception as appropriate to your scenario
         ' For more info see https://docs.microsoft.com/uwp/api/windows.ui.xaml.application.unhandledexception
     End Sub
 End Class
