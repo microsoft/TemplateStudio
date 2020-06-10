@@ -11,7 +11,7 @@
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <LanguageTag>VB</LanguageTag>
+    <LanguageTag>visualbasic</LanguageTag>
     <PlatformTag>windows</PlatformTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
