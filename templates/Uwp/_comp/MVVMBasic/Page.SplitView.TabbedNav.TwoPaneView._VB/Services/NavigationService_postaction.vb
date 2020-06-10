@@ -18,11 +18,15 @@ Namespace Services
         Function GoBack() As Boolean
 '{[{
             If _canCurrentPageGoBack Then
-                Dim navigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
+                Dim element As FrameworkElement = TryCast(Frame.Content, FrameworkElement)
 
-                If navigationHandler IsNot Nothing Then
-                    navigationHandler.GoBack()
-                    Return True
+                If element IsNot Nothing Then
+                    Dim navigationHandler As IBackNavigationHandler = TryCast(element.DataContext, IBackNavigationHandler)
+
+                    If navigationHandler IsNot Nothing Then
+                        navigationHandler.GoBack()
+                        Return True
+                    End If
                 End If
             End If
 '}]}
@@ -52,10 +56,14 @@ Namespace Services
 '}--}
 '^^
 '{[{
-            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
+            Dim element As FrameworkElement = TryCast(Frame.Content, FrameworkElement)
 
-            If backNavigationHandler IsNot Nothing Then
-                AddHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
+            If element IsNot Nothing Then
+                Dim backNavigationHandler As IBackNavigationHandler = TryCast(element.DataContext, IBackNavigationHandler)
+
+                If backNavigationHandler IsNot Nothing Then
+                    AddHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
+                End If
             End If
 
             RaiseEvent Navigated(sender, e)
@@ -65,11 +73,15 @@ Namespace Services
 '{[{
 
         Private Sub Frame_Navigating(sender As Object, e As NavigatingCancelEventArgs)
-            Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
+            Dim element As FrameworkElement = TryCast(Frame.Content, FrameworkElement)
 
-            If backNavigationHandler IsNot Nothing Then
-                RemoveHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
-                _canCurrentPageGoBack = False
+            If element IsNot Nothing Then
+                Dim backNavigationHandler As IBackNavigationHandler = TryCast(element.DataContext, IBackNavigationHandler)
+
+                If backNavigationHandler IsNot Nothing Then
+                    RemoveHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
+                    _canCurrentPageGoBack = False
+                End If
             End If
         End Sub
 
