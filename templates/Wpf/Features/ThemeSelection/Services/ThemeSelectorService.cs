@@ -21,19 +21,20 @@ namespace Param_RootNamespace.Services
         {
             if (IsHighContrastActive)
             {
-                // TODO: Set high contrast theme name
+                // TODO WTS: Set high contrast theme
+                // You can add custom themes following the docs on https://mahapps.com/docs/themes/thememanager
             }
             else if (theme == null)
             {
                 if (App.Current.Properties.Contains("Theme"))
                 {
-                    // Saved theme
+                    // Read saved theme from properties
                     var themeName = App.Current.Properties["Theme"].ToString();
                     theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
                 }
                 else
                 {
-                    // Default theme
+                    // Set default theme
                     theme = AppTheme.Light;
                 }
             }
