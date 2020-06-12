@@ -47,9 +47,6 @@ Namespace Services
         End Sub
 
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-'{--{
-            RaiseEvent Navigated(sender, e)
-'}--}
 '^^
 '{[{
             Dim backNavigationHandler As IBackNavigationHandler = TryCast(Frame.Content, IBackNavigationHandler)
@@ -57,9 +54,9 @@ Namespace Services
             If backNavigationHandler IsNot Nothing Then
                 AddHandler backNavigationHandler.OnPageCanGoBackChanged, AddressOf OnPageCanGoBackChanged
             End If
+'}]}
 
             RaiseEvent Navigated(sender, e)
-'}]}
         End Sub
 '^^
 '{[{

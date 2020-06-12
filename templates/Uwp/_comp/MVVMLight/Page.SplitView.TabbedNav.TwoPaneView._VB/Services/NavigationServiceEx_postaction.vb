@@ -54,9 +54,6 @@ Namespace Services
         End Sub
 
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-'{--{
-            RaiseEvent Navigated(sender, e)
-'}--}
 '^^
 '{[{
             Dim element As FrameworkElement = Nothing, backNavigationHandler As IBackNavigationHandler = Nothing
@@ -69,8 +66,8 @@ Namespace Services
                 End If
             End If
 
-            RaiseEvent Navigated(sender, e)
 '}]}
+            RaiseEvent Navigated(sender, e)
         End Sub
 '^^
 '{[{
