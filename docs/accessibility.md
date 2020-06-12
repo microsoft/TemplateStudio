@@ -2,7 +2,10 @@
 
 Here we provide a checklist you can use to ensure that your pull request meets the accessibility requirements.
 
-For more info, read the [accessibility overview](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-overview) and [UWP Accessibility checklist](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-checklist).
+For more info, read:
+- [UWP Accessibility overview](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-overview) 
+- [UWP Accessibility checklist](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-checklist)
+- [WPF Accessibility best practices](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/accessibility-best-practices)
 
 ## Keyboard accessibility
 
