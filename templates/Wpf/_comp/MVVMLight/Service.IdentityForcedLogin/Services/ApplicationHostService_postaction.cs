@@ -74,11 +74,9 @@ namespace Param_RootNamespace.Services
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            // Show the LogIn Window
             _logInWindow = SimpleIoc.Default.GetInstance<ILogInWindow>(Guid.NewGuid().ToString());
             _logInWindow.ShowWindow();
 
-            // Close the Shell Window and
             _shellWindow.CloseWindow();
             _navigationService.UnsubscribeNavigation();
         }
