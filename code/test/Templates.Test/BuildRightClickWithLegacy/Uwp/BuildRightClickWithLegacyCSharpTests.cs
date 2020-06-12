@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
         {
         }
 
-        [Theory(Skip = "Disabled due to moving catalog")]
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("ExecutionSet", "_Full")]
