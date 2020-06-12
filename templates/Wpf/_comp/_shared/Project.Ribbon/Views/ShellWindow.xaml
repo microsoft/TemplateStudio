@@ -37,6 +37,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <!--
+            Learn more about using Fluent.Ribbon Control at
+            https://fluentribbon.github.io/
+            -->
             <Fluent:Ribbon x:Name="ribbonControl" Grid.Row="0">
                 <!--Backstage-->
                 <Fluent:Ribbon.Menu>
