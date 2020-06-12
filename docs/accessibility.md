@@ -5,7 +5,7 @@ Here we provide a checklist you can use to ensure that your pull request meets t
 For more info, read:
 - [UWP Accessibility overview](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-overview) 
 - [UWP Accessibility checklist](https://docs.microsoft.com/windows/uwp/accessibility/accessibility-checklist)
-- [WPF Accessibility best practices](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/accessibility-best-practices)
+- [WPF Accessibility best practices](https://docs.microsoft.com/dotnet/framework/ui-automation/accessibility-best-practices)
 
 ## Keyboard accessibility
 
