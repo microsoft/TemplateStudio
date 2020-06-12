@@ -15,8 +15,8 @@
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="/Styles/UserControl.xaml" />
                 <!--
-                MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!
-                Learn more about using MahApps.Metro at  https://mahapps.com/
+                MahApps.Metro resource dictionaries.
+                Learn more about using MahApps.Metro at https://mahapps.com/
                 -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
