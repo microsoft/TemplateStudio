@@ -48,7 +48,7 @@ namespace Param_RootNamespace.Services
         {
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
             {
-                // Default activation
+                // Default activation that navigates to the apps default page
                 _shellWindow = SimpleIoc.Default.GetInstance<IShellWindow>(Guid.NewGuid().ToString());
                 _navigationService.Initialize(_shellWindow.GetNavigationFrame());
                 _shellWindow.ShowWindow();

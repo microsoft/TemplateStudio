@@ -10,7 +10,7 @@ namespace Param_RootNamespace.Services
 //{[{
         public Version GetVersion()
         {
-            //// Setup the App Version in Param_ProjectName > Properties > Package > PackageVersion
+            // Set the app version in Param_ProjectName > Properties > Package > PackageVersion
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var version = FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
             return new Version(version);

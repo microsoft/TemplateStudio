@@ -236,7 +236,7 @@ namespace Param_RootNamespace.Core.Services
         {
             if (_identityCacheService != null)
             {
-                // .Net Core Apps should provide a mechanism to serialize and deserialize the user token cache
+                // .NET core applications should provide a mechanism to serialize and deserialize the user token cache
                 // https://aka.ms/msal-net-token-cache-serialization
                 _client.UserTokenCache.SetBeforeAccess((args) =>
                 {

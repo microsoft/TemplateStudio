@@ -76,11 +76,9 @@ namespace Param_RootNamespace.Services
 
         private void OnLoggedOut(object sender, EventArgs e)
         {
-            // Show the LogIn Window
             _logInWindow = _serviceProvider.GetService(typeof(ILogInWindow)) as ILogInWindow;
             _logInWindow.ShowWindow();
 
-            // Close the Shell Window and
             _shellWindow.CloseWindow();
             _navigationService.UnsubscribeNavigation();
         }
