@@ -126,12 +126,11 @@ Namespace Services
             Return Await GetAccessTokenAsync(_graphScopes)
         End Function
 
-
         Public Async Function AcquireTokenSilentAsync() As Task(Of Boolean)
             Return Await AcquireTokenSilentAsync(_graphScopes)
         End Function
 
-        Private Async Function AcquireTokenSilentAsync(ByVal scopes As String()) As Task(Of Boolean)
+        Private Async Function AcquireTokenSilentAsync(scopes As String()) As Task(Of Boolean)
             If Not NetworkInterface.GetIsNetworkAvailable() Then
                 Return False
             End If

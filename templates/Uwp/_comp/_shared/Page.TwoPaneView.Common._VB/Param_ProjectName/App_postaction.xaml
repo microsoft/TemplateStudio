@@ -1,0 +1,5 @@
+﻿            <ResourceDictionary.MergedDictionaries>
+<!--{[{-->
+                <XamlControlsResources  xmlns="using:Microsoft.UI.Xaml.Controls" />
+<!--}]}-->
+            </ResourceDictionary.MergedDictionaries>

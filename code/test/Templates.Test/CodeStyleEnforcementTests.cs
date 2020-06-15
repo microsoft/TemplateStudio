@@ -180,6 +180,8 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded(" -= AddressOf"); // Use RemoveHandler instead
             CheckStringNotIncluded("Param_Setter("); // ParamSetter should be in square brackets
             CheckStringNotIncluded("CSharpImpl"); // Output by converter
+            CheckStringNotIncluded("//", exception: "App_postaction.xaml.vb"); // C# comment (exclusion is for URI in comments)
+            CheckStringNotIncluded("?.Invoke", exception: "DragDropService_postaction.vb"); //use RaiseEvent instead
 
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync", "OnPivotActivatedAsync", "TaskCanceledException" });
 
@@ -258,7 +260,7 @@ namespace Microsoft.Templates.Test
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeInTheFile, string fileExtension, IEnumerable<string> filesToExclude = null)
         {
-            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude != null && !filesToExclude.Any(fe => f.Contains(fe))))
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude == null || !filesToExclude.Any(fe => f.Contains(fe))))
             {
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeInTheFile))
                 {

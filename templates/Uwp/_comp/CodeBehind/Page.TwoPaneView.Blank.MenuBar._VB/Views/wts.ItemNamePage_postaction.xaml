@@ -1,0 +1,20 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <winui:TwoPaneView
+            VerticalAlignment="Stretch">
+        </winui:TwoPaneView>
+<!--{[{-->
+        <Button
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
+            Click="OnGoBack"
+            Visibility="{x:Bind IsGoBackButtonVisible, Mode=OneWay}">
+            <SymbolIcon Symbol="Back" />
+        </Button>
+<!--}]}-->
+    </Grid>
+</Page>

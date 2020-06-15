@@ -394,7 +394,10 @@ namespace Microsoft.Templates.Test
                     }
                 }
 
-                failures.AddRange(vbMethods.Where(m => m != "InlineAssignHelper").Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+                if (vbMethods.Any())
+                {
+                    failures.AddRange(vbMethods.Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+                }
 
                 foreach (var csEvent in csEvents)
                 {
@@ -474,7 +477,10 @@ namespace Microsoft.Templates.Test
                     }
                 }
 
-                failures.AddRange(vbExceptions.Where(m => m != "InlineAssignHelper").Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
+                if (vbExceptions.Any())
+                {
+                    failures.AddRange(vbExceptions.Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
+                }
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
