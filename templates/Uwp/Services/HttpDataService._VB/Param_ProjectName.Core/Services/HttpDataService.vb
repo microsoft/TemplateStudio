@@ -96,7 +96,7 @@ Namespace Core.Services
         End Function
 
         ' Add this to all public methods
-        Private Sub AddAuthorizationHeader(ByVal token As String)
+        Private Sub AddAuthorizationHeader(token As String)
             If String.IsNullOrEmpty(token) Then
                 client.DefaultRequestHeaders.Authorization = Nothing
                 Return

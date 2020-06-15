@@ -19,7 +19,7 @@ Namespace Services
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
 
-        ' WTS TODO: Please create a ClientID following these steps and update the app.config IdentityClientId.
+        ' TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
         Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 
@@ -126,12 +126,11 @@ Namespace Services
             Return Await GetAccessTokenAsync(_graphScopes)
         End Function
 
-
         Public Async Function AcquireTokenSilentAsync() As Task(Of Boolean)
             Return Await AcquireTokenSilentAsync(_graphScopes)
         End Function
 
-        Private Async Function AcquireTokenSilentAsync(ByVal scopes As String()) As Task(Of Boolean)
+        Private Async Function AcquireTokenSilentAsync(scopes As String()) As Task(Of Boolean)
             If Not NetworkInterface.GetIsNetworkAvailable() Then
                 Return False
             End If

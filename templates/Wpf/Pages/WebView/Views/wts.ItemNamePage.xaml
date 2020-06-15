@@ -69,7 +69,8 @@
                 <Button
                     Command="{Binding RefreshCommand}"
                     Style="{StaticResource WebViewButtonStyle}"
-                    ToolTip="{x:Static properties:Resources.wts.ItemNamePageRefreshButtonTooltip}">
+                    ToolTip="{x:Static properties:Resources.wts.ItemNamePageRefreshButtonTooltip}"
+                    AutomationProperties.Name="{x:Static properties:Resources.wts.ItemNamePageRefreshButtonTooltip}">
                     <TextBlock
                         Style="{StaticResource SmallIconStyle}"
                         Text="&#xE72C;" />
@@ -77,7 +78,8 @@
                 <Button
                     Command="{Binding OpenInBrowserCommand}"
                     Style="{StaticResource WebViewButtonStyle}"
-                    ToolTip="{x:Static properties:Resources.wts.ItemNamePageOpenInBrowserButtonTooltip}">
+                    ToolTip="{x:Static properties:Resources.wts.ItemNamePageOpenInBrowserButtonTooltip}"
+                    AutomationProperties.Name="{x:Static properties:Resources.wts.ItemNamePageOpenInBrowserButtonTooltip}">
                     <TextBlock
                         Style="{StaticResource SmallIconStyle}"
                         Text="&#xE774;" />
