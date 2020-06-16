@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using ControlzEx.Theming;
 using Microsoft.Win32;
 using Param_RootNamespace.Contracts.Services;
@@ -11,6 +12,8 @@ namespace Param_RootNamespace.Services
     {
         private bool IsHighContrastActive
                         => SystemParameters.HighContrast;
+
+        public event EventHandler ThemeChanged;
 
         public ThemeSelectorService()
         {
@@ -44,6 +47,7 @@ namespace Param_RootNamespace.Services
             {
                 ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
                 App.Current.Properties["Theme"] = theme.ToString();
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
                 return true;
             }
 
@@ -56,6 +60,9 @@ namespace Param_RootNamespace.Services
             Enum.TryParse(themeName, out AppTheme theme);
             return theme;
         }
+
+        public SolidColorBrush GetColor(string colorKey)
+            => Application.Current.FindResource(colorKey) as SolidColorBrush;
 
         private void OnUserPreferenceChanging(object sender, UserPreferenceChangingEventArgs e)
         {
