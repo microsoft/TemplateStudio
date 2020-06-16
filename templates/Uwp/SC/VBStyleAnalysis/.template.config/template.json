@@ -18,7 +18,7 @@
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
     "wts.compositionFilter": "wts.type == project",
-    "wts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/master/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
+    "wts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/main/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
