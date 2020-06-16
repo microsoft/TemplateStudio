@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Wpf.Page.XamlIsland.AddUwpApp",
+  "shortName": "wts.Wpf.Page.XamlIsland.AddUwpApp",
+  "identity": "wts.Wpf.Page.XamlIsland.AddUwpApp",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "composition",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.outputToParent": "true",
+    "wts.compositionFilter": "identity == wts.Wpf.Page.XamlIsland"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName.XamlIslandApp/Param_ProjectName.XamlIslandApp.csproj"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add reference to this project in main WPF app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}
