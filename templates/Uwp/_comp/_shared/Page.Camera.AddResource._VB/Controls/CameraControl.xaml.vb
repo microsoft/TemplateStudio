@@ -111,7 +111,6 @@ Namespace Controls
 
                   If Panel = Panel.Back Then
                       _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees)
-                      _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees)
                       _mirroringPreview = False
                   Else
                       _mirroringPreview = True
