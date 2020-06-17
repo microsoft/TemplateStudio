@@ -115,7 +115,6 @@ namespace Param_RootNamespace.Controls
 
                     if (Panel == Panel.Back)
                     {
-                        _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
                         _mirroringPreview = false;
                     }
                     else
