@@ -1,8 +1,8 @@
 # Ribbon project type
 
-Adds a ribbon control from `Fluent.Ribbon` nuget package which consists of several tabs, grouped by functionality to represent the menu actions of an application.
+Adds a ribbon control from `Fluent.Ribbon` nuget package which consists of several tabs, grouped by functionality to represent the menu actions of an application. For more info on `Fluent.Ribbon` see https://fluentribbon.github.io/.
 
-Ribbon control is placed on the `ShellWindow` and the DataContext of this Ribbon control is the `ShellViewModel`, but most of times, the ribbon tabs should be configured from active pages, to solve this Ribbon projects has infrastructure to add Ribbon tabs from pages and also add Groups to the main tab in the Ribbon control.
+The Ribbon control is placed on the `ShellWindow` and the DataContext of this Ribbon control is the `ShellViewModel`, but most of times, the ribbon tabs should be configured from active pages, to solve this Ribbon projects has infrastructure to add Ribbon tabs from pages and also add Groups to the main tab in the Ribbon control.
 
 This doc covers how to add these options from a MasterDetail page in a Ribbon project.
 
@@ -193,4 +193,3 @@ Shows a page in a separate Window. This is done with the help of the MultiView f
 Shows a page in a dialog over the app window with a button on the bottom to dismiss the dialog. You should use the OpenInDialog method in the WindowManagerService class. (Except in Prism where you should use the Prism DialogService.) You should add a dependency injection to this service in the ShellViewModel constructor.
 
 Ribbon projects use [MahApps.Metro](../mahapps-metro.md) to add modern styles to the user interface.
-View `Fluent.Ribbon` license [here](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license).
