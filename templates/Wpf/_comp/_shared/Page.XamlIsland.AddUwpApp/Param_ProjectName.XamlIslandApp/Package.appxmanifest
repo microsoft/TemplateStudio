@@ -8,14 +8,14 @@
 
   <Identity
     Name="a7ad0c59-b47b-41df-9721-ddb2ea574d9a"
-    Publisher="CN=mvega"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="a7ad0c59-b47b-41df-9721-ddb2ea574d9a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Param_ProjectName.XamlIslandApp</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

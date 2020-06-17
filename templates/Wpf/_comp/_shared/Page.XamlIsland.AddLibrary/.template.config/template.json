@@ -18,6 +18,7 @@
   },
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
+  "guids": ["CC2CFE6D-4013-408B-BB9C-006B7ECEB684"],
   "PrimaryOutputs": [
     {
       "path": "Param_ProjectName.XamlIsland/Param_ProjectName.XamlIsland.csproj"
