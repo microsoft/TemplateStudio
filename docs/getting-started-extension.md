@@ -8,12 +8,12 @@ Windows Template Studio (WinTS) installs into your existing Windows 10 app devel
 
 - Visual Studio 2019 - Although VS 2019.1 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
 - Windows 10, version 1903 (version 10.0.18362.0) or later.
-- .Net Framework 4.7
+- .Net Framework 4.7.2
 
 ### Prerequisites for WPF
 
  - Get [Visual Studio 2019](https://visualstudio.microsoft.com/vs/) and install `Microsoft.NET.Sdk.WindowsDesktop` to use WPF with .NET Core.
- - Download the [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0).
+ - Download the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 ### Download the extension
 

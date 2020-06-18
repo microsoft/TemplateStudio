@@ -53,7 +53,7 @@
                             Text="Status" />
                         <TextBlock
                             Style="{StaticResource BodyTextStyle}"
-                            Text="{Binding MasterMenuItem.Status, Mode=OneWay}" />
+                            Text="{Binding Status, Mode=OneWay}" />
                         <TextBlock
                             Margin="{StaticResource SmallTopMargin}"
                             Style="{StaticResource SubtitleTextStyle}"
