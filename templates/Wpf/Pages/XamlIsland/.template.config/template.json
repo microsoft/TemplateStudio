@@ -20,7 +20,9 @@
     "wts.displayOrder": "5",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.dependencies":"wts.Wpf.Feat.ThemeSelection",
+    "wts.requiredSdks":"UAP, Version=10.0.19041.0",
+    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
+    "wts.dependencies":"wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.XamlIslandUwpApp",
     "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.XamlHost](https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",

@@ -4,25 +4,34 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Page.XamlIsland.AddUwpApp",
-  "shortName": "wts.Wpf.Page.XamlIsland.AddUwpApp",
-  "identity": "wts.Wpf.Page.XamlIsland.AddUwpApp",
+  "name": "Xaml Island Uwp App",
+  "shortName": "Xaml Island Uwp App",
+  "identity": "wts.Wpf.Feat.XamlIslandUwpApp",
+  "groupIdentity": "wts.Wpf.Feat.XamlIslandUwpApp",
   "description": "",
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "composition",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.outputToParent": "true",
-    "wts.compositionFilter": "identity == wts.Wpf.Page.XamlIsland"
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"false",
+    "wts.isHidden": "true",
+    "wts.defaultInstance": "Xaml Island Uwp App",
+    "wts.multipleInstance": "false"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "guids": ["A737182C-BD90-42FD-836D-C22FCB786BF1", "a7ad0c59-b47b-41df-9721-ddb2ea574d9a"],
+  "guids": ["A737182C-BD90-42FD-836D-C22FCB786BF1", "a7ad0c59-b47b-41df-9721-ddb2ea574d9a", "CC2CFE6D-4013-408B-BB9C-006B7ECEB684"],
   "PrimaryOutputs": [
     {
       "path": "Param_ProjectName.XamlIslandApp/Param_ProjectName.XamlIslandApp.csproj"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/Param_ProjectName.XamlIsland.csproj"
     }
   ],
   "symbols": {
@@ -39,6 +48,16 @@
     }
   },
   "postActions": [
+    {
+      "description": "Add reference to this project in main WPF app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
     {
       "description": "Add reference to this project in main WPF app",
       "manualInstructions": [ ],
