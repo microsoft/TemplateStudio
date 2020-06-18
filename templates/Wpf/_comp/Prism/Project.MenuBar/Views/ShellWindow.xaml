@@ -23,7 +23,6 @@
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button
-                Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
                 AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}"
                 ToolTip="{x:Static properties:Resources.ShellGoBackButton}"
                 Command="{Binding GoBackCommand}">
