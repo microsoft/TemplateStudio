@@ -8,7 +8,7 @@
   "shortName": "Xaml Island Uwp App",
   "identity": "wts.Wpf.Feat.XamlIslandUwpApp",
   "groupIdentity": "wts.Wpf.Feat.XamlIslandUwpApp",
-  "description": "",
+  "description": "Infrastructure for Xaml Islands.",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -21,7 +21,8 @@
     "wts.rightClickEnabled":"false",
     "wts.isHidden": "true",
     "wts.defaultInstance": "Xaml Island Uwp App",
-    "wts.multipleInstance": "false"
+    "wts.multipleInstance": "false",
+    "wts.outputToParent": "true"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -63,7 +64,7 @@
       "manualInstructions": [ ],
       "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
       "args": {
-        "fileIndex" : "0",
+        "fileIndex" : "1",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

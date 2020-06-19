@@ -8,7 +8,7 @@
   "shortName": "XamlIsland",
   "identity": "wts.Wpf.Page.XamlIsland",
   "groupIdentity": "wts.Wpf.Page.XamlIsland",
-  "description": "",
+  "description": "Page that hosts an UWP control using a Xaml Island.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -19,7 +19,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled":"false",
     "wts.requiredSdks":"UAP, Version=10.0.19041.0",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
     "wts.dependencies":"wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.XamlIslandUwpApp",
