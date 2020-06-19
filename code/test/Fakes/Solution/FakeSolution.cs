@@ -158,7 +158,7 @@ EndProject
         {
             var slnContent = File.ReadAllText(_path);
 
-            if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
+            if (slnContent.IndexOf($"\"{projectName}\"", StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTypeGuid = GetProjectTypeGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
