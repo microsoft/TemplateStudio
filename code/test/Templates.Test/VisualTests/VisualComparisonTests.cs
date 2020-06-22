@@ -849,7 +849,7 @@ namespace Microsoft.Templates.Test
                     }
                     else
                     {
-                        var menuItems = appSession.FindElementsByClassName("ListViewItem");
+                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
 
                         foreach (var menuItem in menuItems)
                         {
