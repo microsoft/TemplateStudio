@@ -53,6 +53,18 @@ namespace Microsoft.Templates.Test
 
         public static string[] AllPagesThatSupportSimpleTesting()
         {
+            var result = new List<string>();
+            
+            result.AddRange(AllPagesThatSupportSimpleTestingOnAllFrameworks());
+            result.Add("wts.Page.TabView");
+            result.Add("wts.Page.TreeView");
+            result.Add("wts.Page.TwoPaneView");
+
+            return result.ToArray();
+        }
+
+        public static string[] AllPagesThatSupportSimpleTestingOnAllFrameworks()
+        {
             return new[]
             {
                 "wts.Page.Blank",
@@ -67,9 +79,6 @@ namespace Microsoft.Templates.Test
                 "wts.Page.MasterDetail",
                 "wts.Page.Settings",
                 "wts.Page.TabbedPivot",
-                "wts.Page.TabView",
-                "wts.Page.TreeView",
-                "wts.Page.TwoPaneView",
             };
         }
 
@@ -587,7 +596,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
-            var genIdentities = AllPagesThatSupportSimpleTesting();
+            var genIdentities = AllPagesThatSupportSimpleTestingOnAllFrameworks();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
@@ -785,7 +794,6 @@ namespace Microsoft.Templates.Test
                     pagesOpenedSuccessfully++;
                 }
             }
-
 
             try
             {
