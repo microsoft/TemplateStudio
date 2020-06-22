@@ -33,10 +33,10 @@
       "path": "Param_ProjectName/Program.cs"
     },
     {
-      "path": "Param_ProjectName/Controls/CustomControl.xaml"
+      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml"
     },
     {
-      "path": "Param_ProjectName/Controls/CustomControl.xaml.cs"
+      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml.cs"
     },
     {
       "path": "Param_ProjectName/Converters/ColorConverter.cs"
@@ -51,10 +51,10 @@
       "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
     },
     {
-      "path": "Param_ProjectName.XamlIsland/CustomControlUniversal.xaml"
+      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml"
     },
     {
-      "path": "Param_ProjectName.XamlIsland/CustomControlUniversal.xaml.cs"
+      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml.cs"
     }
   ],
   "symbols": {

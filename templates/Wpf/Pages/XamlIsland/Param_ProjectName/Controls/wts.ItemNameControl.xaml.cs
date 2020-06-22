@@ -17,13 +17,13 @@ namespace Param_RootNamespace.Controls
 {
     // For info about hosting a custom UWP control in a WPF app using XAML Islands read this doc
     // https://docs.microsoft.com/windows/apps/desktop/modernize/host-custom-control-with-xaml-islands
-    public partial class CustomControl : UserControl
+    public partial class wts.ItemNameControl : UserControl
     {
         private readonly IThemeSelectorService _themeSelectorService;
 
         private bool _useDarkTheme;
         private SolidColorBrush _backgroundColor;
-        private CustomControlUniversal _universalControl;
+        private wts.ItemNameControlUniversal _universalControl;
 
         public string Text
         {
@@ -31,9 +31,9 @@ namespace Param_RootNamespace.Controls
             set { SetValue(TextProperty, value); }
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(CustomControl), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(wts.ItemNameControl), new PropertyMetadata(string.Empty));
 
-        public CustomControl()
+        public wts.ItemNameControl()
         {
             InitializeComponent();
             _themeSelectorService = ((App)Application.Current).GetService<IThemeSelectorService>();
@@ -49,11 +49,11 @@ namespace Param_RootNamespace.Controls
 
         private void OnChildChanged(object sender, EventArgs e)
         {
-            if (sender is WindowsXamlHost host && host.GetUwpInternalObject() is CustomControlUniversal xamlIsland)
+            if (sender is WindowsXamlHost host && host.GetUwpInternalObject() is wts.ItemNameControlUniversal xamlIsland)
             {
                 _universalControl = xamlIsland;
                 ApplyColors();
-                _universalControl.SetBinding(CustomControlUniversal.TextProperty, new WUXD.Binding() { Path = new WUX.PropertyPath(nameof(Text)), Mode = WUXD.BindingMode.TwoWay });
+                _universalControl.SetBinding(wts.ItemNameControlUniversal.TextProperty, new WUXD.Binding() { Path = new WUX.PropertyPath(nameof(Text)), Mode = WUXD.BindingMode.TwoWay });
             }
         }
 

@@ -23,25 +23,25 @@
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <controls:CustomControl
+            <controls:wts.ItemNameControl
                 Grid.Column="0"
                 Margin="{StaticResource SmallRightMargin}"
                 Text="{Binding Text, Mode=TwoWay}" />
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="120" />
+                    <RowDefinition Height="140" />
                     <RowDefinition Height="100" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource BodyTextStyle}">
                     <Run FontWeight="Bold">WPF Xaml</Run>
                     <LineBreak />
-                    <Run>This sample shows an WPF TextBox in the wts.ItemNamePage. Text propery is bound to the XamlIslandViewModel Text property.</Run>
+                    <Run>This sample shows an WPF TextBox in the wts.ItemNamePage. Text propery is bound to the wts.ItemNameViewModel Text property.</Run>
                 </TextBlock>
                 <TextBlock Style="{StaticResource BodyTextStyle}" Grid.Row="1">
                     <Run FontWeight="SemiBold">Hierarchy:</Run>
                     <LineBreak />
-                    <Run> WPF TextBox / wts.ItemNamePage / XamlIslandViewModel</Run>
+                    <Run> WPF TextBox / wts.ItemNamePage / wts.ItemNameViewModel</Run>
                 </TextBlock>
                 <TextBox
                     Grid.Row="2"
