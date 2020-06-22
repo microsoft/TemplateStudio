@@ -14,7 +14,7 @@
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $page == wts.Wpf.Page.Settings",
-    "wts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/master/LICENSE.txt)|[Microsoft.Windows.SDK.Contracts](https://aka.ms/WinSDKLicenseURL)"
+    "wts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)|[Microsoft.Windows.SDK.Contracts](https://aka.ms/WinSDKLicenseURL)"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

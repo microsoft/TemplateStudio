@@ -9,7 +9,7 @@ namespace Param_RootNamespace.ViewModels
     // You can show pages in different ways (update main view, navigate, right pane, new windows or dialog)
     // using the NavigationService, RightPaneService and WindowManagerService.
     // Read more about MenuBar project type here:
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/WPF/projectTypes/menubar.md
+    // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/WPF/projectTypes/menubar.md
     public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;

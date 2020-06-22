@@ -3,7 +3,7 @@ Imports Windows.UI.Xaml.Controls
 
 Namespace Views
 
-    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/UWP/pages/ink.md
+    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/ink.md
     Public NotInheritable Partial Class InkDrawViewPage
         Inherits Page
 
