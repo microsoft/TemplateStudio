@@ -20,6 +20,7 @@
     "wts.displayOrder": "5",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
+    "wts.outputToParent": "true",
     "wts.requiredSdks":"UAP, Version=10.0.19041.0",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
     "wts.dependencies":"wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.XamlIslandUwpApp",
@@ -29,25 +30,31 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Program.cs"
+      "path": "Param_ProjectName/Program.cs"
     },
     {
-      "path": "Controls/CustomControl.xaml"
+      "path": "Param_ProjectName/Controls/CustomControl.xaml"
     },
     {
-      "path": "Controls/CustomControl.xaml.cs"
+      "path": "Param_ProjectName/Controls/CustomControl.xaml.cs"
     },
     {
-      "path": "Converters/ColorConverter.cs"
+      "path": "Param_ProjectName/Converters/ColorConverter.cs"
     },
     {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml"
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml.cs"
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/CustomControlUniversal.xaml"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/CustomControlUniversal.xaml.cs"
     }
   ],
   "symbols": {
@@ -81,7 +88,7 @@
       "args": {
         "packageId" : "Microsoft.Toolkit.Wpf.UI.XamlHost",
         "version" : "6.0.1",
-        "projectPath": "Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
     }
