@@ -16,7 +16,7 @@ using WUXD = Windows.UI.Xaml.Data;
 namespace Param_RootNamespace.Controls
 {
     // For info about hosting a custom UWP control in a WPF app using XAML Islands read this doc
-    // https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/host-custom-control-with-xaml-islands
+    // https://docs.microsoft.com/windows/apps/desktop/modernize/host-custom-control-with-xaml-islands
     public partial class CustomControl : UserControl
     {
         private readonly IThemeSelectorService _themeSelectorService;
