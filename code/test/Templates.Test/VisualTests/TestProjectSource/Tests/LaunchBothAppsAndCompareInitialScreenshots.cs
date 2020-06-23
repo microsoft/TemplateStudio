@@ -109,6 +109,9 @@ namespace AutomatedUITests.Tests
             var image1 = Image.FromFile(imagePath1);
             var image2 = Image.FromFile(imagePath2);
 
+            // Adjust the size of the comparison image for really big (4K+) screens
+            ImageComparer.DivFactor = image1.Height > 2000 ? 20 : 10;
+
             var percentageDifference = ImageComparer.PercentageDifferent(image1, image2, GetAllExclusionAreas());
 
             if (percentageDifference > 0f)
