@@ -14,7 +14,7 @@
             x:Name="Items">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{Binding}" />
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{Binding DisplayName}" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplate>
