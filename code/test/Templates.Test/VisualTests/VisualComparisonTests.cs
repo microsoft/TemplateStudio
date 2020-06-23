@@ -201,9 +201,11 @@ namespace Microsoft.Templates.Test
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
                         case "TabbedNav":
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
+                        case MenuBar:
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 405, 450, 40), 1.25f) }";
                         case "Blank":
                         default:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 50), 1.25f) }";
                     }
 
                 default:
