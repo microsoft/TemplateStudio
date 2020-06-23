@@ -37,7 +37,7 @@ The templating functionality is based on the [dotnet Template Engine](https://gi
 
 The Templates Repository is the place where all templates are made available (hosted on a CDN). There are two repositories publicly available:
 
-- **Master:** The stable and public version of the templates.
+- **Release:** The stable and public version of the templates.
 - **Dev:** The ongoing version of the templates.
 
 ---
