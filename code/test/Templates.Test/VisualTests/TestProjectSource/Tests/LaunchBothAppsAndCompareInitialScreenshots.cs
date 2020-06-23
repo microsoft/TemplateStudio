@@ -27,7 +27,7 @@ namespace AutomatedUITests.Tests
         {
             App1Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}.png";
             App2Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName2}.png";
-            DiffFilename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}-{TestAppInfo.AppName2}-Diff.png";
+            DiffFilename = $"DIFF-CompareInitialScreenshots-{TestAppInfo.AppName1}-{TestAppInfo.AppName2}.png";
         }
 
         [TestMethod]
