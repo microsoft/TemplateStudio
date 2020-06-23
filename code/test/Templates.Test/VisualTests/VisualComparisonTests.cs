@@ -131,7 +131,7 @@ namespace Microsoft.Templates.Test
             {
                 var otherFrameworks = GetAdditionalCsFrameworks(projectType).Select(f => f[0].ToString()).ToArray();
 
-                var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
+                var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTestingOnAllFrameworks();
 
                 foreach (var page in pagesThatSupportUiTesting)
                 {
