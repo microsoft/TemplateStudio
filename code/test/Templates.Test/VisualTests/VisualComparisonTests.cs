@@ -887,20 +887,30 @@ namespace Microsoft.Templates.Test
         {
             await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
 
-            var popups = session.FindElementsByAccessibilityId("Popup Window");
-
-            if (popups.Count() == 1)
+            try
             {
-                var yes = popups[0].FindElementsByName("Yes");
+                var popups = session.FindElementsByAccessibilityId("Popup Window");
 
-                if (yes.Count() == 1)
+                if (popups.Count() == 1)
                 {
-                    yes[0].Click();
-                    return true;
-                }
-            }
+                    var yes = popups[0].FindElementsByName("Yes");
 
-            return false;
+                    if (yes.Count() == 1)
+                    {
+                        yes[0].Click();
+                    }
+                }
+                else
+                {
+                    // No pop-up was shown so assume this is ok.
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
