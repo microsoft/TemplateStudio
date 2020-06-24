@@ -188,7 +188,7 @@ namespace Microsoft.Templates.UI.Launcher
                 }
 
                 var title = CoreStringRes.ErrorTitleInvalidProjectName;
-                var link = "https://github.com/microsoft/WindowsTemplateStudio/blob/master/docs/WTSNaming.md";
+                var link = "https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/WTSNaming.md";
                 var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
                 var info = new Views.Common.InfoDialog(vm);
                 GenContext.ToolBox.Shell.ShowModal(info);

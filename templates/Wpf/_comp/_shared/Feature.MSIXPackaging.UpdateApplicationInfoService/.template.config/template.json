@@ -14,7 +14,7 @@
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $page == wts.Wpf.Page.Settings",
-    "wts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/master/LICENSE.txt)|[Microsoft.Windows.SDK.Contracts](https://aka.ms/WinSDKLicenseURL)"
+    "wts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)|[Microsoft.Windows.SDK.Contracts](https://aka.ms/WinSDKLicenseURL)"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -37,7 +37,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
           "packageId": "OSVersionHelper",
-          "version": "1.0.11",
+          "version": "1.0.64",
           "projectPath": "Param_ProjectName.csproj"
         },
         "continueOnError": true
