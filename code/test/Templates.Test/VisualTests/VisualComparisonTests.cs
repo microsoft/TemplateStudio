@@ -871,9 +871,7 @@ namespace Microsoft.Templates.Test
                             await ForOpenedPage(menuItem.Text, appSession);
                         }
 
-                        var moreBtn = appSession.FindElementByName("More");
-
-                        if (moreBtn != null)
+                        if (appSession.TryFindElementByName("More", out WindowsElement moreBtn))
                         {
                             moreBtn.Click();
 
