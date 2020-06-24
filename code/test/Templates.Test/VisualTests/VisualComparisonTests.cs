@@ -668,7 +668,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInMenuBarAsync()
         {
-            var genIdentities = AllPagesThatSupportSimpleTesting();
+            var genIdentities = AllPagesThatSupportSimpleTestingOnAllFrameworks();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
@@ -757,13 +757,6 @@ namespace Microsoft.Templates.Test
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "MenuBar");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="framework"></param>
-        /// <param name="language"></param>
-        /// <param name="projectType"></param>
-        /// <returns></returns>
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
         {
             var pageIdentities = AllTestablePages(framework);
