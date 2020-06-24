@@ -90,6 +90,7 @@
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
+            HamburgerButtonName="{x:Static properties:Resources.ShellHamburgerButtonName}"
             IsPaneOpen="False"
             DisplayMode="CompactInline"
             ItemsSource="{Binding MenuItems}"
