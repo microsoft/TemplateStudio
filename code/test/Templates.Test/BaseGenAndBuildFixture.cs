@@ -60,11 +60,16 @@ namespace Microsoft.Templates.Test
             return userSelection;
         }
 
-        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName)
+        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName, bool includeMultipleInstances = false)
         {
             foreach (var template in templates)
             {
                 AddItem(userSelection, template, getName);
+                // Add multiple pages if supported to check these are handled the same
+                if (includeMultipleInstances && template.MultipleInstance)
+                {
+                    AddItem(userSelection, template, getName);
+                }
             }
         }
 
