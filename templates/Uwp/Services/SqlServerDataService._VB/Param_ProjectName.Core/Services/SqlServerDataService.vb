@@ -1,5 +1,5 @@
 ﻿Imports System.Configuration
-Imports Microsoft.Data.SqlClient
+Imports System.Data.SqlClient
 Imports Param_RootNamespace.Core.Models
 
 Namespace Services
