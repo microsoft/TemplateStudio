@@ -17,6 +17,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
 {
@@ -337,7 +338,16 @@ namespace Microsoft.Templates.Test
             var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
             foreach (var dir in oldDirectories)
             {
-                dir.Delete(true);
+                try
+                {
+                    dir.Delete(true);
+                }
+                catch
+                {
+                    // This can happen when a test run as admin (such as some WinAppDriver tests) failed
+                    // but now running a test when not admin and can't tidy up the files previously left behind.
+                    Assert.Fail($"There was an exception while tidying up old test files. Manually delete the contents of '{dir.FullName}'.");
+                }
             }
         }
 
