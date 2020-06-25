@@ -30,11 +30,11 @@ namespace Microsoft.Templates.Test
         protected const string All = "all";
 
         protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
-        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" };
+        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" }; // Add multiinstance templates on this group if possible
         protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "wts.Wpf.Service.IdentityOptionalLogin" };
-        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "wts.Wpf.Service.IdentityForcedLogin" };
+        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "wts.Wpf.Service.IdentityForcedLogin" }; // Add multiinstance templates on this group if possible
         protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
-        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" };
+        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" }; // Add multiinstance templates on this group if possible
 
         public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
         {
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Test
             return (projectName, projectPath);
         }
 
-        protected async Task<string> AssertGenerateProjectAsync(string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<TemplateInfo, string> getName = null)
+        protected async Task<string> AssertGenerateProjectAsync(string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<TemplateInfo, string> getName = null, bool includeMultipleInstances = false)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -141,7 +141,7 @@ namespace Microsoft.Templates.Test
             {
                 var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
                 var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, platform, projectType, framework, _emptyBackendFramework);
-                _fixture.AddItems(userSelection, itemsTemplateInfo, getName);
+                _fixture.AddItems(userSelection, itemsTemplateInfo, getName, includeMultipleInstances);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
