@@ -4,5 +4,8 @@
     <data name="ShellGoBackButton" xml:space="preserve">
         <value>Go back</value>
     </data>
+    <data name="ShellHamburgerButtonName" xml:space="preserve">
+        <value>Open or close navigation</value>
+    </data>
 <!--}]}-->
 </root>
