@@ -95,9 +95,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
                 && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 || t.Identity == "wts.Wpf.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}AllG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -120,9 +120,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
                 && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 || t.Identity == "wts.Wpf.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}AllG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }

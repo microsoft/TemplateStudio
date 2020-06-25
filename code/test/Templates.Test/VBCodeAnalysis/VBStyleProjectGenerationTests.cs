@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllVBStyleG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllVBStyleG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
