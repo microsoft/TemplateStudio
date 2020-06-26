@@ -14,6 +14,8 @@
     Unloaded="MetroWindow_Unloaded"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
+    MinWidth="500"
+    MinHeight="350"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <controls:MetroWindow.TitleTemplate>
         <DataTemplate>

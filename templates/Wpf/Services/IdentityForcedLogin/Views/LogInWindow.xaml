@@ -8,6 +8,8 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
+    MinWidth="500"
+    MinHeight="350"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
