@@ -87,43 +87,23 @@ Forced login adds a LoginWindow with a button that allows the user to interactiv
 
 Optional login allows the user to log in from the SettingsPage and the NavigationPane (if available).
 
-To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attribute to the page and limit its visibility on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
+To restrict the access to a page and make it appear disabled and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attribute to the page's ViewModel as shown below. (The MainPage and the SettingsPage should not be restricted):
 
-#### 1. Add the **Restricted** Attribute to the Views CodeBehind code
+#### Add the **Restricted** Attribute to the pages ViewModel code
 
-PageName.xaml.cs
+PageNameViewModel.cs
 
 ```csharp
-namespace YourAppNamespace.Views
+namespace YourAppNamespace.ViewModels
 {
     [Restricted]
-    public sealed partial class PageName : Page
+    public sealed partial class PageNameViewModel
     {
-        public PageName()
+        public PageNameViewModel()
         {
         }
     }
 }
-```
-
-#### 2. Bind the NavViewItems Visibility to the IsAuthorized property
-
-ShellPage.xaml
-
-```xml
-<!--
-Find MenuItems definition in page xaml code
--->
-<winui:NavigationView.MenuItems>
-    <!--
-    Add Visibility to hide restricted pages.
-    -->
-    <winui:NavigationViewItem
-        x:Uid="Shell_PageName"
-        Icon="Document"
-        helpers:NavHelper.NavigateTo="views:PageName"
-        Visibility="{x:Bind ViewModel.IsAuthorized, Mode=OneWay}" />
-</winui:NavigationView.MenuItems>
 ```
 
 ## Calling the Microsoft.Graph
