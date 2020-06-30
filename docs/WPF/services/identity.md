@@ -21,7 +21,7 @@ The Identity features add user authentication to your app and enable you to rest
 
 Both Forced Login and Optional Login use the [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client) (MSAL) NuGet package to authenticate the user using Azure Active Directory.
 
-Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. This info is displayed on the Navigation View (for project types Navigation Pane and Horizontal Navigation Pane), and also on the SettingsPage that also allows the user to log out.
+Once the user has been authenticated, the app will call the Microsoft Graph to retrieve user information. This info is displayed on the Navigation Pane and also on the SettingsPage that also allows the user to log out.
 
 ## Authentication Endpoints
 
@@ -35,17 +35,17 @@ By choosing options 2 or 3 you can enable Windows Integrated Auth for domain joi
 
 ## Understanding the authentication flow
 
-The authentication process is initialized on app activation in the ActivationService (App.xaml.cs in Prism). First of all the IdentityService tries to get an AccessToken silently from the cache. This AccessToken is then passed to the Microsoft Graph to get user information.
+The authentication process is initialized on app activation in the ApplicationHostService (App.xaml.cs in Prism). First of all the IdentityService tries to get an AccessToken silently from the cache. This AccessToken is then passed to the Microsoft Graph to get user information.
 
 If silently requesting the token from the cache fails, the interactive authentication process is triggered:
 
 **Forced Login**
 
-Apps with the Forced Login feature will be redirected to a LoginPage that can be used as a landing page and restricts the access to the rest of the pages.
+Apps with the Forced Login feature will be redirected to a LoginWindow that can be used as a landing page and restricts the access to the rest of the pages.
 
 **Optional Login**
 
-Apps with Optional Login feature will show a LogIn button on the NavigationView (if available) and in the SettingsPage.
+Apps with Optional Login feature will show a LogIn button on the NavigationPane (if available) and in the SettingsPage.
 While the user is not logged in only unrestricted pages are shown.
 
 The following graphics explain the silent and interactive login process:
@@ -68,7 +68,8 @@ In Forced Login apps unauthorized users cannot log into the app, in Optional Log
 
 ### IdentityService (Core project)
 
-This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The Identity service is uses a ClientID configured in the App.config. If you haven't done already create a ClientID following the steps on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and update the App.config IdentityClientId.
+This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The Identity service is initialized with a ClientID configured in the appsettings.json. If you haven't done already create a ClientID following the steps on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and update the appsettings.json IdentityClientId.
+
 
 ### MicrosoftGraphService (Core project)
 
@@ -80,51 +81,29 @@ This class consumes the MicrosoftGraphService and is responsible for storing the
 
 ### Forced Login code
 
-Forced login adds a LoginPage with a button that allows the user to interactively login calling the IdentityService. When the user is logged in, the apps navigates to the ShellPage that gives access to the rest of the pages. When the user logs out, the LoginPage is shown again.
-
-If the app is activated from activations other than LaunchActivation (for example DeepLinking or ToastNotification) the activation flow is intercepted by the IdentityService to ensure the user is logged in before redirecting to the requested page.
+Forced login adds a LoginWindow with a button that allows the user to interactively login calling the IdentityService. When the user is logged in, the apps navigates to the ShellWindow that gives access to the rest of the pages. When the user logs out, the LoginPage is shown again.
 
 ### Optional Login code
 
-Optional login allows the user to log in from the SettingsPage and the NavigationView (if available).
+Optional login allows the user to log in from the SettingsPage and the NavigationPane (if available).
 
-To restrict the access to a page and make it invisible and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attribute to the page and limit its visibility on the ShellPage as shown below. (The MainPage and the SettingsPage should not be restricted):
+To restrict the access to a page and make it appear disabled and inaccessible for un-authenticated and un-authorized users you have to add the "Restricted" attribute to the page's ViewModel as shown below. (The MainPage and the SettingsPage should not be restricted):
 
-#### 1. Add the **Restricted** Attribute to the Views CodeBehind code
+#### Add the **Restricted** Attribute to the pages ViewModel code
 
-PageName.xaml.cs
+PageNameViewModel.cs
 
 ```csharp
-namespace YourAppNamespace.Views
+namespace YourAppNamespace.ViewModels
 {
     [Restricted]
-    public sealed partial class PageName : Page
+    public sealed partial class PageNameViewModel
     {
-        public PageName()
+        public PageNameViewModel()
         {
         }
     }
 }
-```
-
-#### 2. Bind the NavViewItems Visibility to the IsAuthorized property
-
-ShellPage.xaml
-
-```xml
-<!--
-Find MenuItems definition in page xaml code
--->
-<winui:NavigationView.MenuItems>
-    <!--
-    Add Visibility to hide restricted pages.
-    -->
-    <winui:NavigationViewItem
-        x:Uid="Shell_PageName"
-        Icon="Document"
-        helpers:NavHelper.NavigateTo="views:PageName"
-        Visibility="{x:Bind ViewModel.IsAuthorized, Mode=OneWay}" />
-</winui:NavigationView.MenuItems>
 ```
 
 ## Calling the Microsoft.Graph

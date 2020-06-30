@@ -2,31 +2,34 @@
 
 ## Installing the Visual Studio Extension
 
+### Prerequisits for installing Windows Template Studio
+
+Windows Template Studio (WinTS) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
+- Visual Studio 2019 - Although VS 2019.2 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
+- .NET Framework 4.7.2
+
 ### Prerequisites for Universal Windows Platform
 
-Windows Template Studio (WinTS) installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
-
-- Visual Studio 2019 - Although VS 2019.1 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
+- Install `Universal Windows Platform development` workload on Visual Studio 2019 to use UWP templates.
 - Windows 10, version 1903 (version 10.0.18362.0) or later.
-- .Net Framework 4.7.2
+- Install the Windows SDK Version 10.0.19041.0.
 
 ### Prerequisites for WPF
 
- - Get [Visual Studio 2019](https://visualstudio.microsoft.com/vs/) and install `Microsoft.NET.Sdk.WindowsDesktop` to use WPF with .NET Core.
- - Download the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+ - Install the `.NET desktop development` workload on Visual Studio 2019 to use WPF (.NET Core) templates.
+ - Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 ### Download the extension
+You have two ways of acquiring the extension:
 
- - Windows Template Studio extension.  You have two ways of acquiring the extension.
  - Inside Visual Studio. Select Extensions -> Manage Extensions.  Select the 'Online' node and search for Windows Template Studio then click **Download**.
  - Direct link and manually install from  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
-
 
 
 ## Public Release instructions
 
 1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
-2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project template.
+2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
 ![New Project](resources/vsix/newProject2019.PNG)
 
 3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
@@ -42,7 +45,7 @@ For more info on adding new items see [here](newitem.md).
 
 ### Nightly / Pre-release instructions
 
-The Pre-release build version allows you to get updates with stable features not officially released yet (so, they are not definitive and may change).  This build starts at 3AM GMT every night.
+The Pre-release build version allows you to get updates with stable features not officially released yet (so, they are not definitive and may change).
 
 This feed will have stable extension versions so it is not thought to have breaking changes (and can be installed side by side with the official one), anyway, installing this extension is at your own risk.
 
