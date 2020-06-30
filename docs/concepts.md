@@ -20,14 +20,14 @@ There are six different types of templates:
 - **Projects** define the type of App you are about to generate (Basic, Split View, Tabbed...).
 - **Pages** contain the files and code needed to add a page to a generated App.
 - **Features** contain the files and code needed to add features to a generated app.
-- **Services** will contain the files and code needed to add services to a generated app.
+- **Services** contain the files and code needed to add services to a generated app.
 - **Testing Projects** contain the files and code needed to add test projects to the generated solution.
 
 ### What is the Generation Wizard
 
 The Generation Wizard guides the user through the available templates allowing them to compose their desired project.
 
-The End-User can select among the different Design Patterns and Project Types to define the basic layout and architecture for the App. They can then add different items (pages, features, services, and tests) to complete the app. Once selection is finished, the generation process is executed to create the App.
+The End-User can select among the different Design Patterns and Project Types to define the basic layout and architecture for the App. They can then add different items (pages, features, services, and tests) to complete the App. Once selection is finished, the generation process is executed to create the App.
 
 The generation is made in a composite way, where Pages and Customer Features are Design Pattern and Project Type agnostics and is only at the generation time where the specifics are included.
 

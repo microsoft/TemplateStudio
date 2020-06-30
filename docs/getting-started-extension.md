@@ -6,7 +6,7 @@
 
 Windows Template Studio (WinTS) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
 - Visual Studio 2019 - Although VS 2019.2 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
-- .Net Framework 4.7.2
+- .NET Framework 4.7.2
 
 ### Prerequisites for Universal Windows Platform
 
@@ -16,7 +16,7 @@ Windows Template Studio (WinTS) installs into your existing Visual Studio develo
 
 ### Prerequisites for WPF
 
- - Install the`.NET desktop development` workload on Visual Studio 2019 to use WPF (.NET Core) templates.
+ - Install the `.NET desktop development` workload on Visual Studio 2019 to use WPF (.NET Core) templates.
  - Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 ### Download the extension
@@ -29,7 +29,7 @@ You have two ways of acquiring the extension:
 ## Public Release instructions
 
 1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
-2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project template.
+2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
 ![New Project](resources/vsix/newProject2019.PNG)
 
 3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
