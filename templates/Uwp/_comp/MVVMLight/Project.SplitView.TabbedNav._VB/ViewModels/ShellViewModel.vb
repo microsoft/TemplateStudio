@@ -94,9 +94,9 @@ Namespace ViewModels
         End Sub
 
         Private Sub OnItemInvoked(args As WinUI.NavigationViewItemInvokedEventArgs)
-            Dim item = _navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
-            Dim pageKey = TryCast(item.GetValue(NavHelper.NavigateToProperty), String)
-            NavigationService.Navigate(pageKey)
+            Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
+            Dim pageKey = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), String)
+            NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
         End Sub
 
         Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
@@ -105,8 +105,28 @@ Namespace ViewModels
 
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
-            Selected = _navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
+            Dim selectedItem = GetSelectedItem(_navigationView.MenuItems, e.SourcePageType)
+            If selectedItem IsNot Nothing Then
+                Selected = selectedItem
+            End If
         End Sub
+
+        Private Function GetSelectedItem(menuItems As IEnumerable(Of Object), pageType As Type) As WinUI.NavigationViewItem
+            For Each item In menuItems.OfType(Of WinUI.NavigationViewItem)()
+
+                If IsMenuItemForPageType(item, pageType) Then
+                    Return item
+                End If
+
+                Dim selectedChild = GetSelectedItem(item.MenuItems, pageType)
+
+                If selectedChild IsNot Nothing Then
+                    Return selectedChild
+                End If
+            Next
+
+            Return Nothing
+        End Function
 
         Private Function IsMenuItemForPageType(menuItem As WinUI.NavigationViewItem, sourcePageType As Type) As Boolean
             Dim navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType)

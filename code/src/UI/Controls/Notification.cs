@@ -44,10 +44,10 @@ namespace Microsoft.Templates.UI.Controls
 
     public class Notification : Observable
     {
+        private readonly DispatcherTimer _closeTimer;
         private bool _canClose;
         private string _message;
         private ICommand _closeCommand;
-        private DispatcherTimer _closeTimer;
 
         public NotificationType Type { get; private set; }
 

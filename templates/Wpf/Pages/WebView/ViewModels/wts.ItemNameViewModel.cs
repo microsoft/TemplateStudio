@@ -86,7 +86,7 @@ namespace Param_RootNamespace.ViewModels
             IsLoading = false;
             if (e != null && !e.IsSuccess)
             {
-                // Use `args.WebErrorStatus` to vary the displayed message based on the error reason
+                // Use `e.WebErrorStatus` to vary the displayed message based on the error reason
                 IsShowingFailedMessage = true;
             }
         }

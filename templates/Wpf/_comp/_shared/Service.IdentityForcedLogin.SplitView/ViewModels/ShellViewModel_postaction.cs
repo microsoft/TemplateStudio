@@ -13,7 +13,6 @@
 //^^
 //{[{
             _userDataService = userDataService;
-            _userDataService.UserDataUpdated += OnUserDataUpdated;
 //}]}
         }
 
@@ -21,6 +20,7 @@
         {
 //^^
 //{[{
+            _userDataService.UserDataUpdated += OnUserDataUpdated;
             var user = _userDataService.GetUser();
             var userMenuItem = new HamburgerMenuImageItem()
             {
@@ -38,6 +38,11 @@
 //^^
 //{[{
             _userDataService.UserDataUpdated -= OnUserDataUpdated;
+            var userMenuItem = OptionMenuItems.OfType<HamburgerMenuImageItem>().FirstOrDefault();
+            if (userMenuItem != null)
+            {
+                OptionMenuItems.Remove(userMenuItem);
+            }
 //}]}
         }
 //{[{

@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TemplateValidator</RootNamespace>
     <AssemblyName>TemplateValidator</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -89,8 +89,8 @@
     <PackageReference Include="CommandLineParser">
       <Version>1.9.71</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.TemplateEngine.Core">
-      <Version>1.0.0-beta2-20170518-234</Version>
+    <PackageReference Include="Microsoft.TemplateEngine.Core.Contracts">
+      <Version>3.0.0-preview9.19381.3</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.1.0-beta009</Version>

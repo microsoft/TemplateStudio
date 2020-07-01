@@ -11,7 +11,7 @@ namespace MixedNavigationSample.MVVMBasic.ViewModels
 {
     public class SettingsViewModel : Observable
     {
-        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/pages/settings.md
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme

@@ -91,6 +91,7 @@
 		"\"wts.projectName\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_ProjectName\"",
+		"  \"fileRename\": \"Param_ProjectName\"",
 		"}"
 		],
 		"description": "Add a symbol projectName block to be added on WTS template.json"

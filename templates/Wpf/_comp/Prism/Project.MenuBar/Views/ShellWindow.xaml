@@ -11,6 +11,8 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
+    MinWidth="500"
+    MinHeight="350"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -23,14 +25,14 @@
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button
-                Width="{Binding ElementName=hamburgerMenu, Path=CompactPaneLength}"
-                AutomationProperties.Name="Go back"
+                AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}"
+                ToolTip="{x:Static properties:Resources.ShellGoBackButton}"
                 Command="{Binding GoBackCommand}">
                 <TextBlock
                     Text="&#xE72B;"
                     FontSize="14"
                     FontFamily="Segoe MDL2 Assets"
-                    AutomationProperties.Name="Go back icon" />
+                    AutomationProperties.Name="{x:Static properties:Resources.ShellGoBackButton}" />
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>

@@ -12,7 +12,7 @@ namespace Param_RootNamespace.Services
 //{[{
         private readonly IIdentityService _identityService;
         private readonly IUserDataService _userDataService;
-        private readonly AppConfig _config;
+        private readonly AppConfig _appConfig;
 //}]}
         public ApplicationHostService(/*{[{*/IIdentityService identityService, IUserDataService userDataService, IOptions<AppConfig> config/*}]}*/)
         {
@@ -20,7 +20,7 @@ namespace Param_RootNamespace.Services
 //{[{
             _identityService = identityService;
             _userDataService = userDataService;
-            _config = config.Value;
+            _appConfig = config.Value;
 //}]}
         }
 
@@ -29,7 +29,7 @@ namespace Param_RootNamespace.Services
             await InitializeAsync();
 //{[{
 
-            _identityService.InitializeWithAadAndPersonalMsAccounts(_config.IdentityClientId, "http://localhost");
+            _identityService.InitializeWithAadAndPersonalMsAccounts(_appConfig.IdentityClientId, "http://localhost");
             await _identityService.AcquireTokenSilentAsync();
 //}]}
         }

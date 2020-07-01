@@ -116,5 +116,8 @@ namespace TemplateValidator
 
         [ApiAnalysisOptional]
         public List<string> Guids { get; set; }
+
+        [JsonIgnore]
+        public bool HasScriptRunningPostActions { get; set; }
     }
 }

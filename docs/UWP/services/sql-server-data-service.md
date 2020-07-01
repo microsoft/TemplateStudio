@@ -28,4 +28,4 @@ After you've successfully connected to real data, we recommend deleting `SqlServ
 - [SQL Server Downloads](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
 - [SQL Server Express](https://www.microsoft.com/sql-server/sql-server-editions-express)
 - [SQL Server Documentation](https://docs.microsoft.com/sql/sql-server/sql-server-technical-documentation)
-- [Northwind sample database](https://www.microsoft.com/download/details.aspx?id=23654)
+- [SQL Server sample databases](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases)

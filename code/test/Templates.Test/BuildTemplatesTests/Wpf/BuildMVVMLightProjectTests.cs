@@ -25,11 +25,11 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "BuildMVVMLightWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task Build_EmptyProject_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_EmptyProject_WpfAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform, true);
+            AssertBuildProject(projectPath, projectName, platform, true);
         }
 
         [Theory]
@@ -38,10 +38,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
-        public async Task Build_All_ProjectNameValidation_G1_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -53,7 +52,7 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -62,10 +61,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
-        public async Task Build_All_ProjectNameValidation_G2_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -77,7 +75,7 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -86,10 +84,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "MVVMLightWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
-        public async Task Build_All_CheckWithStyleCop_G1_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_All_CheckWithStyleCop_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -98,11 +95,11 @@ namespace Microsoft.Templates.Test.Build.Wpf
                 && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 || t.Identity == "wts.Wpf.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}AllG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -112,10 +109,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
-        public async Task Build_All_CheckWithStyleCop_G2_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_All_CheckWithStyleCop_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -124,21 +120,20 @@ namespace Microsoft.Templates.Test.Build.Wpf
                 && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
                 || t.Identity == "wts.Wpf.Feat.StyleCop";
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}AllG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "BuildMVVMLightWpf")]
         [Trait("ExecutionSet", "_Full")]
-        public async Task Build_AllWithMsix_G1_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_AllWithMsix_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -150,17 +145,16 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectWpfWithMsixAsync(projectPath, projectName, platform);
+            AssertBuildProjectWpfWithMsix(projectPath, projectName, platform);
         }
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "BuildMVVMLightWpf")]
         [Trait("ExecutionSet", "_Full")]
-        public async Task Build_AllWithMsix_G2_Wpf(string projectType, string framework, string platform, string language)
+        public async Task Build_AllWithMsix_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -172,7 +166,7 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
-            AssertBuildProjectWpfWithMsixAsync(projectPath, projectName, platform);
+            AssertBuildProjectWpfWithMsix(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -180,11 +174,11 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("ExecutionSet", "BuildOneByOneMVVMLightWpf")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLightWpf")]
-        public async Task Build_MVVMLight_OneByOneItems_Wpf(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMLight_OneByOneItems_WpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
-            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
+            AssertBuildProject(ProjectPath, ProjecName, platform);
         }
     }
 }

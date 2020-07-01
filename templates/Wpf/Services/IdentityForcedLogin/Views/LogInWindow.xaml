@@ -8,6 +8,8 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
+    MinWidth="500"
+    MinHeight="350"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -22,6 +24,7 @@
         <Button
             Grid.Row="1"
             Content="{x:Static properties:Resources.LogInButton}"
+            AutomationProperties.Name="{x:Static properties:Resources.LogInButton}"
             Margin="{StaticResource MediumLeftTopRightMargin}"
             Command="{Binding LoginCommand}" />
         <TextBlock

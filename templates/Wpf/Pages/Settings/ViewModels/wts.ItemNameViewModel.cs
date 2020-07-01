@@ -9,7 +9,7 @@ namespace Param_RootNamespace.ViewModels
     // TODO WTS: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
-        private readonly AppConfig _config;
+        private readonly AppConfig _appConfig;
         private readonly IThemeSelectorService _themeSelectorService;
         private readonly ISystemService _systemService;
         private readonly IApplicationInfoService _applicationInfoService;
@@ -34,9 +34,9 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new System.Windows.Input.ICommand(OnPrivacyStatement));
 
-        public wts.ItemNameViewModel(Param_ConfigType config, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
+        public wts.ItemNameViewModel(Param_ConfigType appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
         {
-            _config = Param_ConfigValue;
+            _appConfig = Param_ConfigValue;
             _themeSelectorService = themeSelectorService;
             _systemService = systemService;
             _applicationInfoService = applicationInfoService;
@@ -59,6 +59,6 @@ namespace Param_RootNamespace.ViewModels
         }
 
         private void OnPrivacyStatement()
-            => _systemService.OpenInWebBrowser(_config.PrivacyStatement);
+            => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);
     }
 }

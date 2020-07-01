@@ -11,10 +11,12 @@ namespace Param_RootNamespace.Core.Services
 {
     public class MicrosoftGraphService : IMicrosoftGraphService
     {
-        //// For more information about Get-User Service, refer to the following documentation
-        //// https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0
-        //// You can test calls to the Microsoft Graph with the Microsoft Graph Explorer
-        //// https://developer.microsoft.com/graph/graph-explorer
+        /*
+        For more information about Get-User Service, refer to the following documentation
+        https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0
+        You can test calls to the Microsoft Graph with the Microsoft Graph Explorer
+        https://developer.microsoft.com/graph/graph-explorer
+        */
 
         private const string _apiServiceMe = "me/";
         private const string _apiServiceMePhoto = "me/photo/$value";

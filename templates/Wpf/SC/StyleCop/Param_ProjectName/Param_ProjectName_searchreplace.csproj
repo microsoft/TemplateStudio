@@ -1,5 +1,5 @@
-﻿<TargetFramework>netcoreapp3.0</TargetFramework>
+﻿<TargetFramework>netcoreapp3.1</TargetFramework>
 ^^^-searchabove-replacebelow-vvv
-<TargetFramework>netcoreapp3.0</TargetFramework>
+<TargetFramework>netcoreapp3.1</TargetFramework>
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 <NoWarn>CS0618</NoWarn>

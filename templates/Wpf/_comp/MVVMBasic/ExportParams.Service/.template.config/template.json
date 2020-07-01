@@ -15,7 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == MVVMBasic & wts.type == service",
       "wts.export.configtype": "IOptions<AppConfig>",
-      "wts.export.configvalue": "config.Value",
+      "wts.export.configvalue": "appConfig.Value",
       "wts.export.baseclass": "Observable",
       "wts.export.setter": "Set",
       "wts.export.pagetype": "Page",

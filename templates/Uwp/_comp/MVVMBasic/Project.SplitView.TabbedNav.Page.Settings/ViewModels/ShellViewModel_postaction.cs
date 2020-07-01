@@ -14,7 +14,7 @@ namespace Param_RootNamespace.ViewModels
             //{[{
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate(typeof(wts.ItemNamePage));
+                NavigationService.Navigate(typeof(wts.ItemNamePage), null, args.RecommendedNavigationTransitionInfo);
                 return;
             }
 

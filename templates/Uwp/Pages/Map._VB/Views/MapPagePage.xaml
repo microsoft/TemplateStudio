@@ -10,7 +10,7 @@
     <Grid>
         <maps:MapControl
             x:Name="mapControl"
-            ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}"
-            Center="{x:Bind ViewModel.Center, Mode=OneWay}" />
+            Center="{x:Bind ViewModel.Center, Mode=OneWay}"
+            ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" />
     </Grid>
 </Page>

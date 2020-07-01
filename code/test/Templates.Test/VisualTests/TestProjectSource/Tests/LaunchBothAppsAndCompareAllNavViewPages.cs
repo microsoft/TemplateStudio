@@ -42,7 +42,7 @@ namespace AutomatedUITests.Tests
 
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
-                var menuItems = appSession1.FindElementsByClassName("ListViewItem");
+                var menuItems = appSession1.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
                 foreach (var menuItem in menuItems)
                 {
@@ -65,7 +65,7 @@ namespace AutomatedUITests.Tests
 
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
-                var menuItems = appSession2.FindElementsByClassName("ListViewItem");
+                var menuItems = appSession2.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
                 foreach (var menuItem in menuItems)
                 {

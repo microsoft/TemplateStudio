@@ -26,12 +26,12 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildPrism")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task Build_EmptyProject_InferConfig_Uwp(string projectType, string framework, string platform, string language)
+        public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
             // Don't delete after build test as used in inference test, which will then delete.
-            AssertBuildProjectAsync(projectPath, projectName, platform, deleteAfterBuild: false);
+            AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: false);
 
             EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
         }
@@ -42,10 +42,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
-        public async Task Build_All_ProjectNameValidation_G1_Uwp(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -56,7 +55,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -65,10 +64,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
-        public async Task Build_All_ProjectNameValidation_G2_Uwp(string projectType, string framework, string platform, string language)
+        public async Task Build_All_ProjectNameValidation_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -79,7 +77,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -89,10 +87,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task BuildAndTest_All_CheckWithStyleCop_G2_Uwp(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -102,9 +99,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
-            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -113,10 +110,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildPrism")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task BuildAndTest_All_CheckWithStyleCop_G1_Uwp(string projectType, string framework, string platform, string language)
+        public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> templateSelector =
-                t => t.GetTemplateType().IsItemTemplate()
+            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
@@ -126,9 +122,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
-            AssertBuildProjectThenRunTestsAsync(projectPath, projectName, platform);
+            AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -136,13 +132,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildPrism")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
-        public async Task Build_Empty_AddRightClick_Uwp(string projectType, string framework, string platform, string language)
+        public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRightClick";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
 
-            AssertBuildProjectAsync(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -150,11 +146,11 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildOneByOnePrism")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOnePrism")]
-        public async Task Build_Prism_OneByOneItems_Uwp(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_Prism_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
-            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
+            AssertBuildProject(ProjectPath, ProjecName, platform);
         }
 
      
