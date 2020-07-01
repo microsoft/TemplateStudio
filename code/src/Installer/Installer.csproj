@@ -285,7 +285,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
     </Content>
-    <None Include="Content\Wpf.CS.Templates.mstx" />
+    <Content Include="Content\Wpf.CS.Templates.mstx">
+      <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
