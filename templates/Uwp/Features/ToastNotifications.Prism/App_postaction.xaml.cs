@@ -27,7 +27,6 @@ namespace Param_RootNamespace
 //{[{
             Container.Resolve<IToastNotificationsFeatureService>().ShowToastNotificationSample();
 //}]}
-            await Task.CompletedTask;
         }
 
         protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)

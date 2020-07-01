@@ -1,10 +1,8 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. WinTS supports creating apps in C# or VB.Net.
+Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF .NET Core 3.1) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net and WPF (.NET Core 3.1) apps in C#.
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
-
-:heavy_exclamation_mark: WPF Templates are still in development and will be available from version 3.6 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
@@ -12,19 +10,19 @@ Windows Template Studio (WinTS) is a Visual Studio 2017 and 2019 Extension that 
 
 |Branch   |CI                |Test Version|Version|
 |:--------|:----------------:|:---------------:|:---------------:|
-|master|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WebTemplateStudio/webts.ci?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?maxAge=600)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
-|dev|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WebTemplateStudio/webts.ci?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+|release|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.ci?branchName=release)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build status](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.ci?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=166)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 |Branch   |Full Tests       |OneByOne Tests       |WACK Tests       |
 |:--------|:---------------:|:---------------:|:---------------:|
-|master|[![Full Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.full?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=167)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.onebyone?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=168)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.wack?branchName=master)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=169)
+|release|[![Full Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.full?branchName=release)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=167)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.onebyone?branchName=release)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=168)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.wack?branchName=release)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=169)
 |dev|[![Full Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.full?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=167)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.onebyone?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=168)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_apis/build/status/WindowsTemplateStudio/wints.templates.tests.wack?branchName=dev)](https://winappstudio.visualstudio.com/DefaultCollection/WTS/_build/latest?definitionId=169)
 
 > The builds include test verifications to validate the contributions:
 >
 > - *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
 > - *Full Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
-> - *One By One Tests*: Includes tests to verify every template individually from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
+> - *One By One Tests*: Includes tests to verify every template individually from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs once every week and takes longer to be completed.
 > - *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
 
 ## Features
@@ -134,10 +132,17 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 
 ### Libraries
 
+- [AdaptiveCards](https://adaptivecards.io/)
+- [Appium.WebDriver](https://github.com/appium/appium-dotnet-driver)
 - [Microsoft AppCenter SDK](https://github.com/Microsoft/AppCenter-SDK-DotNet)
+- [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)
 - [Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)
 - [Microsoft Win2D](https://github.com/Microsoft/Win2D)
+- [MSTest V2](https://github.com/microsoft/testfx)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [NUnit](https://nunit.org/)
 - [Telerik UI For UWP](https://github.com/telerik/UI-For-UWP)
 - [Windows Azure Messaging Managed](https://www.nuget.org/packages/WindowsAzure.Messaging.Managed)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+- [Windows UI Library](https://github.com/Microsoft/microsoft-ui-xaml)
+- [xunit](https://github.com/xunit/xunit)

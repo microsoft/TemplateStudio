@@ -23,7 +23,7 @@ namespace Param_RootNamespace.Views
             //{[{
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate(typeof(wts.ItemNamePage));
+                NavigationService.Navigate(typeof(wts.ItemNamePage), null, args.RecommendedNavigationTransitionInfo);
                 return;
             }
 

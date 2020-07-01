@@ -19,7 +19,7 @@
       "wts.export.pagetype": "Page",
       "wts.export.commandclass": "RelayCommand",
       "wts.export.configtype": "IOptions<AppConfig>",
-      "wts.export.configvalue": "config.Value",
+      "wts.export.configvalue": "appConfig.Value",
       "wts.export.onNavigatedToParams": "object parameter",
       "wts.export.onNavigatedFromParams": ""
     },

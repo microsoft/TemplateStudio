@@ -8,7 +8,7 @@ namespace Microsoft.Templates.UI.Services
 {
     public partial class UIStylesService : DependencyObject
     {
-        private BaseStyleValuesProvider _stylesProvider;
+        private readonly BaseStyleValuesProvider _stylesProvider;
 
         public static UIStylesService Instance { get; private set; }
 

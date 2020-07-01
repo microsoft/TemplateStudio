@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.TreeView.Blank.WinUIResources",
+  "identity": "Page.TreeView.Blank.WinUIResources",
+  "shortName": "Page.TreeView.Blank.WinUIResources",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TreeView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+  }
+}

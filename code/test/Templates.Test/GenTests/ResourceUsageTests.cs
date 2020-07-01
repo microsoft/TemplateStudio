@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGenerationAsync))]
+        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGeneration))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureReswResourceInGeneratedProjectsAreUsedAsync(string projectType, string framework, string platform, string language)
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGenerationAsync))]
+        [MemberData(nameof(BaseGenAndBuildTests.GetCSharpUwpProjectTemplatesForGeneration))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureDefinedUidsHaveResourceEntriesAsync(string projectType, string framework, string platform, string language)
@@ -208,6 +208,8 @@ namespace Microsoft.Templates.Test
                 .Where(t => t.GetTemplateType().IsItemTemplate()
                 && t.GetFrontEndFrameworkList().Contains(framework)
                 && t.GetPlatform() == platform
+                && !excludedTemplates_Uwp_Group1.Contains(t.GroupIdentity)
+                && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden());
 
             var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);

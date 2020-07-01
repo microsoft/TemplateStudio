@@ -17,6 +17,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
 {
@@ -60,11 +61,16 @@ namespace Microsoft.Templates.Test
             return userSelection;
         }
 
-        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName)
+        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName, bool includeMultipleInstances = false)
         {
             foreach (var template in templates)
             {
                 AddItem(userSelection, template, getName);
+                // Add multiple pages if supported to check these are handled the same
+                if (includeMultipleInstances && template.MultipleInstance)
+                {
+                    AddItem(userSelection, template, getName);
+                }
             }
         }
 
@@ -253,9 +259,9 @@ namespace Microsoft.Templates.Test
             const string batFile = "bat\\Uwp\\RunTests.bat";
 
             // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
-            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.MSTest.dll\" ";
-            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.NUnit.dll\" ";
-            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp2.1\\{projectName}.Core.Tests.xUnit.dll\" ";
+            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.MSTest.dll\" ";
+            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.NUnit.dll\" ";
+            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.xUnit.dll\" ";
 
             var batPath = Path.GetDirectoryName(GetPath(batFile));
 
@@ -332,7 +338,16 @@ namespace Microsoft.Templates.Test
             var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
             foreach (var dir in oldDirectories)
             {
-                dir.Delete(true);
+                try
+                {
+                    dir.Delete(true);
+                }
+                catch
+                {
+                    // This can happen when a test run as admin (such as some WinAppDriver tests) failed
+                    // but now running a test when not admin and can't tidy up the files previously left behind.
+                    Assert.Fail($"There was an exception while tidying up old test files. Manually delete the contents of '{dir.FullName}'.");
+                }
             }
         }
 

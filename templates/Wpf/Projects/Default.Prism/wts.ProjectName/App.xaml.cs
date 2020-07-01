@@ -17,6 +17,12 @@ using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace
 {
+    // For more inforation about application lifecyle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
+    // For docs about using Prism in WPF see https://prismlibrary.com/docs/wpf/introduction.html
+
+    // WPF UI elements use language en-US by default.
+    // If you need to support other cultures make sure you add converters and review dates and numbers in your UI to ensure everything adapts correctly.
+    // Tracking issue for improving this is https://github.com/dotnet/wpf/issues/1946
     public partial class App : PrismApplication
     {
         private string[] _startUpArgs;
@@ -76,10 +82,8 @@ namespace Param_RootNamespace
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            // TODO WTS: Please handle the exception as appropriate to your scenario
+            // TODO WTS: Please log and handle the exception as appropriate to your scenario
             // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
-
-            // e.Handled = true;
         }
     }
 }

@@ -15,7 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionFilter": "$frontendframework == Prism & wts.type == service",
       "wts.export.configtype": "AppConfig",
-      "wts.export.configvalue": "config",
+      "wts.export.configvalue": "appConfig",
       "wts.export.baseclass": "BindableBase",
       "wts.export.setter": "SetProperty",
       "wts.export.pagetype": "UserControl",

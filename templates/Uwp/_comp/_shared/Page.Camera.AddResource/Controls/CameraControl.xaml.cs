@@ -42,7 +42,7 @@ namespace Param_RootNamespace.Controls
             DependencyProperty.Register("SwitchCameraButtonStyle", typeof(Style), typeof(CameraControl), new PropertyMetadata(null));
 
         // Rotation metadata to apply to the preview stream and recorded videos (MF_MT_VIDEO_ROTATION)
-        // Reference: http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh868174.aspx
+        // Reference:https://docs.microsoft.com/windows/uwp/audio-video-camera/handle-device-orientation-with-mediacapture
         private readonly Guid _rotationKey = new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1");
         private readonly DisplayInformation _displayInformation = DisplayInformation.GetForCurrentView();
         private readonly SimpleOrientationSensor _orientationSensor = SimpleOrientationSensor.GetDefault();
@@ -115,8 +115,6 @@ namespace Param_RootNamespace.Controls
 
                     if (Panel == Panel.Back)
                     {
-                        _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
-                        _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
                         _mirroringPreview = false;
                     }
                     else

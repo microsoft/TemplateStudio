@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.Utilities.Services;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -24,9 +25,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private static VsGenShell _shell;
+        private readonly GenerationService _generationService = GenerationService.Instance;
 
-        private GenerationService _generationService = GenerationService.Instance;
+        private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
 
@@ -53,6 +54,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewPage()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (!_shell.GetActiveProjectIsWts())
             {
                 return;
@@ -73,6 +75,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewFeature()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (!_shell.GetActiveProjectIsWts())
             {
                 return;
@@ -93,6 +96,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewService()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (!_shell.GetActiveProjectIsWts())
             {
                 return;
@@ -113,6 +117,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewTesting()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (!_shell.GetActiveProjectIsWts())
             {
                 return;
@@ -133,11 +138,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public bool Visible(TemplateType templateType)
         {
-            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetTemplateType() == templateType);
+            ThreadHelper.ThrowIfNotOnUIThread();
+            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() &&
+                GenContext.ToolBox.Repo.GetAll().Any(
+                    t => t.GetTemplateType() == templateType &&
+                    t.GetRightClickEnabled() == true &&
+                    t.GetIsHidden() == false);
         }
 
         public bool Visible()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             return _shell.GetActiveProjectIsWts();
         }
 
@@ -148,6 +159,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void OpenTempFolder()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var tempPath = GetTempGenerationFolder();
             if (HasContent(tempPath))
             {
@@ -157,11 +169,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public bool TempFolderAvailable()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             return HasContent(GetTempGenerationFolder());
         }
 
         private void SetContext()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             EnsureGenContextInitialized();
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
@@ -199,10 +213,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private bool EnsureGenContextInitialized()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var projectLanguage = _shell.GetActiveProjectLanguage();
             var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
 
-            if (!string.IsNullOrEmpty(projectLanguage))
+            if (!string.IsNullOrEmpty(projectLanguage) && !string.IsNullOrEmpty(projectPlatform))
             {
                 if (GenContext.CurrentLanguage != projectLanguage || GenContext.CurrentPlatform != projectPlatform)
                 {
@@ -222,6 +237,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static string GetTempGenerationFolder()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             string projectGuid = _shell.GetProjectGuidByName(_shell.GetActiveProjectName()).ToString();
             return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }

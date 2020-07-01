@@ -28,37 +28,38 @@ namespace Microsoft.Templates.Test
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
-        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the VB changes are made.
+        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentForcedLoginAsync(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G1_Async(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityForcedLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group2);
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
-        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the VB changes are made.
+        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentOptionalLoginAsync(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G2_Async(string projectType, string framework)
         {
-            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, "wts.Service.IdentityOptionalLogin");
+            await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group1);
         }
 
-        private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, string extraIdentity)
+        private async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework, List<string> excludedTemplates)
         {
-            var genIdentities = GetAllItemTemplateIdentites(projectType, framework);
+            BaseGenAndBuildFixture.SetCurrentLanguage(ProgrammingLanguages.CSharp);
+            BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
+
+            var genIdentities = GetAllItemTemplateIdentites(projectType, framework, excludedTemplates);
 
             foreach (var csOnly in GetTemplatesThatDoNotSupportVB())
             {
                 genIdentities.Remove(csOnly);
             }
-
-            genIdentities.Add(extraIdentity);
 
             var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
@@ -75,14 +76,14 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(vbResultPath);
         }
 
-        private List<string> GetAllItemTemplateIdentites(string projectType, string framework)
+        private List<string> GetAllItemTemplateIdentites(string projectType, string framework, List<string> excludedTemplates)
         {
             return GenContext.ToolBox.Repo.GetAll()
                              .Where(t =>t.GetTemplateType().IsItemTemplate()
                                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                                 && t.GetPlatform() == Platforms.Uwp
-                                && !t.GetIsGroupExclusiveSelection())
+                                && !excludedTemplates.Contains(t.GroupIdentity))
                              .Select(t => t.Identity)
                              .ToList();
         }
@@ -393,7 +394,10 @@ namespace Microsoft.Templates.Test
                     }
                 }
 
-                failures.AddRange(vbMethods.Where(m => m != "InlineAssignHelper").Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+                if (vbMethods.Any())
+                {
+                    failures.AddRange(vbMethods.Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+                }
 
                 foreach (var csEvent in csEvents)
                 {
@@ -473,7 +477,10 @@ namespace Microsoft.Templates.Test
                     }
                 }
 
-                failures.AddRange(vbExceptions.Where(m => m != "InlineAssignHelper").Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
+                if (vbExceptions.Any())
+                {
+                    failures.AddRange(vbExceptions.Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
+                }
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));

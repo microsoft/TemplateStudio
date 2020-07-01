@@ -24,7 +24,7 @@ These will help if using WinTS to build apps.
 
 - [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
 - [Using MahApps.Metro](./WPF/mahapps-metro.md)
-- [Adapt the app for specific platforms](./UWP/platform-specific-recommendations.md)
+- [Adapt the app for specific platforms](./WPF/platform-specific-recommendations.md)
 
 ## Working on WinTS
 

@@ -7,71 +7,73 @@
 <!--}]}-->
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="models:AppTheme" />
     </System.Windows.Controls.Page.Resources>
-    <Grid>
-        <StackPanel
-            x:Name="ContentArea"
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}">
-
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static properties:Resources.SettingsPagePersonalizationTitle}" />
-            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-            </StackPanel>
-<!--{[{-->
-            <TextBlock
-                Text="{x:Static properties:Resources.SettingsPageUserTitle}"
-                Style="{StaticResource SubtitleTextStyle}" />
-
+    <ScrollViewer>
+        <Grid Margin="{StaticResource SmallTopBottomMargin}">
             <StackPanel
-                Margin="{StaticResource SmallTopMargin}"
-                Orientation="Horizontal"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Ellipse Width="64" Height="64">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding User.Photo}" Stretch="UniformToFill" />
-                    </Ellipse.Fill>
-                </Ellipse>
-                <StackPanel Margin="{StaticResource SmallLeftMargin}">
-                    <TextBlock
-                        Text="{Binding User.Name}"
-                        Style="{StaticResource BodyTextStyle}" />
-                    <TextBlock
-                        Text="{Binding User.UserPrincipalName}"
-                        Margin="{StaticResource XSmallTopMargin}"
-                        Style="{StaticResource BodyTextStyle}" />
-                </StackPanel>
-            </StackPanel>
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Hyperlink Command="{Binding LogOutCommand}">
-                    <TextBlock
-                        Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static properties:Resources.SettingsPageLogOutButtonText}" />
-                </Hyperlink>
-            </TextBlock>
-            <TextBlock
-                    x:Uid="Settings_NoUserLoggedIn"
+                x:Name="ContentArea"
+                Grid.Row="1"
+                Margin="{StaticResource MediumLeftRightMargin}">
+
+                <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource BodyTextStyle}"
-                    Visibility="{Binding IsLoggedIn, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
-                    Text="{x:Static properties:Resources.SettingsPageNoUserLoggedInText}"/>
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource ReverseBooleanToVisibilityConverter}}">
-                <Hyperlink Command="{Binding LogInCommand}">
-                    <TextBlock
+                    Style="{StaticResource SubtitleTextStyle}"
+                    Text="{x:Static properties:Resources.SettingsPagePersonalizationTitle}" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                </StackPanel>
+<!--{[{-->
+                <TextBlock
+                    Text="{x:Static properties:Resources.SettingsPageUserTitle}"
+                    Style="{StaticResource SubtitleTextStyle}" />
+
+                <StackPanel
+                    Margin="{StaticResource SmallTopMargin}"
+                    Orientation="Horizontal"
+                    Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Ellipse Width="64" Height="64">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding User.Photo}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <StackPanel Margin="{StaticResource SmallLeftMargin}">
+                        <TextBlock
+                            Text="{Binding User.Name}"
+                            Style="{StaticResource BodyTextStyle}" />
+                        <TextBlock
+                            Text="{Binding User.UserPrincipalName}"
+                            Margin="{StaticResource XSmallTopMargin}"
+                            Style="{StaticResource BodyTextStyle}" />
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Hyperlink Command="{Binding LogOutCommand}">
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{x:Static properties:Resources.SettingsPageLogOutButtonText}" />
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock
+                        x:Uid="Settings_NoUserLoggedIn"
+                        Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static properties:Resources.SettingsPageLogInButtonText}" />
-                </Hyperlink>
-            </TextBlock>
+                        Visibility="{Binding IsLoggedIn, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                        Text="{x:Static properties:Resources.SettingsPageNoUserLoggedInText}"/>
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Visibility="{Binding IsLoggedIn, Converter={StaticResource ReverseBooleanToVisibilityConverter}}">
+                    <Hyperlink Command="{Binding LogInCommand}">
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="{x:Static properties:Resources.SettingsPageLogInButtonText}" />
+                    </Hyperlink>
+                </TextBlock>
 <!--}]}-->
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Style="{StaticResource SubtitleTextStyle}"
-                Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
-        </StackPanel>
-    </Grid>
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Style="{StaticResource SubtitleTextStyle}"
+                    Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </System.Windows.Controls.Page>
