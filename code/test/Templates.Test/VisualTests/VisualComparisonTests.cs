@@ -953,8 +953,6 @@ namespace Microsoft.Templates.Test
 
             var pageIdentities = AllTestablePages("CodeBehind");
 
-            pageIdentities = new[] { "wts.Page.Blank" };
-
             async Task ForOpenedPage(string pageName, WindowsDriver<WindowsElement> session, string projectName)
             {
                 if (pageName == "Map")
@@ -1002,13 +1000,6 @@ namespace Microsoft.Templates.Test
 
             try
             {
-
-                // Setup project
-                // Add AXE tests
-                // Run tests for each page
-                // create result files if test fails
-                // report results
-
                 appDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "CodeBehind", pageIdentities);
 
                 using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
