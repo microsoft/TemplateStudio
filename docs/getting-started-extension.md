@@ -58,7 +58,7 @@ Then, go again to **Extensions -> Manage Extensions** and using the recently add
 
 Once installed, you will see a new Project Template which allows you to access to the available templates: Pre-Release version uses the VNext Template Repository.
 
-![File New Project](resources/vsix/newProject2019-dev.PNG)
+![File New Project](resources/vsix/newProject2019-pre.PNG)
 
 You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
 
