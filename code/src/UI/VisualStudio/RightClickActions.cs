@@ -25,6 +25,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
+        private readonly Dictionary<string, IEnumerable<TemplateType>> availableOptions = new Dictionary<string, IEnumerable<TemplateType>>()
+        {
+            { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
+            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+        };
+
         private readonly GenerationService _generationService = GenerationService.Instance;
 
         private static VsGenShell _shell;
@@ -139,11 +145,21 @@ namespace Microsoft.Templates.UI.VisualStudio
         public bool Visible(TemplateType templateType)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            return _shell.GetActiveProjectIsWts() && EnsureGenContextInitialized() &&
-                GenContext.ToolBox.Repo.GetAll().Any(
-                    t => t.GetTemplateType() == templateType &&
-                    t.GetRightClickEnabled() == true &&
-                    t.GetIsHidden() == false);
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return false;
+            }
+
+            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
+
+            if (availableOptions.ContainsKey(projectPlatform) && availableOptions[projectPlatform].Contains(templateType))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Visible()
