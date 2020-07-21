@@ -667,6 +667,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -729,6 +732,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         [Theory]
