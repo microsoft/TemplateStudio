@@ -447,6 +447,9 @@ namespace Microsoft.Templates.Test
             {
                 Assert.True(testResults.wereSuccessful, outputMessages);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
