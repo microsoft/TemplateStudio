@@ -23,7 +23,7 @@ Namespace Services
                     _gallerySampleData.Add(New SampleImage() With {
                         .ID = $"{i}",
                         .Source = $"{localResourcesPath}/SampleData/SamplePhoto{i}.png",
-                        .Name = $"Image sample {i}"
+                        .Name = $"Sample picture {i}"
                     })
                 Next
             End If
