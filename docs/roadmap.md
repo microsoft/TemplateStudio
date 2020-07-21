@@ -6,18 +6,24 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 3.7
+#### 3.8
 
-- WPF (.NET Core 3) project creation
-- Remove VS 2017 support
+- Add CodeBehind framework for WPF
+- Add more WPF pages:
+    - WPF Xaml Island page
+    - Content Grid Page
+    - Data Grid Page
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.7)
+- WPF Toast Notifications
+- WPF Testing templates
+
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.8)
 
 ## Upcoming releases
 
-### 3.8 / 3.9
-- Add more WPF templates (Xaml Islands Page, Desktop Notifications,...)
-  
+### 3.9
+- Add more WPF templates
+
 ### 4.0
 - WinUI 3 Desktop Application creation
 
@@ -29,6 +35,7 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
+- [3.7 - July 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.7)
 - [3.6 - May 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.6)
 - [3.5 - November 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.5)
 - [3.4 - September 2019](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A%22Hotfix+3.4%22)
