@@ -96,9 +96,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
                 && !excludedTemplates_Uwp_Group2.Contains(t.GroupIdentity))
                 || t.Identity == "wts.Feat.StyleCop";
 
-            var projectName = $"{ShortProjectType(projectType)}{ShortProjectType(framework)}AllStyleCopG2";
+            var projectName = $"{ShortProjectType(projectType)}{ShortProjectType(framework)}AllStyleCopG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -122,7 +122,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{ShortProjectType(projectType)}{ShortProjectType(framework)}AllStyleCopG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }

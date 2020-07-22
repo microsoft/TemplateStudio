@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -286,8 +286,8 @@
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
     </Content>
     <Content Include="Content\Wpf.CS.Templates.mstx">
-      <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
@@ -492,9 +492,9 @@
     <ProjectReference Include="..\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
       <Project>{f8dbfd78-6a5b-41e0-a197-5aaa50c51dcb}</Project>
       <Name>CSharp.WPF.Solution</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\VBNet.UWP.Solution\VBNet.UWP.Solution.csproj">
       <Project>{2b997e0a-16c8-4b8e-810a-d1d7dafbd760}</Project>

@@ -12,6 +12,8 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
+    MinWidth="500"
+    MinHeight="350"
     Title="{x:Static properties:Resources.AppDisplayName}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -52,7 +54,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontFamily="Segoe MDL2 Assets"
-                            Text="{Binding Glyph}" />
+                            Text="{Binding Glyph}"
+                            ToolTip="{Binding Label}" />
                         <TextBlock
                             Grid.Column="1"
                             VerticalAlignment="Center"
@@ -73,7 +76,8 @@
                             Width="24"
                             Height="24"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            ToolTip="{Binding Label}">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{Binding Thumbnail}" />
                             </Ellipse.Fill>
@@ -90,6 +94,7 @@
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
+            HamburgerButtonName="{x:Static properties:Resources.ShellHamburgerButtonName}"
             IsPaneOpen="False"
             DisplayMode="CompactInline"
             ItemsSource="{Binding MenuItems}"

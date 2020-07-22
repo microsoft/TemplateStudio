@@ -27,7 +27,7 @@ namespace AutomatedUITests.Tests
         {
             App1Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}.png";
             App2Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName2}.png";
-            DiffFilename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}-{TestAppInfo.AppName2}-Diff.png";
+            DiffFilename = $"DIFF-CompareInitialScreenshots-{TestAppInfo.AppName1}-{TestAppInfo.AppName2}.png";
         }
 
         [TestMethod]
@@ -108,6 +108,9 @@ namespace AutomatedUITests.Tests
 
             var image1 = Image.FromFile(imagePath1);
             var image2 = Image.FromFile(imagePath2);
+
+            // Adjust the size of the comparison image for really big (4K+) screens
+            ImageComparer.DivFactor = image1.Height > 2000 ? 20 : 10;
 
             var percentageDifference = ImageComparer.PercentageDifferent(image1, image2, GetAllExclusionAreas());
 

@@ -26,7 +26,7 @@ Namespace Controls
       Public Shared ReadOnly SwitchCameraButtonStyleProperty As DependencyProperty = DependencyProperty.Register("SwitchCameraButtonStyle", GetType(Style), GetType(CameraControl), New PropertyMetadata(Nothing))
 
       ' Rotation metadata to apply to the preview stream and recorded videos (MF_MT_VIDEO_ROTATION)
-      ' Reference: http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh868174.aspx
+      ' Reference:https://docs.microsoft.com/windows/uwp/audio-video-camera/handle-device-orientation-with-mediacapture
       Private ReadOnly _rotationKey As New Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1")
       Private ReadOnly _displayInformation As DisplayInformation = DisplayInformation.GetForCurrentView()
       Private ReadOnly _orientationSensor As SimpleOrientationSensor = SimpleOrientationSensor.GetDefault()

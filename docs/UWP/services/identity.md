@@ -68,7 +68,7 @@ In Forced Login apps unauthorized users cannot log into the app, in Optional Log
 
 ### IdentityService (Core project)
 
-This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The app includes a ClientID that is for testing purposes only. It has to be replaced by a new one before going to production following the steps provided in https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The Identity service is uses a ClientID configured in the App.config. If you haven't done already create a ClientID following the steps on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and update the App.config IdentityClientId.
 
 ### MicrosoftGraphService (Core project)
 

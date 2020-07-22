@@ -26,7 +26,7 @@ Namespace Services
                     .Fax = "030-0076545",
                     .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10643, ' Symbol-Globe
+                            .OrderID = 10643,
                             .OrderDate = New DateTime(1997, 8, 25),
                             .RequiredDate = New DateTime(1997, 9, 22),
                             .ShippedDate = New DateTime(1997, 9, 22),
@@ -37,7 +37,7 @@ Namespace Services
                             .ShipTo = "Company A, Obere Str. 57, Berlin, 12209, Germany",
                             .OrderTotal = 814.5,
                             .Status = "Shipped",
-                            .SymbolCode = 57643,
+                            .SymbolCode = 57643, ' Symbol-Globe
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 28,
@@ -75,7 +75,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10835, ' Symbol-Music
+                            .OrderID = 10835,
                             .OrderDate = New DateTime(1998, 1, 15),
                             .RequiredDate = New DateTime(1998, 2, 12),
                             .ShippedDate = New DateTime(1998, 1, 21),
@@ -86,7 +86,7 @@ Namespace Services
                             .ShipTo = "Company A, Obere Str. 57, Berlin, 12209, Germany",
                             .OrderTotal = 845.8,
                             .Status = "Closed",
-                            .SymbolCode = 57737,
+                            .SymbolCode = 57737, ' Symbol-Audio
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 59,
@@ -113,7 +113,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10952, ' Symbol-Calendar
+                            .OrderID = 10952,
                             .OrderDate = New DateTime(1998, 3, 16),
                             .RequiredDate = New DateTime(1998, 4, 27),
                             .ShippedDate = New DateTime(1998, 3, 24),
@@ -124,7 +124,7 @@ Namespace Services
                             .ShipTo = "Company A, Obere Str. 57, Berlin, 12209, Germany",
                             .OrderTotal = 471.2,
                             .Status = "Closed",
-                            .SymbolCode = 57699,
+                            .SymbolCode = 57699, ' Symbol-Calendar
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 6,
@@ -165,7 +165,7 @@ Namespace Services
                     .Fax = "(5) 555-3745",
                     .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10625, ' Symbol-Camera
+                            .OrderID = 10625,
                             .OrderDate = New DateTime(1997, 8, 8),
                             .RequiredDate = New DateTime(1997, 9, 5),
                             .ShippedDate = New DateTime(1997, 8, 14),
@@ -176,7 +176,7 @@ Namespace Services
                             .ShipTo = "Company F, Avda. de la Constitución 2222, 05021, México D.F., Mexico",
                             .OrderTotal = 469.75,
                             .Status = "Shipped",
-                            .SymbolCode = 57620,
+                            .SymbolCode = 57620, ' Symbol-Camera
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 14,
@@ -214,7 +214,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10926, ' Symbol-Clock
+                            .OrderID = 10926,
                             .OrderDate = New DateTime(1998, 3, 4),
                             .RequiredDate = New DateTime(1998, 4, 1),
                             .ShippedDate = New DateTime(1998, 3, 11),
@@ -225,7 +225,7 @@ Namespace Services
                             .ShipTo = "Company F, Avda. de la Constitución 2222, 05021, México D.F., Mexico",
                             .OrderTotal = 507.2,
                             .Status = "Shipped",
-                            .SymbolCode = 57633,
+                            .SymbolCode = 57633, ' Symbol-Clock
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 11,
@@ -288,7 +288,7 @@ Namespace Services
                     .Fax = String.Empty,
                     .Orders = New List(Of SampleOrder)() From {
                         New SampleOrder() With {
-                            .OrderID = 10507, ' Symbol-Contact
+                            .OrderID = 10507,
                             .OrderDate = New DateTime(1997, 4, 15),
                             .RequiredDate = New DateTime(1997, 5, 13),
                             .ShippedDate = New DateTime(1997, 4, 22),
@@ -299,7 +299,7 @@ Namespace Services
                             .ShipTo = "Company Z, Mataderos  2312, 05023, México D.F., Mexico",
                             .OrderTotal = 978.5,
                             .Status = "Closed",
-                            .SymbolCode = 57661,
+                            .SymbolCode = 57661, ' Symbol-Contact
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 43,
@@ -326,7 +326,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10573, ' Symbol-Star
+                            .OrderID = 10573,
                             .OrderDate = new DateTime(1997, 6, 19),
                             .RequiredDate = new DateTime(1997, 7, 17),
                             .ShippedDate = new DateTime(1997, 6, 20),
@@ -337,7 +337,7 @@ Namespace Services
                             .ShipTo = "Company Z, Mataderos  2312, 05023, México D.F., Mexico",
                             .OrderTotal = 2082.00,
                             .Status = "Closed",
-                            .SymbolCode = 57619,
+                            .SymbolCode = 57619, ' Symbol-Star
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 17,
@@ -375,7 +375,7 @@ Namespace Services
                             }
                         },
                         New SampleOrder() With {
-                            .OrderID = 10682, ' Symbol-Home
+                            .OrderID = 10682,
                             .OrderDate = New DateTime(1997, 9, 25),
                             .RequiredDate = New DateTime(1997, 10, 23),
                             .ShippedDate = New DateTime(1997, 10, 1),
@@ -386,7 +386,7 @@ Namespace Services
                             .ShipTo = "Company Z, Mataderos  2312, 05023, México D.F., Mexico",
                             .OrderTotal = 375.5,
                             .Status = "Closed",
-                            .SymbolCode = 57615,
+                            .SymbolCode = 57615, ' Symbol-Home
                             .Details = New List(Of SampleOrderDetail)() From {
                                 New SampleOrderDetail() With {
                                     .ProductID = 33,

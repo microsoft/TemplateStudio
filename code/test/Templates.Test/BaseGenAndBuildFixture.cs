@@ -17,6 +17,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
 {
@@ -60,11 +61,16 @@ namespace Microsoft.Templates.Test
             return userSelection;
         }
 
-        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName)
+        public void AddItems(UserSelection userSelection, IEnumerable<TemplateInfo> templates, Func<TemplateInfo, string> getName, bool includeMultipleInstances = false)
         {
             foreach (var template in templates)
             {
                 AddItem(userSelection, template, getName);
+                // Add multiple pages if supported to check these are handled the same
+                if (includeMultipleInstances && template.MultipleInstance)
+                {
+                    AddItem(userSelection, template, getName);
+                }
             }
         }
 
@@ -332,7 +338,16 @@ namespace Microsoft.Templates.Test
             var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
             foreach (var dir in oldDirectories)
             {
-                dir.Delete(true);
+                try
+                {
+                    dir.Delete(true);
+                }
+                catch
+                {
+                    // This can happen when a test run as admin (such as some WinAppDriver tests) failed
+                    // but now running a test when not admin and can't tidy up the files previously left behind.
+                    Assert.Fail($"There was an exception while tidying up old test files. Manually delete the contents of '{dir.FullName}'.");
+                }
             }
         }
 
