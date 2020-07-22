@@ -171,6 +171,10 @@ namespace Microsoft.Templates.Fakes
             return Directory.EnumerateFiles(path, "*proj", SearchOption.AllDirectories).FirstOrDefault();
         }
 
+        public override void ChangeSolutionConfiguration(IEnumerable<ProjectConfiguration> projectConfiguration)
+        {
+        }
+
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
         }
