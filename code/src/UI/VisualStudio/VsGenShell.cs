@@ -635,6 +635,29 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
        }
 
+        public override void ChangeSolutionConfiguration(IEnumerable<ProjectConfiguration> projectConfigurations)
+        {
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                var dte = await _dte.GetValueAsync();
+                foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
+                {
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    {
+                        var projectName = context.ProjectName;
+                        if (projectConfigurations.Any(p => p.Project == projectName))
+                        {
+                            var projConfig = projectConfigurations.FirstOrDefault(p => p.Project == projectName);
+                            context.ShouldDeploy = projConfig.SetDeploy;
+                        }
+                    }
+                }
+            });
+        }
+
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
             return SafeThreading.JoinableTaskFactory.Run(
