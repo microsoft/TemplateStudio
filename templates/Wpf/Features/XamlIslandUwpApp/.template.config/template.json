@@ -46,6 +46,10 @@
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
     }
   },
   "postActions": [

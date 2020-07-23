@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace Param_ProjectName.XamlIsland
+namespace Param_RootNamespace.XamlIsland
 {
     public sealed partial class wts.ItemNameControlUniversal : UserControl
     {
@@ -32,7 +32,7 @@ namespace Param_ProjectName.XamlIsland
 
         public wts.ItemNameControlUniversal()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private static void OnUseDarkThemePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
