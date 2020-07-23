@@ -4,7 +4,7 @@
     <UseWPF>true</UseWPF>
 <!--^^-->
 <!--{[{-->
-    <Platforms>x86</Platforms>
+    <Platforms>x64;x86</Platforms>
 <!--}]}-->
   </PropertyGroup>
 </Project>

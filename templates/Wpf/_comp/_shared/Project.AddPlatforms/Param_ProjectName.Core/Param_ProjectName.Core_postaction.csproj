@@ -3,7 +3,7 @@
     <RootNamespace>Param_RootNamespace.Core</RootNamespace>
 <!--^^-->
 <!--{[{-->
-    <Platforms>x86</Platforms>
+    <Platforms>AnyCPU;x64;x86</Platforms>
 <!--}]}-->
   </PropertyGroup>
 </Project>

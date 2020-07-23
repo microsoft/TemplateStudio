@@ -68,6 +68,16 @@
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
+    },
+    {
+      "description": "Unset deploy of XamlIslandAppProj",
+      "manualInstructions": [ ],
+      "actionId": "F74F9FBA-D4F5-494E-970E-D99DF5E3F4F3",
+      "args": {
+        "projectName": "Param_ProjectName.XamlIslandApp\\Param_ProjectName.XamlIslandApp.csproj",
+        "deploy": "false"
+       },
+       "continueOnError": true
     }
   ]
 }
