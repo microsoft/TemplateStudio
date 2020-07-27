@@ -10,6 +10,7 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <controls:DataGrid
+                x:Uid="DataTable"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
