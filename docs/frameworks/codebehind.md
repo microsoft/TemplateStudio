@@ -1,3 +1,3 @@
-﻿# Code Behind
+﻿# This file has been moved
 
-These details have [moved here](../UWP/frameworks/codebehind.md).
+[Code Behind](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/frameworks/codebehind.md)

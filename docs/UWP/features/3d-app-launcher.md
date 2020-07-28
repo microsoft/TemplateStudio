@@ -1,5 +1,3 @@
-﻿# 3D App Launcher
+﻿# This file has been moved
 
-Include a 3D app launcher for when the app is used in a Mixed Reality environment.
-
-The generated asset should be replaced with one appropriate to your app. For more details see [docs.microsoft.com](https://docs.microsoft.com/windows/mixed-reality/3d-app-launcher-design-guidance).
+[3D App Launcher](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/3d-app-launcher.md)

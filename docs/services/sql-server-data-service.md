@@ -1,3 +1,3 @@
-# SQL Server Data Service
+# This file has been moved
 
-These details have [moved here](../UWP/services/sql-server-data-service.md).
+[SQL Server Data Service](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/services/sql-server-data-service.md)

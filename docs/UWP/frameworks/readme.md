@@ -1,9 +1,3 @@
-# Windows Template Studio - UWP Design Patterns (frameworks)
+# This file has been moved
 
-The following design patterns are supported in UWP apps.
-
-- [Code Behind](./codebehind.md)
-- [MVVM Light](./mvvmlight.md)
-- [MVVM Basic](./mvvmbasic.md)
-- [Caliburn.Micro](./caliburnmicro.md)
-- [Prism](./prism.md)
+[Windows Template Studio - UWP Design Patterns (frameworks)](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/frameworks/readme.md)

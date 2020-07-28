@@ -1,3 +1,3 @@
-# Suspend and Resume Feature
+# This file has been moved
 
-These details have [moved here](../UWP/features/suspend-and-resume.md).
+[Suspend and Resume Feature](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/suspend-and-resume.md)

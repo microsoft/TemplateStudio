@@ -1,3 +1,3 @@
-# Advanced App navigation
+# This file has been moved
 
-These details have [moved here](./UWP/navigation-advanced.md).
+[Advanced App navigation](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/navigation-advanced.md)

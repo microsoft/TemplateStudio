@@ -1,5 +1,3 @@
-﻿# Media Player
+﻿# This file has been moved
 
-A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
-
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/windows/uwp/controls-and-patterns/media-playback).
+[Media Player](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/mediaplayer.md)

@@ -1,3 +1,3 @@
-This basic project is a blank canvas upon which to build your app.
+# This file has been moved
 
-It provides no scaffolding and leaves everything up to you.
+[Blank](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/blank.md)

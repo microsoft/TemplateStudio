@@ -1,8 +1,3 @@
-# Windows Template Studio - UWP Project Types
+# This file has been moved
 
-The following project types are supported in UWP apps.
-
-- [Navigation Pane](./navigationpane.md)
-- [Blank](./blank.md)
-- [Horizontal Navigation Pane](./horizontalnavigationpane.md)
-- [MenuBar](./menubar.md)
+[Windows Template Studio - UWP Project Types](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/readme.md)

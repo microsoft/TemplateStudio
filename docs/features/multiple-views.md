@@ -1,3 +1,3 @@
-# Multiple views
+# This file has been moved
 
-These details have [moved here](../UWP/features/multiple-views.md).
+[Multiple views](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/multiple-views.md)

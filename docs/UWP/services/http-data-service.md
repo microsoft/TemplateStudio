@@ -1,7 +1,3 @@
-﻿# HTTP Data Service
+﻿# This file has been moved
 
-A simple wrapper over basic HTTP functionality.
-
-These utility functions provide a simple, built-in way to handle most HTTP related functionality within your app. Also includes simple caching of GET requests that can easily be removed or modified based on your needs.
-
-This service works well when getting content from a [Web API](./web-api.md).
+[HTTP Data Service](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/services/http-data-service.md)

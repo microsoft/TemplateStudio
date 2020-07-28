@@ -1,3 +1,3 @@
-# ActivationService & ActivationHandlers
+# This file has been moved
 
-These details have [moved here](./UWP/activation.vb.md).
+[ActivationService & ActivationHandlers](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.vb.md)

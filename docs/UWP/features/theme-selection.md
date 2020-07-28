@@ -1,3 +1,3 @@
-﻿# Theme Selection
+﻿# This file has been moved
 
-This feature allows you to change your app's theme between Light/Dark and WindowsDefault.
+[Theme Selection](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/theme-selection.md)

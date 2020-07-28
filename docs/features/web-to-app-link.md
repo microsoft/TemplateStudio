@@ -1,3 +1,3 @@
-﻿# Web to App Link
+﻿# This file has been moved
 
-These details have [moved here](../UWP/features/web-to-app-link.md).
+[Web to App Link](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/web-to-app-link.md)

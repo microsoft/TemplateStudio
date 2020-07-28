@@ -1,3 +1,3 @@
-# Settings Page (Code Behind)
+# This file has been moved
 
-These details have [moved here](../UWP/pages/settings-codebehind.md).
+[Settings Page (Code Behind)](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/settings-codebehind.md)

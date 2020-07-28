@@ -1,3 +1,3 @@
-﻿# Map
+﻿# This file has been moved
 
-The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.
+[Map](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/map.md)

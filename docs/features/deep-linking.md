@@ -1,3 +1,3 @@
-# Deep Linking Activation
+# This file has been moved
 
-These details have [moved here](../UWP/features/deep-linking.md).
+[Deep Linking Activation](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/deep-linking.md)

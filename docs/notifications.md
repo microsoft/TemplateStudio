@@ -1,3 +1,3 @@
-# Notifications on Windows Template Studio
+# This file has been moved
 
-These details have [moved here](./UWP/notifications.md).
+[Notifications on Windows Template Studio](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/notifications.md)

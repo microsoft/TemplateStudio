@@ -1,3 +1,3 @@
-# Menu Bar
+# This file has been moved
 
-These details have [moved here](../UWP/projectTypes/menubar.md).
+[Menu Bar](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/menubar.md)

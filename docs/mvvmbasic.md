@@ -1,3 +1,3 @@
-# MVVMBasic
+# This file has been moved
 
-These details have [moved here](./UWP/frameworks/mvvmbasic.md).
+[MVVMBasic](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/frameworks/mvvmbasic.md)

@@ -1,3 +1,3 @@
-﻿# Image Gallery
+﻿# This file has been moved
 
-A page displaying a image gallery and allows user to navigate between gallery and image detail.
+[Image Gallery](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/imagegallery.md)

@@ -1,3 +1,3 @@
-# Navigation Pane
+# This file has been moved
 
-These details have [moved here](../UWP/projectTypes/navigationpane.md).
+[Navigation Pane](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/navigationpane.md)

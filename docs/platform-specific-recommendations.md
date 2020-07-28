@@ -1,3 +1,3 @@
-# Platform Specific Recommendations
+# This file has been moved
 
-These details have [moved here](./UWP/platform-specific-recommendations.md).
+[Platform Specific Recommendations](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/platform-specific-recommendations.md)

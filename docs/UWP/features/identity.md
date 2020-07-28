@@ -1,3 +1,3 @@
-﻿# Identity
+﻿# This file has been moved
 
-These details have [moved here](../services/identity.md).
+[Identity](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/services/identity.md)

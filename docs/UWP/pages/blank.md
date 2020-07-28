@@ -1,3 +1,3 @@
-﻿# Blank
+﻿# This file has been moved
 
-This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.
+[Blank](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/blank.md)

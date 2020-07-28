@@ -1,3 +1,3 @@
-# Settings Page
+# This file has been moved
 
-These details have [moved here](../UWP/pages/settings.md).
+[Settings Page](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/settings.md)

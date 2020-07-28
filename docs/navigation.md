@@ -1,3 +1,3 @@
-# App navigation
+# This file has been moved
 
-These details have [moved here](./UWP/navigation.md).
+[App navigation](https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/UWP/navigation.md)
