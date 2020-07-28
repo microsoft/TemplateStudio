@@ -64,7 +64,7 @@ Namespace Services
 
             SyncLock _pages
 
-                If Not _pages.TryGetValue(pageKey, page) Then
+                If String.IsNullOrEmpty(pageKey) OrElse Not _pages.TryGetValue(pageKey, page) Then
                     Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), NameOf(pageKey))
                 End If
             End SyncLock

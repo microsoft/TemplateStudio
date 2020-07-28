@@ -2,7 +2,7 @@
   <!--^^-->
   <!--{[{-->
   <data name="ExceptionNavigationServiceExPageNotFound" xml:space="preserve">
-    <value>Page not found: {0}. Did you forget to call NavigationService.Configure?</value>
+    <value>Invalid pageKey '{0}', please provide a valid pageKey. Maybe you forgot to call NavigationService.Configure?</value>
     <comment>Page to navigate not found in navigation service</comment>
   </data>
   <data name="ExceptionNavigationServiceExKeyIsInNavigationService" xml:space="preserve">
