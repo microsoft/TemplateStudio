@@ -56,6 +56,10 @@ Namespace Services
         End Sub
 
         Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+            If pageType Is Nothing OrElse Not pageType.IsSubclassOf(GetType(Page)) Then
+                Throw New ArgumentException($"Invalid pageType '{pageType}', please provide a valid pageType.", NameOf(pageType))
+            End If
+
             ' Don't open the same page multiple times
             If Frame.Content?.[GetType]() <> pageType OrElse (parameter IsNot Nothing AndAlso Not parameter.Equals(_lastParamUsed)) Then
                 Dim navigationResult = Frame.Navigate(pageType, parameter, infoOverride)
