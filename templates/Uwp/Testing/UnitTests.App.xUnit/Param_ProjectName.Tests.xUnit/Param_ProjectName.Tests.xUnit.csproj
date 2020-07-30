@@ -125,13 +125,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\UnitTestApp.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="..\Param_ProjectName\Assets\LockScreenLogo.scale-200.png">
+      <Link>Assets\LockScreenLogo.scale-200.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\SplashScreen.scale-200.png">
+      <Link>Assets\SplashScreen.scale-200.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\Square150x150Logo.scale-200.png">
+      <Link>Assets\Square150x150Logo.scale-200.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\Square44x44Logo.scale-200.png">
+      <Link>Assets\Square44x44Logo.scale-200.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Link>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\StoreLogo.png">
+      <Link>Assets\StoreLogo.png</Link>
+    </Content>
+    <Content Include="..\Param_ProjectName\Assets\Wide310x150Logo.scale-200.png">
+      <Link>Assets\Wide310x150Logo.scale-200.png</Link>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
