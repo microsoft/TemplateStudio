@@ -30,7 +30,7 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Param_ProjectName.XamlIslandApp.App">
+      EntryPoint="Param_RootNamespace.XamlIslandApp.App">
       <uap:VisualElements
         DisplayName="Param_ProjectName.XamlIslandApp"
         Square150x150Logo="Assets\Square150x150Logo.png"

@@ -8,8 +8,8 @@
     <ProjectGuid>{CC2CFE6D-4013-408B-BB9C-006B7ECEB684}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Param_ProjectName.XamlIsland</RootNamespace>
-    <AssemblyName>Param_ProjectName.XamlIsland</AssemblyName>
+    <RootNamespace>Param_RootNamespace.XamlIsland</RootNamespace>
+    <AssemblyName>Param_RootNamespace.XamlIsland</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
