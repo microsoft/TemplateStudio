@@ -3,6 +3,9 @@
 Quick summary of changes
 
 - Which issue does this PR relate to?
+- Applies to the following platforms:
+  - [ ] UWP
+  - [ ] WPF
 - Anything that requires particular review or attention?
 - Do all automated tests pass?
 - Have automated tests been added for new features?
