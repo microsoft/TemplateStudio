@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
         /// The following external issues prevent this test from passing:
         ///
         /// DataGrid - https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3400
-        /// Map - https://github.com/microsoft/microsoft-ui-xaml/issues/2993
+        /// Map - https://github.com/microsoft/microsoft-ui-xaml/issues/2993 - This is by design
         /// MediaPlayer - https://github.com/microsoft/microsoft-ui-xaml/issues/2994
         /// TabView - https://github.com/microsoft/microsoft-ui-xaml/issues/2995
         /// Telerik DataGrid - https://github.com/telerik/UI-For-UWP/issues/466
@@ -40,7 +40,8 @@ namespace Microsoft.Templates.Test
         [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task RunBasicAccessibilityChecksAgainstEachPageAsync()
+        [Trait("Type", "UWP")]
+        public async Task RunBasicAccessibilityChecksAgainstEachPageUwpAsync()
         {
             // This test does not run against all combinations as other tests ensure output is the same for each combination.
             // In theory this means that there should be no need to repeat tests as they would find the same things.
