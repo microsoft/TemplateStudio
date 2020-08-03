@@ -99,6 +99,7 @@
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="VisualTests\AccessibilityTests.cs" />
+    <Compile Include="VisualTests\WPF\AccessibilityTests.cs" />
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
