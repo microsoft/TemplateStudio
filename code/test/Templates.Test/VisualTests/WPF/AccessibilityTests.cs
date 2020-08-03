@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test.WPf
         ///
         /// The following external issues prevent this test from passing:
         ///
-        /// Symbols in the MetroWindow - https://github.com/dotnet/wpf/issues/3296
+        /// Symbols in the MetroWindow (& WebView buttons) - https://github.com/dotnet/wpf/issues/3296
         /// MetroWindow - https://github.com/MahApps/MahApps.Metro/issues/3894
         /// WebView - The content loaded in the page may not be fully accessible and so cause the test to fail. 
         /// 
