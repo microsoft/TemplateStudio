@@ -1282,6 +1282,21 @@ Write-Output $packageFullName";
             return result;
         }
 
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpWpfProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        {
+            var baseSetup = await SetUpWpfComparisonProjectAsync(language, projectType, framework, genIdentities);
+
+            // So building release version is fast
+            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language);
+
+            ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
+            var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return baseSetup;
+        }
+
         private void ReplaceInFiles(string find, string replace, string rootDirectory, string fileFilter)
         {
             foreach (var file in Directory.GetFiles(rootDirectory, fileFilter, SearchOption.AllDirectories))
