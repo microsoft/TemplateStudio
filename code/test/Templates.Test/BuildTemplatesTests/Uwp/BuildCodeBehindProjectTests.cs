@@ -166,7 +166,5 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }
-
-       
     }
 }
