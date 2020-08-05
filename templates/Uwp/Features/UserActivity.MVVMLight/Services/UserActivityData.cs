@@ -18,7 +18,7 @@ namespace Param_RootNamespace.Services
 
         public Color BackgroundColor { get; private set; }
 
-        public UserActivityData(string activityId, SchemeActivationData activationData, string displayText, Color backgroundColor = default(Color), string description = null)
+        public UserActivityData(string activityId, SchemeActivationData activationData, string displayText, Color backgroundColor = default, string description = null)
         {
             ActivityId = activityId;
             ActivationData = activationData;
