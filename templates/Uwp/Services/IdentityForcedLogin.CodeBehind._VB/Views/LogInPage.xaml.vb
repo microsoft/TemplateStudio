@@ -3,8 +3,6 @@ Imports System.Runtime.CompilerServices
 Imports Param_RootNamespace.Core.Helpers
 Imports Param_RootNamespace.Core.Services
 Imports Param_RootNamespace.Helpers
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Views
     Public NotInheritable Partial Class LogInPage

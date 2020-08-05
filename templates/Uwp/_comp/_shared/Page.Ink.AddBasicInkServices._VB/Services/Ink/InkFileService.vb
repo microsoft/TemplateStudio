@@ -7,7 +7,6 @@ Imports Windows.Foundation
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Provider
-Imports Windows.UI.Xaml.Controls
 
 Namespace Services.Ink
     Public Class InkFileService

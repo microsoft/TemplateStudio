@@ -3,7 +3,6 @@ Imports Param_RootNamespace.ViewModels
 Imports Param_RootNamespace.Views
 Imports System
 Imports System.Threading.Tasks
-Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Media.Animation
 
 Namespace Helpers

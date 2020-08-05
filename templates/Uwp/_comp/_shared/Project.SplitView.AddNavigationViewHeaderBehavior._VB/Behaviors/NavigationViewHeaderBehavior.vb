@@ -1,7 +1,4 @@
 ﻿Imports Microsoft.Xaml.Interactivity
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports WinUI = Microsoft.UI.Xaml.Controls
 
 Namespace Behaviors

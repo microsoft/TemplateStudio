@@ -2,7 +2,6 @@
 Imports Windows.Devices.Input
 Imports Windows.UI.Core
 Imports Windows.UI.Input.Inking
-Imports Windows.UI.Xaml.Controls
 
 Namespace Services.Ink
     Public Class InkPointerDeviceService
