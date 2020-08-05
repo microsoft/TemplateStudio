@@ -1,5 +1,4 @@
-﻿Imports System
-Imports Windows.Devices.Input
+﻿Imports Windows.Devices.Input
 Imports Windows.UI.Core
 Imports Windows.UI.Input.Inking
 

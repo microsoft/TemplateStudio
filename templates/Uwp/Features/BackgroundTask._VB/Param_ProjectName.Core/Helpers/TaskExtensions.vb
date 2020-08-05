@@ -1,6 +1,4 @@
-﻿Imports System.Runtime.CompilerServices
-
-Namespace Helpers
+﻿Namespace Helpers
     Public Module TaskExtensions
 
         <Extension>

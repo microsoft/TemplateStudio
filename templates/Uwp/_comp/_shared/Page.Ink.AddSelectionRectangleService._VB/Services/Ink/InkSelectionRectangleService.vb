@@ -1,5 +1,4 @@
-﻿Imports System.Linq
-Imports Windows.Foundation
+﻿Imports Windows.Foundation
 Imports Windows.UI
 Imports Windows.UI.Xaml.Shapes
 

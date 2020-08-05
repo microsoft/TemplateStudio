@@ -1,7 +1,4 @@
-﻿Imports System
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.UI.Input.Inking
+﻿Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
 
 Namespace Services.Ink
