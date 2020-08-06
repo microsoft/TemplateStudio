@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Content Grid",
+  "description": "Tato stránka umožňuje přidat vlastní položky formou adaptivní mřížky.",
+  "identity": "wts.Wpf.Page.ContentGrid"
+}
