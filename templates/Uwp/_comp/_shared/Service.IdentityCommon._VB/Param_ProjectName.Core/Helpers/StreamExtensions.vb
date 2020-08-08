@@ -1,6 +1,9 @@
-﻿Namespace Helpers
+﻿Imports System.IO
+Imports System.Runtime.CompilerServices
+
+Namespace Helpers
     Module StreamExtensions
-        <Extension()>
+        <Extension>
         Function ToBase64String(stream As Stream) As String
             Using memoryStream = New MemoryStream()
                 stream.CopyTo(memoryStream)

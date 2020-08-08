@@ -1,4 +1,5 @@
-﻿Imports Windows.Storage
+﻿Imports System.Runtime.CompilerServices
+Imports Windows.Storage
 Imports Windows.Storage.Streams
 Imports Param_RootNamespace.Core.Helpers
 
