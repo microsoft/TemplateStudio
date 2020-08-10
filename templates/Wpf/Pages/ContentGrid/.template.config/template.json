@@ -30,6 +30,9 @@
       "path": "Param_ProjectName/Behaviors/ListViewItemSelectionBehavior.cs"
     },
     {
+      "path": "Param_ProjectName/Styles/ListView.xaml"
+    },
+    {
       "path": "Param_ProjectName/ViewModels/wts.ItemNameDetailViewModel.cs"
     },
     {
