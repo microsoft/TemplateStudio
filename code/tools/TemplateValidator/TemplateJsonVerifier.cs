@@ -303,7 +303,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "ObservableObject" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -411,11 +411,11 @@ namespace TemplateValidator
             }
         }
 
-        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind" };
+        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "MTM" };
 
-        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MTM" };
 
-        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MTM" };
 
         private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
