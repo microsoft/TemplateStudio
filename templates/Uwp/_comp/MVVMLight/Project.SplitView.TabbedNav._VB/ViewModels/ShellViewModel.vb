@@ -96,7 +96,9 @@ Namespace ViewModels
         Private Sub OnItemInvoked(args As WinUI.NavigationViewItemInvokedEventArgs)
             Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
             Dim pageKey = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), String)
-            NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+            If pageKey IsNot Nothing Then
+                NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+            End If
         End Sub
 
         Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
