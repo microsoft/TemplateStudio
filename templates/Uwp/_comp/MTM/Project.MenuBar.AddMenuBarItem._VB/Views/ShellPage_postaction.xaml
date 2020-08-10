@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This code adds the new page to the MenuBar control in ShellPage -->
+<!--**}-->
+
+<winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
+<!--^^-->
+<!--{[{-->
+    <MenuFlyoutItem x:Uid="ShellMenuItem_Views_wts.ItemName" Command="{x:Bind ViewModel.MenuViewswts.ItemNameCommand}" />
+<!--}]}-->
+</winui:MenuBarItem>

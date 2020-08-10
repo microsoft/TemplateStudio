@@ -13,7 +13,7 @@ namespace Param_RootNamespace.ViewModels
         public SampleOrder Item
         {
             get { return _item; }
-            set { Set(ref _item, value); }
+            set { Param_Setter(ref _item, value); }
         }
 
         public ContentGridViewDetailViewModel()

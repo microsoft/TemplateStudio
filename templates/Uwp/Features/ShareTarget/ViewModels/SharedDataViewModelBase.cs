@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 
-
 namespace Param_RootNamespace.ViewModels
 {
     public class SharedDataViewModelBase : System.ComponentModel.INotifyPropertyChanged

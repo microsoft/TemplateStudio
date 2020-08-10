@@ -26,7 +26,7 @@ namespace Param_RootNamespace.ViewModels
         public UserViewModel User
         {
             get { return _user; }
-            set { Set(ref _user, value); }
+            set { Param_Setter(ref _user, value); }
         }
 //}]}
 

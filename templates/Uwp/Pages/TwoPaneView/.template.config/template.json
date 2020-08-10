@@ -14,7 +14,7 @@
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MTM",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
@@ -56,6 +56,10 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
     }
   },
   "postActions": [

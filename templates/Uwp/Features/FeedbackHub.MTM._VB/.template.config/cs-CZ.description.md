@@ -1,0 +1,3 @@
+﻿Na stránku nastavení přidejte odkaz pro zpětnou vazbu, který bude vaše zákazníky povzbuzovat v tom, aby vám posílali zpětnou vazbu prostřednictvím aplikace Centrum Feedback.
+
+Centrum Feedback je předinstalovaná aplikace, která umožňuje shromažďovat na jednom místě zpětnou vazbu k Windows a nainstalovaným aplikacím. Veškerá zpětná vazba, kterou zákazníci prostřednictvím aplikace Centrum Feedback pro vaši aplikaci odešlou, je shromažďována a máte k ní přístup v [sestavě zpětné vazby](https://docs.microsoft.com/windows/uwp/publish/feedback-report) na řídicím panelu webu Windows Dev Center. V jedné sestavě si tak můžete zobrazit problémy a hlasy pro nové funkce, které zákazníci zaslali.

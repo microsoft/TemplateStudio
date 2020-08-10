@@ -1,0 +1,17 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the OptionalLogin to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="Shell_UserInfoButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>User info</value>
+    <comment>Shell UserInfo button automation name property</comment>
+  </data>
+  <data name="Shell_UserInfoButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>User info</value>
+    <comment>Shell UserInfo button tooltip property</comment>
+  </data>
+  <!--}]}-->
+</root>
