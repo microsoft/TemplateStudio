@@ -13,5 +13,7 @@ namespace Microsoft.Templates.Test
         public const string SplitView = "SplitView";
 
         public const string TabbedNav = "TabbedNav";
+
+        public const string Ribbon = "Ribbon";
     }
 }
