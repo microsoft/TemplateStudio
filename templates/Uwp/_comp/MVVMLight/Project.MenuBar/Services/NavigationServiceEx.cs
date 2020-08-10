@@ -64,7 +64,7 @@ namespace Param_RootNamespace.Services
             Type page;
             lock (_pages)
             {
-                if (!_pages.TryGetValue(pageKey, out page))
+                if (string.IsNullOrEmpty(pageKey) || !_pages.TryGetValue(pageKey, out page))
                 {
                     throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
