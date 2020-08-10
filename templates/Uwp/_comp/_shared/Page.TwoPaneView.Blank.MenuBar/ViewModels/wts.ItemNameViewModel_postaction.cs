@@ -13,7 +13,7 @@
         public bool IsGoBackButtonVisible
         {
             get { return _isGoBackButtonVisible; }
-            set { Set(ref _isGoBackButtonVisible, value); }
+            set { Param_Setter(ref _isGoBackButtonVisible, value); }
         }
 //}]}
 
