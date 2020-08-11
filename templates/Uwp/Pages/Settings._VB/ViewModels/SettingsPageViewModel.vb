@@ -1,5 +1,6 @@
 ﻿Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
+Imports Microsoft.Toolkit.Mvvm.Input
 
 Namespace ViewModels
     ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/settings.md

@@ -1,4 +1,8 @@
-﻿Namespace ViewModels
+﻿'{[{
+Imports Microsoft.Toolkit.Mvvm.Input
+'}]}
+
+Namespace ViewModels
     Public Class wts.ItemNameViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
@@ -17,7 +21,7 @@
                 Return _isGoBackButtonVisible
             End Get
             Set(value As Boolean)
-                [Set](_isGoBackButtonVisible, value)
+                [Param_Setter](_isGoBackButtonVisible, value)
             End Set
         End Property
 '}]}

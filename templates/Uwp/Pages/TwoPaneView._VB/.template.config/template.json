@@ -56,6 +56,10 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
     }
   },
   "postActions": [

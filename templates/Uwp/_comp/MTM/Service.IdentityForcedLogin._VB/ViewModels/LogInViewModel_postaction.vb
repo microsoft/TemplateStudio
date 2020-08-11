@@ -1,4 +1,8 @@
-﻿Namespace ViewModels
+﻿'{[{
+Imports Microsoft.Toolkit.Mvvm.ComponentModel
+Imports Microsoft.Toolkit.Mvvm.Input
+'}]}
+Namespace ViewModels
     Public Class LogInViewModel
 
         Public Property IsBusy As Boolean

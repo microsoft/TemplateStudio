@@ -1,4 +1,8 @@
-﻿        Private Sub RefreshCommands()
+﻿'{[{
+Imports Microsoft.Toolkit.Mvvm.Input
+'}]}
+
+        Private Sub RefreshCommands()
             '{[{
             Dim saveCommand = TryCast(SaveImageCommand, RelayCommand)
             saveCommand?.NotifyCanExecuteChanged()

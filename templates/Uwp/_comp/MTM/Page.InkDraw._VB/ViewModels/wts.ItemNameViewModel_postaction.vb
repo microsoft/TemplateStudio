@@ -1,4 +1,8 @@
-﻿        Private Sub RefreshCommands()
+﻿'{[{
+Imports Microsoft.Toolkit.Mvvm.Input
+'}]}
+
+        Private Sub RefreshCommands()
             '{[{
             Dim copy = TryCast(CopyCommand, RelayCommand)
             copy?.NotifyCanExecuteChanged()

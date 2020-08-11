@@ -1,4 +1,4 @@
-﻿Imports Param_RootNamespace.Helpers
+﻿Imports Microsoft.Toolkit.Mvvm.ComponentModel
 
 Namespace ViewModels
     ' TODO WTS: Remove this sample page when/if it's not needed.
@@ -17,7 +17,7 @@ Namespace ViewModels
 
                 If param.Key = "ticks" AndAlso Long.TryParse(param.Value, ticks) Then
                     Dim dateTime = New DateTime(ticks)
-                    Me.Parameters.Add($"{param.Key}: {dateTime.ToString()}")
+                    Me.Parameters.Add($"{param.Key}: {dateTime}")
                 Else
                     Me.Parameters.Add($"{param.Key}: {param.Value}")
                 End If

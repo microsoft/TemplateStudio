@@ -2,6 +2,7 @@
 Imports Param_RootNamespace.Core.Services
 Imports Param_RootNamespace.Services
 Imports Microsoft.Toolkit.Uwp.UI.Animations
+Imports Microsoft.Toolkit.Mvvm.Input
 
 Namespace ViewModels
     Public Class ContentGridViewViewModel

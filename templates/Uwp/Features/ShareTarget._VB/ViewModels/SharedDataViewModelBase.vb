@@ -1,4 +1,5 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer.ShareTarget
+Imports Microsoft.Toolkit.Mvvm.ComponentModel
 
 Namespace ViewModels
     Public Class SharedDataViewModelBase

@@ -1,6 +1,7 @@
 ﻿'{[{
 Imports Param_RootNamespace.Views
 Imports Microsoft.Toolkit.Uwp.UI.Animations
+Imports Microsoft.Toolkit.Mvvm.Input
 '}]}
 
 Namespace ViewModels

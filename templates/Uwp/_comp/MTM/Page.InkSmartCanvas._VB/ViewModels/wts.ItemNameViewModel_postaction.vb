@@ -1,4 +1,8 @@
-﻿        Private Sub RefreshCommands()
+﻿'{[{
+Imports Microsoft.Toolkit.Mvvm.Input
+'}]}
+
+        Private Sub RefreshCommands()
             '{[{
             Dim undo = TryCast(UndoCommand, RelayCommand)
             undo?.NotifyCanExecuteChanged()

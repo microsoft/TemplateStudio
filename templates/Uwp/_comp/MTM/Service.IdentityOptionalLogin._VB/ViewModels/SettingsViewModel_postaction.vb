@@ -7,7 +7,7 @@
                 Return _isBusy
             End Get
             Set(value As Boolean)
-                SetProperty(_isBusy, value)
+                [SetProperty](_isBusy, value)
 '^^
 '{[{
                 LogInCommand.NotifyCanExecuteChanged()

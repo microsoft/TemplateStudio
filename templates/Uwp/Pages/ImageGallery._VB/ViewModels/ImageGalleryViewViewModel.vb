@@ -2,6 +2,7 @@
 Imports Param_RootNamespace.Core.Models
 Imports Param_RootNamespace.Core.Services
 Imports Param_RootNamespace.Services
+Imports Microsoft.Toolkit.Mvvm.Input
 
 Namespace ViewModels
     Public Class ImageGalleryViewViewModel
