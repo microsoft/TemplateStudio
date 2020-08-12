@@ -559,6 +559,10 @@ namespace Microsoft.Templates.Test
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
+                case "MTM":
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
+                    break;
+
                 case "LegacyFrameworks":
                     if (programmingLanguage == ProgrammingLanguages.CSharp)
                     {
