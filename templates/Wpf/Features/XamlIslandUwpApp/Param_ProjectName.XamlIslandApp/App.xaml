@@ -1,5 +1,5 @@
 ﻿<xaml:XamlApplication
-    x:Class="Param_ProjectName.XamlIslandApp.App"
+    x:Class="Param_RootNamespace.XamlIslandApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:xaml="using:Microsoft.Toolkit.Win32.UI.XamlHost">

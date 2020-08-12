@@ -8,8 +8,8 @@
     <ProjectGuid>{A737182C-BD90-42FD-836D-C22FCB786BF1}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Param_ProjectName.XamlIslandApp</RootNamespace>
-    <AssemblyName>Param_ProjectName.XamlIslandApp</AssemblyName>
+    <RootNamespace>Param_RootNamespace.XamlIslandApp</RootNamespace>
+    <AssemblyName>Param_RootNamespace.XamlIslandApp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
