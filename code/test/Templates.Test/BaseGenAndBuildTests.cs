@@ -610,6 +610,10 @@ namespace Microsoft.Templates.Test
                 case "Prism":
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
+
+                case "MTM":
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
+                    break;
             }
 
             return result;
