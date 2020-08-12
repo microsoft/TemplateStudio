@@ -4,7 +4,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Toolkit.Wpf.UI.XamlHost;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
@@ -36,7 +35,6 @@ namespace Param_RootNamespace.Controls
         public wts.ItemNameControl()
         {
             InitializeComponent();
-            _themeSelectorService = ((App)Application.Current).GetService<IThemeSelectorService>();
             _themeSelectorService.ThemeChanged += OnThemeChanged;
             GetColors();
         }
