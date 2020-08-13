@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Param_RootNamespace.Contracts.Activation;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.ViewModels;
@@ -13,11 +15,14 @@ namespace Param_RootNamespace.Services
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
+        private readonly IEnumerable<IActivationHandler> _activationHandlers;
         private IShellWindow _shellWindow;
+        private bool _isInitialized;
 
-        public ApplicationHostService(IServiceProvider serviceProvider, INavigationService navigationService)
+        public ApplicationHostService(IServiceProvider serviceProvider, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
         {
             _serviceProvider = serviceProvider;
+            _activationHandlers = activationHandlers;
             _navigationService = navigationService;
         }
 
@@ -30,6 +35,7 @@ namespace Param_RootNamespace.Services
 
             // Tasks after activation
             await StartupAsync();
+            _isInitialized = true;
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
@@ -39,16 +45,30 @@ namespace Param_RootNamespace.Services
 
         private async Task InitializeAsync()
         {
-            await Task.CompletedTask;
+            if (!_isInitialized)
+            {
+                await Task.CompletedTask;
+            }
         }
 
         private async Task StartupAsync()
         {
-            await Task.CompletedTask;
+            if (!_isInitialized)
+            {
+                await Task.CompletedTask;
+            }
         }
 
         private async Task HandleActivationAsync()
         {
+            var activationHandler = _activationHandlers
+                                        .FirstOrDefault(h => h.CanHandle());
+
+            if (activationHandler != null)
+            {
+                await activationHandler.HandleAsync();
+            }
+
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
             {
                 // Default activation that navigates to the apps default page
