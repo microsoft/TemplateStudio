@@ -1,0 +1,28 @@
+﻿<Package
+  IgnorableNamespaces="uap rescap genTemplate com desktop">
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <Extensions>
+<!--^^-->
+<!--{[{-->
+        <!--Register COM CLSID LocalServer32 registry key-->
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:ExeServer Executable="Param_ProjectName.exe" Arguments="-ToastActivated" DisplayName="Toast activator">
+              <com:Class Id="8770A9EE-9EF3-4D0E-B85C-1CD0994763D3" DisplayName="Toast activator"/>
+            </com:ExeServer>
+          </com:ComServer>
+        </com:Extension>
+
+        <!--Specify which CLSID to activate when toast clicked-->
+        <desktop:Extension Category="windows.toastNotificationActivation">
+          <desktop:ToastNotificationActivation ToastActivatorCLSID="8770A9EE-9EF3-4D0E-B85C-1CD0994763D3"/>
+        </desktop:Extension>
+<!--}]}-->
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
