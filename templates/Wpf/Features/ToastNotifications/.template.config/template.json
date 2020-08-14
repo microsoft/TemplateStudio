@@ -29,7 +29,11 @@
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
+    "guids": ["8770A9EE-9EF3-4D0E-B85C-1CD0994763D3"],
     "PrimaryOutputs": [
+      {
+        "path": "Param_ProjectName/Activation/ToastNotificationActivator.cs"
+      },
       {
         "path": "Param_ProjectName/Contracts/Services/IToastNotificationsService.cs"
       },
