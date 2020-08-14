@@ -85,6 +85,7 @@
     <Compile Include="BuildTemplatesTests\Uwp\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildTemplatesTests\Wpf\BuildToolkitMVVMProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildPrismProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMBasicProjectTests.cs" />
