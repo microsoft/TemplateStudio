@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Services
         public const string FxCodeBehid = "CodeBehind";
         public const string FxCaliburnMicro = "CaliburnMicro";
         public const string FxPrism = "Prism";
+        public const string FxToolkitMvvm = "MTM";
 
         private const string PlUwp = "Uwp";
         private const string PlWpf = "Wpf";
@@ -148,6 +149,10 @@ namespace Microsoft.Templates.UI.Services
             else if (IsUwpPrism())
             {
                 return FxPrism;
+            }
+            else if (IsUwpMicrosoftToolkitMvvm())
+            {
+                return FxToolkitMvvm;
             }
             else
             {
@@ -337,6 +342,11 @@ namespace Microsoft.Templates.UI.Services
         {
             return (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
                 && ContainsNugetPackage("Caliburn.Micro");
+        }
+
+        private static bool IsUwpMicrosoftToolkitMvvm()
+        {
+            return ContainsNugetPackage("Microsoft.Toolkit.MVVM");
         }
 
         private static bool IsUwpPrism()
