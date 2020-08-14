@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace Param_RootNamespace.ViewModels
 {

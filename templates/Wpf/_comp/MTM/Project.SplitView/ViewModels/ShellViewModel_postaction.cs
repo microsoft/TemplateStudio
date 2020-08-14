@@ -1,4 +1,8 @@
-﻿namespace Param_RootNamespace.ViewModels
+﻿//{[{
+using Microsoft.Toolkit.Mvvm.Input;
+//}]}
+
+namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ObservableObject
     {
