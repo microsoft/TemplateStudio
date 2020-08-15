@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_RootNamespace.Helpers
+Imports Microsoft.Toolkit.Mvvm.Input
 Imports Param_RootNamespace.Views
 '}]}
 

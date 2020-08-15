@@ -1,8 +1,4 @@
-﻿'{[{
-Imports Microsoft.Toolkit.Mvvm.Input
-'}]}
-
-Namespace ViewModels
+﻿Namespace ViewModels
     Public Class wts.ItemNameViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 

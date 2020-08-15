@@ -32,7 +32,7 @@ namespace Param_RootNamespace.ViewModels
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
-            set { SetProperty(ref _isLoggedIn, value); }
+            set { Param_Setter(ref _isLoggedIn, value); }
         }
 
         public bool IsBusy
@@ -40,14 +40,14 @@ namespace Param_RootNamespace.ViewModels
             get => _isBusy;
             set
             {
-                SetProperty(ref _isBusy, value);
+                Param_Setter(ref _isBusy, value);
             }
         }
 
         public UserViewModel User
         {
             get { return _user; }
-            set { SetProperty(ref _user, value); }
+            set { Param_Setter(ref _user, value); }
         }
 //}]}
 
