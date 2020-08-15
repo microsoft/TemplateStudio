@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank|MenuBar & $frontendframework == MTM & groupidentity == wts.Page.TwoPaneView"
+    "wts.compositionFilter": "$projectType == Blank|MenuBar & $frontendframework == MTM & groupidentity == wts.Page.TwoPaneView.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
