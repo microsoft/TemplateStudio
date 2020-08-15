@@ -368,7 +368,7 @@ namespace TemplateValidator
                 // This can't catch everything but is better than nothing
                 if (tag.Value.Contains("identity") && !tag.Value.Contains(".VB"))
                 {
-                    results.Add($" wts.compositionFilter identitiy vlaue does not match the language. ({tag.Value}).");
+                    results.Add($" wts.compositionFilter identitiy value does not match the language. ({tag.Value}).");
                 }
             }
         }
