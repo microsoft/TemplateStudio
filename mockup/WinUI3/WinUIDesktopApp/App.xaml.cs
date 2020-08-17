@@ -83,6 +83,9 @@ namespace WinUIDesktopApp
             services.AddTransient<FormViewModel>();
             services.AddTransient<FormPage>();
 
+            services.AddTransient<MasterDetailViewModel>();
+            services.AddTransient<MasterDetailPage>();
+
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
         }

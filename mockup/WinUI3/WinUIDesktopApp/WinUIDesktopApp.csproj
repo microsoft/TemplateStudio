@@ -12,6 +12,10 @@
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
     <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Views\MainPage - Copy.xaml" />
+    <None Remove="Views\MasterDetailPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-build.144.g31021cac38" />
