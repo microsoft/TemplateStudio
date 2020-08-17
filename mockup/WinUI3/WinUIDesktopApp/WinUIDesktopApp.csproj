@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-build.144.g31021cac38" />
+	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
 	  <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview2" />
 	  <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview2" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="8.0.0-preview2" />
