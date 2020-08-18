@@ -20,11 +20,21 @@
     "languages": [ "C#" ]
   },
   {
+      "name": "CodeBehind",
+      "displayName": "Code Behind",
+      "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
+      "author": "Microsoft",
+      "order": "3",
+      "licenses": "",
+      "platform":  "Wpf",
+  "languages": [ "C#" ]
+  },
+  {
     "name": "Prism",
     "displayName": "Prism",
     "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications.",
     "author": "Brian Lagunas, Dan Siegel",
-    "order": "3",
+    "order": "4",
     "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
     "platform": "Wpf",
     "languages": [ "C#" ]

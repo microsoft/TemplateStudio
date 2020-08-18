@@ -10,6 +10,11 @@
     "summary": "MVVM Light ist ein verbreitetes Drittanbieter-framework, das auf dem Model-View-ViewModel-Muster basiert."
   },
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Dies ist das traditionelle Modell für eine Anwendung, bei dem Logik im code-behind verarbeitet wird."
+  },
+  {
     "name": "Prism",
     "displayName": "Prism",
     "summary": "Prism ist ein framework für die Entwicklung lose gekoppelter XAML-Anwendungen, die gewartet und getestet werden können."
