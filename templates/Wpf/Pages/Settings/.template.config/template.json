@@ -14,7 +14,7 @@
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
