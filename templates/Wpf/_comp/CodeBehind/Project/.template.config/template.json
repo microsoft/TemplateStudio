@@ -1,0 +1,54 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.CodeBehind.Project",
+    "shortName": "wts.Wpf.CodeBehind.Project",
+    "identity": "wts.Wpf.CodeBehind.Project",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "1",
+      "wts.compositionFilter": "$frontendframework == CodeBehind & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+      {
+        "path": "Contracts/Services/INavigationService.cs"
+      },
+      {
+        "path": "Contracts/Services/IPageService.cs"
+      },
+      {
+        "path": "Contracts/Views/INavigationAware.cs"
+      },
+      {
+        "path": "Helpers/FrameExtensions.cs"
+      },
+      {
+        "path": "Services/ApplicationHostService.cs"
+      },
+      {
+        "path": "Services/NavigationService.cs"
+      },
+      {
+        "path": "Services/PageService.cs"
+      }
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "wts.homePageName": {
+        "type":"parameter",
+        "replaces":"Param_HomeName"
+      }
+    }
+  }
