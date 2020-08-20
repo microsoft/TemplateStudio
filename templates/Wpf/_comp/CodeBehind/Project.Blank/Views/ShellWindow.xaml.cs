@@ -23,6 +23,7 @@ namespace Param_RootNamespace.Views
         {
             _navigationService = navigationService;
             InitializeComponent();
+            DataContext = this;
         }
 
         public Frame GetNavigationFrame()
@@ -47,6 +48,11 @@ namespace Param_RootNamespace.Views
         private void OnNavigated(object sender, Type pageType)
         {
             CanGoBack = _navigationService.CanGoBack;
+        }
+
+        private void OnGoBack(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _navigationService.GoBack();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

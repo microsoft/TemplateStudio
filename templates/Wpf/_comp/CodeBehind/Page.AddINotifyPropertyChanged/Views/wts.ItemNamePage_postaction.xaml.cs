@@ -5,8 +5,20 @@ using System.ComponentModel;
 
 namespace Param_RootNamespace.Views
 {
+//{??{
     public partial class wts.ItemNamePage : Page, INotifyPropertyChanged
+//}??}
     {
+//{??{
+        public wts.ItemNamePage()
+//}??}
+        {
+            InitializeComponent();
+//^^
+//{[{
+            DataContext = this;
+//}]}
+        }
 //^^
 
 //{[{

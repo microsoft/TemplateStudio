@@ -67,9 +67,16 @@ namespace Microsoft.Templates.UI.Services
 
         public static bool HasTemplatesFromType(TemplateType templateType, string platform, string projectType, string frameworkName)
         {
-            return GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
-                                .Where(t => !t.IsHidden)
-                                .Any();
+            try
+            {
+                return GenContext.ToolBox.Repo.GetTemplatesInfo(templateType, platform, projectType, frameworkName)
+                    .Where(t => !t.IsHidden)
+                    .Any();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string platform, string projectType, string frameworkName, bool loadFromRightClick = false)
