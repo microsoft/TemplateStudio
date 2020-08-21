@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Extensions.Options;
 using Param_RootNamespace.Contracts.Services;
@@ -49,7 +50,7 @@ namespace Param_RootNamespace.Views
         {
         }
 
-        private void OnLightChecked(object sender, System.Windows.RoutedEventArgs e)
+        private void OnLightChecked(object sender, RoutedEventArgs e)
         {
             if (_isInitialized)
             {
@@ -57,7 +58,7 @@ namespace Param_RootNamespace.Views
             }
         }
 
-        private void OnDarkChecked(object sender, System.Windows.RoutedEventArgs e)
+        private void OnDarkChecked(object sender, RoutedEventArgs e)
         {
             if (_isInitialized)
             {
@@ -65,7 +66,7 @@ namespace Param_RootNamespace.Views
             }
         }
 
-        private void OnPrivacyStatementClick(object sender, System.Windows.RoutedEventArgs e)
+        private void OnPrivacyStatementClick(object sender, RoutedEventArgs e)
             => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);
     }
 }

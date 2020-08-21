@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
@@ -35,12 +36,12 @@ namespace Param_RootNamespace.Views
         public void CloseWindow()
             => Close();
 
-        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             _navigationService.Navigated += OnNavigated;
         }
 
-        private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             _navigationService.Navigated -= OnNavigated;
         }
@@ -50,7 +51,7 @@ namespace Param_RootNamespace.Views
             CanGoBack = _navigationService.CanGoBack;
         }
 
-        private void OnGoBack(object sender, System.Windows.RoutedEventArgs e)
+        private void OnGoBack(object sender, RoutedEventArgs e)
         {
             _navigationService.GoBack();
         }
