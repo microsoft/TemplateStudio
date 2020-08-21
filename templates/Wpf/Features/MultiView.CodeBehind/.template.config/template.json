@@ -49,14 +49,6 @@
     "wts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    },
-    "commandclass": {
-      "type": "parameter",
-      "replaces": "System.Windows.Input.ICommand"
     }
   }
 }

@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Views
         public Frame GetDialogFrame()
             => dialogFrame;
 
-        private void OnCloseClick(object sender, System.Windows.RoutedEventArgs e)
+        private void OnCloseClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
