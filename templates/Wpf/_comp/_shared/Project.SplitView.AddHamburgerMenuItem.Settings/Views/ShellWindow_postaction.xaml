@@ -1,0 +1,10 @@
+﻿<controls:HamburgerMenu
+<!--^^-->
+<!--{[{-->
+    OptionsItemsSource="{Binding OptionMenuItems}"
+    SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
+    OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
+    OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
+<!--}]}-->
+    ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+</controls:HamburgerMenu>
