@@ -1,6 +1,7 @@
 ﻿<controls:MetroWindow
 <!--^^-->
 <!--{[{-->
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
 <!--}]}-->
     Style="{StaticResource CustomMetroWindow}"

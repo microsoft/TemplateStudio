@@ -37,6 +37,18 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "configtype":{
+      "type": "parameter",
+      "replaces": "Param_ConfigType"
+    },
+    "configvalue":{
+      "type": "parameter",
+      "replaces": "Param_ConfigValue"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
     }
   }
 }

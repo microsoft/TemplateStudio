@@ -23,6 +23,9 @@
       "path": "Contracts/Services/IUserDataService.cs"
     },
     {
+      "path": "Helpers/RelayCommand.cs"
+    },
+    {
       "path": "Services/UserDataService.cs"
     },
     {
