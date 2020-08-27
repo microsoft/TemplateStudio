@@ -206,14 +206,14 @@ namespace Microsoft.Templates.Test
                     switch (projectType)
                     {
                         case "SplitView":
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 290, 450, 50), 1.25f) }";
                         case "TabbedNav":
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 340, 450, 50), 1.25f) }";
                         case MenuBar:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 405, 450, 40), 1.25f) }";
                         case "Blank":
                         default:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 50), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 340, 450, 50), 1.25f) }";
                     }
 
                 default:
