@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     MinWidth="500"
