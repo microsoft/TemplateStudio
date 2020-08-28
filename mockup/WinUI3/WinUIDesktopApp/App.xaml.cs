@@ -23,7 +23,12 @@ namespace WinUIDesktopApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            Ioc.Default.ConfigureServices(ConfigureServices);            
+            Ioc.Default.ConfigureServices(ConfigureServices);
+            UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
         }
 
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)

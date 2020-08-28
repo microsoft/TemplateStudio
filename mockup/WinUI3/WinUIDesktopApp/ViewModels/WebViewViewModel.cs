@@ -23,6 +23,7 @@ namespace WinUIDesktopApp.ViewModels
         private ICommand _openInBrowserCommand;
         private ICommand _reloadCommand;
         private ICommand _retryCommand;
+        private ICommand _navigationCompletedCommand;
 
         public Uri Source
         {
@@ -93,6 +94,8 @@ namespace WinUIDesktopApp.ViewModels
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new RelayCommand(async
             () => await Windows.System.Launcher.LaunchUriAsync(Source)));
 
+        public ICommand NavigationCompletedCommand => _navigationCompletedCommand ?? (_navigationCompletedCommand = new RelayCommand<WebView2NavigationCompletedEventArgs>(OnNavigationCompleted));
+
         public WebViewViewModel()
         {
             IsLoading = true;
@@ -102,10 +105,9 @@ namespace WinUIDesktopApp.ViewModels
         public void Initialize(WebView2 webView)
         {
             _webView = webView;
-            _webView.NavigationCompleted += OnNavigationCompleted;
         }
 
-        private void OnNavigationCompleted(WebView2 sender, WebView2NavigationCompletedEventArgs args)
+        private void OnNavigationCompleted(WebView2NavigationCompletedEventArgs args)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(BrowserBackCommand));
