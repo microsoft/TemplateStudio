@@ -69,8 +69,8 @@ namespace Microsoft.UI.Test
             Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Count > 0);
             Assert.True(viewModel.StepsViewModels[TemplateType.Service].Groups.Count > 0);
             Assert.True(viewModel.StepsViewModels[TemplateType.Testing].Groups.Count > 0);
-            Assert.Equal(1, pages.Items.Count);
-            Assert.Equal(0, features.Items.Count);
+            Assert.Single(pages.Items);
+            Assert.Empty(features.Items);
         }
 
         [Fact]
@@ -126,8 +126,8 @@ namespace Microsoft.UI.Test
             await viewModel.OnTemplatesAvailableAsync();
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
-            Assert.Equal(1, userSelection.Pages.Count);
-            Assert.Equal(0, userSelection.Features.Count);
+            Assert.Single(userSelection.Pages);
+            Assert.Empty(userSelection.Features);
             Assert.Equal(2, viewModel.UserSelection.Licenses.Count);
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
@@ -157,7 +157,7 @@ namespace Microsoft.UI.Test
 
             viewModel.UnsubscribeEventHandlers();
 
-            Assert.Equal(1, userSelection.Pages.Count);
+            Assert.Single(userSelection.Pages);
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             viewModel.UnsubscribeEventHandlers();
 
-            Assert.Equal(1, userSelection.Pages.Count);
+            Assert.Single(userSelection.Pages);
         }
 
         [Fact]
@@ -246,7 +246,7 @@ namespace Microsoft.UI.Test
             userSelection = viewModel.UserSelection.GetUserSelection();
             viewModel.UnsubscribeEventHandlers();
 
-            Assert.Equal(1, userSelection.Pages.Count);
+            Assert.Single(userSelection.Pages);
             Assert.Equal(numOfDependencies, userSelection.Services.Count + 1);
         }
 
