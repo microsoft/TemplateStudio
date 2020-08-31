@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
-    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
-    "identity": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
+    "name": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar.CodeBehind",
+    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar.CodeBehind",
+    "identity": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar.CodeBehind",
     "tags": {
     "language": "C#",
     "type": "item",
