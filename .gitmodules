@@ -1,4 +1,0 @@
-[submodule "code/CoreTemplateStudio"]
-	path = code/CoreTemplateStudio
-	url = https://github.com/Microsoft/CoreTemplateStudio.git
-	branch = release
