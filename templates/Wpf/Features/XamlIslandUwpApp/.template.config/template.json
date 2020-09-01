@@ -41,8 +41,7 @@
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.userName":
-    {
+    "wts.userName": {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
@@ -58,6 +57,7 @@
         "parameters": {
           "format": "yyyy"
       }
+    }
   },
   "postActions": [
     {
