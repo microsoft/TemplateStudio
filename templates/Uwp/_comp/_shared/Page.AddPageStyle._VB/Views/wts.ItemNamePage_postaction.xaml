@@ -1,7 +1,0 @@
-﻿<Page
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    <!--{[{-->
-    Style="{StaticResource PageStyle}"
-    <!--}]}-->
-    mc:Ignorable="d">
-</Page>

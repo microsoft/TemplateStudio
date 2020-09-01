@@ -1,1 +1,0 @@
-﻿La pagina della mappa è basata su Controllo mappa di Windows. Il codice include l'aggiunta di un'icona mappa, il rilevamento dell'itinerario dal Servizio di posizione e l'impostazione del punto centrale della mappa.

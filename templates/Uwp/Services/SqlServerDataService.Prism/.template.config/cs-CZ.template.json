@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "SQL Server Data",
-  "description": "Načte data z SQL Serveru, která se budou používat v aplikaci.",
-  "identity": "wts.Service.SqlServerDataService.Prism"
-}

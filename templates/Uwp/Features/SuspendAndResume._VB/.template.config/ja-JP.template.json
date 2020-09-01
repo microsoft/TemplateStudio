@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Suspend and Resume",
-  "description": "ユーザーがアプリを離れて戻ってくる際の処理を行うために組み込むことができる簡単なサービスです。",
-  "identity": "wts.Feat.SuspendAndResume.VB"
-}

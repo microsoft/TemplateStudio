@@ -1,1 +1,0 @@
-﻿Pagina che visualizza una raccolta immagini e consente all'utente di esplorare la raccolta e i dettagli delle immagini.

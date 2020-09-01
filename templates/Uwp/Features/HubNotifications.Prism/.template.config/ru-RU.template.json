@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Azure Notifications",
-    "description": "Зарегистрируйтесь, чтобы получать и обрабатывать сообщения из центров уведомлений Azure.",
-    "identity": "wts.Feat.HubNotifications.Prism"
-}

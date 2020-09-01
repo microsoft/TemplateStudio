@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Secured Web API",
-  "description": "Включить проект веб-API ASP.NET Core, который проверяет JWToken.",
-  "identity": "wts.Service.SecuredWebApi.CodeBehind"
-}

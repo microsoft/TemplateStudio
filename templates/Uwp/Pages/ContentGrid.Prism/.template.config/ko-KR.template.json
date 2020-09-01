@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Content Grid",
-  "description": "이 페이지에서 맞춤형 항목을 Adaptive Grid 형태로 추가할 수 있습니다.",
-  "identity": "wts.Page.ContentGrid.Prism"
-}

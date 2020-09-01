@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "Реализация в приложении принудительного входа пользователя.",
-  "identity": "wts.Wpf.Service.IdentityForcedLogin"
-}

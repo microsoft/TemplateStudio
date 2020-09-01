@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Live Tile",
-    "description": "Umožňuje přidat ukázku, která předvede aktualizaci dlaždice a také zobrazí kód pro práci s více dlaždicemi.",
-    "identity": "wts.Feat.LiveTile.Prism"
-}

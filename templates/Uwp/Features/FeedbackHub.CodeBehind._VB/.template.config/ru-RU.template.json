@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Feedback Hub Link",
-    "description": "Добавьте ссылку на Центр отзывов на странице параметров.",
-    "identity": "wts.Feat.FeedbackHub.CodeBehind.VB"
-}

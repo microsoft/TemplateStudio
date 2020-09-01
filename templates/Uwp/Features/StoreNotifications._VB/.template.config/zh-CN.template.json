@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "注册应用，以接收来自 Microsoft Store 的通知。",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "User Activity",
-  "description": "Agrega la capacidad de agregar actividades del usuario a la Línea de tiempo de Windows.",
-  "identity": "wts.Feat.UserActivity.MVVMLight"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test Core library with MSTest",
-  "description": "Añade un proyecto para probar código en la biblioteca principal con MSTest.",
-  "identity": "wts.Testing.UnitTests.Core.MSTest"
-}

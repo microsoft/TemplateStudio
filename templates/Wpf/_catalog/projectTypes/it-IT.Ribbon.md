@@ -1,1 +1,0 @@
-﻿Aggiunge un controllo barra multifunzione costituita da diverse schede, raggruppate per funzionalità per rappresentare le azioni di menu di un'applicazione.

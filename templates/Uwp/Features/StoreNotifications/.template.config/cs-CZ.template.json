@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Dev Center Notifications",
-  "description": "Zaregistrujte svou aplikaci, aby mohla přijímat oznámení z úložiště.",
-  "identity": "wts.Feat.StoreNotifications"
-}

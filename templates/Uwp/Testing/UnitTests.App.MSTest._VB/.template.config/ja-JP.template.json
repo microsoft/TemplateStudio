@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test App with MSTest",
-    "description": "MSTest を使用してアプリの単体テストを行うためのプロジェクトを追加します。",
-    "identity": "wts.Testing.UnitTests.App.MSTest.VB"
-}

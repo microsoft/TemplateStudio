@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Master/Detail",
-  "description": "Stránka hlavní-podrobnosti obsahuje podokno hlavních položek a podokno podrobností pro obsah.",
-  "identity": "wts.Page.MasterDetail"
-}

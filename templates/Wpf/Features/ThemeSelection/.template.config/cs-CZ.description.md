@@ -1,1 +1,0 @@
-﻿Tato funkce umožňuje změnit motiv vaší aplikace mezi světlým a tmavým.

@@ -1,5 +1,0 @@
-﻿<CodeCloneSettings>  
-  <Exclusions>
-    <Namespace>Microsoft.UI.Test*</Namespace>
-  </Exclusions>  
-</CodeCloneSettings>  

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Suspend and Resume",
-  "description": "Ein einfacher Dienst, den Sie verwenden können, um den Fall zu verarbeiten, dass ein Benutzer die App verlässt und wieder zu ihr zurückkehrt.",
-  "identity": "wts.Feat.SuspendAndResume.VB"
-}

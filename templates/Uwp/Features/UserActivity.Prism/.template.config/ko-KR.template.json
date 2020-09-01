@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "User Activity",
-  "description": "Windows 타임라인에 사용자 활동을 포함할 수 있는 기능을 추가합니다.",
-  "identity": "wts.Feat.UserActivity.Prism"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Drag & Drop",
-  "description": "拖放功能提供一种服务，可简化支持拖放的应用的创建过程。",
-  "identity": "wts.Feat.DragAndDrop.CodeBehind"
-}

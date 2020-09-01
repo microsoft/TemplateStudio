@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Map",
-    "description": "このマップ ページは、Windows マップ コントロールに基づきます。コードには、マップ アイコンの追加や場所の取得が含まれます。",
-    "identity": "wts.Page.Map.VB"
-}

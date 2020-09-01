@@ -1,1 +1,0 @@
-﻿La página de mapas se basa en el Control de mapa de Windows. El código incluye agregar un icono de mapa y obtener una ubicación del Servicio de ubicación, así como establecer el punto central del mapa.

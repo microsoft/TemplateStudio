@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Map",
-    "description": "Strona mapy opiera się na kontrolce mapy systemu Windows. Kod obejmuje dodawanie ikony mapy i uzyskiwanie lokalizacji.",
-    "identity": "wts.Page.Map.Prism"
-}

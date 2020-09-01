@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "User Activity",
-  "description": "Doplnění možnosti přidávat na časovou osu ve Windows uživatelské aktivity",
-  "identity": "wts.Feat.UserActivity"
-}

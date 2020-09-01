@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Settings",
-  "description": "この設定ページに、アプリの設定を含めることをお勧めします。",
-  "identity": "wts.Page.Settings.CaliburnMicro"
-}

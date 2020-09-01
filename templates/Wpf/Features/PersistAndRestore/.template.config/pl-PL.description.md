@@ -1,1 +1,0 @@
-﻿Funkcja Utrwal i przywróć udostępnia usługę, która upraszcza pracę z danymi aplikacji. Obsługuje procesy ładowania, zapisu i szeregowania zarówno plików, jak i poszczególnych elementów danych w folderze danych aplikacji na komputerze użytkownika.

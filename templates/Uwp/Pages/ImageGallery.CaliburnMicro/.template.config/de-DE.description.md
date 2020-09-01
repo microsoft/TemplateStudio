@@ -1,1 +1,0 @@
-﻿Eine Seite, die einen Bilderkatalog anzeigt und Benutzern die Navigation zwischen Katalog und Bilddetails ermöglicht.

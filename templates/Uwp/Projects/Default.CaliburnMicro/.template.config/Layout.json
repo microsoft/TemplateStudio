@@ -1,8 +1,0 @@
-﻿[
-    {
-        "name": "Main",
-        "templateGroupIdentity": "wts.Page.Blank",
-        "readonly": "false",
-        "projecttype": "Blank|SplitView|TabbedNav"
-    }
-]

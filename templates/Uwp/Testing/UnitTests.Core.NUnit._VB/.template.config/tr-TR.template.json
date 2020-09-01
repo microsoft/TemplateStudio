@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test Core library with NUnit",
-    "description": "NUnit ile Çekirdek kitaplığındaki kodu test etmek için bir proje ekleyin.",
-    "identity": "wts.Testing.UnitTests.Core.NUnit.VB"
-}

@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Toast Notifications",
-    "description": "Ajoute un code pour afficher une notification toast et gérer cette dernière lorsqu\u0027elle est utilisée pour lancer l\u0027application.",
-    "identity": "wts.Feat.ToastNotifications.VB"
-}

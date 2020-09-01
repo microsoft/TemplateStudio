@@ -1,1 +1,0 @@
-﻿Cette fonctionnalité vous permet de changer le thème Windows par défaut de votre application en sombre ou clair.

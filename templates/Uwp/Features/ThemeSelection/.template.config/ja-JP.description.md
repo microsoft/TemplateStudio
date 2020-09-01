@@ -1,1 +1,0 @@
-﻿この機能により、アプリのテーマを Light/Dark から WindowsDefault に変えることができます。
