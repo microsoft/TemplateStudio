@@ -10,7 +10,7 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <tc:RadCartesianChart>
+            <tc:RadCartesianChart x:Uid="CartesianChart">
                 <tc:RadCartesianChart.HorizontalAxis>
                     <tc:CategoricalAxis />
                 </tc:RadCartesianChart.HorizontalAxis>
