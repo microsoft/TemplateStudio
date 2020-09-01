@@ -13,7 +13,12 @@
     <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Styles\Page - Copy.xaml" />
+    <None Remove="Styles\TextBlock.xaml" />
+    <None Remove="Styles\_FontSizes.xaml" />
+    <None Remove="Styles\_Thickness - Copy.xaml" />
     <None Remove="Views\MainPage - Copy.xaml" />
+    <None Remove="Views\MasterDetailDetailControl.xaml" />
     <None Remove="Views\MasterDetailPage.xaml" />
   </ItemGroup>
 
@@ -36,6 +41,9 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Update="Views\MasterDetailDetailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Views\WebViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>

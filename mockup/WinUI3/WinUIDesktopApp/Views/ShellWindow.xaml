@@ -31,7 +31,7 @@
             <NavigationViewItem Content="DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
             <NavigationViewItem Content="WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.WebViewViewModel" />
             <NavigationViewItem Content="Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
-            <NavigationViewItem Content="MasterDetail (app crash)" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
+            <NavigationViewItem Content="MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>

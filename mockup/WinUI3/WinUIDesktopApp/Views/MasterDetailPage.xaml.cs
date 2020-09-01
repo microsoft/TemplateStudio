@@ -13,6 +13,7 @@ namespace WinUIDesktopApp.Views
         {
             ViewModel = Ioc.Default.GetService<MasterDetailViewModel>();
             InitializeComponent();
+            ViewModel.Initialize(MasterDetailsViewControl);
         }
     }
 }
