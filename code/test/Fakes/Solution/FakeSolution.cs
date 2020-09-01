@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
-        private const string WpfProjectConfigurationTemplateAnyCPU = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        private const string WpfProjectConfigurationTemplateForAnyCPU = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{0}.Debug|ARM.Build.0 = Debug|Any CPU
@@ -339,7 +339,7 @@ EndProject
                         }
                         else
                         {
-                            return WpfProjectConfigurationTemplateAnyCPU;
+                            return WpfProjectConfigurationTemplateForAnyCPU;
                         }
                     }
 
