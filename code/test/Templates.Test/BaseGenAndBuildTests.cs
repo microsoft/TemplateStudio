@@ -490,6 +490,50 @@ namespace Microsoft.Templates.Test
             return (resultPath, GenContext.Current.ProjectName);
         }
 
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpWpfComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        {
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Wpf);
+
+            var singlePageName = string.Empty;
+
+            var genIdentitiesList = genIdentities.ToList();
+
+            if (genIdentitiesList.Count == 1)
+            {
+                singlePageName = genIdentitiesList.Last().Split('.').Last();
+            }
+
+            var projectName = $"{projectType}{framework}{singlePageName}{ShortLanguageName(language)}";
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = destinationPath,
+            };
+
+            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Wpf, language);
+
+            foreach (var identity in genIdentitiesList)
+            {
+                var itemTemplate = _fixture.Templates().FirstOrDefault(t
+                    => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
+                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
+
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Wpf, projectType, framework, _emptyBackendFramework);
+                _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
+            }
+
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, GenContext.Current.ProjectName);
+
+            return (resultPath, GenContext.Current.ProjectName);
+        }
+
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string framework)
         {
             var result = GenerationFixture.GetPageAndFeatureTemplatesForGeneration(framework);
