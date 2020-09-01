@@ -5,6 +5,6 @@
     SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
     OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
     OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
-    ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
 <!--}]}-->
+    ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
 </controls:HamburgerMenu>
