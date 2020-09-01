@@ -20,25 +20,20 @@
       "wts.displayOrder": "1",
       "wts.group": "UserInteraction",
       "wts.defaultInstance": "ToastNotifications",
-      "wts.dependencies":"wts.Wpf.Feat.MSIXPackaging",
       "wts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
       "wts.multipleInstance": "false",
       "wts.genGroup": "0",
-      "wts.rightClickEnabled":"true",
-      "wts.outputToParent": "true"
+      "wts.rightClickEnabled":"true"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "guids": ["8770A9EE-9EF3-4D0E-B85C-1CD0994763D3"],
     "PrimaryOutputs": [
       {
-        "path": "Param_ProjectName/Activation/ToastNotificationActivator.cs"
+        "path": "Contracts/Services/IToastNotificationsService.cs"
       },
       {
-        "path": "Param_ProjectName/Contracts/Services/IToastNotificationsService.cs"
-      },
-      {
-        "path": "Param_ProjectName/Services/ToastNotificationsService.cs"
+        "path": "Services/ToastNotificationsService.cs"
       }
     ],
     "symbols": {
@@ -58,9 +53,9 @@
         "manualInstructions": [ ],
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
-          "packageId": "Microsoft.Toolkit.Uwp.Notifications",
-          "version": "6.1.0-preview1.2",
-          "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+          "packageId": "aleader.Microsoft.Toolkit.Uwp.Notifications",
+          "version": "7.0.0-build.181.g1f770c1884",
+          "projectPath": "Param_ProjectName.csproj"
         },
         "continueOnError": true
       }
