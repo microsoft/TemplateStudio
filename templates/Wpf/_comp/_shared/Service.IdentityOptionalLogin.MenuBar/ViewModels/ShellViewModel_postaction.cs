@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
             set { Param_Setter(ref _isAuthorized, value); }
         }
 //}]}
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
 
         public ShellViewModel(/*{[{*/IIdentityService identityService/*}]}*/)
         {

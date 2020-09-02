@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.DataGrid"
+    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
