@@ -98,6 +98,8 @@
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
+    <Compile Include="VisualTests\AccessibilityTests.cs" />
+    <Compile Include="VisualTests\WPF\AccessibilityTests.cs" />
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
@@ -186,6 +188,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Axe.Windows">
+      <Version>0.9.6-prerelease</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
       <Version>3.0.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -204,7 +209,7 @@
       <Version>3.0.0-preview9.19381.3</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>

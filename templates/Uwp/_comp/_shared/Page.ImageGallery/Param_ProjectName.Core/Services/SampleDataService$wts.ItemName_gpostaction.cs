@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Core.Services
                     {
                         ID = $"{i}",
                         Source = $"{localResourcesPath}/SampleData/SamplePhoto{i}.png",
-                        Name = $"Image sample {i}"
+                        Name = $"Sample picture {i}"
                     });
                 }
             }

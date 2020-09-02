@@ -124,6 +124,7 @@
                 Text="{x:Static properties:Resources.wts.ItemNamePageTitle}" />
             <ListView
                 Grid.Row="1"
+                AutomationProperties.Name="{x:Static properties:Resources.wts.ItemNameListDescription}"
                 ItemsSource="{Binding SampleItems}"
                 ItemTemplate="{StaticResource ItemTemplate}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}" />
