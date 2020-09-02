@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "What\u0027s New Prompt",
-    "description": "在更新后首次使用应用时显示提示。",
-    "identity": "wts.Feat.WhatsNewPrompt.Prism"
-}

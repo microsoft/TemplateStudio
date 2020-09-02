@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Suspend and Resume",
-  "description": "Kullanıcı uygulamadan çıkıp daha sonra uygulamaya geri döndüğünde kullanabileceğiniz basit bir hizmet.",
-  "identity": "wts.Feat.SuspendAndResume.VB"
-}

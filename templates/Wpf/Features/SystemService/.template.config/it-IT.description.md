@@ -1,1 +1,0 @@
-﻿SystemService contiene operazioni che interagiscono con funzionalità e API native del sistema operativo.

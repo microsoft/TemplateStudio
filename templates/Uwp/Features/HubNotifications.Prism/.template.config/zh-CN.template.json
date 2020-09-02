@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Azure Notifications",
-    "description": "注册以从 Azure 通知中心接收消息并加以处理。",
-    "identity": "wts.Feat.HubNotifications.Prism"
-}

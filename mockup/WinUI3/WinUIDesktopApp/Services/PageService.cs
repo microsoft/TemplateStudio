@@ -21,6 +21,7 @@ namespace WinUIDesktopApp.Services
             Configure<WebViewViewModel, WebViewPage>();
             Configure<DataGridViewModel, DataGridPage>();
             Configure<FormViewModel, FormPage>();
+            Configure<MasterDetailViewModel, MasterDetailPage>();
             Configure<SettingsViewModel, SettingsPage>();            
         }
 

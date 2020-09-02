@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Chart",
-  "description": "Strona wyświetlająca prosty wykres obsługiwana przez kontrolki interfejsu użytkownika Telerik dla platformy UWP.",
-  "identity": "wts.Page.Chart"
-}

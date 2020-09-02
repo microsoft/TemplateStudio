@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Live Tile",
-    "description": "添加示例以说明如何更新磁贴，以及使用多个磁贴的代码。",
-    "identity": "wts.Feat.LiveTile.VB"
-}

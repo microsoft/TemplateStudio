@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "HTTP Data Service",
-  "description": "經由 HTTP 存取內容。",
-  "identity": "wts.Service.HttpDataService"
-}

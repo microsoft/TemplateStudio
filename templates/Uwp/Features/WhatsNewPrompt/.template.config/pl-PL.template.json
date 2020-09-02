@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "What's New Prompt",
-  "description": "Wyświetlaj monit, gdy aplikacja jest używana po raz pierwszy po aktualizacji.",
-  "identity": "wts.Feat.WhatsNewPrompt"
-}

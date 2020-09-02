@@ -1,1 +1,0 @@
-﻿Dodaje kontrolkę wstążki, która zawiera kilka kart pogrupowanych według funkcji reprezentujących akcje w menu aplikacji.

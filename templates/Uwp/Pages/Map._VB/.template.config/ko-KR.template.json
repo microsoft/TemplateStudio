@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Map",
-    "description": "지도 페이지는 Windows 지도 컨트롤에 기반합니다. 지도 아이콘 및 위치 서비스를 추가하는 코드를 제공합니다.",
-    "identity": "wts.Page.Map.VB"
-}

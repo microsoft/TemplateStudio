@@ -23,7 +23,12 @@ namespace WinUIDesktopApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            Ioc.Default.ConfigureServices(ConfigureServices);            
+            Ioc.Default.ConfigureServices(ConfigureServices);
+            UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
         }
 
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -82,6 +87,9 @@ namespace WinUIDesktopApp
 
             services.AddTransient<FormViewModel>();
             services.AddTransient<FormPage>();
+
+            services.AddTransient<MasterDetailViewModel>();
+            services.AddTransient<MasterDetailPage>();
 
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Share Target",
-  "description": "可讓您使用 UWP 應用程式中的分享協定接收其他應用程式所分享的資料。",
-  "identity": "wts.Feat.ShareTarget"
-}

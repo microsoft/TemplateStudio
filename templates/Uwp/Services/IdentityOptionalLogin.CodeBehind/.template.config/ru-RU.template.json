@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Optional Login",
-  "description": "Реализация в приложении необязательного входа и ограниченных возможностей.",
-  "identity": "wts.Service.IdentityOptionalLogin.CodeBehind"
-}

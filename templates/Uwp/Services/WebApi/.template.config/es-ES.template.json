@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Web API",
-  "description": "Incluye el proyecto API web de ASP.NET Core.",
-  "identity": "wts.Service.WebApi"
-}

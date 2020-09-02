@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "Richten Sie für Ihre Anwendung eine erzwungene Anmeldung ein.",
-  "identity": "wts.Service.IdentityForcedLogin.VB"
-}

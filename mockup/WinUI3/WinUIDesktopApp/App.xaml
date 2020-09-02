@@ -6,8 +6,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="/Styles/_FontSizes.xaml" />
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
                 <ResourceDictionary Source="/Styles/Page.xaml" />
+                <ResourceDictionary Source="/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI.Controls.DataGrid/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

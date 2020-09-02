@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Map",
-    "description": "地图页面基于 Windows 地图控件。代码包括添加地图图标和获得位置。",
-    "identity": "wts.Page.Map.Prism"
-}

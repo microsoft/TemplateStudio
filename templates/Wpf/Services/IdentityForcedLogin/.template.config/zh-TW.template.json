@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "讓您的應用程式要求使用者登入。",
-  "identity": "wts.Wpf.Service.IdentityForcedLogin"
-}

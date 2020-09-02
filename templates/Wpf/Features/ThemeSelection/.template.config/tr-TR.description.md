@@ -1,1 +1,0 @@
-﻿Bu özellik, uygulamanızda kullanılan temayı Açık ve Koyu olarak değiştirebilmenizi sağlar.

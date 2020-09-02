@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Live Tile",
-    "description": "Ajoute un échantillon pour afficher la mise à jour de la vignette ainsi que du code pour travailler avec plusieurs vignettes.",
-    "identity": "wts.Feat.LiveTile.VB"
-}

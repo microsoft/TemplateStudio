@@ -1,1 +1,0 @@
-﻿SystemService 包含与操作系统的功能和本机 API 交互的操作。

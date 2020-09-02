@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Settings Storage",
-  "description": "ストレージの設定は、アプリケーション データ フォルダー内でのデータの保存を簡素化する際に役立ちます。",
-  "identity": "wts.Feat.SettingsStorage.VB"
-}

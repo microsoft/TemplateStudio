@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using WinUIDesktopApp.Contracts.Services;
@@ -16,7 +18,8 @@ namespace WinUIDesktopApp.ViewModels
         private readonly IPageService _pageService;
         private bool _isBackEnabled;
         private NavigationViewItem _selected;
-        private NavigationView _navigationView;        
+        private NavigationView _navigationView;
+        private ICommand _itemInvokedCommand;
 
         public bool IsBackEnabled
         {
@@ -30,6 +33,8 @@ namespace WinUIDesktopApp.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
+        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+
         public ShellViewModel(INavigationService navigationService, IPageService pageService)
         {
             _navigationService = navigationService;
@@ -41,7 +46,6 @@ namespace WinUIDesktopApp.ViewModels
         {
             _navigationView = navigationView;
             _navigationService.Frame = frame;
-            _navigationView.ItemInvoked += OnItemInvoked;
             _navigationView.BackRequested += OnBackRequested;
         }
 
@@ -89,7 +93,7 @@ namespace WinUIDesktopApp.ViewModels
             return _pageService.GetPageType(pageKey) == sourcePageType;
         }
 
-        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {

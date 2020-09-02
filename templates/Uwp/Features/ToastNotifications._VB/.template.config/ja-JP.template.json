@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Toast Notifications",
-    "description": "トーストの表示、およびアプリを起動するために使用するトーストの処理を示すコードを追加します。",
-    "identity": "wts.Feat.ToastNotifications.VB"
-}

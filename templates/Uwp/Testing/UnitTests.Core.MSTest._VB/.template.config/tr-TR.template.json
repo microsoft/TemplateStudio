@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test Core library with MSTest",
-    "description": "MSTest ile Çekirdek kitaplığındaki kodu test etmek için bir proje ekleyin.",
-    "identity": "wts.Testing.UnitTests.Core.MSTest.VB"
-}

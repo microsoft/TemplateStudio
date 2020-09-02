@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "アプリケーションの使用に際して、ユーザーのログインを必須にします。",
-  "identity": "wts.Service.IdentityForcedLogin.CodeBehind.VB"
-}

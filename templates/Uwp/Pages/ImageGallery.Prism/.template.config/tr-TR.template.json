@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "ImageGallery",
-    "description": "Görüntü galerisinin görüntülendiği ve kullanıcının galeri ile görüntü ayrıntısı arasında gezinmesine olanak tanıyan sayfa.",
-    "identity": "wts.Page.ImageGallery.Prism"
-}

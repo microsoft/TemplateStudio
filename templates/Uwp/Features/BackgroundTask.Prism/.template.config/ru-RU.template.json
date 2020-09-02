@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Background Task",
-    "description": "Добавьте внутрипроцессную фоновую задачу, готовую к запуску кода, даже если приложение не на переднем плане.",
-    "identity": "wts.Feat.BackgroundTask.Prism"
-}

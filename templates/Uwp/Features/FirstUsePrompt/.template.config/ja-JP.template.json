@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "First Run Prompt",
-  "description": "アプリを最初に使用するとき、プロンプト メッセージを表示します。",
-  "identity": "wts.Feat.FirstRunPrompt"
-}

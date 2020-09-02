@@ -1,2 +1,0 @@
-﻿Záložky podél horního okraje zajišťují rychlou navigaci mezi stránkami a poskytují dostatek místa pro obsah z aplikace.
-Tato šablona je vhodná v případě, že máte pět nebo méně navigačních položek nejvyšší úrovně se shodnou důležitostí.

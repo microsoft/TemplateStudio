@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Command Line Launch",
-    "description": "Supporta il passaggio di argomenti e l'avvio dalla riga di comando.",
-    "identity": "wts.Feat.CommandLine.VB"
-}
