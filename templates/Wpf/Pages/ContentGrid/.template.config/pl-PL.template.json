@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "Ta strona pozwala dodawać własne elementy w postaci adaptacyjnej siatki.",
+  "description": "",
   "identity": "wts.Wpf.Page.ContentGrid"
 }

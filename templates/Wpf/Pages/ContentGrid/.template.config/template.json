@@ -8,7 +8,7 @@
   "shortName": "Content Grid",
   "identity": "wts.Wpf.Page.ContentGrid",
   "groupIdentity": "wts.Wpf.Page.ContentGrid",
-  "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
+  "description": "This page contains a basic content grid based on a ListView.",
   "tags": {
     "language": "C#",
     "type": "item",

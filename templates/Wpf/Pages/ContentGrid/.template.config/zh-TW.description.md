@@ -1,1 +1,1 @@
-﻿本頁面允許您在回應螢幕大小變更的 GridView 中新增自訂內容。[深入了解 Adaptive Grid View (調適型資料格檢視)。](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)
+﻿

@@ -1,1 +1,1 @@
-﻿ Esta página permite que você adicione conteúdo personalizado a uma GridView, que responde à alteração do tamanho da tela. [Saiba mais sobre a Exibição de grade adaptável](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)
+﻿

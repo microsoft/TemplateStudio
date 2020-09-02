@@ -1,1 +1,1 @@
-﻿ Ta strona pozwala dodawać własną zawartość w GridView, który dostosowuje się do rozmiaru ekranu. [Dowiedz się więcej o adaptacyjnym widoku siatki.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)
+﻿
