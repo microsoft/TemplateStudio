@@ -3,8 +3,6 @@ Imports Param_RootNamespace.Services
 
 Imports Windows.ApplicationModel.Activation
 Imports Windows.ApplicationModel.Core
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Activation
     Friend Class CommandLineActivationHandler

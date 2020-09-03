@@ -1,5 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports Windows.UI.Input.Inking
+﻿Imports Windows.UI.Input.Inking
 
 Namespace EventHandlers.Ink
     Public Class CopyPasteStrokesEventArgs

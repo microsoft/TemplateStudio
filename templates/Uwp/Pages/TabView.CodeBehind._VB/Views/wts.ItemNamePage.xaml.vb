@@ -1,8 +1,4 @@
-﻿
-Imports System.Linq
-Imports System.Runtime.CompilerServices
-Imports Param_RootNamespace.Models
-Imports Windows.UI.Xaml.Controls
+﻿Imports Param_RootNamespace.Models
 Imports WinUI = Microsoft.UI.Xaml.Controls
 
 Namespace Views

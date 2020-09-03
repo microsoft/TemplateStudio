@@ -1,7 +1,5 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
 
