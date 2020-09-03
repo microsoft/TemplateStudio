@@ -1,5 +1,4 @@
-﻿Imports System.Linq
-Imports Param_RootNamespace.Services.Ink
+﻿Imports Param_RootNamespace.Services.Ink
 Imports Param_RootNamespace.Helpers
 Imports Windows.Storage
 

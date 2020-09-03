@@ -18,7 +18,7 @@ namespace Param_RootNamespace.Services.Ink
         {
             if (!CanCopy)
             {
-                return default(Point);
+                return default;
             }
 
             var rect = _strokesService.CopySelectedStrokes();
@@ -31,7 +31,7 @@ namespace Param_RootNamespace.Services.Ink
         {
             if (!CanCut)
             {
-                return default(Point);
+                return default;
             }
 
             var rect = _strokesService.CutSelectedStrokes();

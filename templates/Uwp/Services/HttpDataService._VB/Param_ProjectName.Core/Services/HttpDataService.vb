@@ -1,7 +1,4 @@
-﻿
-Imports System
-Imports System.Collections.Generic
-Imports System.Net.Http
+﻿Imports System.Net.Http
 Imports System.Net.Http.Headers
 Imports System.Text
 Imports System.Threading.Tasks

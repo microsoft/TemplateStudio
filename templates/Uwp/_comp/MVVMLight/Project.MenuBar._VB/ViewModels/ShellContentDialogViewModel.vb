@@ -1,5 +1,4 @@
-﻿Imports System
-Imports GalaSoft.MvvmLight
+﻿Imports GalaSoft.MvvmLight
 Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels

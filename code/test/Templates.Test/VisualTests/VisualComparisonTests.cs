@@ -17,6 +17,7 @@ using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 using Microsoft.Templates.Core.Helpers;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 
 namespace Microsoft.Templates.Test
 {
@@ -448,8 +449,8 @@ namespace Microsoft.Templates.Test
                 Assert.True(testResults.wereSuccessful, outputMessages);
             }
 
+            WindowHelpers.BringVisualStudioToFront("Templates.Test");
             WindowHelpers.BringVisualStudioToFront("Big");
-            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
