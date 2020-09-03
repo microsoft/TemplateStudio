@@ -1,10 +1,4 @@
-﻿Imports System
-Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-Imports Windows.System
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Input
+﻿Imports Windows.System
 Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
 

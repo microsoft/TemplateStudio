@@ -17,6 +17,7 @@ using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 using Microsoft.Templates.Core.Helpers;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 
 namespace Microsoft.Templates.Test
 {
@@ -413,10 +414,15 @@ namespace Microsoft.Templates.Test
 
             var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount, longPause);
 
-            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+            (bool wereSuccessful, List<string> testOutput) testResults = (false, new List<string>());
+
+            ExceptionHelper.RetryOn<OpenQA.Selenium.WebDriverException>(() =>
+            {
+                testResults = RunWinAppDriverTests(testProjectDetails);
+            });
 
             // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
-            if (testSuccess)
+            if (testResults.wereSuccessful)
             {
                 UninstallAppx(app1Details.PackageFullName);
                 UninstallAppx(app2Details.PackageFullName);
@@ -428,20 +434,23 @@ namespace Microsoft.Templates.Test
                 Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
             }
 
-            var outputMessages = string.Join(Environment.NewLine, testOutput);
+            var outputMessages = string.Join(Environment.NewLine, testResults.testOutput);
 
             // A diff image is automatically created if the outputs differ
             if (Directory.Exists(testProjectDetails.imagesFolder)
              && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
             {
                 Assert.True(
-                    testSuccess,
+                    testResults.wereSuccessful,
                     $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
             }
             else
             {
-                Assert.True(testSuccess, outputMessages);
+                Assert.True(testResults.wereSuccessful, outputMessages);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Templates.Test");
+            WindowHelpers.BringVisualStudioToFront("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -659,6 +668,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -721,6 +733,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         [Theory]
@@ -931,7 +946,7 @@ namespace Microsoft.Templates.Test
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         }
 
-        private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
+        protected async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
         {
             await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
 
@@ -1186,7 +1201,7 @@ namespace Microsoft.Templates.Test
             return (projectFolder, imagesFolder);
         }
 
-        private void RemoveCertificate(string certificatePath)
+        protected void RemoveCertificate(string certificatePath)
         {
             var uninstallCertificateScript = $"$dump = certutil.exe -dump {certificatePath}" + @"
 ForEach ($i in $dump)
@@ -1202,12 +1217,12 @@ ForEach ($i in $dump)
             ExecutePowerShellScript(uninstallCertificateScript);
         }
 
-        private void UninstallAppx(string packageFullName)
+        protected void UninstallAppx(string packageFullName)
         {
             ExecutePowerShellScript($"Remove-AppxPackage -Package {packageFullName}");
         }
 
-        private async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool createForScreenshots = false)
+        protected async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool createForScreenshots = false)
         {
             var result = new VisualComparisonTestDetails();
 
@@ -1266,6 +1281,21 @@ Write-Output $packageFullName";
             result.PackageFullName = response[1].ToString();
 
             return result;
+        }
+
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpWpfProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        {
+            var baseSetup = await SetUpWpfComparisonProjectAsync(language, projectType, framework, genIdentities);
+
+            // So building release version is fast
+            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language);
+
+            ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
+            var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return baseSetup;
         }
 
         private void ReplaceInFiles(string find, string replace, string rootDirectory, string fileFilter)
@@ -1327,7 +1357,7 @@ Write-Output $packageFullName";
             }
         }
 
-        private class VisualComparisonTestDetails
+        protected class VisualComparisonTestDetails
         {
             public string CertificatePath { get; set; }
 

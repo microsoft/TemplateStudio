@@ -1,7 +1,4 @@
 ﻿
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
-
 Namespace Views
 
     ' TODO WTS: Remove this sample page when/if it's not needed.

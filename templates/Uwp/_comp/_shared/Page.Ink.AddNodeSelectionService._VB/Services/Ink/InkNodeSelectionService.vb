@@ -1,11 +1,5 @@
-﻿Imports System
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.UI.Input.Inking
+﻿Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Input
 
 Namespace Services.Ink
     Public Class InkNodeSelectionService

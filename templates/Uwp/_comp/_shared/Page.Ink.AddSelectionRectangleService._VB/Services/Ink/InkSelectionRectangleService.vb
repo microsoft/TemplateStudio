@@ -1,10 +1,5 @@
-﻿Imports System.Linq
-Imports Windows.Foundation
+﻿Imports Windows.Foundation
 Imports Windows.UI
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Input
-Imports Windows.UI.Xaml.Media
 Imports Windows.UI.Xaml.Shapes
 
 Namespace Services.Ink

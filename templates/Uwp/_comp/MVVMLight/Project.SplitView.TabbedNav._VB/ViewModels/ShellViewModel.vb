@@ -1,7 +1,5 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports Param_RootNamespace.Services

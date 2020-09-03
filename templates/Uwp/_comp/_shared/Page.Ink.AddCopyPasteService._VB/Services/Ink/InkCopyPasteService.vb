@@ -1,5 +1,4 @@
-﻿Imports System.Linq
-Imports Windows.Foundation
+﻿Imports Windows.Foundation
 
 Namespace Services.Ink
     Public Class InkCopyPasteService
