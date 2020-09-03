@@ -399,7 +399,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportOnNavigatedFromParamsTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "", "NavigationContext navigationContext" }.Contains(tag.Value))
+            if (!new[] { string.Empty, "NavigationContext navigationContext" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.onNavigatedFromParams tag.");
             }
