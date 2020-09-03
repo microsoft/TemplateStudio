@@ -1,4 +1,5 @@
-﻿Imports Windows.Devices.Sensors
+﻿Imports System.Runtime.CompilerServices
+Imports Windows.Devices.Sensors
 Imports Windows.Graphics.Display
 Imports Windows.Storage.FileProperties
 

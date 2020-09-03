@@ -1,7 +1,5 @@
 ﻿Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services.Ink
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/ink.md

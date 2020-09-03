@@ -1,5 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Storage
 Imports Windows.Storage.Streams
 
