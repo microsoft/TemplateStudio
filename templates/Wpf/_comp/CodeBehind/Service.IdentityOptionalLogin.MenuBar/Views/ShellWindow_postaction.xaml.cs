@@ -32,7 +32,6 @@ namespace Param_RootNamespace.Views
         }
 
 //}]}
-        // TODO WTS: Change the icons and titles for all HamburgerMenuItems here.
         public ShellWindow(/*{[{*/IIdentityService identityService/*}]}*/)
         {
 //^^
