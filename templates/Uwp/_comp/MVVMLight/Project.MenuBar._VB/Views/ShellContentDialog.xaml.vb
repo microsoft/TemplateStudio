@@ -1,7 +1,4 @@
-﻿Imports System
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Animation
+﻿Imports Windows.UI.Xaml.Media.Animation
 Imports Param_RootNamespace.ViewModels
 
 Namespace Views

@@ -1,5 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-
+﻿
 Namespace Views
     Public NotInheritable Partial Class LogInPage
         Inherits Page

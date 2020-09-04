@@ -1,11 +1,6 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Threading.Tasks
-Imports Windows.Foundation
+﻿Imports Windows.Foundation
 Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 Imports Param_RootNamespace.EventHandlers.Ink
 
 Namespace Services.Ink

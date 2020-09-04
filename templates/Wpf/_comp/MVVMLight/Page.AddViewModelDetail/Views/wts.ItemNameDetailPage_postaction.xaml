@@ -1,0 +1,9 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNameDetailPage"
+<!--{[{-->
+    DataContext="{Binding wts.ItemNameDetailViewModel, Source={StaticResource Locator}}"
+    Style="{DynamicResource MahApps.Styles.Page}"
+<!--}]}-->
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+</Page>

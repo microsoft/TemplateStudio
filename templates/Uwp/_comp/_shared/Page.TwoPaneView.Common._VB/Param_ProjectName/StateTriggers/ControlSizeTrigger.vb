@@ -1,5 +1,4 @@
-﻿Imports Windows.UI.Xaml
-
+﻿
 Namespace StateTriggers
     Public Class ControlSizeTrigger
         Inherits StateTriggerBase

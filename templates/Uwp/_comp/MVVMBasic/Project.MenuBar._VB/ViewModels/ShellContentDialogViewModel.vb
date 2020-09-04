@@ -1,5 +1,4 @@
-﻿Imports System
-Imports Param_RootNamespace.Helpers
+﻿Imports Param_RootNamespace.Helpers
 
 Namespace ViewModels
     Public Class ShellContentDialogViewModel

@@ -1,5 +1,4 @@
-﻿Imports System
-Imports Windows.ApplicationModel
+﻿Imports Windows.ApplicationModel
 Imports Windows.ApplicationModel.Activation
 
 Public Module Program

@@ -7,13 +7,13 @@
     "name": "wts.Wpf.Page.AddTitle",
     "shortName": "wts.Wpf.Page.AddTitle",
     "identity": "wts.Wpf.Page.AddTitle",
-    "tags": {
+  "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.XamlIsland"
+    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid|wts.Wpf.Page.XamlIsland"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

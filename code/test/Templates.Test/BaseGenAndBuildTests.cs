@@ -61,19 +61,15 @@ namespace Microsoft.Templates.Test
         {
             switch (projectType)
             {
-                case "Blank":
+                case ProjectTypes.Blank:
                     return "B";
-                case "SplitView":
+                case ProjectTypes.SplitView:
                     return "SV";
-                case "SplitViewWpf":
-                    return "SVWpf";
-                case "TabbedNav":
+                case ProjectTypes.TabbedNav:
                     return "TN";
-                case "MenuBar":
+                case ProjectTypes.MenuBar:
                     return "MB";
-                case "MenuBarWpf":
-                    return "MBWpf";
-                case "Ribbon":
+                case ProjectTypes.Ribbon:
                     return "RB";
                 default:
                     return projectType;
@@ -481,7 +477,7 @@ namespace Microsoft.Templates.Test
                 // Useful if creating a blank project type and want to change the start page
                 userSelection.HomeName = userSelection.Pages.Last().Name;
 
-                if (projectType == "TabbedNav")
+                if (projectType == ProjectTypes.TabbedNav)
                 {
                     userSelection.Pages.Reverse();
                 }
@@ -544,29 +540,21 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private const string NavigationPanel = "SplitView";
-        private const string Blank = "Blank";
-        private const string TabbedNav = "TabbedNav";
-        private const string MenuBar = "MenuBar";
-        private const string MvvmBasic = "MVVMBasic";
-        private const string MvvmLight = "MVVMLight";
-        private const string CodeBehind = "CodeBehind";
-
         // This returns a list of project types and frameworks supported by BOTH C# and VB
         public static IEnumerable<object[]> GetMultiLanguageProjectsAndFrameworks()
         {
-            yield return new object[] { NavigationPanel, CodeBehind };
-            yield return new object[] { NavigationPanel, MvvmBasic };
-            yield return new object[] { NavigationPanel, MvvmLight };
-            yield return new object[] { Blank, CodeBehind };
-            yield return new object[] { Blank, MvvmBasic };
-            yield return new object[] { Blank, MvvmLight };
-            yield return new object[] { TabbedNav, CodeBehind };
-            yield return new object[] { TabbedNav, MvvmBasic };
-            yield return new object[] { TabbedNav, MvvmLight };
-            yield return new object[] { MenuBar, CodeBehind };
-            yield return new object[] { MenuBar, MvvmBasic };
-            yield return new object[] { MenuBar, MvvmLight };
+            yield return new object[] { ProjectTypes.SplitView, Frameworks.CodeBehind };
+            yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMBasic };
+            yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.Blank, Frameworks.CodeBehind };
+            yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMBasic };
+            yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.CodeBehind };
+            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMBasic };
+            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.MenuBar, Frameworks.CodeBehind };
+            yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMBasic };
+            yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMLight };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
@@ -587,19 +575,19 @@ namespace Microsoft.Templates.Test
 
             switch (framework)
             {
-                case "CodeBehind":
+                case Frameworks.CodeBehind:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
-                case "MVVMBasic":
+                case Frameworks.MVVMBasic:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
-                case "MVVMLight":
+                case Frameworks.MVVMLight:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
-                case "CaliburnMicro":
+                case Frameworks.CaliburnMicro:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
@@ -614,7 +602,7 @@ namespace Microsoft.Templates.Test
                     }
                     break;
 
-                case "Prism":
+                case Frameworks.Prism:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
@@ -631,23 +619,23 @@ namespace Microsoft.Templates.Test
 
             switch (framework)
             {
-                case "CodeBehind":
+                case Frameworks.CodeBehind:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
-                case "MVVMBasic":
+                case Frameworks.MVVMBasic:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
-                case "MVVMLight":
+                case Frameworks.MVVMLight:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
-                case "CaliburnMicro":
+                case Frameworks.CaliburnMicro:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 
-                case "Prism":
+                case Frameworks.Prism:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
             }

@@ -87,6 +87,8 @@
     <Compile Include="BuildTemplatesTests\Wpf\BuildPrismProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMBasicProjectTests.cs" />
+    <Compile Include="Frameworks.cs" />
+    <Compile Include="ProjectTypes.cs" />
     <Compile Include="VBCodeAnalysis\VBStyleProjectGenerationTests.cs" />
     <Compile Include="VBCodeAnalysis\VBStyleGenerationTestsFixture.cs" />
     <Compile Include="VBCodeAnalysis\VBStyleCollection.cs" />
