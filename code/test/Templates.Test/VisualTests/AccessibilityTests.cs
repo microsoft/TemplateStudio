@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Test
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\ALLY\\{DateTime.Now:dd_HHmmss}\\";
             var reportFolder = Path.Combine(rootFolder, "Reports");
 
-            var pageIdentities = AllTestablePages("CodeBehind");
+            var pageIdentities = AllTestablePages(Frameworks.CodeBehind);
 
             VisualComparisonTestDetails appDetails = null;
 
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test
 
             try
             {
-                appDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "CodeBehind", pageIdentities);
+                appDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, Frameworks.CodeBehind, pageIdentities);
 
                 using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
                 {
