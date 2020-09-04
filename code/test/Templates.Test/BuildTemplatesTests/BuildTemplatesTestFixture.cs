@@ -116,15 +116,15 @@ namespace Microsoft.Templates.Test
         {
             switch (framework)
             {
-                case "CaliburnMicro":
+                case Frameworks.CaliburnMicro:
                     return "CM";
-                case "Prism":
+                case Frameworks.Prism:
                     return "P";
-                case "CodeBehind":
+                case Frameworks.CodeBehind:
                     return "CB";
-                case "MVVMLight":
+                case Frameworks.MVVMLight:
                     return "ML";
-                case "MVVMBasic":
+                case Frameworks.MVVMBasic:
                     return "MB";
                 default:
                     return framework;

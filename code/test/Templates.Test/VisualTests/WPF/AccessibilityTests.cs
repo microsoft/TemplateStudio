@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Test.WPf
                     "wts.Wpf.Page.WebView",
                 };
 
-                var appDetails = await SetUpWpfProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "MVVMLight", wpfTestPages);
+                var appDetails = await SetUpWpfProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, Frameworks.MVVMLight, wpfTestPages);
 
                 var exePath = Path.Combine(appDetails.ProjectPath, appDetails.ProjectName, "bin", "Release", "netcoreapp3.1", $"{appDetails.ProjectName}.exe");
 

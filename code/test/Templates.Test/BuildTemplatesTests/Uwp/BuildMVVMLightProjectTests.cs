@@ -17,12 +17,12 @@ namespace Microsoft.Templates.Test.Build.Uwp
     public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMLightProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, "MVVMLight")
+            : base(fixture, null, Frameworks.MVVMLight)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumMVVMLight")]
         [Trait("ExecutionSet", "_CIBuild")]
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMLight", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMLight, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildMVVMLight")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
@@ -144,7 +144,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMLight, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
@@ -156,7 +156,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMLight", ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMLight, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMLight")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
@@ -166,6 +166,5 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }
-
     }
 }
