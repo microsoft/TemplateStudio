@@ -56,7 +56,11 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            if (args.IsSettingsInvoked)
+            {
+                // Navigate to the settings page - implement as appropriate if needed
+            }
+            else if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
             {
                 var pageKey = selectedItem.GetValue(NavHelper.NavigateToProperty) as string;
                 _navigationService.Navigate(pageKey, null);

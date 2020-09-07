@@ -19,13 +19,14 @@ Namespace Views
         End Sub
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-'{[{
             If args.IsSettingsInvoked Then
+'{--{
+                ' Navigate to the settings page - implement as appropriate if needed
+'}--}
+                '{[{
                 NavigationService.Navigate(GetType(wts.ItemNamePage), Nothing, args.RecommendedNavigationTransitionInfo)
-                Return
+                '}]}
             End If
-
-'}]}
         End Sub
     End Class
 End Namespace
