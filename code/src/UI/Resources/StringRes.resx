@@ -889,4 +889,7 @@ Please verify the following list of packages needed by your project's code and m
   <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
     <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
   </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI 3 app</value>
+  </data>
 </root>

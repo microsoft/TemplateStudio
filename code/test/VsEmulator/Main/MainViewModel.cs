@@ -41,6 +41,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private bool _useStyleCop;
         private UserSelection _userSelectionUwp;
         private UserSelection _userSelectionWpf;
+        private UserSelection _userSelectionWinUI;
         private (string name, string solutionName, string location) _projectLocation;
 
         private RelayCommand _refreshTemplateCacheCommand;
@@ -147,6 +148,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     _userSelectionWpf = userSelection;
                 }
+                else if (parameters[0] == Platforms.WinUI)
+                {
+                    _userSelectionWinUI = userSelection;
+                }
             });
         }
 
@@ -182,6 +187,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language)
         {
+
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
