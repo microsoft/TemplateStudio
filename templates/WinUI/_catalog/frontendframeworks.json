@@ -1,0 +1,12 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "",
+    "platform": "WinUI",
+    "languages": [ "C#" ]
+  }
+]

@@ -1,0 +1,11 @@
+﻿[
+    {
+      "name": "SplitView",
+      "displayName": "Navigation Pane",
+      "summary": "",
+      "author": "Microsoft",
+      "order": "1",
+      "platform": "WinUI",
+      "languages": [ "C#" ]
+    }
+]
