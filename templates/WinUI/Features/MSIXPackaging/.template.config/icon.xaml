@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Width="48" Height="48">
+    <Canvas.RenderTransform>
+      <MatrixTransform Matrix="0.02596345 0 0 -0.02596345 -1.9585777 50.114145"/>
+    </Canvas.RenderTransform>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF000000" StrokeThickness="0">
+      <Path.Data>
+        <PathGeometry Figures="m 845 1750 c -65 -65 -117 -121 -115 -124 3 -2 187 -95 410 -206 l 405 -203 -162 -81 c -152 -75 -163 -83 -163 -108 v -28 l 113 1 h 112 l 215 109 215 109 h -157 c -87 1 -158 3 -158 4 0 2 52 55 115 117 63 63 115 118 115 122 0 9 -794 408 -813 408 -7 0 -66 -54 -132 -120 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF000000" StrokeThickness="0">
+      <Path.Data>
+        <PathGeometry Figures="m 318 1754 c -104 -52 -188 -98 -188 -102 0 -4 47 -54 105 -112 l 104 -104 3 -452 c 3 -436 4 -453 23 -474 16 -18 721 -380 740 -380 3 0 5 208 5 463 v 462 l -375 188 c -206 103 -375 190 -375 195 0 4 81 48 180 97 99 49 180 92 180 95 0 3 -48 53 -107 112 l -108 106 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF000000" StrokeThickness="0">
+      <Path.Data>
+        <PathGeometry Figures="m 1220 535 c 0 -223 2 -405 5 -405 18 0 284 142 300 160 19 21 20 38 23 311 2 159 1 289 -2 289 -3 0 -30 -12 -59 -26 l -53 -26 -102 51 c -56 28 -104 51 -107 51 -3 0 -5 -182 -5 -405 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+  </Canvas>
+</Viewbox>

@@ -2,7 +2,7 @@
     {
       "name": "SplitView",
       "displayName": "Navigation Pane",
-      "summary": "",
+      "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
       "author": "Microsoft",
       "order": "1",
       "platform": "WinUI",
