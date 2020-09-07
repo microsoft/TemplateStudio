@@ -24,6 +24,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 code/test/Templates.Test/TestRuns/
+code/
 
 # Visual Studio 2015 cache/options directory
 .vs/
