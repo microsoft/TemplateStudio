@@ -9,9 +9,5 @@
     <value>Your location</value>
     <comment>Your location text on map page</comment>
   </data>
-  <data name="ExceptionLocationServiceStartListeningCanNotBeCalled" xml:space="preserve">
-    <value>The StartListening method cannot be called before the InitializeAsync method.</value>
-    <comment>Start listening cannot be called before the initialize in location service</comment>
-  </data>
   <!--}]}-->
 </root>
