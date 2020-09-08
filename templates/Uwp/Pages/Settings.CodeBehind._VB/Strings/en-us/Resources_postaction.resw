@@ -41,13 +41,5 @@
     <value>Personalization</value>
     <comment>Personalization text for SettingsPage</comment>
   </data>
-  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
-    <value>value must be an Enum!</value>
-    <comment>Value must be an Enum in enum to boolean converter</comment>
-  </data>
-  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">   
-    <value>parameter must be an Enum name!</value>
-    <comment>Parameter must be an Enum name in enum to boolean converter</comment>
-  </data>
   <!--}]}-->
 </root>

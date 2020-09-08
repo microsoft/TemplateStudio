@@ -97,9 +97,13 @@ Namespace Views
         End Function
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-            Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
-            Dim pageType = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), Type)
-            NavigationService.Navigate(pageType, Nothing, args.RecommendedNavigationTransitionInfo)
+            If args.IsSettingsInvoked Then
+                ' Navigate to the settings page - implement as appropriate if needed
+            Else
+                Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
+                Dim pageType = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), Type)
+                NavigationService.Navigate(pageType, Nothing, args.RecommendedNavigationTransitionInfo)
+            End If
         End Sub
 
         Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
