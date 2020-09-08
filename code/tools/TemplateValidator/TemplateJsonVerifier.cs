@@ -335,7 +335,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ObservableObject", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -383,7 +383,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportCanExecuteChangedMethodNameTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged" }.Contains(tag.Value))
+            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged", "NotifyCanExecuteChanged" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.canExecuteChangedMethodName tag.");
             }

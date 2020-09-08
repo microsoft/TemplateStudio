@@ -14,7 +14,8 @@
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == MTM & wts.type == project"
+      "wts.compositionFilter": "$frontendframework == MTM & wts.type == project",
+      "wts.licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
