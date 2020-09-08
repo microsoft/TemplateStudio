@@ -46,7 +46,7 @@ Namespace Services
 
         Public Async Function StartListeningAsync() As Task
             If geolocator Is Nothing Then
-                Throw New InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized())
+                Throw New InvalidOperationException("The StartListening method cannot be called before the InitializeAsync method.")
             End If
 
             AddHandler geolocator.PositionChanged, AddressOf Geolocator_PositionChanged

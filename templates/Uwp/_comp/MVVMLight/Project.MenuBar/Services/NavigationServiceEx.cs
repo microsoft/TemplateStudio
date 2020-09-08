@@ -66,7 +66,7 @@ namespace Param_RootNamespace.Services
             {
                 if (string.IsNullOrEmpty(pageKey) || !_pages.TryGetValue(pageKey, out page))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
+                    throw new ArgumentException(string.Format("Invalid pageKey '{0}', please provide a valid pageKey. Maybe you forgot to call NavigationService.Configure?", pageKey), nameof(pageKey));
                 }
             }
 
@@ -93,12 +93,12 @@ namespace Param_RootNamespace.Services
             {
                 if (_pages.ContainsKey(key))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
+                    throw new ArgumentException(string.Format("The key {0} is already configured in NavigationService", key));
                 }
 
                 if (_pages.Any(p => p.Value == pageType))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(p => p.Value == pageType).Key));
+                    throw new ArgumentException(string.Format("This type is already configured with key {0}", _pages.First(p => p.Value == pageType).Key));
                 }
 
                 _pages.Add(key, pageType);
@@ -115,7 +115,7 @@ namespace Param_RootNamespace.Services
                 }
                 else
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown".GetLocalized(), page.Name));
+                    throw new ArgumentException(string.Format("The page '{0}' is unknown by the NavigationService", page.Name));
                 }
             }
         }
