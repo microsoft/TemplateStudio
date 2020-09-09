@@ -1,32 +1,38 @@
-﻿using System.Windows;
-using System.Windows.Threading;
+﻿using Microsoft.UI.Xaml;
 
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Param_RootNamespace
 {
-    // For more inforation about application lifecyle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
-
-    // WPF UI elements use language en-US by default.
-    // If you need to support other cultures make sure you add converters and review dates and numbers in your UI to ensure everything adapts correctly.
-    // Tracking issue for improving this is https://github.com/dotnet/wpf/issues/1946
     public partial class App : Application
     {
+        public static Window CurrentWindow { get; set; }
+
         public App()
         {
+            InitializeComponent();
+            Suspending += OnSuspending;
+            UnhandledException += App_UnhandledException;
         }
 
-        private async void OnStartup(object sender, StartupEventArgs e)
+        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
         }
 
-        private async void OnExit(object sender, ExitEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
+            base.OnLaunched(args);
         }
 
-        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
         {
-            // TODO WTS: Please log and handle the exception as appropriate to your scenario
-            // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
+            base.OnActivated(args);
+        }
+
+        private void OnSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        {
         }
     }
 }
+

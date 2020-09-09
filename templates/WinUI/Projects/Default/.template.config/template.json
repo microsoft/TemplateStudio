@@ -86,8 +86,30 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId": "Microsoft.Extensions.Hosting",
-        "version": "3.1.5",
+        "packageId" : "Microsoft.Xaml.Behaviors.WinUI.Managed",
+        "version" : "2.0.3-rc3",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.WinUI",
+        "version": "3.0.0-preview2.200713.0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.VCRTForwarders.140",
+        "version": "1.0.6",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

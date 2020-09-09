@@ -4,5 +4,11 @@
         "templateGroupIdentity": "wts.WinUI.Page.Blank",
         "readonly": "false",
         "projecttype": "SplitView"
+    },
+    {
+        "name": "MSIX Packaging",
+        "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging",
+        "readonly": "true",
+        "projecttype": "SplitView"
     }
 ]

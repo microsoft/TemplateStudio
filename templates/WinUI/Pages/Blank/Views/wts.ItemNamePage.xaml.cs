@@ -1,8 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    public partial class wts.ItemNamePage : System.Windows.Controls.Page
+    public sealed partial class wts.ItemNamePage : Page
     {
         public wts.ItemNamePage()
         {
