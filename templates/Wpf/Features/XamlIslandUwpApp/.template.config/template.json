@@ -4,11 +4,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Xaml Island Uwp App",
-  "shortName": "Xaml Island Uwp App",
+  "name": "XAML Island UWP App",
+  "shortName": "XAML Island UWP App",
   "identity": "wts.Wpf.Feat.XamlIslandUwpApp",
   "groupIdentity": "wts.Wpf.Feat.XamlIslandUwpApp",
-  "description": "Infrastructure for Xaml Islands.",
+  "description": "Infrastructure for XAML Islands.",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -20,7 +20,7 @@
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
     "wts.isHidden": "true",
-    "wts.defaultInstance": "Xaml Island Uwp App",
+    "wts.defaultInstance": "XAML Island UWP App",
     "wts.multipleInstance": "false",
     "wts.outputToParent": "true"
   },
