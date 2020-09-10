@@ -201,10 +201,19 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(SolutionFilePath))
+            if (Platform == Platforms.WinUI)
             {
-                Process.Start(SolutionFilePath);
+                var process = new Process();
+                var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                var vsPreview = @"Microsoft Visual Studio\2019\Preview\Common7\IDE\devenv.exe";
+                process.StartInfo.FileName = Path.Combine(programFiles, vsPreview);
+                process.StartInfo.Arguments = SolutionFilePath;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+                return;
             }
+
+            Process.Start(SolutionFilePath);
         }
 
         private void OpenInVsCode()

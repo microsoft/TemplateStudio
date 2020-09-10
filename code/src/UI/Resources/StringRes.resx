@@ -890,6 +890,9 @@ Please verify the following list of packages needed by your project's code and m
     <value>This item is currently not available due to missing Visual Studio Workloads / Components.</value>
   </data>
   <data name="NewProjectTitleWinUI" xml:space="preserve">
-    <value>New WinUI 3 app</value>
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
   </data>
 </root>
