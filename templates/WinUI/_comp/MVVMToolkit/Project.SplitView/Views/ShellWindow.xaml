@@ -15,7 +15,7 @@
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        IsSettingsVisible="True"
+        IsSettingsVisible="False"
         ExpandedModeThresholdWidth="1280"
         Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">

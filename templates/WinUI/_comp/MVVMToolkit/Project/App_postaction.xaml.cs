@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Views;
 using Param_RootNamespace.Services;
 using Param_RootNamespace.ViewModels;
@@ -59,6 +60,8 @@ namespace Param_RootNamespace
             // Core Services
 
             // Views and ViewModels
+            services.AddTransient<IShellWindow, ShellWindow>();
+            services.AddTransient<ShellViewModel>();
         }
 //}]}
     }

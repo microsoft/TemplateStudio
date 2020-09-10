@@ -2,10 +2,10 @@
   {
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
-    "summary": "",
+    "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
     "author": "Microsoft",
     "order": "1",
-    "licenses": "",
+    "licenses": "[Microsoft.Toolkit.Mvvm](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
     "platform": "WinUI",
     "languages": [ "C#" ]
   }
