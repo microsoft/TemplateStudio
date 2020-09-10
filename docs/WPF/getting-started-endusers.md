@@ -39,6 +39,8 @@ Windows Template Studio approaches WPF app creation using the following attribut
 | [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your app. |
 | [Web View](./pages/webview.md)  | The web view page renders web content using the Microsoft Edge rendering engine. |
 | [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. |
+| [Data Grid](./pages/datagrid.md)  | A page displaying a simple data grid. |
+| [Content Grid](./pages/contentgrid.md)  | This page contains a basic content grid based on a ListView. |
 
 ### Features
 
