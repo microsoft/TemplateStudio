@@ -11,13 +11,14 @@ Namespace ViewModels
         Inherits ViewModelBase
 
         Private Sub OnItemInvoked(args As WinUI.NavigationViewItemInvokedEventArgs)
-            '{[{
             If args.IsSettingsInvoked Then
+'{--{
+                ' Navigate to the settings page - implement as appropriate if needed
+'}--}
+                '{[{
                 NavigationService.Navigate(GetType(wts.ItemNameViewModel).FullName, Nothing, args.RecommendedNavigationTransitionInfo)
-                Return
+                '}]}
             End If
-
-            '}]}
         End Sub
 
         Public Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
