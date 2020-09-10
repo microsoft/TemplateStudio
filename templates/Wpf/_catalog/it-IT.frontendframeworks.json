@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Si tratta del modello tradizionale per un'applicazione in cui la logica viene gestita nel code-behind."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "È una versione generica di uno schema MVVM pattern. Lo schema Model-View-ViewModel può essere utilizzato su tutte le piattaforme XAML."
@@ -8,11 +13,6 @@
     "name": "MVVMLight",
     "displayName": "MVVM Light",
     "summary": "MVVM Light è un noto framework di terze parti basato sullo schema Model-View-ViewModel."
-  },
-  {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "Si tratta del modello tradizionale per un'applicazione in cui la logica viene gestita nel code-behind."
   },
   {
     "name": "Prism",

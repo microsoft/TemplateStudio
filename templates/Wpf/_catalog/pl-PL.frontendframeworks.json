@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Jest to tradycyjny model aplikacji, w którym logika jest obsługiwana za pomocą code-behind."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "To jest ogólna wersja obiektu MVVM pattern. Wzorzec Model-View-ViewModel może być używany na wszystkich platformach XAML."
@@ -8,11 +13,6 @@
     "name": "MVVMLight",
     "displayName": "MVVM Light",
     "summary": "MVVM Light to popularny zewnętrzny framework oparty na wzorcu Model-View-ViewModel."
-  },
-  {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "Jest to tradycyjny model aplikacji, w którym logika jest obsługiwana za pomocą code-behind."
   },
   {
     "name": "Prism",

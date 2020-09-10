@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "这是应用程序的传统模型。该模型以 code-behind 的方式处理逻辑。"
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "这是 MVVM pattern 的通用版本。Model-View-ViewModel 模式可在所有的 XAML 平台上使用。"
@@ -8,11 +13,6 @@
     "name": "MVVMLight",
     "displayName": "MVVM Light",
     "summary": "MVVM Light 是一种基于 Model-View-ViewModel 模式的常用第三方 framework。"
-  },
-  {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "这是应用程序的传统模型。该模型以 code-behind 的方式处理逻辑。"
   },
   {
     "name": "Prism",

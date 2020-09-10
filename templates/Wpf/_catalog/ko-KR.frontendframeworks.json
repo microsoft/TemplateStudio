@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "기존의 이 모델 방식에서는 애플리케이션의 논리가 code-behind로 처리됩니다."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "MVVM pattern의 일반 버전입니다. MVVM(Model-View-ViewModel) 패턴은 모든 XAML 플랫폼에서 사용됩니다."
@@ -8,11 +13,6 @@
     "name": "MVVMLight",
     "displayName": "MVVM Light",
     "summary": "MVVM Light는 Model-View-ViewModel 패턴 중심의 인기 있는 타사 framework입니다."
-  },
-  {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "기존의 이 모델 방식에서는 애플리케이션의 논리가 code-behind로 처리됩니다."
   },
   {
     "name": "Prism",

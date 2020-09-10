@@ -1,10 +1,20 @@
 ﻿[
   {
+      "name": "CodeBehind",
+      "displayName": "Code Behind",
+      "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
+      "author": "Microsoft",
+      "order": "1",
+      "licenses": "",
+      "platform":  "Wpf",
+  "languages": [ "C#" ]
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms.",
     "author": "Microsoft",
-    "order": "1",
+    "order": "2",
     "licenses": "",
     "platform": "Wpf",
     "languages": [ "C#" ]
@@ -14,20 +24,10 @@
     "displayName": "MVVM Light",
     "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern.",
     "author": "Laurent Bugnion",
-    "order": "2",
+    "order": "3",
     "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
     "platform": "Wpf",
     "languages": [ "C#" ]
-  },
-  {
-      "name": "CodeBehind",
-      "displayName": "Code Behind",
-      "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
-      "author": "Microsoft",
-      "order": "3",
-      "licenses": "",
-      "platform":  "Wpf",
-  "languages": [ "C#" ]
   },
   {
     "name": "Prism",
