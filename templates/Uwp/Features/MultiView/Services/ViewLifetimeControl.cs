@@ -46,7 +46,7 @@ namespace Param_RootNamespace.Services
 
                 if (releasedCopy)
                 {
-                    throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
+                    throw new InvalidOperationException("This view is being disposed.");
                 }
             }
 
@@ -90,7 +90,7 @@ namespace Param_RootNamespace.Services
 
             if (releasedCopy)
             {
-                throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
+                throw new InvalidOperationException("This view is being disposed.");
             }
 
             return refCountCopy;
@@ -118,7 +118,7 @@ namespace Param_RootNamespace.Services
 
             if (releasedCopy)
             {
-                throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
+                throw new InvalidOperationException("This view is being disposed.");
             }
 
             return refCountCopy;
@@ -157,7 +157,7 @@ namespace Param_RootNamespace.Services
                 if (InternalReleased == null)
                 {
                     // For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/multiple-views.md
-                    throw new InvalidOperationException("ExceptionViewLifeTimeControlMissingReleasedSubscription".GetLocalized());
+                    throw new InvalidOperationException("All pages opened in a new window must subscribe to the Released Event.");
                 }
 
                 InternalReleased.Invoke(this, null);

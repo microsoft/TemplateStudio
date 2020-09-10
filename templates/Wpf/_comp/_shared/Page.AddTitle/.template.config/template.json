@@ -7,7 +7,7 @@
     "name": "wts.Wpf.Page.AddTitle",
     "shortName": "wts.Wpf.Page.AddTitle",
     "identity": "wts.Wpf.Page.AddTitle",
-    "tags": {
+  "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
