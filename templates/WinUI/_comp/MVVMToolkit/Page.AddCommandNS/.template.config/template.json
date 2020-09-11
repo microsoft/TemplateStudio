@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
+    "shortName": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
+    "identity": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "WinUI",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.Settings"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

@@ -17,13 +17,19 @@
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"true",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "Settings",
+    "wts.dependencies":"wts.WinUI.Feat.ThemeSelection"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Helpers/EnumToBooleanConverter.cs"
+    },
     {
       "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
