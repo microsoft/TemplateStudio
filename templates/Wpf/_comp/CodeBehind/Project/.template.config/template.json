@@ -23,9 +23,6 @@
         "path": "Contracts/Services/INavigationService.cs"
       },
       {
-        "path": "Contracts/Services/IPageService.cs"
-      },
-      {
         "path": "Contracts/Views/INavigationAware.cs"
       },
       {
@@ -36,9 +33,6 @@
       },
       {
         "path": "Services/NavigationService.cs"
-      },
-      {
-        "path": "Services/PageService.cs"
       }
     ],
     "symbols": {
