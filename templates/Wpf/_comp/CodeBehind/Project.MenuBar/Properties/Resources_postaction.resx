@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<!--{[{-->
+    <data name="ShellGoBackButton" xml:space="preserve">
+        <value>Go back</value>
+    </data>
+    <data name="ShellMenuFileHeader" xml:space="preserve">
+        <value>_File</value>
+    </data>
+    <data name="ShellMenuViewsHeader" xml:space="preserve">
+        <value>_Views</value>
+    </data>
+    <data name="ShellMenuItemFileExitHeader" xml:space="preserve">
+        <value>_Exit</value>
+    </data>
+<!--}]}-->
+</root>

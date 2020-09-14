@@ -46,7 +46,7 @@ namespace Param_RootNamespace.Views
         public void CloseWindow()
             => Close();
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             var window = sender as MetroWindow;
             TitleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
@@ -54,7 +54,7 @@ namespace Param_RootNamespace.Views
             TitleBar.UpdateLayout();
         }
 
-        private void MetroWindow_Unloaded(object sender, RoutedEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             tabsBehavior.Unsubscribe();
         }
