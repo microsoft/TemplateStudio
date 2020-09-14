@@ -1,0 +1,94 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "XAML Island UWP App",
+  "shortName": "XAML Island UWP App",
+  "identity": "wts.Wpf.Feat.XamlIslandUwpApp",
+  "groupIdentity": "wts.Wpf.Feat.XamlIslandUwpApp",
+  "description": "Infrastructure for XAML Islands.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"false",
+    "wts.isHidden": "true",
+    "wts.defaultInstance": "XAML Island UWP App",
+    "wts.multipleInstance": "false",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "guids": ["A737182C-BD90-42FD-836D-C22FCB786BF1", "a7ad0c59-b47b-41df-9721-ddb2ea574d9a", "CC2CFE6D-4013-408B-BB9C-006B7ECEB684"],
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName.XamlIslandApp/Param_ProjectName.XamlIslandApp.csproj"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/Param_ProjectName.XamlIsland.csproj"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.userName": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add reference to this project in main WPF app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add reference to this project in main WPF app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "1",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Unset deploy of XamlIslandAppProj",
+      "manualInstructions": [ ],
+      "actionId": "F74F9FBA-D4F5-494E-970E-D99DF5E3F4F3",
+      "args": {
+        "projectName": "Param_ProjectName.XamlIslandApp\\Param_ProjectName.XamlIslandApp.csproj",
+        "deploy": "false"
+       },
+       "continueOnError": true
+    }
+  ]
+}

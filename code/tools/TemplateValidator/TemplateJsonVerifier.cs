@@ -618,7 +618,7 @@ namespace TemplateValidator
 
         private static void VerifyRequiredVsWorkloadTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            string[] allRequiredWorkloads = new[] { "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging", "Microsoft.VisualStudio.Workload.NetWeb" };
+            string[] allRequiredWorkloads = new[] { "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging", "Microsoft.VisualStudio.Workload.NetWeb", "Microsoft.VisualStudio.Workload.Universal" };
 
             foreach (var requiredWorkload in tag.Value.Split('|'))
             {

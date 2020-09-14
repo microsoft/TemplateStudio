@@ -211,7 +211,16 @@ namespace Microsoft.Templates.Test
 
         public (int exitCode, string outputFile) BuildSolutionWpf(string solutionName, string outputPath, string platform)
         {
-            return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuild.bat", "Debug", "Any CPU" );
+            var isXamlIslandProj = Directory.EnumerateDirectories(outputPath, "*XamlIsland").Count() > 0;
+
+            if (isXamlIslandProj)
+            {
+                return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuild.bat", "Debug", "x86");
+            }
+            else
+            {
+                return BuildSolution(solutionName, outputPath, platform, "bat\\Wpf\\RestoreAndBuild.bat", "Debug", "Any CPU");
+            }
         }
 
         public (int exitCode, string outputFile) BuildSolutionWpfWithMsix(string solutionName, string outputPath, string platform)
