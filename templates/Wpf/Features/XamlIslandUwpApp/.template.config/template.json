@@ -14,7 +14,7 @@
     "type": "project",
     "wts.type": "feature",
     "wts.projecttype": "all",
-    "wts.frontendframework": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.genGroup": "0",

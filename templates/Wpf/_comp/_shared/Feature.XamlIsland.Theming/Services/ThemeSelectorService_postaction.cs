@@ -17,5 +17,16 @@ namespace Param_RootNamespace.Services
         public SolidColorBrush GetColor(string colorKey)
                     => Application.Current.FindResource(colorKey) as SolidColorBrush;
 //}]}
+        public bool SetTheme(AppTheme? theme = null)
+        {
+            if (currentTheme == null || currentTheme.Name != theme.ToString())
+            {
+//^^
+//{[{
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
+//}]}
+                return true;
+            }
+        }
     }
 }
