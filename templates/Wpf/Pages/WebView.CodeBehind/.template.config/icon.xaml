@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Width="48" Height="48">
+    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="1" Canvas.Top="5" Width="46" Height="36" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="1" Y1="13" X2="47" Y2="13" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="15" Canvas.Top="18" Width="18" Height="18" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="19.8" Width="8.4" Canvas.Top="18" Height="18" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="15.3" Y1="30" X2="32.608" Y2="30" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+    <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="15.392" Y1="24" X2="32.7" Y2="24" StrokeThickness="2" Stroke="#FF000000" StrokeMiterLimit="10"/>
+  </Canvas>
+</Viewbox>

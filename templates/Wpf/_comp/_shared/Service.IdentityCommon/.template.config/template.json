@@ -25,19 +25,10 @@
       "path": "Param_ProjectName/Assets/DefaultIcon.png"
     },
     {
-      "path": "Param_ProjectName/Contracts/Services/IUserDataService.cs"
-    },
-    {
       "path": "Param_ProjectName/Helpers/ImageHelper.cs"
     },
     {
-      "path": "Param_ProjectName/Services/UserDataService.cs"
-    },
-    {
       "path": "Param_ProjectName/Services/IdentityCacheService.cs"
-    },
-    {
-      "path": "Param_ProjectName/ViewModels/UserViewModel.cs"
     },
     {
       "path": "Param_ProjectName.Core/Contracts/Services/IIdentityCacheService.cs"
