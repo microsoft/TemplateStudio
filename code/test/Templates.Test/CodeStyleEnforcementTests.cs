@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -114,6 +115,23 @@ namespace Microsoft.Templates.Test
 
             EnsureWTSTODONotUsed("*.cs");
             EnsureWTSTODONotUsed("*.vb");
+        }
+
+        [Fact]
+        public void EnsureCSharpCodeDoesNotUseLocalizedExceptionMessages()
+        {       
+            var result = CodeDoesNotMatchRegex("(throw).*(Exception\\().*(GetLocalized)", "*.cs");
+
+            Assert.True(result.Item1, result.Item2);
+
+        }
+
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotUseLocalizedExceptionMessages()
+        {
+            var result = CodeDoesNotMatchRegex("(Throw).*(Exception\\().*(GetLocalized)", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);   
         }
 
         [Fact]
@@ -267,6 +285,21 @@ namespace Microsoft.Templates.Test
                     // Throw an assertion failure here and stop checking other files.
                     // We don't need to check every file if at least one fails as this should just be a final verification.
                     return new Tuple<bool, string>(false, $"The file '{file}' contains '{textThatShouldNotBeInTheFile}' but based on our style guidelines it shouldn't.");
+                }
+            }
+
+            return new Tuple<bool, string>(true, string.Empty);
+        }
+
+        private Tuple<bool, string> CodeDoesNotMatchRegex(string codeRegexThatShouldNotBeInTheFile, string fileExtension, IEnumerable<string> filesToExclude = null)
+        {
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension).Where(f => filesToExclude == null || !filesToExclude.Any(fe => f.Contains(fe))))
+            {
+                if (Regex.IsMatch(File.ReadAllText(file),codeRegexThatShouldNotBeInTheFile))
+                {
+                    // Throw an assertion failure here and stop checking other files.
+                    // We don't need to check every file if at least one fails as this should just be a final verification.
+                    return new Tuple<bool, string>(false, $"The file '{file}' contains code that matches the regex '{codeRegexThatShouldNotBeInTheFile}' but based on our style guidelines it shouldn't.");
                 }
             }
 
