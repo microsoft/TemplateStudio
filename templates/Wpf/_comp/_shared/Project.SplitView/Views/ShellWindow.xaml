@@ -97,13 +97,9 @@
             IsPaneOpen="False"
             DisplayMode="CompactInline"
             ItemsSource="{Binding MenuItems}"
-            OptionsItemsSource="{Binding OptionMenuItems}"
             SelectedItem="{Binding SelectedMenuItem}"
-            SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
             ItemCommand="{Binding MenuItemInvokedCommand}"
-            OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
-            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
-            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
             <controls:HamburgerMenu.Content>
                 <Frame
                     x:Name="shellFrame"

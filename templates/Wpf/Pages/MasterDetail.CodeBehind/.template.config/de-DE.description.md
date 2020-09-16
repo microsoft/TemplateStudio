@@ -1,0 +1,1 @@
+﻿Die Master-Detail-Seite besitzt einen Masterbereich und einen Detailbereich für Inhalte. Wenn ein Objekt in der Masterliste ausgewählt wird, wird der Detailbereich aktualisiert. Dieses Muster wird häufig für E-Mail und Adressbücher verwendet.

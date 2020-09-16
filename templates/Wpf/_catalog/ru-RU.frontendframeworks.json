@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Такая модель традиционно используется для приложений, где логика обрабатывается в коде программной части (code-behind)."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "Это универсальная версия шаблона MVVM pattern. Шаблон Model-View-ViewModel можно использовать на всех платформах XAML."

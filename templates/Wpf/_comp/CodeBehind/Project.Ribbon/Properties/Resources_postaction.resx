@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<!--{[{-->
+    <data name="ShellPageRibbonHomeGroupCommon1Header" xml:space="preserve">
+        <value>Common Group 1</value>
+    </data>
+    <data name="ShellPageRibbonHomeGroupCommon2Header" xml:space="preserve">
+        <value>Common Group 2</value>
+    </data>
+    <data name="ShellPageRibbonTabHomeHeader" xml:space="preserve">
+        <value>Home</value>
+    </data>
+<!--}]}-->
+</root>
