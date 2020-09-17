@@ -32,6 +32,7 @@ namespace Param_RootNamespace.Controls
         public wts.ItemNameControl()
         {
             InitializeComponent();
+            _themeSelectorService = ((App)Application.Current).GetService<IThemeSelectorService>();
             _themeSelectorService.ThemeChanged += OnThemeChanged;
             GetColors();
         }
