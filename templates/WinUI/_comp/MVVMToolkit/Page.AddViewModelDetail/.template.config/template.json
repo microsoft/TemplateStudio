@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
-    "shortName": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
-    "identity": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
+    "name": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
+    "shortName": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
+    "identity": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform": "WinUI",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.Settings|wts.WinUI.Page.ContentGrid"
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.ContentGrid"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
