@@ -48,7 +48,7 @@ namespace Param_RootNamespace.Controls
             {
                 _universalControl = xamlIsland;
                 ApplyColors();
-                _universalControl.SetBinding(XAMLIslandControlUniversal.TextProperty, new Windows.UI.Xaml.Data.Binding() { Path = new Windows.UI.Xaml.PropertyPath(nameof(Text)), Mode = Windows.UI.Xaml.Data.BindingMode.TwoWay });
+                _universalControl.SetBinding(wts.ItemNameControlUniversal.TextProperty, new Windows.UI.Xaml.Data.Binding() { Path = new Windows.UI.Xaml.PropertyPath(nameof(Text)), Mode = Windows.UI.Xaml.Data.BindingMode.TwoWay });
             }
         }
 
