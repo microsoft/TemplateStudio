@@ -82,6 +82,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
     - ExecutionSet=MinimumPrismWPF
@@ -101,6 +102,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
     - ExecutionSet=MinimumPrismWPF
@@ -112,6 +114,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildMVVMLight
     - ExecutionSet=BuildCaliburnMicro
     - ExecutionSet=BuildPrism
+    - ExecutionSet=BuildCodeBehindWpf
     - ExecutionSet=BuildMVVMBasicWpf
     - ExecutionSet=BuildPrismWpf
     - ExecutionSet=BuildMVVMLightWpf
@@ -123,6 +126,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildOneByOneMVVMLight
     - ExecutionSet=BuildOneByOneCaliburnMicro
     - ExecutionSet=BuildOneByOnePrism
+    - ExecutionSet=BuildOneByOneCodeBehindWpf
     - ExecutionSet=BuildOneByOneMVVMBasicWpf
     - ExecutionSet=BuildOneByOneMVVMLightWpf
     - ExecutionSet=BuildOneByOnePrismWpf
