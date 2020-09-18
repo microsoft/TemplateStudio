@@ -34,6 +34,8 @@ namespace Microsoft.Templates.UI.Extensions
                     return StringRes.UWP;
                 case Platforms.Wpf:
                     return StringRes.WPF;
+                case Platforms.WinUI:
+                    return StringRes.WinUI;
                 default:
                     return platform;
             }

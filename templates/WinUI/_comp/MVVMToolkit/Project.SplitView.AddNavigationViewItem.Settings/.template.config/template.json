@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.Project.SplitView.AddNavigationViewItem.Settings",
+    "identity": "wts.WinUI.Project.SplitView.AddNavigationViewItem.Settings",
+    "shortName": "wts.WinUI.Project.SplitView.AddNavigationViewItem.Settings",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "WinUI",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "wts.type == page & identity == wts.WinUI.Page.Settings & $frontendframework == MVVMToolkit & $projectType == SplitView"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

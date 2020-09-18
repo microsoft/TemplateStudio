@@ -317,8 +317,9 @@ EndProject
                     {
                         return UwpProjectConfigurationTemplate;
                     }
-
+                
                 case Platforms.Wpf:
+                case Platforms.WinUI:
                     if (projectRelativeToSolutionPath.Contains("wapproj"))
                     {
                         return MSIXProjectConfigurationTemplate;
@@ -356,6 +357,8 @@ EndProject
                     return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
                 case Platforms.Wpf:
                     return File.ReadAllText(@"Solution\WpfSolutionTemplate.txt");
+                case Platforms.WinUI:
+                    return File.ReadAllText(@"Solution\WinUISolutionTemplate.txt");
             }
 
             throw new InvalidDataException(nameof(platform));

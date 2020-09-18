@@ -829,6 +829,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New WinUI3 Desktop app.
+        /// </summary>
+        public static string NewProjectTitleWinUI {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWinUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New WPF app.
         /// </summary>
         public static string NewProjectTitleWPF {
@@ -1788,6 +1797,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WindowsTemplateStudio {
             get {
                 return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows UI.
+        /// </summary>
+        public static string WinUI {
+            get {
+                return ResourceManager.GetString("WinUI", resourceCulture);
             }
         }
         
