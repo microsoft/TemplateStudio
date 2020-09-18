@@ -254,6 +254,9 @@ namespace TemplateValidator
                     case "wts.requiredSdks":
                         VerifyRequiredSdkTagValue(tag, results);
                         break;
+                    case "wts.requiredVersions":
+                        VerifyRequiredVersionsTagValue(tag, results);
+                        break;
                     case "wts.export.baseclass":
                         VerifyWtsExportBaseclassTagValue(tag, results);
                         break;
@@ -631,13 +634,19 @@ namespace TemplateValidator
 
         private static void VerifyRequiredSdkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            string[] allSdks = new[] { "UAP, Version=10.0.19041.0" };
+            results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
 
-            foreach (var sdk in tag.Value.Split('|'))
+        }
+
+        private static void VerifyRequiredVersionsTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            string[] allVersions = new[] { "UAP, Version=10.0.19041.0", "dotnet, Version=3.1.7" };
+
+            foreach (var version in tag.Value.Split('|'))
             {
-                if (!allSdks.Contains(sdk))
+                if (!allVersions.Contains(version))
                 {
-                    results.Add($"Invalid value '{sdk}' specified in the wts.requiredSdks tag.");
+                    results.Add($"Invalid value '{version}' specified in the wts.requiredVersions tag.");
                 }
             }
         }
