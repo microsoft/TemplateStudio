@@ -178,6 +178,11 @@
         </TextBlock>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsItemTemplateRequiredDotNetVersion">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+        </TextBlock>
+    </DataTemplate>
+
     <DataTemplate x:Key="WtsItemTemplateRequiredVisualStudioWorkload">
         <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
         </TextBlock>
