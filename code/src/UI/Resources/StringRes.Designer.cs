@@ -511,6 +511,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Requirement Type {0}.
+        /// </summary>
+        public static string ErrorInvalidRequirementType {
+            get {
+                return ResourceManager.GetString("ErrorInvalidRequirementType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install-Package -Id {0} -Version {1}.
         /// </summary>
         public static string ErrorMissingNugetPackagesInstallTemplate {
@@ -874,11 +883,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required Windows SDK for the following TargetPlatforms are missing: {0}.  Please [install](https://developer.microsoft.com/windows/downloads/windows-10-sdk) and restart Visual Studio before proceeding..
+        ///   Looks up a localized string similar to The following versions are missing, please install and restart Visual Studio: {0}.
         /// </summary>
-        public static string NotificationMissingSdk {
+        public static string NotificationMissingVersions {
             get {
-                return ResourceManager.GetString("NotificationMissingSdk", resourceCulture);
+                return ResourceManager.GetString("NotificationMissingVersions", resourceCulture);
             }
         }
         
@@ -1473,6 +1482,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsLicenses {
             get {
                 return ResourceManager.GetString("TemplateDetailsLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum .NET Core Version:.
+        /// </summary>
+        public static string TemplateDetailsRequiredDotNetVersion {
+            get {
+                return ResourceManager.GetString("TemplateDetailsRequiredDotNetVersion", resourceCulture);
             }
         }
         

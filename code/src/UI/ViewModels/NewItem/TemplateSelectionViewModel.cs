@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,6 +22,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class TemplateSelectionViewModel : Observable
     {
+        private readonly string _emptyBackendFramework = string.Empty;
+
         private string _name;
         private bool _nameEditable;
         private bool _hasErrors;
@@ -28,7 +31,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _isTextSelected;
         private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;
-        private string _emptyBackendFramework = string.Empty;
 
         public string Name
         {
@@ -162,16 +164,28 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void CheckForMissingSdks()
         {
-            var missingSdks = Template.RequiredSdks.Where(sdk => !GenContext.ToolBox.Shell.IsSdkInstalled(sdk)).Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
+            var missingVersions = new List<RequiredVersionInfo>();
 
-            if (missingSdks.Any())
+            foreach (var requiredVersion in Template.RequiredVersions)
             {
-                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingSdk, missingSdks.Aggregate((i, j) => $"{i},{j}")), Category.MissingSdk, TimerType.None);
+                var requirementInfo = RequiredVersionService.GetVersionInfo(requiredVersion);
+                var isInstalled = RequiredVersionService.Instance.IsVersionInstalled(requirementInfo);
+                if (!isInstalled)
+                {
+                    missingVersions.Add(requirementInfo);
+                }
+            }
+
+            if (missingVersions.Any())
+            {
+                var missingSdkVersions = missingVersions.Select(v => RequiredVersionService.GetRequirementDisplayName(v));
+
+                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingVersions, missingSdkVersions.Aggregate((i, j) => $"{i}, {j}")), Category.MissingVersion, TimerType.None);
                 NotificationsControl.AddNotificationAsync(notification).FireAndForget();
             }
             else
             {
-                NotificationsControl.CleanCategoryNotificationsAsync(Category.MissingSdk).FireAndForget();
+                NotificationsControl.CleanCategoryNotificationsAsync(Category.MissingVersion).FireAndForget();
             }
         }
 
