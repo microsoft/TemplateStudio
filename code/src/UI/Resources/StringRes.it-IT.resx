@@ -889,4 +889,13 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <value>Guarda la documentazione per l'aggiornamento.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Invalid Requirement Type {0}</value>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>The following versions are missing, please install and restart Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimum .NET Core Version:</value>
+  </data>
 </root>
