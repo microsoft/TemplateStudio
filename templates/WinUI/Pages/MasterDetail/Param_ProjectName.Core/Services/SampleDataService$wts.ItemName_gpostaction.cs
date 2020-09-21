@@ -5,8 +5,8 @@
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your ContentGrid pages are displaying real data.
-        public async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
+        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
         {
             if (_allOrders == null)
             {

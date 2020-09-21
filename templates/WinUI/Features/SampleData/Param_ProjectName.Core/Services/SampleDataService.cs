@@ -11,6 +11,8 @@ namespace Param_RootNamespace.Core.Services
     // TODO WTS: Delete this file once your app is using real data.
     public class SampleDataService : ISampleDataService
     {
+        private List<SampleOrder> _allOrders;
+
         public SampleDataService()
         {
         }

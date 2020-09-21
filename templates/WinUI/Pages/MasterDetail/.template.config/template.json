@@ -4,11 +4,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Content Grid",
-  "shortName": "Content Grid",
-  "identity": "wts.WinUI.Page.ContentGrid",
-  "groupIdentity": "wts.WinUI.Page.ContentGrid",
-  "description": "This page contains a basic content grid based on a ListView.",
+  "name": "MasterDetail",
+  "shortName": "MasterDetail",
+  "identity": "wts.WinUI.Page.MasterDetail",
+  "groupIdentity": "wts.WinUI.Page.MasterDetail",
+  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,7 +17,7 @@
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "3",
+    "wts.displayOrder": "4",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
@@ -28,16 +28,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName/ViewModels/wts.ItemNameDetailViewModel.cs"
-    },
-    {
       "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNameDetailPage.xaml"
+      "path": "Param_ProjectName/Views/wts.ItemNameDetailControl.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNameDetailPage.xaml.cs"
+      "path": "Param_ProjectName/Views/wts.ItemNameDetailControl.xaml.cs"
     },
     {
       "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
@@ -47,11 +44,6 @@
     }
   ],
   "symbols": {
-    "wts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
-    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -59,6 +51,11 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
     }
   },
   "postActions": [
