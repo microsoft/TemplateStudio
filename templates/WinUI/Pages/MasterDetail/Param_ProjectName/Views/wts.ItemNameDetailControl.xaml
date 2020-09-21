@@ -5,9 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <StackPanel
+    <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
+        VerticalScrollMode="Enabled"
         Padding="{StaticResource DetailPageMargin}"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel HorizontalAlignment="Left">
@@ -69,5 +70,5 @@
 
             </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -21,9 +21,8 @@ namespace Param_RootNamespace.Views
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            // TODO Change ForegroundElement to ScrollView when fix error load
-            // var control = d as MasterDetailDetailControl;
-            // control.ForegroundElement.ChangeView(0, 0, 1);
+            var control = d as MasterDetailDetailControl;
+            control.ForegroundElement.ChangeView(0, 0, 1);
         }
     }
 }
