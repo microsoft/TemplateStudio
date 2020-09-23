@@ -1,3 +1,4 @@
+<!--/-:msbuild-conditional:noEmit -->
 <!--
   Copyright (c) Microsoft Corporation. Licensed under the MIT License
 -->
@@ -179,4 +180,4 @@
     </ItemGroup>
   </Target>
 </Project>
-
+<!--/+:msbuild-conditional:noEmit -->
