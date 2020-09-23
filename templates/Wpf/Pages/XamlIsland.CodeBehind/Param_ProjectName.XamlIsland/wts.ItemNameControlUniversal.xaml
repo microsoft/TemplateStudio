@@ -13,6 +13,9 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <!--
+        Replace this sample with the UWP controls you want to show in your XAMLIsland.
+        -->
         <TextBlock TextWrapping="Wrap">
             <Run FontWeight="Bold">UWP Xaml Island</Run>
             <LineBreak />
