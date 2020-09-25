@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Bu sayfa, ListView denetimine dayalı bir içerik ızgarasına özel içerik eklemenize olanak tanır. Bir öğeyi tıklattığınızda ayrıntı sayfası gösterir.

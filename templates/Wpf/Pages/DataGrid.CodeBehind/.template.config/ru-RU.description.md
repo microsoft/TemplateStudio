@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿На странице, отображаемой DataGrid, этот элемент управления представляет данные в настраиваемой таблице строк и столбцов.

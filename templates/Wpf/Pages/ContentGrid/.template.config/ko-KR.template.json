@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "This page contains a basic content grid based on a ListView.",
+  "description": "이 페이지에는 ListView를 기반으로 하는 기본 콘텐츠 그리드가 포함되어 있습니다.",
   "identity": "wts.Wpf.Page.ContentGrid"
 }

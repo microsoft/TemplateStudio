@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿此頁允許您根據 ListView 控制件將 中的自訂內容添加到內容網格中。按一下項目會顯示詳細資訊頁面。

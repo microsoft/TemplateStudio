@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Cette page vous permet d’ajouter du contenu personnalisé dans une grille de contenu basée sur un contrôle ListView. En cliquant sur un élément, une page de détail s’affiche.

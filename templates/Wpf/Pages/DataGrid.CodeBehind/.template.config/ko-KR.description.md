@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿DataGrid를 표시하는 페이지인 이 컨트롤은 사용자 지정 가능한 행 및 열 테이블에 데이터를 제공합니다.

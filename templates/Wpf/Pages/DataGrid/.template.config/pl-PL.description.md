@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿Strona wyświetlająca DataGrid, ten formant przedstawia dane w konfigurowalnej tabeli wierszy i kolumn.

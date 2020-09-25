@@ -1,9 +1,9 @@
-﻿This page includes a CustomUserControl using a **WindowsXamlHost** control from the **Windows Community Toolkit** to host a UWP control.
+﻿Diese Seite enthält ein CustomUserControl, das ein **WindowsXamlHost**-Steuerelement aus dem **Windows Community Toolkit** verwendet, um ein UWP-Steuerelement zu hosten.
 
-This page adds two projects to the solution:
+Auf dieser Seite werden der Projektmappe zwei Projekte hinzugefügt:
 
- - A **UWP library** that will hosts the UWP Control that will be rendered in the WPF app.
+ - Eine **UWP-Bibliothek**, die das UWP-Steuerelement hostet, das in der WPF-App gerendert wird.
 
- - A **UWP app project** that is necessary to host UWP controls with XAML Island and will never be displayed.
+ - Ein **UWP-App-Projekt**, das zum Hosten von UWP-Steuerelementen mit XAML Island erforderlich ist und nie angezeigt wird.
 
-You can read more about [hosting a custom UWP control in a WPF app using XAML Islands](https://docs.microsoft.com/windows/apps/desktop/modernize/host-custom-control-with-xaml-islands).
+Weitere Informationen zu [Hosting eines benutzerdefinierten UWP-Steuerelements in einer WPF-App mit XAML-Inseln](https://docs.microsoft.com/windows/apps/desktop/modernize/host-custom-control-with-xaml-islands).
