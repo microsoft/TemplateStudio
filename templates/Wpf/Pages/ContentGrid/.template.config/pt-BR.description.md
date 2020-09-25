@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Esta página permite adicionar conteúdo personalizado em uma grade de conteúdo com base em um controle ListView. Clicar em um item mostra uma página de detalhes.

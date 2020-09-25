@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿Stránka zobrazující DataGrid, tento ovládací prvek zobrazí data v přizpůsobitelné tabulce řádků a sloupců.

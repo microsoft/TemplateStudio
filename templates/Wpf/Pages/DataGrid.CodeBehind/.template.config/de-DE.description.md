@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿Auf einer Seite, auf der ein DataGrid angezeigt wird, stellt dieses Steuerelement Daten in einer anpassbaren Tabelle mit Zeilen und Spalten dar.

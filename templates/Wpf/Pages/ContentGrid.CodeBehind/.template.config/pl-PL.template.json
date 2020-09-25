@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "This page contains a basic content grid based on a ListView.",
+  "description": "Ta strona zawiera podstawową siatkę zawartości opartą na widoku ListView.",
   "identity": "wts.Wpf.Page.ContentGrid.CodeBehind"
 }

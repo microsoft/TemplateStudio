@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Эта страница позволяет добавлять пользовательский контент в сетку содержимого на основе управления ListView. При нажатии на элемент показана страница детализации.

@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Esta página le permite agregar contenido personalizado en un a una cuadrícula de contenido basado en un ListView control. Al hacer clic en un elemento se muestra una página de detalles.

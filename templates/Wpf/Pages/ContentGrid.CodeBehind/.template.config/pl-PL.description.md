@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Ta strona umożliwia dodawanie zawartości niestandardowej w siatce zawartości na podstawie kontrolki ListView. Kliknięcie elementu pokazuje stronę szczegółów.

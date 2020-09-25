@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "XAML Island",
-  "description": "Page that hosts an UWP control using a XAML Island.",
+  "description": "Seite, die ein UWP-Steuerelement mit einer XAML-Insel hostet.",
   "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
 }

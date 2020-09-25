@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿此控件顯示 DataGrid 的頁面,在可自定義的行和清單中顯示數據。

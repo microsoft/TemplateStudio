@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿Bir DataGrid görüntüleyen bir sayfa, bu denetim satır ve sütunlar özelleştirilebilir bir tabloda veri sunar.

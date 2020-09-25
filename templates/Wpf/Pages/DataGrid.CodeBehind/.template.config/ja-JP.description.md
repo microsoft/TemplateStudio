@@ -1,1 +1,1 @@
-﻿A page displaying a DataGrid, this control presents data in a customizable table of rows and columns.
+﻿DataGrid を表示するページでは、このコントロールは、行と列のカスタマイズ可能なテーブルにデータを表示します。

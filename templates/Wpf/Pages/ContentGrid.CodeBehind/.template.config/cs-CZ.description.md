@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿Tato stránka umožňuje přidat vlastní obsah v a do mřížky obsahu na základě Ovládací prvek ListView. Kliknutím na položku se zobrazí stránka podrobností.

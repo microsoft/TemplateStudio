@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "XAML Island UWP App",
-  "description": "",
+  "description": "XAML群岛的基础设施。",
   "identity": "wts.Wpf.Feat.XamlIslandUwpApp"
 }
