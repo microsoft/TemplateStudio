@@ -1,6 +1,4 @@
-﻿Imports System
-Imports Windows.UI.Xaml.Controls
-Imports Param_RootNamespace.ViewModels
+﻿Imports Param_RootNamespace.ViewModels
 
 Namespace Views
     ' TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw

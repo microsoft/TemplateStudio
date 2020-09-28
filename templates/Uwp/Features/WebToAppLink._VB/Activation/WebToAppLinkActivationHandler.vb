@@ -1,6 +1,4 @@
-﻿Imports System.Threading.Tasks
-
-Namespace Activation
+﻿Namespace Activation
 
     Friend Class WebToAppLinkActivationHandler
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)

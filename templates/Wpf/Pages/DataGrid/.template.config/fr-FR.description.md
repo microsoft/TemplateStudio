@@ -1,0 +1,1 @@
+﻿Page affichant un DataGrid, ce contrôle présente des données dans une table personnalisable de lignes et de colonnes.

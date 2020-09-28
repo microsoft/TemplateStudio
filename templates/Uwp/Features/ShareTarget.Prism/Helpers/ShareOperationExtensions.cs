@@ -87,10 +87,10 @@ namespace Param_RootNamespace.Helpers
             }
             catch (Exception)
             {
-                return default(T);
+                return default;
             }
 
-            return default(T);
+            return default;
         }
     }
 }

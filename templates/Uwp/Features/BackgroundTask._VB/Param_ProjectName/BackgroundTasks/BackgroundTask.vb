@@ -1,6 +1,4 @@
-﻿Imports System.Threading.Tasks
-
-Imports Windows.ApplicationModel.Background
+﻿Imports Windows.ApplicationModel.Background
 
 Namespace BackgroundTasks
     Public MustInherit Class BackgroundTask

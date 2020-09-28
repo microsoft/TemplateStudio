@@ -1,0 +1,1 @@
+﻿Stránka nastavení je stránka, na kterou doporučujeme umístit konfigurační nastavení pro vaši aplikaci, jako například nastavení tmavého nebo světlého motivu. Může také obsahovat informace o licencích, číslo verze a vaše podmínky ochrany osobních údajů.

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Brakuje następujących wersji, zainstaluj je i uruchom ponownie program Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimalna wersja rdzenia .NET:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Nieprawidłowy typ wymagań {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nowa aplikacja na platformie uniwersalnej systemu Windows</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -174,9 +183,6 @@
   <data name="ErrorAddingSdksToProject" xml:space="preserve">
     <value>Błąd podczas dodawania zestawów SDK do projektu {0}.</value>
     <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Brakuje zestawu SDK systemu Windows dla następujących platform docelowych: {0}.  Zanim przejdziesz dalej, [zainstaluj ten zestaw](https://developer.microsoft.com/windows/downloads/windows-10-sdk), a następnie ponownie uruchom program Visual Studio.</value>
   </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Wymagane zestawy SDK systemu Windows:</value>

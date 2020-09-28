@@ -6,3 +6,6 @@ The following pages are supported in WPF apps.
 - [Settings](./settings.md)
 - [Web View](./webview.md)
 - [Master/Detail](./masterdetail.md)
+- [Data Grid](./datagrid.md)
+- [Content Grid](./contentgrid.md)
+- [XAML Island](./xamlisland.md)

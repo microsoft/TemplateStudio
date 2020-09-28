@@ -1,0 +1,1 @@
+﻿Esta plantilla se consume desde la página XAML Island y proporciona la infraestructura para crear instancias de controles de UWP en una aplicación WPF .NET Core.

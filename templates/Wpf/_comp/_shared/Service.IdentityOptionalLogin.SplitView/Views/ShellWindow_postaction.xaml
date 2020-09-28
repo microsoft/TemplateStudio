@@ -7,7 +7,7 @@
     Title="{x:Static properties:Resources.AppDisplayName}">
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
-            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
 <!--{[{-->
             <i:Interaction.Behaviors>
                 <behaviors:MenuItemsEnabledBehavior

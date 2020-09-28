@@ -1,0 +1,1 @@
+﻿Este modelo é consumido para a página da Ilha XAML e fornece a infraestrutura para instantaneamente controles UWP em um aplicativo WPF .NET Core.

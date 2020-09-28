@@ -1,0 +1,1 @@
+﻿Bu şablon XAML Island sayfası için tüketilir ve WPF .NET Core uygulamasında UWP denetimlerini anında sağlamak için altyapı sağlar.

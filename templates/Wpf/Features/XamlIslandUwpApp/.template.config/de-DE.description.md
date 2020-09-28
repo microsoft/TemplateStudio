@@ -1,0 +1,1 @@
+﻿Diese Vorlage wird für die XAML-Islandseite verwendet und stellt die Infrastruktur zum Instanziieren von UWP-Steuerelementen in einer WPF .NET Core-App bereit.

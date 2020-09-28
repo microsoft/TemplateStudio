@@ -25,19 +25,10 @@
       "path": "Param_ProjectName/Assets/DefaultIcon.png"
     },
     {
-      "path": "Param_ProjectName/Contracts/Services/IUserDataService.cs"
-    },
-    {
       "path": "Param_ProjectName/Helpers/ImageHelper.cs"
     },
     {
-      "path": "Param_ProjectName/Services/UserDataService.cs"
-    },
-    {
       "path": "Param_ProjectName/Services/IdentityCacheService.cs"
-    },
-    {
-      "path": "Param_ProjectName/ViewModels/UserViewModel.cs"
     },
     {
       "path": "Param_ProjectName.Core/Contracts/Services/IIdentityCacheService.cs"
@@ -98,7 +89,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Identity.Client",
-        "version" : "4.15.0",
+        "version" : "4.18.0",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true
@@ -109,7 +100,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Extensions.Http",
-        "version" : "3.1.5",
+        "version" : "3.1.8",
         "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": true

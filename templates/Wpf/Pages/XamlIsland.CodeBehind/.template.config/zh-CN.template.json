@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "XAML Island",
+  "description": "使用 XAML 岛承载 UWP 控件的页面。",
+  "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
+}

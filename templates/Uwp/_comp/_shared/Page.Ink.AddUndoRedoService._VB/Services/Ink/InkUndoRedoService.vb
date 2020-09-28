@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports Windows.UI.Xaml.Controls
-Imports Param_RootNamespace.EventHandlers.Ink
+﻿Imports Param_RootNamespace.EventHandlers.Ink
 Imports Param_RootNamespace.Services.Ink.UndoRedo
 Imports Windows.UI.Input.Inking
 
