@@ -8,9 +8,9 @@ using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class ContentGridDetailPage : Page
+    public sealed partial class wts.ItemNameDetailPage : Page
     {
-        public ContentGridDetailPage()
+        public wts.ItemNameDetailPage()
         {
             InitializeComponent();
         }
