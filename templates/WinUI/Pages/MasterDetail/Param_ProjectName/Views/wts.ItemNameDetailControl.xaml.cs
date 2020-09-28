@@ -21,7 +21,7 @@ namespace Param_RootNamespace.Views
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as MasterDetailDetailControl;
+            var control = d as wts.ItemNameDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
         }
     }
