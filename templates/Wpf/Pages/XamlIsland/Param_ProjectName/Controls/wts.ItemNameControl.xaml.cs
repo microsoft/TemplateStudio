@@ -9,9 +9,6 @@ using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.XamlIsland;
 
-using WUX = Windows.UI.Xaml;
-using WUXD = Windows.UI.Xaml.Data;
-
 namespace Param_RootNamespace.Controls
 {
     // For info about hosting a custom UWP control in a WPF app using XAML Islands read this doc
@@ -51,7 +48,7 @@ namespace Param_RootNamespace.Controls
             {
                 _universalControl = xamlIsland;
                 ApplyColors();
-                _universalControl.SetBinding(wts.ItemNameControlUniversal.TextProperty, new WUXD.Binding() { Path = new WUX.PropertyPath(nameof(Text)), Mode = WUXD.BindingMode.TwoWay });
+                _universalControl.SetBinding(wts.ItemNameControlUniversal.TextProperty, new Windows.UI.Xaml.Data.Binding() { Path = new Windows.UI.Xaml.PropertyPath(nameof(Text)), Mode = Windows.UI.Xaml.Data.BindingMode.TwoWay });
             }
         }
 

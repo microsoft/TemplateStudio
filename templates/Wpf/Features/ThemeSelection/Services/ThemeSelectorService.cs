@@ -44,7 +44,6 @@ namespace Param_RootNamespace.Services
             {
                 ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
                 App.Current.Properties["Theme"] = theme.ToString();
-                ThemeChanged?.Invoke(this, EventArgs.Empty);
                 return true;
             }
 
