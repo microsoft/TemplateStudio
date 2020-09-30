@@ -635,7 +635,6 @@ namespace TemplateValidator
         private static void VerifyRequiredSdkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
-
         }
 
         private static void VerifyRequiredVersionsTagValue(KeyValuePair<string, string> tag, List<string> results)

@@ -217,7 +217,7 @@ namespace Microsoft.Templates.Test
                     result = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
                     break;
                 case Platforms.Wpf:
-                    result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
+                     result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
                     break;
             }
 
