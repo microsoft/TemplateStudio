@@ -149,7 +149,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType)
         {
-            //TODO: Remove this once Caliburn Micro Templates are done for MenuBar
+            // Caliburn Micro Templates does not have templates for MenuBar
             if (projectType == ProjectTypes.MenuBar)
             {
                 foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism })
@@ -763,7 +763,6 @@ namespace Microsoft.Templates.Test
             if (framework == Frameworks.CaliburnMicro)
             {
                 // Caliburn does not yet support MenuBar projects
-                // TODO: remove this when implement #3000
                 return;
             }
 
