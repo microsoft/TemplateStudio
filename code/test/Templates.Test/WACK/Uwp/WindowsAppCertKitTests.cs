@@ -88,6 +88,20 @@ namespace Microsoft.Templates.Test.Uwp
         }
 
         [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MTMc_VBAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MTM_CSAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         public async Task WackTests_CodeBehind_Other_CSAsync(string projectType, string framework, string platform, string language)
         {
@@ -139,6 +153,20 @@ namespace Microsoft.Templates.Test.Uwp
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         public async Task WackTests_Prism_Other_CSAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MTM_Other_CSAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MTM_Other_VBAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
         }
