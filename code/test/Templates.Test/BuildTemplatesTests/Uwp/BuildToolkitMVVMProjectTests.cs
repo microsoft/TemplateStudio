@@ -16,12 +16,12 @@ namespace Microsoft.Templates.Test.Build.Uwp
     public class BuildToolkitMvvmProjectTests : BaseGenAndBuildTests
     {
         public BuildToolkitMvvmProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, "MTM")
+            : base(fixture, null, Frameworks.ToolkitMVVM)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildToolkitMvvm")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildToolkitMvvm")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildToolkitMvvm")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "MinimumToolkitMvvm")]
         [Trait("ExecutionSet", "_CIBuild")]
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildToolkitMvvm")]
         [Trait("ExecutionSet", "_Full")]
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MTM", "", Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
         [Trait("ExecutionSet", "BuildToolkitMvvm")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MTM", ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneToolkitMvvm")]
@@ -155,7 +155,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MTM", ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
         [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneToolkitMvvm")]
