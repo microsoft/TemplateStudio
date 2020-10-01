@@ -152,14 +152,14 @@ namespace Microsoft.Templates.Test
             // Caliburn Micro Templates does not have templates for MenuBar
             if (projectType == ProjectTypes.MenuBar)
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism, Frameworks.ToolkitMVVM })
                 {
                     yield return new object[] { framework };
                 }
             }
             else
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism, Frameworks.ToolkitMVVM })
                 {
                     yield return new object[] { framework };
                 }
@@ -182,9 +182,11 @@ namespace Microsoft.Templates.Test
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CaliburnMicro, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.Prism, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CodeBehind, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMBasic, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic };
         }
 
         public static IEnumerable<string> GetAllProjectTypes()
@@ -384,6 +386,42 @@ namespace Microsoft.Templates.Test
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MTM_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MTM_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MTM_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MTM_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
         }
 
         // There are tests with hardcoded projectType and framework values to make rerunning/debugging only some of the tests easier
