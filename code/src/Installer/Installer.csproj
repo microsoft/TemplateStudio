@@ -489,6 +489,13 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.WinUI.Solution\CSharp.WinUI.Solution.csproj">
+      <Project>{b8a19caa-1d90-49b0-925f-37c302ca4fcd}</Project>
+      <Name>CSharp.WinUI.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
       <Project>{f8dbfd78-6a5b-41e0-a197-5aaa50c51dcb}</Project>
       <Name>CSharp.WPF.Solution</Name>
