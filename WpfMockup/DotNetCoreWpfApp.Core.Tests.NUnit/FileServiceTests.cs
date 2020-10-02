@@ -65,6 +65,10 @@ namespace DotNetCoreWpfApp.Core.Tests.NUnit
         public void TestDeleteFile()
         {
             var fileService = new FileService();
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
             File.WriteAllText(_filePath, _fileData);
 
             fileService.Delete(_folderPath, _fileName);
