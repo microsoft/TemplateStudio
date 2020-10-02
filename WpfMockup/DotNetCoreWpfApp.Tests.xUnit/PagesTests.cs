@@ -47,6 +47,7 @@ namespace DotNetCoreWpfApp.Tests.xUnit
             services.AddTransient<ContentGridDetailViewModel>();
             services.AddTransient<DataGridViewModel>();
             services.AddTransient<MasterDetailViewModel>();
+            services.AddTransient<XAMLIslandViewModel>();
             services.AddTransient<SettingsViewModel>();
 
             // Configuration
