@@ -169,6 +169,28 @@ namespace DotNetCoreWpfApp.Tests.NUnit
             }
         }
 
+        // TODO WTS: Add tests for functionality you add to XAMLIslandViewModel.
+        [Test]
+        public void TestXamlIslandViewModelCreation()
+        {
+            var vm = _host.Services.GetService(typeof(XAMLIslandViewModel));
+            Assert.IsNotNull(vm);
+        }
+
+        [Test]
+        public void TestGetXamlIslandPageType()
+        {
+            if (_host.Services.GetService(typeof(IPageService)) is IPageService pageService)
+            {
+                var pageType = pageService.GetPageType(typeof(XAMLIslandViewModel).FullName);
+                Assert.AreEqual(typeof(XAMLIslandPage), pageType);
+            }
+            else
+            {
+                Assert.Fail($"Can't resolve {nameof(IPageService)}");
+            }
+        }
+
         // TODO WTS: Add tests for functionality you add to SettingsViewModel.
         [Test]
         public void TestSettingsViewModelCreation()
