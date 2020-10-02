@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="DotNetCoreWpfApp.XamlIsland.XAMLIslandControlUniversal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid Background="{x:Bind BackgroundColor, Mode=OneWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--
+        Replace this sample with the UWP controls you want to show in your XAMLIsland.
+        -->
+        <TextBlock TextWrapping="Wrap">
+            <Run FontWeight="Bold">UWP Xaml Island</Run>
+            <LineBreak />
+            <Run>This sample shows a UWP TextBox in the XAMLIslandControlUniversal. This control is embedded in a WindowsXamlHost inside the WPF XAMLIslandControl. The TextBox Text (UWP) property is finally bound to the XAMLIslandViewModel Text property (WPF).</Run>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="1">
+            <Run FontWeight="SemiBold">Hierarchy:</Run>
+            <LineBreak />
+            <Run>UWP TextBox / XAMLIslandControlUniversal (UWP) / XAMLIslandControl (WPF) / XAMLIslandPage / XAMLIslandViewModel</Run>
+        </TextBlock>
+        <TextBox
+            Grid.Row="2"
+            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</UserControl>

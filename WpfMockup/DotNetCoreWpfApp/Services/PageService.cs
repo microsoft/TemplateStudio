@@ -23,6 +23,7 @@ namespace DotNetCoreWpfApp.Services
             Configure<ContentGridViewModel, ContentGridPage>();
             Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
             Configure<DataGridViewModel, DataGridPage>();
+            Configure<XAMLIslandViewModel, XAMLIslandPage>();
             Configure<SettingsViewModel, SettingsPage>();
         }
 

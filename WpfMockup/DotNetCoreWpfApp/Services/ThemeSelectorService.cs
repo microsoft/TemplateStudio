@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-
+using System.Windows.Media;
 using ControlzEx.Theming;
 
 using DotNetCoreWpfApp.Contracts.Services;
@@ -12,6 +12,8 @@ namespace DotNetCoreWpfApp.Services
 {
     public class ThemeSelectorService : IThemeSelectorService
     {
+        public event EventHandler ThemeChanged;
+
         private bool IsHighContrastActive
                         => SystemParameters.HighContrast;
 
@@ -19,6 +21,9 @@ namespace DotNetCoreWpfApp.Services
         {
             SystemEvents.UserPreferenceChanging += OnUserPreferenceChanging;
         }
+
+        public SolidColorBrush GetColor(string colorKey)
+                    => Application.Current.FindResource(colorKey) as SolidColorBrush;
 
         public bool SetTheme(AppTheme? theme = null)
         {
@@ -47,6 +52,7 @@ namespace DotNetCoreWpfApp.Services
             {
                 ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
                 App.Current.Properties["Theme"] = theme.ToString();
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
                 return true;
             }
 

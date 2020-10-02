@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
+    <AssetTargetFallback>uap10.0.18362</AssetTargetFallback>
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
