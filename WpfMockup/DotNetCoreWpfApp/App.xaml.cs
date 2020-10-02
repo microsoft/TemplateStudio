@@ -89,6 +89,9 @@ namespace DotNetCoreWpfApp
             services.AddTransient<DataGridViewModel>();
             services.AddTransient<DataGridPage>();
 
+            services.AddTransient<XAMLIslandViewModel>();
+            services.AddTransient<XAMLIslandPage>();
+
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
 

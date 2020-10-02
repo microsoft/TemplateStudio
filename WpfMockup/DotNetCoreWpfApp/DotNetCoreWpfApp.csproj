@@ -5,6 +5,8 @@
     <RootNamespace>DotNetCoreWpfApp</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>DotNetCoreWpfApp.Program</StartupObject>
+    <AssetTargetFallback>uap10.0.18362</AssetTargetFallback>
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
@@ -26,6 +28,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.XamlHost" Version="6.1.2" />
     <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.19041.1" />
     <PackageReference Include="OSVersionHelper" Version="1.0.64" />
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
@@ -36,5 +39,7 @@
       <Project>{b9840f47-8d71-45ca-9c27-51dd85a6c096}</Project>
       <Name>DotNetCoreWpfApp.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotNetCoreWpfApp.XamlIslandApp\DotNetCoreWpfApp.XamlIslandApp.csproj" />
+    <ProjectReference Include="..\DotNetCoreWpfApp.XamlIsland\DotNetCoreWpfApp.XamlIsland.csproj" />
   </ItemGroup>
 </Project>

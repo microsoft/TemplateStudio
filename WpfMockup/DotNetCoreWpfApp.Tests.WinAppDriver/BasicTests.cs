@@ -16,7 +16,7 @@ namespace DotNetCoreWpfApp.Tests.WinAppDriver
         // TODO WTS: set the app launch ID.
         // The part before "!App" will be in Package.Appxmanifest > Packaging > Package Family Name.
         // The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
-        // If your project doesn't contains MSIX set AppToLaunch .exe path. 
+        // If your project doesn't contains MSIX Packaging set AppToLaunch .exe path. 
         private const string AppToLaunch = @"0288BEEF-FC25-48AC-96A6-E0CD3AAE31E3_yf1pvhpsts1fe!App";
 
         private static WindowsDriver<WindowsElement> AppSession { get; set; }
@@ -55,7 +55,8 @@ namespace DotNetCoreWpfApp.Tests.WinAppDriver
                     Console.WriteLine("Failed to attach to app session (expected).");
                 }
 
-                // TODO WTS this is not necessary if your project doesn't include MSIX
+                // If your project doesn't contains MSIX Packaging you can remove the following code block
+                // More info about testing a packaged application: https://techcommunity.microsoft.com/t5/windows-dev-appconsult/ui-testing-for-windows-apps-with-winappdriver-and-appium/ba-p/825352
                 if (AppSession == null)
                 {
                     //Try get session using NativeWindowHandle

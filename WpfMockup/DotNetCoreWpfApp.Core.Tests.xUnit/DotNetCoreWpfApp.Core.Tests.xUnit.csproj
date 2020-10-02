@@ -2,9 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
@@ -30,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetCoreWpfApp\DotNetCoreWpfApp.csproj" />
+    <ProjectReference Include="..\DotNetCoreWpfApp.Core\DotNetCoreWpfApp.Core.csproj" />
   </ItemGroup>
 
 </Project>
