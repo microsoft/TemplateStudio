@@ -875,7 +875,7 @@ Please verify the following list of packages needed by your project's code and m
     <value>More info</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the workload "{0}” to create a {1} project. Please install this workload using the Visual Studio Installer.</value>
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

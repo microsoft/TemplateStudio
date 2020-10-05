@@ -206,9 +206,6 @@
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>자세한 정보</value>
   </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>{1} 프로젝트를 생성하려면 "{0}” 워크로드를 설치해야 합니다. Visual Studio 설치 관리자를 사용하여 이 워크로드를 설치하십시오.</value>
-  </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
   </data>
@@ -897,5 +894,8 @@
   </data>
   <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
     <value>Minimum .NET Core Version:</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
 </root>

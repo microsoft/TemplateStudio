@@ -22,7 +22,7 @@
       <CustomParameter Name="$wts.platform$" Value="Wpf"/>
       <CustomParameter Name="$wts.category$" Value="Windows Desktop"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
-      <CustomParameter Name="$wts.requiredworkload$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
+      <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>

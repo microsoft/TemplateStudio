@@ -206,9 +206,6 @@
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>Więcej informacji</value>
   </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Aby utworzyć projekt {1}, należy zainstalować pakiet roboczy „{0}”. Zainstaluj go za pomocą instalatora programu Visual Studio.</value>
-  </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
   </data>
@@ -897,5 +894,8 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   </data>
   <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
     <value>Minimum .NET Core Version:</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
 </root>

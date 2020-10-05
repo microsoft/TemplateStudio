@@ -206,9 +206,6 @@
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>Weitere Informationen</value>
   </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Sie müssen Workload „{0}“ installieren, um ein {1}-Projekt erstellen zu können. Installieren Sie diesen Workload über den Visual Studio Installer.</value>
-  </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
   </data>
@@ -897,5 +894,8 @@
   </data>
   <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
     <value>Minimum .NET Core Version:</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
 </root>

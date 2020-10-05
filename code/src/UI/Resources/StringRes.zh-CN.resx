@@ -206,9 +206,6 @@
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>更多信息</value>
   </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>你需要安装工作负载“{0}”以创建 {1} 项目。请使用 Visual Studio 安装程序安装此工作负载。</value>
-  </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
   </data>
@@ -897,5 +894,8 @@
   </data>
   <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
     <value>Minimum .NET Core Version:</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
 </root>

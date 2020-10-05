@@ -22,8 +22,7 @@
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="WinUI"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
-      <!--TODO: WinUI needs two workloads, Universal and Managed Desktop-->
-      <CustomParameter Name="$wts.requiredworkload$" Value="Microsoft.VisualStudio.Workload.Universal"/>
+      <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal|Microsoft.VisualStudio.Workload.ManagedDesktop"/>
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>

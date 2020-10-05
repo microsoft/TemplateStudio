@@ -206,9 +206,6 @@
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>Altre informazioni</value>
   </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Per creare un progetto {1}, devi creare un carico di lavoro "{0}". Installa il carico di lavoro tramite il Programma di installazione di Visual Studio.</value>
-  </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
   </data>
@@ -897,5 +894,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   </data>
   <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
     <value>Minimum .NET Core Version:</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>You need to install the following workloads to create a {0} project: {1} </value>
   </data>
 </root>
