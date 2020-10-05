@@ -12,6 +12,7 @@ namespace Param_RootNamespace.Services
     {
         private readonly INavigationService _navigationService;
         private IShellWindow _shellWindow;
+        private bool _isInitialized;
 
         public ApplicationHostService(INavigationService navigationService)
         {
@@ -27,6 +28,7 @@ namespace Param_RootNamespace.Services
 
             // Tasks after activation
             await StartupAsync();
+            _isInitialized = true;
         }
 
         public async Task StopAsync()
@@ -36,12 +38,18 @@ namespace Param_RootNamespace.Services
 
         private async Task InitializeAsync()
         {
-            await Task.CompletedTask;
+            if (!_isInitialized)
+            {
+                await Task.CompletedTask;
+            }
         }
 
         private async Task StartupAsync()
         {
-            await Task.CompletedTask;
+            if (!_isInitialized)
+            {
+                await Task.CompletedTask;
+            }
         }
 
         private async Task HandleActivationAsync()
