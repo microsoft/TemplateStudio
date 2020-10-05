@@ -12,7 +12,7 @@ namespace Param_RootNamespace.Services
 
         public void ShowToastNotification(ToastNotification toastNotification)
         {
-            DesktopNotificationManagerCompat.CreateToastNotifier().Show(toastNotification);
+            ToastNotificationManagerCompat.CreateToastNotifier().Show(toastNotification);
         }
     }
 }

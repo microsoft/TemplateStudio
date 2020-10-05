@@ -14,7 +14,7 @@ namespace Param_RootNamespace
         {
 //{[{
             // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
-            DesktopNotificationManagerCompat.OnActivated += (toastArgs) =>
+            ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
             {
                 Current.Dispatcher.Invoke(async () =>
                 {
@@ -42,7 +42,7 @@ namespace Param_RootNamespace
                     .Build();
 //^^
 //{[{
-            if (DesktopNotificationManagerCompat.WasCurrentProcessToastActivated())
+            if (ToastNotificationManagerCompat.WasCurrentProcessToastActivated())
             {
                 // ToastNotificationActivator code will run after this completes and will show a window if necessary.
                 return;
