@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Page.AddViewModel.VB",
-  "identity": "MTM.Page.AddViewModel.VB",
-  "shortName": "MTM.Page.AddViewModel.VB",
+  "name": "MVVMToolkit.Page.AddViewModel.VB",
+  "identity": "MVVMToolkit.Page.AddViewModel.VB",
+  "shortName": "MVVMToolkit.Page.AddViewModel.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & wts.type==page",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type==page",
     "wts.export.baseclass": "ObservableObject",
     "wts.export.setter": "SetProperty"
   },

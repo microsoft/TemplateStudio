@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Page.ContentGrid",
-  "identity": "MTM.Page.ContentGrid",
-  "shortName": "MTM.Page.ContentGrid",
+  "name": "MVVMToolkit.Page.ContentGrid",
+  "identity": "MVVMToolkit.Page.ContentGrid",
+  "shortName": "MVVMToolkit.Page.ContentGrid",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & groupidentity == wts.Page.ContentGrid"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

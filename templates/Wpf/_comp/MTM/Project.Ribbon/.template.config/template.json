@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Project.Ribbon",
-    "shortName": "wts.Wpf.MTM.Project.Ribbon",
-    "identity": "wts.Wpf.MTM.Project.Ribbon",
+    "name": "wts.Wpf.MVVMToolkit.Project.Ribbon",
+    "shortName": "wts.Wpf.MVVMToolkit.Project.Ribbon",
+    "identity": "wts.Wpf.MVVMToolkit.Project.Ribbon",
     "tags": {
       "language": "C#",
       "type": "item",
@@ -14,7 +14,7 @@
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "2",
-      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MTM & wts.type == project"
+      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMToolkit & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Project.MenuBar",
-    "shortName": "wts.Wpf.MTM.Project.MenuBar",
-    "identity": "wts.Wpf.MTM.Project.MenuBar",
+    "name": "wts.Wpf.MVVMToolkit.Project.MenuBar",
+    "shortName": "wts.Wpf.MVVMToolkit.Project.MenuBar",
+    "identity": "wts.Wpf.MVVMToolkit.Project.MenuBar",
     "tags": {
       "language": "C#",
       "type": "item",
@@ -14,7 +14,7 @@
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "2",
-      "wts.compositionFilter": "$projectType == MenuBar & $frontendframework == MTM & wts.type == project"
+      "wts.compositionFilter": "$projectType == MenuBar & $frontendframework == MVVMToolkit & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

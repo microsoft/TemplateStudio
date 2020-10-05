@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Project.MenuBar.VB",
-  "identity": "MTM.Project.MenuBar.VB",
-  "shortName": "MTM.Project.MenuBar.VB",
+  "name": "MVVMToolkit.Project.MenuBar.VB",
+  "identity": "MVVMToolkit.Project.MenuBar.VB",
+  "shortName": "MVVMToolkit.Project.MenuBar.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$frontendframework == MTM & $projectType == MenuBar & wts.type == project"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

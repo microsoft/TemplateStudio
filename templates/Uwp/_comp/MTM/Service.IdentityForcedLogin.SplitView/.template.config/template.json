@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Service.IdentityForcedLogin.SplitView",
-  "identity": "MTM.Service.IdentityForcedLogin.SplitView",
-  "shortName": "MTM.Service.IdentityForcedLogin.SplitView",
+  "name": "MVVMToolkit.Service.IdentityForcedLogin.SplitView",
+  "identity": "MVVMToolkit.Service.IdentityForcedLogin.SplitView",
+  "shortName": "MVVMToolkit.Service.IdentityForcedLogin.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projecttype == SplitView & groupidentity == wts.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == SplitView & groupidentity == wts.Service.IdentityForcedLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

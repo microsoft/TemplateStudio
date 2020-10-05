@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Service.IdentityForcedLogin",
-    "shortName": "wts.Wpf.MTM.Service.IdentityForcedLogin",
-    "identity": "wts.Wpf.MTM.Service.IdentityForcedLogin",
+    "name": "wts.Wpf.MVVMToolkit.Service.IdentityForcedLogin",
+    "shortName": "wts.Wpf.MVVMToolkit.Service.IdentityForcedLogin",
+    "identity": "wts.Wpf.MVVMToolkit.Service.IdentityForcedLogin",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

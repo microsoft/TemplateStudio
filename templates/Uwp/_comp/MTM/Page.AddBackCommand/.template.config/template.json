@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Page.AddBackCommand",
-  "identity": "MTM.Page.AddBackCommand",
-  "shortName": "MTM.Page.AddBackCommand",
+  "name": "MVVMToolkit.Page.AddBackCommand",
+  "identity": "MVVMToolkit.Page.AddBackCommand",
+  "shortName": "MVVMToolkit.Page.AddBackCommand",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projectType == Blank|MenuBar & groupidentity == wts.Page.ContentGrid|wts.Page.ImageGallery"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == Blank|MenuBar & groupidentity == wts.Page.ContentGrid|wts.Page.ImageGallery"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

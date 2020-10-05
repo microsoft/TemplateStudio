@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Project.SplitView.TabbedNav",
-  "identity": "MTM.Project.SplitView.TabbedNav",
-  "shortName": "MTM.Project.SplitView.TabbedNav",
+  "name": "MVVMToolkit.Project.SplitView.TabbedNav",
+  "identity": "MVVMToolkit.Project.SplitView.TabbedNav",
+  "shortName": "MVVMToolkit.Project.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$frontendframework == MTM & $projectType == SplitView|TabbedNav & wts.type == project",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView|TabbedNav & wts.type == project",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Feat.SystemService",
-    "shortName": "wts.Wpf.MTM.Feat.SystemService",
-    "identity": "wts.Wpf.MTM.Feat.SystemService",
+    "name": "wts.Wpf.MVVMToolkit.Feat.SystemService",
+    "shortName": "wts.Wpf.MVVMToolkit.Feat.SystemService",
+    "identity": "wts.Wpf.MVVMToolkit.Feat.SystemService",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & groupidentity == wts.Wpf.Feat.SystemService"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.SystemService"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

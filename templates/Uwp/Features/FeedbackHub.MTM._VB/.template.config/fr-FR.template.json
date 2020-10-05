@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Feedback Hub Link",
     "description": "Ajoutez un lien sur la page des paramètres vers le Hub de commentaires.",
-    "identity": "wts.Feat.FeedbackHub.MTM.VB"
+    "identity": "wts.Feat.FeedbackHub.MVVMToolkit.VB"
 }

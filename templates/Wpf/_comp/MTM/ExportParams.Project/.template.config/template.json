@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.ExportParams.Project",
-    "shortName": "wts.Wpf.MTM.ExportParams.Project",
-    "identity": "wts.Wpf.MTM.ExportParams.Project",
+    "name": "wts.Wpf.MVVMToolkit.ExportParams.Project",
+    "shortName": "wts.Wpf.MVVMToolkit.ExportParams.Project",
+    "identity": "wts.Wpf.MVVMToolkit.ExportParams.Project",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MTM & wts.type == project",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == project",
       "wts.export.baseclass": "ObservableObject",
       "wts.export.setter": "SetProperty",
       "wts.export.commandclass": "RelayCommand"

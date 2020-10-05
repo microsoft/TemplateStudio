@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Service.IdentityOptionalLogin.MenuBar",
-  "identity": "MTM.Service.IdentityOptionalLogin.MenuBar",
-  "shortName": "MTM.Service.IdentityOptionalLogin.MenuBar",
+  "name": "MVVMToolkit.Service.IdentityOptionalLogin.MenuBar",
+  "identity": "MVVMToolkit.Service.IdentityOptionalLogin.MenuBar",
+  "shortName": "MVVMToolkit.Service.IdentityOptionalLogin.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projecttype == MenuBar & groupidentity == wts.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == MenuBar & groupidentity == wts.Service.IdentityOptionalLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

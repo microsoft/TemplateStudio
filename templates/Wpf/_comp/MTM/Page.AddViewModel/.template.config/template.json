@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Page.AddViewModel",
-    "shortName": "wts.Wpf.MTM.Page.AddViewModel",
-    "identity": "wts.Wpf.MTM.Page.AddViewModel",
+    "name": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
+    "shortName": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
+    "identity": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MTM & wts.type==page"
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type==page"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

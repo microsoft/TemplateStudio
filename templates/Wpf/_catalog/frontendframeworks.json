@@ -1,7 +1,7 @@
 ﻿[
   {
-    "name": "MTM",
-    "displayName": "Microsoft.Toolkit. MVVM",
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
     "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
     "author": "Microsoft Community",
     "order": "0",

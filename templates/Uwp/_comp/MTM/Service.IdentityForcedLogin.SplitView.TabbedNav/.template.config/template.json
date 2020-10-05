@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Service.IdentityForcedLogin.SplitView.TabbedNav",
-  "identity": "MTM.Service.IdentityForcedLogin.SplitView.TabbedNav",
-  "shortName": "MTM.Service.IdentityForcedLogin.SplitView.TabbedNav",
+  "name": "MVVMToolkit.Service.IdentityForcedLogin.SplitView.TabbedNav",
+  "identity": "MVVMToolkit.Service.IdentityForcedLogin.SplitView.TabbedNav",
+  "shortName": "MVVMToolkit.Service.IdentityForcedLogin.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projecttype == SplitView|TabbedNav & groupidentity == wts.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == SplitView|TabbedNav & groupidentity == wts.Service.IdentityForcedLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

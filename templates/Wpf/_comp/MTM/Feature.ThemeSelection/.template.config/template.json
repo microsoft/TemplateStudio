@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MTM.Feat.ThemeSelection",
-    "shortName": "wts.Wpf.MTM.Feat.ThemeSelection",
-    "identity": "wts.Wpf.MTM.Feat.ThemeSelection",
+    "name": "wts.Wpf.MVVMToolkit.Feat.ThemeSelection",
+    "shortName": "wts.Wpf.MVVMToolkit.Feat.ThemeSelection",
+    "identity": "wts.Wpf.MVVMToolkit.Feat.ThemeSelection",
     "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & groupidentity == wts.Wpf.Feat.ThemeSelection"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

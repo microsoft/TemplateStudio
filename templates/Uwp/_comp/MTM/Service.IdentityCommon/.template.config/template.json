@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Service.IdentityCommon",
-  "identity": "MTM.Service.IdentityCommon",
-  "shortName": "MTM.Service.IdentityCommon",
+  "name": "MVVMToolkit.Service.IdentityCommon",
+  "identity": "MVVMToolkit.Service.IdentityCommon",
+  "shortName": "MVVMToolkit.Service.IdentityCommon",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & groupidentity == wts.Service.IdentityForcedLogin|wts.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Service.IdentityForcedLogin|wts.Service.IdentityOptionalLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

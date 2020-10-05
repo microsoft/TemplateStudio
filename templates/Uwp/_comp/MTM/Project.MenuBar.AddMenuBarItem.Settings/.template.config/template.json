@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Project.MenuBar.AddMenuBarItem.Settings",
-  "identity": "MTM.Project.MenuBar.AddMenuBarItem.Settings",
-  "shortName": "MTM.Project.MenuBar.AddMenuBarItem.Settings",
+  "name": "MVVMToolkit.Project.MenuBar.AddMenuBarItem.Settings",
+  "identity": "MVVMToolkit.Project.MenuBar.AddMenuBarItem.Settings",
+  "shortName": "MVVMToolkit.Project.MenuBar.AddMenuBarItem.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity == wts.Page.Settings & $projectType == MenuBar & $frontendframework == MTM"
+    "wts.compositionFilter": "wts.type == page & identity == wts.Page.Settings & $projectType == MenuBar & $frontendframework == MVVMToolkit"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

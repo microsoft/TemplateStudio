@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Project.SplitView",
-  "identity": "MTM.Project.SplitView",
-  "shortName": "MTM.Project.SplitView",
+  "name": "MVVMToolkit.Project.SplitView",
+  "identity": "MVVMToolkit.Project.SplitView",
+  "shortName": "MVVMToolkit.Project.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$frontendframework == MTM & $projectType == SplitView & wts.type == project"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

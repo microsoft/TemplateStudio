@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Page.InkSmartCanvas",
-  "identity": "MTM.Page.InkSmartCanvas",
-  "shortName": "MTM.Page.InkSmartCanvas",
+  "name": "MVVMToolkit.Page.InkSmartCanvas",
+  "identity": "MVVMToolkit.Page.InkSmartCanvas",
+  "shortName": "MVVMToolkit.Page.InkSmartCanvas",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & identity == wts.Page.InkSmartCanvas"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Page.InkSmartCanvas"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

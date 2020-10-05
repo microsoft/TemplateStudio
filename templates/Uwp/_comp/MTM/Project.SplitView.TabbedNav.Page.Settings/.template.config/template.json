@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Project.SplitView.TabbedNav.Page.Settings",
-  "identity": "MTM.Project.SplitView.TabbedNav.Page.Settings",
-  "shortName": "MTM.Project.SplitView.TabbedNav.Page.Settings",
+  "name": "MVVMToolkit.Project.SplitView.TabbedNav.Page.Settings",
+  "identity": "MVVMToolkit.Project.SplitView.TabbedNav.Page.Settings",
+  "shortName": "MVVMToolkit.Project.SplitView.TabbedNav.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projectType == SplitView|TabbedNav & identity == wts.Page.Settings"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView|TabbedNav & identity == wts.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

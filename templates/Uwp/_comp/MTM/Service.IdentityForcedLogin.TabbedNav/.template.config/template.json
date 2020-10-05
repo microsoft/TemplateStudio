@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Service.IdentityForcedLogin.TabbedNav",
-  "identity": "MTM.Service.IdentityForcedLogin.TabbedNav",
-  "shortName": "MTM.Service.IdentityForcedLogin.TabbedNav",
+  "name": "MVVMToolkit.Service.IdentityForcedLogin.TabbedNav",
+  "identity": "MVVMToolkit.Service.IdentityForcedLogin.TabbedNav",
+  "shortName": "MVVMToolkit.Service.IdentityForcedLogin.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MTM & $projecttype == TabbedNav & groupidentity == wts.Service.IdentityForcedLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == TabbedNav & groupidentity == wts.Service.IdentityForcedLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

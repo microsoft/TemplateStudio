@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MTM.Page.SplitView.TabbedNav.TwoPaneView.VB",
-  "identity": "MTM.Page.SplitView.TabbedNav.TwoPaneView.VB",
-  "shortName": "MTM.Page.SplitView.TabbedNav.TwoPaneView.VB",
+  "name": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView.VB",
+  "identity": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView.VB",
+  "shortName": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView|TabbedNav & $frontendframework == MTM & groupidentity == wts.Page.TwoPaneView.VB"
+    "wts.compositionFilter": "$projectType == SplitView|TabbedNav & $frontendframework == MVVMToolkit & groupidentity == wts.Page.TwoPaneView.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
