@@ -32,6 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = metadataInfo.Order;
             MetadataType = metadataInfo.MetadataType;
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
+            Flag = metadataInfo.Tags.FirstOrDefault(t => t.Key.Equals("wts.flag")).Value?.ToString();
         }
     }
 }

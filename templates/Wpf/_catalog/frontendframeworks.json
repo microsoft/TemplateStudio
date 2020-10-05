@@ -27,7 +27,10 @@
     "order": "2",
     "licenses": "",
     "platform": "Wpf",
-    "languages": [ "C#" ]
+    "languages": [ "C#" ],        
+    "tags": {
+        "wts.flag": "DEPRECATED"
+    }
   },
   {
     "name": "MVVMLight",
@@ -37,7 +40,10 @@
     "order": "3",
     "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
     "platform": "Wpf",
-    "languages": [ "C#" ]
+    "languages": [ "C#" ],        
+    "tags": {
+        "wts.flag": "DEPRECATED"
+    }
   },
   {
     "name": "Prism",
