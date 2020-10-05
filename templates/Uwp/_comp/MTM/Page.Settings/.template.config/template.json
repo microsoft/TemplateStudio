@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Page.Settings"
-  MVVMToolkit
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

@@ -392,7 +392,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MTM_Simple_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
         }
@@ -401,7 +401,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MTM_ExtraLogic_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
         }
@@ -410,7 +410,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MTM_Simple_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
         }
@@ -419,7 +419,7 @@ namespace Microsoft.Templates.Test
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MTM_ExtraLogic_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
         }

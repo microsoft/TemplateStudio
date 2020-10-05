@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test.Wack.Wpf
 
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        public async Task WackTests_MTM_All_WPFAsync(string projectType, string framework, string platform, string language)
+        public async Task WackTests_MvvmToolkit_All_WPFAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
         }

@@ -16,6 +16,6 @@ namespace Microsoft.Templates.Test
 
         public const string Prism = "Prism";
 
-        public const string ToolkitMVVM = "MTM";
+        public const string ToolkitMVVM = "MvvmToolkit";
     }
 }

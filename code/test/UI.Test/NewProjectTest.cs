@@ -20,7 +20,7 @@ namespace Microsoft.UI.Test
         // Project Types
         private const string SplitView = "SplitView";
         private const string CodeBehind = "CodeBehind";
-        private const string MTM = "MTM";
+        private const string MvvmToolkit = "MvvmToolkit";
 
         // Frameworks
         private const string Blank = "Blank";
@@ -53,7 +53,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task ProjectInitDefaultAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -76,7 +76,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task ProjectInitUpdatedConfigurationAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -84,7 +84,7 @@ namespace Microsoft.UI.Test
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.Equal(SplitView, userSelection.ProjectType);
-            Assert.Equal(MTM, userSelection.FrontEndFramework);
+            Assert.Equal(MvvmToolkit, userSelection.FrontEndFramework);
             Assert.Equal(PageBlank, userSelection.Pages.First().TemplateId);
             await SetProjectTypeAsync(viewModel, Blank);
             await SetFrameworkAsync(viewModel, MVVMLight);
@@ -99,7 +99,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task ResolveDependenciesAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -119,7 +119,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task ResolveDependenciesAndLicensesAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -143,7 +143,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task RemovePageAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -163,7 +163,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task RemoveTemplateWithHiddenDependencyAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -182,7 +182,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task CanNotRemoveHomePageAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -199,7 +199,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task CanNotRemoveTemplateWithDependencyAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.UserSelection.ResetUserSelection();
@@ -221,7 +221,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task RemoveHiddenFeaturesAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -253,7 +253,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task ReorderPagesUsingKeyboardAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
@@ -290,7 +290,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task UpdateHomePageAsync()
         {
-            // Default configuration: SplitView, MTM, Blank page
+            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
