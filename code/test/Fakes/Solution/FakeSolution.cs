@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
-        private const string WpfProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        private const string WpfProjectConfigurationTemplateForAnyCPU = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{0}.Debug|ARM.Build.0 = Debug|Any CPU
@@ -90,6 +90,18 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.ActiveCfg = Release|Any CPU
 		{0}.Release|x86.Build.0 = Release|Any CPU
 	";
+
+        private const string WpfProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0}.Debug|x64.ActiveCfg = Debug|x64
+		{0}.Debug|x64.Build.0 = Debug|x64
+		{0}.Debug|x86.ActiveCfg = Debug|x86
+		{0}.Debug|x86.Build.0 = Debug|x86
+		{0}.Release|Any CPU.ActiveCfg = Release|x86
+		{0}.Release|x64.ActiveCfg = Release|x64
+		{0}.Release|x64.Build.0 = Release|x64
+		{0}.Release|x86.ActiveCfg = Release|x86
+		{0}.Release|x86.Build.0 = Release|x86
+";
 
         private const string WpfCoreProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -129,6 +141,18 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Deploy.0 = Release|x86
 ";
 
+        private const string XamIslandProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0}.Debug|x64.ActiveCfg = Debug|x64
+		{0}.Debug|x64.Build.0 = Debug|x64
+		{0}.Debug|x86.ActiveCfg = Debug|x86
+		{0}.Debug|x86.Build.0 = Debug|x86
+		{0}.Release|Any CPU.ActiveCfg = Release|x86
+		{0}.Release|x64.ActiveCfg = Release|x64
+		{0}.Release|x64.Build.0 = Release|x64
+		{0}.Release|x86.ActiveCfg = Release|x86
+		{0}.Release|x86.Build.0 = Release|x86
+";
+
         private const string ProjectTemplate = @"Project(""{{guid}}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
@@ -154,11 +178,11 @@ EndProject
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject)
+        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             var slnContent = File.ReadAllText(_path);
 
-            if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
+            if (slnContent.IndexOf($"\"{projectName}\"", StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTypeGuid = GetProjectTypeGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
@@ -171,7 +195,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, projectRelativeToSolutionPath, isCPSProject);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -280,7 +304,7 @@ EndProject
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectName, string projectRelativeToSolutionPath, bool isCPSProject)
+        private static string GetProjectConfigurationTemplate(string platform, string projectName, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             switch (platform)
             {
@@ -303,9 +327,20 @@ EndProject
                     {
                         return WpfCoreProjectConfigurationTemplate;
                     }
+                    else if (projectRelativeToSolutionPath.Contains("XamlIsland"))
+                    {
+                        return XamIslandProjectConfigurationTemplate;
+                    }
                     else
                     {
-                        return WpfProjectConfigurationTemplate;
+                        if (hasPlatforms)
+                        {
+                            return WpfProjectConfigurationTemplate;
+                        }
+                        else
+                        {
+                            return WpfProjectConfigurationTemplateForAnyCPU;
+                        }
                     }
 
                 default:

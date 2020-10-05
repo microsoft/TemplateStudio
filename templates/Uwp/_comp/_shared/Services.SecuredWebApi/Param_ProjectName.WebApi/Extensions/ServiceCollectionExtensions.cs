@@ -21,6 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
             // afterwards populate the appsettings.json with ClientId, Tenant, Audience and Scope
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
+            // To restrict access using roles:  https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps
             // To assign users to your web api: https://docs.microsoft.com/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users
             var settings = new AuthenticationSettings();
             configuration.GetSection("AuthenticationSettings").Bind(settings);

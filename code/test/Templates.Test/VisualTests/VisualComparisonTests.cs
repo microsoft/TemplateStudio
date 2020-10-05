@@ -17,14 +17,13 @@ using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 using Microsoft.Templates.Core.Helpers;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 
 namespace Microsoft.Templates.Test
 {
     [Collection("GenerationCollection")]
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
-        const string MenuBar = "MenuBar";
-
         public VisualComparisonTests(GenerationFixture fixture)
             : base(fixture)
         {
@@ -34,7 +33,7 @@ namespace Microsoft.Templates.Test
         {
             var result = new List<string>();
 
-            if (framework == "CaliburnMicro" || framework == "Prism")
+            if (framework == Frameworks.CaliburnMicro || framework == Frameworks.Prism)
             {
                 result.AddRange(AllPagesThatSupportSimpleTestingOnAllFrameworks());
             }
@@ -151,16 +150,16 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType)
         {
             //TODO: Remove this once Caliburn Micro Templates are done for MenuBar
-            if (projectType == "MenuBar")
+            if (projectType == ProjectTypes.MenuBar)
             {
-                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "Prism" })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism })
                 {
                     yield return new object[] { framework };
                 }
             }
             else
             {
-                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism })
                 {
                     yield return new object[] { framework };
                 }
@@ -170,7 +169,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetAllFrameworksForBothVbAndCs()
         {
-            foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
+            foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMBasic, Frameworks.MVVMLight })
             {
                 yield return new object[] { framework };
             }
@@ -178,19 +177,19 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetAllFrameworksAndLanguageCombinations()
         {
-            yield return new object[] { "CodeBehind", ProgrammingLanguages.CSharp };
-            yield return new object[] { "MVVMBasic", ProgrammingLanguages.CSharp };
-            yield return new object[] { "MVVMLight", ProgrammingLanguages.CSharp };
-            yield return new object[] { "CaliburnMicro", ProgrammingLanguages.CSharp };
-            yield return new object[] { "Prism", ProgrammingLanguages.CSharp };
-            yield return new object[] { "CodeBehind", ProgrammingLanguages.VisualBasic };
-            yield return new object[] { "MVVMBasic", ProgrammingLanguages.VisualBasic };
-            yield return new object[] { "MVVMLight", ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.CodeBehind, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.MVVMBasic, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.CaliburnMicro, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.Prism, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.CodeBehind, ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.MVVMBasic, ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.VisualBasic };
         }
 
         public static IEnumerable<string> GetAllProjectTypes()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav", "MenuBar" })
+            foreach (var projectType in new[] { ProjectTypes.Blank, ProjectTypes.SplitView, ProjectTypes.TabbedNav, ProjectTypes.MenuBar })
             {
                 yield return projectType;
             }
@@ -205,13 +204,13 @@ namespace Microsoft.Templates.Test
                     // Exclude the area at the end of the app name and also covering the version number
                     switch (projectType)
                     {
-                        case "SplitView":
+                        case ProjectTypes.SplitView:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
-                        case "TabbedNav":
+                        case ProjectTypes.TabbedNav:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
-                        case MenuBar:
+                        case ProjectTypes.MenuBar:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 405, 450, 40), 1.25f) }";
-                        case "Blank":
+                        case ProjectTypes.Blank:
                         default:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 50), 1.25f) }";
                     }
@@ -231,7 +230,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -240,7 +239,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -249,7 +248,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -258,7 +257,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -267,7 +266,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.CodeBehind, page);
         }
 
         [Theory]
@@ -276,7 +275,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.CodeBehind, page);
         }
 
         [Theory]
@@ -285,7 +284,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -294,7 +293,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -303,7 +302,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -312,7 +311,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -321,7 +320,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.CodeBehind, page);
         }
 
         [Theory]
@@ -330,7 +329,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.CodeBehind, page);
         }
 
         [Theory]
@@ -339,7 +338,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -348,7 +347,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMBasic, page);
         }
 
         [Theory]
@@ -357,7 +356,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -366,7 +365,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMLight, page);
         }
 
         [Theory]
@@ -375,7 +374,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
         }
 
         [Theory]
@@ -384,7 +383,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
         }
 
         // There are tests with hardcoded projectType and framework values to make rerunning/debugging only some of the tests easier
@@ -413,10 +412,15 @@ namespace Microsoft.Templates.Test
 
             var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount, longPause);
 
-            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+            (bool wereSuccessful, List<string> testOutput) testResults = (false, new List<string>());
+
+            ExceptionHelper.RetryOn<OpenQA.Selenium.WebDriverException>(() =>
+            {
+                testResults = RunWinAppDriverTests(testProjectDetails);
+            });
 
             // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
-            if (testSuccess)
+            if (testResults.wereSuccessful)
             {
                 UninstallAppx(app1Details.PackageFullName);
                 UninstallAppx(app2Details.PackageFullName);
@@ -428,20 +432,23 @@ namespace Microsoft.Templates.Test
                 Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
             }
 
-            var outputMessages = string.Join(Environment.NewLine, testOutput);
+            var outputMessages = string.Join(Environment.NewLine, testResults.testOutput);
 
             // A diff image is automatically created if the outputs differ
             if (Directory.Exists(testProjectDetails.imagesFolder)
              && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
             {
                 Assert.True(
-                    testSuccess,
+                    testResults.wereSuccessful,
                     $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
             }
             else
             {
-                Assert.True(testSuccess, outputMessages);
+                Assert.True(testResults.wereSuccessful, outputMessages);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Templates.Test");
+            WindowHelpers.BringVisualStudioToFront("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -469,7 +476,7 @@ namespace Microsoft.Templates.Test
             WinAppDriverHelper.CheckIsInstalled();
 
             // MVVMBasic is considered the reference version. Compare generated apps with equivalent in other frameworks
-            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true, createForScreenshots: true);
+            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, Frameworks.MVVMBasic, genIdentities, lastPageIsHome: true, createForScreenshots: true);
 
             var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
 
@@ -529,7 +536,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
-            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, "SplitView");
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, ProjectTypes.SplitView);
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -540,7 +547,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInMenuBarAsync(string framework)
         {
-            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, MenuBar);
+            await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, ProjectTypes.MenuBar);
         }
 
         private async Task EnsureLanguagesProduceIdenticalOutputForEachPageAsync(string framework, string projectType)
@@ -560,7 +567,7 @@ namespace Microsoft.Templates.Test
 
             switch (projectType)
             {
-                case MenuBar:
+                case ProjectTypes.MenuBar:
                     testProjectDetails = SetUpTestProjectForAllMenuBarPagesComparison(app1Details, app2Details, pageExclusions);
                     break;
                 default:
@@ -611,13 +618,13 @@ namespace Microsoft.Templates.Test
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "MVVMBasic", genIdentities);
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, Frameworks.MVVMBasic, genIdentities);
 
             var errors = new List<string>();
 
-            foreach (var framework in GetAdditionalCsFrameworks("SplitView"))
+            foreach (var framework in GetAdditionalCsFrameworks(ProjectTypes.SplitView))
             {
-                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
+                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, framework[0].ToString(), genIdentities);
 
                 var pageExclusions = new Dictionary<string, string>();
                 pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
@@ -659,6 +666,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
@@ -673,13 +683,13 @@ namespace Microsoft.Templates.Test
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, MenuBar, "MVVMBasic", genIdentities);
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.MenuBar, Frameworks.MVVMBasic, genIdentities);
 
             var errors = new List<string>();
 
-            foreach (var framework in GetAdditionalCsFrameworks(MenuBar))
+            foreach (var framework in GetAdditionalCsFrameworks(ProjectTypes.MenuBar))
             {
-                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, MenuBar, framework[0].ToString(), genIdentities);
+                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.MenuBar, framework[0].ToString(), genIdentities);
 
                 var pageExclusions = new Dictionary<string, string>();
                 pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
@@ -721,6 +731,9 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+
+            WindowHelpers.BringVisualStudioToFront("Big");
+            WindowHelpers.TryFlashVisualStudio("Big");
         }
 
         [Theory]
@@ -729,7 +742,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageInNavViewWithoutErrorAsync(string framework, string language)
         {
-            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "SplitView");
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.SplitView);
         }
 
         [Theory]
@@ -738,7 +751,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
         {
-            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "TabbedNav");
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.TabbedNav);
         }
 
         [Theory]
@@ -747,14 +760,14 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageWithMenuBarWithoutErrorAsync(string framework, string language)
         {
-            if (framework == "CaliburnMicro")
+            if (framework == Frameworks.CaliburnMicro)
             {
                 // Caliburn does not yet support MenuBar projects
                 // TODO: remove this when implement #3000
                 return;
             }
 
-            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "MenuBar");
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar);
         }
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
@@ -815,7 +828,7 @@ namespace Microsoft.Templates.Test
 
                     await Task.Delay(TimeSpan.FromSeconds(2));
 
-                    if (projectType == "MenuBar")
+                    if (projectType == ProjectTypes.MenuBar)
                     {
                         var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
 
@@ -931,7 +944,7 @@ namespace Microsoft.Templates.Test
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         }
 
-        private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
+        protected async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
         {
             await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
 
@@ -1186,7 +1199,7 @@ namespace Microsoft.Templates.Test
             return (projectFolder, imagesFolder);
         }
 
-        private void RemoveCertificate(string certificatePath)
+        protected void RemoveCertificate(string certificatePath)
         {
             var uninstallCertificateScript = $"$dump = certutil.exe -dump {certificatePath}" + @"
 ForEach ($i in $dump)
@@ -1202,12 +1215,12 @@ ForEach ($i in $dump)
             ExecutePowerShellScript(uninstallCertificateScript);
         }
 
-        private void UninstallAppx(string packageFullName)
+        protected void UninstallAppx(string packageFullName)
         {
             ExecutePowerShellScript($"Remove-AppxPackage -Package {packageFullName}");
         }
 
-        private async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool createForScreenshots = false)
+        protected async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool createForScreenshots = false)
         {
             var result = new VisualComparisonTestDetails();
 
@@ -1266,6 +1279,21 @@ Write-Output $packageFullName";
             result.PackageFullName = response[1].ToString();
 
             return result;
+        }
+
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpWpfProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        {
+            var baseSetup = await SetUpWpfComparisonProjectAsync(language, projectType, framework, genIdentities);
+
+            // So building release version is fast
+            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language);
+
+            ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
+            var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return baseSetup;
         }
 
         private void ReplaceInFiles(string find, string replace, string rootDirectory, string fileFilter)
@@ -1327,7 +1355,7 @@ Write-Output $packageFullName";
             }
         }
 
-        private class VisualComparisonTestDetails
+        protected class VisualComparisonTestDetails
         {
             public string CertificatePath { get; set; }
 

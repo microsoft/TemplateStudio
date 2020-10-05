@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>缺少以下版本,請安裝它們並重新啟動 Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>最小.NET 核心版本:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>無效要求類型。 {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>新增通用 Windows 平台應用程式</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -174,9 +183,6 @@
   <data name="ErrorAddingSdksToProject" xml:space="preserve">
     <value>新增 SDK 至專案 {0} 時發生錯誤。</value>
     <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>遺漏以下目標平台所需的 Windows SDK：{0}.請[安裝](https://developer.microsoft.com/windows/downloads/windows-10-sdk) 並重新啟動 Visual Studio，然後再繼續。</value>
   </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>所需的 Windows SDK：</value>

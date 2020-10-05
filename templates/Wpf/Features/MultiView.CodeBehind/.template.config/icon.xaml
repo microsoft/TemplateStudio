@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Capa_1" Width="48" Height="48">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8" Fill="#000000" StrokeThickness="0">
+      <Path.Data>
+        <PathGeometry Figures="M 4.7919e-7 3.0803831 V 39.629028 H 15.268467 V 36.721831 H 2.9071972 V 14.514699 H 39.562303 v 2.159104 H 42.4695 V 3.0803831 Z M 2.9071972 11.607502 V 5.9875798 H 39.562303 v 5.6199222 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path12" Fill="#000000" StrokeThickness="0">
+      <Path.Data>
+        <PathGeometry Figures="M 42.469505 24.668597 V 19.379429 H 17.972673 v 20.249599 h 5.531916 v 5.290589 H 48 V 24.668597 Z M 20.87987 36.721831 V 22.286616 h 18.682438 v 2.381981 H 23.50458 v 12.05323 z M 45.092794 42.01242 H 26.411781 V 27.575799 h 18.681018 z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+  </Canvas>
+</Viewbox>

@@ -1,7 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports System.Linq
-
-Namespace Helpers
+﻿Namespace Helpers
     Module ImagesNavigationHelper
         Private _imageGalleriesHistories As Dictionary(Of String, Stack(Of String)) = New Dictionary(Of String, Stack(Of String))()
 

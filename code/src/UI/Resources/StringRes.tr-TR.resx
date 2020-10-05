@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Aşağıdaki sürümler eksik, lütfen yükleyin ve Visual Studio yeniden başlatın: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimum .NET Çekirdek Versiyonu:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Geçersiz Gereksinim Türü {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Yeni Evrensel Windows Platformu uygulaması</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -174,9 +183,6 @@
   <data name="ErrorAddingSdksToProject" xml:space="preserve">
     <value>{0} projesine SDK'ler eklenirken hata oluştu.</value>
     <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Aşağıdaki TargetPlatforms için gerekli Windows SDK'si eksik: {0}.  Devam etmeden önce lütfen [yükleyin](https://developer.microsoft.com/windows/downloads/windows-10-sdk) ve Visual Studio'yu yeniden başlatın.</value>
   </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Gerekli Windows SDK'leri:</value>

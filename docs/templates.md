@@ -15,7 +15,7 @@ Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTIN
 
 ## Anatomy of Templates and Template Authoring
 
-For more info about how templates work see [Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/tenmplates.md)
+For more info about how templates work see [Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/templates.md)
 
 ## Templates repository structure
 

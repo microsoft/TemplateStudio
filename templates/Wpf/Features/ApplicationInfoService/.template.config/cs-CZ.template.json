@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Application Info Service",
-  "description": "ApplicationInfoService contains operations that return information about the current application.",
+  "description": "ApplicationInfoService obsahuje operace, které vracejí informace o aktuální aplikaci.",
   "identity": "wts.Wpf.Feat.ApplicationInfoService"
 }

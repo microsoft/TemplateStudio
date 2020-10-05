@@ -12,7 +12,7 @@ Namespace Models
 
         Public Sub New(title As String, Optional desciption As String = Nothing)
             If String.IsNullOrEmpty(title) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), NameOf(title))
+                Throw New ArgumentException("The parameter title can not be null or empty.", NameOf(title))
             End If
 
             Items = New List(Of ShareSourceFeatureItem)()
@@ -22,7 +22,7 @@ Namespace Models
 
         Public Sub SetText(text As String)
             If String.IsNullOrEmpty(text) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(text))
+                Throw New ArgumentException("The parameter title can not be null or empty.", nameof(text))
             End If
 
             Items.Add(ShareSourceFeatureItem.FromText(text))
@@ -48,7 +48,7 @@ Namespace Models
 
         Public Sub SetHtml(html As String)
             If String.IsNullOrEmpty(html) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty".GetLocalized(), nameof(html))
+                Throw New ArgumentException("The Parameter html is null or empty.", nameof(html))
             End If
 
             Items.Add(ShareSourceFeatureItem.FromHtml(html))
@@ -64,7 +64,7 @@ Namespace Models
 
         Public Sub SetStorageItems(storageItems As IEnumerable(Of IStorageItem))
             If storageItems Is Nothing OrElse Not storageItems.Any() Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataStorageItemsIsNullOrEmpty".GetLocalized(), nameof(storageItems))
+                Throw New ArgumentException("The Parameter StorageItems is null or does not contains any element.", nameof(storageItems))
             End If
 
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems))
@@ -75,7 +75,7 @@ Namespace Models
         ' The getDeferredDataAsyncFunc parameter is the function that returns the object you want to share.
         Public Sub SetDeferredContent(deferredDataFormatId As String, getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
             If String.IsNullOrEmpty(deferredDataFormatId) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId))
+                Throw New ArgumentException("The Parameter DeferredDataFormatId is null or does not contains any element.", nameof(deferredDataFormatId))
             End If
 
             Items.Add(ShareSourceFeatureItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc))

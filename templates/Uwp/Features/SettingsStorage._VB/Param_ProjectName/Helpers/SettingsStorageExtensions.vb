@@ -1,4 +1,5 @@
-﻿Imports Windows.Storage
+﻿Imports System.Runtime.CompilerServices
+Imports Windows.Storage
 Imports Windows.Storage.Streams
 Imports Param_RootNamespace.Core.Helpers
 
@@ -62,7 +63,7 @@ Namespace Helpers
             End If
 
             If String.IsNullOrEmpty(fileName) Then
-                Throw New ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), NameOf(fileName))
+                Throw New ArgumentException("File name is null or empty. Specify a valid file name", NameOf(fileName))
             End If
 
             Dim storageFile = Await folder.CreateFileAsync(fileName, options)

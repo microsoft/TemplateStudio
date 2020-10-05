@@ -148,18 +148,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             return installedPackageIds;
         }
 
-        public override bool IsSdkInstalled(string name)
+        public override bool IsSdkInstalled(string version)
         {
             var sdks = ToolLocationHelper.GetTargetPlatformSdks();
 
-            if (sdks.Any(sdk => ToolLocationHelper.GetPlatformsForSDK(sdk.TargetPlatformIdentifier, sdk.TargetPlatformVersion).Contains(name)))
+            foreach (var sdk in sdks)
             {
-                return true;
+                var versions = ToolLocationHelper.GetPlatformsForSDK(sdk.TargetPlatformIdentifier, sdk.TargetPlatformVersion);
+                if (versions.Any(v => v.Contains(version)))
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)

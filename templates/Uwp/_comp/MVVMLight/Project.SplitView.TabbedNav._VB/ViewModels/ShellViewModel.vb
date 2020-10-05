@@ -1,7 +1,5 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports Param_RootNamespace.Services
@@ -94,9 +92,13 @@ Namespace ViewModels
         End Sub
 
         Private Sub OnItemInvoked(args As WinUI.NavigationViewItemInvokedEventArgs)
-            Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
-            Dim pageKey = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), String)
-            NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+            If args.IsSettingsInvoked Then
+                ' Navigate to the settings page - implement as appropriate if needed
+            Else
+                Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
+                Dim pageKey = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), String)
+                NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+            End If
         End Sub
 
         Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)

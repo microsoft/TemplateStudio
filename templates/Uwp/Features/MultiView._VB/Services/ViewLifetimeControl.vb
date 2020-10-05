@@ -42,7 +42,7 @@ Namespace Services
                 End SyncLock
 
                 If releasedCopy Then
-                    Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
+                    Throw New InvalidOperationException("This view is being disposed.")
                 End If
             End AddHandler
 
@@ -82,7 +82,7 @@ Namespace Services
             End SyncLock
 
             If releasedCopy Then
-                Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
+                Throw New InvalidOperationException("This view is being disposed.")
             End If
 
             Return refCountCopy
@@ -105,7 +105,7 @@ Namespace Services
             End SyncLock
 
             If releasedCopy Then
-                Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
+                Throw New InvalidOperationException("This view is being disposed.")
             End If
 
             Return refCountCopy
@@ -138,7 +138,7 @@ Namespace Services
 
                 If InternalReleasedEvent Is Nothing Then
                     ' For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/multiple-views.md
-                    Throw New InvalidOperationException("ExceptionViewLifeTimeControlMissingReleasedSubscription".GetLocalized())
+                    Throw New InvalidOperationException("All pages opened in a new window must subscribe to the Released Event.")
                 End If
 
                 RaiseEvent InternalReleased(Me, Nothing)

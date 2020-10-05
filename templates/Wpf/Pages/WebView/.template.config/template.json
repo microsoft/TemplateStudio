@@ -14,10 +14,10 @@
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "all",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "3",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
     "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
@@ -65,7 +65,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Toolkit.Wpf.UI.Controls.WebView",
-        "version": "6.1.0",
+        "version": "6.1.2",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": true

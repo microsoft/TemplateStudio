@@ -19,7 +19,12 @@ namespace Microsoft.Templates.UI.Views.NewItem
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
             MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-            Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
+            if (stepFrame.Content == null)
+            {
+                Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
+            }
+
+            Services.NavigationService.SubscribeEventHandlers();
         }
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)

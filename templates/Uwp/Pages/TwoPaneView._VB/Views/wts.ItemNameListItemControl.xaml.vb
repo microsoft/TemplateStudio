@@ -1,6 +1,4 @@
 ﻿Imports Param_RootNamespace.Core.Models
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Views
     Public NotInheritable Partial Class wts.ItemNameListItemControl

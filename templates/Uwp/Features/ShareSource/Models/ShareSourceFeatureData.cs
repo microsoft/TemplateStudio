@@ -20,7 +20,7 @@ namespace Param_RootNamespace.Models
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(title));
+                throw new ArgumentException("The parameter title can not be null or empty.", nameof(title));
             }
 
             Items = new List<ShareSourceFeatureItem>();
@@ -32,7 +32,7 @@ namespace Param_RootNamespace.Models
         {
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(text));
+                throw new ArgumentException("The parameter title can not be null or empty.", nameof(text));
             }
 
             Items.Add(ShareSourceFeatureItem.FromText(text));
@@ -64,7 +64,7 @@ namespace Param_RootNamespace.Models
         {
             if (string.IsNullOrEmpty(html))
             {
-                throw new ArgumentException("ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty".GetLocalized(), nameof(html));
+                throw new ArgumentException("The Parameter html is null or empty.", nameof(html));
             }
 
             Items.Add(ShareSourceFeatureItem.FromHtml(html));
@@ -84,7 +84,7 @@ namespace Param_RootNamespace.Models
         {
             if (storageItems == null || !storageItems.Any())
             {
-                throw new ArgumentException("ExceptionShareSourceFeatureDataStorageItemsIsNullOrEmpty".GetLocalized(), nameof(storageItems));
+                throw new ArgumentException("The Parameter StorageItems is null or does not contains any element.", nameof(storageItems));
             }
 
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems));
@@ -97,7 +97,7 @@ namespace Param_RootNamespace.Models
         {
             if (string.IsNullOrEmpty(deferredDataFormatId))
             {
-                throw new ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId));
+                throw new ArgumentException("The Parameter DeferredDataFormatId is null or does not contains any element.", nameof(deferredDataFormatId));
             }
 
             Items.Add(ShareSourceFeatureItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc));

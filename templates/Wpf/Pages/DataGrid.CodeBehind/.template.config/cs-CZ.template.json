@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Data Grid",
+  "description": "Stránka zobrazující jednoduchou datovou mřížku.",
+  "identity": "wts.Wpf.Page.DataGrid.CodeBehind"
+}

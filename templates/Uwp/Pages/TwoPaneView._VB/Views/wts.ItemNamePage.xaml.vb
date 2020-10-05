@@ -1,7 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
 

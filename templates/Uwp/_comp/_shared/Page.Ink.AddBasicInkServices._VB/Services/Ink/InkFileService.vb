@@ -1,13 +1,8 @@
 ﻿Imports Microsoft.Graphics.Canvas
-Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
 Imports Windows.Foundation
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Provider
-Imports Windows.UI.Xaml.Controls
 
 Namespace Services.Ink
     Public Class InkFileService
