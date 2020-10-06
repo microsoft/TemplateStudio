@@ -61,13 +61,13 @@ namespace Param_RootNamespace.Services
 
         private async Task HandleActivationAsync()
         {
-            var activationHandler = _activationHandlers
-                                        .FirstOrDefault(h => h.CanHandle());
+            var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle());
 
             if (activationHandler != null)
             {
                 await activationHandler.HandleAsync();
             }
+            await Task.CompletedTask;
 
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
             {

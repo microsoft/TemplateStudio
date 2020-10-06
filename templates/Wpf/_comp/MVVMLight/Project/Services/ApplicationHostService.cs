@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Contracts.Activation;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.ViewModels;
 
@@ -54,6 +55,15 @@ namespace Param_RootNamespace.Services
 
         private async Task HandleActivationAsync()
         {
+            var activationHandler = SimpleIoc.Default.GetAllInstances<IActivationHandler>()
+                                        .FirstOrDefault(h => h.CanHandle());
+
+            if (activationHandler != null)
+            {
+                await activationHandler.HandleAsync();
+            }
+            await Task.CompletedTask;
+
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
             {
                 // Default activation that navigates to the apps default page

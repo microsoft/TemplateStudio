@@ -14,13 +14,11 @@ namespace Param_RootNamespace.Activation
         public const string ActivationArguments = "ToastNotificationActivationArguments";
 
         private readonly IConfiguration _config;
-        private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
 
-        public ToastNotificationActivationHandler(IConfiguration config, IServiceProvider serviceProvider, INavigationService navigationService)
+        public ToastNotificationActivationHandler(IConfiguration config, INavigationService navigationService)
         {
             _config = config;
-            _serviceProvider = serviceProvider;
             _navigationService = navigationService;
         }
 
