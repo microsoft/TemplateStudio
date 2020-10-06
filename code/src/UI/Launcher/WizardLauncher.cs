@@ -167,7 +167,7 @@ namespace Microsoft.Templates.UI.Launcher
                 if (missingWorkloads.Count > 0)
                 {
                     var title = UIStringRes.InfoDialogMissingWorkloadTitle;
-                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i,j) => $"{i}, {j}") );
+                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}") );
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
