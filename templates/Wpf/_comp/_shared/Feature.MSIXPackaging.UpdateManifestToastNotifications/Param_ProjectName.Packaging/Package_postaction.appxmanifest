@@ -1,0 +1,17 @@
+﻿<Extensions>
+<!--{[{-->
+	<!--Register COM CLSID LocalServer32 registry key-->
+	<com:Extension Category="windows.comServer">
+	  <com:ComServer>
+		<com:ExeServer Executable="Param_ProjectName.exe" Arguments="-ToastActivated" DisplayName="Toast activator">
+		  <com:Class Id="5b23992e-eb23-4f0b-88bf-52a7527620f4" DisplayName="Toast activator"/>
+		</com:ExeServer>
+	  </com:ComServer>
+	</com:Extension>
+
+	<!--Specify which CLSID to activate when toast clicked-->
+	<desktop:Extension Category="windows.toastNotificationActivation">
+	  <desktop:ToastNotificationActivation ToastActivatorCLSID="5b23992e-eb23-4f0b-88bf-52a7527620f4" />
+	</desktop:Extension>
+<!--}]}-->
+</Extensions>
