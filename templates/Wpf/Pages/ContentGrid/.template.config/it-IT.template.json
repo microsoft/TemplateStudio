@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "",
+  "description": "Questa pagina contiene una griglia di contenuto di base basata su un ListView.",
   "identity": "wts.Wpf.Page.ContentGrid"
 }

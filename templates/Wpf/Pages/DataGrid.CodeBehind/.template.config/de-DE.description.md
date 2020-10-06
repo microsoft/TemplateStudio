@@ -1,1 +1,1 @@
-﻿
+﻿Auf einer Seite, auf der ein DataGrid angezeigt wird, stellt dieses Steuerelement Daten in einer anpassbaren Tabelle mit Zeilen und Spalten dar.

@@ -68,12 +68,12 @@ namespace Microsoft.Templates.UI.Services
 
         private static RequirementType ParseRequirementType(string requirementType)
         {
-            if (requirementType.ToLower() == WindowsSDKValidator.Id.ToLower())
+            if (requirementType.ToUpperInvariant() == WindowsSDKValidator.Id.ToUpperInvariant())
             {
                 return RequirementType.WindowsSDK;
             }
 
-            if (requirementType.ToLower() == DotNetValidator.Id.ToLower())
+            if (requirementType.ToUpperInvariant() == DotNetValidator.Id.ToUpperInvariant())
             {
                 return RequirementType.DotNetRuntime;
             }

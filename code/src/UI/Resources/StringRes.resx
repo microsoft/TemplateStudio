@@ -844,7 +844,7 @@ Please verify the following list of packages needed by your project's code and m
     <comment>Error message for adding items to project</comment>
   </data>
   <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>The following versions are missing, please install and restart Visual Studio: {0}</value>
+    <value>The following versions are missing, please install them and restart Visual Studio: {0}</value>
   </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Required Windows Sdks:</value>

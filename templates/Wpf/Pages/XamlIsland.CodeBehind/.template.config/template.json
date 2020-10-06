@@ -17,7 +17,7 @@
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "5",
+    "wts.displayOrder": "7",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
     "wts.outputToParent": "true",

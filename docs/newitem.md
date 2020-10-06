@@ -18,7 +18,7 @@ The feature is composed of two steps:
 
 ## 3rd party libraries
 
-If you're adding an item that depends on 3rd party libraries, please read our [strategy regarding updates](https://github.com/Microsoft/WindowsTemplateStudio/wiki/3rd-party-libraries---updates-and-breaking-changes)
+If you're adding an item that depends on 3rd party libraries, please read our [strategy regarding updates](./third-party-libraries.md)
 
 ## Change summary page
 

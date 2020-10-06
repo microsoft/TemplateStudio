@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "",
+  "description": "Diese Seite enthält ein grundlegendes Inhaltsraster, das auf einer ListView basiert.",
   "identity": "wts.Wpf.Page.ContentGrid"
 }
