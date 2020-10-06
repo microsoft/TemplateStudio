@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>次のバージョンが見つかりません、 インストールして Visual Studio を再起動してください。{0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>.NET コアの最小バージョン:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>無効な要件の種類 {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>新しい Windows ユニバーサル プラットフォーム アプリ</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -175,9 +184,6 @@
     <value>プロジェクト {0} に SDK を追加する際のエラーです。</value>
     <comment>Error message for adding items to project</comment>
   </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>次の TargetPlatform に必要な Windows SDK がありません: {0}.続行するには、[インストール](https://developer.microsoft.com/windows/downloads/windows-10-sdk) してから Visual Studio を再起動する必要があります。</value>
-  </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>必要な Windows SDK:</value>
   </data>
@@ -207,7 +213,7 @@
     <value>詳細</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>プロジェクト {1} を作成するには、ワークロード "{0}" をインストールする必要があります。このワークロードを Visual Studio Installer でインストールしてください。</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -888,14 +894,5 @@
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>更新するには、ドキュメントをご覧ください。</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="ErrorInvalidRequirementType" xml:space="preserve">
-    <value>Invalid Requirement Type {0}</value>
-  </data>
-  <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>The following versions are missing, please install and restart Visual Studio: {0}</value>
-  </data>
-  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
-    <value>Minimum .NET Core Version:</value>
   </data>
 </root>

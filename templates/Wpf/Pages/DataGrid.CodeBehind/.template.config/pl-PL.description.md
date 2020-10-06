@@ -1,1 +1,1 @@
-﻿
+﻿Strona wyświetlająca DataGrid, ten formant przedstawia dane w konfigurowalnej tabeli wierszy i kolumn.

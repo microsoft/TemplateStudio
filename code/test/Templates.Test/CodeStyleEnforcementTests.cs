@@ -28,7 +28,8 @@ namespace Microsoft.Templates.Test
         {
             var filesNeedsToUseThis = new List<string>()
             {
-                "ContentGridViewDetailPage.xaml.cs"
+                "ContentGridViewDetailPage.xaml.cs",
+                @"WinUI\Pages\ContentGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml.cs"
             };
             var result = CodeIsNotUsed("this.", ".cs", filesNeedsToUseThis);
 

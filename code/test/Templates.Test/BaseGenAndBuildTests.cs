@@ -216,6 +216,9 @@ namespace Microsoft.Templates.Test
                 case Platforms.Uwp:
                     result = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
                     break;
+                case Platforms.WinUI:
+                    result = _fixture.BuildSolutionWinUI(projectName, projectPath, platform);
+                    break;
                 case Platforms.Wpf:
                     result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
                     break;
@@ -587,6 +590,10 @@ namespace Microsoft.Templates.Test
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
+                case Frameworks.MVVMToolkit:
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
+                    break;
+
                 case Frameworks.CaliburnMicro:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
@@ -628,6 +635,10 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case Frameworks.MVVMLight:
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
+                    break;
+
+                case Frameworks.MVVMToolkit:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
 

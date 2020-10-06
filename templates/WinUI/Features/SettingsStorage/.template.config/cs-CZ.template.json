@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings Storage",
   "description": "Úložiště nastavení pomáhá zjednodušit ukládání dat do složky dat vaší aplikace.",
-  "identity": "wts.WinTS.Feat.SettingsStorage"
+  "identity": "wts.WinUI.Feat.SettingsStorage"
 }

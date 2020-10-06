@@ -13,8 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.ThemeSelection",
-    "wts.dependencies":"wts.WinTS.Feat.SettingsStorage"
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

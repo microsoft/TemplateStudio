@@ -252,7 +252,7 @@ namespace TemplateValidator
                         VerifyRequiredVsWorkloadTagValue(tag, results);
                         break;
                     case "wts.requiredSdks":
-                        VerifyRequiredSdkTagValue(tag, results);
+                        VerifyRequiredSdkTagValue(results);
                         break;
                     case "wts.requiredVersions":
                         VerifyRequiredVersionsTagValue(tag, results);
@@ -314,7 +314,7 @@ namespace TemplateValidator
 
         private static void VerifyPlatformTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { Platforms.Uwp, Platforms.Wpf }.Contains(tag.Value))
+            if (!new[] { Platforms.Uwp, Platforms.Wpf, Platforms.WinUI }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the platform tag.");
             }
@@ -338,7 +338,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -632,10 +632,9 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyRequiredSdkTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyRequiredSdkTagValue(List<string> results)
         {
-            results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
-
+            results.Add($"The wts.requiredSdks tag is no longer supported. Please use the wts.requiredVersions tag.");
         }
 
         private static void VerifyRequiredVersionsTagValue(KeyValuePair<string, string> tag, List<string> results)

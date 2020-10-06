@@ -1,1 +1,1 @@
-﻿ApplicationInfoService contains operations that return information about the current application.
+﻿ApplicationInfoService, geçerli uygulama yla ilgili bilgileri döndüren işlemleri içerir.

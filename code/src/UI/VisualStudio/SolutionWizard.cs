@@ -112,7 +112,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, _replacementsDictionary["$wts.requiredworkload$"], new VSStyleValuesProvider());
+                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, _replacementsDictionary["$wts.requiredworkloads$"], new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

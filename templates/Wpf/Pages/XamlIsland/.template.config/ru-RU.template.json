@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "XAML Island",
-  "description": "",
+  "description": "Страница, на котором размещается элемент управления UWP с помощью острова XAML.",
   "identity": "wts.Wpf.Page.XamlIsland"
 }

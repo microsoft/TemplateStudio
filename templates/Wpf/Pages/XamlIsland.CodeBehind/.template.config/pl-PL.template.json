@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "XAML Island",
-  "description": "",
+  "description": "Strona, która obsługuje kontrolkę platformy uniwersalnej systemu Windows przy użyciu wyspy XAML.",
   "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
 }

@@ -180,7 +180,7 @@
                     Margin="{StaticResource Margin_M_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsRequiredSdks}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
-                    Visibility="{Binding RequiredVisualStudioWorkloads, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                    Visibility="{Binding RequiredSdks, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
                     Grid.Row="9"
                     Grid.Column="2"
@@ -189,12 +189,13 @@
                     ItemsSource="{Binding RequiredSdks}"
                     ItemTemplate="{StaticResource WtsItemTemplateRequiredSdk}"
                     Visibility="{Binding RequiredSdks, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                
                 <TextBlock
                     Grid.Row="10"
                     Margin="{StaticResource Margin_M_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsRequiredDotNetVersion}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
-                    Visibility="{Binding RequiredVisualStudioWorkloads, Converter={StaticResource HasItemsVisibilityConverter}}" />
+                    Visibility="{Binding RequiredDotNetVersion, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
                     Grid.Row="10"
                     Grid.Column="2"
@@ -203,6 +204,7 @@
                     ItemsSource="{Binding RequiredDotNetVersion}"
                     ItemTemplate="{StaticResource WtsItemTemplateRequiredDotNetVersion}"
                     Visibility="{Binding RequiredDotNetVersion, Converter={StaticResource HasItemsVisibilityConverter}}" />
+
                 <TextBlock
                     Grid.Row="11"
                     Margin="{StaticResource Margin_M_Top}"

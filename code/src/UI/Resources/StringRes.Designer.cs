@@ -640,7 +640,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        ///   Looks up a localized string similar to You need to install the following workloads to create a {0} project: {1} .
         /// </summary>
         public static string InfoDialogRequiredWorkloadNotFoundMessage {
             get {
@@ -883,7 +883,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following versions are missing, please install and restart Visual Studio: {0}.
+        ///   Looks up a localized string similar to The following versions are missing, please install them and restart Visual Studio: {0}.
         /// </summary>
         public static string NotificationMissingVersions {
             get {

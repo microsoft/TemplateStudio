@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI.Services
                     process.WaitForExit();
 
                     var runtimeVersions = result.Split(new[] { Environment.NewLine }, StringSplitOptions.None)
-                                          .Where(v => v.StartsWith(WindowsAppRuntimeName))
+                                          .Where(v => v.StartsWith(WindowsAppRuntimeName, StringComparison.OrdinalIgnoreCase))
                                           .Select(r => new Version(r.Split(' ')[1]));
 
                     if (runtimeVersions.Any(r => r.CompareTo(version) >= 0))

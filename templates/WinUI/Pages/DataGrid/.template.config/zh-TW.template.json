@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Data Grid",
   "description": "",
-  "identity": "wts.WinUI.Page.ContentGrid"
+  "identity": "wts.WinUI.Page.DataGrid"
 }

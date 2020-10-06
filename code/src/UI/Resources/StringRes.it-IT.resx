@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Mancano le seguenti versioni, installarle e riavviare Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Versione minima di .NET Core:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Tipo di requisito non valido {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nuova app per la piattaforma UWP (Universal Windows Platform)</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -175,9 +184,6 @@
     <value>Errore durante l'aggiunta di SDK al progetto {0}.</value>
     <comment>Error message for adding items to project</comment>
   </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Il componente Windows SDK richiesto per l'oggetto TargetPlatforms seguente non è presente: {0}.  [Installare il componente](https://developer.microsoft.com/windows/downloads/windows-10-sdk) e riavviare Visual Studio prima di continuare.</value>
-  </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Componenti Windows SDK necessari:</value>
   </data>
@@ -207,7 +213,7 @@
     <value>Altre informazioni</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Per creare un progetto {1}, devi creare un carico di lavoro "{0}". Installa il carico di lavoro tramite il Programma di installazione di Visual Studio.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -888,14 +894,5 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Guarda la documentazione per l'aggiornamento.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
-  </data>
-  <data name="ErrorInvalidRequirementType" xml:space="preserve">
-    <value>Invalid Requirement Type {0}</value>
-  </data>
-  <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>The following versions are missing, please install and restart Visual Studio: {0}</value>
-  </data>
-  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
-    <value>Minimum .NET Core Version:</value>
   </data>
 </root>
