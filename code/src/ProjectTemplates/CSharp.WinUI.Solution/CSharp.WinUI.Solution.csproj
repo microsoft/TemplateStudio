@@ -58,47 +58,62 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.WinUI.Solution.vstemplate" />
+    <VSTemplate Include="CSharp.WinUI.Solution.vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Solution.cs-CZ.vstemplate">
       <Culture>1029</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.de-DE.vstemplate">
       <Culture>1031</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.es-ES.vstemplate">
       <Culture>3082</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.fr-FR.vstemplate">
       <Culture>1036</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.it-IT.vstemplate">
       <Culture>1040</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.ja-JP.vstemplate">
       <Culture>1041</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.ko-KR.vstemplate">
       <Culture>1042</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.pl-PL.vstemplate">
       <Culture>1045</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.pt-BR.vstemplate">
       <Culture>1046</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.ru-RU.vstemplate">
       <Culture>1049</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.tr-TR.vstemplate">
       <Culture>1055</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.zh-CN.vstemplate">
       <Culture>2052</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.WinUI.Solution.zh-TW.vstemplate">
       <Culture>1028</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
