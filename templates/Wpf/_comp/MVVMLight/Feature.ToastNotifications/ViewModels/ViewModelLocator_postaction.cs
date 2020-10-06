@@ -13,7 +13,6 @@ namespace Param_RootNamespace.ViewModels
             SimpleIoc.Default.Register<ToastNotificationActivationHandler>();
             SimpleIoc.Default.Register<IActivationHandler>(() => SimpleIoc.Default.GetInstance<ToastNotificationActivationHandler>(), "toast");
 //}]}
-
             // Services
 //{[{
             SimpleIoc.Default.Register<IToastNotificationsService, ToastNotificationsService>();

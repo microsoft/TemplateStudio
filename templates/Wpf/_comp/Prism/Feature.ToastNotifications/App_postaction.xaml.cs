@@ -23,6 +23,7 @@ namespace Param_RootNamespace
                 Current.Dispatcher.Invoke(async () =>
                 {
                     var config = Container.Resolve<IConfiguration>();
+
                     // Store ToastNotification arguments in configuration, so you can use them from any point in the app
                     config[App.ToastNotificationActivationArguments] = toastArgs.Argument;
 
@@ -32,6 +33,7 @@ namespace Param_RootNamespace
                     {
                         App.Current.MainWindow.WindowState = WindowState.Normal;
                     }
+
                     await Task.CompletedTask;
                 });
             };
@@ -66,7 +68,7 @@ namespace Param_RootNamespace
             // TODO: Register arguments you want to use on App initialization
             var activationArgs = new Dictionary<string, string>
             {
-                { ToastNotificationActivationArguments, string.Empty},
+                { ToastNotificationActivationArguments, string.Empty }
             };
 //}]}
 

@@ -67,6 +67,7 @@ namespace Param_RootNamespace.Services
             {
                 await activationHandler.HandleAsync();
             }
+
             await Task.CompletedTask;
 
             if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)

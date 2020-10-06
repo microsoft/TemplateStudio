@@ -27,7 +27,7 @@ namespace Param_RootNamespace
             // TODO: Register arguments you want to use on App initialization
             var activationArgs = new Dictionary<string, string>
             {
-                { ToastNotificationActivationHandler.ActivationArguments, string.Empty },
+                { ToastNotificationActivationHandler.ActivationArguments, string.Empty }
             };
 //}]}
             _host = Host.CreateDefaultBuilder(e.Args)
