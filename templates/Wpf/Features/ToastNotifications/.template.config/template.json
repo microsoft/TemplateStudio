@@ -33,6 +33,9 @@
       },
       {
         "path": "Services/ToastNotificationsService.cs"
+      },
+      {
+        "path": "Services/ToastNotificationsService.Samples.cs"
       }
     ],
     "symbols": {
