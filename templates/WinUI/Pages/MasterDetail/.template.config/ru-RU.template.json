@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MasterDetail",
-  "description": "",
+  "description": "На странице \"Основной/подробности\" доступна главная панель и панель сведений для содержимого.",
   "identity": "wts.WinUI.Page.MasterDetail"
 }
