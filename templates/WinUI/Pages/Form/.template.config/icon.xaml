@@ -1,9 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-  <Canvas Name="SVGRoot" Width="48" Height="48">
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF000000">
+  <Canvas Name="svg6212" Width="2048" Height="2048">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: metadata-->
+    <!--Unknown tag: sodipodi:namedview-->
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6210" Fill="#FF000000" StrokeThickness="1">
       <Path.Data>
-        <PathGeometry Figures="m 6.375 23.4375 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m -2.5 35 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m 17.5 15 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m -2.5 -22.5 h 17.5 v 17.5 h -17.5 z m 15 15 v -12.5 h -12.5 v 12.5 z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 1738.8427 934.84597 q 36.4 0 67.6 13.125 31.2 13.125 55.4666 35.875 24.2667 22.75003 36.4 55.12503 12.1334 32.375 13.8667 69.125 0 34.125 -13 66.5 -13 32.375 -37.2667 56.875 l -621.4 627.375 -326.73326 82.25 81.46667 -329.875 621.39999 -626.50003 q 25.1333 -25.375 56.3333 -37.625 31.2 -12.25 65.8667 -12.25 z m 62.4 173.25003 q 0 -28 -17.3334 -44.625 -17.3333 -16.625 -45.0666 -16.625 -12.1334 0 -23.4 3.5 -11.2667 3.5 -19.9334 13.125 l -599.7333 605.5 -29.4666 118.125 116.9999 -29.75 599.7334 -604.625 q 18.2 -18.375 18.2 -44.625 z M 359.10937 262.84597 V 1830.846 h 438.53334 l -26.86667 112 h -522.6 V 150.84597 h 966.33326 l 475.8 480.375 v 168 q -32.0666 4.375 -57.2 13.125 -25.1333 8.75 -53.7333 27.125 v -128.625 h -443.7333 v -448 z m 887.46663 79.625 v 256.375 h 253.9333 z m 110.9333 592.375 V 1046.846 H 580.97604 V 934.84597 Z M 580.97604 1494.846 v -112 H 1025.576 l -110.93329 112 z m 666.46666 -336 -110.9334 112 H 580.97604 v -112 z" FillRule="NonZero"/>
       </Path.Data>
     </Path>
   </Canvas>
