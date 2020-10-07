@@ -8,7 +8,7 @@
   "shortName": "Web View",
   "identity": "wts.WinUI.Page.WebView",
   "groupIdentity": "wts.WinUI.Page.WebView",
-  "description": "",
+  "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
   "tags": {
     "language": "C#",
     "type": "item",

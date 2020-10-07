@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Web View",
-  "description": "",
+  "description": "Stránka webového zobrazení vykresluje webový obsah pomocí vykreslovacího modulu prohlížeče Microsoft Edge.",
   "identity": "wts.WinUI.Page.WebView"
 }
