@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in to a AdaptiveGridView and allows to present information within a Grid View perfectly adjusting the total display available space. Clicking on an item shows a detail page.
+﻿ Auf dieser Seite können Sie benutzerdefinierte Inhalte in einer Rasteransicht hinzufügen, die sich an die Bildschirmgröße anpasst. [Weitere Informationen zur adaptiven Rasteransicht](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

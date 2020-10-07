@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in to a AdaptiveGridView and allows to present information within a Grid View perfectly adjusting the total display available space. Clicking on an item shows a detail page.
+﻿此页面允许你添加网格视图下的自定义内容，以响应屏幕尺寸的更改。[详细了解自适应网格视图。](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

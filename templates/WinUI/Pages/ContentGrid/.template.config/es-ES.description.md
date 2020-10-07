@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in to a AdaptiveGridView and allows to present information within a Grid View perfectly adjusting the total display available space. Clicking on an item shows a detail page.
+﻿ Esta página permite agregar contenido personalizado en una GridView que responde al cambio de tamaño de pantalla. [Más información acerca dela Vista de cuadrícula adaptable.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "This page contains a basic AdaptiveGridView based on a Grid View.",
+  "description": "Эта страница разрешает добавление пользовательских элементов в виде адаптивной сетки.",
   "identity": "wts.WinUI.Page.ContentGrid"
 }

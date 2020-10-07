@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "This page contains a basic AdaptiveGridView based on a Grid View.",
+  "description": "Ta strona pozwala dodawać własne elementy w postaci adaptacyjnej siatki.",
   "identity": "wts.WinUI.Page.ContentGrid"
 }
