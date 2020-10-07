@@ -23,6 +23,14 @@ If you miss anything or find an issue that is not mentioned in the known issues 
     - x64: https://aka.ms/dotnet/net5/preview5/Sdk/dotnet-sdk-win-x64.exe
     - x86: https://aka.ms/dotnet/net5/preview5/Sdk/dotnet-sdk-win-x86.exe
 
+5. Add a new Package source to the Windows Community Toolkit MyGet feed at https://dotnet.myget.org/F/uwpcommunitytoolkit/api/v3/index.json
+    Go to Tools > Nuget Package Manager > Package Manager Settings > Package Sources
+
+6. Make sure you enable "Include prerelease" packages in the Nuget Package Manager.
+    Go to Tools > Nuget Package Manager > Manage Nuget Packages for Solution
+
+
+
 ### Known issues:
 - [Dark/Light Theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
