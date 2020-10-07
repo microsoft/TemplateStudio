@@ -8,7 +8,7 @@
   "shortName": "Content Grid",
   "identity": "wts.WinUI.Page.ContentGrid",
   "groupIdentity": "wts.WinUI.Page.ContentGrid",
-  "description": "This page contains a basic content grid based on a ListView.",
+  "description": "This page contains a basic AdaptiveGridView based on a Grid View.",
   "tags": {
     "language": "C#",
     "type": "item",

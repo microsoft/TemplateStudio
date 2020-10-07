@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿This page allows you to add custom content in to a AdaptiveGridView and allows to present information within a Grid View perfectly adjusting the total display available space. Clicking on an item shows a detail page.
