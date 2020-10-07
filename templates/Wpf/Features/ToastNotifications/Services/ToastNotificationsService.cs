@@ -1,4 +1,4 @@
-using Param_RootNamespace.Contracts.Services;
+﻿using Param_RootNamespace.Contracts.Services;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Notifications;
 

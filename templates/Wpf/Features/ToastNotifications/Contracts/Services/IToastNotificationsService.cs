@@ -1,4 +1,4 @@
-using Windows.UI.Notifications;
+﻿using Windows.UI.Notifications;
 
 namespace Param_RootNamespace.Contracts.Services
 {
