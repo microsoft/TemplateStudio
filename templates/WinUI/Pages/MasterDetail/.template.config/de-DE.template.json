@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MasterDetail",
-  "description": "",
+  "description": "Die Master-Detail-Seite besitzt einen Masterbereich und einen Detailbereich für Inhalte.",
   "identity": "wts.WinUI.Page.MasterDetail"
 }

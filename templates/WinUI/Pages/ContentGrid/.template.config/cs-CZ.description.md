@@ -1,1 +1,1 @@
-﻿
+﻿ Tato stránka umožňuje přidat obsah do prvku GridView, který se přizpůsobuje změnám velikosti obrazovky. [Další informace o adaptivním zobrazení mřížky](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

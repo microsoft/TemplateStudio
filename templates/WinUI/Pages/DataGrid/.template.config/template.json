@@ -8,7 +8,7 @@
   "shortName": "Data Grid",
   "identity": "wts.WinUI.Page.DataGrid",
   "groupIdentity": "wts.WinUI.Page.DataGrid",
-  "description": "This page contains a basic data grid based on a ListView.",
+  "description": "A page displaying a simple data grid.",
   "tags": {
     "language": "C#",
     "type": "item",

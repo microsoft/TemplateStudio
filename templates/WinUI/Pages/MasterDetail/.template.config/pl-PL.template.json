@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MasterDetail",
-  "description": "",
+  "description": "Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści.",
   "identity": "wts.WinUI.Page.MasterDetail"
 }

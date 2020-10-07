@@ -1,1 +1,1 @@
-﻿This page allows you to add custom content in a to a content grid based on a ListView control. Clicking on an item shows a detail page.
+﻿This page allows you to add custom content in a GridView which is responsive to the screen size change. [Learn more about the Adaptive Grid View](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview).

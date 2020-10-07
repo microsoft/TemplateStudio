@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "",
+  "description": "このページでは、適応型グリッドのフォーム内にカスタム アイテムを追加できます。",
   "identity": "wts.WinUI.Page.ContentGrid"
 }

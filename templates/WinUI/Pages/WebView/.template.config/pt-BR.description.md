@@ -1,1 +1,3 @@
-﻿
+﻿A página de exibição na Web insere uma exibição no aplicativo que renderiza o conteúdo da Web usando o mecanismo de renderização do Microsoft Edge. Hiperlinks também podem ser mostrados e funcionar em um controle de exibição na Web.  Você pode usar um controle de exibição na Web para exibir conteúdo HTML com formatação avançada de um servidor Web remoto, código gerado dinamicamente ou arquivos de conteúdo em seu pacote de aplicativos. O conteúdo avançado também pode ter o código de script e se comunicar entre o script e o código do aplicativo.
+
+[O controle de exibição na Web é adequado para você?](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

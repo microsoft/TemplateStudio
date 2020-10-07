@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "MasterDetail",
-  "description": "",
+  "description": "La pagina master-dettagli ha un riquadro master e un riquadro dettagli per il contenuto.",
   "identity": "wts.WinUI.Page.MasterDetail"
 }

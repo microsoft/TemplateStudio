@@ -18,7 +18,7 @@
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
-    "wts.genGroup": "0",
+    "wts.genGroup": "1",
     "wts.rightClickEnabled":"true",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "Settings",

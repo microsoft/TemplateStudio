@@ -1,1 +1,1 @@
-﻿
+﻿ 이 페이지에서 화면 크기 변경에 반응하는 GridView에 맞춤형 콘텐츠를 추가할 수 있습니다. [Adaptive Grid View에 대해 자세히 알아보세요.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

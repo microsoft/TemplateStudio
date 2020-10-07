@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Content Grid",
-  "description": "",
+  "description": "Ta strona pozwala dodawać własne elementy w postaci adaptacyjnej siatki.",
   "identity": "wts.WinUI.Page.ContentGrid"
 }
