@@ -766,7 +766,8 @@ namespace Microsoft.Templates.Test
                 // TODO: remove this when implement #3000
                 return;
             }
-            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar).ConfigureAwait(false);
+
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar);
         }
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
