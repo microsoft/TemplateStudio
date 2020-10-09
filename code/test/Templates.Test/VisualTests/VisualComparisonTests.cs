@@ -862,6 +862,12 @@ namespace Microsoft.Templates.Test
 
                                     VirtualKeyboard.KeyDown(Escape);
                                     VirtualKeyboard.KeyUp(Escape);
+
+                                    // Clicking escape (above) doesn't always dismiss the flyout during automation
+                                    // Clicking on the open page will dismiss it though
+                                    appSession.Mouse.MouseMove(null, 200, 200);
+                                    appSession.Mouse.MouseDown(null);
+                                    appSession.Mouse.MouseUp(null);
                                 }
                                 else
                                 {
