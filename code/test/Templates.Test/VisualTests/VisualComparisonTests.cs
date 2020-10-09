@@ -771,7 +771,8 @@ namespace Microsoft.Templates.Test
         }
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
-    {
+        {
+            // InvalidOperationException occurs when WinAppDriver can't launch the app. Retrying normally solves
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
         ExceptionHelper.RetryOn<InvalidOperationException>(async () => {
             var pageIdentities = AllTestablePages(framework);
