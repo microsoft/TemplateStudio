@@ -952,6 +952,8 @@ namespace Microsoft.Templates.Test
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         });
 #pragma warning restore VSTHRD101 // Avoid unsupported async delegates
+
+            await Task.CompletedTask;
         }
 
         protected async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
