@@ -766,12 +766,13 @@ namespace Microsoft.Templates.Test
                 // TODO: remove this when implement #3000
                 return;
             }
-
-            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar);
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar).ConfigureAwait(false);
         }
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
-        {
+    {
+#pragma warning disable VSTHRD101 // Avoid unsupported async delegates
+        ExceptionHelper.RetryOn<InvalidOperationException>(async () => {
             var pageIdentities = AllTestablePages(framework);
 
             ExecutionEnvironment.CheckRunningAsAdmin();
@@ -948,6 +949,8 @@ namespace Microsoft.Templates.Test
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
 
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
+        });
+#pragma warning restore VSTHRD101 // Avoid unsupported async delegates
         }
 
         protected async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
