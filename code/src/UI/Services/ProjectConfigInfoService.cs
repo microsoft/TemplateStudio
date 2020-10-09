@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Services
         public const string FxCodeBehid = "CodeBehind";
         public const string FxCaliburnMicro = "CaliburnMicro";
         public const string FxPrism = "Prism";
-        public const string FxToolkitMvvm = "MvvmToolkit";
+        public const string FxToolkitMvvm = "MVVMToolkit";
 
         private const string PlUwp = "Uwp";
         private const string PlWpf = "Wpf";

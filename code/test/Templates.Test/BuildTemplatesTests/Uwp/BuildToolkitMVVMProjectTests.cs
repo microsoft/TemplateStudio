@@ -147,7 +147,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneToolkitMvvm")]
-        public async Task Build_MVVMBasic_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMToolkit_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
@@ -159,7 +159,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneToolkitMvvm")]
-        public async Task Build_MVVMBasic_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
+        public async Task Build_MVVMToolkit_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 

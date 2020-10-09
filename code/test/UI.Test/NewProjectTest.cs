@@ -20,7 +20,7 @@ namespace Microsoft.UI.Test
         // Project Types
         private const string SplitView = "SplitView";
         private const string CodeBehind = "CodeBehind";
-        private const string MvvmToolkit = "MvvmToolkit";
+        private const string MvvmToolkit = "MVVMToolkit";
 
         // Frameworks
         private const string Blank = "Blank";
