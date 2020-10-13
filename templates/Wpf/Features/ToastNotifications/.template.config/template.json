@@ -23,7 +23,7 @@
       "wts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
       "wts.multipleInstance": "false",
       "wts.genGroup": "0",
-      "wts.rightClickEnabled":"true"
+      "wts.rightClickEnabled":"false"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
