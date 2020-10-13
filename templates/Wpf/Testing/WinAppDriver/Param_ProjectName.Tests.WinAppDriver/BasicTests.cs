@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
-namespace DotNetCoreWpfApp.Tests.WinAppDriver
+namespace Param_RootNamespace.Tests.WinAppDriver
 {
     [TestClass]
     public class BasicTests
@@ -64,7 +64,7 @@ namespace DotNetCoreWpfApp.Tests.WinAppDriver
                     AppSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appiumOptions);
 
                     //Get main window by Accessibility Id
-                    var mainWindow = AppSession.FindElementByAccessibilityId("DotNetCoreWpfAppMainWindow");
+                    var mainWindow = AppSession.FindElementByAccessibilityId("Param_RootNamespaceMainWindow");
                     var mainWindowHandle = mainWindow.GetAttribute("NativeWindowHandle");
                     mainWindowHandle = int.Parse(mainWindowHandle).ToString("x"); // Convert to Hex
                     appiumOptions = new AppiumOptions();
