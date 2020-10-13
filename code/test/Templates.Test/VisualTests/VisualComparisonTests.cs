@@ -772,6 +772,9 @@ namespace Microsoft.Templates.Test
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
         {
+            // InvalidOperationException occurs when WinAppDriver can't launch the app. Retrying normally solves
+#pragma warning disable VSTHRD101 // Avoid unsupported async delegates
+        ExceptionHelper.RetryOn<InvalidOperationException>(async () => {
             var pageIdentities = AllTestablePages(framework);
 
             ExecutionEnvironment.CheckRunningAsAdmin();
@@ -862,6 +865,12 @@ namespace Microsoft.Templates.Test
 
                                     VirtualKeyboard.KeyDown(Escape);
                                     VirtualKeyboard.KeyUp(Escape);
+
+                                    // Clicking escape (above) doesn't always dismiss the flyout during automation
+                                    // Clicking on the open page will dismiss it though
+                                    appSession.Mouse.MouseMove(null, 200, 200);
+                                    appSession.Mouse.MouseDown(null);
+                                    appSession.Mouse.MouseUp(null);
                                 }
                                 else
                                 {
@@ -942,6 +951,10 @@ namespace Microsoft.Templates.Test
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
 
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
+        });
+#pragma warning restore VSTHRD101 // Avoid unsupported async delegates
+
+            await Task.CompletedTask;
         }
 
         protected async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
