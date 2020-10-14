@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test Core library with MSTest",
   "shortName": "Test Core library with MSTest",
-  "groupIdentity": "wts.Testing.UnitTests.Core.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.MSTest",
+  "groupIdentity": "wts.Wpf.Testing.UnitTests.Core.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Core.MSTest",
   "description": "Add a project to test code in the Core library with MSTest.",
   "tags": {
     "language": "C#",
@@ -47,7 +47,7 @@
       "args": {
         "packageId" : "Microsoft.NET.Test.Sdk",
         "version" : "16.7.1",
-        "projectPath": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.csproj"
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
       },
       "continueOnError": true
     },
@@ -58,7 +58,7 @@
       "args": {
         "packageId" : "MSTest.TestAdapter",
         "version" : "2.1.1",
-        "projectPath": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.csproj"
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
       },
       "continueOnError": true
     },
@@ -69,7 +69,7 @@
       "args": {
         "packageId" : "MSTest.TestFramework",
         "version" : "2.1.1",
-        "projectPath": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.csproj"
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
       },
       "continueOnError": true
     },
@@ -80,7 +80,7 @@
       "args": {
         "packageId" : "coverlet.collector",
         "version" : "1.3.0",
-        "projectPath": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.csproj"
+        "projectPath": "Param_ProjectName.Core.Tests.MSTest\\Param_ProjectName.Core.Tests.MSTest.csproj"
       },
       "continueOnError": true
     }

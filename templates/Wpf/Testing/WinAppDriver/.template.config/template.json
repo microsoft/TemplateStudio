@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Win App Driver",
   "shortName": "Win App Driver",
-  "groupIdentity": "wts.Testing.WinAppDriver",
-  "identity": "wts.Testing.WinAppDriver",
+  "groupIdentity": "wts.Wpf.Testing.WinAppDriver",
+  "identity": "wts.Wpf.Testing.WinAppDriver",
   "description": "Add project for UI tests using Appium via Windows Application Driver.",
   "tags": {
     "language": "C#",
@@ -25,7 +25,6 @@
   },
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
-  "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.WinAppDriver/Param_ProjectName.Tests.WinAppDriver.csproj" }
   ],

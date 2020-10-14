@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.MSTest",
+  "name": "wts.Testing.UnitTests.Core.FileService.MSTest",
+  "identity": "wts.Testing.UnitTests.Core.FileService.MSTest",
+  "shortName": "wts.Testing.UnitTests.Core.FileService.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,13 +14,13 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Testing.UnitTests.Core.MSTest & $feature == wts.Wpf.Feat.SampleData",
+    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.MSTest & $feature == wts.Wpf.Feat.PersistAndRestore",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName.Core.Tests.MSTest/SampleDataServiceTests.cs" }
+    { "path": "Param_ProjectName.Core.Tests.MSTest/FileServiceTests.cs" }
   ],
   "symbols": {
     "wts.projectName": {

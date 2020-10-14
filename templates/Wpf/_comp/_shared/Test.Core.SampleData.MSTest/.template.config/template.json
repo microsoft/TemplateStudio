@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.MSTest",
+  "name": "wts.Testing.UnitTests.Core.SampleData.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Core.SampleData.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Core.SampleData.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,12 +14,13 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Testing.UnitTests.Core.MSTest & $page == wts.Wpf.Page.ContentGrid|wts.Wpf.Page.ContentGrid.CodeBehind",
-    "wts.compositionOrder" : "2"
+    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.MSTest & $feature == wts.Wpf.Feat.SampleData",
+    "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Core.Tests.MSTest/SampleDataServiceTests.cs" }
   ],
   "symbols": {
     "wts.projectName": {
