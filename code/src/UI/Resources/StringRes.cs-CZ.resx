@@ -213,7 +213,7 @@
     <value>Další informace</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Pro vytvoření projektu {1} musíte nainstalovat aplikační úlohu {0}. Nainstalujte ji pomocí služby Visual Studio Installer.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

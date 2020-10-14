@@ -213,7 +213,7 @@
     <value>詳細資訊</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>您需要安裝工作負載「{0}」才能建立 {1} 專案。請使用 Visual Studio 安裝程式安裝此工作負載。</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

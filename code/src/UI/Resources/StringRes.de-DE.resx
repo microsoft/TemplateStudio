@@ -213,7 +213,7 @@
     <value>Weitere Informationen</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Sie müssen Workload „{0}“ installieren, um ein {1}-Projekt erstellen zu können. Installieren Sie diesen Workload über den Visual Studio Installer.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

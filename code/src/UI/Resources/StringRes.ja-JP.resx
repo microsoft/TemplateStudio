@@ -213,7 +213,7 @@
     <value>詳細</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>プロジェクト {1} を作成するには、ワークロード "{0}" をインストールする必要があります。このワークロードを Visual Studio Installer でインストールしてください。</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

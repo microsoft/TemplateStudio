@@ -213,7 +213,7 @@
     <value>Diğer bilgiler</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>{1} projesi oluşturmak için "{0}" iş yükünü yüklemeniz gerekiyor. Lütfen bu iş yükünü Visual Studio Yükleyicisi'ni kullanarak yükleyin.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>

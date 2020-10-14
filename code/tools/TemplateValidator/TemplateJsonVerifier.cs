@@ -314,7 +314,7 @@ namespace TemplateValidator
 
         private static void VerifyPlatformTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { Platforms.Uwp, Platforms.Wpf }.Contains(tag.Value))
+            if (!new[] { Platforms.Uwp, Platforms.Wpf, Platforms.WinUI }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the platform tag.");
             }
@@ -338,7 +338,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
