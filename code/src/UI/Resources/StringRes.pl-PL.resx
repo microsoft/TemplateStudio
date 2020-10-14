@@ -895,4 +895,10 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
 </root>

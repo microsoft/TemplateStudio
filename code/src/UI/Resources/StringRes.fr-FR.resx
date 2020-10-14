@@ -895,4 +895,10 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
 </root>
