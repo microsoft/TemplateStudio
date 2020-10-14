@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
-            AssertBuildProjectThenRunTests(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
 
