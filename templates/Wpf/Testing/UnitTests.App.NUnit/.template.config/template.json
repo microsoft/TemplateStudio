@@ -1,0 +1,102 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Test App with NUnit",
+  "shortName": "Test App with NUnit",
+  "groupIdentity": "wts.Wpf.Testing.UnitTests.App.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.App.NUnit",
+  "description": "Add a project for unit tests against the app using NUnit.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "testing",
+    "wts.outputToParent": "true",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.defaultInstance": "Tests-App-NUnit",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[NUnit](https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm)|[Moq](https://github.com/moq/moq/blob/master/LICENSE)"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Tests.NUnit/Param_ProjectName.Tests.NUnit.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.NET.Test.Sdk",
+        "version" : "16.7.1",
+        "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "NUnit3TestAdapter",
+        "version" : "3.16.1",
+        "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "NUnit",
+        "version" : "3.12.0",
+        "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Moq",
+        "version" : "4.14.5",
+        "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

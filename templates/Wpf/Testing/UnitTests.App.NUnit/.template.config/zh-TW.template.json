@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Test App with NUnit",
+  "description": "使用 NUnit 新增針對應用程式進行單元測試的專案。",
+  "identity": "wts.Wpf.Testing.UnitTests.App.NUnit"
+}

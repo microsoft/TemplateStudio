@@ -1,12 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
-namespace Param_RootNamespace.Tests.MSTest
+namespace Param_RootNamespace.Tests.NUnit
 {
     // TODO WTS: Add appropriate unit tests.
-    [TestClass]
     public class Tests
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }
