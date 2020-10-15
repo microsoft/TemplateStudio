@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
+  "name": "wts.Wpf.Testing.UnitTests.Pages.Base.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Pages.Base.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Pages.Base.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,13 +14,13 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.App.MSTest & $page == wts.Wpf.Page.Settings",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & groupIdentity == wts.Wpf.Testing.UnitTests.App.MSTest",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName.Tests.MSTest/SettingsViewModelTests.cs" }
+    { "path": "Param_ProjectName.Tests.MSTest/PagesTests.cs" }
   ],
   "symbols": {
     "wts.projectName": {

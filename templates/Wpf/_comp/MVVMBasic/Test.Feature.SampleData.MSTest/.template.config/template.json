@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Pages.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Pages.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Pages.MSTest",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.SampleData.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.SampleData.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.SampleData.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,13 +14,12 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.MSTest & wts.type == page",
-    "wts.compositionOrder" : "1"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & identity == wts.Wpf.Feat.SampleData & $testing == wts.Wpf.Testing.UnitTests.App.MSTest",
+    "wts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName.Tests.MSTest/PagesTests.cs" }
   ],
   "symbols": {
     "wts.projectName": {

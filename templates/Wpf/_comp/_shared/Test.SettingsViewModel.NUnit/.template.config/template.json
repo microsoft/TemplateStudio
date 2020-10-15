@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.FileService.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.FileService.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.FileService.NUnit",
+  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.NUnit",
+  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.NUnit",
+  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
