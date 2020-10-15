@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Test App with xUnit",
+  "description": "xUnit kullanan uygulamanın birim testleri için bir proje ekleyin.",
+  "identity": "wts.Testing.UnitTests.App.xUnit"
+}
