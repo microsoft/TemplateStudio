@@ -2,7 +2,7 @@
 
 We're looking into adding WinUI 3 Desktop App templates to Windows Template Studio.
 
-Our templates for WinUI 3 Desktop Apps are currently in preview as WinUI3 itself. You'll find them soon in our [dev-nightly version](./../getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio).
+Our templates for WinUI 3 Desktop Apps are currently in preview as WinUI3 itself. You can try them out in our [dev-nightly version](./../getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio).
 
 We would love to get your feedback on our [tracking issue for WinUI3 templates](https://github.com/microsoft/WindowsTemplateStudio/issues/3810).
 
