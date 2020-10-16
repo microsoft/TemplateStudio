@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.ThemeSelection.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.ThemeSelection.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.ThemeSelection.NUnit",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ThemeSelection.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ThemeSelection.NUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ThemeSelection.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

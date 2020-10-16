@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.SystemService.xUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.SystemService.xUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.SystemService.xUnit",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.xUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.xUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",

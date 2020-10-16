@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.SystemService.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.SystemService.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.SystemService.NUnit",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.NUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SystemService.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.ApplicationInfoService.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.ApplicationInfoService.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.ApplicationInfoService.MSTest",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ApplicationInfoService.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ApplicationInfoService.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.ApplicationInfoService.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",

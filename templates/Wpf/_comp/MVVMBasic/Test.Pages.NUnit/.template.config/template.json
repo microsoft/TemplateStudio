@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Pages.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Pages.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Pages.NUnit",
+  "name": "wts.Wpf.Testing.UnitTests.Pages.MvvmBasic.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Pages.MvvmBasic.NUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Pages.MvvmBasic.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

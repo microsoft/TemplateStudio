@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.SampleData.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.SampleData.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.SampleData.NUnit",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SampleData.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SampleData.NUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.SampleData.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

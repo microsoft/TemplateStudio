@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.PeristAndrestore.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.PeristAndrestore.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.PeristAndrestore.MSTest",
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.PeristAndrestore.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.PeristAndrestore.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MvvmBasic.PeristAndrestore.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
