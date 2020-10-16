@@ -213,7 +213,7 @@
     <value>Więcej informacji</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Aby utworzyć projekt {1}, należy zainstalować pakiet roboczy „{0}”. Zainstaluj go za pomocą instalatora programu Visual Studio.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -894,5 +894,11 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
   </data>
 </root>

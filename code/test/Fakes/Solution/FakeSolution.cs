@@ -195,7 +195,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -304,7 +304,7 @@ EndProject
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectName, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
+        private static string GetProjectConfigurationTemplate(string platform, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             switch (platform)
             {
@@ -319,6 +319,7 @@ EndProject
                     }
 
                 case Platforms.Wpf:
+                case Platforms.WinUI:
                     if (projectRelativeToSolutionPath.Contains("wapproj"))
                     {
                         return MSIXProjectConfigurationTemplate;
@@ -356,6 +357,8 @@ EndProject
                     return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
                 case Platforms.Wpf:
                     return File.ReadAllText(@"Solution\WpfSolutionTemplate.txt");
+                case Platforms.WinUI:
+                    return File.ReadAllText(@"Solution\WinUISolutionTemplate.txt");
             }
 
             throw new InvalidDataException(nameof(platform));

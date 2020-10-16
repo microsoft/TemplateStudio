@@ -29,8 +29,8 @@ namespace Microsoft.Templates.UI.Services
             }
             catch (Exception ex)
             {
-                GenContext.ToolBox.Shell.CloseSolution();
                 _dialogService.ShowError(ex, userSelection.ToString());
+                GenContext.ToolBox.Shell.CloseSolution();
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }

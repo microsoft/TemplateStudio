@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Data Grid",
+  "description": "Una pagina con una semplice griglia di dati.",
+  "identity": "wts.WinUI.Page.DataGrid"
+}

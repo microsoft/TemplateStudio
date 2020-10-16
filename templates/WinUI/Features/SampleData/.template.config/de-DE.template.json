@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Sample Data",
+  "description": "„SampleData“ enthält Beispieldaten, die von der generierten Version einiger Seiten verwendet werden.",
+  "identity": "wts.WinUI.Feat.SampleData"
+}

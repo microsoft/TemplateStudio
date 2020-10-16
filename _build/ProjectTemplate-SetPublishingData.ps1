@@ -7,15 +7,21 @@ Param(
   [string]$wpfname,
 
   [Parameter(Mandatory=$True,Position=3)]
-  [string]$csharpuwptemplateId,
+  [string]$winuiname,
 
   [Parameter(Mandatory=$True,Position=4)]
-  [string]$csharpwpftemplateId,
+  [string]$csharpuwptemplateId,
 
   [Parameter(Mandatory=$True,Position=5)]
-  [string]$visualbasictemplateId,
+  [string]$csharpwpftemplateId,
 
   [Parameter(Mandatory=$True,Position=6)]
+  [string]$csharpwinuitemplateId,
+
+  [Parameter(Mandatory=$True,Position=7)]
+  [string]$visualbasictemplateId,
+
+  [Parameter(Mandatory=$True,Position=8)]
   [string]$buildNumber
 )
 
@@ -63,6 +69,14 @@ if($uwpname -and $wpfname){
            $templateContent.VSTemplate.TemplateData.Name = $wpfname
 
            Write-Host "$projectTemplate - Name, TemplateId & Version applied ($wpfname, $csharpwpftemplateId, $versionNumber)"
+        }
+
+       if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.WinUI.WindowsTemplateStudio.local')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpwinuitemplateId
+           $templateContent.VSTemplate.TemplateData.Name = $winuiname
+
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuiname, $csharpwinuitemplateId, $versionNumber)"
         }
 
         if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local')
