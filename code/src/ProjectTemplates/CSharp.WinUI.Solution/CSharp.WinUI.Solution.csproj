@@ -115,7 +115,6 @@
       <Culture>1028</Culture>
       <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
-    <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <ItemGroup>
