@@ -71,7 +71,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "NUnit3TestAdapter",
-        "version" : "3.16.1",
+        "version" : "3.17.0",
         "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
       },
       "continueOnError": true
@@ -93,7 +93,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Moq",
-        "version" : "4.14.5",
+        "version" : "4.14.7",
         "projectPath": "Param_ProjectName.Tests.NUnit\\Param_ProjectName.Tests.NUnit.csproj"
       },
       "continueOnError": true
