@@ -16,7 +16,7 @@
     "wts.frontendframework": "all",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.defaultInstance": "Tests-App-NUnit",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
