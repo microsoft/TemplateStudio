@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MSTest",
+  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.MSTest",
+  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.MSTest",
+  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.App.MSTest & $page == wts.Wpf.Page.Settings",
+    "wts.compositionFilter": "$frontendframework == MVVMLight & $testing == wts.Wpf.Testing.UnitTests.App.MSTest & $page == wts.Wpf.Page.Settings",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

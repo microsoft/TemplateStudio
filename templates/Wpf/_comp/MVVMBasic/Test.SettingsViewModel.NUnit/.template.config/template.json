@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.xUnit",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.xUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.xUnit",
+  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MvvmBasic.NUnit",
+  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MvvmBasic.NUnit",
+  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MvvmBasic.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,13 +14,13 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.App.xUnit & $page == wts.Wpf.Page.Settings",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic & $testing == wts.Wpf.Testing.UnitTests.App.NUnit & $page == wts.Wpf.Page.Settings",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName.Tests.xUnit/SettingsViewModelTests.cs" }
+    { "path": "Param_ProjectName.Tests.NUnit/SettingsViewModelTests.cs" }
   ],
   "symbols": {
     "wts.projectName": {

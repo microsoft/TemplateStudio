@@ -1,6 +1,5 @@
 ﻿namespace Param_RootNamespace.Tests.xUnit
 {
-    [TestClass]
     public class PagesTests
     {
         public PagesTests()

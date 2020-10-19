@@ -1,0 +1,36 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.NUnit",
+  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.NUnit",
+  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMLight.NUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMLight & $testing == wts.Wpf.Testing.UnitTests.App.NUnit & $page == wts.Wpf.Page.Settings",
+    "wts.compositionOrder" : "1"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Tests.NUnit/SettingsViewModelTests.cs" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
