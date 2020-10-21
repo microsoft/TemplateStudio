@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Page.Settings|wts.Wpf.Page.WebView"
+    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Page.Settings|wts.Wpf.Page.WebView|wts.Wpf.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

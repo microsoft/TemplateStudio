@@ -28,6 +28,10 @@ namespace Microsoft.Templates.UI.Services
         {
             _secondaryFrame = secondaryFrame;
             _secondaryFrame.Content = content;
+        }
+
+        public static void SubscribeEventHandlers()
+        {
             _secondaryFrame.Navigated += SecondaryFrameNavigated;
             _secondaryFrame.Navigating += SecondaryFrameNavigating;
         }

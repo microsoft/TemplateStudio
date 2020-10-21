@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Brakuje następujących wersji, zainstaluj je i uruchom ponownie program Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimalna wersja rdzenia .NET:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Nieprawidłowy typ wymagań {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Nowa aplikacja na platformie uniwersalnej systemu Windows</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -175,9 +184,6 @@
     <value>Błąd podczas dodawania zestawów SDK do projektu {0}.</value>
     <comment>Error message for adding items to project</comment>
   </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Brakuje zestawu SDK systemu Windows dla następujących platform docelowych: {0}.  Zanim przejdziesz dalej, [zainstaluj ten zestaw](https://developer.microsoft.com/windows/downloads/windows-10-sdk), a następnie ponownie uruchom program Visual Studio.</value>
-  </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Wymagane zestawy SDK systemu Windows:</value>
   </data>
@@ -207,7 +213,7 @@
     <value>Więcej informacji</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Aby utworzyć projekt {1}, należy zainstalować pakiet roboczy „{0}”. Zainstaluj go za pomocą instalatora programu Visual Studio.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -888,5 +894,11 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Zobacz dokumentację, aby zaktualizować.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
   </data>
 </root>

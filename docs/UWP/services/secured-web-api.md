@@ -1,4 +1,4 @@
-﻿# Secured Web API
+﻿﻿# Secured Web API
 
 This template will add a ASP.NET Core Web API that validates the JWToken passed by the UWP application.
 
@@ -19,13 +19,17 @@ Update the appsettings.json file with the ClientId, TenantId and Audience.
 2. Expose scopes on and roles: Follow the steps from https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis to expose scopes and roles on your Web API.
 Update the appsettings.json file with the configured Scope.
 
-3. To assign users to your Web API follow the steps on https://docs.microsoft.com/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users
+3. Configure the app role OrdersReader following the steps on https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps.
+
+4. Assign users to your Web API follow the steps on https://docs.microsoft.com/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users.
 
 ### UWP Configuration
 
 Register your own Client app following the steps on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app to be able to access the Web API and configure the Client App to access the Web API following the steps from  https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-access-web-apis.
 
-Update the App.config's IdentityClientId, ResourceId and WebApi Scope
+Make sure you configure urn:ietf:wg:oauth:2.0:oob as a redirect uri as described in https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.applicationoptions.redirecturi?view=azure-dotnet
+
+Update the App.config's IdentityClientId, ResourceId (WebAPI's ClientID) and WebApi Scope
 
 ## Understanding the code
 

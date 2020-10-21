@@ -30,7 +30,7 @@ namespace Param_RootNamespace.Core.Services
 
         public async Task<T> GetAsync<T>(string uri, string accessToken = null, bool forceRefresh = false)
         {
-            T result = default(T);
+            T result = default;
 
             // The responseCache is a simple store of past responses to avoid unnecessary requests for the same resource.
             // Feel free to remove it or extend this request logic as appropraite for your app.

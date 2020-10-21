@@ -1,0 +1,1 @@
+﻿Stránka zobrazující DataGrid, tento ovládací prvek zobrazí data v přizpůsobitelné tabulce řádků a sloupců.

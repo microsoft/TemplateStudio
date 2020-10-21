@@ -1,0 +1,1 @@
+﻿Bu sayfa, ListView denetimine dayalı bir içerik ızgarasına özel içerik eklemenize olanak tanır. Bir öğeyi tıklattığınızda ayrıntı sayfası gösterir.

@@ -1,10 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Animation
-Imports Windows.UI.Xaml.Navigation
+﻿Imports Windows.UI.Xaml.Media.Animation
 Imports Param_RootNamespace.Helpers
 
 Namespace Services
@@ -64,8 +58,8 @@ Namespace Services
 
             SyncLock _pages
 
-                If Not _pages.TryGetValue(pageKey, page) Then
-                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), NameOf(pageKey))
+                If String.IsNullOrEmpty(pageKey) OrElse Not _pages.TryGetValue(pageKey, page) Then
+                    Throw New ArgumentException(String.Format("Invalid pageKey '{0}', please provide a valid pageKey. Maybe you forgot to call NavigationService.Configure?", pageKey), NameOf(pageKey))
                 End If
             End SyncLock
 
@@ -87,11 +81,11 @@ Namespace Services
             SyncLock _pages
 
                 If _pages.ContainsKey(key) Then
-                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key))
+                    Throw New ArgumentException(String.Format("The key {0} is already configured in NavigationService", key))
                 End If
 
                 If _pages.Any(Function(p) p.Value = pageType) Then
-                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(Function(p) p.Value = pageType).Key))
+                    Throw New ArgumentException(String.Format("This type is already configured with key {0}", _pages.First(Function(p) p.Value = pageType).Key))
                 End If
 
                 _pages.Add(key, pageType)
@@ -104,7 +98,7 @@ Namespace Services
                 If _pages.ContainsValue(page) Then
                     Return _pages.FirstOrDefault(Function(p) p.Value = page).Key
                 Else
-                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageUnknown".GetLocalized(), page.Name))
+                    Throw New ArgumentException(String.Format("The page '{0}' is unknown by the NavigationService", page.Name))
                 End If
             End SyncLock
         End Function

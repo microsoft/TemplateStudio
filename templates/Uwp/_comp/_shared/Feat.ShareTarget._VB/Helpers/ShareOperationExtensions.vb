@@ -1,4 +1,5 @@
-﻿Imports Windows.ApplicationModel.DataTransfer
+﻿Imports System.Runtime.CompilerServices
+Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports Windows.Storage.Streams
 Imports Windows.Storage

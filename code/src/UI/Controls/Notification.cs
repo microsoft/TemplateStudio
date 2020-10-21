@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.Controls
         RemoveTemplateValidation,
         RightClickItemHasNoChanges,
         ViewSufixValidation,
-        MissingSdk,
+        MissingVersion,
     }
 
     public class Notification : Observable

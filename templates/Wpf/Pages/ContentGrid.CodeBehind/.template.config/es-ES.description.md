@@ -1,0 +1,1 @@
+﻿Esta página le permite agregar contenido personalizado en un a una cuadrícula de contenido basado en un ListView control. Al hacer clic en un elemento se muestra una página de detalles.

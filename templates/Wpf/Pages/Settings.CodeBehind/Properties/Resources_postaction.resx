@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<!--{[{-->
+    <data name="wts.ItemNamePageAboutText" xml:space="preserve">
+        <value>wts.ItemName page placeholder text.  Your app description goes here.</value>
+    </data>
+    <data name="wts.ItemNamePageAboutTitle" xml:space="preserve">
+        <value>About this application</value>
+    </data>
+    <data name="wts.ItemNamePageChooseThemeText" xml:space="preserve">
+        <value>Choose Theme</value>
+    </data>
+    <data name="wts.ItemNamePagePersonalizationTitle" xml:space="preserve">
+        <value>Personalization</value>
+    </data>
+    <data name="wts.ItemNamePagePrivacyStatementText" xml:space="preserve">
+        <value>Privacy Statement</value>
+    </data>
+    <data name="wts.ItemNamePageRadioButtonDarkTheme" xml:space="preserve">
+        <value>Dark</value>
+    </data>
+    <data name="wts.ItemNamePageRadioButtonLightTheme" xml:space="preserve">
+        <value>Light</value>
+    </data>
+<!--}]}-->
+</root>

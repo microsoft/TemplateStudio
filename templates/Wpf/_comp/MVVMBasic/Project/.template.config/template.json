@@ -26,6 +26,9 @@
         "path": "Contracts/Services/IPageService.cs"
       },
       {
+        "path": "Contracts/ViewModels/INavigationAware.cs"
+      },
+      {
         "path": "Helpers/FrameExtensions.cs"
       },
       {

@@ -1,1 +1,1 @@
-﻿ApplicationInfoService contains operations that return information about the current application.
+﻿ApplicationInfoService contiene operaciones que devuelven información sobre la aplicación actual.

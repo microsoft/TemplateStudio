@@ -26,6 +26,11 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
+Applies to the following platforms:
+| UWP              | WPF              | WinUI           |
+| :--------------- | :--------------- | :---------------|
+| <!-- Yes/No? --> | <!-- Yes/No? --> |<!-- Yes/No? --> |
+
 **System**
 
 - **VS Version:** 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -164,6 +164,12 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\GenerationService.cs" />
     <Compile Include="Services\ProjectConfigInfoService.cs" />
+    <Compile Include="Services\RequiredVersionValidation\RequiredVersionInfo.cs" />
+    <Compile Include="Services\RequiredVersionValidation\RequirementType.cs" />
+    <Compile Include="Services\RequiredVersionValidation\Validators\DotNetValidator.cs" />
+    <Compile Include="Services\RequiredVersionValidation\IRequirementValidator.cs" />
+    <Compile Include="Services\RequiredVersionValidation\RequiredVersionService.cs" />
+    <Compile Include="Services\RequiredVersionValidation\Validators\WindowsSDKValidator.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -322,6 +328,7 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWinUI.cs" />
     <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />

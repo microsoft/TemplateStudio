@@ -55,6 +55,11 @@ namespace Param_RootNamespace.Services
 
         public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null, bool clearNavigation = false)
         {
+            if (pageType == null || !pageType.IsSubclassOf(typeof(Page)))
+            {
+                throw new ArgumentException($"Invalid pageType '{pageType}', please provide a valid pageType.", nameof(pageType));
+            }
+
             // Don't open the same page multiple times
             if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {

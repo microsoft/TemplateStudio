@@ -201,10 +201,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(SolutionFilePath))
-            {
-                Process.Start(SolutionFilePath);
-            }
+            Process.Start(SolutionFilePath);
         }
 
         private void OpenInVsCode()

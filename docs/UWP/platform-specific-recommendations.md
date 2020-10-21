@@ -1,6 +1,6 @@
 # Platform Specific Recommendations
 
-The Universal Windows Platform (UWP) lets you build apps for any Windows device (PCs, phones, Xbox One, HoloLens, Surface Hub, IoT and more).
+The Universal Windows Platform (UWP) lets you build apps for any Windows device (PCs, Xbox One, HoloLens, Surface Hub, IoT and more).
 Here is a compilation of useful links to the documentation that will help you to adapt your WinTS generated application to add some platform-specific features.
 
 ## General
@@ -17,33 +17,15 @@ Here is a compilation of useful links to the documentation that will help you to
 
 ## Desktop Recommendations
 
-### API Extensions
-
-- [UWP API Desktop Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-desktop-extension-sdk)
-
 ### More Information
 
 - [Device Portal for Desktop](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-desktop)
-
-## Mobile Recommendations
-
-### API Extensions
-
-- [UWP API Windows Mobile Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-mobile-extension-sdk)
-
-### More Information
-
-- [Device Portal for Mobile](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-mobile)
 
 ## Xbox Recommendations
 
 ### Overview
 
 - [Xbox UWP development doc](https://docs.microsoft.com/windows/uwp/xbox-apps)
-
-### API Extensions
-
-- [UWP API Xbox Live Extensions](https://docs.microsoft.com/uwp/extension-sdks/xbox-live-extensions)
 
 ### More Information
 
@@ -72,10 +54,6 @@ Here is a compilation of useful links to the documentation that will help you to
 ### Overview
 
 - [Windows 10 IoT doc](https://docs.microsoft.com/windows/iot-core/)
-
-### API Extensions
-
-- [UWP API IoT Extensions](https://docs.microsoft.com/uwp/extension-sdks/windows-iot-extension-sdk)
 
 ## Surface Hub devices Recommendations
 

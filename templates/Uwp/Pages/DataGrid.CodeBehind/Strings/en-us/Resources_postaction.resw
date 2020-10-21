@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the DataGridPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="DataTable.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Table showing sample sales data</value>
+    <comment>Automation name (and description) for the DataGrid page content</comment>
+  </data>
+  <!--}]}-->
+</root>

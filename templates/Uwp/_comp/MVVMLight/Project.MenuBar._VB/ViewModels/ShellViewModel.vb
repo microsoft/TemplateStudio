@@ -1,13 +1,8 @@
-﻿Imports System.Collections.Generic
-Imports System.Windows.Input
-Imports Param_RootNamespace.Helpers
+﻿Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports Windows.System
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Input
 
 Namespace ViewModels
     Public Class ShellViewModel

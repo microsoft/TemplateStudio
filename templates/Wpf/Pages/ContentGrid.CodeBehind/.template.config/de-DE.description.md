@@ -1,0 +1,1 @@
+﻿Auf dieser Seite können Sie benutzerdefinierte Inhalte in einem Inhaltsraster basierend auf einem ListView-Steuerelement hinzufügen. Wenn Sie auf ein Element klicken, wird eine Detailseite angezeigt.

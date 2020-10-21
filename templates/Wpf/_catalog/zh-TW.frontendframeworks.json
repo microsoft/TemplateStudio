@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "這是採用code-behind邏輯處理方式的應用程式所適用的傳統模型。"
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "這是 MVVM pattern的一般版本。Model-View-ViewModel 模式可在所有 XAML 平台上使用。"

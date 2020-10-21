@@ -19,6 +19,8 @@ namespace Param_RootNamespace.Core.Services
 
         // TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
         // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+        // Make sure you configure urn:ietf:wg:oauth:2.0:oob as a redirect uri as described in
+        // https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.applicationoptions.redirecturi?view=azure-dotnet
         private readonly string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
 
         private readonly string[] _graphScopes = new string[] { "user.read" };

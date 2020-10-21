@@ -94,17 +94,14 @@
     </controls:MetroWindow.Resources>
     <controls:MetroWindow.Content>
         <controls:HamburgerMenu
+            x:Name="hamburgerMenu"
             HamburgerButtonName="{x:Static properties:Resources.ShellHamburgerButtonName}"
             IsPaneOpen="False"
             DisplayMode="CompactInline"
             ItemsSource="{Binding MenuItems}"
-            OptionsItemsSource="{Binding OptionMenuItems}"
             SelectedItem="{Binding SelectedMenuItem}"
-            SelectedOptionsItem="{Binding SelectedOptionsMenuItem}"
             ItemCommand="{Binding MenuItemInvokedCommand}"
-            OptionsItemCommand="{Binding OptionsMenuItemInvokedCommand}"
-            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
-            OptionsItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
             <controls:HamburgerMenu.Content>
                 <ContentControl x:Name="hamburgerMenuContentControl" />
             </controls:HamburgerMenu.Content>

@@ -102,7 +102,9 @@ namespace Microsoft.Templates.Fakes
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid ?? Guid.NewGuid().ToString(), projectRelativeToSolutionPath, IsCpsProject(project));
+                var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString();
+
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
 
                 if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
@@ -169,6 +171,10 @@ namespace Microsoft.Templates.Fakes
         private static string FindProject(string path)
         {
             return Directory.EnumerateFiles(path, "*proj", SearchOption.AllDirectories).FirstOrDefault();
+        }
+
+        public override void ChangeSolutionConfiguration(IEnumerable<ProjectConfiguration> projectConfiguration)
+        {
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
@@ -287,6 +293,11 @@ namespace Microsoft.Templates.Fakes
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
+        }
+
+        private bool HasPlatforms(string projectPath)
+        {
+            return File.ReadAllText(projectPath).Contains("</Platforms>");
         }
 
         public override string CreateCertificate(string publisherName)

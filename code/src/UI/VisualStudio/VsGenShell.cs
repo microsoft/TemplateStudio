@@ -148,18 +148,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             return installedPackageIds;
         }
 
-        public override bool IsSdkInstalled(string name)
+        public override bool IsSdkInstalled(string version)
         {
             var sdks = ToolLocationHelper.GetTargetPlatformSdks();
 
-            if (sdks.Any(sdk => ToolLocationHelper.GetPlatformsForSDK(sdk.TargetPlatformIdentifier, sdk.TargetPlatformVersion).Contains(name)))
+            foreach (var sdk in sdks)
             {
-                return true;
+                var versions = ToolLocationHelper.GetPlatformsForSDK(sdk.TargetPlatformIdentifier, sdk.TargetPlatformVersion);
+                if (versions.Any(v => v.Contains(version)))
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
@@ -634,6 +636,29 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
        }
+
+        public override void ChangeSolutionConfiguration(IEnumerable<ProjectConfiguration> projectConfigurations)
+        {
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                var dte = await _dte.GetValueAsync();
+                foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
+                {
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    {
+                        var projectName = context.ProjectName;
+                        if (projectConfigurations.Any(p => p.Project == projectName))
+                        {
+                            var projConfig = projectConfigurations.FirstOrDefault(p => p.Project == projectName);
+                            context.ShouldDeploy = projConfig.SetDeploy;
+                        }
+                    }
+                }
+            });
+        }
 
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {

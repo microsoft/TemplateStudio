@@ -82,9 +82,11 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
     - ExecutionSet=MinimumPrismWPF
+    - ExecutionSet=MinimumMVVMToolkitWinUI
     - ExecutionSet=TemplateValidation
 
 - VSO 'CIBuild' Build (CI):
@@ -101,6 +103,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMBasic
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
+    - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
     - ExecutionSet=MinimumPrismWPF
@@ -112,9 +115,11 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildMVVMLight
     - ExecutionSet=BuildCaliburnMicro
     - ExecutionSet=BuildPrism
+    - ExecutionSet=BuildCodeBehindWpf
     - ExecutionSet=BuildMVVMBasicWpf
     - ExecutionSet=BuildPrismWpf
     - ExecutionSet=BuildMVVMLightWpf
+    - ExecutionSet=BuildMVVMToolkitWinUI
 
 - VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
   - Templates.Test
@@ -123,9 +128,11 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildOneByOneMVVMLight
     - ExecutionSet=BuildOneByOneCaliburnMicro
     - ExecutionSet=BuildOneByOnePrism
+    - ExecutionSet=BuildOneByOneCodeBehindWpf
     - ExecutionSet=BuildOneByOneMVVMBasicWpf
     - ExecutionSet=BuildOneByOneMVVMLightWpf
     - ExecutionSet=BuildOneByOnePrismWpf
+    - ExecutionSet=BuildOneByOneMVVMToolkitWinUI
 
 - VSO 'Templates.Test.Wack' Build (Wack Tests):
     - Templates.Test

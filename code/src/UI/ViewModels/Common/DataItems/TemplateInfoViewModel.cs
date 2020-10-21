@@ -14,6 +14,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class TemplateInfoViewModel : BasicInfoViewModel
     {
+        private readonly string _emptyBackendFramework = string.Empty;
+
         private int _count;
         private bool _hasMoreThanOne;
         private bool _hasMoreThanTwo;
@@ -21,7 +23,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _canBeAdded;
         private bool _disabled;
         private string _disabledMessage;
-        private string _emptyBackendFramework = string.Empty;
 
         public TemplateInfo Template { get; }
 
@@ -106,9 +107,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
             Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
-            RequiredSdks = template.RequiredSdks.Select(sdk => Regex.Match(sdk, @"\d+(\.\d+)+").Value);
             RequiredVisualStudioWorkloads = template.RequiredVisualStudioWorkloads.Select(r => r.GetRequiredWorkloadDisplayName());
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
+
+            var requiredVersions = template.RequiredVersions.Select(s => RequiredVersionService.GetVersionInfo(s));
+            RequiredSdks = requiredVersions.Where(s => s.RequirementType == RequirementType.WindowsSDK).Select(s => s.Version.ToString());
+            RequiredDotNetVersion = requiredVersions.Where(s => s.RequirementType == RequirementType.DotNetRuntime).Select(s => s.Version.ToString());
 
             // ITemplateInfo properties
             Template = template;

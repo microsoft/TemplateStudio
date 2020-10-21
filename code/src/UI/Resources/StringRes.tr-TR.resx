@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Aşağıdaki sürümler eksik, lütfen yükleyin ve Visual Studio yeniden başlatın: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimum .NET Çekirdek Versiyonu:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Geçersiz Gereksinim Türü {0}</value>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Yeni Evrensel Windows Platformu uygulaması</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
@@ -175,9 +184,6 @@
     <value>{0} projesine SDK'ler eklenirken hata oluştu.</value>
     <comment>Error message for adding items to project</comment>
   </data>
-  <data name="NotificationMissingSdk" xml:space="preserve">
-    <value>Aşağıdaki TargetPlatforms için gerekli Windows SDK'si eksik: {0}.  Devam etmeden önce lütfen [yükleyin](https://developer.microsoft.com/windows/downloads/windows-10-sdk) ve Visual Studio'yu yeniden başlatın.</value>
-  </data>
   <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
     <value>Gerekli Windows SDK'leri:</value>
   </data>
@@ -207,7 +213,7 @@
     <value>Diğer bilgiler</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>{1} projesi oluşturmak için "{0}" iş yükünü yüklemeniz gerekiyor. Lütfen bu iş yükünü Visual Studio Yükleyicisi'ni kullanarak yükleyin.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -888,5 +894,11 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
   </data>
 </root>

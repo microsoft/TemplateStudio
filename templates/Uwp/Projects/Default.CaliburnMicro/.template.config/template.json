@@ -16,7 +16,7 @@
 	  "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
-    "wts.requiredSdks":"UAP, Version=10.0.19041.0"
+    "wts.requiredVersions":"UAP, Version=10.0.19041.0"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
