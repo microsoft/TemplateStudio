@@ -9,7 +9,8 @@ namespace Microsoft.Templates.UI.AutomationPeers
 {
     public class ExpanderButtonAutomationPeer : ExpanderAutomationPeer
     {
-        public ExpanderButtonAutomationPeer(Expander owner) : base(owner)
+        public ExpanderButtonAutomationPeer(Expander owner)
+            : base(owner)
         {
         }
 
