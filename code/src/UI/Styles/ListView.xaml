@@ -269,8 +269,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Grid>
-                        <Grid x:Name="bd" MinHeight="35"  Background="{TemplateBinding Background}">
+                    <Grid MinHeight="35">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid x:Name="bd" Grid.Column="0" Grid.Row="0" Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -290,13 +297,37 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
+                        <Border Grid.Column="0" Grid.Row="0"
+                                x:Name="itemBorder"
+                                BorderThickness="{StaticResource SequentialFlowBorderThickness}"/>
                     </Grid>
+
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected}" Value="true">
                             <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="checkMark" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="true" />
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="itemBorder" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="true" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="itemBorder" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected}" Value="false" />

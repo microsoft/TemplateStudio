@@ -52,5 +52,6 @@
     <Thickness x:Key="Margin_L_LeftRight_M2_Top">24,16,24,0</Thickness>
 
     <Thickness x:Key="CardBorderThickness">1.5,1.5,1.5,1.5</Thickness>
+    <Thickness x:Key="SequentialFlowBorderThickness">1.5,1.5,1.5,1.5</Thickness>
 
 </ResourceDictionary>
