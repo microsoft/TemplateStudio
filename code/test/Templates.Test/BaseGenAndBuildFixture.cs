@@ -239,7 +239,7 @@ namespace Microsoft.Templates.Test
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config} {batPath}");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
