@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
             InitializeTemplates(Source);
         }
 
-        private static string ShortFrameworkName(string framework)
+        public static string ShortFrameworkName(string framework)
         {
             switch (framework)
             {
