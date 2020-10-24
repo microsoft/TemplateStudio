@@ -874,7 +874,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following versions are missing, please install and restart Visual Studio: {0}.
+        ///   Looks up a localized string similar to The following versions are missing, please install them and restart Visual Studio: {0}.
         /// </summary>
         public static string NotificationMissingVersions {
             get {

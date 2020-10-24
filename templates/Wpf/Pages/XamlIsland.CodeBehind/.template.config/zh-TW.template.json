@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "XAML Island",
-  "description": "",
+  "description": "使用 XAML 島承載 UWP 控制件的頁面。",
   "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
 }

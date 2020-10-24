@@ -26,6 +26,7 @@ namespace Param_RootNamespace.Views
         public ShellWindow(INavigationService navigationService, IRightPaneService rightPaneService)
         {
             _navigationService = navigationService;
+            _navigationService.Navigated += OnNavigated;
             _rightPaneService = rightPaneService;
             InitializeComponent();
             DataContext = this;
