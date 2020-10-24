@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClickLegacy")]
-        public async Task Build_Empty_Legacy_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_Empty_Legacy_AddRightClick_UwpCsAsync(string projectType, string framework, string platform, string language)
         {
             var fixture = _fixture as BuildRightClickWithLegacyCSharpFixture;
 
