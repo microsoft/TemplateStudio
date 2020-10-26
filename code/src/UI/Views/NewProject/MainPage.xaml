@@ -86,6 +86,7 @@
                             AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
                         <ItemsControl
+                            Focusable="False"
                             ItemsSource="{Binding UserSelection.Groups}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
