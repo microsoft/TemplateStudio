@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             if (stepFrame.Content == null)
             {
                 Services.NavigationService.InitializeSecondaryFrame(stepFrame, WizardNavigation.Current.CurrentStep.GetPage());
-                MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                sequentialFlow.FocusFirstStep();
             }
 
             if (_focusedElement != null)
