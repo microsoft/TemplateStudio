@@ -6,6 +6,8 @@ Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerat
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
+We're also looking into creation of WinUI3 Desktop Apps. You can find more info on how to test and give feedback [n our [WinUI docs](./docs/WinUI/readme.md). 
+
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|

@@ -37,10 +37,12 @@ namespace Microsoft.Templates.VsEmulator.Main
         private bool _canRefreshTemplateCache;
         private bool _canRecreateUwpProject;
         private bool _canRecreateWpfProject;
+        private bool _canRecreateWinUIProject;
         private string _selectedTheme;
         private bool _useStyleCop;
         private UserSelection _userSelectionUwp;
         private UserSelection _userSelectionWpf;
+        private UserSelection _userSelectionWinUI;
         private (string name, string solutionName, string location) _projectLocation;
 
         private RelayCommand _refreshTemplateCacheCommand;
@@ -87,6 +89,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand RecreateUwpProjectCommand => new RelayCommand(RecreateUwpProject, () => _canRecreateUwpProject);
 
         public RelayCommand RecreateWpfProjectCommand => new RelayCommand(RecreateWpfProject, () => _canRecreateWpfProject);
+
+        public RelayCommand RecreateWinUIProjectCommand => new RelayCommand(RecreateWinUIProject, () => _canRecreateWinUIProject);
 
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
@@ -147,6 +151,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     _userSelectionWpf = userSelection;
                 }
+                else if (parameters[0] == Platforms.WinUI)
+                {
+                    _userSelectionWinUI = userSelection;
+                }
             });
         }
 
@@ -170,6 +178,16 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void RecreateWinUIProject()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                _projectLocation = NewProjectViewModel.GetNewProjectInfo();
+                _userSelectionWinUI = await RecreateProjectAsync(_userSelectionWinUI);
+            });
+        }
+
         private void AnalyzeSelection(string parameter)
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
@@ -182,6 +200,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language)
         {
+
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
@@ -202,6 +221,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                             break;
                         case Platforms.Wpf:
                             _canRecreateWpfProject = true;
+                            break;
+                        case Platforms.WinUI:
+                            _canRecreateWinUIProject = true;
                             break;
                     }
 
@@ -275,7 +297,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             var styleCopTemplate = string.Empty;
             switch (platform)
             {
-                case "Uwp":
+                case Platforms.Uwp:
                     switch (language)
                     {
                         case "C#":
@@ -288,8 +310,11 @@ namespace Microsoft.Templates.VsEmulator.Main
                             return;
                     }
                     break;
-                case "Wpf":
+                case Platforms.Wpf:
                     styleCopTemplate = "wts.Wpf.Feat.StyleCop";
+                    break;
+                case Platforms.WinUI:
+                    styleCopTemplate = "wts.WinUI.Feat.StyleCop";
                     break;
             }
 

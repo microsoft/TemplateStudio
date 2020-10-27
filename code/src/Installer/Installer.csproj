@@ -289,6 +289,10 @@
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Content\WinUI.CS.Templates.mstx">
+      <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -489,6 +493,13 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.WinUI.Solution\CSharp.WinUI.Solution.csproj">
+      <Project>{b8a19caa-1d90-49b0-925f-37c302ca4fcd}</Project>
+      <Name>CSharp.WinUI.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
       <Project>{f8dbfd78-6a5b-41e0-a197-5aaa50c51dcb}</Project>
       <Name>CSharp.WPF.Solution</Name>
@@ -524,7 +535,7 @@
       <Version>3.0.0-preview9.19381.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>16.0.205</Version>
+      <Version>16.0.206</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.1.0-beta009</Version>

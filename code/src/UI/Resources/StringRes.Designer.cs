@@ -640,7 +640,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        ///   Looks up a localized string similar to You need to install the following workloads to create a {0} project: {1} .
         /// </summary>
         public static string InfoDialogRequiredWorkloadNotFoundMessage {
             get {
@@ -834,6 +834,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NewProjectTitleUWP {
             get {
                 return ResourceManager.GetString("NewProjectTitleUWP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New WinUI3 Desktop app.
+        /// </summary>
+        public static string NewProjectTitleWinUI {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWinUI", resourceCulture);
             }
         }
         
@@ -1806,6 +1815,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WindowsTemplateStudio {
             get {
                 return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows UI.
+        /// </summary>
+        public static string WinUI {
+            get {
+                return ResourceManager.GetString("WinUI", resourceCulture);
             }
         }
         

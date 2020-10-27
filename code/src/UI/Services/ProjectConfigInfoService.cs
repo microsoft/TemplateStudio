@@ -107,6 +107,10 @@ namespace Microsoft.Templates.UI.Services
             {
                 return Platforms.Wpf;
             }
+            else if (IsWinUI())
+            {
+                return Platforms.WinUI;
+            }
 
             throw new Exception(StringRes.ErrorUnableResolvePlatform);
         }
@@ -126,6 +130,11 @@ namespace Microsoft.Templates.UI.Services
         private static bool IsWpf()
         {
             return ContainsSDK("Microsoft.NET.Sdk.WindowsDesktop");
+        }
+
+        private static bool IsWinUI()
+        {
+            return ContainsSDK("Microsoft.NET.Sdk");
         }
 
         private static string InferUwpFramework()

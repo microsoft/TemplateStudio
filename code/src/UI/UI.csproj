@@ -328,6 +328,7 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWinUI.cs" />
     <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />
@@ -801,7 +802,7 @@
       <Version>16.0.374-pre</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>16.0.205</Version>
+      <Version>16.0.206</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Telemetry">
       <Version>16.0.233</Version>

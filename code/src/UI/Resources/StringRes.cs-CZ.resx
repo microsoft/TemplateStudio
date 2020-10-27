@@ -213,7 +213,7 @@
     <value>Další informace</value>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Pro vytvoření projektu {1} musíte nainstalovat aplikační úlohu {0}. Nainstalujte ji pomocí služby Visual Studio Installer.</value>
+    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -894,5 +894,11 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
   </data>
 </root>
