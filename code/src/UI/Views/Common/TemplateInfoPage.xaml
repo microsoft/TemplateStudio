@@ -32,19 +32,33 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" Margin="14,6,14,0" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
-            <Hyperlink x:Name="backHyperlink" Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
-                <Grid Background="Transparent">
-                    <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
-                        <TextBlock.Inlines>
-                            <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
-                            <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
-                            <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsRunHyperlink}" />
-                        </TextBlock.Inlines>
+        <Button x:Name="backButton"
+                AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}"
+                Command="{Binding GoBackCommand}"
+                Grid.ColumnSpan="2"
+                Margin="14,6,14,0"
+                HorizontalAlignment="Left">
+            <Button.Template>
+                <ControlTemplate>
+                    <TextBlock>
+                        <Hyperlink x:Name="backHyperlink"
+                                   Style="{StaticResource WtsHyperlink}"
+                                   Command="{Binding GoBackCommand}"
+                                   Focusable="False">
+                            <Grid Background="Transparent">
+                                <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
+                                    <TextBlock.Inlines>
+                                        <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
+                                        <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
+                                        <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsRunHyperlink}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </Grid>
+                        </Hyperlink>
                     </TextBlock>
-                </Grid>
-            </Hyperlink>
-        </TextBlock>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         
         <controls:ImageEx Grid.Row="1" Grid.Column="0" SourcePath="{Binding Icon}" Style="{StaticResource WtsImageEx}" Margin="{StaticResource Margin_L_Left}" />
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
