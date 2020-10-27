@@ -901,4 +901,8 @@ Please verify the following list of packages needed by your project's code and m
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
+  <data name="Flag_Deprecated" xml:space="preserve">
+    <value>DEPRECATED</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
 </root>

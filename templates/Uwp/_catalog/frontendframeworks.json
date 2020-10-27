@@ -19,7 +19,7 @@
         "platform":  "Uwp",
         "languages": [ "C#", "VisualBasic" ],
         "tags": {
-            "wts.flag": "DEPRECATED"
+            "wts.flag": "Deprecated"
         }
     },
     {
@@ -32,7 +32,7 @@
         "platform":  "Uwp",
         "languages": [ "C#", "VisualBasic" ],        
         "tags": {
-            "wts.flag": "DEPRECATED"
+            "wts.flag": "Deprecated"
         }
     },
     {
@@ -55,7 +55,7 @@
         "platform":  "Uwp",
         "languages": [ "C#" ],        
         "tags": {
-            "wts.flag": "DEPRECATED"
+            "wts.flag": "Deprecated"
         }
     },
     {

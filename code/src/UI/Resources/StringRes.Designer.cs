@@ -586,6 +586,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DEPRECATED.
+        /// </summary>
+        public static string Flag_Deprecated {
+            get {
+                return ResourceManager.GetString("Flag_Deprecated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
         public static string FrameworkTitle {
