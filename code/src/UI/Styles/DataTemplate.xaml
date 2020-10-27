@@ -219,7 +219,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsNewItemFileGroup">
-        <Expander
+        <controls:ExpanderButtonAutomationPeerControl
             Header="{Binding Title}"
             Style="{StaticResource WtsExpander}"
             HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
@@ -227,7 +227,7 @@
                 ItemsSource="{Binding Items}"
                 Style="{StaticResource WtsListViewNewItemFile}"
                 AutomationProperties.Name="{Binding Title}"/>
-        </Expander>
+        </controls:ExpanderButtonAutomationPeerControl>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
