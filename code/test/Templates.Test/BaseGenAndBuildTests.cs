@@ -602,10 +602,6 @@ namespace Microsoft.Templates.Test
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
-                case Frameworks.ToolkitMVVM:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
-                    break;
-
                 case "LegacyFrameworks":
                     if (programmingLanguage == ProgrammingLanguages.CSharp)
                     {
@@ -655,10 +651,6 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case Frameworks.Prism:
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
-                    break;
-
-                case Frameworks.ToolkitMVVM:
                     result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
                     break;
             }
