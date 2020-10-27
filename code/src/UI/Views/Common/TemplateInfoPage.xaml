@@ -35,7 +35,7 @@
         <TextBlock Grid.ColumnSpan="2" Margin="14,6,14,0" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
             <Hyperlink x:Name="backHyperlink" Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
                 <Grid Background="Transparent">
-                    <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
+                    <TextBlock VerticalAlignment="Center" Margin="10,10,10,10" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
                         <TextBlock.Inlines>
                             <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
                             <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
