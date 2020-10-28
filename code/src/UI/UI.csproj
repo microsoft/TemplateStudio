@@ -76,6 +76,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomationPeers\ExpanderButtonAutomationPeer.cs" />
+    <Compile Include="Controls\ExpanderButtonAutomationPeerControl.cs" />
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
       <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
     </Compile>
@@ -802,7 +804,7 @@
       <Version>16.0.374-pre</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>16.0.205</Version>
+      <Version>16.0.206</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Telemetry">
       <Version>16.0.233</Version>

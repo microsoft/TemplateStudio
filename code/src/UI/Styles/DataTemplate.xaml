@@ -190,7 +190,7 @@
     
     <DataTemplate x:Key="WtsItemTemplateLayout">
         <TextBlock AutomationProperties.Name="{Binding Template.Title}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Template.Title}">
                 <Grid Background="Transparent">
                     <TextBlock Text="{Binding Template.Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
@@ -219,7 +219,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsNewItemFileGroup">
-        <Expander
+        <controls:ExpanderButtonAutomationPeerControl
             Header="{Binding Title}"
             Style="{StaticResource WtsExpander}"
             HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
@@ -227,7 +227,7 @@
                 ItemsSource="{Binding Items}"
                 Style="{StaticResource WtsListViewNewItemFile}"
                 AutomationProperties.Name="{Binding Title}"/>
-        </Expander>
+        </controls:ExpanderButtonAutomationPeerControl>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
