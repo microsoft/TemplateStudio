@@ -699,7 +699,7 @@
     <comment> Notification panel label to accessibility</comment>
   </data>
   <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>ページの編集</value>
+    <value>Page name</value>
     <comment>Edit page label to accessibility</comment>
   </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
@@ -707,7 +707,7 @@
     <comment>Navigation menu label</comment>
   </data>
   <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>プロジェクトの種類のリスト</value>
+    <value>Project types</value>
     <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
@@ -719,7 +719,7 @@
     <comment>User selection page list to accessibility</comment>
   </data>
   <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design pattern リスト</value>
+    <value>Design patterns</value>
     <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
