@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <AssetTargetFallback>uap10.0.18362</AssetTargetFallback>
     <Platforms>x64;x86</Platforms>
+    <RootNamespace>Param_RootNamespace.Tests.MSTest</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
