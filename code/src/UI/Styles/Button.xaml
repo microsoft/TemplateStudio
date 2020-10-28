@@ -199,16 +199,10 @@
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="{StaticResource Margin_XS_LeftTopRightBottom}" />
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Content" Value="&#xE10A;" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
-        <Setter Property="ContentTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <TextBlock Text="&#xE10A;" Focusable="False"/>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
         <Style.Triggers>
             <Trigger Property="IsFocused" Value="true">
                 <Setter Property="Foreground" Value="{Binding ButtonFocusedText, Source={x:Static services:UIStylesService.Instance}}" />
