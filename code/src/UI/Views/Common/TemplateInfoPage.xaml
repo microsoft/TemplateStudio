@@ -44,6 +44,7 @@
                         <Hyperlink x:Name="backHyperlink"
                                    Style="{StaticResource WtsHyperlink}"
                                    Command="{Binding GoBackCommand}"
+                                   AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}"
                                    Focusable="False">
                             <Grid Background="Transparent">
                                 <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
