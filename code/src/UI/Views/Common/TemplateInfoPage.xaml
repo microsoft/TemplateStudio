@@ -72,7 +72,7 @@
 
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource WtsTextBlockTemplateDetailsTitle}" />
 
-                <TextBlock x:Name="accessibleTextBlock" AutomationProperties.LiveSetting="Assertive" Visibility="Collapsed">
+                <TextBlock x:Name="accessibleTextBlock" AutomationProperties.LiveSetting="Assertive" Grid.Row="1" Grid.ColumnSpan="3">
                     <Hyperlink x:Name="accessibleHyperlink" Focusable="False"/>
                 </TextBlock>
                 <controls:MarkdownBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Description}" Margin="{StaticResource Margin_M_Top}" />
