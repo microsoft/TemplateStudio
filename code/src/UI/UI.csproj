@@ -76,6 +76,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomationPeers\ExpanderButtonAutomationPeer.cs" />
+    <Compile Include="Controls\ExpanderButtonAutomationPeerControl.cs" />
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
       <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
     </Compile>

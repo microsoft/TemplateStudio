@@ -7,7 +7,8 @@
              xmlns:local="clr-namespace:Microsoft.Templates.UI.Controls"
              xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Loaded="NotificationMarkdownBlock_OnLoaded"
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
@@ -33,6 +34,8 @@
 
     <Grid>
         <FlowDocumentScrollViewer
+            x:Name="flowDocumentScrollViewer"
+            AutomationProperties.LiveSetting="Assertive"
             Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}"
             VerticalScrollBarVisibility="Auto" Focusable="False" AutomationProperties.Name="{Binding Text, ElementName=root}"/>
     </Grid>
