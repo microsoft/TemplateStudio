@@ -9,6 +9,7 @@
       mc:Ignorable="d"
       FocusManager.FocusedElement="{Binding ElementName=backHyperlink}"
       d:DesignHeight="300" d:DesignWidth="300"
+      PreviewGotKeyboardFocus="TemplateInfoPage_OnPreviewGotKeyboardFocus"
       Title="TemplateInfoPage">
 
     <Page.Resources>
@@ -44,6 +45,7 @@
                         <Hyperlink x:Name="backHyperlink"
                                    Style="{StaticResource WtsHyperlink}"
                                    Command="{Binding GoBackCommand}"
+                                   AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}"
                                    Focusable="False">
                             <Grid Background="Transparent">
                                 <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
@@ -84,6 +86,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource WtsTextBlockTemplateDetailsTitle}" />
+
+                <TextBlock x:Name="accessibleTextBlock" AutomationProperties.LiveSetting="Assertive" Grid.Row="1" Grid.ColumnSpan="3">
+                    <Hyperlink x:Name="accessibleHyperlink" Focusable="False"/>
+                </TextBlock>
                 <controls:MarkdownBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Description}" Margin="{StaticResource Margin_M_Top}" />
 
                 <TextBlock
