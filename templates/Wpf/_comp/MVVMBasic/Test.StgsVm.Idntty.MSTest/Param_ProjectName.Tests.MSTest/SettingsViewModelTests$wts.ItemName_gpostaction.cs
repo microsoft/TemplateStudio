@@ -8,7 +8,6 @@ namespace Param_RootNamespace.Tests.MSTest
     {
         public SettingsViewModelTests()
         {
-
         }
 
         [TestMethod]

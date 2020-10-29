@@ -4,7 +4,7 @@ using Param_RootNamespace.Core.Services;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Param_RootNamespace.Core.Tests.xUnit
+namespace Param_RootNamespace.Core.Tests.XUnit
 {
     public class FileServiceTests : IDisposable
     {
@@ -48,6 +48,7 @@ namespace Param_RootNamespace.Core.Tests.xUnit
             {
                 Directory.CreateDirectory(_folderPath);
             }
+
             File.WriteAllText(_filePath, JsonConvert.SerializeObject(_fileData));
 
             var cacheData = fileService.Read<string>(_folderPath, _fileName);
@@ -63,6 +64,7 @@ namespace Param_RootNamespace.Core.Tests.xUnit
             {
                 Directory.CreateDirectory(_folderPath);
             }
+
             File.WriteAllText(_filePath, _fileData);
 
             fileService.Delete(_folderPath, _fileName);

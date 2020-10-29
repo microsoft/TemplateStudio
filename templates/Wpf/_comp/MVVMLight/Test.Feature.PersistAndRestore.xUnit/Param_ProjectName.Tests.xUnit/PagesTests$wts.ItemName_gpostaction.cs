@@ -2,7 +2,7 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class PagesTests
     {

@@ -1,4 +1,4 @@
-﻿namespace Param_RootNamespace.Tests.xUnit
+﻿namespace Param_RootNamespace.Tests.XUnit
 {
     public class PagesTests
     {

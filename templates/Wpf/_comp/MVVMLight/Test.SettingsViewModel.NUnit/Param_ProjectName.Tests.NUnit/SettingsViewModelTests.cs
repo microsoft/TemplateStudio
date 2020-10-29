@@ -11,7 +11,6 @@ namespace Param_RootNamespace.Tests.NUnit
     {
         public SettingsViewModelTests()
         {
-
         }
 
         [Test]

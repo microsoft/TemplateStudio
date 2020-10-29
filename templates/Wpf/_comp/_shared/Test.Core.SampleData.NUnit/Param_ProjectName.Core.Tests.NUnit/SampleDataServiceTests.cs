@@ -9,7 +9,6 @@ namespace Param_RootNamespace.Core.Tests.NUnit
     {
         public SampleDataServiceTests()
         {
-
         }
     }
 }

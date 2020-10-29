@@ -15,7 +15,6 @@ namespace Param_RootNamespace.Core.Tests.NUnit
 
         public FileServiceTests()
         {
-
         }
 
         [SetUp]
@@ -54,6 +53,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
             {
                 Directory.CreateDirectory(_folderPath);
             }
+
             File.WriteAllText(_filePath, JsonConvert.SerializeObject(_fileData));
 
             var cacheData = fileService.Read<string>(_folderPath, _fileName);
@@ -69,6 +69,7 @@ namespace Param_RootNamespace.Core.Tests.NUnit
             {
                 Directory.CreateDirectory(_folderPath);
             }
+
             File.WriteAllText(_filePath, _fileData);
 
             fileService.Delete(_folderPath, _fileName);

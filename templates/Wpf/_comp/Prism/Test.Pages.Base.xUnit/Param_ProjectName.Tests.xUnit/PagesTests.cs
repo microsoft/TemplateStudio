@@ -7,7 +7,7 @@ using Param_RootNamespace.Models;
 using Param_RootNamespace.ViewModels;
 using Xunit;
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class PagesTests
     {

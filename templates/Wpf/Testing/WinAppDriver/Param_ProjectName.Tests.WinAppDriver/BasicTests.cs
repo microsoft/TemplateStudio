@@ -31,6 +31,7 @@ namespace Param_RootNamespace.Tests.WinAppDriver
             // Create separate folders for saving the results of each test run.
             _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now:dd_HHmm}\\";
             _screenshotFilePath = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png");
+
             // Make sure the folder exists or saving screenshots will fail.
             if (!Directory.Exists(_screenshotFolder))
             {
@@ -59,11 +60,11 @@ namespace Param_RootNamespace.Tests.WinAppDriver
                 // More info about testing a packaged application: https://techcommunity.microsoft.com/t5/windows-dev-appconsult/ui-testing-for-windows-apps-with-winappdriver-and-appium/ba-p/825352
                 if (AppSession == null)
                 {
-                    //Try get session using NativeWindowHandle
+                    // Try get session using NativeWindowHandle
                     appiumOptions.AddAdditionalCapability("app", "Root");
                     AppSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appiumOptions);
 
-                    //Get main window by Accessibility Id
+                    // Get main window by Accessibility Id
                     var mainWindow = AppSession.FindElementByAccessibilityId("Param_RootNamespaceMainWindow");
                     var mainWindowHandle = mainWindow.GetAttribute("NativeWindowHandle");
                     mainWindowHandle = int.Parse(mainWindowHandle).ToString("x"); // Convert to Hex

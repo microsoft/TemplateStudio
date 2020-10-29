@@ -1,13 +1,12 @@
 ﻿//{[{
 using Param_RootNamespace.Core.Contracts.Services;
 //}]}
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class SettingsViewModelTests
     {
         public SettingsViewModelTests()
         {
-
         }
 
         [Fact]

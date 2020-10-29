@@ -12,7 +12,7 @@ using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
 using Xunit;
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class PagesTests
     {

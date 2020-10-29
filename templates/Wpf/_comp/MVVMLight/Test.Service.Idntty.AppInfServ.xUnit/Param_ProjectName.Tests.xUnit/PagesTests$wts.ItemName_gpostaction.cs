@@ -3,7 +3,7 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Param_RootNamespace.Core.Contracts.Services;
 //}]}
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class PagesTests
     {

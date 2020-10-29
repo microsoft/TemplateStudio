@@ -6,13 +6,12 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     public class SettingsViewModelTests
     {
         public SettingsViewModelTests()
         {
-
         }
 
         [Fact]

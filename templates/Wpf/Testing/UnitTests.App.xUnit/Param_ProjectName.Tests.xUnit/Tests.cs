@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Param_RootNamespace.Tests.xUnit
+namespace Param_RootNamespace.Tests.XUnit
 {
     // TODO WTS: Add appropriate unit tests.
     public class Tests

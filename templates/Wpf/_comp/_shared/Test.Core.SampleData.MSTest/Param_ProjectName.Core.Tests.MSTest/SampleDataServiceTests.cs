@@ -10,7 +10,6 @@ namespace Param_RootNamespace.Core.Tests.MSTest
     {
         public SampleDataServiceTests()
         {
-
         }
     }
 }
