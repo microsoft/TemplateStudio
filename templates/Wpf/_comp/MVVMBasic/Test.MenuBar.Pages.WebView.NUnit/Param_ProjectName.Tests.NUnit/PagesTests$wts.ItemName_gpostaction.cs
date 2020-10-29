@@ -7,6 +7,7 @@
             // Services
 //{[{
             services.AddSingleton<IRightPaneService, RightPaneService>();
+//}]}
             // ViewModels
 //{[{
             services.AddTransient<wts.ItemNameViewModel>();
