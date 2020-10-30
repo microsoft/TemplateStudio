@@ -44,7 +44,6 @@
                 <TextBlock
                     Grid.Row="2"
                     Text="{Binding Summary}"
-                    Focusable="True"
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="0,4,0,12" />
             </Grid>
