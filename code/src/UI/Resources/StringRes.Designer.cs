@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Design pattern list.
+        ///   Looks up a localized string similar to Design patterns.
         /// </summary>
         public static string AccessibilityDesignPatternList {
             get {
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit page.
+        ///   Looks up a localized string similar to Page name.
         /// </summary>
         public static string AccessibilityEditPageItem {
             get {
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project types list.
+        ///   Looks up a localized string similar to Project types.
         /// </summary>
         public static string AccessibilityProjectTypesList {
             get {

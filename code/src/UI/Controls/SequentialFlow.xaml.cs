@@ -28,10 +28,35 @@ namespace Microsoft.Templates.UI.Controls
 
         public static readonly DependencyProperty StepsProperty = DependencyProperty.Register("Steps", typeof(object), typeof(SequentialFlow), new PropertyMetadata(null));
 
+        private bool _listViewLoaded;
+        private bool _canFocusFirstStep;
+
         public SequentialFlow()
         {
             Instance = this;
             InitializeComponent();
+        }
+
+        private void ListViewSequentialFlow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _listViewLoaded = true;
+            TryFocusFirstStep();
+        }
+
+        public void FocusFirstStep()
+        {
+            _canFocusFirstStep = true;
+            TryFocusFirstStep();
+        }
+
+        private void TryFocusFirstStep()
+        {
+            if (_listViewLoaded && _canFocusFirstStep && listViewSequentialFlow.ItemContainerGenerator.ContainerFromIndex(0) is ListViewItem item)
+            {
+                item.Focus();
+                Keyboard.Focus(item);
+                _canFocusFirstStep = false;
+            }
         }
     }
 }

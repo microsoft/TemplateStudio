@@ -495,6 +495,7 @@ namespace Microsoft.Templates.UI.Controls
             result.CommandParameter = url;
             result.ToolTip = StringRes.ExternalHyperlinkTooltipMessage;
             result.SetValue(AutomationProperties.NameProperty, linkText);
+            result.Tag = nameof(Inline);
 
             if (LinkStyle != null)
             {
