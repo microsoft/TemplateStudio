@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using Microsoft.UI.Xaml;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.ViewModels;
 

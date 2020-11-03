@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+
 using Microsoft.UI.Xaml;
 
 namespace WinUIDesktopApp.Contracts.Services
