@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Models;
 
 namespace WinUIDesktopApp.Core.Services
 {
+	// This class holds sample data used by some generated pages to show how they can be used.
+    // TODO WTS: Delete this file once your app is using real data.
     public class SampleDataService : ISampleDataService
     {
         private List<SampleOrder> _allOrders;
+
+        public SampleDataService()
+        {
+        }
 
         private IEnumerable<SampleOrder> AllOrders()
         {
