@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+
 using Windows.Storage;
 using Windows.Storage.Streams;
+
 using WinUIDesktopApp.Core.Helpers;
 
 namespace WinUIDesktopApp.Helpers
@@ -30,7 +32,7 @@ namespace WinUIDesktopApp.Helpers
         {
             if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
             {
-                return default(T);
+                return default;
             }
 
             var file = await folder.GetFileAsync($"{name}.json");
@@ -58,7 +60,7 @@ namespace WinUIDesktopApp.Helpers
                 return await Json.ToObjectAsync<T>((string)obj);
             }
 
-            return default(T);
+            return default;
         }
 
         public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
@@ -70,7 +72,7 @@ namespace WinUIDesktopApp.Helpers
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty", nameof(fileName));
+                throw new ArgumentException("File name is null or empty. Specify a valid file name", nameof(fileName));
             }
 
             var storageFile = await folder.CreateFileAsync(fileName, options);

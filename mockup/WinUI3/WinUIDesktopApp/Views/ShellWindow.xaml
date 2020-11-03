@@ -27,11 +27,11 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <NavigationViewItem Content="Main" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MainViewModel" />
-            <NavigationViewItem Content="ContentGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ContentGridViewModel" />
-            <NavigationViewItem Content="DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
             <NavigationViewItem Content="WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.WebViewViewModel" />
-            <NavigationViewItem Content="Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
+            <NavigationViewItem Content="ContentGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ContentGridViewModel" />
             <NavigationViewItem Content="MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
+            <NavigationViewItem Content="DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
+            <NavigationViewItem Content="Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>

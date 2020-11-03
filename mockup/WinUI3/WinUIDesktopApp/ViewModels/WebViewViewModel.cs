@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
@@ -37,6 +38,7 @@ namespace WinUIDesktopApp.ViewModels
             {
                 return _isLoading;
             }
+
             set
             {
                 if (value)

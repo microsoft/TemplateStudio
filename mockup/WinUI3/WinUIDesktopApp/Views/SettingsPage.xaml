@@ -15,7 +15,6 @@
         <StackPanel
             x:Name="ContentArea">
             <TextBlock Text="Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
-            
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                 <TextBlock Text="Theme" />
 

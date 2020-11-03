@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+
 using WinUIDesktopApp.Contracts.ViewModels;
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Models;

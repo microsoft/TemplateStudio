@@ -4,23 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:WinUIDesktopApp.Core.Models"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
     <Grid x:Name="ContentArea">
         <controls:AdaptiveGridView
+            Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyContentGrid"
-            Padding="{StaticResource MediumLeftRightMargin}"
             DesiredWidth="180"
             ItemHeight="160"
             IsItemClickEnabled="True"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
-            SelectionMode="None"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
+            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            SelectionMode="None"
             StretchContentForSingleRow="False">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleOrder">
@@ -33,8 +33,8 @@
                             <TextBlock
                                 Margin="{StaticResource XXSmallTopMargin}"
                                 HorizontalAlignment="Center"
-                                Text="{x:Bind Company}"
-                                Style="{ThemeResource BodyTextBlockStyle}" />
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Company}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

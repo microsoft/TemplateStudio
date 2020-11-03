@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Data;
 
@@ -72,6 +73,7 @@ namespace WinUIDesktopApp.Helpers
                 errors = new List<ValidationResult>();
                 _errors.Add(propertyName, errors);
             }
+
             errors.AddRange(validationResults);
             ErrorsChanged?.Invoke(this, new Microsoft.UI.Xaml.Data.DataErrorsChangedEventArgs(propertyName));
         }

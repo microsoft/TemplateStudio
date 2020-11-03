@@ -23,7 +23,7 @@
     <Thickness x:Key="XSmallLeftMargin">8, 0, 0, 0</Thickness>
     <Thickness x:Key="XSmallTopMargin">0, 8, 0, 0</Thickness>
     <Thickness x:Key="XSmallLeftTopRightBottomMargin">8, 8, 8, 8</Thickness>
-    
+
     <!--Extra Extra Small size margins-->
     <Thickness x:Key="XXSmallTopMargin">0, 4, 0, 0</Thickness>
     <Thickness x:Key="XXSmallLeftTopRightBottomMargin">4, 4, 4, 4</Thickness>

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using Microsoft.UI.Xaml;
+
 using Windows.Storage;
 using Windows.UI.Core;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Helpers;
 
@@ -28,11 +31,12 @@ namespace WinUIDesktopApp.Services
         }
 
         public async Task SetRequestedThemeAsync()
-        {         
+        {
             if (App.CurrentWindow.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = Theme;
             }
+
             await Task.CompletedTask;
         }
 

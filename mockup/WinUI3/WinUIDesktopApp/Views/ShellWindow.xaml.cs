@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+
 using WinUIDesktopApp.Contracts.Views;
 using WinUIDesktopApp.ViewModels;
 
@@ -11,7 +12,7 @@ namespace WinUIDesktopApp.Views
         public ShellWindow(ShellViewModel viewModel)
         {
             ViewModel = viewModel;
-            this.InitializeComponent();
+            InitializeComponent();
             ViewModel.Initialize(shellFrame, navigationView);
         }
     }

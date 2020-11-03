@@ -1,5 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using WinUIDesktopApp.Helpers;
+﻿using System;
+
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace WinUIDesktopApp.ViewModels
 {

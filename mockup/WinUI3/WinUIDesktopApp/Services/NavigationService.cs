@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Contracts.ViewModels;
 using WinUIDesktopApp.Helpers;

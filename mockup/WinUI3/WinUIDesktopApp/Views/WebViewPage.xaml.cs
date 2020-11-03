@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
@@ -12,7 +13,7 @@ namespace WinUIDesktopApp.Views
         public WebViewPage()
         {
             ViewModel = Ioc.Default.GetService<WebViewViewModel>();
-            InitializeComponent();            
+            InitializeComponent();
             ViewModel.Initialize(webView);
         }
     }

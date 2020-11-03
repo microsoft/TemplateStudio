@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
+
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Models;
 using WinUIDesktopApp.Helpers;
@@ -87,7 +89,7 @@ namespace WinUIDesktopApp.ViewModels
         {
             get { return _status; }
             set { SetAndValidate(ref _status, value); }
-        }        
+        }
 
         [Required]
         public string ShipperName
@@ -102,14 +104,14 @@ namespace WinUIDesktopApp.ViewModels
         {
             get { return _shipperPhone; }
             set { SetAndValidate(ref _shipperPhone, value); }
-        }        
+        }
 
         [Required]
         public string ShipTo
         {
             get { return _shipTo; }
             set { SetAndValidate(ref _shipTo, value); }
-        }        
+        }
 
         public IEnumerable<string> StatusValues { get; } = new List<string>()
         {
@@ -143,16 +145,16 @@ namespace WinUIDesktopApp.ViewModels
         {
             var hasValidationErrors = ValidateProperties(new Dictionary<string, object>()
             {
-                { nameof(OrderID), OrderID},                
-                { nameof(OrderDate), OrderDate},
-                { nameof(OrderTime), OrderTime},
+                { nameof(OrderID), OrderID },
+                { nameof(OrderDate), OrderDate },
+                { nameof(OrderTime), OrderTime },
                 { nameof(Company), Company },
-                { nameof(Symbol), Symbol},
-                { nameof(OrderTotal), OrderTotal},
-                { nameof(Freight), Freight},
-                { nameof(Status), Status},
+                { nameof(Symbol), Symbol },
+                { nameof(OrderTotal), OrderTotal },
+                { nameof(Freight), Freight },
+                { nameof(Status), Status },
                 { nameof(ShipperName), ShipperName },
-                { nameof(ShipperPhone), ShipperPhone },                
+                { nameof(ShipperPhone), ShipperPhone },
                 { nameof(ShipTo), ShipTo }
             });
 
@@ -188,14 +190,6 @@ namespace WinUIDesktopApp.ViewModels
             Status = StatusValues.First();
             Symbol = SymbolValues.First();
             ClearErrors();
-            //var dialog = new ContentDialog()
-            //{
-            //    Title = "New Order",
-            //    Content = "Order submitted successfully",
-            //    CloseButtonText = "Ok"
-            //};
-
-            //await dialog.ShowAsync();
         }
 
         public static ValidationResult ValidateDoubleProperty(string property)
