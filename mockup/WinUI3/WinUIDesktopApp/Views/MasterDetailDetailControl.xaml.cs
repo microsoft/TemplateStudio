@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.Core.Models;
 
 namespace WinUIDesktopApp.Views
@@ -13,6 +14,7 @@ namespace WinUIDesktopApp.Views
         }
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(MasterDetailDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+
         public MasterDetailDetailControl()
         {
             InitializeComponent();

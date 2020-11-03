@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml;
+
 using WinUIDesktopApp.Activation;
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Contracts.Views;
@@ -12,7 +13,6 @@ using WinUIDesktopApp.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace WinUIDesktopApp
 {
     public partial class App : Application
@@ -21,18 +21,19 @@ namespace WinUIDesktopApp
 
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
-            Ioc.Default.ConfigureServices(ConfigureServices);
+            InitializeComponent();
+            Suspending += OnSuspending;
             UnhandledException += App_UnhandledException;
+            Ioc.Default.ConfigureServices(ConfigureServices);
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
         }
 
-        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
+            base.OnLaunched(args);
             var activationService = Ioc.Default.GetService<IActivationService>();
             await activationService.ActivateAsync(args);
         }

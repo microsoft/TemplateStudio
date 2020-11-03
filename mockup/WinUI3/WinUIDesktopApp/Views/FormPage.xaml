@@ -10,7 +10,7 @@
     <ScrollViewer>
         <StackPanel
             x:Name="ContentArea"
-            Margin="{StaticResource MediumLeftRightMargin}"            
+            Margin="{StaticResource MediumLeftRightMargin}"
             HorizontalAlignment="Left"
             MaxWidth="650">
             <TextBlock Text="New order" Style="{ThemeResource SubtitleTextBlockStyle}" />
@@ -50,7 +50,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     Margin="{StaticResource XSmallTopMargin}"
-                    HorizontalAlignment="Stretch"                    
+                    HorizontalAlignment="Stretch"
                     Text="{x:Bind ViewModel.Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="Company"
                     PlaceholderText="Enter company" />
@@ -99,7 +99,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     Margin="{StaticResource XSmallLeftMargin}"
-                    HorizontalAlignment="Stretch"                
+                    HorizontalAlignment="Stretch"
                     Text="{x:Bind ViewModel.Freight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="Freight"
                     PlaceholderText="Enter freight" />
@@ -118,7 +118,6 @@
                     ItemsSource="{x:Bind ViewModel.StatusValues}"
                     SelectedItem="{x:Bind ViewModel.Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
-            
 
             <TextBox
                 Margin="{StaticResource LargeTopMargin}"

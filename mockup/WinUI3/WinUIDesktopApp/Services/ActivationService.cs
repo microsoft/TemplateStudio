@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.UI.Xaml;
+
 using WinUIDesktopApp.Activation;
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Contracts.Views;
@@ -15,9 +17,9 @@ namespace WinUIDesktopApp.Services
         private readonly INavigationService _navigationService;
         private readonly IThemeSelectorService _themeSelectorService;
 
-        public ActivationService(IShellWindow _shellWindow, ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService)
+        public ActivationService(IShellWindow shellWindow, ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService)
         {
-            App.CurrentWindow = _shellWindow as Window;
+            App.CurrentWindow = shellWindow as Window;
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
             _navigationService = navigationService;
@@ -34,7 +36,7 @@ namespace WinUIDesktopApp.Services
 
             // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
             // will navigate to the first page
-            await HandleActivationAsync(activationArgs);            
+            await HandleActivationAsync(activationArgs);
 
             // Tasks after activation
             await StartupAsync();
@@ -59,11 +61,13 @@ namespace WinUIDesktopApp.Services
         private async Task InitializeAsync()
         {
             await _themeSelectorService.InitializeAsync().ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         private async Task StartupAsync()
         {
             await _themeSelectorService.SetRequestedThemeAsync();
+            await Task.CompletedTask;
         }
     }
 }

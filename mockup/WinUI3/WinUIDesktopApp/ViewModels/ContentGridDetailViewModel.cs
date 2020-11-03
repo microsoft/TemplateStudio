@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+
 using WinUIDesktopApp.Contracts.ViewModels;
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Models;
@@ -28,7 +31,7 @@ namespace WinUIDesktopApp.ViewModels
             {
                 var data = await _sampleDataService.GetContentGridDataAsync();
                 Item = data.First(i => i.OrderID == orderID);
-            }            
+            }
         }
 
         public void OnNavigatedFrom()

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.ViewModels;
 using WinUIDesktopApp.Views;
@@ -16,13 +18,13 @@ namespace WinUIDesktopApp.Services
         public PageService()
         {
             Configure<MainViewModel, MainPage>();
+            Configure<WebViewViewModel, WebViewPage>();
             Configure<ContentGridViewModel, ContentGridPage>();
             Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
-            Configure<WebViewViewModel, WebViewPage>();
+            Configure<MasterDetailViewModel, MasterDetailPage>();
             Configure<DataGridViewModel, DataGridPage>();
             Configure<FormViewModel, FormPage>();
-            Configure<MasterDetailViewModel, MasterDetailPage>();
-            Configure<SettingsViewModel, SettingsPage>();            
+            Configure<SettingsViewModel, SettingsPage>();
         }
 
         public Type GetPageType(string key)

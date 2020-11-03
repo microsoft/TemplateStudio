@@ -44,7 +44,7 @@
                 <TextBlock
                     Text="Select an item from the list."
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"                    
+                    VerticalAlignment="Center"
                     TextAlignment="Center"
                     Style="{ThemeResource SubtitleTextBlockStyle}" />
             </Grid>
@@ -64,7 +64,7 @@
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
             MasterHeader="MasterDetail"
-            BackButtonBehavior="Automatic"            
+            BackButtonBehavior="Automatic"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.SampleItems}"

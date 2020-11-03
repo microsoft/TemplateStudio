@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
@@ -11,7 +12,6 @@ namespace WinUIDesktopApp.Views
 
         public DataGridPage()
         {
-            //Microsoft.Toolkit.Uwp.UI.Controls.DataGrid
             ViewModel = Ioc.Default.GetService<DataGridViewModel>();
             InitializeComponent();
         }
