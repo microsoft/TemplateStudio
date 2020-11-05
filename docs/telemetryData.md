@@ -1,4 +1,4 @@
-# Telemetry for Windows Template Studio - 2020.09
+# Telemetry for Windows Template Studio - 2020.10
 
 As new features and pages roll out, percentages  will adjust.
 
@@ -6,169 +6,169 @@ As new features and pages roll out, percentages  will adjust.
 
 |Type|Percentage|
 |:---|:---:|
-|Uwp|69.6%|
-|Wpf|30.4%|
+|Uwp|70.8%|
+|Wpf|29.2%|
 
 ## Project Type (Uwp)
 
 |Project|Percentage|
 |:---|:---:|
-|Navigation View|70.9%|
-|Blank|12.7%|
-|Horizontal Navigation View|8.7%|
-|MenuBar|7.6%|
+|Navigation View|66.9%|
+|Horizontal Navigation View|13.1%|
+|Blank|11.5%|
+|MenuBar|8.5%|
 
 ## Project Type (Wpf)
 
 |Project|Percentage|
 |:---|:---:|
-|Navigation View|58.7%|
-|Ribbon|14.9%|
-|MenuBar|13.9%|
-|Blank|12.4%|
+|Navigation View|54.2%|
+|MenuBar|16%|
+|Ribbon|15.8%|
+|Blank|14%|
 
 ## Framework (Uwp)
 
 |Framework Type|Percentage|
 |:---|:---:|
-|CodeBehind|52.7%|
-|MVVM Basic|17.9%|
-|Prism|10.7%|
-|MVVM Light|10.2%|
-|Caliburn.Micro|8.5%|
+|CodeBehind|56%|
+|MVVM Basic|16.6%|
+|MVVM Light|11.2%|
+|Prism|8.1%|
+|Caliburn.Micro|8%|
 
 ## Framework (Wpf)
 
 |Framework Type|Percentage|
 |:---|:---:|
-|MVVM Basic|54.1%|
-|Prism|23.3%|
-|MVVM Light|19.1%|
-|CodeBehind|3.5%|
+|CodeBehind|35.4%|
+|MVVM Basic|29.2%|
+|Prism|22.6%|
+|MVVM Light|12.7%|
 
 ## Pages (Uwp)
 
 |Pages|Percentage|
 |:---|:---:|
-|Blank|32.6%|
-|Settings|13.8%|
-|Master/Detail|8.2%|
-|DataGrid|7.6%|
-|Content Grid|5.6%|
-|Web View|3.6%|
-|Chart|3.3%|
-|TabView|3.1%|
-|TreeView|3%|
-|Two Pane View|2.6%|
-|Map|2.6%|
-|Telerik Data Grid|2.6%|
-|Tabbed / Pivot|2.4%|
-|ImageGallery|2.4%|
+|Blank|31.7%|
+|Settings|14.7%|
+|Master/Detail|9%|
+|DataGrid|7.1%|
+|Content Grid|5.8%|
+|Web View|4.2%|
+|TreeView|3.5%|
+|Chart|3.4%|
+|TabView|3%|
+|Telerik Data Grid|2.7%|
+|Map|2.3%|
+|ImageGallery|2.3%|
+|Tabbed / Pivot|2.2%|
+|Two Pane View|2.2%|
 |Media Player|1.7%|
-|Camera|1.7%|
-|Ink Draw|1.2%|
-|Ink Draw Picture|1.1%|
-|Ink Smart Canvas|0.9%|
+|Camera|1.6%|
+|Ink Draw Picture|0.9%|
+|Ink Draw|0.9%|
+|Ink Smart Canvas|0.7%|
 
 ## Pages (Wpf)
 
 |Pages|Percentage|
 |:---|:---:|
-|Blank|51.8%|
-|Settings|19.9%|
-|Master Detail|19.9%|
-|Web View|6.3%|
-|Content Grid|1%|
-|Data Grid|0.9%|
-|XAML Island|0.3%|
+|Blank|42.6%|
+|Settings|16.6%|
+|Master Detail|12.3%|
+|Data Grid|10%|
+|Content Grid|8.3%|
+|XAML Island|5.9%|
+|Web View|4.3%|
 
 ## Features (Uwp)
 
 |Features|Percentage|
 |:---|:---:|
-|Settings Storage|24.1%|
-|Theme Selection|22.9%|
-|App Config|8.8%|
+|Settings Storage|24.4%|
+|Theme Selection|23.4%|
+|App Config|8.9%|
 |Multiple views|5.6%|
-|Toast Notifications|5.5%|
-|First Run Prompt|3.4%|
-|Background Task|3.2%|
-|Deep Linking|3%|
-|What's New Prompt|2.8%|
-|Drag & Drop|2.8%|
-|Live Tile|2.4%|
+|Toast Notifications|5%|
+|Background Task|3.4%|
+|Deep Linking|3.2%|
+|First Run Prompt|3.2%|
+|Drag & Drop|3.1%|
+|What's New Prompt|2.6%|
+|User Activity|2.2%|
 |Suspend and Resume|2.2%|
-|User Activity|2.1%|
-|VS App Center Analytics|1.7%|
-|Command Line Launch|1.5%|
-|Multi-Instance|1.4%|
-|Share Source|1.4%|
-|Web to App link|1%|
-|Feedback Hub Link|1%|
-|Multi-Instance Advanced|0.8%|
-|Share Target|0.7%|
-|3D App Launcher|0.6%|
-|Azure Notifications|0.6%|
-|Dev Center Notifications|0.6%|
+|Live Tile|2.2%|
+|Command Line Launch|2%|
+|Share Source|1.3%|
+|Web to App link|1.3%|
+|VS App Center Analytics|1.3%|
+|Multi-Instance|1.3%|
+|Share Target|1.1%|
+|Feedback Hub Link|0.6%|
+|Multi-Instance Advanced|0.5%|
+|Dev Center Notifications|0.5%|
+|3D App Launcher|0.4%|
+|Azure Notifications|0.3%|
 
 ## Features (Wpf)
 
 |Features|Percentage|
 |:---|:---:|
-|Persist And Restore|19.9%|
-|Theme Selection|19%|
-|System Service|17.6%|
-|Application Info Service|17.3%|
-|Sample Data|14.3%|
+|Persist And Restore|19.4%|
+|Theme Selection|18.4%|
+|System Service|17.2%|
+|Application Info Service|16.7%|
+|Sample Data|14.5%|
 |Multiple views|8.5%|
 |MSIX Packaging|3.3%|
-|XAML Island UWP App|0.2%|
+|XAML Island UWP App|2%|
 
 ## Services (Uwp)
 
 |Services|Percentage|
 |:---|:---:|
-|Sample Data|50.7%|
-|HTTP Data Service|13%|
-|SQL Server Data|12.2%|
-|XAML Styler Config|7.4%|
-|Forced Login|6%|
-|Optional Login|5.1%|
-|Web API|4.3%|
-|Secured Web API|1.3%|
+|Sample Data|49.7%|
+|HTTP Data Service|13.1%|
+|SQL Server Data|12.6%|
+|XAML Styler Config|9.1%|
+|Forced Login|5.5%|
+|Optional Login|4.6%|
+|Web API|4.5%|
+|Secured Web API|0.9%|
 
 ## Services (Wpf)
 
 |Services|Percentage|
 |:---|:---:|
-|Optional Login|54.6%|
-|Forced Login|45.4%|
+|Optional Login|51.4%|
+|Forced Login|48.6%|
 
 ## Testing (Uwp)
 
 |Testing|Percentage|
 |:---|:---:|
-|Test App with MSTest|28.7%|
-|Test App with xUnit|27.4%|
-|Test Core library with xUnit|20.6%|
-|Win App Driver|9%|
-|Test Core library with MSTest|7.7%|
-|Test Core library with NUnit|6.8%|
+|Test App with xUnit|35.5%|
+|Test Core library with xUnit|25.7%|
+|Test App with MSTest|22%|
+|Test Core library with NUnit|6.9%|
+|Win App Driver|5.6%|
+|Test Core library with MSTest|4.4%|
 
 ## Windows Template Studio entry point (Common)
 
 |Entry point|Percentage|
 |:---|:---:|
-|New Project|86.8%|
-|Add Page|8.9%|
-|Add Feature|3%|
-|Add Service|1.1%|
-|Add Testing|0.2%|
+|New Project|85.9%|
+|Add Page|9.9%|
+|Add Feature|2.9%|
+|Add Service|1%|
+|Add Testing|0.3%|
 
 ## Programming languages (Common)
 
 |Languages|Percentage|
 |:---|:---:|
-|C#|95.3%|
-|VisualBasic|4.7%|
+|C#|93.8%|
+|VisualBasic|6.2%|
 

@@ -43,6 +43,8 @@ namespace Microsoft.Templates.UI.Controls
 
         private void RaiseAutomationEventFlowDocument()
         {
+            // Inform a screen reader to read the notification text
+            // https://devblogs.microsoft.com/dotnet/net-framework-4-7-1-accessibility-and-wpf-improvements/#uiautomation-liveregion-support
             var peer = UIElementAutomationPeer.FromElement(flowDocumentScrollViewer) ?? UIElementAutomationPeer.CreatePeerForElement(flowDocumentScrollViewer);
 
             if (peer is FlowDocumentScrollViewerAutomationPeer flowPeer)
