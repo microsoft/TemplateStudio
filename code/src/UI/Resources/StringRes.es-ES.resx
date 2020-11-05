@@ -901,4 +901,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
+  </data>
 </root>

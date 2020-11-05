@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -98,6 +99,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
             Initialize(ConfigPlatform, language);
+        }
+
+        public void ValidateProjectPaths()
+        {
+            var projectFolderName = new DirectoryInfo(GenContext.Current.DestinationPath).Name;
+            if (GenContext.Current.ProjectName != projectFolderName)
+            {
+                var notification = Notification.Error(StringRes.NotificationValidationError_ProjectNameAndPathDoNotMatch, ErrorCategory.ProjectPathValidation);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+                ChangesSummary.DoNotMerge = true;
+                ChangesSummary.IsDoNotMergeEnabled = false;
+            }
+            else
+            {
+                ChangesSummary.DoNotMerge = false;
+                ChangesSummary.IsDoNotMergeEnabled = true;
+            }
         }
 
         private string GetNewItemTitle(TemplateType templateType)
