@@ -31,6 +31,8 @@ namespace Microsoft.Templates.UI.Views.Common
                 {
                     accessibleHyperlink.SetValue(AutomationProperties.NameProperty, hyperlinkHelpText);
 
+                    // Inform a screen reader to read the hyperlink text
+                    // https://devblogs.microsoft.com/dotnet/net-framework-4-7-1-accessibility-and-wpf-improvements/#uiautomation-liveregion-support
                     var peer = UIElementAutomationPeer.FromElement(accessibleTextBlock) ?? UIElementAutomationPeer.CreatePeerForElement(accessibleTextBlock);
                     if (peer is TextBlockAutomationPeer textBlockPeer)
                     {
