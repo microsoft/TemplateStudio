@@ -101,23 +101,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Initialize(ConfigPlatform, language);
         }
 
-        public void ValidateProjectPaths()
-        {
-            var projectFolderName = new DirectoryInfo(GenContext.Current.DestinationPath).Name;
-            if (GenContext.Current.ProjectName != projectFolderName)
-            {
-                var notification = Notification.Error(StringRes.NotificationValidationError_ProjectNameAndPathDoNotMatch, ErrorCategory.ProjectPathValidation);
-                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
-                ChangesSummary.DoNotMerge = true;
-                ChangesSummary.IsDoNotMergeEnabled = false;
-            }
-            else
-            {
-                ChangesSummary.DoNotMerge = false;
-                ChangesSummary.IsDoNotMergeEnabled = true;
-            }
-        }
-
         private string GetNewItemTitle(TemplateType templateType)
         {
             switch (templateType)
@@ -240,6 +223,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 await Task.CompletedTask;
             }
+
+            ValidateProjectPaths();
         }
 
         protected async Task OnRefreshTemplatesAsync()
@@ -259,6 +244,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             finally
             {
                 WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+            }
+        }
+
+        private void ValidateProjectPaths()
+        {
+            if (GenContext.Current.ProjectName != new DirectoryInfo(GenContext.Current.DestinationPath).Name)
+            {
+                var notification = Notification.Error(StringRes.NotificationValidationError_ProjectNameAndPathDoNotMatch, ErrorCategory.ProjectPathValidation);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+                ChangesSummary.DoNotMerge = true;
+                ChangesSummary.IsDoNotMergeEnabled = false;
+            }
+            else
+            {
+                ChangesSummary.DoNotMerge = false;
+                ChangesSummary.IsDoNotMergeEnabled = true;
             }
         }
 

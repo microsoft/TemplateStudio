@@ -62,7 +62,6 @@ namespace Microsoft.Templates.UI.Views.NewItem
         {
             MainViewModel.Instance.Initialize(_templateType, _language);
             await MainViewModel.Instance.SynchronizeAsync();
-            MainViewModel.Instance.ValidateProjectPaths();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
