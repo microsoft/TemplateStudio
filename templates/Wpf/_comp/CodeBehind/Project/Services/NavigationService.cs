@@ -41,9 +41,9 @@ namespace Param_RootNamespace.Services
         {
             if (_frame.CanGoBack)
             {
-                var dataContext = _frame.GetDataContext();
+                var pageBeforeNavigation = _frame.Content;
                 _frame.GoBack();
-                if (dataContext is INavigationAware navigationAware)
+                if (pageBeforeNavigation is INavigationAware navigationAware)
                 {
                     navigationAware.OnNavigatedFrom();
                 }
