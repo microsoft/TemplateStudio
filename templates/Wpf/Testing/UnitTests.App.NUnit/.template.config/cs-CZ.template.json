@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Test App with NUnit",
+  "description": "Přidá projekt pro testování částí aplikace pomocí nástroje NUnit.",
+  "identity": "wts.Wpf.Testing.UnitTests.App.NUnit"
+}

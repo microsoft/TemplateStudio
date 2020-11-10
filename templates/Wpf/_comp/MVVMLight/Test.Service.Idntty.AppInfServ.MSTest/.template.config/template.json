@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Wpf.Testing.UnitTests.Service.MVVMLight.Identity.MSTest",
+  "identity": "wts.Wpf.Testing.UnitTests.Service.MVVMLight.Identity.MSTest",
+  "shortName": "wts.Wpf.Testing.UnitTests.Service.MVVMLight.Identity.MSTest",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMLight & $testing == wts.Wpf.Testing.UnitTests.App.MSTest & identity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
+    "wts.compositionOrder" : "3"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
