@@ -8,7 +8,7 @@ namespace Param_RootNamespace
     {
         private void ConfigureServices(IServiceCollection services)
         {
-            // Services
+            // Core Services
 //{[{
             services.AddSingleton<ISampleDataService, SampleDataService>();
 //}]}
