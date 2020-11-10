@@ -14,7 +14,7 @@ namespace WinUIDesktopApp.Views
         {
             ViewModel = Ioc.Default.GetService<WebViewViewModel>();
             InitializeComponent();
-            ViewModel.Initialize(webView);
+            ViewModel.WebViewService.Initialize(webView);
         }
     }
 }

@@ -13,6 +13,12 @@
     <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+    <Page Remove="Models\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Styles\Page - Copy.xaml" />
     <None Remove="Styles\TextBlock.xaml" />
     <None Remove="Styles\_FontSizes.xaml" />
@@ -59,10 +65,6 @@
     <Page Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

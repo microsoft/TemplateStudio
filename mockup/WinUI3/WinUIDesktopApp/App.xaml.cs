@@ -63,6 +63,7 @@ namespace WinUIDesktopApp
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddTransient<IToastNotificationsService, ToastNotificationsService>();
+            services.AddTransient<IWebViewService, WebViewService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
