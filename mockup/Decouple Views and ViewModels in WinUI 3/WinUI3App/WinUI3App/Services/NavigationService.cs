@@ -49,7 +49,6 @@ namespace WinUI3App.Services
             if (_frame != null)
             {
                 _frame.Navigated += OnNavigated;
-                _frame.Navigating += OnNavigating;
             }
         }
 
@@ -58,7 +57,6 @@ namespace WinUI3App.Services
             if (_frame != null)
             {
                 _frame.Navigated -= OnNavigated;
-                _frame.Navigating -= OnNavigating;
             }
         }
 
@@ -117,17 +115,6 @@ namespace WinUI3App.Services
                 }
 
                 Navigated?.Invoke(sender, e);
-            }
-        }
-
-        private void OnNavigating(object sender, NavigatingCancelEventArgs args)
-        {
-            if (sender is Frame frame)
-            {
-                if (frame.GetPageViewModel() is INavigationAware navigationAware)
-                {
-                    navigationAware.OnNavigatingFrom(args);
-                }
             }
         }
     }

@@ -74,10 +74,6 @@ namespace WinUI3App.ViewModels
             WebViewService.NavigationCompleted -= OnNavigationCompleted;
         }
 
-        public void OnNavigatingFrom(NavigatingCancelEventArgs args)
-        {
-        }
-
         private void OnNavigationCompleted(object sender, WebErrorStatus webErrorStatus)
         {
             IsLoading = false;

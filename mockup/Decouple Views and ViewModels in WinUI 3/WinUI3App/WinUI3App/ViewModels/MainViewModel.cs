@@ -27,9 +27,5 @@ namespace WinUI3App.ViewModels
         public void OnNavigatedFrom()
         {
         }
-
-        public void OnNavigatingFrom(NavigatingCancelEventArgs args)
-        {
-        }
     }
 }
