@@ -58,12 +58,16 @@ namespace Param_RootNamespace.Services
 
         private async Task InitializeAsync()
         {
+            if (!_isInitialized)
+            {
 //^^
 //{[{
-            _userDataService.Initialize();
-            _identityService.LoggedIn += OnLoggedIn;
-            _identityService.LoggedOut += OnLoggedOut;
+                _userDataService.Initialize();
+                _identityService.LoggedIn += OnLoggedIn;
+                _identityService.LoggedOut += OnLoggedOut;
 //}]}
+                await Task.CompletedTask;
+            }
         }
 
 //^^

@@ -16,11 +16,14 @@
 
         private async Task InitializeAsync()
         {
+            if (!_isInitialized)
+            {
 //^^
 //{[{
-            _themeSelectorService.SetTheme();
+                _themeSelectorService.SetTheme();
 //}]}
-            await Task.CompletedTask;
+                await Task.CompletedTask;
+            }
         }
     }
 }
