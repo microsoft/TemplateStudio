@@ -52,7 +52,17 @@ namespace Param_RootNamespace.Services
         }
 
         public void GoBack()
-            => _frame.GoBack();
+        {
+            if (_frame.CanGoBack)
+            {
+                var dataContext = _frame.GetDataContext();
+                _frame.GoBack();
+                if (dataContext is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedFrom();
+                }
+            }
+        }
 
         public void NavigateTo(string pageKey)
             => NavigateTo(pageKey, null, false);
