@@ -1,1 +1,0 @@
-﻿Die Kartenseite basiert auf dem Windows-Kartensteuerelement. Der Code umfasst das Hinzufügen eines Kartensymbols, den Abruf eines Standorts aus dem Positionsdienst und die Festlegung des Mittelpunkts der Karte.

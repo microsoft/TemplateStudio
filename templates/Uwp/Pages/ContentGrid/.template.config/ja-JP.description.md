@@ -1,1 +1,0 @@
-﻿このページでは、画面サイズの変更に応答する GridView 内にカスタム コンテンツを追加できます。[適応型グリッド ビューの詳細はこちら。](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

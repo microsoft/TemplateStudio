@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Map",
-  "description": "La page Plans s'appuie sur la commande Plan de Windows. Le code inclut l'ajout d'une icône Plan et une fonction de géolocalisation.",
-  "identity": "wts.Page.Map.CaliburnMicro"
-}

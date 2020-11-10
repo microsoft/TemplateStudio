@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Deep Linking",
-    "description": "Ajouter la capacité de lancer et de créer des liens profonds dans l\u0027application avec un programme URI personnalisé.",
-    "identity": "wts.Feat.DeepLinking.MVVMLight.VB"
-}

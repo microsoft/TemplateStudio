@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Share Target",
-    "description": "Umožňuje přijímat ve vaší aplikaci pro UPW data sdílená ostatními aplikacemi s použitím kontraktu Sdílení.",
-    "identity": "wts.Feat.ShareTarget.VB"
-}

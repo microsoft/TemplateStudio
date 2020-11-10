@@ -1,1 +1,0 @@
-﻿Este recurso permite alterar o tema do aplicativo entre claro/escuro e Padrão do Windows.

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Optional Login",
-  "description": "讓您的應用程式擁有選擇性登入和限制的功能。",
-  "identity": "wts.Service.IdentityOptionalLogin.CodeBehind"
-}

@@ -1,3 +1,0 @@
-﻿Questa funzionalità consente di aggiungere attività utente dall'app a Windows Timeline e di riprendere l'app dall'attività utente con il deep linking. Queste attività possono essere create con schede adattive o testo e descrizione.
-
-[Scopri di più sulle Attività utente e su come continuare tali attività anche su dispositivi diversi.](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities)

@@ -1,1 +1,0 @@
-﻿This page allows you to add custom form and their validators.

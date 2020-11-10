@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test Core library with NUnit",
-  "description": "Добавление проекта для тестирования кода в основной библиотеке с помощью NUnit.",
-  "identity": "wts.Testing.UnitTests.Core.NUnit"
-}

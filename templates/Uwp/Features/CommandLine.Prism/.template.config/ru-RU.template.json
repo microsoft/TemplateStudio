@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Command Line Launch",
-  "description": "Поддерживает передачу аргументов и запуск из командной строки.",
-  "identity": "wts.Feat.CommandLine.Prism"
-}

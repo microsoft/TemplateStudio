@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Feedback Hub Link",
-    "description": "Adicione um link, na página de configurações, para o Hub de Feedback.",
-    "identity": "wts.Feat.FeedbackHub.Prism"
-}

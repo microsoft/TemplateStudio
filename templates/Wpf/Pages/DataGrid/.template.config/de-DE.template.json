@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Data Grid",
-  "description": "Eine Seite, auf der ein einfaches Datenraster angezeigt wird.",
-  "identity": "wts.Wpf.Page.DataGrid"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Persist And Restore",
-  "description": "Il servizio per rendere persistenti e ripristinare gli elementi semplifica l'archiviazione dei dati nella cartella AppData locale dell'utente.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
-}

@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test App with xUnit",
-    "description": "Přidá projekt pro testování částí aplikace pomocí nástroje xUnit.",
-    "identity": "wts.Testing.UnitTests.App.xUnit.VB"
-}

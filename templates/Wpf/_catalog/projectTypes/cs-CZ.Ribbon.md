@@ -1,1 +1,0 @@
-﻿Přidává ovládací prvek Pás karet, který obsahuje určitý počet karet seskupených podle funkce. Karty představují akce v nabídce aplikace.

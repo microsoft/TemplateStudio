@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "Esta página contiene una cuadrícula de contenido básico basada en un ListView.",
-  "identity": "wts.Wpf.Page.ContentGrid"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "System Service",
-  "description": "SystemService zawiera operacje wykonywane na funkcjach oraz macierzyste interfejsy API systemu operacyjnego.",
-  "identity": "wts.Wpf.Feat.SystemService"
-}

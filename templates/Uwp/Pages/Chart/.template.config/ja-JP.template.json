@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Chart",
-  "description": "UWP 向け Telerik UI コントロールを利用したシンプルなチャートを表示するページです。",
-  "identity": "wts.Page.Chart"
-}

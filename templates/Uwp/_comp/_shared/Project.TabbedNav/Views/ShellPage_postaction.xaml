@@ -1,7 +1,0 @@
-﻿<winui:NavigationView
-<!--^^-->
-<!--{[{-->
-    PaneDisplayMode="Top"
-<!--}]}-->
-    Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-</winui:NavigationView>

@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Background Task",
-    "description": "Fügen Sie eine In-Process-Hintergrundaufgabe hinzu, um Code auszuführen, auch wenn die App nicht im Vordergrund ist.",
-    "identity": "wts.Feat.BackgroundTask.Prism"
-}

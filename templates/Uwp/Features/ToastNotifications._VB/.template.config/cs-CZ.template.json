@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Toast Notifications",
-    "description": "Umožňuje přidat kód, který předvede zobrazení informační zprávy a její zpracování používané při spouštění aplikace.",
-    "identity": "wts.Feat.ToastNotifications.VB"
-}

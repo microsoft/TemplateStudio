@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "3D App Launcher",
-  "description": "Inclua um inicializador de aplicativos 3D quando o aplicativo for usado em um ambiente de Realidade Misturada.",
-  "identity": "wts.Feat.3DLauncher"
-}

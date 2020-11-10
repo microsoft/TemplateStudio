@@ -1,5 +1,0 @@
-﻿El vínculo web a aplicación asocia tu aplicación a un sitio web para que cuando alguien abra un vínculo de tu sitio web, se inicie tu aplicación en lugar de que se abra el explorador. Si tu aplicación no está instalada, se abrirá tu sitio web en el explorador como siempre. Los usuarios pueden confiar en esta experiencia porque solo los propietarios de contenido que se han comprobado pueden registrarse para un vínculo. Los usuarios podrán comprobar todos sus vínculos web a aplicación dirigiéndose a Configuración > Aplicaciones > Aplicaciones para sitios web.
-
-Para obtener más información acerca de la vinculación web a aplicación, consulta 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) y
-[blogs.windows.com](https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/)

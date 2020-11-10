@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "SQL Server Data",
-    "description": "アプリで使用するデータを SQL Server から取得します。",
-    "identity": "wts.Service.SqlServerDataService.VB"
-}

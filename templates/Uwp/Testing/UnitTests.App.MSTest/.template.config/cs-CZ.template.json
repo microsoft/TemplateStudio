@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test App with MSTest",
-  "description": "Přidá projekt pro testování částí aplikace pomocí nástroje MSTest.",
-  "identity": "wts.Testing.UnitTests.App.MSTest"
-}

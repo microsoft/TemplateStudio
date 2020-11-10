@@ -1,1 +1,0 @@
-﻿Cette page vous permet d’ajouter du contenu personnalisé dans une grille de contenu basée sur un contrôle ListView. En cliquant sur un élément, une page de détail s’affiche.

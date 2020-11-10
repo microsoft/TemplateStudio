@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Form",
-  "description": "This page contains a basic form page with validators.",
-  "identity": "wts.WinUI.Page.Form"
-}

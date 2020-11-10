@@ -1,1 +1,0 @@
-﻿Ta funkcja pozwala zmieniać motyw aplikacji między Jasnym i Ciemnym.

@@ -1,5 +1,0 @@
-﻿MVVM Light est une framework tierce populaire, qui s'appuie sur le [modèle MVVM modèle-vue-vue modèle] (https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-vue_mod%C3%A8le) par Laurent Bugnion. Cette boîte à outils MVVM Light vous permet de séparer votre Vue de votre Modèle, pour créer des applications plus épurées et plus simples à gérer et à développer. Elle crée également des applications qu'il est possible de tester et vous permet de bénéficier d'une couche d'interface utilisateur beaucoup plus fine (qui est plus difficile à tester automatiquement).
-
-Cette boîte à outils met précisément l'accent sur la « capacité Blend » de l'application créée (c'est-à-dire, la capacité d'ouvrir et de modifier l'interface utilisateur dans Blend), y compris sur la création de données conception-temps afin de permettre aux utilisateurs de Blend de « voir quelque chose » lorsqu'ils travaillent avec les commandes de données.
-
-Apprenez-en davantage sur la [page d'accueil MVVM Light] (http://www.mvvmlight.net/)

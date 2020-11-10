@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Persist And Restore",
-  "description": "Funkcja Utrwal i przywróć upraszcza zapisywanie danych w folderze danych aplikacji na komputerze użytkownika.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
-}

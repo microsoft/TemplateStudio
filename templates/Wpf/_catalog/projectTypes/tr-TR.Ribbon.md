@@ -1,1 +1,0 @@
-﻿Uygulamanın menü eylemlerini temsil edecek şekilde işlevselliğe göre gruplanmış birkaç sekmeden oluşan bir şerit denetimi ekler.

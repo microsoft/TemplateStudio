@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "Esta página contém uma grade de conteúdo básica baseada em um ListView.",
-  "identity": "wts.Wpf.Page.ContentGrid"
-}

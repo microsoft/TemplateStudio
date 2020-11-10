@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleDataService 可保留由生成的某些页面版本所用的示例数据。",
-  "identity": "wts.Service.SampleDataService"
-}

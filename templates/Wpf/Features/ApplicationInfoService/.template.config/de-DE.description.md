@@ -1,1 +1,0 @@
-﻿ApplicationInfoService enthält Vorgänge, die Informationen über die aktuelle Anwendung zurückgeben.

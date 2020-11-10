@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Chart",
-    "description": "Uma página exibindo um gráfico simples, da plataforma de controles da interface do usuário Telerik para UWP.",
-    "identity": "wts.Page.Chart.CodeBehind.VB"
-}

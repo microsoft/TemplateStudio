@@ -1,1 +1,0 @@
-﻿Tato stránka umožňuje přidat vlastní obsah v a do mřížky obsahu na základě Ovládací prvek ListView. Kliknutím na položku se zobrazí stránka podrobností.

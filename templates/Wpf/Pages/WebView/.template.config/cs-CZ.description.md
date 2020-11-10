@@ -1,3 +1,0 @@
-﻿Stránka webového zobrazení umožňuje vložit do vaší aplikace zobrazení, které vykresluje webový obsah pomocí vykreslovacího modulu prohlížeče Microsoft Edge prostřednictvím ovládacího prvku WebView ze sady Microsoft Toolkit for Wpf. Ovládací prvek webového zobrazení také může zobrazit a otevřít hypertextové odkazy.  Ovládací prvek webového zobrazení můžete používat k zobrazení rozsáhle formátovaného obsahu HTML ze vzdáleného webového serveru, dynamicky generovaného kódu nebo souborů obsahu, které jsou součástí balíčku aplikace. Různorodý obsah může také zahrnovat kód skriptu a komunikaci mezi skriptem a kódem aplikace.
-
-[Je ovládací prvek webového zobrazení pro vaše potřeby vhodný?](https://docs.microsoft.com/windows/communitytoolkit/controls/wpf-winforms/webview)

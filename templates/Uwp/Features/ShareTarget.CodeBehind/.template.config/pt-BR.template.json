@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Share Target",
-  "description": "Permite que você receba dados compartilhados por outros aplicativos usando o contrato de compartilhamento em seu aplicativo UWP.",
-  "identity": "wts.Feat.ShareTarget.CodeBehind"
-}

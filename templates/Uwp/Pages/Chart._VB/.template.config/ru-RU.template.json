@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Chart",
-    "description": "Страница, отображающая простую диаграмму с поддержкой элементов управления пользовательского интерфейса Telerik для UWP.",
-    "identity": "wts.Page.Chart.VB"
-}

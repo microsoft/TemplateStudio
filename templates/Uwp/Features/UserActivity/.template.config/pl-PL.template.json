@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "User Activity",
-  "description": "Dodaj możliwość dodawania działań użytkownika do osi czasu Windows.",
-  "identity": "wts.Feat.UserActivity"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "TreeView",
-  "description": "La page d’affichage en arborescence permet d’afficher le contenu selon une classification hiérarchique.",
-  "identity": "wts.Page.TreeView.CodeBehind"
-}

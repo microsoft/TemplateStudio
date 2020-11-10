@@ -1,1 +1,0 @@
-﻿ApplicationInfoService에는 현재 응용 프로그램에 대한 정보를 반환하는 작업이 포함되어 있습니다.

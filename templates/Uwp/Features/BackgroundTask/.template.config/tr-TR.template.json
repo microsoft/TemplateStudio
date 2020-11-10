@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Background Task",
-  "description": "Uygulama ön planda olmasa da çalıştırmaya hazır bir işlem içi arka plan görevi ekleyin.",
-  "identity": "wts.Feat.BackgroundTask"
-}

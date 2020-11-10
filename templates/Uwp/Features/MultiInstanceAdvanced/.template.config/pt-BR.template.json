@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Multi-Instance Advanced",
-  "description": "Controle como várias instâncias do aplicativo são iniciadas.",
-  "identity": "wts.Feat.MultiInstanceAdvanced"
-}

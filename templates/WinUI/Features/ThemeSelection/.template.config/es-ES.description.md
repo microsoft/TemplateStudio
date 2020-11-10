@@ -1,1 +1,0 @@
-﻿Esta característica permite cambiar el tema de la aplicación entre Oscuro/Claro y WindowsDefault.

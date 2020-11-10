@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Application Info Service",
-  "description": "ApplicationInfoService contient des opérations qui renvoient des informations sur l’application en cours.",
-  "identity": "wts.Wpf.Feat.ApplicationInfoService"
-}

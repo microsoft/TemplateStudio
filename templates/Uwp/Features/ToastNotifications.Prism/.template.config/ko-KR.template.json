@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Toast Notifications",
-    "description": "토스트를 보여주는 코드를 추가하여 앱을 실행하는 데 사용됩니다.",
-    "identity": "wts.Feat.ToastNotifications.Prism"
-}

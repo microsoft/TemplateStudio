@@ -1,1 +1,0 @@
-﻿Ajoute une commande de ruban qui comporte plusieurs onglets, regroupés par fonctionnalités afin de représenter les actions du menu d'une application.

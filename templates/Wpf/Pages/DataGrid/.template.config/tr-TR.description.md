@@ -1,1 +1,0 @@
-﻿Bir DataGrid görüntüleyen bir sayfa, bu denetim satır ve sütunlar özelleştirilebilir bir tabloda veri sunar.

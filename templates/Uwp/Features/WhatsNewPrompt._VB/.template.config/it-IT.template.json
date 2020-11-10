@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "What\u0027s New Prompt",
-    "description": "Visualizza un prompt quando l\u0027app viene usata per la prima volta dopo un aggiornamento.",
-    "identity": "wts.Feat.WhatsNewPrompt.VB"
-}

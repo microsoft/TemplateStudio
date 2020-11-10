@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "Esta página permite agregar elementos personalizados en la forma de una cuadrícula adaptable.",
-  "identity": "wts.WinUI.Page.ContentGrid"
-}

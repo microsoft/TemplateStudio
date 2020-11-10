@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Web to App link",
-    "description": "Web-Uygulama bağlantısı, web sitenize yönlendiren bir bağlantı açıldığında uygulamanızı bir web sitesi ile ilişkilendirir.",
-    "identity": "wts.Feat.WebToAppLink.Prism"
-}

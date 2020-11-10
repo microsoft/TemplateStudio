@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "Tato stránka obsahuje základní mřížku obsahu založenou na ListView.",
-  "identity": "wts.Wpf.Page.ContentGrid"
-}

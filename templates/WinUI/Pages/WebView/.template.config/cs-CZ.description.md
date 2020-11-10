@@ -1,3 +1,0 @@
-﻿Stránka webového zobrazení umožňuje vložit do vaší aplikace zobrazení, které vykresluje webový obsah pomocí vykreslovacího modulu prohlížeče Microsoft Edge. V ovládacím prvku webového zobrazení se také mohou zobrazit a fungovat hypertextové odkazy.  Ovládací prvek webového zobrazení můžete používat k zobrazení rozsáhle formátovaného obsahu HTML ze vzdáleného webového serveru, dynamicky generovaného kódu nebo souborů obsahu, které jsou součástí balíčku aplikace. Různorodý obsah může také zahrnovat kód skriptu a komunikaci mezi skriptem a kódem aplikace.
-
-[Je pro vaše potřeby vhodný ovládací prvek webového zobrazení?](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

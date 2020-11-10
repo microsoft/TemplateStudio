@@ -1,1 +1,0 @@
-﻿ Esta página permite agregar contenido personalizado en una GridView que responde al cambio de tamaño de pantalla. [Más información acerca dela Vista de cuadrícula adaptable.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)
