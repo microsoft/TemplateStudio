@@ -26,6 +26,7 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
+            <NavigationViewItem Content="Main" Icon="Document" helpers:NavHelper.NavigateTo="WinUI3App.ViewModels.MainViewModel" />
             <NavigationViewItem Content="WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUI3App.ViewModels.WebViewViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>

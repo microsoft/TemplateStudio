@@ -59,6 +59,7 @@ namespace WinUI3App
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddTransient<IWebViewService, WebViewService>();
 
             // Core Services
 
@@ -69,6 +70,8 @@ namespace WinUI3App
             services.AddTransient<WebViewPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
+            services.AddTransient<MainViewModel>();
+            services.AddTransient<MainPage>();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace WinUI3App.Activation
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
-            _navigationService.NavigateTo(typeof(WebViewViewModel).FullName, args.Arguments);
+            _navigationService.NavigateTo(typeof(MainViewModel).FullName, args.Arguments);
             await Task.CompletedTask;
         }
 

@@ -3,14 +3,15 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
-
+using Microsoft.UI.Xaml.Navigation;
 using Windows.ApplicationModel;
 
 using WinUI3App.Contracts.Services;
+using WinUI3App.Contracts.ViewModels;
 
 namespace WinUI3App.ViewModels
 {
-    public class SettingsViewModel : ObservableRecipient
+    public class SettingsViewModel : ObservableRecipient, INavigationAware
     {
         private readonly IThemeSelectorService _themeSelectorService;
         private ElementTheme _elementTheme;
@@ -66,6 +67,18 @@ namespace WinUI3App.ViewModels
             var version = packageId.Version;
 
             return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        }
+
+        public void OnNavigatedTo(object parameter)
+        {
+        }
+
+        public void OnNavigatedFrom()
+        {
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs args)
+        {
         }
     }
 }

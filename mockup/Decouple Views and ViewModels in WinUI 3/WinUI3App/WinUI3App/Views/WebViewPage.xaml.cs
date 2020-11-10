@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.UI.Xaml.Controls;
-
+﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using WinUI3App.ViewModels;
 
 namespace WinUI3App.Views
@@ -12,9 +10,15 @@ namespace WinUI3App.Views
 
         public WebViewPage()
         {
-            ViewModel = Ioc.Default.GetService<WebViewViewModel>();
+            //ViewModel = Ioc.Default.GetService<WebViewViewModel>();
             InitializeComponent();
-            ViewModel.Initialize(webView);
+            ViewModel = new WebViewViewModel(new Services.WebViewService(webView));
+            //ViewModel.WebViewService.Initialize(webView);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
         }
     }
 }

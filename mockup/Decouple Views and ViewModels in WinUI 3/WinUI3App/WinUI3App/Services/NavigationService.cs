@@ -49,6 +49,7 @@ namespace WinUI3App.Services
             if (_frame != null)
             {
                 _frame.Navigated += OnNavigated;
+                _frame.Navigating += OnNavigating;
             }
         }
 
@@ -57,11 +58,22 @@ namespace WinUI3App.Services
             if (_frame != null)
             {
                 _frame.Navigated -= OnNavigated;
+                _frame.Navigating -= OnNavigating;
             }
         }
 
         public void GoBack()
-            => _frame.GoBack();
+        {
+            if (CanGoBack)
+            {
+                var lastPage = _frame.GetPageViewModel();
+                _frame.GoBack();
+                if (lastPage is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedFrom();
+                }
+            }            
+        }
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
         {
@@ -70,18 +82,17 @@ namespace WinUI3App.Services
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
                 _frame.Tag = clearNavigation;
+                var lastPage = _frame.GetPageViewModel();
                 var navigated = _frame.Navigate(pageType, parameter);
                 if (navigated)
                 {
+
                     _lastParameterUsed = parameter;
-                    var dataContext = _frame.GetPageViewModel();
-                    if (dataContext is INavigationAware navigationAware)
+                    if (lastPage is INavigationAware navigationAware)
                     {
                         navigationAware.OnNavigatedFrom();
                     }
                 }
-
-                return navigated;
             }
 
             return false;
@@ -106,6 +117,17 @@ namespace WinUI3App.Services
                 }
 
                 Navigated?.Invoke(sender, e);
+            }
+        }
+
+        private void OnNavigating(object sender, NavigatingCancelEventArgs args)
+        {
+            if (sender is Frame frame)
+            {
+                if (frame.GetPageViewModel() is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatingFrom(args);
+                }
             }
         }
     }
