@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Param_RootNamespace\Param_RootNamespace.csproj" />
+    <ProjectReference Include="..\Param_ProjectName\Param_ProjectName.csproj" />
   </ItemGroup>
 
 </Project>
