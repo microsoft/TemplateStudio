@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Telerik Data Grid",
-  "shortName": "Telerik Data Grid",
+  "name": "Telerik DataGrid",
+  "shortName": "Telerik DataGrid",
   "groupIdentity": "wts.Page.Grid",
   "identity": "wts.Page.Grid.CodeBehind",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
