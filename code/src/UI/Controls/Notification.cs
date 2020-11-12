@@ -28,6 +28,7 @@ namespace Microsoft.Templates.UI.Controls
     {
         None,
         NamingValidation,
+        ProjectPathValidation,
     }
 
     public enum Category

@@ -1036,6 +1036,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project name does not match the project folder name. Please adjust to ensure a correct generation..
+        /// </summary>
+        public static string NotificationValidationError_ProjectNameAndPathDoNotMatch {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_ProjectNameAndPathDoNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RegEx validation {0} failed..
         /// </summary>
         public static string NotificationValidationError_Regex {

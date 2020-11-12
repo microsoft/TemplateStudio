@@ -35,8 +35,15 @@
         <Setter Property="Background" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Margin" Value="{StaticResource Margin_XS_LeftTopRightBottom}" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-        <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="AutomationProperties.Name">
+            <Setter.Value>
+                <MultiBinding StringFormat="{}{0}, {1}">
+                    <Binding Path="Title" />
+                    <Binding Path="Summary" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -160,8 +167,15 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
         <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static strings:StringRes.HelpTextPressEnterToAddItem}}" />
+        <Setter Property="AutomationProperties.Name">
+            <Setter.Value>
+                <MultiBinding StringFormat="{}{0}, {1}">
+                    <Binding Path="Title" />
+                    <Binding Path="Summary" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
