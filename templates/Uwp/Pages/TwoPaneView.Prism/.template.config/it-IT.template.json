@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "Pagina master-dettagli ottimizzata per i dispositivi a doppio schermo.",
   "identity": "wts.Page.TwoPaneView.Prism"
 }

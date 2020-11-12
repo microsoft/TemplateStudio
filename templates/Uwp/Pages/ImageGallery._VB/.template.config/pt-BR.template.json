@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "Uma página que exibe uma galeria de imagens e permite ao usuário navegar entre a galeria e detalhes de imagens.",
   "identity": "wts.Page.ImageGallery.VB"
 }

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "UWP 向け Telerik UI コントロールを利用したシンプルなグリッドを表示するページです。",
     "identity": "wts.Page.Grid.Prism"
 }

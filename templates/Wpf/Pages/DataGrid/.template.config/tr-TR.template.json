@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Basit bir veri ızgarası görüntüleyen bir sayfa.",
   "identity": "wts.Wpf.Page.DataGrid"
 }

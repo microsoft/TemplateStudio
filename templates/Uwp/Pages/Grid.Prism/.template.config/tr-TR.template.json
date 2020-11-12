@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "UWP için Telerik UI denetimleri tarafından desteklenen basit bir kılavuzun gösterildiği sayfa.",
     "identity": "wts.Page.Grid.Prism"
 }

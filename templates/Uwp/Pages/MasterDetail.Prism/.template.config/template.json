@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Master/Detail",
-  "shortName": "Master/Detail",
+  "name": "MasterDetail",
+  "shortName": "MasterDetail",
   "groupIdentity": "wts.Page.MasterDetail",
   "identity": "wts.Page.MasterDetail.Prism",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -13,6 +13,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Master/Detail",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",

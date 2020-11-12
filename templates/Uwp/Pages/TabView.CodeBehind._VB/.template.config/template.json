@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "TabView",
-  "shortName": "TabView",
+  "name": "Tab View",
+  "shortName": "Tab View",
   "groupIdentity": "wts.Page.TabView.VB",
   "identity": "wts.Page.TabView.CodeBehind.VB",
   "description": "The tab view page has a TabView control to show contents in different tabs.",
@@ -13,6 +13,7 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "TabView",
     "wts.projecttype": "all",
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",

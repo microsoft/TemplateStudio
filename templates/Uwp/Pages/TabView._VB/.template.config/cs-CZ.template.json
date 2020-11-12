@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
-    "name": "TabView",
+    "name": "Tab View",
     "description": "Stránka zobrazení karet obsahuje ovládací prvek TabView, který umožňuje zobrazení obsahu na různých kartách.",
     "identity": "wts.Page.TabView.VB"
 }
