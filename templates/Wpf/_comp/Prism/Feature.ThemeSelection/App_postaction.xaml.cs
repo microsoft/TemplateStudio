@@ -10,7 +10,7 @@ namespace Param_RootNamespace
         {
 //{[{
             var themeSelectorService = Container.Resolve<IThemeSelectorService>();
-            themeSelectorService.SetTheme();
+            themeSelectorService.InitializeTheme();
 
 //}]}
         }

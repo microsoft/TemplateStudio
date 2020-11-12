@@ -66,6 +66,14 @@ namespace Param_RootNamespace.Views
             }
         }
 
+        private void OnDefaultChecked(object sender, RoutedEventArgs e)
+        {
+            if (_isInitialized)
+            {
+                _themeSelectorService.SetTheme(AppTheme.Default);
+            }
+        }
+
         private void OnPrivacyStatementClick(object sender, RoutedEventArgs e)
             => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);
     }

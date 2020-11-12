@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
+
 using ControlzEx.Theming;
-using Microsoft.Win32;
+using MahApps.Metro.Theming;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
 
@@ -9,61 +10,52 @@ namespace Param_RootNamespace.Services
 {
     public class ThemeSelectorService : IThemeSelectorService
     {
-        private bool IsHighContrastActive
-                        => SystemParameters.HighContrast;
+        private const string HcDarkTheme = "pack://application:,,,/Styles/Themes/HC.Dark.Blue.xaml";
+        private const string HcLightTheme = "pack://application:,,,/Styles/Themes/HC.Light.Blue.xaml";
 
         public ThemeSelectorService()
         {
-            SystemEvents.UserPreferenceChanging += OnUserPreferenceChanging;
         }
 
-        public bool SetTheme(AppTheme? theme = null)
+        public void InitializeTheme()
         {
-            if (IsHighContrastActive)
+            // TODO WTS: Mahapps.Metro supports syncronization with high contrast but you have to provide custom high contrast themes
+            // We've added basic high contrast dictionaries for Dark and Light themes
+            // Please complete these themes following the docs on https://mahapps.com/docs/themes/thememanager#creating-custom-themes
+            ThemeManager.Current.AddLibraryTheme(new LibraryTheme(new Uri(HcDarkTheme), MahAppsLibraryThemeProvider.DefaultInstance));
+            ThemeManager.Current.AddLibraryTheme(new LibraryTheme(new Uri(HcLightTheme), MahAppsLibraryThemeProvider.DefaultInstance));
+
+            var theme = GetCurrentTheme();
+            SetTheme(theme);
+        }
+
+        public void SetTheme(AppTheme theme)
+        {
+            if (theme == AppTheme.Default)
             {
-                // TODO WTS: Set high contrast theme
-                // You can add custom themes following the docs on https://mahapps.com/docs/themes/thememanager
+                ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncAll;
+                ThemeManager.Current.SyncTheme();
             }
-            else if (theme == null)
+            else
             {
-                if (App.Current.Properties.Contains("Theme"))
-                {
-                    // Read saved theme from properties
-                    var themeName = App.Current.Properties["Theme"].ToString();
-                    theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
-                }
-                else
-                {
-                    // Set default theme
-                    theme = AppTheme.Light;
-                }
+                ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithHighContrast;
+                ThemeManager.Current.SyncTheme();
+                ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue", SystemParameters.HighContrast);
             }
 
-            var currentTheme = ThemeManager.Current.DetectTheme(Application.Current);
-            if (currentTheme == null || currentTheme.Name != theme.ToString())
-            {
-                ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
-                App.Current.Properties["Theme"] = theme.ToString();
-                return true;
-            }
-
-            return false;
+            App.Current.Properties["Theme"] = theme.ToString();
         }
 
         public AppTheme GetCurrentTheme()
         {
-            var themeName = App.Current.Properties["Theme"]?.ToString();
-            Enum.TryParse(themeName, out AppTheme theme);
-            return theme;
-        }
-
-        private void OnUserPreferenceChanging(object sender, UserPreferenceChangingEventArgs e)
-        {
-            if (e.Category == UserPreferenceCategory.Color ||
-                e.Category == UserPreferenceCategory.VisualStyle)
+            if (App.Current.Properties.Contains("Theme"))
             {
-                SetTheme();
+                var themeName = App.Current.Properties["Theme"].ToString();
+                Enum.TryParse(themeName, out AppTheme theme);
+                return theme;
             }
+
+            return AppTheme.Default;
         }
     }
 }

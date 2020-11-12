@@ -64,5 +64,14 @@
                 return ResourceManager.GetString("wts.ItemNamePageRadioButtonLightTheme", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string wts.ItemNamePageRadioButtonWindowsDefaultTheme {
+            get {
+                return ResourceManager.GetString("wts.ItemNamePageRadioButtonWindowsDefaultTheme", resourceCulture);
+            }
+        }
 //}]}
 }
