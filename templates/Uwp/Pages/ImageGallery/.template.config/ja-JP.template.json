@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "画像ギャラリーを表示するページです。このページにより、ユーザーはギャラリーと画像の詳細の間を移動することができます。",
   "identity": "wts.Page.ImageGallery"
 }

@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "ImageGallery",
-  "shortName": "ImageGallery",
+  "name": "Image Gallery",
+  "shortName": "Image Gallery",
   "groupIdentity": "wts.Page.ImageGallery.VB",
   "identity": "wts.Page.ImageGallery.VB",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
