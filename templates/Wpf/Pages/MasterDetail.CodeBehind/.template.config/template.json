@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Master Detail",
-  "shortName": "Master Detail",
+  "name": "MasterDetail",
+  "shortName": "MasterDetail",
   "identity": "wts.Wpf.Page.MasterDetail.CodeBehind",
   "groupIdentity": "wts.Wpf.Page.MasterDetail",
   "description": "The master-detail page has a master pane and a details pane for content.",

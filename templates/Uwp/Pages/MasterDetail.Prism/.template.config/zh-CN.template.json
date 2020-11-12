@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
-    "name": "Master/Detail",
+    "name": "MasterDetail",
     "description": "大纲-细节页面包含与内容相关的大纲窗格和细节窗格。",
     "identity": "wts.Page.MasterDetail.Prism"
 }
