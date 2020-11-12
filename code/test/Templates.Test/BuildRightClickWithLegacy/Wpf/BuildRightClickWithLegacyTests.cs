@@ -11,30 +11,30 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Xunit;
 
-namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
+namespace Microsoft.Templates.Test.BuildWithLegacy.Wpf
 {      
-    public class BuildRightClickWithLegacyCSharpTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyCSharpFixture>
+    public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyWpfFixture>
     {
         private readonly string _emptyBackendFramework = string.Empty;
         private readonly string[] excludedTemplates = { };
 
-        public BuildRightClickWithLegacyCSharpTests(BuildRightClickWithLegacyCSharpFixture fixture)
+        public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyWpfFixture fixture)
             : base(fixture)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildRightClickWithLegacyWpf")]
         [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "BuildRightClickLegacy")]
-        public async Task Build_Empty_Legacy_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
+        [Trait("Type", "BuildRightClickLegacyWpf")]
+        public async Task Build_Empty_Legacy_AddRightClick_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            var fixture = _fixture as BuildRightClickWithLegacyCSharpFixture;
+            var fixture = _fixture as BuildRightClickWithLegacyWpfFixture;
 
             var projectName = $"{projectType}{framework}Legacy{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Uwp, language, null, null);
+            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Wpf, language, null, null);
 
             await fixture.ChangeToLocalTemplatesSourceAsync();
 
@@ -52,14 +52,14 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks", ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
-        public async Task Build_All_Legacy_UwpAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_All_Legacy_WpfAsync(string projectType, string framework, string platform, string language)
 #pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
-            var fixture = _fixture as BuildRightClickWithLegacyCSharpFixture;
+            var fixture = _fixture as BuildRightClickWithLegacyWpfFixture;
 
             var projectName = $"{ProgrammingLanguages.GetShortProgrammingLanguage(language)}{ShortProjectType(projectType)}{framework}AllLegacy";
 

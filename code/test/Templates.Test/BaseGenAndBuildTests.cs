@@ -599,14 +599,7 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case "LegacyFrameworks":
-                    if (programmingLanguage == ProgrammingLanguages.CSharp)
-                    {
-                        result = BuildRightClickWithLegacyCSharpFixture.GetProjectTemplates();
-                    }
-                    if (programmingLanguage == ProgrammingLanguages.VisualBasic)
-                    {
-                        result = BuildRightClickWithLegacyVBFixture.GetProjectTemplates();
-                    }
+                    result = BuildRightClickWithLegacyFixture.GetProjectTemplates(platform, programmingLanguage);
                     break;
 
                 case Frameworks.Prism:

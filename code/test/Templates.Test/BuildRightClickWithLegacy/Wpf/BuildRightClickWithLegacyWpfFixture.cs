@@ -5,12 +5,12 @@
 using System;
 using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
+namespace Microsoft.Templates.Test.BuildWithLegacy
 {
-    public sealed class BuildRightClickWithLegacyCSharpFixture : BuildRightClickWithLegacyFixture, IDisposable
+    public class BuildRightClickWithLegacyWpfFixture : BuildRightClickWithLegacyFixture, IDisposable
     {
 
-        public override string Platform => Platforms.Uwp;
+        public override string Platform => Platforms.Wpf;
         public override string Language => ProgrammingLanguages.CSharp;
 
 

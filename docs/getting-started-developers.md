@@ -119,6 +119,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildMVVMBasicWpf
     - ExecutionSet=BuildPrismWpf
     - ExecutionSet=BuildMVVMLightWpf
+    - ExecutionSet=BuildRightClickWithLegacyWpf
     - ExecutionSet=BuildMVVMToolkitWinUI
 
 - VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
