@@ -31,7 +31,7 @@ namespace WinUIDesktopApp.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 var navigationService = Ioc.Default.GetService<INavigationService>();
-                navigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
+                navigationService.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
             }
         }
     }

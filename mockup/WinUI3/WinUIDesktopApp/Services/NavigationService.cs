@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -100,6 +101,9 @@ namespace WinUIDesktopApp.Services
         public void CleanNavigation()
             => _frame.BackStack.Clear();
 
+        public void SetListDataItemForNextConnectedAnimation(object item)
+            => Frame.SetListDataItemForNextConnectedAnimation(item);
+
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
             if (sender is Frame frame)
@@ -117,6 +121,6 @@ namespace WinUIDesktopApp.Services
 
                 Navigated?.Invoke(sender, e);
             }
-        }
+        }        
     }
 }
