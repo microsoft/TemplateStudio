@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web View",
-  "shortName": "Web View",
+  "name": "WebView",
+  "shortName": "WebView",
   "groupIdentity": "wts.Page.WebView",
   "identity": "wts.Page.WebView.CaliburnMicro",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
