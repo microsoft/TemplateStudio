@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Two Pane View",
-  "shortName": "Two Pane View",
+  "name": "TwoPaneView",
+  "shortName": "TwoPaneView",
   "groupIdentity": "wts.Page.TwoPaneView",
   "identity": "wts.Page.TwoPaneView.CodeBehind",
   "description": "Master-Detail page optimized for dual-screen devices.",
