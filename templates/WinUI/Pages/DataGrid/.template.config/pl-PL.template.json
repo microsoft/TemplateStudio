@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Strona wyświetlająca prostą siatkę danych.",
   "identity": "wts.WinUI.Page.DataGrid"
 }

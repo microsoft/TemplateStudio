@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Data Grid",
-  "shortName": "Data Grid",
+  "name": "DataGrid",
+  "shortName": "DataGrid",
   "identity": "wts.Wpf.Page.DataGrid.CodeBehind",
   "groupIdentity": "wts.Wpf.Page.DataGrid",
   "description": "A page displaying a simple data grid.",
