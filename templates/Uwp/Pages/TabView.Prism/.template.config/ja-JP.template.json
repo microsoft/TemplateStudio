@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "TabView",
+  "name": "Tab View",
   "description": "タブ ビュー ページには、さまざまなタブにコンテンツを表示する TabView コントロールがあります。",
   "identity": "wts.Page.TabView.Prism"
 }
