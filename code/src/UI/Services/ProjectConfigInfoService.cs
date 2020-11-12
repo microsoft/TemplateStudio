@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Services
         public const string FxCodeBehid = "CodeBehind";
         public const string FxCaliburnMicro = "CaliburnMicro";
         public const string FxPrism = "Prism";
-        public const string FxToolkitMvvm = "MVVMToolkit";
+        public const string FxMvvmToolkit = "MVVMToolkit";
 
         private const string PlUwp = "Uwp";
         private const string PlWpf = "Wpf";
@@ -161,7 +161,7 @@ namespace Microsoft.Templates.UI.Services
             }
             else if (IsUwpMicrosoftToolkitMvvm())
             {
-                return FxToolkitMvvm;
+                return FxMvvmToolkit;
             }
             else
             {

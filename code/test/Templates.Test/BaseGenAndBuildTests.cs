@@ -549,19 +549,19 @@ namespace Microsoft.Templates.Test
             yield return new object[] { ProjectTypes.SplitView, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMLight };
-            yield return new object[] { ProjectTypes.SplitView, Frameworks.ToolkitMVVM };
+            yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.Blank, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMLight };
-            yield return new object[] { ProjectTypes.Blank, Frameworks.ToolkitMVVM };
+            yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMLight };
-            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM };
+            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMLight };
-            yield return new object[] { ProjectTypes.MenuBar, Frameworks.ToolkitMVVM };
+            yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMToolkit };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB

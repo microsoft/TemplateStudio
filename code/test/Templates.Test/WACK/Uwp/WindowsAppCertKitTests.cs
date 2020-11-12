@@ -88,14 +88,14 @@ namespace Microsoft.Templates.Test.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         public async Task WackTests_MvvmToolkit_VBAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         public async Task WackTests_MvvmToolkit_CSAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
@@ -158,14 +158,14 @@ namespace Microsoft.Templates.Test.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         public async Task WackTests_MvvmToolkit_Other_CSAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         public async Task WackTests_MvvmToolkit_Other_VBAsync(string projectType, string framework, string platform, string language)
         {
             await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);

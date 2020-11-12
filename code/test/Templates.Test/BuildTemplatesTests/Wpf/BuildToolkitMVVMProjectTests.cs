@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -13,16 +12,16 @@ using Xunit;
 namespace Microsoft.Templates.Test.Build.Wpf
 {
     [Collection("BuildTemplateTestCollection")]
-    public class BuildToolkitMVVMProjectTests : BaseGenAndBuildTests
+    public class BuildMVVMToolkitProjectTests : BaseGenAndBuildTests
     {
-        public BuildToolkitMVVMProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, Frameworks.ToolkitMVVM)
+        public BuildMVVMToolkitProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, Frameworks.MVVMToolkit)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_WpfAsync(string projectType, string framework, string platform, string language)
@@ -33,8 +32,8 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
@@ -56,8 +55,8 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
@@ -79,9 +78,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "MinimumWpf")]
-        [Trait("ExecutionSet", "ToolkitMVVMWpf")]
+        [Trait("ExecutionSet", "MinimumMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G1_WpfAsync(string projectType, string framework, string platform, string language)
@@ -103,9 +102,9 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "MinimumWpf")]
-        [Trait("ExecutionSet", "MinimumToolkitMVVMWpf")]
+        [Trait("ExecutionSet", "MinimumMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
@@ -128,8 +127,8 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         public async Task Build_AllWithMsix_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
@@ -149,8 +148,8 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_Full")]
         public async Task Build_AllWithMsix_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
@@ -170,10 +169,10 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
-        [Trait("ExecutionSet", "BuildOneByOneToolkitMVVMWpf")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
+        [Trait("ExecutionSet", "BuildOneByOneMVVMToolkitWpf")]
         [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneToolkitMVVMWpf")]
+        [Trait("Type", "BuildOneByOneMVVMToolkitWpf")]
         public async Task Build_MVVMBasic_OneByOneItems_WpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);

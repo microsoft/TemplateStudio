@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Test
                     return "ML";
                 case Frameworks.MVVMBasic:
                     return "MB";
-                case Frameworks.ToolkitMVVM:
+                case Frameworks.MVVMToolkit:
                     return "MTM";
                 default:
                     return framework;

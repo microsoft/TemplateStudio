@@ -152,14 +152,14 @@ namespace Microsoft.Templates.Test
             // Caliburn Micro Templates does not have templates for MenuBar
             if (projectType == ProjectTypes.MenuBar)
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism, Frameworks.ToolkitMVVM })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism, Frameworks.MVVMToolkit })
                 {
                     yield return new object[] { framework };
                 }
             }
             else
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism, Frameworks.ToolkitMVVM })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism, Frameworks.MVVMToolkit })
                 {
                     yield return new object[] { framework };
                 }
@@ -182,11 +182,11 @@ namespace Microsoft.Templates.Test
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CaliburnMicro, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.Prism, ProgrammingLanguages.CSharp };
-            yield return new object[] { Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CodeBehind, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMBasic, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.VisualBasic };
-            yield return new object[] { Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic };
         }
 
         public static IEnumerable<string> GetAllProjectTypes()
@@ -394,7 +394,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
         }
 
         [Theory]
@@ -403,7 +403,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.ToolkitMVVM, page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
         }
 
         [Theory]
@@ -412,7 +412,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_Simple_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
         }
 
         [Theory]
@@ -421,7 +421,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_ExtraLogic_Async(string page)
         {
-            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.ToolkitMVVM, page);
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
         }
 
         // There are tests with hardcoded projectType and framework values to make rerunning/debugging only some of the tests easier

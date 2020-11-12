@@ -13,16 +13,16 @@ using Xunit;
 namespace Microsoft.Templates.Test.Build.Uwp
 {
     [Collection("BuildTemplateTestCollection")]
-    public class BuildToolkitMvvmProjectTests : BaseGenAndBuildTests
+    public class BuildMvvmToolkitProjectTests : BaseGenAndBuildTests
     {
-        public BuildToolkitMvvmProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, Frameworks.ToolkitMVVM)
+        public BuildMvvmToolkitProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, Frameworks.MVVMToolkit)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
+        [Trait("ExecutionSet", "BuildMvvmToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
@@ -36,8 +36,8 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
+        [Trait("ExecutionSet", "BuildMvvmToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
@@ -59,8 +59,8 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
+        [Trait("ExecutionSet", "BuildMvvmToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
@@ -82,9 +82,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumToolkitMvvm")]
+        [Trait("ExecutionSet", "MinimumMVVMToolkit")]
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
@@ -107,9 +107,9 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "BuildToolkitMvvm")]
+        [Trait("ExecutionSet", "MinimumMVVMToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
@@ -131,8 +131,8 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.ToolkitMVVM, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
+        [Trait("ExecutionSet", "BuildMvvmToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
@@ -145,10 +145,10 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
-        [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
+        [Trait("ExecutionSet", "BuildOneByOneMvvmToolkit")]
         [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneToolkitMvvm")]
+        [Trait("Type", "BuildOneByOneMvvmToolkit")]
         public async Task Build_MVVMToolkit_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
@@ -157,10 +157,10 @@ namespace Microsoft.Templates.Test.Build.Uwp
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.ToolkitMVVM, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
-        [Trait("ExecutionSet", "BuildOneByOneToolkitMvvm")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
+        [Trait("ExecutionSet", "BuildOneByOneMvvmToolkit")]
         [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneToolkitMvvm")]
+        [Trait("Type", "BuildOneByOneMvvmToolkit")]
         public async Task Build_MVVMToolkit_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
