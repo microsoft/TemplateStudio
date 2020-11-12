@@ -48,6 +48,13 @@
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnDarkChecked"
                             IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}" />
+                            <RadioButton
+                            GroupName="AppTheme"
+                            Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonWindowsDefaultTheme}"
+                            Margin="{StaticResource XSmallTopMargin}"
+                            FontSize="{StaticResource MediumFontSize}"
+                            Checked="OnDefaultChecked"
+                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default}" />
                     </StackPanel>
                 </StackPanel>
 

@@ -34,12 +34,22 @@
     },
     {
       "path": "Services/ThemeSelectorService.cs"
+    },
+    {
+      "path": "Styles/Themes/HC.Dark.Blue.xaml"
+    },
+    {
+      "path": "Styles/Themes/HC.Light.Blue.xaml"
     }
   ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName"
     }
   }
 }

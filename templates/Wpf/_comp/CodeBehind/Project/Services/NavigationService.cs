@@ -38,7 +38,17 @@ namespace Param_RootNamespace.Services
         }
 
         public void GoBack()
-            => _frame.GoBack();
+        {
+            if (_frame.CanGoBack)
+            {
+                var pageBeforeNavigation = _frame.Content;
+                _frame.GoBack();
+                if (pageBeforeNavigation is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedFrom();
+                }
+            }
+        }
 
         public bool NavigateTo(Type pageType, object parameter = null, bool clearNavigation = false)
         {

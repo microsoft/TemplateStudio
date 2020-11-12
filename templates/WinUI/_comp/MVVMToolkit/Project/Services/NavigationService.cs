@@ -60,7 +60,17 @@ namespace Param_RootNamespace.Services
         }
 
         public void GoBack()
-            => _frame.GoBack();
+        {
+            if (CanGoBack)
+            {
+                var vmBeforeNavigation = _frame.GetPageViewModel();
+                _frame.GoBack();
+                if (vmBeforeNavigation is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedFrom();
+                }
+            }
+        }
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
         {
@@ -69,12 +79,12 @@ namespace Param_RootNamespace.Services
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
                 _frame.Tag = clearNavigation;
+                var vmBeforeNavigation = _frame.GetPageViewModel();
                 var navigated = _frame.Navigate(pageType, parameter);
                 if (navigated)
                 {
                     _lastParameterUsed = parameter;
-                    var dataContext = _frame.GetPageViewModel();
-                    if (dataContext is INavigationAware navigationAware)
+                    if (vmBeforeNavigation is INavigationAware navigationAware)
                     {
                         navigationAware.OnNavigatedFrom();
                     }
