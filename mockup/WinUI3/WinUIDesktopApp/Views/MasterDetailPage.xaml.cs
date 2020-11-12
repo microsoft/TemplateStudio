@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.UI.Xaml.Controls;
-
+using Microsoft.UI.Xaml.Navigation;
 using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
@@ -14,7 +15,14 @@ namespace WinUIDesktopApp.Views
         {
             ViewModel = Ioc.Default.GetService<MasterDetailViewModel>();
             InitializeComponent();
-            ViewModel.Initialize(MasterDetailsViewControl);
+        }
+
+        private void OnViewStateChanged(object sender, MasterDetailsViewState e)
+        {
+            if (e == MasterDetailsViewState.Both)
+            {
+                ViewModel.EnsureItemSelected();
+            }
         }
     }
 }
