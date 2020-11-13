@@ -20,7 +20,7 @@
             {
 //^^
 //{[{
-                _themeSelectorService.SetTheme();
+            _themeSelectorService.InitializeTheme();
 //}]}
                 await Task.CompletedTask;
             }

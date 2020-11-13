@@ -16,7 +16,10 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
             _regionManager = regionManager;
-            _navigationService = regionManager.Regions[Regions.Main].NavigationService;
+            if (regionManager.Regions.ContainsRegionWithName(Regions.Main))
+            {
+                _navigationService = regionManager.Regions[Regions.Main].NavigationService;
+            }
 //}]}
         }
 

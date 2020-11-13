@@ -22,5 +22,8 @@
     <data name="wts.ItemNamePageRadioButtonLightTheme" xml:space="preserve">
         <value>Light</value>
     </data>
+    <data name="wts.ItemNamePageRadioButtonWindowsDefaultTheme" xml:space="preserve">
+        <value>Default</value>
+    </data>
 <!--}]}-->
 </root>
