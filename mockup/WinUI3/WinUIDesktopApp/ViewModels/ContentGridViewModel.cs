@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Contracts.ViewModels;
@@ -49,7 +47,7 @@ namespace WinUIDesktopApp.ViewModels
         {
             if (clickedItem != null)
             {
-                _navigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
+                _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
                 _navigationService.NavigateTo(typeof(ContentGridDetailViewModel).FullName, clickedItem.OrderID);
             }
         }

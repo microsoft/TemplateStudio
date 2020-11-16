@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -61,7 +62,17 @@ namespace WinUIDesktopApp.Services
         }
 
         public void GoBack()
-            => _frame.GoBack();
+        {
+            if (CanGoBack)
+            {
+                var vmBeforeNavigation = _frame.GetPageViewModel();
+                _frame.GoBack();
+                if (vmBeforeNavigation is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedFrom();
+                }
+            }
+        }
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
         {
@@ -70,12 +81,12 @@ namespace WinUIDesktopApp.Services
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
                 _frame.Tag = clearNavigation;
+                var vmBeforeNavigation = _frame.GetPageViewModel();
                 var navigated = _frame.Navigate(pageType, parameter);
                 if (navigated)
                 {
                     _lastParameterUsed = parameter;
-                    var dataContext = _frame.GetPageViewModel();
-                    if (dataContext is INavigationAware navigationAware)
+                    if (vmBeforeNavigation is INavigationAware navigationAware)
                     {
                         navigationAware.OnNavigatedFrom();
                     }
@@ -89,6 +100,9 @@ namespace WinUIDesktopApp.Services
 
         public void CleanNavigation()
             => _frame.BackStack.Clear();
+
+        public void SetListDataItemForNextConnectedAnimation(object item)
+            => Frame.SetListDataItemForNextConnectedAnimation(item);
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
@@ -107,6 +121,6 @@ namespace WinUIDesktopApp.Services
 
                 Navigated?.Invoke(sender, e);
             }
-        }
+        }        
     }
 }
