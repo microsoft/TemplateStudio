@@ -35,13 +35,22 @@ namespace Param_RootNamespace.Services
             await InitializeAsync();
 //{[{
 
-            _identityService.InitializeWithAadAndPersonalMsAccounts(_appConfig.IdentityClientId, "http://localhost");
+            if (!_isInitialized)
+            {
+                _identityService.InitializeWithAadAndPersonalMsAccounts(_appConfig.IdentityClientId, "http://localhost");
+            }
+
             var silentLoginSuccess = await _identityService.AcquireTokenSilentAsync();
             if (!silentLoginSuccess || !_identityService.IsAuthorized())
             {
-                _logInWindow = _serviceProvider.GetService(typeof(ILogInWindow)) as ILogInWindow;
-                _logInWindow.ShowWindow();
-                await StartupAsync();
+                if (!_isInitialized)
+                {
+                    _logInWindow = _serviceProvider.GetService(typeof(ILogInWindow)) as ILogInWindow;
+                    _logInWindow.ShowWindow();
+                    await StartupAsync();
+                    _isInitialized = true;
+                }
+
                 return;
             }
 //}]}
