@@ -24,6 +24,7 @@ namespace WinUIDesktopApp.Services
             Configure<MasterDetailViewModel, MasterDetailPage>();
             Configure<DataGridViewModel, DataGridPage>();
             Configure<FormViewModel, FormPage>();
+            Configure<FormWCTViewModel, FormWCTPage>();
             Configure<SettingsViewModel, SettingsPage>();
         }
 
@@ -42,7 +43,7 @@ namespace WinUIDesktopApp.Services
         }
 
         private void Configure<VM, V>()
-            where VM : ObservableRecipient
+            where VM : ObservableObject
             where V : Page
         {
             lock (_pages)
