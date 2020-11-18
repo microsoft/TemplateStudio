@@ -24,7 +24,7 @@ namespace WinUIDesktopApp
             InitializeComponent();
             Suspending += OnSuspending;
             UnhandledException += App_UnhandledException;
-            Ioc.Default.ConfigureServices(ConfigureServices);
+            Ioc.Default.ConfigureServices(ConfigureServices());
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -49,8 +49,9 @@ namespace WinUIDesktopApp
         {
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        private System.IServiceProvider ConfigureServices()
         {
+            var services = new ServiceCollection();
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -84,10 +85,14 @@ namespace WinUIDesktopApp
             services.AddTransient<MasterDetailPage>();
             services.AddTransient<DataGridViewModel>();
             services.AddTransient<DataGridPage>();
-            services.AddTransient<FormViewModel>();
+            services.AddTransient<FormViewModel>();            
             services.AddTransient<FormPage>();
+            services.AddTransient<FormWCTViewModel>();
+            services.AddTransient<FormWCTPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
+
+            return services.BuildServiceProvider();
         }
     }
 }

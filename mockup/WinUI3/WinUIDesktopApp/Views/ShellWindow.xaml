@@ -32,6 +32,7 @@
             <NavigationViewItem Content="MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
             <NavigationViewItem Content="DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
             <NavigationViewItem Content="Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
+            <NavigationViewItem Content="Form WCT" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormWCTViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
