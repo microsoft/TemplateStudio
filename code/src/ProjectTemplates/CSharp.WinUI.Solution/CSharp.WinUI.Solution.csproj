@@ -119,10 +119,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers">
-      <Version>15.8.33</Version>
+      <Version>16.7.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
-      <Version>15.8.122</Version>
+      <Version>16.7.54</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <Version>16.2.3073</Version>
