@@ -8,11 +8,11 @@ namespace WinUIDesktopApp.Views
 {
     public sealed partial class FormWCTPage : Page
     {
-        public FormViewModel ViewModel { get; }
+        public FormWCTViewModel ViewModel { get; }
 
         public FormWCTPage()
         {
-            ViewModel = Ioc.Default.GetService<FormViewModel>();
+            ViewModel = Ioc.Default.GetService<FormWCTViewModel>();
             InitializeComponent();
         }
     }

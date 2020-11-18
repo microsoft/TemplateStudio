@@ -186,6 +186,8 @@ namespace WinUIDesktopApp.ViewModels
             // ShipperName
             // ShipperPhone
             // ShipTo
+
+            // TODO Clean all erros
         }
 
         public static ValidationResult ValidateDoubleProperty(string property)
