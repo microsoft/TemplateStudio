@@ -19,7 +19,7 @@
     "wts.dependencies":"wts.Page.Settings.Prism",
     "wts.platform": "Uwp",
     "wts.multipleInstance": "false",
-    "wts.rightClickEnabled":"false",
+    "wts.rightClickEnabled":"true",
     "wts.defaultInstance": "FeedbackHubFeature",
     "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx)"
   },

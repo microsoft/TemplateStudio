@@ -19,7 +19,7 @@
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Page.Settings.CaliburnMicro",
     "wts.multipleInstance": "false",
-    "wts.rightClickEnabled":"false",
+    "wts.rightClickEnabled":"true",
     "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx)",
     "wts.defaultInstance": "FeedbackHubFeature"
   },
