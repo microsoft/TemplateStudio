@@ -18,7 +18,7 @@ namespace Param_RootNamespace
         {
 //^^
 //{[{
-            Ioc.Default.ConfigureServices(ConfigureServices);
+            Ioc.Default.ConfigureServices(ConfigureServices());
 //}]}
         }
 
@@ -45,8 +45,10 @@ namespace Param_RootNamespace
         }
 //^^
 //{[{
-        private void ConfigureServices(IServiceCollection services)
+        private System.IServiceProvider ConfigureServices()
         {
+            var services = new ServiceCollection();
+
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -62,6 +64,8 @@ namespace Param_RootNamespace
             // Views and ViewModels
             services.AddTransient<IShellWindow, ShellWindow>();
             services.AddTransient<ShellViewModel>();
+
+            return services.BuildServiceProvider();
         }
 //}]}
     }
