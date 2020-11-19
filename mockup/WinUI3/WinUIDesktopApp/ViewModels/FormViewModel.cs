@@ -13,7 +13,7 @@ using WinUIDesktopApp.Helpers;
 
 namespace WinUIDesktopApp.ViewModels
 {
-    public class FormViewModel : ValidationObservableRecipient
+    public class FormViewModel : Helpers.ObservableValidator
     {
         private readonly ISampleDataService _sampleDataService;
 
