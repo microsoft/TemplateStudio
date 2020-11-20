@@ -32,7 +32,7 @@ namespace Param_RootNamespace.Services
         }
 
         private void Configure<VM, V>()
-            where VM : ObservableRecipient
+            where VM : ObservableObject
             where V : Page
         {
             lock (_pages)

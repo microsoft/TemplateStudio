@@ -10,7 +10,7 @@ using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : ValidationObservableRecipient
+    public class wts.ItemNameViewModel : Helpers.ObservableValidator
     {
         private readonly ISampleDataService _sampleDataService;
 
