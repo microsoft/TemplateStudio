@@ -53,10 +53,7 @@
         "order": "4",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
         "platform":  "Uwp",
-        "languages": [ "C#" ],        
-        "tags": {
-            "wts.flag": "Deprecated"
-        }
+        "languages": [ "C#" ]
     },
     {
         "name": "Prism",
