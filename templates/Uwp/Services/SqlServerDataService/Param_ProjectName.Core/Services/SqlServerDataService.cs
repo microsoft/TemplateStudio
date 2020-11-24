@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.Core.Services
