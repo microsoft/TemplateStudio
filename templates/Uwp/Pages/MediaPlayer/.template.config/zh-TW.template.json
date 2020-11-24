@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Media Player",
+  "name": "MediaPlayer",
   "description": "用於顯示已啟用系統媒體控制項之視訊的頁面。",
   "identity": "wts.Page.MediaPlayer"
 }
