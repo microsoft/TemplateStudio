@@ -10,3 +10,4 @@ ECHO VALUE AFTER: AGENT_DRIVE=%AGENT_DRIVE%
 ECHO VALUE AFTER: Agent.Drive=%Agent.Drive%
 
 IF EXIST "%AGENT_DRIVE%\UIT" ( rd "%AGENT_DRIVE%\UIT" /s /q )
+IF EXIST "%userprofile%\AppData\Local\Temp\WTSTempGeneration" ( rd "%userprofile%\AppData\Local\Temp\WTSTempGeneration" /s /q )

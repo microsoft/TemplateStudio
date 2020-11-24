@@ -8,7 +8,7 @@ using Microsoft.UI.Xaml.Data;
 
 namespace Param_RootNamespace.Helpers
 {
-    public class ValidationObservableRecipient : ObservableRecipient, INotifyDataErrorInfo
+    public class ObservableValidator : ObservableRecipient, INotifyDataErrorInfo
     {
         private Dictionary<string, List<ValidationResult>> _errors = new Dictionary<string, List<ValidationResult>>();
 
