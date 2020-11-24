@@ -69,13 +69,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBCollection.cs" />
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpFixture.cs" />
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSourceV2.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Wpf\BuildRightClickWithLegacyWpfFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Wpf\BuildRightClickWithLegacyTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildPrismProjectTests.cs" />
