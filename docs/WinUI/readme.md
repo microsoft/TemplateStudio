@@ -12,7 +12,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 1. Ensure that your development computer has Windows 10, version 1803 (build 17134), or newer installed.
 
-2. Requires Visual Studio 2019, version 16.7.2 and the following workloads:
+2. Requires Visual Studio 2019, version 19.9 and the following workloads:
     - .NET Desktop Development
     - Universal Windows Platform development
 
@@ -38,5 +38,5 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Localized Ressource issue](https://github.com/microsoft/microsoft-ui-xaml/issues/2602)
 
 ### Additional docs:
-- [Windows UI Library 3 Preview 2 (July 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
+- [Windows UI Library 3 Preview 3 (November 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
