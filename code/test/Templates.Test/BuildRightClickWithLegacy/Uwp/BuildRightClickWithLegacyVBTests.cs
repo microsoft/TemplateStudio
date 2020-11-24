@@ -13,8 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 {
-    [Collection("BuildRightClickWithLegacyVBCollection")]
-    public class BuildRightClickWithLegacyVBTests : BaseGenAndBuildTests
+    public class BuildRightClickWithLegacyVBTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyVBFixture>
     {
         private readonly string _emptyBackendFramework = string.Empty;
         private readonly string[] excludedTemplates = { };

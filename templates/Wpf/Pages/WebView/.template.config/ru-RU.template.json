@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Web View",
+  "name": "WebView",
   "description": "Страница веб-представления отображает веб-содержимое с помощью подсистемы отрисовки Microsoft Edge.",
   "identity": "wts.Wpf.Page.WebView"
 }

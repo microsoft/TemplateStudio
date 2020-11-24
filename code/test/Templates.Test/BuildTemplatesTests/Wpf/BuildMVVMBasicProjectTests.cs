@@ -170,6 +170,20 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMBasic, "", Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildMVVMBasicWpf")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "BuildRightClickWpf")]
+        public async Task Build_Empty_AddRightClick_WpfAsync(string projectType, string framework, string platform, string language)
+        {
+            var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+
+            AssertBuildProject(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMBasic, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMBasicWpf")]
         [Trait("ExecutionSet", "_OneByOne")]

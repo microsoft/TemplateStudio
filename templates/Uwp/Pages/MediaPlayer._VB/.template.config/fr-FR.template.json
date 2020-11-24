@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Media Player",
+    "name": "MediaPlayer",
     "description": "Une page pour afficher la vidéo avec les commandes médias du système activées.",
     "identity": "wts.Page.MediaPlayer.VB"
 }

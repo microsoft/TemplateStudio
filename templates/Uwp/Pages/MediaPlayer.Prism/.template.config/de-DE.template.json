@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Media Player",
+  "name": "MediaPlayer",
   "description": "Eine Seite für die Anzeige von Videos mit aktivierten Systemsteuerelementen für Medien.",
   "identity": "wts.Page.MediaPlayer.Prism"
 }

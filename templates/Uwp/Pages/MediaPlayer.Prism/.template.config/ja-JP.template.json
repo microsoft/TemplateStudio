@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Media Player",
+  "name": "MediaPlayer",
   "description": "ビデオを表示するためのページで、システム メディア コントロールが有効化されています。",
   "identity": "wts.Page.MediaPlayer.Prism"
 }

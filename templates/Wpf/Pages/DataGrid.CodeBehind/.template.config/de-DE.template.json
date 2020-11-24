@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Eine Seite, auf der ein einfaches Datenraster angezeigt wird.",
   "identity": "wts.Wpf.Page.DataGrid.CodeBehind"
 }

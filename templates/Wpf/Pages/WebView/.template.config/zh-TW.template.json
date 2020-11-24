@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Web View",
+  "name": "WebView",
   "description": "網頁檢視頁面會使用 Microsoft Edge 轉譯引擎來轉譯網頁內容。",
   "identity": "wts.Wpf.Page.WebView"
 }

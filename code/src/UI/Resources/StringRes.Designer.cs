@@ -910,7 +910,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is required for the selected project type..
         /// </summary>
         public static string NotificationRemoveError_ReadOnly {
             get {

@@ -4,14 +4,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Telerik Data Grid",
-  "shortName": "Telerik Data Grid",
+  "name": "Telerik DataGrid",
+  "shortName": "Telerik DataGrid",
   "groupIdentity": "wts.Page.Grid",
   "identity": "wts.Page.Grid",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.telemName": "Telerik Data Grid",
     "wts.type": "page",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|CaliburnMicro|MVVMToolkit",
