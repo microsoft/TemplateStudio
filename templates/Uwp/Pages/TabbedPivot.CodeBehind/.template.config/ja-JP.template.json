@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "タブ ページは、アクセス頻度の高い個別のコンテンツ カテゴリー間を移動するために使用されます。",
   "identity": "wts.Page.TabbedPivot.CodeBehind"
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Master Detail",
+  "name": "MasterDetail",
   "description": "На странице \"Основной/подробности\" доступна главная панель и панель сведений для содержимого.",
   "identity": "wts.Wpf.Page.MasterDetail"
 }

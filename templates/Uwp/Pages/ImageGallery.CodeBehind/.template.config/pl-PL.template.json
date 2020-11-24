@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "Strona wyświetlająca galerię obrazów i umożliwiająca użytkownikowi przechodzenie między galerią i szczegółami obrazu.",
   "identity": "wts.Page.ImageGallery.CodeBehind"
 }

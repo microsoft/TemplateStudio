@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Two Pane View",
-  "shortName": "Two Pane View",
+  "name": "TwoPaneView",
+  "shortName": "TwoPaneView",
   "groupIdentity": "wts.Page.TwoPaneView",
   "identity": "wts.Page.TwoPaneView.Prism",
   "description": "Master-Detail page optimized for dual-screen devices.",
@@ -13,6 +13,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Two Pane View",
     "wts.projecttype": "all",
     "wts.frontendframework": "Prism",
     "wts.platform": "Uwp",

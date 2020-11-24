@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "Master-Detail 페이지는 듀얼 스크린 디바이스에 최적화되었습니다.",
   "identity": "wts.Page.TwoPaneView.Prism"
 }

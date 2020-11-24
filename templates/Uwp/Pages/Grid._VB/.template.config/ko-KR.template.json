@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "UWP의 Telerik UI 컨트롤을 통해 생성된 간단한 그리드를 표시하는 페이지입니다.",
     "identity": "wts.Page.Grid.VB"
 }

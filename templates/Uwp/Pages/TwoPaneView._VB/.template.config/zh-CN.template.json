@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "为双屏设备优化的大纲 - 细节页面。",
   "identity": "wts.Page.TwoPaneView.VB"
 }

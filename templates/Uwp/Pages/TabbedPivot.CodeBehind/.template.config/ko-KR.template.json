@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "탭 페이지는 자주 액세스되고 서로 다른 콘텐츠 카테고리를 탐색하는 데 사용됩니다.",
   "identity": "wts.Page.TabbedPivot.CodeBehind"
 }

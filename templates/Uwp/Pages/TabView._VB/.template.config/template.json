@@ -13,6 +13,7 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "TabView",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
