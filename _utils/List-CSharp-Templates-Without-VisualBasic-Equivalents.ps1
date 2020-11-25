@@ -2,7 +2,7 @@
 # Any output indicates missing VB templates.
 
 # Get list of all templates
-$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\SC\\" } | where { $_.FullName -notmatch "\\templates\\Wpf\\" } | % { Write-Output $_.FullName }
+$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\SC\\" } | where { $_.FullName -notmatch "\\templates\\Wpf\\" } | where { $_.FullName -notmatch "\\templates\\WinUI\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {
     if ($t -like '*_shared\Page.AddConnectedAnimationService*')

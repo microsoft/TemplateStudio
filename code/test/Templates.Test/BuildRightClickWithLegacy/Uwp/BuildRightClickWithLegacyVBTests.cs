@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClickLegacy")]
-        public async Task Build_Empty_Legacy_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
+        public async Task Build_Empty_Legacy_AddRightClick_UwpVbAsync(string projectType, string framework, string platform, string language)
         {
             var fixture = _fixture as BuildRightClickWithLegacyVBFixture;
 
@@ -67,6 +67,7 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
+                && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
 
             var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);

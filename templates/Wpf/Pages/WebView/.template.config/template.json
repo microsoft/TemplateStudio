@@ -15,7 +15,7 @@
     "wts.type": "page",
     "wts.telemName": "Web View",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism|MVVMToolkit",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",

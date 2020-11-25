@@ -42,7 +42,7 @@ Namespace ViewModels
                 Return _user
             End Get
             Set(value As UserViewModel)
-                [Set](_user, value)
+                [Param_Setter](_user, value)
             End Set
         End Property
 '}]}

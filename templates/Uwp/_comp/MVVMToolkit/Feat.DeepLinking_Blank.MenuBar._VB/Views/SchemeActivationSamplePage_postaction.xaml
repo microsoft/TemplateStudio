@@ -1,0 +1,36 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+<!--{[{-->
+            <RowDefinition Height="48" />
+<!--}]}-->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+<!--{[{-->
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="SchemeActivationSamplePage_Title"
+            Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        <TextBlock
+<!--{--{-->
+            Grid.Row="0"
+<!--}--}-->
+<!--{[{-->
+            Grid.Row="1"
+<!--}]}-->
+            x:Uid="SchemeActivationSamplePage_Description"
+            Style="{StaticResource BodyTextStyle}" />
+<!--{--{-->
+        <ScrollViewer Grid.Row="1" Margin="{StaticResource SmallTopBottomMargin}">
+<!--}--}-->
+<!--{[{-->
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource SmallTopBottomMargin}">
+<!--}]}-->
+            <ItemsControl
+                ItemTemplate="{StaticResource ActivationParameterDateTemplate}" />
+        </ScrollViewer>
+    </Grid>
+</Page>

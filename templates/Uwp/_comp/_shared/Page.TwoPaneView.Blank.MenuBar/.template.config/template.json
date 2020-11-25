@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & $projectType == Blank|MenuBar & groupidentity == wts.Page.TwoPaneView"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & $projectType == Blank|MenuBar & groupidentity == wts.Page.TwoPaneView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -27,6 +27,10 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
     }
   }
 }

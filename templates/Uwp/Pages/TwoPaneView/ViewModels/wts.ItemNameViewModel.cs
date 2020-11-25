@@ -21,13 +21,13 @@ namespace Param_RootNamespace.ViewModels
         public SampleOrder Selected
         {
             get { return _selected; }
-            set { Set(ref _selected, value); }
+            set { Param_Setter(ref _selected, value); }
         }
 
         public WinUI.TwoPaneViewPriority TwoPanePriority
         {
             get { return _twoPanePriority; }
-            set { Set(ref _twoPanePriority, value); }
+            set { Param_Setter(ref _twoPanePriority, value); }
         }
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();

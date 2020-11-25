@@ -338,7 +338,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ObservableObject", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -386,7 +386,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportCanExecuteChangedMethodNameTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged" }.Contains(tag.Value))
+            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged", "NotifyCanExecuteChanged" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.canExecuteChangedMethodName tag.");
             }
@@ -467,7 +467,7 @@ namespace TemplateValidator
                 // This can't catch everything but is better than nothing
                 if (tag.Value.Contains("identity") && !tag.Value.Contains(".VB"))
                 {
-                    results.Add($" wts.compositionFilter identitiy vlaue does not match the language. ({tag.Value}).");
+                    results.Add($" wts.compositionFilter identitiy value does not match the language. ({tag.Value}).");
                 }
             }
         }
@@ -510,11 +510,11 @@ namespace TemplateValidator
             }
         }
 
-        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind" };
+        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "MVVMToolkit" };
 
-        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MVVMToolkit" };
 
-        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MVVMToolkit" };
 
         private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {

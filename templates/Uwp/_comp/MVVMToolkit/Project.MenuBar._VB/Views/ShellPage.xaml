@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Style="{StaticResource PageStyle}"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d">
+
+    <i:Interaction.Behaviors>
+        <ic:EventTriggerBehavior EventName="Loaded">
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
+        </ic:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+
+    <SplitView
+        x:Name="splitView"
+        PanePlacement="Right"
+        OpenPaneLength="400">
+        <SplitView.Pane>
+            <Frame
+                x:Name="rightFrame"
+                BorderThickness="1,1,0,0"
+                BorderBrush="Gray"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+        </SplitView.Pane>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <winui:MenuBar VerticalAlignment="Top">
+                <!--
+                TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw
+                -->
+                <winui:MenuBarItem x:Uid="ShellMenuBarItem_File">
+                    <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
+                </winui:MenuBarItem>
+                <winui:MenuBarItem x:Uid="ShellMenuBarItem_Views">
+                </winui:MenuBarItem>
+            </winui:MenuBar>
+            <Grid Grid.Row="1">
+                <Frame x:Name="shellFrame" />
+            </Grid>
+        </Grid>
+    </SplitView>
+
+</Page>

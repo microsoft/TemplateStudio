@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "wts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight & $projectType == SplitView"
+      "wts.compositionFilter": "wts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & $projectType == SplitView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

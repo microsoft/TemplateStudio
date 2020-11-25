@@ -22,7 +22,7 @@
     "wts.dependencies": "wts.Service.SampleDataService",
     "wts.genGroup": "0",
     "wts.rightClickEnabled": "true",
-    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "MasterDetailView",
   "preferNameDirectory": true,

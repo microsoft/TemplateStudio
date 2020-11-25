@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:templateSelectors="using:Param_RootNamespace.TemplateSelectors"
+    xmlns:viewModels="using:Param_RootNamespace.ViewModels"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            Style="{StaticResource PageTitleStyle}"
+            Text="{x:Bind ViewModel.SharedData.PageTitle, Mode=OneWay}" />
+
+        <ContentControl Grid.Row="1" Content="{x:Bind ViewModel.SharedData, Mode=OneWay}">
+            <ContentControl.ContentTemplateSelector>
+                <templateSelectors:SharedContentTemplateSelector>
+                    <templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
+                        <DataTemplate x:DataType="viewModels:SharedDataWebLinkViewModel">
+                            <HyperlinkButton Content="{x:Bind Title}" NavigateUri="{x:Bind Uri}" />                           
+                        </DataTemplate>
+                    </templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
+                    <templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
+                        <DataTemplate x:DataType="viewModels:SharedDataStorageItemsViewModel">
+                            <FlipView ItemsSource="{x:Bind Images}">
+                                <FlipView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding}" />
+                                    </DataTemplate>
+                                </FlipView.ItemTemplate>
+                            </FlipView>
+                        </DataTemplate>
+                    </templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
+                </templateSelectors:SharedContentTemplateSelector>
+            </ContentControl.ContentTemplateSelector>
+        </ContentControl>
+        <Button
+            x:Uid="ShareTarget_CompleteButton"
+            Grid.Row="2"
+            Margin="{StaticResource MediumTopBottomMargin}"
+            HorizontalAlignment="Right"
+            Command="{x:Bind ViewModel.CompleteCommand}" />
+    </Grid>
+</Page>

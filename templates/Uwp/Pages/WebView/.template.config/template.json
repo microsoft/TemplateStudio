@@ -15,7 +15,7 @@
     "wts.type": "page",
     "wts.telemName": "Web View",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "2.0.0",
     "wts.displayOrder": "3",

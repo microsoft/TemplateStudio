@@ -196,6 +196,15 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsFlag">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Background" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding Button, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Padding" Value="4,0,4,2" />
+    </Style>
+
     <!--Project Details-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockComboBoxItem">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />

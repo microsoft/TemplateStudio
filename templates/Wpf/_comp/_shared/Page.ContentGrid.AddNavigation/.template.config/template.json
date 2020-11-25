@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & groupidentity == wts.Wpf.Page.ContentGrid"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & groupidentity == wts.Wpf.Page.ContentGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

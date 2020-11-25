@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Testing.UnitTests.Core.NUnit & $page == wts.Page.TreeView|wts.Page.TreeView.CodeBehind|wts.Page.TreeView.Prism",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|MVVMToolkit & identity == wts.Testing.UnitTests.Core.NUnit & $page == wts.Page.TreeView|wts.Page.TreeView.CodeBehind|wts.Page.TreeView.Prism",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

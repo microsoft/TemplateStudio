@@ -1,5 +1,15 @@
 ﻿[
     {
+        "name": "MVVMToolkit",
+        "displayName": "MVVM Toolkit",
+        "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
+        "author": "Microsoft Community",
+        "order": "0",
+        "licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
+        "platform":  "Uwp",
+        "languages": [ "C#", "VisualBasic" ]
+    },
+    {
         "name": "MVVMBasic",
         "displayName": "MVVM Basic",
         "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms.",
@@ -7,7 +17,10 @@
         "order": "3",
         "licenses": "",
         "platform":  "Uwp",
-        "languages": [ "C#", "VisualBasic" ]
+        "languages": [ "C#", "VisualBasic" ],
+        "tags": {
+            "wts.flag": "Deprecated"
+        }
     },
     {
         "name": "MVVMLight",
@@ -17,7 +30,10 @@
         "order": "2",
         "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
         "platform":  "Uwp",
-        "languages": [ "C#", "VisualBasic" ]
+        "languages": [ "C#", "VisualBasic" ],        
+        "tags": {
+            "wts.flag": "Deprecated"
+        }
     },
     {
         "name": "CodeBehind",
@@ -27,12 +43,12 @@
         "order": "1",
         "licenses": "",
         "platform":  "Uwp",
-		"languages": [ "C#", "VisualBasic" ]
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "CaliburnMicro",
         "displayName": "Caliburn.Micro",
-        "summary": "Caliburn.Micro is a popular MVVM framework emphasising conventions and composability.",
+        "summary": "Caliburn.Micro is a popular MVVM framework emphasizing conventions and composability.",
         "author": "Nigel Sampson",
         "order": "4",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",

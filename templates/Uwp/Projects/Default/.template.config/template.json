@@ -11,9 +11,9 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.frontendframework": "CodeBehind|MVVMBasic|MVVMLight",
+    "wts.frontendframework": "CodeBehind|MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.projecttype":"Blank|SplitView|TabbedNav|MenuBar",
-	  "wts.platform": "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1", 
     "wts.requiredVersions":"UAP, Version=10.0.19041.0"

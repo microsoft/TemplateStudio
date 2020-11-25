@@ -12,12 +12,12 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using WindowsTestHelpers;
-using Microsoft.Templates.Core;
-using OpenQA.Selenium.Appium.Windows;
-using Xunit;
-using Microsoft.Templates.Core.Helpers;
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Helpers;
+using OpenQA.Selenium.Appium.Windows;
+using WindowsTestHelpers;
+using Xunit;
 
 namespace Microsoft.Templates.Test
 {
@@ -149,17 +149,17 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType)
         {
-            //TODO: Remove this once Caliburn Micro Templates are done for MenuBar
+            // Caliburn Micro Templates does not have templates for MenuBar
             if (projectType == ProjectTypes.MenuBar)
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.Prism, Frameworks.MVVMToolkit })
                 {
                     yield return new object[] { framework };
                 }
             }
             else
             {
-                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism })
+                foreach (var framework in new[] { Frameworks.CodeBehind, Frameworks.MVVMLight, Frameworks.CaliburnMicro, Frameworks.Prism, Frameworks.MVVMToolkit })
                 {
                     yield return new object[] { framework };
                 }
@@ -182,9 +182,11 @@ namespace Microsoft.Templates.Test
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CaliburnMicro, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.Prism, ProgrammingLanguages.CSharp };
+            yield return new object[] { Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp };
             yield return new object[] { Frameworks.CodeBehind, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMBasic, ProgrammingLanguages.VisualBasic };
             yield return new object[] { Frameworks.MVVMLight, ProgrammingLanguages.VisualBasic };
+            yield return new object[] { Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic };
         }
 
         public static IEnumerable<string> GetAllProjectTypes()
@@ -205,14 +207,14 @@ namespace Microsoft.Templates.Test
                     switch (projectType)
                     {
                         case ProjectTypes.SplitView:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 290, 450, 50), 1.25f) }";
                         case ProjectTypes.TabbedNav:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 340, 450, 50), 1.25f) }";
                         case ProjectTypes.MenuBar:
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 405, 450, 40), 1.25f) }";
                         case ProjectTypes.Blank:
                         default:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 50), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 340, 450, 50), 1.25f) }";
                     }
 
                 default:
@@ -384,6 +386,42 @@ namespace Microsoft.Templates.Test
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
         }
 
         // There are tests with hardcoded projectType and framework values to make rerunning/debugging only some of the tests easier
@@ -763,7 +801,6 @@ namespace Microsoft.Templates.Test
             if (framework == Frameworks.CaliburnMicro)
             {
                 // Caliburn does not yet support MenuBar projects
-                // TODO: remove this when implement #3000
                 return;
             }
 
@@ -772,187 +809,194 @@ namespace Microsoft.Templates.Test
 
         private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
         {
+            int pagesOpenedSuccessfully = 0;
+            string[] pageIdentities = new string[0];
+
             // InvalidOperationException occurs when WinAppDriver can't launch the app. Retrying normally solves
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
-        ExceptionHelper.RetryOn<InvalidOperationException>(async () => {
-            var pageIdentities = AllTestablePages(framework);
-
-            ExecutionEnvironment.CheckRunningAsAdmin();
-            WinAppDriverHelper.CheckIsInstalled();
-            WinAppDriverHelper.StartIfNotRunning();
-
-            VisualComparisonTestDetails appDetails = null;
-
-            int pagesOpenedSuccessfully = 0;
-
-            async Task ForOpenedPage(string pageName, WindowsDriver<WindowsElement> session)
+            await ExceptionHelper.RetryOnAsync<InvalidOperationException>(async () =>
             {
-                if (pageName == "Map")
+                pageIdentities = AllTestablePages(framework);
+
+                pagesOpenedSuccessfully = 0;
+
+                ExecutionEnvironment.CheckRunningAsAdmin();
+                WinAppDriverHelper.CheckIsInstalled();
+                WinAppDriverHelper.StartIfNotRunning();
+
+                VisualComparisonTestDetails appDetails = null;
+
+                async Task ForOpenedPage(string pageName, WindowsDriver<WindowsElement> session)
                 {
-                    // For location permission
-                    if (await ClickYesOnPopUpAsync(session))
+                    if (pageName == "Map")
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
-                        pagesOpenedSuccessfully++;
-                    }
-                    else
-                    {
-                        Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
-                    }
-                }
-                else if (pageName == "Camera")
-                {
-                    var cameraPermission = await ClickYesOnPopUpAsync(session); // For camera permission
-                    var microphonePermission = await ClickYesOnPopUpAsync(session); // For microphone permission
-
-                    if (cameraPermission && microphonePermission)
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
-                        pagesOpenedSuccessfully++;
-                    }
-                    else
-                    {
-                        Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
-                    }
-                }
-                else
-                {
-                    pagesOpenedSuccessfully++;
-                }
-            }
-
-            try
-            {
-                appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
-
-                using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
-                {
-                    appSession.Manage().Window.Maximize();
-
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-
-                    if (projectType == ProjectTypes.MenuBar)
-                    {
-                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
-
-                        for (int i = menuItems.Count - 1; i >= 0; i--)
+                        // For location permission
+                        if (await ClickYesOnPopUpAsync(session))
                         {
-                            menuItems[i].Click(); // Open menu to count sub-items
-                            var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
-                            menuItems[i].Click(); // Close menu so get in a consistent state
+                            await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                            pagesOpenedSuccessfully++;
+                        }
+                        else
+                        {
+                            Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                        }
+                    }
+                    else if (pageName == "Camera")
+                    {
+                        var cameraPermission = await ClickYesOnPopUpAsync(session); // For camera permission
+                        var microphonePermission = await ClickYesOnPopUpAsync(session); // For microphone permission
 
-                            // Stepping through the MenuFlyoutItems is unreliable
-                            for (int j = 0; j < subItemCount; j++)
+                        if (cameraPermission && microphonePermission)
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                            pagesOpenedSuccessfully++;
+                        }
+                        else
+                        {
+                            Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                        }
+                    }
+                    else
+                    {
+                        pagesOpenedSuccessfully++;
+                    }
+                }
+
+                try
+                {
+                    appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
+
+                    using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
+                    {
+                        appSession.Manage().Window.Maximize();
+
+                        // Allow app to resize and fully load
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+
+                        if (projectType == ProjectTypes.MenuBar)
+                        {
+                            var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.MenuBarItem");
+
+                            for (int i = menuItems.Count - 1; i >= 0; i--)
                             {
-                                menuItems[i].Click(); // Open the menu again
+                                menuItems[i].Click(); // Open menu to count sub-items
+                                var subItemCount = appSession.FindElementsByClassName("MenuFlyoutItem").Count;
+                                menuItems[i].Click(); // Close menu so get in a consistent state
 
-                                var subItems = appSession.FindElementsByClassName("MenuFlyoutItem");
-
-                                var option = subItems[j].Text;
-
-                                // Don't close the app or the WinAppDriver will throw an error and the test will fail
-                                if (option != "Exit")
+                                // Stepping through the MenuFlyoutItems is unreliable
+                                for (int j = 0; j < subItemCount; j++)
                                 {
-                                    subItems[j].Click();
-                                }
+                                    menuItems[i].Click(); // Open the menu again
 
-                                await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+                                    var subItems = appSession.FindElementsByClassName("MenuFlyoutItem");
 
-                                if (option == "Settings")
-                                {
-                                    // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
-                                    const byte Escape = 27; // From System.Windows.Forms.Keys
+                                    var option = subItems[j].Text;
 
-                                    VirtualKeyboard.KeyDown(Escape);
-                                    VirtualKeyboard.KeyUp(Escape);
+                                    // Don't close the app or the WinAppDriver will throw an error and the test will fail
+                                    if (option != "Exit")
+                                    {
+                                        subItems[j].Click();
+                                    }
 
-                                    // Clicking escape (above) doesn't always dismiss the flyout during automation
-                                    // Clicking on the open page will dismiss it though
-                                    appSession.Mouse.MouseMove(null, 200, 200);
-                                    appSession.Mouse.MouseDown(null);
-                                    appSession.Mouse.MouseUp(null);
-                                }
-                                else
-                                {
-                                    await ForOpenedPage(subItems[j].Text, appSession);
+                                    await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                                    if (option == "Settings")
+                                    {
+                                        // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
+                                        const byte Escape = 27; // From System.Windows.Forms.Keys
+
+                                        VirtualKeyboard.KeyDown(Escape);
+                                        VirtualKeyboard.KeyUp(Escape);
+
+                                        // Clicking escape (above) doesn't always dismiss the flyout during automation
+                                        // Clicking on the open page will dismiss it though
+                                        appSession.Mouse.MouseMove(null, 200, 200);
+                                        appSession.Mouse.MouseDown(null);
+                                        appSession.Mouse.MouseUp(null);
+                                    }
+                                    else
+                                    {
+                                        await ForOpenedPage(subItems[j].Text, appSession);
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
-
-                        foreach (var menuItem in menuItems)
+                        else
                         {
-                            menuItem.Click();
-                            Debug.WriteLine("Opened: " + menuItem.Text);
+                            var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
 
-                            await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+                            foreach (var menuItem in menuItems)
+                            {
+                                menuItem.Click();
+                                Debug.WriteLine("Opened: " + menuItem.Text);
 
-                            await ForOpenedPage(menuItem.Text, appSession);
-                        }
+                                await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
 
-                        if (appSession.TryFindElementByName("More", out WindowsElement moreBtn))
-                        {
-                            moreBtn.Click();
+                                await ForOpenedPage(menuItem.Text, appSession);
+                            }
 
-                            // Issues in automation prevent testing this so assume all ok as not had any other errors
-                            // see: https://github.com/microsoft/WinAppDriver/issues/1204
-                            // and: https://github.com/microsoft/microsoft-ui-xaml/issues/2736
-                            pagesOpenedSuccessfully = pageIdentities.Length + 1; // work-around to get the test to pass
+                            if (appSession.TryFindElementByName("More", out WindowsElement moreBtn))
+                            {
+                                moreBtn.Click();
 
-                            // This should only be an issue if running these tests on a small monitor.
-                            // Avoid this issue by using a monitor large enough to display all the options.
-                            ////// The following should work once the above underlying issues are addressed
-                            ////await Task.Delay(TimeSpan.FromMilliseconds(1500));
+                                // Issues in automation prevent testing this so assume all ok as not had any other errors
+                                // see: https://github.com/microsoft/WinAppDriver/issues/1204
+                                // and: https://github.com/microsoft/microsoft-ui-xaml/issues/2736
+                                pagesOpenedSuccessfully = pageIdentities.Length + 1; // work-around to get the test to pass
 
-                            ////var popupMenu = appSession.FindElementByName("Pop-up");
+                                // This should only be an issue if running these tests on a small monitor.
+                                // Avoid this issue by using a monitor large enough to display all the options.
+                                ////// The following should work once the above underlying issues are addressed
+                                ////await Task.Delay(TimeSpan.FromMilliseconds(1500));
 
-                            ////var moreMenuItemsCount = popupMenu.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem").Count;
-                            ////moreBtn.Click(); // Close menu so get in a consistent state
+                                ////var popupMenu = appSession.FindElementByName("Pop-up");
 
-                            ////for (int i = 0; i < moreMenuItemsCount; i++)
-                            ////{
-                            ////    moreBtn.Click();
-                            ////    popupMenu = appSession.FindElementByName("Pop-up");
+                                ////var moreMenuItemsCount = popupMenu.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem").Count;
+                                ////moreBtn.Click(); // Close menu so get in a consistent state
 
-                            ////    var moreMenuItems = popupMenu.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
+                                ////for (int i = 0; i < moreMenuItemsCount; i++)
+                                ////{
+                                ////    moreBtn.Click();
+                                ////    popupMenu = appSession.FindElementByName("Pop-up");
 
-                            ////    await Task.Delay(TimeSpan.FromSeconds(5));
+                                ////    var moreMenuItems = popupMenu.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
 
-                            ////    var x = popupMenu.FindElementByClassName("TextBlock");
+                                ////    await Task.Delay(TimeSpan.FromSeconds(5));
 
-                            ////    moreMenuItems[i].Click();
+                                ////    var x = popupMenu.FindElementByClassName("TextBlock");
 
-                            ////    await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+                                ////    moreMenuItems[i].Click();
 
-                            ////    await ForOpenedPage(moreMenuItems[i].Text, appSession);
-                            ////}
+                                ////    await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                                ////    await ForOpenedPage(moreMenuItems[i].Text, appSession);
+                                ////}
+                            }
                         }
                     }
+
+                    // Don't leave the app maximized in case we want to open the app again.
+                    // Some controls handle layout differently when the app is first opened maximized
+                    VirtualKeyboard.RestoreMaximizedWindow();
                 }
-
-                // Don't leave the app maximized in case we want to open the app again.
-                // Some controls handle layout differently when the app is first opened maximized
-                VirtualKeyboard.RestoreMaximizedWindow();
-            }
-            finally
-            {
-                if (appDetails != null)
+                finally
                 {
-                    UninstallAppx(appDetails.PackageFullName);
-                    RemoveCertificate(appDetails.CertificatePath);
+                    if (appDetails != null)
+                    {
+                        UninstallAppx(appDetails.PackageFullName);
+                        RemoveCertificate(appDetails.CertificatePath);
+                    }
+
+                    WinAppDriverHelper.StopIfRunning();
                 }
 
-                WinAppDriverHelper.StopIfRunning();
-            }
+            });
+#pragma warning restore VSTHRD101 // Avoid unsupported async delegates
 
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
 
+            Assert.True(pagesOpenedSuccessfully > 0, "No pages were navigated to");
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
-        });
-#pragma warning restore VSTHRD101 // Avoid unsupported async delegates
 
             await Task.CompletedTask;
         }

@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for adding the SchemeActivationSamplePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="SchemeActivationSamplePage_Title.Text" xml:space="preserve">
+    <value>SchemeActivationSample</value>
+    <comment>Page Title for URI Scheme Example</comment>
+  </data>
+  <!--}]}-->
+</root>

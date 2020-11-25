@@ -38,8 +38,9 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name">
             <Setter.Value>
-                <MultiBinding StringFormat="{}{0}, {1}">
+                <MultiBinding StringFormat="{}{0}, {1}, {2}">
                     <Binding Path="Title" />
+                    <Binding Path="Flag" />
                     <Binding Path="Summary" />
                 </MultiBinding>
             </Setter.Value>

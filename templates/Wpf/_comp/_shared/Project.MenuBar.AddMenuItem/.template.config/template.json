@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "wts.type == page & groupidentity != wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight & $projectType == MenuBar"
+      "wts.compositionFilter": "wts.type == page & groupidentity != wts.Wpf.Page.Settings & $frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & $projectType == MenuBar"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
