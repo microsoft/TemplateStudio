@@ -142,7 +142,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ### Testing
 
-| Name | Description |
+| Testing project | Description |
 |-----:|:------------|
 | [Test App with MSTest](./testing/app-mstest.md) | Add a project for unit tests against the app using [MSTest](https://github.com/Microsoft/testfx). |
 | [Test App with xUnit](./testing/app-xunit.md) | Add a project for unit tests against the app using [xUnit](https://xunit.net/). |
