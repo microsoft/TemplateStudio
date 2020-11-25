@@ -250,9 +250,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public async Task OpenProjectOverviewAsync()
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
-            dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+            if (GenContext.CurrentPlatform == Platforms.Uwp)
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var dte = await _dte.GetValueAsync();
+                dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+            }
         }
 
         public override void ShowModal(IWindow shell)
