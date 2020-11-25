@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Master/Detail",
+    "name": "MasterDetail",
     "description": "마스터 세부 정보 페이지에는 마스터 창과 콘텐츠 세부 정보 창이 있습니다.",
     "identity": "wts.Page.MasterDetail.VB"
 }

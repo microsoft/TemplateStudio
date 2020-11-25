@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Master/Detail",
+  "name": "MasterDetail",
   "description": "A página de detalhes mestra tem um painel mestre e um painel de detalhes para o conteúdo.",
   "identity": "wts.Page.MasterDetail.CodeBehind"
 }

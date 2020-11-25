@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "TabbedPivot",
+    "name": "Tabbed Pivot",
     "description": "此索引標籤頁面用於導覽經常存取、不同內容的類別。",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

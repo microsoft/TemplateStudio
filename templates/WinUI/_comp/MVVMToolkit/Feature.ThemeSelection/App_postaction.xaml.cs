@@ -1,4 +1,4 @@
-﻿private void ConfigureServices(IServiceCollection services)
+﻿private System.IServiceProvider ConfigureServices()
 {
     // Services
 //{[{

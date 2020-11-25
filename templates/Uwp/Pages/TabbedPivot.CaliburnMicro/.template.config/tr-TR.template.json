@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "Sekmeli sayfa sıklıkla erişilen farklı içerik kategorilerine ulaşmak için kullanılır.",
   "identity": "wts.Page.TabbedPivot.CaliburnMicro"
 }

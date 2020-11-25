@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind  & groupidentity == wts.Page.Grid.VB|wts.Page.DataGrid.VB",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.Grid.VB|wts.Page.DataGrid.VB",
     "wts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

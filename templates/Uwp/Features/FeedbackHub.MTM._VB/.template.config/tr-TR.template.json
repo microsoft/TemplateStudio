@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Feedback Hub Link",
+    "description": "Ayarlar sayfasında, Geri Bildirim Merkezi\u0027ne bir bağlantı ekleyin.",
+    "identity": "wts.Feat.FeedbackHub.MVVMToolkit.VB"
+}

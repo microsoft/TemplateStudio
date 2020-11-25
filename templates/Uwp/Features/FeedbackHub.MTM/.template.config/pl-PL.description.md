@@ -1,0 +1,3 @@
+﻿Umieść łącze do Centrum opinii na stronie ustawień, aby zachęcić użytkowników do korzystania z tej platformy.
+
+Centrum opinii jest preinstalowaną aplikacją i służy do zbierania opinii na temat systemu Windows i zainstalowanych aplikacji. Wszystkie komentarze użytkowników w Centrum opinii na temat Twojej aplikacji są zbierane i wyświetlane w formie [Raportu opinii](https://docs.microsoft.com/windows/uwp/publish/feedback-report) na pulpicie Centrum deweloperów systemu Windows. W jednym miejscu możesz sprawdzić, jakie problemy sprawia użytkownikom Twoja aplikacja, jakie wprowadziliby w niej zmiany, a także co się im nie podoba.

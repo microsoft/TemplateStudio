@@ -4,14 +4,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "ImageGallery",
-  "shortName": "ImageGallery",
+  "name": "Image Gallery",
+  "shortName": "Image Gallery",
   "groupIdentity": "wts.Page.ImageGallery",
   "identity": "wts.Page.ImageGallery.CaliburnMicro",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.telemName": "ImageGallery",
     "wts.type": "page",
     "wts.projecttype": "all",
     "wts.frontendframework": "CaliburnMicro",
@@ -21,7 +22,7 @@
     "wts.dependencies": "wts.Service.SampleDataService",
     "wts.genGroup": "0",
     "wts.isHidden": "false",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled": "true",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "ImageGalleryView",

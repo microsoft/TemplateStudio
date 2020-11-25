@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & identity == wts.Feat.ShareTarget.VB"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & identity == wts.Feat.ShareTarget.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "TabbedPivot",
+    "name": "Tabbed Pivot",
     "description": "Strona z kartami służy do nawigacji między różnymi często używanymi kategoriami treści.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

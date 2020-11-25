@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Feedback Hub Link",
+    "description": "Aggiungi un collegamento all\u0027Hub di Feedback nella pagina delle impostazioni.",
+    "identity": "wts.Feat.FeedbackHub.MVVMToolkit.VB"
+}

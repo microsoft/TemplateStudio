@@ -1,0 +1,3 @@
+﻿Fügen Sie der Einstellungsseite einen Feedbacklink hinzu, damit Ihre Kunden über den Feedback-Hub Feedback bereitstellen können.
+
+Der Feedback-Hub ist eine vorinstallierte App, die einen zentralen Ort für das Sammeln von Feedback zu Windows und installierten Apps bereitstellt. Das gesamte Kundenfeedback, das über den Feedback-Hub für Ihre App übermittelt wird, wird gesammelt und Ihnen im [Feedbackbericht](https://docs.microsoft.com/de-de/windows/uwp/publish/feedback-report) im Windows Dev Center-Dashboard bereitgestellt. Auf diese Weise werden Ihnen in einem einzigen Bericht die Probleme, Vorschläge und Stimmen angezeigt, die Ihre Kunden übermittelt haben.

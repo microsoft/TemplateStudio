@@ -1,0 +1,29 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Project.SplitView",
+  "identity": "MVVMToolkit.Project.SplitView",
+  "shortName": "MVVMToolkit.Project.SplitView",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

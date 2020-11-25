@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "TabbedPivot",
+    "name": "Tabbed Pivot",
     "description": "La página con pestañas se usa para navegar entre las categorías de contenido únicas a las que se accede con frecuencia.",
     "identity": "wts.Page.TabbedPivot.VB"
 }

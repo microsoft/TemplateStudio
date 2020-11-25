@@ -1,0 +1,64 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Project.SplitView.TabbedNav.VB",
+  "identity": "MVVMToolkit.Project.SplitView.TabbedNav.VB",
+  "shortName": "MVVMToolkit.Project.SplitView.TabbedNav.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "1",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView|TabbedNav & wts.type == project",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/NavHelper.vb"
+    },
+    {
+      "path": "ViewModels/ShellViewModel.vb"
+    },
+    {
+      "path": "Views/ShellPage.xaml"
+    },
+    {
+      "path": "Views/ShellPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.UI.Xaml",
+        "version" : "2.4.3",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

@@ -595,6 +595,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DEPRECATED.
+        /// </summary>
+        public static string Flag_Deprecated {
+            get {
+                return ResourceManager.GetString("Flag_Deprecated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
         public static string FrameworkTitle {
@@ -910,7 +919,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is required for the selected project type..
         /// </summary>
         public static string NotificationRemoveError_ReadOnly {
             get {

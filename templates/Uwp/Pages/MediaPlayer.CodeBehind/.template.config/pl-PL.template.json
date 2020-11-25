@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Media Player",
+  "name": "MediaPlayer",
   "description": "Strona do wyświetlania wideo z włączonymi kontrolkami nośników systemu.",
   "identity": "wts.Page.MediaPlayer.CodeBehind"
 }

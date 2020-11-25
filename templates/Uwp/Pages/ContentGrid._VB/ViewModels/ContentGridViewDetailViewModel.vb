@@ -12,7 +12,7 @@ Namespace ViewModels
                 Return _item
             End Get
             Set(value As SampleOrder)
-                [Set](_item, value)
+                [Param_Setter](_item, value)
             End Set
         End Property
 

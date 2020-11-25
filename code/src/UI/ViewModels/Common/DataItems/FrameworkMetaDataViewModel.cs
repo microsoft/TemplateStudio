@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -32,6 +33,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = metadataInfo.Order;
             MetadataType = metadataInfo.MetadataType;
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
+            Flag = GetLocalizedFlag(metadataInfo.Tags.FirstOrDefault(t => t.Key.Equals("wts.flag")).Value?.ToString());
+        }
+
+        private string GetLocalizedFlag(string flagValue)
+        {
+            var resValue = StringRes.ResourceManager.GetString($"Flag_{flagValue}");
+
+            return string.IsNullOrEmpty(resValue) ? flagValue : resValue;
         }
     }
 }

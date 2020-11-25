@@ -1,0 +1,30 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Feature.ExportParams.VB",
+  "identity": "MVVMToolkit.Feature.ExportParams.VB",
+  "shortName": "MVVMToolkit.Feature.ExportParams.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB|wts.Feat.ShareTarget.VB",
+    "wts.export.baseclass": "ObservableObject",
+    "wts.export.setter": "SetProperty"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

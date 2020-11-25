@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Page affichant une grille de données simple.",
   "identity": "wts.Wpf.Page.DataGrid"
 }

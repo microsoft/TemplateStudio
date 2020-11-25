@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Two Pane View",
-  "shortName": "Two Pane View",
+  "name": "TwoPaneView",
+  "shortName": "TwoPaneView",
   "groupIdentity": "wts.Page.TwoPaneView.VB",
   "identity": "wts.Page.TwoPaneView.VB",
   "description": "Master-Detail page optimized for dual-screen devices.",
@@ -13,8 +13,9 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Two Pane View",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
@@ -56,6 +57,10 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
     }
   },
   "postActions": [
