@@ -947,9 +947,9 @@ namespace Microsoft.Templates.UI.VisualStudio
                 dte.ExecuteCommand("Project.Overview");
                 dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableToOpenProjectOverview), ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableToOpenProjectOverview).FireAndForget();
             }
         }
 

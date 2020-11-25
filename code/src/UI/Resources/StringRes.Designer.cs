@@ -550,7 +550,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to open project overview dialog.
+        ///   Looks up a localized string similar to Could not open project overview..
         /// </summary>
         public static string ErrorUnableToOpenProjectOverview {
             get {
