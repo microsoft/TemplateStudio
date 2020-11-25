@@ -44,6 +44,9 @@ namespace Microsoft.Templates.UI.Services
 
             // Font Sizes and Font Family
             SetFontProperties();
+
+            // Styles
+            SetStyleProperties();
         }
 
         // VS Colors
@@ -290,6 +293,11 @@ namespace Microsoft.Templates.UI.Services
 
             // Font Family
             EnvironmentFontFamily = _stylesProvider.GetFontFamily();
+        }
+
+        private void SetStyleProperties()
+        {
+            FocusVisualStyle = _stylesProvider.GetStyle("FocusVisualStyleKey");
         }
     }
 }

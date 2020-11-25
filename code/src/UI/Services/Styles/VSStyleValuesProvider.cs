@@ -126,5 +126,16 @@ namespace Microsoft.Templates.UI.Services
 
             throw new Exception($"The font size is not valid.");
         }
+
+        public override Style GetStyle(object resourceKey)
+        {
+            var style = Application.Current.FindResource(resourceKey);
+            if (style is Style)
+            {
+                return (Style)style;
+            }
+
+            throw new Exception($"The style is not valid.");
+        }
     }
 }

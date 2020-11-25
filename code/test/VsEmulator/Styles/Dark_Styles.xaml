@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:colors="clr-namespace:Microsoft.Templates.VsEmulator.Services">
+
+    <!-- Color definition for VS Emulator Styles in this dictionary-->
+    <SolidColorBrush x:Key="StylesFocusVisualTextBrushKey" Color="#FFF1F1F1" />
+
+    <Style x:Key="{x:Static colors:Styles.FocusVisualStyleKey}">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle
+                        SnapsToDevicePixels="true"
+                        Margin="0"
+                        Stroke="{StaticResource StylesFocusVisualTextBrushKey}"
+                        StrokeDashArray="1 2" StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

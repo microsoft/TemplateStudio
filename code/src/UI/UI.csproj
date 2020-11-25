@@ -172,6 +172,7 @@
     <Compile Include="Services\RequiredVersionValidation\IRequirementValidator.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequiredVersionService.cs" />
     <Compile Include="Services\RequiredVersionValidation\Validators\WindowsSDKValidator.cs" />
+    <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />

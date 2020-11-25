@@ -84,7 +84,7 @@
         <Background Type="CT_RAW" Source="FFBFBFBF" />
       </Color>
       <Color Name="CardBorderHover">
-        <Background Type="CT_RAW" Source="FF9A9A9A" />
+        <Background Type="CT_RAW" Source="FF949494" />
       </Color>
       <Color Name="CardBorderSelected">
         <Background Type="CT_RAW" Source="FF007ACC" />
@@ -348,7 +348,7 @@
         <Background Type="CT_RAW" Source="FFBFBFBF" />
       </Color>
       <Color Name="CardBorderHover">
-        <Background Type="CT_RAW" Source="FF9A9A9A" />
+        <Background Type="CT_RAW" Source="FF949494" />
       </Color>
       <Color Name="CardBorderSelected">
         <Background Type="CT_RAW" Source="FF007ACC" />
