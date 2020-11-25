@@ -550,6 +550,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to open project overview dialog.
+        /// </summary>
+        public static string ErrorUnableToOpenProjectOverview {
+            get {
+                return ResourceManager.GetString("ErrorUnableToOpenProjectOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to set default solution configuration.
         /// </summary>
         public static string ErrorUnableToSetDefaultConfiguration {

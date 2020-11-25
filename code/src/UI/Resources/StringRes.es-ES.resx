@@ -904,4 +904,8 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
     <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
   </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Unable to open project overview dialog</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
 </root>

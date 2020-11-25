@@ -491,7 +491,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                await OpenItemsAsync();
+                await OpenItemsAsync(itemsFullPath);
             });
         }
 
@@ -933,19 +933,24 @@ namespace Microsoft.Templates.UI.VisualStudio
             window.Activate();
         }
 
-        private void SolutionEvents_Opened()
+        private async void SolutionEvents_Opened()
         {
-#pragma warning disable VSTHRD102 // Implement internal logic asynchronously
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-#pragma warning restore VSTHRD102 // Implement internal logic asynchronously
+            try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
                 var dte = await _dte.GetValueAsync();
+                var solutionExplorer = dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
+                var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
+                projectNode.Select(vsUISelectionType.vsUISelectionTypeSelect);
 
                 dte.ExecuteCommand("Project.Overview");
                 dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
-            });
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableToSetOpenProjectOverview), ex).FireAndForget();
+            }
         }
 
         private async Task CollapseAsync(UIHierarchyItem item)
