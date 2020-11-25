@@ -904,4 +904,8 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
     <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
   </data>
+  <data name="Flag_Deprecated" xml:space="preserve">
+    <value>DEPRECATED</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
 </root>
