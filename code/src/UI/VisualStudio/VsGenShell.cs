@@ -949,7 +949,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableToSetOpenProjectOverview), ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableToOpenProjectOverview), ex).FireAndForget();
             }
         }
 
