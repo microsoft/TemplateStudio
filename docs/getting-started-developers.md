@@ -80,11 +80,13 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumCodebehind
     - ExecutionSet=MinimumMVVMLight
     - ExecutionSet=MinimumMVVMBasic
+    - ExecutionSet=MinimumMVVMToolkit
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
     - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
+    - ExecutionSet=MinimumMVVMToolkitWPF
     - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=MinimumMVVMToolkitWinUI
     - ExecutionSet=TemplateValidation
@@ -101,22 +103,26 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumCodebehind
     - ExecutionSet=MinimumMVVMLight
     - ExecutionSet=MinimumMVVMBasic
+    - ExecutionSet=MinimumMVVMToolkit
     - ExecutionSet=MinimumCaliburnMicro
     - ExecutionSet=MinimumPrism
     - ExecutionSet=MinimumCodeBehindWpf
     - ExecutionSet=MinimumMVVMLightWPF
     - ExecutionSet=MinimumMVVMBasicWPF
+    - ExecutionSet=MinimumMVVMToolkitWPF
     - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=BuildVBStyle
     - ExecutionSet=TemplateValidation
     - ExecutionSet=BuildRightClickWithLegacy
     - ExecutionSet=BuildMVVMBasic
+    - ExecutionSet=BuildMVVMToolkitWPF
     - ExecutionSet=BuildCodeBehind
     - ExecutionSet=BuildMVVMLight
     - ExecutionSet=BuildCaliburnMicro
     - ExecutionSet=BuildPrism
     - ExecutionSet=BuildCodeBehindWpf
     - ExecutionSet=BuildMVVMBasicWpf
+    - ExecutionSet=BuildMVVMToolkitWPF
     - ExecutionSet=BuildPrismWpf
     - ExecutionSet=BuildMVVMLightWpf
     - ExecutionSet=BuildRightClickWithLegacyWpf
@@ -125,12 +131,14 @@ The following list shows which tests are executed in which build. Within the Tem
 - VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
   - Templates.Test
     - ExecutionSet=BuildOneByOneMVVMBasic
+    - ExecutionSet=BuildOneByOneMVVMToolkit
     - ExecutionSet=BuildOneByOneCodeBehind
     - ExecutionSet=BuildOneByOneMVVMLight
     - ExecutionSet=BuildOneByOneCaliburnMicro
     - ExecutionSet=BuildOneByOnePrism
     - ExecutionSet=BuildOneByOneCodeBehindWpf
     - ExecutionSet=BuildOneByOneMVVMBasicWpf
+    - ExecutionSet=BuildOneByOneMVVMToolkitWpf
     - ExecutionSet=BuildOneByOneMVVMLightWpf
     - ExecutionSet=BuildOneByOnePrismWpf
     - ExecutionSet=BuildOneByOneMVVMToolkitWinUI
