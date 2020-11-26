@@ -1,0 +1,3 @@
+﻿Müşterilerinizi Geri Bildirim Merkezi aracılığıyla geri bildirim bırakmaya teşvik etmek için ayarlar sayfasına bir Geri Bildirim bağlantısı ekleyin.
+
+Geri Bildirim Merkezi, Windows ve yüklü uygulamalara ilişkin geri bildirim toplayabileceğiniz bir yer sunan önceden yüklü bir uygulamadır. Geri Bildirim Merkezi üzerinden uygulamanız için gönderilen tüm müşteri geri bildirimleri toplanır ve Windows Geliştirme Merkezi panosundaki [Geri Bildirim raporu](https://docs.microsoft.com/windows/uwp/publish/feedback-report) aracılığıyla size sunulur. Böylece müşterilerinizin gönderdiği sorunları, önerileri ve destek oylarını tek bir raporda görebilirsiniz.

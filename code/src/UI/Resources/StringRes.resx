@@ -752,7 +752,7 @@ Please verify the following list of packages needed by your project's code and m
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is readonly.</value>
+    <value>You can not remove **{0}** because it is required for the selected project type.</value>
     <comment>Remove error message: Template is read only</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
@@ -900,6 +900,10 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
+  </data>
+  <data name="Flag_Deprecated" xml:space="preserve">
+    <value>DEPRECATED</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
     <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>

@@ -13,6 +13,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "TabView",
     "wts.projecttype": "all",
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",

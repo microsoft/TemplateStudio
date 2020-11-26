@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "Une page affichant une grille simple, gérée par les commandes d\u0027interface utilisateur Telerik pour plateforme UWP.",
     "identity": "wts.Page.Grid.Prism"
 }

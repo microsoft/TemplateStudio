@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Master/Detail",
-  "shortName": "Master/Detail",
+  "name": "MasterDetail",
+  "shortName": "MasterDetail",
   "groupIdentity": "wts.Page.MasterDetail.VB",
   "identity": "wts.Page.MasterDetail.VB",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -13,14 +13,15 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Master/Detail",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
     "wts.dependencies": "wts.Service.SampleDataService.VB",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled": "true",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "MasterDetailView",

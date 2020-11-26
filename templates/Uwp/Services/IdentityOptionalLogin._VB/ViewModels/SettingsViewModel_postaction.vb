@@ -58,7 +58,7 @@ Namespace ViewModels
                 Return _isLoggedIn
             End Get
             Set(value As Boolean)
-                [Set](_isLoggedIn, value)
+                [Param_Setter](_isLoggedIn, value)
             End Set
         End Property
 
@@ -67,7 +67,7 @@ Namespace ViewModels
                 Return _isBusy
             End Get
             Set(value As Boolean)
-                [Set](_isBusy, value)
+                [Param_Setter](_isBusy, value)
             End Set
         End Property
 
@@ -76,7 +76,7 @@ Namespace ViewModels
                 Return _user
             End Get
             Set(value As UserViewModel)
-                [Set](_user, value)
+                [Param_Setter](_user, value)
             End Set
         End Property
 

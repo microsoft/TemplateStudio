@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Media Player",
-  "shortName": "Media Player",
+  "name": "MediaPlayer",
+  "shortName": "MediaPlayer",
   "groupIdentity": "wts.Page.MediaPlayer",
   "identity": "wts.Page.MediaPlayer.CodeBehind",
   "description": "A page for showing video with system media controls enabled.",
@@ -13,6 +13,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "MediaPlayer",
     "wts.projecttype": "all",
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",

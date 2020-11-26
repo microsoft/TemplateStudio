@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Página que muestra una cuadrícula de datos simple.",
   "identity": "wts.WinUI.Page.DataGrid"
 }

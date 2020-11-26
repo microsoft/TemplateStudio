@@ -62,7 +62,7 @@ namespace Param_RootNamespace.ViewModels
             get => enableTouch;
             set
             {
-                Set(ref enableTouch, value);
+                Param_Setter(ref enableTouch, value);
                 _pointerDeviceService.EnableTouch = value;
             }
         }
@@ -72,7 +72,7 @@ namespace Param_RootNamespace.ViewModels
             get => enableMouse;
             set
             {
-                Set(ref enableMouse, value);
+                Param_Setter(ref enableMouse, value);
                 _pointerDeviceService.EnableMouse = value;
             }
         }
@@ -82,7 +82,7 @@ namespace Param_RootNamespace.ViewModels
             get => enablePen;
             set
             {
-                Set(ref enablePen, value);
+                Param_Setter(ref enablePen, value);
                 _pointerDeviceService.EnablePen = value;
             }
         }
@@ -92,7 +92,7 @@ namespace Param_RootNamespace.ViewModels
             get => enableLassoSelection;
             set
             {
-                Set(ref enableLassoSelection, value);
+                Param_Setter(ref enableLassoSelection, value);
                 ConfigLassoSelection(value);
             }
         }

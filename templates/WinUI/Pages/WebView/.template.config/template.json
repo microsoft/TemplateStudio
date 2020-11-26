@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web View",
-  "shortName": "Web View",
+  "name": "WebView",
+  "shortName": "WebView",
   "identity": "wts.WinUI.Page.WebView",
   "groupIdentity": "wts.WinUI.Page.WebView",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",

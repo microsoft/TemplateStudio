@@ -14,7 +14,7 @@
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "0",
-      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMBasic|MVVMLight & wts.type == project",
+      "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & wts.type == project",
       "wts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)"
     },
     "sourceName": "wts.ItemName",

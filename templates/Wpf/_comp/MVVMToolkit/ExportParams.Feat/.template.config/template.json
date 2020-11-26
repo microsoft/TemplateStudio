@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
+    "shortName": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
+    "identity": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == feature",
+      "wts.export.configtype": "IOptions<AppConfig>",
+      "wts.export.configvalue": "appConfig.Value",
+      "wts.export.baseclass": "ObservableObject",
+      "wts.export.commandclass": "RelayCommand"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

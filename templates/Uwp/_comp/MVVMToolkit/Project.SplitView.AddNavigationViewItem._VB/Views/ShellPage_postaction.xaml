@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This code adds the new page to the NavigationView control in ShellPage -->
+<!--**}-->
+
+<winui:NavigationView.MenuItems>
+<!--^^-->
+<!--{[{-->
+    <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="views:wts.ItemNamePage" />
+<!--}]}-->
+</winui:NavigationView.MenuItems>

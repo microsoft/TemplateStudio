@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "TabbedPivot",
-  "shortName": "TabbedPivot",
+  "name": "Tabbed Pivot",
+  "shortName": "Tabbed Pivot",
   "groupIdentity": "wts.Page.TabbedPivot.VB",
   "identity": "wts.Page.TabbedPivot.VB",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
@@ -13,13 +13,14 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "TabbedPivot",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "12",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled": "true"
   },
   "sourceName": "TabbedPivotPage",
   "preferNameDirectory": true,

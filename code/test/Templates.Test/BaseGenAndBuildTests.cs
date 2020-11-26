@@ -220,7 +220,7 @@ namespace Microsoft.Templates.Test
                     result = _fixture.BuildSolutionWinUI(projectName, projectPath, platform);
                     break;
                 case Platforms.Wpf:
-                    result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
+                     result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);
                     break;
             }
 
@@ -549,15 +549,19 @@ namespace Microsoft.Templates.Test
             yield return new object[] { ProjectTypes.SplitView, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.SplitView, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.Blank, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.Blank, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.TabbedNav, Frameworks.MVVMToolkit };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.CodeBehind };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMBasic };
             yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMLight };
+            yield return new object[] { ProjectTypes.MenuBar, Frameworks.MVVMToolkit };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
@@ -599,14 +603,7 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case "LegacyFrameworks":
-                    if (programmingLanguage == ProgrammingLanguages.CSharp)
-                    {
-                        result = BuildRightClickWithLegacyCSharpFixture.GetProjectTemplates();
-                    }
-                    if (programmingLanguage == ProgrammingLanguages.VisualBasic)
-                    {
-                        result = BuildRightClickWithLegacyVBFixture.GetProjectTemplates();
-                    }
+                    result = BuildRightClickWithLegacyFixture.GetProjectTemplates(platform, programmingLanguage);
                     break;
 
                 case Frameworks.Prism:

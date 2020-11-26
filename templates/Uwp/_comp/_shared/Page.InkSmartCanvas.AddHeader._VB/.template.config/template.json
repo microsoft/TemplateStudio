@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & $projectType == Blank|TabbedNav|MenuBar & groupidentity == wts.Page.InkSmartCanvas.VB"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & $projectType == Blank|TabbedNav|MenuBar & groupidentity == wts.Page.InkSmartCanvas.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

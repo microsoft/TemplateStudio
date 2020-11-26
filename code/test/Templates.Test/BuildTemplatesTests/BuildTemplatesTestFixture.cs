@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
             InitializeTemplates(Source);
         }
 
-        private static string ShortFrameworkName(string framework)
+        public static string ShortFrameworkName(string framework)
         {
             switch (framework)
             {
@@ -126,6 +126,8 @@ namespace Microsoft.Templates.Test
                     return "ML";
                 case Frameworks.MVVMBasic:
                     return "MB";
+                case Frameworks.MVVMToolkit:
+                    return "MTM";
                 default:
                     return framework;
             }

@@ -1,0 +1,81 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [ "Universal" ],
+  "name": "Feedback Hub Link",
+  "shortName": "Feedback Hub Link",
+  "groupIdentity": "wts.Feat.FeedbackHub",
+  "identity": "wts.Feat.FeedbackHub.MVVMToolkit",
+  "description": "Add a link, on the settings page, to the Feedback Hub.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMToolkit",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "8",
+    "wts.group": "UserInteraction",
+    "wts.dependencies":"wts.Page.Settings",
+    "wts.multipleInstance": "false",
+    "wts.rightClickEnabled":"false",
+    "wts.defaultInstance": "FeedbackHubFeature",
+    "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx)"
+  },
+  "sourceName": "FeedbackHubFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.Page.Settings": {
+      "type": "parameter",
+      "replaces": "Param_SettingsPageName",
+      "fileRename": "Param_SettingsPageName" 
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Services.Store.Engagement",
+        "version" : "10.1901.28001",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Microsoft Engagement Framework",
+        "sdk": "Microsoft.Services.Store.Engagement, Version=10.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Visual C++ 2015 Runtime for Universal Windows Platform Apps",
+        "sdk": "Microsoft.VCLibs, Version=14.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

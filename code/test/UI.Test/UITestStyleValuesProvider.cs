@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Windows;
 using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.UI.Test
@@ -24,6 +25,11 @@ namespace Microsoft.UI.Test
         public override double GetFontSize(string fontSizeResourceKey)
         {
             return 12.0;
+        }
+
+        public override Style GetStyle(object resourceKey)
+        {
+            return new Style();
         }
 
         public override System.Drawing.Color GetThemedColor(string className, string memberName)

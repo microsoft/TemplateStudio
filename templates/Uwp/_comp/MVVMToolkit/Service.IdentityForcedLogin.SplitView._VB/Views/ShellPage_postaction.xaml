@@ -1,0 +1,42 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <winui:NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+<!--^^-->
+<!--{[{-->
+        <winui:NavigationView.PaneFooter>
+            <Button
+                x:Uid="Shell_UserInfoButton"
+                Padding="0" Margin="0"
+                Command="{x:Bind ViewModel.UserProfileCommand}"
+                Background="Transparent"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="38" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{x:Bind ViewModel.User.Name, Mode=OneWay}"
+                        VerticalAlignment="Center"
+                        Style="{ThemeResource BodyTextBlockStyle}" />
+                </Grid>
+            </Button>
+        </winui:NavigationView.PaneFooter>
+<!--}]}-->
+        <Grid>
+        </Grid>
+    </winui:NavigationView>
+</Page>

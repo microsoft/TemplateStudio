@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "顯示簡單資料方格的頁面。",
   "identity": "wts.WinUI.Page.DataGrid"
 }

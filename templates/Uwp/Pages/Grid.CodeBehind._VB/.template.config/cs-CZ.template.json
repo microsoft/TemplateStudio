@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "Na této stránce se zobrazuje jednoduchá mřížka, která používá ovládací prvky uživatelského rozhraní Telerik pro UWP.",
     "identity": "wts.Page.Grid.CodeBehind.VB"
 }

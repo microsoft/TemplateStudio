@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web View",
-  "shortName": "Web View",
+  "name": "WebView",
+  "shortName": "WebView",
   "identity": "wts.Wpf.Page.WebView",
   "groupIdentity": "wts.Wpf.Page.WebView",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
@@ -13,15 +13,16 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Web View",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism|MVVMToolkit",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled": "true",
     "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
-    "wts.dependencies":"wts.Wpf.Feat.SystemService"
+    "wts.dependencies": "wts.Wpf.Feat.SystemService"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Two Pane View",
-  "shortName": "Two Pane View",
+  "name": "TwoPaneView",
+  "shortName": "TwoPaneView",
   "groupIdentity": "wts.Page.TwoPaneView.VB",
   "identity": "wts.Page.TwoPaneView.CodeBehind.VB",
   "description": "Master-Detail page optimized for dual-screen devices.",
@@ -13,6 +13,7 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Two Pane View",
     "wts.projecttype": "all",
     "wts.frontendframework": "CodeBehind",
     "wts.platform": "Uwp",

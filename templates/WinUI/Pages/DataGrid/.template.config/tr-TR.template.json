@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "Basit bir veri kılavuzunun gösterildiği sayfa.",
   "identity": "wts.WinUI.Page.DataGrid"
 }

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Feedback Hub Link",
+    "description": "Na stronie ustawień dodaj łącze do Centrum opinii.",
+    "identity": "wts.Feat.FeedbackHub.MVVMToolkit.VB"
+}

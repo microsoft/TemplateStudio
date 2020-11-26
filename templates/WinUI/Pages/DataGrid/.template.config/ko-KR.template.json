@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Data Grid",
+  "name": "DataGrid",
   "description": "간단한 데이터 그리드를 표시하는 페이지입니다.",
   "identity": "wts.WinUI.Page.DataGrid"
 }

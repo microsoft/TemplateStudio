@@ -14,7 +14,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "Blank|SplitView|MenuBar|Ribbon",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit",
     "wts.platform": "Wpf",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",

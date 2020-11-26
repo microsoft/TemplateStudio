@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "一个显示图像库的页面，允许用户在图像库与图像详细信息之间导航。",
   "identity": "wts.Page.ImageGallery.CaliburnMicro"
 }

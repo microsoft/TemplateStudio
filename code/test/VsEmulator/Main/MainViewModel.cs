@@ -461,11 +461,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task RefreshTemplateCacheAsync()
         {
             UpdateCanRefreshTemplateCache(false);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage("Refreshing template cache ...");
 
             await GenContext.ToolBox.Repo.RefreshAsync(true);
             AddLog($"{DateTime.Now.FormatAsTime()} - Template cache refreshed");
 
             UpdateCanRefreshTemplateCache(true);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage("Template cache refresh completed");
         }
 
         private void ConfigureVersions()

@@ -17,7 +17,7 @@
                 Return _isGoBackButtonVisible
             End Get
             Set(value As Boolean)
-                [Set](_isGoBackButtonVisible, value)
+                [Param_Setter](_isGoBackButtonVisible, value)
             End Set
         End Property
 '}]}

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Master Detail",
+  "name": "MasterDetail",
   "description": "Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır.",
   "identity": "wts.Wpf.Page.MasterDetail"
 }
