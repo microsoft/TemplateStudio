@@ -115,7 +115,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=TemplateValidation
     - ExecutionSet=BuildRightClickWithLegacy
     - ExecutionSet=BuildMVVMBasic
-    - ExecutionSet=BuildMVVMToolkitWPF
+    - ExecutionSet=BuildMVVMToolkit
     - ExecutionSet=BuildCodeBehind
     - ExecutionSet=BuildMVVMLight
     - ExecutionSet=BuildCaliburnMicro
