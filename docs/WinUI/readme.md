@@ -12,23 +12,13 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 1. Ensure that your development computer has Windows 10, version 1803 (build 17134), or newer installed.
 
-2. Requires Visual Studio 2019, version 16.7.2 and the following workloads:
-    - .NET Desktop Development
-    - Universal Windows Platform development
+2. Install [Visual Studio 2019, version 16.9 Preview](https://visualstudio.microsoft.com/vs/preview/). You must include the following workloads when installing Visual Studio:
+   - .NET Desktop Development (this also installs .NET 5)
+   - Universal Windows Platform development
 
-3. Make sure you enable .NET previews within Visual Studio:
-     Go to Tools > Options > Preview Features > Select "Use previews of the .NET Core SDK (requires restart)".
+3. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations.Windows Community Toolkit](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/#windows-community-toolkit).
 
-4. Install both x64 and x86 versions of .NET 5 Preview 5. Note that .NET 5 Preview 5 is currently the only supported .NET 5 preview for WinUI 3:
-    - x64: https://aka.ms/dotnet/net5/preview5/Sdk/dotnet-sdk-win-x64.exe
-    - x86: https://aka.ms/dotnet/net5/preview5/Sdk/dotnet-sdk-win-x86.exe
-
-5. Add a new Package source to the Windows Community Toolkit MyGet feed at https://dotnet.myget.org/F/uwpcommunitytoolkit/api/v3/index.json
-    Go to Tools > Nuget Package Manager > Package Manager Settings > Package Sources
-
-6. Make sure you enable "Include prerelease" packages in the Nuget Package Manager.
-    Go to Tools > Nuget Package Manager > Manage Nuget Packages for Solution
-
+4. Download and install the [WinUI 3 Preview 3 VSIX package](https://aka.ms/winui3/preview3-download). This adds both the WinUI 3 project templates and the NuGet package containing the WinUI 3 libraries to Visual Studio 2019.
 
 
 ### Known issues:
@@ -38,5 +28,5 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Localized Ressource issue](https://github.com/microsoft/microsoft-ui-xaml/issues/2602)
 
 ### Additional docs:
-- [Windows UI Library 3 Preview 2 (July 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
+- [Windows UI Library 3 Preview 3 (November 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
