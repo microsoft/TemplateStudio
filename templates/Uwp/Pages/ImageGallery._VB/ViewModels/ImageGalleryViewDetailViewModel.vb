@@ -16,7 +16,7 @@ Namespace ViewModels
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage)?.ID)
             End Set
         End Property
 
