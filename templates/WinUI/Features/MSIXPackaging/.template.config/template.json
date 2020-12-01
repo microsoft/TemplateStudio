@@ -31,7 +31,7 @@
   "preferNameDirectory": true,
   "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName.Packaging/Param_ProjectName.Packaging.wapproj" }
+    { "path": "Param_ProjectName (Package)/Param_ProjectName (Package).wapproj" }
   ],
   "symbols": {
     "wts.rootNamespace": {
