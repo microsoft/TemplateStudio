@@ -19,6 +19,7 @@ namespace Microsoft.Templates.VsEmulator.Services
         private ResourceDictionary _environment;
         private ResourceDictionary _infoBar;
         private ResourceDictionary _windowsTemplateStudio;
+        private ResourceDictionary _styles;
 
         public static FakeStyleValuesProvider Instance => _instance ?? (_instance = new FakeStyleValuesProvider());
 
@@ -106,6 +107,11 @@ namespace Microsoft.Templates.VsEmulator.Services
             {
                 Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute),
             };
+
+            _styles = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Styles.xaml", UriKind.RelativeOrAbsolute),
+            };
         }
 
         private void OnThemeChanged()
@@ -126,5 +132,17 @@ namespace Microsoft.Templates.VsEmulator.Services
         }
 
         public SolidColorBrush GetColor(string resourceKey) => Application.Current.FindResource(resourceKey) as SolidColorBrush;
+
+        public override Style GetStyle(object resourceKey)
+        {
+            if (_styles.Contains(resourceKey))
+            {
+                return _styles[resourceKey] as Style;
+            }
+            else
+            {
+                throw new Exception($"The member name '{resourceKey}' is not recognized");
+            }
+        }
     }
 }

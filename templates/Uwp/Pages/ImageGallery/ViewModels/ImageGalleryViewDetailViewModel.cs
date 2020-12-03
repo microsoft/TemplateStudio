@@ -19,7 +19,7 @@ namespace Param_RootNamespace.ViewModels
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage)?.ID);
             }
         }
 

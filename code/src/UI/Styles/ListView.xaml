@@ -277,7 +277,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FocusVisualStyle" Value="{Binding FocusVisualStyle, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
         <Setter Property="AutomationProperties.AutomationId" Value="{Binding Path=Index, StringFormat=Step{0:}}" />
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />

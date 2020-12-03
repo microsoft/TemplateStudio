@@ -20,7 +20,7 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledBrushKey}" Color="#FFCCCEDB" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledColorKey}" A="255" R="204" G="206" B="219" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverBrushKey}" Color="#FF9A9A9A" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverBrushKey}" Color="#FF949494" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverColorKey}" A="255" R="154" G="154" B="154" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderSelectedBrushKey}" Color="#FF007ACC" />

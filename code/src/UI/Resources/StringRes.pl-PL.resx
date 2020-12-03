@@ -904,6 +904,10 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
     <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
   </data>
+  <data name="Flag_Deprecated" xml:space="preserve">
+    <value>DEPRECATED</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
     <value>Could not open project overview.</value>
     <comment>Error message for unable to open project overview dialog</comment>

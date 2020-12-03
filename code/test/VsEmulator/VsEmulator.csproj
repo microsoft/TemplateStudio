@@ -98,6 +98,7 @@
     <Compile Include="Services\CommonControls.cs" />
     <Compile Include="Services\Environment.cs" />
     <Compile Include="Services\CommonDocument.cs" />
+    <Compile Include="Services\Styles.cs" />
     <Compile Include="Services\InfoBar.cs" />
     <Compile Include="Services\FakeStyleValuesProvider.cs" />
     <Compile Include="Services\WindowsTemplateStudio.cs" />
@@ -125,6 +126,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\HighContrast_Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\HighContrast_CommonControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,6 +167,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Dark_WindowsTemplateStudio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Dark_Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

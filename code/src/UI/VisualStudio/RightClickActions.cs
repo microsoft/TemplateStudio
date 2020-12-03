@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private readonly Dictionary<string, IEnumerable<TemplateType>> availableOptions = new Dictionary<string, IEnumerable<TemplateType>>()
         {
             { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
-            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
             { Platforms.WinUI, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
         };
 

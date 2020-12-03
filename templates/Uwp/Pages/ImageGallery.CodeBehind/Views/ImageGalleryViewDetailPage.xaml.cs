@@ -28,7 +28,7 @@ namespace Param_RootNamespace.Views
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage)?.ID);
             }
         }
 

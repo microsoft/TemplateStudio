@@ -74,6 +74,18 @@ Windows Template Studio approaches WPF app creation using the following attribut
 | [Forced Login](./services/forced-login.md) | Make your application require the user to login. |
 | [Optional Login](./services/optional-login.md) | Make your application have an optional login and restricted features. |
 
+### Testing
+
+| Testing project | Description |
+|-----:|:------------|
+| [Test App with MSTest](./testing/app-mstest.md) | Add a project for unit tests against the app using [MSTest](https://github.com/Microsoft/testfx). |
+| [Test App with nUnit](./testing/app-nunit.md) | Add a project for unit tests against the app using [NUnit](https://github.com/nunit/docs/wiki/NUnit-Documentation). |
+| [Test App with xUnit](./testing/app-xunit.md) | Add a project for unit tests against the app using [xUnit](https://xunit.net/). |
+| [Test Core library with MSTest](./testing/core-mstest.md) | Add a project to test code in the Core library with [MSTest](https://github.com/Microsoft/testfx). |
+| [Test Core library with nUnit](./testing/core-nunit.md) | Add a project to test code in the Core library with [nUnit](https://nunit.org/). |
+| [Test Core library with xUnit](./testing/core-xunit.md) | Add a project to test code in the Core library with [xUnit](https://xunit.net/). |
+| [Win App Driver](./testing/win-app-driver.md) | Add project for UI tests using Appium via [Windows Application Driver](https://github.com/Microsoft/WinAppDriver). |
+
 ## Learn more
 
 - [MahApps.Metro](./mahapps-metro.md)

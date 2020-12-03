@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <RootNamespace>Param_RootNamespace</RootNamespace>
 
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>AnyCPU;x86;x64</Platforms>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
-    <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
 </Project>
