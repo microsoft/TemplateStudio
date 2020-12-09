@@ -11,7 +11,7 @@ Namespace ViewModels
 
         Public Property Source As ObservableCollection(Of SampleImage) = New ObservableCollection(Of SampleImage)
 
-        Public ReadOnly Property ItemSelectedCommand As ICommand = new RelayCommand(Of ItemClickEventArgs)(Sub(args) OnsItemSelected(args))
+        Public ReadOnly Property ItemSelectedCommand As ICommand = new RelayCommand(Of ItemClickEventArgs)(Sub(args) OnItemSelected(args))
 
         Public Sub New()
         End Sub
