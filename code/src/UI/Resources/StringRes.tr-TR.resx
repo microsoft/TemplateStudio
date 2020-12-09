@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Sayfa adı</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Proje türleri</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>Seçili proje türü için gerekli olduğundan **{0}** kaldıramazsınız.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>{0} bir proje oluşturmak için aşağıdaki iş yüklerini yüklemeniz gerekir: {1} </value>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Proje adı proje klasöradıyla eşleşmiyor. Doğru bir nesil sağlamak için lütfen ayarlayın.</value>
+  </data>
   <data name="NotificationMissingVersions" xml:space="preserve">
     <value>Aşağıdaki sürümler eksik, lütfen yükleyin ve Visual Studio yeniden başlatın: {0}</value>
   </data>
@@ -211,9 +233,6 @@
   </data>
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>Diğer bilgiler</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -698,17 +717,9 @@
     <value>Bildirim paneli</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Page name</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
     <value>Gezinme menüsü</value>
     <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Project types</value>
-    <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
     <value>Ardışık akış denetimi</value>
@@ -717,10 +728,6 @@
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
     <value>Kullanıcı seçimi sayfaları</value>
     <comment>User selection page list to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
     <value>Şablonlar listesi</value>
@@ -860,10 +867,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Windows Şablon Stüdyosu şu anda bir çekirdek proje ekliyor. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for the selected project type.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
     <value>Düzen:</value>
     <comment>Template details: Layout</comment>
@@ -900,9 +903,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
-  </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
   </data>
   <data name="Flag_Deprecated" xml:space="preserve">
     <value>DEPRECATED</value>
