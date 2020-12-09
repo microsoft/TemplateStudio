@@ -130,11 +130,11 @@
     <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>{0} プロジェクトを作成するには、次のワークロードをインストールする必要{1}。</value>
+    <value>**{0}** は選択したプロジェクトの種類に必要なため、削除できません。</value>
     <comment>Remove error message: Template is read only</comment>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the following workloads to create a {0} project: {1} </value>
+    <value>{0} プロジェクトを作成するには、次の負荷をインストールする必要 {1}があります。</value>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
     <value>プロジェクト名がプロジェクト フォルダ名と一致しません。正しい生成を確実にするために調整してください。</value>
