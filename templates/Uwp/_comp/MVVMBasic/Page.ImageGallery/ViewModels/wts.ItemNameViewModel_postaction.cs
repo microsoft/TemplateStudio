@@ -7,7 +7,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Observable
     {
-        private void OnsItemSelected(ItemClickEventArgs args)
+        private void OnItemSelected(ItemClickEventArgs args)
         {
 //^^
 //{[{
