@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.SystemService.xUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.SystemService.xUnit",
+  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.SystemService.xUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Feat.SystemService & $testing == wts.Wpf.Testing.UnitTests.App.xUnit",
+    "wts.compositionOrder" : "3"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
