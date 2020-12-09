@@ -16,9 +16,9 @@ If you miss anything or find an issue that is not mentioned in the known issues 
    - .NET Desktop Development (this also installs .NET 5)
    - Universal Windows Platform development
 
-3. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations.Windows Community Toolkit](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/#windows-community-toolkit).
+3. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations]
 
-4. Download and install the [WinUI 3 Preview 3 VSIX package](https://aka.ms/winui3/preview3-download). This adds both the WinUI 3 project templates and the NuGet package containing the WinUI 3 libraries to Visual Studio 2019.
+4. Add a new Package source to the Windows Community DevOps feed: https://pkgs.dev.azure.com/dotnet/WindowsCommunityToolkit/_packaging/WindowsCommunityToolkit-WinUI3/nuget/v3/index.json.
 
 
 ### Known issues:
@@ -26,7 +26,10 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
 - [Localized Ressource issue](https://github.com/microsoft/microsoft-ui-xaml/issues/2602)
+- [DataGrid issue](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3585)
+- [Read Theme from settings issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3730)
 
 ### Additional docs:
 - [Windows UI Library 3 Preview 3 (November 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
+- [Windows Community Toolkit 8.0.0-preview3 for WinUI 3 Preview 3](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
