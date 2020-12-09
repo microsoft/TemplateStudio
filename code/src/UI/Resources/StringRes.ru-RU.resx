@@ -130,7 +130,7 @@
     <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>Вы не можете удалить «{0}», потому что это необходимо для выбранного типа проекта.</value>
+    <value>Вы не можете удалить **{0}**, потому что это необходимо для выбранного типа проекта.</value>
     <comment>Remove error message: Template is read only</comment>
   </data>
   <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
