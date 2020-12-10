@@ -29,7 +29,7 @@ namespace Param_RootNamespace.Services
 
         public async Task SetRequestedThemeAsync()
         {
-            if (App.CurrentWindow.Content is FrameworkElement rootElement)
+            if (App.MainWindow.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = Theme;
             }
