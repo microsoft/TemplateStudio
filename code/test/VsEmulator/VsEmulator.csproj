@@ -101,6 +101,7 @@
     <Compile Include="Services\CommonControls.cs" />
     <Compile Include="Services\Environment.cs" />
     <Compile Include="Services\CommonDocument.cs" />
+    <Compile Include="Services\ThemedDialog.cs" />
     <Compile Include="Services\Styles.cs" />
     <Compile Include="Services\InfoBar.cs" />
     <Compile Include="Services\FakeStyleValuesProvider.cs" />
@@ -129,6 +130,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\HighContrast_ThemedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\HighContrast_Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +175,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Dark_WindowsTemplateStudio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Dark_ThemedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_ThemedDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
