@@ -16,7 +16,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
    - .NET Desktop Development (this also installs .NET 5)
    - Universal Windows Platform development
 
-3. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations]
+3. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
 
 4. Add a new Package source to the Windows Community DevOps feed: https://pkgs.dev.azure.com/dotnet/WindowsCommunityToolkit/_packaging/WindowsCommunityToolkit-WinUI3/nuget/v3/index.json.
 
