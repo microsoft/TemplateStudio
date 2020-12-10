@@ -72,6 +72,8 @@ namespace Microsoft.Templates.Test.Wack.Wpf
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && !t.GroupIdentity.StartsWith("wts.Wpf.Service.Identity")
+                && !t.GroupIdentity.Contains("Test")
+                && !t.GroupIdentity.Contains("WinAppDriver")
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden();
 
