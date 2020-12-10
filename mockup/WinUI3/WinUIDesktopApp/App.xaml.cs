@@ -17,7 +17,7 @@ namespace WinUIDesktopApp
 {
     public partial class App : Application
     {
-        public static Window CurrentWindow { get; set; }
+        public static Window MainWindow { get; set; }
 
         public App()
         {
