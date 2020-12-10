@@ -37,6 +37,7 @@ namespace Microsoft.Templates.UI.Services
             SetCommonDocumentColors();
             SetCommonControlColors();
             SetEnvironmentColors();
+            SetThemedDialogColors();
             SetInfoBarColors();
 
             // New Color additions
@@ -196,6 +197,16 @@ namespace Microsoft.Templates.UI.Services
             ScrollBarThumbMouseOverBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbMouseOverBorder");
             ScrollBarThumbPressedBackground = _stylesProvider.GetColor("Environment", "ScrollBarThumbPressedBackground"); // Used
             ScrollBarThumbPressedBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbPressedBorder");
+        }
+
+        private void SetThemedDialogColors()
+        {
+            TDListBoxText = _stylesProvider.GetColor("ThemedDialog", "ListBoxText");
+            TDSelectedItemActive = _stylesProvider.GetColor("ThemedDialog", "SelectedItemActive");
+            TDSelectedItemActiveText = _stylesProvider.GetColor("ThemedDialog", "SelectedItemActiveText");
+            TDListItemMouseOver = _stylesProvider.GetColor("ThemedDialog", "ListItemMouseOver");
+            TDListItemMouseOverText = _stylesProvider.GetColor("ThemedDialog", "ListItemMouseOverText");
+            TDListItemDisabledText = _stylesProvider.GetColor("ThemedDialog", "ListItemDisabledText");
         }
 
         private void SetInfoBarColors()

@@ -57,6 +57,9 @@ namespace Microsoft.Templates.UI.Services
                 case "Environment":
                     classType = typeof(EnvironmentColors);
                     break;
+                case "ThemedDialog":
+                    classType = typeof(ThemedDialogColors);
+                    break;
                 case "InfoBar":
                     classType = typeof(InfoBarColors);
                     break;
