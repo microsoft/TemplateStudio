@@ -908,4 +908,8 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <value>DEPRECATED</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Could not open project overview.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
 </root>
