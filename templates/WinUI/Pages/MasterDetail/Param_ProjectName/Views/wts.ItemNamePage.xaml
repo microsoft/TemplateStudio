@@ -72,6 +72,7 @@
             MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
+            ViewStateChanged="OnViewStateChanged"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
     </Grid>
 </Page>
