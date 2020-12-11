@@ -12,9 +12,9 @@ namespace Param_RootNamespace.ViewModels
         private bool _isBackEnabled;
         private object _selected;
 
-        public readonly INavigationService NavigationService;
+        public INavigationService NavigationService { get; }
 
-        public readonly INavigationViewService NavigationViewService;
+        public INavigationViewService NavigationViewService { get; }
 
         public bool IsBackEnabled
         {

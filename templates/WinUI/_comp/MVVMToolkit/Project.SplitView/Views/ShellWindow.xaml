@@ -16,7 +16,7 @@
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="False"
         ExpandedModeThresholdWidth="1280"
-        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
+        Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -38,7 +38,7 @@
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
-                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
                 <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                     <DataTemplate>
                         <Grid>

@@ -20,20 +20,20 @@ namespace Param_RootNamespace.Services
             => _navigationView.MenuItems;
 
         public object SettingsItem
-            => _navigationView.SettingsItem;        
+            => _navigationView.SettingsItem;
 
         public NavigationViewService(INavigationService navigationService, IPageService pageService)
         {
             _navigationService = navigationService;
             _pageService = pageService;
-        }        
+        }
 
         public void Initialize(NavigationView navigationView)
         {
             _navigationView = navigationView;
             _navigationView.BackRequested += OnBackRequested;
             _navigationView.ItemInvoked += OnItemInvoked;
-        }        
+        }
 
         public void UnregisterEvents()
         {

@@ -2,28 +2,26 @@
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using Windows.Web;
+using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Contracts.ViewModels;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         // TODO WTS: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
-
-        private WebView2 _webView;
         private Uri _source;
-        private bool _isLoading;
-        private bool _isShowingFailedMessage;
-        private Visibility _isLoadingVisibility;
-        private Visibility _failedMesageVisibility;
+        private bool _isLoading = true;
+        private bool _hasFailures;
         private ICommand _browserBackCommand;
         private ICommand _browserForwardCommand;
         private ICommand _openInBrowserCommand;
         private ICommand _reloadCommand;
         private ICommand _retryCommand;
-        private ICommand _navigationCompletedCommand;
+
+        public IWebViewService WebViewService { get; }
 
         public Uri Source
         {
@@ -33,99 +31,64 @@ namespace Param_RootNamespace.ViewModels
 
         public bool IsLoading
         {
-            get
-            {
-                return _isLoading;
-            }
-
-            set
-            {
-                if (value)
-                {
-                    IsShowingFailedMessage = false;
-                }
-
-                SetProperty(ref _isLoading, value);
-                IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
-            }
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
         }
 
-        public Visibility IsLoadingVisibility
+        public bool HasFailures
         {
-            get { return _isLoadingVisibility; }
-            set { SetProperty(ref _isLoadingVisibility, value); }
-        }
-
-        public bool IsShowingFailedMessage
-        {
-            get
-            {
-                return _isShowingFailedMessage;
-            }
-
-            set
-            {
-                if (value)
-                {
-                    IsLoading = false;
-                }
-
-                SetProperty(ref _isShowingFailedMessage, value);
-                FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
-        public Visibility FailedMesageVisibility
-        {
-            get { return _failedMesageVisibility; }
-            set { SetProperty(ref _failedMesageVisibility, value); }
+            get => _hasFailures;
+            set => SetProperty(ref _hasFailures, value);
         }
 
         public ICommand BrowserBackCommand => _browserBackCommand ?? (_browserBackCommand = new RelayCommand(
-            () => _webView?.GoBack(), () => _webView?.CanGoBack ?? false));
+            () => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false));
 
         public ICommand BrowserForwardCommand => _browserForwardCommand ?? (_browserForwardCommand = new RelayCommand(
-            () => _webView?.GoForward(), () => _webView?.CanGoForward ?? false));
+            () => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false));
 
         public ICommand ReloadCommand => _reloadCommand ?? (_reloadCommand = new RelayCommand(
-            () => _webView?.Reload()));
+            () => WebViewService?.Reload()));
 
         public ICommand RetryCommand => _retryCommand ?? (_retryCommand = new RelayCommand(OnRetry));
 
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new RelayCommand(async
             () => await Windows.System.Launcher.LaunchUriAsync(Source)));
 
-        public ICommand NavigationCompletedCommand => _navigationCompletedCommand ?? (_navigationCompletedCommand = new RelayCommand<WebView2NavigationCompletedEventArgs>(OnNavigationCompleted));
-
-        public wts.ItemNameViewModel()
+        public wts.ItemNameViewModel(IWebViewService webViewService)
         {
-            IsLoading = true;
+            WebViewService = webViewService;
+        }
+
+        public void OnNavigatedTo(object parameter)
+        {
+            WebViewService.NavigationCompleted += OnNavigationCompleted;
             Source = new Uri(DefaultUrl);
         }
 
-        public void Initialize(WebView2 webView)
+        public void OnNavigatedFrom()
         {
-            _webView = webView;
+            WebViewService.UnregisterEvents();
+            WebViewService.NavigationCompleted -= OnNavigationCompleted;
         }
 
-        private void OnNavigationCompleted(WebView2NavigationCompletedEventArgs args)
+        private void OnNavigationCompleted(object sender, WebErrorStatus webErrorStatus)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(BrowserBackCommand));
             OnPropertyChanged(nameof(BrowserForwardCommand));
-            if (args.WebErrorStatus != default)
+            if (webErrorStatus != default)
             {
-                // Use `e.WebErrorStatus` to vary the displayed message based on the error reason
-                IsShowingFailedMessage = true;
+                // Use `webErrorStatus` to vary the displayed message based on the error reason
+                HasFailures = true;
             }
         }
 
         private void OnRetry()
         {
-            IsShowingFailedMessage = false;
+            HasFailures = false;
             IsLoading = true;
-
-            _webView?.Reload();
+            WebViewService?.Reload();
         }
     }
 }

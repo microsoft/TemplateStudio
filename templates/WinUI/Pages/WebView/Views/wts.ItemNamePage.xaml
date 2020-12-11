@@ -5,8 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
@@ -20,18 +18,15 @@
         Microsoft.UI.Xaml.Controls.WebView2 is for evaluation purposes only and is subject to change or removal in future updates.
         See more info https://docs.microsoft.com/en-us/microsoft-edge/webview2/
         -->
-        <WebView2 x:Name="webView" Source="{x:Bind ViewModel.Source, Mode=OneWay}">
-            <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="NavigationCompleted">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavigationCompletedCommand}" />
-                </ic:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-        </WebView2>
+        <WebView2
+            x:Name="webView"
+            Source="{x:Bind ViewModel.Source, Mode=OneWay}" />
+
 
         <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Visibility="{x:Bind ViewModel.IsLoadingVisibility, Mode=OneWay}">
+            Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
             <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
             <TextBlock Text="Loading..." />
         </StackPanel>
@@ -39,7 +34,7 @@
         <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}">
+            Visibility="{x:Bind ViewModel.HasFailures, Mode=OneWay}">
             <TextBlock HorizontalAlignment="Center" Text="Page failed to load. Check connection and reload." TextWrapping="WrapWholeWords" />
             <HyperlinkButton Command="{x:Bind ViewModel.ReloadCommand}" Content="Reload" HorizontalAlignment="Center" />
         </StackPanel>
