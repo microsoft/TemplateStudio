@@ -16,7 +16,9 @@ namespace Param_RootNamespace.Services
 
         public async Task InitializeAsync()
         {
-            Theme = await LoadThemeFromSettingsAsync();
+            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
+            // Theme = await LoadThemeFromSettingsAsync();
+            await Task.CompletedTask;
         }
 
         public async Task SetThemeAsync(ElementTheme theme)
@@ -24,7 +26,9 @@ namespace Param_RootNamespace.Services
             Theme = theme;
 
             await SetRequestedThemeAsync();
-            await SaveThemeInSettingsAsync(Theme);
+
+            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
+            // await SaveThemeInSettingsAsync(Theme);
         }
 
         public async Task SetRequestedThemeAsync()
