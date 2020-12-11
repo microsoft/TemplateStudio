@@ -2,4 +2,4 @@
 
 A inclusão desse recurso adiciona um projeto novo à solução que está configurada para hospedar testes de unidade do código no aplicativo principal.
 
-[Saiba mais sobre o uso da xUnit.](https://xunit.github.io/)
+[Saiba mais sobre o uso da xUnit.](https://xunit.net/)

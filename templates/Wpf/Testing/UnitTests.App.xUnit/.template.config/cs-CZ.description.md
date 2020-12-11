@@ -2,4 +2,4 @@
 
 Tato funkce přidá do řešení nový projekt nastavený pro hostování testů částí kódu v hlavní aplikaci.
 
-[Další informace o používání nástroje xUnit](https://xunit.github.io/)
+[Další informace o používání nástroje xUnit](https://xunit.net/)

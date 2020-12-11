@@ -2,4 +2,4 @@
 
 A inclusão desse recurso adiciona um novo projeto à solução que está configurada para hospedar testes de unidade do código na biblioteca Core.
 
-[Saiba mais sobre o uso da xUnit.](https://xunit.github.io/)
+[Saiba mais sobre o uso da xUnit.](https://xunit.net/)

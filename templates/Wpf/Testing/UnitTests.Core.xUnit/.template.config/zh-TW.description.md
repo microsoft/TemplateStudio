@@ -2,4 +2,4 @@
 
 包含此功能可為解決方案新增專案，該專案是為了裝載核心程式庫中程式碼的單元測試所設定。
 
-[深入了解如何使用 xUnit。](https://xunit.github.io/)
+[深入了解如何使用 xUnit。](https://xunit.net/)

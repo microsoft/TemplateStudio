@@ -2,4 +2,4 @@
 
 此工具可将新项目添加到主应用程序代码单元测试托管解决方案中。
 
-[了解有关使用 xUnit 的更多信息。](https://xunit.github.io/)
+[了解有关使用 xUnit 的更多信息。](https://xunit.net/)

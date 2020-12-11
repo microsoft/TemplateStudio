@@ -2,4 +2,4 @@
 
 Bu özellik dahil edildiğinde ana uygulamadaki kodun Birim testlerini barındıracak şekilde ayarlanmış çözüme yeni bir proje eklenir.
 
-[xUnit kullanma hakkında daha fazla bilgi edinin.](https://xunit.github.io/)
+[xUnit kullanma hakkında daha fazla bilgi edinin.](https://xunit.net/)

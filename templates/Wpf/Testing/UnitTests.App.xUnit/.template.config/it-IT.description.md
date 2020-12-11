@@ -2,4 +2,4 @@
 
 Se si include questa funzionalità, un nuovo progetto viene aggiunto alla soluzione configurata per l'hosting di unit test del codice nell'app principale.
 
-[Scopri di più sull'uso di xUnit.](https://xunit.github.io/)
+[Scopri di più sull'uso di xUnit.](https://xunit.net/)
