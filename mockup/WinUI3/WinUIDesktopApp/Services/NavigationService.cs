@@ -121,6 +121,6 @@ namespace WinUIDesktopApp.Services
 
                 Navigated?.Invoke(sender, e);
             }
-        }        
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
 
 using WinUIDesktopApp.Contracts.Services;
@@ -12,9 +11,9 @@ namespace WinUIDesktopApp.ViewModels
         private bool _isBackEnabled;
         private object _selected;
 
-        public readonly INavigationService NavigationService;
+        public INavigationService NavigationService { get; }
 
-        public readonly INavigationViewService NavigationViewService;
+        public INavigationViewService NavigationViewService { get; }
 
         public bool IsBackEnabled
         {

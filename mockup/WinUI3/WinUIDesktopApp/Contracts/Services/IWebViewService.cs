@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Microsoft.UI.Xaml.Controls;
+
 using Windows.Web;
 
 namespace WinUIDesktopApp.Contracts.Services

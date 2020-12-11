@@ -3,7 +3,9 @@ using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+
 using Windows.Web;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Contracts.ViewModels;
 
@@ -22,7 +24,7 @@ namespace WinUIDesktopApp.ViewModels
         private ICommand _reloadCommand;
         private ICommand _retryCommand;
 
-        public readonly IWebViewService WebViewService;
+        public IWebViewService WebViewService { get; }
 
         public Uri Source
         {

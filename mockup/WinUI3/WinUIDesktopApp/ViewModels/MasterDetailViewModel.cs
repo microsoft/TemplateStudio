@@ -21,12 +21,12 @@ namespace WinUIDesktopApp.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();        
+        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
         public MasterDetailViewModel(ISampleDataService sampleDataService)
         {
             _sampleDataService = sampleDataService;
-        }        
+        }
 
         public async void OnNavigatedTo(object parameter)
         {

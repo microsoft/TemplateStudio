@@ -1,6 +1,9 @@
 ﻿using System;
+
 using Microsoft.UI.Xaml.Controls;
+
 using Windows.Web;
+
 using WinUIDesktopApp.Contracts.Services;
 
 namespace WinUIDesktopApp.Services

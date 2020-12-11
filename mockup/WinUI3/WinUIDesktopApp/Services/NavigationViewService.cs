@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Helpers;
 using WinUIDesktopApp.ViewModels;
@@ -20,20 +22,20 @@ namespace WinUIDesktopApp.Services
             => _navigationView.MenuItems;
 
         public object SettingsItem
-            => _navigationView.SettingsItem;        
+            => _navigationView.SettingsItem;
 
         public NavigationViewService(INavigationService navigationService, IPageService pageService)
         {
             _navigationService = navigationService;
             _pageService = pageService;
-        }        
+        }
 
         public void Initialize(NavigationView navigationView)
         {
             _navigationView = navigationView;
             _navigationView.BackRequested += OnBackRequested;
             _navigationView.ItemInvoked += OnItemInvoked;
-        }        
+        }
 
         public void UnregisterEvents()
         {
