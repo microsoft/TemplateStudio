@@ -12,7 +12,8 @@ namespace Param_RootNamespace.Views
         {
             ViewModel = viewModel;
             InitializeComponent();
-            ViewModel.Initialize(shellFrame, navigationView);
+            ViewModel.NavigationService.Frame = shellFrame;
+            ViewModel.NavigationViewService.Initialize(navigationView);
         }
     }
 }
