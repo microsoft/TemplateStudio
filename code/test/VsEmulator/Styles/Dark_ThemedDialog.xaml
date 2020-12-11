@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:colors="clr-namespace:Microsoft.Templates.VsEmulator.Services">
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.ListBoxTextBrushKey}" Color="#FFF1F1F1" />
+    <Color x:Key="{x:Static colors:ThemedDialog.ListBoxTextColorKey}" A="255" R="241" G="241" B="241" />
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.SelectedItemActiveBrushKey}" Color="#FF007ACC" />
+    <Color x:Key="{x:Static colors:ThemedDialog.SelectedItemActiveColorKey}" A="255" R="0" G="122" B="204" />
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.SelectedItemActiveTextBrushKey}" Color="#FFFFFFFF" />
+    <Color x:Key="{x:Static colors:ThemedDialog.SelectedItemActiveTextColorKey}" A="255" R="255" G="255" B="255" />
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.ListItemMouseOverBrushKey}" Color="#FF3F3F40" />
+    <Color x:Key="{x:Static colors:ThemedDialog.ListItemMouseOverColorKey}" A="255" R="63" G="63" B="64" />
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.ListItemMouseOverTextBrushKey}" Color="#FFF1F1F1" />
+    <Color x:Key="{x:Static colors:ThemedDialog.ListItemMouseOverTextColorKey}" A="255" R="241" G="241" B="241" />
+
+    <SolidColorBrush x:Key="{x:Static colors:ThemedDialog.ListItemDisabledTextBrushKey}" Color="#FF656565" />
+    <Color x:Key="{x:Static colors:ThemedDialog.ListItemDisabledTextColorKey}" A="255" R="101" G="101" B="101" />
+
+</ResourceDictionary>

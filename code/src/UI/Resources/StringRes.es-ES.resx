@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Nombre de página</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Tipos de proyecto</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>No se puede quitar **{0}** porque es necesario para el tipo de proyecto seleccionado.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>Debe instalar las siguientes cargas de trabajo para crear un proyecto de {0}: {1}</value>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>El nombre del proyecto no coincide con el nombre de la carpeta del proyecto. Por favor, ajuste para asegurar una generación correcta.</value>
+  </data>
   <data name="NotificationMissingVersions" xml:space="preserve">
     <value>Faltan las siguientes versiones, instálelas y reinicie Visual Studio: {0}</value>
   </data>
@@ -211,9 +233,6 @@
   </data>
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>Más información</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -698,17 +717,9 @@
     <value>Panel de notificaciones</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Page name</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
     <value>Menú de navegación</value>
     <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Project types</value>
-    <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
     <value>Control de flujo secuencial</value>
@@ -717,10 +728,6 @@
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
     <value>Páginas de selección del usuario</value>
     <comment>User selection page list to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
     <value>Lista de plantillas</value>
@@ -860,10 +867,6 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <value>Windows Template Studio está agregando ahora un proyecto principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for the selected project type.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
     <value>Diseño:</value>
     <comment>Template details: Layout</comment>
@@ -901,11 +904,12 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
-  </data>
   <data name="Flag_Deprecated" xml:space="preserve">
     <value>DEPRECATED</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Could not open project overview.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
   </data>
 </root>

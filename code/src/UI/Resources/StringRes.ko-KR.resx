@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>페이지 이름</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>프로젝트 유형</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>선택한 프로젝트 유형에 필요하므로 **{0}**를 제거할 수 없습니다.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>{0} 프로젝트를 만들기 위해 다음 워크로드를 설치해야 합니다 {1}.</value>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>프로젝트 이름이 프로젝트 폴더 이름과 일치하지 않습니다. 올바른 세대를 보장하기 위해 조정하십시오.</value>
+  </data>
   <data name="NotificationMissingVersions" xml:space="preserve">
     <value>다음 버전이 누락되어 설치하여 Visual Studio를 다시 시작하십시오. {0}</value>
   </data>
@@ -211,9 +233,6 @@
   </data>
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>자세한 정보</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>You need to install the following workloads to create a {0} project: {1}</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -698,17 +717,9 @@
     <value>알림 패널</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Page name</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
     <value>탐색 메뉴</value>
     <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Project types</value>
-    <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
     <value>순차 흐름제어</value>
@@ -717,10 +728,6 @@
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
     <value>사용자 선택 페이지</value>
     <comment>User selection page list to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
     <value>템플릿 목록</value>
@@ -860,10 +867,6 @@
     <value>Windows Template Studio에서 핵심 프로젝트를 추가 중입니다. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>You can not remove **{0}** because it is required for the selected project type.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
     <value>레이아웃:</value>
     <comment>Template details: Layout</comment>
@@ -901,11 +904,12 @@
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>The project name does not match the project folder name. Please adjust to ensure a correct generation.</value>
-  </data>
   <data name="Flag_Deprecated" xml:space="preserve">
     <value>DEPRECATED</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Could not open project overview.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
   </data>
 </root>
