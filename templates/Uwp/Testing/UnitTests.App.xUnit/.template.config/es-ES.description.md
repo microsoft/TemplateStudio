@@ -2,4 +2,4 @@
 
 La inclusión de esta característica añade un nuevo proyecto a la solución configurado para albergar pruebas unitarias en el código en la aplicación principal.
 
-[Más información sobre el uso de xUnit.](https://xunit.github.io/)
+[Más información sobre el uso de xUnit.](https://xunit.net/)

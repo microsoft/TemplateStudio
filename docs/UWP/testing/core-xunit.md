@@ -4,4 +4,4 @@ xUnit.net is a free, open source, community-focused unit testing tool for the .N
 
 Including this feature adds a new project to the solution that is set up for hosting Unit tests of the code in the Core library.
 
-[Learn more about using xUnit.](https://xunit.github.io/)
+[Learn more about using xUnit.](https://xunit.net/)

@@ -2,4 +2,4 @@
 
 Uwzględnienie tej funkcji spowoduje dodanie do rozwiązania nowego projektu skonfigurowanego do hostowania testów jednostkowych kodu w głównej aplikacji.
 
-[Dowiedz się więcej na temat korzystania z narzędzia xUnit.](https://xunit.github.io/)
+[Dowiedz się więcej na temat korzystania z narzędzia xUnit.](https://xunit.net/)

@@ -2,4 +2,4 @@
 
 L'ajout de cette fonctionnalité apporte une nouvelle dimension à la solution configurée pour héberger les tests unitaires du code dans la bibliothèque principale.
 
-[En savoir plus sur xUnit.](https://xunit.github.io/)
+[En savoir plus sur xUnit.](https://xunit.net/)

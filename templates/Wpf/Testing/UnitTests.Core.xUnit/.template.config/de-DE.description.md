@@ -2,4 +2,4 @@
 
 Dieses Feature fügt der Lösung darüber hinaus ein neues Projekt hinzu, das für das Hosten von Unit-Tests des Codes in der Core-Bibliothek eingerichtet ist.
 
-[Erfahren Sie mehr über die Verwendung von xUnit.](https://xunit.github.io/)
+[Erfahren Sie mehr über die Verwendung von xUnit.](https://xunit.net/)
