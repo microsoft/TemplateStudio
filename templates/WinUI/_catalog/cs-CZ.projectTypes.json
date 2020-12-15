@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Zahrnuje také nabídku typu „hamburger“ pro navigaci mezi stránkami."
