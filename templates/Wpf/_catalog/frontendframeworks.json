@@ -1,15 +1,5 @@
 ﻿[
   {
-    "name": "MVVMToolkit",
-    "displayName": "MVVM Toolkit",
-    "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
-    "author": "Microsoft Community",
-    "order": "0",
-    "licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
-    "platform":  "Wpf",
-    "languages": [ "C#" ]
-  },
-  {
     "name": "CodeBehind",
     "displayName": "Code Behind",
     "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
@@ -29,7 +19,6 @@
     "platform": "Wpf",
     "languages": [ "C#" ],        
     "tags": {
-        "wts.flag": "DEPRECATED"
     }
   },
   {
@@ -42,7 +31,6 @@
     "platform": "Wpf",
     "languages": [ "C#" ],        
     "tags": {
-        "wts.flag": "DEPRECATED"
     }
   },
   {
