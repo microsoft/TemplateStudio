@@ -54,8 +54,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "CoreTem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Solution", "src\ProjectTemplates\CSharp.WinUI.Solution\CSharp.WinUI.Solution.csproj", "{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
@@ -159,12 +157,6 @@ Global
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Analyze|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Analyze|Any CPU.Build.0 = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,7 +174,6 @@ Global
 		{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{18FE7361-241E-4B1B-98F5-C4A4D17496A0} = {85F5D200-F318-4B12-981F-8DECF8FA3078}
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB} = {428D8EC8-DF58-4921-B464-967086C924A4}
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD} = {428D8EC8-DF58-4921-B464-967086C924A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93C24858-2871-47D7-8B91-2DD60E633C6B}

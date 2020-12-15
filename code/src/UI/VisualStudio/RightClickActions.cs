@@ -29,7 +29,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
             { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
-            { Platforms.WinUI, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
         };
 
         private readonly GenerationService _generationService = GenerationService.Instance;
