@@ -128,7 +128,7 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.Single(userSelection.Pages);
             Assert.Empty(userSelection.Features);
-            Assert.Equal(1, viewModel.UserSelection.Licenses.Count);
+            Assert.True(viewModel.UserSelection.Licenses.Count == 1);
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             await AddTemplateAsync(viewModel, settingsTemplate);
