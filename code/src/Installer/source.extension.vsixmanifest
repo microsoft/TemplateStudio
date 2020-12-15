@@ -30,6 +30,5 @@
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Colors\WindowsTemplateStudioColors.pkgdef" d:VsixSubPath="Colors" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Utilities" Path="|Utilities|" AssemblyName="|Utilities;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WPF.Solution" d:TargetPath="|CSharp.WPF.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Solution" d:TargetPath="|CSharp.WinUI.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     </Assets>
 </PackageManifest>

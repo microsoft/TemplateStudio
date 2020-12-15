@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "CoreTemplateSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Solution", "src\ProjectTemplates\CSharp.WinUI.Solution\CSharp.WinUI.Solution.csproj", "{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
@@ -70,12 +68,6 @@ Global
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Analyze|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Analyze|Any CPU.Build.0 = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,7 +76,6 @@ Global
 		{D5E1C23A-7547-412A-82F1-F00C34622C1E} = {7709EF0E-35BF-4E09-BFF6-938E1DC91E15}
 		{2B997E0A-16C8-4B8E-810A-D1D7DAFBD760} = {7709EF0E-35BF-4E09-BFF6-938E1DC91E15}
 		{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB} = {7709EF0E-35BF-4E09-BFF6-938E1DC91E15}
-		{B8A19CAA-1D90-49B0-925F-37C302CA4FCD} = {7709EF0E-35BF-4E09-BFF6-938E1DC91E15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5812CB4-61BE-4BBF-9613-A76CDB14E09C}
