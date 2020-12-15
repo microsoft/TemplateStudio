@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & wts.type == page & identity != wts.Page.ContentGrid.CaliburnMicro & $testing == wts.Testing.UnitTests.App.xUnit.VB"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & wts.type == page & identity != wts.Page.ContentGrid.CaliburnMicro & $testing == wts.Testing.UnitTests.App.xUnit.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

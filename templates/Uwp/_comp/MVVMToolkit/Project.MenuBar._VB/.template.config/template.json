@@ -1,0 +1,57 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Project.MenuBar.VB",
+  "identity": "MVVMToolkit.Project.MenuBar.VB",
+  "shortName": "MVVMToolkit.Project.MenuBar.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/MenuNavigationHelper.vb"
+    },
+    {
+      "path": "Services/NavigationService.vb"
+    },
+    {
+      "path": "ViewModels/ShellContentDialogViewModel.vb"
+    },
+    {
+      "path": "ViewModels/ShellViewModel.vb"
+    },
+    {
+      "path": "Views/ShellContentDialog.xaml"
+    },
+    {
+      "path": "Views/ShellContentDialog.xaml.vb"
+    },
+    {
+      "path": "Views/ShellPage.xaml"
+    },
+    {
+      "path": "Views/ShellPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}

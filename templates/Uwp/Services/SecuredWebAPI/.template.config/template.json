@@ -12,7 +12,7 @@
     "type": "item",
     "wts.type": "service",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.group": "Data",
     "wts.version": "1.0.0",

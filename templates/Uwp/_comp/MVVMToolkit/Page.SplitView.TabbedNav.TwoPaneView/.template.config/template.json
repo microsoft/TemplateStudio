@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView",
+  "identity": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView",
+  "shortName": "MVVMToolkit.Page.SplitView.TabbedNav.TwoPaneView",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == SplitView|TabbedNav & $frontendframework == MVVMToolkit & groupidentity == wts.Page.TwoPaneView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/IBackNavigationHandler.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  }
+}

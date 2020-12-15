@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Nom de la page</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Types de projets</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>Vous ne pouvez pas supprimer **{0}** parce qu’il est nécessaire pour le type de projet sélectionné.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>Vous devez installer les charges de travail suivantes pour créer un projet {0} : {1}</value>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Le nom du projet ne correspond pas au nom du dossier de projet. S’il vous plaît ajuster pour assurer une génération correcte.</value>
+  </data>
   <data name="NotificationMissingVersions" xml:space="preserve">
     <value>Les versions suivantes sont manquantes, installez-les et redémarrez Visual Studio: {0}</value>
   </data>
@@ -211,9 +233,6 @@
   </data>
   <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
     <value>En savoir plus</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Vous devez installer la charge de travail « {0} » pour créer un projet {1}. Veuillez installer cette charge de travail à l'aide du programme d'installation de Visual Studio.</value>
   </data>
   <data name="UWP" xml:space="preserve">
     <value>UWP</value>
@@ -698,17 +717,9 @@
     <value>Panneau de notification</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Modifier une page</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
     <value>Menu de navigation</value>
     <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Liste de types de projet</value>
-    <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
     <value>Contrôle de flux séquentiel</value>
@@ -717,10 +728,6 @@
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
     <value>Pages de sélection d'utilisateur</value>
     <comment>User selection page list to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Liste de Design pattern</value>
-    <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
     <value>Liste de modèles</value>
@@ -860,10 +867,6 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>Windows Template Studio ajoute un projet principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>Vous ne pouvez pas supprimer **{0}** parce qu'il est en lecture seule.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
     <value>Disposition :</value>
     <comment>Template details: Layout</comment>
@@ -894,5 +897,19 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
   <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="NewProjectTitleWinUI" xml:space="preserve">
+    <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="Flag_Deprecated" xml:space="preserve">
+    <value>DEPRECATED</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Could not open project overview.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
   </data>
 </root>

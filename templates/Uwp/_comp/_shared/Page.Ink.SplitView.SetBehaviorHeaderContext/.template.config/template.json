@@ -14,7 +14,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$frontendframework == CaliburnMicro|MVVMBasic|MVVMLight|Prism & $projectType == SplitView & groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture"
+    "wts.compositionFilter": "$frontendframework == CaliburnMicro|MVVMBasic|MVVMLight|Prism|MVVMToolkit & $projectType == SplitView & groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

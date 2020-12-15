@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "Strona wyświetlająca prostą siatkę obsługiwaną przez kontrolki interfejsu użytkownika Telerik dla platformy UWP.",
     "identity": "wts.Page.Grid.Prism"
 }

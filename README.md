@@ -6,6 +6,8 @@ Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerat
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
+We're also looking into creation of WinUI3 Desktop Apps. You can find more info on how to test and give feedback [n our [WinUI docs](./docs/WinUI/readme.md). 
+
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
@@ -44,7 +46,7 @@ Next, what coding pattern do you want to use in your project.
 
 - **UWP**: *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
-- **WPF**: *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
+- **WPF**: *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, [MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
 
 ### **App pages**
 

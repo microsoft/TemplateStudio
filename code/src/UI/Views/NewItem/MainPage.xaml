@@ -55,6 +55,7 @@
                 Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}"
                 Style="{StaticResource WtsCheckBoxStyle}"
                 Margin="{StaticResource Margin_M_LeftRight}"
+                IsEnabled="{Binding ChangesSummary.IsDoNotMergeEnabled, Mode=OneWay}"
                 IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"
                 Visibility="{Binding Navigation.CurrentStep, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=2}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">

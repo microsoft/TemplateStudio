@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
-    "name": "ImageGallery",
+    "name": "Image Gallery",
     "description": "이미지 갤러리를 표시하는 페이지이며 사용자가 갤러리와 이미지 세부 정보를 탐색할 수 있습니다.",
     "identity": "wts.Page.ImageGallery.Prism"
 }

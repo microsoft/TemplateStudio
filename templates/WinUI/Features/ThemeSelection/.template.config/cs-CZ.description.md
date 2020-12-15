@@ -1,0 +1,1 @@
+﻿Tato funkce umožňuje změnit motiv vaší aplikace mezi světlým či tmavým a výchozím motivem Windows.

@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Media Player",
-  "shortName": "Media Player",
+  "name": "MediaPlayer",
+  "shortName": "MediaPlayer",
   "groupIdentity": "wts.Page.MediaPlayer.VB",
   "identity": "wts.Page.MediaPlayer.VB",
   "description": "A page for showing video with system media controls enabled.",
@@ -13,8 +13,9 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "MediaPlayer",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",

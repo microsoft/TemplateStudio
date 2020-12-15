@@ -1,0 +1,3 @@
+﻿Adicione um link de Feedback à página de configurações para incentivar seus clientes a deixarem comentários por meio do Hub de Feedback.
+
+O Hub de Feedback é um aplicativo pré-instalado que fornece um único lugar para reunir feedback sobre o Windows e os aplicativos instalados. Todos os comentários dos clientes enviados para seu aplicativo por meio do Hub de Feedback são coletados e apresentados a você no [Relatório de feedback](https://docs.microsoft.com/windows/uwp/publish/feedback-report) do painel do Windows DevCenter. Dessa maneira, você pode ver os problemas, as sugestões e os votos a favor que seus clientes enviaram em um só relatório.

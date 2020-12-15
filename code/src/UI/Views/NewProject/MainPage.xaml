@@ -49,7 +49,7 @@
                     <!--Project details-->
                     <ColumnDefinition Width="252" />
                 </Grid.ColumnDefinitions>
-                <controls:SequentialFlow Steps="{Binding Navigation.Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
+                <controls:SequentialFlow x:Name="sequentialFlow" Steps="{Binding Navigation.Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
                 <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
                 <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
                 <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
@@ -86,6 +86,7 @@
                             AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
                         <ItemsControl
+                            Focusable="False"
                             ItemsSource="{Binding UserSelection.Groups}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

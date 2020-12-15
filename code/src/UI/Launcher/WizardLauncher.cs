@@ -32,12 +32,12 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(string platform, string language, string requiredWorkload, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(string platform, string language, string requiredWorkloads, BaseStyleValuesProvider provider)
         {
             _styleProvider = provider;
 
             CheckVSVersion(platform);
-            CheckForMissingWorkloads(platform, requiredWorkload);
+            CheckForMissingWorkloads(platform, requiredWorkloads);
             CheckForInvalidProjectName();
 
             var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
@@ -148,15 +148,26 @@ namespace Microsoft.Templates.UI.Launcher
             }
         }
 
-        private void CheckForMissingWorkloads(string platform, string requiredWorkload)
+        private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
         {
             var vsShell = GenContext.ToolBox.Shell as VsGenShell;
             if (vsShell != null)
             {
-                if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
+                var workloadsToCheck = requiredWorkloads.Split('|');
+                var missingWorkloads = new List<string>();
+
+                foreach (var workload in workloadsToCheck)
+                {
+                    if (!vsShell.GetInstalledPackageIds().Contains(workload))
+                    {
+                        missingWorkloads.Add(workload.GetRequiredWorkloadDisplayName());
+                    }
+                }
+
+                if (missingWorkloads.Count > 0)
                 {
                     var title = UIStringRes.InfoDialogMissingWorkloadTitle;
-                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, requiredWorkload.GetRequiredWorkloadDisplayName(), platform.GetPlatformDisplayName());
+                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}") );
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);

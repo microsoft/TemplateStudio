@@ -28,7 +28,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         private readonly Dictionary<string, IEnumerable<TemplateType>> availableOptions = new Dictionary<string, IEnumerable<TemplateType>>()
         {
             { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
-            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
+            { Platforms.WinUI, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
         };
 
         private readonly GenerationService _generationService = GenerationService.Instance;
@@ -210,21 +211,26 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private void FinishGeneration(UserSelection userSelection, string statusBarMessage)
+        protected void FinishGeneration(UserSelection userSelection, string statusBarMessage)
+        {
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
+            {
+                await FinishGenerationAsync(userSelection, statusBarMessage);
+            },
+            JoinableTaskCreationOptions.LongRunning);
+        }
+
+        protected async System.Threading.Tasks.Task FinishGenerationAsync(UserSelection userSelection, string statusBarMessage)
         {
             if (userSelection is null)
             {
                 return;
             }
 
-            SafeThreading.JoinableTaskFactory.Run(
-            async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _generationService.FinishGeneration(userSelection);
-                _shell.ShowStatusBarMessage(statusBarMessage);
-            },
-            JoinableTaskCreationOptions.LongRunning);
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            _generationService.FinishGeneration(userSelection);
+            await _shell.ShowStatusBarMessageAsync(statusBarMessage);
         }
 
         private bool EnsureGenContextInitialized()

@@ -57,6 +57,9 @@ namespace Microsoft.Templates.UI.Services
                 case "Environment":
                     classType = typeof(EnvironmentColors);
                     break;
+                case "ThemedDialog":
+                    classType = typeof(ThemedDialogColors);
+                    break;
                 case "InfoBar":
                     classType = typeof(InfoBarColors);
                     break;
@@ -125,6 +128,17 @@ namespace Microsoft.Templates.UI.Services
             }
 
             throw new Exception($"The font size is not valid.");
+        }
+
+        public override Style GetStyle(object resourceKey)
+        {
+            var style = Application.Current.FindResource(resourceKey);
+            if (style is Style)
+            {
+                return (Style)style;
+            }
+
+            throw new Exception($"The style is not valid.");
         }
     }
 }

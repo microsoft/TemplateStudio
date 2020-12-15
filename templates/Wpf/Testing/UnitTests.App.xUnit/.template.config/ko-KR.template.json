@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Test App with xUnit",
+  "description": "xUnit를 사용해 앱 유닛을 테스트할 프로젝트를 추가합니다.",
+  "identity": "wts.Wpf.Testing.UnitTests.App.xUnit"
+}

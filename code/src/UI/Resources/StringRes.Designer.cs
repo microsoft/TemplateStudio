@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Design pattern list.
+        ///   Looks up a localized string similar to Design patterns.
         /// </summary>
         public static string AccessibilityDesignPatternList {
             get {
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit page.
+        ///   Looks up a localized string similar to Page name.
         /// </summary>
         public static string AccessibilityEditPageItem {
             get {
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project types list.
+        ///   Looks up a localized string similar to Project types.
         /// </summary>
         public static string AccessibilityProjectTypesList {
             get {
@@ -550,6 +550,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not open project overview..
+        /// </summary>
+        public static string ErrorUnableToOpenProjectOverview {
+            get {
+                return ResourceManager.GetString("ErrorUnableToOpenProjectOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to set default solution configuration.
         /// </summary>
         public static string ErrorUnableToSetDefaultConfiguration {
@@ -582,6 +591,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ExternalHyperlinkTooltipMessage {
             get {
                 return ResourceManager.GetString("ExternalHyperlinkTooltipMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEPRECATED.
+        /// </summary>
+        public static string Flag_Deprecated {
+            get {
+                return ResourceManager.GetString("Flag_Deprecated", resourceCulture);
             }
         }
         
@@ -640,7 +658,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to install the workload &quot;{0}” to create a {1} project. Please install this workload using the Visual Studio Installer..
+        ///   Looks up a localized string similar to You need to install the following workloads to create a {0} project: {1} .
         /// </summary>
         public static string InfoDialogRequiredWorkloadNotFoundMessage {
             get {
@@ -838,6 +856,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New WinUI3 Desktop app.
+        /// </summary>
+        public static string NewProjectTitleWinUI {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWinUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New WPF app.
         /// </summary>
         public static string NewProjectTitleWPF {
@@ -892,7 +919,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove **{0}** because it is readonly..
+        ///   Looks up a localized string similar to You can not remove **{0}** because it is required for the selected project type..
         /// </summary>
         public static string NotificationRemoveError_ReadOnly {
             get {
@@ -1014,6 +1041,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NotificationValidationError_PageSuffix {
             get {
                 return ResourceManager.GetString("NotificationValidationError_PageSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project name does not match the project folder name. Please adjust to ensure a correct generation..
+        /// </summary>
+        public static string NotificationValidationError_ProjectNameAndPathDoNotMatch {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_ProjectNameAndPathDoNotMatch", resourceCulture);
             }
         }
         
@@ -1806,6 +1842,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string WindowsTemplateStudio {
             get {
                 return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows UI.
+        /// </summary>
+        public static string WinUI {
+            get {
+                return ResourceManager.GetString("WinUI", resourceCulture);
             }
         }
         

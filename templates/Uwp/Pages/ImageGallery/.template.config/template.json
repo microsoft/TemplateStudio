@@ -4,17 +4,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "ImageGallery",
-  "shortName": "ImageGallery",
+  "name": "Image Gallery",
+  "shortName": "Image Gallery",
   "groupIdentity": "wts.Page.ImageGallery",
   "identity": "wts.Page.ImageGallery",
   "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.telemName": "ImageGallery",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "16",

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Media Player",
+    "name": "MediaPlayer",
     "description": "一个显示视频并启用了系统媒体控件的页面。",
     "identity": "wts.Page.MediaPlayer.CodeBehind.VB"
 }

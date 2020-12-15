@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "标签页面用于导航经常访问的不同内容类别。",
   "identity": "wts.Page.TabbedPivot"
 }

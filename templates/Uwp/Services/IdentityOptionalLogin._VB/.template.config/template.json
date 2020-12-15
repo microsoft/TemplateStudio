@@ -14,7 +14,7 @@
     "type": "item",
     "wts.type": "service",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",

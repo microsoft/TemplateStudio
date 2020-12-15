@@ -209,6 +209,11 @@ namespace Microsoft.Templates.Test
             return BuildSolution(solutionName, outputPath, platform, "bat\\Uwp\\RestoreAndBuild.bat", "Debug", "x86");
         }
 
+        public (int exitCode, string outputFile) BuildSolutionWinUI(string solutionName, string outputPath, string platform)
+        {
+            return BuildSolution(solutionName, outputPath, platform, "bat\\WinUI\\RestoreAndBuild.bat", "Debug", "x86");
+        }
+
         public (int exitCode, string outputFile) BuildSolutionWpf(string solutionName, string outputPath, string platform)
         {
             var isXamlIslandProj = Directory.EnumerateDirectories(outputPath, "*XamlIsland").Count() > 0;
@@ -239,7 +244,7 @@ namespace Microsoft.Templates.Test
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config} {batPath}");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {

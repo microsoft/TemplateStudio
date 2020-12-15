@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMBasic|MVVMLight & identity == wts.Feat.BackgroundTask"
+    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMBasic|MVVMLight|MVVMToolkit & identity == wts.Feat.BackgroundTask"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

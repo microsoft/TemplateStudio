@@ -14,6 +14,8 @@ namespace Microsoft.Templates.UI.Views.NewProject
 {
     public partial class MainPage : Page
     {
+        private IInputElement _focusedElement;
+
         public MainPage()
         {
             DataContext = MainViewModel.Instance;
@@ -22,18 +24,26 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             if (stepFrame.Content == null)
             {
                 Services.NavigationService.InitializeSecondaryFrame(stepFrame, WizardNavigation.Current.CurrentStep.GetPage());
+                sequentialFlow.FocusFirstStep();
+            }
+
+            if (_focusedElement != null)
+            {
+                _focusedElement.Focus();
+                Keyboard.Focus(_focusedElement);
             }
 
             Services.NavigationService.SubscribeEventHandlers();
+            PreviewGotKeyboardFocus += OnPreviewGotKeyboardFocus;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             Services.NavigationService.UnsubscribeEventHandlers();
+            PreviewGotKeyboardFocus -= OnPreviewGotKeyboardFocus;
         }
 
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -72,6 +82,11 @@ namespace Microsoft.Templates.UI.Views.NewProject
                     group.EnableOrdering(listView);
                 }
             }
+        }
+
+        private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            _focusedElement = e.NewFocus;
         }
     }
 }

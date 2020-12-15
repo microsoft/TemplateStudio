@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Master Detail",
-  "shortName": "Master Detail",
+  "name": "MasterDetail",
+  "shortName": "MasterDetail",
   "identity": "wts.Wpf.Page.MasterDetail",
   "groupIdentity": "wts.Wpf.Page.MasterDetail",
   "description": "The master-detail page has a master pane and a details pane for content.",
@@ -14,14 +14,14 @@
     "type": "item",
     "wts.type": "page",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|Prism|MVVMToolkit",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled": "true",
     "wts.outputToParent": "true",
-    "wts.dependencies":"wts.Wpf.Feat.SampleData"
+    "wts.dependencies": "wts.Wpf.Feat.SampleData"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

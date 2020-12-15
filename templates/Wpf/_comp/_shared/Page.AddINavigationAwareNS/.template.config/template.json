@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.MVVMBasic.Page.AddINavigationAwareNS",
-  "identity": "wts.Wpf.MVVMBasic.Page.AddINavigationAwareNS",
-  "shortName": "wts.Wpf.MVVMBasic.Page.AddINavigationAwareNS",
+  "name": "wts.Wpf.Page.AddINavigationAwareNS",
+  "identity": "wts.Wpf.Page.AddINavigationAwareNS",
+  "shortName": "wts.Wpf.Page.AddINavigationAwareNS",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & identity == wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & identity == wts.Wpf.Page.Settings|wts.Wpf.Page.MasterDetail|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

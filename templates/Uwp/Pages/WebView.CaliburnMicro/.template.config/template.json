@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web View",
-  "shortName": "Web View",
+  "name": "WebView",
+  "shortName": "WebView",
   "groupIdentity": "wts.Page.WebView",
   "identity": "wts.Page.WebView.CaliburnMicro",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
@@ -13,12 +13,13 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
+    "wts.telemName": "Web View",
     "wts.projecttype": "all",
     "wts.frontendframework": "CaliburnMicro",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",
-    "wts.rightClickEnabled":"true",
+    "wts.rightClickEnabled": "true",
     "wts.genGroup": "0"
   },
   "sourceName": "WebViewPage",

@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & identity == wts.Feat.DragAndDrop|wts.Feat.DragAndDrop.CodeBehind",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit & identity == wts.Feat.DragAndDrop|wts.Feat.DragAndDrop.CodeBehind",
     "wts.compositionOrder": "0"
   },
   "sourceName": "wts.ItemName",

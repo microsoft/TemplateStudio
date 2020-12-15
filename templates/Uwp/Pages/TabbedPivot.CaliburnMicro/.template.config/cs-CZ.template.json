@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "Stránka s kartami se používá pro navigaci mezi často používanými kategoriemi s odlišným obsahem.",
   "identity": "wts.Page.TabbedPivot.CaliburnMicro"
 }

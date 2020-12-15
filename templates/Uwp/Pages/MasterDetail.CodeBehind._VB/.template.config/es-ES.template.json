@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Master/Detail",
+    "name": "MasterDetail",
     "description": "La página de maestro y detalles que tiene un panel maestro y un panel de detalles para el contenido.",
     "identity": "wts.Page.MasterDetail.CodeBehind.VB"
 }

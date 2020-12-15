@@ -170,6 +170,20 @@ namespace Microsoft.Templates.Test.Build.Wpf
         }
 
         [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Wpf)]
+        [Trait("ExecutionSet", "BuildPrismWpf")]
+        [Trait("ExecutionSet", "_Full")]
+        [Trait("Type", "BuildRightClickWpf")]
+        public async Task Build_Empty_AddRightClick_WpfAsync(string projectType, string framework, string platform, string language)
+        {
+            var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+
+            AssertBuildProject(projectPath, projectName, platform);
+        }
+
+        [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
         [Trait("ExecutionSet", "BuildOneByOnePrismWpf")]
         [Trait("ExecutionSet", "_OneByOne")]

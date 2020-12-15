@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Telerik Data Grid",
+  "name": "Telerik DataGrid",
   "description": "Una página que muestra una cuadrícula sencilla, con tecnología de los controles de Telerik UI para UWP.",
   "identity": "wts.Page.Grid.CodeBehind"
 }

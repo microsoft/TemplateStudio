@@ -1,0 +1,19 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+        <StackPanel
+            x:Name="ContentArea">
+            <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                <!--^^-->
+                <!--{[{-->
+
+                <HyperlinkButton
+                    Margin="{StaticResource XSmallTopMargin}"
+                    x:Uid="FeedbackHub_Link"
+                    Command="{x:Bind ViewModel.LaunchFeedbackHubCommand}"
+                    Visibility="{x:Bind ViewModel.FeedbackLinkVisibility}" />
+                <!--}]}-->
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

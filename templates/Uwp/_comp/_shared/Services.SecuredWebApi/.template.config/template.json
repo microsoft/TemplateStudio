@@ -9,9 +9,9 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit",
     "wts.platform": "Uwp",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & groupidentity == wts.Service.SecuredWebApi",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit & groupidentity == wts.Service.SecuredWebApi",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
     "wts.outputToParent": "true",
@@ -45,7 +45,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.AspNetCore.Authentication.JwtBearer",
-        "version" : "3.1.8",
+        "version" : "3.1.10",
         "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": true

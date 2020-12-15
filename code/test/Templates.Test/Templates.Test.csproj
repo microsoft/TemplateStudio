@@ -69,13 +69,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBCollection.cs" />
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpFixture.cs" />
-    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyCSharpTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSourceV2.cs" />
+    <Compile Include="BuildTemplatesTests\Uwp\BuildToolkitMVVMProjectTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Uwp\BuildRightClickWithLegacyVBFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Wpf\BuildRightClickWithLegacyWpfFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\Wpf\BuildRightClickWithLegacyTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildPrismProjectTests.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="BuildTemplatesTests\Uwp\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildTemplatesTests\Wpf\BuildToolkitMVVMProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\WinUI\BuildMVVMToolkitProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildPrismProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildMVVMLightProjectTests.cs" />
@@ -106,6 +110,9 @@
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
+    <None Include="bat\WinUI\RestoreAndBuild.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="bat\Wpf\RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -211,14 +218,11 @@
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
       <Version>3.0.0-preview9.19381.3</Version>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
-    </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
     <PackageReference Include="WindowsTestHelpers">
-      <Version>0.4.0</Version>
+      <Version>0.4.1</Version>
     </PackageReference>
     <PackageReference Include="xunit">
       <Version>2.4.1</Version>

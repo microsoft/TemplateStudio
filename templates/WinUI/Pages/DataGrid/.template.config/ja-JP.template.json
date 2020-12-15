@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "DataGrid",
+  "description": "シンプルなデータ グリッドを表示するページです。",
+  "identity": "wts.WinUI.Page.DataGrid"
+}

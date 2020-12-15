@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "Страница Master-Detail оптимизирована для устройств с двумя экранами.",
   "identity": "wts.Page.TwoPaneView.Prism"
 }

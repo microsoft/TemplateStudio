@@ -17,7 +17,7 @@ Namespace ViewModels
                 Return _selected
             End Get
             Set(value As SampleOrder)
-                [Set](_selected, value)
+                [Param_Setter](_selected, value)
             End Set
         End Property
 
@@ -26,7 +26,7 @@ Namespace ViewModels
                 Return _twoPanePriority
             End Get
             Set(value As WinUI.TwoPaneViewPriority)
-                [Set](_twoPanePriority, value)
+                [Param_Setter](_twoPanePriority, value)
             End Set
         End Property
 

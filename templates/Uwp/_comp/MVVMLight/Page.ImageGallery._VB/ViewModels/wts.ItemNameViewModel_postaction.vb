@@ -19,7 +19,7 @@ Namespace ViewModels
 
         '^^
         '{[{
-        Private Sub OnsItemSelected(args As ItemClickEventArgs)
+        Private Sub OnItemSelected(args As ItemClickEventArgs)
             Dim selected = TryCast(args.ClickedItem, SampleImage)
             ImagesNavigationHelper.AddImageId(wts.ItemNameSelectedIdKey, selected.ID)
             NavigationService.Frame.SetListDataItemForNextConnectedAnimation(selected)

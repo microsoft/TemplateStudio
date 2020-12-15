@@ -9,9 +9,9 @@
     "language": "C#",
     "type": "project",
     "wts.type": "composition",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit",
     "wts.platform": "Uwp",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism & groupidentity == wts.Service.WebApi",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit & groupidentity == wts.Service.WebApi",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
     "wts.defaultInstance": "WebApi",
@@ -44,7 +44,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Swashbuckle.AspNetCore",
-        "version" : "5.6.0",
+        "version" : "5.6.3",
         "projectPath": "Param_ProjectName.WebApi\\Param_ProjectName.WebApi.csproj"
       },
       "continueOnError": true

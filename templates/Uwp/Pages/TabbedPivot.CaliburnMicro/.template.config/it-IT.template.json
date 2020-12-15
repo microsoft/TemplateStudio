@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "TabbedPivot",
+  "name": "Tabbed Pivot",
   "description": "La pagina a schede è utilizzata per navigare tra categorie di contenuto distinte a cui si accede di frequente.",
   "identity": "wts.Page.TabbedPivot.CaliburnMicro"
 }

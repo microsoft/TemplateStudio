@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "Na této stránce se zobrazuje galerie obrázků a uživatel může navigovat mezi galerií a detaily obrázku.",
   "identity": "wts.Page.ImageGallery.VB"
 }

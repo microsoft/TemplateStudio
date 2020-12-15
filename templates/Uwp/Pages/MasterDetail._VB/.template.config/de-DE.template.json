@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Master/Detail",
+    "name": "MasterDetail",
     "description": "Die Master-Detail-Seite besitzt einen Masterbereich und einen Detailbereich für Inhalte.",
     "identity": "wts.Page.MasterDetail.VB"
 }

@@ -1,0 +1,77 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Test Core library with NUnit",
+  "shortName": "Test Core library with NUnit",
+  "groupIdentity": "wts.Wpf.Testing.UnitTests.Core.NUnit",
+  "identity": "wts.Wpf.Testing.UnitTests.Core.NUnit",
+  "description": "Add a project to test code in the Core library with NUnit.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "testing",
+    "wts.outputToParent": "true",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "5",
+    "wts.defaultInstance": "Tests-Core-NUnit",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[NUnit](https://raw.githubusercontent.com/nunit/nunit/master/LICENSE.txt)"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Core.Tests.NUnit/Param_ProjectName.Core.Tests.NUnit.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "nunit",
+        "version" : "3.12.0",
+        "projectPath": "Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "NUnit3TestAdapter",
+        "version" : "3.17.0",
+        "projectPath": "Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.NET.Test.Sdk",
+        "version" : "16.8.0",
+        "projectPath": "Param_ProjectName.Core.Tests.NUnit\\Param_ProjectName.Core.Tests.NUnit.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

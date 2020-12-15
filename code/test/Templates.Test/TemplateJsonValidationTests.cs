@@ -28,7 +28,8 @@ namespace Microsoft.Templates.Test
 
             // The following excludes the catalog and project folders, but they only contain a single template file each
             var foldersOfInterest = new[] { "Uwp/_comp", "Uwp/Features", "Uwp/Pages", "Uwp/Services", "Uwp/Testing",
-                                            "Wpf/_comp", "Wpf/Features", "Wpf/Pages", "Wpf/Services", "Wpf/Testing"};
+                                            "Wpf/_comp", "Wpf/Features", "Wpf/Pages", "Wpf/Services", "Wpf/Testing",
+                                            "WinUI/_comp", "WinUI/Features", "WinUI/Pages", "WinUI/Services", "WinUI/Testing"};
 
             foreach (var folder in foldersOfInterest)
             {

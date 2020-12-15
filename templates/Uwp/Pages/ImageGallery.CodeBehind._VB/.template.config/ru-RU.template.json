@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "Страница, на которой отображается коллекция изображений. Она позволяет пользователю переходить между коллекцией и сведениями о изображении.",
   "identity": "wts.Page.ImageGallery.CodeBehind.VB"
 }

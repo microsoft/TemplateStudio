@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Master/Detail",
+  "name": "MasterDetail",
   "description": "La page maître-détail comporte un volet principal et un volet de détails pour le contenu.",
   "identity": "wts.Page.MasterDetail.CodeBehind"
 }
