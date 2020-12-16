@@ -7,12 +7,12 @@
 #pragma once
 
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     using IInspectable = ::winrt::Windows::Foundation::IInspectable;
 
     template <typename D, typename ... I>
-    struct MainWindowT : public ::winrt::wts_ProjectName::implementation::MainWindow_base<D,
+    struct MainWindowT : public ::winrt::Param_RootNamespace::implementation::MainWindow_base<D,
         ::winrt::Microsoft::UI::Xaml::Markup::IComponentConnector,
         I...>
     {

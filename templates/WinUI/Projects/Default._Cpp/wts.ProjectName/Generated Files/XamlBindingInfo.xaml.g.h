@@ -14,7 +14,7 @@
 #include "winrt/microsoft.ui.xaml.data.h"
 #include "winrt/microsoft.ui.xaml.markup.h"
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     using DataContextChangedEventArgs = ::winrt::Microsoft::UI::Xaml::DataContextChangedEventArgs;
     using DependencyObject = ::winrt::Microsoft::UI::Xaml::DependencyObject;

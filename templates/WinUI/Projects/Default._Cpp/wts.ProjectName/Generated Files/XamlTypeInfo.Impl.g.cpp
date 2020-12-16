@@ -18,7 +18,7 @@
 #include "XamlTypeInfo.xaml.g.h"
 #include "XamlMetaDataProvider.h"
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     using namespace ::winrt::Microsoft::UI::Xaml::Markup;
     using namespace ::winrt::Windows::UI::Xaml::Interop;

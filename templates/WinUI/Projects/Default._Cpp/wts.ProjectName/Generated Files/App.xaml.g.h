@@ -14,7 +14,7 @@
 #include "XamlTypeInfo.xaml.g.h"
 #include "XamlMetaDataProvider.h"
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     template <typename D, typename ... Interfaces>
     struct AppT: public ::winrt::Microsoft::UI::Xaml::ApplicationT<D, ::winrt::Microsoft::UI::Xaml::Markup::IXamlMetadataProvider, Interfaces...>

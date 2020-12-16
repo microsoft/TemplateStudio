@@ -20,7 +20,7 @@
 #include "winrt/Windows.UI.Xaml.Interop.h"
 #include "winrt/Microsoft.UI.Xaml.XamlTypeInfo.h"
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     using IInspectable = ::winrt::Windows::Foundation::IInspectable;
     using IXamlMember = ::winrt::Microsoft::UI::Xaml::Markup::IXamlMember;

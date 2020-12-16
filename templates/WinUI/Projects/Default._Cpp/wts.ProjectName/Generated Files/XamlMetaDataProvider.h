@@ -19,7 +19,7 @@
     If the file above was not generated, you may be missing a declaration
     for the XamlMetaDataProvider runtimeclass in your IDL.
 
-    namespace wts_ProjectName
+    namespace Param_RootNamespace
     {
         runtimeclass XamlMetaDataProvider : Microsoft.UI.Xaml.Markup.IXamlMetadataProvider
         {
@@ -28,12 +28,12 @@
     }
 */
 
-namespace winrt::wts_ProjectName::implementation
+namespace winrt::Param_RootNamespace::implementation
 {
     using IXamlMember = ::winrt::Microsoft::UI::Xaml::Markup::IXamlMember;
     using IXamlType = ::winrt::Microsoft::UI::Xaml::Markup::IXamlType;
 
-    struct XamlMetaDataProvider : public ::winrt::wts_ProjectName::implementation::XamlMetaDataProvider_base<XamlMetaDataProvider>
+    struct XamlMetaDataProvider : public ::winrt::Param_RootNamespace::implementation::XamlMetaDataProvider_base<XamlMetaDataProvider>
     {
         IXamlType GetXamlType(::winrt::Windows::UI::Xaml::Interop::TypeName const& type);
         IXamlType GetXamlType(::winrt::hstring const& fullName);
@@ -45,7 +45,7 @@ namespace winrt::wts_ProjectName::implementation
     };
 }
 
-namespace winrt::wts_ProjectName::factory_implementation
+namespace winrt::Param_RootNamespace::factory_implementation
 {
     struct XamlMetaDataProvider : XamlMetaDataProviderT<XamlMetaDataProvider, implementation::XamlMetaDataProvider>
     {
