@@ -6,11 +6,10 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 3.9
+#### 3.10
 - WPF Toast Notifications
-- WPF Testing templates
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.9)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.10)
 
 ## Upcoming releases
 
@@ -24,6 +23,7 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
+- [3.9 - December 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.9)
 - [3.8 - September 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.8)
 - [3.7 - July 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.7)
 - [3.6 - May 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.6)
