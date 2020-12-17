@@ -10,7 +10,7 @@
   "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
   "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
   "tags": {
-    "language": "Cpp",
+    "language": "C++",
     "type": "project",
     "wts.type": "feature",
     "wts.projecttype": "all",

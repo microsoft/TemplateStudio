@@ -16,6 +16,6 @@
     "author": "Microsoft",
     "order": "2",
     "platform": "WinUI",
-    "languages": [ "Cpp" ]
+    "languages": [ "C++" ]
   }
 ]

@@ -118,6 +118,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                         GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
 
                         var newItem = proj.ProjectItems.AddFromFile(file);
+
+                        if (GenContext.CurrentLanguage == ProgrammingLanguages.Cpp && Path.GetExtension(file) == ".xaml")
+                        {
+                            newItem.ProjectItems.AddFromFile(file.Replace("xaml", "idl"));
+                        }
                     }
 
                     proj.Save();
