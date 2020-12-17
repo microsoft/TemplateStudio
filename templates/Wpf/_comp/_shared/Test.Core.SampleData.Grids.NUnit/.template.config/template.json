@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $page == wts.Wpf.Page.ContentGrid|wts.Wpf.Page.ContentGrid.CodeBehind",
+    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $page == wts.Wpf.Page.DataGrid|wts.Wpf.Page.DataGrid.CodeBehind",
     "wts.compositionOrder" : "2"
   },
   "sourceName": "wts.ItemName",
