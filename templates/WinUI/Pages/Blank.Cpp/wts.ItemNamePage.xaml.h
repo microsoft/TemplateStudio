@@ -4,7 +4,7 @@
 
 namespace winrt::Param_RootNamespace::implementation
 {
-    struct wts.ItemNamePage : wts.ItemNamePage<wts.ItemNamePage>
+    struct wts.ItemNamePage : wts.ItemNamePageT<wts.ItemNamePage>
     {
         wts.ItemNamePage();
 

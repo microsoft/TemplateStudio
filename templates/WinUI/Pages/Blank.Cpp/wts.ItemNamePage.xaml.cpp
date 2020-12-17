@@ -1,8 +1,10 @@
 ﻿#include "pch.h"
 #include "wts.ItemNamePage.xaml.h"
+//-:cnd:noEmit
 #if __has_include("wts.ItemNamePage.g.cpp")
 #include "wts.ItemNamePage.g.cpp"
 #endif
+//+:cnd:noEmit
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;

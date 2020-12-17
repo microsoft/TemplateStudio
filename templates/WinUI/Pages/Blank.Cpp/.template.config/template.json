@@ -28,13 +28,13 @@
       "path": "wts.ItemNamePage.xaml"
     },
     {
-      "path": "wts.ItemNamePage.xaml.idl"
-    },
-    {
       "path": "wts.ItemNamePage.xaml.cpp"
     },
     {
       "path": "wts.ItemNamePage.xaml.h"
+    },
+    {
+      "path": "wts.ItemNamePage.idl"
     }
   ],
   "symbols": {
