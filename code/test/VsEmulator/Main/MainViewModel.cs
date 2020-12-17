@@ -196,7 +196,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var parameters = parameter.Split(',');
                 AnalyzeNewProject(parameters[0], parameters[1]);
             });
-        }     
+        }
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language)
         {
@@ -445,7 +445,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+                string language;
+                switch (Path.GetExtension(projFile))
+                {
+                    case ".vbproj":
+                        language = ProgrammingLanguages.VisualBasic;
+                        break;
+                    case ".csproj":
+                        language = ProgrammingLanguages.CSharp;
+                        break;
+                    case ".vcxproj":
+                        language = ProgrammingLanguages.Cpp;
+                        break;
+                }
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
                 newProject.SetBasicInfo(projectName, destinationPath);

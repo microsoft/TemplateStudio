@@ -377,10 +377,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
-
                     case ".vbproj":
                         return ProgrammingLanguages.VisualBasic;
-
+                    case ".vcxproj":
+                        return ProgrammingLanguages.Cpp;
                     default:
                         return string.Empty;
                 }
