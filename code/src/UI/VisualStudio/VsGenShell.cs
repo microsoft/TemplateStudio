@@ -119,6 +119,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                         var newItem = proj.ProjectItems.AddFromFile(file);
 
+                        // TODO: Check if this is needed or should be done by VS
                         if (GenContext.CurrentLanguage == ProgrammingLanguages.Cpp && Path.GetExtension(file) == ".xaml")
                         {
                             newItem.ProjectItems.AddFromFile(file.Replace("xaml", "idl"));
