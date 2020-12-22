@@ -10,7 +10,7 @@
   "groupIdentity": "wts.WinUI.Proj.Default.Cpp",
   "description": "",
   "tags": {
-    "language": "Cpp",
+    "language": "C++",
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "Blank",

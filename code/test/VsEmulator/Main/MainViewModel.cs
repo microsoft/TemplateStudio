@@ -445,7 +445,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                string language;
+                string language = String.Empty;
                 switch (Path.GetExtension(projFile))
                 {
                     case ".vbproj":
