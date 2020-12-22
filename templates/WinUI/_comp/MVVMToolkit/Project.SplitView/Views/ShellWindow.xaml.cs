@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Param_RootNamespace.Contracts.Views;
+using Param_RootNamespace.Helpers;
 using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views
@@ -10,6 +11,7 @@ namespace Param_RootNamespace.Views
 
         public ShellWindow(ShellViewModel viewModel)
         {
+            Title = "AppDisplayName".GetLocalized();
             ViewModel = viewModel;
             InitializeComponent();
             ViewModel.Initialize(shellFrame, navigationView);
