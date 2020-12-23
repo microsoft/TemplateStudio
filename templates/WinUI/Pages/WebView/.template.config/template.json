@@ -25,6 +25,12 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": "Contracts/Services/IWebViewService.cs"
+    },
+    {
+      "path": "Services/WebViewService.cs"
+    },
+    {
       "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
     {

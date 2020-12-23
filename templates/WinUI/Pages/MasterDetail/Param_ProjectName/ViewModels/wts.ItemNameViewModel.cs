@@ -1,7 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
@@ -11,7 +12,6 @@ namespace Param_RootNamespace.ViewModels
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         private readonly ISampleDataService _sampleDataService;
-        private MasterDetailsView _masterDetailsView;
         private SampleOrder _selected;
 
         public SampleOrder Selected
@@ -27,11 +27,6 @@ namespace Param_RootNamespace.ViewModels
             _sampleDataService = sampleDataService;
         }
 
-        public void Initialize(MasterDetailsView masterDetailsView)
-        {
-            _masterDetailsView = masterDetailsView;
-        }
-
         public async void OnNavigatedTo(object parameter)
         {
             SampleItems.Clear();
@@ -42,15 +37,18 @@ namespace Param_RootNamespace.ViewModels
             {
                 SampleItems.Add(item);
             }
-
-            if (_masterDetailsView.ViewState == MasterDetailsViewState.Both)
-            {
-                Selected = SampleItems.First();
-            }
         }
 
         public void OnNavigatedFrom()
         {
+        }
+
+        public void EnsureItemSelected()
+        {
+            if (Selected == null)
+            {
+                Selected = SampleItems.First();
+            }
         }
     }
 }

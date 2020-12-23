@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
+﻿
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace.ViewModels
 {
     public class ShellViewModel : ObservableRecipient
     {
-        private readonly INavigationService _navigationService;
-        private readonly IPageService _pageService;
         private bool _isBackEnabled;
-        private NavigationViewItem _selected;
-        private NavigationView _navigationView;
-        private ICommand _itemInvokedCommand;
+        private object _selected;
+
+        public INavigationService NavigationService { get; }
+
+        public INavigationViewService NavigationViewService { get; }
 
         public bool IsBackEnabled
         {
@@ -27,79 +22,26 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _isBackEnabled, value); }
         }
 
-        public NavigationViewItem Selected
+        public object Selected
         {
             get { return _selected; }
             set { SetProperty(ref _selected, value); }
         }
 
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-
-        public ShellViewModel(INavigationService navigationService, IPageService pageService)
+        public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
         {
-            _navigationService = navigationService;
-            _pageService = pageService;
-            _navigationService.Navigated += OnNavigated;
+            NavigationService = navigationService;
+            NavigationService.Navigated += OnNavigated;
+            NavigationViewService = navigationViewService;
         }
-
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
-            _navigationView = navigationView;
-            _navigationService.Frame = frame;
-            _navigationView.BackRequested += OnBackRequested;
-        }
-
-        private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-            => _navigationService.GoBack();
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
-            IsBackEnabled = _navigationService.CanGoBack;
-
-            var selectedItem = GetSelectedItem(_navigationView.MenuItems, e.SourcePageType);
+            IsBackEnabled = NavigationService.CanGoBack;
+            var selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
             if (selectedItem != null)
             {
                 Selected = selectedItem;
-            }
-        }
-
-        private NavigationViewItem GetSelectedItem(IEnumerable<object> menuItems, Type pageType)
-        {
-            foreach (var item in menuItems.OfType<NavigationViewItem>())
-            {
-                if (IsMenuItemForPageType(item, pageType))
-                {
-                    return item;
-                }
-
-                var selectedChild = GetSelectedItem(item.MenuItems, pageType);
-                if (selectedChild != null)
-                {
-                    return selectedChild;
-                }
-            }
-
-            return null;
-        }
-
-        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
-        {
-            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-            return _pageService.GetPageType(pageKey) == sourcePageType;
-        }
-
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked)
-            {
-                // Navigate to the settings page - implement as appropriate if needed
-                return;
-            }
-
-            if (args.InvokedItemContainer is NavigationViewItem selectedItem)
-            {
-                var pageKey = selectedItem.GetValue(NavHelper.NavigateToProperty) as string;
-                _navigationService.NavigateTo(pageKey);
             }
         }
     }

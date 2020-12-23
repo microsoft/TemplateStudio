@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Core.Contracts.Services;
@@ -47,7 +45,7 @@ namespace Param_RootNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                _navigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
+                _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
                 _navigationService.NavigateTo(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderID);
             }
         }

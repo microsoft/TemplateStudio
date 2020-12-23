@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform": "WinUI",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "1",
+      "wts.compositionOrder": "0",
       "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == project",
       "wts.licenses": "[Microsoft.Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
     },

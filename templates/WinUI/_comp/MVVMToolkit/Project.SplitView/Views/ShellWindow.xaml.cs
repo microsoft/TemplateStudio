@@ -14,7 +14,8 @@ namespace Param_RootNamespace.Views
             Title = "AppDisplayName".GetLocalized();
             ViewModel = viewModel;
             InitializeComponent();
-            ViewModel.Initialize(shellFrame, navigationView);
+            ViewModel.NavigationService.Frame = shellFrame;
+            ViewModel.NavigationViewService.Initialize(navigationView);
         }
     }
 }

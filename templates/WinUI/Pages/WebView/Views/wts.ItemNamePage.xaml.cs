@@ -13,7 +13,7 @@ namespace Param_RootNamespace.Views
         {
             ViewModel = Ioc.Default.GetService<wts.ItemNameViewModel>();
             InitializeComponent();
-            ViewModel.Initialize(webView);
+            ViewModel.WebViewService.Initialize(webView);
         }
     }
 }
