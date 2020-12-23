@@ -4,6 +4,7 @@
     {
 //^^
 //{[{
+
         void SetListDataItemForNextConnectedAnimation(object item);
 //}]}
     }
