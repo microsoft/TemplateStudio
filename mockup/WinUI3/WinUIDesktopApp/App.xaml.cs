@@ -52,6 +52,7 @@ namespace WinUIDesktopApp
         private System.IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
+
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -60,12 +61,12 @@ namespace WinUIDesktopApp
 
             // Services
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+            services.AddTransient<IWebViewService, WebViewService>();
+            services.AddTransient<INavigationViewService, NavigationViewService>();
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
-            services.AddTransient<INavigationViewService, NavigationViewService>();
             services.AddTransient<IToastNotificationsService, ToastNotificationsService>();
-            services.AddTransient<IWebViewService, WebViewService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
@@ -73,6 +74,7 @@ namespace WinUIDesktopApp
             // Views and ViewModels
             services.AddTransient<IShellWindow, ShellWindow>();
             services.AddTransient<ShellViewModel>();
+
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
             services.AddTransient<WebViewViewModel>();
@@ -85,13 +87,12 @@ namespace WinUIDesktopApp
             services.AddTransient<MasterDetailPage>();
             services.AddTransient<DataGridViewModel>();
             services.AddTransient<DataGridPage>();
-            services.AddTransient<FormViewModel>();            
+            services.AddTransient<FormViewModel>();
             services.AddTransient<FormPage>();
             services.AddTransient<FormWCTViewModel>();
             services.AddTransient<FormWCTPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
-
             return services.BuildServiceProvider();
         }
     }

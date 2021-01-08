@@ -2,7 +2,7 @@
   Copyright (c) Microsoft Corporation. Licensed under the MIT License
 -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <!-- 
+    <!--
       The _GetPathToWinUIRegistrations target returns the path to where the registrations xml file is.
       If invoked in the .wapproj, this will invoke the same target on referenced projects, where it will
       actually return the location to where the file is on disk in the nuget package.
@@ -19,7 +19,7 @@
         SkipNonexistentTargets="true">
           <Output TaskParameter="TargetOutputs" PropertyName="WinUIClassRegistrationsDir" />
       </MSBuild>
-      
+
       <PropertyGroup>
         <!-- If  not in the .wapproj, then actually return the path to where the registration list is -->
         <WinUIClassRegistrationsDir Condition="'$(WinUIClassRegistrationsDir)' == '' and '$(MSBuildProjectExtension)'!='.wapproj'">$(MSBuildThisFileDirectory)</WinUIClassRegistrationsDir>
@@ -89,7 +89,7 @@
                     XmlNodeList xmlNodeList = appxManifest.DocumentElement.SelectNodes("//w:Package/w:Extensions/w:Extension", namespaceManager);
 
                     // Remove "Microsoft.UI.Xaml.dll", "Microsoft.Web.WebView2.Core.dll", and
-            	    // "Microsoft.ApplicationModel.Resources.dll" registrations from the 
+            	    // "Microsoft.ApplicationModel.Resources.dll" registrations from the
                     // AppxManifest file as we will be inserting the entries ourselves
                     foreach (XmlNode node in xmlNodeList)
                     {

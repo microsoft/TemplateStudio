@@ -8,7 +8,7 @@ using WinUIDesktopApp.Core.Models;
 
 namespace WinUIDesktopApp.Core.Services
 {
-	// This class holds sample data used by some generated pages to show how they can be used.
+    // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.
     public class SampleDataService : ISampleDataService
     {
@@ -18,14 +18,14 @@ namespace WinUIDesktopApp.Core.Services
         {
         }
 
-        private IEnumerable<SampleOrder> AllOrders()
+        private static IEnumerable<SampleOrder> AllOrders()
         {
             // The following is order summary data
             var companies = AllCompanies();
             return companies.SelectMany(c => c.Orders);
         }
 
-        private IEnumerable<SampleCompany> AllCompanies()
+        private static IEnumerable<SampleCompany> AllCompanies()
         {
             return new List<SampleCompany>()
             {
@@ -488,19 +488,7 @@ namespace WinUIDesktopApp.Core.Services
             };
         }
 
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
-        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
-        {
-            if (_allOrders == null)
-            {
-                _allOrders = new List<SampleOrder>(AllOrders());
-            }
-
-            await Task.CompletedTask;
-            return _allOrders;
-        }
-
-        // TODO WTS: Remove this once your ContentGrid page is displaying real data.
+        // TODO WTS: Remove this once your ContentGrid pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
         {
             if (_allOrders == null)
@@ -512,7 +500,7 @@ namespace WinUIDesktopApp.Core.Services
             return _allOrders;
         }
 
-        // TODO WTS: Remove this once your grid page is displaying real data.
+        // TODO WTS: Remove this once your DataGrid pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         {
             if (_allOrders == null)
@@ -524,6 +512,7 @@ namespace WinUIDesktopApp.Core.Services
             return _allOrders;
         }
 
+        // TODO WTS: Remove this once your Form pages are saving real data.
         public async Task SaveOrderAsync(SampleOrder order)
         {
             if (_allOrders == null)
@@ -533,6 +522,18 @@ namespace WinUIDesktopApp.Core.Services
 
             _allOrders.Add(order);
             await Task.CompletedTask;
+        }
+
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
+        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
+        {
+            if (_allOrders == null)
+            {
+                _allOrders = new List<SampleOrder>(AllOrders());
+            }
+
+            await Task.CompletedTask;
+            return _allOrders;
         }
     }
 }

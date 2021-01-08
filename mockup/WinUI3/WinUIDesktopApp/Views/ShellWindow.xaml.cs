@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 
 using WinUIDesktopApp.Contracts.Views;
+using WinUIDesktopApp.Helpers;
 using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
@@ -11,6 +12,7 @@ namespace WinUIDesktopApp.Views
 
         public ShellWindow(ShellViewModel viewModel)
         {
+            Title = "AppDisplayName".GetLocalized();
             ViewModel = viewModel;
             InitializeComponent();
             ViewModel.NavigationService.Frame = shellFrame;
