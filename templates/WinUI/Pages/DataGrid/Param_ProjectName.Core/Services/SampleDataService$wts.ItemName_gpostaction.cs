@@ -5,7 +5,6 @@
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your DataGrid pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         {
             if (_allOrders == null)
