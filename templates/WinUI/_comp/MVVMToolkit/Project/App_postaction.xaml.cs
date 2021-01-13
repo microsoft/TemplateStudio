@@ -47,6 +47,7 @@ namespace Param_RootNamespace
 //{[{
         private System.IServiceProvider ConfigureServices()
         {
+            // TODO WTS: Register your services, viewmodels and pages here
             var services = new ServiceCollection();
 
             // Default Activation Handler

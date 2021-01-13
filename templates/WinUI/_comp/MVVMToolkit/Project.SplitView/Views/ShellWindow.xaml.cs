@@ -5,6 +5,7 @@ using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views
 {
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellWindow.xaml.
     public sealed partial class ShellWindow : Window, IShellWindow
     {
         public ShellViewModel ViewModel { get; }
