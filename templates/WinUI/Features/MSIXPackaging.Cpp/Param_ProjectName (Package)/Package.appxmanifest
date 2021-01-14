@@ -6,14 +6,14 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity
-    Name="7292c78b-dc62-4c09-9be9-58958d517d2f"
-    Publisher="CN=mvega"
+ <Identity
+    Name="07ad151b-a614-4a13-aef0-5378d3f98e67"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>Param_ProjectName (Package)</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
