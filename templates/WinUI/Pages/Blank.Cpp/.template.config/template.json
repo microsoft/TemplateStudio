@@ -25,16 +25,21 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "wts.ItemNamePage.xaml"
+      "path": "Param_ProjectName/wts.ItemNamePage.xaml"
     },
     {
-      "path": "wts.ItemNamePage.xaml.cpp"
+      "path": "Param_ProjectName/wts.ItemNamePage.xaml.cpp"
     },
     {
-      "path": "wts.ItemNamePage.xaml.h"
+      "path": "Param_ProjectName/wts.ItemNamePage.xaml.h"
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
