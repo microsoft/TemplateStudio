@@ -16,7 +16,7 @@ namespace TemplateValidator
 {
     public static class TemplateFolderVerifier
     {
-        private static string[] excludedPrimaryOutputFiles = new string[] { @"C:\Projects\WindowsTemplateStudio\Templates\WinUI\Pages\Blank.Cpp\Param_ProjectName\wts.ItemNamePage.idl" };
+        private static string[] excludedPrimaryOutputFiles = new string[] { @"\WinUI\Pages\Blank.Cpp\Param_ProjectName\wts.ItemNamePage.idl" };
 
         public static VerifierResult VerifyTemplateFolders(bool showWarnings, params string[] templateFolders)
         {
@@ -165,7 +165,7 @@ namespace TemplateValidator
                             if (template.GetTemplateOutputType() == TemplateOutputType.Item)
                             {
                                 // Use of FileInfo and Path to handle comparison of relative and exact paths
-                                if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName && !excludedPrimaryOutputFiles.Contains(file.FullName)))
+                                if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName && !excludedPrimaryOutputFiles.Any(f => file.FullName.EndsWith(f))))
                                 {
                                     results.Add($"'{file.FullName}' is not used in the template.");
                                 }
