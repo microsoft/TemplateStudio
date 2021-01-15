@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+// To learn more about WinUI3, see: https://docs.microsoft.com/windows/apps/winui/winui3/.
 namespace Param_RootNamespace
 {
     public partial class App : Application
@@ -17,6 +16,8 @@ namespace Param_RootNamespace
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            // TODO WTS: Please log and handle the exception as appropriate to your scenario
+            // For more info see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
