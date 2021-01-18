@@ -124,7 +124,7 @@ namespace Microsoft.Templates.Fakes
             sb.AppendLine(">");
             sb.AppendLine($"<DependentUpon>{dependency}.xaml</DependentUpon>");
             sb.AppendLine("<SubType>Code</SubType>");
-            sb.Append($"</Midl");
+            sb.Append($"</Midl>");
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);

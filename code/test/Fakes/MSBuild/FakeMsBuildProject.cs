@@ -88,6 +88,10 @@ namespace Microsoft.Templates.Fakes
 
             var lastItems = _root.Descendants().LastOrDefault(d => d.Name.LocalName == "ItemGroup");
             lastItems?.AddAfterSelf(itemsContainer);
+            if (itemPath.EndsWith("xaml.cpp"))
+            {
+                AddItem(itemPath.Replace("xaml.cpp", "idl"));
+            }
         }
 
         public void AddNugetReference(NugetReference nugetReference)
