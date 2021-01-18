@@ -12,33 +12,32 @@ Don't forget to review the `developer TODOs` we've added for you. You can open t
 ## File Structure
 ```
 .
-â”œâ”€â”€ Param_ProjectName/ - WinUI 3 Desktop app
-â”‚ â”œâ”€â”€ Activation/ - app activation handlers
-â”‚ â”œâ”€â”€ Behaviors/ - UI controls behaviors
-â”‚ â”œâ”€â”€ Contracts/ - class interfaces
-â”‚ â”œâ”€â”€ Helpers/ - static helper classes
-â”‚ â”œâ”€â”€ Services/ - services implementations
-â”‚ â”‚ â”œâ”€â”€ ActivationService.cs - app activation and initialization
-â”‚ â”‚ â”œâ”€â”€ NavigationService.cs - navigate between pages
-â”‚ â”‚ â””â”€â”€ ...
-â”‚ â”œâ”€â”€ Strings/en-us/Resources.resw - localized string resources
-â”‚ â”œâ”€â”€ Styles/ - custom style definitions
-â”‚ â”œâ”€â”€ ViewModels/ - properties and commands consumed in the views
-â”‚ â”œâ”€â”€ Views/ - UI pages
-â”‚ â”‚ â”œâ”€â”€ Shell.xaml - main app window with navigation frame
-â”‚ â”‚ â””â”€â”€ ...
-â”‚ â””â”€â”€ App.xaml - app definition and lifecycle events
-â”œâ”€â”€ Param_ProjectName.Core/ - core project (.NET Standard)
-â”‚ â”œâ”€â”€ Contracts/ - class interfaces
-â”‚ â”œâ”€â”€ Helpers/ - static helper classes
-â”‚ â”œâ”€â”€ Models/ - business models
-â”‚ â””â”€â”€ Services/ - services implementations
-â”œâ”€â”€ Param_ProjectName (Package)/ - MSIX packaging project
-â”‚ â”œâ”€â”€ Images/ - images for MSIX app logos
-â”‚ â”œâ”€â”€ TemporaryKey.pfx - test certificate
-â”‚ â”œâ”€â”€ Strings/en-us/Resources.resw - localized string resources
-â”‚ â””â”€â”€ Package.appxmanifest - app properties and declarations
-â””â”€â”€ README.md
+├── Param_ProjectName/ - WinUI 3 Desktop app
+│ ├── Activation/ - app activation handlers
+│ ├── Behaviors/ - UI controls behaviors
+│ ├── Contracts/ - class interfaces
+│ ├── Helpers/ - static helper classes
+│ ├── Services/ - services implementations
+│ │ ├── ActivationService.cs - app activation and initialization
+│ │ ├──  NavigationService.cs - navigate between pages
+│ │ └──  ...
+│ ├── Strings/en-us/Resources.resw - localized string resources
+│ ├── Styles/ - custom style definitions
+│ ├── ViewModels/ - properties and commands consumed in the views
+│ ├── Views/ - UI pages
+│ │ ├── Shell.xaml - main app window with navigation frame
+│ │ └── ...
+│ └── App.xaml - app definition and lifecycle events
+├── Param_ProjectName.Core/ - core project (.NET Standard)
+│ ├── Contracts/ - class interfaces
+│ ├── Helpers/ - static helper classes
+│ ├── Models/ - business models
+│ └── Services/ - services implementations
+├── Param_ProjectName (Package)/ - MSIX packaging project
+│ ├── TemporaryKey.pfx - test certificate
+│ ├── Strings/en-us/Resources.resw - localized string resources
+│ └── Package.appxmanifest - app properties and declarations
+└── README.md
 ```
 
 ### Design pattern
