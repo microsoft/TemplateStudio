@@ -8,6 +8,7 @@ In addition to the functionality listed below, each release will also include bu
 
 #### 3.10
 - WPF Toast Notifications
+- Support for MVVM Toolkit
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.10)
 
