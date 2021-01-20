@@ -5,7 +5,7 @@ This project was created using [Microsoft Windows Template Studio](https://aka.m
 ## Getting Started
 Windows UI Library (WinUI) 3 is a native user experience (UX) framework for both Windows Desktop and UWP apps.
 
-This is a good time to build, deploy, and launch your app hitting F5. You can find the app entry point in `App.xaml.cs`, try adding a breakpoint in `OnLaunched` method and debugging the code, stepping into the `ActivationService` methods to understand the app lifecycle.
+You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in `App.xaml.cs`, try adding a breakpoint in the `OnLaunched` method and debug the code, stepping into the `ActivationService` methods to understand the app lifecycle.
 
 Don't forget to review the `developer TODOs` we've added for you. You can open the Task List using the menu `Views -> Task List`.
 
