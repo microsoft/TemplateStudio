@@ -42,7 +42,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    Text="Select an item from the list."
+                    x:Uid="wts.ItemName_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -62,8 +62,8 @@
 
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
+            x:Uid="wts.ItemName"
             x:Name="MasterDetailsViewControl"
-            MasterHeader="MasterDetail"
             BackButtonBehavior="Automatic"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"

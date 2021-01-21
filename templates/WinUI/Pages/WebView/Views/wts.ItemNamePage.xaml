@@ -28,14 +28,14 @@
             VerticalAlignment="Center"
             Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
             <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-            <TextBlock Text="Loading..." />
+            <TextBlock x:Uid="WebView_Loading" />
         </StackPanel>
 
         <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Visibility="{x:Bind ViewModel.HasFailures, Mode=OneWay}">
-            <TextBlock HorizontalAlignment="Center" Text="Page failed to load. Check connection and reload." TextWrapping="WrapWholeWords" />
+            <TextBlock x:Uid="WebView_FailedMessage" HorizontalAlignment="Center" TextWrapping="WrapWholeWords" />
             <HyperlinkButton Command="{x:Bind ViewModel.ReloadCommand}" Content="Reload" HorizontalAlignment="Center" />
         </StackPanel>
 
