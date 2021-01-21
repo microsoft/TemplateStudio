@@ -36,23 +36,36 @@
             VerticalAlignment="Center"
             Visibility="{x:Bind ViewModel.HasFailures, Mode=OneWay}">
             <TextBlock x:Uid="WebView_FailedMessage" HorizontalAlignment="Center" TextWrapping="WrapWholeWords" />
-            <HyperlinkButton Command="{x:Bind ViewModel.ReloadCommand}" Content="Reload" HorizontalAlignment="Center" />
+            <HyperlinkButton x:Uid="WebView_Reload" Command="{x:Bind ViewModel.ReloadCommand}" HorizontalAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}">
             <StackPanel Orientation="Horizontal">
                 <Button Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
+                    <!--Workaround for localized tooltips. For more info see https://github.com/microsoft/microsoft-ui-xaml/issues/3649-->
+                    <ToolTipService.ToolTip>
+                        <ToolTip x:Uid="WebView_BrowserBackTooltip" />
+                    </ToolTipService.ToolTip>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
                 </Button>
                 <Button Command="{x:Bind ViewModel.BrowserForwardCommand, Mode=OneWay}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
+                    <ToolTipService.ToolTip>
+                        <ToolTip x:Uid="WebView_BrowserForwardTooltip" />
+                    </ToolTipService.ToolTip>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72A;" />
                 </Button>
             </StackPanel >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Command="{x:Bind ViewModel.ReloadCommand}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
+                    <ToolTipService.ToolTip>
+                        <ToolTip x:Uid="WebView_ReloadTooltip" />
+                    </ToolTipService.ToolTip>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
                 </Button>
                 <Button Command="{x:Bind ViewModel.OpenInBrowserCommand}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
+                    <ToolTipService.ToolTip>
+                        <ToolTip x:Uid="WebView_OpenInBrowserTooltip" />
+                    </ToolTipService.ToolTip>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
                 </Button>
             </StackPanel>

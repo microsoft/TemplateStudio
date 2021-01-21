@@ -8,5 +8,20 @@
   <data name="WebView_FailedMessage.Text" xml:space="preserve">
     <value>Page failed to load. Check connection and reload.</value>
   </data>
+  <data name="WebView_Reload.Content" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="WebView_BrowserBackTooltip.Content" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="WebView_BrowserForwardTooltip.Content" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
+  <data name="WebView_ReloadTooltip.Content" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="WebView_OpenInBrowserTooltip.Content" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
 <!--}]}-->
 </root>

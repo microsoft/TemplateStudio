@@ -28,7 +28,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Dark/Light Theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
-- [Localized Ressource issue](https://github.com/microsoft/microsoft-ui-xaml/issues/2602)
+- [Localized tooltips issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3649)
 - [DataGrid issue](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3585)
 - [Read Theme from settings issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3730)
 
