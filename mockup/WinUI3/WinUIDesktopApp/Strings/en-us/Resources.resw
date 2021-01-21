@@ -120,4 +120,76 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>WinUIDesktopApp</value>
   </data>
+  <data name="Shell_Main.Content" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="WebView_Loading.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="WebView_FailedMessage.Text" xml:space="preserve">
+    <value>Page failed to load. Check connection and reload.</value>
+  </data>
+  <data name="WebView_Reload.Content" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="WebView_BrowserBackTooltip.Content" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="WebView_BrowserForwardTooltip.Content" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
+  <data name="WebView_ReloadTooltip.Content" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="WebView_OpenInBrowserTooltip.Content" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="Shell_WebView.Content" xml:space="preserve">
+    <value>WebView</value>
+  </data>
+  <data name="Shell_ContentGrid.Content" xml:space="preserve">
+    <value>ContentGrid</value>
+  </data>
+  <data name="MasterDetail.MasterHeader" xml:space="preserve">
+    <value>MasterDetail</value>
+  </data>
+  <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
+    <value>Select an item from the list.</value>
+  </data>
+  <data name="Shell_MasterDetail.Content" xml:space="preserve">
+    <value>MasterDetail</value>
+  </data>
+  <data name="Shell_DataGrid.Content" xml:space="preserve">
+    <value>DataGrid</value>
+  </data>
+  <data name="Form_Submit.Content" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Shell_Form.Content" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Settings_About.Text" xml:space="preserve">
+    <value>About this application</value>
+  </data>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>Settings page placeholder text.  Your app description goes here.</value>
+  </data>
+  <data name="Shell_FormWCT.Content" xml:space="preserve">
+    <value>Form WCT</value>
+  </data>
 </root>

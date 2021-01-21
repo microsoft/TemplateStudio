@@ -42,7 +42,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    Text="Select an item from the list."
+                    x:Uid="MasterDetail_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -58,18 +58,40 @@
                     Text="{Binding}" />
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="MinimalMasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    Margin="96,0,0,0"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MasterDetailsViewControl.MasterHeaderTemplate" Value="{StaticResource MasterHeaderTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <controls:MasterDetailsView
+            x:Uid="MasterDetail"
             x:Name="MasterDetailsViewControl"
-            MasterHeader="MasterDetail"
             BackButtonBehavior="Automatic"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.SampleItems}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ViewStateChanged="OnViewStateChanged"

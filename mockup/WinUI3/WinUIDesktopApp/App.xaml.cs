@@ -11,8 +11,7 @@ using WinUIDesktopApp.Services;
 using WinUIDesktopApp.ViewModels;
 using WinUIDesktopApp.Views;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+// To learn more about WinUI3, see: https://docs.microsoft.com/windows/apps/winui/winui3/.
 namespace WinUIDesktopApp
 {
     public partial class App : Application
@@ -29,6 +28,8 @@ namespace WinUIDesktopApp
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            // TODO WTS: Please log and handle the exception as appropriate to your scenario
+            // For more info see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
@@ -51,6 +52,7 @@ namespace WinUIDesktopApp
 
         private System.IServiceProvider ConfigureServices()
         {
+            // TODO WTS: Register your services, viewmodels and pages here
             var services = new ServiceCollection();
 
             // Default Activation Handler

@@ -154,7 +154,6 @@ namespace WinUIDesktopApp.ViewModels
             // ShipperName
             // ShipperPhone
             // ShipTo
-
             if (HasErrors)
             {
                 return;

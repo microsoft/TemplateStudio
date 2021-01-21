@@ -6,6 +6,7 @@ using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
 {
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellWindow.xaml.
     public sealed partial class ShellWindow : Window, IShellWindow
     {
         public ShellViewModel ViewModel { get; }

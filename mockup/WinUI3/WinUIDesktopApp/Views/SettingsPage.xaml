@@ -14,13 +14,13 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <StackPanel
             x:Name="ContentArea">
-            <TextBlock Text="Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock Text="Theme" />
+                <TextBlock x:Uid="Settings_Theme" />
 
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
                     <RadioButton
-                        Content="Light"
+                        x:Uid="Settings_Theme_Light"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                         FontSize="15"
@@ -30,7 +30,7 @@
                         </RadioButton.CommandParameter>
                     </RadioButton>
                     <RadioButton
-                        Content="Dark"
+                        x:Uid="Settings_Theme_Dark"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                         FontSize="15"
@@ -40,7 +40,7 @@
                         </RadioButton.CommandParameter>
                     </RadioButton>
                     <RadioButton
-                        Content="Default"
+                        x:Uid="Settings_Theme_Default"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                         FontSize="15"
@@ -52,13 +52,13 @@
                 </StackPanel>
             </StackPanel>
 
-            <TextBlock Text="About this application" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" />
 
                 <TextBlock
-                    Text="Settings page placeholder text.  Your app description goes here."
+                    x:Uid="Settings_AboutDescription"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{ThemeResource BodyTextBlockStyle}" />
                 <HyperlinkButton Content="Privacy Statement" NavigateUri="https://YourPrivacyUrlGoesHere/" Margin="{StaticResource XSmallTopMargin}" />

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
@@ -8,19 +8,27 @@
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;CS0618;CS8305</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-us\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="8.0.0-preview3" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview3" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview4" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview3" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview3" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="8.0.0-preview3" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
     <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc4" />
-    <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\WinUIDesktopApp.Core\WinUIDesktopApp.Core.csproj" />
   </ItemGroup>

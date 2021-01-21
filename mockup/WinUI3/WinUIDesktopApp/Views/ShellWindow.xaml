@@ -25,13 +25,13 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem Content="Main" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MainViewModel" />
-            <NavigationViewItem Content="WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.WebViewViewModel" />
-            <NavigationViewItem Content="ContentGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ContentGridViewModel" />
-            <NavigationViewItem Content="MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
-            <NavigationViewItem Content="DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
-            <NavigationViewItem Content="Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
-            <NavigationViewItem Content="Form WCT" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormWCTViewModel" />
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MainViewModel" />
+            <NavigationViewItem x:Uid="Shell_WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.WebViewViewModel" />
+            <NavigationViewItem x:Uid="Shell_ContentGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ContentGridViewModel" />
+            <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
+            <NavigationViewItem x:Uid="Shell_DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
+            <NavigationViewItem x:Uid="Shell_Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
+            <NavigationViewItem x:Uid="Shell_FormWCT" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormWCTViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
