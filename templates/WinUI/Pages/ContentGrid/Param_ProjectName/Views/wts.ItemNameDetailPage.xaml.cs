@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 var navigationService = Ioc.Default.GetService<INavigationService>();
-                navigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
+                navigationService.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
             }
         }
     }

@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:Param_RootNamespace.Helpers"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
 
@@ -17,7 +16,7 @@
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="False"
         ExpandedModeThresholdWidth="1280"
-        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
+        Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -39,7 +38,7 @@
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
-                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
                 <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                     <DataTemplate>
                         <Grid>
@@ -51,9 +50,6 @@
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />

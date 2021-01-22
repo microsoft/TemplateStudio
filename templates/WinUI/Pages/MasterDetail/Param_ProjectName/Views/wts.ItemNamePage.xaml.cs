@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace Param_RootNamespace.Views
 {
@@ -7,7 +9,14 @@ namespace Param_RootNamespace.Views
         public wts.ItemNamePage()
         {
             InitializeComponent();
-            ViewModel.Initialize(MasterDetailsViewControl);
+        }
+
+        private void OnViewStateChanged(object sender, MasterDetailsViewState e)
+        {
+            if (e == MasterDetailsViewState.Both)
+            {
+                ViewModel.EnsureItemSelected();
+            }
         }
     }
 }

@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform": "WinUI",
       "wts.version": "1.0.0",
-      "wts.compositionOrder": "0",
+      "wts.compositionOrder": "1",
       "wts.compositionFilter": "$projectType == SplitView & $frontendframework == MVVMToolkit & wts.type == project"
     },
     "sourceName": "wts.ItemName",
@@ -26,7 +26,13 @@
         "path": "Behaviors/NavigationViewHeaderMode.cs"
       },
       {
+        "path": "Contracts/Services/INavigationViewService.cs"
+      },
+      {
         "path": "Helpers/NavHelper.cs"
+      },
+      {
+        "path": "Services/NavigationViewService.cs"
       },
       {
         "path": "ViewModels/ShellViewModel.cs"
