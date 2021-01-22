@@ -8,6 +8,11 @@ namespace Microsoft.Templates.Fakes
     {
         Compiled,
         CompiledWithDependant,
+        ClCompiled,
+        ClCompiledWithDependant,
+        ClInclude,
+        ClIncludeWithDependant,
+        Midl,
         XamlPage,
         Resource,
         Content,
