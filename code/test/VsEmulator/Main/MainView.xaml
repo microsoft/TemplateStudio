@@ -102,7 +102,7 @@
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,Cpp">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++">
                                 <TextBlock Text="New project C++"/>
                             </Hyperlink>
                         </TextBlock>
