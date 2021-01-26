@@ -67,14 +67,6 @@
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "copyrightYear": {
-        "type": "generated",
-        "generator": "now",
-        "replaces": "1976",
-        "parameters": {
-          "format": "yyyy"
-      }
-    },
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
