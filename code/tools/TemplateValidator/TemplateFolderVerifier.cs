@@ -16,7 +16,11 @@ namespace TemplateValidator
 {
     public static class TemplateFolderVerifier
     {
-        private static string[] excludedPrimaryOutputFiles = new string[] { @"\WinUI\Pages\Blank.Cpp\Param_ProjectName\wts.ItemNamePage.idl" };
+        private static string[] excludedPrimaryOutputFiles = new string[]
+        {
+            @"\WinUI\Pages\Blank.Desktop.Cpp\Param_ProjectName\wts.ItemNamePage.idl",
+            @"\WinUI\Pages\Blank.UWP.Cpp\wts.ItemNamePage.idl",
+        };
 
         public static VerifierResult VerifyTemplateFolders(bool showWarnings, params string[] templateFolders)
         {
