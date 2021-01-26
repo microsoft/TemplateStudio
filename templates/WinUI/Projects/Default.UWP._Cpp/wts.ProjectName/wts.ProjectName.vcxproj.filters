@@ -4,11 +4,7 @@
     <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Param_HomeNamePage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <Midl Include="App.idl" />
-    <Midl Include="Param_HomeNamePage.idl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />

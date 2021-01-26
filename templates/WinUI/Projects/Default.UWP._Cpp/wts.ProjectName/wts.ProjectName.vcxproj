@@ -4,7 +4,7 @@
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
-    <ProjectGuid>{f9f4e231-4e06-4299-a4d3-90573d641b67}</ProjectGuid>
+    <ProjectGuid>{d889ee01-aa4e-4969-a377-75b9deffd415}</ProjectGuid>
     <ProjectName>Param_ProjectName</ProjectName>
     <RootNamespace>Param_RootNamespace</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
@@ -94,17 +94,11 @@
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="Param_HomeNamePage.xaml.h">
-      <DependentUpon>Param_HomeNamePage.xaml</DependentUpon>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Param_HomeNamePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -127,18 +121,11 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="Param_HomeNamePage.xaml.cpp">
-      <DependentUpon>Param_HomeNamePage.xaml</DependentUpon>
-    </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
-    <Midl Include="Param_HomeNamePage.idl">
-      <DependentUpon>Param_HomeNamePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
