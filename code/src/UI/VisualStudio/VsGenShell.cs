@@ -206,7 +206,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (p != null && p.Properties != null)
             {
-                return p.Properties.Item("DefaultNamespace")?.Value?.ToString();
+                return p.Properties.Item("RootNamespace")?.Value?.ToString();
             }
 
             return null;
