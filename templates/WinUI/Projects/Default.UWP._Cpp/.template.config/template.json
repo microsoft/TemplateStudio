@@ -23,14 +23,13 @@
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
   "guids": [
-    "d889ee01-aa4e-4969-a377-75b9deffd415"
+    "d889ee01-aa4e-4969-a377-75b9deffd415", "d1297c64-cb1b-41c5-b4a3-eb974fad7518"
   ],
   "PrimaryOutputs": [
     { "path": "wts.ProjectName/wts.ProjectName.vcxproj" }
   ],
   "symbols": {
-    "wts.projectName":
-    {
+    "wts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
@@ -39,37 +38,36 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.wizardVersion":
-    {
+    "wts.userName": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion": {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
-    {
+    "wts.templatesVersion": {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Templates.Version"
     },
-    "wts.generationProjectType":
-    {
+    "wts.generationProjectType": {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
-    {
+    "wts.generationFrontEndFramework": {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
-    {
+    "wts.generationPlatform": {
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "wts.homePageName":
-    {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
     }
   },
   "postActions": [
