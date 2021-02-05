@@ -120,4 +120,7 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Param_ProjectName</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Param_ProjectName</value>
+  </data>
 </root>

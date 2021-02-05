@@ -19,9 +19,9 @@ namespace Param_RootNamespace
         {
         }
 
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            base.OnLaunched(e);
+            base.OnLaunched(args);
         }
 
         protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
