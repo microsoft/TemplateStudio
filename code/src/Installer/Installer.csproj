@@ -485,9 +485,16 @@
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.Solution\Cpp.WinUI.Solution.csproj">
+    <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.Desktop.Solution\Cpp.WinUI.Desktop.Solution.csproj">
       <Project>{a41f9095-f643-4c37-97e2-5d9e5eb6f305}</Project>
-      <Name>Cpp.WinUI.Solution</Name>
+      <Name>Cpp.WinUI.Desktop.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.UWP.Solution\Cpp.WinUI.Uwp.Solution.csproj">
+      <Project>{06e23cc2-ecbd-4d4c-b328-3cd13c3d53af}</Project>
+      <Name>Cpp.WinUI.Uwp.Solution</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>

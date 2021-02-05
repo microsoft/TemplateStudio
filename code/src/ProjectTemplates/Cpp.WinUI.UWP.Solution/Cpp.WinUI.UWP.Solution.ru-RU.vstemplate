@@ -3,12 +3,12 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Windows Template Studio (WinUI in Desktop; local)</Name>
+    <Name>Windows Template Studio (WinUI in UWP; local)</Name>
     <Description>Windows Template Studio quickly builds a WinUI Desktop app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>VC</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>Microsoft.Cpp.WinUI.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.Cpp.WinUI.UWP.WindowsTemplateStudio.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
@@ -28,6 +28,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCppWinUI</FullClassName>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCppWinUIUwp</FullClassName>
   </WizardExtension>
 </VSTemplate>

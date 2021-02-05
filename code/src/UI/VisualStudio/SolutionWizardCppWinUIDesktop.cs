@@ -3,12 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class SolutionWizardCppWinUI : SolutionWizard
+    public class SolutionWizardCppWinUIDesktop : SolutionWizard
     {
-        public SolutionWizardCppWinUI()
+        public SolutionWizardCppWinUIDesktop()
         {
             Initialize(Platforms.WinUI, ProgrammingLanguages.Cpp);
         }
