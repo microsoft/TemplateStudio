@@ -11,7 +11,7 @@
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
-      "wts.platform": "WinUI",
+      "wts.platform": "WinUIDesktop",
       "wts.version": "1.0.0",
       "wts.compositionFilter": "wts.type == page & identity == wts.WinUI.Page.Settings & $frontendframework == MVVMToolkit & $projectType == SplitView"
     },

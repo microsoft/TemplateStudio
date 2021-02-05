@@ -11,7 +11,7 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.platform": "WinUI",
+      "wts.platform": "WinUIDesktop",
       "wts.type": "feature",
       "wts.outputToParent": "true",
       "wts.version": "1.0.0",

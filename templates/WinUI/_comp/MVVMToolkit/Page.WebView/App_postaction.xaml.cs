@@ -1,13 +1,7 @@
-﻿namespace Param_RootNamespace
+﻿private System.IServiceProvider ConfigureServices()
 {
-    public partial class App : Application
-    {
-        private System.IServiceProvider ConfigureServices()
-        {
-            // Services
+    // Services
 //{[{
-            services.AddTransient<IWebViewService, WebViewService>();
+    services.AddTransient<IWebViewService, WebViewService>();
 //}]}
-        }
-    }
 }

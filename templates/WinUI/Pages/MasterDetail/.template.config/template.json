@@ -15,7 +15,7 @@
     "wts.type": "page",
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
-    "wts.platform": "WinUI",
+    "wts.platform": "WinUIDesktop",
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
     "wts.genGroup": "0",

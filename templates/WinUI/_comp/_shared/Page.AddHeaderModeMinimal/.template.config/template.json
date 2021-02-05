@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
-    "shortName": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
-    "identity": "wts.WinUI.MVVMToolkit.Page.AddCommandNS",
+    "name": "wts.WinUI.Page.AddHeaderModeMinimal",
+    "shortName": "wts.WinUI.Page.AddHeaderModeMinimal",
+    "identity": "wts.WinUI.Page.AddHeaderModeMinimal",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.platform": "WinUIDesktop",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.Settings|wts.WinUI.Page.ContentGrid|wts.WinUI.Page.Form|wts.WinUI.Page.WebView"
+      "wts.compositionFilter": "identity == wts.WinUI.Page.WebView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
