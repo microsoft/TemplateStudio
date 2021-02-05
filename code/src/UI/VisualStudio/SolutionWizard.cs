@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private readonly GenerationService _generationService = GenerationService.Instance;
         private string _platform;
+        private string _appModel;
         private string _language;
 
         private UserSelection _userSelection;
@@ -50,9 +51,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string platform, string language)
+        protected void Initialize(string platform, string language, string appModel = null)
         {
             _platform = platform;
+            _appModel = appModel;
             _language = language;
 
             if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
@@ -112,7 +114,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, _replacementsDictionary["$wts.requiredworkloads$"], new VSStyleValuesProvider());
+                    var context = new UserSelectionContext(_language, _platform, _appModel);
+                    _userSelection = WizardLauncher.Instance.StartNewProject(context, _replacementsDictionary["$wts.requiredworkloads$"], new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

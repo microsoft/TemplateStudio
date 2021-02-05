@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override bool HasFrameworks => Frameworks.Any();
 
-        public ProjectTypeMetaDataViewModel(MetadataInfo metadataInfo, string platform, IEnumerable<FrameworkMetaDataViewModel> frameworks)
+        public ProjectTypeMetaDataViewModel(MetadataInfo metadataInfo, UserSelectionContext context, IEnumerable<FrameworkMetaDataViewModel> frameworks)
         {
             Name = metadataInfo.Name;
             Identity = metadataInfo.Name;
@@ -44,8 +44,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
             Frameworks = frameworks;
             var fx = frameworks.First().Name;
-            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, Name, fx, _emptyBackendFramework);
-            Layout = layout.Select(l => new LayoutViewModel(l, platform, Name, fx));
+            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(context);
+            Layout = layout.Select(l => new LayoutViewModel(l, context));
         }
     }
 }

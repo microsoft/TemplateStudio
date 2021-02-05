@@ -39,11 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateType TemplateType { get; set; }
 
-        public string ConfigPlatform { get; private set; }
-
-        public string ConfigFramework { get; private set; }
-
-        public string ConfigProjectType { get; private set; }
+        public UserSelectionContext ConfigContext { get; set; }
 
         public static MainViewModel Instance { get; private set; }
 
@@ -93,12 +89,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public void Initialize(TemplateType templateType, string language)
+        public void Initialize(TemplateType templateType, UserSelectionContext context)
         {
+            ConfigContext = context;
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
             SetProjectConfigInfo();
-            Initialize(ConfigPlatform, language);
+
+            Initialize(ConfigContext);
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -177,7 +175,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var userSelection = new UserSelection(ConfigContext) { HomeName = string.Empty };
             var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
             userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
@@ -192,7 +190,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnFinish(object sender, EventArgs e)
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
+            var userSelection = new UserSelection(ConfigContext);
             userSelection.Add(
                 new UserSelectionItem()
                 {
@@ -211,7 +209,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override async Task OnTemplatesAvailableAsync()
         {
             ValidationService.Initialize(GetNames, null);
-            TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
+            TemplateSelection.LoadData(TemplateType, Context);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
@@ -268,7 +266,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
-                var vm = new ProjectConfigurationViewModel();
+                var vm = new ProjectConfigurationViewModel(Context.Language);
                 var projectConfig = new ProjectConfigurationDialog(vm)
                 {
                     Owner = WizardShell.Current,
@@ -281,10 +279,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
+                    configInfo.AppModel = vm.SelectedAppModel;
                     ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
-                    ConfigFramework = configInfo.Framework;
-                    ConfigProjectType = configInfo.ProjectType;
-                    ConfigPlatform = configInfo.Platform;
+                    ConfigContext.Platform = configInfo.Platform;
+                    ConfigContext.ProjectType = configInfo.ProjectType;
+                    ConfigContext.FrontEndFramework = configInfo.Framework;
+                    ConfigContext.AppModel = configInfo.AppModel;
                 }
                 else
                 {
@@ -293,9 +293,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             else
             {
-                ConfigFramework = configInfo.Framework;
-                ConfigProjectType = configInfo.ProjectType;
-                ConfigPlatform = configInfo.Platform;
+                ConfigContext.Platform = configInfo.Platform;
+                ConfigContext.ProjectType = configInfo.ProjectType;
+                ConfigContext.FrontEndFramework = configInfo.Framework;
+                ConfigContext.AppModel = configInfo.AppModel;
             }
         }
 

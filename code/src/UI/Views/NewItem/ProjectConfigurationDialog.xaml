@@ -55,6 +55,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
@@ -73,6 +74,18 @@
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
                     Style="{StaticResource WtsComboBoxStyle}"
                     AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectPlatform}" />
+                <TextBlock
+                    Text="{x:Static strings:StringRes.ProjectConfigurationSelectAppModel}"
+                    Margin="{StaticResource Margin_L_Top}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                <ComboBox
+                    ItemsSource="{Binding AppModels}"
+                    SelectedItem="{Binding SelectedAppModel, Mode=TwoWay}"
+                    Margin="{StaticResource Margin_S_Top}"
+                    ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
+                    Style="{StaticResource WtsComboBoxStyle}"
+                    IsEnabled="{Binding IsWinUISelected}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectAppModel}" />
                 <TextBlock
                     Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"

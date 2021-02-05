@@ -14,8 +14,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 {
     public partial class WizardShell : Window, IWindow, IWizardShell
     {
-        private readonly string _language;
-        private readonly string _platform;
+        private readonly UserSelectionContext _context;
 
         public static WizardShell Current { get; private set; }
 
@@ -23,11 +22,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(string platform, string language, BaseStyleValuesProvider provider)
+        public WizardShell(UserSelectionContext context, BaseStyleValuesProvider provider)
         {
+            _context = context;
             Current = this;
-            _platform = platform;
-            _language = language;
             ViewModel = new MainViewModel(this, provider);
             DataContext = ViewModel;
             InitializeComponent();
@@ -59,7 +57,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainViewModel.Instance.Initialize(_platform, _language);
+            MainViewModel.Instance.Initialize(_context);
             await MainViewModel.Instance.SynchronizeAsync();
         }
 

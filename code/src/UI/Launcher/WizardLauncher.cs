@@ -32,21 +32,21 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(string platform, string language, string requiredWorkloads, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(UserSelectionContext context, string requiredWorkloads, BaseStyleValuesProvider provider)
         {
             _styleProvider = provider;
 
-            CheckVSVersion(platform);
-            CheckForMissingWorkloads(platform, requiredWorkloads);
+            CheckVSVersion(context.Platform);
+            CheckForMissingWorkloads(context.Platform, requiredWorkloads);
             CheckForInvalidProjectName();
 
-            var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
+            var newProjectView = new Views.NewProject.WizardShell(context, provider);
             return StartWizard(newProjectView, WizardTypeEnum.NewProject);
         }
 
-        public UserSelection StartAddTemplate(string language, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
+        public UserSelection StartAddTemplate(UserSelectionContext context, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
         {
-            var addTemplateView = new Views.NewItem.WizardShell(templateType, language, provider);
+            var addTemplateView = new Views.NewItem.WizardShell(templateType, context, provider);
             return StartWizard(addTemplateView, wizardTypeEnum);
         }
 

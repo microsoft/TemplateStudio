@@ -69,8 +69,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
+                var context = SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(context, new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
@@ -90,8 +90,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
+                var context = SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(context, new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
@@ -111,8 +111,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
+                var context = SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(context, new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddServiceSuccess, userSelection.Services[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
@@ -132,8 +132,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
+                var context = SetContext();
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(context, new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddTestingSuccess, userSelection.Testing[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
@@ -190,11 +190,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             return HasContent(GetTempGenerationFolder());
         }
 
-        private void SetContext()
+        private UserSelectionContext SetContext()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             EnsureGenContextInitialized();
-            if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
+            var language = _shell.GetActiveProjectLanguage();
+            if (GenContext.CurrentLanguage == language)
             {
                 GenContext.Current = this;
 
@@ -209,6 +210,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
                 ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
             }
+
+            return new UserSelectionContext(language);
         }
 
         protected void FinishGeneration(UserSelection userSelection, string statusBarMessage)

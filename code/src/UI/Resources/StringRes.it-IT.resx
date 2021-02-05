@@ -912,4 +912,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <value>Could not open project overview.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel (WinUI only)</value>
+  </data>
 </root>
