@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Contracts.Views;
+using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace.Services
 {
@@ -13,10 +15,10 @@ namespace Param_RootNamespace.Services
         private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
         private readonly IEnumerable<IActivationHandler> _activationHandlers;
         private readonly INavigationService _navigationService;
+        private UIElement _shell = null;
 
-        public ActivationService(IShellWindow shellWindow, ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
+        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
         {
-            App.MainWindow = shellWindow as Window;
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
             _navigationService = navigationService;
@@ -24,18 +26,31 @@ namespace Param_RootNamespace.Services
 
         public async Task ActivateAsync(object activationArgs)
         {
-            // Initialize services that you need before app activation
-            // take into account that the splash screen is shown while this code runs.
-            await InitializeAsync();
+            if (IsInteractive(activationArgs))
+            {
+                // Initialize services that you need before app activation
+                // take into account that the splash screen is shown while this code runs.
+                await InitializeAsync();
 
-            App.MainWindow.Activate();
+                if (App.MainWindow.Content == null)
+                {
+                    _shell = Ioc.Default.GetService<ShellPage>();
+                    App.MainWindow.Content = _shell ?? new Frame();
+                }
+            }
 
             // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
             // will navigate to the first page
             await HandleActivationAsync(activationArgs);
 
-            // Tasks after activation
-            await StartupAsync();
+            if (IsInteractive(activationArgs))
+            {
+                // Ensure the current window is active
+                App.MainWindow.Activate();
+
+                // Tasks after activation
+                await StartupAsync();
+            }
         }
 
         private async Task HandleActivationAsync(object activationArgs)
@@ -62,6 +77,11 @@ namespace Param_RootNamespace.Services
         private async Task StartupAsync()
         {
             await Task.CompletedTask;
+        }
+
+        private bool IsInteractive(object args)
+        {
+            return true;
         }
     }
 }

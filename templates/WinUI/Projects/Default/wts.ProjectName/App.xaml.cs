@@ -1,11 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
+using Param_RootNamespace.Helpers;
 
 // To learn more about WinUI3, see: https://docs.microsoft.com/windows/apps/winui/winui3/.
 namespace Param_RootNamespace
 {
     public partial class App : Application
     {
-        public static Window MainWindow { get; set; }
+        public static Window MainWindow { get; set; } = new Window() { Title = "AppDisplayName".GetLocalized() };
 
         public App()
         {

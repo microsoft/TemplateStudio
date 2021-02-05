@@ -38,10 +38,10 @@
         "path": "ViewModels/ShellViewModel.cs"
       },
       {
-        "path": "Views/ShellWindow.xaml"
+        "path": "Views/ShellPage.xaml"
       },
       {
-        "path": "Views/ShellWindow.xaml.cs"
+        "path": "Views/ShellPage.xaml.cs"
       }
     ],
     "symbols": {
