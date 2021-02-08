@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Cpp.WinUI.UWP.Solution")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sibille Metzler")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Cpp.WinUI.UWP.Solution")]
 [assembly: AssemblyCopyright("Microsoft 2021")]
 [assembly: AssemblyTrademark("")]
