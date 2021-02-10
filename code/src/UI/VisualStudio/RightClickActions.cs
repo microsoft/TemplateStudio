@@ -153,7 +153,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
 
-            if (availableOptions.ContainsKey(projectPlatform) && availableOptions[projectPlatform].Contains(templateType))
+            if (projectPlatform != null && availableOptions.ContainsKey(projectPlatform) && availableOptions[projectPlatform].Contains(templateType))
             {
                 return true;
             }
