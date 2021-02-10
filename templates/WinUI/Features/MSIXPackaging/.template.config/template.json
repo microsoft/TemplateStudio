@@ -76,6 +76,11 @@
     {
       "type": "parameter",
       "replaces": "Param_Platform"
+    },
+    "wts.generationAppModel":
+    {
+      "type": "parameter",
+      "replaces": "Param_AppModel"
     }
   },
   "postActions": [
