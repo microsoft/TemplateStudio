@@ -16,6 +16,7 @@
     "wts.projecttype": "SplitView",
     "wts.frontendframework": "MVVMToolkit",
     "wts.platform": "WinUI",
+    "wts.appmodel": "Desktop",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
     "wts.displayOrder": "0",

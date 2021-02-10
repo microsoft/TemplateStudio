@@ -16,6 +16,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
+    "wts.appmodel": "Desktop",
     "wts.version": "1.0.0",
     "wts.genGroup": "0",
     "wts.group": "Packaging",
