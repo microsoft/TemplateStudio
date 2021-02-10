@@ -31,15 +31,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private readonly GenerationService _generationService = GenerationService.Instance;
 
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private RelayCommand _refreshTemplatesCacheCommand;
 
         private static NewItemGenerationResult _output;
 
         public TemplateType TemplateType { get; set; }
-
-        public UserSelectionContext ConfigContext { get; set; }
 
         public static MainViewModel Instance { get; private set; }
 
@@ -91,12 +87,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void Initialize(TemplateType templateType, UserSelectionContext context)
         {
-            ConfigContext = context;
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
-            SetProjectConfigInfo();
 
-            Initialize(ConfigContext);
+            Initialize(context);
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -175,7 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigContext) { HomeName = string.Empty };
+            var userSelection = new UserSelection(Context) { HomeName = string.Empty };
             var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
             userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
@@ -190,7 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnFinish(object sender, EventArgs e)
         {
-            var userSelection = new UserSelection(ConfigContext);
+            var userSelection = new UserSelection(Context);
             userSelection.Add(
                 new UserSelectionItem()
                 {
@@ -258,45 +252,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 ChangesSummary.DoNotMerge = false;
                 ChangesSummary.IsDoNotMergeEnabled = true;
-            }
-        }
-
-        private void SetProjectConfigInfo()
-        {
-            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
-            {
-                var vm = new ProjectConfigurationViewModel(Context.Language);
-                var projectConfig = new ProjectConfigurationDialog(vm)
-                {
-                    Owner = WizardShell.Current,
-                };
-
-                projectConfig.ShowDialog();
-
-                if (vm.Result == DialogResult.Accept)
-                {
-                    configInfo.ProjectType = vm.SelectedProjectType.Name;
-                    configInfo.Framework = vm.SelectedFramework.Name;
-                    configInfo.Platform = vm.SelectedPlatform;
-                    configInfo.AppModel = vm.SelectedAppModel;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
-                    ConfigContext.Platform = configInfo.Platform;
-                    ConfigContext.ProjectType = configInfo.ProjectType;
-                    ConfigContext.FrontEndFramework = configInfo.Framework;
-                    ConfigContext.AppModel = configInfo.AppModel;
-                }
-                else
-                {
-                    Navigation.Cancel();
-                }
-            }
-            else
-            {
-                ConfigContext.Platform = configInfo.Platform;
-                ConfigContext.ProjectType = configInfo.ProjectType;
-                ConfigContext.FrontEndFramework = configInfo.Framework;
-                ConfigContext.AppModel = configInfo.AppModel;
             }
         }
 

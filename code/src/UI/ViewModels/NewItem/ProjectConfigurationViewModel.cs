@@ -112,7 +112,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadProjectTypes()
         {
-            var context = new UserSelectionContext(Language, SelectedPlatform, SelectedAppModel);
+            var context = new UserSelectionContext(Language, SelectedPlatform)
+            {
+                AppModel = SelectedAppModel,
+            };
+
             var targetProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context).ToList();
             ProjectTypes.Clear();
             Frameworks.Clear();
@@ -135,7 +139,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFrameworks()
         {
-            var context = new UserSelectionContext(Language, SelectedPlatform, SelectedAppModel);
+            var context = new UserSelectionContext(Language, SelectedPlatform)
+            {
+                AppModel = SelectedAppModel,
+            };
+
             context.ProjectType = SelectedProjectType.Name;
 
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context).ToList();

@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected Window MainView { get; private set; }
 
-        protected UserSelectionContext Context { get; private set; }
+        public UserSelectionContext Context { get; private set; }
 
         public WizardStatus WizardStatus { get; }
 

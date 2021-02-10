@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigContext);
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

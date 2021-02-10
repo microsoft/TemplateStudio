@@ -9,10 +9,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
@@ -44,8 +47,9 @@ namespace Microsoft.Templates.UI.Launcher
             return StartWizard(newProjectView, WizardTypeEnum.NewProject);
         }
 
-        public UserSelection StartAddTemplate(UserSelectionContext context, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
+        public UserSelection StartAddTemplate(string language, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
         {
+            var context = GetProjectConfigInfo(language);
             var addTemplateView = new Views.NewItem.WizardShell(templateType, context, provider);
             return StartWizard(addTemplateView, wizardTypeEnum);
         }
@@ -205,6 +209,43 @@ namespace Microsoft.Templates.UI.Launcher
                 GenContext.ToolBox.Shell.ShowModal(info);
 
                 CancelWizard();
+            }
+        }
+
+        private UserSelectionContext GetProjectConfigInfo(string language)
+        {
+            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
+            {
+                var vm = new ProjectConfigurationViewModel(language);
+                var projectConfig = new ProjectConfigurationDialog(vm);
+                GenContext.ToolBox.Shell.ShowModal(projectConfig);
+
+                if (vm.Result == DialogResult.Accept)
+                {
+                    configInfo.ProjectType = vm.SelectedProjectType.Name;
+                    configInfo.Framework = vm.SelectedFramework.Name;
+                    configInfo.Platform = vm.SelectedPlatform;
+                    configInfo.AppModel = vm.SelectedAppModel;
+                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
+                    return new UserSelectionContext(language, configInfo.Platform)
+                    {
+                        ProjectType = configInfo.ProjectType,
+                        FrontEndFramework = configInfo.Framework,
+                        AppModel = configInfo.AppModel,
+                    };
+                }
+
+                return null;
+            }
+            else
+            {
+                return new UserSelectionContext(language, configInfo.Platform)
+                {
+                    ProjectType = configInfo.ProjectType,
+                    FrontEndFramework = configInfo.Framework,
+                    AppModel = configInfo.AppModel,
+                };
             }
         }
     }
