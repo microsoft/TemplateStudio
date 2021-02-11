@@ -18,8 +18,7 @@
     "wts.platform": "WinUI",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "0",
-    "wts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)"
+    "wts.displayOrder": "0"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
