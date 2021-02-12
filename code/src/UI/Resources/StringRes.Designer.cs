@@ -1090,7 +1090,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select AppModel (WinUI only).
+        ///   Looks up a localized string similar to Select AppModel.
         /// </summary>
         public static string ProjectConfigurationSelectAppModel {
             get {

@@ -166,6 +166,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\GenerationService.cs" />
     <Compile Include="Services\ProjectConfigInfoService.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequiredVersionInfo.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequirementType.cs" />
     <Compile Include="Services\RequiredVersionValidation\Validators\DotNetValidator.cs" />

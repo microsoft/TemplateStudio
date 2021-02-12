@@ -913,6 +913,6 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>Select AppModel (WinUI only)</value>
+    <value>Select AppModel</value>
   </data>
 </root>

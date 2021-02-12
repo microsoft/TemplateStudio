@@ -226,26 +226,42 @@ namespace Microsoft.Templates.UI.Launcher
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    configInfo.AppModel = vm.SelectedAppModel;
+                    if (configInfo.Platform == Platforms.WinUI)
+                    {
+                        configInfo.AppModel = vm.SelectedAppModel;
+                    }
+
                     ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
-                    return new UserSelectionContext(language, configInfo.Platform)
+                    var userSeletion = new UserSelectionContext(language, configInfo.Platform)
                     {
                         ProjectType = configInfo.ProjectType,
                         FrontEndFramework = configInfo.Framework,
-                        AppModel = configInfo.AppModel,
                     };
+
+                    if (configInfo.AppModel != string.Empty)
+                    {
+                        userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
+                    }
+
+                    return userSeletion;
                 }
 
                 return null;
             }
             else
             {
-                return new UserSelectionContext(language, configInfo.Platform)
+                var userSeletion = new UserSelectionContext(language, configInfo.Platform)
                 {
                     ProjectType = configInfo.ProjectType,
                     FrontEndFramework = configInfo.Framework,
-                    AppModel = configInfo.AppModel,
                 };
+
+                if (configInfo.AppModel != string.Empty)
+                {
+                    userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
+                }
+
+                return userSeletion;
             }
         }
     }

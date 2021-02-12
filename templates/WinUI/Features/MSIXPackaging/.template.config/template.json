@@ -77,7 +77,7 @@
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "wts.generationAppModel":
+    "wts.generation.appmodel":
     {
       "type": "parameter",
       "replaces": "Param_AppModel"

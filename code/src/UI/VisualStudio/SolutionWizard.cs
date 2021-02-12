@@ -114,10 +114,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    var context = new UserSelectionContext(_language, _platform)
-                    {
-                        AppModel = _appModel,
-                    };
+                    var context = new UserSelectionContext(_language, _platform);
+                    context.PropertyBag.Add("appmodel", _appModel);
+
                     _userSelection = WizardLauncher.Instance.StartNewProject(context, _replacementsDictionary["$wts.requiredworkloads$"], new VSStyleValuesProvider());
                 }
             }
