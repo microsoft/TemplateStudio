@@ -131,12 +131,19 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             if (getName != null && itemTemplatesSelector != null)
             {
                 var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
-                var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, platform, projectType, framework, _emptyBackendFramework);
+
+                var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, context);
                 _fixture.AddItems(userSelection, itemsTemplateInfo, getName, includeMultipleInstances);
             }
 
@@ -287,7 +294,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = path,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             if (!emptyProject)
             {
@@ -299,7 +312,7 @@ namespace Microsoft.Templates.Test
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
-                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
+                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, context);
 
                 _fixture.AddItems(userSelection, templatesInfo, BaseGenAndBuildFixture.GetDefaultName);
             }
@@ -352,13 +365,19 @@ namespace Microsoft.Templates.Test
                     GenerationOutputPath = GenContext.GetTempGenerationPath(projectName),
                 };
 
-                var newUserSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language)
+                var context = new UserSelectionContext(language, platform)
+                {
+                    ProjectType = projectType,
+                    FrontEndFramework = framework,
+                };
+
+                var newUserSelection = new UserSelection(context)
                 {
                     HomeName = string.Empty,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(item, platform, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(item, context);
 
                 _fixture.AddItem(newUserSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -391,9 +410,14 @@ namespace Microsoft.Templates.Test
                 DestinationPath = destinationPath,
                 GenerationOutputPath = destinationPath,
             };
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
-            var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, platform, projectType, framework, _emptyBackendFramework);
+            var userSelection = _fixture.SetupProject(context);
+            var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
 
             _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -456,7 +480,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);
+            var context = new UserSelectionContext(language, Platforms.Uwp)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             foreach (var identity in genIdentitiesList)
             {
@@ -465,7 +495,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
@@ -517,7 +547,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Wpf, language);
+            var context = new UserSelectionContext(language, Platforms.Wpf)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             foreach (var identity in genIdentitiesList)
             {
@@ -526,7 +562,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Wpf, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
             }
 
