@@ -1,8 +1,7 @@
 ﻿using System;
 
 using Microsoft.UI.Xaml.Controls;
-
-using Windows.Web;
+using Microsoft.Web.WebView2.Core;
 
 using WinUIDesktopApp.Contracts.Services;
 
@@ -18,7 +17,7 @@ namespace WinUIDesktopApp.Services
         public bool CanGoForward
             => _webView.CanGoForward;
 
-        public event EventHandler<WebErrorStatus> NavigationCompleted;
+        public event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
 
         public WebViewService()
         {
@@ -35,7 +34,7 @@ namespace WinUIDesktopApp.Services
             _webView.NavigationCompleted -= OnWebViewNavigationCompleted;
         }
 
-        private void OnWebViewNavigationCompleted(WebView2 sender, WebView2NavigationCompletedEventArgs args)
+        private void OnWebViewNavigationCompleted(WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
         {
             NavigationCompleted?.Invoke(this, args.WebErrorStatus);
         }

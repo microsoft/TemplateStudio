@@ -167,6 +167,8 @@
   </data>
   <data name="Shell_Form.Content" xml:space="preserve">
     <value>Form</value>
+  </data><data name="Shell_FormWCT.Content" xml:space="preserve">
+    <value>Form WCT</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
@@ -189,7 +191,11 @@
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <value>Settings page placeholder text.  Your app description goes here.</value>
   </data>
-  <data name="Shell_FormWCT.Content" xml:space="preserve">
-    <value>Form WCT</value>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <value>Privacy Statement</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <value>https://YourPrivacyUrlGoesHere/</value>
+    <comment>Here is your Privacy Statement url for SettingsPage</comment>
   </data>
 </root>

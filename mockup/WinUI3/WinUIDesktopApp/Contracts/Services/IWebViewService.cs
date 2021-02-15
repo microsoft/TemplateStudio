@@ -1,14 +1,13 @@
 ﻿using System;
 
 using Microsoft.UI.Xaml.Controls;
-
-using Windows.Web;
+using Microsoft.Web.WebView2.Core;
 
 namespace WinUIDesktopApp.Contracts.Services
 {
     public interface IWebViewService
     {
-        event EventHandler<WebErrorStatus> NavigationCompleted;
+        event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
 
         bool CanGoBack { get; }
 
