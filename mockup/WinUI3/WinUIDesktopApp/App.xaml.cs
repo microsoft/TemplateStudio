@@ -4,9 +4,9 @@ using Microsoft.UI.Xaml;
 
 using WinUIDesktopApp.Activation;
 using WinUIDesktopApp.Contracts.Services;
-using WinUIDesktopApp.Contracts.Views;
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Services;
+using WinUIDesktopApp.Helpers;
 using WinUIDesktopApp.Services;
 using WinUIDesktopApp.ViewModels;
 using WinUIDesktopApp.Views;
@@ -16,7 +16,7 @@ namespace WinUIDesktopApp
 {
     public partial class App : Application
     {
-        public static Window MainWindow { get; set; }
+        public static Window MainWindow { get; set; } = new Window() { Title = "AppDisplayName".GetLocalized() };
 
         public App()
         {
@@ -74,7 +74,7 @@ namespace WinUIDesktopApp
             services.AddSingleton<ISampleDataService, SampleDataService>();
 
             // Views and ViewModels
-            services.AddTransient<IShellWindow, ShellWindow>();
+            services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
 
             services.AddTransient<MainViewModel>();

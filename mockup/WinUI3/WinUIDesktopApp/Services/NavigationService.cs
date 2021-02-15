@@ -23,7 +23,7 @@ namespace WinUIDesktopApp.Services
             {
                 if (_frame == null)
                 {
-                    _frame = Window.Current.Content as Frame;
+                    _frame = App.MainWindow.Content as Frame;
                     RegisterFrameEvents();
                 }
 
