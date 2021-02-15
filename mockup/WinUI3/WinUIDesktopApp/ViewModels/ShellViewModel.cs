@@ -1,4 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using System;
+
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
 
 using WinUIDesktopApp.Contracts.Services;

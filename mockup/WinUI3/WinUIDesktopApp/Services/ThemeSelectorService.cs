@@ -19,8 +19,7 @@ namespace WinUIDesktopApp.Services
 
         public async Task InitializeAsync()
         {
-            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
-            // Theme = await LoadThemeFromSettingsAsync();
+            Theme = await LoadThemeFromSettingsAsync();
             await Task.CompletedTask;
         }
 
@@ -29,9 +28,7 @@ namespace WinUIDesktopApp.Services
             Theme = theme;
 
             await SetRequestedThemeAsync();
-
-            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
-            // await SaveThemeInSettingsAsync(Theme);
+            await SaveThemeInSettingsAsync(Theme);
         }
 
         public async Task SetRequestedThemeAsync()
