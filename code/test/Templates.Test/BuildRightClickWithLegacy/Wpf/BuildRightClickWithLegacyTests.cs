@@ -34,7 +34,13 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Wpf
 
             var projectName = $"{projectType}{framework}Legacy{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Wpf, language, null, null);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, null, null);
 
             await fixture.ChangeToLocalTemplatesSourceAsync();
 
@@ -69,7 +75,13 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Wpf
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden();
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }
     }
 }

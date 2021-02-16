@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Xunit;
 
 namespace Microsoft.Templates.Test.Build.Wpf
@@ -27,7 +28,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_WpfAsync(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             AssertBuildProject(projectPath, projectName, platform, true);
         }
@@ -50,7 +57,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -73,7 +86,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -97,7 +116,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{projectType}{framework}AllG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -122,7 +147,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{projectType}{framework}AllG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -143,7 +174,14 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{projectType}{framework}AllMsix";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectWpfWithMsix(projectPath, projectName, platform);
         }
@@ -164,7 +202,13 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var projectName = $"{projectType}{framework}AllMsix";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             AssertBuildProjectWpfWithMsix(projectPath, projectName, platform);
         }

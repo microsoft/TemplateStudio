@@ -10,6 +10,7 @@ using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Test.Build.Uwp
 {
@@ -28,7 +29,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             // Don't delete after build test as used in inference test, which will then delete.
             AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: false);
@@ -54,7 +61,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -77,7 +90,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -101,7 +120,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -124,7 +149,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
