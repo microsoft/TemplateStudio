@@ -26,6 +26,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 ### Known issues:
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
+- [Dark/Light theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
 - [Localized tooltips issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3649)
 
