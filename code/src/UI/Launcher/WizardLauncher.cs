@@ -238,7 +238,7 @@ namespace Microsoft.Templates.UI.Launcher
                         FrontEndFramework = configInfo.Framework,
                     };
 
-                    if (configInfo.AppModel != string.Empty)
+                    if (!string.IsNullOrEmpty(configInfo.AppModel))
                     {
                         userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
                     }
@@ -256,7 +256,7 @@ namespace Microsoft.Templates.UI.Launcher
                     FrontEndFramework = configInfo.Framework,
                 };
 
-                if (configInfo.AppModel != string.Empty)
+                if (!string.IsNullOrEmpty(configInfo.AppModel))
                 {
                     userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
                 }
