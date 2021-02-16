@@ -4,16 +4,17 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
+  IgnorableNamespaces="uap rescap genTemplate">
 
  <Identity
-    Name="F4ED3497-994C-4874-BA83-68995859ED43"
-    Publisher="CN=ilitio"
+    Name="D70E0C2A-8A8E-4009-B989-4CD91DABF6FD"
+    Publisher="CN=mvega"
     Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>WinUIDesktopApp (Package)</DisplayName>
-    <PublisherDisplayName>ilitio</PublisherDisplayName>
+    <PublisherDisplayName>mvega</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -46,4 +47,13 @@
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
+
+  <genTemplate:Metadata>
+    <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
+    <genTemplate:Item Name="wizardVersion" Version="v0.0.0.0" />
+    <genTemplate:Item Name="templatesVersion" Version="v0.0.0.0" />
+    <genTemplate:Item Name="projectType" Value="Blank" />
+    <genTemplate:Item Name="framework" Value="CodeBehind" />
+    <genTemplate:Item Name="platform" Value="WinUI" />
+</genTemplate:Metadata>
 </Package>
