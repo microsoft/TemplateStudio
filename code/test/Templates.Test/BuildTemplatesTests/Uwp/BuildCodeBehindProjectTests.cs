@@ -169,7 +169,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         {
             var projectName = $"{ShortProjectType(projectType)}AllR{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -181,7 +187,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildOneByOneCodeBehind")]
         public async Task Build_CodeBehind_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }
@@ -193,7 +205,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildOneByOneCodeBehind")]
         public async Task Build_CodeBehind_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }

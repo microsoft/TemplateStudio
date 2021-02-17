@@ -33,6 +33,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework
             };
+            context.PropertyBag.Add("appmodel", "Desktop");
 
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
@@ -109,7 +110,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", "Desktop");
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -121,7 +129,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
         [Trait("Type", "BuildOneByOneMVVMToolkitWinUI")]
         public async Task Build_MVVMToolkit_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", "Desktop");
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }
