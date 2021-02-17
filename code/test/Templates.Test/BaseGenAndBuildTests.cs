@@ -232,7 +232,7 @@ namespace Microsoft.Templates.Test
             // Clean
             if (deleteAfterBuild)
             {
-                //Fs.SafeDeleteDirectory(projectPath);
+                Fs.SafeDeleteDirectory(projectPath);
             }
         }
 
