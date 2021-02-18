@@ -31,7 +31,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Localized tooltips issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4039)
 - [Localized automation name issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4066)
 - [WebView2 exception](https://github.com/microsoft/WindowsTemplateStudio/issues/4073)
-- [VisualStateManager initializarion issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
+- [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:
 - [Windows UI Library 3 Preview 4 (November 2020)](https://docs.microsoft.com/windows/apps/winui/winui3/)
