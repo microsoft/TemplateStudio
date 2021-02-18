@@ -28,7 +28,10 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
 - [Dark/Light theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
-- [Localized tooltips issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3649)
+- [Localized tooltips issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4039)
+- [Localized automation name issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4066)
+- [WebView2 exception](https://github.com/microsoft/WindowsTemplateStudio/issues/4073)
+- [VisualStateManager initializarion issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:
 - [Windows UI Library 3 Preview 4 (November 2020)](https://docs.microsoft.com/windows/apps/winui/winui3/)
