@@ -14,8 +14,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class TemplateInfoViewModel : BasicInfoViewModel
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private int _count;
         private bool _hasMoreThanOne;
         private bool _hasMoreThanTwo;
@@ -90,7 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _disabledMessage, value);
         }
 
-        public TemplateInfoViewModel(TemplateInfo template,  string platform, string projectType, string frameworkName)
+        public TemplateInfoViewModel(TemplateInfo template,  UserSelectionContext context)
         {
             // BasicInfo properties
             Name = template.Name;
@@ -104,9 +102,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = template.DisplayOrder;
             IsHidden = template.IsHidden;
             DefaultName = template.DefaultName;
-            Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
-            Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
-            Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, platform, projectType, frameworkName));
+            Dependencies = template.Dependencies.Select(d => new TemplateInfoViewModel(d, context));
+            Requirements = template.Requirements.Select(d => new TemplateInfoViewModel(d, context));
+            Exclusions = template.Exclusions.Select(d => new TemplateInfoViewModel(d, context));
             RequiredVisualStudioWorkloads = template.RequiredVisualStudioWorkloads.Select(r => r.GetRequiredWorkloadDisplayName());
             Licenses = template.Licenses.Select(l => new LicenseViewModel(l));
 

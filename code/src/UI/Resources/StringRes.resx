@@ -912,4 +912,7 @@ Please verify the following list of packages needed by your project's code and m
     <value>Could not open project overview.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel</value>
+  </data>
 </root>

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -85,9 +86,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public override void Initialize(string platform, string language)
+        public override void Initialize(UserSelectionContext context)
         {
-            switch (platform)
+            switch (context.Platform)
             {
                 case Platforms.Uwp:
                     WizardStatus.Title = $"{StringRes.NewProjectTitleUWP} ({GenContext.Current.ProjectName})";
@@ -102,7 +103,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     break;
             }
 
-            base.Initialize(platform, language);
+            base.Initialize(context);
         }
 
         private void OnFinish(object sender, EventArgs e)
@@ -174,7 +175,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public override async Task OnTemplatesAvailableAsync()
         {
             ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
-            await ProjectType.LoadDataAsync(Platform);
+            await ProjectType.LoadDataAsync(Context);
             ShowNoContentPanel = !ProjectType.Items.Any();
         }
 
@@ -203,23 +204,32 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private async Task OnProjectTypeSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            await Framework.LoadDataAsync(ProjectType.Selected.Name, Platform);
+
+            Context.ProjectType = ProjectType.Selected.Name;
+            await Framework.LoadDataAsync(Context);
         }
 
         private async Task OnFrameworkSelectedAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            Context.FrontEndFramework = Framework.Selected.Name;
+
+            UserSelection.Initialize(Context);
+
             await BuildStepViewModelAsync(TemplateType.Page);
             await BuildStepViewModelAsync(TemplateType.Feature);
             await BuildStepViewModelAsync(TemplateType.Service);
             await BuildStepViewModelAsync(TemplateType.Testing);
-            await UserSelection.InitializeAsync(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
+
+            await UserSelection.AddLayoutTemplatesAsync();
+
             WizardStatus.IsLoading = false;
         }
 
         private async Task BuildStepViewModelAsync(TemplateType templateType)
         {
-            var hasTemplates = DataService.HasTemplatesFromType(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name);
+            var hasTemplates = DataService.HasTemplatesFromType(templateType, Context);
             var stepId = templateType.GetNewProjectStepId();
             var isStepAdded = StepsViewModels.ContainsKey(templateType);
             if (hasTemplates)
@@ -228,7 +238,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     var stepTitle = templateType.GetNewProjectStepTitle();
                     var pageTitle = templateType.GetStepPageTitle();
-                    var step = new TemplatesStepViewModel(templateType, Platform, ProjectType.Selected.Name, Framework.Selected.Name, pageTitle);
+                    var step = new TemplatesStepViewModel(templateType, Context, pageTitle);
                     step.LoadData();
                     StepsViewModels.Add(templateType, step);
                     WizardNavigation.Current.AddNewStep(stepId, stepTitle, () => new TemplatesStepPage(templateType));
@@ -236,7 +246,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 else
                 {
                     var step = StepsViewModels[templateType];
-                    step.ResetData(ProjectType.Selected.Name, Framework.Selected.Name);
+                    step.ResetData(Context.ProjectType, Context.FrontEndFramework);
                 }
             }
             else if (!hasTemplates && isStepAdded)

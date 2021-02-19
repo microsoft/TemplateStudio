@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI;
 using Xunit;
 
 namespace Microsoft.Templates.Test.Build.WinUI
@@ -27,7 +29,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_MVVMToolkitAsync(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             // Don't delete after build test as used in inference test, which will then delete.
             AssertBuildProject(projectPath, projectName, platform);
@@ -50,7 +59,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -73,7 +89,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -88,7 +111,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -100,7 +130,14 @@ namespace Microsoft.Templates.Test.Build.WinUI
         [Trait("Type", "BuildOneByOneMVVMToolkitWinUI")]
         public async Task Build_MVVMToolkit_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }

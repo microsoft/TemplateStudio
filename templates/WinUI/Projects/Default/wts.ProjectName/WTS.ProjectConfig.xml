@@ -7,5 +7,6 @@
         <genTemplate:Item Name="projectType" Value="Param_ProjectType" />
         <genTemplate:Item Name="framework" Value="Param_Framework" />
         <genTemplate:Item Name="platform" Value="Param_Platform" />
+        <genTemplate:Item Name="appmodel" Value="Param_AppModel" />
     </genTemplate:Metadata>
 </xml>

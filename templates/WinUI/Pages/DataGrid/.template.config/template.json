@@ -16,6 +16,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
+    "wts.appmodel": "all",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
     "wts.genGroup": "0",

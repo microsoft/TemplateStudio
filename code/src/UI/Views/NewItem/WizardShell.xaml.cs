@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
     public partial class WizardShell : Window, IWindow, IWizardShell
     {
         private readonly TemplateType _templateType;
-        private readonly string _language;
+        private readonly UserSelectionContext _context;
 
         public static WizardShell Current { get; private set; }
 
@@ -24,10 +24,10 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(TemplateType templateType, string language, BaseStyleValuesProvider provider)
+        public WizardShell(TemplateType templateType, UserSelectionContext context, BaseStyleValuesProvider provider)
         {
             _templateType = templateType;
-            _language = language;
+            _context = context;
             ViewModel = new MainViewModel(this, provider);
             Current = this;
             DataContext = ViewModel;
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainViewModel.Instance.Initialize(_templateType, _language);
+            MainViewModel.Instance.Initialize(_templateType, _context);
             await MainViewModel.Instance.SynchronizeAsync();
         }
 
