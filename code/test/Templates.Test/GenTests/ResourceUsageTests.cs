@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class ResourceUsageTests : BaseGenAndBuildTests
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         public ResourceUsageTests(GenerationFixture fixture)
             : base(fixture)
         {

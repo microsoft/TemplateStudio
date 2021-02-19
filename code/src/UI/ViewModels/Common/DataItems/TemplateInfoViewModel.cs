@@ -14,8 +14,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class TemplateInfoViewModel : BasicInfoViewModel
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private int _count;
         private bool _hasMoreThanOne;
         private bool _hasMoreThanTwo;

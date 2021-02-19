@@ -22,8 +22,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class TemplateSelectionViewModel : Observable
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private string _name;
         private bool _nameEditable;
         private bool _hasErrors;

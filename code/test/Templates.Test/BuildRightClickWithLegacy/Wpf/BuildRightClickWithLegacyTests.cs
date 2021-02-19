@@ -15,7 +15,6 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Wpf
 {      
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyWpfFixture>
     {
-        private readonly string _emptyBackendFramework = string.Empty;
         private readonly string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyWpfFixture fixture)

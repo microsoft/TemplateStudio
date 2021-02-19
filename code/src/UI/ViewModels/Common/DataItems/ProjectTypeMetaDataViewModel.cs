@@ -14,7 +14,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class ProjectTypeMetaDataViewModel : BasicInfoViewModel
     {
         private MetadataType _metadataType;
-        private string _emptyBackendFramework = string.Empty;
 
         public MetadataType MetadataType
         {

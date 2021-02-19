@@ -25,8 +25,6 @@ namespace Microsoft.Templates.Test
     {
         protected const string All = "all";
 
-        private readonly string _emptyBackendFramework = string.Empty;
-
         public abstract string GetTestRunPath();
 
         public abstract void InitializeFixture(IContextProvider contextProvider, string framework = "");

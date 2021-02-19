@@ -15,7 +15,6 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 {      
     public class BuildRightClickWithLegacyCSharpTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyCSharpFixture>
     {
-        private readonly string _emptyBackendFramework = string.Empty;
         private readonly string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyCSharpTests(BuildRightClickWithLegacyCSharpFixture fixture)

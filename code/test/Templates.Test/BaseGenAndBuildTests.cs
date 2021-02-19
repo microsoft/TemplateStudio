@@ -26,7 +26,6 @@ namespace Microsoft.Templates.Test
     public class BaseGenAndBuildTests
     {
         protected BaseGenAndBuildFixture _fixture;
-        private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
         protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
