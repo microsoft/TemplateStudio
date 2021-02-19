@@ -18,7 +18,8 @@
     "wts.platform": "WinUI",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "0"
+    "wts.displayOrder": "0",
+    "wts.licenses": "[Microsoft.WinUI](https://www.nuget.org/packages/Microsoft.WinUI/3.0.0-preview4.210210.4/License)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
@@ -78,7 +79,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Xaml.Behaviors.WinUI.Managed",
-        "version" : "2.0.3-rc4",
+        "version" : "2.0.3-rc5",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -89,7 +90,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.WinUI",
-        "version": "3.0.0-preview3.201113.0",
+        "version": "3.0.0-preview4.210210.4",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

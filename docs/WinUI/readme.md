@@ -25,14 +25,12 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 
 ### Known issues:
-- [Dark/Light Theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
+- [Dark/Light theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
 - [Localized tooltips issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3649)
-- [DataGrid issue](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3585)
-- [Read Theme from settings issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3730)
 
 ### Additional docs:
-- [Windows UI Library 3 Preview 3 (November 2020)](https://docs.microsoft.com/es-es/windows/apps/winui/winui3/)
+- [Windows UI Library 3 Preview 4 (November 2020)](https://docs.microsoft.com/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
-- [Windows Community Toolkit 8.0.0-preview3 for WinUI 3 Preview 3](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
+- [Windows Community Toolkit 8.0.0-preview4 for WinUI 3 Preview 4](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
