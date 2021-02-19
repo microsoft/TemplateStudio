@@ -28,8 +28,7 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [Windows Default theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3385)
 - [Dark/Light theme issue](https://github.com/microsoft/microsoft-ui-xaml/issues/3384)
 - [Master/Detail Issue with WinUI](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3433)
-- [Localized tooltips issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4039)
-- [Localized automation name issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4066)
+- [Localized tooltips + automationname issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4039)
 - [WebView2 exception](https://github.com/microsoft/WindowsTemplateStudio/issues/4073)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
