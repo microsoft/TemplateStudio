@@ -9,6 +9,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI;
 using Xunit;
 
 namespace Microsoft.Templates.Test.Build.WinUI
@@ -33,7 +34,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework
             };
-            context.PropertyBag.Add("appmodel", "Desktop");
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
 
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
@@ -63,7 +64,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", "Desktop");
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
@@ -93,7 +94,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", "Desktop");
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
@@ -115,7 +116,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", "Desktop");
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
@@ -134,7 +135,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", "Desktop");
+            context.PropertyBag.Add("appmodel", AppModels.Desktop);
 
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
