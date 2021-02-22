@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.Services
 
         private static XElement TryAddMetadaElement(this XElement metadata, string name, string value)
         {
-            if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == name) == null)
+            if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == name) == null && !string.IsNullOrEmpty(value))
             {
                 metadata.Add(new XElement(NS + ItemLiteral, new XAttribute(NameAttribLiteral, name), new XAttribute(ValueAttribLiteral, value)));
             }
