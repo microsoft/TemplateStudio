@@ -26,13 +26,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName/wts.ItemNamePage.xaml"
+      "path": "wts.ItemNamePage.xaml"
     },
     {
-      "path": "Param_ProjectName/wts.ItemNamePage.xaml.cpp"
+      "path": "wts.ItemNamePage.xaml.cpp"
     },
     {
-      "path": "Param_ProjectName/wts.ItemNamePage.xaml.h"
+      "path": "wts.ItemNamePage.xaml.h"
     }
   ],
   "symbols": {
