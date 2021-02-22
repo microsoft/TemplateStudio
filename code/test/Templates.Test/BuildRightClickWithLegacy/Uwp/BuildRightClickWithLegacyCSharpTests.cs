@@ -15,7 +15,6 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 {      
     public class BuildRightClickWithLegacyCSharpTests : BaseGenAndBuildTests, IClassFixture<BuildRightClickWithLegacyCSharpFixture>
     {
-        private readonly string _emptyBackendFramework = string.Empty;
         private readonly string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyCSharpTests(BuildRightClickWithLegacyCSharpFixture fixture)
@@ -34,7 +33,13 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 
             var projectName = $"{projectType}{framework}Legacy{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, Platforms.Uwp, language, null, null);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, null, null);
 
             await fixture.ChangeToLocalTemplatesSourceAsync();
 
@@ -70,7 +75,13 @@ namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
                 && !excludedTemplates_Uwp_Group1.Contains(t.GroupIdentity)
                 && !t.GetIsHidden();
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }
     }
 }

@@ -142,7 +142,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 var parameters = parameter.Split(',');
-                var userSelection = await NewProjectAsync(parameters[0], parameters[1]);
+                var appModel = parameters.Length == 3 ? parameters[2] : string.Empty;
+                var userSelection = await NewProjectAsync(parameters[0], parameters[1], appModel);
                 if (parameters[0] == Platforms.Uwp)
                 {
                     _userSelectionUwp = userSelection;
@@ -198,7 +199,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private async Task<UserSelection> NewProjectAsync(string platform, string language)
+        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
         {
 
             SetCurrentLanguage(language);
@@ -213,7 +214,14 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+
+                    var context = new UserSelectionContext(language, platform);
+                    if (!string.IsNullOrEmpty(appmodel))
+                    {
+                        context.PropertyBag.Add("appmodel", appmodel);
+                    }
+                    
+                    var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
                         case Platforms.Uwp:
@@ -235,7 +243,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, platform, language, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -265,15 +273,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    SetCurrentLanguage(userSelection.Language);
-                    SetCurrentPlatform(userSelection.Platform);
+                    SetCurrentLanguage(userSelection.Context.Language);
+                    SetCurrentPlatform(userSelection.Context.Platform);
                     if (UseStyleCop)
                     {
-                        AddStyleCop(userSelection, userSelection.Platform, userSelection.Language);
+                        AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language);
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                    newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.Platform, userSelection.Language, UseStyleCop);
+                    newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, userSelection.Context.Platform, userSelection.Context.Language, UseStyleCop);
                     newProject.SetContextInfo();
                     Projects.Insert(0, newProject);
                     return userSelection;
@@ -343,7 +351,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProject = new GeneratedProjectInfo();
                 newProject.SetBasicInfo((newProjectName, newProjectName, newProjectLocation));
                 newProject.SetContext();
-                var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+
+                var context = new UserSelectionContext(language, platform);
+
+                var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
