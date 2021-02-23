@@ -40,7 +40,7 @@ EndProject
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string platform, string language, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
+        public void AddProjectToSolution(string platform, string appmodel, string language, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             var slnContent = File.ReadAllText(_path);
 
@@ -57,7 +57,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, language, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, appmodel, language, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -170,7 +170,7 @@ EndProject
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string language, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
+        private static string GetProjectConfigurationTemplate(string platform, string appmodel, string language, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             switch (platform)
             {
@@ -227,7 +227,14 @@ EndProject
                     }
                     else if (language == ProgrammingLanguages.Cpp)
                     {
-                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICppProjectTemplate.txt");
+                        if (appmodel == "Desktop")
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt");
+                        }
                     }
                     else
                     {

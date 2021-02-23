@@ -205,6 +205,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
+            if (!string.IsNullOrEmpty(appmodel))
+            {
+                SetCurrentAppModel(appmodel);
+            }
+            
+
             try
             {
                 _projectLocation = ShowNewProjectDialog();
@@ -275,6 +281,12 @@ namespace Microsoft.Templates.VsEmulator.Main
                     newProject.SetContext();
                     SetCurrentLanguage(userSelection.Context.Language);
                     SetCurrentPlatform(userSelection.Context.Platform);
+
+                    if (userSelection.Context.PropertyBag.ContainsKey("appmodel"))
+                    {
+                        SetCurrentAppModel(userSelection.Context.PropertyBag["appmodel"]);
+                    }
+
                     if (UseStyleCop)
                     {
                         AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language);
@@ -475,6 +487,12 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var config = ProjectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
+
+                if (!string.IsNullOrEmpty(config.AppModel))
+                {
+                    SetCurrentPlatform(config.AppModel);
+                }
+
                 newProject.SetProjectData(config.ProjectType, config.Framework, config.Platform, language, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
@@ -561,6 +579,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
+        }
+
+        private void SetCurrentAppModel(string appModel)
+        {
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentAppModel(appModel);
         }
 
         private async Task ConfigureGenContextAsync()

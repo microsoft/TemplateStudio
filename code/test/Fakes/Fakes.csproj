@@ -97,7 +97,10 @@
     <Content Include="Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppProjectTemplate.txt">
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUIProjectTemplate.txt">
