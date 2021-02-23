@@ -212,7 +212,14 @@ EndProject
                 case Platforms.WinUI:
                     if (projectRelativeToSolutionPath.Contains("wapproj"))
                     {
-                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt");
+                        if (language == ProgrammingLanguages.Cpp)
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt");
+                        }
                     }
                     else if (projectRelativeToSolutionPath.Contains(".Core."))
                     {
