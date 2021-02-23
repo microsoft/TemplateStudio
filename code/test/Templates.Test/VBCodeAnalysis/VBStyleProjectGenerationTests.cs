@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -37,7 +38,13 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllVBStyleG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var context = new UserSelectionContext(ProgrammingLanguages.VisualBasic, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -57,7 +64,13 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllVBStyleG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
+            var context = new UserSelectionContext(ProgrammingLanguages.VisualBasic, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }

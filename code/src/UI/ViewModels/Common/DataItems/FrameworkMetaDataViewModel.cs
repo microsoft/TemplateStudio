@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public IEnumerable<LayoutViewModel> Layout { get; private set; }
 
-        public FrameworkMetaDataViewModel(MetadataInfo metadataInfo, string platform)
+        public FrameworkMetaDataViewModel(MetadataInfo metadataInfo)
         {
             Name = metadataInfo.Name;
             Identity = metadataInfo.Name;

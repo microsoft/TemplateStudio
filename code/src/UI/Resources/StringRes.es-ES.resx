@@ -912,4 +912,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <value>Could not open project overview.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel</value>
+  </data>
 </root>

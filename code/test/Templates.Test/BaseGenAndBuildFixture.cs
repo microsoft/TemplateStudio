@@ -25,8 +25,6 @@ namespace Microsoft.Templates.Test
     {
         protected const string All = "all";
 
-        private readonly string _emptyBackendFramework = string.Empty;
-
         public abstract string GetTestRunPath();
 
         public abstract void InitializeFixture(IContextProvider contextProvider, string framework = "");
@@ -38,11 +36,11 @@ namespace Microsoft.Templates.Test
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
 
 
-        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<TemplateInfo, string> getName = null)
+        public UserSelection SetupProject(UserSelectionContext context, Func<TemplateInfo, string> getName = null)
         {
-            var userSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language);
+            var userSelection = new UserSelection(context);
 
-            var layouts = GenContext.ToolBox.Repo.GetLayoutTemplates(userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
+            var layouts = GenContext.ToolBox.Repo.GetLayoutTemplates(context);
 
             foreach (var item in layouts)
             {
@@ -387,13 +385,16 @@ namespace Microsoft.Templates.Test
 
             SetCurrentPlatform(platform);
 
-            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+            var context = new UserSelectionContext(language, platform);
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                                                         .Where(m => !string.IsNullOrEmpty(m.Description))
                                                         .Select(m => m.Name);
 
             foreach (var projectType in projectTypes)
             {
-                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                context.ProjectType = projectType;
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                                                 .Where(m => m.Name == frameworkFilter)
                                                                 .Select(m => m.Name).ToList();
 
@@ -431,6 +432,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
 
             var platform = Platforms.Uwp;
+            var context = new UserSelectionContext(ProgrammingLanguages.VisualBasic, platform);
 
             var projectTemplates =
                GenContext.ToolBox.Repo.GetAll().Where(
@@ -443,7 +445,8 @@ namespace Microsoft.Templates.Test
 
                 foreach (var projectType in projectTypeList)
                 {
-                    var frameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                    context.ProjectType = projectType;
+                    var frameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                             .Select(m => m.Name).ToList();
 
                     foreach (var framework in frameworks)
@@ -467,14 +470,16 @@ namespace Microsoft.Templates.Test
                 {
                     SetCurrentPlatform(platform);
 
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                    var context = new UserSelectionContext(language, platform);
+
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                                                               .Where(m => !string.IsNullOrEmpty(m.Description))
                                                               .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                        context.ProjectType = projectType;
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                                                       .Select(m => m.Name).ToList();
 
                         foreach (var framework in targetFrameworks)
