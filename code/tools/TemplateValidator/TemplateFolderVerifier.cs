@@ -18,7 +18,7 @@ namespace TemplateValidator
     {
         private static string[] excludedPrimaryOutputFiles = new string[]
         {
-            @"\WinUI\Pages\Blank.Desktop.Cpp\Param_ProjectName\wts.ItemNamePage.idl",
+            @"\WinUI\Pages\Blank.Desktop.Cpp\wts.ItemNamePage.idl",
             @"\WinUI\Pages\Blank.UWP.Cpp\wts.ItemNamePage.idl",
         };
 
