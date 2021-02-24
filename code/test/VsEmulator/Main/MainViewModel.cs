@@ -249,7 +249,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(userSelection.Context, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -293,7 +293,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                    newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, userSelection.Context.Platform, userSelection.Context.Language, UseStyleCop);
+                    newProject.SetProjectData(userSelection.Context, UseStyleCop);
                     newProject.SetContextInfo();
                     Projects.Insert(0, newProject);
                     return userSelection;
@@ -466,7 +466,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var destinationParent = Path.GetDirectoryName(solutionFilePath);
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 string language = String.Empty;
                 switch (Path.GetExtension(projFile))
@@ -493,7 +494,14 @@ namespace Microsoft.Templates.VsEmulator.Main
                     SetCurrentPlatform(config.AppModel);
                 }
 
-                newProject.SetProjectData(config.ProjectType, config.Framework, config.Platform, language, false);
+                var context = new UserSelectionContext(language, config.Platform)
+                {
+                    FrontEndFramework = config.Framework,
+                    ProjectType = config.ProjectType
+                };
+
+                context.PropertyBag.Add("appmodel", config.AppModel);
+                newProject.SetProjectData(context, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }

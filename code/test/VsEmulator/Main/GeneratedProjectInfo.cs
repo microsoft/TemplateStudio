@@ -25,13 +25,14 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _framework;
         private string _platform;
         private string _language;
+        private string _appModel;
         private string _time;
+        private bool _useStyleCop;
         private GenerationService _generationService = GenerationService.Instance;
         private Visibility _isAddNewPageCommandVisible;
         private Visibility _isAddNewFeatureCommandVisible;
         private Visibility _isAddNewServiceCommandVisible;
         private Visibility _isAddNewTestingCommandVisible;
-        private Visibility _styleCopTextVisibility = Visibility.Visible;
 
         public string ProjectName { get; private set; }
 
@@ -95,12 +96,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _isAddNewTestingCommandVisible, value);
         }
 
-        public Visibility StyleCopTextVisibility
-        {
-            get => _styleCopTextVisibility;
-            set => SetProperty(ref _styleCopTextVisibility, value);
-        }
-
         public Visibility TempFolderAvailable
         {
             get => HasContent(GetTempGenerationFolder()) ? Visibility.Visible : Visibility.Hidden;
@@ -130,10 +125,22 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _language, value);
         }
 
+        public string AppModel
+        {
+            get => _appModel;
+            set => SetProperty(ref _appModel, value);
+        }
+
         public string Time
         {
             get => _time;
             set => SetProperty(ref _time, value);
+        }
+
+        public bool UseStyleCop
+        {
+            get => _useStyleCop;
+            set => SetProperty(ref _useStyleCop, value);
         }
 
         public GeneratedProjectInfo()
@@ -163,13 +170,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenerationOutputPath = destinationPath;
         }
 
-        public void SetProjectData(string projectType, string framework, string platform, string language, bool useStyleCop)
+        public void SetProjectData(UserSelectionContext context, bool useStyleCop)
         {
-            ProjectType = projectType;
-            Framework = framework;
-            Platform = platform;
-            Language = language;
-            StyleCopTextVisibility = useStyleCop ? Visibility.Visible : Visibility.Collapsed;
+            ProjectType = context.ProjectType;
+            Framework = context.FrontEndFramework;
+            Platform = context.Platform;
+            Language = context.Language;
+            context.PropertyBag.TryGetValue("appmodel", out var appModel);
+            AppModel = appModel;
+            UseStyleCop = useStyleCop;
             Time = DateTime.Now.ToShortTimeString();
         }
 
