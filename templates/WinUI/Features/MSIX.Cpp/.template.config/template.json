@@ -16,6 +16,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
+    "wts.appmodel": "Desktop",
     "wts.version": "1.0.0",
     "wts.genGroup": "0",
     "wts.group": "Packaging",
@@ -31,7 +32,7 @@
   "preferNameDirectory": true,
   "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName/Param_ProjectName (Package)/Param_ProjectName (Package).wapproj" }
+    { "path": "Param_ProjectName (Package)/Param_ProjectName (Package).wapproj" }
   ],
   "symbols": {
     "wts.rootNamespace": {
@@ -75,6 +76,11 @@
     {
       "type": "parameter",
       "replaces": "Param_Platform"
+    },
+    "wts.generation.appmodel":
+    {
+      "type": "parameter",
+      "replaces": "Param_AppModel"
     }
   },
   "postActions": [

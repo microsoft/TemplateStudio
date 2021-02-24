@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         public SolutionWizardCppWinUIUwp()
         {
-            Initialize(Platforms.WinUI, ProgrammingLanguages.Cpp);
+            Initialize(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Uwp);
         }
     }
 }

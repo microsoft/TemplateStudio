@@ -15,7 +15,8 @@
     "wts.type": "project",
     "wts.projecttype": "Blank",
     "wts.frontendframework": "CodeBehind",
-    "wts.platform": "WinUIUWP",
+    "wts.platform": "WinUI",
+    "wts.appmodel": "UWP",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
     "wts.displayOrder": "0"
@@ -64,6 +65,11 @@
     "wts.generationPlatform": {
       "type": "parameter",
       "replaces": "Param_Platform"
+    },
+    "wts.generation.appmodel":
+    {
+      "type": "parameter",
+      "replaces": "Param_AppModel"
     },
     "wts.homePageName": {
       "type": "parameter",

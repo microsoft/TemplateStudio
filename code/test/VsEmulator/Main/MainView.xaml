@@ -97,18 +97,23 @@
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="WinUI" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#">
-                                <TextBlock Text="New project C#"/>
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#,Desktop">
+                                <TextBlock Text="New project C# (Desktop)"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,6,0,0">
-                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++">
-                                <TextBlock Text="New project C++"/>
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Desktop">
+                                <TextBlock Text="New project C++ (Desktop)"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Uwp">
+                                <TextBlock Text="New project C++ (Uwp)"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">
-                            <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="WinUI,C#">
-                                <TextBlock Text="Analyze C#"/>
+                            <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="WinUI,C#,Desktop">
+                                <TextBlock Text="Analyze C# (Desktop)"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">

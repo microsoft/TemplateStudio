@@ -157,6 +157,7 @@ namespace TemplateValidator
                 "configtype", "configvalue",
                 "pagetype",
                 "canExecuteChangedMethodName",
+                "wts.generation.appmodel",
             };
 
             foreach (var symbol in template.Symbols)
@@ -284,6 +285,9 @@ namespace TemplateValidator
                     case "wts.export.onNavigatedFromParams":
                         VerifyWtsExportOnNavigatedFromParamsTagValue(tag, results);
                         break;
+                    case "wts.appmodel":
+                        VerifyWtsAppModelTagValue(tag, results);
+                        break;
                     default:
                         results.Add($"Unknown tag '{tag.Key}' specified in the file.");
                         break;
@@ -405,6 +409,14 @@ namespace TemplateValidator
             if (!new[] { string.Empty, "NavigationContext navigationContext" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.onNavigatedFromParams tag.");
+            }
+        }
+
+        private static void VerifyWtsAppModelTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!new[] { "all", "Desktop", "Uwp" }.Contains(tag.Value))
+            {
+                results.Add($"Unexpected value '{tag.Value}' specified in the wts.appmodel tag.");
             }
         }
 

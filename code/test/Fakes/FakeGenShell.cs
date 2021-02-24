@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Fakes
 
         private string _language;
         private string _platform;
+        private string _appModel;
 
         public string SolutionPath
         {
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.Fakes
         public FakeGenShell(string platform, string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
             _platform = platform;
+            _appModel = string.Empty;
             _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
@@ -54,6 +56,11 @@ namespace Microsoft.Templates.Fakes
         public void SetCurrentPlatform(string platform)
         {
             _platform = platform;
+        }
+
+        public void SetCurrentAppModel(string appModel)
+        {
+            _appModel = appModel;
         }
 
         private void AddItems(string projectPath, IEnumerable<string> filesToAdd)
@@ -105,7 +112,7 @@ namespace Microsoft.Templates.Fakes
 
                 var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString();
 
-                solutionFile.AddProjectToSolution(_platform, _language, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
+                solutionFile.AddProjectToSolution(_platform, _appModel, _language, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
 
                 if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {

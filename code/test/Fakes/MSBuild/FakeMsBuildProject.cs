@@ -213,7 +213,7 @@ namespace Microsoft.Templates.Fakes
         private static XElement GetPackageImportXElement(string package, string version, string importFile)
         {
             var sb = new StringBuilder();
-            sb.Append($"<Import Project=\"..\\..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\" Condition=\"Exists(\'..\\..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\')\"/>");
+            sb.Append($"<Import Project=\"..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\" Condition=\"Exists(\'..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\')\"/>");
 
             var itemElement = XElement.Parse(sb.ToString());
 

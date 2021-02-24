@@ -7,6 +7,7 @@
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     ResizeMode="NoResize"
     SizeToContent="Height"
     Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
@@ -42,6 +43,7 @@
             <DataTemplate x:Key="SimpleDisplayNameTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
             </DataTemplate>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -52,6 +54,7 @@
         </Grid.RowDefinitions>
         <Grid Margin="{StaticResource Margin_M3_LeftTopRightBottom}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -73,6 +76,19 @@
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
                     Style="{StaticResource WtsComboBoxStyle}"
                     AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectPlatform}" />
+                <TextBlock
+                    Text="{x:Static strings:StringRes.ProjectConfigurationSelectAppModel}"
+                    Margin="{StaticResource Margin_L_Top}"
+                    Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                <ComboBox
+                    ItemsSource="{Binding AppModels}"
+                    SelectedItem="{Binding SelectedAppModel, Mode=TwoWay}"
+                    Margin="{StaticResource Margin_S_Top}"
+                    ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
+                    Style="{StaticResource WtsComboBoxStyle}"
+                    Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectAppModel}" />
                 <TextBlock
                     Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"

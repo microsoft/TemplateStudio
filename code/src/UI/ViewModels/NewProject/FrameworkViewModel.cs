@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -17,9 +18,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public async Task LoadDataAsync(string projectTypeName, string platform)
+        public async Task LoadDataAsync(UserSelectionContext context)
         {
-            if (DataService.LoadFrameworks(Items, projectTypeName, platform))
+            if (DataService.LoadFrameworks(Items, context))
             {
                 await BaseMainViewModel.BaseInstance.ProcessItemAsync(Items.First());
             }

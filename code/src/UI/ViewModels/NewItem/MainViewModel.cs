@@ -31,19 +31,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private readonly GenerationService _generationService = GenerationService.Instance;
 
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private RelayCommand _refreshTemplatesCacheCommand;
 
         private static NewItemGenerationResult _output;
 
         public TemplateType TemplateType { get; set; }
-
-        public string ConfigPlatform { get; private set; }
-
-        public string ConfigFramework { get; private set; }
-
-        public string ConfigProjectType { get; private set; }
 
         public static MainViewModel Instance { get; private set; }
 
@@ -93,12 +85,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public void Initialize(TemplateType templateType, string language)
+        public void Initialize(TemplateType templateType, UserSelectionContext context)
         {
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
-            SetProjectConfigInfo();
-            Initialize(ConfigPlatform, language);
+
+            Initialize(context);
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -177,7 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var userSelection = new UserSelection(Context) { HomeName = string.Empty };
             var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
             userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
@@ -192,7 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnFinish(object sender, EventArgs e)
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _emptyBackendFramework, ConfigPlatform, Language);
+            var userSelection = new UserSelection(Context);
             userSelection.Add(
                 new UserSelectionItem()
                 {
@@ -211,7 +203,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override async Task OnTemplatesAvailableAsync()
         {
             ValidationService.Initialize(GetNames, null);
-            TemplateSelection.LoadData(TemplateType, ConfigPlatform, ConfigProjectType, ConfigFramework);
+            TemplateSelection.LoadData(TemplateType, Context);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
@@ -260,42 +252,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 ChangesSummary.DoNotMerge = false;
                 ChangesSummary.IsDoNotMergeEnabled = true;
-            }
-        }
-
-        private void SetProjectConfigInfo()
-        {
-            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
-            {
-                var vm = new ProjectConfigurationViewModel();
-                var projectConfig = new ProjectConfigurationDialog(vm)
-                {
-                    Owner = WizardShell.Current,
-                };
-
-                projectConfig.ShowDialog();
-
-                if (vm.Result == DialogResult.Accept)
-                {
-                    configInfo.ProjectType = vm.SelectedProjectType.Name;
-                    configInfo.Framework = vm.SelectedFramework.Name;
-                    configInfo.Platform = vm.SelectedPlatform;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
-                    ConfigFramework = configInfo.Framework;
-                    ConfigProjectType = configInfo.ProjectType;
-                    ConfigPlatform = configInfo.Platform;
-                }
-                else
-                {
-                    Navigation.Cancel();
-                }
-            }
-            else
-            {
-                ConfigFramework = configInfo.Framework;
-                ConfigProjectType = configInfo.ProjectType;
-                ConfigPlatform = configInfo.Platform;
             }
         }
 
