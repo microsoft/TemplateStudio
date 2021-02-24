@@ -39,13 +39,16 @@ namespace Microsoft.Templates.Test.BuildWithLegacy
 
             InitializeTemplates(new LegacyTemplatesSourceV2(platform, language), platform, language);
 
-            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+            var context = new UserSelectionContext(language, platform);
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                         .Where(m => !string.IsNullOrEmpty(m.Description))
                         .Select(m => m.Name);
 
             foreach (var projectType in projectTypes)
             {
-                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                context.ProjectType = projectType;
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                             .Select(m => m.Name).ToList();
 
                 foreach (var framework in targetFrameworks)

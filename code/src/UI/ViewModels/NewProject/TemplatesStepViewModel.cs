@@ -4,6 +4,7 @@
 
 using System.Collections.ObjectModel;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
@@ -12,9 +13,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class TemplatesStepViewModel : Observable
     {
-        private string _platform;
-        private string _projectTypeName;
-        private string _frameworkName;
+        private UserSelectionContext _context;
         private TemplateType _templateType;
         private string _title;
 
@@ -26,27 +25,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
-        public TemplatesStepViewModel(TemplateType templateType, string platform, string projectTypeName, string frameworkName, string title)
+        public TemplatesStepViewModel(TemplateType templateType, UserSelectionContext context, string title)
         {
             _templateType = templateType;
-            _platform = platform;
-            _projectTypeName = projectTypeName;
-            _frameworkName = frameworkName;
+            _context = context;
             Title = title;
         }
 
         public void LoadData()
         {
             Groups.Clear();
-            DataService.LoadTemplatesGroups(Groups, _templateType, _platform, _projectTypeName, _frameworkName);
+            DataService.LoadTemplatesGroups(Groups, _templateType, _context);
         }
 
         public void ResetData(string projectTypeName, string frameworkName)
         {
-            _projectTypeName = projectTypeName;
-            _frameworkName = frameworkName;
             Groups.Clear();
-            DataService.LoadTemplatesGroups(Groups, _templateType, _platform, _projectTypeName, _frameworkName);
+            DataService.LoadTemplatesGroups(Groups, _templateType, _context);
         }
 
         public void ResetTemplatesCount()
