@@ -197,13 +197,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var parameters = parameter.Split(',');
                 AnalyzeNewProject(parameters[0], parameters[1]);
             });
-        }     
+        }
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
         {
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
+
+            if (!string.IsNullOrEmpty(appmodel))
+            {
+                SetCurrentAppModel(appmodel);
+            }
+            
 
             try
             {
@@ -243,7 +249,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(userSelection.Context, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -275,13 +281,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                     newProject.SetContext();
                     SetCurrentLanguage(userSelection.Context.Language);
                     SetCurrentPlatform(userSelection.Context.Platform);
+
+                    if (userSelection.Context.PropertyBag.ContainsKey("appmodel"))
+                    {
+                        SetCurrentAppModel(userSelection.Context.PropertyBag["appmodel"]);
+                    }
+
                     if (UseStyleCop)
                     {
                         AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language);
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                    newProject.SetProjectData(userSelection.Context.ProjectType, userSelection.Context.FrontEndFramework, userSelection.Context.Platform, userSelection.Context.Language, UseStyleCop);
+                    newProject.SetProjectData(userSelection.Context, UseStyleCop);
                     newProject.SetContextInfo();
                     Projects.Insert(0, newProject);
                     return userSelection;
@@ -454,16 +466,42 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var destinationParent = Path.GetDirectoryName(solutionFilePath);
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+                string language = String.Empty;
+                switch (Path.GetExtension(projFile))
+                {
+                    case ".vbproj":
+                        language = ProgrammingLanguages.VisualBasic;
+                        break;
+                    case ".csproj":
+                        language = ProgrammingLanguages.CSharp;
+                        break;
+                    case ".vcxproj":
+                        language = ProgrammingLanguages.Cpp;
+                        break;
+                }
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
                 newProject.SetBasicInfo(projectName, destinationPath);
                 var config = ProjectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
-                newProject.SetProjectData(config.ProjectType, config.Framework, config.Platform, language, false);
+
+                if (!string.IsNullOrEmpty(config.AppModel))
+                {
+                    SetCurrentPlatform(config.AppModel);
+                }
+
+                var context = new UserSelectionContext(language, config.Platform)
+                {
+                    FrontEndFramework = config.Framework,
+                    ProjectType = config.ProjectType
+                };
+
+                context.PropertyBag.Add("appmodel", config.AppModel);
+                newProject.SetProjectData(context, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }
@@ -549,6 +587,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
+        }
+
+        private void SetCurrentAppModel(string appModel)
+        {
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentAppModel(appModel);
         }
 
         private async Task ConfigureGenContextAsync()

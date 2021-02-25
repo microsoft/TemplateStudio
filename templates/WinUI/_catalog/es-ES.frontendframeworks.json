@@ -3,5 +3,10 @@
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
     "summary": ""
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Este es el modelo tradicional para una aplicación en la que la lógica se administra en el code-behind."
   }
 ]

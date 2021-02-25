@@ -895,8 +895,11 @@ Please verify the following list of packages needed by your project's code and m
   <data name="ErrorInvalidRequirementType" xml:space="preserve">
     <value>Invalid Requirement Type {0}</value>
   </data>
-  <data name="NewProjectTitleWinUI" xml:space="preserve">
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
     <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>New WinUI3 UWP app</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

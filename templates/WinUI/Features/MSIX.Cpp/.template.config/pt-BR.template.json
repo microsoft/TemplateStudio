@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "Permite a criação de pacotes para sideload ou distribuição via Microsoft Store.",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}

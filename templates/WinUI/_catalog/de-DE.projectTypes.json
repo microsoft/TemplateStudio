@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Dieses Basisprojekt ist ein leerer Zeichenbereich, in dem Sie Ihre App erstellen können."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Für die Navigation zwischen den Seiten ist ein Hamburger-Menü enthalten."

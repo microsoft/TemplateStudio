@@ -1,0 +1,8 @@
+﻿[
+    {
+        "name": "Main",
+        "templateGroupIdentity": "wts.WinUI.Page.Blank.Cpp",
+        "readonly": "false",
+        "projecttype": "Blank"
+    }
+]

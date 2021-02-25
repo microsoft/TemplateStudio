@@ -177,6 +177,8 @@
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>

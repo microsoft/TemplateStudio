@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "Microsoft Store aracılığıyla dağıtım veya dışarıdan yükleme için paket oluşturulmasına izin verir.",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}

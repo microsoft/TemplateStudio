@@ -13,6 +13,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.Extension.Commands
 {
+    [ProvideAutoLoad(Microsoft.VisualStudio.VSConstants.UICONTEXT.SolutionHasAppContainerProject_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideAutoLoad(Microsoft.VisualStudio.VSConstants.UICONTEXT.SolutionHasMultipleProjects_string, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "0.0.0.0", IconResourceID = 400)] // Info on this package for Help/About
