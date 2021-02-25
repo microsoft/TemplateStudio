@@ -1,7 +1,7 @@
 ﻿[
     {
         "name": "Main",
-        "templateGroupIdentity": "wts.WinUI.Page.Blank.Desktop.Cpp",
+        "templateGroupIdentity": "wts.WinUI.Page.Blank.Cpp",
         "readonly": "false",
         "projecttype": "Blank"
     },
