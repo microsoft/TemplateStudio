@@ -7,5 +7,6 @@
         <genTemplate:Item Name="projectType" Value="Blank" />
         <genTemplate:Item Name="framework" Value="CodeBehind" />
         <genTemplate:Item Name="platform" Value="WinUI" />
+        <genTemplate:Item Name="appmodel" Value="Desktop" />
     </genTemplate:Metadata>
 </xml>

@@ -1,10 +1,11 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30803.129
+VisualStudioVersion = 16.0.31004.235
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinUIDesktopApp", "WinUIDesktopApp\WinUIDesktopApp\WinUIDesktopApp.vcxproj", "{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinUIDesktopApp", "WinUIDesktopApp\WinUIDesktopApp.vcxproj", "{774C075E-F43B-450E-9AA6-8DEE95285C37}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WinUIDesktopApp (Package)", "WinUIDesktopApp\WinUIDesktopApp (Package)\WinUIDesktopApp (Package).wapproj", "{D0890AC0-552B-4E0C-8633-B7480ED95E6D}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WinUIDesktopApp (Package)", "WinUIDesktopApp (Package)\WinUIDesktopApp (Package).wapproj", "{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,40 +17,41 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|arm64.ActiveCfg = Debug|arm64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|arm64.Build.0 = Debug|arm64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|x64.ActiveCfg = Debug|x64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|x64.Build.0 = Debug|x64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|x86.ActiveCfg = Debug|Win32
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Debug|x86.Build.0 = Debug|Win32
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|arm64.ActiveCfg = Release|arm64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|arm64.Build.0 = Release|arm64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|x64.ActiveCfg = Release|x64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|x64.Build.0 = Release|x64
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|x86.ActiveCfg = Release|Win32
-		{6DD5AFD4-B95F-4907-B320-CCF686DEABC9}.Release|x86.Build.0 = Release|Win32
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|arm64.ActiveCfg = Debug|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|arm64.Build.0 = Debug|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|arm64.Deploy.0 = Debug|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x64.ActiveCfg = Debug|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x64.Build.0 = Debug|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x64.Deploy.0 = Debug|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x86.ActiveCfg = Debug|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x86.Build.0 = Debug|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Debug|x86.Deploy.0 = Debug|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|Any CPU.ActiveCfg = Release|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|arm64.ActiveCfg = Release|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|arm64.Build.0 = Release|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|arm64.Deploy.0 = Release|arm64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x64.ActiveCfg = Release|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x64.Build.0 = Release|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x64.Deploy.0 = Release|x64
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x86.ActiveCfg = Release|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x86.Build.0 = Release|x86
-		{D0890AC0-552B-4E0C-8633-B7480ED95E6D}.Release|x86.Deploy.0 = Release|x86
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|arm64.ActiveCfg = Debug|arm64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|arm64.Build.0 = Debug|arm64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|x64.ActiveCfg = Debug|x64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|x64.Build.0 = Debug|x64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|x86.ActiveCfg = Debug|Win32
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Debug|x86.Build.0 = Debug|Win32
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|arm64.ActiveCfg = Release|arm64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|arm64.Build.0 = Release|arm64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|x64.ActiveCfg = Release|x64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|x64.Build.0 = Release|x64
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|x86.ActiveCfg = Release|Win32
+		{774C075E-F43B-450E-9AA6-8DEE95285C37}.Release|x86.Build.0 = Release|Win32
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|arm64.ActiveCfg = Debug|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|arm64.Build.0 = Debug|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|arm64.Deploy.0 = Debug|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x64.ActiveCfg = Debug|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x64.Build.0 = Debug|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x64.Deploy.0 = Debug|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x86.ActiveCfg = Debug|x86
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x86.Build.0 = Debug|x86
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Debug|x86.Deploy.0 = Debug|x86
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|arm64.ActiveCfg = Release|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|arm64.Build.0 = Release|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|arm64.Deploy.0 = Release|arm64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x64.ActiveCfg = Release|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x64.Build.0 = Release|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x64.Deploy.0 = Release|x64
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x86.ActiveCfg = Release|x86
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x86.Build.0 = Release|x86
+		{BA96940D-ECAD-4B6A-8BE8-80EBB479C822}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD7E29F7-919E-4136-A718-12133B9FA389}
 	EndGlobalSection
 EndGlobal
