@@ -812,6 +812,9 @@ namespace Microsoft.Templates.Test
             int pagesOpenedSuccessfully = 0;
             string[] pageIdentities = new string[0];
 
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
             // InvalidOperationException occurs when WinAppDriver can't launch the app. Retrying normally solves
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
             await ExceptionHelper.RetryOnAsync<InvalidOperationException>(async () =>
