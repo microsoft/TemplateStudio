@@ -11,7 +11,8 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
     </Window.Resources>
 
     <Grid>
@@ -98,12 +99,22 @@
                         <TextBlock Text="WinUI" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#,Desktop">
-                                <TextBlock Text="New project C#"/>
+                                <TextBlock Text="New project C# (Desktop)"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Desktop">
+                                <TextBlock Text="New project C++ (Desktop)"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Uwp">
+                                <TextBlock Text="New project C++ (Uwp)"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">
                             <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="WinUI,C#,Desktop">
-                                <TextBlock Text="Analyze C#"/>
+                                <TextBlock Text="Analyze C# (Desktop)"/>
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,12,0,0">
@@ -161,6 +172,10 @@
                                     <TextBlock Text="Platform: " Style="{StaticResource Label1}" />
                                     <TextBlock Text="{Binding Platform}" Style="{StaticResource Label1}" />
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0" Visibility="{Binding AppModel, Converter={StaticResource StringToVisibilityConverter}}">
+                                    <TextBlock Text="App Model: " Style="{StaticResource Label1}" />
+                                    <TextBlock Text="{Binding AppModel}" Style="{StaticResource Label1}" />
+                                </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                                     <TextBlock Text="Language: " Style="{StaticResource Label1}" />
                                     <TextBlock Text="{Binding Language}" Style="{StaticResource Label1}" />
@@ -177,7 +192,7 @@
                                     <TextBlock Text="Time: " Style="{StaticResource Label1}" />
                                     <TextBlock Text="{Binding Time}" Style="{StaticResource Label1}" />
                                 </StackPanel>
-                                <TextBlock Margin="0,4,0,0" Text="Generated with style checks" Style="{StaticResource Label1}" Visibility="{Binding StyleCopTextVisibility}" />
+                                <TextBlock Margin="0,4,0,0" Text="Generated with style checks" Style="{StaticResource Label1}" Visibility="{Binding UseStyleCop, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                 <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                                     <Button Command="{Binding OpenInVsCommand}" Style="{StaticResource IconButton}">

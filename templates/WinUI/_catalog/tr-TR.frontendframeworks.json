@@ -3,5 +3,10 @@
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
     "summary": ""
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Bu, mantığın code-behind içinde işlendiği bir uygulama için kullanılan geleneksel modeldir."
   }
 ]

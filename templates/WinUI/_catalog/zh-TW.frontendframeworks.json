@@ -4,4 +4,9 @@
     "displayName": "MVVM Toolkit",
     "summary": ""
   }
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "這是採用code-behind邏輯處理方式的應用程式所適用的傳統模型。"
+  }
 ]

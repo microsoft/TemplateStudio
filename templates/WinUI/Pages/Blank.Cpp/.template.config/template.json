@@ -1,0 +1,49 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Blank",
+  "shortName": "Blank",
+  "identity": "wts.WinUI.Page.Blank.Cpp",
+  "groupIdentity": "wts.WinUI.Page.Blank.Cpp",
+  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "tags": {
+    "language": "C++",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all",
+    "wts.platform": "WinUI",
+    "wts.appmodel": "all",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "wts.ItemNamePage.xaml.cpp"
+    },
+    {
+      "path": "wts.ItemNamePage.xaml.h"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

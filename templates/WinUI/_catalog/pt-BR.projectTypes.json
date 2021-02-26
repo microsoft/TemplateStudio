@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Este projeto básico é uma tela em branco na qual criar seu aplicativo."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Um Menu Hambúrguer é incluído para a navegação entre as páginas."

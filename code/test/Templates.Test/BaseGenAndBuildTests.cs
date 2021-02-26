@@ -76,8 +76,18 @@ namespace Microsoft.Templates.Test
         }
 
         protected static string GetProjectExtension(string language)
-        {
-            return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
+        {            
+            switch (language)
+            {
+                case ProgrammingLanguages.CSharp:
+                    return "csproj";
+                case ProgrammingLanguages.VisualBasic:
+                    return "vbproj";
+                case ProgrammingLanguages.Cpp:
+                    return "vcxproj";
+                default:
+                    return string.Empty;
+            }
         }
 
         protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(UserSelectionContext context)

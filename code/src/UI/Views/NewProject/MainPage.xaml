@@ -29,6 +29,7 @@
             <RowDefinition Height="934*" />
             <!--Buttons area-->
         </Grid.RowDefinitions>
+        
         <StackPanel
             Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}}"
             VerticalAlignment="Center"
@@ -36,6 +37,11 @@
             <TextBlock 
                 Style="{StaticResource WtsTextBlockSectionTitle}"
                 Text="{x:Static strings:StringRes.NoContentPanelMessage}" />
+            <TextBlock Margin="{StaticResource Margin_L_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}" Visibility="{Binding RefreshTemplateCacheVisibility}">
+                <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding RefreshTemplatesCacheCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}">
+                    <TextBlock Text="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                </Hyperlink>
+            </TextBlock>
         </StackPanel>
         <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
@@ -136,8 +142,8 @@
                                 <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
-                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionIssuesLink}">
+                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionIssuesLink}">
                                 <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
