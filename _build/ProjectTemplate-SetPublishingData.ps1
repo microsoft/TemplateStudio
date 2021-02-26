@@ -90,18 +90,18 @@ if($uwpname -and $wpfname){
 
         if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.Cpp.WinUI.Desktop.WindowsTemplateStudio.local')
         {
-           $templateContent.VSTemplate.TemplateData.TemplateID = $cppwinudesktopitemplateId
+           $templateContent.VSTemplate.TemplateData.TemplateID = $cppwinuidesktoptemplateId
            $templateContent.VSTemplate.TemplateData.Name = $winuidesktopname
 
-           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuidesktopname, $cppwinudesktopitemplateId, $versionNumber)"
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuidesktopname, $cppwinuidesktoptemplateId, $versionNumber)"
         }
 
         if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.Cpp.WinUI.UWP.WindowsTemplateStudio.local')
         {
-           $templateContent.VSTemplate.TemplateData.TemplateID = $cppwinuuwpitemplateId
+           $templateContent.VSTemplate.TemplateData.TemplateID = $cppwinuiuwptemplateId
            $templateContent.VSTemplate.TemplateData.Name = $winuiuwpname
 
-           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuiuwpname, $cppwinuuwpitemplateId, $versionNumber)"
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuiuwpname, $cppwinuiuwptemplateId, $versionNumber)"
         }
 
         if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local')
