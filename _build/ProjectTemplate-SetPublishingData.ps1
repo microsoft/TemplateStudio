@@ -22,10 +22,10 @@ Param(
   [string]$csharpwinuitemplateId,
 
   [Parameter(Mandatory=$True,Position=8)]
-  [string]$cppwinudesktopitemplateId,
+  [string]$cppwinuidesktoptemplateId,
 
   [Parameter(Mandatory=$True,Position=9)]
-  [string]$cppwinuuwpitemplateId,
+  [string]$cppwinuiuwptemplateId,
 
   [Parameter(Mandatory=$True,Position=10)]
   [string]$visualbasictemplateId,
