@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework
             };
-            context.PropertyBag.Add("appmodel", appModel);
+            context.AddAppModel(appModel);
 
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", appModel);
+            context.AddAppModel(appModel);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", appModel);
+            context.AddAppModel(appModel);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", appModel);
+            context.AddAppModel(appModel);
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", appModel);
+            context.AddAppModel(appModel);
 
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 

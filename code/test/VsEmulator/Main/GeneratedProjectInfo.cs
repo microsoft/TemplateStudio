@@ -176,8 +176,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             Framework = context.FrontEndFramework;
             Platform = context.Platform;
             Language = context.Language;
-            context.PropertyBag.TryGetValue("appmodel", out var appModel);
-            AppModel = appModel;
+            AppModel = context.GetAppModel();
             UseStyleCop = useStyleCop;
             Time = DateTime.Now.ToShortTimeString();
         }

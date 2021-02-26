@@ -199,15 +199,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
+        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appModel = null)
         {
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
-            if (!string.IsNullOrEmpty(appmodel))
+            if (!string.IsNullOrEmpty(appModel))
             {
-                SetCurrentAppModel(appmodel);
+                SetCurrentAppModel(appModel);
             }
             
 
@@ -222,11 +222,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     newProject.SetContext();
 
                     var context = new UserSelectionContext(language, platform);
-                    if (!string.IsNullOrEmpty(appmodel))
-                    {
-                        context.PropertyBag.Add("appmodel", appmodel);
-                    }
-                    
+                    context.AddAppModel(appModel);
                     var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
@@ -281,11 +277,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     newProject.SetContext();
                     SetCurrentLanguage(userSelection.Context.Language);
                     SetCurrentPlatform(userSelection.Context.Platform);
-
-                    if (userSelection.Context.PropertyBag.ContainsKey("appmodel"))
-                    {
-                        SetCurrentAppModel(userSelection.Context.PropertyBag["appmodel"]);
-                    }
+                    SetCurrentAppModel(userSelection.Context.GetAppModel());
 
                     if (UseStyleCop)
                     {
@@ -500,7 +492,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectType = config.ProjectType
                 };
 
-                context.PropertyBag.Add("appmodel", config.AppModel);
+                context.AddAppModel(config.AppModel);
                 newProject.SetProjectData(context, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);

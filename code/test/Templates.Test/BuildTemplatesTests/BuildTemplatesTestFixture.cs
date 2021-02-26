@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Test
 
                         if (platform == Platforms.WinUI)
                         {
-                            context.PropertyBag.Add("appmodel", appModel);
+                            context.AddAppModel(appModel);
                         }
 
                         var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)

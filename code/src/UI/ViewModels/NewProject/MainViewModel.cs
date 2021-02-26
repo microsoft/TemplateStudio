@@ -97,8 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     WizardStatus.Title = $"{StringRes.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
                     break;
                 case Platforms.WinUI:
-                    context.PropertyBag.TryGetValue("appmodel", out var appModel);
-                    switch (appModel)
+                    switch (context.GetAppModel())
                     {
                         case AppModels.Desktop:
                             WizardStatus.Title = $"{StringRes.NewProjectTitleWinUIDesktop} ({GenContext.Current.ProjectName})";
