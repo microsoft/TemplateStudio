@@ -28,12 +28,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
     public class UserSelectionViewModel : Observable
     {
-        private readonly string _emptyBackendFramework = string.Empty;
         private bool _isInitialized;
-        private string _projectTypeName;
-        private string _frameworkName;
-        private string _platform;
-        private string _language;
+        private UserSelectionContext _context;
 
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
@@ -49,18 +45,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Groups.Add(new UserSelectionGroup(TemplateType.Testing, StringRes.ProjectDetailsTestingSectionTitle));
         }
 
-        public async Task InitializeAsync(string projectTypeName, string frameworkName, string platform, string language)
+        public void Initialize(UserSelectionContext context)
         {
-            _projectTypeName = projectTypeName;
-            _frameworkName = frameworkName;
-            _platform = platform;
-            _language = language;
+            _context = context;
+
             if (_isInitialized)
             {
                 Groups.ToList().ForEach(g => g.Clear());
             }
 
-            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(platform, projectTypeName, frameworkName, _emptyBackendFramework);
+            _isInitialized = true;
+        }
+
+        public async Task AddLayoutTemplatesAsync()
+        {
+            var layout = GenContext.ToolBox.Repo.GetLayoutTemplates(_context);
             foreach (var item in layout)
             {
                 if (item.Template != null)
@@ -72,8 +71,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     }
                 }
             }
-
-            _isInitialized = true;
         }
 
         public void UnsubscribeEventHandlers()
@@ -128,7 +125,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 if (dependencyTemplate == null)
                 {
                     // Case of hidden templates, it's not found on templat lists
-                    dependencyTemplate = new TemplateInfoViewModel(dependency, _platform, _projectTypeName, _frameworkName);
+                    dependencyTemplate = new TemplateInfoViewModel(dependency, _context);
                 }
 
                 await AddAsync(templateOrigin, dependencyTemplate);
@@ -179,7 +176,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelection GetUserSelection()
         {
-            var selection = new UserSelection(_projectTypeName, _frameworkName, _emptyBackendFramework, _platform, _language);
+            var selection = new UserSelection(_context);
 
             var pages = Groups.First(g => g.TemplateType == TemplateType.Page).Items;
             selection.HomeName = pages.First().Name;

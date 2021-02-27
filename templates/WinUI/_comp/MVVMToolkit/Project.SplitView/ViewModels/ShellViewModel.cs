@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
 

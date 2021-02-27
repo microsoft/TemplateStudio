@@ -13,19 +13,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public bool IsReadOnly { get; set; }
 
-        public LayoutViewModel(LayoutInfo layout, string platform, string projectType, string frameworkName)
+        public LayoutViewModel(LayoutInfo layout, UserSelectionContext context)
         {
             IsReadOnly = layout.Layout.Readonly;
             if (!IsReadOnly)
             {
-                Template = new TemplateInfoViewModel(layout.Template, platform, projectType, frameworkName)
+                Template = new TemplateInfoViewModel(layout.Template, context)
                 {
                     Title = string.Format(StringRes.TemplateDetailsLayoutOptional, layout.Template.Name),
                 };
             }
             else
             {
-                Template = new TemplateInfoViewModel(layout.Template, platform, projectType, frameworkName);
+                Template = new TemplateInfoViewModel(layout.Template, context);
             }
         }
     }
