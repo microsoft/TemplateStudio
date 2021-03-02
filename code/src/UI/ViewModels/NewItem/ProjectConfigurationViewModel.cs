@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var context = new UserSelectionContext(Language, SelectedPlatform);
             if (SelectedPlatform == Core.Platforms.WinUI)
             {
-                context.PropertyBag.Add("appmodel", SelectedAppModel);
+                context.AddAppModel(SelectedAppModel);
             }
 
             var targetProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context).ToList();
@@ -142,7 +142,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             context.ProjectType = SelectedProjectType.Name;
             if (SelectedPlatform == Core.Platforms.WinUI)
             {
-                context.PropertyBag.Add("appmodel", SelectedAppModel);
+                context.AddAppModel(SelectedAppModel);
             }
 
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context).ToList();
