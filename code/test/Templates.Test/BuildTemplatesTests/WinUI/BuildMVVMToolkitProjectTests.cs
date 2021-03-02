@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework
             };
-            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+            context.AddAppModel(AppModels.Desktop);
 
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+            context.AddAppModel(AppModels.Desktop);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+            context.AddAppModel(AppModels.Desktop);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+            context.AddAppModel(AppModels.Desktop);
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 ProjectType = projectType,
                 FrontEndFramework = framework,
             };
-            context.PropertyBag.Add("appmodel", AppModels.Desktop);
+            context.AddAppModel(AppModels.Desktop);
 
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 

@@ -224,7 +224,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var context = new UserSelectionContext(language, platform);
                     if (!string.IsNullOrEmpty(appmodel))
                     {
-                        context.PropertyBag.Add("appmodel", appmodel);
+                        context.AddAppModel(appmodel);
                     }
                     
                     var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
@@ -281,11 +281,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     newProject.SetContext();
                     SetCurrentLanguage(userSelection.Context.Language);
                     SetCurrentPlatform(userSelection.Context.Platform);
-
-                    if (userSelection.Context.PropertyBag.ContainsKey("appmodel"))
-                    {
-                        SetCurrentAppModel(userSelection.Context.PropertyBag["appmodel"]);
-                    }
+                    SetCurrentAppModel(userSelection.Context.GetAppModel());
 
                     if (UseStyleCop)
                     {
@@ -500,7 +496,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectType = config.ProjectType
                 };
 
-                context.PropertyBag.Add("appmodel", config.AppModel);
+                context.AddAppModel(config.AppModel);
                 newProject.SetProjectData(context, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
