@@ -240,7 +240,7 @@ namespace Microsoft.Templates.UI.Launcher
 
                     if (!string.IsNullOrEmpty(configInfo.AppModel))
                     {
-                        userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
+                        userSeletion.AddAppModel(configInfo.AppModel);
                     }
 
                     return userSeletion;
@@ -258,7 +258,7 @@ namespace Microsoft.Templates.UI.Launcher
 
                 if (!string.IsNullOrEmpty(configInfo.AppModel))
                 {
-                    userSeletion.PropertyBag.Add("appmodel", configInfo.AppModel);
+                    userSeletion.AddAppModel(configInfo.AppModel);
                 }
 
                 return userSeletion;
