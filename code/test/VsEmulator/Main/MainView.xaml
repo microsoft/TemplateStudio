@@ -103,6 +103,11 @@
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="0,6,0,0">
+                            <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#,Uwp">
+                                <TextBlock Text="New project C# (Uwp)"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Desktop">
                                 <TextBlock Text="New project C++ (Desktop)"/>
                             </Hyperlink>

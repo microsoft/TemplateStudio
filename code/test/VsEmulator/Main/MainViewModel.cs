@@ -18,6 +18,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -245,7 +246,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(userSelection, platform, language);
+                            AddStyleCop(userSelection, platform, language, appmodel);
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
@@ -289,7 +290,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     if (UseStyleCop)
                     {
-                        AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language);
+                        AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language, userSelection.Context.GetAppModel());
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
@@ -312,7 +313,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             return null;
         }
 
-        private void AddStyleCop(UserSelection userSelection, string platform, string language)
+        private void AddStyleCop(UserSelection userSelection, string platform, string language, string appmodel = null)
         {
             var styleCopTemplate = string.Empty;
             switch (platform)
@@ -334,7 +335,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                     styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
                 case Platforms.WinUI:
-                    styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                    switch (appmodel)
+                    {
+                        case AppModels.Desktop:
+                            styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                            break;
+                        case AppModels.Uwp:
+                            styleCopTemplate = "wts.WinUI.UWP.Feat.StyleCop";
+                            break;
+                    }                    
                     break;
             }
 
