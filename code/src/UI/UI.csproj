@@ -75,6 +75,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppModels.cs" />
     <Compile Include="AutomationPeers\ExpanderButtonAutomationPeer.cs" />
     <Compile Include="Controls\ExpanderButtonAutomationPeerControl.cs" />
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
@@ -165,6 +166,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\GenerationService.cs" />
     <Compile Include="Services\ProjectConfigInfoService.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequiredVersionInfo.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequirementType.cs" />
     <Compile Include="Services\RequiredVersionValidation\Validators\DotNetValidator.cs" />
@@ -175,6 +177,8 @@
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>

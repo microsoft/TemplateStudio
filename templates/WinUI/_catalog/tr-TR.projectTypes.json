@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Bu temel proje, uygulamanız için temel olarak kullanabileceğiniz boş bir tuvaldir."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."

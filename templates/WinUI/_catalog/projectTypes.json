@@ -1,10 +1,19 @@
 ﻿[
     {
+      "name": "Blank",
+      "displayName": "Blank",
+      "summary": "This basic project is a blank canvas upon which to build your app.",
+      "author": "Microsoft",
+      "order": "1",
+      "platform": "WinUI",
+      "languages": [ "C++" ]
+    },
+    {
       "name": "SplitView",
       "displayName": "Navigation Pane",
       "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
       "author": "Microsoft",
-      "order": "1",
+      "order": "2",
       "platform": "WinUI",
       "languages": [ "C#" ]
     }

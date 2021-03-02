@@ -88,6 +88,10 @@ namespace Microsoft.Templates.Fakes
 
             var lastItems = _root.Descendants().LastOrDefault(d => d.Name.LocalName == "ItemGroup");
             lastItems?.AddAfterSelf(itemsContainer);
+            if (itemPath.EndsWith("xaml.cpp"))
+            {
+                AddItem(itemPath.Replace("xaml.cpp", "idl"));
+            }
         }
 
         public void AddNugetReference(NugetReference nugetReference)
@@ -113,6 +117,28 @@ namespace Microsoft.Templates.Fakes
                 itemsContainer.Add(element);
                 _root.Add(itemsContainer);
             }
+        }
+
+        public void AddNugetImport(NugetReference nugetReference)
+        {
+            if (NugetImportExists(nugetReference))
+            {
+                return;
+            }
+
+            XElement targetsElement = GetPackageImportXElement(nugetReference.PackageId, nugetReference.Version.ToString(), "targets");
+            ApplyNs(targetsElement);
+
+            var importGroup = _root.Descendants().FirstOrDefault(d => d.Name.LocalName == "ImportGroup" && d.FirstAttribute.Value == "ExtensionTargets");
+
+            if (importGroup != null)
+            {
+                importGroup.AddFirst(targetsElement);
+            }
+
+            XElement propsElement = GetPackageImportXElement(nugetReference.PackageId, nugetReference.Version.ToString(), "props");
+            ApplyNs(propsElement);
+            _root.AddFirst(propsElement);
         }
 
         public void AddSDKReference(SdkReference sdkReference)
@@ -178,6 +204,16 @@ namespace Microsoft.Templates.Fakes
                 sb.AppendLine($"<Version>{version}</Version>");
                 sb.AppendLine("</PackageReference>");
             }
+
+            var itemElement = XElement.Parse(sb.ToString());
+
+            return itemElement;
+        }
+
+        private static XElement GetPackageImportXElement(string package, string version, string importFile)
+        {
+            var sb = new StringBuilder();
+            sb.Append($"<Import Project=\"..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\" Condition=\"Exists(\'..\\packages\\{package}.{version}\\build\\native\\{package}.{importFile}\')\"/>");
 
             var itemElement = XElement.Parse(sb.ToString());
 
@@ -251,6 +287,13 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        private bool NugetImportExists(NugetReference nuget)
+        {
+                return _root.Descendants().Any(
+                    d => d.Attribute("Project") != null &&
+                    d.Attribute("Project").Value.Contains($"{nuget.PackageId}.{nuget.Version}"));
+        }
+
         private VsItemType GetItemType(string fileName)
         {
             VsItemType returnType = VsItemType.Content;
@@ -265,6 +308,32 @@ namespace Microsoft.Templates.Fakes
                     else
                     {
                         returnType = VsItemType.Compiled;
+                    }
+
+                    break;
+                case ".idl":
+                    returnType = VsItemType.Midl;
+
+                    break;
+                case ".h":
+                    if (fileName.EndsWith(".xaml.h", StringComparison.OrdinalIgnoreCase))
+                    {
+                        returnType = VsItemType.ClIncludeWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.ClInclude;
+                    }
+
+                    break;
+                case ".cpp":
+                    if (fileName.EndsWith(".xaml.cpp", StringComparison.OrdinalIgnoreCase))
+                    {
+                        returnType = VsItemType.ClCompiledWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.ClCompiled;
                     }
 
                     break;

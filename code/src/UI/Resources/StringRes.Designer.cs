@@ -858,9 +858,18 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New WinUI3 Desktop app.
         /// </summary>
-        public static string NewProjectTitleWinUI {
+        public static string NewProjectTitleWinUIDesktop {
             get {
-                return ResourceManager.GetString("NewProjectTitleWinUI", resourceCulture);
+                return ResourceManager.GetString("NewProjectTitleWinUIDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New WinUI3 UWP app.
+        /// </summary>
+        public static string NewProjectTitleWinUIUWP {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWinUIUWP", resourceCulture);
             }
         }
         
@@ -1086,6 +1095,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectConfigurationDescriptionText {
             get {
                 return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select AppModel.
+        /// </summary>
+        public static string ProjectConfigurationSelectAppModel {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectAppModel", resourceCulture);
             }
         }
         

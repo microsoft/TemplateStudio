@@ -22,8 +22,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class TemplateSelectionViewModel : Observable
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         private string _name;
         private bool _nameEditable;
         private bool _hasErrors;
@@ -101,9 +99,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             IsTextSelected = true;
         }
 
-        public void LoadData(TemplateType templateType, string platform, string projectTypeName, string frameworkName)
+        public void LoadData(TemplateType templateType, UserSelectionContext context)
         {
-            DataService.LoadTemplatesGroups(Groups, templateType, platform, projectTypeName, frameworkName, true);
+            DataService.LoadTemplatesGroups(Groups, templateType, context, true);
 
             var group = Groups.FirstOrDefault();
             if (group != null)
@@ -134,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.ConfigPlatform, MainViewModel.Instance.ConfigProjectType, MainViewModel.Instance.ConfigFramework, _emptyBackendFramework);
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

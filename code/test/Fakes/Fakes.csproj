@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="FakeContextProvider.cs" />
     <Compile Include="FakeGenShell.cs" />
+    <Compile Include="MSBuild\FakePackagesConfig.cs" />
     <Compile Include="MSBuild\FakeMsBuildProject.cs" />
     <Compile Include="MSBuild\VsItemTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,13 +88,55 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Solution\WinUISolutionTemplate.txt">
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Solution\WpfSolutionTemplate.txt">
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICoreProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Solution\UwpSolutionTemplate.txt">
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUIProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Uwp\UwpProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Uwp\UwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Wpf\WpfCoreProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Wpf\WpfProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Wpf\WpfProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\Wpf\XamlIslandProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\SolutionTemplates\WinUICppSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\SolutionTemplates\WinUISolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\SolutionTemplates\WpfSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\SolutionTemplates\UwpSolutionTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -107,5 +150,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

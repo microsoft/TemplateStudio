@@ -15,144 +15,6 @@ namespace Microsoft.Templates.Fakes
     {
         private const string ProjectConfigurationPlatformsText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
 
-        private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0}.Debug|Any CPU.Build.0 = Debug|x86
-		{0}.Debug|Any CPU.Deploy.0 = Debug|x86
-        {0}.Debug|ARM.ActiveCfg = Debug|ARM
-		{0}.Debug|ARM.Build.0 = Debug|ARM
-		{0}.Debug|ARM.Deploy.0 = Debug|ARM
-		{0}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{0}.Debug|ARM64.Build.0 = Debug|ARM64
-		{0}.Debug|ARM64.Deploy.0 = Debug|ARM64
-		{0}.Debug|x64.ActiveCfg = Debug|x64
-		{0}.Debug|x64.Build.0 = Debug|x64
-		{0}.Debug|x64.Deploy.0 = Debug|x64
-		{0}.Debug|x86.ActiveCfg = Debug|x86
-		{0}.Debug|x86.Build.0 = Debug|x86
-		{0}.Debug|x86.Deploy.0 = Debug|x86
-        {0}.Release|Any CPU.ActiveCfg = Release|x86
-		{0}.Release|Any CPU.Build.0 = Release|x86
-		{0}.Release|Any CPU.Deploy.0 = Release|x86
-		{0}.Release|ARM.ActiveCfg = Release|ARM
-		{0}.Release|ARM.Build.0 = Release|ARM
-		{0}.Release|ARM.Deploy.0 = Release|ARM
-        {0}.Release|ARM64.ActiveCfg = Release|ARM64
-		{0}.Release|ARM64.Build.0 = Release|ARM64
-		{0}.Release|ARM64.Deploy.0 = Release|ARM64
-		{0}.Release|x64.ActiveCfg = Release|x64
-		{0}.Release|x64.Build.0 = Release|x64
-		{0}.Release|x64.Deploy.0 = Release|x64
-		{0}.Release|x86.ActiveCfg = Release|x86
-		{0}.Release|x86.Build.0 = Release|x86
-		{0}.Release|x86.Deploy.0 = Release|x86
-";
-
-        private const string UwpProjectConfigurationTemplateForAnyCpu = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0}.Debug|ARM.Build.0 = Debug|Any CPU
-        {0}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{0}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0}.Debug|x64.Build.0 = Debug|Any CPU
-		{0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0}.Debug|x86.Build.0 = Debug|Any CPU
-		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0}.Release|ARM.Build.0 = Release|Any CPU
-        {0}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{0}.Release|ARM64.Build.0 = Release|Any CPU
-		{0}.Release|x64.ActiveCfg = Release|Any CPU
-		{0}.Release|x64.Build.0 = Release|Any CPU
-		{0}.Release|x86.ActiveCfg = Release|Any CPU
-		{0}.Release|x86.Build.0 = Release|Any CPU
-";
-
-        private const string WpfProjectConfigurationTemplateForAnyCPU = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0}.Debug|ARM.Build.0 = Debug|Any CPU
-		{0}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{0}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0}.Debug|x64.Build.0 = Debug|Any CPU
-		{0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0}.Debug|x86.Build.0 = Debug|Any CPU
-		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0}.Release|ARM.Build.0 = Release|Any CPU
-		{0}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{0}.Release|ARM64.Build.0 = Release|Any CPU
-		{0}.Release|x64.ActiveCfg = Release|Any CPU
-		{0}.Release|x64.Build.0 = Release|Any CPU
-		{0}.Release|x86.ActiveCfg = Release|Any CPU
-		{0}.Release|x86.Build.0 = Release|Any CPU
-	";
-
-        private const string WpfProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0}.Debug|x64.ActiveCfg = Debug|x64
-		{0}.Debug|x64.Build.0 = Debug|x64
-		{0}.Debug|x86.ActiveCfg = Debug|x86
-		{0}.Debug|x86.Build.0 = Debug|x86
-		{0}.Release|Any CPU.ActiveCfg = Release|x86
-		{0}.Release|x64.ActiveCfg = Release|x64
-		{0}.Release|x64.Build.0 = Release|x64
-		{0}.Release|x86.ActiveCfg = Release|x86
-		{0}.Release|x86.Build.0 = Release|x86
-";
-
-        private const string WpfCoreProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0}.Release|Any CPU.Build.0 = Release|Any CPU
-	";
-
-        private const string MSIXProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0}.Debug|ARM.ActiveCfg = Debug|ARM
-		{0}.Debug|ARM.Build.0 = Debug|ARM
-		{0}.Debug|ARM.Deploy.0 = Debug|ARM
-		{0}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{0}.Debug|ARM64.Build.0 = Debug|ARM64
-		{0}.Debug|ARM64.Deploy.0 = Debug|ARM64
-		{0}.Debug|x64.ActiveCfg = Debug|x64
-		{0}.Debug|x64.Build.0 = Debug|x64
-		{0}.Debug|x64.Deploy.0 = Debug|x64
-		{0}.Debug|x86.ActiveCfg = Debug|x86
-		{0}.Debug|x86.Build.0 = Debug|x86
-		{0}.Debug|x86.Deploy.0 = Debug|x86
-		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{0}.Release|ARM.ActiveCfg = Release|ARM
-		{0}.Release|ARM.Build.0 = Release|ARM
-		{0}.Release|ARM.Deploy.0 = Release|ARM
-		{0}.Release|ARM64.ActiveCfg = Release|ARM64
-		{0}.Release|ARM64.Build.0 = Release|ARM64
-		{0}.Release|ARM64.Deploy.0 = Release|ARM64
-		{0}.Release|x64.ActiveCfg = Release|x64
-		{0}.Release|x64.Build.0 = Release|x64
-		{0}.Release|x64.Deploy.0 = Release|x64
-		{0}.Release|x86.ActiveCfg = Release|x86
-		{0}.Release|x86.Build.0 = Release|x86
-		{0}.Release|x86.Deploy.0 = Release|x86
-";
-
-        private const string XamIslandProjectConfigurationTemplate = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0}.Debug|x64.ActiveCfg = Debug|x64
-		{0}.Debug|x64.Build.0 = Debug|x64
-		{0}.Debug|x86.ActiveCfg = Debug|x86
-		{0}.Debug|x86.Build.0 = Debug|x86
-		{0}.Release|Any CPU.ActiveCfg = Release|x86
-		{0}.Release|x64.ActiveCfg = Release|x64
-		{0}.Release|x64.Build.0 = Release|x64
-		{0}.Release|x86.ActiveCfg = Release|x86
-		{0}.Release|x86.Build.0 = Release|x86
-";
-
         private const string ProjectTemplate = @"Project(""{{guid}}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
@@ -166,11 +28,11 @@ EndProject
             _path = path;
         }
 
-        public static FakeSolution LoadOrCreate(string platform, string path)
+        public static FakeSolution LoadOrCreate(string platform, string language, string path)
         {
             if (!File.Exists(path))
             {
-                var solutionTemplate = ReadTemplate(platform);
+                var solutionTemplate = ReadTemplate(platform, language);
 
                 File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
             }
@@ -178,7 +40,7 @@ EndProject
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
+        public void AddProjectToSolution(string platform, string appmodel, string language, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             var slnContent = File.ReadAllText(_path);
 
@@ -195,7 +57,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, appmodel, language, projectRelativeToSolutionPath, isCPSProject, hasPlatforms);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -299,49 +161,84 @@ EndProject
                     return isCPSProject ? "9A19103F-16F7-4668-BE54-9A1E7A4F7556" : "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC";
                 case ".vbproj":
                     return isCPSProject ? "778DAE3C-4631-46EA-AA77-85C1314464D9" : "F184B08F-C81C-45F6-A57F-5ABD9991F28F";
+                case ".vcxproj":
+                    return "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942";
+                case ".wapproj":
+                    return "C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5";
             }
 
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
+        private static string GetProjectConfigurationTemplate(string platform, string appmodel, string language, string projectRelativeToSolutionPath, bool isCPSProject, bool hasPlatforms)
         {
             switch (platform)
             {
                 case Platforms.Uwp:
                     if (isCPSProject)
                     {
-                        return UwpProjectConfigurationTemplateForAnyCpu;
+                         return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Uwp\UwpProjectAnyCPUTemplate.txt");
                     }
                     else
                     {
-                        return UwpProjectConfigurationTemplate;
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Uwp\UwpProjectTemplate.txt");
                     }
 
                 case Platforms.Wpf:
-                case Platforms.WinUI:
                     if (projectRelativeToSolutionPath.Contains("wapproj"))
                     {
-                        return MSIXProjectConfigurationTemplate;
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt");
                     }
                     else if (projectRelativeToSolutionPath.Contains(".Core."))
                     {
-                        return WpfCoreProjectConfigurationTemplate;
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Wpf\WpfCoreProjectTemplate.txt");
                     }
                     else if (projectRelativeToSolutionPath.Contains("XamlIsland"))
                     {
-                        return XamIslandProjectConfigurationTemplate;
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Wpf\XamlIslandProjectTemplate.txt");
                     }
                     else
                     {
                         if (hasPlatforms)
                         {
-                            return WpfProjectConfigurationTemplate;
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Wpf\WpfProjectTemplate.txt");
                         }
                         else
                         {
-                            return WpfProjectConfigurationTemplateForAnyCPU;
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\Wpf\WpfProjectAnyCPUTemplate.txt");
                         }
+                    }
+
+                case Platforms.WinUI:
+                    if (projectRelativeToSolutionPath.Contains("wapproj"))
+                    {
+                        if (language == ProgrammingLanguages.Cpp)
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt");
+                        }
+                    }
+                    else if (projectRelativeToSolutionPath.Contains(".Core."))
+                    {
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICoreProjectTemplate.txt");
+                    }
+                    else if (language == ProgrammingLanguages.Cpp)
+                    {
+                        if (appmodel == "Desktop")
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt");
+                        }
+                    }
+                    else
+                    {
+                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUIProjectTemplate.txt");
                     }
 
                 default:
@@ -349,16 +246,23 @@ EndProject
             }
         }
 
-        private static string ReadTemplate(string platform)
+        private static string ReadTemplate(string platform, string language)
         {
             switch (platform)
             {
                 case Platforms.Uwp:
-                    return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
+                    return File.ReadAllText(@"Solution\SolutionTemplates\UwpSolutionTemplate.txt");
                 case Platforms.Wpf:
-                    return File.ReadAllText(@"Solution\WpfSolutionTemplate.txt");
+                    return File.ReadAllText(@"Solution\SolutionTemplates\WpfSolutionTemplate.txt");
                 case Platforms.WinUI:
-                    return File.ReadAllText(@"Solution\WinUISolutionTemplate.txt");
+                    if (language == ProgrammingLanguages.Cpp)
+                    {
+                        return File.ReadAllText(@"Solution\SolutionTemplates\WinUICppSolutionTemplate.txt");
+                    }
+                    else
+                    {
+                        return File.ReadAllText(@"Solution\SolutionTemplates\WinUISolutionTemplate.txt");
+                    }
             }
 
             throw new InvalidDataException(nameof(platform));

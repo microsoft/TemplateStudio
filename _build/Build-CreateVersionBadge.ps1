@@ -40,7 +40,7 @@ if(!$Version){
 Remove-Item $file -Force -ErrorAction SilentlyContinue
 Invoke-WebRequest -Uri "https://img.shields.io/badge/$Identifier-$Version-$Color.$ext" -OutFile $file
 
-$keys = Get-AzureRmStorageAccountKey -StorageAccountName "wtsrepository" -ResourceGroupName "UwpCT"
+$keys = Get-AzureRmStorageAccountKey -StorageAccountName "wtsrepository" -ResourceGroupName "WTS"
 $context = New-AzureStorageContext -StorageAccountName "wtsrepository" -StorageAccountKey $keys[0].value
 
 Write-Host "Uploading badge to wtsrepository badges container..."

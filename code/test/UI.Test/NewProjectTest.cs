@@ -56,7 +56,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var pages = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Page);
@@ -79,20 +80,21 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
-            Assert.Equal(SplitView, userSelection.ProjectType);
-            Assert.Equal(MvvmToolkit, userSelection.FrontEndFramework);
+            Assert.Equal(SplitView, userSelection.Context.ProjectType);
+            Assert.Equal(MvvmToolkit, userSelection.Context.FrontEndFramework);
             Assert.Equal(PageBlank, userSelection.Pages.First().TemplateId);
             await SetProjectTypeAsync(viewModel, Blank);
             await SetFrameworkAsync(viewModel, MVVMLight);
             userSelection = viewModel.UserSelection.GetUserSelection();
             viewModel.UnsubscribeEventHandlers();
 
-            Assert.Equal(Blank, userSelection.ProjectType);
-            Assert.Equal(MVVMLight, userSelection.FrontEndFramework);
+            Assert.Equal(Blank, userSelection.Context.ProjectType);
+            Assert.Equal(MVVMLight, userSelection.Context.FrontEndFramework);
             Assert.Equal(PageBlank, userSelection.Pages.First().TemplateId);
         }
 
@@ -102,7 +104,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
@@ -122,7 +125,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -146,7 +150,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
@@ -166,7 +171,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, ServiceWebApi));
@@ -185,7 +191,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
 
             await viewModel.OnTemplatesAvailableAsync();
 
@@ -203,7 +210,8 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             viewModel.UserSelection.ResetUserSelection();
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
@@ -224,7 +232,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             var chartTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageChart);
@@ -256,7 +265,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
@@ -293,7 +303,8 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
-            viewModel.Initialize(Platforms.Uwp, GenContext.CurrentLanguage);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
+            viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
             await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));

@@ -293,6 +293,10 @@
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Content\WinUI.Cpp.Templates.mstx">
+      <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -484,6 +488,20 @@
     <ProjectReference Include="..\..\CoreTemplateStudio\code\src\Utilities\Utilities.csproj">
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.Desktop.Solution\Cpp.WinUI.Desktop.Solution.csproj">
+      <Project>{a41f9095-f643-4c37-97e2-5d9e5eb6f305}</Project>
+      <Name>Cpp.WinUI.Desktop.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.UWP.Solution\Cpp.WinUI.Uwp.Solution.csproj">
+      <Project>{06e23cc2-ecbd-4d4c-b328-3cd13c3d53af}</Project>
+      <Name>Cpp.WinUI.Uwp.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\CSharp.UWP.Solution\CSharp.UWP.Solution.csproj">
       <Project>{D5E1C23A-7547-412A-82F1-F00C34622C1E}</Project>

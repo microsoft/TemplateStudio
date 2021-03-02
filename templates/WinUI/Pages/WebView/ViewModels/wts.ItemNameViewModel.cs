@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Windows.Web;
+using Microsoft.Web.WebView2.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
 
@@ -70,7 +70,7 @@ namespace Param_RootNamespace.ViewModels
             WebViewService.NavigationCompleted -= OnNavigationCompleted;
         }
 
-        private void OnNavigationCompleted(object sender, WebErrorStatus webErrorStatus)
+        private void OnNavigationCompleted(object sender, CoreWebView2WebErrorStatus webErrorStatus)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(BrowserBackCommand));

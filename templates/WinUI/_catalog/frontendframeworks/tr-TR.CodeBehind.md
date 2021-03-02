@@ -1,0 +1,1 @@
+﻿Code-behind, bir XAML dosyasıyla eşleştirilen kodu tanımlamak için kullanılan bir terimdir.  WinForms içinde geliştirdiyseniz ve bu geliştirme stilinden memnunsanız bu sizin için harika bir seçenek olabilir.
