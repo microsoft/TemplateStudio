@@ -7,14 +7,14 @@
     "name": "wts.WinUI.Page.AddHeaderModeMinimal",
     "shortName": "wts.WinUI.Page.AddHeaderModeMinimal",
     "identity": "wts.WinUI.Page.AddHeaderModeMinimal",
-    "tags": {
-      "language": "C#",
-      "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "WinUIDesktop",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "identity == wts.WinUI.Page.WebView"
-    },
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "WinUI",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$appmodel == Desktop & identity == wts.WinUI.Page.WebView"
+  },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [

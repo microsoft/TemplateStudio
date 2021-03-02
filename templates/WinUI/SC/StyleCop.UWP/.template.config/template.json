@@ -12,6 +12,7 @@
     "language": "C#",
     "type": "item",
     "wts.platform": "WinUI",
+    "wts.appmodel": "UWP",
     "wts.type": "feature",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
