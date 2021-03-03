@@ -25,11 +25,14 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private readonly Dictionary<string, IEnumerable<TemplateType>> availableOptions = new Dictionary<string, IEnumerable<TemplateType>>()
+        private readonly IEnumerable<RightClickAvailability> _availableOptions = new List<RightClickAvailability>()
         {
-            { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
-            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
-            { Platforms.WinUI, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.VisualBasic) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.Wpf, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Uwp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
         };
 
         private readonly GenerationService _generationService = GenerationService.Instance;
@@ -152,15 +155,32 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
+            var appModel = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).AppModel;
+            if (string.IsNullOrEmpty(projectPlatform))
+            {
+                try
+                {
+                    projectPlatform = ProjectConfigInfoService.InferPlatform();
+                }
+                catch (System.Exception)
+                {
+                    return false;
+                }
+            }
 
-            if (projectPlatform != null && availableOptions.ContainsKey(projectPlatform) && availableOptions[projectPlatform].Contains(templateType))
+            if (projectPlatform == Platforms.WinUI && string.IsNullOrEmpty(appModel))
             {
-                return true;
+                appModel = ProjectConfigInfoService.InferAppModel();
             }
-            else
-            {
-                return false;
-            }
+
+            var language = ProjectConfigInfoService.GetProgrammingLanguages();
+
+            var rightClickOptions = _availableOptions.FirstOrDefault(o =>
+                                        o.Platform == projectPlatform &&
+                                        o.Language == language &&
+                                        o.AppModel == appModel);
+
+            return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
         }
 
         public bool Visible()
