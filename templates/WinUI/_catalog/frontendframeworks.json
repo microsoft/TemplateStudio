@@ -8,5 +8,14 @@
     "licenses": "[Microsoft.Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
     "platform": "WinUI",
     "languages": [ "C#" ]
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [ "C++" ]
   }
 ]

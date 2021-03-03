@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Windows Template Studio (WinUI in Desktop; local)</Name>
+    <Description>Windows Template Studio quickly builds a WinUI Desktop app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
+    <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
+    <ProjectType>VC</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>Microsoft.Cpp.WinUI.Desktop.WindowsTemplateStudio.local</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <LanguageTag>cpp</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>WinUI</ProjectTypeTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="$wts.platform$" Value="WinUI"/>
+      <CustomParameter Name="$wts.category$" Value="Windows"/>
+      <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
+      <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal|Microsoft.VisualStudio.Workload.ManagedDesktop|Microsoft.VisualStudio.Workload.NativeDesktop"/>
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCppWinUIDesktop</FullClassName>
+  </WizardExtension>
+</VSTemplate>

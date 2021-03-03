@@ -89,6 +89,7 @@
     <Compile Include="Extensions\SelectableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TemplateTypeExtensions.cs" />
+    <Compile Include="Extensions\UserSelectionContextExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
@@ -177,6 +178,8 @@
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>

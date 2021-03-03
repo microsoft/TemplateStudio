@@ -1,0 +1,14 @@
+﻿[
+    {
+        "name": "Main",
+        "templateGroupIdentity": "wts.WinUI.Page.Blank.Cpp",
+        "readonly": "false",
+        "projecttype": "Blank"
+    },
+    {
+        "name": "MSIX Packaging",
+        "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
+        "readonly": "true",
+        "projecttype": "Blank"
+    }
+]

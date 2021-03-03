@@ -189,6 +189,9 @@ namespace Microsoft.Templates.VsEmulator
                     case ProgrammingLanguages.VisualBasic:
                         File.WriteAllText(Path.Combine(projectPath, ".vbproj"), "Placeholder for VB.Net project file.");
                         break;
+                    case ProgrammingLanguages.Cpp:
+                        File.WriteAllText(Path.Combine(projectPath, ".vcxproj"), "Placeholder for C++ project file.");
+                        break;
                 }
             }
         }

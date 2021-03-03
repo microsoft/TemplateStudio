@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Este proyecto básico en un lienzo en blanco en el que puedes compilar tu aplicación."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Se incluye un menú de hamburguesa para poder navegar entre las páginas."

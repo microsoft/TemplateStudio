@@ -625,7 +625,7 @@ namespace TemplateValidator
 
         private static void VerifyLanguageTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { ProgrammingLanguages.CSharp, ProgrammingLanguages.VisualBasic }.Contains(tag.Value))
+            if (!new[] { ProgrammingLanguages.CSharp, ProgrammingLanguages.VisualBasic, ProgrammingLanguages.Cpp }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the language tag.");
             }

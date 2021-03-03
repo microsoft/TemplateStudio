@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Utilities.Services;
@@ -22,6 +23,7 @@ namespace Microsoft.Templates.Fakes
 
         private string _language;
         private string _platform;
+        private string _appModel;
 
         public string SolutionPath
         {
@@ -39,6 +41,7 @@ namespace Microsoft.Templates.Fakes
         public FakeGenShell(string platform, string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
             _platform = platform;
+            _appModel = string.Empty;
             _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
@@ -53,6 +56,11 @@ namespace Microsoft.Templates.Fakes
         public void SetCurrentPlatform(string platform)
         {
             _platform = platform;
+        }
+
+        public void SetCurrentAppModel(string appModel)
+        {
+            _appModel = appModel;
         }
 
         private void AddItems(string projectPath, IEnumerable<string> filesToAdd)
@@ -98,13 +106,13 @@ namespace Microsoft.Templates.Fakes
             foreach (var project in projectInfo.Projects)
             {
                 var msbuildProj = FakeMsBuildProject.Load(project);
-                var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+                var solutionFile = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
                 var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString();
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
+                solutionFile.AddProjectToSolution(_platform, _appModel, _language, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
 
                 if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
@@ -120,14 +128,34 @@ namespace Microsoft.Templates.Fakes
 
         private void AddNugetsForProject(string projectPath, IEnumerable<NugetReference> nugetReferences)
         {
-            var msbuildProj = FakeMsBuildProject.Load(projectPath);
-
-            foreach (var nugetPackages in nugetReferences)
+            if (nugetReferences.Any())
             {
-                msbuildProj.AddNugetReference(nugetPackages);
-            }
+                if (_language == ProgrammingLanguages.Cpp)
+                {
+                    var packagesConfig = FakePackagesConfig.Load(Path.Combine(Path.GetDirectoryName(projectPath), "packages.config"));
+                    var msbuildProj = FakeMsBuildProject.Load(projectPath);
 
-            msbuildProj.Save();
+                    foreach (var nugetPackages in nugetReferences)
+                    {
+                        packagesConfig.AddNugetReference(nugetPackages);
+                        msbuildProj.AddNugetImport(nugetPackages);
+                    }
+
+                    packagesConfig.Save();
+                    msbuildProj.Save();
+                }
+                else
+                {
+                    var msbuildProj = FakeMsBuildProject.Load(projectPath);
+
+                    foreach (var nugetPackages in nugetReferences)
+                    {
+                        msbuildProj.AddNugetReference(nugetPackages);
+                    }
+
+                    msbuildProj.Save();
+                }
+            }
         }
 
         public override string GetActiveProjectNamespace()
@@ -222,7 +250,7 @@ namespace Microsoft.Templates.Fakes
             var guid = msbuildProj.Guid;
             if (string.IsNullOrEmpty(guid))
             {
-                var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+                var solution = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
                 guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
             }
 
@@ -250,7 +278,7 @@ namespace Microsoft.Templates.Fakes
 
         private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+            var solution = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
             var projectGuids = solution.GetProjectGuids();
 
             var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);

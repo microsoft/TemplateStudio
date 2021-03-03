@@ -1,0 +1,103 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.WinUI.Proj.Default.UWP.Cpp",
+  "shortName": "wts.WinUI.Proj.Default.UWP.Cpp",
+  "identity": "wts.WinUI.Proj.Default.UWP.Cpp",
+  "groupIdentity": "wts.WinUI.Proj.Default.UWP.Cpp",
+  "description": "",
+  "tags": {
+    "language": "C++",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "Blank",
+    "wts.frontendframework": "CodeBehind",
+    "wts.platform": "WinUI",
+    "wts.appmodel": "UWP",
+    "wts.outputToParent": "true",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "0"
+  },
+  "sourceName": "wts.ProjectName",
+  "preferNameDirectory": true,
+  "guids": [
+    "d889ee01-aa4e-4969-a377-75b9deffd415", "d1297c64-cb1b-41c5-b4a3-eb974fad7518"
+  ],
+  "PrimaryOutputs": [
+    { "path": "wts.ProjectName/wts.ProjectName.vcxproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.userName": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType": {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFrontEndFramework": {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "wts.generationPlatform": {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
+    "wts.generation.appmodel":
+    {
+      "type": "parameter",
+      "replaces": "Param_AppModel"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.Windows.CppWinRT",
+        "version": "2.0.200921.6",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vcxproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.WinUI",
+        "version": "3.0.0-preview4.210210.4",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vcxproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}
