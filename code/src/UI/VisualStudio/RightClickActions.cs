@@ -154,31 +154,13 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return false;
             }
 
-            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
-            var appModel = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).AppModel;
-            if (string.IsNullOrEmpty(projectPlatform))
-            {
-                try
-                {
-                    projectPlatform = ProjectConfigInfoService.InferPlatform();
-                }
-                catch (System.Exception)
-                {
-                    return false;
-                }
-            }
-
-            if (projectPlatform == Platforms.WinUI && string.IsNullOrEmpty(appModel))
-            {
-                appModel = ProjectConfigInfoService.InferAppModel();
-            }
-
-            var language = ProjectConfigInfoService.GetProgrammingLanguages();
+            var projectConfigInfoService = new ProjectConfigInfoService(_shell);
+            var configInfo = projectConfigInfoService.ReadProjectConfiguration();
 
             var rightClickOptions = _availableOptions.FirstOrDefault(o =>
-                                        o.Platform == projectPlatform &&
-                                        o.Language == language &&
-                                        o.AppModel == appModel);
+                                        o.Platform == configInfo.Platform &&
+                                        o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
+                                        o.AppModel == configInfo.AppModel);
 
             return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
         }

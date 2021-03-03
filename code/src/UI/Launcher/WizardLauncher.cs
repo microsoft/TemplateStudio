@@ -214,7 +214,8 @@ namespace Microsoft.Templates.UI.Launcher
 
         private UserSelectionContext GetProjectConfigInfo(string language)
         {
-            var configInfo = ProjectConfigInfoService.ReadProjectConfiguration();
+            var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+            var configInfo = projectConfigInfoService.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel(language);

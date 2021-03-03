@@ -30,9 +30,16 @@ namespace Microsoft.Templates.UI.Services
         private const string MenuBar = "MenuBar";
         private const string Ribbon = "Ribbon";
 
-        public static ProjectMetadata ReadProjectConfiguration()
+        private GenShell _shell;
+
+        public ProjectConfigInfoService(GenShell shell)
         {
-            var projectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+            _shell = shell;
+        }
+
+        public ProjectMetadata ReadProjectConfiguration()
+        {
+            var projectPath = _shell.GetActiveProjectPath();
             var projectMetadata = ProjectMetadataService.GetProjectMetadata(projectPath);
 
             if (IsValid(projectMetadata))
@@ -50,14 +57,14 @@ namespace Microsoft.Templates.UI.Services
             return inferredConfig;
         }
 
-        private static bool IsValid(ProjectMetadata data)
+        private bool IsValid(ProjectMetadata data)
         {
             return !string.IsNullOrEmpty(data.ProjectType) &&
                    !string.IsNullOrEmpty(data.Framework) &&
                    !string.IsNullOrEmpty(data.Platform);
         }
 
-        private static ProjectMetadata InferProjectConfiguration(ProjectMetadata data)
+        private ProjectMetadata InferProjectConfiguration(ProjectMetadata data)
         {
             if (string.IsNullOrEmpty(data.Platform))
             {
@@ -82,7 +89,7 @@ namespace Microsoft.Templates.UI.Services
             return data;
         }
 
-        public static string InferAppModel()
+        public string InferAppModel()
         {
             if (IsCSharpProject())
             {
@@ -92,7 +99,7 @@ namespace Microsoft.Templates.UI.Services
             return AppContainerApplication("AppContainerApplication", "false") ? AppModels.Desktop : AppModels.Uwp;
         }
 
-        public static string InferPlatform()
+        public string InferPlatform()
         {
             if (IsUwp())
             {
@@ -110,9 +117,9 @@ namespace Microsoft.Templates.UI.Services
             throw new Exception(StringRes.ErrorUnableResolvePlatform);
         }
 
-        private static bool IsUwp()
+        private bool IsUwp()
         {
-            var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
+            var projectTypeGuids = _shell.GetActiveProjectTypeGuids();
 
             if (projectTypeGuids != null && projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
             {
@@ -122,12 +129,12 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsWpf()
+        private bool IsWpf()
         {
             return ContainsSDK("Microsoft.NET.Sdk.WindowsDesktop");
         }
 
-        private static bool IsWinUI()
+        private bool IsWinUI()
         {
             if (IsCSharpProject())
             {
@@ -137,7 +144,7 @@ namespace Microsoft.Templates.UI.Services
             return ContainsNugetPackageCpp("Microsoft.WinUI");
         }
 
-        private static string InferProjectType(string platform)
+        private string InferProjectType(string platform)
         {
             if (IsTabbedNav(platform))
             {
@@ -163,7 +170,7 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
-        private static string InferFramework(string platform)
+        private string InferFramework(string platform)
         {
             if (IsMVVMBasic(platform))
             {
@@ -193,7 +200,7 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
-        private static bool IsBlank(string platform)
+        private bool IsBlank(string platform)
         {
             switch (platform)
             {
@@ -212,7 +219,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsSplitView(string platform)
+        private bool IsSplitView(string platform)
         {
             switch (platform)
             {
@@ -237,7 +244,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsMenuBar(string platform)
+        private bool IsMenuBar(string platform)
         {
             switch (platform)
             {
@@ -254,7 +261,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsTabbedNav(string platform)
+        private bool IsTabbedNav(string platform)
         {
             if (platform == Platforms.Uwp)
             {
@@ -266,7 +273,7 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsRibbon(string platform)
+        private bool IsRibbon(string platform)
         {
             if (platform == Platforms.Wpf)
             {
@@ -277,7 +284,7 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsMVVMBasic(string platform)
+        private bool IsMVVMBasic(string platform)
         {
             switch (platform)
             {
@@ -299,7 +306,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsMVVMLight(string platform)
+        private bool IsMVVMLight(string platform)
         {
             switch (platform)
             {
@@ -316,7 +323,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsCodeBehind(string platform)
+        private bool IsCodeBehind(string platform)
         {
             switch (platform)
             {
@@ -325,7 +332,7 @@ namespace Microsoft.Templates.UI.Services
                     {
                         if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
                         {
-                            var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                            var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                             if (!string.IsNullOrEmpty(codebehindFile))
                             {
                                 var fileContent = File.ReadAllText(codebehindFile);
@@ -337,7 +344,7 @@ namespace Microsoft.Templates.UI.Services
 
                     if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
                     {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
                         {
                             var fileContent = File.ReadAllText(codebehindFile);
@@ -350,7 +357,7 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Wpf:
                     if (ExistsFileInProjectPath("Services", "ApplicationHostService.cs"))
                     {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
                         {
                             var fileContent = File.ReadAllText(codebehindFile);
@@ -367,12 +374,12 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool IsPrism()
+        private bool IsPrism()
         {
             return ContainsNugetPackage("Prism.Unity");
         }
 
-        private static bool IsCaliburnMicro(string platform)
+        private bool IsCaliburnMicro(string platform)
         {
             if (platform == Platforms.Uwp)
             {
@@ -384,27 +391,27 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool IsMicrosoftMvvmToolkit()
+        private bool IsMicrosoftMvvmToolkit()
         {
             return ContainsNugetPackage("Microsoft.Toolkit.Mvvm");
         }
 
-        private static bool IsCSharpProject()
+        private bool IsCSharpProject()
         {
-            return Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.csproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.csproj", SearchOption.TopDirectoryOnly).Any();
         }
 
-        private static bool IsVisualBasicProject()
+        private bool IsVisualBasicProject()
         {
-            return Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.vbproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.vbproj", SearchOption.TopDirectoryOnly).Any();
         }
 
-        private static bool IsCppProject()
+        private bool IsCppProject()
         {
-            return Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.vcxproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.vcxproj", SearchOption.TopDirectoryOnly).Any();
         }
 
-        public static string GetProgrammingLanguages()
+        public string GetProgrammingLanguage()
         {
             if (IsCSharpProject())
             {
@@ -422,11 +429,11 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
-        private static bool ExistsFileInProjectPath(string subPath, string fileName)
+        private bool ExistsFileInProjectPath(string subPath, string fileName)
         {
             try
             {
-                return Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+                return Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
             }
             catch (DirectoryNotFoundException)
             {
@@ -438,11 +445,11 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool FileContainsLine(string subPath, string fileName, string lineToFind)
+        private bool FileContainsLine(string subPath, string fileName, string lineToFind)
         {
             try
             {
-                var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), subPath, fileName);
+                var filePath = Path.Combine(_shell.GetActiveProjectPath(), subPath, fileName);
                 var fileContent = FileHelper.GetFileContent(filePath);
                 return fileContent != null && fileContent.Contains(lineToFind);
             }
@@ -456,12 +463,12 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private static bool ContainsNugetPackage(string packageId)
+        private bool ContainsNugetPackage(string packageId)
         {
-            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<PackageReference Include=\"{packageId.ToLowerInvariant()}"))
+                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<packagereference include=\"{packageId.ToLowerInvariant()}"))
                 {
                     return true;
                 }
@@ -470,9 +477,9 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool ContainsNugetPackageCpp(string packageId)
+        private bool ContainsNugetPackageCpp(string packageId)
         {
-            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
                 if (File.ReadAllText(file).ToLowerInvariant().Contains($"<package id=\"{packageId.ToLowerInvariant()}"))
@@ -484,9 +491,9 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool ContainsSDK(string sdkId)
+        private bool ContainsSDK(string sdkId)
         {
-            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
                 if (File.ReadAllText(file).Contains($"Sdk=\"{sdkId}\""))
@@ -498,9 +505,9 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private static bool AppContainerApplication(string property, string value)
+        private bool AppContainerApplication(string property, string value)
         {
-            var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
                 if (File.ReadAllText(file).Contains($"<{property}>{value}</{property}>"))
