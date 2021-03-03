@@ -869,6 +869,11 @@ namespace Microsoft.Templates.Test
                 {
                     appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
 
+                    // Have found the need to wait longer between installing an app and trying to launch it
+                    // This is far from ideal but enough to unblock running tests.
+                    // The delay is quiet long but small in terms of overall test execution time.
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+
                     using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
                     {
                         appSession.Manage().Window.Maximize();
