@@ -812,6 +812,9 @@ namespace Microsoft.Templates.Test
             int pagesOpenedSuccessfully = 0;
             string[] pageIdentities = new string[0];
 
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
             // InvalidOperationException occurs when WinAppDriver can't launch the app. Retrying normally solves
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
             await ExceptionHelper.RetryOnAsync<InvalidOperationException>(async () =>
@@ -865,6 +868,11 @@ namespace Microsoft.Templates.Test
                 try
                 {
                     appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
+
+                    // Have found the need to wait longer between installing an app and trying to launch it
+                    // This is far from ideal but enough to unblock running tests.
+                    // The delay is quiet long but small in terms of overall test execution time.
+                    await Task.Delay(TimeSpan.FromSeconds(5));
 
                     using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
                     {
