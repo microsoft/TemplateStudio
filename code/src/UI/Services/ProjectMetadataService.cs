@@ -68,12 +68,12 @@ namespace Microsoft.Templates.Core.Services
         {
             try
             {
+                var projectFiles = Directory.GetParent(projectPath).GetFiles("*.*", SearchOption.AllDirectories);
                 var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
-                var metadataFiles = metadataFileNames.Where(fileName => File.Exists(Path.Combine(projectPath, fileName)));
-                foreach (var metadataFile in metadataFiles)
+                var metadataFiles = projectFiles.Where(f => metadataFileNames.Any(mf => mf == f.Name));
+                foreach (var file in metadataFiles)
                 {
-                    var metadataFilePath = Path.Combine(projectPath, metadataFile);
-                    var manifest = XElement.Load(metadataFilePath);
+                    var manifest = XElement.Load(file.FullName);
                     var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == NS);
                     if (metadata == null)
                     {
@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Core.Services
                         .TryAddMetadaElement(PlatformLiteral, data.Platform)
                         .TryAddMetadaElement(AppModelLiteral, data.AppModel);
 
-                    manifest.Save(metadataFilePath);
+                    manifest.Save(file.FullName);
                 }
             }
             catch (Exception ex)
