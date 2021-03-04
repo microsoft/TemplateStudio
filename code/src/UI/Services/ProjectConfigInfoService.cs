@@ -496,7 +496,7 @@ namespace Microsoft.Templates.UI.Services
             var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
-                if (File.ReadAllText(file).Contains($"Sdk=\"{sdkId}\""))
+                if (File.ReadAllText(file).ToLowerInvariant().Contains($"sdk=\"{sdkId.ToLowerInvariant()}\""))
                 {
                     return true;
                 }
