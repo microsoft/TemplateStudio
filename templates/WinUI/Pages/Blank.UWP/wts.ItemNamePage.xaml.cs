@@ -25,7 +25,7 @@ namespace Param_RootNamespace
     {
         public wts.ItemNamePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)
