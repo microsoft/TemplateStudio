@@ -3,6 +3,6 @@
         "name": "Main",
         "templateGroupIdentity": "wts.WinUI.Page.Blank",
         "readonly": "false",
-        "projecttype": "SplitView"
+        "projecttype": "Blank"
     }
 ]

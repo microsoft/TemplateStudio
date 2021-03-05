@@ -13,8 +13,8 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.projecttype": "SplitView",
-    "wts.frontendframework": "MVVMToolkit",
+    "wts.projecttype": "Blank",
+    "wts.frontendframework": "CodeBehind",
     "wts.platform": "WinUI",
     "wts.appmodel": "UWP",
     "wts.outputToParent": "true",
@@ -25,8 +25,7 @@
   "preferNameDirectory": true,
   "guids": ["ED5D4E06-808F-431D-955C-B95921B807E5", "e4d475b5-e3a7-4ae1-9b0f-64f83419a657"],
   "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+    { "path": "wts.ProjectName/wts.ProjectName.csproj" }
   ],
   "symbols": {
     "wts.projectName":
@@ -38,6 +37,10 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
     },
     "wts.userName":
     {
@@ -97,19 +100,8 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.WinUI",
-        "version": "3.0.0-preview3.201113.0",
+        "version": "3.0.0-preview4.210210.4",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
-      },
-      "continueOnError": true
-    },
-    {
-      "description": "Add reference to core project",
-      "manualInstructions": [ ],
-      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
-      "args": {
-        "fileIndex": "0",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
-        "specifiedPathIsTarget": "true"
       },
       "continueOnError": true
     }
