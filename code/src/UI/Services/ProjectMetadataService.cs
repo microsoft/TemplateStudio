@@ -68,10 +68,12 @@ namespace Microsoft.Templates.Core.Services
         {
             try
             {
-                var path = Path.Combine(projectPath, "Package.appxmanifest");
-                if (File.Exists(path))
+                var projectFiles = Directory.GetParent(projectPath).GetFiles("*.*", SearchOption.AllDirectories);
+                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                var metadataFiles = projectFiles.Where(f => metadataFileNames.Any(mf => mf == f.Name));
+                foreach (var file in metadataFiles)
                 {
-                    var manifest = XElement.Load(path);
+                    var manifest = XElement.Load(file.FullName);
                     var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == NS);
                     if (metadata == null)
                     {
@@ -86,12 +88,12 @@ namespace Microsoft.Templates.Core.Services
                         .TryAddMetadaElement(PlatformLiteral, data.Platform)
                         .TryAddMetadaElement(AppModelLiteral, data.AppModel);
 
-                    manifest.Save(path);
+                    manifest.Save(file.FullName);
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to metadata file", ex).FireAndForget();
                 throw;
             }
         }

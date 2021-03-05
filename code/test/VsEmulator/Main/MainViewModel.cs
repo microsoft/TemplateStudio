@@ -481,7 +481,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
                 newProject.SetBasicInfo(projectName, destinationPath);
-                var config = ProjectConfigInfoService.ReadProjectConfiguration();
+                var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+                var config = projectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
 

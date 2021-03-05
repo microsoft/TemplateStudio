@@ -197,7 +197,8 @@ namespace Microsoft.Templates.Test
 
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
-            var info = ProjectConfigInfoService.ReadProjectConfiguration();
+            var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+            var info = projectConfigInfoService.ReadProjectConfiguration();
 
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
