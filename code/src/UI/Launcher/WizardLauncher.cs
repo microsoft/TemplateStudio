@@ -35,11 +35,11 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(UserSelectionContext context, string requiredWorkloads, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(UserSelectionContext context, string requiredVSVersion, string requiredWorkloads, BaseStyleValuesProvider provider)
         {
             _styleProvider = provider;
 
-            CheckVSVersion(context.Platform);
+            CheckVSVersion(context.Platform, requiredVSVersion);
             CheckForMissingWorkloads(context.Platform, requiredWorkloads);
             CheckForInvalidProjectName();
 
@@ -130,17 +130,18 @@ namespace Microsoft.Templates.UI.Launcher
                 .FireAndForget();
         }
 
-        private void CheckVSVersion(string platform)
+        private void CheckVSVersion(string platform, string requiredVersion)
         {
             var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
+            if (!string.IsNullOrEmpty(requiredVersion) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
             {
                 // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
-                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
-                if (platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
+                var actualVSVersion = Version.Parse(vsInfo.VisualStudioExeVersion);
+                var requiredVSVersion = Version.Parse(requiredVersion);
+                if (actualVSVersion.CompareTo(requiredVSVersion) < 0)
                 {
                     var title = UIStringRes.InfoDialogInvalidVersionTitle;
-                    var message = UIStringRes.InfoDialogInvalidVSVersionForWPF;
+                    var message = string.Format(UIStringRes.InfoDialogInvalidVSVersion, platform, requiredVersion);
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);

@@ -224,10 +224,6 @@
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Wymagana nowsza wersja</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>Aby można było utworzyć projekt WPF na platformie .NET Core, należy zainstalować oprogramowanie Visual Studio 2019 z aktualizacją Update 3 lub nowsze.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>Brak pakietu roboczego</value>
   </data>
@@ -917,5 +913,9 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
     <value>Select AppModel</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

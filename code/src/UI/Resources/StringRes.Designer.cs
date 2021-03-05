@@ -631,11 +631,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
+        ///   Looks up a localized string similar to {0} project creation requires Visual Studio 2019 Version {1} or higher..
         /// </summary>
-        public static string InfoDialogInvalidVSVersionForWPF {
+        public static string InfoDialogInvalidVSVersion {
             get {
-                return ResourceManager.GetString("InfoDialogInvalidVSVersionForWPF", resourceCulture);
+                return ResourceManager.GetString("InfoDialogInvalidVSVersion", resourceCulture);
             }
         }
         
