@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.Services
         private const string MenuBar = "MenuBar";
         private const string Ribbon = "Ribbon";
 
-        private GenShell _shell;
+        private readonly GenShell _shell;
 
         public ProjectConfigInfoService(GenShell shell)
         {
@@ -136,12 +136,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsWinUI()
         {
-            if (IsCSharpProject())
-            {
-                return ContainsNugetPackage("Microsoft.WinUI");
-            }
-
-            return ContainsNugetPackageCpp("Microsoft.WinUI");
+            return ContainsNugetPackage("Microsoft.WinUI");
         }
 
         private string InferProjectType(string platform)
@@ -465,8 +460,8 @@ namespace Microsoft.Templates.UI.Services
 
         private bool ContainsNugetPackage(string packageId)
         {
-            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
-            foreach (string file in files)
+            var projfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            foreach (string file in projfiles)
             {
                 if (File.ReadAllText(file).ToLowerInvariant().Contains($"<packagereference include=\"{packageId.ToLowerInvariant()}"))
                 {
@@ -474,13 +469,8 @@ namespace Microsoft.Templates.UI.Services
                 }
             }
 
-            return false;
-        }
-
-        private bool ContainsNugetPackageCpp(string packageId)
-        {
-            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
-            foreach (string file in files)
+            var configfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
+            foreach (string file in configfiles)
             {
                 if (File.ReadAllText(file).ToLowerInvariant().Contains($"<package id=\"{packageId.ToLowerInvariant()}"))
                 {
