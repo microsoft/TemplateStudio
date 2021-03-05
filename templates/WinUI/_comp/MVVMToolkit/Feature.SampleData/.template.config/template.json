@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.SampleData"
+    "wts.compositionFilter": "$appmodel == Desktop & $frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.SampleData"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
