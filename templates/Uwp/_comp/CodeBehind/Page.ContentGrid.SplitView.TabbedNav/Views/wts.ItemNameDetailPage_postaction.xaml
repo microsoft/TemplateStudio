@@ -7,7 +7,8 @@
         <VisualStateManager.VisualStateGroups>
         </VisualStateManager.VisualStateGroups>
         <ScrollViewer
-            x:Name="contentScroll">
+            x:Name="contentScroll"
+            IsTabStop="True">
             <StackPanel
 <!--{[{-->
                 Margin="{StaticResource MediumLeftRightMargin}"
