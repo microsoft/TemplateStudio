@@ -59,7 +59,7 @@ namespace Param_RootNamespace.Services
             }
         }
 
-        public void GoBack()
+        public bool GoBack()
         {
             if (CanGoBack)
             {
@@ -68,8 +68,11 @@ namespace Param_RootNamespace.Services
                 if (vmBeforeNavigation is INavigationAware navigationAware)
                 {
                     navigationAware.OnNavigatedFrom();
+                    return true;
                 }
             }
+
+            return false;
         }
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
