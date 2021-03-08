@@ -15,19 +15,19 @@ using Xunit;
 namespace Microsoft.Templates.Test.Build.WinUI
 {
     [Collection("BuildTemplateTestCollection")]
-    public class BuildMVVMToolkitProjectTests : BaseGenAndBuildTests
+    public class BuildCodeBehindProjectTests : BaseGenAndBuildTests
     {
-        public BuildMVVMToolkitProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, Frameworks.MVVMToolkit)
+        public BuildCodeBehindProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, Frameworks.CodeBehind)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task Build_EmptyProject_MVVMToolkitAsync(string projectType, string framework, string platform, string language, string appModel)
+        public async Task Build_EmptyProject_CodeBehindAsync(string projectType, string framework, string platform, string language, string appModel)
         {
             var context = new UserSelectionContext(language, platform)
             {
@@ -44,8 +44,8 @@ namespace Microsoft.Templates.Test.Build.WinUI
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
@@ -73,9 +73,9 @@ namespace Microsoft.Templates.Test.Build.WinUI
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "MinimumWinUI")]
-        [Trait("ExecutionSet", "MinimumMVVMToolkitWinUI")]
+        [Trait("ExecutionSet", "MinimumCodeBehindWinUI")]
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 && t.GetPlatform() == platform
                 && t.GetPropertyBagValuesList("appmodel").Contains(appModel)
                 && !t.GetIsHidden()
-                || t.Identity == "wts.WinUI.Feat.StyleCop";
+                || t.Identity == "wts.WinUI.UWP.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
@@ -105,8 +105,8 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildMCodeBehindWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
@@ -126,11 +126,11 @@ namespace Microsoft.Templates.Test.Build.WinUI
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
-        [Trait("ExecutionSet", "BuildOneByOneMVVMToolkitWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
+        [Trait("ExecutionSet", "BuildOneByOneCodeBehindWinUI")]
         [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneMVVMToolkitWinUI")]
-        public async Task Build_MVVMToolkit_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, string appModel)
+        [Trait("Type", "BuildOneByOneCodeBehindWinUI")]
+        public async Task Build_CodeBehind_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, string appModel)
         {
             var context = new UserSelectionContext(language, platform)
             {
