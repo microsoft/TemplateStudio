@@ -306,6 +306,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
                     && t.GetPlatform() == context.Platform
+                    && t.GetPropertyBagValuesList("appmodel").Contains(context.GetAppModel())
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
@@ -329,6 +330,7 @@ namespace Microsoft.Templates.Test
                 && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == context.Platform
+                && t.GetPropertyBagValuesList("appmodel").Contains(context.GetAppModel())
                 && !t.GetIsHidden()
                 && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                 && t.GetRightClickEnabled());
