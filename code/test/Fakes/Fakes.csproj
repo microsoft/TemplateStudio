@@ -103,7 +103,10 @@
     <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUIProjectTemplate.txt">
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUIUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\ProjectConfigurationTemplates\WinUI\WinUIDesktopProjectTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt">
@@ -130,7 +133,10 @@
     <Content Include="Solution\SolutionTemplates\WinUICppSolutionTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Solution\SolutionTemplates\WinUISolutionTemplate.txt">
+    <Content Include="Solution\SolutionTemplates\WinUIUwpSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Solution\SolutionTemplates\WpfSolutionTemplate.txt">
