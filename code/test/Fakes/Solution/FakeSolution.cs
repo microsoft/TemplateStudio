@@ -28,11 +28,11 @@ EndProject
             _path = path;
         }
 
-        public static FakeSolution LoadOrCreate(string platform, string language, string path)
+        public static FakeSolution LoadOrCreate(string platform, string appmodel, string language, string path)
         {
             if (!File.Exists(path))
             {
-                var solutionTemplate = ReadTemplate(platform, language);
+                var solutionTemplate = ReadTemplate(platform, appmodel, language);
 
                 File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
             }
@@ -238,7 +238,14 @@ EndProject
                     }
                     else
                     {
-                        return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUIProjectTemplate.txt");
+                        if (appmodel == "Desktop")
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUIDesktopProjectTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\ProjectConfigurationTemplates\WinUI\WinUIUwpProjectTemplate.txt");
+                        }
                     }
 
                 default:
@@ -246,7 +253,7 @@ EndProject
             }
         }
 
-        private static string ReadTemplate(string platform, string language)
+        private static string ReadTemplate(string platform, string appmodel, string language)
         {
             switch (platform)
             {
@@ -261,7 +268,14 @@ EndProject
                     }
                     else
                     {
-                        return File.ReadAllText(@"Solution\SolutionTemplates\WinUISolutionTemplate.txt");
+                        if (appmodel == "Desktop")
+                        {
+                            return File.ReadAllText(@"Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt");
+                        }
+                        else
+                        {
+                            return File.ReadAllText(@"Solution\SolutionTemplates\WinUIUwpSolutionTemplate.txt");
+                        }
                     }
             }
 

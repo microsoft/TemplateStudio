@@ -6,7 +6,7 @@
       "author": "Microsoft",
       "order": "1",
       "platform": "WinUI",
-      "languages": [ "C++" ]
+      "languages": [ "C#", "C++" ]
     },
     {
       "name": "SplitView",

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Core.Contracts.Services;
