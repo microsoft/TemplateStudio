@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Microsoft.ApplicationModel.Resources;
+﻿using Microsoft.ApplicationModel.Resources;
 
 namespace Param_RootNamespace.Helpers
 {
