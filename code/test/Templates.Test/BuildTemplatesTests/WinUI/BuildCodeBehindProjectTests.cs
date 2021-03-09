@@ -40,7 +40,6 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             // Don't delete after build test as used in inference test, which will then delete.
             AssertBuildProject(projectPath, projectName, platform);
-
         }
 
         [Theory]
@@ -79,7 +78,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
-        public async Task BuildAndTest_All_CheckWithStyleCop_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
+        public async Task Build_All_CheckWithStyleCop_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
