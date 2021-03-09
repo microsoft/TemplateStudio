@@ -15,7 +15,6 @@ using Microsoft.UI.Xaml.Navigation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace Param_RootNamespace
 {
     /// <summary>
@@ -28,7 +27,7 @@ namespace Param_RootNamespace
             InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void MyButton_Click(object sender, RoutedEventArgs e)
         {
             myButton.Content = "Clicked";
         }
