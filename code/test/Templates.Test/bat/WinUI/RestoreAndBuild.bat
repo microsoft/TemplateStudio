@@ -1,5 +1,14 @@
 REM #Setup MsBuild context by brute force, restore packages and build the solution
 
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community" (
+	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\VsMSBuildCmd.bat"
+)
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional" (
+	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsMSBuildCmd.bat"
+)
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise" (
+	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
+)
 IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview" (
 	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\Common7\Tools\VsMSBuildCmd.bat"
 )
