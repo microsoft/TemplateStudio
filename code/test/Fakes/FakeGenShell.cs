@@ -250,7 +250,7 @@ namespace Microsoft.Templates.Fakes
             var guid = msbuildProj.Guid;
             if (string.IsNullOrEmpty(guid))
             {
-                var solution = FakeSolution.LoadOrCreate(_platform, _appModel,_language, SolutionPath);
+                var solution = FakeSolution.LoadOrCreate(_platform, _appModel, _language, SolutionPath);
                 guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
             }
 
