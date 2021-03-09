@@ -41,7 +41,7 @@ namespace Param_RootNamespace.Views
 
         public void OnNavigatedTo(object parameter)
         {
-            VersionDescription = $"Param_ProjectName - {_applicationInfoService.GetVersion()}";
+            VersionDescription = $"{Properties.Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
             Theme = _themeSelectorService.GetCurrentTheme();
             _isInitialized = true;
         }
