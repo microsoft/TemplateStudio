@@ -224,10 +224,6 @@
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Daha yüksek bir sürüm gerekli</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>.NET Core proje oluşturma özellikli WPF için Visual Studio 2019 Güncelleştirme 3 veya sonrası gerekiyor.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>İş yükü eksik</value>
   </data>
@@ -917,5 +913,9 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
     <value>Select AppModel</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

@@ -23,6 +23,7 @@
       <CustomParameter Name="$wts.platform$" Value="WinUI"/>
       <CustomParameter Name="$wts.category$" Value="Windows"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
+      <CustomParameter Name="$wts.requiredversion$" Value="16.8"/>
       <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal|Microsoft.VisualStudio.Workload.ManagedDesktop"/>
     </CustomParameters>
   </TemplateContent>

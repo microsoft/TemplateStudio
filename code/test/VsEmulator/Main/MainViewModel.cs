@@ -227,7 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         context.AddAppModel(appmodel);
                     }
                     
-                    var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
+                    var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
                         case Platforms.Uwp:
@@ -362,7 +362,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 var context = new UserSelectionContext(language, platform);
 
-                var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {

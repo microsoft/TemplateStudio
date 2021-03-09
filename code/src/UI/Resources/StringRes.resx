@@ -864,9 +864,9 @@ Please verify the following list of packages needed by your project's code and m
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Higher version required</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>Missing workload</value>
