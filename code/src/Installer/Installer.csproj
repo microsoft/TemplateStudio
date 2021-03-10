@@ -510,9 +510,16 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectTemplates\CSharp.WinUI.Solution\CSharp.WinUI.Solution.csproj">
-      <Project>{b8a19caa-1d90-49b0-925f-37c302ca4fcd}</Project>
-      <Name>CSharp.WinUI.Solution</Name>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.WinUI.Desktop.Solution\CSharp.WinUI.Desktop.Solution.csproj">
+      <Project>{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}</Project>
+      <Name>CSharp.WinUI.Desktop.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.WinUI.Uwp.Solution\CSharp.WinUI.Uwp.Solution.csproj">
+      <Project>{3A4D5955-D215-4641-BB03-231513396041}</Project>
+      <Name>CSharp.WinUI.Uwp.Solution</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
