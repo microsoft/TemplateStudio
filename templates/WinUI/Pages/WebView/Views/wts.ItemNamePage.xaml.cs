@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.UI.Xaml.Automation;
+﻿using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.ViewModels;

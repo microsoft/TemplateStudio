@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Fakes
             foreach (var project in projectInfo.Projects)
             {
                 var msbuildProj = FakeMsBuildProject.Load(project);
-                var solutionFile = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
+                var solutionFile = FakeSolution.LoadOrCreate(_platform, _appModel, _language, SolutionPath);
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
@@ -250,7 +250,7 @@ namespace Microsoft.Templates.Fakes
             var guid = msbuildProj.Guid;
             if (string.IsNullOrEmpty(guid))
             {
-                var solution = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
+                var solution = FakeSolution.LoadOrCreate(_platform, _appModel, _language, SolutionPath);
                 guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
             }
 
@@ -278,7 +278,7 @@ namespace Microsoft.Templates.Fakes
 
         private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            var solution = FakeSolution.LoadOrCreate(_platform, _language, SolutionPath);
+            var solution = FakeSolution.LoadOrCreate(_platform, _appModel, _language, SolutionPath);
             var projectGuids = solution.GetProjectGuids();
 
             var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);

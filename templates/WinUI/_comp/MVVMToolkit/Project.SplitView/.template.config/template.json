@@ -14,7 +14,7 @@
       "wts.platform": "WinUI",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$projectType == SplitView & $frontendframework == MVVMToolkit & wts.type == project"
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

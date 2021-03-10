@@ -14,7 +14,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
-    "wts.appmodel": "all",
+    "wts.appmodel": "Desktop",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "UserInteraction",

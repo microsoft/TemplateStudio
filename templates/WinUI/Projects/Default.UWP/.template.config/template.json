@@ -1,0 +1,114 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.WinUI.Proj.Default.UWP",
+  "shortName": "wts.WinUI.Proj.Default.UWP",
+  "identity": "wts.WinUI.Proj.Default.UWP",
+  "groupIdentity": "wts.WinUI.Proj.Default.UWP",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "Blank",
+    "wts.frontendframework": "CodeBehind",
+    "wts.platform": "WinUI",
+    "wts.appmodel": "UWP",
+    "wts.outputToParent": "true",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "0"
+  },
+  "sourceName": "wts.ProjectName",
+  "preferNameDirectory": true,
+  "guids": ["ED5D4E06-808F-431D-955C-B95921B807E5", "e4d475b5-e3a7-4ae1-9b0f-64f83419a657"],
+  "PrimaryOutputs": [
+    { "path": "wts.ProjectName/wts.ProjectName.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
+    },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFrontEndFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
+    "wts.generation.appmodel":
+    {
+      "type": "parameter",
+      "replaces": "Param_AppModel"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  },
+  "postActions": [
+    {
+      "description": "Generate Test Certificate",
+      "manualInstructions": [ ],
+      "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+      "args": {
+        "files" : "0"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.WinUI",
+        "version": "3.0.0-preview4.210210.4",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}
