@@ -61,7 +61,6 @@
     <PRIResource Include="Strings\en-us\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-	  <None Include="Param_ProjectName (Package)_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Param_ProjectName\Param_ProjectName.csproj">
