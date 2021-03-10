@@ -299,6 +299,7 @@ namespace Microsoft.Templates.Test
             };
 
             var userSelection = _fixture.SetupProject(context);
+            var appModel = context.GetAppModel();
 
             if (!emptyProject)
             {
@@ -307,7 +308,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
                     && t.GetPlatform() == context.Platform
-                    && t.GetPropertyBagValuesList("appmodel").Contains(context.GetAppModel())
+                    && (string.IsNullOrEmpty(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(All))
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
@@ -331,7 +332,7 @@ namespace Microsoft.Templates.Test
                 && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == context.Platform
-                && t.GetPropertyBagValuesList("appmodel").Contains(context.GetAppModel())
+                && (string.IsNullOrEmpty(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(All))
                 && !t.GetIsHidden()
                 && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                 && t.GetRightClickEnabled());
