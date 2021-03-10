@@ -20,7 +20,7 @@ Param(
 
   [Parameter(Mandatory=$True,Position=7)]
   [string]$csharpwinuidesktoptemplateId,
-  
+
   [Parameter(Mandatory=$True,Position=8)]
   [string]$csharpwinuiuwptemplateId,
 
