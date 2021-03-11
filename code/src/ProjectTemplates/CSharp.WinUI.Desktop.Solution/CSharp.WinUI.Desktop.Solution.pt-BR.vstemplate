@@ -8,7 +8,7 @@
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <SortOrder>10</SortOrder>
-    <TemplateID>Microsoft.CSharp.WinUI.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.CSharp.WinUI.Desktop.WindowsTemplateStudio.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
@@ -29,6 +29,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCSWinUI</FullClassName>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCSWinUIDesktop</FullClassName>
   </WizardExtension>
 </VSTemplate>

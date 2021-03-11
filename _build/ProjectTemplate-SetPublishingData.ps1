@@ -19,18 +19,21 @@ Param(
   [string]$csharpwpftemplateId,
 
   [Parameter(Mandatory=$True,Position=7)]
-  [string]$csharpwinuitemplateId,
+  [string]$csharpwinuidesktoptemplateId,
 
   [Parameter(Mandatory=$True,Position=8)]
-  [string]$cppwinuidesktoptemplateId,
+  [string]$csharpwinuiuwptemplateId,
 
   [Parameter(Mandatory=$True,Position=9)]
-  [string]$cppwinuiuwptemplateId,
+  [string]$cppwinuidesktoptemplateId,
 
   [Parameter(Mandatory=$True,Position=10)]
-  [string]$visualbasictemplateId,
+  [string]$cppwinuiuwptemplateId,
 
   [Parameter(Mandatory=$True,Position=11)]
+  [string]$visualbasictemplateId,
+
+  [Parameter(Mandatory=$True,Position=12)]
   [string]$buildNumber
 )
 
@@ -80,12 +83,20 @@ if($uwpname -and $wpfname){
            Write-Host "$projectTemplate - Name, TemplateId & Version applied ($wpfname, $csharpwpftemplateId, $versionNumber)"
         }
 
-       if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.WinUI.WindowsTemplateStudio.local')
+        if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.WinUI.Desktop.WindowsTemplateStudio.local')
         {
-           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpwinuitemplateId
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpwinuidesktoptemplateId
            $templateContent.VSTemplate.TemplateData.Name = $winuidesktopname
 
-           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuidesktopname, $csharpwinuitemplateId, $versionNumber)"
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuidesktopname, $csharpwinuidesktoptemplateId, $versionNumber)"
+        }
+		
+		if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.CSharp.WinUI.Uwp.WindowsTemplateStudio.local')
+        {
+           $templateContent.VSTemplate.TemplateData.TemplateID = $csharpwinuiuwptemplateId
+           $templateContent.VSTemplate.TemplateData.Name = $winuiuwpname
+
+           Write-Host "$projectTemplate - Name, TemplateId & Version applied ($winuiuwpname, $csharpwinuitemplateuwpId, $versionNumber)"
         }
 
         if($templateContent.VSTemplate.TemplateData.TemplateID -eq 'Microsoft.Cpp.WinUI.Desktop.WindowsTemplateStudio.local')
