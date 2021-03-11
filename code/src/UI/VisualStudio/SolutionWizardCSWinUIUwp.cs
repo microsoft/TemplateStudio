@@ -6,11 +6,11 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class SolutionWizardCSWinUI : SolutionWizard
+    public class SolutionWizardCSWinUIUwp : SolutionWizard
     {
-        public SolutionWizardCSWinUI()
+        public SolutionWizardCSWinUIUwp()
         {
-            Initialize(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Desktop);
+            Initialize(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Uwp);
         }
     }
 }
