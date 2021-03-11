@@ -68,8 +68,8 @@ namespace Param_RootNamespace.Services
                 if (vmBeforeNavigation is INavigationAware navigationAware)
                 {
                     navigationAware.OnNavigatedFrom();
-                    return true;
                 }
+                return true;
             }
 
             return false;
