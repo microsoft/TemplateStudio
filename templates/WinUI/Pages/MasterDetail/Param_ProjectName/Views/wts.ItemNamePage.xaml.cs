@@ -1,6 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 
 namespace Param_RootNamespace.Views
 {

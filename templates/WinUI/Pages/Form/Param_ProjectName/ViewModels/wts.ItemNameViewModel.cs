@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Input;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
-using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.ViewModels
 {
