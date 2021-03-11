@@ -86,7 +86,8 @@
                 Text="Order details:" />
             <ItemsControl
                 ItemsSource="{x:Bind SelectedItem.Details, Mode=OneWay}"
-                Margin="-12,0,0,0">
+                Margin="-12,0,0,0"
+                IsTabStop="False">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="models:SampleOrderDetail">
                         <Grid
