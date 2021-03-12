@@ -8,7 +8,8 @@
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <ScrollViewer
-            x:Name="contentScroll">
+            x:Name="contentScroll"
+            IsTabStop="True">
             <StackPanel
                 Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid>
