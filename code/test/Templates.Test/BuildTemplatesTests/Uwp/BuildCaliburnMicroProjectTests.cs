@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
             // Don't delete after build test as used in inference test, which will then delete.
             AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: false);
 
-            EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
+            EnsureCanInferConfigInfo(context, projectPath);
         }
 
         [Theory]

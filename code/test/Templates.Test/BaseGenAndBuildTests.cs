@@ -160,61 +160,80 @@ namespace Microsoft.Templates.Test
 
             if (context.Platform == Platforms.Uwp)
             {
-                AssertCorrectProjectConfigInfo(context.ProjectType, context.FrontEndFramework, context.Platform);
+                AssertCorrectProjectConfigInfo(context);
             }
 
             return resultPath;
         }
 
-        protected void EnsureCanInferConfigInfo(string projectType, string framework, string platform, string projectPath)
+        protected void EnsureCanInferConfigInfo(UserSelectionContext context, string projectPath)
         {
             RemoveProjectConfigInfoFromProject();
 
-            AssertCorrectProjectConfigInfo(projectType, framework, platform);
-            AssertProjectConfigInfoRecreated(projectType, framework, platform);
+            AssertCorrectProjectConfigInfo(context);
+            AssertProjectConfigInfoRecreated(context);
 
             Fs.SafeDeleteDirectory(projectPath);
         }
 
         protected void RemoveProjectConfigInfoFromProject()
         {
-            var manifest = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
-            var lines = File.ReadAllLines(manifest);
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
+            var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
+
+            var lines = File.ReadAllLines(metadataFilePath);
             var sb = new StringBuilder();
+            var pl = $"genTemplate:Item Name=\"platform\"";
             var fx = $"genTemplate:Item Name=\"framework\"";
             var pt = $"genTemplate:Item Name=\"projectType\"";
+            var am = $"genTemplate:Item Name=\"appmodel\"";
             foreach (var line in lines)
             {
-                if (!line.Contains(fx) && !line.Contains(pt))
+                if (!line.Contains(fx) && !line.Contains(pt) && !line.Contains(pl) && !line.Contains(am))
                 {
                     sb.AppendLine(line);
                 }
             }
 
-            File.Delete(manifest);
-            File.WriteAllText(manifest, sb.ToString(), Encoding.UTF8);
+            File.Delete(metadataFilePath);
+            File.WriteAllText(metadataFilePath, sb.ToString(), Encoding.UTF8);
         }
 
-        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
+        protected void AssertCorrectProjectConfigInfo(UserSelectionContext context)
         {
             var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
             var info = projectConfigInfoService.ReadProjectConfiguration();
 
-            Assert.Equal(expectedProjectType, info.ProjectType);
-            Assert.Equal(expectedFramework, info.Framework);
-            Assert.Equal(expectedPlatform, info.Platform);
+            Assert.Equal(context.ProjectType, info.ProjectType);
+            Assert.Equal(context.FrontEndFramework, info.Framework);
+            Assert.Equal(context.Platform, info.Platform);
+            if (!string.IsNullOrEmpty(context.GetAppModel()))
+            {
+                Assert.Equal(context.GetAppModel(), info.AppModel);
+            }
         }
 
-        protected void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
+        protected void AssertProjectConfigInfoRecreated(UserSelectionContext context)
         {
-            var content = File.ReadAllText(Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest"));
-            var expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
-            var expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
-            var expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
+            var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
+
+            var content = File.ReadAllText(metadataFilePath);
+            var expectedFxText = $"Name=\"framework\" Value=\"{context.FrontEndFramework}\"";
+            var expectedPtText = $"Name=\"projectType\" Value=\"{context.ProjectType}\"";
+            var expectedPfText = $"Name=\"platform\" Value=\"{context.Platform}\"";
+
 
             Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
+            if (!string.IsNullOrEmpty(context.GetAppModel()))
+            {
+                var expectedAmText = $"Name=\"appmodel\" Value=\"{context.GetAppModel()}\"";
+                Assert.Contains(expectedAmText, content, StringComparison.OrdinalIgnoreCase);
+            }
         }
 
         protected void AssertBuildProject(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)

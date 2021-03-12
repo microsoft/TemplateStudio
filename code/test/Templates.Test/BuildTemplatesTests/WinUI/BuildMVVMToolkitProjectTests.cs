@@ -39,8 +39,9 @@ namespace Microsoft.Templates.Test.Build.WinUI
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             // Don't delete after build test as used in inference test, which will then delete.
-            AssertBuildProject(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: false);
 
+            EnsureCanInferConfigInfo(context, projectPath);
         }
 
         [Theory]
@@ -142,6 +143,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
             var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
+
         }
     }
 }

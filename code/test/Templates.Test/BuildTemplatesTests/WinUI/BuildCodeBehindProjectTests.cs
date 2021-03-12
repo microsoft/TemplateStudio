@@ -39,7 +39,9 @@ namespace Microsoft.Templates.Test.Build.WinUI
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             // Don't delete after build test as used in inference test, which will then delete.
-            AssertBuildProject(projectPath, projectName, platform);
+            AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild:false);
+
+            EnsureCanInferConfigInfo(context, projectPath);
         }
 
         [Theory]
@@ -105,7 +107,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMCodeBehindWinUI")]
+        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
