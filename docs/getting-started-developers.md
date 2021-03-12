@@ -89,7 +89,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMToolkitWPF
     - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=MinimumMVVMToolkitWinUI
-    - ExecutionSet=MinimumCodeBehinWdinUI
+    - ExecutionSet=MinimumCodeBehindWinUI
     - ExecutionSet=TemplateValidation
 
 - VSO 'CIBuild' Build (CI):
