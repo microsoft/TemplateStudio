@@ -2,7 +2,7 @@
 <root>
 <!--^^-->
 <!--{[{-->
-  <data name="wts.ItemName.MasterHeader" xml:space="preserve">
+  <data name="wts.ItemName.ListHeader" xml:space="preserve">
     <value>wts.ItemName</value>
   </data>
   <data name="wts.ItemName_NoSelection.Text" xml:space="preserve">

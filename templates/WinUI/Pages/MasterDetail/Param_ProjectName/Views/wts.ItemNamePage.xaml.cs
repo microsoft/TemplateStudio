@@ -10,9 +10,9 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
         }
 
-        private void OnViewStateChanged(object sender, MasterDetailsViewState e)
+        private void OnViewStateChanged(object sender, ListDetailsViewState e)
         {
-            if (e == MasterDetailsViewState.Both)
+            if (e == ListDetailsViewState.Both)
             {
                 ViewModel.EnsureItemSelected();
             }
