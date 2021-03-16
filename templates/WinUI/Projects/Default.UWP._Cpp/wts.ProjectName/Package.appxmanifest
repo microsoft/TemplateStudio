@@ -17,7 +17,7 @@
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17134.0" MaxVersionTested="10.0.17134.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
   <Resources>
     <Resource Language="x-generate" />
@@ -32,10 +32,7 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
-    <genTemplate:Metadata>
+  <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
     <genTemplate:Item Name="wizardVersion" Version="Param_Wizard.Version" />
     <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
@@ -43,5 +40,5 @@
     <genTemplate:Item Name="framework" Value="Param_Framework" />
     <genTemplate:Item Name="platform" Value="Param_Platform" />
     <genTemplate:Item Name="appmodel" Value="Param_AppModel" />
-</genTemplate:Metadata>
+  </genTemplate:Metadata>
 </Package>
