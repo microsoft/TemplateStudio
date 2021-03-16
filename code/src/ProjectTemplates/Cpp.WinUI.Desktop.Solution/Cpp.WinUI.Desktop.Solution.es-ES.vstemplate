@@ -14,8 +14,9 @@
     <ProvideDefaultName>true</ProvideDefaultName>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <LanguageTag>cpp</LanguageTag>
+    <LanguageTag>XAML</LanguageTag>
     <PlatformTag>windows</PlatformTag>
-    <ProjectTypeTag>WinUI</ProjectTypeTag>
+    <PlatformTag>Project Reunion</PlatformTag>    <ProjectTypeTag>WinUI</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
