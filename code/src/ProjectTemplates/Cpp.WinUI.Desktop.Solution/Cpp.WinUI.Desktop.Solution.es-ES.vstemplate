@@ -16,7 +16,8 @@
     <LanguageTag>cpp</LanguageTag>
     <LanguageTag>XAML</LanguageTag>
     <PlatformTag>windows</PlatformTag>
-    <PlatformTag>Project Reunion</PlatformTag>    <ProjectTypeTag>WinUI</ProjectTypeTag>
+    <PlatformTag>Project Reunion</PlatformTag>
+    <ProjectTypeTag>WinUI</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
