@@ -11,4 +11,3 @@ The following are deprecated but still available.
 
 - [MVVM Light](./mvvmlight.md)
 - [MVVM Basic](./mvvmbasic.md)
-- 
