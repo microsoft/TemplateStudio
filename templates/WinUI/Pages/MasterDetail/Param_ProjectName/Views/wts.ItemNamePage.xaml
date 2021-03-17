@@ -50,7 +50,7 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterHeaderTemplate">
+        <DataTemplate x:Key="ListHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
                     VerticalAlignment="Center"
@@ -58,7 +58,7 @@
                     Text="{Binding}" />
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="MinimalMasterHeaderTemplate">
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
                     Margin="96,0,0,0"
@@ -78,20 +78,20 @@
                         <AdaptiveTrigger MinWindowWidth="641" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MasterDetailsViewControl.MasterHeaderTemplate" Value="{StaticResource MasterHeaderTemplate}" />
+                        <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <controls:MasterDetailsView
+        <controls:ListDetailsView
             x:Uid="wts.ItemName"
-            x:Name="MasterDetailsViewControl"
+            x:Name="ListDetailsViewControl"
             BackButtonBehavior="Automatic"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.SampleItems}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ViewStateChanged="OnViewStateChanged"
