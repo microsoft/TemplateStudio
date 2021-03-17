@@ -9,7 +9,7 @@
     * select the C++/WinRT property page
 
     For more advanced scenarios, and complete documentation, please see:
-    https://github.com/Microsoft/xlang/tree/master/src/package/cppwinrt/nuget 
+    https://github.com/microsoft/cppwinrt/tree/master/nuget
     -->
   <PropertyGroup />
   <ItemDefinitionGroup />
