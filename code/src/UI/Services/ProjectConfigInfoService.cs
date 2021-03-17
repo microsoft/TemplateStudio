@@ -136,7 +136,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsWinUI()
         {
-            return ContainsNugetPackage("Microsoft.WinUI");
+            return ContainsNugetPackage("Microsoft.ProjectReunion.WinUI");
         }
 
         private string InferProjectType(string platform)
