@@ -13,7 +13,7 @@ namespace WinUIDesktopApp.Contracts.Services
 
         bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false);
 
-        void GoBack();
+        bool GoBack();
 
         void SetListDataItemForNextConnectedAnimation(object item);
     }

@@ -3,11 +3,14 @@
 This project was created using [Microsoft Windows Template Studio](https://aka.ms/wts).
 
 ## Getting Started
+This app was built using WinUI 3 Project Reunion 0.5 Preview.
 Windows UI Library (WinUI) 3 is a native user experience (UX) framework for both Windows Desktop and UWP apps.
 
-You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in `App.xaml.cs`, try adding a breakpoint in the `OnLaunched` method and debug the code, stepping into the `ActivationService` methods to understand the app lifecycle.
+You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in the `App.xaml.cs` file. 
+Add a breakpoint in the `OnLaunched` method and debug the code. Step into the `ActivationService` methods to understand the app lifecycle.
 
-Don't forget to review the `developer TODOs` we've added for you. You can open the Task List using the menu `Views -> Task List`.
+Don't forget to review the `developer TODOs` we've added for you. 
+You can open the Task List using the menu `Views -> Task List`.
 
 ## File Structure
 ```
@@ -48,7 +51,8 @@ This app uses Navigation Pane, for more information see [navigation pane docs](h
 
 ## Publish / Distribute
 
-Use the [packaging project](http://aka.ms/msix) to create the app package to distribute your app and future updates. Right click on the packaging project and click `Publish -> Create App Packages...` to create an app package.
+Use the [packaging project](http://aka.ms/msix) to create the app package to distribute your app and future updates. 
+Right click on the packaging project and click `Publish -> Create App Packages...` to create an app package.
 
 ## Additional Documentation
 

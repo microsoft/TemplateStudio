@@ -61,7 +61,7 @@ namespace WinUIDesktopApp.Services
             }
         }
 
-        public void GoBack()
+        public bool GoBack()
         {
             if (CanGoBack)
             {
@@ -71,7 +71,10 @@ namespace WinUIDesktopApp.Services
                 {
                     navigationAware.OnNavigatedFrom();
                 }
+                return true;
             }
+
+            return false;
         }
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)

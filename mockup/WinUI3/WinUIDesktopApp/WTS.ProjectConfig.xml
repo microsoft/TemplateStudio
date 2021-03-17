@@ -7,5 +7,6 @@
         <genTemplate:Item Name="projectType" Value="SplitView" />
         <genTemplate:Item Name="framework" Value="MVVMToolkit" />
         <genTemplate:Item Name="platform" Value="WinUI" />
+        <genTemplate:Item Name="appmodel" Value="Desktop" />
     </genTemplate:Metadata>
 </xml>

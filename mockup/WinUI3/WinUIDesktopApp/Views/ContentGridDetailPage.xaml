@@ -30,7 +30,8 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <ScrollViewer>
+        <ScrollViewer
+            IsTabStop="True">
             <StackPanel
                 Margin="{StaticResource MediumLeftRightMargin}"
                 x:Name="contentPanel">

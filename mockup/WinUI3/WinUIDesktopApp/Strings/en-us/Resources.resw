@@ -150,7 +150,7 @@
   <data name="Shell_ContentGrid.Content" xml:space="preserve">
     <value>ContentGrid</value>
   </data>
-  <data name="MasterDetail.MasterHeader" xml:space="preserve">
+  <data name="MasterDetail.ListHeader" xml:space="preserve">
     <value>MasterDetail</value>
   </data>
   <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
@@ -167,7 +167,8 @@
   </data>
   <data name="Shell_Form.Content" xml:space="preserve">
     <value>Form</value>
-  </data><data name="Shell_FormWCT.Content" xml:space="preserve">
+  </data>
+  <data name="Shell_FormWCT.Content" xml:space="preserve">
     <value>Form WCT</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">

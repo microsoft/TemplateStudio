@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-using Microsoft.ApplicationModel.Resources;
+﻿using Microsoft.ApplicationModel.Resources;
 
 namespace WinUIDesktopApp.Helpers
 {

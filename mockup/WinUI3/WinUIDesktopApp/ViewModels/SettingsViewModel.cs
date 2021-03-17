@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml;
 using Windows.ApplicationModel;
 
 using WinUIDesktopApp.Contracts.Services;
+using WinUIDesktopApp.Helpers;
 
 namespace WinUIDesktopApp.ViewModels
 {
@@ -61,7 +62,7 @@ namespace WinUIDesktopApp.ViewModels
 
         private string GetVersionDescription()
         {
-            var appName = "AppDisplayName";
+            var appName = "AppDisplayName".GetLocalized();;
             var package = Package.Current;
             var packageId = package.Id;
             var version = packageId.Version;

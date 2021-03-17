@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+﻿using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 
 using WinUIDesktopApp.ViewModels;
 
@@ -18,9 +16,9 @@ namespace WinUIDesktopApp.Views
             InitializeComponent();
         }
 
-        private void OnViewStateChanged(object sender, MasterDetailsViewState e)
+        private void OnViewStateChanged(object sender, ListDetailsViewState e)
         {
-            if (e == MasterDetailsViewState.Both)
+            if (e == ListDetailsViewState.Both)
             {
                 ViewModel.EnsureItemSelected();
             }
