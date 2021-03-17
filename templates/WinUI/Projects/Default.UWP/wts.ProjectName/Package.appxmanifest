@@ -44,10 +44,6 @@
     </Application>
   </Applications>
 
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
-
   <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
     <genTemplate:Item Name="wizardVersion" Version="Param_Wizard.Version" />
