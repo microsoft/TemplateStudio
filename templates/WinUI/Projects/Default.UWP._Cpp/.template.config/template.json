@@ -19,7 +19,8 @@
     "wts.appmodel": "UWP",
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "0"
+    "wts.displayOrder": "0",
+    "wts.licenses": "[Microsoft.ProjectReunion](https://www.nuget.org/packages/Microsoft.ProjectReunion/0.5.0-prerelease/License)|[Microsoft.Windows.CppWinRT](https://www.nuget.org/packages/Microsoft.Windows.CppWinRT/2.0.210211.2/License)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
