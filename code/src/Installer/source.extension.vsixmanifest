@@ -1,38 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-	<Metadata>
-		<Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
-		<DisplayName>WTS (local)</DisplayName>
-		<Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP and WPF apps using a wizard-based UI.</Description>
-		<MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
-		<License>Content\EULA.rtf</License>
-		<GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/readme.md</GettingStartedGuide>
-		<ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
-		<Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
-		<Tags>Windows Template Studio UWP XAML MVVM WPF</Tags>
-	</Metadata>
-	<Installation AllUsers="true">
-		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.2,17.0)" />
-	</Installation>
-	<Dependencies>
-		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7.2 or higher" d:Source="Manual" Version="[4.7.2,)" d:InstallSource="Download" Location="https://dotnet.microsoft.com/download/dotnet-framework/net472" />
-		<Dependency d:Source="Installed" Version="[16.2,17.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2019 Update 2 or higher" Location="https://www.visualstudio.com/downloads" />
-	</Dependencies>
-	<Prerequisites>
-		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,17.0)" DisplayName="Visual Studio core editor" />
-	</Prerequisites>
-	<Assets>
-		<Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="CoreTemplateStudio.Core" Path="|CoreTemplateStudio.Core|" AssemblyName="|CoreTemplateStudio.Core;AssemblyName|" />
-		<Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
-		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.Solution" d:TargetPath="|CSharp.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.Solution" d:TargetPath="|VBNet.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Colors\WindowsTemplateStudioColors.pkgdef" d:VsixSubPath="Colors" />
-		<Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Utilities" Path="|Utilities|" AssemblyName="|Utilities;AssemblyName|" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WPF.Solution" d:TargetPath="|CSharp.WPF.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.Desktop.Solution" d:TargetPath="|Cpp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.UWP.Solution" d:TargetPath="|Cpp.WinUI.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Uwp.Solution" d:TargetPath="|CSharp.WinUI.Uwp.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.Solution" d:TargetPath="|CSharp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-	</Assets>
+    <Metadata>
+        <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
+        <DisplayName>WTS (local)</DisplayName>
+        <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP and WPF apps using a wizard-based UI.</Description>
+        <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
+        <License>Content\EULA.rtf</License>
+        <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/readme.md</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
+        <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
+        <Tags>Windows Template Studio UWP XAML MVVM WPF</Tags>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.2,17.0)" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7.2 or higher" d:Source="Manual" Version="[4.7.2,)" d:InstallSource="Download" Location="https://dotnet.microsoft.com/download/dotnet-framework/net472" />
+        <Dependency d:Source="Installed" Version="[16.2,17.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2019 Update 2 or higher" Location="https://www.visualstudio.com/downloads" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,17.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="CoreTemplateStudio.Core" Path="|CoreTemplateStudio.Core|" AssemblyName="|CoreTemplateStudio.Core;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.Solution" d:TargetPath="|CSharp.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.Solution" d:TargetPath="|VBNet.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Colors\WindowsTemplateStudioColors.pkgdef" d:VsixSubPath="Colors" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Utilities" Path="|Utilities|" AssemblyName="|Utilities;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WPF.Solution" d:TargetPath="|CSharp.WPF.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.Desktop.Solution" d:TargetPath="|Cpp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.UWP.Solution" d:TargetPath="|Cpp.WinUI.UWP.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Uwp.Solution" d:TargetPath="|CSharp.WinUI.Uwp.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.Solution" d:TargetPath="|CSharp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.ClassLibrary" d:TargetPath="|CSharp.WinUI.Desktop.ClassLibrary;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    </Assets>
 </PackageManifest>
