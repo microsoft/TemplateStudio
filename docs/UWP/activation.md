@@ -5,22 +5,22 @@
 
 ## ActivationService
 
-The ActivationService is in charge of handling the applications initialization and activation.
+The ActivationService is in charge of handling the application's initialization and activation.
 
-With the method `ActivateAsync()` it has one common entry point that is called from the app lifecycle events `OnLaunched`, `OnActivated` and `OnBackgroundActivated`.
-For more information on application lifecycle and its events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle).
+The method `ActivateAsync()` it the common entry point for the application lifecycle events `OnLaunched`, `OnActivated` and `OnBackgroundActivated`.
+For more information on the application lifecycle and its events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle).
 
 ## ActivationHandlers
 
-For choosing the concrete type of activation the ActivationService relies on ActivationHandlers, that are registered in the method `GetActivationHandlers()`.
+The `ActivationService` relies on the ActivationHandlers, that are registered in the method `GetActivationHandlers()`.
 
-Each class in the application that can handle application activation should derive from the abstract class `ActivationHandler<T>` (T is the type of ActivationEventArguments the class can handle) and implement the method HandleInternalAsync().
+Each class in the application that can handle activation derives from the abstract class `ActivationHandler<T>` (T is the type of ActivationEventArguments the class can handle) and implement the method HandleInternalAsync().
 The method `HandleInternalAsync()` is where the actual activation takes place.
 The virtual method `CanHandleInternal()` checks if the incoming activation arguments are of the type the ActivationHandler can manage. It can be overwritten to establish further conditions based on the ActivationEventArguments.
 
 ### ActivationHandlers sample
 
-We'll have look at the SchemeActivationHandler, added by DeepLink feature, to see how activation works in detail:
+We'll have look at the SchemeActivationHandler, added by the [DeepLink](./features/deep-linking.md) feature, to see how activation works in detail:
 
 ```csharp
 protected override bool CanHandleInternal(ProtocolActivatedEventArgs args)
@@ -44,55 +44,55 @@ protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs arg
 }
 ```
 
-The `CanHandleInternal()` method was overwritten here and it returns true by default, devs can use args to add extra validations in scenarios with multiple ProtocolActivationEventArgs.
+The `CanHandleInternal()` method was overwritten here and it returns true by default. You can use `args` to add extra validation for scenarios with multiple `ProtocolActivationEventArgs`.
 
-The `HandleInternalAsync()` method gets the ActivationData from argument's Uri and uses the PageType and Parameters to navigate.
+The `HandleInternalAsync()` method gets the `ActivationData` from argument's Uri and uses the `PageType` and `Parameters` to navigate.
 
 ## Activation in depth
 
 ### Activation flow
 
-The following flowchart shows the Activation process that starts with one of the app lifecycle event and ends with the StartupAsync call.
+The following flowchart shows the activation process that starts with one of the app lifecycle event and ends with the `StartupAsync` call.
 
 ### Lifecycle event  `OnLaunched`, `OnActivated` or `OnBackgroundActivated`
 
-Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in ActivationService.ActivateAsync().
+Activation starts from one of the app lifecycle events: `OnLaunched`, `OnActivated` or `OnBackgroundActivated`. All call a common entry point for activation in `ActivationService.ActivateAsync()`.
 
 ![app lifecycle steps](./resources/activation/AppLifecycleEvent.png)
 
 ### ActivateAsync
 
-The first calls in ActivateAsync are InitializeAsync() and ShellCreation (in case you activation is interactive). If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
+The first calls in `ActivateAsync` are `InitializeAsync()` and ShellCreation (in the cases where activation is interactive). If you added an Identity feature to your app, code for Identity configuration and SilentLogin will be included here too.
 
-After this first block, HandleActivation is called (more details below).
+After this first block, `HandleActivationAsync` is called (more details below).
 
 ![activation flow](./resources/activation/ActivateAsync.png)
 
 **IsInteractive**
 
-Interacting with the app window and navigating is only available when the activation arguments extend from IActivatedEventArgs. An example for non-interactive activation is activation from a background Task.
+Interacting with the app window and navigating is only available when the activation arguments extend from `IActivatedEventArgs`. An example for non-interactive activation is activation from a background Task.
 
 **InitializeAsync**
 
-InitializeAsync contains services initialization for services that are going to be used as ActivationHandler. This method is called before the window is activated. Only code that needs to be executed before app activation should be placed here, as the splash screen is shown while this code is executed.
+`InitializeAsync` contains services initialization for services that are going to be used as `ActivationHandler`. This method is called before the window is activated. Only code that needs to be executed before app activation should be placed here, as the splash screen is shown while this code is executed.
 
 **StartupAsync**
 
-StartupAsync contains initializations of other classes that do not need to happen before app activation and starts processes that will be run after the Window is activated.
+`StartupAsync` contains initializations of other classes that do not need to happen before app activation and starts processes that will be run after the Window is activated.
 
 ### HandleActivation
 
-The HandleActivation method gets the first ActivationHandler that can handle the arguments of the current activation. It also creates a DefaultActivationHandler and execute if it necesary (when no one ActivationHandler was selected or the selected ActivationHandler does not realize a Navigation).
+The `HandleActivation` method gets the first `ActivationHandler` that can handle the arguments of the current activation. It also creates a `DefaultActivationHandler` and executes it if no other `ActivationHandler` is selected or the selected `ActivationHandler` does not result in Navigation.
 
 ![flow for handling activation](./resources/activation/HandleActivation.png)
 
 ## Sample: Add activation from File Association
 
-We are going to create a new ActivationHandler to understand how to extend the ActivationService in our project. In this case, we are going to add a markdown files (.md) reader to our app.
+We are going to create a new `ActivationHandler` to show how to extend the `ActivationService` in your project. In this case, we are going to add a reader for markdown (.md) files.
 
-The following sample code is thought to be added in a WinTS MVVM Basic app.
+The following sample code is to be added in a WinTS generated app using the MVVM Toolkit.
 
-For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
+For viewing the markdown a `MarkdownTextBlock` from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 
 ### 1. Add Page and ViewModel to show the opened file
 
@@ -193,14 +193,14 @@ using YourAppName.Helpers;
 
 namespace YourAppName.ViewModels
 {
-    public class MarkdownViewModel : Observable
+    public class MarkdownViewModel : ObservableObject
     {
         private string _text;
 
         public string Text
         {
             get { return _text; }
-            set { Set(ref _text, value); }
+            set { SetProperty(ref _text, value); }
         }
 
         public MarkdownViewModel()
@@ -239,8 +239,8 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
 
 ### 3. Add a FileAssociationService
 
-Add a FileAssociationService to your project that handles activation from files. It derives from `ApplicationHandler<T>`.
-As it manages activation by File​Activated​Event​Args the signature would be:
+Add a `FileAssociationService` to your project that handles activation from files. It derives from `ApplicationHandler<T>`.
+As it manages activation by `File​Activated​Event​Args` the signature is:
 
 **FileAssociationService**
 
@@ -266,7 +266,7 @@ protected override async Task HandleInternalAsync(File​Activated​Event​Arg
 
 ### 4. Add the FileAssociationService to ActivationService
 
-Last but not least, we'll have to add our new FileAssociationService to the ActivationHandlers registered in the ActivationService:
+Finally, we'll add our new `FileAssociationService` to the `ActivationHandlers` registered in the `ActivationService`:
 
 **ActivationService**
 
