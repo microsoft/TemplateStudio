@@ -6,6 +6,7 @@ Our templates for WinUI 3 Apps are currently in preview as WinUI3 itself. You ca
 
 We currently provide templates for: 
 - WinUI 3 Desktop App (C#)
+- WinUI 3 Uwp App (C#)
 - WinUI 3 Desktop App (C++)
 - WinUI 3 Uwp App (C++)
 
@@ -15,19 +16,27 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 ### Prerequisites
 
-1. Ensure that your development computer has Windows 10, version 1803 (build 17134), or newer installed.
+1. Ensure that your development computer has Windows 10, version 1809 (build 17763), or a later OS version installed.
 
-2. Install [Visual Studio 2019, version 16.9 Preview](https://visualstudio.microsoft.com/vs/preview/). You must include the following workloads when installing Visual Studio:
-   - .NET Desktop Development (this also installs .NET 5)
-   - Universal Windows Platform development
+2. Install [Visual Studio 2019, version 16.10 Preview](https://visualstudio.microsoft.com/vs/preview/) (or later) if you haven't done so already. 
+   
+   You must include the following components when installing Visual Studio:
 
-3. To build C++ apps, you must also include the following workloads:
+   - On the **Workloads** tab, make sure **Universal Windows Platform development** is selected.
+   - On the **Individual components** tab, make sure **Windows 10 SDK (10.0.19041.0)** is selected in the **SDKs, libraries, and frameworks** section.
 
-   - Desktop development with C++
-   - The C++ (v142) Universal Windows Platform tools optional component for the Universal Windows Platform workload (see "Installation Details" under the "Universal Windows Platform development" section, on the right pane)
+   To build .NET apps, you must also include the following components:
 
+   - **.NET Desktop Development** workload.
 
-4. Make sure your system has a NuGet package source enabled for nuget.org. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
+   To build C++ apps, you must also include the following components:
+
+   - **Desktop development with C++** workload.
+   - The **C++ (v142) Universal Windows Platform tools** optional component for the **Universal Windows Platform development** workload.
+   
+3. If you previously installed the WinUI 3 Preview extension from an earlier WinUI 3 preview release, uninstall the extension. For more information about how to uninstall an extension, see Manage extensions for Visual Studio.
+
+4. Make sure your system has a NuGet package source enabled for **nuget.org**. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
 
 5. Add a new Package source to the Windows Community DevOps feed: 
    - Go to Tools -> NuGet Package Manager -> Package Manager Settings -> Package Sources
@@ -36,14 +45,11 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 
 ### Known issues:
-- [Windows Default theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4086)
 - [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)
-- [Master/Detail Issue with WinUI](https://github.com/microsoft/WindowsTemplateStudio/issues/4088)
-- [Localized tooltips + automationname issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4039)
-- [WebView2 exception](https://github.com/microsoft/WindowsTemplateStudio/issues/4073)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:
-- [Windows UI Library 3 Preview 4 (February 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
+- [Windows UI Library 3 - Project Reunion 0.5 Preview (March 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
-- [Windows Community Toolkit 8.0.0-preview4 for WinUI 3 Preview 4](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
+- [Project Reunion on GitHub](https://github.com/microsoft/ProjectReunion)
+- [Windows Community Toolkit 8.0.0-preview5 for Project Reunion 0.5 Preview](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
