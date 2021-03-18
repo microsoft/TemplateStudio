@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-$
-if$ ($targetframeworkversion$ >= 3.5)using System.Linq;
-$endif$using System.Text;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace $safeprojectname$
 {
-	public class Class1
-{
-}
+    public class Class1
+    {
+    }
 }

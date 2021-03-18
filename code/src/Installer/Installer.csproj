@@ -545,6 +545,13 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.Uwp.ClassLibrary\CSharp.WinUI.Uwp.ClassLibrary.csproj">
+      <Project>{2B30F12F-738D-470C-A317-0535BC9927E5}</Project>
+      <Name>CSharp.WinUI.Uwp.ClassLibrary</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\UI\UI.csproj">
       <Project>{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}</Project>
       <Name>UI</Name>
