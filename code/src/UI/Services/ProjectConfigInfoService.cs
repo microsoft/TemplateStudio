@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.Services
         // Framework
         public const string MVVMBasic = "MVVMBasic";
         public const string MVVMLight = "MVVMLight";
-        public const string CodeBehid = "CodeBehind";
+        public const string CodeBehind = "CodeBehind";
         public const string CaliburnMicro = "CaliburnMicro";
         public const string Prism = "Prism";
         public const string MvvmToolkit = "MVVMToolkit";
@@ -101,17 +101,17 @@ namespace Microsoft.Templates.UI.Services
 
         public string InferPlatform()
         {
-            if (IsUwp())
+            if (IsWinUI())
+            {
+                return Platforms.WinUI;
+            }
+            else if (IsUwp())
             {
                 return Platforms.Uwp;
             }
             else if (IsWpf())
             {
                 return Platforms.Wpf;
-            }
-            else if (IsWinUI())
-            {
-                return Platforms.WinUI;
             }
 
             throw new Exception(StringRes.ErrorUnableResolvePlatform);
@@ -177,7 +177,7 @@ namespace Microsoft.Templates.UI.Services
             }
             else if (IsCodeBehind(platform))
             {
-                return CodeBehid;
+                return CodeBehind;
             }
             else if (IsCaliburnMicro(platform))
             {
@@ -208,7 +208,9 @@ namespace Microsoft.Templates.UI.Services
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu")
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
                 case Platforms.WinUI:
-                    return IsCppProject();
+                    return !(ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                        || ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                        || IsCppProject());
                 default:
                     return false;
             }
@@ -363,7 +365,23 @@ namespace Microsoft.Templates.UI.Services
 
                     return false;
                 case Platforms.WinUI:
-                    return IsCppProject();
+                    if (IsCSharpProject())
+                    {
+                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
+                        if (!string.IsNullOrEmpty(codebehindFile))
+                        {
+                            var fileContent = File.ReadAllText(codebehindFile);
+                            return !fileContent.Contains("ViewModel");
+                        }
+                    }
+
+                    if (IsCppProject())
+                    {
+                        return true;
+                    }
+
+                    return false;
+
                 default:
                     return false;
             }
