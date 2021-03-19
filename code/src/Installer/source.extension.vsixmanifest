@@ -35,5 +35,6 @@
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Uwp.Solution" d:TargetPath="|CSharp.WinUI.Uwp.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.Solution" d:TargetPath="|CSharp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.RuntimeComponent" d:TargetPath="|CSharp.WinUI.RuntimeComponent;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.RuntimeComponent" d:TargetPath="|Cpp.WinUI.RuntimeComponent;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
   </Assets>
 </PackageManifest>
