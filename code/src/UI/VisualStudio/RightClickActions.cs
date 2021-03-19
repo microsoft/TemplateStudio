@@ -31,6 +31,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.VisualBasic) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
             new RightClickAvailability(Platforms.Wpf, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
             new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Uwp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
             new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
             new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Uwp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
         };
@@ -65,10 +66,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewPage()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -86,10 +83,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewFeature()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -107,10 +100,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewService()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -128,10 +117,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewTesting()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {

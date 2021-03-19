@@ -69,6 +69,7 @@ namespace Param_RootNamespace.Services
                 {
                     navigationAware.OnNavigatedFrom();
                 }
+
                 return true;
             }
 
