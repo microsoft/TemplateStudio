@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace $safeprojectname$
 {
-public class Class1
-{
-}
+    public class Class1
+    {
+    }
 }
