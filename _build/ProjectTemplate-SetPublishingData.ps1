@@ -84,8 +84,11 @@ if(($environmentname -eq '' -and $environmentid -eq '') -or ($environmentname -l
                 }
             }
 
-             ## Set version number
-            $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2].Value = $versionNumber
+            ## Set version number
+            if ($templateContent.VSTemplate.TemplateContent.CustomParameters -and $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2] -and $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2].Name -eq "$wts.version$")
+            {
+                $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[2].Value = $versionNumber
+            }
 
             #Replace template name
             $templateContent.VSTemplate.TemplateData.Name = $templateContent.VSTemplate.TemplateData.Name -replace "; local", "$environmentname"
