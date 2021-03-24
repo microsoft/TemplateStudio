@@ -545,9 +545,9 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.RuntimeComponent\CSharp.WinUI.RuntimeComponent.csproj">
-      <Project>{50336528-B72E-423C-B0C6-9259122BBB60}</Project>
-      <Name>CSharp.WinUI.RuntimeComponent</Name>
+    <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.Uwp.RuntimeComponent\CSharp.WinUI.Uwp.RuntimeComponent.csproj">
+      <Project>{78D67020-BD46-4978-BE3C-BFD21E158BE7}</Project>
+      <Name>CSharp.WinUI.Uwp.RuntimeComponent</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
