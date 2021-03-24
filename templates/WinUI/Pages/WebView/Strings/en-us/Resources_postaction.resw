@@ -8,31 +8,31 @@
   <data name="WebView_FailedMessage.Text" xml:space="preserve">
     <value>Page failed to load. Check connection and reload.</value>
   </data>
-  <data name="WebView_BrowserBackTooltip.Content" xml:space="preserve">
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Browser back</value>
   </data>
-  <data name="WebView_BrowserBackButtonAutomationPropertiesName" xml:space="preserve">
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Browser back</value>
   </data>
-  <data name="WebView_BrowserForwardTooltip.Content" xml:space="preserve">
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Browser forward</value>
   </data>
-  <data name="WebView_BrowserForwardButtonAutomationPropertiesName" xml:space="preserve">
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Browser forward</value>
   </data>
   <data name="WebView_Reload.Content" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="WebView_ReloadTooltip.Content" xml:space="preserve">
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="WebView_ReloadButtonAutomationPropertiesName" xml:space="preserve">
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="WebView_OpenInBrowserTooltip.Content" xml:space="preserve">
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Open in browser</value>
   </data>
-  <data name="WebView_OpenInBrowserButtonAutomationPropertiesName" xml:space="preserve">
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Open in browser</value>
   </data>
 <!--}]}-->

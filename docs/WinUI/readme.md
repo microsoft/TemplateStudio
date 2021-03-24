@@ -47,6 +47,8 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 ### Known issues:
 - [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
+- [WinUI 3 ListDetailsView does not work as expected](https://github.com/microsoft/WindowsTemplateStudio/issues/4160)
+- [WinUI 3 NavigationView does not apply correct styles](https://github.com/microsoft/WindowsTemplateStudio/issues/4159)
 
 ### Additional docs:
 - [Windows UI Library 3 - Project Reunion 0.5 Preview (March 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
