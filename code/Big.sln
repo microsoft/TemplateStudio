@@ -18,9 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates.Test", "test\Temp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "src\Installer\Installer.csproj", "{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.UWP.Solution", "src\ProjectTemplates\CSharp.UWP.Solution\CSharp.UWP.Solution.csproj", "{D5E1C23A-7547-412A-82F1-F00C34622C1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.UWP.Solution", "src\ProjectTemplates\UWP\CSharp.UWP.Solution\CSharp.UWP.Solution.csproj", "{D5E1C23A-7547-412A-82F1-F00C34622C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBNet.UWP.Solution", "src\ProjectTemplates\VBNet.UWP.Solution\VBNet.UWP.Solution.csproj", "{2B997E0A-16C8-4B8E-810A-D1D7DAFBD760}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBNet.UWP.Solution", "src\ProjectTemplates\UWP\VBNet.UWP.Solution\VBNet.UWP.Solution.csproj", "{2B997E0A-16C8-4B8E-810A-D1D7DAFBD760}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "src\UI\UI.csproj", "{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}"
 EndProject
@@ -52,15 +52,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test", "CoreTempl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "CoreTemplateStudio\code\tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WPF.Solution", "src\ProjectTemplates\WPF\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj", "{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cpp.WinUI.Desktop.Solution", "src\ProjectTemplates\Cpp.WinUI.Desktop.Solution\Cpp.WinUI.Desktop.Solution.csproj", "{A41F9095-F643-4C37-97E2-5D9E5EB6F305}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cpp.WinUI.Desktop.Solution", "src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.Solution\Cpp.WinUI.Desktop.Solution.csproj", "{A41F9095-F643-4C37-97E2-5D9E5EB6F305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cpp.WinUI.Uwp.Solution", "src\ProjectTemplates\Cpp.WinUI.UWP.Solution\Cpp.WinUI.Uwp.Solution.csproj", "{06E23CC2-ECBD-4D4C-B328-3CD13C3D53AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cpp.WinUI.Uwp.Solution", "src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.UWP.Solution\Cpp.WinUI.Uwp.Solution.csproj", "{06E23CC2-ECBD-4D4C-B328-3CD13C3D53AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Uwp.Solution", "src\ProjectTemplates\CSharp.WinUI.Uwp.Solution\CSharp.WinUI.Uwp.Solution.csproj", "{3A4D5955-D215-4641-BB03-231513396041}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Uwp.Solution", "src\ProjectTemplates\WinUI\CS\CSharp.WinUI.Uwp.Solution\CSharp.WinUI.Uwp.Solution.csproj", "{3A4D5955-D215-4641-BB03-231513396041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Desktop.Solution", "src\ProjectTemplates\CSharp.WinUI.Desktop.Solution\CSharp.WinUI.Desktop.Solution.csproj", "{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinUI.Desktop.Solution", "src\ProjectTemplates\WinUI\CS\CSharp.WinUI.Desktop.Solution\CSharp.WinUI.Desktop.Solution.csproj", "{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinUI", "WinUI", "{686D7795-0923-4993-ACFD-BA8C00BC71A7}"
 EndProject
