@@ -18,7 +18,6 @@ using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace Param_RootNamespace
 {
     /// <summary>
@@ -32,8 +31,8 @@ namespace Param_RootNamespace
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -43,8 +42,8 @@ namespace Param_RootNamespace
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            _mWindow = new MainWindow();
+            _mWindow.Activate();
         }
 
         /// <summary>
@@ -59,6 +58,6 @@ namespace Param_RootNamespace
             // Save application state and stop any background activity
         }
 
-        private Window m_window;
+        private Window _mWindow;
     }
 }

@@ -1,4 +1,4 @@
-<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+﻿<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity version="1.0.0.0" name="wts.ProjectName.app"/>
 
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
