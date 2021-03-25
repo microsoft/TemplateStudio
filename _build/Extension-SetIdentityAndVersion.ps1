@@ -80,7 +80,7 @@ if($vsixIdentity){
       Write-Host "Applying Display Name to vsixlangpack files"
       foreach ($langPack in $vsixLangPacks) {
         [xml]$langContent = Get-Content $langPack
-        $langContent.VsixLanguagePack.LocalizedName = $vsixDisplayName    
+        $langContent.VsixLanguagePack.LocalizedName = $vsixDisplayName
         $langContent.Save($langPack) 
         Write-Host "$langPack - LocalizedName applied ($vsixDisplayName)"        
       }
