@@ -1,0 +1,31 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.WinUI.Project.Core.AddPlatforms",
+    "shortName": "wts.WinUI.Project.Core.AddPlatforms",
+    "identity": "wts.WinUI.Project.Core.AddPlatforms",
+    "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "WinUI",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.MSIXPackaging"
+  },
+  "sourceName": "wts.ItemName",
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    }
+  },
+  "postActions": []
+}

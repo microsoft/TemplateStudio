@@ -14,7 +14,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "Blank",
-    "wts.frontendframework": "MVVMToolkit",
+    "wts.frontendframework": "CodeBehind",
     "wts.platform": "WinUI",
     "wts.appmodel": "Desktop",
     "wts.outputToParent": "true",
