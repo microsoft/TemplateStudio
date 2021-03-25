@@ -489,6 +489,90 @@
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.BlankPage\Cpp.WinUI.BlankPage.csproj">
+      <Project>{B2CA1F11-3CCB-479B-A896-33DF2E9562AE}</Project>
+      <Name>Cpp.WinUI.BlankPage</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.BlankWindow\Cpp.WinUI.Desktop.BlankWindow.csproj">
+      <Project>{9F6ADDB9-0AA0-4E28-8891-A4CAAE99DB28}</Project>
+      <Name>Cpp.WinUI.Desktop.BlankWindow</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.ResourceDictionary\Cpp.WinUI.ResourceDictionary.csproj">
+      <Project>{54715E9C-00F1-424E-9AAE-07D6EE6E3825}</Project>
+      <Name>Cpp.WinUI.ResourceDictionary</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Resw\Cpp.WinUI.Resw.csproj">
+      <Project>{E10FDFAA-94E3-4AB2-8814-D13D41E38C8D}</Project>
+      <Name>Cpp.WinUI.Resw</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.TemplatedControl\Cpp.WinUI.TemplatedControl.csproj">
+      <Project>{5F408CFB-F355-4FA0-810E-D348D929979C}</Project>
+      <Name>Cpp.WinUI.TemplatedControl</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.UserControl\Cpp.WinUI.UserControl.csproj">
+      <Project>{F112CDFB-06C5-43B5-85FF-3004F615CB49}</Project>
+      <Name>Cpp.WinUI.UserControl</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.BlankPage\CSharp.WinUI.BlankPage.csproj">
+      <Project>{740EB348-2699-4333-B50E-7700C4288050}</Project>
+      <Name>CSharp.WinUI.BlankPage</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.Desktop.BlankWindow\CSharp.WinUI.Desktop.BlankWindow.csproj">
+      <Project>{557E9197-0441-4983-8E0A-13E4020EA11F}</Project>
+      <Name>CSharp.WinUI.Desktop.BlankWindow</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.ResourceDictionary\CSharp.WinUI.ResourceDictionary.csproj">
+      <Project>{264D4A3B-19E6-44CE-B452-B2DFCD0E4C3E}</Project>
+      <Name>CSharp.WinUI.ResourceDictionary</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.Resw\CSharp.WinUI.Resw.csproj">
+      <Project>{2E74A0E7-3E80-48DE-A2A6-B88EB59F360B}</Project>
+      <Name>CSharp.WinUI.Resw</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.TemplatedControl\CSharp.WinUI.TemplatedControl.csproj">
+      <Project>{2BD7B073-93BC-4B3E-8436-6EA7A816FEF4}</Project>
+      <Name>CSharp.WinUI.TemplatedControl</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemTemplates\WinUI\CS\CSharp.WinUI.UserControl\CSharp.WinUI.UserControl.csproj">
+      <Project>{556F228F-1BF0-4907-9A46-68A4B8A97C6D}</Project>
+      <Name>CSharp.WinUI.UserControl</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\Cpp.WinUI.Desktop.Solution\Cpp.WinUI.Desktop.Solution.csproj">
       <Project>{a41f9095-f643-4c37-97e2-5d9e5eb6f305}</Project>
       <Name>Cpp.WinUI.Desktop.Solution</Name>
