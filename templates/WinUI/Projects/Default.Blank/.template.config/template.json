@@ -4,7 +4,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Proj.Default.Blank",
+  "name": "wts.WinUI.Proj.Default",
   "shortName": "wts.WinUI.Proj.Default.Blank",
   "identity": "wts.WinUI.Proj.Default.Blank",
   "groupIdentity": "wts.WinUI.Proj.Default.Blank",
@@ -27,8 +27,7 @@
   "guids": [
   ],
   "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+    { "path": "wts.ProjectName/wts.ProjectName.csproj" }
   ],
   "symbols": {
     "wts.projectName":
@@ -40,16 +39,6 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
-    },
-    "wts.homePageName": {
-      "type": "parameter",
-      "replaces": "Param_HomeName"
-    },
-    "wts.userName":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_UserName"
     },
     "wts.wizardVersion":
     {

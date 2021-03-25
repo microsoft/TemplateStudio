@@ -16,7 +16,7 @@
     "wts.projecttype": "Blank",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
-    "wts.appmodel": "Desktop",
+    "wts.appmodel": "all",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.genGroup": "0",
