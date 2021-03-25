@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="Cpp.WinUI.UserControl.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.UserControl.vstemplate">
+      <OutputSubPath>WinUI</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
