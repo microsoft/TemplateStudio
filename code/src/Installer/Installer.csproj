@@ -622,6 +622,20 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.RuntimeComponent\Cpp.WinUI.RuntimeComponent.csproj">
+      <Project>{C5959128-EB9E-4474-B69C-DA44D48DE3D0}</Project>
+      <Name>Cpp.WinUI.RuntimeComponent</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.Uwp.RuntimeComponent\CSharp.WinUI.Uwp.RuntimeComponent.csproj">
+      <Project>{78D67020-BD46-4978-BE3C-BFD21E158BE7}</Project>
+      <Name>CSharp.WinUI.Uwp.RuntimeComponent</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.Desktop.ClassLibrary\CSharp.WinUI.Desktop.ClassLibrary.csproj">
       <Project>{2AEDD843-CD99-4DCE-A680-1E3C7EB11E46}</Project>
       <Name>CSharp.WinUI.Desktop.ClassLibrary</Name>
