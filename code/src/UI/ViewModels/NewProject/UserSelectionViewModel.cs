@@ -179,7 +179,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var selection = new UserSelection(_context);
 
             var pages = Groups.First(g => g.TemplateType == TemplateType.Page).Items;
-            selection.HomeName = pages.First().Name;
+            selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
             selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
 
             var features = Groups.First(g => g.TemplateType == TemplateType.Feature).Items;
