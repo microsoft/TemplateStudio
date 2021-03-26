@@ -1,32 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Analyze|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Analyze\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{F8DBFD78-6A5B-41E0-A197-5AAA50C51DCB}</ProjectGuid>
+    <ProjectGuid>{B8A19CAA-1D90-49B0-925F-37C302CA4FCD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharp.WPF.Solution</RootNamespace>
-    <AssemblyName>CSharp.WPF.Solution</AssemblyName>
+    <RootNamespace>CSharp.WinUI.Solution</RootNamespace>
+    <AssemblyName>CSharp.WinUI.Solution</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
@@ -48,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,65 +58,63 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.WPF.Solution.vstemplate">
-      <SubType>Designer</SubType>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.WPF.Solution.cs-CZ.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.cs-CZ.vstemplate">
       <Culture>1029</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.de-DE.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.de-DE.vstemplate">
       <Culture>1031</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.ru-RU.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
-      <Culture>1049</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.es-ES.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.es-ES.vstemplate">
       <Culture>3082</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.fr-FR.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.fr-FR.vstemplate">
       <Culture>1036</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.it-IT.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.it-IT.vstemplate">
       <Culture>1040</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.ja-JP.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.ja-JP.vstemplate">
       <Culture>1041</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.ko-KR.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.ko-KR.vstemplate">
       <Culture>1042</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.pl-PL.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.pl-PL.vstemplate">
       <Culture>1045</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.pt-BR.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.pt-BR.vstemplate">
       <Culture>1046</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.zh-CN.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
-      <Culture>2052</Culture>
     </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.tr-TR.vstemplate">
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.ru-RU.vstemplate">
+      <Culture>1049</Culture>
       <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.tr-TR.vstemplate">
       <Culture>1055</Culture>
-    </VSTemplate>
-    <VSTemplate Include="CSharp.WPF.Solution.zh-TW.vstemplate">
       <OutputSubPath>Windows</OutputSubPath>
-      <Culture>1028</Culture>
     </VSTemplate>
-    <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.zh-CN.vstemplate">
+      <Culture>2052</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Desktop.Solution.zh-TW.vstemplate">
+      <Culture>1028</Culture>
+      <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <ItemGroup>

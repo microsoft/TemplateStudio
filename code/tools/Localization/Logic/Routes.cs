@@ -6,9 +6,9 @@ namespace Localization
 {
     public static class Routes
     {
-        internal const string ProjectTemplatePathCSUwp = "code\\src\\ProjectTemplates\\CSharp.UWP.Solution";
-        internal const string ProjectTemplatePathVBUwp = "code\\src\\ProjectTemplates\\VBNet.UWP.Solution";
-        internal const string ProjectTemplatePathCSWpf = "code\\src\\ProjectTemplates\\CSharp.WPF.Solution";
+        internal const string ProjectTemplatePathCSUwp = "code\\src\\ProjectTemplates\\UWP\\CS\\CSharp.UWP.Solution";
+        internal const string ProjectTemplatePathVBUwp = "code\\src\\ProjectTemplates\\UWP\\VB\\VBNet.UWP.Solution";
+        internal const string ProjectTemplatePathCSWpf = "code\\src\\ProjectTemplates\\WPF\\CS\\CSharp.WPF.Solution";
         internal const string ProjectTemplateFileCSUwp = "CSharp.UWP.Solution.vstemplate";
         internal const string ProjectTemplateFileVBUwp = "VBNet.UWP.Solution.vstemplate";
         internal const string ProjectTemplateFileCSWpf = "CSharp.WPF.Solution.vstemplate";
