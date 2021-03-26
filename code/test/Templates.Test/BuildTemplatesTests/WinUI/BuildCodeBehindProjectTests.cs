@@ -88,7 +88,8 @@ namespace Microsoft.Templates.Test.Build.WinUI
                 && t.GetPlatform() == platform
                 && t.GetPropertyBagValuesList("appmodel").Contains(appModel)
                 && !t.GetIsHidden()
-                || t.Identity == "wts.WinUI.UWP.Feat.StyleCop";
+                || (t.Identity == "wts.WinUI.UWP.Feat.StyleCop" && appModel == "Uwp")
+                || (t.Identity == "wts.WinUI.Feat.StyleCop" && appModel == "Desktop");
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
