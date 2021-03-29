@@ -37,7 +37,6 @@ You can open the Task List using the menu `Views -> Task List`.
 │ ├── Models/ - business models
 │ └── Services/ - services implementations
 ├── Param_ProjectName (Package)/ - MSIX packaging project
-│ ├── TemporaryKey.pfx - test certificate
 │ ├── Strings/en-us/Resources.resw - localized string resources
 │ └── Package.appxmanifest - app properties and declarations
 └── README.md
