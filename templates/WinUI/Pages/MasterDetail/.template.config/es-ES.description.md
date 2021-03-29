@@ -1,3 +1,3 @@
-﻿La página de maestro y detalles que tiene un panel maestro y un panel de detalles para el contenido. Cuando se selecciona un elemento en la lista maestra, se actualiza el panel de detalles. Este patrón se usa mucho para el correo electrónico y las libretas de direcciones.
+﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
 
-Puedes encontrar más información acerca del patrón maestro y detalles en [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/controls-and-patterns/master-details).
+More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

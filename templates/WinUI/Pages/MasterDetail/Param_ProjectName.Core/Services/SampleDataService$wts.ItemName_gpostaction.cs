@@ -5,7 +5,7 @@
 //^^
 //{[{
 
-        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
+        public async Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync()
         {
             if (_allOrders == null)
             {

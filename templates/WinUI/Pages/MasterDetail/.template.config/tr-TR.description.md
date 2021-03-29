@@ -1,3 +1,3 @@
-﻿Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır. Ana listedeki bir öğe seçildiğinde ayrıntılar bölmesi güncelleştirilir. Bu desen, e-posta ve adres defterleri için sıklıkla kullanılır.
+﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
 
-Ana-ayrıntı deseni hakkında daha fazla bilgiye [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/controls-and-patterns/master-details) adresinden ulaşabilirsiniz.
+More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

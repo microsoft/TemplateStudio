@@ -4,11 +4,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MasterDetail",
-  "shortName": "MasterDetail",
-  "identity": "wts.WinUI.Page.MasterDetail",
-  "groupIdentity": "wts.WinUI.Page.MasterDetail",
-  "description": "The master-detail page has a master pane and a details pane for content.",
+  "name": "ListDetails",
+  "shortName": "ListDetails",
+  "identity": "wts.WinUI.Page.ListDetails",
+  "groupIdentity": "wts.WinUI.Page.ListDetails",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -5,7 +5,7 @@
 //^^
 //{[{
 
-        Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync();
+        Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync();
 //}]}
     }
 }

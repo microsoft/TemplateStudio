@@ -1,3 +1,3 @@
-﻿На странице "Основной/подробности" доступна главная панель и панель сведений для содержимого. При выборе элемента в главном списке обновляется панель сведений. Этот шаблон часто используется для электронной почты и адресных книг.
+﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
 
-Дополнительные сведения о шаблоне "Основной/подробности": [docs.microsoft.com](https://docs.microsoft.com/ru-ru/windows/uwp/controls-and-patterns/master-details).
+More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

@@ -35,7 +35,7 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <views:wts.ItemNameDetailControl MasterMenuItem="{Binding}" />
+                <views:wts.ItemNameDetailControl ListDetailsMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
