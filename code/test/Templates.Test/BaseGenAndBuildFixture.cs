@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            userSelection.HomeName = userSelection.Pages.FirstOrDefault().Name;
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault()?.Name ?? string.Empty;
 
             return userSelection;
         }
