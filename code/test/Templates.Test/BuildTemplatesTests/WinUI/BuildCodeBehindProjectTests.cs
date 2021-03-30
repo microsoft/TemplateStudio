@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
-            AssertBuildProject(projectPath, projectName, platform);       
+            AssertBuildProject(projectPath, projectName, platform);
         }
 
         [Theory]
