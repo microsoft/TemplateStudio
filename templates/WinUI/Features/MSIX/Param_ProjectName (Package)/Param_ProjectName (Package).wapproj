@@ -1,9 +1,11 @@
 <!--/-:msbuild-conditional:noEmit -->
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
     <VisualStudioVersion>15.0</VisualStudioVersion>
   </PropertyGroup>
+
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x86">
       <Configuration>Debug</Configuration>
@@ -30,12 +32,15 @@
       <Platform>arm64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <PathToXAMLWinRTImplementations>Param_ProjectName\</PathToXAMLWinRTImplementations>
     <AssetTargetFallback>net5.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
   </PropertyGroup>
+
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
+
   <PropertyGroup>
     <ProjectGuid>378ed3d7-d630-4039-8b8e-93310ba6b05e</ProjectGuid>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
@@ -44,11 +49,13 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\Param_ProjectName\Param_ProjectName.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
+
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="Images\SplashScreen.scale-200.png" />
     <Content Include="Images\LockScreenLogo.scale-200.png" />
@@ -57,16 +64,19 @@
     <Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Images\StoreLogo.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
+    <Content Include="Package.appinstaller" />
     <PRIResource Include="Strings\en-us\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Param_ProjectName\Param_ProjectName.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
       <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     </ProjectReference>
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.0]">
       <IncludeAssets>build</IncludeAssets>
@@ -75,6 +85,8 @@
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+
 </Project>
 <!--/+:msbuild-conditional:noEmit -->
