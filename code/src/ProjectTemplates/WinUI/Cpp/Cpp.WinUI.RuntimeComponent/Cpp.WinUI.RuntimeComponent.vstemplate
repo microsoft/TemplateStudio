@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Windows Runtime Component (WinUI; local)</Name>
-    <Description>A project for creating a C++/WinRT Windows Runtime Component (.winmd) for both Desktop and Universal Windows Platform (UWP) apps, based on the Windows UI Library (WinUI).</Description>
+    <Name>Windows Runtime Component (WinUI 3; local)</Name>
+    <Description>A project for creating a C++/WinRT Windows Runtime Component (.winmd) for both Desktop and Universal Windows Platform (UWP) apps, based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <TemplateID>Microsoft.Cpp.WinUI.RuntimeComponent.WindowsTemplateStudio.local</TemplateID>
     <ProjectType>VC</ProjectType>
@@ -54,9 +54,9 @@
     <MinSupportedVersion>10.0.17763.0</MinSupportedVersion>
     <packages repository="extension" repositoryId="Microsoft.ProjectReunion">
       <package id="Microsoft.Windows.CppWinRT" version="2.0.210211.2" />
-      <package id="Microsoft.ProjectReunion" version="0.5.0-prerelease" />
-      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.0-prerelease" />
-      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.0-prerelease" />
+      <package id="Microsoft.ProjectReunion" version="0.5.0" />
+      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.0" />
+      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.0" />
     </packages>
   </WizardData>
 </VSTemplate>
