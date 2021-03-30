@@ -35,14 +35,6 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
-        {
-//^^
-//{[{
-            var activationService = Ioc.Default.GetService<IActivationService>();
-            await activationService.ActivateAsync(args);
-//}]}
-        }
 //^^
 //{[{
         private System.IServiceProvider ConfigureServices()

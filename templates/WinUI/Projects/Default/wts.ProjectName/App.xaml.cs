@@ -10,7 +10,6 @@ namespace Param_RootNamespace
         public App()
         {
             InitializeComponent();
-            Suspending += OnSuspending;
             UnhandledException += App_UnhandledException;
         }
 
@@ -23,15 +22,6 @@ namespace Param_RootNamespace
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             base.OnLaunched(args);
-        }
-
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
-        {
-            base.OnActivated(args);
-        }
-
-        private void OnSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
-        {
         }
     }
 }
