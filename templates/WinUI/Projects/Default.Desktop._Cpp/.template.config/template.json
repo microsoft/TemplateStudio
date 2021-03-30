@@ -20,7 +20,7 @@
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
     "wts.displayOrder": "0",
-    "wts.licenses": "[Microsoft.ProjectReunion](https://www.nuget.org/packages/Microsoft.ProjectReunion/0.5.0-prerelease/License)|[Microsoft.Windows.CppWinRT](https://www.nuget.org/packages/Microsoft.Windows.CppWinRT/2.0.210211.2/License)"
+    "wts.licenses": "[Microsoft.ProjectReunion](https://www.nuget.org/packages/Microsoft.ProjectReunion/0.5.0/License)|[Microsoft.Windows.CppWinRT](https://www.nuget.org/packages/Microsoft.Windows.CppWinRT/2.0.210211.2/License)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
@@ -97,7 +97,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.ProjectReunion",
-        "version": "0.5.0-prerelease",
+        "version": "0.5.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.vcxproj"
       },
       "continueOnError": true
@@ -108,7 +108,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.ProjectReunion.Foundation",
-        "version": "0.5.0-prerelease",
+        "version": "0.5.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.vcxproj"
       },
       "continueOnError": true
@@ -119,7 +119,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.ProjectReunion.WinUI",
-        "version": "0.5.0-prerelease",
+        "version": "0.5.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.vcxproj"
       },
       "continueOnError": true
