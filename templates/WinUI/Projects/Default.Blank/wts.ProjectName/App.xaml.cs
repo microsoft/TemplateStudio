@@ -31,7 +31,7 @@ namespace Param_RootNamespace
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
