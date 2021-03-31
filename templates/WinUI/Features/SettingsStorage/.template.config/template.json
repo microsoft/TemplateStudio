@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.projecttype": "all",
+    "wts.projecttype": "SplitView",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
     "wts.appmodel": "Desktop",

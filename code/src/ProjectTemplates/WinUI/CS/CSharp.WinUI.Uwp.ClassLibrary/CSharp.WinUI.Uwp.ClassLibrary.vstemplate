@@ -15,7 +15,6 @@
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <TargetPlatformName>Windows</TargetPlatformName>
     <CreateInPlace>true</CreateInPlace>
-    <PreviewImage>windowsTemplateStudio_Logo_256x256.png</PreviewImage>
     <AppIdFilter>blend</AppIdFilter>
     <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <LanguageTag>csharp</LanguageTag>

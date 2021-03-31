@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            userSelection.HomeName = userSelection.Pages.FirstOrDefault().Name;
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault()?.Name ?? string.Empty;
 
             return userSelection;
         }
@@ -424,6 +424,7 @@ namespace Microsoft.Templates.Test
                         var itemTemplates = GenContext.ToolBox.Repo.GetAll()
                             .Where(t =>
                             (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
+                            && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                             && t.GetTemplateType().IsItemTemplate()
                             && t.GetPlatform() == platform
                             && t.GetLanguage() == language
