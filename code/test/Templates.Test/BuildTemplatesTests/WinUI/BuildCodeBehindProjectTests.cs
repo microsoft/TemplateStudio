@@ -113,6 +113,12 @@ namespace Microsoft.Templates.Test.Build.WinUI
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
         {
+            //Skip Blank Desktop projects, as there is no right click here
+            if (projectType == "Blank" && appModel == "Desktop")
+            {
+                return;
+            }
+
             var projectName = $"{ShortProjectType(projectType)}AllRC";
 
             var context = new UserSelectionContext(language, platform)
