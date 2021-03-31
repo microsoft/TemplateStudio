@@ -1,12 +1,12 @@
 ﻿//{**
-// This code block adds the method `GetMasterDetailDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetListDetailDataAsync()` to the SampleDataService of your project.
 //**}
     public interface ISampleDataService
     {
 //^^
 //{[{
 
-        Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync();
+        Task<IEnumerable<SampleOrder>> GetListDetailDataAsync();
 //}]}
     }
 }

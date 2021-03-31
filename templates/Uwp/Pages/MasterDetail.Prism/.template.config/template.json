@@ -25,17 +25,17 @@
     "wts.outputToParent": "true",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
-  "sourceName": "MasterDetailView",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName/Views/MasterDetailViewPage.xaml"
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/MasterDetailViewPage.xaml.cs"
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
     },
     {
-      "path": "Param_ProjectName/ViewModels/MasterDetailViewViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
     }
   ],
   "symbols": {

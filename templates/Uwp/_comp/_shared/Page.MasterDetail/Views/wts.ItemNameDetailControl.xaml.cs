@@ -7,20 +7,20 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class wts.ItemNameDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public SampleOrder ListMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
-            set { SetValue(MasterMenuItemProperty, value); }
+            get { return GetValue(ListMenuItemProperty) as SampleOrder; }
+            set { SetValue(ListMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(wts.ItemNameDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty ListMenuItemProperty = DependencyProperty.Register("ListMenuItem", typeof(SampleOrder), typeof(wts.ItemNameDetailControl), new PropertyMetadata(null, OnListMenuItemPropertyChanged));
 
         public wts.ItemNameDetailControl()
         {
             InitializeComponent();
         }
 
-        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnListMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as wts.ItemNameDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);

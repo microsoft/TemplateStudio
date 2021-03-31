@@ -8,7 +8,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class MasterDetailViewViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private SampleOrder _selected;
 
@@ -20,22 +20,22 @@ namespace Param_RootNamespace.ViewModels
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public MasterDetailViewViewModel()
+        public wts.ItemNameViewModel()
         {
         }
 
-        public async Task LoadDataAsync(MasterDetailsViewState viewState)
+        public async Task LoadDataAsync(ListDetailsViewState viewState)
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await SampleDataService.GetListDetailDataAsync();
 
             foreach (var item in data)
             {
                 SampleItems.Add(item);
             }
 
-            if (viewState == MasterDetailsViewState.Both)
+            if (viewState == ListDetailsViewState.Both)
             {
                 Selected = SampleItems.First();
             }

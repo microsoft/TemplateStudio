@@ -6,16 +6,16 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class MasterDetailViewPage : Page
+    public sealed partial class wts.ItemNamePage : Page
     {
-        public MasterDetailViewPage()
+        public wts.ItemNamePage()
         {
             InitializeComponent();
         }
 
-        private void MasterDetailsViewControl_Loaded(object sender, RoutedEventArgs e)
+        private void ListDetailsViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
+            if (ListDetailsViewControl.ViewState == ListDetailsViewState.Both)
             {
                 ViewModel.ActiveItem = ViewModel.Items.FirstOrDefault();
             }

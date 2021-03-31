@@ -1,5 +1,5 @@
 ﻿<!--{**-->
-<!--This xml blocks include string resources for the MasterDetailPage to your project.-->
+<!--This xml blocks include string resources for the ListDetailPage to your project.-->
 <!--**}-->
 
 <root>
@@ -9,7 +9,7 @@
     <value>Select an item from the list.</value>
     <comment>No selection text for wts.ItemName</comment>
   </data>
-  <data name="wts.ItemName.MasterHeader" xml:space="preserve">
+  <data name="wts.ItemName.ListHeader" xml:space="preserve">
     <value>wts.ItemName</value>
     <comment>Title for wts.ItemNamePage</comment>
   </data>

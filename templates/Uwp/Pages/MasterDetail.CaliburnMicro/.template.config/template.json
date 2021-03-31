@@ -24,32 +24,32 @@
     "wts.rightClickEnabled": "true",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
-  "sourceName": "MasterDetailView",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Views/MasterDetailViewPage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": "Views/MasterDetailViewPage.xaml.cs"
+      "path": "Views/wts.ItemNamePage.xaml.cs"
     },
     {
-      "path": "Views/MasterDetailViewDetail/DetailsView.xaml"
+      "path": "Views/ListDetailViewDetail/wts.ItemNameDetailsView.xaml"
     },
     {
-      "path": "Views/MasterDetailViewDetail/DetailsView.xaml.cs"
+      "path": "Views/ListDetailViewDetail/wts.ItemNameDetailsView.xaml.cs"
     },
     {
-      "path": "Views/MasterDetailViewDetail/MasterView.xaml"
+      "path": "Views/ListDetailViewDetail/wts.ItemNameListView.xaml"
     },
     {
-      "path": "Views/MasterDetailViewDetail/MasterView.xaml.cs"
+      "path": "Views/ListDetailViewDetail/wts.ItemNameListView.xaml.cs"
     },
     {
-      "path": "ViewModels/MasterDetailViewViewModel.cs"
+      "path": "ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": "ViewModels/MasterDetailViewDetailViewModel.cs"
+      "path": "ViewModels/wts.ItemNameDetailViewModel.cs"
     }
   ],
   "symbols": {

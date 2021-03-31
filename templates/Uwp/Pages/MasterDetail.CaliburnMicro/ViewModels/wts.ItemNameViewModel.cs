@@ -6,7 +6,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class MasterDetailViewViewModel : Conductor<MasterDetailViewDetailViewModel>.Collection.OneActive
+    public class wts.ItemNameViewModel : Conductor<wts.ItemNameDetailViewModel>.Collection.OneActive
     {
         protected override async void OnInitialize()
         {
@@ -19,9 +19,9 @@ namespace Param_RootNamespace.ViewModels
         {
             Items.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await SampleDataService.GetListDetailDataAsync();
 
-            Items.AddRange(data.Select(d => new MasterDetailViewDetailViewModel(d)));
+            Items.AddRange(data.Select(d => new wts.ItemNameDetailViewModel(d)));
         }
     }
 }

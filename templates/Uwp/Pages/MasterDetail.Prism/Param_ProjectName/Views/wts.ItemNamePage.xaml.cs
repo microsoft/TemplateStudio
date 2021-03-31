@@ -5,9 +5,9 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class MasterDetailViewPage : Page
+    public sealed partial class wts.ItemNamePage : Page
     {
-        public MasterDetailViewPage()
+        public wts.ItemNamePage()
         {
             InitializeComponent();
         }

@@ -24,14 +24,14 @@
     "wts.rightClickEnabled": "true",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
   },
-  "sourceName": "MasterDetailView",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Views/MasterDetailViewPage.xaml"
+      "path": "Views/wts.ItemNamePage.xaml"
     },
     {
-      "path": "Views/MasterDetailViewPage.xaml.cs"
+      "path": "Views/wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

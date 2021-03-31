@@ -13,7 +13,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class MasterDetailViewPage : Page, System.ComponentModel.INotifyPropertyChanged
+    public sealed partial class wts.ItemNamePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private SampleOrder _selected;
 
@@ -25,24 +25,24 @@ namespace Param_RootNamespace.Views
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public MasterDetailViewPage()
+        public wts.ItemNamePage()
         {
             InitializeComponent();
-            Loaded += MasterDetailViewPage_Loaded;
+            Loaded += wts.ItemNamePage_Loaded;
         }
 
-        private async void MasterDetailViewPage_Loaded(object sender, RoutedEventArgs e)
+        private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await SampleDataService.GetListDetailDataAsync();
 
             foreach (var item in data)
             {
                 SampleItems.Add(item);
             }
 
-            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
+            if (ListDetailsViewControl.ViewState == ListDetailsViewState.Both)
             {
                 Selected = SampleItems.FirstOrDefault();
             }

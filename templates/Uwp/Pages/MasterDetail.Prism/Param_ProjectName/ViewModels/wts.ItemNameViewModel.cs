@@ -14,12 +14,12 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class MasterDetailViewViewModel : ViewModelBase
+    public class wts.ItemNameViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
 
-        public MasterDetailViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
+        public wts.ItemNameViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
             _navigationService = navigationServiceInstance;
             _sampleDataService = sampleDataServiceInstance;
@@ -45,7 +45,7 @@ namespace Param_RootNamespace.ViewModels
         {
             SampleItems.Clear();
 
-            var data = await _sampleDataService.GetMasterDetailDataAsync();
+            var data = await _sampleDataService.GetListDetailDataAsync();
 
             foreach (var item in data)
             {

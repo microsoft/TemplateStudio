@@ -4,9 +4,9 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class MasterDetailViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class wts.ItemNameDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        public MasterDetailViewDetailViewModel(SampleOrder item)
+        public wts.ItemNameDetailViewModel(SampleOrder item)
         {
             Item = item;
         }

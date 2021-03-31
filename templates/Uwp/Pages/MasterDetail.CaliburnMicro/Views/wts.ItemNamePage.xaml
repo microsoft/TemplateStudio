@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Param_RootNamespace.Views.MasterDetailViewPage"
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cm="using:Caliburn.Micro"
@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="MasterView" />
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="wts.ItemName" />
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
@@ -19,7 +19,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    x:Uid="MasterDetailView_NoSelection"
+                    x:Uid="ListDetailView_NoSelection"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
@@ -27,7 +27,7 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterHeaderTemplate">
+        <DataTemplate x:Key="ListHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
                     x:Name="headerText"
@@ -40,16 +40,16 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <controls:MasterDetailsView
-            x:Name="MasterDetailsViewControl"
-            x:Uid="MasterDetailView"
+        <controls:ListDetailsView
+            x:Name="ListDetailsViewControl"
+            x:Uid="ListDetailView"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.Items}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            Loaded="MasterDetailsViewControl_Loaded"
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            Loaded="ListDetailsViewControl_Loaded"
+            ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.ActiveItem, Mode=TwoWay}" />
     </Grid>

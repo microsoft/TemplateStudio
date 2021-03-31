@@ -3,7 +3,7 @@ Imports Param_RootNamespace.Core.Models
 Imports Param_RootNamespace.Core.Services
 
 Namespace Views
-    Public NotInheritable Partial Class MasterDetailViewPage
+    Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
@@ -22,19 +22,19 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            AddHandler Loaded, AddressOf MasterDetailViewPage_Loaded
+            AddHandler Loaded, AddressOf wts.ItemNamePage_Loaded
         End Sub
 
-        Private Async Sub MasterDetailViewPage_Loaded(sender As Object, e As RoutedEventArgs)
+        Private Async Sub wts.ItemNamePage_Loaded(sender As Object, e As RoutedEventArgs)
             SampleItems.Clear()
 
-            Dim data = Await SampleDataService.GetMasterDetailDataAsync()
+            Dim data = Await SampleDataService.GetListDetailDataAsync()
 
             For Each item As SampleOrder In data
                 SampleItems.Add(item)
             Next
 
-            If MasterDetailsViewControl.ViewState = MasterDetailsViewState.Both Then
+            If ListDetailsViewControl.ViewState = ListDetailsViewState.Both Then
                 Selected = SampleItems.FirstOrDefault()
             End If
         End Sub

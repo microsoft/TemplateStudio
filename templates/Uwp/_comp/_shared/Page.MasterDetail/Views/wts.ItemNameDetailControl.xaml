@@ -20,36 +20,36 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="48"
-                    Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}" />
+                    Glyph="{x:Bind ListMenuItem.Symbol, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
+                    Text="{x:Bind ListMenuItem.Company, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Status" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListMenuItem.Status, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Order date" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListMenuItem.OrderDate, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Company" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListMenuItem.Company, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Ship to" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.ShipTo, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListMenuItem.ShipTo, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Order total" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ListMenuItem.OrderTotal, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"

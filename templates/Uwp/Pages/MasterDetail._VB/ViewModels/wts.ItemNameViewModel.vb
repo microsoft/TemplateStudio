@@ -3,7 +3,7 @@ Imports Param_RootNamespace.Core.Models
 Imports Param_RootNamespace.Core.Services
 
 Namespace ViewModels
-    Public Class MasterDetailViewViewModel
+    Public Class wts.ItemNameViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _selected As SampleOrder
@@ -22,16 +22,16 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public Async Function LoadDataAsync(viewState As MasterDetailsViewState) As Task
+        Public Async Function LoadDataAsync(viewState As ListDetailsViewState) As Task
             SampleItems.Clear()
 
-            Dim data = Await SampleDataService.GetMasterDetailDataAsync()
+            Dim data = Await SampleDataService.GetListDetailDataAsync()
 
             For Each item As SampleOrder In data
                 SampleItems.Add(item)
             Next
 
-            If viewState = MasterDetailsViewState.Both Then
+            If viewState = ListDetailsViewState.Both Then
                 Selected = SampleItems.FirstOrDefault()
             End If
         End Function

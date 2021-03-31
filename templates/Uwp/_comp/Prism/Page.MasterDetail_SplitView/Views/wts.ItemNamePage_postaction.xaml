@@ -8,7 +8,7 @@
     <Page.Resources>
         <!--^^-->
         <!--{[{-->
-        <DataTemplate x:Key="MinimalMasterHeaderTemplate">
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
                     x:Name="headerText"
@@ -31,24 +31,24 @@
                             <AdaptiveTrigger MinWindowWidth="641" />
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Target="MasterDetailsViewControl.MasterHeaderTemplate" Value="{StaticResource MasterHeaderTemplate}" />
+                            <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
         <!--}]}-->
-        <controls:MasterDetailsView
-            x:Name="MasterDetailsViewControl"
-            x:Uid="wts.ItemName"
+        <controls:ListDetailsView
+            x:Name="ListDetailsViewControl"
+            x:Uid="ListDetailView"
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->
             <!--{--{-->
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
             <!--}--}-->
             <!--^^-->
             <!--{[{-->
-            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
             <!--}]}-->
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" />
     </Grid>
