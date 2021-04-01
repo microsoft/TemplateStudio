@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "MasterDetail",
+  "name": "ListDetail",
   "description": "Die Master-Detail-Seite besitzt einen Masterbereich und einen Detailbereich für Inhalte.",
-  "identity": "wts.Page.MasterDetail.CodeBehind"
+  "identity": "wts.Page.ListDetail.CodeBehind"
 }

@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail.VB",
-  "identity": "Page.MasterDetail.VB",
-  "shortName": "Page.MasterDetail.VB",
+  "name": "Page.ListDetail.VB",
+  "identity": "Page.ListDetail.VB",
+  "shortName": "Page.ListDetail.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.MasterDetail.VB"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.ListDetail.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

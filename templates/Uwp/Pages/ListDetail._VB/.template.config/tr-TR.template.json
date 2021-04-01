@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "MasterDetail",
+    "name": "ListDetail",
     "description": "Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır.",
-    "identity": "wts.Page.MasterDetail.VB"
+    "identity": "wts.Page.ListDetail.VB"
 }

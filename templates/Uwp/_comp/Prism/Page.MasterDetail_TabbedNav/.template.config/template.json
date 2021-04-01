@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Page.MasterDetail_TabbedNav",
-  "identity": "Prism.Page.MasterDetail_TabbedNav",
-  "shortName": "Prism.Page.MasterDetail_TabbedNav",
+  "name": "Prism.Page.ListDetail_TabbedNav",
+  "identity": "Prism.Page.ListDetail_TabbedNav",
+  "shortName": "Prism.Page.ListDetail_TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedNav & $frontendframework == Prism & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$projectType == TabbedNav & $frontendframework == Prism & groupidentity == wts.Page.ListDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

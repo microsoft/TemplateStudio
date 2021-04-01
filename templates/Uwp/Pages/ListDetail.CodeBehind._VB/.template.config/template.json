@@ -4,10 +4,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MasterDetail",
-  "shortName": "MasterDetail",
-  "groupIdentity": "wts.Page.MasterDetail.VB",
-  "identity": "wts.Page.MasterDetail.CodeBehind.VB",
+  "name": "ListDetail",
+  "shortName": "ListDetail",
+  "groupIdentity": "wts.Page.ListDetail.VB",
+  "identity": "wts.Page.ListDetail.CodeBehind.VB",
   "description": "The master-detail page has a master pane and a details pane for content.",
   "tags": {
     "language": "VisualBasic",

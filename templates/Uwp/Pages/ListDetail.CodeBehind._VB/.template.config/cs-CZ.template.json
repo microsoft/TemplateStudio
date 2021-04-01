@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "MasterDetail",
+    "name": "ListDetail",
     "description": "Stránka hlavní-podrobnosti obsahuje podokno hlavních položek a podokno podrobností pro obsah.",
-    "identity": "wts.Page.MasterDetail.CodeBehind.VB"
+    "identity": "wts.Page.ListDetail.CodeBehind.VB"
 }

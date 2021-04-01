@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Testing.UnitTests.Core.SampleData.MasterDetail.MSTest",
-  "identity": "Prism.Testing.UnitTests.Core.SampleData.MasterDetail.MSTest",
-  "shortName": "Prism.Testing.UnitTests.Core.SampleData.MasterDetail.MSTest",
+  "name": "Prism.Testing.UnitTests.Core.SampleData.ListDetail.MSTest",
+  "identity": "Prism.Testing.UnitTests.Core.SampleData.ListDetail.MSTest",
+  "shortName": "Prism.Testing.UnitTests.Core.SampleData.ListDetail.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Testing.UnitTests.Core.MSTest & $page == wts.Page.MasterDetail.Prism",
+    "wts.compositionFilter": "$frontendframework == Prism & identity == wts.Testing.UnitTests.Core.MSTest & $page == wts.Page.ListDetail.Prism",
     "wts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

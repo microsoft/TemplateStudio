@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail.SampleData.Strings",
-  "identity": "Page.MasterDetail.SampleData.Strings",
-  "shortName": "Page.MasterDetail.SampleData.Strings",
+  "name": "Page.ListDetail.SampleData.Strings",
+  "identity": "Page.ListDetail.SampleData.Strings",
+  "shortName": "Page.ListDetail.SampleData.Strings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|MVVMToolkit & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|MVVMToolkit & groupidentity == wts.Page.ListDetail"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

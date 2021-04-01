@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetailPage.AddNavigationTransition",
-  "identity": "Page.MasterDetailPage.AddNavigationTransition",
-  "shortName": "Page.MasterDetailPage.AddNavigationTransition",
+  "name": "Page.ListDetailPage.AddNavigationTransition",
+  "identity": "Page.ListDetailPage.AddNavigationTransition",
+  "shortName": "Page.ListDetailPage.AddNavigationTransition",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank|SplitView & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$projectType == Blank|SplitView & groupidentity == wts.Page.ListDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

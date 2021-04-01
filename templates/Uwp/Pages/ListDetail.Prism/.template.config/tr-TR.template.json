@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
-    "name": "MasterDetail",
+    "name": "ListDetail",
     "description": "Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır.",
-    "identity": "wts.Page.MasterDetail.Prism"
+    "identity": "wts.Page.ListDetail.Prism"
 }

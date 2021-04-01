@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "MasterDetail",
+  "name": "ListDetail",
   "description": "Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści.",
-  "identity": "wts.Page.MasterDetail.CaliburnMicro"
+  "identity": "wts.Page.ListDetail.CaliburnMicro"
 }

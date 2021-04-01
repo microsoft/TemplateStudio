@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.SplitView.MasterDetail",
-  "identity": "Page.SplitView.MasterDetail",
-  "shortName": "Page.SplitView.MasterDetail",
+  "name": "Page.SplitView.ListDetail",
+  "identity": "Page.SplitView.ListDetail",
+  "shortName": "Page.SplitView.ListDetail",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.ListDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

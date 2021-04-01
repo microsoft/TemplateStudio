@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail.SampleData.VB",
-  "identity": "Page.MasterDetail.SampleData.VB",
-  "shortName": "Page.MasterDetail.SampleData.VB",
+  "name": "Page.ListDetail.SampleData.VB",
+  "identity": "Page.ListDetail.SampleData.VB",
+  "shortName": "Page.ListDetail.SampleData.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.MasterDetail.VB",
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.ListDetail.VB",
     "wts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

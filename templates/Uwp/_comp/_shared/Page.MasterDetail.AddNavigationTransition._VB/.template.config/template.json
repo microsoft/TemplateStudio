@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetailPage.AddNavigationTransition.VB",
-  "identity": "Page.MasterDetailPage.AddNavigationTransition.VB",
-  "shortName": "Page.MasterDetailPage.AddNavigationTransition.VB",
+  "name": "Page.ListDetailPage.AddNavigationTransition.VB",
+  "identity": "Page.ListDetailPage.AddNavigationTransition.VB",
+  "shortName": "Page.ListDetailPage.AddNavigationTransition.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank|SplitView & groupidentity == wts.Page.MasterDetail.VB"
+    "wts.compositionFilter": "$projectType == Blank|SplitView & groupidentity == wts.Page.ListDetail.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

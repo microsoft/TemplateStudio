@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail",
-  "identity": "Page.MasterDetail",
-  "shortName": "Page.MasterDetail",
+  "name": "Page.ListDetail",
+  "identity": "Page.ListDetail",
+  "shortName": "Page.ListDetail",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|Prism|MVVMToolkit & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|Prism|MVVMToolkit & groupidentity == wts.Page.ListDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

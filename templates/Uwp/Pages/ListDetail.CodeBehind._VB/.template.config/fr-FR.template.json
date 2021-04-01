@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "MasterDetail",
+    "name": "ListDetail",
     "description": "La page maître-détail comporte un volet principal et un volet de détails pour le contenu.",
-    "identity": "wts.Page.MasterDetail.CodeBehind.VB"
+    "identity": "wts.Page.ListDetail.CodeBehind.VB"
 }
