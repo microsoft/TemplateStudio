@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetail",
-  "description": "Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści.",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "identity": "wts.Page.ListDetail.CodeBehind"
 }

@@ -8,7 +8,7 @@
   "shortName": "ListDetail",
   "groupIdentity": "wts.Page.ListDetail",
   "identity": "wts.Page.ListDetail",
-  "description": "The master-detail page has a master pane and a details pane for content.",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "tags": {
     "language": "C#",
     "type": "item",

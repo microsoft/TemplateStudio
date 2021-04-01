@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetail",
-  "description": "A página de detalhes mestra tem um painel mestre e um painel de detalhes para o conteúdo.",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "identity": "wts.Page.ListDetail"
 }

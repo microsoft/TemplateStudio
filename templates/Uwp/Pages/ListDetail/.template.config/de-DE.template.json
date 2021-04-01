@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetail",
-  "description": "Die Master-Detail-Seite besitzt einen Masterbereich und einen Detailbereich für Inhalte.",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "identity": "wts.Page.ListDetail"
 }

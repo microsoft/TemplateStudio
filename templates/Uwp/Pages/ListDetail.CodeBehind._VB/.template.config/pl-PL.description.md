@@ -1,3 +1,3 @@
-﻿Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści. Gdy zostanie wybrany element na liście wzorca, okienko szczegółów jest aktualizowane. Ten wzorzec jest często używany do obsługi poczty e-mail i książek adresowych.
+﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
 
-Więcej informacji na temat strony wzorzec-szczegóły można znaleźć na stronie [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/controls-and-patterns/master-details).
+More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

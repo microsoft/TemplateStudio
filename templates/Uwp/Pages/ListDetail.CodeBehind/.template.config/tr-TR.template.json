@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetail",
-  "description": "Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır.",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "identity": "wts.Page.ListDetail.CodeBehind"
 }

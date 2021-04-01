@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "La página de maestro y detalles que tiene un panel maestro y un panel de detalles para el contenido.",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
     "identity": "wts.Page.ListDetail.CodeBehind.VB"
 }

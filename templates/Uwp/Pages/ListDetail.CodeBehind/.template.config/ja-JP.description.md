@@ -1,3 +1,3 @@
-﻿マスター/詳細ページには、マスター ウィンドウと、コンテンツ用の詳細ウィンドウがあります。マスターの一覧で項目を選択すると、詳細ウィンドウが更新されます。このパターンは、電子メールとアドレス帳でよく使用されます。
+﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
 
-マスター/詳細パターンの詳細については、[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/controls-and-patterns/master-details) を参照してください。
+More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

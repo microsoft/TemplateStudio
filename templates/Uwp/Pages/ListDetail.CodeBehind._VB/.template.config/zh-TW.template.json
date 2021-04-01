@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "主要/詳細資料頁面有內容的主要窗格及詳細資料窗格。",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
     "identity": "wts.Page.ListDetail.CodeBehind.VB"
 }

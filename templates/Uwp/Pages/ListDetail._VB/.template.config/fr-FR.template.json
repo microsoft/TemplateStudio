@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "La page maître-détail comporte un volet principal et un volet de détails pour le contenu.",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
     "identity": "wts.Page.ListDetail.VB"
 }

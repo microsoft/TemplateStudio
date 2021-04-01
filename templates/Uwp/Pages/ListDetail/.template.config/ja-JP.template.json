@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetail",
-  "description": "マスター/詳細ページには、マスター ウィンドウと、コンテンツ用の詳細ウィンドウがあります。",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
   "identity": "wts.Page.ListDetail"
 }

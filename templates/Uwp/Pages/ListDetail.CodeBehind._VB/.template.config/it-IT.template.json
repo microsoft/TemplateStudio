@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "La pagina master-dettagli ha un riquadro master e un riquadro dettagli per il contenuto.",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
     "identity": "wts.Page.ListDetail.CodeBehind.VB"
 }

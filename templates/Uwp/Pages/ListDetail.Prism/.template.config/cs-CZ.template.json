@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "ListDetail",
-    "description": "Stránka hlavní-podrobnosti obsahuje podokno hlavních položek a podokno podrobností pro obsah.",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
     "identity": "wts.Page.ListDetail.Prism"
 }
