@@ -9,11 +9,11 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="wts.ItemName" />
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="wts.ItemNameListView" />
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="DetailsView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="wts.ItemNameDetailView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
