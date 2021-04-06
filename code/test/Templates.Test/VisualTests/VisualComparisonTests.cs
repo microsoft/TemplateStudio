@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.InkDraw",
                 "wts.Page.InkDrawPicture",
                 "wts.Page.InkSmartCanvas",
-                "wts.Page.MasterDetail",
+                "wts.Page.ListDetail",
                 "wts.Page.Settings",
                 "wts.Page.TabbedPivot",
             };
