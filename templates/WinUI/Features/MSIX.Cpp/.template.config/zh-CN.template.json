@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "允许通过 Microsoft Store 创建旁加载或分发包。",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}

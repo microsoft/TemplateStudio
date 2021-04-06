@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform": "Wpf",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

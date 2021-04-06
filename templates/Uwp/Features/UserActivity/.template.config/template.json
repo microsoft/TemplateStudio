@@ -14,7 +14,7 @@
     "type": "item",
     "wts.type": "feature",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|CodeBehind|CaliburnMicro",
+    "wts.frontendframework": "MVVMBasic|CodeBehind|CaliburnMicro|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -57,7 +57,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "AdaptiveCards",
-        "version" : "2.1.0",
+        "version" : "2.3.0",
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": true

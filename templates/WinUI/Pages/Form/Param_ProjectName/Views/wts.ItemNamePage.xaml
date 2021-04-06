@@ -141,8 +141,8 @@
                 PlaceholderText="Enter ship to" />
 
             <Button
+                x:Uid="wts.ItemName_Submit"
                 Margin="{StaticResource LargeTopBottomMargin}"
-                Content="Submit"
                 Command="{x:Bind ViewModel.SubmitCommand}" />
         </StackPanel>
     </ScrollViewer>

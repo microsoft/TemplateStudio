@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Master/Detail",
+    "name": "MasterDetail",
     "description": "主要/詳細資料頁面有內容的主要窗格及詳細資料窗格。",
     "identity": "wts.Page.MasterDetail.VB"
 }

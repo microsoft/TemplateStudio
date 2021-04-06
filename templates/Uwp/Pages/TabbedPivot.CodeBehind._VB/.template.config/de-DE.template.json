@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "TabbedPivot",
+    "name": "Tabbed Pivot",
     "description": "Die Registerkartenseite wird für die Navigation in häufig verwendeten, jedoch unterschiedlichen Inhaltskategorien verwendet.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

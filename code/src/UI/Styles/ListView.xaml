@@ -38,8 +38,9 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name">
             <Setter.Value>
-                <MultiBinding StringFormat="{}{0}, {1}">
+                <MultiBinding StringFormat="{}{0}, {1}, {2}">
                     <Binding Path="Title" />
+                    <Binding Path="Flag" />
                     <Binding Path="Summary" />
                 </MultiBinding>
             </Setter.Value>
@@ -271,12 +272,12 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding TDListBoxText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Margin" Value="{StaticResource Margin_S_Bottom}" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FocusVisualStyle" Value="{Binding FocusVisualStyle, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
         <Setter Property="AutomationProperties.AutomationId" Value="{Binding Path=Index, StringFormat=Step{0:}}" />
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
@@ -307,31 +308,31 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected}" Value="true">
-                            <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="text" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding TDSelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding TDSelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding TDSelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected}" Value="false" />
                                 <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding TDListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding TDListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding TDListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected}" Value="false" />
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding TDListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding TDListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding TDListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding TDListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="checkMark" Value="{Binding TDListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -340,7 +341,6 @@
     </Style>
 
     <Style x:Key="WtsListViewSequentialFlow" TargetType="{x:Type ListView}">
-        <Setter Property="Background" Value="LightGreen" />
         <Setter Property="Margin" Value="26,20" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />

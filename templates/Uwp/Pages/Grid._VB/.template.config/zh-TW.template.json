@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "用於顯示簡單方格的頁面，由適用於 UWP 的 Telerik UI 控制項所提供。",
     "identity": "wts.Page.Grid.VB"
 }

@@ -18,7 +18,9 @@ namespace Microsoft.Templates.VsEmulator.Services
         private ResourceDictionary _commonDocument;
         private ResourceDictionary _environment;
         private ResourceDictionary _infoBar;
+        private ResourceDictionary _themedDialog;
         private ResourceDictionary _windowsTemplateStudio;
+        private ResourceDictionary _styles;
 
         public static FakeStyleValuesProvider Instance => _instance ?? (_instance = new FakeStyleValuesProvider());
 
@@ -42,6 +44,8 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColorFromResourceDictionary(_environment, $"{memberName}BrushKey");
                 case "InfoBar":
                     return GetColorFromResourceDictionary(_infoBar, $"{memberName}BrushKey");
+                case "ThemedDialog":
+                    return GetColorFromResourceDictionary(_themedDialog, $"{memberName}BrushKey");
                 case "WindowsTemplateStudio":
                     return GetColorFromResourceDictionary(_windowsTemplateStudio, $"{memberName}BrushKey");
                 default:
@@ -102,9 +106,18 @@ namespace Microsoft.Templates.VsEmulator.Services
             {
                 Source = new Uri($"/VsEmulator;component/Styles/{themeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute),
             };
+            _themedDialog = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_ThemedDialog.xaml", UriKind.RelativeOrAbsolute),
+            };
             _windowsTemplateStudio = new ResourceDictionary()
             {
                 Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute),
+            };
+
+            _styles = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Styles.xaml", UriKind.RelativeOrAbsolute),
             };
         }
 
@@ -126,5 +139,17 @@ namespace Microsoft.Templates.VsEmulator.Services
         }
 
         public SolidColorBrush GetColor(string resourceKey) => Application.Current.FindResource(resourceKey) as SolidColorBrush;
+
+        public override Style GetStyle(object resourceKey)
+        {
+            if (_styles.Contains(resourceKey))
+            {
+                return _styles[resourceKey] as Style;
+            }
+            else
+            {
+                throw new Exception($"The member name '{resourceKey}' is not recognized");
+            }
+        }
     }
 }

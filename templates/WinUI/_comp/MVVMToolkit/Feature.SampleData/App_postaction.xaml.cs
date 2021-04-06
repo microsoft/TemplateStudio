@@ -4,9 +4,8 @@ using Param_RootNamespace.Core.Services;
 //}]}
 namespace Param_RootNamespace
 {
-    public partial class App : Application
     {
-        private void ConfigureServices(IServiceCollection services)
+        private System.IServiceProvider ConfigureServices()
         {
             // Core Services
 //{[{

@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Services
 
         public ActivationService(IShellWindow shellWindow, ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
         {
-            App.CurrentWindow = shellWindow as Window;
+            App.MainWindow = shellWindow as Window;
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
             _navigationService = navigationService;
@@ -28,7 +28,7 @@ namespace Param_RootNamespace.Services
             // take into account that the splash screen is shown while this code runs.
             await InitializeAsync();
 
-            App.CurrentWindow.Activate();
+            App.MainWindow.Activate();
 
             // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
             // will navigate to the first page

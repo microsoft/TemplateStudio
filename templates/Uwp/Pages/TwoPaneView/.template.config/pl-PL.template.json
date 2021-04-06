@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "Strona wzorzec-szczegóły zoptymalizowana dla urządzeń dwuekranowych.",
   "identity": "wts.Page.TwoPaneView"
 }

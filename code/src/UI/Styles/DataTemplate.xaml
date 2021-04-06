@@ -37,6 +37,10 @@
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
                     Style="{StaticResource WtsImageEx}"/>
+                <TextBlock Text="{Binding Flag}"
+                           Grid.Row="0"
+                           Style="{StaticResource WtsFlag}"
+                           Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"

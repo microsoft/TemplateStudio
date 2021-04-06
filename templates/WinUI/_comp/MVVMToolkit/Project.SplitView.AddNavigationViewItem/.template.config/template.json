@@ -13,7 +13,7 @@
       "wts.type": "composition",
       "wts.platform": "WinUI",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "wts.type == page & identity != wts.WinUI.Page.Settings & $frontendframework == MVVMToolkit & $projectType == SplitView"
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & wts.type == page & identity != wts.WinUI.Page.Settings"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

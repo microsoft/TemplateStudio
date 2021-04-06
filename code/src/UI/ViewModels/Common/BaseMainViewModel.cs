@@ -27,9 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected Window MainView { get; private set; }
 
-        protected string Language { get; private set; }
-
-        protected string Platform { get; private set; }
+        public UserSelectionContext Context { get; private set; }
 
         public WizardStatus WizardStatus { get; }
 
@@ -63,11 +61,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual void Initialize(string platform, string language)
+        public virtual void Initialize(UserSelectionContext context)
         {
-            Platform = platform;
-            Language = language;
-
+            Context = context;
             SystemService.Initialize();
         }
 

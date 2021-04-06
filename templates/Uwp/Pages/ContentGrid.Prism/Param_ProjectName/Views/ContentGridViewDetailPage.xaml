@@ -31,7 +31,8 @@
         </VisualStateManager.VisualStateGroups>
 
         <ScrollViewer
-            x:Name="contentScroll">
+            x:Name="contentScroll"
+            IsTabStop="True">
             <StackPanel
                 x:Name="contentPanel">
                 <RelativePanel>

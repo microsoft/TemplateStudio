@@ -17,6 +17,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
@@ -24,8 +25,6 @@ namespace Microsoft.Templates.Test
     public abstract class BaseGenAndBuildFixture
     {
         protected const string All = "all";
-
-        private readonly string _emptyBackendFramework = string.Empty;
 
         public abstract string GetTestRunPath();
 
@@ -38,11 +37,11 @@ namespace Microsoft.Templates.Test
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
 
 
-        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<TemplateInfo, string> getName = null)
+        public UserSelection SetupProject(UserSelectionContext context, Func<TemplateInfo, string> getName = null)
         {
-            var userSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language);
+            var userSelection = new UserSelection(context);
 
-            var layouts = GenContext.ToolBox.Repo.GetLayoutTemplates(userSelection.Platform, userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.BackEndFramework);
+            var layouts = GenContext.ToolBox.Repo.GetLayoutTemplates(context);
 
             foreach (var item in layouts)
             {
@@ -56,7 +55,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            userSelection.HomeName = userSelection.Pages.FirstOrDefault().Name;
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault()?.Name ?? string.Empty;
 
             return userSelection;
         }
@@ -244,7 +243,7 @@ namespace Microsoft.Templates.Test
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config} {batPath}");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
@@ -379,6 +378,18 @@ namespace Microsoft.Templates.Test
             fakeShell.SetCurrentPlatform(platform);
         }
 
+        private static bool IsMatchPropertyBag(ITemplateInfo info, Dictionary<string, string> propertyBag)
+        {
+            if (propertyBag == null || !propertyBag.Any())
+            {
+                return true;
+            }
+
+            return propertyBag.All(p =>
+                info.GetPropertyBagValuesList(p.Key).Contains(p.Value, StringComparer.OrdinalIgnoreCase) ||
+                info.GetPropertyBagValuesList(p.Key).Contains(All, StringComparer.OrdinalIgnoreCase));
+        }
+
         protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Uwp, string excludedItem = "")
         {
             List<object[]> result = new List<object[]>();
@@ -387,40 +398,70 @@ namespace Microsoft.Templates.Test
 
             SetCurrentPlatform(platform);
 
-            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+            var context = new UserSelectionContext(language, platform);
+
+            var appModels = AppModels.GetAllAppModels().ToList();
+            foreach (var appModel in appModels)
+            {
+                if (platform == Platforms.WinUI)
+                {
+                    context.AddAppModel(appModel);
+                }
+
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                                                         .Where(m => !string.IsNullOrEmpty(m.Description))
                                                         .Select(m => m.Name);
 
-            foreach (var projectType in projectTypes)
-            {
-                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
-                                                                .Where(m => m.Name == frameworkFilter)
-                                                                .Select(m => m.Name).ToList();
-
-                foreach (var framework in targetFrameworks)
+                foreach (var projectType in projectTypes)
                 {
-                    var itemTemplates = GenContext.ToolBox.Repo.GetAll()
-                        .Where(t =>
-                        (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                        && t.GetTemplateType().IsItemTemplate()
-                        && t.GetPlatform() == platform
-                        && t.GetLanguage() == language
-                        && t.Identity != excludedItem
-                        && !t.GetIsHidden());
+                    context.ProjectType = projectType;
+                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
+                                                                    .Where(m => m.Name == frameworkFilter)
+                                                                    .Select(m => m.Name).ToList();
 
-                    foreach (var itemTemplate in itemTemplates)
+                    foreach (var framework in targetFrameworks)
                     {
-                        result.Add(new object[]
+                        var itemTemplates = GenContext.ToolBox.Repo.GetAll()
+                            .Where(t =>
+                            (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
+                            && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                            && t.GetTemplateType().IsItemTemplate()
+                            && t.GetPlatform() == platform
+                            && t.GetLanguage() == language
+                            && IsMatchPropertyBag(t, context.PropertyBag)
+                            && t.Identity != excludedItem
+                            && !t.GetIsHidden());
+
+                        foreach (var itemTemplate in itemTemplates)
                         {
-                            itemTemplate.Name,
-                            projectType,
-                            framework,
-                            platform,
-                            itemTemplate.Identity,
-                            language,
-                        });
+                            if (platform == Platforms.WinUI)
+                            {
+                                result.Add(new object[]
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                    appModel
+                                });
+                            }
+                            else
+                            {
+                                result.Add(new object[]
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                });
+                            }
+                        }
                     }
-                }    
+                }
             }
 
             return result;
@@ -431,6 +472,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
 
             var platform = Platforms.Uwp;
+            var context = new UserSelectionContext(ProgrammingLanguages.VisualBasic, platform);
 
             var projectTemplates =
                GenContext.ToolBox.Repo.GetAll().Where(
@@ -443,7 +485,8 @@ namespace Microsoft.Templates.Test
 
                 foreach (var projectType in projectTypeList)
                 {
-                    var frameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                    context.ProjectType = projectType;
+                    var frameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                             .Select(m => m.Name).ToList();
 
                     foreach (var framework in frameworks)
@@ -467,14 +510,16 @@ namespace Microsoft.Templates.Test
                 {
                     SetCurrentPlatform(platform);
 
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                    var context = new UserSelectionContext(language, platform);
+
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                                                               .Where(m => !string.IsNullOrEmpty(m.Description))
                                                               .Select(m => m.Name);
 
                     foreach (var projectType in projectTypes)
                     {
-
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
+                        context.ProjectType = projectType;
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
                                                                       .Select(m => m.Name).ToList();
 
                         foreach (var framework in targetFrameworks)

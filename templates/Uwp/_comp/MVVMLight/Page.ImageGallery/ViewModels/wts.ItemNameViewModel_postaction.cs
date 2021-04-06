@@ -10,7 +10,7 @@ namespace Param_RootNamespace.ViewModels
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
         //}]}
 
-        private void OnsItemSelected(ItemClickEventArgs args)
+        private void OnItemSelected(ItemClickEventArgs args)
         {
 //^^
 //{[{

@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web View",
-  "shortName": "Web View",
+  "name": "WebView",
+  "shortName": "WebView",
   "identity": "wts.WinUI.Page.WebView",
   "groupIdentity": "wts.WinUI.Page.WebView",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
@@ -13,9 +13,10 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.projecttype": "all",
+    "wts.projecttype": "SplitView",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
+    "wts.appmodel": "Desktop",
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",
     "wts.genGroup": "0",
@@ -24,6 +25,12 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": "Contracts/Services/IWebViewService.cs"
+    },
+    {
+      "path": "Services/WebViewService.cs"
+    },
     {
       "path": "ViewModels/wts.ItemNameViewModel.cs"
     },

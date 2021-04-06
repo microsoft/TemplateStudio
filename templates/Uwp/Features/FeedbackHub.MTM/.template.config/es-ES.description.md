@@ -1,0 +1,3 @@
+﻿Agrega un vínculo de comentarios a la página de configuración para animar a tus clientes a dejar comentarios a través del Centro de opiniones.
+
+El Centro de opiniones es una aplicación preinstalada que proporciona un único lugar para recopilar comentarios sobre Windows y aplicaciones instaladas. Todos los comentarios de los clientes que se envían para tu aplicación a través del Centro de opiniones se recopilan y se presentan para ti en el [Informe de comentarios](https://docs.microsoft.com/windows/uwp/publish/feedback-report) en el Panel del Centro de desarrollo de Windows. De esta manera podrás ver los problemas, las sugerencias y los votos a favor que tus clientes han enviado en un informe.

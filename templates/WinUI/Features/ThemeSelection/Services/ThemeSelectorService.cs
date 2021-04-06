@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Windows.Storage;
-using Windows.UI.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
 
@@ -17,6 +16,7 @@ namespace Param_RootNamespace.Services
         public async Task InitializeAsync()
         {
             Theme = await LoadThemeFromSettingsAsync();
+            await Task.CompletedTask;
         }
 
         public async Task SetThemeAsync(ElementTheme theme)
@@ -29,7 +29,7 @@ namespace Param_RootNamespace.Services
 
         public async Task SetRequestedThemeAsync()
         {
-            if (App.CurrentWindow.Content is FrameworkElement rootElement)
+            if (App.MainWindow.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = Theme;
             }

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "Страница, отображающая простую сетку с поддержкой элементов управления пользовательского интерфейса Telerik для UWP.",
     "identity": "wts.Page.Grid.VB"
 }

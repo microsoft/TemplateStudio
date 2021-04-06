@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Web View",
+    "name": "WebView",
     "description": "La página de vista web presenta contenido web usando el motor de representación de Microsoft Edge.",
     "identity": "wts.Page.WebView.VB"
 }

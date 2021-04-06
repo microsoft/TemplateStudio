@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
-  "name": "Two Pane View",
+  "name": "TwoPaneView",
   "description": "Çift ekranlı cihazlar için iyileştirilen Ana-Ayrıntı sayfası.",
   "identity": "wts.Page.TwoPaneView.VB"
 }

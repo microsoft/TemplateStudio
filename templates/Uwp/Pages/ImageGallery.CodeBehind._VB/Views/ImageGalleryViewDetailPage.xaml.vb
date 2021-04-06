@@ -19,7 +19,7 @@ Namespace Views
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage)?.ID)
             End Set
         End Property
 

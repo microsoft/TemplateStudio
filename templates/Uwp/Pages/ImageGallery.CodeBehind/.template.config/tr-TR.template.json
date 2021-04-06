@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "ImageGallery",
+  "name": "Image Gallery",
   "description": "Görüntü galerisinin görüntülendiği ve kullanıcının galeri ile görüntü ayrıntısı arasında gezinmesine olanak tanıyan sayfa.",
   "identity": "wts.Page.ImageGallery.CodeBehind"
 }

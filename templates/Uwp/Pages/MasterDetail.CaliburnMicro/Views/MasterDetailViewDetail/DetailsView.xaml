@@ -13,7 +13,8 @@
             Padding="{StaticResource DetailPageMargin}"
             HorizontalAlignment="Stretch"
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-            VerticalScrollMode="Enabled">
+            VerticalScrollMode="Enabled"
+            IsTabStop="True">
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <FontIcon

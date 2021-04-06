@@ -42,7 +42,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    Text="Select an item from the list."
+                    x:Uid="wts.ItemName_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -50,9 +50,18 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterHeaderTemplate">
+        <DataTemplate x:Key="ListHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    Margin="96,0,0,0"
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
                     Text="{Binding}" />
@@ -61,17 +70,31 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <controls:MasterDetailsView
-            x:Name="MasterDetailsViewControl"
-            MasterHeader="MasterDetail"
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <controls:ListDetailsView
+            x:Uid="wts.ItemName"
+            x:Name="ListDetailsViewControl"
             BackButtonBehavior="Automatic"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.SampleItems}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
+            ViewStateChanged="OnViewStateChanged"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
     </Grid>
 </Page>

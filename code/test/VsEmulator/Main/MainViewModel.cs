@@ -18,6 +18,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -142,7 +143,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 var parameters = parameter.Split(',');
-                var userSelection = await NewProjectAsync(parameters[0], parameters[1]);
+                var appModel = parameters.Length == 3 ? parameters[2] : string.Empty;
+                var userSelection = await NewProjectAsync(parameters[0], parameters[1], appModel);
                 if (parameters[0] == Platforms.Uwp)
                 {
                     _userSelectionUwp = userSelection;
@@ -196,13 +198,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var parameters = parameter.Split(',');
                 AnalyzeNewProject(parameters[0], parameters[1]);
             });
-        }     
+        }
 
-        private async Task<UserSelection> NewProjectAsync(string platform, string language)
+        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
         {
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
+
+            if (!string.IsNullOrEmpty(appmodel))
+            {
+                SetCurrentAppModel(appmodel);
+            }
+            
 
             try
             {
@@ -213,7 +221,14 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+
+                    var context = new UserSelectionContext(language, platform);
+                    if (!string.IsNullOrEmpty(appmodel))
+                    {
+                        context.AddAppModel(appmodel);
+                    }
+                    
+                    var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
                         case Platforms.Uwp:
@@ -231,11 +246,11 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         if (UseStyleCop)
                         {
-                            AddStyleCop(userSelection, platform, language);
+                            AddStyleCop(userSelection, platform, language, appmodel);
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                        newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, platform, language, UseStyleCop);
+                        newProject.SetProjectData(userSelection.Context, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
                     }
@@ -265,15 +280,17 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var newProject = new GeneratedProjectInfo();
                     newProject.SetBasicInfo(_projectLocation);
                     newProject.SetContext();
-                    SetCurrentLanguage(userSelection.Language);
-                    SetCurrentPlatform(userSelection.Platform);
+                    SetCurrentLanguage(userSelection.Context.Language);
+                    SetCurrentPlatform(userSelection.Context.Platform);
+                    SetCurrentAppModel(userSelection.Context.GetAppModel());
+
                     if (UseStyleCop)
                     {
-                        AddStyleCop(userSelection, userSelection.Platform, userSelection.Language);
+                        AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language, userSelection.Context.GetAppModel());
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
-                    newProject.SetProjectData(userSelection.ProjectType, userSelection.FrontEndFramework, userSelection.Platform, userSelection.Language, UseStyleCop);
+                    newProject.SetProjectData(userSelection.Context, UseStyleCop);
                     newProject.SetContextInfo();
                     Projects.Insert(0, newProject);
                     return userSelection;
@@ -292,7 +309,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             return null;
         }
 
-        private void AddStyleCop(UserSelection userSelection, string platform, string language)
+        private void AddStyleCop(UserSelection userSelection, string platform, string language, string appmodel = null)
         {
             var styleCopTemplate = string.Empty;
             switch (platform)
@@ -314,7 +331,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                     styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
                 case Platforms.WinUI:
-                    styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                    switch (appmodel)
+                    {
+                        case AppModels.Desktop:
+                            styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                            break;
+                        case AppModels.Uwp:
+                            styleCopTemplate = "wts.WinUI.UWP.Feat.StyleCop";
+                            break;
+                    }                    
                     break;
             }
 
@@ -343,7 +368,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProject = new GeneratedProjectInfo();
                 newProject.SetBasicInfo((newProjectName, newProjectName, newProjectLocation));
                 newProject.SetContext();
-                var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, string.Empty, Services.FakeStyleValuesProvider.Instance);
+
+                var context = new UserSelectionContext(language, platform);
+
+                var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -443,16 +471,43 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var destinationParent = Path.GetDirectoryName(solutionFilePath);
                 var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+                string language = String.Empty;
+                switch (Path.GetExtension(projFile))
+                {
+                    case ".vbproj":
+                        language = ProgrammingLanguages.VisualBasic;
+                        break;
+                    case ".csproj":
+                        language = ProgrammingLanguages.CSharp;
+                        break;
+                    case ".vcxproj":
+                        language = ProgrammingLanguages.Cpp;
+                        break;
+                }
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
                 newProject.SetBasicInfo(projectName, destinationPath);
-                var config = ProjectConfigInfoService.ReadProjectConfiguration();
+                var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+                var config = projectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);
                 SetCurrentPlatform(config.Platform);
-                newProject.SetProjectData(config.ProjectType, config.Framework, config.Platform, language, false);
+
+                if (!string.IsNullOrEmpty(config.AppModel))
+                {
+                    SetCurrentPlatform(config.AppModel);
+                }
+
+                var context = new UserSelectionContext(language, config.Platform)
+                {
+                    FrontEndFramework = config.Framework,
+                    ProjectType = config.ProjectType
+                };
+
+                context.AddAppModel(config.AppModel);
+                newProject.SetProjectData(context, false);
                 newProject.SetContextInfo();
                 Projects.Insert(0, newProject);
             }
@@ -461,11 +516,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task RefreshTemplateCacheAsync()
         {
             UpdateCanRefreshTemplateCache(false);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage("Refreshing template cache ...");
 
             await GenContext.ToolBox.Repo.RefreshAsync(true);
             AddLog($"{DateTime.Now.FormatAsTime()} - Template cache refreshed");
 
             UpdateCanRefreshTemplateCache(true);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage("Template cache refresh completed");
         }
 
         private void ConfigureVersions()
@@ -536,6 +593,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
+        }
+
+        private void SetCurrentAppModel(string appModel)
+        {
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentAppModel(appModel);
         }
 
         private async Task ConfigureGenContextAsync()

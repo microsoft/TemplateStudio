@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.Services
@@ -12,6 +13,8 @@ namespace Microsoft.Templates.UI.Services
         public abstract Brush GetColor(string className, string memberName);
 
         public abstract System.Drawing.Color GetThemedColor(string className, string memberName);
+
+        public abstract Style GetStyle(object resourceKey);
 
         public abstract double GetFontSize(string fontSizeResourceKey);
 

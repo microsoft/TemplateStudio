@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Telerik Data Grid",
+    "name": "Telerik DataGrid",
     "description": "Uma página exibindo uma grade simples, da plataforma de controles da interface do usuário Telerik para UWP.",
     "identity": "wts.Page.Grid.CodeBehind.VB"
 }

@@ -13,7 +13,7 @@
     "wts.type": "testing",
     "wts.outputToParent": "true",
     "wts.projecttype": "all",
-    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
+    "wts.frontendframework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism|MVVMToolkit",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -68,7 +68,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.NET.Test.Sdk",
-        "version" : "16.7.1",
+        "version" : "16.8.0",
         "projectPath": "Param_ProjectName.Core.Tests.xUnit\\Param_ProjectName.Core.Tests.xUnit.csproj"
       },
       "continueOnError": true

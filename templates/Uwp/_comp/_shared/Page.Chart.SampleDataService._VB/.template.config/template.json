@@ -13,8 +13,8 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind & groupidentity == wts.Page.Chart.VB",
-    "wts.outputToParent": "true"	
+    "wts.compositionFilter": "$frontendframework == MVVMBasic|MVVMLight|CodeBehind|MVVMToolkit & groupidentity == wts.Page.Chart.VB",
+    "wts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

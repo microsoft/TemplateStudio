@@ -14,7 +14,7 @@
       "wts.platform": "Wpf",
       "wts.version": "1.0.0",
       "wts.compositionOrder": "0",
-      "wts.compositionFilter": "$projectType == MenuBar & $frontendframework == MVVMBasic|MVVMLight & wts.type == project"
+      "wts.compositionFilter": "$projectType == MenuBar & $frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & wts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

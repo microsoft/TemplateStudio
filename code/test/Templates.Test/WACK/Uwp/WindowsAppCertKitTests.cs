@@ -88,6 +88,20 @@ namespace Microsoft.Templates.Test.Uwp
         }
 
         [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MvvmToolkit_VBAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MvvmToolkit_CSAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         public async Task WackTests_CodeBehind_Other_CSAsync(string projectType, string framework, string platform, string language)
         {
@@ -143,6 +157,20 @@ namespace Microsoft.Templates.Test.Uwp
             await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
         }
 
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        public async Task WackTests_MvvmToolkit_Other_CSAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        public async Task WackTests_MvvmToolkit_Other_VBAsync(string projectType, string framework, string platform, string language)
+        {
+            await RunWackOnProjectWithExcludedFeaturesAsync(projectType, framework, platform, language);
+        }
+
         private async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             // Exclude options that cannot be combined with others
@@ -183,7 +211,13 @@ namespace Microsoft.Templates.Test.Uwp
         {
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}Uwp";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, GenerationFixture.GetDefaultName);
 
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("../../TestData/NonDefaultAssets").GetFiles("*.png"))

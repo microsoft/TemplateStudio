@@ -157,6 +157,7 @@ namespace TemplateValidator
                 "configtype", "configvalue",
                 "pagetype",
                 "canExecuteChangedMethodName",
+                "wts.generation.appmodel",
             };
 
             foreach (var symbol in template.Symbols)
@@ -284,6 +285,9 @@ namespace TemplateValidator
                     case "wts.export.onNavigatedFromParams":
                         VerifyWtsExportOnNavigatedFromParamsTagValue(tag, results);
                         break;
+                    case "wts.appmodel":
+                        VerifyWtsAppModelTagValue(tag, results);
+                        break;
                     default:
                         results.Add($"Unknown tag '{tag.Key}' specified in the file.");
                         break;
@@ -338,7 +342,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ObservableObject", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -386,7 +390,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportCanExecuteChangedMethodNameTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged" }.Contains(tag.Value))
+            if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged", "NotifyCanExecuteChanged" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.canExecuteChangedMethodName tag.");
             }
@@ -405,6 +409,14 @@ namespace TemplateValidator
             if (!new[] { string.Empty, "NavigationContext navigationContext" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.onNavigatedFromParams tag.");
+            }
+        }
+
+        private static void VerifyWtsAppModelTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!new[] { "all", "Desktop", "Uwp" }.Contains(tag.Value))
+            {
+                results.Add($"Unexpected value '{tag.Value}' specified in the wts.appmodel tag.");
             }
         }
 
@@ -467,7 +479,7 @@ namespace TemplateValidator
                 // This can't catch everything but is better than nothing
                 if (tag.Value.Contains("identity") && !tag.Value.Contains(".VB"))
                 {
-                    results.Add($" wts.compositionFilter identitiy vlaue does not match the language. ({tag.Value}).");
+                    results.Add($" wts.compositionFilter identitiy value does not match the language. ({tag.Value}).");
                 }
             }
         }
@@ -510,11 +522,11 @@ namespace TemplateValidator
             }
         }
 
-        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind" };
+        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "MVVMToolkit" };
 
-        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MVVMToolkit" };
 
-        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism", "MVVMToolkit" };
 
         private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
@@ -613,7 +625,7 @@ namespace TemplateValidator
 
         private static void VerifyLanguageTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { ProgrammingLanguages.CSharp, ProgrammingLanguages.VisualBasic }.Contains(tag.Value))
+            if (!new[] { ProgrammingLanguages.CSharp, ProgrammingLanguages.VisualBasic, ProgrammingLanguages.Cpp }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the language tag.");
             }

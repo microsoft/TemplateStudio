@@ -18,6 +18,16 @@ namespace Microsoft.Templates.Fakes
                     return GetCompileXElement(includePath, false);
                 case VsItemType.CompiledWithDependant:
                     return GetCompileXElement(includePath, true);
+                case VsItemType.ClCompiled:
+                    return GetClCompileXElement(includePath, false);
+                case VsItemType.ClCompiledWithDependant:
+                    return GetClCompileXElement(includePath, true);
+                case VsItemType.ClInclude:
+                    return GetClIncludeXElement(includePath, false);
+                case VsItemType.ClIncludeWithDependant:
+                    return GetClIncludeXElement(includePath, true);
+                case VsItemType.Midl:
+                    return GetMidlXElement(includePath);
                 case VsItemType.XamlPage:
                     return GetXamlPageXElement(includePath, isprojFile);
                 case VsItemType.Resource:
@@ -34,6 +44,7 @@ namespace Microsoft.Templates.Fakes
         private static XElement GetCompileXElement(string includePath, bool dependentUpon)
         {
             var sb = new StringBuilder();
+
             sb.Append($"<Compile Include=\"{includePath}\"");
 
             if (dependentUpon)
@@ -47,6 +58,73 @@ namespace Microsoft.Templates.Fakes
             {
                 sb.AppendLine(" />");
             }
+
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
+
+            return itemElement;
+        }
+
+        private static XElement GetClCompileXElement(string includePath, bool dependentUpon)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"<ClCompile Include=\"{includePath}\"");
+
+            if (dependentUpon)
+            {
+                string dependency = Path.GetFileNameWithoutExtension(includePath);
+                sb.AppendLine(">");
+                sb.AppendLine($"<DependentUpon>{dependency}</DependentUpon>");
+                sb.AppendLine("<SubType>Code</SubType>");
+                sb.AppendLine("</ClCompile>");
+            }
+            else
+            {
+                sb.AppendLine(" />");
+            }
+
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
+
+            return itemElement;
+        }
+
+        private static XElement GetClIncludeXElement(string includePath, bool dependentUpon)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"<ClInclude Include=\"{includePath}\"");
+
+            if (dependentUpon)
+            {
+                string dependency = Path.GetFileNameWithoutExtension(includePath);
+                sb.AppendLine(">");
+                sb.AppendLine($"<DependentUpon>{dependency}</DependentUpon>");
+                sb.AppendLine("<SubType>Code</SubType>");
+                sb.AppendLine("</ClInclude>");
+            }
+            else
+            {
+                sb.AppendLine(" />");
+            }
+
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
+
+            return itemElement;
+        }
+
+        private static XElement GetMidlXElement(string includePath)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"<Midl Include=\"{includePath}\"");
+            string dependency = Path.GetFileNameWithoutExtension(includePath);
+            sb.AppendLine(">");
+            sb.AppendLine($"<DependentUpon>{dependency}.xaml</DependentUpon>");
+            sb.AppendLine("<SubType>Code</SubType>");
+            sb.Append($"</Midl>");
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);

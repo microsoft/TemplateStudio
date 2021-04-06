@@ -11,6 +11,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -55,21 +56,41 @@ namespace Microsoft.Templates.Test
                 {
                     SetCurrentPlatform(platform);
 
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                    var appModels = AppModels.GetAllAppModels().ToList();
+                    foreach (var appModel in appModels)
+                    {
+                        var context = new UserSelectionContext(language, platform);
+
+                        if (platform == Platforms.WinUI)
+                        {
+                            context.AddAppModel(appModel);
+                        }
+
+                        var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
                                 .Where(m => !string.IsNullOrEmpty(m.Description))
                                 .Select(m => m.Name);
 
-                    foreach (var projectType in projectTypes)
-                    {
+                       
 
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
-                                                    .Where(m => m.Name == frameworkFilter)
-                                                    .Select(m => m.Name)
-                                                    .ToList();
-
-                        foreach (var framework in targetFrameworks)
+                        foreach (var projectType in projectTypes)
                         {
-                            result.Add(new object[] { projectType, framework, platform, language });
+                            context.ProjectType = projectType;
+                            var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
+                                                        .Where(m => m.Name == frameworkFilter)
+                                                        .Select(m => m.Name)
+                                                        .ToList();
+
+                            foreach (var framework in targetFrameworks)
+                            {
+                                if (platform == Platforms.WinUI)
+                                {
+                                    result.Add(new object[] { projectType, framework, platform, language, appModel });
+                                }
+                                else
+                                {
+                                    result.Add(new object[] { projectType, framework, platform, language });
+                                }
+                            }
                         }
                     }
                 }
@@ -112,7 +133,7 @@ namespace Microsoft.Templates.Test
             InitializeTemplates(Source);
         }
 
-        private static string ShortFrameworkName(string framework)
+        public static string ShortFrameworkName(string framework)
         {
             switch (framework)
             {
@@ -126,6 +147,8 @@ namespace Microsoft.Templates.Test
                     return "ML";
                 case Frameworks.MVVMBasic:
                     return "MB";
+                case Frameworks.MVVMToolkit:
+                    return "MTM";
                 default:
                     return framework;
             }

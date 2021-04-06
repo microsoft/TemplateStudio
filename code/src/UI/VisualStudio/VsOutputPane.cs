@@ -66,7 +66,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                Trace.TraceError($"Exception creating Visual Studio Output window pane. {ex.ToString()}");
+                Trace.TraceError($"Exception creating Visual Studio Output window pane. {ex}");
             }
 
             return result;

@@ -18,7 +18,7 @@ namespace Param_RootNamespace
         {
 //^^
 //{[{
-            Ioc.Default.ConfigureServices(ConfigureServices);
+            Ioc.Default.ConfigureServices(ConfigureServices());
 //}]}
         }
 
@@ -35,18 +35,13 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
-        {
 //^^
 //{[{
-            var activationService = Ioc.Default.GetService<IActivationService>();
-            await activationService.ActivateAsync(args);
-//}]}
-        }
-//^^
-//{[{
-        private void ConfigureServices(IServiceCollection services)
+        private System.IServiceProvider ConfigureServices()
         {
+            // TODO WTS: Register your services, viewmodels and pages here
+            var services = new ServiceCollection();
+
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -62,6 +57,8 @@ namespace Param_RootNamespace
             // Views and ViewModels
             services.AddTransient<IShellWindow, ShellWindow>();
             services.AddTransient<ShellViewModel>();
+
+            return services.BuildServiceProvider();
         }
 //}]}
     }
