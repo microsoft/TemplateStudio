@@ -3,9 +3,9 @@ using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views.wts.ItemNameDetail
 {
-    public sealed partial class wts.ItemNameDetailsView
+    public sealed partial class DetailView
     {
-        public wts.ItemNameDetailsView()
+        public DetailView()
         {
             InitializeComponent();
         }

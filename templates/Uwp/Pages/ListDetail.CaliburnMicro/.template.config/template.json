@@ -34,16 +34,16 @@
       "path": "Views/wts.ItemNamePage.xaml.cs"
     },
     {
-      "path": "Views/wts.ItemNameDetail/wts.ItemNameDetailsView.xaml"
+      "path": "Views/wts.ItemNameDetail/DetailView.xaml"
     },
     {
-      "path": "Views/wts.ItemNameDetail/wts.ItemNameDetailsView.xaml.cs"
+      "path": "Views/wts.ItemNameDetail/DetailView.xaml.cs"
     },
     {
-      "path": "Views/wts.ItemNameDetail/wts.ItemNameListView.xaml"
+      "path": "Views/wts.ItemNameDetail/ListDetailView.xaml"
     },
     {
-      "path": "Views/wts.ItemNameDetail/wts.ItemNameListView.xaml.cs"
+      "path": "Views/wts.ItemNameDetail/ListDetailView.xaml.cs"
     },
     {
       "path": "ViewModels/wts.ItemNameViewModel.cs"
