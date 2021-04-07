@@ -16,11 +16,14 @@
 
         private async Task StartupAsync()
         {
+            if (!_isInitialized)
+            {
 //^^
 //{[{
-            _toastNotificationsService.ShowToastNotificationSample();
+                _toastNotificationsService.ShowToastNotificationSample();
 //}]}
-            await Task.CompletedTask;
+                await Task.CompletedTask;
+            }
         }
     }
 }
