@@ -19,7 +19,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    x:Uid="ListDetailView_NoSelection"
+                    x:Uid="wts.ItemName_NoSelection"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
@@ -42,7 +42,7 @@
     <Grid x:Name="ContentArea">
         <controls:ListDetailsView
             x:Name="ListDetailsViewControl"
-            x:Uid="ListDetailView"
+            x:Uid="wts.ItemName"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"

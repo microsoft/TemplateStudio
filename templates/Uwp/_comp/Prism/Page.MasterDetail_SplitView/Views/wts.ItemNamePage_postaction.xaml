@@ -39,7 +39,7 @@
         <!--}]}-->
         <controls:ListDetailsView
             x:Name="ListDetailsViewControl"
-            x:Uid="ListDetailView"
+            x:Uid="wts.ItemName"
             <!--{[{-->
             BackButtonBehavior="Automatic"
             <!--}]}-->

@@ -5,11 +5,11 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="ListDetailView_NoSelection.Text" xml:space="preserve">
+  <data name="wts.ItemName_NoSelection.Text" xml:space="preserve">
     <value>Select an item from the list.</value>
     <comment>No selection text for ListDetailView</comment>
   </data>
-  <data name="ListDetailView.ListHeader" xml:space="preserve">
+  <data name="wts.ItemName.ListHeader" xml:space="preserve">
     <value>ListDetailView</value>
     <comment>Title for ListDetailViewPage</comment>
   </data>
