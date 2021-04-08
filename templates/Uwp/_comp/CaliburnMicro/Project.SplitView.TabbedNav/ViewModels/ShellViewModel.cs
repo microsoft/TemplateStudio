@@ -77,11 +77,16 @@ namespace Param_RootNamespace.ViewModels
             {
                 // Navigate to the settings page - implement as appropriate if needed
             }
-            else if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            else
             {
-                var pageType = selectedItem.GetValue(NavHelper.NavigateToProperty) as Type;
-                var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
-                _navigationService.NavigateToViewModel(viewModelType);
+                var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
+                var pageType = selectedItem?.GetValue(NavHelper.NavigateToProperty) as Type;
+
+                if (pageType != null)
+                {
+                    var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
+                    _navigationService.NavigateToViewModel(viewModelType);
+                }
             }
         }
 
@@ -123,8 +128,12 @@ namespace Param_RootNamespace.ViewModels
         {
             var sourceViewModelType = ViewModelLocator.LocateTypeForViewType(sourcePageType, false);
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
-            return viewModelType == sourceViewModelType;
+            if(pageType != null)
+            {
+                var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
+                return viewModelType == sourceViewModelType;
+            }
+            return false;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

@@ -106,10 +106,15 @@ namespace Param_RootNamespace.Views
             {
                 // Navigate to the settings page - implement as appropriate if needed
             }
-            else if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            else
             {
-                var pageType = selectedItem.GetValue(NavHelper.NavigateToProperty) as Type;
-                NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+                var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
+                var pageType = selectedItem?.GetValue(NavHelper.NavigateToProperty) as Type;
+
+                if (pageType != null)
+                {
+                    NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+                }
             }
         }
 
