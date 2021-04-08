@@ -1,0 +1,13 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <controls:ListDetailsView
+            x:Name="ListDetailsViewControl"
+            x:Uid="wts.ItemName"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+    </Grid>
+</Page>

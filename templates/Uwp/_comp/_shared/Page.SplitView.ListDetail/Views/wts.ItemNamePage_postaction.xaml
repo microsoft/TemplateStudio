@@ -1,0 +1,56 @@
+﻿<Page
+    <!--^^-->
+    <!--{[{-->
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+    <!--}]}-->
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!--^^-->
+        <!--{[{-->
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    Margin="96,0,0,0"
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}" />
+            </Grid>
+        </DataTemplate>
+        <!--}]}-->
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState>
+                        <VisualState.StateTriggers>
+                            <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                            <AdaptiveTrigger MinWindowWidth="641" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        <!--}]}-->
+        <controls:ListDetailsView
+            x:Name="ListDetailsViewControl"
+            x:Uid="wts.ItemName"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
+            <!--{--{-->
+            ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
+            <!--}--}-->
+            <!--^^-->
+            <!--{[{-->
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
+            <!--}]}-->
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+    </Grid>
+</Page>
