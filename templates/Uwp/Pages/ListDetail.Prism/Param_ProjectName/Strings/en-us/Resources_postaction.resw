@@ -7,11 +7,11 @@
   <!--{[{-->
   <data name="wts.ItemName_NoSelection.Text" xml:space="preserve">
     <value>Select an item from the list.</value>
-    <comment>No selection text for ListDetailView</comment>
+    <comment>No selection text for wts.ItemName</comment>
   </data>
   <data name="wts.ItemName.ListHeader" xml:space="preserve">
-    <value>ListDetailView</value>
-    <comment>Title for ListDetailViewPage</comment>
+    <value>wts.ItemName</value>
+    <comment>Title for wts.ItemNamePage</comment>
   </data>
   <!--}]}-->
 </root>
