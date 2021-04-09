@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "MasterDetail",
-  "description": "La page maître-détail comporte un volet principal et un volet de détails pour le contenu.",
-  "identity": "wts.WinUI.Page.MasterDetail"
-}

@@ -69,7 +69,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.UI.Xaml",
-        "version" : "2.4.3",
+        "version" : "2.5.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -80,7 +80,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Toolkit.Uwp.UI.Controls",
-        "version" : "6.1.1",
+        "version" : "7.0.0",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

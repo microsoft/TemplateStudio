@@ -15,7 +15,7 @@ Namespace Services
         Friend Shared Async Function ShowIfAppropriateAsync() As Task
             Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             Async Sub()
-                If SystemInformation.IsFirstRun AndAlso Not shown Then
+                If SystemInformation.Instance.IsFirstRun AndAlso Not shown Then
                     shown = True
                     Dim dialog = New FirstRunDialog()
                     Await dialog.ShowAsync()
