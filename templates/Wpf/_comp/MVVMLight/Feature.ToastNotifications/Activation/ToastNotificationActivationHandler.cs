@@ -12,7 +12,6 @@ namespace Param_RootNamespace.Activation
     // For more information about sending a local toast notification from C# apps, see
     // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
     // and https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/WPF/features/toast-notifications.md
-
     public class ToastNotificationActivationHandler : IActivationHandler
     {
         public const string ActivationArguments = "ToastNotificationActivationArguments";
