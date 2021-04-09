@@ -40,7 +40,7 @@
                             GroupName="AppTheme"
                             Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonLightTheme}"
                             FontSize="{StaticResource MediumFontSize}"
-                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
+                            IsChecked="{Binding Theme, Mode=OneWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Checked">
                                     <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Light" />
@@ -52,7 +52,7 @@
                             Content="{x:Static properties:Resources.wts.ItemNamePageRadioButtonDarkTheme}"
                             Margin="{StaticResource XSmallTopMargin}"
                             FontSize="{StaticResource MediumFontSize}"
-                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
+                            IsChecked="{Binding Theme, Mode=OneWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Checked">
                                     <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Dark" />
@@ -64,7 +64,7 @@
                             Content="{x:Static properties:Resources.SettingsPageRadioButtonWindowsDefaultTheme}"
                             FontSize="{StaticResource MediumFontSize}"
                             Margin="{StaticResource XSmallTopMargin}"
-                            IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default}">
+                            IsChecked="{Binding Theme, Mode=OneWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Checked">
                                     <i:InvokeCommandAction Command="{Binding SetThemeCommand}" CommandParameter="Default" />
