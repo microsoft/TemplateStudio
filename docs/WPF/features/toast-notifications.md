@@ -54,7 +54,7 @@ public void OnNavigatedTo(object parameter)
 
 ## More information
 
-[Find out more about sending a local toast notification from desktop C# apps](https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast-desktop).
+[Find out more about sending a local toast notification from desktop C# apps](https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast-desktop?tabs=desktop).
 
 Check the Windows Desktop Notification [Sample](https://github.com/WindowsNotifications/desktop-toasts).
 
