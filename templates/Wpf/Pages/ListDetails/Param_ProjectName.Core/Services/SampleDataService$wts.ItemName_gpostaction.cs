@@ -5,7 +5,7 @@
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your ListDetails pages are displaying real data.
+        // Remove this once your ListDetails pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync()
         {
             await Task.CompletedTask;
