@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.StyleCop"
+    "wts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.MSIXPackaging"
   },
   "sourceName": "wts.ItemName",
   "symbols": {

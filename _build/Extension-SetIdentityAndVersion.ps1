@@ -237,6 +237,15 @@ if($publicKeyToken){
 
           Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
       }
+      
+      if ($projectTemplateContent.VSTemplate.WizardData -and $projectTemplateContent.VSTemplate.WizardData.packages.repositoryId)
+      {
+          $projectTemplateContent.VSTemplate.WizardData.packages.repositoryId = $vsixIdentity
+
+          $projectTemplateContent.Save($projectTemplate)
+
+          Write-Host "$projectTemplate - VSIX Identity updated ($vsixIdentity)"
+      }
     }
   }
   else{

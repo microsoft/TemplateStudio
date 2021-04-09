@@ -50,10 +50,13 @@
         "displayName": "Caliburn.Micro",
         "summary": "Caliburn.Micro is a popular MVVM framework emphasizing conventions and composability.",
         "author": "Nigel Sampson",
-        "order": "3",
+        "order": "6",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
         "platform":  "Uwp",
-        "languages": [ "C#" ]
+        "languages": [ "C#" ],
+        "tags": {
+            "wts.flag": "Deprecated"
+        }
     },
     {
         "name": "Prism",
