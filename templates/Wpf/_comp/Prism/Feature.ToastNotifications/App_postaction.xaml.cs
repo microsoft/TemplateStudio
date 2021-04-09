@@ -27,7 +27,6 @@ namespace Param_RootNamespace
                     // Store ToastNotification arguments in configuration, so you can use them from any point in the app
                     config[App.ToastNotificationActivationArguments] = toastArgs.Argument;
 
-                    Application.Current.MainWindow.Show();
                     App.Current.MainWindow.Activate();
                     if (App.Current.MainWindow.WindowState == WindowState.Minimized)
                     {
