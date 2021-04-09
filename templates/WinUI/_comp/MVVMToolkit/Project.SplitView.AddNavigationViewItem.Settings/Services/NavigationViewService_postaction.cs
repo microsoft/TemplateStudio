@@ -13,7 +13,6 @@
 //{[{
                 _navigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName);
 //}]}
-                return;
             }
         }
     }

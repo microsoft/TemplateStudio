@@ -50,13 +50,16 @@ namespace Param_RootNamespace.Services
             if (args.IsSettingsInvoked)
             {
                 // Navigate to the settings page - implement as appropriate if needed
-                return;
             }
-
-            if (args.InvokedItemContainer is NavigationViewItem selectedItem)
+            else
             {
+                var selectedItem = args.InvokedItemContainer as NavigationViewItem;
                 var pageKey = selectedItem.GetValue(NavHelper.NavigateToProperty) as string;
-                _navigationService.NavigateTo(pageKey);
+
+                if (pageKey != null)
+                {
+                    _navigationService.NavigateTo(pageKey);
+                }
             }
         }
 
@@ -82,7 +85,11 @@ namespace Param_RootNamespace.Services
         private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-            return _pageService.GetPageType(pageKey) == sourcePageType;
+            if(pageKey != null)
+            {
+                return _pageService.GetPageType(pageKey) == sourcePageType;
+            }
+            return false;
         }
     }
 }
