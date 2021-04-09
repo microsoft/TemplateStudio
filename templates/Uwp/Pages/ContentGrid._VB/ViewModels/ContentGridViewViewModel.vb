@@ -15,7 +15,7 @@ Namespace ViewModels
         Public Async Function LoadDataAsync() As Task
             Source.Clear()
 
-            ' TODO WTS: Replace this with your actual data
+            ' Replace this with your actual data
             Dim data = Await SampleDataService.GetContentGridDataAsync()
 
             For Each item As SampleOrder In data

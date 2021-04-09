@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your TwoPaneView pages are displaying real data.
+        // Remove this once your TwoPaneView pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetTwoPaneViewDataAsync()
         {
             await Task.CompletedTask;

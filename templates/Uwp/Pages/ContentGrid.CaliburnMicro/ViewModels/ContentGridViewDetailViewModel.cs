@@ -22,7 +22,7 @@ namespace Param_RootNamespace.ViewModels
 
         public async Task InitializeAsync(long orderID)
         {
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             var data = await SampleDataService.GetContentGridDataAsync();
             Item = data.First(i => i.OrderID == orderID);
         }

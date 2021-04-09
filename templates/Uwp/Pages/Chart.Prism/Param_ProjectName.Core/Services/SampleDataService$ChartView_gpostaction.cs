@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your chart page is displaying real data.
+        // Remove this once your chart page is displaying real data.
         public async Task<IEnumerable<DataPoint>> GetChartDataAsync()
         {
             await Task.CompletedTask;

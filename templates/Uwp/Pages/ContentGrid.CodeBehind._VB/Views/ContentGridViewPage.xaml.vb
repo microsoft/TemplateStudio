@@ -18,7 +18,7 @@ Namespace Views
             MyBase.OnNavigatedTo(e)
             Source.Clear()
 
-            ' TODO WTS: Replace this with your actual data
+            ' Replace this with your actual data
             Dim data = Await SampleDataService.GetContentGridDataAsync()
 
             For Each item As SampleOrder In data
