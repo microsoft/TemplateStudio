@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Test.WPf
                 var wpfTestPages = new List<string>
                 {
                     "wts.Wpf.Page.Blank",
-                    "wts.Wpf.Page.MasterDetail",
+                    "wts.Wpf.Page.ListDetail",
                     "wts.Wpf.Page.Settings",
                     "wts.Wpf.Page.WebView",
                 };

@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+    xmlns:models="using:Param_RootNamespace.Core.Models"
+    xmlns:views="using:Param_RootNamespace.Views"
+    mc:Ignorable="d"
+    Style="{StaticResource PageStyle}">
+    <Page.Resources>
+        <DataTemplate x:Key="ItemTemplate" x:DataType="models:SampleOrder">
+            <Grid Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                    Glyph="{x:Bind Symbol}" />
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center">
+                    <TextBlock Text="{x:Bind Company}" Style="{StaticResource ListTitleStyle}" />
+                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DetailsTemplate">
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <views:wts.ItemNameDetailControl ListDetailsMenuItem="{Binding}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NoSelectionContentTemplate">
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    x:Uid="wts.ItemName_NoSelection"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextAlignment="Center"
+                    Style="{ThemeResource SubtitleTextBlockStyle}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    Margin="96,0,0,0"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <controls:ListDetailsView
+            x:Uid="wts.ItemName"
+            x:Name="ListDetailsViewControl"
+            BackButtonBehavior="Automatic"
+            BorderBrush="Transparent"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            ItemsSource="{x:Bind ViewModel.SampleItems}"
+            ItemTemplate="{StaticResource ItemTemplate}"
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
+            ViewStateChanged="OnViewStateChanged"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
+    </Grid>
+</Page>
