@@ -13,7 +13,7 @@ namespace Param_RootNamespace
         private async void OnStartup(object sender, StartupEventArgs e)
         {
 //{[{
-            // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
+            // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
             ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
             {
                 Current.Dispatcher.Invoke(async () =>

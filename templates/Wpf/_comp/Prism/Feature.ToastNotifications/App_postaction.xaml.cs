@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         protected override async void OnInitialized()
         {
 //{[{
-            // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
+            // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
             ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
             {
                 Current.Dispatcher.Invoke(async () =>
