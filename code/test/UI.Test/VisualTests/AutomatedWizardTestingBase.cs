@@ -50,6 +50,12 @@ namespace Microsoft.UI.Test.VisualTests
             }
         }
 
+        protected List<string> ProgrammingLanguageVBAndCharp => new List<string>
+        {
+            ProgrammingLanguages.CSharp,
+            ProgrammingLanguages.VisualBasic,
+        };
+
         protected WindowsDriver<WindowsElement> WizardSession { get; private set; }
 
         protected AutomatedWizardTestingBase()
