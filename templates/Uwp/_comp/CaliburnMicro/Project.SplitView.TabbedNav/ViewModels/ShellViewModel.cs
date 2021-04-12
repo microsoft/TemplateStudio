@@ -128,11 +128,12 @@ namespace Param_RootNamespace.ViewModels
         {
             var sourceViewModelType = ViewModelLocator.LocateTypeForViewType(sourcePageType, false);
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            if(pageType != null)
+            if (pageType != null)
             {
                 var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
                 return viewModelType == sourceViewModelType;
             }
+
             return false;
         }
 
