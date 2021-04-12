@@ -85,10 +85,11 @@ namespace Param_RootNamespace.Services
         private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-            if(pageKey != null)
+            if (pageKey != null)
             {
                 return _pageService.GetPageType(pageKey) == sourcePageType;
             }
+
             return false;
         }
     }
