@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+﻿using CommunityToolkit.WinUI.UI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Param_RootNamespace.Contracts.Services;

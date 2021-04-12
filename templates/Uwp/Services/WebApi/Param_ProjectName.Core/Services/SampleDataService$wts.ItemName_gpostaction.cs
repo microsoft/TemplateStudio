@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your Web API is returning real data.
+        // Remove this once your Web API is returning real data.
         public static async Task<IEnumerable<SampleCompany>> GetWebApiSampleDataAsync()
         {
             await Task.CompletedTask;

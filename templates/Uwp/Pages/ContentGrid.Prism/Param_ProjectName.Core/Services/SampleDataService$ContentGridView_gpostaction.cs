@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your ContentGrid page is displaying real data.
+        // Remove this once your ContentGrid page is displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
         {
             if (_allOrders == null)

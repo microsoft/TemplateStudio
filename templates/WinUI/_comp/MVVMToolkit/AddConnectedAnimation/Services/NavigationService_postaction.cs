@@ -1,5 +1,5 @@
 ﻿//{[{
-using Microsoft.Toolkit.Uwp.UI.Animations;
+using CommunityToolkit.WinUI.UI.Animations;
 //}]}
 
 namespace Param_RootNamespace.Services

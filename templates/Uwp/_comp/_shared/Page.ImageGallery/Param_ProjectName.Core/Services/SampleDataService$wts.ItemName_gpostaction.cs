@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your image gallery page is displaying real data.
+        // Remove this once your image gallery page is displaying real data.
         public static async Task<IEnumerable<SampleImage>> GetImageGalleryDataAsync(string localResourcesPath)
         {
             if (_gallerySampleData == null)

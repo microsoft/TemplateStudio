@@ -5,7 +5,7 @@
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your ContentGrid pages are displaying real data.
+        // Remove this once your ContentGrid pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
         {
             await Task.CompletedTask;
