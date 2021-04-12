@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your ListDetail pages are displaying real data.
+        // Remove this once your ListDetail pages are displaying real data.
         public static async Task<IEnumerable<SampleOrder>> GetListDetailDataAsync()
         {
             await Task.CompletedTask;

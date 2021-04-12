@@ -6,7 +6,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your ListDetail pages are displaying real data.
+        ' Remove this once your ListDetail pages are displaying real data.
         Public Async Function GetListDetailDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             Await Task.CompletedTask
 

@@ -6,7 +6,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your TwoPaneView pages are displaying real data.
+        ' Remove this once your TwoPaneView pages are displaying real data.
         Async Function GetTwoPaneViewDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             Await Task.CompletedTask
             Return AllOrders()

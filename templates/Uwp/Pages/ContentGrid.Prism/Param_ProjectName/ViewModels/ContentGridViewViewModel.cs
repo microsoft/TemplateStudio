@@ -33,7 +33,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnNavigatedTo(e, viewModelState);
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             var data = await _sampleDataService.GetContentGridDataAsync();
             foreach (var item in data)
             {
