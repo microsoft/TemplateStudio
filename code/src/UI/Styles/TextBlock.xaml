@@ -196,7 +196,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsFlag">
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardFlag">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardTitleText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -277,6 +277,15 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsFlag">
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Focusable" Value="False" />
     </Style>
 
     <!--Changes Summary-->

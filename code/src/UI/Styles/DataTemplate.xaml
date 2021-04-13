@@ -48,15 +48,14 @@
                 <StackPanel
                     Grid.Row="2"
                     Orientation="Horizontal"
-                    Margin="0,4,0,4"
+                    Margin="{StaticResource Margin_XS_TopBottom}"
                     Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}">
                     <imaging:CrispImage
-                        Style="{StaticResource WtsFlagImage}"
-                        Margin="0,0,4,0"
+                        Style="{StaticResource WtsCrispImageCardFlagIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
                         Text="{Binding Flag}" 
-                        Style="{StaticResource WtsFlag}"/>
+                        Style="{StaticResource WtsTextBlockCardFlag}"/>
                 </StackPanel>
                 <TextBlock
                     Grid.Row="3"
