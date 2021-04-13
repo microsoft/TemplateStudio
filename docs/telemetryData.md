@@ -157,7 +157,7 @@ As new features and pages roll out, percentages  will adjust.
 
 ## Testing (Wpf)
 
-|Services|Percentage|
+|Testing|Percentage|
 |:---|:---:|
 |Test App with MSTest|28.9%|
 |Test App with xUnit|16.4%|
