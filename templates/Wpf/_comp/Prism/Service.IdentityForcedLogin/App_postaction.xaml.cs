@@ -1,6 +1,7 @@
 ﻿//{[{
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Regions;
+using System.Linq;
 //}]}
 namespace Param_RootNamespace
 {
@@ -8,25 +9,17 @@ namespace Param_RootNamespace
     {
 //{[{
         private LogInWindow _logInWindow;
+
+        private bool _isInitialized;
 //}]}
 
         protected override async void OnInitialized()
         {
 //^^
 //{[{
-            var userDataService = Container.Resolve<IUserDataService>();
-            userDataService.Initialize();
-
-            var config = Container.Resolve<AppConfig>();
-            var identityService = Container.Resolve<IIdentityService>();
-            identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
-            identityService.LoggedIn += OnLoggedIn;
-            identityService.LoggedOut += OnLoggedOut;
-
-            var silentLoginSuccess = await identityService.AcquireTokenSilentAsync();
-            if (!silentLoginSuccess || !identityService.IsAuthorized())
+            var userLogged = await TryUserLogin();
+            if (!userLogged)
             {
-                ShowLogInWindow();
                 return;
             }
 
@@ -37,6 +30,42 @@ namespace Param_RootNamespace
 //}--}
         }
 //{[{
+
+        private async Task<bool> TryUserLogin()
+        {
+            var userDataService = Container.Resolve<IUserDataService>();
+            userDataService.Initialize();
+
+            var identityService = Container.Resolve<IIdentityService>();
+            if (!_isInitialized)
+            {
+                var config = Container.Resolve<AppConfig>();
+                identityService.InitializeWithAadAndPersonalMsAccounts(config.IdentityClientId, "http://localhost");
+            }
+
+            identityService.LoggedIn += OnLoggedIn;
+            identityService.LoggedOut += OnLoggedOut;
+
+            var silentLoginSuccess = await identityService.AcquireTokenSilentAsync();
+            if (!silentLoginSuccess || !identityService.IsAuthorized())
+            {
+                var loginWindow = Application.Current.Windows.OfType<LogInWindow>().FirstOrDefault();
+                if (loginWindow != null)
+                {
+                    loginWindow.Activate();
+                    loginWindow.WindowState = WindowState.Normal;
+                }
+                else
+                {
+                    ShowLogInWindow();
+                    _isInitialized = true;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
 
         private void OnLoggedIn(object sender, EventArgs e)
         {

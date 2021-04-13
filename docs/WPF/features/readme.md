@@ -13,4 +13,5 @@ The following features are supported in WPF apps.
 
 ## User Interaction
 
+- [Toast Notifications](./toast-notifications.md)
 - [Theme Selection](./theme-selection.md)
