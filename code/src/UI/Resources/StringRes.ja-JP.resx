@@ -904,7 +904,7 @@
     <value>Windows UI</value>
   </data>
   <data name="Flag_Deprecated" xml:space="preserve">
-    <value>DEPRECATED</value>
+    <value>Deprecated</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">

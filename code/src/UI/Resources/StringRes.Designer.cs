@@ -595,7 +595,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DEPRECATED.
+        ///   Looks up a localized string similar to Deprecated.
         /// </summary>
         public static string Flag_Deprecated {
             get {
