@@ -102,7 +102,9 @@ Namespace Views
             Else
                 Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
                 Dim pageType = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), Type)
-                NavigationService.Navigate(pageType, Nothing, args.RecommendedNavigationTransitionInfo)
+                If pageType IsNot Nothing Then
+                    NavigationService.Navigate(pageType, Nothing, args.RecommendedNavigationTransitionInfo)
+                End If
             End If
         End Sub
 
