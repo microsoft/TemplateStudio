@@ -27,9 +27,9 @@
     "order": "4",
     "licenses": "",
     "platform": "Wpf",
-    "languages": [ "C#" ],        
+    "languages": [ "C#" ],
     "tags": {
-        "wts.flag": "DEPRECATED"
+        "wts.flag": "Deprecated"
     }
   },
   {
@@ -40,9 +40,9 @@
     "order": "3",
     "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
     "platform": "Wpf",
-    "languages": [ "C#" ],        
+    "languages": [ "C#" ],
     "tags": {
-        "wts.flag": "DEPRECATED"
+        "wts.flag": "Deprecated"
     }
   },
   {
