@@ -4,6 +4,8 @@
                     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+                    xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
+                    xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"  
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
                     xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors">
 
@@ -30,6 +32,8 @@
                     <RowDefinition Height="55" />
                     <!--Title-->
                     <RowDefinition Height="Auto" />
+                    <!--Flag-->
+                    <RowDefinition Height="Auto" />
                     <!--Description-->
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -37,19 +41,28 @@
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
                     Style="{StaticResource WtsImageEx}"/>
-                <TextBlock Text="{Binding Flag}"
-                           Grid.Row="0"
-                           Style="{StaticResource WtsFlag}"
-                           Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"
                     Style="{StaticResource WtsTextBlockCardTitle}" />
-                <TextBlock
+                <StackPanel
                     Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="0,4,0,4"
+                    Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}">
+                    <imaging:CrispImage
+                        Style="{StaticResource WtsFlagImage}"
+                        Margin="0,0,4,0"
+                        Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
+                    <TextBlock
+                        Text="{Binding Flag}" 
+                        Style="{StaticResource WtsFlag}"/>
+                </StackPanel>
+                <TextBlock
+                    Grid.Row="3"
                     Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="0,4,0,12" />
+                    Margin="0,0,0,12" />
             </Grid>
             <TextBlock VerticalAlignment="Bottom"
                        AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
