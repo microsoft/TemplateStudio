@@ -68,10 +68,19 @@ namespace Param_RootNamespace.ViewModels
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            if (args.IsSettingsInvoked)
             {
-                var pageType = selectedItem.GetValue(NavHelper.NavigateToProperty) as Type;
-                NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+                // Navigate to the settings page - implement as appropriate if needed
+            }
+            else
+            {
+                var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
+                var pageType = selectedItem?.GetValue(NavHelper.NavigateToProperty) as Type;
+
+                if (pageType != null)
+                {
+                    NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+                }
             }
         }
 

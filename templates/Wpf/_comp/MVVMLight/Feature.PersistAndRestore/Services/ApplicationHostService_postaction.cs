@@ -23,9 +23,12 @@
 
         private async Task InitializeAsync()
         {
+            if (!_isInitialized)
+            {
 //{[{
-            _persistAndRestoreService.RestoreData();
+                _persistAndRestoreService.RestoreData();
 //}]}
+            }
         }
     }
 }
