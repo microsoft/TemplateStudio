@@ -8,8 +8,6 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:properties="clr-namespace:Param_RootNamespace.Properties"
     xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
-    xmlns:prism="http://prismlibrary.com/"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:Fluent="urn:fluent-ribbon"
     ShowSystemMenuOnRightClick="False"
     Loaded="OnLoaded"
