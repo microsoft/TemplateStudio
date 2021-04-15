@@ -1,6 +1,6 @@
 ﻿<UserControl
 <!--^^-->
 <!--{[{-->
-    Style="{StaticResource BaseUserControlStyle}"
+    Loaded="wts.ItemNamePage_OnLoaded"
 <!--}]}-->
     mc:Ignorable="d"
