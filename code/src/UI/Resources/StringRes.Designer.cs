@@ -457,6 +457,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deprecated.
+        /// </summary>
+        public static string DeprecatedMessage {
+            get {
+                return ResourceManager.GetString("DeprecatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error adding items to project {0}.
         /// </summary>
         public static string ErrorAddingItemsToProject {
@@ -591,15 +600,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ExternalHyperlinkTooltipMessage {
             get {
                 return ResourceManager.GetString("ExternalHyperlinkTooltipMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Deprecated.
-        /// </summary>
-        public static string Flag_Deprecated {
-            get {
-                return ResourceManager.GetString("Flag_Deprecated", resourceCulture);
             }
         }
         

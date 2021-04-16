@@ -32,7 +32,7 @@
                     <RowDefinition Height="55" />
                     <!--Title-->
                     <RowDefinition Height="Auto" />
-                    <!--Flag-->
+                    <!-- Deprecated message -->
                     <RowDefinition Height="Auto" />
                     <!--Description-->
                     <RowDefinition Height="*" />
@@ -49,13 +49,13 @@
                     Grid.Row="2"
                     Orientation="Horizontal"
                     Margin="{StaticResource Margin_XS_TopBottom}"
-                    Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}">
+                    Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}">
                     <imaging:CrispImage
-                        Style="{StaticResource WtsCrispImageCardFlagIcon}"
+                        Style="{StaticResource WtsCrispImageCardDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
-                        Text="{Binding Flag}" 
-                        Style="{StaticResource WtsTextBlockCardFlag}"/>
+                        Text="{x:Static res:StringRes.DeprecatedMessage}" 
+                        Style="{StaticResource WtsTextBlockCardDeprecatedMessage}"/>
                 </StackPanel>
                 <TextBlock
                     Grid.Row="3"

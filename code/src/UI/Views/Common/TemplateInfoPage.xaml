@@ -95,13 +95,13 @@
                     Grid.Row="1"
                     Orientation="Horizontal"
                     Margin="{StaticResource Margin_M_Top}"
-                    Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}">
+                    Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}">
                     <imaging:CrispImage
-                        Style="{StaticResource WtsCrispImageTemplateDetailsFlagIcon}"
+                        Style="{StaticResource WtsCrispImageTemplateDetailsDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
-                        Text="{Binding Flag}" 
-                        Style="{StaticResource WtsTextBlockTemplateDetailsFlag}"/>
+                        Text="{x:Static res:StringRes.DeprecatedMessage}" 
+                        Style="{StaticResource WtsTextBlockTemplateDetailsDeprecatedMessage}"/>
                 </StackPanel>
 
                 <TextBlock x:Name="accessibleTextBlock" AutomationProperties.LiveSetting="Assertive" Grid.Row="2" Grid.ColumnSpan="3">

@@ -38,9 +38,8 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name">
             <Setter.Value>
-                <MultiBinding StringFormat="{}{0}, {1}, {2}">
+                <MultiBinding StringFormat="{}{0}, {1}">
                     <Binding Path="Title" />
-                    <Binding Path="Flag" />
                     <Binding Path="Summary" />
                 </MultiBinding>
             </Setter.Value>
@@ -93,6 +92,17 @@
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter Property="IsSelected" Value="True"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Deprecated}" Value="True">
+                <Setter Property="AutomationProperties.Name">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{0}, {1}, {2}">
+                            <Binding Path="Title" />
+                            <Binding Source="{x:Static strings:StringRes.DeprecatedMessage}" />
+                            <Binding Path="Summary" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

@@ -29,7 +29,7 @@
     "platform": "Wpf",
     "languages": [ "C#" ],
     "tags": {
-        "wts.flag": "Deprecated"
+      "deprecated": "true"
     }
   },
   {
@@ -42,7 +42,7 @@
     "platform": "Wpf",
     "languages": [ "C#" ],
     "tags": {
-        "wts.flag": "Deprecated"
+      "deprecated": "true"
     }
   },
   {

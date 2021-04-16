@@ -903,7 +903,7 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="Flag_Deprecated" xml:space="preserve">
+  <data name="DeprecatedMessage" xml:space="preserve">
     <value>Deprecated</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>

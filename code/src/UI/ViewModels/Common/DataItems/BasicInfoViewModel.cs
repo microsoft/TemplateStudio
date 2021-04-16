@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private string _icon;
         private int _order;
         private bool _isHidden;
-        private string _flag;
+        private bool _deprecated;
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
 
@@ -77,10 +77,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _isHidden, value);
         }
 
-        public string Flag
+        public bool Deprecated
         {
-            get => _flag;
-            set => SetProperty(ref _flag, value);
+            get => _deprecated;
+            set => SetProperty(ref _deprecated, value);
         }
 
         public IEnumerable<BasicInfoViewModel> Dependencies { get; protected set; }
