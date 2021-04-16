@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Regions;
 using System.Linq;
+using Unity;
+using System.Net.Http;
 //}]}
 namespace Param_RootNamespace
 {
@@ -96,16 +98,7 @@ namespace Param_RootNamespace
             // Core Services
 //{[{
             containerRegistry.Register<IMicrosoftGraphService, MicrosoftGraphService>();
-
-            PrismContainerExtension.Create(Container.GetContainer());
-            PrismContainerExtension.Current.RegisterServices(s =>
-            {
-                s.AddHttpClient("msgraph", client =>
-                {
-                    client.BaseAddress = new System.Uri("https://graph.microsoft.com/v1.0/");
-                });
-            });
-
+            containerRegistry.GetContainer().RegisterFactory<IHttpClientFactory>(container => GetHttpClientFactory());
             containerRegistry.Register<IIdentityCacheService, IdentityCacheService>();
             containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 //}]}
@@ -114,5 +107,19 @@ namespace Param_RootNamespace
             containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
 //}]}
         }
+//{[{
+
+        private IHttpClientFactory GetHttpClientFactory()
+        {
+            var services = new ServiceCollection();
+            services.AddHttpClient("msgraph", client =>
+            {
+                client.BaseAddress = new System.Uri("https://graph.microsoft.com/v1.0/");
+            });
+
+            return services.BuildServiceProvider().GetRequiredService<IHttpClientFactory>();
+        }
+//}]}
+        private IConfiguration BuildConfiguration()
     }
 }

@@ -29,29 +29,5 @@
         "type": "parameter",
         "replaces": "System.Windows.Input.ICommand"
       }
-    },
-    "postActions": [
-      {
-        "description": "Add nuget package",
-        "manualInstructions": [ ],
-        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-        "args": {
-          "packageId" : "Prism.Unity.Extensions",
-          "version" : "7.2.0.1054",
-          "projectPath": "Param_ProjectName.csproj"
-        },
-        "continueOnError": true
-      },
-      {
-        "description": "Add nuget package",
-        "manualInstructions": [ ],
-        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-        "args": {
-          "packageId" : "Prism.Container.Extensions",
-          "version" : "7.2.0.1054",
-          "projectPath": "Param_ProjectName.csproj"
-        },
-        "continueOnError": true
-      }
-    ]
+    }
   }
