@@ -52,6 +52,74 @@ public void OnNavigatedTo(object parameter)
 }
 ```
 
+## App Life Cycle
+
+With the inclusion of Toast Notifications there is a new way to activate the application.
+
+Previously in our `ApplicationHostService` we had the following activation methods:
+
+```csharp
+// ApplicationHostService.cs
+public async Task StartAsync(CancellationToken cancellationToken)
+{
+    // Initialize services that you need before app activation
+    await InitializeAsync();
+
+    await HandleActivationAsync();
+
+    // Tasks after activation
+    await StartupAsync();
+}
+
+private async Task InitializeAsync()
+{
+    _persistAndRestoreService.RestoreData();
+    _themeSelectorService.InitializeTheme();
+    await Task.CompletedTask;
+}
+
+private async Task StartupAsync()
+{
+    await Task.CompletedTask;
+}
+```
+
+After including the Toast Notifications the app can be activated with another way: The `StartAsync` method is called when the app is started and when a Toast Notification is received. To prevent repeated initialization, we included an `_isInitialized` flag in the `ApplicationHostService`. When the `StartAsync` method is executed for the first time we put the flag to `true`.
+
+```csharp
+// ApplicationHostService.cs
+public async Task StartAsync(CancellationToken cancellationToken)
+{
+    // Initialize services that you need before app activation
+    await InitializeAsync();
+
+    await HandleActivationAsync();
+
+    // Tasks after activation
+    await StartupAsync();
+    _isInitialized = true;
+}
+
+private async Task InitializeAsync()
+{
+    if (!_isInitialized)
+    {
+        _persistAndRestoreService.RestoreData();
+        _themeSelectorService.InitializeTheme();
+        await Task.CompletedTask;
+    }
+}
+
+private async Task StartupAsync()
+{
+    if (!_isInitialized)
+    {
+        _toastNotificationsService.ShowToastNotificationSample();
+        await Task.CompletedTask;
+    }
+}
+```
+
 ## More information
 
 [Find out more about sending a local toast notification from desktop C# apps](https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast-desktop?tabs=desktop).

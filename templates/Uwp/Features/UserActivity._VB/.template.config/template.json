@@ -57,7 +57,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "AdaptiveCards",
-        "version" : "2.3.0",
+        "version" : "2.7.1",
         "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": true
