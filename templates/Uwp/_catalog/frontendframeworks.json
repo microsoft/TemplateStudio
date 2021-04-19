@@ -19,7 +19,7 @@
         "platform":  "Uwp",
         "languages": [ "C#", "VisualBasic" ],
         "tags": {
-            "wts.flag": "Deprecated"
+            "deprecated": "true"
         }
     },
     {
@@ -30,9 +30,9 @@
         "order": "4",
         "licenses": "[MvvmLightStd10](http://www.galasoft.ch/license_MIT.txt)",
         "platform":  "Uwp",
-        "languages": [ "C#", "VisualBasic" ],        
+        "languages": [ "C#", "VisualBasic" ],
         "tags": {
-            "wts.flag": "Deprecated"
+            "deprecated": "true"
         }
     },
     {
@@ -55,7 +55,7 @@
         "platform":  "Uwp",
         "languages": [ "C#" ],
         "tags": {
-            "wts.flag": "Deprecated"
+            "deprecated": "true"
         }
     },
     {

@@ -4,6 +4,10 @@
                     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+                    xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
+                    xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Imaging"
+                    xmlns:utilities="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Utilities"
+                    xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
                     xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors">
 
@@ -21,6 +25,7 @@
 
     <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter" />
+    <utilities:BrushToColorConverter x:Key="BrushToColorConverter"/>
 
     <DataTemplate x:Key="WtsItemTemplateBasicInfo">
         <Grid Width="162" Height="200">
@@ -30,6 +35,8 @@
                     <RowDefinition Height="55" />
                     <!--Title-->
                     <RowDefinition Height="Auto" />
+                    <!-- Deprecated message -->
+                    <RowDefinition Height="Auto" />
                     <!--Description-->
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -37,19 +44,28 @@
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
                     Style="{StaticResource WtsImageEx}"/>
-                <TextBlock Text="{Binding Flag}"
-                           Grid.Row="0"
-                           Style="{StaticResource WtsFlag}"
-                           Visibility="{Binding Flag, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"
                     Style="{StaticResource WtsTextBlockCardTitle}" />
-                <TextBlock
+                <StackPanel
                     Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="{StaticResource Margin_XS_TopBottom}"
+                    Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}"
+                    theming:ImageThemingUtilities.ImageBackgroundColor="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Converter={StaticResource BrushToColorConverter}}">
+                    <imaging:CrispImage
+                        Style="{StaticResource WtsCrispImageCardDeprecatedIcon}"
+                        Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
+                    <TextBlock
+                        Text="{x:Static res:StringRes.DeprecatedMessage}" 
+                        Style="{StaticResource WtsTextBlockCardDeprecatedMessage}"/>
+                </StackPanel>
+                <TextBlock
+                    Grid.Row="3"
                     Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="0,4,0,12" />
+                    Margin="0,0,0,12" />
             </Grid>
             <TextBlock VerticalAlignment="Bottom"
                        AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
