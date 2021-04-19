@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
+      xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Imaging"
+      xmlns:utilities="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Utilities"
       xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
@@ -22,6 +24,7 @@
 
             <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter"/>
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+            <utilities:BrushToColorConverter x:Key="BrushToColorConverter"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -95,7 +98,8 @@
                     Grid.Row="1"
                     Orientation="Horizontal"
                     Margin="{StaticResource Margin_M_Top}"
-                    Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}">
+                    Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}"
+                    theming:ImageThemingUtilities.ImageBackgroundColor="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}, AncestorLevel=2}, Converter={StaticResource BrushToColorConverter}}">
                     <imaging:CrispImage
                         Style="{StaticResource WtsCrispImageTemplateDetailsDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />

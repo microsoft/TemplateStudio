@@ -35,12 +35,5 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
             Deprecated = bool.TryParse(metadataInfo.Tags.FirstOrDefault(t => t.Key.Equals("deprecated")).Value?.ToString(), out bool isDeprecated);
         }
-
-        private string GetLocalizedTag(string flagValue)
-        {
-            var resValue = StringRes.ResourceManager.GetString($"Tag_{flagValue}");
-
-            return string.IsNullOrEmpty(resValue) ? flagValue : resValue;
-        }
     }
 }
