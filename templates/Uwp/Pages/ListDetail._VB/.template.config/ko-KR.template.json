@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "The list/details pattern has a list pane and a details pane for content.",
+    "description": "목록/세부 정보 패턴에는 목록 창과 콘텐츠에 대한 세부 정보 창이 있습니다.",
     "identity": "wts.Page.ListDetail.VB"
 }
