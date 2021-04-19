@@ -12,14 +12,13 @@ Namespace Services
         ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         ' https://docs.microsoft.com/azure/active-directory/develop/v2-overview
         Private ReadOnly _graphScopes As String() = {"user.read"}
+        Private ReadOnly _redirectUri As String = $"https://login.microsoftonline.com/common/oauth2/nativeclient"
         Private _integratedAuthAvailable As Boolean
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
 
         ' TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-        ' Make sure you configure urn:ietf:wg:oauth:2.0:oob as a redirect uri as described in
-        ' https://docs.microsoft.com/en-us/dotnet/api/microsoft.identity.client.applicationoptions.redirecturi?view=azure-dotnet
         Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 
         Public Event LoggedIn As EventHandler
@@ -28,17 +27,22 @@ Namespace Services
 
         Public Sub InitializeWithAadAndPersonalMsAccounts()
             _integratedAuthAvailable = False
-            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount).WithRedirectUri(_redirectUri).Build()
+        End Sub
+
+        Public Sub InitializeWithPersonalMsAccount()
+            _integratedAuthAvailable = False
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.PersonalMicrosoftAccount).WithRedirectUri(_redirectUri).Build()
         End Sub
 
         Public Sub InitializeWithAadMultipleOrgs(Optional integratedAuth As Boolean = False)
             _integratedAuthAvailable = integratedAuth
-            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs).WithRedirectUri(_redirectUri).Build()
         End Sub
 
         Public Sub InitializeWithAadSingleOrg(tenant As String, Optional integratedAuth As Boolean = False)
             _integratedAuthAvailable = integratedAuth
-            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AzureCloudInstance.AzurePublic, tenant).Build()
+            _client = PublicClientApplicationBuilder.Create(_clientId).WithAuthority(AzureCloudInstance.AzurePublic, tenant).WithRedirectUri(_redirectUri).Build()
         End Sub
 
         Public Function IsLoggedIn() As Boolean
