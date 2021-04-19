@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿列表/详细信息模式具有列表窗格（通常带有列表视图）和内容详细信息窗格。选择列表中的某个项目时，将更新详细信息窗格。此模式经常用于电子邮件和通讯录。
 
-More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+有关列表/详细信息模式的更多信息[docs.microsoft.com]（https://docs.microsoft.com/windows/uwp/design/controls 和模式/列表详细信息）。

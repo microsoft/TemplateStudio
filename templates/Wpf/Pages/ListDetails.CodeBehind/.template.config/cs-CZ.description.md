@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Vzor seznamu a podrobností obsahuje podokno seznamu (obvykle se zobrazením seznamu) a podokno podrobností pro obsah. Je-li vybrána položka v seznamu, aktualizuje se podokno podrobností. Tento vzor se často používá pro e-maily a adresáře.

@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿O padrão lista/detalhes tem um painel de lista (geralmente com uma exibição de lista) e um painel de detalhes para conteúdo. Quando um item da lista é selecionado, o painel de detalhes é atualizado. Este padrão é frequentemente usado para livros de e-mail e endereços.

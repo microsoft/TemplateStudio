@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "ListDetails",
-  "description": "The list/details pattern has a list pane and a details pane for content.",
+  "description": "清單/詳細資訊模式具有清單窗格和內容詳細資訊窗格。",
   "identity": "wts.Wpf.Page.ListDetails.CodeBehind"
 }
