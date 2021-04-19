@@ -54,9 +54,9 @@ public void OnNavigatedTo(object parameter)
 
 ## App Life Cycle
 
-Including Toast Notifications there is a new way to activate the application.
+With the inclusion of Toast Notifications there is a new way to activate the application.
 
-Previously in our `ApplicationHostService` we can found the activation methods like this:
+Previously in our `ApplicationHostService` we had the following activation methods:
 
 ```csharp
 // ApplicationHostService.cs
@@ -84,7 +84,7 @@ private async Task StartupAsync()
 }
 ```
 
-After including the Toast Notifications the app can be activated with another way, the `StartAsync` method is called when the app is started and when a Toast Notification is received. To prevent repeat initialization, we included a `_isInitialized` flag in `ApplicationHostService` and when the `StartAsync` method is executed for the first time we put the flag to `true`.
+After including the Toast Notifications the app can be activated with another way: The `StartAsync` method is called when the app is started and when a Toast Notification is received. To prevent repeated initialization, we included an `_isInitialized` flag in the `ApplicationHostService`. When the `StartAsync` method is executed for the first time we put the flag to `true`.
 
 ```csharp
 // ApplicationHostService.cs
