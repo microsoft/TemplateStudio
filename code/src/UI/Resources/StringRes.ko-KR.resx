@@ -904,7 +904,7 @@
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>사용되지 않음 </value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">

@@ -904,7 +904,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>Deprecato</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">

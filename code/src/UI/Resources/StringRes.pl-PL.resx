@@ -904,7 +904,7 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>Przestarzałe</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
