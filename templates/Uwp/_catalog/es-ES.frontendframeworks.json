@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Una biblioteca MVVM moderna, rápida y modular y parte del Kit de herramientas de la comunidad de Windows."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "Esta es una versión genérica de un patrón MVVM. El patrón Model-View-ViewModel se puede usar en todas las plataformas XAML."

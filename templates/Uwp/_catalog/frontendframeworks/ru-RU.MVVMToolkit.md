@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿Пакет Microsoft.Toolkit.Mvvm — это современная, быстрая и модульная библиотека MVVM. Он является частью инструментария сообщества Windows.
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+Этот пакет можно использовать на любой платформе приложения: UWP, WinForms, WPF, Xamarin, Uno и многое другое; и на любом времени выполнения: .NET Родные, .NET Core, .NET Framework, или Моно. Поверхность API идентична во всех случаях, что делает ее идеальной для создания общих библиотек.
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+Пакет содержит набор стандартных, автономных, легких типов, которые обеспечивают начальную реализацию для создания современных приложений с использованием шаблона MVVM. Только этих типов, как правило, достаточно для многих пользователей, чтобы создавать приложения без необходимости дополнительных внешних ссылок.
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+Этот пакет призван обеспечить гибкость в отношении того, какие компоненты использовать. Все типы слабо связаны, так что это только необходимо включить то, что вы используете. Не требуется идти «ва-с» с определенной серией всеохватывающих API, равно как и нет набора обязательных шаблонов, которым необходимо следовать при создании приложений с помощью этих помощников. Объедините эти строительные блоки таким образом, чтобы наилучшим образом соответствует вашим потребностям.

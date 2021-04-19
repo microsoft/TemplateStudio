@@ -1,22 +1,27 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Eine moderne, schnelle, modulare MVVM-Bibliothek und Teil des Windows Community Toolkits."
+  },
+  {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "Dies ist das traditionelle Modell für eine Anwendung, bei dem Logik im code-behind verarbeitet wird."
+    "summary": "This is the traditional model for an application where logic is handled in the code-behind."
   },
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "Dies ist eine generische Version eines MVVM pattern. Das Model-View-ViewModel-Muster kann auf allen XAML-Plattformen verwendet werden."
+    "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms."
   },
   {
     "name": "MVVMLight",
     "displayName": "MVVM Light",
-    "summary": "MVVM Light ist ein verbreitetes Drittanbieter-framework, das auf dem Model-View-ViewModel-Muster basiert."
+    "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern."
   },
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism ist ein framework für die Entwicklung lose gekoppelter XAML-Anwendungen, die gewartet und getestet werden können."
+    "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications."
   }
 ]

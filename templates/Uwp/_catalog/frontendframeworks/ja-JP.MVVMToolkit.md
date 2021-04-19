@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿Microsoft.Toolkit.Mvvm パッケージは、最新の高速でモジュラー MVVM ライブラリです。これは、Windows コミュニティ ツールキットの一部です。
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+このパッケージは、UWP、WinForms、WPF、Xamarin、Uno などの任意のアプリ プラットフォームで使用できます。任意のランタイムで: .NET ネイティブ、.NET コア、.NET フレームワーク、またはモノラル。API サーフェスは、すべての場合で同じであるため、共有ライブラリの構築に最適です。
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+パッケージには、MVVM パターンを使用して最新のアプリを構築するための開始実装を提供する、標準の自己完結型の軽量型のコレクションが含まれています。通常、これらの型だけで、多くのユーザーが追加の外部参照を必要とせずにアプリをビルドするのに十分です。
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+このパッケージは、どのコンポーネントを使用するかを柔軟に提供することを目的としています。すべての型は疎結合であるため、使用するものを含めるだけで済みます。特定の包括的な API のシリーズで "オールイン" する必要はなく、これらのヘルパーを使用してアプリを構築する際に従う必要がある必須パターンのセットもありません。ニーズに最も合った方法でこれらのビルディングブロックを組み合わせます。
