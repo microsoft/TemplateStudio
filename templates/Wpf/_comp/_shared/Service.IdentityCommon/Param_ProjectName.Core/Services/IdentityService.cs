@@ -55,6 +55,17 @@ namespace Param_RootNamespace.Core.Services
             ConfigureCache();
         }
 
+        public void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null)
+        {
+            _integratedAuthAvailable = false;
+            _client = PublicClientApplicationBuilder.Create(clientId)
+                                                    .WithAuthority(AadAuthorityAudience.PersonalMicrosoftAccount)
+                                                    .WithRedirectUri(redirectUri)
+                                                    .Build();
+
+            ConfigureCache();
+        }
+
         public void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null)
         {
             _integratedAuthAvailable = integratedAuth;
