@@ -403,18 +403,18 @@ namespace Microsoft.Templates.Test
                 var appModels = AppModels.GetAllAppModels().ToList();
                 foreach (var appModel in appModels)
                 {
-                    result.AddRange(GetContextOptions(frameworkFilter, language, platform, excludedItem, appModel));
+                    result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, appModel));
                 }
             }
             else
             {
-                result.AddRange(GetContextOptions(frameworkFilter, language, platform, excludedItem, string.Empty));
+                result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, string.Empty));
             }
 
             return result;
         }
 
-        private static List<object[]> GetContextOptions(string frameworkFilter, string language, string platform, string excludedItem, string appModel)
+        private static List<object[]> GetTemplateOptions(string frameworkFilter, string language, string platform, string excludedItem, string appModel)
         {
             List<object[]> result = new List<object[]>();
 
