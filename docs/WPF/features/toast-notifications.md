@@ -129,5 +129,3 @@ Check the Windows Desktop Notification [Sample](https://github.com/WindowsNotifi
 Full documentation of the [ToastContent class](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent).
 
 Use the [visualization app](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) to help design adaptive live tiles and notifications.
-
-[Other useful information about notifications](../notifications.md#other-useful-links-about-notifications).
