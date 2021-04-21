@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Una libreria MVVM moderna, veloce e modulare e parte di Windows Community Toolkit."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "È una versione generica di uno schema MVVM. Lo schema Model-View-ViewModel può essere utilizzato su tutte le piattaforme XAML."

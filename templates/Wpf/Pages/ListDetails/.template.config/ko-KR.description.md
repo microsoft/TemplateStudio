@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿목록/세부 정보 패턴에는 목록 창(일반적으로 목록 보기 포함)과 콘텐츠에 대한 세부 정보 창이 있습니다. 목록의 항목을 선택하면 세부 정보 창이 업데이트됩니다. 이 패턴은 이메일 및 주소록에 자주 사용됩니다.

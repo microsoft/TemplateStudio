@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "현대적이고 빠르며 모듈식 MVVM 라이브러리와 Windows 커뮤니티 툴킷의 일부입니다."
+  },
+  {
     "name": "CodeBehind",
     "displayName": "Code Behind",
     "summary": "기존의 이 모델 방식에서는 애플리케이션의 논리가 code-behind로 처리됩니다."
