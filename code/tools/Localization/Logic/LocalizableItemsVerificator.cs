@@ -64,14 +64,14 @@ namespace Localization
 
         private void VerifyProjectTemplates()
         {
-            VerifyFile(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileNamePatternCSUwp);
-
-            VerifyFile(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileNamePatternCSWpf);
-
-            VerifyFile(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileNamePatternVBUwp);
+            foreach (var projectTemplate in Routes.VSProjectTemplatePaths)
+            {
+                VerifyFile(projectTemplate.Path, projectTemplate.FileName);
+                if (projectTemplate.FileNamePattern != null)
+                {
+                    VerifyFilesByCulture(projectTemplate.Path, projectTemplate.FileNamePattern);
+                }
+            }
         }
 
         private void VerifyCommandTemplates()

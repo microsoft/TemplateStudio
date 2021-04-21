@@ -2,19 +2,27 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
+
 namespace Localization
 {
     public static class Routes
     {
-        internal const string ProjectTemplatePathCSUwp = "code\\src\\ProjectTemplates\\UWP\\CS\\CSharp.UWP.Solution";
-        internal const string ProjectTemplatePathVBUwp = "code\\src\\ProjectTemplates\\UWP\\VB\\VBNet.UWP.Solution";
-        internal const string ProjectTemplatePathCSWpf = "code\\src\\ProjectTemplates\\WPF\\CS\\CSharp.WPF.Solution";
-        internal const string ProjectTemplateFileCSUwp = "CSharp.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileVBUwp = "VBNet.UWP.Solution.vstemplate";
-        internal const string ProjectTemplateFileCSWpf = "CSharp.WPF.Solution.vstemplate";
-        internal const string ProjectTemplateFileNamePatternCSUwp = "CSharp.UWP.Solution.{0}.vstemplate";
-        internal const string ProjectTemplateFileNamePatternVBUwp = "VBNet.UWP.Solution.{0}.vstemplate";
-        internal const string ProjectTemplateFileNamePatternCSWpf = "CSharp.WPF.Solution.{0}.vstemplate";
+        // TODO: Add WinUI RuntimeComponent and ClassLibrary solutions when add multilanguage files to this projects
+        internal static (string Path, string FileName, string FileNamePattern)[] VSProjectTemplatePaths { get; } = new[]
+        {
+            (@"code\src\ProjectTemplates\UWP\CS\CSharp.UWP.Solution", "CSharp.UWP.Solution.vstemplate", "CSharp.UWP.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\UWP\VB\VBNet.UWP.Solution", "VBNet.UWP.Solution.vstemplate", "VBNet.UWP.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.Solution", "Cpp.WinUI.Desktop.Solution.vstemplate", "Cpp.WinUI.Desktop.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.RuntimeComponent", "Cpp.WinUI.RuntimeComponent.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.Uwp.Solution", "Cpp.WinUI.Uwp.Solution.vstemplate", "Cpp.WinUI.Uwp.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Desktop.ClassLibrary", "Csharp.WinUI.Desktop.ClassLibrary.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Desktop.Solution", "Csharp.WinUI.Desktop.Solution.vstemplate", "Csharp.WinUI.Desktop.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.ClassLibrary", "Csharp.WinUI.Uwp.ClassLibrary.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.RuntimeComponent", "Csharp.WinUI.Uwp.RuntimeComponent.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.Solution", "Csharp.WinUI.Uwp.Solution.vstemplate", "Csharp.WinUI.Uwp.Solution.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WPF\CS\CSharp.WPF.Solution", "CSharp.WPF.Solution.vstemplate", "CSharp.WPF.Solution.{0}.vstemplate"),
+        };
 
         internal const string CommandTemplateRootDirPath = "code\\src\\Installer\\Commands";
         internal const string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
@@ -65,6 +73,7 @@ namespace Localization
         {
             "Uwp",
             "Wpf",
+            "WinUI",
         };
 
         // Validate Routes

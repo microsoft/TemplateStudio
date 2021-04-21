@@ -25,9 +25,10 @@ namespace Localization
             _routesManager.CopyFromSourceToDest(Routes.VsixRootDirPath, Routes.VsixManifestFile);
 
             // project templates
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
-            _routesManager.CopyFromSourceToDest(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
+            foreach (var projectType in Routes.VSProjectTemplatePaths)
+            {
+                _routesManager.CopyFromSourceToDest(projectType.Path, projectType.FileName);
+            }
 
             // command templates
             _routesManager.CopyFromSourceToDest(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile);
