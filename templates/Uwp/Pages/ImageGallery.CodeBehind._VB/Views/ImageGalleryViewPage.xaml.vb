@@ -22,7 +22,7 @@ Namespace Views
         Public Async Sub ImageGalleryViewPage_OnLoaded(sender As Object, eventArgs As RoutedEventArgs)
             Source.Clear()
 
-            ' TODO WTS: Replace this with your actual data
+            ' Replace this with your actual data
             Dim data = Await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets")
             For Each item As SampleImage In data
                 Source.Add(item)
