@@ -904,18 +904,18 @@
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>사용되지 않음 </value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>프로젝트 개요를 열 수 없습니다.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
     <value>Select AppModel</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <value>{0} 프로젝트 제작에는 Visual Studio 2019 버전 {1} 이상이 필요합니다.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

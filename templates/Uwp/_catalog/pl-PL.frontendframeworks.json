@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Nowoczesna, szybka i modułowa biblioteka MVVM i część zestawu narzędzi społeczności systemu Windows."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "To jest ogólna wersja wzorca MVVM. Wzorzec Model-View-ViewModel może być używany na wszystkich platformach XAML."

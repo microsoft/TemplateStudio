@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Das Listen-/Detailmuster verfügt über einen Listenbereich (in der Regel mit listenansicht) und einen Detailbereich für Inhalt. Wenn ein Element in der Liste ausgewählt ist, wird der Detailbereich aktualisiert. Dieses Muster wird häufig für E-Mail- und Adressbücher verwendet.

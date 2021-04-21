@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Шаблон списка/детали имеет панель списка (обычно с представлением списка) и панели деталей для содержания. Когда элемент в списке выбран, детали панели обновляется. Этот шаблон часто используется для электронной почты и адресных книг.

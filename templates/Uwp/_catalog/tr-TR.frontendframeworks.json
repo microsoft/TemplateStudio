@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Modern, hızlı, modüler bir MVVM kütüphanesi ve Windows Topluluk Araç Seti'nin bir parçası."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "Bu, MVVM deseninin genel bir sürümü. Model-View-ViewModel deseni tüm XAML platformlarında kullanılabilir."

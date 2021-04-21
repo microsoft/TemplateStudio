@@ -1,4 +1,6 @@
-﻿È una versione generica di uno schema MVVM pattern.  Lo [schema Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) può essere utilizzato su tutte le piattaforme XAML. Intende fornire una separazione chiara dei problemi tra controlli dell'interfaccia utente e relativa logica.
+﻿**Avviso: MVVM Basic è stato sostituito da MVVM Toolkit e verrà rimosso come opzione in una versione futura di Windows Template Studio.**
+
+È una versione generica di uno schema MVVM pattern.  Lo [schema Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) può essere utilizzato su tutte le piattaforme XAML. Intende fornire una separazione chiara dei problemi tra controlli dell'interfaccia utente e relativa logica.
 
 Lo schema MVVM pattern è costituito da tre componenti fondamentali, ovvero modello, visualizzazione e modello di visualizzazione. Ciascuno ha un ruolo separato e distinto.
 

@@ -904,18 +904,18 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>Kullanımdan kaldırıldı</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>Projeye genel bakış açılamadı.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
     <value>Select AppModel</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <value>{0} proje oluşturma visual studio 2019 sürüm {1} veya daha yüksek gerektirir.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

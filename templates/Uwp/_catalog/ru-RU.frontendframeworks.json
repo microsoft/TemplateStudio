@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Современная, быстрая, модульная библиотека MVVM и часть инструментария сообщества Windows."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "Это универсальная версия шаблона MVVM. Шаблон Model-View-ViewModel можно использовать на всех платформах XAML."

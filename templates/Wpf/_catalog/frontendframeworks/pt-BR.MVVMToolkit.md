@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿O pacote Microsoft.Toolkit.Mvvm é uma biblioteca MVVM moderna, rápida e modular. Faz parte do Windows Community Toolkit.
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+Este pacote pode ser usado em qualquer plataforma de aplicativo: UWP, WinForms, WPF, Xamarin, Uno e muito mais; e em qualquer tempo de execução: .NET Native, .NET Core, .NET Framework ou Mono. A superfície da API é idêntica em todos os casos, tornando-a perfeita para a construção de bibliotecas compartilhadas.
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+O pacote contém uma coleção de tipos padrão, autônomos e leves que fornecem uma implementação inicial para a construção de aplicativos modernos usando o padrão MVVM. Esses tipos por si só geralmente são suficientes para muitos usuários criarem aplicativos sem precisar de referências externas adicionais.
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+Este pacote visa oferecer flexibilidade sobre quais componentes usar. Todos os tipos são acoplados, de modo que é apenas necessário incluir o que você usa. Não há necessidade de ir "all-in" com uma série específica de APIs abrangentes, nem há um conjunto de padrões obrigatórios que precisam ser seguidos ao criar aplicativos usando esses ajudantes. Combine esses blocos de construção de uma maneira que melhor se encaixe em suas necessidades.

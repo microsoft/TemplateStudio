@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "The list/details pattern has a list pane and a details pane for content.",
+    "description": "Wzorzec listy/szczegółów zawiera okienko listy i okienko szczegółów zawartości.",
     "identity": "wts.Page.ListDetail.VB"
 }

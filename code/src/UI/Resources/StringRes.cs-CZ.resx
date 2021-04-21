@@ -904,18 +904,18 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <value>Windows UI</value>
   </data>
   <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Deprecated</value>
+    <value>Zastaralé</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>Přehled projektu se nepodařilo otevřít.</value>
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
     <value>Select AppModel</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0} project creation requires Visual Studio 2019 Version {1} or higher.</value>
+    <value>{0} projektu vyžaduje visual studio verze 2019 {1} nebo vyšší.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

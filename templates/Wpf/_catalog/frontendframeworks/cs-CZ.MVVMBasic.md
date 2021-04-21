@@ -1,4 +1,6 @@
-﻿Toto je obecná verze vzoru MVVM pattern.  [Vzor Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) lze používat na všech platformách XAML. Jeho záměrem je poskytovat jasné rozdělení rozsahu působnosti mezi ovládacími prvky uživatelského rozhraní a jejich logikou.
+﻿**Upozornění: MVVM Basic byl nahříván souborem nástrojů MVVM Toolkit a bude odebrán jako možnost v budoucí verzi sady Windows Template Studio.**
+
+Toto je obecná verze vzoru MVVM pattern.  [Vzor Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) lze používat na všech platformách XAML. Jeho záměrem je poskytovat jasné rozdělení rozsahu působnosti mezi ovládacími prvky uživatelského rozhraní a jejich logikou.
 
 Vzor MVVM pattern obsahuje tři základní součásti: model, zobrazení a model zobrazení. Každá z těchto součástí má odlišnou a samostatnou roli.
 

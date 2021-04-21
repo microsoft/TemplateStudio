@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumMVVMToolkit")]
+        [Trait("ExecutionSet", "BuildMvvmToolkit")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)

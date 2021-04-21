@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Шаблон списка/детали имеет панель списка (обычно с представлением списка) и панели деталей для содержания. Когда элемент в списке выбран, детали панели обновляется. Этот шаблон часто используется для электронной почты и адресных книг.
 
-More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+Более подробную информацию о шаблоне списка/детали можно найти на docs.microsoft.com (https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

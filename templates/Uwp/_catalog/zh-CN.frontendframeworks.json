@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "现代、快速、模块化的 MVVM 库和 Windows 社区工具包的一部分。"
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "这是 MVVM 模式的通用版本。Model-View-ViewModel 模式可在所有的 XAML 平台上使用。"

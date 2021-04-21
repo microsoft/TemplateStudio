@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Wzorzec listy/szczegółów zawiera okienko listy (zwykle z widokiem listy) i okienko szczegółów zawartości. Po wybraniu elementu na liście okienko szczegółów jest aktualizowane. Ten wzorzec jest często używany w przypadku książek e-mail i adresowych.
 
-More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+Więcej informacji na temat wzorca listy/szczegółów można znaleźć na stronie [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

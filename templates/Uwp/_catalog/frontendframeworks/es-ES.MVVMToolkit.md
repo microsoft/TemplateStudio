@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿El paquete Microsoft.Toolkit.Mvvm es una biblioteca MVVM moderna, rápida y modular. Forma parte del Kit de herramientas de la comunidad de Windows.
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+Este paquete se puede usar en cualquier plataforma de aplicaciones: UWP, WinForms, WPF, Xamarin, Uno y más; y en cualquier tiempo de ejecución: .NET Native, .NET Core, .NET Framework o Mono. La superficie de la API es idéntica en todos los casos, por lo que es perfecta para crear bibliotecas compartidas.
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+El paquete contiene una colección de tipos estándar, autónomos y ligeros que proporcionan una implementación inicial para crear aplicaciones modernas utilizando el patrón MVVM. Estos tipos por sí solos suelen ser suficientes para que muchos usuarios compilan aplicaciones sin necesidad de referencias externas adicionales.
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+Este paquete tiene como objetivo ofrecer flexibilidad sobre qué componentes utilizar. Todos los tipos están acoplados libremente, por lo que solo es necesario incluir lo que usas. No hay ningún requisito para ir "all-in" con una serie específica de API que abarcan todo, ni hay un conjunto de patrones obligatorios que deben seguirse al crear aplicaciones con estas aplicaciones auxiliares. Combine estos bloques de construcción de la manera que mejor se adapte a sus necesidades.
