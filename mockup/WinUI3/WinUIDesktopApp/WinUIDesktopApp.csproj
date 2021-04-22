@@ -9,23 +9,27 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.18362.16" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.18362.16" />
+  </ItemGroup>
+  <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="8.0.0-preview5" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview5" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations" Version="8.0.0-preview5" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.5" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
-    <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0-prerelease" />
-    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.0-prerelease" />
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.0-prerelease" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinUIDesktopApp.Core\WinUIDesktopApp.Core.csproj" />

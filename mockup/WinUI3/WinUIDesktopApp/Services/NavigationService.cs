@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using Microsoft.UI.Xaml;
+﻿using CommunityToolkit.WinUI.UI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 

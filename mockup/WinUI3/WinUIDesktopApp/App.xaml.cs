@@ -21,7 +21,6 @@ namespace WinUIDesktopApp
         public App()
         {
             InitializeComponent();
-            Suspending += OnSuspending;
             UnhandledException += App_UnhandledException;
             Ioc.Default.ConfigureServices(ConfigureServices());
         }
@@ -37,17 +36,6 @@ namespace WinUIDesktopApp
             base.OnLaunched(args);
             var activationService = Ioc.Default.GetService<IActivationService>();
             await activationService.ActivateAsync(args);
-        }
-
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
-        {
-            base.OnActivated(args);
-            var activationService = Ioc.Default.GetService<IActivationService>();
-            await activationService.ActivateAsync(args);
-        }
-
-        private void OnSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
-        {
         }
 
         private System.IServiceProvider ConfigureServices()
