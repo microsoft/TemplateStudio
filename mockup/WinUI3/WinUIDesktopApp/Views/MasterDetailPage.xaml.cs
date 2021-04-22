@@ -1,5 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using CommunityToolkit.WinUI.UI.Controls;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
 using WinUIDesktopApp.ViewModels;
