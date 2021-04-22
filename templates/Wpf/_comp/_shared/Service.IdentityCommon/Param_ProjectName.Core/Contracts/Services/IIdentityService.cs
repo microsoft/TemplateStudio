@@ -12,6 +12,8 @@ namespace Param_RootNamespace.Core.Contracts.Services
 
         void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null);
 
+        void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null);
+
         void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null);
 
         void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null);

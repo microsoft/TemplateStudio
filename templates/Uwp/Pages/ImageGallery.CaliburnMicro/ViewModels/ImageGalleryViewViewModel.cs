@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
             base.OnInitialize();
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             Source.AddRange(await SampleDataService.GetImageGalleryDataAsync("ms-appx:///Assets"));
         }
 

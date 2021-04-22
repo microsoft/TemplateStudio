@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "이 기본 프로젝트는 앱을 구축할 빈 캔버스입니다."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."

@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Questo progetto di base è una tela vuota su cui creare un'app."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."

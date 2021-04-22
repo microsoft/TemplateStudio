@@ -1,0 +1,9 @@
+﻿namespace Param_RootNamespace
+{
+    [default_interface]
+    runtimeclass wts.ItemNamePage : Microsoft.UI.Xaml.Controls.Page
+    {
+        wts.ItemNamePage();
+        Int32 MyProperty;
+    }
+}

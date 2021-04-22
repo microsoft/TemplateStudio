@@ -13,9 +13,10 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.projecttype": "all",
+    "wts.projecttype": "SplitView",
     "wts.frontendframework": "all",
     "wts.platform": "WinUI",
+    "wts.appmodel": "Desktop",
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",
     "wts.genGroup": "0",
@@ -67,8 +68,19 @@
       "manualInstructions": [],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId": "Microsoft.Toolkit.Uwp.UI.Controls",
-        "version": "8.0.0-preview3",
+        "packageId": "CommunityToolkit.WinUI.UI.Controls",
+        "version": "7.0.1",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "CommunityToolkit.WinUI.UI.Animations",
+        "version": "7.0.1",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

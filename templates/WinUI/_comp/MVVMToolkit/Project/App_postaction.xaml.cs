@@ -35,18 +35,11 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
-        {
-//^^
-//{[{
-            var activationService = Ioc.Default.GetService<IActivationService>();
-            await activationService.ActivateAsync(args);
-//}]}
-        }
 //^^
 //{[{
         private System.IServiceProvider ConfigureServices()
         {
+            // TODO WTS: Register your services, viewmodels and pages here
             var services = new ServiceCollection();
 
             // Default Activation Handler

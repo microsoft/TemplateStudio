@@ -76,10 +76,15 @@ namespace Param_RootNamespace.ViewModels
             {
                 // Navigate to the settings page - implement as appropriate if needed
             }
-            else if (args.InvokedItemContainer is WinUI.NavigationViewItem selectedItem)
+            else
             {
-                var pageKey = selectedItem.GetValue(NavHelper.NavigateToProperty) as string;
-                NavigationService.Navigate(pageKey, null, args.RecommendedNavigationTransitionInfo);
+                var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
+                var pageKey = selectedItem?.GetValue(NavHelper.NavigateToProperty) as string;
+
+                if (pageKey != null)
+                {
+                    NavigationService.Navigate(pageKey, null, args.RecommendedNavigationTransitionInfo);
+                }
             }
         }
 

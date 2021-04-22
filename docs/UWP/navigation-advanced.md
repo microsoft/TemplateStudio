@@ -1,6 +1,6 @@
 # Advanced App navigation
 
-This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios in a Navigation Pane project with frame work MVVM Basic or CodeBehind.
+This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios in a Navigation Pane project with framework MVVM Toolkit or CodeBehind.
 
 Scenarios covered in this document:
 
@@ -278,7 +278,7 @@ namespace YOUR_APP_NAME.Services
 
 ### 3. Add NavigationArgs.cs
 
-NavigationArgs contains navigation arguments and the framekey the navigation took place on.
+`NavigationArgs` contains navigation arguments and the `FrameKey` the navigation took place on.
 
 You need to add this class.
 
@@ -331,7 +331,7 @@ namespace YOUR_APP_NAME.Services
 
 ### 4. Add NavigationBackStackEntry.cs
 
-NavigationBackStackEntry represents an entry on the navigation backstack.
+`NavigationBackStackEntry` represents an entry on the navigation backstack.
 You need to add this class.
 
 ```csharp
@@ -363,7 +363,7 @@ namespace YOUR_APP_NAME.Services
 
 ### 5. Changes in DefaultActivationHandler.cs
 
-- Change the DefaultActivationHandler to:
+- Change the `DefaultActivationHandler` to:
 
 ```csharp
 internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
@@ -448,7 +448,7 @@ public async Task ActivateAsync(object activationArgs)
 
 ### 7. Change App.xaml.cs
 
-#### 7.1 For startup on Startup page:
+#### 7.1 For startup on Startup page
 
 - Change method `CreateActivationService()` to
 
@@ -459,7 +459,7 @@ private ActivationService CreateActivationService()
 }
 ```
 
-#### 7.2 For startup on NavigationPane page:
+#### 7.2 For startup on NavigationPane page
 
 - Change method `CreateActivationService()` to
 
@@ -479,7 +479,7 @@ private UIElement CreateShell()
 ### 8. Changes in ShellPage.xaml, ShellPage.xaml.cs/ShellViewModel
 
 - Add `NavigationCacheMode="Required"` to ShellPage.xaml
-- Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
+- Initialize secondary frame on ShellPage adding the following code to `Initialize` method on `ShellViewModel.cs` or `ShellPage.xaml.cs`.
 
 ```csharp
 NavigationService.InitializeSecondaryFrame(frame);
@@ -511,8 +511,8 @@ private void OnNavigated(object sender, NavigationArgs e)
 }
 ```
 
-- Change OnItemInvoked to navigate among pages with the new NavigationService.
-Specify disableBackNavigation = true to specify that there will be no possibility to navigate back (use NavigateInSecondaryFrame instead of Navigate).
+- Change `OnItemInvoked` to navigate among pages with the new `NavigationService`.
+Specify `disableBackNavigation = true` to specify that there will be no possibility to navigate back (use `NavigateInSecondaryFrame()` instead of `Navigate()`).
 
 ```csharp
 private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
@@ -550,16 +550,16 @@ private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, Key
 
 ## Navigate from Startup Page to NavigationPane page
 
-To navigate to the shell page in full screen mode use NavigationService.NavigateInMainFrame and NavigationService.NavigateInSecondaryFrame to show the mainpage in the navigation pane
+To navigate to the shell page in full screen mode use `NavigationService.NavigateInMainFrame` and `NavigationService.NavigateInSecondaryFrame` to show the main page in the navigation pane
 
 ```csharp
 NavigationService.NavigateInMainFrame<ShellPage>(new NavigationConfig(disableBackNavigation: true));
 NavigationService.NavigateInSecondaryFrame<MainPage>();
 ```
 
-## Expand a Page to fullscreen/Navigate to a page in full screen
+## Expand a Page to full screen/Navigate to a page in full screen
 
-To navigate to a page in full screen mode use NavigationService.NavigateInMainFrame.
+To navigate to a page in full screen mode use `NavigationService.NavigateInMainFrame`.
 
 ```csharp
 NavigationService.NavigateInMainFrame<MapPage>();

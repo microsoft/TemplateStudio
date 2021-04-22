@@ -55,7 +55,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestFramework",
-        "version" : "2.1.2",
+        "version" : "2.2.3",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -66,7 +66,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestAdapter",
-        "version" : "2.1.2",
+        "version" : "2.2.3",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -77,7 +77,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Appium.WebDriver",
-        "version" : "4.2.1",
+        "version" : "4.3.1",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true

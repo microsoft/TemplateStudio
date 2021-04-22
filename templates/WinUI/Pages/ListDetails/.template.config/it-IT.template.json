@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "ListDetails",
+  "description": "The list/details pattern has a list pane and a details pane for content.",
+  "identity": "wts.WinUI.Page.ListDetails"
+}

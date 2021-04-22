@@ -1,4 +1,6 @@
-﻿MVVM pattern의 일반 버전입니다.  [Model-View-ViewModel 패턴](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)은 XAML 플랫폼에서 사용합니다. 그 목적은 사용자 인터페이스 컨트롤과 논리 간의 고려 사항을 명확하게 분리하는 것입니다.
+﻿**통지: MVVM 베이직은 MVVM 툴킷에 의해 대체되었으며 향후 버전의 Windows 템플릿 스튜디오에서 옵션으로 제거됩니다.**
+
+MVVM pattern의 일반 버전입니다.  [Model-View-ViewModel 패턴](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)은 XAML 플랫폼에서 사용합니다. 그 목적은 사용자 인터페이스 컨트롤과 논리 간의 고려 사항을 명확하게 분리하는 것입니다.
 
 MVVM pattern의 3가지 핵심 구성 요소는 모델, 뷰, 뷰 모델입니다. 각기 서로 다른 역할을 수행합니다.
 

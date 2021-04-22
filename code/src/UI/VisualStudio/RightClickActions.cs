@@ -25,10 +25,15 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private readonly Dictionary<string, IEnumerable<TemplateType>> availableOptions = new Dictionary<string, IEnumerable<TemplateType>>()
+        private readonly IEnumerable<RightClickAvailability> _availableOptions = new List<RightClickAvailability>()
         {
-            { Platforms.Uwp, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
-            { Platforms.Wpf, new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.VisualBasic) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.Wpf, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Uwp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.Cpp, AppModels.Uwp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page } },
         };
 
         private readonly GenerationService _generationService = GenerationService.Instance;
@@ -61,10 +66,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewPage()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -82,10 +83,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewFeature()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -103,10 +100,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewService()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -124,10 +117,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void AddNewTesting()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
-            {
-                return;
-            }
 
             try
             {
@@ -150,16 +139,15 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return false;
             }
 
-            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
+            var projectConfigInfoService = new ProjectConfigInfoService(_shell);
+            var configInfo = projectConfigInfoService.ReadProjectConfiguration();
 
-            if (availableOptions.ContainsKey(projectPlatform) && availableOptions[projectPlatform].Contains(templateType))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var rightClickOptions = _availableOptions.FirstOrDefault(o =>
+                                        o.Platform == configInfo.Platform &&
+                                        o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
+                                        o.AppModel == configInfo.AppModel);
+
+            return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
         }
 
         public bool Visible()
@@ -193,7 +181,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             EnsureGenContextInitialized();
-            if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
+            var language = _shell.GetActiveProjectLanguage();
+            if (GenContext.CurrentLanguage == language)
             {
                 GenContext.Current = this;
 

@@ -1,0 +1,1 @@
+﻿Wzorzec listy/szczegółów zawiera okienko listy (zwykle z widokiem listy) i okienko szczegółów zawartości. Po wybraniu elementu na liście okienko szczegółów jest aktualizowane. Ten wzorzec jest często używany w przypadku książek e-mail i adresowych.

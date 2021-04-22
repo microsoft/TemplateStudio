@@ -44,7 +44,7 @@ namespace Param_RootNamespace.ViewModels
 
         public void OnNavigatedTo(Param_OnNavigatedToParams)
         {
-            VersionDescription = $"Param_ProjectName - {_applicationInfoService.GetVersion()}";
+            VersionDescription = $"{Properties.Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
             Theme = _themeSelectorService.GetCurrentTheme();
         }
 

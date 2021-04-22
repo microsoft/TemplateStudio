@@ -24,7 +24,7 @@ namespace Param_RootNamespace.Views
             base.OnNavigatedTo(e);
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             var data = await SampleDataService.GetGridDataAsync();
 
             foreach (var item in data)

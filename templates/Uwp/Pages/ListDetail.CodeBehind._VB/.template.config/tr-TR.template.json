@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "ListDetail",
+    "description": "Liste/ayrıntılar deseninin liste bölmesi ve içerik için ayrıntılar bölmesi vardır.",
+    "identity": "wts.Page.ListDetail.CodeBehind.VB"
+}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "MasterDetail",
-  "description": "A página de detalhes mestra tem um painel mestre e um painel de detalhes para o conteúdo.",
-  "identity": "wts.WinUI.Page.MasterDetail"
-}

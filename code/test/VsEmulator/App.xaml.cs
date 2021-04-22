@@ -88,14 +88,12 @@ namespace Microsoft.Templates.VsEmulator
 
                         var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
 
-                        var context = new FakeContextProvider
+                        GenContext.Current = new FakeContextProvider
                         {
                             ProjectName = newProjectName,
                             DestinationPath = projectPath,
                             GenerationOutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
                         };
-
-                        GenContext.Current = context;
 
                         // Set resources to be used for the UI
                         FakeStyleValuesProvider.Instance.LoadResources("Light");
@@ -116,7 +114,8 @@ namespace Microsoft.Templates.VsEmulator
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(Platforms.Uwp, progLanguage, string.Empty, FakeStyleValuesProvider.Instance);
+                                var context = new UserSelectionContext(progLanguage, Platforms.Uwp);
+                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }
@@ -189,6 +188,9 @@ namespace Microsoft.Templates.VsEmulator
                         break;
                     case ProgrammingLanguages.VisualBasic:
                         File.WriteAllText(Path.Combine(projectPath, ".vbproj"), "Placeholder for VB.Net project file.");
+                        break;
+                    case ProgrammingLanguages.Cpp:
+                        File.WriteAllText(Path.Combine(projectPath, ".vcxproj"), "Placeholder for C++ project file.");
                         break;
                 }
             }

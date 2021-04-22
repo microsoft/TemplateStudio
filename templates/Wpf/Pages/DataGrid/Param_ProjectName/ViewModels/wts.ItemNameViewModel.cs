@@ -20,7 +20,7 @@ namespace Param_RootNamespace.ViewModels
         {
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             var data = await _sampleDataService.GetGridDataAsync();
 
             foreach (var item in data)

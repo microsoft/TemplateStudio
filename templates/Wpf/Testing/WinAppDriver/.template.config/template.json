@@ -54,7 +54,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Appium.WebDriver",
-        "version" : "4.2.1",
+        "version" : "4.3.1",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -65,7 +65,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.NET.Test.Sdk",
-        "version" : "16.8.0",
+        "version" : "16.9.4",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -76,7 +76,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestAdapter",
-        "version" : "2.1.2",
+        "version" : "2.2.3",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -87,7 +87,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "MSTest.TestFramework",
-        "version" : "2.1.2",
+        "version" : "2.2.3",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true
@@ -98,7 +98,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "coverlet.collector",
-        "version" : "1.3.0",
+        "version" : "3.0.3",
         "projectPath": "Param_ProjectName.Tests.WinAppDriver\\Param_ProjectName.Tests.WinAppDriver.csproj"
       },
       "continueOnError": true

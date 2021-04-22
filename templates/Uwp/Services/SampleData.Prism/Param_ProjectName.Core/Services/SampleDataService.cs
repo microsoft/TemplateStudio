@@ -7,7 +7,12 @@ using Param_RootNamespace.Core.Models;
 namespace Param_RootNamespace.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
-    // TODO WTS: Delete this file once your app is using real data.
+    // TODO WTS: The following classes have been created to display sample data. Delete these files once your app is using real data.
+    // 1. Services/SampleDataService.cs
+    // 2. Services/ISampleDataService.cs
+    // 3. Models/SampleCompany.cs
+    // 4. Models/SampleOrder.cs
+    // 5. Models/SampleOrderDetail.cs
     public class SampleDataService : ISampleDataService
     {
         private IEnumerable<SampleOrder> AllOrders()

@@ -75,6 +75,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppModels.cs" />
     <Compile Include="AutomationPeers\ExpanderButtonAutomationPeer.cs" />
     <Compile Include="Controls\ExpanderButtonAutomationPeerControl.cs" />
     <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
@@ -88,6 +89,7 @@
     <Compile Include="Extensions\SelectableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TemplateTypeExtensions.cs" />
+    <Compile Include="Extensions\UserSelectionContextExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
@@ -165,6 +167,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\GenerationService.cs" />
     <Compile Include="Services\ProjectConfigInfoService.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequiredVersionInfo.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequirementType.cs" />
     <Compile Include="Services\RequiredVersionValidation\Validators\DotNetValidator.cs" />
@@ -175,6 +178,9 @@
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="VisualStudio\RightClickAvailability.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>
@@ -331,7 +337,8 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWinUI.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWinUIUwp.cs" />
+    <Compile Include="VisualStudio\SolutionWizardCSWinUIDesktop.cs" />
     <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />

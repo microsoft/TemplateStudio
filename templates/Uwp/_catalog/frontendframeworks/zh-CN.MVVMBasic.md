@@ -1,4 +1,6 @@
-﻿这是 MVVM 模式的通用版本。[Model-View-ViewModel 模式](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)可在所有的 XAML 平台上使用。其目的是清晰划分用户界面控件及其逻辑之间的关注点。
+﻿**注意：MVVM 基本版已被 MVVM 工具包取代，并将作为选项在未来版本的 Windows 模板工作室中删除。**
+
+这是 MVVM 模式的通用版本。[Model-View-ViewModel 模式](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)可在所有的 XAML 平台上使用。其目的是清晰划分用户界面控件及其逻辑之间的关注点。
 
 MVVM 模式中有三个核心组成部分:模型、视图和视图模型。每个部分都有各自不同的角色。
 

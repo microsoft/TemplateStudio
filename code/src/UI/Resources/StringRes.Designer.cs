@@ -457,6 +457,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deprecated.
+        /// </summary>
+        public static string DeprecatedMessage {
+            get {
+                return ResourceManager.GetString("DeprecatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error adding items to project {0}.
         /// </summary>
         public static string ErrorAddingItemsToProject {
@@ -595,15 +604,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DEPRECATED.
-        /// </summary>
-        public static string Flag_Deprecated {
-            get {
-                return ResourceManager.GetString("Flag_Deprecated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
         public static string FrameworkTitle {
@@ -631,11 +631,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WPF with .NET Core project creation requires Visual Studio 2019 Update 3 or higher..
+        ///   Looks up a localized string similar to {0} project creation requires Visual Studio 2019 Version {1} or higher..
         /// </summary>
-        public static string InfoDialogInvalidVSVersionForWPF {
+        public static string InfoDialogInvalidVSVersion {
             get {
-                return ResourceManager.GetString("InfoDialogInvalidVSVersionForWPF", resourceCulture);
+                return ResourceManager.GetString("InfoDialogInvalidVSVersion", resourceCulture);
             }
         }
         
@@ -858,9 +858,18 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New WinUI3 Desktop app.
         /// </summary>
-        public static string NewProjectTitleWinUI {
+        public static string NewProjectTitleWinUIDesktop {
             get {
-                return ResourceManager.GetString("NewProjectTitleWinUI", resourceCulture);
+                return ResourceManager.GetString("NewProjectTitleWinUIDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New WinUI3 UWP app.
+        /// </summary>
+        public static string NewProjectTitleWinUIUWP {
+            get {
+                return ResourceManager.GetString("NewProjectTitleWinUIUWP", resourceCulture);
             }
         }
         
@@ -1086,6 +1095,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectConfigurationDescriptionText {
             get {
                 return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select AppModel.
+        /// </summary>
+        public static string ProjectConfigurationSelectAppModel {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectAppModel", resourceCulture);
             }
         }
         

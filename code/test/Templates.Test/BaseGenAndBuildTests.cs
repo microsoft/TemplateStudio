@@ -26,7 +26,6 @@ namespace Microsoft.Templates.Test
     public class BaseGenAndBuildTests
     {
         protected BaseGenAndBuildFixture _fixture;
-        private readonly string _emptyBackendFramework = string.Empty;
         protected const string All = "all";
 
         protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
@@ -77,50 +76,60 @@ namespace Microsoft.Templates.Test
         }
 
         protected static string GetProjectExtension(string language)
-        {
-            return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
+        {            
+            switch (language)
+            {
+                case ProgrammingLanguages.CSharp:
+                    return "csproj";
+                case ProgrammingLanguages.VisualBasic:
+                    return "vbproj";
+                case ProgrammingLanguages.Cpp:
+                    return "vcxproj";
+                default:
+                    return string.Empty;
+            }
         }
 
-        protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(string projectType, string framework, string platform, string language)
+        protected async Task<(string projectName, string projectPath)> GenerateEmptyProjectAsync(UserSelectionContext context)
         {
 
-            var projectName = $"{ShortProjectType(projectType)}Empty{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(context.ProjectType)}Empty{ShortLanguageName(context.Language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, null, null);
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, null, null);
 
             return (projectName, projectPath);
         }
 
-        protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(UserSelectionContext context)
         {
             // get first item from each exclusive selection group
             var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
                 t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                && t.GetPlatform() == platform
+                && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
+                && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
+                && t.GetPlatform() == context.Platform
                 && t.GetIsGroupExclusiveSelection()).GroupBy(t => t.GetGroup(), (key, g) => g.First());
 
             // this selector excludes templates with exclusions
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                && t.GetPlatform() == platform
+                && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
+                && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
+                && t.GetPlatform() == context.Platform
                 && t.GetExclusionsList().Count() == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                 && !t.GetIsHidden();
 
-            var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(context.ProjectType)}All{ShortLanguageName(context.Language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
 
             return (projectName, projectPath);
         }
 
-        protected async Task<string> AssertGenerateProjectAsync(string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<TemplateInfo, string> getName = null, bool includeMultipleInstances = false)
+        protected async Task<string> AssertGenerateProjectAsync(string projectName, UserSelectionContext context, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<TemplateInfo, string> getName = null, bool includeMultipleInstances = false)
         {
-            BaseGenAndBuildFixture.SetCurrentLanguage(language);
-            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
+            BaseGenAndBuildFixture.SetCurrentLanguage(context.Language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(context.Platform);
 
             var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
@@ -131,12 +140,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
+            var userSelection = _fixture.SetupProject(context);
 
             if (getName != null && itemTemplatesSelector != null)
             {
                 var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
-                var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, platform, projectType, framework, _emptyBackendFramework);
+
+                var itemsTemplateInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(itemTemplates, context);
                 _fixture.AddItems(userSelection, itemsTemplateInfo, getName, includeMultipleInstances);
             }
 
@@ -148,62 +158,82 @@ namespace Microsoft.Templates.Test
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
 
-            if (platform == Platforms.Uwp)
+            if (context.Platform == Platforms.Uwp)
             {
-                AssertCorrectProjectConfigInfo(projectType, framework, platform);
+                AssertCorrectProjectConfigInfo(context);
             }
 
             return resultPath;
         }
 
-        protected void EnsureCanInferConfigInfo(string projectType, string framework, string platform, string projectPath)
+        protected void EnsureCanInferConfigInfo(UserSelectionContext context, string projectPath)
         {
             RemoveProjectConfigInfoFromProject();
 
-            AssertCorrectProjectConfigInfo(projectType, framework, platform);
-            AssertProjectConfigInfoRecreated(projectType, framework, platform);
+            AssertCorrectProjectConfigInfo(context);
+            AssertProjectConfigInfoRecreated(context);
 
             Fs.SafeDeleteDirectory(projectPath);
         }
 
         protected void RemoveProjectConfigInfoFromProject()
         {
-            var manifest = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
-            var lines = File.ReadAllLines(manifest);
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
+            var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
+
+            var lines = File.ReadAllLines(metadataFilePath);
             var sb = new StringBuilder();
+            var pl = $"genTemplate:Item Name=\"platform\"";
             var fx = $"genTemplate:Item Name=\"framework\"";
             var pt = $"genTemplate:Item Name=\"projectType\"";
+            var am = $"genTemplate:Item Name=\"appmodel\"";
             foreach (var line in lines)
             {
-                if (!line.Contains(fx) && !line.Contains(pt))
+                if (!line.Contains(fx) && !line.Contains(pt) && !line.Contains(pl) && !line.Contains(am))
                 {
                     sb.AppendLine(line);
                 }
             }
 
-            File.Delete(manifest);
-            File.WriteAllText(manifest, sb.ToString(), Encoding.UTF8);
+            File.Delete(metadataFilePath);
+            File.WriteAllText(metadataFilePath, sb.ToString(), Encoding.UTF8);
         }
 
-        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
+        protected void AssertCorrectProjectConfigInfo(UserSelectionContext context)
         {
-            var info = ProjectConfigInfoService.ReadProjectConfiguration();
+            var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+            var info = projectConfigInfoService.ReadProjectConfiguration();
 
-            Assert.Equal(expectedProjectType, info.ProjectType);
-            Assert.Equal(expectedFramework, info.Framework);
-            Assert.Equal(expectedPlatform, info.Platform);
+            Assert.Equal(context.ProjectType, info.ProjectType);
+            Assert.Equal(context.FrontEndFramework, info.Framework);
+            Assert.Equal(context.Platform, info.Platform);
+            if (!string.IsNullOrEmpty(context.GetAppModel()))
+            {
+                Assert.Equal(context.GetAppModel(), info.AppModel);
+            }
         }
 
-        protected void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
+        protected void AssertProjectConfigInfoRecreated(UserSelectionContext context)
         {
-            var content = File.ReadAllText(Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest"));
-            var expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
-            var expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
-            var expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
+            var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
+
+            var content = File.ReadAllText(metadataFilePath);
+            var expectedFxText = $"Name=\"framework\" Value=\"{context.FrontEndFramework}\"";
+            var expectedPtText = $"Name=\"projectType\" Value=\"{context.ProjectType}\"";
+            var expectedPfText = $"Name=\"platform\" Value=\"{context.Platform}\"";
+
 
             Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
+            if (!string.IsNullOrEmpty(context.GetAppModel()))
+            {
+                var expectedAmText = $"Name=\"appmodel\" Value=\"{context.GetAppModel()}\"";
+                Assert.Contains(expectedAmText, content, StringComparison.OrdinalIgnoreCase);
+            }
         }
 
         protected void AssertBuildProject(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
@@ -274,10 +304,10 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, List<string> excludedGroupIdentity = null)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, UserSelectionContext context, bool emptyProject, List<string> excludedGroupIdentity = null)
         {
-            BaseGenAndBuildFixture.SetCurrentLanguage(language);
-            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
+            BaseGenAndBuildFixture.SetCurrentLanguage(context.Language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(context.Platform);
             var path = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
 
             GenContext.Current = new FakeContextProvider
@@ -287,19 +317,21 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = path,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
+            var userSelection = _fixture.SetupProject(context);
+            var appModel = context.GetAppModel();
 
             if (!emptyProject)
             {
                 var templates = _fixture.Templates().Where(
                     t => t.GetTemplateType().IsItemTemplate()
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                    && t.GetPlatform() == platform
+                    && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
+                    && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
+                    && t.GetPlatform() == context.Platform
+                    && (string.IsNullOrEmpty(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(All))
                     && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                     && !t.GetIsHidden());
 
-                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
+                var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, context);
 
                 _fixture.AddItems(userSelection, templatesInfo, BaseGenAndBuildFixture.GetDefaultName);
             }
@@ -316,14 +348,15 @@ namespace Microsoft.Templates.Test
 
             var rightClickTemplates = _fixture.Templates().Where(
                 t => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                && t.GetPlatform() == platform
+                && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
+                && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
+                && t.GetPlatform() == context.Platform
+                && (string.IsNullOrEmpty(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(appModel) || t.GetPropertyBagValuesList("appmodel").Contains(All))
                 && !t.GetIsHidden()
                 && (excludedGroupIdentity == null || (!excludedGroupIdentity.Contains(t.GroupIdentity)))
                 && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, context.ProjectType, context.FrontEndFramework, context.Platform, context.Language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
@@ -352,13 +385,19 @@ namespace Microsoft.Templates.Test
                     GenerationOutputPath = GenContext.GetTempGenerationPath(projectName),
                 };
 
-                var newUserSelection = new UserSelection(projectType, framework, _emptyBackendFramework, platform, language)
+                var context = new UserSelectionContext(language, platform)
+                {
+                    ProjectType = projectType,
+                    FrontEndFramework = framework,
+                };
+
+                var newUserSelection = new UserSelection(context)
                 {
                     HomeName = string.Empty,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(item, platform, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(item, context);
 
                 _fixture.AddItem(newUserSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -368,10 +407,10 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, bool cleanGeneration = true)
+        protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, UserSelectionContext context, string itemId, bool cleanGeneration = true)
         {
-            BaseGenAndBuildFixture.SetCurrentLanguage(language);
-            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
+            BaseGenAndBuildFixture.SetCurrentLanguage(context.Language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(context.Platform);
 
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
@@ -382,7 +421,7 @@ namespace Microsoft.Templates.Test
                 finalName = nameValidationService.Infer(finalName);
             }
 
-            var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(context.ProjectType)}{finalName}{ShortLanguageName(context.Language)}";
             var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
             GenContext.Current = new FakeContextProvider
@@ -392,8 +431,8 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
-            var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, platform, projectType, framework, _emptyBackendFramework);
+            var userSelection = _fixture.SetupProject(context);
+            var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
 
             _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -456,7 +495,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);
+            var context = new UserSelectionContext(language, Platforms.Uwp)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             foreach (var identity in genIdentitiesList)
             {
@@ -465,7 +510,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
@@ -517,7 +562,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Wpf, language);
+            var context = new UserSelectionContext(language, Platforms.Wpf)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             foreach (var identity in genIdentitiesList)
             {
@@ -526,7 +577,7 @@ namespace Microsoft.Templates.Test
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Wpf, projectType, framework, _emptyBackendFramework);
+                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, context);
                 _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
             }
 

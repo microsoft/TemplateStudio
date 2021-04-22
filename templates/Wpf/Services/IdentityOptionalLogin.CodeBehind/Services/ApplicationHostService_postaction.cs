@@ -36,10 +36,14 @@ namespace Param_RootNamespace.Services
 
         private async Task InitializeAsync()
         {
+            if (!_isInitialized)
+            {
 //^^
 //{[{
-            _userDataService.Initialize();
+                _userDataService.Initialize();
 //}]}
+                await Task.CompletedTask;
+            }
         }
     }
 }

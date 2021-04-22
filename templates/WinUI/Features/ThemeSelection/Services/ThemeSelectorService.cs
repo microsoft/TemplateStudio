@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Windows.Storage;
-using Windows.UI.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
 
@@ -16,8 +15,7 @@ namespace Param_RootNamespace.Services
 
         public async Task InitializeAsync()
         {
-            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
-            // Theme = await LoadThemeFromSettingsAsync();
+            Theme = await LoadThemeFromSettingsAsync();
             await Task.CompletedTask;
         }
 
@@ -26,9 +24,7 @@ namespace Param_RootNamespace.Services
             Theme = theme;
 
             await SetRequestedThemeAsync();
-
-            // Temporarily commenting out as workaround for issue https://github.com/microsoft/WindowsTemplateStudio/issues/3984
-            // await SaveThemeInSettingsAsync(Theme);
+            await SaveThemeInSettingsAsync(Theme);
         }
 
         public async Task SetRequestedThemeAsync()

@@ -97,7 +97,9 @@ Namespace ViewModels
             Else
                 Dim selectedItem As WinUI.NavigationViewItem = TryCast(args.InvokedItemContainer, WinUI.NavigationViewItem)
                 Dim pageKey = TryCast(selectedItem.GetValue(NavHelper.NavigateToProperty), String)
-                NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+                If pageKey IsNot Nothing Then
+                    NavigationService.Navigate(pageKey, Nothing, args.RecommendedNavigationTransitionInfo)
+                End If
             End If
         End Sub
 

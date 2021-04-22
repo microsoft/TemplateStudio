@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Ce projet basique est une toile blanche à partir de laquelle vous pouvez développer votre application."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Un menu hamburger est inclus, pour permettre de naviguer entre les pages."

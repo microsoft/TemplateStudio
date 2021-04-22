@@ -9,10 +9,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
@@ -32,21 +35,22 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(string platform, string language, string requiredWorkloads, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(UserSelectionContext context, string requiredVSVersion, string requiredWorkloads, BaseStyleValuesProvider provider)
         {
             _styleProvider = provider;
 
-            CheckVSVersion(platform);
-            CheckForMissingWorkloads(platform, requiredWorkloads);
+            CheckVSVersion(context.Platform, requiredVSVersion);
+            CheckForMissingWorkloads(context.Platform, requiredWorkloads);
             CheckForInvalidProjectName();
 
-            var newProjectView = new Views.NewProject.WizardShell(platform, language, provider);
+            var newProjectView = new Views.NewProject.WizardShell(context, provider);
             return StartWizard(newProjectView, WizardTypeEnum.NewProject);
         }
 
         public UserSelection StartAddTemplate(string language, BaseStyleValuesProvider provider, TemplateType templateType, WizardTypeEnum wizardTypeEnum)
         {
-            var addTemplateView = new Views.NewItem.WizardShell(templateType, language, provider);
+            var context = GetProjectConfigInfo(language);
+            var addTemplateView = new Views.NewItem.WizardShell(templateType, context, provider);
             return StartWizard(addTemplateView, wizardTypeEnum);
         }
 
@@ -126,17 +130,18 @@ namespace Microsoft.Templates.UI.Launcher
                 .FireAndForget();
         }
 
-        private void CheckVSVersion(string platform)
+        private void CheckVSVersion(string platform, string requiredVersion)
         {
             var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
-            if (!string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
+            if (!string.IsNullOrEmpty(requiredVersion) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
             {
                 // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
-                var version = Version.Parse(vsInfo.VisualStudioExeVersion);
-                if (platform == Platforms.Wpf && (version.Major < 16 || (version.Major == 16 && version.Minor < 3)))
+                var actualVSVersion = Version.Parse(vsInfo.VisualStudioExeVersion);
+                var requiredVSVersion = Version.Parse(requiredVersion);
+                if (actualVSVersion.CompareTo(requiredVSVersion) < 0)
                 {
                     var title = UIStringRes.InfoDialogInvalidVersionTitle;
-                    var message = UIStringRes.InfoDialogInvalidVSVersionForWPF;
+                    var message = string.Format(UIStringRes.InfoDialogInvalidVSVersion, platform, requiredVersion);
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
@@ -205,6 +210,60 @@ namespace Microsoft.Templates.UI.Launcher
                 GenContext.ToolBox.Shell.ShowModal(info);
 
                 CancelWizard();
+            }
+        }
+
+        private UserSelectionContext GetProjectConfigInfo(string language)
+        {
+            var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
+            var configInfo = projectConfigInfoService.ReadProjectConfiguration();
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
+            {
+                var vm = new ProjectConfigurationViewModel(language);
+                var projectConfig = new ProjectConfigurationDialog(vm);
+                GenContext.ToolBox.Shell.ShowModal(projectConfig);
+
+                if (vm.Result == DialogResult.Accept)
+                {
+                    configInfo.ProjectType = vm.SelectedProjectType.Name;
+                    configInfo.Framework = vm.SelectedFramework.Name;
+                    configInfo.Platform = vm.SelectedPlatform;
+                    if (configInfo.Platform == Platforms.WinUI)
+                    {
+                        configInfo.AppModel = vm.SelectedAppModel;
+                    }
+
+                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
+                    var userSeletion = new UserSelectionContext(language, configInfo.Platform)
+                    {
+                        ProjectType = configInfo.ProjectType,
+                        FrontEndFramework = configInfo.Framework,
+                    };
+
+                    if (!string.IsNullOrEmpty(configInfo.AppModel))
+                    {
+                        userSeletion.AddAppModel(configInfo.AppModel);
+                    }
+
+                    return userSeletion;
+                }
+
+                return null;
+            }
+            else
+            {
+                var userSeletion = new UserSelectionContext(language, configInfo.Platform)
+                {
+                    ProjectType = configInfo.ProjectType,
+                    FrontEndFramework = configInfo.Framework,
+                };
+
+                if (!string.IsNullOrEmpty(configInfo.AppModel))
+                {
+                    userSeletion.AddAppModel(configInfo.AppModel);
+                }
+
+                return userSeletion;
             }
         }
     }

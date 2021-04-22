@@ -1,4 +1,6 @@
-﻿To jest ogólna wersja wzorca MVVM.  Wzorzec [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) może być używany na wszystkich platformach XAML. Pozwala on wyraźnie oddzielić problemy związane z kontrolkami interfejsu użytkownika od tych dotyczących ich logiki.
+﻿**Uwaga: MVVM Basic został zastąpiony przez MVVM Toolkit i zostanie usunięty jako opcja w przyszłej wersji Windows Template Studio.**
+
+To jest ogólna wersja wzorca MVVM.  Wzorzec [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) może być używany na wszystkich platformach XAML. Pozwala on wyraźnie oddzielić problemy związane z kontrolkami interfejsu użytkownika od tych dotyczących ich logiki.
 
 Wzorzec MVVM składa się z trzech głównych komponentów: model, view i view model. Każdy spełnia oddzielną rolę.
 

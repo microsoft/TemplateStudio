@@ -24,6 +24,8 @@ namespace Param_RootNamespace.ViewModels
             // App Host
             SimpleIoc.Default.Register<IApplicationHostService, ApplicationHostService>();
 
+            // Activation Handlers
+
             // Core Services
 
             // Services

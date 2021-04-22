@@ -1,4 +1,6 @@
-﻿Bu, MVVM deseninin genel bir sürümü.  [Model-View-ViewModel deseni](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) tüm XAML platformlarında kullanılabilir. Bunun amacı, kullanıcı arabirimi denetimleri ve bunların mantığı arasındaki endişeleri açık bir şekilde ayırmaktır.
+﻿**Bildirim: MVVM Basic, MVVM Araç Seti tarafından değiştirilmiştir ve Windows Template Studio'nun gelecekteki bir sürümünde bir seçenek olarak kaldırılacaktır.**
+
+Bu, MVVM deseninin genel bir sürümü.  [Model-View-ViewModel deseni](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) tüm XAML platformlarında kullanılabilir. Bunun amacı, kullanıcı arabirimi denetimleri ve bunların mantığı arasındaki endişeleri açık bir şekilde ayırmaktır.
 
 MVVM deseninde üç temel bileşen bulunmaktadır: model, görünüm ve görünüm modeli. Her biri farklı bir rol oynar.
 

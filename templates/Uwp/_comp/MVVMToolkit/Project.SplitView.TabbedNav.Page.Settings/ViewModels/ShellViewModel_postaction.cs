@@ -11,14 +11,15 @@ namespace Param_RootNamespace.ViewModels
     {
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            //{[{
             if (args.IsSettingsInvoked)
             {
+//{--{
+                // Navigate to the settings page - implement as appropriate if needed
+//}--}
+                //{[{
                 NavigationService.Navigate(typeof(wts.ItemNamePage), null, args.RecommendedNavigationTransitionInfo);
-                return;
+                //}]}
             }
-
-            //}]}
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
