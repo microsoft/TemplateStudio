@@ -224,10 +224,6 @@
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Version ultérieure requise</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>WPF avec création de projet .NET Core requiert la mise à jour Visual Studio 2019 Update 3 ou une version ultérieure.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>Charge de travail manquante</value>
   </data>
@@ -898,18 +894,28 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="NewProjectTitleWinUI" xml:space="preserve">
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
     <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>New WinUI3 UWP app</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="Flag_Deprecated" xml:space="preserve">
-    <value>DEPRECATED</value>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Obsolète</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>N’a pas pu ouvrir la vue d’ensemble du projet.</value>
     <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} création de projet nécessite visual Studio 2019 Version {1} ou plus.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

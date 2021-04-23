@@ -35,12 +35,15 @@
         <ScrollViewer
 <!--{[{-->
             Grid.Row="1"
-            Grid.Column="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Padding="{StaticResource SmallLeftMargin}"
 <!--}]}-->
-            x:Name="contentScroll">
+            x:Name="contentScroll"
+            IsTabStop="True">
             <StackPanel
 <!--{[{-->
-                Margin="{StaticResource MediumRightMargin}"
+                Margin="{StaticResource MediumLeftRightMargin}"
 <!--}]}-->
                 x:Name="contentPanel">
             </StackPanel>

@@ -12,6 +12,8 @@ namespace Param_RootNamespace.Core.Services
 
         void InitializeWithAadAndPersonalMsAccounts();
 
+        void InitializeWithPersonalMsAccount();
+
         void InitializeWithAadMultipleOrgs(bool integratedAuth = false);
 
         void InitializeWithAadSingleOrg(string tenant, bool integratedAuth = false);

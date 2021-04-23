@@ -1,8 +1,6 @@
 ﻿<UserControl
 <!--^^-->
 <!--{[{-->
-    xmlns:prism="http://prismlibrary.com/"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource BaseUserControlStyle}"
 <!--}]}-->
     mc:Ignorable="d"

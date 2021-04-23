@@ -14,7 +14,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your ContentGrid page is displaying real data.
+        ' Remove this once your ContentGrid page is displaying real data.
         Public Async Function GetContentGridDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             If _allOrders Is Nothing Then
                 _allOrders = AllOrders()

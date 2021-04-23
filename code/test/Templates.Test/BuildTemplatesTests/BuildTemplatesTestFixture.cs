@@ -11,6 +11,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -55,26 +56,61 @@ namespace Microsoft.Templates.Test
                 {
                     SetCurrentPlatform(platform);
 
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => !string.IsNullOrEmpty(m.Description))
-                                .Select(m => m.Name);
-
-                    foreach (var projectType in projectTypes)
+                    if (platform == Platforms.WinUI)
                     {
-
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(platform, projectType)
-                                                    .Where(m => m.Name == frameworkFilter)
-                                                    .Select(m => m.Name)
-                                                    .ToList();
-
-                        foreach (var framework in targetFrameworks)
+                        var appModels = AppModels.GetAllAppModels().ToList();
+                        foreach (var appModel in appModels)
                         {
-                            result.Add(new object[] { projectType, framework, platform, language });
+                            result.AddRange(GetContextOptions(frameworkFilter, language, platform, appModel));
                         }
+                    }
+                    else
+                    {
+                        result.AddRange(GetContextOptions(frameworkFilter, language, platform, string.Empty));
+
                     }
                 }
             }
+            return result;
+        }
 
+        private static List<object[]> GetContextOptions(string frameworkFilter, string language, string platform, string appModel)
+        {
+            List<object[]> result = new List<object[]>();
+
+            var context = new UserSelectionContext(language, platform);
+            if (!string.IsNullOrEmpty(appModel))
+            {
+                context.AddAppModel(appModel);
+            }
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
+                    .Where(m => !string.IsNullOrEmpty(m.Description))
+                    .Select(m => m.Name);
+
+
+
+            foreach (var projectType in projectTypes)
+            {
+                context.ProjectType = projectType;
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
+                                            .Where(m => m.Name == frameworkFilter)
+                                            .Select(m => m.Name)
+                                            .ToList();
+
+                foreach (var framework in targetFrameworks)
+                {
+                    if (!string.IsNullOrEmpty(appModel))
+                    {
+                        result.Add(new object[] { projectType, framework, platform, language, appModel });
+                    }
+                    else
+                    {
+                        result.Add(new object[] { projectType, framework, platform, language });
+                    }
+                    
+                }
+            }
             return result;
         }
 

@@ -3,11 +3,14 @@
 
     <Thickness x:Key="Margin_XS_LeftTopRightBottom">4,4,4,4</Thickness>
     <Thickness x:Key="Margin_XS_Left">4,0,0,0</Thickness>
+    <Thickness x:Key="Margin_XS_Right">0,0,4,0</Thickness>
     <Thickness x:Key="Margin_XS_LeftRight">4,0,4,0</Thickness>
     <Thickness x:Key="Margin_XS_Bottom">0,0,0,4</Thickness>
     <Thickness x:Key="Margin_XS_Top">0,4,0,0</Thickness>
+    <Thickness x:Key="Margin_XS_TopBottom">0,4,0,4</Thickness>
 
     <Thickness x:Key="Margin_S_Left">8,0,0,0</Thickness>
+    <Thickness x:Key="Margin_S_Right">0,0,8,0</Thickness>
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftTop">8,8,0,0</Thickness>
     <Thickness x:Key="Margin_S_Top">0,8,0,0</Thickness>

@@ -226,14 +226,26 @@ if($publicKeyToken){
     foreach( $projectTemplate in $projectTemplates){
       [xml]$projectTemplateContent = Get-Content $projectTemplate
 
-      $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-      $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
+      if ($projectTemplateContent.VSTemplate.WizardExtension -and $projectTemplateContent.VSTemplate.WizardExtension.Assembly -like "Microsoft.Templates.UI*")
+      {
+          $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
+          $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
 
-      $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
+          $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
       
-      $projectTemplateContent.Save($projectTemplate)
+          $projectTemplateContent.Save($projectTemplate)
 
-      Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+          Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+      }
+      
+      if ($projectTemplateContent.VSTemplate.WizardData -and $projectTemplateContent.VSTemplate.WizardData.packages.repositoryId)
+      {
+          $projectTemplateContent.VSTemplate.WizardData.packages.repositoryId = $vsixIdentity
+
+          $projectTemplateContent.Save($projectTemplate)
+
+          Write-Host "$projectTemplate - VSIX Identity updated ($vsixIdentity)"
+      }
     }
   }
   else{

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "Permite la creación de paquetes para transferir localmente o distribuir mediante Microsoft Store.",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}

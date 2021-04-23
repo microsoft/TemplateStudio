@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.MVVMToolkit.Page.AddIocNS",
+    "shortName": "wts.WinUI.MVVMToolkit.Page.AddIocNS",
+    "identity": "wts.WinUI.MVVMToolkit.Page.AddIocNS",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "WinUI",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.ContentGrid|wts.WinUI.Page.WebView"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

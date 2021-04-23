@@ -26,7 +26,7 @@ namespace Param_RootNamespace.ViewModels
 
         public wts.ItemNameDetailViewModel(ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService, INavigationService navigationService)
         {
-            // TODO WTS: Replace this with your actual data
+            // Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
             _connectedAnimationService = connectedAnimationService;
             _navigationService = navigationService;

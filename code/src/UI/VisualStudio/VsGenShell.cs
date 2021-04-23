@@ -118,6 +118,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                         GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
 
                         var newItem = proj.ProjectItems.AddFromFile(file);
+
+                        if (GenContext.CurrentLanguage == ProgrammingLanguages.Cpp && Path.GetExtension(file) == ".xaml" && File.Exists(file.Replace("xaml", "idl")))
+                        {
+                            newItem.ProjectItems.AddFromFile(file.Replace("xaml", "idl"));
+                        }
                     }
 
                     proj.Save();
@@ -200,7 +205,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (p != null && p.Properties != null)
             {
-                return p.Properties.Item("DefaultNamespace")?.Value?.ToString();
+                return p.Properties.Item("RootNamespace")?.Value?.ToString();
             }
 
             return null;
@@ -325,7 +330,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                return await GetActiveProjectNamespaceAsync();
+                return await GetActiveProjectNameAsync();
             });
         }
 
@@ -377,10 +382,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
-
                     case ".vbproj":
                         return ProgrammingLanguages.VisualBasic;
-
+                    case ".vcxproj":
+                        return ProgrammingLanguages.Cpp;
                     default:
                         return string.Empty;
                 }
@@ -389,6 +394,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 return null;
             }
+        }
+
+        private string GetActiveProjectKind()
+        {
+            return SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                return await GetActiveProjectKindAsync();
+            });
+        }
+
+        private async Task<string> GetActiveProjectKindAsync()
+        {
+            var p = await GetActiveProjectAsync();
+
+            return p?.Kind;
         }
 
         public override void WriteOutput(string data)
@@ -532,7 +552,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             bool result = false;
             var activeProjectPath = GetActiveProjectPath();
-            if (!string.IsNullOrEmpty(activeProjectPath))
+            var projectKind = GetActiveProjectKind();
+
+            if (!string.IsNullOrEmpty(activeProjectPath) && projectKind != PackagingProjectTypeGuid)
             {
                 var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
                 var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));

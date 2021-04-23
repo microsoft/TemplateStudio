@@ -224,10 +224,6 @@
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Se requiere una versión posterior</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>La creación de proyectos WPF con .NET Core requiere la Actualización 3 de Visual Studio 2019 o una versión posterior.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>Carga de trabajo que falta</value>
   </data>
@@ -898,18 +894,28 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="NewProjectTitleWinUI" xml:space="preserve">
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
     <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>New WinUI3 UWP app</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="Flag_Deprecated" xml:space="preserve">
-    <value>DEPRECATED</value>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Obsoleto</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>No se pudo abrir la descripción general del proyecto.</value>
     <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} creación de proyectos requiere {1} de versión o superior de Visual Studio 2019.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

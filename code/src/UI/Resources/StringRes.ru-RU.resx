@@ -224,10 +224,6 @@
   <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
     <value>Необходима более поздняя версия</value>
   </data>
-  <data name="InfoDialogInvalidVSVersionForWPF" xml:space="preserve">
-    <value>Для создания проекта WPF с .NET Core необходима система Visual Studio 2019 с обновлением 3 или выше.</value>
-    <comment>Error message for WPF .NET Core in VS2017</comment>
-  </data>
   <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
     <value>Отсутствует рабочая нагрузка</value>
   </data>
@@ -898,18 +894,28 @@
     <value>Сведения об обновлении см. в документации.</value>
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="NewProjectTitleWinUI" xml:space="preserve">
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
     <value>New WinUI3 Desktop app</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>New WinUI3 UWP app</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
   </data>
-  <data name="Flag_Deprecated" xml:space="preserve">
-    <value>DEPRECATED</value>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Устаревшие</value>
     <comment>Text used to indicate a deprecated option in the wizard</comment>
   </data>
   <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Could not open project overview.</value>
+    <value>Не смог открыть обзор проекта.</value>
     <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Select AppModel</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} проекта требуется Visual Studio 2019 Версия {1} или выше.</value>
+    <comment>Error message for Invalid VS Version</comment>
   </data>
 </root>

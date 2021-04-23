@@ -308,6 +308,7 @@
                 x:Name="treeView"
                 Grid.Row="1"
                 SelectionMode="Single"
+                CanReorderItems="False"
                 ItemsSource="{x:Bind ViewModel.SampleItems}"
                 ItemTemplateSelector="{StaticResource TreeViewTemplateSelector}">
                 <i:Interaction.Behaviors>

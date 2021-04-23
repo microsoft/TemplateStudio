@@ -6,7 +6,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your TreeView page is displaying real data.
+        ' Remove this once your TreeView page is displaying real data.
         Public Async Function GetTreeViewDataAsync() As Task(Of IEnumerable(Of SampleCompany))
             Await Task.CompletedTask
 

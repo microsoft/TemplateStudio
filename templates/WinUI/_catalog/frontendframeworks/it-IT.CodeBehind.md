@@ -1,0 +1,1 @@
+﻿Code-behind è un termine utilizzato per descrivere il codice associato a un file XAML.  Si tratta di una scelta eccellente per gli sviluppatori che si trovano a loro agio con lo stile di sviluppo di WinForms.

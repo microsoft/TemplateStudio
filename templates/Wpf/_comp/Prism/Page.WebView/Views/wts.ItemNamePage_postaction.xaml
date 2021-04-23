@@ -1,0 +1,6 @@
+﻿<UserControl
+<!--^^-->
+<!--{[{-->
+    Loaded="wts.ItemNamePage_OnLoaded"
+<!--}]}-->
+    mc:Ignorable="d"

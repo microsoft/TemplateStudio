@@ -14,7 +14,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your image gallery page is displaying real data.
+        ' Remove this once your image gallery page is displaying real data.
         Public Async Function GetImageGalleryDataAsync(localResourcesPath As String) As Task(Of IEnumerable(Of SampleImage))
             Await Task.CompletedTask
             If _gallerySampleData Is Nothing Then

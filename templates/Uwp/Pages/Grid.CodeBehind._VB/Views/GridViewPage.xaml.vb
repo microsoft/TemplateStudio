@@ -19,7 +19,7 @@ Namespace Views
             MyBase.OnNavigatedTo(e)
             Source.Clear()
 
-            ' TODO WTS: Replace this with your actual data
+            ' Replace this with your actual data
             Dim data = Await SampleDataService.GetGridDataAsync()
             For Each item In data
                 Source.Add(item)

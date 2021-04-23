@@ -27,6 +27,9 @@
         "path": "Contracts/Services/IPageService.cs"
       },
       {
+        "path": "Contracts/Activation/IActivationHandler.cs"
+      },
+      {
         "path": "Contracts/ViewModels/INavigationAware.cs"
       },
       {
@@ -58,8 +61,8 @@
         "manualInstructions": [ ],
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
-          "packageId" : "Microsoft.Toolkit.MVVM",
-          "version" : "7.0.0-preview4",
+          "packageId" : "Microsoft.Toolkit.Mvvm",
+          "version" : "7.0.1",
           "projectPath": "Param_ProjectName.csproj"
         },
         "continueOnError": true

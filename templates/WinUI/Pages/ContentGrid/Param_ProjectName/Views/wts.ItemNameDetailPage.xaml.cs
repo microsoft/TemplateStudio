@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.Toolkit.Uwp.UI.Animations;
+﻿using CommunityToolkit.WinUI.UI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Param_RootNamespace.Contracts.Services;
@@ -27,7 +25,7 @@ namespace Param_RootNamespace.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 var navigationService = Ioc.Default.GetService<INavigationService>();
-                navigationService.Frame.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
+                navigationService.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
             }
         }
     }

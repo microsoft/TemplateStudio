@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
-
+using Microsoft.Templates.Core.Gen;
 using Xunit;
 
 namespace Microsoft.Templates.Test.Build.Uwp
@@ -28,12 +28,18 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
-            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
             // Don't delete after build test as used in inference test, which will then delete.
             AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: false);
 
-            EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
+            EnsureCanInferConfigInfo(context, projectPath);
         }
 
         [Theory]
@@ -54,7 +60,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -77,7 +89,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G2{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -101,7 +119,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG2";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, true);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -124,7 +148,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
 
             var projectName = $"{projectType}{framework}AllStyleCopG1";
 
-            var projectPath = await AssertGenerateProjectAsync(projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectThenRunTests(projectPath, projectName, platform);
         }
@@ -138,7 +168,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
             AssertBuildProject(projectPath, projectName, platform);
         }
@@ -150,7 +186,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildOneByOneMVVMLight")]
         public async Task Build_MVVMLight_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }
@@ -162,7 +204,13 @@ namespace Microsoft.Templates.Test.Build.Uwp
         [Trait("Type", "BuildOneByOneMVVMLight")]
         public async Task Build_MVVMLight_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework
+            };
+
+            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
 
             AssertBuildProject(ProjectPath, ProjecName, platform);
         }

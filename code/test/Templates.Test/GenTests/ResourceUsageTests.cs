@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class ResourceUsageTests : BaseGenAndBuildTests
     {
-        private readonly string _emptyBackendFramework = string.Empty;
-
         public ResourceUsageTests(GenerationFixture fixture)
             : base(fixture)
         {
@@ -202,7 +200,13 @@ namespace Microsoft.Templates.Test
                 GenerationOutputPath = destinationPath,
             };
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
+            var context = new UserSelectionContext(language, platform)
+            {
+                ProjectType = projectType,
+                FrontEndFramework = framework,
+            };
+
+            var userSelection = _fixture.SetupProject(context);
 
             var templates = _fixture.Templates()
                 .Where(t => t.GetTemplateType().IsItemTemplate()
@@ -212,7 +216,7 @@ namespace Microsoft.Templates.Test
                 && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
                 && !t.GetIsHidden());
 
-            var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, platform, projectType, framework, _emptyBackendFramework);
+            var templatesInfo = GenContext.ToolBox.Repo.GetTemplatesInfo(templates, context);
 
             _fixture.AddItems(userSelection, templatesInfo, BaseGenAndBuildFixture.GetDefaultName);
 

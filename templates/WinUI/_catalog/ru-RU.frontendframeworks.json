@@ -3,5 +3,10 @@
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
     "summary": ""
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Такая модель традиционно используется для приложений, где логика обрабатывается в коде программной части (code-behind)."
   }
 ]

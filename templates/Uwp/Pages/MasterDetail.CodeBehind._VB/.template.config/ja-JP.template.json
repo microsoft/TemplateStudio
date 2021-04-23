@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "MasterDetail",
-    "description": "マスター/詳細ページには、マスター ウィンドウと、コンテンツ用の詳細ウィンドウがあります。",
-    "identity": "wts.Page.MasterDetail.CodeBehind.VB"
-}

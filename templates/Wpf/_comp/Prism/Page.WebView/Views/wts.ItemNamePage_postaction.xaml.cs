@@ -1,6 +1,7 @@
 ﻿
 //{[{
 using Param_RootNamespace.ViewModels;
+using System.Windows;
 //}]}
 
 namespace Param_RootNamespace.Views
@@ -14,16 +15,18 @@ namespace Param_RootNamespace.Views
 //}]}
         public wts.ItemNamePage()
         {
-//^^
-//{[{
-            ViewModel.Initialize(webView);
-//}]}
+
         }
 //^^
 //{[{
 
         private void OnNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e)
             => ViewModel.OnNavigationCompleted(e);
+
+        private void wts.ItemNamePage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel?.Initialize(webView);
+        }
 //}]}
     }
 }

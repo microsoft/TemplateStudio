@@ -1,8 +1,13 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Moderní, rychlá, modulární knihovna MVVM a součást sady nástrojů Windows Community Toolkit."
+  },
+  {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "Jde o tradiční model pro aplikace, ve kterých se logika zpracovává v kódu na pozadí (code-behind)."
+    "summary": "Jde o tradiční model pro aplikace, ve kterých se logika zpracovává v kódu na pozadí (code-behind)."
   },
   {
     "name": "MVVMBasic",
@@ -17,6 +22,6 @@
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism je rámec (framework) pro vytváření volně provázaných, udržovatelných a testovatelných aplikací XAML."
+    "summary": "Prism je rámec (framework) pro vytváření volně provázaných, udržovatelných a testovatelných aplikací XAML."
   }
 ]

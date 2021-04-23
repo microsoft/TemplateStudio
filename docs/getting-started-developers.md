@@ -89,6 +89,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=MinimumMVVMToolkitWPF
     - ExecutionSet=MinimumPrismWPF
     - ExecutionSet=MinimumMVVMToolkitWinUI
+    - ExecutionSet=MinimumCodeBehindWinUI
     - ExecutionSet=TemplateValidation
 
 - VSO 'CIBuild' Build (CI):
@@ -127,6 +128,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildMVVMLightWpf
     - ExecutionSet=BuildRightClickWithLegacyWpf
     - ExecutionSet=BuildMVVMToolkitWinUI
+    - ExecutionSet=BuildCodeBehindWinUI
 
 - VSO 'Templates.Test.OneByOne' Build (OneByOne Tests):
   - Templates.Test
@@ -142,6 +144,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - ExecutionSet=BuildOneByOneMVVMLightWpf
     - ExecutionSet=BuildOneByOnePrismWpf
     - ExecutionSet=BuildOneByOneMVVMToolkitWinUI
+    - ExecutionSet=BuildOneByOneCodeBehindWinUI
 
 - VSO 'Templates.Test.Wack' Build (Wack Tests):
     - Templates.Test

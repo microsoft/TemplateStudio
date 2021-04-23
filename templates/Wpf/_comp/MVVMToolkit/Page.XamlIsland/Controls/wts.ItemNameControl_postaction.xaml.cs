@@ -2,11 +2,11 @@
 {
     public partial class wts.ItemNameControl : UserControl
     {
-        public wts.ItemNameControl(/*{[{*/IThemeSelectorService themeSelectorService/*}]}*/)
+        public wts.ItemNameControl()
         {
 //^^
 //{[{
-            _themeSelectorService = themeSelectorService;
+            _themeSelectorService = ((App)Application.Current).GetService<IThemeSelectorService>();
 //}]}
             _themeSelectorService.ThemeChanged += OnThemeChanged;
         }

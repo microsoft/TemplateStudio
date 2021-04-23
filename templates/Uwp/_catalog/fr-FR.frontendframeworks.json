@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Une bibliothèque MVVM moderne, rapide et modulaire et une partie de la boîte à outils de la communauté Windows."
+  },
+  {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
     "summary": "Il s'agit d'une version générique d'un modèle MVVM. Le modèle MVVM (modèle-vue-vue modèle) peut être utilisé sur toutes les plateformes XAML."

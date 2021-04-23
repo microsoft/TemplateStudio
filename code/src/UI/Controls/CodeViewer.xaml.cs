@@ -129,6 +129,11 @@ namespace Microsoft.Templates.UI.Controls
                 case ".json":
                     language = "json";
                     break;
+                case ".cpp":
+                case ".idl":
+                case ".h":
+                    language = "cpp";
+                    break;
             }
 
             return language;

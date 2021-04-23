@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private readonly GenerationService _generationService = GenerationService.Instance;
         private string _platform;
+        private string _appModel;
         private string _language;
 
         private UserSelection _userSelection;
@@ -50,9 +51,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string platform, string language)
+        protected void Initialize(string platform, string language, string appModel = null)
         {
             _platform = platform;
+            _appModel = appModel;
             _language = language;
 
             if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
@@ -112,7 +114,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = WizardLauncher.Instance.StartNewProject(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, _replacementsDictionary["$wts.requiredworkloads$"], new VSStyleValuesProvider());
+                    var context = new UserSelectionContext(_language, _platform);
+                    if (!string.IsNullOrEmpty(_appModel))
+                    {
+                        context.AddAppModel(_appModel);
+                    }
+
+                    var requiredVersion = _replacementsDictionary.ContainsKey("$wts.requiredversion$") ? _replacementsDictionary["$wts.requiredversion$"] : string.Empty;
+                    var requiredworkloads = _replacementsDictionary.ContainsKey("$wts.requiredworkloads$") ? _replacementsDictionary["$wts.requiredworkloads$"] : string.Empty;
+
+                    _userSelection = WizardLauncher.Instance.StartNewProject(context, requiredVersion, requiredworkloads, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

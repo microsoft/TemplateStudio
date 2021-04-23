@@ -1,4 +1,6 @@
-﻿これは MVVM patternの汎用バージョンです。[Model-View-ViewModel パターン](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) は、すべての XAML プラットフォームで使用できます。このパターンの目的は、ユーザー インターフェイス コントロールが関与する部分とそのロジックが関与する部分の区別を明確にすることです。
+﻿**注意: MVVM Basicは、MVVMツールキットに取って代わられており、Windowsテンプレートスタジオの将来のバージョンではオプションとして削除されます。**
+
+これは MVVM patternの汎用バージョンです。[Model-View-ViewModel パターン](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) は、すべての XAML プラットフォームで使用できます。このパターンの目的は、ユーザー インターフェイス コントロールが関与する部分とそのロジックが関与する部分の区別を明確にすることです。
 
 MVVM patternの中心的な構成要素は、モデル、ビュー、およびビュー モデルの 3 つです。それぞれが固有の異なる役割を果たします。
 
