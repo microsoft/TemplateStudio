@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿リスト/詳細パターンには、リスト ウィンドウ (通常はリスト ビュー) とコンテンツの詳細ウィンドウがあります。リスト内の項目が選択されると、詳細ウィンドウが更新されます。このパターンは、電子メールやアドレス帳でよく使用されます。
 
-More information about the list/details pattern can be found [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+リスト/詳細パターンの詳細については、[docs.microsoft.com]((https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details)を参照してください。

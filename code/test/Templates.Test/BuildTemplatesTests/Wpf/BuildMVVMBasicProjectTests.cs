@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Test.Build.Wpf
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMBasic, ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("ExecutionSet", "MinimumWpf")]
-        [Trait("ExecutionSet", "MVVMBasicWpf")]
+        [Trait("ExecutionSet", "BuildMVVMBasicWpf")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G1_WpfAsync(string projectType, string framework, string platform, string language)

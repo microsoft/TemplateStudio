@@ -1,1 +1,1 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Il modello elenco/dettagli ha un riquadro elenco (in genere con una visualizzazione elenco) e un riquadro dei dettagli per il contenuto. Quando un elemento dell'elenco è selezionato, il riquadro dei dettagli viene aggiornato. Questo modello viene spesso utilizzato per la posta elettronica e le rubrica.

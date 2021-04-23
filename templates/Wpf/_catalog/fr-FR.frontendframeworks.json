@@ -1,5 +1,10 @@
 ﻿[
   {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Une bibliothèque MVVM moderne, rapide et modulaire et une partie de la boîte à outils de la communauté Windows."
+  },
+  {
     "name": "CodeBehind",
     "displayName": "Code Behind",
     "summary": "Il s'agit du modèle classique d'une application, où la logique est traitée dans le code-behind."

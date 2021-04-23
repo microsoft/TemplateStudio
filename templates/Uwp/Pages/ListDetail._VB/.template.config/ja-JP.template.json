@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "ListDetail",
-    "description": "The list/details pattern has a list pane and a details pane for content.",
+    "description": "リスト/詳細パターンには、リスト ペインとコンテンツの詳細ペインがあります。",
     "identity": "wts.Page.ListDetail.VB"
 }

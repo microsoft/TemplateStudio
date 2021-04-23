@@ -398,72 +398,86 @@ namespace Microsoft.Templates.Test
 
             SetCurrentPlatform(platform);
 
-            var context = new UserSelectionContext(language, platform);
-
-            var appModels = AppModels.GetAllAppModels().ToList();
-            foreach (var appModel in appModels)
+            if (platform == Platforms.WinUI)
             {
-                if (platform == Platforms.WinUI)
+                var appModels = AppModels.GetAllAppModels().ToList();
+                foreach (var appModel in appModels)
                 {
-                    context.AddAppModel(appModel);
+                    result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, appModel));
                 }
+            }
+            else
+            {
+                result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, string.Empty));
+            }
 
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
-                                                        .Where(m => !string.IsNullOrEmpty(m.Description))
-                                                        .Select(m => m.Name);
+            return result;
+        }
 
-                foreach (var projectType in projectTypes)
+        private static List<object[]> GetTemplateOptions(string frameworkFilter, string language, string platform, string excludedItem, string appModel)
+        {
+            List<object[]> result = new List<object[]>();
+
+            var context = new UserSelectionContext(language, platform);
+            if (!string.IsNullOrEmpty(appModel))
+            {
+                context.AddAppModel(appModel);
+            }
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
+                                                    .Where(m => !string.IsNullOrEmpty(m.Description))
+                                                    .Select(m => m.Name);
+
+            foreach (var projectType in projectTypes)
+            {
+                context.ProjectType = projectType;
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
+                                                                .Where(m => m.Name == frameworkFilter)
+                                                                .Select(m => m.Name).ToList();
+
+                foreach (var framework in targetFrameworks)
                 {
-                    context.ProjectType = projectType;
-                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
-                                                                    .Where(m => m.Name == frameworkFilter)
-                                                                    .Select(m => m.Name).ToList();
+                    var itemTemplates = GenContext.ToolBox.Repo.GetAll()
+                        .Where(t =>
+                        (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
+                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                        && t.GetTemplateType().IsItemTemplate()
+                        && t.GetPlatform() == platform
+                        && t.GetLanguage() == language
+                        && IsMatchPropertyBag(t, context.PropertyBag)
+                        && t.Identity != excludedItem
+                        && !t.GetIsHidden());
 
-                    foreach (var framework in targetFrameworks)
+                    foreach (var itemTemplate in itemTemplates)
                     {
-                        var itemTemplates = GenContext.ToolBox.Repo.GetAll()
-                            .Where(t =>
-                            (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                            && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                            && t.GetTemplateType().IsItemTemplate()
-                            && t.GetPlatform() == platform
-                            && t.GetLanguage() == language
-                            && IsMatchPropertyBag(t, context.PropertyBag)
-                            && t.Identity != excludedItem
-                            && !t.GetIsHidden());
-
-                        foreach (var itemTemplate in itemTemplates)
+                        if (!string.IsNullOrEmpty(appModel))
                         {
-                            if (platform == Platforms.WinUI)
+                            result.Add(new object[]
                             {
-                                result.Add(new object[]
-                                {
-                                    itemTemplate.Name,
-                                    projectType,
-                                    framework,
-                                    platform,
-                                    itemTemplate.Identity,
-                                    language,
-                                    appModel
-                                });
-                            }
-                            else
+                                itemTemplate.Name,
+                                projectType,
+                                framework,
+                                platform,
+                                itemTemplate.Identity,
+                                language,
+                                appModel,
+                            });
+                        }
+                        else
+                        {
+                            result.Add(new object[]
                             {
-                                result.Add(new object[]
-                                {
-                                    itemTemplate.Name,
-                                    projectType,
-                                    framework,
-                                    platform,
-                                    itemTemplate.Identity,
-                                    language,
-                                });
-                            }
+                                itemTemplate.Name,
+                                projectType,
+                                framework,
+                                platform,
+                                itemTemplate.Identity,
+                                language,
+                            });
                         }
                     }
                 }
             }
-
             return result;
         }
 

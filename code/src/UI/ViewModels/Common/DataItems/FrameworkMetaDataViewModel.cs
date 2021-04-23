@@ -33,14 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Order = metadataInfo.Order;
             MetadataType = metadataInfo.MetadataType;
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
-            Flag = GetLocalizedFlag(metadataInfo.Tags.FirstOrDefault(t => t.Key.Equals("wts.flag")).Value?.ToString());
-        }
-
-        private string GetLocalizedFlag(string flagValue)
-        {
-            var resValue = StringRes.ResourceManager.GetString($"Flag_{flagValue}");
-
-            return string.IsNullOrEmpty(resValue) ? flagValue : resValue;
+            Deprecated = bool.TryParse(metadataInfo.Tags.FirstOrDefault(t => t.Key.Equals("deprecated")).Value?.ToString(), out bool isDeprecated);
         }
     }
 }

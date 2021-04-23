@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿Microsoft.Toolkit.Mvvm paketi modern, hızlı ve modüler bir MVVM kitaplığıdır. Windows Topluluk Araç Seti'nin bir parçasıdır.
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+Bu paket herhangi bir uygulama platformunda kullanılabilir: UWP, WinForms, WPF, Xamarin, Uno ve daha fazlası; ve herhangi bir çalışma zamanında: .NET Native, .NET Core, .NET Framework veya Mono. API yüzeyi her durumda aynıdır ve paylaşılan kitaplıklar oluşturmak için mükemmeldir.
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+Paket, MVVM desenini kullanarak modern uygulamalar oluşturmak için bir başlangıç uygulaması sağlayan standart, bağımsız, hafif türlerden oluşan bir koleksiyon içerir. Bu türler genellikle birçok kullanıcının ek dış referanslara ihtiyaç duymadan uygulama oluşturması için yeterlidir.
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+Bu paket, hangi bileşenlerin kullanılacağı konusunda esneklik sunmayı amaçlamaktadır. Tüm türler gevşek bir şekilde birleştirilmiştir, böylece yalnızca kullandığınız şeyi dahil etmek gerekir. Her şeyi kapsayan belirli bir API serisiyle "hepsi bir arada" gitme zorunluluğu yoktur ve bu yardımcıları kullanarak uygulamalar oluştururken izlenmesi gereken bir dizi zorunlu desen yoktur. Bu yapı taşlarını ihtiyaçlarınıza en uygun şekilde birleştirin.

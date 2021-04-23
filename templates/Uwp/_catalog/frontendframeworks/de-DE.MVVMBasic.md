@@ -1,4 +1,6 @@
-﻿Dies ist eine generische Version eines MVVM-Musters.  Das [Model-View-ViewModel-Muster](https://de.wikipedia.org/wiki/Model_View_ViewModel) kann auf allen XAML-Plattformen verwendet werden. Es soll eine klare Trennung zwischen den Steuerelementen der Benutzeroberfläche und ihrer Logik sicherstellen.
+﻿**Hinweis: MVVM Basic wurde durch das MVVM Toolkit ersetzt und wird als Option in einer zukünftigen Version von Windows Template Studio entfernt.**
+
+Dies ist eine generische Version eines MVVM-Musters.  Das [Model-View-ViewModel-Muster](https://de.wikipedia.org/wiki/Model_View_ViewModel) kann auf allen XAML-Plattformen verwendet werden. Es soll eine klare Trennung zwischen den Steuerelementen der Benutzeroberfläche und ihrer Logik sicherstellen.
 
 Im MVVM-Muster gibt es drei Kernkomponenten: Modell, Ansicht und Ansichtmodell. Jede Komponente hat eine andere und eigene Rolle.
 

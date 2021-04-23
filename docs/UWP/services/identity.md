@@ -28,10 +28,13 @@ Once the user has been authenticated, the app will call the Microsoft Graph to r
 You can choose between different ways to initialize the IdentityService, restricting hereby the allowed account types.
 
 1. InitializeWithAadAndPersonalMsAccounts() **(Default)** - allows Azure Active Directory Accounts and Personal Microsoft Accounts
-2. InitializeWithAadMultipleOrgs() - allows Azure Active Directory Accounts from any organization
-3. InitializeWithAadSingleOrg() - allows Azure Active Directory Accounts from the specified organization
+2. InitializeWithPersonalMsAccounts() - allows Personal Microsoft Accounts
+3. InitializeWithAadMultipleOrgs() - allows Azure Active Directory Accounts from any organization
+4. InitializeWithAadSingleOrg() - allows Azure Active Directory Accounts from the specified organization
 
-By choosing options 2 or 3 you can enable Windows Integrated Auth for domain joined machines. For more info regarding intergrated auth see [Integrated Windows Authentication](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Integrated-Windows-Authentication).
+The method you choose needs to allow the same account types as the ClientID you configure in Azure.
+
+By choosing options 3 or 4 you can enable Windows Integrated Auth for domain joined machines. For more info regarding intergrated auth see [Integrated Windows Authentication](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Integrated-Windows-Authentication).
 
 ## Understanding the authentication flow
 
