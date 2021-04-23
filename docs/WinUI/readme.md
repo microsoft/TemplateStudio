@@ -51,7 +51,8 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 - [WinUI 3 NavigationView does not apply correct styles](https://github.com/microsoft/WindowsTemplateStudio/issues/4159)
 
 ### Additional docs:
-- [Windows UI Library 3 - Project Reunion 0.5 Preview (March 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
+- [Windows UI Library 3 - Project Reunion 0.5 (March 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
 - [Project Reunion on GitHub](https://github.com/microsoft/ProjectReunion)
-- [Windows Community Toolkit 8.0.0-preview5 for Project Reunion 0.5 Preview](https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3295)
+- [Windows Community Toolkit for Project Reunion 0.5](https://devblogs.microsoft.com/ifdef-windows/windows-community-toolkit-for-project-reunion-0-5/)
+- [Update existing projects to the latest release of Project Reunion](https://docs.microsoft.com/windows/apps/project-reunion/update-existing-projects-to-the-latest-release)
