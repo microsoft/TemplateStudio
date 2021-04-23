@@ -7,21 +7,21 @@
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "Dies ist das traditionelle Modell für eine Anwendung, bei dem Logik im code-behind verarbeitet wird."
+    "summary": "Jde o tradiční model pro aplikace, ve kterých se logika zpracovává v kódu na pozadí (code-behind)."
   },
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "Dies ist eine generische Version eines MVVM pattern. Das Model-View-ViewModel-Muster kann auf allen XAML-Plattformen verwendet werden."
+    "summary": "Toto je obecná verze vzoru MVVM pattern. Vzor Model-View-ViewModel je možné používat na všech platformách XAML."
   },
   {
     "name": "MVVMLight",
     "displayName": "MVVM Light",
-    "summary": "MVVM Light ist ein verbreitetes Drittanbieter-framework, das auf dem Model-View-ViewModel-Muster basiert."
+    "summary": "MVVM Light je oblíbený rámec (framework) třetí strany, založený na vzoru Model-View-ViewModel."
   },
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism ist ein framework für die Entwicklung lose gekoppelter XAML-Anwendungen, die gewartet und getestet werden können."
+    "summary": "Prism je rámec (framework) pro vytváření volně provázaných, udržovatelných a testovatelných aplikací XAML."
   }
 ]
