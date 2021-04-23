@@ -4,9 +4,9 @@ using Microsoft.UI.Xaml;
 
 using WinUIDesktopApp.Activation;
 using WinUIDesktopApp.Contracts.Services;
+using WinUIDesktopApp.Contracts.Views;
 using WinUIDesktopApp.Core.Contracts.Services;
 using WinUIDesktopApp.Core.Services;
-using WinUIDesktopApp.Helpers;
 using WinUIDesktopApp.Services;
 using WinUIDesktopApp.ViewModels;
 using WinUIDesktopApp.Views;
@@ -16,7 +16,7 @@ namespace WinUIDesktopApp
 {
     public partial class App : Application
     {
-        public static Window MainWindow { get; set; } = new Window() { Title = "AppDisplayName".GetLocalized() };
+        public static Window MainWindow { get; set; }
 
         public App()
         {
@@ -47,7 +47,6 @@ namespace WinUIDesktopApp
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
             // Other Activation Handlers
-            services.AddTransient<IActivationHandler, ToastNotificationsActivationHandler>();
 
             // Services
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
@@ -56,13 +55,12 @@ namespace WinUIDesktopApp
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
-            services.AddTransient<IToastNotificationsService, ToastNotificationsService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
 
             // Views and ViewModels
-            services.AddTransient<ShellPage>();
+            services.AddTransient<IShellWindow, ShellWindow>();
             services.AddTransient<ShellViewModel>();
 
             services.AddTransient<MainViewModel>();
@@ -73,8 +71,8 @@ namespace WinUIDesktopApp
             services.AddTransient<ContentGridPage>();
             services.AddTransient<ContentGridDetailViewModel>();
             services.AddTransient<ContentGridDetailPage>();
-            services.AddTransient<MasterDetailViewModel>();
-            services.AddTransient<MasterDetailPage>();
+            services.AddTransient<ListDetailsViewModel>();
+            services.AddTransient<ListDetailsPage>();
             services.AddTransient<DataGridViewModel>();
             services.AddTransient<DataGridPage>();
             services.AddTransient<FormViewModel>();

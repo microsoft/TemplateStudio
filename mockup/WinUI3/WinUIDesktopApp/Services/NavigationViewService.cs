@@ -52,13 +52,16 @@ namespace WinUIDesktopApp.Services
             if (args.IsSettingsInvoked)
             {
                 _navigationService.NavigateTo(typeof(SettingsViewModel).FullName);
-                return;
             }
-
-            if (args.InvokedItemContainer is NavigationViewItem selectedItem)
+            else
             {
+                var selectedItem = args.InvokedItemContainer as NavigationViewItem;
                 var pageKey = selectedItem.GetValue(NavHelper.NavigateToProperty) as string;
-                _navigationService.NavigateTo(pageKey);
+
+                if (pageKey != null)
+                {
+                    _navigationService.NavigateTo(pageKey);
+                }
             }
         }
 
@@ -84,7 +87,12 @@ namespace WinUIDesktopApp.Services
         private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-            return _pageService.GetPageType(pageKey) == sourcePageType;
+            if (pageKey != null)
+            {
+                return _pageService.GetPageType(pageKey) == sourcePageType;
+            }
+
+            return false;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -43,8 +44,11 @@ namespace WinUIDesktopApp.ViewModels
                     _switchThemeCommand = new RelayCommand<ElementTheme>(
                         async (param) =>
                         {
-                            ElementTheme = param;
-                            await _themeSelectorService.SetThemeAsync(param);
+                            if (ElementTheme != param)
+                            {
+                                ElementTheme = param;
+                                await _themeSelectorService.SetThemeAsync(param);
+                            }
                         });
                 }
 
@@ -61,7 +65,7 @@ namespace WinUIDesktopApp.ViewModels
 
         private string GetVersionDescription()
         {
-            var appName = "AppDisplayName".GetLocalized();;
+            var appName = "AppDisplayName".GetLocalized();
             var package = Package.Current;
             var packageId = package.Id;
             var version = packageId.Version;

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.WinUI.UI.Controls;
+
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
@@ -6,13 +7,13 @@ using WinUIDesktopApp.ViewModels;
 
 namespace WinUIDesktopApp.Views
 {
-    public sealed partial class MasterDetailPage : Page
+    public sealed partial class ListDetailsPage : Page
     {
-        public MasterDetailViewModel ViewModel { get; }
+        public ListDetailsViewModel ViewModel { get; }
 
-        public MasterDetailPage()
+        public ListDetailsPage()
         {
-            ViewModel = Ioc.Default.GetService<MasterDetailViewModel>();
+            ViewModel = Ioc.Default.GetService<ListDetailsViewModel>();
             InitializeComponent();
         }
 

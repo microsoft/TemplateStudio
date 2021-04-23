@@ -526,7 +526,7 @@ namespace WinUIDesktopApp.Core.Services
             await Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
+        public async Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync()
         {
             if (_allOrders == null)
             {

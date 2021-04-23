@@ -16,20 +16,16 @@
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\en-us\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.0.1" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.1" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.5" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview5" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
-    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinUIDesktopApp.Core\WinUIDesktopApp.Core.csproj" />

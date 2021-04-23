@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -9,7 +10,7 @@ using WinUIDesktopApp.Core.Models;
 
 namespace WinUIDesktopApp.ViewModels
 {
-    public class MasterDetailViewModel : ObservableRecipient, INavigationAware
+    public class ListDetailsViewModel : ObservableRecipient, INavigationAware
     {
         private readonly ISampleDataService _sampleDataService;
         private SampleOrder _selected;
@@ -22,7 +23,7 @@ namespace WinUIDesktopApp.ViewModels
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public MasterDetailViewModel(ISampleDataService sampleDataService)
+        public ListDetailsViewModel(ISampleDataService sampleDataService)
         {
             _sampleDataService = sampleDataService;
         }
@@ -32,7 +33,7 @@ namespace WinUIDesktopApp.ViewModels
             SampleItems.Clear();
 
             // Replace this with your actual data
-            var data = await _sampleDataService.GetMasterDetailDataAsync();
+            var data = await _sampleDataService.GetListDetailsDataAsync();
 
             foreach (var item in data)
             {

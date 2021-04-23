@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+
 using WinUIDesktopApp.Activation;
 using WinUIDesktopApp.Contracts.Services;
-using WinUIDesktopApp.Views;
+using WinUIDesktopApp.Contracts.Views;
 
 namespace WinUIDesktopApp.Services
 {
     public class ActivationService : IActivationService
-    {        
+    {
         private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
         private readonly IEnumerable<IActivationHandler> _activationHandlers;
         private readonly INavigationService _navigationService;
         private readonly IThemeSelectorService _themeSelectorService;
-        private UIElement _shell = null;
 
-        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService)
+        public ActivationService(IShellWindow shellWindow, ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService)
         {
+            App.MainWindow = shellWindow as Window;
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
             _navigationService = navigationService;
@@ -28,31 +28,18 @@ namespace WinUIDesktopApp.Services
 
         public async Task ActivateAsync(object activationArgs)
         {
-            if (IsInteractive(activationArgs))
-            {
-                // Initialize services that you need before app activation
-                // take into account that the splash screen is shown while this code runs.
-                await InitializeAsync();
+            // Initialize services that you need before app activation
+            // take into account that the splash screen is shown while this code runs.
+            await InitializeAsync();
 
-                if (App.MainWindow.Content == null)
-                {
-                    _shell = Ioc.Default.GetService<ShellPage>();
-                    App.MainWindow.Content = _shell ?? new Frame();
-                }
-            }
+            App.MainWindow.Activate();
 
             // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
             // will navigate to the first page
             await HandleActivationAsync(activationArgs);
 
-            if (IsInteractive(activationArgs))
-            {
-                // Ensure the current window is active
-                App.MainWindow.Activate();
-
-                // Tasks after activation
-                await StartupAsync();
-            }
+            // Tasks after activation
+            await StartupAsync();
         }
 
         private async Task HandleActivationAsync(object activationArgs)
@@ -81,11 +68,6 @@ namespace WinUIDesktopApp.Services
         {
             await _themeSelectorService.SetRequestedThemeAsync();
             await Task.CompletedTask;
-        }
-
-        private bool IsInteractive(object args)
-        {
-            return true;
         }
     }
 }

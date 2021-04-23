@@ -1,5 +1,5 @@
-﻿<Page
-    x:Class="WinUIDesktopApp.Views.ShellPage"
+﻿<Window
+    x:Class="WinUIDesktopApp.Views.ShellWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -28,7 +28,7 @@
             <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MainViewModel" />
             <NavigationViewItem x:Uid="Shell_WebView" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.WebViewViewModel" />
             <NavigationViewItem x:Uid="Shell_ContentGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ContentGridViewModel" />
-            <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.MasterDetailViewModel" />
+            <NavigationViewItem x:Uid="Shell_ListDetails" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.ListDetailsViewModel" />
             <NavigationViewItem x:Uid="Shell_DataGrid" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.DataGridViewModel" />
             <NavigationViewItem x:Uid="Shell_Form" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormViewModel" />
             <NavigationViewItem x:Uid="Shell_FormWCT" Icon="Document" helpers:NavHelper.NavigateTo="WinUIDesktopApp.ViewModels.FormWCTViewModel" />
@@ -62,4 +62,4 @@
             <Frame x:Name="shellFrame" />
         </Grid>
     </NavigationView>
-</Page>
+</Window>

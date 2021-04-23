@@ -3,7 +3,7 @@
 This project was created using [Microsoft Windows Template Studio](https://aka.ms/wts).
 
 ## Getting Started
-This app was built using WinUI 3 Project Reunion 0.5 Preview.
+This app was built using WinUI 3 Project Reunion 0.5.
 Windows UI Library (WinUI) 3 is a native user experience (UX) framework for both Windows Desktop and UWP apps.
 
 You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in the `App.xaml.cs` file. 
@@ -37,7 +37,6 @@ You can open the Task List using the menu `Views -> Task List`.
 │ ├── Models/ - business models
 │ └── Services/ - services implementations
 ├── WinUIDesktopApp (Package)/ - MSIX packaging project
-│ ├── TemporaryKey.pfx - test certificate
 │ ├── Strings/en-us/Resources.resw - localized string resources
 │ └── Package.appxmanifest - app properties and declarations
 └── README.md

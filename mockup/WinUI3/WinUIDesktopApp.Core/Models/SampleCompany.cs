@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WinUIDesktopApp.Core.Models
 {
     // Remove this class once your pages/features are using your data.
     // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
+    // It is the model class we use to display data on pages like Grid, Chart, and ListDetails.
     public class SampleCompany
     {
         public string CompanyID { get; set; }

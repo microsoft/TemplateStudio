@@ -129,19 +129,31 @@
   <data name="WebView_FailedMessage.Text" xml:space="preserve">
     <value>Page failed to load. Check connection and reload.</value>
   </data>
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
   <data name="WebView_Reload.Content" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="WebView_BrowserBackTooltip.Content" xml:space="preserve">
-    <value>Browser back</value>
-  </data>
-  <data name="WebView_BrowserForwardTooltip.Content" xml:space="preserve">
-    <value>Browser forward</value>
-  </data>
-  <data name="WebView_ReloadTooltip.Content" xml:space="preserve">
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="WebView_OpenInBrowserTooltip.Content" xml:space="preserve">
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Open in browser</value>
   </data>
   <data name="Shell_WebView.Content" xml:space="preserve">
@@ -150,14 +162,14 @@
   <data name="Shell_ContentGrid.Content" xml:space="preserve">
     <value>ContentGrid</value>
   </data>
-  <data name="MasterDetail.ListHeader" xml:space="preserve">
-    <value>MasterDetail</value>
+  <data name="ListDetails.ListHeader" xml:space="preserve">
+    <value>ListDetails</value>
   </data>
-  <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
+  <data name="ListDetails_NoSelection.Text" xml:space="preserve">
     <value>Select an item from the list.</value>
   </data>
-  <data name="Shell_MasterDetail.Content" xml:space="preserve">
-    <value>MasterDetail</value>
+  <data name="Shell_ListDetails.Content" xml:space="preserve">
+    <value>ListDetails</value>
   </data>
   <data name="Shell_DataGrid.Content" xml:space="preserve">
     <value>DataGrid</value>
@@ -167,9 +179,6 @@
   </data>
   <data name="Shell_Form.Content" xml:space="preserve">
     <value>Form</value>
-  </data>
-  <data name="Shell_FormWCT.Content" xml:space="preserve">
-    <value>Form WCT</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
@@ -198,5 +207,8 @@
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
     <value>https://YourPrivacyUrlGoesHere/</value>
     <comment>Here is your Privacy Statement url for SettingsPage</comment>
+  </data>
+  <data name="Shell_FormWCT.Content" xml:space="preserve">
+    <value>FormWCT</value>
   </data>
 </root>

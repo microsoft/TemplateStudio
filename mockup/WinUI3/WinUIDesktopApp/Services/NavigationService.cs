@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.WinUI.UI.Animations;
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -22,7 +24,7 @@ namespace WinUIDesktopApp.Services
             {
                 if (_frame == null)
                 {
-                    _frame = App.MainWindow.Content as Frame;
+                    _frame = Window.Current.Content as Frame;
                     RegisterFrameEvents();
                 }
 
@@ -70,6 +72,7 @@ namespace WinUIDesktopApp.Services
                 {
                     navigationAware.OnNavigatedFrom();
                 }
+
                 return true;
             }
 

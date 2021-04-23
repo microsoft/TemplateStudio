@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WinUIDesktopApp.Views.MasterDetailPage"
+    x:Class="WinUIDesktopApp.Views.ListDetailsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -35,14 +35,14 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <views:MasterDetailDetailControl MasterMenuItem="{Binding}" />
+                <views:ListDetailsDetailControl ListDetailsMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    x:Uid="MasterDetail_NoSelection"
+                    x:Uid="ListDetails_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -84,7 +84,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:ListDetailsView
-            x:Uid="MasterDetail"
+            x:Uid="ListDetails"
             x:Name="ListDetailsViewControl"
             BackButtonBehavior="Automatic"
             BorderBrush="Transparent"

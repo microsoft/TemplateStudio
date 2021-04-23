@@ -18,7 +18,7 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <!--MasterDetail TextBlock Styles-->
+    <!--ListDetails TextBlock Styles-->
     <Style x:Key="ListTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Bold" />

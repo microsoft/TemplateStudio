@@ -14,6 +14,6 @@ namespace WinUIDesktopApp.Core.Contracts.Services
 
         Task SaveOrderAsync(SampleOrder order);
 
-        Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync();
+        Task<IEnumerable<SampleOrder>> GetListDetailsDataAsync();
     }
 }
