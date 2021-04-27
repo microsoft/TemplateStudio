@@ -8,6 +8,23 @@
     Style="{StaticResource PageStyle}">
 
     <ScrollViewer>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="dateGridColumn0.Width" Value="*" />
+                        <Setter Target="dateGridColumn1.Width" Value="Auto" />
+                        <Setter Target="dateTimePicker.(Grid.Row)" Value="0" />
+                        <Setter Target="dateTimePicker.(Grid.Column)" Value="1" />
+                        <Setter Target="dateTimePicker.Margin" Value="{StaticResource XSmallLeftMargin}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <StackPanel
             x:Name="ContentArea"
             Margin="{StaticResource MediumLeftRightMargin}"
@@ -24,15 +41,25 @@
             <TextBlock Text="Order date" Style="{ThemeResource BodyTextBlockStyle}" Margin="{StaticResource XSmallTopMargin}" />
             <Grid Margin="{StaticResource XSmallTopMargin}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition x:Name="dateGridColumn0" Width="*" />
+                    <ColumnDefinition x:Name="dateGridColumn1" Width="0" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <DatePicker
+                    x:Name="dateDatePicker"
                     Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Stretch"
                     SelectedDate="{x:Bind ViewModel.OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TimePicker
-                    Grid.Column="1"
-                    Margin="{StaticResource XSmallLeftMargin}"
+                    x:Name="dateTimePicker"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    Margin="{StaticResource XSmallTopMargin}"
                     SelectedTime="{x:Bind ViewModel.OrderTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
 
