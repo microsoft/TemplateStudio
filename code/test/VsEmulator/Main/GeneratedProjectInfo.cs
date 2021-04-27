@@ -191,7 +191,15 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private bool HasTemplates(TemplateType templateType)
-            => GenContext.ToolBox.Shell.GetActiveProjectIsWts() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetRightClickEnabled() && t.GetTemplateType() == templateType);
+        {
+            if (Platform == Platforms.WinUI && ProjectType == ProjectConfigInfoService.Blank)
+            {
+                return false;
+            }
+            return GenContext.ToolBox.Repo.GetAll().Any(t => t.GetRightClickEnabled() && t.GetTemplateType() == templateType);
+           
+        }
+            
 
         public void SetContext()
         {
