@@ -19,6 +19,7 @@
     <PlatformTag>Project Reunion</PlatformTag>
     <ProjectTypeTag>WinUI</ProjectTypeTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
+    <ProjectTypeTag>Windows Template Studio</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
