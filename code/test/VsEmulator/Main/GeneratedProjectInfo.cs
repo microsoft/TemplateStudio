@@ -33,6 +33,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private Visibility _isAddNewFeatureCommandVisible;
         private Visibility _isAddNewServiceCommandVisible;
         private Visibility _isAddNewTestingCommandVisible;
+        private const string BlankProjectType = "Blank";
 
         public string ProjectName { get; private set; }
 
@@ -192,7 +193,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private bool HasTemplates(TemplateType templateType)
         {
-            if (Platform == Platforms.WinUI && ProjectType == ProjectConfigInfoService.Blank)
+            if (Platform == Platforms.WinUI && ProjectType == BlankProjectType)
             {
                 return false;
             }
