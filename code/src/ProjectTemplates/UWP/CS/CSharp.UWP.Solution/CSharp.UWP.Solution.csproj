@@ -105,7 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.UWP.Solution.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <SubType>Designer</SubType>
     </VSTemplate>
   </ItemGroup>
@@ -125,55 +124,42 @@
     <VSTemplate Include="CSharp.UWP.Solution.ru-RU.vstemplate">
       <SubType>Designer</SubType>
       <Culture>1049</Culture>
-      <OutputSubPath>Windows UAP</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.cs-CZ.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.de-DE.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1031</Culture>
       <SubType>Designer</SubType>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.es-ES.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>3082</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.fr-FR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1036</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.it-IT.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1040</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.ja-JP.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1041</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.ko-KR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1042</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.pl-PL.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1045</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.pt-BR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1046</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.tr-TR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1055</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.zh-CN.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>2052</Culture>
     </VSTemplate>
     <VSTemplate Include="CSharp.UWP.Solution.zh-TW.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1028</Culture>
     </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
