@@ -210,14 +210,37 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonCloseWindow" BasedOn="{StaticResource WtsBaseButton}">
+    <Style TargetType="Button" x:Key="WtsButtonWindowButtons" BasedOn="{StaticResource WtsBaseButton}">
         <Setter Property="Padding" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0,-0.5,0,0" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="WtsButtonRestoreWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRestore}" />
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRestore}" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image Source="{StaticResource WtsIconRestoreWindow}"
+                   Style="{StaticResource WtsImageRestoreButtonIcon}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="WtsButtonMaximizeWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonMaximize}" />
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonMaximize}" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image Source="{StaticResource WtsIconMaximizeWindow}"
+                   Style="{StaticResource WtsImageMaximizeButtonIcon}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="WtsButtonCloseWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="Content">
@@ -227,6 +250,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 
     <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle" BasedOn="{StaticResource WtsBaseButton}">
         <Setter Property="VerticalAlignment" Value="Bottom" />

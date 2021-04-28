@@ -37,12 +37,14 @@ namespace Microsoft.Templates.UI.Views.NewProject
             }
 
             Services.NavigationService.SubscribeEventHandlers();
+            WizardNavigation.Current.SubscribeEventHandlers();
             PreviewGotKeyboardFocus += OnPreviewGotKeyboardFocus;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             Services.NavigationService.UnsubscribeEventHandlers();
+            WizardNavigation.Current.UnsubscribeEventHandlers();
             PreviewGotKeyboardFocus -= OnPreviewGotKeyboardFocus;
         }
 
