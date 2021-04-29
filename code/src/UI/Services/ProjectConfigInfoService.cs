@@ -19,6 +19,7 @@ namespace Microsoft.Templates.UI.Services
         public const string MVVMBasic = "MVVMBasic";
         public const string MVVMLight = "MVVMLight";
         public const string CodeBehind = "CodeBehind";
+        public const string None = "None";
         public const string CaliburnMicro = "CaliburnMicro";
         public const string Prism = "Prism";
         public const string MvvmToolkit = "MVVMToolkit";
@@ -178,6 +179,10 @@ namespace Microsoft.Templates.UI.Services
             else if (IsCodeBehind(platform))
             {
                 return CodeBehind;
+            }
+            else if (IsNone(platform))
+            {
+                return None;
             }
             else if (IsCaliburnMicro(platform))
             {
@@ -364,26 +369,36 @@ namespace Microsoft.Templates.UI.Services
                     }
 
                     return false;
-                case Platforms.WinUI:
-                    if (IsCSharpProject())
-                    {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
-                        if (!string.IsNullOrEmpty(codebehindFile))
-                        {
-                            var fileContent = File.ReadAllText(codebehindFile);
-                            return !fileContent.Contains("ViewModel");
-                        }
-                    }
-
-                    if (IsCppProject())
-                    {
-                        return true;
-                    }
-
-                    return false;
-
                 default:
                     return false;
+            }
+        }
+
+        private bool IsNone(string platform)
+        {
+
+            if (platform == Platforms.WinUI)
+            {
+                if (IsCSharpProject())
+                {
+                    var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(codebehindFile))
+                    {
+                        var fileContent = File.ReadAllText(codebehindFile);
+                        return !fileContent.Contains("ViewModel");
+                    }
+                }
+
+                if (IsCppProject())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            else
+            {
+                return false;
             }
         }
 
