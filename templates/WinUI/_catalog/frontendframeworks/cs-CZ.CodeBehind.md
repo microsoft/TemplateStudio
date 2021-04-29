@@ -1,1 +1,1 @@
-﻿Kód na pozadí (code-behind) je pojem, který se používá k popisu kódu spárovaného se souborem XAML.  Pokud jste vyvíjeli ve Formulářích Windows a tento styl vývoje vám vyhovoval, bude to pro vás zřejmě skvělá volba.
+﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.

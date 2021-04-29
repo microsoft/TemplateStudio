@@ -5,8 +5,8 @@
     "summary": ""
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "Jest to tradycyjny model aplikacji, w którym logika jest obsługiwana za pomocą code-behind."
+    "name": "None",
+    "displayName": "None",
+    "summary": "No framework or folder scaffolding. Just the minimum code is generated to get the app running."
   }
 ]

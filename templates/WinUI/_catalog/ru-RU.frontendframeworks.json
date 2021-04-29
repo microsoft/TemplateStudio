@@ -5,8 +5,8 @@
     "summary": ""
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "Такая модель традиционно используется для приложений, где логика обрабатывается в коде программной части (code-behind)."
+    "name": "None",
+    "displayName": "None",
+    "summary": "No framework or folder scaffolding. Just the minimum code is generated to get the app running."
   }
 ]

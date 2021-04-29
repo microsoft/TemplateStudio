@@ -5,8 +5,8 @@
     "summary": ""
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "기존의 이 모델 방식에서는 애플리케이션의 논리가 code-behind로 처리됩니다."
+    "name": "None",
+    "displayName": "None",
+    "summary": "No framework or folder scaffolding. Just the minimum code is generated to get the app running."
   }
 ]

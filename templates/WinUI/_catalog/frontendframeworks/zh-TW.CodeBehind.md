@@ -1,1 +1,1 @@
-﻿Code-behind這個詞彙是用來描述與 XAML 檔案結合的程式碼。如果您在 WinForms 中開發，而且喜歡這種開發風格，這對您來說可能是很好的選擇。
+﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.

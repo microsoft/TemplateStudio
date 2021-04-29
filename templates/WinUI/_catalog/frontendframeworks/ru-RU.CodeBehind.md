@@ -1,1 +1,1 @@
-﻿Code-behind (код программной части) — это термин, которым называется код, связанный с XAML-файлом.  Если вы разрабатывали приложения в WinForms и вам удобен этот стиль работы, такой вариант может подойти вам.
+﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.

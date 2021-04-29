@@ -1,1 +1,1 @@
-﻿Code-behind è un termine utilizzato per descrivere il codice associato a un file XAML.  Si tratta di una scelta eccellente per gli sviluppatori che si trovano a loro agio con lo stile di sviluppo di WinForms.
+﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.

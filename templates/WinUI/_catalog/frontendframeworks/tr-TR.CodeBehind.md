@@ -1,1 +1,1 @@
-﻿Code-behind, bir XAML dosyasıyla eşleştirilen kodu tanımlamak için kullanılan bir terimdir.  WinForms içinde geliştirdiyseniz ve bu geliştirme stilinden memnunsanız bu sizin için harika bir seçenek olabilir.
+﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.
