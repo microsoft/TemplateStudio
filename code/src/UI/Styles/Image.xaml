@@ -39,21 +39,21 @@
     </Style>
 
     <Style TargetType="Image" x:Key="WtsImageRestoreButtonIcon">
-        <Setter Property="Width" Value="14" />
-        <Setter Property="Height" Value="14" />
-        <Setter Property="StretchDirection" Value="Both" />
+        <Setter Property="Width" Value="10" />
+        <Setter Property="Height" Value="10" />
+        <Setter Property="Stretch" Value="None" />
     </Style>
 
     <Style TargetType="Image" x:Key="WtsImageMaximizeButtonIcon">
-        <Setter Property="Width" Value="14" />
-        <Setter Property="Height" Value="14" />
-        <Setter Property="StretchDirection" Value="Both" />
+        <Setter Property="Width" Value="10" />
+        <Setter Property="Height" Value="10" />
+        <Setter Property="Stretch" Value="None" />
     </Style>
 
     <Style TargetType="Image" x:Key="WtsImageCloseButtonIcon">
-        <Setter Property="Width" Value="14" />
-        <Setter Property="Height" Value="14" />
-        <Setter Property="StretchDirection" Value="Both" />
+        <Setter Property="Width" Value="10" />
+        <Setter Property="Height" Value="10" />
+        <Setter Property="Stretch" Value="None" />
     </Style>
 
 
