@@ -376,7 +376,6 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsNone(string platform)
         {
-
             if (platform == Platforms.WinUI)
             {
                 if (IsCSharpProject())
