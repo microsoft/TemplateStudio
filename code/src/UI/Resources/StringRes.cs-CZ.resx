@@ -918,4 +918,10 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <value>{0} projektu vyžaduje visual studio verze 2019 {1} nebo vyšší.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>

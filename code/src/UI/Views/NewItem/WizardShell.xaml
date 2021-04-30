@@ -59,10 +59,13 @@
 
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         <controls:NotificationsControl Grid.Row="2" VerticalAlignment="Top"/>
-        <Button
-                Grid.Column="1"
-                Style="{StaticResource WtsButtonCloseWindow}"
-                Command="{Binding Navigation.CancelCommand}" />
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Grid>
+                <Button  Style="{StaticResource WtsButtonRestoreWindow}" Command="{Binding Navigation.RestoreCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <Button  Style="{StaticResource WtsButtonMaximizeWindow}" Command="{Binding Navigation.MaximizeCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+            </Grid>
+            <Button  Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
+        </StackPanel>
     </Grid>
 
 </Window>

@@ -918,4 +918,10 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>{0} proje oluşturma visual studio 2019 sürüm {1} veya daha yüksek gerektirir.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>

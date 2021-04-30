@@ -918,4 +918,10 @@
     <value>{0} 프로젝트 제작에는 Visual Studio 2019 버전 {1} 이상이 필요합니다.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>

@@ -277,6 +277,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximize.
+        /// </summary>
+        public static string ButtonMaximize {
+            get {
+                return ResourceManager.GetString("ButtonMaximize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string ButtonNext {
@@ -318,6 +327,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonRemove {
             get {
                 return ResourceManager.GetString("ButtonRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        public static string ButtonRestore {
+            get {
+                return ResourceManager.GetString("ButtonRestore", resourceCulture);
             }
         }
         

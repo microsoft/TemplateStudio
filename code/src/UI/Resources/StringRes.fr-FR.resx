@@ -918,4 +918,10 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <value>{0} création de projet nécessite visual Studio 2019 Version {1} ou plus.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>

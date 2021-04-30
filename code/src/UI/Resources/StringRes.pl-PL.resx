@@ -918,4 +918,10 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <value>{0} tworzenie projektu wymaga programu Visual Studio 2019 {1} wersji lub wyższej.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>
