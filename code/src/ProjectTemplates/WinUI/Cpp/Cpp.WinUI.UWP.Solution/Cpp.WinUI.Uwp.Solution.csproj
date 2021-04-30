@@ -57,61 +57,46 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="Cpp.WinUI.UWP.Solution.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
-    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UWP.Solution.vstemplate" />
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.zh-TW.vstemplate">
       <Culture>1028</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.zh-CN.vstemplate">
       <Culture>2052</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.tr-TR.vstemplate">
       <Culture>1055</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.ru-RU.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1049</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.pt-BR.vstemplate">
       <Culture>1046</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.pl-PL.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1045</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.ko-KR.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1042</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.ja-JP.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1041</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.it-IT.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1040</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.fr-FR.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1036</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.es-ES.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>3082</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.de-DE.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1031</Culture>
     </VSTemplate>
     <VSTemplate Include="Cpp.WinUI.UWP.Solution.cs-CZ.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.png" />

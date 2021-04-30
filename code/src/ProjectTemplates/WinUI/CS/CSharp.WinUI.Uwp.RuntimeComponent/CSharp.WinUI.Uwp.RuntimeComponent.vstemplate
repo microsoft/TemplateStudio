@@ -23,6 +23,7 @@
     <PlatformTag>Project Reunion</PlatformTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
     <ProjectTypeTag>WinUI</ProjectTypeTag>
+    <ProjectTypeTag>Windows Template Studio</ProjectTypeTag>
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|x86">
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">

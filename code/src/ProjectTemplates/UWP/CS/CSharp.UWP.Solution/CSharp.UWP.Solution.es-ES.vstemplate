@@ -17,6 +17,7 @@
     <PlatformTag>windows</PlatformTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Windows Template Studio</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>

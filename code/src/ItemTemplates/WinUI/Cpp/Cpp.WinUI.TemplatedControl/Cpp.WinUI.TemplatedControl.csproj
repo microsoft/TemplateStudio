@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="Cpp.WinUI.TemplatedControl.vstemplate">
-      <OutputSubPath>WinUI</OutputSubPath>
+      <OutputSubPath>WinUI (Windows Template Studio)</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
