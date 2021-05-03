@@ -605,13 +605,6 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectTemplates\WinUI\CS\CSharp.WinUI.Uwp.RuntimeComponent\CSharp.WinUI.Uwp.RuntimeComponent.csproj">
-      <Project>{78D67020-BD46-4978-BE3C-BFD21E158BE7}</Project>
-      <Name>CSharp.WinUI.Uwp.RuntimeComponent</Name>
-      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\WPF\CS\CSharp.WPF.Solution\CSharp.WPF.Solution.csproj">
       <Project>{f8dbfd78-6a5b-41e0-a197-5aaa50c51dcb}</Project>
       <Name>CSharp.WPF.Solution</Name>
