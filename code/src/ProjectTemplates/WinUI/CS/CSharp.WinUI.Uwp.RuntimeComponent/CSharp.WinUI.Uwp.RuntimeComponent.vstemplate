@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Windows Runtime Component (WinUI 3 in UWP; local) PREVIEW</Name>
+    <Name>Windows Runtime Component (WinUI 3 in UWP; local)</Name>
     <Description>A project for creating a managed Windows Runtime Component (.winmd) for Universal Windows Platform (UWP) apps, based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <TemplateID>Microsoft.CSharp.WinUI.Uwp.RuntimeComponent.WindowsTemplateStudio.local</TemplateID>
@@ -33,14 +33,6 @@
       </Folder>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
-  </WizardExtension>
-  <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.Universal.TemplateWizards, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Universal.TemplateWizards.PlatformVersion.Wizard</FullClassName>
-  </WizardExtension>
   <WizardExtension>
     <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
     <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
