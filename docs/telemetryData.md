@@ -186,11 +186,7 @@ As new features and pages roll out, percentages  will adjust.
 
 </details>
 
-<details>
-<summary>WinUI Project Generation</summary>
 
-
-</details>
 
 ### Windows Template Studio entry point
 
