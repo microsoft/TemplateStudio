@@ -14,7 +14,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "Blank",
-    "wts.frontendframework": "CodeBehind",
+    "wts.frontendframework": "None",
     "wts.platform": "WinUI",
     "wts.appmodel": "Desktop",
     "wts.outputToParent": "true",
