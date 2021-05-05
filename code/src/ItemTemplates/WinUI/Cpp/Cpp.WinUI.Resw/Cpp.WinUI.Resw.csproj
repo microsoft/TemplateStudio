@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="Cpp.WinUI.Resw.vstemplate">
-      <OutputSubPath>WinUI (Windows Template Studio)</OutputSubPath>
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +66,45 @@
     <None Include="Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <VSTemplate Include="Cpp.WinUI.Resw.zh-TW.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.it-IT.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.ja-JP.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.ko-KR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.pl-PL.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.pt-BR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.ru-RU.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.tr-TR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.zh-CN.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.cs-CZ.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.de-DE.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.es-ES.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.Resw.fr-FR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
