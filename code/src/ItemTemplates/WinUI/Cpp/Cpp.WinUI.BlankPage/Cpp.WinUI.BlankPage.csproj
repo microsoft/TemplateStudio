@@ -73,6 +73,19 @@
     <None Include="BlankPage.idl" />
   </ItemGroup>
   <ItemGroup>
+    <VSTemplate Include="Cpp.WinUI.BlankPage.zh-TW.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.it-IT.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.ja-JP.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.ko-KR.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.pl-PL.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.pt-BR.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.ru-RU.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.tr-TR.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.zh-CN.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.cs-CZ.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.de-DE.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.es-ES.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.BlankPage.fr-FR.vstemplate" />
     <Content Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
