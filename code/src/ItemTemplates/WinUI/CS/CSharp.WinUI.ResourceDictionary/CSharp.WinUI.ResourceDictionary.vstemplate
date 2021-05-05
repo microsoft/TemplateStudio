@@ -4,7 +4,7 @@
     <DefaultName>ResourceDictionary.xaml</DefaultName>
     <Name>Resource Dictionary (WinUI 3; local)</Name>
     <Description>An empty, keyed collection of XAML resources for apps based on the Windows UI Library (WinUI 3).</Description>
-    <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
+    <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.ResourceDictionary.local</TemplateID>
     <TemplateGroupID>WinRT-Managed-UAP</TemplateGroupID>

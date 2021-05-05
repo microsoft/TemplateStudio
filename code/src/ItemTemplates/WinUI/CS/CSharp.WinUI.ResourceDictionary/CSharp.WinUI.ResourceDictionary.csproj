@@ -68,7 +68,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="windowsTemplateStudio_Logo_256x256.png" />
+    <Content Include="windowsTemplateStudio_cs_Logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.ResourceDictionary.zh-TW.vstemplate">

@@ -107,7 +107,7 @@
     <VSTemplate Include="Cpp.WinUI.ResourceDictionary.fr-FR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
     </VSTemplate>
-    <Content Include="windowsTemplateStudio_Logo_256x256.png" />
+    <Content Include="windowsTemplateStudio_cpp_Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
