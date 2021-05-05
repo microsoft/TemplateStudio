@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.BlankPage.vstemplate">
-      <OutputSubPath>WinUI (Windows Template Studio)</OutputSubPath>
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +74,71 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.zh-TW.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.it-IT.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.ja-JP.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.ko-KR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.pl-PL.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.pt-BR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.ru-RU.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.tr-TR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.zh-CN.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.cs-CZ.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.de-DE.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.es-ES.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.BlankPage.fr-FR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
