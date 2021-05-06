@@ -56,6 +56,35 @@ If you miss anything or find an issue that is not mentioned in the known issues 
 
 4. Make sure your system has a NuGet package source enabled for **nuget.org**. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
 
+## Project Reunion Templates
+
+The following templates are supported on Project Reunion apps.
+
+### Project Types
+
+- [Blank](./projectTypes/blank.md)
+- [Navigation Pane](./projectTypes/navigation-pane.md)
+
+### Design Patterns
+
+- [MVVM Toolkit](./frameworks/mvvmtoolkit.md)
+
+### Pages
+
+- [Blank](./pages/blank.md)
+- [Content Grid](./pages/content-grid.md)
+- [Data Grid](./pages/data-grid.md)
+- [List Details](./pages/list-details.md)
+- [Settings](./pages/settings.md)
+- [WebView](./pages/web-view.md)
+- [Blank](./pages/blank.md)
+
+### Features
+
+- [MSIX](./features/msix.md)
+- [Settings Storage](./features/settings-storage.md)
+- [Theme Selection](./features/theme-selection.md)
+
 ### Known issues:
 - [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)

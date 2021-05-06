@@ -1,6 +1,6 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF .NET Core 3.1) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net and WPF (.NET Core 3.1) apps in C#.
+Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP), Windows Presentation Foundation (WPF .NET Core 3.1) and Project Reunion (Desktop with WinUI 3) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and Project Reunion apps in C# and C++ for Desktop and UWP.
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
@@ -39,6 +39,8 @@ First, how do you want your app's UI navigation to behave?
 
 - **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
+- **Project Reunion**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*.
+
 
 ### **App design pattern**
 
@@ -47,6 +49,8 @@ Next, what coding pattern do you want to use in your project.
 - **UWP**: *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)*, *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
 - **WPF**: *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, [MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)*, *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* and *[Prism](./docs/WPF/frameworks/prism.md)*.
+
+- **Project Reunion**: [MVVM Toolkit](./docs/WinUI/frameworks/mvvmtoolkit.md)*.
 
 ### **App pages**
 
