@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Param_RootNamespace.Core.Models"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
@@ -96,8 +97,11 @@
                     ItemsSource="{x:Bind ViewModel.SymbolValues}"
                     SelectedItem="{x:Bind ViewModel.Symbol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <FontIcon Glyph="{Binding}" Margin="{StaticResource XXSmallLeftTopRightBottomMargin}" />
+                        <DataTemplate x:DataType="models:SampleSymbol">
+                            <FontIcon
+                                AutomationProperties.Name="{x:Bind Name}"
+                                Glyph="{x:Bind Code}"
+                                Margin="{StaticResource XXSmallLeftTopRightBottomMargin}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

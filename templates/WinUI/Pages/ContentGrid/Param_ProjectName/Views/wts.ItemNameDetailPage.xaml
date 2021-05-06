@@ -51,7 +51,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="70"
-                            Glyph="{x:Bind ViewModel.Item.Symbol}" />
+                            Glyph="{x:Bind ViewModel.Item.Symbol}"
+                            AutomationProperties.Name="{x:Bind ViewModel.Item.SymbolName}" />
                     </Grid>
 
                     <TextBlock
