@@ -4,7 +4,7 @@
     <DefaultName>BlankWindow.xaml</DefaultName>
     <Name>Blank Window (WinUI 3 in Desktop; local)</Name>
     <Description>A blank window for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
-    <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
+    <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.Desktop.BlankWindow.local</TemplateID>
     <TemplateGroupID>WinRT-Managed-UAP</TemplateGroupID>

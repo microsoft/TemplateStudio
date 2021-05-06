@@ -68,19 +68,45 @@
     <Content Include="Class.cpp" />
     <Content Include="Class.h" />
     <Content Include="Class.idl" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ko-KR.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.it-IT.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ja-JP.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.pl-PL.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.pt-BR.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ru-RU.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.tr-TR.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.zh-CN.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.zh-TW.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.cs-CZ.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.de-DE.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.es-ES.vstemplate" />
-    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.fr-FR.vstemplate" />
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ko-KR.vstemplate">
+      <Culture>1042</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.it-IT.vstemplate">
+      <Culture>1040</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ja-JP.vstemplate">
+      <Culture>1041</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.pl-PL.vstemplate">
+      <Culture>1045</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.pt-BR.vstemplate">
+      <Culture>1046</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.ru-RU.vstemplate">
+      <Culture>1049</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.tr-TR.vstemplate">
+      <Culture>1055</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.zh-CN.vstemplate">
+      <Culture>2052</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.zh-TW.vstemplate">
+      <Culture>1028</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.cs-CZ.vstemplate">
+      <Culture>1029</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.de-DE.vstemplate">
+      <Culture>1031</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.es-ES.vstemplate">
+      <Culture>3082</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.RuntimeComponent.fr-FR.vstemplate">
+      <Culture>1036</Culture>
+    </VSTemplate>
     <Content Include="pch.cpp" />
     <Content Include="pch.h" />
     <Content Include="ProjectTemplate.vcxproj.filters" />

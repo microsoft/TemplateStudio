@@ -71,66 +71,79 @@
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.zh-TW.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1028</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.it-IT.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1040</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.ja-JP.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1041</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.ko-KR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1042</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.pl-PL.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1045</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.pt-BR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1046</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.ru-RU.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1049</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.tr-TR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1055</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.zh-CN.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>2052</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.cs-CZ.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1029</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.de-DE.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1031</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.es-ES.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>3082</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.TemplatedControl.fr-FR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1036</Culture>
     </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

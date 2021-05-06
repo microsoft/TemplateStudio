@@ -79,66 +79,79 @@
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.zh-TW.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1028</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.it-IT.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1040</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.ja-JP.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1041</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.ko-KR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1042</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.pl-PL.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1045</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.pt-BR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1046</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.ru-RU.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1049</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.tr-TR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1055</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.zh-CN.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>2052</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.cs-CZ.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1029</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.de-DE.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1031</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.es-ES.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>3082</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Desktop.BlankWindow.fr-FR.vstemplate">
       <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1036</Culture>
     </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
