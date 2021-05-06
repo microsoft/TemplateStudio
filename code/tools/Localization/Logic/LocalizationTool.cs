@@ -170,3 +170,5 @@ namespace Localization
         }
     }
 }
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
+

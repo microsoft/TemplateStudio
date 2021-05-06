@@ -506,7 +506,7 @@ namespace Microsoft.Templates.Test
             foreach (var identity in genIdentitiesList)
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t
-                    => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
+                    => (t.Identity.StartsWith($"{identity}.", StringComparison.Ordinal) || t.Identity.Equals(identity, StringComparison.Ordinal))
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 
@@ -573,7 +573,7 @@ namespace Microsoft.Templates.Test
             foreach (var identity in genIdentitiesList)
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t
-                    => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
+                    => (t.Identity.StartsWith($"{identity}.", StringComparison.Ordinal) || t.Identity.Equals(identity, StringComparison.Ordinal))
                     && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                     && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
 

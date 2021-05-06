@@ -7,7 +7,7 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Test.BuildWithLegacy
 {
-    public class BuildRightClickWithLegacyWpfFixture : BuildRightClickWithLegacyFixture, IDisposable
+    public class BuildRightClickWithLegacyWpfFixture : BuildRightClickWithLegacyFixture
     {
 
         public override string Platform => Platforms.Wpf;

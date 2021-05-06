@@ -7,7 +7,7 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Test.BuildWithLegacy.Uwp
 {
-    public sealed class BuildRightClickWithLegacyVBFixture : BuildRightClickWithLegacyFixture, IDisposable
+    public sealed class BuildRightClickWithLegacyVBFixture : BuildRightClickWithLegacyFixture
     {
 
         public override string Platform => Platforms.Uwp;

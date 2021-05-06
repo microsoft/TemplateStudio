@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Mvvm;
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Items = new ObservableCollection<TemplateInfoViewModel>(templateGroup);
         }
 
-        private string GetName(string groupName) => StringRes.ResourceManager.GetString($"TemplateGroup_{groupName}");
+        private string GetName(string groupName) => StringRes.ResourceManager.GetString($"TemplateGroup_{groupName}", CultureInfo.CurrentUICulture);
 
         public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
