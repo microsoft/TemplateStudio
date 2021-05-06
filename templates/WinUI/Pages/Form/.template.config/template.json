@@ -36,6 +36,9 @@
     },
     {
       "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Models/SampleSymbol.cs"
     }
   ],
   "symbols": {
