@@ -54,15 +54,25 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            foreach (var projectTemplate in Routes.VSProjectTemplatePaths)
+            ExtractVisualStudioTemplates(Routes.VSProjectTemplatePaths);
+        }
+
+        internal void ExtractItemTemplates()
+        {
+            ExtractVisualStudioTemplates(Routes.VSItemTemplatePaths);
+        }
+
+        private void ExtractVisualStudioTemplates((string Path, string FileName, string FileNamePattern)[] templates)
+        {
+            foreach (var template in templates)
             {
-                var projectType = Path.Combine(projectTemplate.Path, projectTemplate.FileName);
+                var projectType = Path.Combine(template.Path, template.FileName);
                 if (_validator.HasVsTemplatesChanges(projectType))
                 {
                     ExtractProjectTemplatesByLanguage(
-                        projectTemplate.Path,
-                        projectTemplate.FileName,
-                        projectTemplate.FileNamePattern);
+                        template.Path,
+                        template.FileName,
+                        template.FileNamePattern);
                 }
             }
         }
