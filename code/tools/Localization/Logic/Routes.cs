@@ -24,6 +24,23 @@ namespace Localization
             (@"code\src\ProjectTemplates\WPF\CS\CSharp.WPF.Solution", "CSharp.WPF.Solution.vstemplate", "CSharp.WPF.Solution.{0}.vstemplate"),
         };
 
+        internal static (string Path, string FileName, string FileNamePattern)[] VSItemTemplatePaths { get; } = new[]
+        {
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.BlankPage", "Cpp.WinUI.BlankPage.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.BlankWindow", "Cpp.WinUI.Desktop.BlankWindow.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.ResourceDictionary", "Cpp.WinUI.ResourceDictionary.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Resw", "Cpp.WinUI.Resw.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.TemplatedControl", "Cpp.WinUI.TemplatedControl.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.UserControl", "Cpp.WinUI.UserControl.vstemplate", null),
+
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.BlankPage", "Csharp.WinUI.BlankPage.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.Desktop.BlankWindow", "Csharp.WinUI.Desktop.BlankWindow.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.ResourceDictionary", "Csharp.WinUI.ResourceDictionary.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.Resw", "Csharp.WinUI.Resw.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.TemplatedControl", "Csharp.WinUI.TemplatedControl.vstemplate", null),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.UserControl", "Csharp.WinUI.UserControl.vstemplate", string.Empty),
+        };
+
         internal const string CommandTemplateRootDirPath = "code\\src\\Installer\\Commands";
         internal const string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
         internal const string VspackageFile = "VSPackage.en-US.resx";
