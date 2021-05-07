@@ -4,7 +4,7 @@
     <Name>Windows Runtime Component (WinUI 3 in UWP; local) PREVIEW</Name>
     <Description>A project for creating a managed Windows Runtime Component (.winmd) for Universal Windows Platform (UWP) apps, based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
-    <TemplateID>Microsoft.CSharp.WinUI.Uwp.RuntimeComponent.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.CSharp.WinUI.Uwp.RuntimeComponent.WTS.local</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
     <CreateNewFolder>true</CreateNewFolder>

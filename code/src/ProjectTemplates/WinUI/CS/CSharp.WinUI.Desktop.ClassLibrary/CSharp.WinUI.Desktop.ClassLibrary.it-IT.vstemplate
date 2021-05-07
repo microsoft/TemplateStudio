@@ -4,7 +4,7 @@
     <Name>Class Library (WinUI 3 in Desktop; local)</Name>
     <Description>A project for creating a managed class library (.dll) for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
-    <TemplateID>Microsoft.CSharp.WinUI.Desktop.ClassLibrary.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.CSharp.WinUI.Desktop.ClassLibrary.WTS.local</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
     <ProjectType>CSharp</ProjectType>
     <CreateNewFolder>true</CreateNewFolder>

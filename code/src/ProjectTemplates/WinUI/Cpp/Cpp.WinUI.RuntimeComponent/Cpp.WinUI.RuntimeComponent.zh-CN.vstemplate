@@ -4,7 +4,7 @@
     <Name>Windows Runtime Component (WinUI 3; local)</Name>
     <Description>A project for creating a C++/WinRT Windows Runtime Component (.winmd) for both Desktop and Universal Windows Platform (UWP) apps, based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
-    <TemplateID>Microsoft.Cpp.WinUI.RuntimeComponent.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.Cpp.WinUI.RuntimeComponent.WTS.local</TemplateID>
     <ProjectType>VC</ProjectType>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>RuntimeComponent</DefaultName>
