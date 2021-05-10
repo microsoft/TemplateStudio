@@ -239,8 +239,8 @@ namespace Microsoft.Templates.UI.Services
                     return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu");
                 case Platforms.WinUI:
-                    return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
-                        && FileContainsLine("Views", "ShellWindow.xaml", "<NavigationView");
+                    return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                        && FileContainsLine("Views", "ShellPage.xaml", "<NavigationView");
                 default:
                     return false;
             }

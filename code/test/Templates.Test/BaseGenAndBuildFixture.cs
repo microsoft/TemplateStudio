@@ -403,7 +403,10 @@ namespace Microsoft.Templates.Test
                 var appModels = AppModels.GetAllAppModels().ToList();
                 foreach (var appModel in appModels)
                 {
-                    result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, appModel));
+                    if (appModel == AppModels.Desktop)
+                    {
+                        result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, appModel));
+                    }
                 }
             }
             else

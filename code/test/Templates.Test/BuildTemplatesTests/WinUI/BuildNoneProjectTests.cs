@@ -15,19 +15,19 @@ using Xunit;
 namespace Microsoft.Templates.Test.Build.WinUI
 {
     [Collection("BuildTemplateTestCollection")]
-    public class BuildCodeBehindProjectTests : BaseGenAndBuildTests
+    public class BuildNoneBehindProjectTests : BaseGenAndBuildTests
     {
-        public BuildCodeBehindProjectTests(BuildTemplatesTestFixture fixture)
-            : base(fixture, null, Frameworks.CodeBehind)
+        public BuildNoneBehindProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, Frameworks.None)
         {
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildNoneBehindWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
-        public async Task Build_EmptyProject_CodeBehindAsync(string projectType, string framework, string platform, string language, string appModel)
+        public async Task Build_EmptyProject_NoneAsync(string projectType, string framework, string platform, string language, string appModel)
         {
             var context = new UserSelectionContext(language, platform)
             {
@@ -45,8 +45,8 @@ namespace Microsoft.Templates.Test.Build.WinUI
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildNoneWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
@@ -74,9 +74,9 @@ namespace Microsoft.Templates.Test.Build.WinUI
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "MinimumWinUI")]
-        [Trait("ExecutionSet", "MinimumCodeBehindWinUI")]
+        [Trait("ExecutionSet", "MinimumNoneWinUI")]
         [Trait("ExecutionSet", "_CIBuild")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "CodeStyle")]
@@ -107,8 +107,8 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildCodeBehindWinUI")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [Trait("ExecutionSet", "BuildNoneWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
@@ -131,25 +131,6 @@ namespace Microsoft.Templates.Test.Build.WinUI
             var projectPath = await AssertGenerateRightClickAsync(projectName, context, true);
 
             AssertBuildProject(projectPath, projectName, platform);
-        }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
-        [Trait("ExecutionSet", "BuildOneByOneCodeBehindWinUI")]
-        [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneCodeBehindWinUI")]
-        public async Task Build_CodeBehind_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, string appModel)
-        {
-            var context = new UserSelectionContext(language, platform)
-            {
-                ProjectType = projectType,
-                FrontEndFramework = framework,
-            };
-            context.AddAppModel(appModel);
-
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
-
-            AssertBuildProject(ProjectPath, ProjecName, platform);
         }
     }
 }

@@ -86,7 +86,7 @@
     <Compile Include="BuildTemplatesTests\Uwp\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Uwp\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
-    <Compile Include="BuildTemplatesTests\WinUI\BuildCodeBehindProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\WinUI\BuildNoneProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildToolkitMVVMProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\WinUI\BuildMVVMToolkitProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\Wpf\BuildCodeBehindProjectTests.cs" />
