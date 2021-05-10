@@ -132,24 +132,5 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
             AssertBuildProject(projectPath, projectName, platform);
         }
-
-        [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
-        [Trait("ExecutionSet", "BuildOneByOneNoneWinUI")]
-        [Trait("ExecutionSet", "_OneByOne")]
-        [Trait("Type", "BuildOneByOneNoneWinUI")]
-        public async Task Build_None_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, string appModel)
-        {
-            var context = new UserSelectionContext(language, platform)
-            {
-                ProjectType = projectType,
-                FrontEndFramework = framework,
-            };
-            context.AddAppModel(appModel);
-
-            var (ProjectPath, ProjecName) = await AssertGenerationOneByOneAsync(itemName, context, itemId, false);
-
-            AssertBuildProject(ProjectPath, ProjecName, platform);
-        }
     }
 }
