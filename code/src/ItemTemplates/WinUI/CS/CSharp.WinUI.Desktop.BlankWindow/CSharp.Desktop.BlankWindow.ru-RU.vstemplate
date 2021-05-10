@@ -6,7 +6,7 @@
     <Description>A blank window for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <TemplateID>CSharp.WinUI.Desktop.BlankWindow.local</TemplateID>
+    <TemplateID>CSharp.WinUI.Desktop.BlankWindow.WTS.local</TemplateID>
     <TemplateGroupID>WinRT-Managed-UAP</TemplateGroupID>
     <AppliesTo>CSharp + SharedAssetsProject</AppliesTo>
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>

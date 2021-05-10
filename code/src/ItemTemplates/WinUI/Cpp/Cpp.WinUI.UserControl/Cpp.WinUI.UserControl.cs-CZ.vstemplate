@@ -6,7 +6,7 @@
     <Description>A user control for apps based on the Windows UI Library (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
-    <TemplateID>Cpp.WinUI.UserControl.local</TemplateID>
+    <TemplateID>Cpp.WinUI.UserControl.WTS.local</TemplateID>
     <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     <ShowByDefault>true</ShowByDefault>
     <TargetPlatformName>Windows</TargetPlatformName>
