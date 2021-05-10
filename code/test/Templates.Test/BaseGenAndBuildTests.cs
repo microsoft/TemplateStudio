@@ -634,31 +634,17 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case Frameworks.CodeBehind:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
-                    break;
-
+                case Frameworks.None:
                 case Frameworks.MVVMBasic:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
-                    break;
-
                 case Frameworks.MVVMLight:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
-                    break;
-
                 case Frameworks.MVVMToolkit:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
-                    break;
-
                 case Frameworks.CaliburnMicro:
+                case Frameworks.Prism:
                     result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 case "LegacyFrameworks":
                     result = BuildRightClickWithLegacyFixture.GetProjectTemplates(platform, programmingLanguage);
-                    break;
-
-                case Frameworks.Prism:
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 default:
