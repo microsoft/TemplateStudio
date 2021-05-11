@@ -495,7 +495,7 @@ namespace Microsoft.Templates.UI.Services
             var projfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in projfiles)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<packagereference include=\"{packageId.ToLowerInvariant()}"))
+                if (File.ReadAllText(file).IndexOf($"<packagereference include=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }
@@ -504,7 +504,7 @@ namespace Microsoft.Templates.UI.Services
             var configfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
             foreach (string file in configfiles)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<package id=\"{packageId.ToLowerInvariant()}"))
+                if (File.ReadAllText(file).IndexOf($"<package id=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }
@@ -518,7 +518,7 @@ namespace Microsoft.Templates.UI.Services
             var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"sdk=\"{sdkId.ToLowerInvariant()}\""))
+                if (File.ReadAllText(file).IndexOf($"sdk=\"{sdkId}\"", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }

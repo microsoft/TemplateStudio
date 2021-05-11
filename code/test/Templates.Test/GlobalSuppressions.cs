@@ -30,3 +30,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1629:DocumentationTextMustEndWithAPeriod", Justification = "We follow the C# Core Coding Style and will we not include documentation")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1009:DeclareEventHandlersCorrectly", Scope = "member", Target = "Microsoft.Templates.Core.Locations.TemplatesSynchronization.#SyncStatusChanged", Justification = "Using an Action<object, SyncStatusEventArgs> does not allow the required notation")]
+[assembly: SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "We need lowercase here", Scope = "member", Target = "~M:Microsoft.Templates.Test.LanguageComparisonTests.EnsureCodeFilesContainIdenticalElements(System.String)")]
+[assembly: SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "We need lowercase here", Scope = "member", Target = "~M:Microsoft.Templates.Test.LanguageComparisonTests.GetCSharpEquivalentProperty(System.String)~System.Object")]

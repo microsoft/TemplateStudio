@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Fakes
 
             var lastItems = _root.Descendants().LastOrDefault(d => d.Name.LocalName == "ItemGroup");
             lastItems?.AddAfterSelf(itemsContainer);
-            if (itemPath.EndsWith("xaml.cpp"))
+            if (itemPath.EndsWith("xaml.cpp", StringComparison.OrdinalIgnoreCase))
             {
                 AddItem(itemPath.Replace("xaml.cpp", "idl"));
             }
@@ -298,9 +298,9 @@ namespace Microsoft.Templates.Fakes
         {
             VsItemType returnType = VsItemType.Content;
 
-            switch (Path.GetExtension(fileName).ToLowerInvariant())
+            switch (Path.GetExtension(fileName).ToUpperInvariant())
             {
-                case ".cs":
+                case ".CS":
                     if (fileName.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
@@ -311,11 +311,11 @@ namespace Microsoft.Templates.Fakes
                     }
 
                     break;
-                case ".idl":
+                case ".IDL":
                     returnType = VsItemType.Midl;
 
                     break;
-                case ".h":
+                case ".H":
                     if (fileName.EndsWith(".xaml.h", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.ClIncludeWithDependant;
@@ -326,7 +326,7 @@ namespace Microsoft.Templates.Fakes
                     }
 
                     break;
-                case ".cpp":
+                case ".CPP":
                     if (fileName.EndsWith(".xaml.cpp", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.ClCompiledWithDependant;
@@ -337,7 +337,7 @@ namespace Microsoft.Templates.Fakes
                     }
 
                     break;
-                case ".vb":
+                case ".VB":
                     if (fileName.EndsWith(".xaml.vb", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
@@ -348,13 +348,13 @@ namespace Microsoft.Templates.Fakes
                     }
 
                     break;
-                case ".xaml":
+                case ".XAML":
                     returnType = VsItemType.XamlPage;
                     break;
-                case ".resw":
+                case ".RESW":
                     returnType = VsItemType.Resource;
                     break;
-                case ".pfx":
+                case ".PFX":
                     returnType = VsItemType.None;
                     break;
                 default:

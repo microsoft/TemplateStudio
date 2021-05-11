@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Converters
         {
             if (value is StepData stepData && parameter != null)
             {
-                return stepData.Index.ToString().Equals(parameter.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+                return stepData.Index.ToString().Equals(parameter.ToString(), StringComparison.Ordinal) ? Visibility.Visible : Visibility.Collapsed;
             }
 
             return Visibility.Collapsed;

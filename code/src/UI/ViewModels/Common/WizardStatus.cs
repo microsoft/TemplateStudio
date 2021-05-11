@@ -101,7 +101,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             versionsStringBuilder.AppendLine($"{StringRes.ProjectDetailsAboutSectionTemplatesVersion} {GenContext.ToolBox.TemplatesVersion}");
             versionsStringBuilder.Append($"{StringRes.ProjectDetailsAboutSectionWizardVersion} {GenContext.ToolBox.WizardVersion}");
             var versionsText = versionsStringBuilder.ToString();
-            if (string.IsNullOrEmpty(Versions) || !Versions.Equals(versionsText))
+            if (string.IsNullOrEmpty(Versions) || !Versions.Equals(versionsText, StringComparison.Ordinal))
             {
                 Versions = versionsText;
             }

@@ -211,7 +211,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             else if (obj is TemplateInfoViewModel templateInfo)
             {
-                result = Identity.Equals(templateInfo.Identity);
+                result = Identity.Equals(templateInfo.Identity, StringComparison.Ordinal);
             }
 
             return result;

@@ -30,8 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GlobalSuppressions.cs = GlobalSuppressions.cs
 		StyleCop.json = StyleCop.json
 		TestCert.pfx = TestCert.pfx
-		WtsRules.ruleset = WtsRules.ruleset
-		WtsRulesTests.ruleset = WtsRulesTests.ruleset
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakes", "test\Fakes\Fakes.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"

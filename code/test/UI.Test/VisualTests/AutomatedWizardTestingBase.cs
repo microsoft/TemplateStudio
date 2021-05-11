@@ -66,9 +66,18 @@ namespace Microsoft.UI.Test.VisualTests
 
         public void Dispose()
         {
-            WizardSession?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-            StopWinAppDriverIfRunning();
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                WizardSession?.Dispose();
+
+                StopWinAppDriverIfRunning();
+            }
         }
 
         protected static string GetRootFolderForTestOutput()
