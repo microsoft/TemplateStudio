@@ -15,6 +15,10 @@ WinTS has some reserved names. You can't use those names for naming your project
 - Prism
 - MVVMLight
 
+### WinUI
+
+No reserved names for WinUI.
+
 ## Page suffixes
 
 For **Page** generation the suffixes 'Page' and 'ViewModel' will be added by WinTS to Page and ViewModel files.
@@ -71,3 +75,12 @@ WinTS has some reserved names. You can't use those names for naming pages and fe
 - ThemeSelection
 - MSIX Packaging
 - Persist And Restore
+
+### WPF
+
+- Page
+- Settings
+- MSIX Packaging
+- SettingsStorage
+- ThemeSelection
+- SampleDataService
