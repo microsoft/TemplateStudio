@@ -18,7 +18,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="48"
-                    Glyph="{x:Bind ListDetailsMenuItem.Symbol, Mode=OneWay}" />
+                    Glyph="{x:Bind ListDetailsMenuItem.Symbol, Mode=OneWay}"
+                    AutomationProperties.Name="{x:Bind ListDetailsMenuItem.SymbolName, Mode=OneWay}"  />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"

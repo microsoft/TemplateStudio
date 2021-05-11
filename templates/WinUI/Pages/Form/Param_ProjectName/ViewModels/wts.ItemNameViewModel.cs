@@ -16,7 +16,7 @@ namespace Param_RootNamespace.ViewModels
         private DateTimeOffset _orderDate = DateTime.Now;
         private TimeSpan _orderTime = DateTime.Now.TimeOfDay;
         private string _company;
-        private char _symbol;
+        private SampleSymbol _symbol;
         private string _orderTotal;
         private string _freight;
         private string _status;
@@ -57,7 +57,7 @@ namespace Param_RootNamespace.ViewModels
         }
 
         [Required]
-        public char Symbol
+        public SampleSymbol Symbol
         {
             get { return _symbol; }
             set { SetProperty(ref _symbol, value, true); }
@@ -115,16 +115,16 @@ namespace Param_RootNamespace.ViewModels
             "Closed"
         };
 
-        public IEnumerable<char> SymbolValues { get; } = new List<char>()
+        public IEnumerable<SampleSymbol> SymbolValues { get; } = new List<SampleSymbol>
         {
-            (char)57643,
-            (char)57737,
-            (char)57699,
-            (char)57620,
-            (char)57633,
-            (char)57661,
-            (char)57619,
-            (char)57615
+            new SampleSymbol() { Name = "Globe", Code = (char)57643 },
+            new SampleSymbol() { Name = "Audio", Code = (char)57737 },
+            new SampleSymbol() { Name = "Calendar", Code = (char)57699 },
+            new SampleSymbol() { Name = "Camera", Code = (char)57620 },
+            new SampleSymbol() { Name = "Clock", Code = (char)57633 },
+            new SampleSymbol() { Name = "Contact", Code = (char)57661 },
+            new SampleSymbol() { Name = "Favorite", Code = (char)57619 },
+            new SampleSymbol() { Name = "Home", Code = (char)57615 },
         };
 
         public ICommand SubmitCommand => _submitCommand ?? (_submitCommand = new RelayCommand(Submit));
@@ -156,7 +156,8 @@ namespace Param_RootNamespace.ViewModels
                 OrderTotal = double.Parse(OrderTotal),
                 Status = Status,
                 Freight = double.Parse(Freight),
-                SymbolCode = Symbol
+                SymbolCode = Symbol.Code,
+                SymbolName = Symbol.Name,
             });
 
             // Set default values
