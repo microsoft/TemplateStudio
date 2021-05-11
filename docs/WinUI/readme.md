@@ -10,7 +10,7 @@ C++ Templates:
 - App (WinUI 3 Desktop)
 - Windows Runtime Component (WinUI 3)
 
-We also offer the following item templates:
+We also offer the following item templates for C# and C++:
 - Blank page
 - Blank Window (desktop)
 - Custom Control

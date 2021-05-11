@@ -54,10 +54,16 @@ You have two ways of acquiring the extension:
 2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
 ![New Project](resources/vsix/newProject2019.PNG)
 
-3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
+3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
 
-For more info on adding new items see [here](newitem.md).
+4. If you created a WinUI 3 app you can also add the following items from **Visual Studio add new item dialog**.
+    - Blank page
+    - Blank Window (desktop)
+    - Custom Control
+    - Resource Dictionary
+    - Resources File
+    - User Control
 
 
 ## Nightly / Pre-release feeds for Windows Template Studio
