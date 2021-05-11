@@ -8,7 +8,7 @@
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>VC</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>Microsoft.Cpp.WinUI.Desktop.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.Cpp.WinUI.Desktop.WTS.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>

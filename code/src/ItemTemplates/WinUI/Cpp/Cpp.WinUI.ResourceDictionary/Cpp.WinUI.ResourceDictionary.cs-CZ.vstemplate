@@ -4,21 +4,19 @@
     <DefaultName>ResourceDictionary.xaml</DefaultName>
     <Name>Resource Dictionary (WinUI 3; local)</Name>
     <Description>An empty, keyed collection of XAML resources for apps based on the Windows UI Library (WinUI 3).</Description>
-    <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
-    <ProjectType>CSharp</ProjectType>
-    <TemplateID>CSharp.WinUI.ResourceDictionary.local</TemplateID>
-    <TemplateGroupID>WinRT-Managed-UAP</TemplateGroupID>
-    <AppliesTo>CSharp + SharedAssetsProject</AppliesTo>
+    <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
+    <ProjectType>VC</ProjectType>
+    <TemplateID>Cpp.WinUI.ResourceDictionary.WTS.local</TemplateID>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <ShowByDefault>true</ShowByDefault>
     <TargetPlatformName>Windows</TargetPlatformName>
     <AppIdFilter>blend</AppIdFilter>
-    <LanguageTag>csharp</LanguageTag>
+    <LanguageTag>cpp</LanguageTag>
     <PlatformTag>windows</PlatformTag>
     <ProjectTypeTag>uwp</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
-    <ProjectItem OpenInEditor="true" ReplaceParameters="true" ItemType="Page" CustomTool="MSBuild:Compile" TargetFileName="$fileinputname$.xaml">ResourceDictionary.xaml</ProjectItem>
+    <ProjectItem OpenInEditor="true" ReplaceParameters="true" ItemType="Page" TargetFileName="$fileinputname$.xaml">ResourceDictionary.xaml</ProjectItem>
   </TemplateContent>
 </VSTemplate>

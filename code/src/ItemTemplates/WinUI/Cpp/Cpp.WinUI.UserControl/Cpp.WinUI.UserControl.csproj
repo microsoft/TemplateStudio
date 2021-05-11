@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="Cpp.WinUI.UserControl.vstemplate">
-      <OutputSubPath>WinUI (Windows Template Studio)</OutputSubPath>
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +73,58 @@
     <None Include="UserControl.idl" />
   </ItemGroup>
   <ItemGroup>
+    <VSTemplate Include="Cpp.WinUI.UserControl.zh-TW.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1028</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.it-IT.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1040</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.ja-JP.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1041</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.ko-KR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1042</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.pl-PL.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1045</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.pt-BR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1046</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.ru-RU.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1049</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.tr-TR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1055</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.zh-CN.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>2052</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.cs-CZ.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1029</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.de-DE.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1031</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.es-ES.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>3082</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Cpp.WinUI.UserControl.fr-FR.vstemplate">
+      <OutputSubPath>WinUI %28Windows Template Studio%29</OutputSubPath>
+      <Culture>1036</Culture>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_cpp_Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
