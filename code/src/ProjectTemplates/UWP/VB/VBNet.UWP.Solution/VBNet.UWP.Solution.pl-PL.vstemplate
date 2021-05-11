@@ -6,7 +6,7 @@
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>VisualBasic</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>Microsoft.VisualBasic.UWP.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.VisualBasic.UWP.WTS.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
