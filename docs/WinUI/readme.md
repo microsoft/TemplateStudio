@@ -3,16 +3,16 @@
 WinUI 3 project templates supported by Windows Template Studio:
 
 C# templates:
-- App (WinUI 3 Desktop)
+- App (WinUI 3 in Desktop)
 - Class Library (WinUI 3 in Desktop)
 
 C++ Templates:
-- App (WinUI 3 Desktop)
+- App (WinUI 3 in Desktop)
 - Windows Runtime Component (WinUI 3)
 
 We also offer the following item templates for C# and C++:
 - Blank page
-- Blank Window (desktop)
+- Blank Window (Desktop)
 - Custom Control
 - Resource Dictionary
 - Resources File
