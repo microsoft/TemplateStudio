@@ -30,7 +30,7 @@ These will help if using WinTS to build apps.
 
 ### WinUI 3
 
-- [Using and extending the generated WPF app](./WinUI/readme.md)
+- [Using and extending the generated WinUI 3 app](./WinUI/readme.md)
 - [Handling app activation](./WinUI/activation.md)
 - [Handling navigation within the app](./WinUI/navigation.md)
 
