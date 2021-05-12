@@ -14,14 +14,31 @@ namespace Localization
             (@"code\src\ProjectTemplates\UWP\CS\CSharp.UWP.Solution", "CSharp.UWP.Solution.vstemplate", "CSharp.UWP.Solution.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\UWP\VB\VBNet.UWP.Solution", "VBNet.UWP.Solution.vstemplate", "VBNet.UWP.Solution.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.Solution", "Cpp.WinUI.Desktop.Solution.vstemplate", "Cpp.WinUI.Desktop.Solution.{0}.vstemplate"),
-            (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.RuntimeComponent", "Cpp.WinUI.RuntimeComponent.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.RuntimeComponent", "Cpp.WinUI.RuntimeComponent.vstemplate", "Cpp.WinUI.RuntimeComponent.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\WinUI\Cpp\Cpp.WinUI.Uwp.Solution", "Cpp.WinUI.Uwp.Solution.vstemplate", "Cpp.WinUI.Uwp.Solution.{0}.vstemplate"),
-            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Desktop.ClassLibrary", "Csharp.WinUI.Desktop.ClassLibrary.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Desktop.ClassLibrary", "Csharp.WinUI.Desktop.ClassLibrary.vstemplate", "Csharp.WinUI.Desktop.ClassLibrary.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Desktop.Solution", "Csharp.WinUI.Desktop.Solution.vstemplate", "Csharp.WinUI.Desktop.Solution.{0}.vstemplate"),
-            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.ClassLibrary", "Csharp.WinUI.Uwp.ClassLibrary.vstemplate", null),
-            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.RuntimeComponent", "Csharp.WinUI.Uwp.RuntimeComponent.vstemplate", null),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.ClassLibrary", "Csharp.WinUI.Uwp.ClassLibrary.vstemplate", "Csharp.WinUI.Uwp.ClassLibrary.{0}.vstemplate"),
+            (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.RuntimeComponent", "Csharp.WinUI.Uwp.RuntimeComponent.vstemplate", "Csharp.WinUI.Uwp.RuntimeComponent.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\WinUI\CS\Csharp.WinUI.Uwp.Solution", "Csharp.WinUI.Uwp.Solution.vstemplate", "Csharp.WinUI.Uwp.Solution.{0}.vstemplate"),
             (@"code\src\ProjectTemplates\WPF\CS\CSharp.WPF.Solution", "CSharp.WPF.Solution.vstemplate", "CSharp.WPF.Solution.{0}.vstemplate"),
+        };
+
+        internal static (string Path, string FileName, string FileNamePattern)[] VSItemTemplatePaths { get; } = new[]
+        {
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.BlankPage", "Cpp.WinUI.BlankPage.vstemplate", "Cpp.WinUI.BlankPage.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Desktop.BlankWindow", "Cpp.WinUI.Desktop.BlankWindow.vstemplate", "Cpp.WinUI.Desktop.BlankWindow.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.ResourceDictionary", "Cpp.WinUI.ResourceDictionary.vstemplate",  "Cpp.WinUI.ResourceDictionary.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.Resw", "Cpp.WinUI.Resw.vstemplate", "Cpp.WinUI.Resw.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.TemplatedControl", "Cpp.WinUI.TemplatedControl.vstemplate", "Cpp.WinUI.TemplatedControl.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\Cpp\Cpp.WinUI.UserControl", "Cpp.WinUI.UserControl.vstemplate", "Cpp.WinUI.UserControl.{0}.vstemplate"),
+
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.BlankPage", "Csharp.WinUI.BlankPage.vstemplate", "Csharp.WinUI.BlankPage.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.Desktop.BlankWindow", "Csharp.Desktop.BlankWindow.vstemplate", "Csharp.Desktop.BlankWindow.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.ResourceDictionary", "Csharp.ResourceDictionary.vstemplate", "Csharp.ResourceDictionary.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.Resw", "Csharp.WinUI.Resw.vstemplate", "Csharp.WinUI.Resw.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.TemplatedControl", "Csharp.TemplatedControl.vstemplate", "Csharp.TemplatedControl.{0}.vstemplate"),
+            (@"code\src\ItemTemplates\WinUI\CS\Csharp.WinUI.UserControl", "Csharp.WinUI.UserControl.vstemplate", "Csharp.WinUI.UserControl.{0}.vstemplate"),
         };
 
         internal const string CommandTemplateRootDirPath = "code\\src\\Installer\\Commands";

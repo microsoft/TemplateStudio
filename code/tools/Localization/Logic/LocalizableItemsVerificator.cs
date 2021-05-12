@@ -44,6 +44,7 @@ namespace Localization
 
             Execute(VerifyVsix, "Verifying vsix");
             Execute(VerifyProjectTemplates, "Verifying project templates");
+            Execute(VerifyItemTemplates, "Verifying item templates");
             Execute(VerifyCommandTemplates, "Verifying command templates");
             Execute(VerifyTemplatePages, "Verifying template pages");
             Execute(VerifyTemplateFeatures, "Verifying template features");
@@ -64,14 +65,12 @@ namespace Localization
 
         private void VerifyProjectTemplates()
         {
-            foreach (var projectTemplate in Routes.VSProjectTemplatePaths)
-            {
-                VerifyFile(projectTemplate.Path, projectTemplate.FileName);
-                if (projectTemplate.FileNamePattern != null)
-                {
-                    VerifyFilesByCulture(projectTemplate.Path, projectTemplate.FileNamePattern);
-                }
-            }
+            VerifyVisualStudioTemplate(Routes.VSProjectTemplatePaths);
+        }
+
+        private void VerifyItemTemplates()
+        {
+            VerifyVisualStudioTemplate(Routes.VSItemTemplatePaths);
         }
 
         private void VerifyCommandTemplates()
@@ -119,6 +118,18 @@ namespace Localization
                 VerifyFile(directory, Routes.ResourcesFilePath);
                 VerifyFilesByCulture(directory, Routes.ResourcesFilePathPattern);
                 VerifyResourceContent(directory, Routes.ResourcesFilePath);
+            }
+        }
+
+        private void VerifyVisualStudioTemplate((string Path, string FileName, string FileNamePattern)[] templates)
+        {
+            foreach (var template in templates)
+            {
+                VerifyFile(template.Path, template.FileName);
+                if (!string.IsNullOrEmpty(template.FileNamePattern))
+                {
+                    VerifyFilesByCulture(template.Path, template.FileNamePattern);
+                }
             }
         }
 
