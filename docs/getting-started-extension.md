@@ -59,7 +59,7 @@ You have two ways of acquiring the extension:
 
 4. If you created a WinUI 3 app you can also add the following items from **Visual Studio add new item dialog**.
     - Blank page
-    - Blank Window (desktop)
+    - Blank Window (Desktop)
     - Custom Control
     - Resource Dictionary
     - Resources File
