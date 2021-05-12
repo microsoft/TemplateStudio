@@ -31,11 +31,11 @@ The final generated code is the result of a project configuration (project type 
 
 ## Understanding concepts for Windows Template Studio
 
-Windows Template Studio approaches WinUI 3 app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
+Windows Template Studio approaches WinUI 3 Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
 
 ### Project Types
 
-**Project types** define the basic look and feel of your wINui 3 app.
+**Project types** define the basic look and feel of your WinUI 3 Desktop app.
 
 | Project type | Description |
 |-------------:|:------------|
