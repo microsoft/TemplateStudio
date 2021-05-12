@@ -6,9 +6,9 @@
 
 **Applies to the following platforms:**
 
-| UWP              | WPF              | WinUI           |
-| :--------------- | :--------------- | :---------------|
-| <!-- Yes/No? --> | <!-- Yes/No? --> |<!-- Yes/No? --> |
+| UWP              | WPF              | WinUI            |
+| :--------------- | :--------------- | :----------------|
+| <!-- Yes/No? --> | <!-- Yes/No? --> | <!-- Yes/No? --> |
 
 **Anything that requires particular review or attention?**
 

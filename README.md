@@ -1,13 +1,14 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP) and Windows Presentation Foundation (WPF .NET Core 3.1) apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net and WPF (.NET Core 3.1) apps in C#.
+Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP), Windows Presentation Foundation (WPF .NET Core 3.1) and WinUI 3 in Desktop apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and WinUI 3 in Desktop apps in C# or C++.
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
-We're also looking into creation of WinUI3 Desktop Apps. You can find more info on how to test and give feedback In our [WinUI docs](./docs/WinUI/readme.md). 
+![Windows Template Studio WinUI 3 screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
 
+Note: :heavy_exclamation_mark: WinUI 3 Templates are still in development and will be available from version 4.0 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
@@ -29,7 +30,7 @@ We're also looking into creation of WinUI3 Desktop Apps. You can find more info 
 
 ## Features
 
-Windows Template Studio approaches UWP and WPF app creation using the following six attribute sets:
+Windows Template Studio approaches app creation using the following six attribute sets:
 
 ### **Project type**
 
@@ -39,6 +40,8 @@ First, how do you want your app's UI navigation to behave?
 
 - **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
+- **WinUI 3**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*.
+
 
 ### **App design pattern**
 
@@ -47,6 +50,8 @@ Next, what coding pattern do you want to use in your project.
 - **UWP**: *[MVVM Toolkit](./docs/UWP/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[Prism](./docs/UWP/frameworks/prism.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)* *, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)* * and *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)* *.
 
 - **WPF**: *[MVVM Toolkit](./docs/WPF/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, *[Prism](./docs/WPF/frameworks/prism.md)*,  *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)* * and *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* *.
+
+- **WinUI 3**: *[MVVM Toolkit](./docs/WinUI/frameworks/mvvmtoolkit.md)*.
 
 (Frameworks marked with * were deprecated in Version 3.10 and will be removed in a future version)
 
@@ -66,7 +71,7 @@ Connect to data services, setup cloud connected services for your application, a
 
 Lastly, you can include test projects for your application to run unit tests or use Selenium-like UI test automation.
 
-After selecting the items wanted in your app, you can extend the generated code on [UWP](./docs/UWP/getting-started-endusers.md) or [WPF](./docs/WPF/getting-started-endusers.md).
+After selecting the items wanted in your app, you can extend the generated code on [UWP](./docs/UWP/getting-started-endusers.md), [WPF](./docs/WPF/getting-started-endusers.md) or [WinUI 3](./docs/WinUI/readme.md).
 
 ## Documentation
 
@@ -74,6 +79,7 @@ After selecting the items wanted in your app, you can extend the generated code 
 - [Understand the core concepts](./docs/concepts.md)
 - [Using WinTS to build UWP apps](./docs/UWP/getting-started-endusers.md)
 - [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
+- [Using WinTS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
 - [Working on WinTS](./docs/getting-started-developers.md)
 
 ## Known issues
@@ -123,6 +129,8 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 - [Web Template Studio](https://github.com/Microsoft/WebTemplateStudio)
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+- [Windows UI](https://github.com/microsoft/microsoft-ui-xaml)
+- [Project Reunion](https://github.com/microsoft/ProjectReunion)
 - [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
 - [XAML Styler](https://github.com/Xavalon/XamlStyler)
 

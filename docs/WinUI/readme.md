@@ -1,60 +1,86 @@
-## WinUI 3 Apps
+# WinUI 3 Apps
 
-We're looking into adding WinUI 3 App templates to Windows Template Studio.
-
-Our templates for WinUI 3 Apps are currently in preview. You can try them out in our [dev-nightly version](./../getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio).
-
-We currently provide the following project templates:
+WinUI 3 project templates supported by Windows Template Studio:
 
 C# templates:
-- App (WinUI 3 Desktop) 
-- Class Library (WinUI 3 in Desktop) 
-
-- App (WinUI 3 UWP) PREVIEW
-- Class Library (WinUI 3 in UWP) PREVIEW
-- Windows Runtime Component (WinUI 3 in UWP) PREVIEW
+- App (WinUI 3 in Desktop)
+- Class Library (WinUI 3 in Desktop)
 
 C++ Templates:
-- App (WinUI 3 Desktop) 
-- Windows Runtime Component (WinUI 3) 
+- App (WinUI 3 in Desktop)
+- Windows Runtime Component (WinUI 3)
 
-- App (WinUI 3 UWP) PREVIEW
-
-We also offer the following item templates:
+We also offer the following item templates for C# and C++:
 - Blank page
-- Blank Window (desktop)
+- Blank Window (Desktop)
 - Custom Control
 - Resource Dictionary
 - Resources File
 - User Control
 
-We would love to get your feedback on our [tracking issues for WinUI3 templates](https://github.com/microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+label%3Afeature+milestone%3AWinUI3).
+# Using and extending your generated project
 
-If you miss anything or find an issue that is not mentioned in the known issues section please file a new issue.
+WinUI 3 projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
-### Prerequisites
+## Understanding generated code from Windows Template Studio
 
-1. Ensure that your development computer has Windows 10, version 1809 (build 17763), or a later OS version installed.
+The final generated code is the result of a project configuration (project type and design pattern) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
 
-2. Install [Visual Studio 2019, version 16.10 Preview](https://visualstudio.microsoft.com/vs/preview/) (or later) if you haven't done so already. 
-   
-   You must include the following components when installing Visual Studio:
+- [Application activation](./activation.md)
+- [Navigation between pages](./navigation.md)
 
-   - On the **Workloads** tab, make sure **Universal Windows Platform development** is selected.
-   - On the **Individual components** tab, make sure **Windows 10 SDK (10.0.19041.0)** is selected in the **SDKs, libraries, and frameworks** section.
+## Understanding concepts for Windows Template Studio
 
-   To build .NET apps, you must also include the following components:
+Windows Template Studio approaches WinUI 3 Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
 
-   - **.NET Desktop Development** workload.
+### Project Types
 
-   To build C++ apps, you must also include the following components:
+**Project types** define the basic look and feel of your WinUI 3 Desktop app.
 
-   - **Desktop development with C++** workload.
-   - The **C++ (v142) Universal Windows Platform tools** optional component for the **Universal Windows Platform development** workload.
-   
-3. If you previously installed the WinUI 3 Preview extension from an earlier WinUI 3 preview release, uninstall the extension. For more information about how to uninstall an extension, see Manage extensions for Visual Studio.
+| Project type | Description |
+|-------------:|:------------|
+| [Blank](./projectTypes/blank.md) | This basic project is a blank canvas upon which to build your app. It provides no scaffolding and leaves everything up to you. |
+| [Navigation Pane](./projectTypes/navigationpane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages. This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed. The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen. |
 
-4. Make sure your system has a NuGet package source enabled for **nuget.org**. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
+### Design patterns
+
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the following common patterns:
+
+| Design pattern| Description |
+|--------------:|:------------|
+| [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [Microsoft.Toolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
+
+### Pages
+
+| Page        | Description |
+|------------:|:------------|
+| [Blank](./pages/blank.md) | This is the most basic page. A blank canvas to mold into whatever you wish. |
+| [Content Grid](./pages/content-grid.md) | This page allows you to add custom items in the form of an Adaptive Grid. |
+| [Data Grid](./pages/data-grid.md) | A page displaying a simple data grid. |
+| [List Details](./pages/list-details.md) | The list/details pattern has a list pane and a details pane for content. |
+| [Settings](./pages/settings.md) | The settings page is the page where we recommend putting the configuration settings for your app. |
+| [WebView](./pages/web-view.md) | The web view page renders web content using the Microsoft Edge rendering engine. |
+
+### Features
+
+#### Application Lifecycle
+
+| Feature | Description |
+|-------------:|:-------------|
+| [Settings Storage](./features/setting-storage.md) | Setting storage helps simplify storing data inside your application data folder. |
+
+#### Packaging
+
+| Feature | Description |
+|-------------:|:-------------|
+| [MSIX](./features/msix.md) | Allows packages creation for side-loading or distribution via Microsoft Store. |
+
+#### User Interactions
+
+| Feature | Description |
+|-------------:|:-------------|
+| [Theme Selection](./features/theme-selection.md) | Adds theming support to your application. |
+
 
 ### Known issues:
 - [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)

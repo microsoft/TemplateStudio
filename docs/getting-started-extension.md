@@ -19,6 +19,28 @@ Windows Template Studio (WinTS) installs into your existing Visual Studio develo
  - Install the `.NET desktop development` workload on Visual Studio 2019 to use WPF (.NET Core) templates.
  - Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
+### Prerequisites for WinUI 3
+
+ - Ensure that your development computer has Windows 10, version 1809 (build 17763), or a later OS version installed.
+ - Install [Visual Studio 2019, version 16.10 Preview](https://visualstudio.microsoft.com/vs/preview/) (or later) if you haven't done so already.
+ - You must include the following components when installing Visual Studio:
+   - On the **Workloads** tab, make sure **Universal Windows Platform development** is selected.
+   - On the **Individual components** tab, make sure **Windows 10 SDK (10.0.19041.0)** is selected in the **SDKs, libraries, and frameworks** section.
+
+   To build .NET apps, you must also include the following components:
+
+   - **.NET Desktop Development** workload.
+
+   To build C++ apps, you must also include the following components:
+
+   - **Desktop development with C++** workload.
+   - The **C++ (v142) Universal Windows Platform tools** optional component for the **Universal Windows Platform development** workload.
+
+ - If you previously installed the WinUI 3 Preview extension from an earlier WinUI 3 preview release, uninstall the extension. For more information about how to uninstall an extension, see Manage extensions for Visual Studio.
+ - Make sure your system has a NuGet package source enabled for **nuget.org**. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
+
+
+
 ### Download the extension
 You have two ways of acquiring the extension:
 
@@ -32,10 +54,16 @@ You have two ways of acquiring the extension:
 2. Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
 ![New Project](resources/vsix/newProject2019.PNG)
 
-3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu.
+3. To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
 
-For more info on adding new items see [here](newitem.md).
+4. If you created a WinUI 3 app you can also add the following items from **Visual Studio add new item dialog**.
+    - Blank page
+    - Blank Window (Desktop)
+    - Custom Control
+    - Resource Dictionary
+    - Resources File
+    - User Control
 
 
 ## Nightly / Pre-release feeds for Windows Template Studio

@@ -28,6 +28,12 @@ These will help if using WinTS to build apps.
 - [Using MahApps.Metro](./WPF/mahapps-metro.md)
 - [Adapt the app for specific platforms](./WPF/platform-specific-recommendations.md)
 
+### WinUI 3
+
+- [Using and extending the generated WPF app](./WinUI/readme.md)
+- [Handling app activation](./WinUI/activation.md)
+- [Handling navigation within the app](./WinUI/navigation.md)
+
 ## Working on WinTS
 
 These will help if you want to know more about WinTS or contribute to the project.
