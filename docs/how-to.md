@@ -4,7 +4,7 @@
 
 1. Install the extension following the steps from [Installing the Extension](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md)	
 2. Open Visual Studio 2019
-3. From the New Project Dialog select "Create New Project" select "Windows Template Studio (Universal Windows)" for UWP projects, "Windows Template Studio (WPF .NET Core)" for WPF projects or "Windows Template Studio WinUI in Desktop" for WinUI 3 projects creation and click next.
+3. From the New Project Dialog select "Create New Project" select "Windows Template Studio (Universal Windows)" for UWP projects, "Windows Template Studio (WPF .NET Core)" for WPF projects or "App (WinUI 3 in Desktop)" for WinUI 3 projects creation and click next.
 4. Click Create
 5. Select a project type
 
