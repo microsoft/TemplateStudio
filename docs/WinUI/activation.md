@@ -4,13 +4,13 @@
 
 The ActivationService is in charge of handling the application's initialization and activation.
 
-The method `ActivateAsync()` it the entry point for the application lifecycle event `OnLaunched`.
+The method `ActivateAsync()` is the entry point for the application lifecycle event `OnLaunched`.
 
 ## ActivationHandlers
 
 The `ActivationService` has a collection of ActivationHandlers, that are registered in the property `IEnumerable<IActivationHandler> _activationHandlers`.
 
-Each class in the application that can handle activation derives from the abstract class `ActivationHandler<T>` (T is the type of ActivationEventArguments the class can handle) and implement the method HandleInternalAsync().
+Each class in the application that can handle activation derives from the abstract class `ActivationHandler<T>` (T is the type of ActivationEventArguments the class can handle) and implements the method HandleInternalAsync().
 The method `HandleInternalAsync()` is where the actual activation takes place.
 The virtual method `CanHandleInternal()` checks if the incoming activation arguments are of the type the ActivationHandler can manage. It can be overwritten to establish further conditions based on the ActivationEventArguments.
 
