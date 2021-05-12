@@ -76,7 +76,7 @@ WinTS has some reserved names. You can't use those names for naming pages and fe
 - MSIX Packaging
 - Persist And Restore
 
-### WPF
+### WinUI
 
 - Page
 - Settings
