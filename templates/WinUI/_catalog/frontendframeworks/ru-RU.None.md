@@ -1,1 +1,1 @@
-﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.
+﻿"None" это термин, чтобы описать, что нет шаблона проектирования предварительно отобранных. Просто минимальный код генерируется, чтобы получить приложение работает. Вы можете создать свою собственную структуру папок и добавить любой шаблон проектирования после создания кода.

@@ -1,1 +1,1 @@
-﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.
+﻿Žádný z nich není termín, který by popisovat, že není předem vybrán žádný návrhový vzor. Pro spuštění aplikace je generován pouze minimální kód. Po vygenerování kódu můžete vytvořit vlastní strukturu složek a přidat libovolný návrhový vzor.

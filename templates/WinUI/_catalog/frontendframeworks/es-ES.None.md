@@ -1,1 +1,1 @@
-﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.
+﻿"None" es un término para describir que no hay ningún patrón de diseño preseleccionado. Solo se genera el código mínimo para que la aplicación se ejecute. Puede crear su propia estructura de carpetas y agregar cualquier patrón de diseño una vez generado el código.
