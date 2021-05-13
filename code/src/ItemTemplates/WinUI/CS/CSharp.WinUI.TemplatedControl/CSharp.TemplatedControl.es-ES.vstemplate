@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>CustomControl.cs</DefaultName>
     <Name>Custom Control (WinUI 3; local)</Name>
-    <Description>A custom control for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Un control personalizado para aplicaciones basadas en la biblioteca de interfaz de usuario de Windows (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.TemplatedControl.WTS.local</TemplateID>
