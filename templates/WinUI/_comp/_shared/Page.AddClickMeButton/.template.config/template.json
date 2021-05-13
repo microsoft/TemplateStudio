@@ -1,0 +1,32 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.WinUI.Page.AddClickMeButton",
+  "shortName": "wts.WinUI.Page.AddClickMeButton",
+  "identity": "wts.WinUI.Page.AddClickMeButton",
+    "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "WinUI",
+    "wts.appmodel": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projecttype == Blank & groupidentity == wts.WinUI.Page.Blank & $ishomepage == true"
+  },
+  "sourceName": "wts.ItemName",
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": []
+}
