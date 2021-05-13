@@ -28,9 +28,4 @@ namespace winrt::Param_RootNamespace::implementation
     {
         throw hresult_not_implemented();
     }
-
-    void wts.ItemNamePage::myButton_Click(IInspectable const&, RoutedEventArgs const&)
-    {
-        myButton().Content(box_value(L"Clicked"));
-    }
 }
