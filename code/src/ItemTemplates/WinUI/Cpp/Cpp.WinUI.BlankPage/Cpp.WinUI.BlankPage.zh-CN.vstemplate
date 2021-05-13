@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>BlankPage.xaml</DefaultName>
     <Name>Blank Page (WinUI 3; local)</Name>
-    <Description>A blank page for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>基于 Windows UI 库（WinUI 3） 的应用的空白页。</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
     <TemplateID>Cpp.WinUI.BlankPage.WTS.local</TemplateID>

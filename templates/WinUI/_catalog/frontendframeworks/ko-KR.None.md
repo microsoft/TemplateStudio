@@ -1,1 +1,1 @@
-﻿None is a term to describe that there is no design pattern pre-selected. Just the minimum code is generated to get the app running. You can build your own folder structure and add any design pattern once the code is generated.
+﻿"None"은 미리 선택된 디자인 패턴이 없음을 설명하는 용어입니다. 앱을 실행하기 위해 최소 코드가 생성됩니다. 코드가 생성되면 고유한 폴더 구조를 빌드하고 디자인 패턴을 추가할 수 있습니다.

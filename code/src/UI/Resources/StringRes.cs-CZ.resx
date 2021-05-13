@@ -895,10 +895,10 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>New WinUI3 Desktop app</value>
+    <value>Nová aplikace WinUI3 Desktop</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>New WinUI3 UWP app</value>
+    <value>Nová aplikace WinUI3 UWP </value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
@@ -912,16 +912,16 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>Select AppModel</value>
+    <value>Vybrat AppModel</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
     <value>{0} projektu vyžaduje visual studio verze 2019 {1} nebo vyšší.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
   <data name="ButtonMaximize" xml:space="preserve">
-    <value>Maximize</value>
+    <value>Maximalizovat</value>
   </data>
   <data name="ButtonRestore" xml:space="preserve">
-    <value>Restore</value>
+    <value>Obnovit</value>
   </data>
 </root>

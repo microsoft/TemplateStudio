@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿Balíček Microsoft.Toolkit.Mvvm je moderní, rychlá a modulární knihovna MVVM. Je součástí sady nástrojů komunity systému Windows.
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+Tento balíček lze použít na jakékoli platformě aplikací: UWP, WinForms, WPF, Xamarin, Uno a další; a v libovolném runtime: .NET Native, .NET Core, .NET Framework nebo Mono. Povrch rozhraní API je ve všech případech identický, takže je ideální pro vytváření sdílených knihoven.
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+Balíček obsahuje kolekci standardních, samostatných a lehkých typů, které poskytují počáteční implementaci pro vytváření moderních aplikací pomocí vzoru MVVM. Tyto typy samy o sobě obvykle stačí mnoha uživatelům k vytváření aplikací bez nutnosti dalších externích odkazů.
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+Cílem tohoto balíčku je nabídnout flexibilitu ohledně toho, které komponenty použít. Všechny typy jsou volně spojeny, takže je nutné zahrnout pouze to, co používáte. Neexistuje žádný požadavek jít "all-in" s konkrétní řadou všezahrnujících rozhraní API, ani neexistuje sada povinných vzorů, které je třeba dodržovat při vytváření aplikací pomocí těchto pomocníků. Kombinujte tyto stavební bloky tak, aby co nejlépe vyhovoval vašim potřebám.

@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Das Listen-/Detailmuster verfügt über einen Listenbereich (in der Regel mit listenansicht) und einen Detailbereich für Inhalt. Wenn ein Element in der Liste ausgewählt ist, wird der Detailbereich aktualisiert. Dieses Muster wird häufig für E-Mail- und Adressbücher verwendet.
 
-More information about the list/details pattern can be found at [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+Weitere Informationen zum Listen-/Detailmuster finden Sie unter [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

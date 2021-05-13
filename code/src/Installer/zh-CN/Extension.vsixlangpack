@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>  
 <VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
   <LocalizedName>WTS (local)</LocalizedName>
-  <LocalizedDescription>Windows Template Studio 可使用基于向导的 UI 加速新 UWP 和 WPF 应用的创建。</LocalizedDescription>  
+  <LocalizedDescription>Windows Template Studio 使用基于向导的 UI 加速在桌面应用中创建新的 UWP、WPF 和 WinUI 3。</LocalizedDescription>  
   <License>..\Content\EULA.zh-CN.rtf</License>
   <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

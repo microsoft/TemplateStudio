@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>Resources.resw</DefaultName>
     <Name>Resources File (.resw; local)</Name>
-    <Description>A file for storing string and conditional resources for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Eine Datei zum Speichern von Zeichenfolgen und bedingten Ressourcen für Apps, die auf der Windows-Benutzeroberflächenbibliothek (WinUI 3) basieren.</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
     <TemplateID>Cpp.WinUI.Resw.WTS.local</TemplateID>

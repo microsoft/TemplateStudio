@@ -895,10 +895,10 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>New WinUI3 Desktop app</value>
+    <value>Yeni WinUI3 Masaüstü uygulaması</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>New WinUI3 UWP app</value>
+    <value>Yeni WinUI3 UWP uygulaması</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
@@ -912,16 +912,16 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>Select AppModel</value>
+    <value>AppModel'i seçin</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
     <value>{0} proje oluşturma visual studio 2019 sürüm {1} veya daha yüksek gerektirir.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
   <data name="ButtonMaximize" xml:space="preserve">
-    <value>Maximize</value>
+    <value>Ekranı Kapla</value>
   </data>
   <data name="ButtonRestore" xml:space="preserve">
-    <value>Restore</value>
+    <value>Geri yüklemek</value>
   </data>
 </root>

@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>Resources.resw</DefaultName>
     <Name>Resources File (.resw; local)</Name>
-    <Description>A file for storing string and conditional resources for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Windows UI ライブラリ (WinUI 3) に基づくアプリの文字列と条件リソースを格納するためのファイル。</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.Resw.WTS.local</TemplateID>

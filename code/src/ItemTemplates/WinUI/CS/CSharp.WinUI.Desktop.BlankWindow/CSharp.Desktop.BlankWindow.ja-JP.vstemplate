@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>BlankWindow.xaml</DefaultName>
     <Name>Blank Window (WinUI 3 in Desktop; local)</Name>
-    <Description>A blank window for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Windows UI ライブラリ (WinUI 3) に基づくデスクトップ アプリの空白ウィンドウ。</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.Desktop.BlankWindow.WTS.local</TemplateID>

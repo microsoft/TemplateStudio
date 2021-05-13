@@ -4,7 +4,7 @@
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
     <Name>App (WinUI 3 in Desktop; local)</Name>
-    <Description>Windows Template Studio quickly builds a WinUI Desktop app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
+    <Description>Program Windows Template Studio szybko tworzy aplikację pulpitu WinUI, korzystając z interfejsu użytkownika opartego na kreatorze, aby przekształcić twoje potrzeby w podstawę wzorców i najlepszych rozwiązań systemu Windows 10.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <SortOrder>10</SortOrder>
