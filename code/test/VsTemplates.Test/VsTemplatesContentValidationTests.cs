@@ -13,28 +13,28 @@ namespace VsTemplates.Test
     [Trait("ExecutionSet", "_Full")]
     public class VsTemplatesContentValidationTests
     {
-        private const string ItemTemplatesRoot = "../../../../src/ItemTemplates";
-        private const string ProjectTemplatesRoot = "../../../../src/ProjectTemplates";
+        private const string ItemTemplatesRoot = "../../../../../src/ItemTemplates";
+        private const string ProjectTemplatesRoot = "../../../../../src/ProjectTemplates";
         private const string VsTemplateFileExtension = ".vstemplate";
 
-        public static IEnumerable<object[]> GetAllTemplateFiles()
+        public static IEnumerable<object[]> GetAllVsTemplateFiles()
         {
             var vsTemplatesPaths = new List<string>();
-            var vsItemTemplatesPaths = GetAllItemTemplateFiles();
-            var vsProjectTemplatesPaths = GetAllProjectTemplateFiles();
+            var vsItemTemplatesPaths = GetAllVsItemTemplateFiles();
+            var vsProjectTemplatesPaths = GetAllVsProjectTemplateFiles();
             vsTemplatesPaths.AddRange(vsItemTemplatesPaths);
             vsTemplatesPaths.AddRange(vsProjectTemplatesPaths);
             return vsTemplatesPaths.Select(p => new object[] { p });
         }
 
-        private static IEnumerable<string> GetAllItemTemplateFiles()
+        private static IEnumerable<string> GetAllVsItemTemplateFiles()
         {
             var filePaths = GetFilesFromPath(ItemTemplatesRoot);
             var vsItemTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
             return vsItemTemplatesPaths;
         }
 
-        private static IEnumerable<string> GetAllProjectTemplateFiles()
+        private static IEnumerable<string> GetAllVsProjectTemplateFiles()
         {
             var filePaths = GetFilesFromPath(ProjectTemplatesRoot);
             var vsProjectTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
@@ -58,11 +58,20 @@ namespace VsTemplates.Test
         }
 
         [Theory]
-        [MemberData(nameof(GetAllTemplateFiles))]
+        [MemberData(nameof(GetAllVsTemplateFiles))]
         public void VerifyTemplateId(string filePath)
         {
             var result = VsTemplateValidator.VerifyTemplateId(filePath);
             Assert.True(result.Success, $"{filePath}: " + result.Message);
         }
+
+        [Theory]
+        [MemberData(nameof(GetAllVsTemplateFiles))]
+        public void VerifyTemplateNames(string filePath)
+        {
+            var result = VsTemplateValidator.VerifyTemplateName(filePath);
+            Assert.True(result.Success, $"{filePath}: " + result.Message);
+        }
+
     }
 }
