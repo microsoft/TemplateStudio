@@ -1,0 +1,8 @@
+﻿[
+    {
+        "name": "MSIX Packaging",
+        "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
+        "readonly": "true",
+        "projecttype": "Blank"
+    }
+]

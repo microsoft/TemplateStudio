@@ -1,0 +1,1 @@
+﻿La page des paramètres est la page où nous vous recommandons de saisir les paramètres de configuration de votre application, tels que la définition d'un thème sombre ou clair. Celle-ci peut également inclure des licences, un numéro de version ou votre politique de confidentialité.

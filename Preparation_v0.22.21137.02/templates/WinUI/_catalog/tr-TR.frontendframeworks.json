@@ -1,0 +1,12 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Modern, hızlı, modüler bir MVVM kütüphanesi ve Windows Topluluk Araç Seti'nin bir parçası."
+  },
+  {
+    "name": "None",
+    "displayName": "None",
+    "summary": "Çerçeve veya klasör yapısı oluşturma yok. Uygulamayı çalıştırmak için sadece minimum kod oluşturulur."
+  }
+]
