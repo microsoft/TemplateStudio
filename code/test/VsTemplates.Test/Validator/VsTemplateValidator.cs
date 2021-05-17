@@ -9,12 +9,12 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyTemplateId(string filePath)
         {
             var success = false;
-            string message = "TemplateID not defined or defined more than once";
+            var message = "TemplateID not defined or defined more than once";
 
-            var xml = new XmlDocument();
-            xml.Load(filePath);
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
             
-            var templateIdNodes = xml.GetElementsByTagName("TemplateID");
+            var templateIdNodes = xmlDoc.GetElementsByTagName("TemplateID");
             if (templateIdNodes.Count == 1)
             {
                 var templateId = templateIdNodes.Item(0)?.InnerText;
@@ -35,12 +35,12 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyTemplateName(string filePath)
         {
             var success = false;
-            string message = "Name not defined or defined more than once";
+            var message = "Name not defined or defined more than once";
 
-            var xml = new XmlDocument();
-            xml.Load(filePath);
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
 
-            var templateIdNodes = xml.GetElementsByTagName("Name");
+            var templateIdNodes = xmlDoc.GetElementsByTagName("Name");
             if (templateIdNodes.Count == 1)
             {
                 var templateId = templateIdNodes.Item(0)?.InnerText;
@@ -61,12 +61,12 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyProjectTemplatesIncludeWtsTag(string filePath)
         {
             var success = false;
-            string message = "ProjectTypeTag not defined";
+            var message = "ProjectTypeTag not defined";
 
-            var xml = new XmlDocument();
-            xml.Load(filePath);
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
 
-            var templateIdNodes = xml.GetElementsByTagName("ProjectTypeTag");
+            var templateIdNodes = xmlDoc.GetElementsByTagName("ProjectTypeTag");
 
             if (templateIdNodes.Count > 0)
             {
@@ -80,6 +80,28 @@ namespace VsTemplates.Test.Validator
                 }
             }
             
+            return new VerifierResultTestModel(success, message);
+        }
+
+        public static VerifierResultTestModel VerifyWizardProjectTemplatesIncludePlatformTag(string filePath)
+        {
+            var success = false;
+            string message = "CustomParameter $wts.platform$ not defined";
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
+
+            var templateIdNodes = xmlDoc.GetElementsByTagName("CustomParameter");
+            var list = templateIdNodes.Cast<XmlNode>().Where(n => n.Attributes.Cast<XmlAttribute>().Any(a => a.Name == "Name" && a.InnerText == "$wts.platform$"));
+            if (list.Count() == 1)
+            {
+                success = true;
+            }
+            else if (list.Count() > 1)
+            {
+                message = "CustomParameter $wts.platform$ defined more than once";
+            }
+
             return new VerifierResultTestModel(success, message);
         }
     }

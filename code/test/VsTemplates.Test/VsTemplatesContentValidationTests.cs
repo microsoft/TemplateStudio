@@ -16,6 +16,27 @@ namespace VsTemplates.Test
         private const string ItemTemplatesRoot = "../../../../../src/ItemTemplates";
         private const string ProjectTemplatesRoot = "../../../../../src/ProjectTemplates";
         private const string VsTemplateFileExtension = ".vstemplate";
+        private static readonly List<string> WizardProjectTemplatesRoot = new List<string>
+        {
+            "../../../../../src/ProjectTemplates/UWP",
+            "../../../../../src/ProjectTemplates/WPF",
+            "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.Desktop.Solution",
+            "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.UWP.Solution",
+            "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Desktop.Solution",
+            "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Uwp.Solution"
+        };
+
+        public static IEnumerable<object[]> GetWizardProjectTemplateFiles()
+        {
+            var vsTemplatesPaths = new List<object[]>();
+            foreach (var path in WizardProjectTemplatesRoot)
+            {
+                var filePaths = GetFilesFromPath(path);
+                vsTemplatesPaths.AddRange(filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension)
+                    .Select(p => new object[] {p}));
+            }
+            return vsTemplatesPaths;
+        }
 
         public static IEnumerable<object[]> GetAllVsTemplateFiles()
         {
@@ -78,6 +99,14 @@ namespace VsTemplates.Test
         public void VerifyProjectTemplatesIncludeWtsTag(string filePath)
         {
             var result = VsTemplateValidator.VerifyProjectTemplatesIncludeWtsTag(filePath);
+            Assert.True(result.Success, $"{filePath}: " + result.Message);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetWizardProjectTemplateFiles))]
+        public void VerifyWizardProjectTemplatesIncludePlatformTag(string filePath)
+        {
+            var result = VsTemplateValidator.VerifyWizardProjectTemplatesIncludePlatformTag(filePath);
             Assert.True(result.Success, $"{filePath}: " + result.Message);
         }
     }
