@@ -4,17 +4,17 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.AddClickMeButton",
-  "shortName": "wts.WinUI.Page.AddClickMeButton",
-  "identity": "wts.WinUI.Page.AddClickMeButton",
+  "name": "wts.WinUI.Page.UWP.AddClickMeButton.Cpp",
+  "shortName": "wts.WinUI.Page.UWP.AddClickMeButton.Cpp",
+  "identity": "wts.WinUI.Page.UWP.AddClickMeButton.Cpp",
     "tags": {
-    "language": "C#",
+    "language": "C++",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "WinUI",
     "wts.appmodel": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype == Blank & groupidentity == wts.WinUI.Page.Blank & $ishomepage == true"
+    "wts.compositionFilter": "$projecttype == Blank & groupidentity == wts.WinUI.Page.Blank.Cpp & $ishomepage == true"
   },
   "sourceName": "wts.ItemName",
   "symbols": {
