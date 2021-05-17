@@ -38,6 +38,16 @@ namespace VsTemplates.Test
             return vsTemplatesPaths;
         }
 
+        public static IEnumerable<object[]> GetAllVsTemplatePaths()
+        {
+            var vsTemplatesPaths = new List<object[]>();
+            var vsItemTemplatesPaths = GetAllVsTemplatePaths(ItemTemplatesRoot).Select(p => new object[] { p });
+            var vsProjectTemplatesPaths = GetAllVsTemplatePaths(ProjectTemplatesRoot).Select(p => new object[] { p });
+            vsTemplatesPaths.AddRange(vsItemTemplatesPaths);
+            vsTemplatesPaths.AddRange(vsProjectTemplatesPaths);
+            return vsTemplatesPaths;
+        }
+
         public static IEnumerable<object[]> GetAllVsTemplateFiles()
         {
             var vsTemplatesPaths = new List<object[]>();
@@ -62,8 +72,31 @@ namespace VsTemplates.Test
             return vsItemTemplatesPaths.Select(p => new object[] { p });
         }
 
+        private static IEnumerable<string> GetAllVsTemplatePaths(string directory)
+        {
+            foreach (var dir in Directory.GetDirectories(directory))
+            {
+                if (Directory.GetFiles(dir).Any(f => Path.GetExtension(f) == VsTemplateFileExtension))
+                {
+                    yield return dir;
+                }
+                else
+                {
+                    foreach (var subDir in GetAllVsTemplatePaths(dir))
+                    {
+                        yield return subDir;
+                    }
+                }
+            }
+        }
+
         private static IEnumerable<string> GetFilesFromPath(string directory)
         {
+            foreach (var file in Directory.GetFiles(directory))
+            {
+                yield return file;
+            }
+
             foreach (var dir in Directory.GetDirectories(directory))
             {
                 foreach (var file in Directory.GetFiles(dir))
@@ -107,6 +140,15 @@ namespace VsTemplates.Test
         public void VerifyWizardProjectTemplatesIncludePlatformTag(string filePath)
         {
             var result = VsTemplateValidator.VerifyWizardProjectTemplatesIncludePlatformTag(filePath);
+            Assert.True(result.Success, $"{filePath}: " + result.Message);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllVsTemplatePaths))]
+        public void VerifyAllLocalizedTemplatesHaveSameDefinition(string filePath)
+        {
+            var pathFiles = GetFilesFromPath(filePath).Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
+            var result = VsTemplateValidator.VerifyAllLocalizedTemplatesHaveSameDefinition(pathFiles);
             Assert.True(result.Success, $"{filePath}: " + result.Message);
         }
     }

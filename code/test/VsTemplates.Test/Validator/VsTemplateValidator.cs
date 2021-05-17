@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml;
 using VsTemplates.Test.Models;
 
@@ -86,7 +88,7 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyWizardProjectTemplatesIncludePlatformTag(string filePath)
         {
             var success = false;
-            string message = "CustomParameter $wts.platform$ not defined";
+            var message = "CustomParameter $wts.platform$ not defined";
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(filePath);
@@ -100,6 +102,44 @@ namespace VsTemplates.Test.Validator
             else if (list.Count() > 1)
             {
                 message = "CustomParameter $wts.platform$ defined more than once";
+            }
+
+            return new VerifierResultTestModel(success, message);
+        }
+
+        public static VerifierResultTestModel VerifyAllLocalizedTemplatesHaveSameDefinition(IEnumerable<string> filePaths)
+        {
+            var success = true;
+            var message = string.Empty;
+            var rootFile = filePaths.First(p => p.Length == filePaths.Min(f => f.Length)) ;
+            var rootFileLines = File.ReadAllLines(rootFile);
+            foreach (var filePath in filePaths.Where(f => f != rootFile))
+            {
+                var fileLines = File.ReadAllLines(filePath);
+                if (rootFileLines.Length == fileLines.Length)
+                {
+                    for (var i = 0; i < rootFileLines.Length; i++)
+                    {
+                        var rootFileLine = rootFileLines.ElementAt(i);
+                        var fileLine = fileLines.ElementAt(i);
+                        if (rootFileLine != fileLine && !rootFileLine.Contains("<Description>") && !fileLine.Contains("<Description>"))
+                        {
+                            success = false;
+                            message = $"File {Path.GetFileName(filePath)} not match file {Path.GetFileName(rootFile)}, line: {rootFileLine}";
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    success = false;
+                    message = $"File {Path.GetFileName(filePath)} ({fileLines.Length}) not match lines count {Path.GetFileName(rootFile)} ({rootFileLines.Length})";
+                }
+
+                if (!success)
+                {
+                    break;
+                }
             }
 
             return new VerifierResultTestModel(success, message);
