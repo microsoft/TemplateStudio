@@ -6,7 +6,7 @@
   ],
   "name": "Blank",
   "shortName": "Blank",
-  "identity": "wts.WinUI.Page.Blank.Cpp",
+  "identity": "wts.WinUI.Page.Blank.UWP.Cpp",
   "groupIdentity": "wts.WinUI.Page.Blank.Cpp",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
   "tags": {

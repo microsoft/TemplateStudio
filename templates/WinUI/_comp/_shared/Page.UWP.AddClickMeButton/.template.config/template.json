@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.AddClickMeButton",
-  "shortName": "wts.WinUI.Page.AddClickMeButton",
-  "identity": "wts.WinUI.Page.AddClickMeButton",
+  "name": "wts.WinUI.Page.UWP.AddClickMeButton",
+  "shortName": "wts.WinUI.Page.UWP.AddClickMeButton",
+  "identity": "wts.WinUI.Page.UWP.AddClickMeButton",
     "tags": {
     "language": "C#",
     "type": "item",
