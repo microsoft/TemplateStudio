@@ -1,3 +1,0 @@
-﻿La page Vue web intègre une vue de votre application qui fournit un rendu du contenu Web à l'aide du moteur de rendu Microsoft Edge. Des hyperliens peuvent également apparaître et fonctionner dans une commande de vue web.  Vous pouvez utiliser la commande de vue Web pour afficher des contenus HTML richement formatés à partir d'un serveur Web distant, du code généré dynamiquement ou des fichiers de contenu dans le package de votre application. Le contenu enrichi peut également contenir du code de script et communiquer entre le script et le code de votre application.
-
-[La commande de vue Web est-elle faite pour vous ?](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

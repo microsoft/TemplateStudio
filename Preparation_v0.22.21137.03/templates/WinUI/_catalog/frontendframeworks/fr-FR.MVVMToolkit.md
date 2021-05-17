@@ -1,7 +1,0 @@
-﻿Le package Microsoft.Toolkit.Mvvm est une bibliothèque MVVM moderne, rapide et modulaire. Il fait partie de la boîte à outils de la communauté Windows.
-
-Ce paquet peut être utilisé sur n’importe quelle plate-forme d’application : UWP, WinForms, WPF, Xamarin, Uno, et plus encore ; et sur n’importe quel temps d’exécution : .NET Native, .NET Core, .NET Framework ou Mono. La surface API est identique dans tous les cas, ce qui la rend parfaite pour la construction de bibliothèques partagées.
-
-Le paquet contient une collection de types standard, autonome et léger qui fournissent une implémentation de démarrage pour la construction d’applications modernes en utilisant le modèle MVVM. Ces types seuls sont généralement suffisants pour de nombreux utilisateurs de construire des applications sans avoir besoin de références externes supplémentaires.
-
-Ce paquet vise à offrir une flexibilité sur les composants à utiliser. Tous les types sont vaguement couplés, de sorte qu’il est seulement nécessaire d’inclure ce que vous utilisez. Il n’est pas nécessaire d’aller « all-in » avec une série spécifique d’API globales, ni il n’y a un ensemble de modèles obligatoires qui doivent être suivies lors de la création d’applications en utilisant ces aides. Combinez ces éléments constitutifs d’une manière qui répond le mieux à vos besoins.

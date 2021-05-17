@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleData przechowuje przykładowe dane używane przez wygenerowane wersje niektórych stron.",
-  "identity": "wts.WinUI.Feat.SampleData"
-}

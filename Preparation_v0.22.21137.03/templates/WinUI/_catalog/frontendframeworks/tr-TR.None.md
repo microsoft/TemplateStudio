@@ -1,1 +1,0 @@
-﻿"None", önceden seçilmiş bir tasarım deseni olmadığını açıklayan bir terimdir. Uygulamayı çalıştırmak için sadece minimum kod oluşturulur. Kod oluşturulduktan sonra kendi klasör yapınızı oluşturabilir ve herhangi bir tasarım deseni ekleyebilirsiniz.

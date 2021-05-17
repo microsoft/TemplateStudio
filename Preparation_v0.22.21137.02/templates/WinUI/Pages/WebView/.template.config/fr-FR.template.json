@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "La page Vue web intègre un rendu du contenu Web à l'aide du moteur de rendu Microsoft Edge.",
-  "identity": "wts.WinUI.Page.WebView"
-}

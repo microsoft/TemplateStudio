@@ -1,1 +1,0 @@
-﻿"None" ist ein Begriff, um zu beschreiben, dass kein Entwurfsmuster vorgewählt ist. Es wird nur der minimale Code generiert, um die App zum Laufen zu bringen. Sie können eine eigene Ordnerstruktur erstellen und ein beliebiges Entwurfsmuster hinzufügen, sobald der Code generiert wurde.

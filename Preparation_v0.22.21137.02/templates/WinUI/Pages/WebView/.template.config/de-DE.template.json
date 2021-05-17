@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "Die Webansichtseite rendert Webinhalte mittels des Microsoft Edge-Renderingmoduls.",
-  "identity": "wts.WinUI.Page.WebView"
-}

@@ -1,3 +1,0 @@
-﻿Strona widoku sieci Web pozwala wyświetlić w aplikacji treści internetowe za pomocą aparatu renderowania programu Microsoft Edge. Hiperłącza mogą być również wyświetlane i funkcjonują w kontrolce widoku sieci Web.  Można używać kontrolki widoku sieci Web do wyświetlania treści w zaawansowanym formacie HTML ze zdalnego serwera sieci Web, za pomocą dynamicznie generowanego kodu lub plików zawartości w pakiecie aplikacji. Zawartość sformatowana może również zawierać kod skryptu i zapewniać komunikację między skryptem a kodem aplikacji.
-
-[Czy kontrolka widoku sieci Web to rozwiązanie odpowiednie dla Ciebie?](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)
