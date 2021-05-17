@@ -19,26 +19,26 @@ namespace VsTemplates.Test
 
         public static IEnumerable<object[]> GetAllVsTemplateFiles()
         {
-            var vsTemplatesPaths = new List<string>();
+            var vsTemplatesPaths = new List<object[]>();
             var vsItemTemplatesPaths = GetAllVsItemTemplateFiles();
             var vsProjectTemplatesPaths = GetAllVsProjectTemplateFiles();
             vsTemplatesPaths.AddRange(vsItemTemplatesPaths);
             vsTemplatesPaths.AddRange(vsProjectTemplatesPaths);
-            return vsTemplatesPaths.Select(p => new object[] { p });
+            return vsTemplatesPaths;
         }
 
-        private static IEnumerable<string> GetAllVsItemTemplateFiles()
-        {
-            var filePaths = GetFilesFromPath(ItemTemplatesRoot);
-            var vsItemTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
-            return vsItemTemplatesPaths;
-        }
-
-        private static IEnumerable<string> GetAllVsProjectTemplateFiles()
+        public static IEnumerable<object[]> GetAllVsProjectTemplateFiles()
         {
             var filePaths = GetFilesFromPath(ProjectTemplatesRoot);
             var vsProjectTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
-            return vsProjectTemplatesPaths;
+            return vsProjectTemplatesPaths.Select(p => new object[] { p });
+        }
+
+        private static IEnumerable<object[]> GetAllVsItemTemplateFiles()
+        {
+            var filePaths = GetFilesFromPath(ItemTemplatesRoot);
+            var vsItemTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
+            return vsItemTemplatesPaths.Select(p => new object[] { p });
         }
 
         private static IEnumerable<string> GetFilesFromPath(string directory)
@@ -73,5 +73,12 @@ namespace VsTemplates.Test
             Assert.True(result.Success, $"{filePath}: " + result.Message);
         }
 
+        [Theory]
+        [MemberData(nameof(GetAllVsProjectTemplateFiles))]
+        public void VerifyProjectTemplatesIncludeWtsTag(string filePath)
+        {
+            var result = VsTemplateValidator.VerifyProjectTemplatesIncludeWtsTag(filePath);
+            Assert.True(result.Success, $"{filePath}: " + result.Message);
+        }
     }
 }

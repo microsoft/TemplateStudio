@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Linq;
+using System.Xml;
 using VsTemplates.Test.Models;
 
 namespace VsTemplates.Test.Validator
@@ -54,6 +55,31 @@ namespace VsTemplates.Test.Validator
                 }
             }
 
+            return new VerifierResultTestModel(success, message);
+        }
+
+        public static VerifierResultTestModel VerifyProjectTemplatesIncludeWtsTag(string filePath)
+        {
+            var success = false;
+            string message = "ProjectTypeTag not defined";
+
+            var xml = new XmlDocument();
+            xml.Load(filePath);
+
+            var templateIdNodes = xml.GetElementsByTagName("ProjectTypeTag");
+
+            if (templateIdNodes.Count > 0)
+            {
+                if (templateIdNodes.Cast<XmlNode>().Any(n => n.InnerText == "Windows Template Studio"))
+                {
+                    success = true;
+                }
+                else
+                {
+                    message = "ProjectTypeTag does not incude -Windows Template Studio-";
+                }
+            }
+            
             return new VerifierResultTestModel(success, message);
         }
     }
