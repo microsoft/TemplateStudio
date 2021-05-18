@@ -3,13 +3,13 @@
     <Metadata>
         <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
         <DisplayName>WTS (local)</DisplayName>
-        <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP and WPF apps using a wizard-based UI.</Description>
+        <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP, WPF and WinUI 3 in Desktop apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
         <License>Content\EULA.rtf</License>
         <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/readme.md</GettingStartedGuide>
         <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
         <Icon>Resources\windowsTemplateStudio_Logo_90x90.png</Icon>
-        <Tags>Windows Template Studio UWP XAML MVVM WPF</Tags>
+        <Tags>Windows Template Studio UWP XAML MVVM WPF WinUI3</Tags>
     </Metadata>
     <Installation AllUsers="true">
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.2,17.0)" />
@@ -30,5 +30,21 @@
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Colors\WindowsTemplateStudioColors.pkgdef" d:VsixSubPath="Colors" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Utilities" Path="|Utilities|" AssemblyName="|Utilities;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WPF.Solution" d:TargetPath="|CSharp.WPF.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.Desktop.Solution" d:TargetPath="|Cpp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.Solution" d:TargetPath="|CSharp.WinUI.Desktop.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.BlankPage" d:TargetPath="|CSharp.WinUI.BlankPage;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.BlankWindow" d:TargetPath="|CSharp.WinUI.Desktop.BlankWindow;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.ResourceDictionary" d:TargetPath="|CSharp.WinUI.ResourceDictionary;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Resw" d:TargetPath="|CSharp.WinUI.Resw;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.TemplatedControl" d:TargetPath="|CSharp.WinUI.TemplatedControl;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.UserControl" d:TargetPath="|CSharp.WinUI.UserControl;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.BlankPage" d:TargetPath="|Cpp.WinUI.BlankPage;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.Desktop.BlankWindow" d:TargetPath="|Cpp.WinUI.Desktop.BlankWindow;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.ResourceDictionary" d:TargetPath="|Cpp.WinUI.ResourceDictionary;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.Resw" d:TargetPath="|Cpp.WinUI.Resw;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.TemplatedControl" d:TargetPath="|Cpp.WinUI.TemplatedControl;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.UserControl" d:TargetPath="|Cpp.WinUI.UserControl;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Cpp.WinUI.RuntimeComponent" d:TargetPath="|Cpp.WinUI.RuntimeComponent;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.ClassLibrary" d:TargetPath="|CSharp.WinUI.Desktop.ClassLibrary;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     </Assets>
 </PackageManifest>

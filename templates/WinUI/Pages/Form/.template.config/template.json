@@ -20,6 +20,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "7",
     "wts.genGroup": "0",
+    "wts.isHidden": "true",
     "wts.rightClickEnabled":"true",
     "wts.outputToParent": "true",
     "wts.dependencies":"wts.WinUI.Feat.SampleData"
@@ -31,13 +32,13 @@
       "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
     },
     {
-      "path": "Param_ProjectName/Helpers/ObservableValidator.cs"
-    },
-    {
       "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
     },
     {
       "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName.Core/Models/SampleSymbol.cs"
     }
   ],
   "symbols": {

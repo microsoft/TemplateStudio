@@ -1,4 +1,4 @@
-﻿{ 
+﻿{
     "regexs" : [
       {
         "name": "projectStartWith$",
@@ -6,8 +6,6 @@
       }
     ],
     "reservedNames" : [
-        "Prism",
-        "MVVMLight"
     ],
     "validateEmptyNames": true
 }

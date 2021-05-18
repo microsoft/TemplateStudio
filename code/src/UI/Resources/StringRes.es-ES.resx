@@ -895,10 +895,10 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>New WinUI3 Desktop app</value>
+    <value>Nueva aplicación WinUI3 Desktop</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>New WinUI3 UWP app</value>
+    <value>Nueva aplicación WinUI3 UWP</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
@@ -917,5 +917,11 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
     <value>{0} creación de proyectos requiere {1} de versión o superior de Visual Studio 2019.</value>
     <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximizar</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restaurar</value>
   </data>
 </root>

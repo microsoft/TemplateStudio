@@ -44,6 +44,7 @@ namespace Localization
 
             Execute(VerifyVsix, "Verifying vsix");
             Execute(VerifyProjectTemplates, "Verifying project templates");
+            Execute(VerifyItemTemplates, "Verifying item templates");
             Execute(VerifyCommandTemplates, "Verifying command templates");
             Execute(VerifyTemplatePages, "Verifying template pages");
             Execute(VerifyTemplateFeatures, "Verifying template features");
@@ -64,14 +65,12 @@ namespace Localization
 
         private void VerifyProjectTemplates()
         {
-            VerifyFile(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileCSUwp);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCSUwp, Routes.ProjectTemplateFileNamePatternCSUwp);
+            VerifyVisualStudioTemplate(Routes.VSProjectTemplatePaths);
+        }
 
-            VerifyFile(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileCSWpf);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathCSWpf, Routes.ProjectTemplateFileNamePatternCSWpf);
-
-            VerifyFile(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileVBUwp);
-            VerifyFilesByCulture(Routes.ProjectTemplatePathVBUwp, Routes.ProjectTemplateFileNamePatternVBUwp);
+        private void VerifyItemTemplates()
+        {
+            VerifyVisualStudioTemplate(Routes.VSItemTemplatePaths);
         }
 
         private void VerifyCommandTemplates()
@@ -119,6 +118,18 @@ namespace Localization
                 VerifyFile(directory, Routes.ResourcesFilePath);
                 VerifyFilesByCulture(directory, Routes.ResourcesFilePathPattern);
                 VerifyResourceContent(directory, Routes.ResourcesFilePath);
+            }
+        }
+
+        private void VerifyVisualStudioTemplate((string Path, string FileName, string FileNamePattern)[] templates)
+        {
+            foreach (var template in templates)
+            {
+                VerifyFile(template.Path, template.FileName);
+                if (!string.IsNullOrEmpty(template.FileNamePattern))
+                {
+                    VerifyFilesByCulture(template.Path, template.FileNamePattern);
+                }
             }
         }
 

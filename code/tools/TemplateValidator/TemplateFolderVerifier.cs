@@ -18,7 +18,7 @@ namespace TemplateValidator
     {
         private static string[] excludedPrimaryOutputFiles = new string[]
         {
-            @"\WinUI\Pages\Blank.Cpp\wts.ItemNamePage.idl",
+            @"\WinUI\Pages\Blank.UWP.Cpp\wts.ItemNamePage.idl",
         };
 
         public static VerifierResult VerifyTemplateFolders(bool showWarnings, params string[] templateFolders)
@@ -168,7 +168,7 @@ namespace TemplateValidator
                             if (template.GetTemplateOutputType() == TemplateOutputType.Item)
                             {
                                 // Use of FileInfo and Path to handle comparison of relative and exact paths
-                                if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName && !excludedPrimaryOutputFiles.Any(f => file.FullName.EndsWith(f))))
+                                if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName && !excludedPrimaryOutputFiles.Any(f => file.FullName.EndsWith(f, StringComparison.Ordinal))))
                                 {
                                     results.Add($"'{file.FullName}' is not used in the template.");
                                 }

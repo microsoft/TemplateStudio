@@ -35,7 +35,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,6 +65,71 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.zh-TW.vstemplate">
+      <Culture>1028</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.it-IT.vstemplate">
+      <Culture>1040</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.ja-JP.vstemplate">
+      <Culture>1041</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.ko-KR.vstemplate">
+      <Culture>1042</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.pl-PL.vstemplate">
+      <Culture>1045</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.pt-BR.vstemplate">
+      <Culture>1046</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.ru-RU.vstemplate">
+      <Culture>1049</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.tr-TR.vstemplate">
+      <Culture>1055</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.zh-CN.vstemplate">
+      <Culture>2052</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.cs-CZ.vstemplate">
+      <Culture>1029</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.de-DE.vstemplate">
+      <Culture>1031</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.es-ES.vstemplate">
+      <Culture>3082</Culture>
+    </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="CSharp.WinUI.Desktop.ClassLibrary.fr-FR.vstemplate">
+      <Culture>1036</Culture>
+    </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -446,7 +446,7 @@ namespace Microsoft.Templates.Test
                 noClickCount = 2;
             }
 
-            var longPause = page.EndsWith(".WebView") || page.EndsWith(".MediaPlayer");
+            var longPause = page.EndsWith(".WebView", StringComparison.Ordinal) || page.EndsWith(".MediaPlayer", StringComparison.Ordinal);
 
             var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount, longPause);
 

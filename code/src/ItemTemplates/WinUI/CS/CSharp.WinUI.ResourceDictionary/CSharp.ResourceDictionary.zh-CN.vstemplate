@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <DefaultName>ResourceDictionary.xaml</DefaultName>
+    <Name>Resource Dictionary (WinUI 3; local)</Name>
+    <Description>基于 Windows UI 库 （WinUI 3） 的基于 XAML 资源的空密钥集合。</Description>
+    <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateID>CSharp.WinUI.ResourceDictionary.WTS.local</TemplateID>
+    <TemplateGroupID>WinRT-Managed-UAP</TemplateGroupID>
+    <AppliesTo>CSharp + SharedAssetsProject</AppliesTo>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <ShowByDefault>true</ShowByDefault>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <AppIdFilter>blend</AppIdFilter>
+    <LanguageTag>csharp</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>uwp</ProjectTypeTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectItem OpenInEditor="true" ReplaceParameters="true" ItemType="Page" CustomTool="MSBuild:Compile" TargetFileName="$fileinputname$.xaml">ResourceDictionary.xaml</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

@@ -64,6 +64,6 @@
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" />
+        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </Window>

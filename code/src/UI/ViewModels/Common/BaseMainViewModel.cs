@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public static BaseMainViewModel BaseInstance { get; private set; }
 
-        protected Window MainView { get; private set; }
+        public Window MainView { get; private set; }
 
         public UserSelectionContext Context { get; private set; }
 

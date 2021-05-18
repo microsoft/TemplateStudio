@@ -1,3 +1,3 @@
-﻿The list/details pattern has a list pane (usually with a list view) and a details pane for content. When an item in the list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿O padrão lista/detalhes tem um painel de lista (geralmente com uma exibição de lista) e um painel de detalhes para conteúdo. Quando um item da lista é selecionado, o painel de detalhes é atualizado. Este padrão é frequentemente usado para livros de e-mail e endereços.
 
-More information about the list/details pattern can be found at [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).
+Mais informações sobre o padrão lista/detalhes podem ser encontradas em [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

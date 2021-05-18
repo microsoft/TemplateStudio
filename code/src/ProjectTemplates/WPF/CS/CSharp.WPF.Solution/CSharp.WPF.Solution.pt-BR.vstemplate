@@ -16,6 +16,7 @@
     <LanguageTag>csharp</LanguageTag>
     <PlatformTag>windows</PlatformTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Windows Template Studio</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>

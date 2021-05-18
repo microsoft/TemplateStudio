@@ -1,0 +1,1 @@
+﻿"None" est un terme pour décrire qu’il n’y a pas de modèle de conception présélectionnés. Juste le code minimum est généré pour faire fonctionner l’application. Vous pouvez construire votre propre structure de dossier et ajouter n’importe quel modèle de conception une fois que le code est généré.

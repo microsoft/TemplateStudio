@@ -2,11 +2,11 @@
   {
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
-    "summary": ""
+    "summary": "最新の高速なモジュール式の MVVM ライブラリと、Windows コミュニティ ツールキットの一部。"
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "これは、ロジックが code-behind で処理されるアプリケーションの従来型のモデルです。"
+    "name": "None",
+    "displayName": "None",
+    "summary": "フレームワークまたはフォルダー構造の生成はありません。アプリを実行するために最低限のコードが生成されます。"
   }
 ]

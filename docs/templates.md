@@ -30,14 +30,7 @@ The [Templates Repository](../templates) has the following structure:
   - [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
   - [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
-- [WPF](_templates/WPF): this folder contains all templates used for UWP platform projects
-  - [_catalog](../templates/WPF/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. 
-  - [_comp](../templates/WPF/_comp): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
-  - [Projects](../templates/WPF/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
-  - [Pages](../templates/WPF/Pages): Page templates define the source files needed to create a page of a certain type.
-  - [Features](../templates/WPF/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
-  - [Services](../templates/WPF/Services): Service templates with the sources required to add different services to the target app.
-  - [Testing](../templates/WPF/Testing): Testing templates with the sources required to add testing projects to the target solution.
+This template repository structure is the same for [WPF templates](..templates/Wpf) and [WinUI 3 templates](..templates/WinUI).
 
 
 ## Supporting VB.Net and C# versions of Templates

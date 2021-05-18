@@ -33,6 +33,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private Visibility _isAddNewFeatureCommandVisible;
         private Visibility _isAddNewServiceCommandVisible;
         private Visibility _isAddNewTestingCommandVisible;
+        private const string BlankProjectType = "Blank";
 
         public string ProjectName { get; private set; }
 
@@ -191,7 +192,15 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private bool HasTemplates(TemplateType templateType)
-            => GenContext.ToolBox.Shell.GetActiveProjectIsWts() && GenContext.ToolBox.Repo.GetAll().Any(t => t.GetRightClickEnabled() && t.GetTemplateType() == templateType);
+        {
+            if (Platform == Platforms.WinUI && ProjectType == BlankProjectType)
+            {
+                return false;
+            }
+            return GenContext.ToolBox.Repo.GetAll().Any(t => t.GetRightClickEnabled() && t.GetTemplateType() == templateType);
+           
+        }
+            
 
         public void SetContext()
         {
