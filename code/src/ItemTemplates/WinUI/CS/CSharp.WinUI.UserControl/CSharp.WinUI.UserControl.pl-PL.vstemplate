@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>UserControl.xaml</DefaultName>
     <Name>User Control (WinUI 3; local)</Name>
-    <Description>A user control for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Kontrolka użytkownika dla aplikacji opartych na bibliotece interfejsu użytkownika systemu Windows (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.UserControl.WTS.local</TemplateID>

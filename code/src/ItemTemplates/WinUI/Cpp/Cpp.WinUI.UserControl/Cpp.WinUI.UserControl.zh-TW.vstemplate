@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>UserControl.xaml</DefaultName>
     <Name>User Control (WinUI 3; local)</Name>
-    <Description>A user control for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>基於 Windows UI 庫 （WinUI 3） 的應用的使用者控制。</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
     <TemplateID>Cpp.WinUI.UserControl.WTS.local</TemplateID>
@@ -29,9 +29,9 @@
   <WizardData>
     <packages>
       <package id="Microsoft.Windows.CppWinRT" version="2.0.210211.2" />
-      <package id="Microsoft.ProjectReunion" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.6" />
+      <package id="Microsoft.ProjectReunion" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.7" />
     </packages>
   </WizardData>
 </VSTemplate>

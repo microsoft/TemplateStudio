@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>Class Library (WinUI 3 in Desktop; local)</Name>
-    <Description>A project for creating a managed class library (.dll) for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Un proyecto para crear una biblioteca de clases administrada (.dll) para aplicaciones de escritorio basadas en la biblioteca de interfaz de usuario de Windows (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <TemplateID>Microsoft.CSharp.WinUI.Desktop.ClassLibrary.WTS.local</TemplateID>
     <TemplateGroupID>WinRT-Managed</TemplateGroupID>
@@ -27,9 +27,9 @@
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|AnyCPU">
     <CustomParameters>
-      <CustomParameter Name="$ReunionNupkgVersion$" Value="0.5.6" />
-      <CustomParameter Name="$ReunionFoundationNupkgVersion$" Value="0.5.6" />
-      <CustomParameter Name="$ReunionWinUINupkgVersion$" Value="0.5.6" />
+      <CustomParameter Name="$ReunionNupkgVersion$" Value="0.5.7" />
+      <CustomParameter Name="$ReunionFoundationNupkgVersion$" Value="0.5.7" />
+      <CustomParameter Name="$ReunionWinUINupkgVersion$" Value="0.5.7" />
     </CustomParameters>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>

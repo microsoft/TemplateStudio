@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>ResourceDictionary.xaml</DefaultName>
     <Name>Resource Dictionary (WinUI 3; local)</Name>
-    <Description>An empty, keyed collection of XAML resources for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Uma coleção vazia e baseada em chaves de recursos XAML para aplicativos com base na Biblioteca de Interface do Usuário do Windows (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cs_Logo.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <TemplateID>CSharp.WinUI.ResourceDictionary.WTS.local</TemplateID>

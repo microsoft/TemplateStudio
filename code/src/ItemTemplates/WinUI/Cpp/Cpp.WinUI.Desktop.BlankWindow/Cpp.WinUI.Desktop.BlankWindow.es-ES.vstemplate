@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>BlankWindow.xaml</DefaultName>
     <Name>Blank Window (WinUI 3 in Desktop; local)</Name>
-    <Description>A blank window for Desktop apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>Una ventana en blanco para aplicaciones de escritorio basadas en la biblioteca de interfaz de usuario de Windows (WinUI 3).</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
     <TemplateID>Cpp.WinUI.Desktop.BlankWindow.WTS.local</TemplateID>
@@ -28,9 +28,9 @@
   <WizardData>
     <packages>
       <package id="Microsoft.Windows.CppWinRT" version="2.0.210211.2" />
-      <package id="Microsoft.ProjectReunion" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.6" />
+      <package id="Microsoft.ProjectReunion" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.7" />
     </packages>
   </WizardData>
 </VSTemplate>

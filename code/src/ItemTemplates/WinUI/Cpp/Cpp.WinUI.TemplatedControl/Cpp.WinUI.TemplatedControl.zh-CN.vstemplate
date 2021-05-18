@@ -3,7 +3,7 @@
   <TemplateData>
     <DefaultName>CustomControl.cpp</DefaultName>
     <Name>Custom Control (WinUI 3; local)</Name>
-    <Description>A custom control for apps based on the Windows UI Library (WinUI 3).</Description>
+    <Description>基于 Windows UI 库（WinUI 3） 的应用自定义控制。</Description>
     <Icon>windowsTemplateStudio_cpp_Logo.ico</Icon>
     <ProjectType>VC</ProjectType>
     <TemplateID>Cpp.WinUI.TemplatedControl.WTS.local</TemplateID>
@@ -32,9 +32,9 @@
   <WizardData>
     <packages>
       <package id="Microsoft.Windows.CppWinRT" version="2.0.210211.2" />
-      <package id="Microsoft.ProjectReunion" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.6" />
-      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.6" />
+      <package id="Microsoft.ProjectReunion" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.Foundation" version="0.5.7" />
+      <package id="Microsoft.ProjectReunion.WinUI" version="0.5.7" />
     </packages>
   </WizardData>
 </VSTemplate>

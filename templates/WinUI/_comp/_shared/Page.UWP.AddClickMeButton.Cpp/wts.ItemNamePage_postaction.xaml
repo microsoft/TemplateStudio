@@ -1,0 +1,7 @@
+﻿<Page
+    <Grid>
+<!--{[{-->
+        <Button x:Name="myButton" HorizontalAlignment="Center" Click="myButton_Click">Click Me</Button>
+<!--}]}-->
+    </Grid>
+</Page>

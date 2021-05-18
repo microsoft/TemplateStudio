@@ -895,10 +895,10 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>New WinUI3 Desktop app</value>
+    <value>새로운 WinUI3 데스크톱 앱</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>New WinUI3 UWP app</value>
+    <value>새로운 WinUI3 UWP 응용 프로그램</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
@@ -912,16 +912,16 @@
     <comment>Error message for unable to open project overview dialog</comment>
   </data>
   <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>Select AppModel</value>
+    <value>앱모델 선택</value>
   </data>
   <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
     <value>{0} 프로젝트 제작에는 Visual Studio 2019 버전 {1} 이상이 필요합니다.</value>
     <comment>Error message for Invalid VS Version</comment>
   </data>
   <data name="ButtonMaximize" xml:space="preserve">
-    <value>Maximize</value>
+    <value>극대화</value>
   </data>
   <data name="ButtonRestore" xml:space="preserve">
-    <value>Restore</value>
+    <value>복원</value>
   </data>
 </root>

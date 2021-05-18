@@ -2,11 +2,11 @@
   {
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
-    "summary": ""
+    "summary": "Современная, быстрая, модульная библиотека MVVM и часть инструментария сообщества Windows."
   },
   {
     "name": "None",
     "displayName": "None",
-    "summary": "No framework or folder scaffolding. Just the minimum code is generated to get the app running."
+    "summary": "Нет генерации структуры фреймворка или папки. Просто минимальный код генерируется, чтобы получить приложение работает."
   }
 ]
