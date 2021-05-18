@@ -1,3 +1,7 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +27,7 @@ namespace VsTemplates.Test
             "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.Desktop.Solution",
             "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.UWP.Solution",
             "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Desktop.Solution",
-            "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Uwp.Solution"
+            "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Uwp.Solution",
         };
 
         public static IEnumerable<object[]> GetWizardProjectTemplateFiles()
@@ -33,8 +37,9 @@ namespace VsTemplates.Test
             {
                 var filePaths = GetFilesFromPath(path);
                 vsTemplatesPaths.AddRange(filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension)
-                    .Select(p => new object[] {p}));
+                    .Select(p => new object[] { p }));
             }
+
             return vsTemplatesPaths;
         }
 

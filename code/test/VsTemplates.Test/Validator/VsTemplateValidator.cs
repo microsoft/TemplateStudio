@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -15,14 +20,14 @@ namespace VsTemplates.Test.Validator
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(filePath);
-            
+
             var templateIdNodes = xmlDoc.GetElementsByTagName("TemplateID");
             if (templateIdNodes.Count == 1)
             {
                 var templateId = templateIdNodes.Item(0)?.InnerText;
                 if (!string.IsNullOrEmpty(templateId))
                 {
-                    success = templateId.EndsWith("WTS.local");
+                    success = templateId.EndsWith("WTS.local", StringComparison.InvariantCulture);
                     message = success ? string.Empty : "TemplateID not ends with WTS.local";
                 }
                 else
@@ -48,7 +53,7 @@ namespace VsTemplates.Test.Validator
                 var templateId = templateIdNodes.Item(0)?.InnerText;
                 if (!string.IsNullOrEmpty(templateId))
                 {
-                    success = templateId.EndsWith("; local)") || templateId.EndsWith("; local) PREVIEW");
+                    success = templateId.EndsWith("; local)", StringComparison.InvariantCulture) || templateId.EndsWith("; local) PREVIEW", StringComparison.InvariantCulture);
                     message = success ? string.Empty : "Template Name not ends with ; local)";
                 }
                 else
@@ -81,7 +86,7 @@ namespace VsTemplates.Test.Validator
                     message = "ProjectTypeTag does not incude -Windows Template Studio-";
                 }
             }
-            
+
             return new VerifierResultTestModel(success, message);
         }
 
@@ -111,7 +116,7 @@ namespace VsTemplates.Test.Validator
         {
             var success = true;
             var message = string.Empty;
-            var rootFile = filePaths.First(p => p.Length == filePaths.Min(f => f.Length)) ;
+            var rootFile = filePaths.First(p => p.Length == filePaths.Min(f => f.Length));
             var rootFileLines = File.ReadAllLines(rootFile);
             foreach (var filePath in filePaths.Where(f => f != rootFile))
             {
