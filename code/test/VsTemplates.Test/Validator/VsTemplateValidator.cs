@@ -28,7 +28,7 @@ namespace VsTemplates.Test.Validator
                 if (!string.IsNullOrEmpty(templateId))
                 {
                     success = templateId.EndsWith("WTS.local", StringComparison.InvariantCulture);
-                    message = success ? string.Empty : "TemplateID not ends with WTS.local";
+                    message = success ? string.Empty : "TemplateID does not end with WTS.local";
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace VsTemplates.Test.Validator
                 if (!string.IsNullOrEmpty(templateId))
                 {
                     success = templateId.EndsWith("; local)", StringComparison.InvariantCulture) || templateId.EndsWith("; local) PREVIEW", StringComparison.InvariantCulture);
-                    message = success ? string.Empty : "Template Name not ends with ; local)";
+                    message = success ? string.Empty : "Template Name does not end with ; local)";
                 }
                 else
                 {
