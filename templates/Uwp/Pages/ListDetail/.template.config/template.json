@@ -13,7 +13,6 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.telemName": "Master/Detail",
     "wts.projecttype": "all",
     "wts.frontendframework": "MVVMBasic|MVVMLight|MVVMToolkit",
     "wts.platform": "Uwp",
