@@ -43,7 +43,16 @@ namespace Microsoft.Templates.Test
 
         protected static string ShortLanguageName(string language)
         {
-            return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+            switch (language)
+            {
+                case ProgrammingLanguages.VisualBasic:
+                    return "VB";
+                case ProgrammingLanguages.Cpp:
+                    return "CPP";
+                case ProgrammingLanguages.CSharp:
+                default:
+                    return "CS";
+            }
         }
 
         // Used to create names that include a number of characters that are valid in project names but have the potential to cause issues
