@@ -104,10 +104,14 @@
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="VisualTests\AccessibilityTests.cs" />
     <Compile Include="VisualTests\WPF\AccessibilityTests.cs" />
+    <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
     <None Include="bat\WinUI\RestoreAndBuild.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\WinUI\RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="bat\Wpf\RestoreAndBuildAppx.bat">
