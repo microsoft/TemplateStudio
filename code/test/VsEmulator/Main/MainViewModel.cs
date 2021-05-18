@@ -497,7 +497,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(config.AppModel))
                 {
-                    SetCurrentPlatform(config.AppModel);
+                    SetCurrentAppModel(config.AppModel);
                 }
 
                 var context = new UserSelectionContext(language, config.Platform)

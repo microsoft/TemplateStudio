@@ -19,6 +19,7 @@ namespace Microsoft.Templates.UI.Services
         public const string MVVMBasic = "MVVMBasic";
         public const string MVVMLight = "MVVMLight";
         public const string CodeBehind = "CodeBehind";
+        public const string None = "None";
         public const string CaliburnMicro = "CaliburnMicro";
         public const string Prism = "Prism";
         public const string MvvmToolkit = "MVVMToolkit";
@@ -136,7 +137,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsWinUI()
         {
-            return ContainsNugetPackage("Microsoft.ProjectReunion.WinUI");
+            return ContainsNugetPackage("Microsoft.ProjectReunion");
         }
 
         private string InferProjectType(string platform)
@@ -178,6 +179,10 @@ namespace Microsoft.Templates.UI.Services
             else if (IsCodeBehind(platform))
             {
                 return CodeBehind;
+            }
+            else if (IsNone(platform))
+            {
+                return None;
             }
             else if (IsCaliburnMicro(platform))
             {
@@ -234,8 +239,8 @@ namespace Microsoft.Templates.UI.Services
                     return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu");
                 case Platforms.WinUI:
-                    return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
-                        && FileContainsLine("Views", "ShellWindow.xaml", "<NavigationView");
+                    return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                        && FileContainsLine("Views", "ShellPage.xaml", "<NavigationView");
                 default:
                     return false;
             }
@@ -364,26 +369,35 @@ namespace Microsoft.Templates.UI.Services
                     }
 
                     return false;
-                case Platforms.WinUI:
-                    if (IsCSharpProject())
-                    {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
-                        if (!string.IsNullOrEmpty(codebehindFile))
-                        {
-                            var fileContent = File.ReadAllText(codebehindFile);
-                            return !fileContent.Contains("ViewModel");
-                        }
-                    }
-
-                    if (IsCppProject())
-                    {
-                        return true;
-                    }
-
-                    return false;
-
                 default:
                     return false;
+            }
+        }
+
+        private bool IsNone(string platform)
+        {
+            if (platform == Platforms.WinUI)
+            {
+                if (IsCSharpProject())
+                {
+                    var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(codebehindFile))
+                    {
+                        var fileContent = File.ReadAllText(codebehindFile);
+                        return !fileContent.Contains("ViewModel");
+                    }
+                }
+
+                if (IsCppProject())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -481,7 +495,7 @@ namespace Microsoft.Templates.UI.Services
             var projfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in projfiles)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<packagereference include=\"{packageId.ToLowerInvariant()}"))
+                if (File.ReadAllText(file).IndexOf($"<packagereference include=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }
@@ -490,7 +504,7 @@ namespace Microsoft.Templates.UI.Services
             var configfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
             foreach (string file in configfiles)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"<package id=\"{packageId.ToLowerInvariant()}"))
+                if (File.ReadAllText(file).IndexOf($"<package id=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }
@@ -504,7 +518,7 @@ namespace Microsoft.Templates.UI.Services
             var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
-                if (File.ReadAllText(file).ToLowerInvariant().Contains($"sdk=\"{sdkId.ToLowerInvariant()}\""))
+                if (File.ReadAllText(file).IndexOf($"sdk=\"{sdkId}\"", StringComparison.OrdinalIgnoreCase) != -1)
                 {
                     return true;
                 }

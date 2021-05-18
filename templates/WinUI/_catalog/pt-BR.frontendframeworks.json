@@ -2,11 +2,11 @@
   {
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
-    "summary": ""
+    "summary": "Uma biblioteca MVVM moderna, rápida e modular e parte do Windows Community Toolkit."
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "Esse é o modelo tradicional para um aplicativo em que a lógica é tratada no code-behind."
+    "name": "None",
+    "displayName": "None",
+    "summary": "Sem geração de estrutura ou estrutura de pasta. Apenas o código mínimo é gerado para que o aplicativo seja executado."
   }
 ]

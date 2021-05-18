@@ -77,6 +77,9 @@ namespace Localization
                 Console.WriteLine("Extract project templates");
                 extractor.ExtractProjectTemplates();
 
+                Console.WriteLine("Extract item templates");
+                extractor.ExtractItemTemplates();
+
                 Console.WriteLine("Extract command templates");
                 extractor.ExtractCommandTemplates();
 

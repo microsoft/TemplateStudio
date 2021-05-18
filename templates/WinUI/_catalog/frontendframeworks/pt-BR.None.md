@@ -1,0 +1,1 @@
+﻿"None" é um termo para descrever que não há um padrão de design pré-selecionado. Apenas o código mínimo é gerado para que o aplicativo seja executado. Você pode construir sua própria estrutura de pasta e adicionar qualquer padrão de design uma vez que o código é gerado.

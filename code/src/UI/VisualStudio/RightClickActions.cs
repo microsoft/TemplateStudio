@@ -30,11 +30,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
             new RightClickAvailability(Platforms.Uwp, ProgrammingLanguages.VisualBasic) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Service, TemplateType.Testing } },
             new RightClickAvailability(Platforms.Wpf, ProgrammingLanguages.CSharp) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature, TemplateType.Testing } },
+            new RightClickAvailability(Platforms.WinUI, ProgrammingLanguages.CSharp, AppModels.Desktop) { TemplateTypes = new List<TemplateType>() { TemplateType.Page, TemplateType.Feature } },
         };
 
         private readonly GenerationService _generationService = GenerationService.Instance;
 
         private static VsGenShell _shell;
+
+        private const string BlankProjectType = "Blank";
 
         public string ProjectName { get; private set; }
 
@@ -138,10 +141,16 @@ namespace Microsoft.Templates.UI.VisualStudio
             var projectConfigInfoService = new ProjectConfigInfoService(_shell);
             var configInfo = projectConfigInfoService.ReadProjectConfiguration();
 
+            // Do not allow right click on WinUI Blank project type
+            if (configInfo?.Platform == Platforms.WinUI && configInfo?.ProjectType == BlankProjectType)
+            {
+                return false;
+            }
+
             var rightClickOptions = _availableOptions.FirstOrDefault(o =>
-                                        o.Platform == configInfo.Platform &&
+                                        o.Platform == configInfo?.Platform &&
                                         o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
-                                        o.AppModel == configInfo.AppModel);
+                                        o.AppModel == configInfo?.AppModel);
 
             return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
         }

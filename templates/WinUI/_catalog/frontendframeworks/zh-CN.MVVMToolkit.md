@@ -1,7 +1,7 @@
-﻿The Microsoft.Toolkit.Mvvm package is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit.
+﻿微软.工具包.Mvm软件包是一个现代化、快速和模块化的MVVM库。它是 Windows 社区工具包的一部分。
 
-This package can be used on any app platform: UWP, WinForms, WPF, Xamarin, Uno, and more; and on any runtime: .NET Native, .NET Core, .NET Framework, or Mono. The API surface is identical in all cases, making it perfect for building shared libraries.
+此软件包可用于任何应用平台：UWP、温格式、WPF、Xamarin、优诺等：并在任何运行时间：。NET原生，。NET核心，。NET框架，或单声道。API 表面在所有情况下都是相同的，因此非常适合构建共享库。
 
-The package contains a collection of standard, self-contained, lightweight types that provide a starting implementation for building modern apps using the MVVM pattern. These types alone are usually enough for many users to build apps without needing additional external references.
+该软件包包含一系列标准、自成一体的轻量级类型，为使用 MVVM 模式构建现代应用提供了开始实施。单单这些类型通常就足以让许多用户在无需其他外部引用的情况下构建应用。
 
-This package aims to offer flexibility over which components to use. All types are loosely-coupled, so that it's only necessary to include what you use. There is no requirement to go "all-in" with a specific series of all-encompassing APIs, nor is there a set of mandatory patterns that need to be followed when building apps using these helpers. Combine these building blocks in a way that best fits your needs.
+此包旨在为使用哪些组件提供灵活性。所有类型都是松散耦合的，因此只需要包括您使用的内容。没有要求"全员"使用特定系列的包罗万象的 API，也没有使用这些助手构建应用程序时需要遵循的一组强制性模式。以最适合您需求的方式组合这些构建基块。

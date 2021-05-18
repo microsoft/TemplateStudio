@@ -3,12 +3,12 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Windows Template Studio (WinUI in Desktop; local)</Name>
-    <Description>Windows Template Studio quickly builds a WinUI Desktop app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
+    <Name>App (WinUI 3 in Desktop; local)</Name>
+    <Description>Windows Template Studio rychle sestaví aplikaci WinUI Desktop pomocí uživatelského rozhraní založeného na průvodci, které promění vaše potřeby v základ vzorů a osvědčených postupů pro Windows 10.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>VC</ProjectType>
     <SortOrder>1000</SortOrder>
-    <TemplateID>Microsoft.Cpp.WinUI.Desktop.WindowsTemplateStudio.local</TemplateID>
+    <TemplateID>Microsoft.Cpp.WinUI.Desktop.WTS.local</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
@@ -19,6 +19,7 @@
     <PlatformTag>Project Reunion</PlatformTag>
     <ProjectTypeTag>WinUI</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Windows Template Studio</ProjectTypeTag>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>

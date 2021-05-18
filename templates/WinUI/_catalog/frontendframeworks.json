@@ -10,9 +10,9 @@
     "languages": [ "C#" ]
   },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
+    "name": "None",
+    "displayName": "None",
+    "summary": "No framework or folder scaffolding. Just the minimum code is generated to get the app running.",
     "author": "Microsoft",
     "order": "2",
     "platform": "WinUI",

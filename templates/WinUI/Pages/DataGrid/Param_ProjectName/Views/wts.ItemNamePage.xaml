@@ -32,7 +32,8 @@
                                     Margin="{StaticResource SmallLeftRightMargin}"
                                     HorizontalAlignment="Left"
                                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="{Binding Symbol}" />
+                                    Glyph="{Binding Symbol}"
+                                    AutomationProperties.Name="{Binding SymbolName}" />
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>

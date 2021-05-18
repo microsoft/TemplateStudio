@@ -61,7 +61,10 @@ namespace Microsoft.Templates.Test
                         var appModels = AppModels.GetAllAppModels().ToList();
                         foreach (var appModel in appModels)
                         {
-                            result.AddRange(GetContextOptions(frameworkFilter, language, platform, appModel));
+                            if (appModel == AppModels.Desktop)
+                            {
+                                result.AddRange(GetContextOptions(frameworkFilter, language, platform, appModel));
+                            }
                         }
                     }
                     else

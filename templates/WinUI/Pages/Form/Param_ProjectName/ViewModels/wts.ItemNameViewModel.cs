@@ -8,7 +8,7 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : Helpers.ObservableValidator
+    public class wts.ItemNameViewModel : ObservableValidator
     {
         private readonly ISampleDataService _sampleDataService;
 
@@ -16,7 +16,7 @@ namespace Param_RootNamespace.ViewModels
         private DateTimeOffset _orderDate = DateTime.Now;
         private TimeSpan _orderTime = DateTime.Now.TimeOfDay;
         private string _company;
-        private char _symbol;
+        private SampleSymbol _symbol;
         private string _orderTotal;
         private string _freight;
         private string _status;
@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
         public long OrderID
         {
             get { return _orderID; }
-            set { SetAndValidate(ref _orderID, value); }
+            set { SetProperty(ref _orderID, value, true); }
         }
 
         [Required]
@@ -38,7 +38,7 @@ namespace Param_RootNamespace.ViewModels
         public DateTimeOffset OrderDate
         {
             get { return _orderDate; }
-            set { SetAndValidate(ref _orderDate, value); }
+            set { SetProperty(ref _orderDate, value, true); }
         }
 
         [Required]
@@ -46,21 +46,21 @@ namespace Param_RootNamespace.ViewModels
         public TimeSpan OrderTime
         {
             get { return _orderTime; }
-            set { SetAndValidate(ref _orderTime, value); }
+            set { SetProperty(ref _orderTime, value, true); }
         }
 
         [Required]
         public string Company
         {
             get { return _company; }
-            set { SetAndValidate(ref _company, value); }
+            set { SetProperty(ref _company, value, true); }
         }
 
         [Required]
-        public char Symbol
+        public SampleSymbol Symbol
         {
             get { return _symbol; }
-            set { SetAndValidate(ref _symbol, value); }
+            set { SetProperty(ref _symbol, value, true); }
         }
 
         [Required]
@@ -68,7 +68,7 @@ namespace Param_RootNamespace.ViewModels
         public string OrderTotal
         {
             get { return _orderTotal; }
-            set { SetAndValidate(ref _orderTotal, value); }
+            set { SetProperty(ref _orderTotal, value, true); }
         }
 
         [Required]
@@ -76,21 +76,21 @@ namespace Param_RootNamespace.ViewModels
         public string Freight
         {
             get { return _freight; }
-            set { SetAndValidate(ref _freight, value); }
+            set { SetProperty(ref _freight, value, true); }
         }
 
         [Required]
         public string Status
         {
             get { return _status; }
-            set { SetAndValidate(ref _status, value); }
+            set { SetProperty(ref _status, value, true); }
         }
 
         [Required]
         public string ShipperName
         {
             get { return _shipperName; }
-            set { SetAndValidate(ref _shipperName, value); }
+            set { SetProperty(ref _shipperName, value, true); }
         }
 
         [Required]
@@ -98,14 +98,14 @@ namespace Param_RootNamespace.ViewModels
         public string ShipperPhone
         {
             get { return _shipperPhone; }
-            set { SetAndValidate(ref _shipperPhone, value); }
+            set { SetProperty(ref _shipperPhone, value, true); }
         }
 
         [Required]
         public string ShipTo
         {
             get { return _shipTo; }
-            set { SetAndValidate(ref _shipTo, value); }
+            set { SetProperty(ref _shipTo, value, true); }
         }
 
         public IEnumerable<string> StatusValues { get; } = new List<string>()
@@ -115,16 +115,16 @@ namespace Param_RootNamespace.ViewModels
             "Closed"
         };
 
-        public IEnumerable<char> SymbolValues { get; } = new List<char>()
+        public IEnumerable<SampleSymbol> SymbolValues { get; } = new List<SampleSymbol>
         {
-            (char)57643,
-            (char)57737,
-            (char)57699,
-            (char)57620,
-            (char)57633,
-            (char)57661,
-            (char)57619,
-            (char)57615
+            new SampleSymbol() { Name = "Globe", Code = (char)57643 },
+            new SampleSymbol() { Name = "Audio", Code = (char)57737 },
+            new SampleSymbol() { Name = "Calendar", Code = (char)57699 },
+            new SampleSymbol() { Name = "Camera", Code = (char)57620 },
+            new SampleSymbol() { Name = "Clock", Code = (char)57633 },
+            new SampleSymbol() { Name = "Contact", Code = (char)57661 },
+            new SampleSymbol() { Name = "Favorite", Code = (char)57619 },
+            new SampleSymbol() { Name = "Home", Code = (char)57615 },
         };
 
         public ICommand SubmitCommand => _submitCommand ?? (_submitCommand = new RelayCommand(Submit));
@@ -138,22 +138,9 @@ namespace Param_RootNamespace.ViewModels
 
         private async void Submit()
         {
-            var hasValidationErrors = ValidateProperties(new Dictionary<string, object>()
-            {
-                { nameof(OrderID), OrderID },
-                { nameof(OrderDate), OrderDate },
-                { nameof(OrderTime), OrderTime },
-                { nameof(Company), Company },
-                { nameof(Symbol), Symbol },
-                { nameof(OrderTotal), OrderTotal },
-                { nameof(Freight), Freight },
-                { nameof(Status), Status },
-                { nameof(ShipperName), ShipperName },
-                { nameof(ShipperPhone), ShipperPhone },
-                { nameof(ShipTo), ShipTo }
-            });
+            ValidateAllProperties();
 
-            if (hasValidationErrors)
+            if (HasErrors)
             {
                 return;
             }
@@ -169,7 +156,8 @@ namespace Param_RootNamespace.ViewModels
                 OrderTotal = double.Parse(OrderTotal),
                 Status = Status,
                 Freight = double.Parse(Freight),
-                SymbolCode = Symbol
+                SymbolCode = Symbol.Code,
+                SymbolName = Symbol.Name,
             });
 
             // Set default values
@@ -184,6 +172,7 @@ namespace Param_RootNamespace.ViewModels
             Freight = default;
             Status = StatusValues.First();
             Symbol = SymbolValues.First();
+
             ClearErrors();
         }
 

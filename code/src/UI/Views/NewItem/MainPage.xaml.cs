@@ -4,6 +4,7 @@
 
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Views.NewItem
@@ -25,11 +26,13 @@ namespace Microsoft.Templates.UI.Views.NewItem
             }
 
             Services.NavigationService.SubscribeEventHandlers();
+            WizardNavigation.Current.SubscribeEventHandlers();
         }
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             Services.NavigationService.UnsubscribeEventHandlers();
+            WizardNavigation.Current.UnsubscribeEventHandlers();
         }
     }
 }

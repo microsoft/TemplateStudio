@@ -36,7 +36,6 @@
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <PathToXAMLWinRTImplementations>Param_ProjectName\</PathToXAMLWinRTImplementations>
-    <AssetTargetFallback>net5.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
   </PropertyGroup>
 
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
@@ -45,6 +44,7 @@
     <ProjectGuid>378ed3d7-d630-4039-8b8e-93310ba6b05e</ProjectGuid>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <AssetTargetFallback>net5.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\Param_ProjectName\Param_ProjectName.csproj</EntryPointProjectUniqueName>
@@ -78,11 +78,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.0]">
-      <IncludeAssets>build</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.5.0]">
-      <IncludeAssets>build</IncludeAssets>
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.7]">
+        <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 

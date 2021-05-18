@@ -599,7 +599,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsTypeFeatureMultipleInstancesRule(KeyValuePair<string, string> tag, ValidationTemplateInfo template, List<string> results)
         {
-            if ("feature".Equals(tag.Value))
+            if ("feature".Equals(tag.Value, StringComparison.Ordinal))
             {
                 if (template.TemplateTags.Keys.Contains("wts.multipleInstance"))
                 {

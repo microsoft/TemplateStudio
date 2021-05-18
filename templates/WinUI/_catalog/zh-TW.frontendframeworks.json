@@ -2,11 +2,11 @@
   {
     "name": "MVVMToolkit",
     "displayName": "MVVM Toolkit",
-    "summary": ""
-  }
+    "summary": "現代、快速、模組化的MVVM庫和Windows社區工具組的一部分。"
+  },
   {
-    "name": "CodeBehind",
-    "displayName": "Code Behind",
-    "summary": "這是採用code-behind邏輯處理方式的應用程式所適用的傳統模型。"
+    "name": "None",
+    "displayName": "None",
+    "summary": "沒有框架或資料夾結構生成。只需生成最低代碼才能運行應用。"
   }
 ]

@@ -7,6 +7,8 @@ using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.Services
 {
+    // For more information on navigation between pages see
+    // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/WinUI/navigation.md
     public class NavigationService : INavigationService
     {
         private readonly IPageService _pageService;
@@ -21,7 +23,7 @@ namespace Param_RootNamespace.Services
             {
                 if (_frame == null)
                 {
-                    _frame = Window.Current.Content as Frame;
+                    _frame = App.MainWindow.Content as Frame;
                     RegisterFrameEvents();
                 }
 

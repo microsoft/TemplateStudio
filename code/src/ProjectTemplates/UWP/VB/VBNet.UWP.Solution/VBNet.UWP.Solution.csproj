@@ -15,7 +15,6 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -48,7 +47,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,7 +55,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.CoreUtility">
@@ -76,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="VBNet.UWP.Solution.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <SubType>Designer</SubType>
     </VSTemplate>
   </ItemGroup>
@@ -85,55 +81,42 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="VBNet.UWP.Solution.cs-CZ.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.de-DE.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1031</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.es-ES.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>3082</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.fr-FR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1036</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.it-IT.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1040</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.ja-JP.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1041</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.ko-KR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1042</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.pl-PL.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1045</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.pt-BR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1046</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.tr-TR.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1055</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.zh-CN.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>2052</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.zh-TW.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1028</Culture>
     </VSTemplate>
     <VSTemplate Include="VBNet.UWP.Solution.ru-RU.vstemplate">
-      <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1049</Culture>
     </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />

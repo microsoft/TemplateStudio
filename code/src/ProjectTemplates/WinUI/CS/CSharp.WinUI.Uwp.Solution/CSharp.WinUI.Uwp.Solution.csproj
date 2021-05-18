@@ -35,7 +35,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,89 +57,74 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="CSharp.WinUI.Uwp.Solution.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
-    </VSTemplate>
+    <VSTemplate Include="CSharp.WinUI.Uwp.Solution.vstemplate" />
   </ItemGroup>
   <ItemGroup>
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.es-ES.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>3082</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.cs-CZ.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.de-DE.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1031</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.fr-FR.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1036</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.it-IT.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1040</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.ja-JP.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1041</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.ko-KR.vstemplate">
       <Culture>1042</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.pl-PL.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1045</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.pt-BR.vstemplate">
       <Culture>1046</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.ru-RU.vstemplate">
       <Culture>1049</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.tr-TR.vstemplate">
-      <OutputSubPath>Windows</OutputSubPath>
       <Culture>1055</Culture>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.zh-CN.vstemplate">
       <Culture>2052</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="CSharp.WinUI.Uwp.Solution.zh-TW.vstemplate">
       <Culture>1028</Culture>
-      <OutputSubPath>Windows</OutputSubPath>
     </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
