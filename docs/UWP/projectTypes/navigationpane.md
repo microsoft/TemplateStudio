@@ -44,7 +44,7 @@ The code below shows the symbols used to create the app shown in the image above
     -->
     <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="views:MainPage" />
     <winui:NavigationViewItem x:Uid="Shell_Map" Icon="Map" helpers:NavHelper.NavigateTo="views:MapPage" />
-    <winui:NavigationViewItem x:Uid="Shell_MasterDetail" Icon="DockLeft" helpers:NavHelper.NavigateTo="views:MasterDetailPage" />
+    <winui:NavigationViewItem x:Uid="Shell_ListDetails" Icon="DockLeft" helpers:NavHelper.NavigateTo="views:ListDetailsPage" />
     <winui:NavigationViewItem x:Uid="Shell_Tabbed" Icon="Document" helpers:NavHelper.NavigateTo="views:TabbedPage" />
     <winui:NavigationViewItem x:Uid="Shell_WebView" Icon="Globe" helpers:NavHelper.NavigateTo="views:WebViewPage" />
 </winui:NavigationView.MenuItems>
