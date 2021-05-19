@@ -6,12 +6,7 @@ namespace VsTemplates.Test.Models
 {
     public class VerifierResultTestModel
     {
-        public VerifierResultTestModel()
-        {
-        }
-
         public VerifierResultTestModel(bool success, string message)
-            : this()
         {
             Success = success;
             Message = message;

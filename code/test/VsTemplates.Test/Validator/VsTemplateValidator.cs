@@ -16,13 +16,17 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyTemplateId(string filePath)
         {
             var success = false;
-            var message = "TemplateID not defined or defined more than once";
+            string message;
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(filePath);
 
             var templateIdNodes = xmlDoc.GetElementsByTagName("TemplateID");
-            if (templateIdNodes.Count == 1)
+            if (templateIdNodes.Count == 0)
+            {
+                    message = "File does not contain TemplateID tag";
+            }
+            else if (templateIdNodes.Count == 1)
             {
                 var templateId = templateIdNodes.Item(0)?.InnerText;
                 if (!string.IsNullOrEmpty(templateId))
@@ -32,8 +36,12 @@ namespace VsTemplates.Test.Validator
                 }
                 else
                 {
-                    message = "TemplateID not found";
+                    message = "TemplateID tag does not contain inner text";
                 }
+            }
+            else
+            {
+                message = "TemplateID tag defined more than once";
             }
 
             return new VerifierResultTestModel(success, message);
@@ -42,13 +50,17 @@ namespace VsTemplates.Test.Validator
         public static VerifierResultTestModel VerifyTemplateName(string filePath)
         {
             var success = false;
-            var message = "Name not defined or defined more than once";
+            string message;
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(filePath);
 
             var templateIdNodes = xmlDoc.GetElementsByTagName("Name");
-            if (templateIdNodes.Count == 1)
+            if (templateIdNodes.Count == 0)
+            {
+                message = "File does not contain Name tag";
+            }
+            else if (templateIdNodes.Count == 1)
             {
                 var templateId = templateIdNodes.Item(0)?.InnerText;
                 if (!string.IsNullOrEmpty(templateId))
@@ -58,8 +70,12 @@ namespace VsTemplates.Test.Validator
                 }
                 else
                 {
-                    message = "Template Name not found";
+                    message = "Name tag does not contain inner text";
                 }
+            }
+            else
+            {
+                message = "Name tag defined more than once";
             }
 
             return new VerifierResultTestModel(success, message);
@@ -83,7 +99,7 @@ namespace VsTemplates.Test.Validator
                 }
                 else
                 {
-                    message = "ProjectTypeTag does not incude -Windows Template Studio-";
+                    message = "ProjectTypeTag does not incude \"Windows Template Studio\"";
                 }
             }
 
