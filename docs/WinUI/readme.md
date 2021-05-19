@@ -83,7 +83,7 @@ Windows Template Studio approaches WinUI 3 Desktop app creation using the follow
 
 
 ### Known issues:
-- [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)
+- [Backbutton issue in ListDetail Page](https://github.com/microsoft/WindowsTemplateStudio/issues/4280)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:
