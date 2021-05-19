@@ -35,9 +35,8 @@ namespace VsTemplates.Test
             var vsTemplatesPaths = new List<object[]>();
             foreach (var path in WizardProjectTemplatesRoot)
             {
-                var filePaths = GetFilesFromPath(path);
-                vsTemplatesPaths.AddRange(filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension)
-                    .Select(p => new object[] { p }));
+                var filePaths = Directory.GetFiles(path, $"*{VsTemplateFileExtension}", SearchOption.AllDirectories);
+                vsTemplatesPaths.AddRange(filePaths.Select(p => new object[] { p }));
             }
 
             return vsTemplatesPaths;
@@ -65,23 +64,21 @@ namespace VsTemplates.Test
 
         public static IEnumerable<object[]> GetAllVsProjectTemplateFiles()
         {
-            var filePaths = GetFilesFromPath(ProjectTemplatesRoot);
-            var vsProjectTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
-            return vsProjectTemplatesPaths.Select(p => new object[] { p });
+            var filePaths = Directory.GetFiles(ProjectTemplatesRoot, $"*{VsTemplateFileExtension}", SearchOption.AllDirectories);
+            return filePaths.Select(p => new object[] { p });
         }
 
         private static IEnumerable<object[]> GetAllVsItemTemplateFiles()
         {
-            var filePaths = GetFilesFromPath(ItemTemplatesRoot);
-            var vsItemTemplatesPaths = filePaths.Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
-            return vsItemTemplatesPaths.Select(p => new object[] { p });
+            var filePaths = Directory.GetFiles(ItemTemplatesRoot, $"*{VsTemplateFileExtension}", SearchOption.AllDirectories);
+            return filePaths.Select(p => new object[] { p });
         }
 
         private static IEnumerable<string> GetAllVsTemplatePaths(string directory)
         {
             foreach (var dir in Directory.GetDirectories(directory))
             {
-                if (Directory.GetFiles(dir).Any(f => Path.GetExtension(f) == VsTemplateFileExtension))
+                if (Directory.GetFiles(dir, $"*{VsTemplateFileExtension}", SearchOption.TopDirectoryOnly).Any())
                 {
                     yield return dir;
                 }
@@ -91,27 +88,6 @@ namespace VsTemplates.Test
                     {
                         yield return subDir;
                     }
-                }
-            }
-        }
-
-        private static IEnumerable<string> GetFilesFromPath(string directory)
-        {
-            foreach (var file in Directory.GetFiles(directory))
-            {
-                yield return file;
-            }
-
-            foreach (var dir in Directory.GetDirectories(directory))
-            {
-                foreach (var file in Directory.GetFiles(dir))
-                {
-                    yield return file;
-                }
-
-                foreach (var file in GetFilesFromPath(dir))
-                {
-                    yield return file;
                 }
             }
         }
@@ -152,7 +128,7 @@ namespace VsTemplates.Test
         [MemberData(nameof(GetAllVsTemplatePaths))]
         public void VerifyAllLocalizedTemplatesHaveSameDefinition(string filePath)
         {
-            var pathFiles = GetFilesFromPath(filePath).Where(p => Path.GetExtension(p) == VsTemplateFileExtension);
+            var pathFiles = Directory.GetFiles(filePath, $"*{VsTemplateFileExtension}", SearchOption.AllDirectories);
             var result = VsTemplateValidator.VerifyAllLocalizedTemplatesHaveSameDefinition(pathFiles);
             Assert.True(result.Success, $"{filePath}: " + result.Message);
         }
