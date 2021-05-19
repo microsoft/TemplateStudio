@@ -46,7 +46,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | [Settings](./pages/settings.md)  | The settings page is the page where we recommend putting the configuration settings for your app. |
 | [Web View](./pages/webview.md)  | The web view page renders web content using the Microsoft Edge rendering engine. |
 | [Media Player](./pages/mediaplayer.md)  | A page for showing video with system media controls enabled. |
-| [Master/Detail](./pages/masterdetail.md)  | The master-detail page has a master pane and a details pane for content. |
+| [List/Details](./pages/listdetails.md)  | The list-details page has a list pane and a details pane for content. |
 | [TreeView](./pages/treeview.md)  | The tree-view page has a tree view control to show hierarchical content. |
 | [Content Grid](./pages/contentgrid.md)  | This page allows you to add custom items in the form of an Adaptive Grid. |
 | [DataGrid](./pages/datagrid.md)  | A page displaying a simple data grid. |
@@ -54,7 +54,7 @@ Windows Template Studio approaches UWP app creation using the following attribut
 | [Chart](./pages/chart.md)  | A page displaying a simple chart, powered by Telerik UI controls for UWP. |
 | [TabbedPivot](./pages/tabbed.md)  | The tabbed page is used for navigating frequently accessed, distinct content categories. |
 | [TabView](./pages/tabview.md)  | The tab view page has a TabView control to show contents in different tabs. |
-| [TwoPaneView](./pages/twopaneview.md)  | Master-Detail page optimized for dual-screen devices. |
+| [TwoPaneView](./pages/twopaneview.md)  | List-Details page optimized for dual-screen devices. |
 | [Map](./pages/map.md)  | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
 | [Camera](./pages/camera.md)  | A page for capturing and displaying an image from the camera. |
 | [Image Gallery](./pages/imagegallery.md)  | A page displaying a image gallery and allows user to navigate between gallery and image detail. |

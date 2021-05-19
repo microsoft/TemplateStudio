@@ -27,7 +27,7 @@ Shows a page in the frame below the menu without the possibility to navigate bac
 
 ### 2. Navigate
 
-Navigates to a page in the frame below the menu with the possibility to navigate back to previous pages. This option is used in pages with master and detail like ImageGallery and ContentGrid, where detail pages must add a back navigation button.
+Navigates to a page in the frame below the menu with the possibility to navigate back to previous pages. This option is used in pages with list and detail like ImageGallery and ContentGrid, where detail pages must add a back navigation button.
 
 ### 3. Open in the right pane
 

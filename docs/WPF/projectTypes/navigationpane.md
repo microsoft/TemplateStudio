@@ -28,7 +28,7 @@ public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new Observab
 {
     new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE8A5", TargetPageType = typeof(MainViewModel) },
     new HamburgerMenuGlyphItem() { Label = Resources.ShellMapPage, Glyph = "\uE707", TargetPageType = typeof(MapViewModel) },
-    new HamburgerMenuGlyphItem() { Label = Resources.ShellMasterDetailPage, Glyph = "\uE90C", TargetPageType = typeof(MasterDetailViewModel) },
+    new HamburgerMenuGlyphItem() { Label = Resources.ShellListDetailsPage, Glyph = "\uE90C", TargetPageType = typeof(ListDetailsViewModel) },
     new HamburgerMenuGlyphItem() { Label = Resources.ShellWebViewPage, Glyph = "\uE774", TargetPageType = typeof(WebViewViewModel) },
 };
 ```

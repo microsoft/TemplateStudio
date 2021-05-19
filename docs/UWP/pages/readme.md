@@ -6,7 +6,7 @@ The following pages are supported in UWP apps.
 - [Settings](./settings.md)
 - [Web View](./webview.md)
 - [Media Player](./mediaplayer.md)
-- [Master/Detail](./masterdetail.md)
+- [List/Details](./listdetails.md)
 - [TreeView](./treeview.md)
 - [Content Grid](./contentgrid.md)
 - [DataGrid](./datagrid.md)
