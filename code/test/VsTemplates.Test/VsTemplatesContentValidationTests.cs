@@ -45,8 +45,8 @@ namespace VsTemplates.Test
         public static IEnumerable<object[]> GetAllVsTemplatePaths()
         {
             var vsTemplatesPaths = new List<object[]>();
-            var vsItemTemplatesPaths = GetAllVsTemplatePaths(ItemTemplatesRoot).Select(p => new object[] { p });
-            var vsProjectTemplatesPaths = GetAllVsTemplatePaths(ProjectTemplatesRoot).Select(p => new object[] { p });
+            var vsItemTemplatesPaths = GetDirectoriesContainsVsTemplateFiles(ItemTemplatesRoot).Select(p => new object[] { p });
+            var vsProjectTemplatesPaths = GetDirectoriesContainsVsTemplateFiles(ProjectTemplatesRoot).Select(p => new object[] { p });
             vsTemplatesPaths.AddRange(vsItemTemplatesPaths);
             vsTemplatesPaths.AddRange(vsProjectTemplatesPaths);
             return vsTemplatesPaths;
@@ -74,7 +74,7 @@ namespace VsTemplates.Test
             return filePaths.Select(p => new object[] { p });
         }
 
-        private static IEnumerable<string> GetAllVsTemplatePaths(string directory)
+        private static IEnumerable<string> GetDirectoriesContainsVsTemplateFiles(string directory)
         {
             foreach (var dir in Directory.GetDirectories(directory))
             {
@@ -84,7 +84,7 @@ namespace VsTemplates.Test
                 }
                 else
                 {
-                    foreach (var subDir in GetAllVsTemplatePaths(dir))
+                    foreach (var subDir in GetDirectoriesContainsVsTemplateFiles(dir))
                     {
                         yield return subDir;
                     }
