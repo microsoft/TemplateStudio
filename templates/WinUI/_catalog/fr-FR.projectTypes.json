@@ -5,6 +5,11 @@
     "summary": "Ce projet basique est une toile blanche à partir de laquelle vous pouvez développer votre application."
   },
   {
+    "name": "BlankAdvanced",
+    "displayName": "Blank Advanced",
+    "summary": "BlankAdvanced"
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Un menu hamburger est inclus, pour permettre de naviguer entre les pages."
