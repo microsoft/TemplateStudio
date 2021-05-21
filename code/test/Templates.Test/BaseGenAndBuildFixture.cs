@@ -123,6 +123,7 @@ namespace Microsoft.Templates.Test
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
             var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
+            var nugetExecutable = GetPath("nuget\\nuget.exe");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
@@ -130,7 +131,7 @@ namespace Microsoft.Templates.Test
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" \"{projectFile}\" ",
+                Arguments = $"\"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,

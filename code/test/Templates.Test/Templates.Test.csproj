@@ -108,6 +108,9 @@
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
+    <None Include="bat\WinUI\RestoreAndBuildCppAppx.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="bat\WinUI\RestoreAndBuildCpp.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
