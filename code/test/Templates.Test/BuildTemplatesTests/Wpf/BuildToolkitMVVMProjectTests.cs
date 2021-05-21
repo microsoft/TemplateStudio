@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test.Build.Wpf
 
             var (projectName, projectPath) = await GenerateEmptyProjectAsync(context);
 
-            AssertBuildProject(projectPath, projectName, platform, true);
+            AssertBuildProject(projectPath, projectName, platform, deleteAfterBuild: true);
         }
 
         [Theory]

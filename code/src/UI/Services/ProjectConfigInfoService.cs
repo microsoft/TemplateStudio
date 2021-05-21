@@ -214,8 +214,8 @@ namespace Microsoft.Templates.UI.Services
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
                 case Platforms.WinUI:
                     return !(ExistsFileInProjectPath("Views", "ShellWindow.xaml")
-                        || ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                        || IsCppProject());
+                        || ExistsFileInProjectPath("Views", "ShellPage.xaml"))
+                        || IsCppProject();
                 default:
                     return false;
             }
