@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneBehindWinUI")]
+        [Trait("ExecutionSet", "BuildNoneWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneAsync(string projectType, string framework, string platform, string language, string appModel)
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneBehindWinUI")]
+        [Trait("ExecutionSet", "BuildNoneWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneCppAsync(string projectType, string framework, string platform, string language, string appModel)
