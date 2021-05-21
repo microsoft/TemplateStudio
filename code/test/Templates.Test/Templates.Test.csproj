@@ -254,7 +254,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="nuget\nuget.exe">
+    <Content Include="..\..\tools\nuget.exe">
+      <Link>nuget\nuget.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
