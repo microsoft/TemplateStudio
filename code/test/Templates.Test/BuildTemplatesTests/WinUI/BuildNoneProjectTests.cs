@@ -15,9 +15,9 @@ using Xunit;
 namespace Microsoft.Templates.Test.Build.WinUI
 {
     [Collection("BuildTemplateTestCollection")]
-    public class BuildNoneBehindProjectTests : BaseGenAndBuildTests
+    public class BuildNoneProjectTests : BaseGenAndBuildTests
     {
-        public BuildNoneBehindProjectTests(BuildTemplatesTestFixture fixture)
+        public BuildNoneProjectTests(BuildTemplatesTestFixture fixture)
             : base(fixture, null, Frameworks.None)
         {
         }
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test.Build.WinUI
 
         [Theory]
         [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneWinUI")]
+        [Trait("ExecutionSet", "MinimumNoneWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneCppAsync(string projectType, string framework, string platform, string language, string appModel)
