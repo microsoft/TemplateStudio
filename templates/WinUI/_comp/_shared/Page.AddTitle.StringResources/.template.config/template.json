@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.Page.StringResources",
+    "identity": "wts.WinUI.Page.StringResources",
+    "shortName": "wts.WinUI.Page.StringResources",
+    "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "WinUI",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == BlankAdvanced & groupidentity == wts.WinUI.Page.Blank|wts.WinUI.Page.ContentGrid|wts.WinUI.Page.DataGrid|wts.WinUI.Page.Form|wts.WinUI.Page.Settings"
+  },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }
