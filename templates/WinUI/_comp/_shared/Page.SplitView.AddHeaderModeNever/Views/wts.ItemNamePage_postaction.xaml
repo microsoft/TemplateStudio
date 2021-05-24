@@ -1,0 +1,8 @@
+﻿<Page
+    <!--^^-->
+    <!--{[{-->
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+    <!--}]}-->
+    Style="{StaticResource PageStyle}">
+</Page>
