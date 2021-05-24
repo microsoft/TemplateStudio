@@ -8,7 +8,7 @@
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     Loaded="OnLoaded"
-    mc:Ignorable="d">
+    Style="{StaticResource PageStyle}">
 
     <NavigationView
         x:Name="navigationView"
