@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.Controls
     /// </summary>
     public partial class CodeViewer : UserControl
     {
-        private bool _isInitialized;
+        private readonly bool _isInitialized;
 
         private string _currentHtml = string.Empty;
 

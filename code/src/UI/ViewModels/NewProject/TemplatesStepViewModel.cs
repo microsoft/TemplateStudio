@@ -13,8 +13,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class TemplatesStepViewModel : Observable
     {
-        private UserSelectionContext _context;
-        private TemplateType _templateType;
+        private readonly UserSelectionContext _context;
+        private readonly TemplateType _templateType;
         private string _title;
 
         public string Title

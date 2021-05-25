@@ -12,7 +12,7 @@ namespace Microsoft.Templates.UI.Views.Common
 {
     public partial class CompositionToolWindow : Window
     {
-        private UserSelection _userSelection;
+        private readonly UserSelection _userSelection;
 
         public CompositionToolWindow(UserSelection userSelection)
         {

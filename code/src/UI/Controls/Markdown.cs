@@ -233,8 +233,8 @@ namespace Microsoft.Templates.UI.Controls
             // return text;
         }
 
-        private static Regex _newlinesLeadingTrailing = new Regex(@"^\n+|\n+\z", RegexOptions.Compiled);
-        private static Regex _newlinesMultiple = new Regex(@"\n{2,}", RegexOptions.Compiled);
+        private static readonly Regex _newlinesLeadingTrailing = new Regex(@"^\n+|\n+\z", RegexOptions.Compiled);
+        private static readonly Regex _newlinesMultiple = new Regex(@"\n{2,}", RegexOptions.Compiled);
         private static Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Microsoft.Templates.UI.Controls
             return _nestedParensPatternWithWhiteSpace;
         }
 
-        private static Regex _imageInline = new Regex(
+        private static readonly Regex _imageInline = new Regex(
             string.Format(
             @"
                 (                           # wrap whole match in $1
@@ -363,7 +363,7 @@ namespace Microsoft.Templates.UI.Controls
             GetNestedParensPatternWithWhiteSpace()),
             RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _anchorInline = new Regex(
+        private static readonly Regex _anchorInline = new Regex(
             string.Format(
                 @"
                 (                           # wrap whole match in $1
@@ -505,7 +505,7 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _headerSetext = new Regex(
+        private static readonly Regex _headerSetext = new Regex(
             @"
                 ^(.+?)
                 [ ]*
@@ -515,7 +515,7 @@ namespace Microsoft.Templates.UI.Controls
                 \n+",
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _headerAtx = new Regex(
+        private static readonly Regex _headerAtx = new Regex(
             @"
                 ^(\#{1,6})  # $1 = string of #'s
                 [ ]*
@@ -619,7 +619,7 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private static Regex _horizontalRules = new Regex(
+        private static readonly Regex _horizontalRules = new Regex(
             @"
             ^[ ]{0,3}         # Leading space
                 ([-*_])       # $1: First marker
@@ -672,7 +672,7 @@ namespace Microsoft.Templates.UI.Controls
             return container;
         }
 
-        private static string _wholeList = string.Format(
+        private static readonly string _wholeList = string.Format(
             @"
             (                               # $1 = whole list
               (                             # $2
@@ -695,11 +695,11 @@ namespace Microsoft.Templates.UI.Controls
             string.Format("(?:{0}|{1})", _markerUL, _markerOL),
             _tabWidth - 1);
 
-        private static Regex _listNested = new Regex(
+        private static readonly Regex _listNested = new Regex(
             @"^" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _listTopLevel = new Regex(
+        private static readonly Regex _listTopLevel = new Regex(
             @"(?:(?<=\n\n)|\A\n?)" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
@@ -816,7 +816,7 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private static Regex _codeSpan = new Regex(
+        private static readonly Regex _codeSpan = new Regex(
             @"
                     (?<!\\)   # Character before opening ` can't be a backslash
                     (`+)      # $1 = Opening run of `
@@ -880,19 +880,19 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _bold = new Regex(
+        private static readonly Regex _bold = new Regex(
             @"(\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        private static Regex _strictBold = new Regex(
+        private static readonly Regex _strictBold = new Regex(
             @"([\W_]|^) (\*\*|__) (?=\S) ([^\r]*?\S[\*_]*) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        private static Regex _italic = new Regex(
+        private static readonly Regex _italic = new Regex(
             @"(\*|_) (?=\S) (.+?) (?<=\S) \1",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        private static Regex _strictItalic = new Regex(
+        private static readonly Regex _strictItalic = new Regex(
             @"([\W_]|^) (\*|_) (?=\S) ([^\r\*_]*?\S) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
@@ -947,7 +947,7 @@ namespace Microsoft.Templates.UI.Controls
             return Create<Bold, Inline>(RunSpanGamut(content));
         }
 
-        private static Regex _outDent = new Regex(@"^[ ]{1," + _tabWidth + @"}", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static readonly Regex _outDent = new Regex(@"^[ ]{1," + _tabWidth + @"}", RegexOptions.Multiline | RegexOptions.Compiled);
 
         /// <summary>
         /// Remove one level of line-leading spaces
@@ -1100,7 +1100,7 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private static Regex _eoln = new Regex("\\s+");
+        private static readonly Regex _eoln = new Regex("\\s+");
 
         public IEnumerable<Inline> DoText(string text)
         {

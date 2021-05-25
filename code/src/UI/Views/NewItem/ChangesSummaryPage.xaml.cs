@@ -10,7 +10,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 {
     public partial class ChangesSummaryPage : Page
     {
-        private NewItemGenerationResult _output;
+        private readonly NewItemGenerationResult _output;
 
         public ChangesSummaryPage(NewItemGenerationResult output)
         {

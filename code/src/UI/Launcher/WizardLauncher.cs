@@ -25,9 +25,9 @@ namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
-        private DialogService _dialogService = DialogService.Instance;
+        private readonly DialogService _dialogService = DialogService.Instance;
         private BaseStyleValuesProvider _styleProvider;
-        private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
+        private static readonly Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
         public static WizardLauncher Instance => _instance.Value;
 
