@@ -146,9 +146,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     RequiredSdks.Add(requiredSdk);
                 }
 
-                OnPropertyChanged("Licenses");
-                OnPropertyChanged("Dependencies");
-                OnPropertyChanged("RequiredSdks");
+                OnPropertyChanged(nameof(Licenses));
+                OnPropertyChanged(nameof(Dependencies));
+                OnPropertyChanged(nameof(RequiredSdks));
                 CheckForMissingSdks();
 
                 NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
