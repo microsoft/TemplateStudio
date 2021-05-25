@@ -22,6 +22,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="Uwp"/>
+      <CustomParameter Name="$wts.language$" Value="C#"/>
       <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
       <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
