@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "La pagina della visualizzazione Web esegue il rendering del contenuto Web utilizzando il motore di rendering Microsoft Edge.",
+  "description": "Vefsíðan gerir vefefni með WebView2 (Microsoft Edge með Chromium).",
   "identity": "wts.WinUI.Page.WebView"
 }

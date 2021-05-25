@@ -6,6 +6,12 @@ using Param_RootNamespace.Contracts.ViewModels;
 
 namespace Param_RootNamespace.ViewModels
 {
+    // TODO WTS: Review best practices and distribution guidelines for apps using WebView2
+    // https://docs.microsoft.com/microsoft-edge/webview2/concepts/developer-guide
+    // https://docs.microsoft.com/microsoft-edge/webview2/concepts/distribution
+    //
+    // You can also read more about WebView2 control at
+    // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         // TODO WTS: Set the URI of the page to show by default
