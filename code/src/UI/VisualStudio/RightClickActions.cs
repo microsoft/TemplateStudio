@@ -152,7 +152,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                                         o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
                                         o.AppModel == configInfo?.AppModel);
 
-            return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
+            return rightClickOptions != null && rightClickOptions.TemplateTypes.Contains(templateType);
         }
 
         public bool Visible()
