@@ -138,8 +138,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFrameworks()
         {
-            var context = new UserSelectionContext(Language, SelectedPlatform);
-            context.ProjectType = SelectedProjectType.Name;
+            var context = new UserSelectionContext(Language, SelectedPlatform)
+            {
+                ProjectType = SelectedProjectType.Name,
+            };
             if (SelectedPlatform == Core.Platforms.WinUI)
             {
                 context.AddAppModel(SelectedAppModel);

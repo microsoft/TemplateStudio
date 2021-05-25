@@ -250,8 +250,10 @@ namespace Microsoft.Templates.UI.Services
         private AdornerLayer InitializeAdornerLayer(ListViewItem itemToDrag)
         {
             var brush = new VisualBrush(itemToDrag);
-            _dragAdornerLayer = new DragAdornerLayer(_listView, itemToDrag.RenderSize, brush);
-            _dragAdornerLayer.Opacity = _dragAdornerLayerOpacity;
+            _dragAdornerLayer = new DragAdornerLayer(_listView, itemToDrag.RenderSize, brush)
+            {
+                Opacity = _dragAdornerLayerOpacity,
+            };
 
             var adornerLayer = AdornerLayer.GetAdornerLayer(_listView);
             adornerLayer.Add(_dragAdornerLayer);

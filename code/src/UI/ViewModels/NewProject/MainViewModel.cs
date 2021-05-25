@@ -135,8 +135,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             else
             {
                 var vm = new QuestionDialogViewModel(metadataType);
-                var questionDialog = new QuestionDialogWindow(vm);
-                questionDialog.Owner = WizardShell.Current;
+                var questionDialog = new QuestionDialogWindow(vm)
+                {
+                    Owner = WizardShell.Current,
+                };
                 questionDialog.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)
@@ -288,8 +290,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnCompositionTool()
         {
-            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
-            compositionTool.Owner = WizardShell.Current;
+            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection())
+            {
+                Owner = WizardShell.Current,
+            };
             compositionTool.ShowDialog();
         }
 
