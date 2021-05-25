@@ -156,7 +156,7 @@ namespace Microsoft.Templates.UI.Launcher
         private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
         {
             var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-            if (vsShell != null)
+            if (!string.IsNullOrEmpty(requiredWorkloads) && vsShell != null)
             {
                 var workloadsToCheck = requiredWorkloads.Split('|');
                 var missingWorkloads = new List<string>();

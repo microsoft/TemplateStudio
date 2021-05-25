@@ -175,8 +175,6 @@
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="VisualStudio\RightClickAvailability.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>
@@ -333,11 +331,6 @@
     <Compile Include="VisualStudio\IPackageInstallerService.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWinUIUwp.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWinUIDesktop.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCS.cs" />
-    <Compile Include="VisualStudio\SolutionWizardVB.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
     <Compile Include="VisualStudio\VsShellExtensions.cs" />

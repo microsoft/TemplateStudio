@@ -23,7 +23,7 @@ using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public abstract class SolutionWizard : IWizard, IContextProvider
+    public class SolutionWizard : IWizard, IContextProvider
     {
         private readonly GenerationService _generationService = GenerationService.Instance;
         private string _platform;
@@ -51,16 +51,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string platform, string language, string appModel = null)
+        protected void Initialize()
         {
-            _platform = platform;
-            _appModel = appModel;
-            _language = language;
+            _platform = _replacementsDictionary.SafeGet("$wts.platform$");
+            _appModel = _replacementsDictionary.SafeGet("$wts.appmodel$");
+            _language = _replacementsDictionary.SafeGet("$wts.language$");
 
-            if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
+            if (GenContext.CurrentLanguage != _language || GenContext.CurrentPlatform != _platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), _platform, _language);
 #else
                 var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
                 GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), platform, language);
@@ -112,6 +112,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     _replacementsDictionary = replacementsDictionary;
 
+                    Initialize();
+
                     GenContext.Current = this;
 
                     var context = new UserSelectionContext(_language, _platform);
@@ -120,8 +122,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                         context.AddAppModel(_appModel);
                     }
 
-                    var requiredVersion = _replacementsDictionary.ContainsKey("$wts.requiredversion$") ? _replacementsDictionary["$wts.requiredversion$"] : string.Empty;
-                    var requiredworkloads = _replacementsDictionary.ContainsKey("$wts.requiredworkloads$") ? _replacementsDictionary["$wts.requiredworkloads$"] : string.Empty;
+                    var requiredVersion = _replacementsDictionary.SafeGet("$wts.requiredversion$");
+                    var requiredworkloads = _replacementsDictionary.SafeGet("$wts.requiredworkloads$");
 
                     _userSelection = WizardLauncher.Instance.StartNewProject(context, requiredVersion, requiredworkloads, new VSStyleValuesProvider());
                 }
