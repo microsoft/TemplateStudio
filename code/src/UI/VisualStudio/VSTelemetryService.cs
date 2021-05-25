@@ -39,11 +39,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VSTelemetryInfo GetVSTelemetryInfo()
         {
-            bool result = false;
             string vsEdition = string.Empty;
             string vsVersion = string.Empty;
             string vsCulture = string.Empty;
             string vsManifestId = string.Empty;
+            bool result;
             try
             {
                 if (VsTelem.TelemetryService.DefaultSession != null)

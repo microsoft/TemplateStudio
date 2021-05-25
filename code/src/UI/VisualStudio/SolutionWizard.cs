@@ -128,9 +128,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
-                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
                 if (GenContext.ToolBox.Repo.SyncInProgress)
                 {
                     GenContext.ToolBox.Repo.CancelSynchronization();
