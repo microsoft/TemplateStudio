@@ -76,6 +76,7 @@ The following list shows which tests are executed in which build. Within the Tem
 - VSO 'PRBuild' Build (PR):
   - Core.Tests
   - UI.Test
+  - VSTemplates.Test
   - Templates.Tests
     - ExecutionSet=MinimumCodebehind
     - ExecutionSet=MinimumMVVMLight
@@ -95,11 +96,13 @@ The following list shows which tests are executed in which build. Within the Tem
 - VSO 'CIBuild' Build (CI):
   - Core.Tests
   - Utilities.Test
+  - VSTemplates.Test
 
 
 - VSO 'Templates.Test.Full' Build (Full Tests):
   - Core.Tests
   - UI.Tests
+  - VSTemplates.Test
   - Templates.Test
     - ExecutionSet=MinimumCodebehind
     - ExecutionSet=MinimumMVVMLight
@@ -149,6 +152,7 @@ The following list shows which tests are executed in which build. Within the Tem
     - Templates.Test
     - ExecutionSet=LongRunning
     - ExecutionSet=LongRunningWPF
+    - ExecutionSet=LongRunningWinUI
 
 The tests run for each of the above builds are also in the ExecutionSets '_CIBuild', '_Full', '_OneByOne', and '_Wack'.
 
