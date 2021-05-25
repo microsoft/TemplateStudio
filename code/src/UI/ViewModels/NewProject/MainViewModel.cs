@@ -257,7 +257,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 else
                 {
                     var step = StepsViewModels[templateType];
-                    step.ResetData(Context.ProjectType, Context.FrontEndFramework);
+                    step.ResetData();
                 }
             }
             else if (!hasTemplates && isStepAdded)
