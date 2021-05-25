@@ -259,7 +259,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static bool HasContent(string tempPath)
         {
-            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
         }
     }
 }

@@ -90,17 +90,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            if (template.Exclusions.Count() > 0)
+            if (template.Exclusions.Any())
             {
                 var exlusionsTemplateNames = AllTemplates.Where(t => template.Exclusions.Select(e => e.Identity).Contains(t.Identity)).Select(t => t.Template.Name).Distinct();
-                if (exlusionsTemplateNames.Count() > 0 )
+                if (exlusionsTemplateNames.Any())
                 {
                     await ShowAddTemplateExclusionsNotificationAsync(template.Name, exlusionsTemplateNames);
                     return;
                 }
             }
 
-            if (template.Requirements.Count() > 0)
+            if (template.Requirements.Any())
             {
                 if (!AllTemplates.Any(t => template.Requirements.Select(r => r.Identity).Contains(t.Identity)))
                 {
