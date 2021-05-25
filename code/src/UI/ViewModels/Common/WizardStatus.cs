@@ -88,9 +88,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public WizardStatus()
         {
             Current = this;
-            var size = SystemService.Current.GetMainWindowSize();
-            Width = size.width;
-            Height = size.height;
+            var (width, height) = SystemService.Current.GetMainWindowSize();
+            Width = width;
+            Height = height;
             UpdateIsBusy();
             SetVersions();
         }
