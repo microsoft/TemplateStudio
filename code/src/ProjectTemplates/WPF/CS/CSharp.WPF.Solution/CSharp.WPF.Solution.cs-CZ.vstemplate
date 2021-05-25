@@ -21,6 +21,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="Wpf"/>
+      <CustomParameter Name="$wts.language$" Value="C#"/>
       <CustomParameter Name="$wts.category$" Value="Windows Desktop"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
       <CustomParameter Name="$wts.requiredversion$" Value="16.3"/>
