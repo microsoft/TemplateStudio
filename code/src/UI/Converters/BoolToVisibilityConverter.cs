@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Converters
             bool boolValue = false;
             if (value != null)
             {
-                bool.TryParse(value.ToString(), out boolValue);
+                _ = bool.TryParse(value.ToString(), out boolValue);
             }
 
             if (parameter == null)
