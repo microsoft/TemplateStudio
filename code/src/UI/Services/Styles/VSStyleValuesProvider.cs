@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.Services
 
         public override System.Drawing.Color GetThemedColor(string className, string memberName)
         {
-            Type classType = null;
+            Type classType;
             switch (className)
             {
                 case "CommonDocument":
