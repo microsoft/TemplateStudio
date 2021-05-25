@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
 
 using Param_RootNamespace.Contracts.Services;
