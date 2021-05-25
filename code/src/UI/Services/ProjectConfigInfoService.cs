@@ -460,7 +460,7 @@ namespace Microsoft.Templates.UI.Services
         {
             try
             {
-                return Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+                return Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Length > 0;
             }
             catch (DirectoryNotFoundException)
             {
