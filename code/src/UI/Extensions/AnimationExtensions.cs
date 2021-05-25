@@ -17,13 +17,13 @@ namespace Microsoft.Templates.UI.Extensions
 
             // TODO: Ensure this is properly callled in the async world. if so, remove the in-line suppresion and move it to the suppresion file.
             Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
-            EventHandler callback = null;
-            callback = (sender, e) =>
+            void Callback(object sender, EventArgs e)
             {
-                storyboard.Completed -= callback;
+                storyboard.Completed -= Callback;
                 tcs.SetResult(true);
-            };
-            storyboard.Completed += callback;
+            }
+
+            storyboard.Completed += Callback;
             storyboard.Begin();
             return tcs.Task;
         }

@@ -232,18 +232,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void AddToGroup(TemplateType templateType, SavedTemplateViewModel savedTemplate)
         {
-            Func<SavedTemplateViewModel, bool> genGroupEqual = (SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
-            Func<SavedTemplateViewModel, bool> genGroupPrevious = (SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
+            bool GenGroupEqual(SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
+            bool GenGroupPrevious(SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
 
             int index = 0;
             var group = GetGroup(templateType);
-            if (group.Items.Any(genGroupEqual))
+            if (group.Items.Any(GenGroupEqual))
             {
-                index = group.Items.IndexOf(group.Items.Last(genGroupEqual)) + 1;
+                index = group.Items.IndexOf(group.Items.Last(GenGroupEqual)) + 1;
             }
             else if (group.Items.Any())
             {
-                index = group.Items.IndexOf(group.Items.Last(genGroupPrevious)) + 1;
+                index = group.Items.IndexOf(group.Items.Last(GenGroupPrevious)) + 1;
             }
 
             group.Insert(index, savedTemplate);
