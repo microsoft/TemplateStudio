@@ -22,8 +22,6 @@ using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Controls
 {
-    [SuppressMessage("StyleCop", "SA1611", Justification = "The code is external and contains xml documentation")]
-    [SuppressMessage("StyleCop", "SA1615", Justification = "The code is external and contains xml documentation")]
     [SuppressMessage("StyleCop", "SA1623", Justification = "The code is external and contains xml documentation")]
 
     /// <summary>
