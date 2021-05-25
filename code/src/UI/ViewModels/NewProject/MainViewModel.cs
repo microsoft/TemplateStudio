@@ -32,8 +32,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
 
-        private TemplateInfoViewModel _selectedTemplate;
-
         public Dictionary<TemplateType, TemplatesStepViewModel> StepsViewModels { get; } = new Dictionary<TemplateType, TemplatesStepViewModel>();
 
         public static MainViewModel Instance { get; private set; }
@@ -207,7 +205,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             else if (item is TemplateInfoViewModel template)
             {
-                _selectedTemplate = template;
                 await AddTemplateAsync(template);
             }
         }
