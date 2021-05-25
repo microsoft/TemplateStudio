@@ -101,10 +101,8 @@ namespace Microsoft.Templates.UI.Services
 
         public static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
         {
-            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-
             // If not in VS then assume all workloads are available.
-            if (vsShell != null && vsShell.GetInstalledPackageIds().Any())
+            if (GenContext.ToolBox.Shell is VsGenShell vsShell && vsShell.GetInstalledPackageIds().Any())
             {
                 var installedIds = vsShell.GetInstalledPackageIds();
 

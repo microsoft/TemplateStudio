@@ -235,7 +235,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private static readonly Regex _newlinesLeadingTrailing = new Regex(@"^\n+|\n+\z", RegexOptions.Compiled);
         private static readonly Regex _newlinesMultiple = new Regex(@"\n{2,}", RegexOptions.Compiled);
-        private static Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
+        private static readonly Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
 
         /// <summary>
         /// splits on two or more newlines, to form "paragraphs";

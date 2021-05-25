@@ -157,9 +157,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as CodeViewer;
-            var item = control.Item as NewItemFileViewModel;
-            if (control != null && item != null)
+            if (d is CodeViewer control && control.Item is NewItemFileViewModel item)
             {
                 control.UpdateCodeView(item);
             }
