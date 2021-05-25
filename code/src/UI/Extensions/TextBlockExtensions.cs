@@ -71,15 +71,5 @@ namespace Microsoft.Templates.UI.Extensions
             textBlock.Inlines.Clear();
             textBlock.Inlines.Add($"{index}. {step.Title}");
         }
-
-        private static Run GetCheckMark()
-        {
-            return new Run()
-            {
-                FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                Text = char.ConvertFromUtf32(0xE001),
-                BaselineAlignment = BaselineAlignment.Center,
-            };
-        }
     }
 }
