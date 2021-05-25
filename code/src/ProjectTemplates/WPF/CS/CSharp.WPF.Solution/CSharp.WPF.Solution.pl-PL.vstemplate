@@ -30,6 +30,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCSWpf</FullClassName>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>
