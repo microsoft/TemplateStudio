@@ -1,6 +1,6 @@
 ﻿//{[{
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Services;

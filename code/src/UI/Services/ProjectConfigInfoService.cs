@@ -192,7 +192,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return Prism;
             }
-            else if (IsMicrosoftMvvmToolkit())
+            else if (IsMicrosoftMvvmToolkit(platform))
             {
                 return MvvmToolkit;
             }
@@ -418,9 +418,16 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private bool IsMicrosoftMvvmToolkit()
+        private bool IsMicrosoftMvvmToolkit(string platform)
         {
-            return ContainsNugetPackage("Microsoft.Toolkit.Mvvm");
+            if (platform == Platforms.WinUI)
+            {
+                return ContainsNugetPackage("CommunityToolkit.Mvvm");
+            }
+            else
+            {
+                return ContainsNugetPackage("Microsoft.Toolkit.Mvvm");
+            }
         }
 
         private bool IsCSharpProject()
