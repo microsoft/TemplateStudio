@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}").FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex}").FireAndForget();
                 return new VSTelemetryInfo()
                 {
                     OptedIn = false,
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString()).FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex).FireAndForget();
                 result = false;
             }
 
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync($"Exception tracking Project Creation in VsTelemetry:\r\n" + ex.ToString()).FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Exception tracking Project Creation in VsTelemetry:\r\n" + ex).FireAndForget();
             }
         }
 
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync($"Exception tracking New Item Creation in VsTelemetry:\r\n" + ex.ToString()).FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Exception tracking New Item Creation in VsTelemetry:\r\n" + ex).FireAndForget();
             }
         }
 
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync($"Exception tracking Wizard Cancelled in VsTelemetry:\r\n" + ex.ToString()).FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Exception tracking Wizard Cancelled in VsTelemetry:\r\n" + ex).FireAndForget();
             }
         }
 

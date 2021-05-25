@@ -77,7 +77,7 @@ namespace Microsoft.Templates.UI.Extensions
             return new Run()
             {
                 FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                Text = char.ConvertFromUtf32(0xE001).ToString(),
+                Text = char.ConvertFromUtf32(0xE001),
                 BaselineAlignment = BaselineAlignment.Center,
             };
         }
