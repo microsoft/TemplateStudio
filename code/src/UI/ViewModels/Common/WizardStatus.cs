@@ -5,10 +5,8 @@
 using System;
 using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Input;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;

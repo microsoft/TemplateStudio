@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -20,7 +19,6 @@ using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {

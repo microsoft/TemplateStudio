@@ -2,15 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.VisualStudio;
-using Microsoft.VisualStudio.Utilities.Internal;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
