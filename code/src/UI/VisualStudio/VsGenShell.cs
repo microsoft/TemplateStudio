@@ -396,7 +396,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private string GetActiveProjectKind()
+        public string GetActiveProjectKind()
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
@@ -404,7 +404,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             });
         }
 
-        private async Task<string> GetActiveProjectKindAsync()
+        public async Task<string> GetActiveProjectKindAsync()
         {
             var p = await GetActiveProjectAsync();
 
