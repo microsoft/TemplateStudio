@@ -1,5 +1,5 @@
 ﻿//{[{
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Param_RootNamespace.ViewModels;
 //}]}
 

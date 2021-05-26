@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "Web 视图页面使用 Microsoft Edge 呈现引擎呈现 Web 内容。",
+  "description": "網頁查看頁面使用WebView2 （微軟邊緣與鉻）呈現Web內容。",
   "identity": "wts.WinUI.Page.WebView"
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "Die Webansichtseite rendert Webinhalte mittels des Microsoft Edge-Renderingmoduls.",
+  "description": "Die Webseite rendert Webinhalte mit WebView2 (Microsoft Edge mit Chromium).",
   "identity": "wts.WinUI.Page.WebView"
 }
