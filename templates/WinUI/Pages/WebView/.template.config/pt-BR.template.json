@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "A página de exibição na Web renderiza o conteúdo da Web usando o mecanismo de renderização do Microsoft Edge.",
+  "description": "A página de exibição da Web renderiza conteúdo da Web usando o WebView2 (Microsoft Edge com Chromium).",
   "identity": "wts.WinUI.Page.WebView"
 }

@@ -40,7 +40,7 @@ Windows Template Studio approaches WinUI 3 Desktop app creation using the follow
 | Project type | Description |
 |-------------:|:------------|
 | [Blank](./projectTypes/blank.md) | This basic project is a blank canvas upon which to build your app. It provides no scaffolding and leaves everything up to you. |
-| [Navigation Pane](./projectTypes/navigationpane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages. This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed. The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen. |
+| [Navigation Pane](./projectTypes/navigation-pane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages. This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed. The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen. |
 
 ### Design patterns
 
@@ -83,7 +83,7 @@ Windows Template Studio approaches WinUI 3 Desktop app creation using the follow
 
 
 ### Known issues:
-- [Dark/Light theme issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4087)
+- [Backbutton issue in ListDetail Page](https://github.com/microsoft/WindowsTemplateStudio/issues/4280)
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:

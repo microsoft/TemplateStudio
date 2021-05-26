@@ -43,7 +43,16 @@ namespace Microsoft.Templates.Test
 
         protected static string ShortLanguageName(string language)
         {
-            return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+            switch (language)
+            {
+                case ProgrammingLanguages.VisualBasic:
+                    return "VB";
+                case ProgrammingLanguages.Cpp:
+                    return "CPP";
+                case ProgrammingLanguages.CSharp:
+                default:
+                    return "CS";
+            }
         }
 
         // Used to create names that include a number of characters that are valid in project names but have the potential to cause issues
@@ -53,7 +62,8 @@ namespace Microsoft.Templates.Test
             // ^ is technically valid in project names but Visual Studio cannot open files with this in the path
             // ' is technically valid in project names but breaks test projects if used in the name so don't test for it
             // , is technically valid in project names but breaks vb test projects in VS 2019 if used in the name so don't test for it
-            return " -_.@! (£)+=";
+            // £ is not valid in C++ projects
+            return " -_.@! ()+=";
         }
 
         protected static string ShortProjectType(string projectType)
@@ -236,7 +246,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected void AssertBuildProject(string projectPath, string projectName, string platform, bool deleteAfterBuild = true)
+        protected void AssertBuildProject(string projectPath, string projectName, string platform, string language = "", bool deleteAfterBuild = true)
         {
             (int exitCode, string outputFile) result = (1, string.Empty);
 
@@ -247,7 +257,7 @@ namespace Microsoft.Templates.Test
                     result = _fixture.BuildSolutionUwp(projectName, projectPath, platform);
                     break;
                 case Platforms.WinUI:
-                    result = _fixture.BuildSolutionWinUI(projectName, projectPath, platform);
+                    result = _fixture.BuildSolutionWinUI(projectName, projectPath, platform, language);
                     break;
                 case Platforms.Wpf:
                      result = _fixture.BuildSolutionWpf(projectName, projectPath, platform);

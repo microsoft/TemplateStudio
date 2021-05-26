@@ -104,10 +104,20 @@
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="VisualTests\AccessibilityTests.cs" />
     <Compile Include="VisualTests\WPF\AccessibilityTests.cs" />
+    <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <None Include=".codeclonesettings" />
     <None Include="App.config" />
+    <None Include="bat\WinUI\RestoreAndBuildCppAppx.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\WinUI\RestoreAndBuildCpp.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="bat\WinUI\RestoreAndBuild.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\WinUI\RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="bat\Wpf\RestoreAndBuildAppx.bat">
@@ -247,6 +257,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\tools\nuget.exe">
+      <Link>nuget\nuget.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

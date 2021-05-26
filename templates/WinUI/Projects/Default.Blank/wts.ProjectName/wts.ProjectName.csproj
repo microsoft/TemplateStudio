@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <!-- TODO WTS: This is a temporary workaround as Project Reunion 0.5.7 requires WinRT.Runtime.dll version 1.2 or greater.
-  Please remove the fixed FrameworkReferences once you updated to .NET SDK 5.0.204 or 5.0.300 (when available) which fixes this.
+  Please remove the fixed FrameworkReferences once you have updated to .NET SDK 5.0.204 or 5.0.300 (when available) which fixes this.
   For more info see https://docs.microsoft.com/windows/apps/winui/winui3/#known-issues -->
   <ItemGroup>
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.19041.16" />

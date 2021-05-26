@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "Web görünümü sayfası, web içeriğini Microsoft Edge işleme altyapısını kullanarak işler.",
+  "description": "E horo'a te api hi'o na ni'a i te itenati i te mau mea o te itenati ma te faaohipa i te WebView2 (Microsoft Edge e te Chromium).",
   "identity": "wts.WinUI.Page.WebView"
 }

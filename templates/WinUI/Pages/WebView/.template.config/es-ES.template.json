@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "La página de vista web presenta contenido web usando el motor de representación de Microsoft Edge.",
+  "description": "La página WebView representa contenido web mediante WebView2 (Microsoft Edge con Chromium).",
   "identity": "wts.WinUI.Page.WebView"
 }

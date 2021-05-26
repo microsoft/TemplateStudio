@@ -4,7 +4,7 @@ Adds a ribbon control from `Fluent.Ribbon` nuget package which consists of sever
 
 The Ribbon control is placed on the `ShellWindow` and the DataContext of this Ribbon control is the `ShellViewModel`, but most of times, the ribbon tabs should be configured from active pages, to solve this Ribbon projects has infrastructure to add Ribbon tabs from pages and also add Groups to the main tab in the Ribbon control.
 
-This doc covers how to add these options from a MasterDetail page in a Ribbon project.
+This doc covers how to add these options from a ListDetails page in a Ribbon project.
 
 ## Add Ribbon Tabs from a page
 
@@ -20,11 +20,11 @@ public ShellWindow(IPageService pageService, ShellViewModel viewModel, INavigati
 }
 ```
 
-We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see comments in line.
+We should add a `RibbonPageConfiguration` in `ListDetailsPage.xaml`, see comments in line.
 
 ```xml
 <Page
-    x:Class="RibbonSampleApp.Views.MasterDetailPage"
+    x:Class="RibbonSampleApp.Views.ListDetailsPage"
     Style="{DynamicResource MahApps.Styles.Page}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -42,7 +42,7 @@ We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see commen
                 <Fluent:RibbonTabItem
                     x:Name="ribbonTabItem"
                     Fluent:KeyTip="A"
-                    Header="MasterDetail"
+                    Header="ListDetails"
                     behaviors:RibbonTabsBehavior.IsTabFromPage="True">
                     <!--IsTabFromPage helps RibbonTabsBehavior to know Tabs to add and remove from pages on navigation events-->
                     <Fluent:RibbonGroupBox
@@ -75,7 +75,7 @@ We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see commen
 You also need to set ribbonTabItem DataContext to ViewModel from page constructor.
 
 ```csharp
-public MasterDetailPage(MasterDetailViewModel viewModel)
+public ListDetailsPage(ListDetailsViewModel viewModel)
 {
     InitializeComponent();
     DataContext = viewModel;
@@ -83,16 +83,16 @@ public MasterDetailPage(MasterDetailViewModel viewModel)
 }
 ```
 
-![Screenshot of app with ribbon tabs from a MasterDetail page](../resources/modifications/RibbonTabsFromPage.png)
+![Screenshot of app with ribbon tabs from a ListDetails page](../resources/modifications/RibbonTabsFromPage.png)
 
 
 ## Add Ribbon Home Tab groups from a page
 
-We should add a `RibbonPageConfiguration` in `MasterDetailPage.xaml`, see comments in line.
+We should add a `RibbonPageConfiguration` in `ListDetailsPage.xaml`, see comments in line.
 
 ```xml
 <Page
-    x:Class="RibbonSampleApp.Views.MasterDetailPage"
+    x:Class="RibbonSampleApp.Views.ListDetailsPage"
     Style="{DynamicResource MahApps.Styles.Page}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -141,7 +141,7 @@ You also need to set groupBox DataContext to ViewModel from page constructor.
 **MVVVM Basic**
 
 ```csharp
-public MasterDetailPage(MasterDetailViewModel viewModel)
+public ListDetailsPage(ListDetailsViewModel viewModel)
 {
     InitializeComponent();
     DataContext = viewModel;
@@ -152,16 +152,16 @@ public MasterDetailPage(MasterDetailViewModel viewModel)
 **MVVVM Light or Prism**
 
 ```csharp
-public MasterDetailPage()
+public ListDetailsPage()
 {
     InitializeComponent();
     groupBox.DataContext = DataContext;
 }
 ```
 
-![Screenshot of app with ribbon home tab groups from a MasterDetail page](../resources/modifications/RibbonHomeTabGroupsFromPage.png)
+![Screenshot of app with ribbon home tab groups from a ListDetails page](../resources/modifications/RibbonHomeTabGroupsFromPage.png)
 
-In both samples we need to create the `RefreshCommand` in `MasterDetailViewModel.cs`. Use `RelayCommand` in MVVMBasic and MVVMLight and `DelegateCommand` in Prism.
+In both samples we need to create the `RefreshCommand` in `ListDetailsViewModel.cs`. Use `RelayCommand` in MVVMBasic and MVVMLight and `DelegateCommand` in Prism.
 
 ```csharp
 private ICommand _refreshCommand;

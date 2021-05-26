@@ -5,7 +5,7 @@ using Param_RootNamespace.Helpers;
 namespace Param_RootNamespace
 {
     // TODO WTS: Please remove the fixed FrameworkReferences from the wts.ProjectName.csproj file
-    // once you updated to .NET SDK 5.0.204 or 5.0.300.
+    // once you have updated to .NET SDK 5.0.204 or 5.0.300.
     // For more info see https://docs.microsoft.com/windows/apps/winui/winui3/#known-issues
     public partial class App : Application
     {
