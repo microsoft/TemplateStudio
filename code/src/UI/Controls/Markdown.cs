@@ -23,6 +23,7 @@ using Microsoft.Templates.UI.Resources;
 namespace Microsoft.Templates.UI.Controls
 {
     [SuppressMessage("StyleCop", "SA1623", Justification = "The code is external and contains xml documentation")]
+
     /// <summary>
     /// This code has been taken from https://github.com/theunrepentantgeek/Markdown.XAML
     /// Authored by Bevan Arps under MIT license
