@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -85,15 +86,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
-
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await _generationService.GenerateProjectAsync(_userSelection);
-                    PostGenerationActions();
-
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
+                    await RunFinishedAsync();
                 },
                 JoinableTaskCreationOptions.LongRunning);
+        }
+
+        public async Task RunFinishedAsync()
+        {
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await _generationService.GenerateProjectAsync(_userSelection);
+            PostGenerationActions();
+
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
         }
 
         private static void PostGenerationActions()
