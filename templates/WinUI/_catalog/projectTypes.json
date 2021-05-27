@@ -11,7 +11,7 @@
     {
       "name": "BlankAdvanced",
       "displayName": "Blank Advanced",
-      "summary": "BlankAdvanced",
+      "summary": "A navigation frame and basic services and styles are included.",
       "author": "Microsoft",
       "order": "2",
       "platform": "WinUI",
