@@ -225,6 +225,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             _generationService.FinishGeneration(userSelection);
+
+            // TODO: Change all async GensShell methods to public
             await (_shell.UI as VsGenShellUI).ShowStatusBarMessageAsync(statusBarMessage);
         }
 

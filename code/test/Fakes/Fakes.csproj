@@ -57,7 +57,13 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="FakeContextProvider.cs" />
-    <Compile Include="FakeGenShell.cs" />
+    <Compile Include="GenShell\FakeGenShell.cs" />
+    <Compile Include="GenShell\FakeGenShellCertificate.cs" />
+    <Compile Include="GenShell\FakeGenShellProject.cs" />
+    <Compile Include="GenShell\FakeGenShellSolution.cs" />
+    <Compile Include="GenShell\FakeGenShellTelemetry.cs" />
+    <Compile Include="GenShell\FakeGenShellUI.cs" />
+    <Compile Include="GenShell\FakeGenShellVisualStudio.cs" />
     <Compile Include="MSBuild\FakePackagesConfig.cs" />
     <Compile Include="MSBuild\FakeMsBuildProject.cs" />
     <Compile Include="MSBuild\VsItemTypeExtensions.cs" />
