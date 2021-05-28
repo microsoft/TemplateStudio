@@ -9,6 +9,11 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
+  <!-- Workaround for https://github.com/dotnet/sdk/issues/17890 -->
+  <PropertyGroup>
+    <NoWarn>CA1416, $(NoWarn)</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
