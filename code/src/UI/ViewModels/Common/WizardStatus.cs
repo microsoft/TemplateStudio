@@ -117,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void OnCreateIssue()
         {
-            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            var vsInfo = GenContext.ToolBox.Shell.Telemetry.GetVSTelemetryInfo();
 
             var sb = new StringBuilder();
             sb.AppendLine("**Describe the bug**");

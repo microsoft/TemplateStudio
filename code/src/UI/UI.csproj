@@ -174,6 +174,13 @@
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShell.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellCertificate.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellProject.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellSolution.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellTelemetry.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellUI.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellVisualStudio.cs" />
     <Compile Include="VisualStudio\RightClickAvailability.cs" />
     <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
     <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
@@ -338,7 +345,6 @@
     <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />
     <Compile Include="VisualStudio\SolutionWizardVB.cs" />
-    <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
     <Compile Include="VisualStudio\VsShellExtensions.cs" />
     <Compile Include="VisualStudio\VsTelemetryEvents.cs" />

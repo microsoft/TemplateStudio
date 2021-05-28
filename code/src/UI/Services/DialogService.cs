@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI.Services
             var vm = new ErrorDialogViewModel(ex);
             var error = new Views.Common.ErrorDialog(vm);
 
-            GenContext.ToolBox.Shell.ShowModal(error);
+            GenContext.ToolBox.Shell.UI.ShowModal(error);
         }
     }
 }
