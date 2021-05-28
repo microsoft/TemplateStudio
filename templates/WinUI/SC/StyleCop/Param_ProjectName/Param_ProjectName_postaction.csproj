@@ -3,9 +3,8 @@
     <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
   </PropertyGroup>
 <!--{[{-->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+  <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
 <!--}]}-->
 </Project>
