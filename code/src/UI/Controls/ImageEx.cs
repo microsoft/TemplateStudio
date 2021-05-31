@@ -216,8 +216,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private static void OnSourcePathPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as ImageEx;
-            if (control != null)
+            if (d is ImageEx control)
             {
                 control.Initialize();
             }

@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) is IVsOutputWindow output)
             {
                 // Create a new pane.
-                int createRetVal = output.CreatePane(
+                output.CreatePane(
                     ref paneGuid,
                     title,
                     Convert.ToInt32(visible),

@@ -4,10 +4,6 @@
 
 using System;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using EnvDTE;
-using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.VisualStudio

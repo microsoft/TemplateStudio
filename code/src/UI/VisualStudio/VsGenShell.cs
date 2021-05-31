@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -396,7 +395,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private string GetActiveProjectKind()
+        public string GetActiveProjectKind()
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
@@ -404,7 +403,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             });
         }
 
-        private async Task<string> GetActiveProjectKindAsync()
+        public async Task<string> GetActiveProjectKindAsync()
         {
             var p = await GetActiveProjectAsync();
 
@@ -1057,7 +1056,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 sb.AppendLine(string.Format(StringRes.ErrorMissingNugetPackagesInstallTemplate, nuget.PackageId, nuget.Version));
             }
 
-            var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb.ToString());
+            var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb);
             var fileName = Path.Combine(GenContext.Current.DestinationPath, "ERROR_NugetPackages_Missing.txt");
 
             File.AppendAllText(fileName, missingNugetPackagesInfo);

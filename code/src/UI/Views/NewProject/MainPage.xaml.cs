@@ -50,9 +50,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-
-            if (comboBox == null)
+            if (!(sender is ComboBox comboBox))
             {
                 return;
             }

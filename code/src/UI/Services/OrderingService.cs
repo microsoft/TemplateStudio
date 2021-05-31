@@ -15,8 +15,8 @@ namespace Microsoft.Templates.UI.Services
 {
     public class OrderingService
     {
-        private ListView _listView;
-        private DragAndDropService<SavedTemplateViewModel> _dragAndDropService;
+        private readonly ListView _listView;
+        private readonly DragAndDropService<SavedTemplateViewModel> _dragAndDropService;
 
         private ObservableCollection<SavedTemplateViewModel> Pages
         {

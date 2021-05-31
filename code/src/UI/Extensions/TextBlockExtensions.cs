@@ -2,12 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
-
 using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Extensions
@@ -67,19 +63,9 @@ namespace Microsoft.Templates.UI.Extensions
             var textBlock = d as TextBlock;
             var step = GetSequentialFlowStep(textBlock);
             var index = GetSequentialFlowStepIndex(textBlock);
-            var completed = GetSequentialFlowStepCompleted(textBlock);
+            GetSequentialFlowStepCompleted(textBlock);
             textBlock.Inlines.Clear();
             textBlock.Inlines.Add($"{index}. {step.Title}");
-        }
-
-        private static Run GetCheckMark()
-        {
-            return new Run()
-            {
-                FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                Text = char.ConvertFromUtf32(0xE001).ToString(),
-                BaselineAlignment = BaselineAlignment.Center,
-            };
         }
     }
 }
