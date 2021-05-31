@@ -20,10 +20,6 @@ using Windows.Foundation.Collections;
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 namespace Param_RootNamespace
 {
-    // TODO WTS: Please remove the fixed FrameworkReferences from the wts.ProjectName.csproj file
-    // once you have updated to .NET SDK 5.0.204 or 5.0.300.
-    // For more info see https://docs.microsoft.com/windows/apps/winui/winui3/#known-issues
-
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
