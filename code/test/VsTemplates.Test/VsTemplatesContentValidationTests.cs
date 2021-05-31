@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.UI;
 using VsTemplates.Test.Models;
 using VsTemplates.Test.Validator;
 using Xunit;
@@ -24,15 +22,25 @@ namespace VsTemplates.Test
         private const string ItemTemplatesRoot = "../../../../../src/ItemTemplates";
         private const string ProjectTemplatesRoot = "../../../../../src/ProjectTemplates";
         private const string VsTemplateFileExtension = ".vstemplate";
+        private const string WPF = "Wpf";
+        private const string UWP = "Uwp";
+        private const string WINUI = "WinUI";
+
+        private const string DESKTOP = "Desktop";
+
+        private const string CSHARP = "C#";
+        private const string VB = "VisualBasic";
+        private const string CPP = "C++";
+
         private static readonly List<VSTemplateData> WizardProjectTemplatesData = new List<VSTemplateData>
         {
-            new VSTemplateData(Platforms.Wpf, string.Empty, ProgrammingLanguages.CSharp, "../../../../../src/ProjectTemplates/WPF"),
-            new VSTemplateData(Platforms.Uwp, string.Empty, ProgrammingLanguages.CSharp, "../../../../../src/ProjectTemplates/UWP/CS"),
-            new VSTemplateData(Platforms.Uwp, string.Empty, ProgrammingLanguages.VisualBasic, "../../../../../src/ProjectTemplates/UWP/VB"),
-            new VSTemplateData(Platforms.WinUI, AppModels.Desktop, ProgrammingLanguages.Cpp, "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.Desktop.Solution"),
-            new VSTemplateData(Platforms.WinUI, AppModels.Uwp, ProgrammingLanguages.Cpp, "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.UWP.Solution"),
-            new VSTemplateData(Platforms.WinUI, AppModels.Desktop, ProgrammingLanguages.CSharp, "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Desktop.Solution"),
-            new VSTemplateData(Platforms.WinUI, AppModels.Uwp, ProgrammingLanguages.CSharp, "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Uwp.Solution"),
+            new VSTemplateData(WPF, string.Empty, CSHARP, "../../../../../src/ProjectTemplates/WPF"),
+            new VSTemplateData(UWP, string.Empty, CSHARP, "../../../../../src/ProjectTemplates/UWP/CS"),
+            new VSTemplateData(UWP, string.Empty, VB, "../../../../../src/ProjectTemplates/UWP/VB"),
+            new VSTemplateData(WINUI, DESKTOP, CPP, "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.Desktop.Solution"),
+            new VSTemplateData(WINUI, UWP, CPP, "../../../../../src/ProjectTemplates/WinUI/Cpp/Cpp.WinUI.UWP.Solution"),
+            new VSTemplateData(WINUI, DESKTOP, CSHARP, "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Desktop.Solution"),
+            new VSTemplateData(WINUI, UWP, CSHARP, "../../../../../src/ProjectTemplates/WinUI/CS/CSharp.WinUI.Uwp.Solution"),
         };
 
         public static IEnumerable<object[]> GetWizardProjectTemplateFiles()

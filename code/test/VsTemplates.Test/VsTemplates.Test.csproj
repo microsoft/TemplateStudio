@@ -40,9 +40,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj" />
-    <ProjectReference Include="..\..\src\UI\UI.csproj" />
-  </ItemGroup>
-
 </Project>
