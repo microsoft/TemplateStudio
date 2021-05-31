@@ -150,7 +150,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             return true;
         }
 
-        private void CleanupDirectories(string projectDirectory)
+        private static void CleanupDirectories(string projectDirectory)
         {
             var parentDir = new DirectoryInfo(projectDirectory).Parent.FullName;
             Fs.SafeDeleteDirectory(projectDirectory);
