@@ -12,7 +12,7 @@ namespace Microsoft.Templates.UI.Services
 {
     public class DialogService
     {
-        private static Lazy<DialogService> _instance = new Lazy<DialogService>(() => new DialogService());
+        private static readonly Lazy<DialogService> _instance = new Lazy<DialogService>(() => new DialogService());
 
         public static DialogService Instance => _instance.Value;
 

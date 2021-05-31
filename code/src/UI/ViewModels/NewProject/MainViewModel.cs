@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -20,7 +19,6 @@ using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -31,8 +29,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
-
-        private TemplateInfoViewModel _selectedTemplate;
 
         public Dictionary<TemplateType, TemplatesStepViewModel> StepsViewModels { get; } = new Dictionary<TemplateType, TemplatesStepViewModel>();
 
@@ -135,8 +131,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             else
             {
                 var vm = new QuestionDialogViewModel(metadataType);
-                var questionDialog = new QuestionDialogWindow(vm);
-                questionDialog.Owner = WizardShell.Current;
+                var questionDialog = new QuestionDialogWindow(vm)
+                {
+                    Owner = WizardShell.Current,
+                };
                 questionDialog.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)
@@ -205,7 +203,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             else if (item is TemplateInfoViewModel template)
             {
-                _selectedTemplate = template;
                 await AddTemplateAsync(template);
             }
         }
@@ -255,7 +252,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 else
                 {
                     var step = StepsViewModels[templateType];
-                    step.ResetData(Context.ProjectType, Context.FrontEndFramework);
+                    step.ResetData();
                 }
             }
             else if (!hasTemplates && isStepAdded)
@@ -288,8 +285,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnCompositionTool()
         {
-            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
-            compositionTool.Owner = WizardShell.Current;
+            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection())
+            {
+                Owner = WizardShell.Current,
+            };
             compositionTool.ShowDialog();
         }
 

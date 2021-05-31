@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -17,7 +17,6 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -85,15 +84,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
-
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await _generationService.GenerateProjectAsync(_userSelection);
-                    PostGenerationActions();
-
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
+                    await RunFinishedAsync();
                 },
                 JoinableTaskCreationOptions.LongRunning);
+        }
+
+        public async Task RunFinishedAsync()
+        {
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await _generationService.GenerateProjectAsync(_userSelection);
+            PostGenerationActions();
+
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
         }
 
         private static void PostGenerationActions()
@@ -130,9 +134,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
-                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
                 if (GenContext.ToolBox.Repo.SyncInProgress)
                 {
                     GenContext.ToolBox.Repo.CancelSynchronization();

@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Converters
     /// </summary>
     public class TextToFlowDocumentConverter : DependencyObject, IValueConverter
     {
-        private Lazy<Markdown> _markdown = new Lazy<Markdown>(() => new Markdown());
+        private readonly Lazy<Markdown> _markdown = new Lazy<Markdown>(() => new Markdown());
 
         public Markdown Markdown
         {

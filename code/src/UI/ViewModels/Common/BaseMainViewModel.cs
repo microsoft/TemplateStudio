@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -14,10 +13,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
