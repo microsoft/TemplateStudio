@@ -9,13 +9,11 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
-  <!-- TODO WTS: This is a temporary workaround as Project Reunion 0.5.7 requires WinRT.Runtime.dll version 1.2 or greater.
-  Please remove the fixed FrameworkReferences once you updated to .NET SDK 5.0.204 or 5.0.300 (when available) which fixes this.
-  For more info see https://docs.microsoft.com/windows/apps/winui/winui3/#known-issues-->
-  <ItemGroup>
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.19041.16" />
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.19041.16" />
-  </ItemGroup>
+  <!-- Workaround for https://github.com/dotnet/sdk/issues/17890 -->
+  <PropertyGroup>
+    <NoWarn>CA1416, $(NoWarn)</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>

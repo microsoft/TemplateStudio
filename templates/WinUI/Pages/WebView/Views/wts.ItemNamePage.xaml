@@ -14,10 +14,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!--
-        Microsoft.UI.Xaml.Controls.WebView2 is for evaluation purposes only and is subject to change or removal in future updates.
-        See more info https://docs.microsoft.com/en-us/microsoft-edge/webview2/
-        -->
         <WebView2
             x:Name="webView"
             Source="{x:Bind ViewModel.Source, Mode=OneWay}" />

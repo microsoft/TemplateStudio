@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "WebView",
-  "description": "網頁檢視頁面會使用 Microsoft Edge 轉譯引擎來轉譯網頁內容。",
+  "description": "網頁查看頁面使用 WebView2（微軟邊緣與鉻）呈現 Web 內容。",
   "identity": "wts.WinUI.Page.WebView"
 }

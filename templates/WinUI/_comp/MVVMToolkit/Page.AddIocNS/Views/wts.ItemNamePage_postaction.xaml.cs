@@ -1,3 +1,3 @@
 ﻿//{[{
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 //}]}
