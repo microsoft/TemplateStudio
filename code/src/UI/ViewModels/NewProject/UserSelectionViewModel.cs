@@ -2,13 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web.UI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -90,17 +87,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            if (template.Exclusions.Count() > 0)
+            if (template.Exclusions.Any())
             {
                 var exlusionsTemplateNames = AllTemplates.Where(t => template.Exclusions.Select(e => e.Identity).Contains(t.Identity)).Select(t => t.Template.Name).Distinct();
-                if (exlusionsTemplateNames.Count() > 0 )
+                if (exlusionsTemplateNames.Any())
                 {
                     await ShowAddTemplateExclusionsNotificationAsync(template.Name, exlusionsTemplateNames);
                     return;
                 }
             }
 
-            if (template.Requirements.Count() > 0)
+            if (template.Requirements.Any())
             {
                 if (!AllTemplates.Any(t => template.Requirements.Select(r => r.Identity).Contains(t.Identity)))
                 {
@@ -232,18 +229,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void AddToGroup(TemplateType templateType, SavedTemplateViewModel savedTemplate)
         {
-            Func<SavedTemplateViewModel, bool> genGroupEqual = (SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
-            Func<SavedTemplateViewModel, bool> genGroupPrevious = (SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
+            bool GenGroupEqual(SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
+            bool GenGroupPrevious(SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
 
             int index = 0;
             var group = GetGroup(templateType);
-            if (group.Items.Any(genGroupEqual))
+            if (group.Items.Any(GenGroupEqual))
             {
-                index = group.Items.IndexOf(group.Items.Last(genGroupEqual)) + 1;
+                index = group.Items.IndexOf(group.Items.Last(GenGroupEqual)) + 1;
             }
             else if (group.Items.Any())
             {
-                index = group.Items.IndexOf(group.Items.Last(genGroupPrevious)) + 1;
+                index = group.Items.IndexOf(group.Items.Last(GenGroupPrevious)) + 1;
             }
 
             group.Insert(index, savedTemplate);

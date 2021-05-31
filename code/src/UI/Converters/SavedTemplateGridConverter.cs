@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Converters
             bool hasErrors = false;
             if (value != null)
             {
-                bool.TryParse(value.ToString(), out hasErrors);
+                _ = bool.TryParse(value.ToString(), out hasErrors);
             }
 
             var styleName = hasErrors ? "WtsGridSavedTemplateError" : "WtsGridSavedTemplate";

@@ -15,14 +15,14 @@ namespace Microsoft.Templates.UI.Services
 {
     public partial class DragAndDropService<T>
     {
-        private Func<T, T, bool> _canDrop;
-        private bool _canInitiateDrag;
-        private bool _showDragAdornerLayer;
-        private int _indexToSelect;
-        private double _dragAdornerLayerOpacity;
+        private readonly Func<T, T, bool> _canDrop;
+        private readonly bool _showDragAdornerLayer;
+        private readonly double _dragAdornerLayerOpacity;
+        private readonly ListView _listView;
 
+        private bool _canInitiateDrag;
+        private int _indexToSelect;
         private T _itemUnderDragCursor;
-        private ListView _listView;
         private Point _mouseDownPosition;
         private DragAdornerLayer _dragAdornerLayer;
 

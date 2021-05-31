@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Linq;
-using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Extensions;

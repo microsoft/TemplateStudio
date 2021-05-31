@@ -14,11 +14,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class SelectableGroup<T> : Observable
         where T : Selectable
     {
+        private readonly Func<bool> _isSelectionEnabled;
+        private readonly Func<Task> _onSelected;
+        private readonly DialogService _dialogService = DialogService.Instance;
+
         private T _selected;
         private T _origSelected;
-        private Func<bool> _isSelectionEnabled;
-        private Func<Task> _onSelected;
-        private DialogService _dialogService = DialogService.Instance;
 
         public T Selected
         {

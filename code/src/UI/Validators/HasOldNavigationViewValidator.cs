@@ -3,16 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {

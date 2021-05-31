@@ -32,9 +32,9 @@ namespace Microsoft.Templates.UI.Converters
         private int GetToIntValue(object value)
         {
             int intValue = 0;
-            if (value is int)
+            if (value is int i)
             {
-                intValue = (int)value;
+                intValue = i;
             }
 
             return intValue;

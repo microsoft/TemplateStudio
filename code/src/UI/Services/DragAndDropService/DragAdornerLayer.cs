@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.Services
 {
     public class DragAdornerLayer : Adorner
     {
-        private Rectangle _child = null;
+        private readonly Rectangle _child = null;
         private double _offsetLeft = 0;
         private double _offsetTop = 0;
 
