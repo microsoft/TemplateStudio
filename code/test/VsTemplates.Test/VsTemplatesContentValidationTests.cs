@@ -142,7 +142,7 @@ namespace VsTemplates.Test
             if (!string.IsNullOrEmpty(appModel))
             {
                 var hasAppModel = VsTemplateValidator.VerifyWizardProjectTemplatesIncludesCustomParameter(filePath, "$wts.appmodel$", appModel);
-                Assert.True(hasAppModel.Success, $"{filePath}: " + hasPlatform.Message);
+                Assert.True(hasAppModel.Success, $"{filePath}: " + hasAppModel.Message);
             }
         }
 
