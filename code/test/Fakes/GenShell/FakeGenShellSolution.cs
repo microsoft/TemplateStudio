@@ -17,20 +17,17 @@ namespace Microsoft.Templates.Fakes.GenShell
 {
     public class FakeGenShellSolution : IGenShellSolution
     {
-        private readonly string _solutionPath;
-
         public string Language { get; set; }
 
         public string Platform { get; set; }
 
         public string AppModel { get; set; }
 
-        public FakeGenShellSolution(string platform, string language, string appModel, string solutionPath)
+        public FakeGenShellSolution(string platform, string language, string appModel)
         {
             Platform = platform;
             Language = language;
             AppModel = appModel;
-            _solutionPath = solutionPath;
         }
 
         public void AddContextItemsToSolution(ProjectInfo projectInfo)
@@ -62,9 +59,9 @@ namespace Microsoft.Templates.Fakes.GenShell
             foreach (var project in projectInfo.Projects)
             {
                 var msbuildProj = FakeMsBuildProject.Load(project);
-                var solutionFile = FakeSolution.LoadOrCreate(Platform, AppModel, Language, _solutionPath);
+                var solutionFile = FakeSolution.LoadOrCreate(Platform, AppModel, Language, FakeGenShellHelper.SolutionPath);
 
-                var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(_solutionPath) + Path.DirectorySeparatorChar, string.Empty);
+                var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(FakeGenShellHelper.SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
                 var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString();
 
@@ -164,7 +161,7 @@ namespace Microsoft.Templates.Fakes.GenShell
 
         private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            var solution = FakeSolution.LoadOrCreate(Platform, AppModel, Language, _solutionPath);
+            var solution = FakeSolution.LoadOrCreate(Platform, AppModel, Language, FakeGenShellHelper.SolutionPath);
             var projectGuids = solution.GetProjectGuids();
 
             var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);

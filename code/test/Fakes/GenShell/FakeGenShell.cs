@@ -3,32 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.IO;
 using System.Windows;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Gen.Shell;
 
 namespace Microsoft.Templates.Fakes.GenShell
 {
     public class FakeGenShell : IGenShell
     {
-        public string SolutionPath
-        {
-            get
-            {
-                if (GenContext.Current != null)
-                {
-                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.DestinationPath), $"{GenContext.Current.ProjectName}.sln");
-                }
-
-                return null;
-            }
-        }
-
         public FakeGenShell(string platform, string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
-            Project = new FakeGenShellProject(platform, language, string.Empty, SolutionPath);
-            Solution = new FakeGenShellSolution(platform, language, string.Empty, SolutionPath);
+            Project = new FakeGenShellProject(platform, language, string.Empty);
+            Solution = new FakeGenShellSolution(platform, language, string.Empty);
             Telemetry = new FakeGenShellTelemetry();
             UI = new FakeGenShellUI(changeStatus, addLog, owner);
             VisualStudio = new FakeGenShellVisualStudio();

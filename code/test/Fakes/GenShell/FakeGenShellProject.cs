@@ -12,20 +12,17 @@ namespace Microsoft.Templates.Fakes.GenShell
 {
     public class FakeGenShellProject : IGenShellProject
     {
-        private string _solutionPath;
-
         public string Language { get; set; }
 
         public string Platform { get; set; }
 
         public string AppModel { get; set; }
 
-        public FakeGenShellProject(string platform, string language, string appModel, string solutionPath)
+        public FakeGenShellProject(string platform, string language, string appModel)
         {
             Platform = platform;
             Language = language;
             AppModel = appModel;
-            _solutionPath = solutionPath;
         }
 
         public bool GetActiveProjectIsWts()
@@ -73,7 +70,7 @@ namespace Microsoft.Templates.Fakes.GenShell
             var guid = msbuildProj.Guid;
             if (string.IsNullOrEmpty(guid))
             {
-                var solution = FakeSolution.LoadOrCreate(Platform, AppModel, Language, _solutionPath);
+                var solution = FakeSolution.LoadOrCreate(Platform, AppModel, Language, FakeGenShellHelper.SolutionPath);
                 guid = solution.GetProjectGuids().First(p => p.Key == projectName).Value;
             }
 

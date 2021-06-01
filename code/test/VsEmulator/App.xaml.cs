@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,13 +13,10 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
+using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI.Launcher;
-using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.VsEmulator.Main;
 using Microsoft.Templates.VsEmulator.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
