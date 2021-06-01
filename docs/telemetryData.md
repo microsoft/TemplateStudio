@@ -41,7 +41,7 @@ As new features and pages roll out, percentages  will adjust.
 |:---|:---:|
 |Blank|32.2%|
 |Settings|13.7%|
-|Master/Detail|8.2%|
+|ListDetail|8.3%|
 |DataGrid|6.1%|
 |Content Grid|5.2%|
 |Web View|4.9%|
