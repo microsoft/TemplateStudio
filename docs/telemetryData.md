@@ -151,8 +151,7 @@ As new features and pages roll out, percentages  will adjust.
 |Web View|4.5%|
 |XAML Island|2.2%|
 |List Details|1.6%|
-|MasterDetail|1.1%|
-|Master Detail|0.6%|
+|MasterDetail|1.7%|
 
 ### Features
 
@@ -253,4 +252,3 @@ As new features and pages roll out, percentages  will adjust.
 |C#|95.7%|
 |VisualBasic|4.2%|
 |C++|0.1%|
-
