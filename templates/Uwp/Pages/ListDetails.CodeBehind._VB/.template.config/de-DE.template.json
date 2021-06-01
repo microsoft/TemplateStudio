@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "ListDetail",
+    "description": "Das Listen-/Detailmuster verfügt über einen Listenbereich und einen Detailbereich für den Inhalt.",
+    "identity": "wts.Page.ListDetails.CodeBehind.VB"
+}

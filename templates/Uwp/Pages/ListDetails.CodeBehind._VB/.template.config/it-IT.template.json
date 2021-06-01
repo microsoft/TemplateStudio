@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "ListDetail",
+    "description": "Il modello elenco/dettagli dispone di un riquadro elenco e di un riquadro dei dettagli per il contenuto.",
+    "identity": "wts.Page.ListDetails.CodeBehind.VB"
+}
