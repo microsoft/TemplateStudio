@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
 #if !DEBUG
+// The following using directives are only required for the release configuration
 using System.Reflection;
 using Microsoft.Templates.Utilities.Services;
 #endif
