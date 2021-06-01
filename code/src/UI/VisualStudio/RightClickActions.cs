@@ -19,6 +19,11 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
+#if !DEBUG
+using System.Reflection;
+using Microsoft.Templates.Utilities.Services;
+#endif
+
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
