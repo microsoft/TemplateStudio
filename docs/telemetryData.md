@@ -8,7 +8,6 @@ As new features and pages roll out, percentages  will adjust.
 |:---|:---:|
 |Uwp|65.4%|
 |Wpf|33.3%|
-|WinUI|1.3%|
 
 ### Project Generation by category
 
@@ -149,7 +148,6 @@ As new features and pages roll out, percentages  will adjust.
 |Content Grid|9.7%|
 |Web View|4.5%|
 |XAML Island|2.2%|
-|MasterDetail|1.7%|
 
 ### Features
 
@@ -187,52 +185,7 @@ As new features and pages roll out, percentages  will adjust.
 
 </details>
 
-<details>
-<summary>WinUI Project Generation</summary>
 
-### App Model
-
-|App Model|Percentage|
-|:---|:---:|
-|Desktop|100%|
-
-### Project Type
-
-|Project|Percentage|
-|:---|:---:|
-|Navigation View|67.6%|
-|Blank|32.4%|
-
-### Framework
-
-|Framework Type|Percentage|
-|:---|:---:|
-|MVVMToolkit|67.6%|
-|None|32.4%|
-
-### Pages
-
-|Pages|Percentage|
-|:---|:---:|
-|Blank|21.2%|
-|ListDetail|20.3%|
-
-|Settings|16.1%|
-|DataGrid|16.1%|
-|Content Grid|14.4%|
-|WebView|11.9%|
-
-### Features
-
-|Features|Percentage|
-|:---|:---:|
-|MSIX Packaging|37%|
-|Sample Data|24%|
-|Settings Storage|20%|
-|Theme Selection|19%|
-
-
-</details>
 
 ### Windows Template Studio entry point
 
