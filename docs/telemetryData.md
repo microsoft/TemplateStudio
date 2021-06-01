@@ -58,7 +58,6 @@ As new features and pages roll out, percentages  will adjust.
 |Ink Draw|1.1%|
 |Ink Smart Canvas|1%|
 |Ink Draw Picture|0.9%|
-|ListDetail|0.1%|
 |Media Player|0%|
 
 ### Features
