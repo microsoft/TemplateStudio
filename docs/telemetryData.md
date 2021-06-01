@@ -203,4 +203,3 @@ As new features and pages roll out, percentages  will adjust.
 |:---|:---:|
 |C#|95.7%|
 |VisualBasic|4.2%|
-|C++|0.1%|
