@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public static WizardNavigation Current { get; private set; }
 
-        private Window _wizardShell;
+        private readonly Window _wizardShell;
 
         private bool _canGoBack = false;
         private bool _canGoForward = true;

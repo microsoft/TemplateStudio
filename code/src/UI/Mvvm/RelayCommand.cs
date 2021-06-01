@@ -63,7 +63,7 @@ namespace Microsoft.Templates.UI.Mvvm
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public bool CanExecute(object parameter) => _canExecute == null ? true : _canExecute((T)parameter);
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute((T)parameter);
 
         public void Execute(object parameter) => _execute((T)parameter);
 

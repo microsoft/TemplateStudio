@@ -25,9 +25,9 @@ namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
-        private DialogService _dialogService = DialogService.Instance;
+        private readonly DialogService _dialogService = DialogService.Instance;
         private BaseStyleValuesProvider _styleProvider;
-        private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
+        private static readonly Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
         public static WizardLauncher Instance => _instance.Value;
 
@@ -155,8 +155,7 @@ namespace Microsoft.Templates.UI.Launcher
 
         private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
         {
-            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-            if (vsShell != null)
+            if (GenContext.ToolBox.Shell is VsGenShell vsShell)
             {
                 var workloadsToCheck = requiredWorkloads.Split('|');
                 var missingWorkloads = new List<string>();

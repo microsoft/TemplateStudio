@@ -16,16 +16,14 @@ namespace Microsoft.Templates.UI.Extensions
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
             // TODO: Ensure this is properly callled in the async world. if so, remove the in-line suppresion and move it to the suppresion file.
-#pragma warning disable VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
             Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
-#pragma warning restore VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
-            EventHandler callback = null;
-            callback = (sender, e) =>
+            void Callback(object sender, EventArgs e)
             {
-                storyboard.Completed -= callback;
+                storyboard.Completed -= Callback;
                 tcs.SetResult(true);
-            };
-            storyboard.Completed += callback;
+            }
+
+            storyboard.Completed += Callback;
             storyboard.Begin();
             return tcs.Task;
         }

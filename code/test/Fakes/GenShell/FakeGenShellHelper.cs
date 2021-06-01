@@ -21,6 +21,5 @@ namespace Microsoft.Templates.Fakes.GenShell
                 return null;
             }
         }
-
     }
 }

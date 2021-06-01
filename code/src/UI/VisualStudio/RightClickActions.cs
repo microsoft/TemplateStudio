@@ -5,7 +5,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -18,7 +17,6 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.VisualStudio.GenShell;
-using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
@@ -154,7 +152,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                                         o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
                                         o.AppModel == configInfo?.AppModel);
 
-            return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
+            return rightClickOptions != null && rightClickOptions.TemplateTypes.Contains(templateType);
         }
 
         public bool Visible()
@@ -263,7 +261,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static bool HasContent(string tempPath)
         {
-            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
         }
     }
 }

@@ -18,8 +18,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var notification = item as Notification;
-            if (notification != null)
+            if (item is Notification notification)
             {
                 switch (notification.Type)
                 {
