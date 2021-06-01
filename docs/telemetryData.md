@@ -148,7 +148,6 @@ As new features and pages roll out, percentages  will adjust.
 |Data Grid|12.4%|
 |ListDetail|12.3%|
 |Content Grid|9.7%|
-|ListDetails|9%|
 |Web View|4.5%|
 |XAML Island|2.2%|
 |List Details|1.6%|
