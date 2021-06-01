@@ -216,7 +216,8 @@ As new features and pages roll out, percentages  will adjust.
 |Pages|Percentage|
 |:---|:---:|
 |Blank|21.2%|
-|ListDetails|20.3%|
+|ListDetail|20.3%|
+
 |Settings|16.1%|
 |DataGrid|16.1%|
 |Content Grid|14.4%|
