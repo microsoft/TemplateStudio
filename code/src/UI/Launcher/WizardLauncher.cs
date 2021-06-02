@@ -77,17 +77,17 @@ namespace Microsoft.Templates.UI.Launcher
             return null;
         }
 
-        private void CleanStatusBar() => GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Empty);
+        private static void CleanStatusBar() => GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Empty);
 
-        private void CancelWizard() => GenContext.ToolBox.Shell.UI.CancelWizard();
+        private static void CancelWizard() => GenContext.ToolBox.Shell.UI.CancelWizard();
 
-        private UserSelection LaunchWizardShell(IWizardShell wizardShell)
+        private static UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
             GenContext.ToolBox.Shell.UI.ShowModal(wizardShell as IWindow);
             return wizardShell.Result;
         }
 
-        private void SendTelemetry(WizardTypeEnum wizardType, UserSelection userSelection)
+        private static void SendTelemetry(WizardTypeEnum wizardType, UserSelection userSelection)
         {
             if (userSelection is null)
             {
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.UI.Launcher
             SendTelemetryWizardComplete(wizardType, wizardAction);
         }
 
-        private void SendTelemetryWizardComplete(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
+        private static void SendTelemetryWizardComplete(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
         {
             AppHealth.Current.Telemetry.TrackWizardCompletedAsync(
                 wizardType,
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.UI.Launcher
                 .FireAndForget();
         }
 
-        private void SendTelemetryWizardCanceled(WizardTypeEnum wizardType)
+        private static void SendTelemetryWizardCanceled(WizardTypeEnum wizardType)
         {
             AppHealth.Current.Telemetry.TrackWizardCancelledAsync(
                 wizardType,
@@ -155,7 +155,7 @@ namespace Microsoft.Templates.UI.Launcher
 
         private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
         {
-            if (GenContext.ToolBox.Shell is VsGenShell vsShell)
+            if (!string.IsNullOrEmpty(requiredWorkloads) && GenContext.ToolBox.Shell is VsGenShell vsShell)
             {
                 var workloadsToCheck = requiredWorkloads.Split('|');
                 var missingWorkloads = new List<string>();
@@ -212,7 +212,7 @@ namespace Microsoft.Templates.UI.Launcher
             }
         }
 
-        private UserSelectionContext GetProjectConfigInfo(string language)
+        private static UserSelectionContext GetProjectConfigInfo(string language)
         {
             var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
             var configInfo = projectConfigInfoService.ReadProjectConfiguration();

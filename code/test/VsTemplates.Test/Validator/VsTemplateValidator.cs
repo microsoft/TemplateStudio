@@ -24,7 +24,7 @@ namespace VsTemplates.Test.Validator
             var templateIdNodes = xmlDoc.GetElementsByTagName("TemplateID");
             if (templateIdNodes.Count == 0)
             {
-                    message = "File does not contain TemplateID tag";
+                   message = "File does not contain TemplateID tag";
             }
             else if (templateIdNodes.Count == 1)
             {
@@ -106,23 +106,30 @@ namespace VsTemplates.Test.Validator
             return new VerifierResultTestModel(success, message);
         }
 
-        public static VerifierResultTestModel VerifyWizardProjectTemplatesIncludePlatformTag(string filePath)
+        public static VerifierResultTestModel VerifyWizardProjectTemplatesIncludesCustomParameter(string filePath, string parameterName, string expectedValue)
         {
             var success = false;
-            var message = "CustomParameter $wts.platform$ not defined";
+            var message = $"CustomParameter {parameterName} not defined";
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(filePath);
 
             var templateIdNodes = xmlDoc.GetElementsByTagName("CustomParameter");
-            var list = templateIdNodes.Cast<XmlNode>().Where(n => n.Attributes.Cast<XmlAttribute>().Any(a => a.Name == "Name" && a.InnerText == "$wts.platform$"));
+            var list = templateIdNodes.Cast<XmlNode>().Where(n => n.Attributes.Cast<XmlAttribute>().Any(a => a.Name == "Name" && a.InnerText == parameterName));
             if (list.Count() == 1)
             {
-                success = true;
+                if (list.First().Attributes[1].Value == expectedValue)
+                {
+                    success = true;
+                }
+                else
+                {
+                    message = $"CustomParameter {parameterName} does not have expected value {expectedValue}";
+                }
             }
             else if (list.Count() > 1)
             {
-                message = "CustomParameter $wts.platform$ defined more than once";
+                message = $"CustomParameter {parameterName} defined more than once";
             }
 
             return new VerifierResultTestModel(success, message);
