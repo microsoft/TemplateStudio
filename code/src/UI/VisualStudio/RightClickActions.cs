@@ -21,6 +21,12 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
+#if !DEBUG
+// The following using directives are only required for the release configuration
+using System.Reflection;
+using Microsoft.Templates.Utilities.Services;
+#endif
+
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
