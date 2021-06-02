@@ -99,15 +99,15 @@
                 <controls:ImageEx
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
-                    Style="{StaticResource WtsImageEx}"/>
+                    Style="{StaticResource WtsImageExWithDisabled}"/>
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"
-                    Style="{StaticResource WtsTextBlockCardTitle}" />
+                    Style="{StaticResource WtsTextBlockCardTitleWithDisabled}" />
                 <TextBlock
                     Grid.Row="2"
                     Text="{Binding Summary}"
-                    Style="{StaticResource WtsTextBlockCardDescription}"
+                    Style="{StaticResource WtsTextBlockCardDescriptionWithDisabled}"
                     Margin="{StaticResource Margin_XS_Top}"/>
                 <Grid Grid.Row="3" Margin="0,0,0,-4">
                     <!--Multiple Instance added feedback-->
@@ -158,8 +158,7 @@
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{StaticResource WtsItemTemplateCard}"
-                AutomationProperties.Name="{Binding AccessibleName}"
-                SelectedItem="{Binding Selected, Mode=TwoWay}" />
+                AutomationProperties.Name="{Binding AccessibleName}"/>
         </Grid>
     </DataTemplate>
 

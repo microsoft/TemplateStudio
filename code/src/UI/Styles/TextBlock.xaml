@@ -105,6 +105,9 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardTitle}" x:Key="WtsTextBlockCardTitleWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -121,6 +124,9 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardDescription}" x:Key="WtsTextBlockCardDescriptionWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -202,6 +208,9 @@
         <Setter Property="Foreground" Value="{Binding CardTitleText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardDeprecatedMessage}" x:Key="WtsTextBlockCardDeprecatedMessageWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />

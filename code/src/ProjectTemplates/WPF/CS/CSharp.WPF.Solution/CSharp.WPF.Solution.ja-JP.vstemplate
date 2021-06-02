@@ -21,6 +21,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="Wpf"/>
+      <CustomParameter Name="$wts.language$" Value="C#"/>
       <CustomParameter Name="$wts.category$" Value="Windows Desktop"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
       <CustomParameter Name="$wts.requiredversion$" Value="16.3"/>
@@ -29,6 +30,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCSWpf</FullClassName>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>
