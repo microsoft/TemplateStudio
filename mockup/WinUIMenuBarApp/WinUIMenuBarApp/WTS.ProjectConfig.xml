@@ -4,7 +4,7 @@
         <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
         <genTemplate:Item Name="wizardVersion" Version="v0.22.21154.1" />
         <genTemplate:Item Name="templatesVersion" Version="v0.22.21154.1" />
-        <genTemplate:Item Name="projectType" Value="SplitView" />
+        <genTemplate:Item Name="projectType" Value="MenuBar" />
         <genTemplate:Item Name="framework" Value="MVVMToolkit" />
         <genTemplate:Item Name="platform" Value="WinUI" />
         <genTemplate:Item Name="appmodel" Value="Desktop" />
