@@ -1,8 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
@@ -15,7 +11,7 @@ namespace Microsoft.UI.Test
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]
-    public class NewProjectTest : IClassFixture<TemplatesFixture>
+    public class ProjectTemplateConfigurationTest : IClassFixture<TemplatesFixture>
     {
         // Project Types
         private const string SplitView = "SplitView";
@@ -42,36 +38,9 @@ namespace Microsoft.UI.Test
         // Services
         private const string ServiceWebApi = "wts.Service.WebApi";
 
-        private TemplatesFixture _fixture;
-
-        public NewProjectTest(TemplatesFixture fixture)
+        public ProjectTemplateConfigurationTest(TemplatesFixture fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(Platforms.Uwp, ProgrammingLanguages.CSharp);
-        }
-
-        [Fact]
-        public async Task ProjectInitDefaultAsync()
-        {
-            // Default configuration: SplitView, MvvmToolkit, Blank page
-            var stylesProviders = new UITestStyleValuesProvider();
-            var viewModel = new MainViewModel(null, stylesProviders);
-            var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-            viewModel.Initialize(context);
-            await viewModel.OnTemplatesAvailableAsync();
-
-            var pages = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Page);
-            var features = viewModel.UserSelection.Groups.First(p => p.TemplateType == TemplateType.Feature);
-            viewModel.UnsubscribeEventHandlers();
-
-            Assert.Equal(4, viewModel.ProjectType.Items.Count);
-            Assert.Equal(6, viewModel.Framework.Items.Count);
-            Assert.True(viewModel.StepsViewModels[TemplateType.Page].Groups.Count > 0);
-            Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Count > 0);
-            Assert.True(viewModel.StepsViewModels[TemplateType.Service].Groups.Count > 0);
-            Assert.True(viewModel.StepsViewModels[TemplateType.Testing].Groups.Count > 0);
-            Assert.Single(pages.Items);
-            Assert.Empty(features.Items);
+            fixture.InitializeFixture(Platforms.Uwp, ProgrammingLanguages.CSharp);
         }
 
         [Fact]

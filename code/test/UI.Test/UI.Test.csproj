@@ -65,7 +65,10 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="NewProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWinUiProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWpfProjectTest.cs" />
+    <Compile Include="ProjectTests\NewUwpProjectTest.cs" />
+    <Compile Include="ProjectTemplateConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualTests\AutomatedWizardTestingBase.cs" />
     <Compile Include="VisualTests\CaptureWizardScreenshots.cs" />
@@ -141,6 +144,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

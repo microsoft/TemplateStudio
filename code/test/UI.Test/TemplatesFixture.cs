@@ -28,8 +28,9 @@ namespace Microsoft.UI.Test
 
             if (!syncExecuted)
             {
-                var source = new LocalTemplatesSource(null, "UITest");
-                GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
+                var source = new LocalTemplatesSource(null, $"UITest{platform}");
+
+                GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
                 syncExecuted = true;
