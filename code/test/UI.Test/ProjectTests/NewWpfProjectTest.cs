@@ -13,13 +13,13 @@ namespace Microsoft.UI.Test.ProjectTests
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]
-    public class NewWpfProjectTest : IClassFixture<TemplatesFixture>
+    public class NewWpfProjectTest : IClassFixture<PlatformTemplatesFixture>
     {
         private const string DefaultProjectType = "SplitView";
         private const string DefaultFramework = "MVVMToolkit";
         private const string DefaultPage = "wts.Wpf.Page.Blank";
 
-        public NewWpfProjectTest(TemplatesFixture fixture)
+        public NewWpfProjectTest(PlatformTemplatesFixture fixture)
         {
             fixture.InitializeFixture(Platforms.Wpf, ProgrammingLanguages.CSharp);
         }

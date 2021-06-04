@@ -14,12 +14,12 @@ namespace Microsoft.UI.Test.ProjectTests
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]
-    public class NewWinUiProjectTest : IClassFixture<TemplatesFixture>
+    public class NewWinUiProjectTest : IClassFixture<PlatformTemplatesFixture>
     {
         private const string DefaultProjectType = "Blank";
         private const string DefaultFramework = "None";
 
-        public NewWinUiProjectTest(TemplatesFixture fixture)
+        public NewWinUiProjectTest(PlatformTemplatesFixture fixture)
         {
             fixture.InitializeFixture(Platforms.WinUI, ProgrammingLanguages.CSharp);
         }

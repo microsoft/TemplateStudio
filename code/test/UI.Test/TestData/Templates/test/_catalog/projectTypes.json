@@ -1,0 +1,22 @@
+[
+  {
+    "name": "TestProjectType",
+    "displayName": "Test Project Type Base",
+    "summary": "Test Project Type Base Summary",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "",
+    "platform": "test",
+    "languages": [ "C#" ]
+  },
+  {
+    "name": "TestSecondProjectType",
+    "displayName": "Test Project Type Base",
+    "summary": "Test Project Type Base Summary",
+    "author": "Microsoft",
+    "order": "2",
+    "licenses": "",
+    "platform": "test",
+    "languages": [ "C#" ]
+  }
+]

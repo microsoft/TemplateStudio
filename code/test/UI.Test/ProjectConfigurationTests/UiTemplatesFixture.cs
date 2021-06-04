@@ -7,12 +7,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
 
-namespace Microsoft.UI.Test
+namespace Microsoft.UI.Test.ProjectConfigurationTests
 {
-    public class TemplatesFixture
+    public class UiTemplatesFixture
     {
         private static bool syncExecuted = false;
 
@@ -28,8 +27,7 @@ namespace Microsoft.UI.Test
 
             if (!syncExecuted)
             {
-                var source = new LocalTemplatesSource(null, $"UITest{platform}");
-
+                var source = new UiTestsTemplatesSource(null);
                 GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();

@@ -1,0 +1,22 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "TestPageTemplate",
+  "description": "Generic description...",
+  "groupIdentity": "Microsoft.Templates.Test.TestPageTemplate",
+  "identity": "Microsoft.Templates.Test.TestPageTemplate.CSharp",
+  "shortName": "page-test",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.projecttype": "TestProjectType",
+    "wts.frontendframework": "TestFramework",
+    "wts.type": "page",
+    "wts.displayOrder": "1",
+    "wts.genGroup": "1",
+    "wts.casing.sourceName": "kebab|camel|pascal|snake"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

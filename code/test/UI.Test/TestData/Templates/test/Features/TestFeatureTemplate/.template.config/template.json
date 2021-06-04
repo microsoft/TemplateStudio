@@ -1,0 +1,21 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "TestFeatureTemplate",
+  "description": "Generic Feature description...",
+  "groupIdentity": "Microsoft.Templates.Test.TestFeatureTemplate",
+  "identity": "Microsoft.Templates.Test.TestFeatureTemplate.CSharp",
+  "shortName": "TestFeatureTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.projecttype": "TestProjectType",
+    "wts.frontendframework": "TestFramework",
+    "wts.type": "feature",
+    "wts.multipleInstance": "false",
+    "wts.isGroupExclusiveSelection": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}
