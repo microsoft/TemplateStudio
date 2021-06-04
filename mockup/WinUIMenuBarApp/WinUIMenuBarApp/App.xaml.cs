@@ -52,6 +52,7 @@ namespace WinUIMenuBarApp
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<IMenuBarService, MenuBarService>();
 
             // Core Services
 

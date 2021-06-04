@@ -21,6 +21,8 @@ namespace WinUIMenuBarApp.Views
         {
             ViewModel = viewModel;
             InitializeComponent();
+            ViewModel.NavigationService.Frame = shellFrame;
+            ViewModel.MenuBarService.Initialize(splitView, rightFrame);
         }
 
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

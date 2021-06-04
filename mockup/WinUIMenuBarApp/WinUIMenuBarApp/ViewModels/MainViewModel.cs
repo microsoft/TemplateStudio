@@ -1,5 +1,4 @@
 ﻿using System;
-
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WinUIMenuBarApp.ViewModels
@@ -8,6 +7,6 @@ namespace WinUIMenuBarApp.ViewModels
     {
         public MainViewModel()
         {
-        }
+        }        
     }
 }
