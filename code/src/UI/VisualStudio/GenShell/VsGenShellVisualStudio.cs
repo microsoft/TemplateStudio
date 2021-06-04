@@ -11,19 +11,12 @@ using Microsoft.Build.Utilities;
 using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Setup.Configuration;
-using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio.GenShell
 {
     public class VsGenShellVisualStudio : IGenShellVisualStudio
     {
-        private readonly AsyncLazy<DTE> _dte;
-
-        private readonly Lazy<ISetupInstance2> vsInstance = new Lazy<ISetupInstance2>(() =>
-        {
-            var setupConfiguration = new SetupConfiguration();
-            return setupConfiguration.GetInstanceForCurrentProcess() as ISetupInstance2;
-        });
+        private readonly VsShellService _vsShellService;
 
         private readonly List<string> installedPackageIds = new List<string>();
 
@@ -31,9 +24,9 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
         private string _vsProductVersion = string.Empty;
 
-        public VsGenShellVisualStudio(AsyncLazy<DTE> dte)
+        public VsGenShellVisualStudio(VsShellService vsShellService)
         {
-            _dte = dte;
+            _vsShellService = vsShellService;
         }
 
         public string GetVsVersion()
@@ -73,7 +66,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         public async Task<bool> IsBuildInProgressAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             return dte.Solution.SolutionBuild.BuildState == vsBuildState.vsBuildStateInProgress;
         }
 
@@ -88,7 +81,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         public async Task<bool> IsDebuggerEnabledAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             return dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
         }
 
@@ -112,7 +105,8 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         {
             if (!installedPackageIds.Any())
             {
-                foreach (var package in this.vsInstance.Value.GetPackages())
+                var packages = _vsShellService.GetSetupInstance().GetPackages();
+                foreach (var package in packages)
                 {
                     installedPackageIds.Add(package.GetId());
                 }

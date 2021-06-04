@@ -21,15 +21,11 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 {
     public class VsGenShellProject : IGenShellProject
     {
-        private readonly string _packagingProjectTypeGuid;
-        private readonly AsyncLazy<IVsSolution> _vssolution;
-        private readonly AsyncLazy<DTE> _dte;
+        private readonly VsShellService _vsShellService;
 
-        public VsGenShellProject(AsyncLazy<IVsSolution> vssolution, AsyncLazy<DTE> dte, string packagingProjectTypeGuid)
+        public VsGenShellProject(VsShellService vsShellService)
         {
-            _vssolution = vssolution;
-            _dte = dte;
-            _packagingProjectTypeGuid = packagingProjectTypeGuid;
+            _vsShellService = vsShellService;
         }
 
         public bool GetActiveProjectIsWts()
@@ -40,7 +36,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             var activeProjectPath = GetActiveProjectPath();
             var projectKind = GetActiveProjectKind();
 
-            if (!string.IsNullOrEmpty(activeProjectPath) && projectKind != _packagingProjectTypeGuid)
+            if (!string.IsNullOrEmpty(activeProjectPath) && projectKind != VsGenShellProperties.PackagingProjectTypeGuid)
             {
                 var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
                 var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
@@ -129,7 +125,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
 
                 Array projects = (Array)dte.ActiveSolutionProjects;
 
@@ -155,7 +151,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             if (p != null)
             {
-                switch (Path.GetExtension(p.SafeGetFileName()))
+                switch (Path.GetExtension(SafeGetFullName(p)))
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
@@ -170,6 +166,20 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             else
             {
                 return null;
+            }
+        }
+
+        private string SafeGetFullName(EnvDTE.Project p)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            try
+            {
+                return p.FullName;
+            }
+            catch
+            {
+                return string.Empty;
             }
         }
 
@@ -219,7 +229,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (project != null)
             {
-                var solution = await _vssolution.GetValueAsync();
+                var solution = await _vsShellService.GetVsSolutionAsync();
                 solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
 
                 if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
@@ -267,7 +277,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         private async Task<Project> GetProjectByNameAsync(string projectName)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
 
             foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
             {

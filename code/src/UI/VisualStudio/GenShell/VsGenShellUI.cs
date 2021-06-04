@@ -13,7 +13,6 @@ using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
@@ -22,28 +21,11 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 {
     public class VsGenShellUI : IGenShellUI
     {
-        private readonly AsyncLazy<DTE> _dte;
-        private readonly AsyncLazy<IVsUIShell> _uiShell = new AsyncLazy<IVsUIShell>(
-              async () =>
-              {
-                  await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                  return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
-              },
-              SafeThreading.JoinableTaskFactory);
+        private readonly VsShellService _vsShellService;
 
-        private readonly AsyncLazy<VsOutputPane> _outputPane = new AsyncLazy<VsOutputPane>(
-            async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var pane = new VsOutputPane();
-                await pane.InitializeAsync();
-                return pane;
-            },
-            SafeThreading.JoinableTaskFactory);
-
-        public VsGenShellUI(AsyncLazy<DTE> dte)
+        public VsGenShellUI(VsShellService vsShellService)
         {
-            _dte = dte;
+            _vsShellService = vsShellService;
         }
 
         public void CancelWizard(bool back = true)
@@ -69,7 +51,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         private async Task OpenItemsAsync(params string[] itemsFullPath)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             if (itemsFullPath == null || itemsFullPath.Length == 0)
             {
                 return;
@@ -107,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             if (GenContext.CurrentPlatform == Platforms.Uwp)
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
             }
         }
@@ -130,7 +112,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
                 // get the owner of this dialog
-                var uiShell = await _uiShell.GetValueAsync();
+                var uiShell = await _vsShellService.GetUIShellAsync();
                 uiShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
                 dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
@@ -169,7 +151,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 dte.StatusBar.Text = message;
             }
             catch (Exception ex)
@@ -189,7 +171,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             await System.Threading.Tasks.Task.Delay(1000);
 
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
 
             var window = dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
 
@@ -201,7 +183,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             SafeThreading.JoinableTaskFactory.RunAsync(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var output = await _outputPane.GetValueAsync();
+                var output = await _vsShellService.GetVsOutputPaneAsync();
                 output.Write(data);
             });
         }
@@ -212,7 +194,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 var solutionExplorer = dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
                 var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
                 projectNode.Select(vsUISelectionType.vsUISelectionTypeSelect);

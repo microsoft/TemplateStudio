@@ -177,6 +177,7 @@
     <Compile Include="VisualStudio\GenShell\VsGenShell.cs" />
     <Compile Include="VisualStudio\GenShell\VsGenShellCertificate.cs" />
     <Compile Include="VisualStudio\GenShell\VsGenShellProject.cs" />
+    <Compile Include="VisualStudio\GenShell\VsGenShellProperties.cs" />
     <Compile Include="VisualStudio\GenShell\VsGenShellSolution.cs" />
     <Compile Include="VisualStudio\GenShell\VsGenShellTelemetry.cs" />
     <Compile Include="VisualStudio\GenShell\VsGenShellUI.cs" />
@@ -339,7 +340,7 @@
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
-    <Compile Include="VisualStudio\VsShellExtensions.cs" />
+    <Compile Include="VisualStudio\GenShell\VsShellService.cs" />
     <Compile Include="VisualStudio\VsTelemetryEvents.cs" />
     <Compile Include="VisualStudio\VsTelemetryProperties.cs" />
     <Compile Include="VisualStudio\VSTelemetryService.cs" />

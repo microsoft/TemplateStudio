@@ -32,15 +32,11 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 {
     public class VsGenShellSolution : IGenShellSolution
     {
-        private readonly string _packagingProjectTypeGuid;
-        private readonly AsyncLazy<IVsSolution> _vssolution;
-        private readonly AsyncLazy<DTE> _dte;
+        private readonly VsShellService _vsShellService;
 
-        public VsGenShellSolution(AsyncLazy<IVsSolution> vssolution, AsyncLazy<DTE> dte, string packagingProjectTypeGuid)
+        public VsGenShellSolution(VsShellService vsShellService)
         {
-            _vssolution = vssolution;
-            _dte = dte;
-            _packagingProjectTypeGuid = packagingProjectTypeGuid;
+            _vsShellService = vsShellService;
         }
 
         public void AddContextItemsToSolution(ProjectInfo projectInfo)
@@ -139,7 +135,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
             {
                 foreach (SolutionContext context in solConfiguration.SolutionContexts)
@@ -165,7 +161,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         private async Task CloseSolutionAsync()
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             dte.Solution.Close();
         }
 
@@ -189,7 +185,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 var solutionExplorer = dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
                 var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
 
@@ -216,7 +212,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         {
             try
             {
-                var startupProject = await GetProjectByProjectTypeGuidAsync(_packagingProjectTypeGuid);
+                var startupProject = await GetProjectByProjectTypeGuidAsync(VsGenShellProperties.PackagingProjectTypeGuid);
                 if (startupProject == null)
                 {
                     startupProject = await GetProjectByNameAsync(projectName);
@@ -237,7 +233,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var solution = await _vssolution.GetValueAsync();
+            var solution = await _vsShellService.GetVsSolutionAsync();
             solution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
             if (hierarchy != null)
             {
@@ -285,11 +281,12 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             Project p = null;
             try
             {
-                if (_dte != null)
+                var dte = await _vsShellService.GetDteAsync();
+                if (dte != null)
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-                    var vsSolution = await _vssolution.GetValueAsync();
+                    var vsSolution = await _vsShellService.GetVsSolutionAsync();
                     vsSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
                     ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
                     p = (Project)obj;
@@ -406,7 +403,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
 
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 dte.Solution.AddFromFile(project);
             }
             catch (Exception ex)
@@ -463,7 +460,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         private async Task<Project> GetProjectByProjectTypeGuidAsync(string projectTypeGuid)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
 
             foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
             {
@@ -480,7 +477,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
             foreach (SolutionConfiguration solConfiguration in dte.Solution?.SolutionBuild?.SolutionConfigurations)
             {
                 if (solConfiguration.Name == configurationName)
@@ -513,7 +510,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var dte = await _dte.GetValueAsync();
+                var dte = await _vsShellService.GetDteAsync();
                 return dte.Solution;
             }
             catch (Exception)
@@ -528,7 +525,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
         private async Task<Project> GetProjectByNameAsync(string projectName)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var dte = await _dte.GetValueAsync();
+            var dte = await _vsShellService.GetDteAsync();
 
             foreach (var p in dte?.Solution?.Projects?.Cast<Project>())
             {
