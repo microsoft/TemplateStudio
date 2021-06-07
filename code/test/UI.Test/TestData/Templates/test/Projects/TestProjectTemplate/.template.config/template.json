@@ -1,10 +1,9 @@
 {
   "author": "Microsoft",
-  "classifications": [ "Test" ],
-  "name": "TestProjectTemplate",
+  "name": "Microsoft.Templates.Test.TestProjectTemplate",
   "groupIdentity": "Microsoft.Templates.Test.TestProjectTemplate",
-  "identity": "Microsoft.Templates.Test.TestProjectTemplate.CSharp",
-  "shortName": "TestProjectTemplate",
+  "identity": "Microsoft.Templates.Test.TestProjectTemplate",
+  "shortName": "Microsoft.Templates.Test.TestProjectTemplate",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -15,8 +14,7 @@
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",
     "wts.group": "group1",
-    "wts.defaultInstance": "DefaultName"
   },
-  "sourceName": "App_Name",
+  "sourceName": "wts.ProjectName",
   "preferNameDirectory": true
 }

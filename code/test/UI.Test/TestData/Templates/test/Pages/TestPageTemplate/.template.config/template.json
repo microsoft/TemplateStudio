@@ -5,7 +5,7 @@
   "description": "Generic description...",
   "groupIdentity": "Microsoft.Templates.Test.TestPageTemplate",
   "identity": "Microsoft.Templates.Test.TestPageTemplate.CSharp",
-  "shortName": "page-test",
+  "shortName": "TestPageTemplate",
   "tags": {
     "language": "C#",
     "type": "item",

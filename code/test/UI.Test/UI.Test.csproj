@@ -65,13 +65,13 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="ProjectConfigurationTests\UiTemplatesFixture.cs" />
+    <Compile Include="ProjectConfigurationTests\UITemplatesFixture.cs" />
     <Compile Include="ProjectTests\NewWinUiProjectTest.cs" />
     <Compile Include="ProjectTests\NewWpfProjectTest.cs" />
     <Compile Include="ProjectTests\NewUwpProjectTest.cs" />
     <Compile Include="ProjectConfigurationTests\ProjectTemplateConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProjectConfigurationTests\UiTestsTemplatesSource.cs" />
+    <Compile Include="ProjectConfigurationTests\UITestsTemplatesSource.cs" />
     <Compile Include="VisualTests\AutomatedWizardTestingBase.cs" />
     <Compile Include="VisualTests\CaptureWizardScreenshots.cs" />
     <Compile Include="VisualTests\WindowsElementExtensions.cs" />
@@ -101,7 +101,10 @@
     <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\Layout.json" />
     <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\template.json" />
     <None Include="TestData\Templates\test\_catalog\frontendframeworks.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestFramework.md" />
     <None Include="TestData\Templates\test\_catalog\projectTypes.json" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestSecondProjectType.md" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestProjectType.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">

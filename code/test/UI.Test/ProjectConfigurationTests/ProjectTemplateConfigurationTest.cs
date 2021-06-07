@@ -11,7 +11,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]
-    public class ProjectTemplateConfigurationTest : IClassFixture<UiTemplatesFixture>
+    public class ProjectTemplateConfigurationTest : IClassFixture<UITemplatesFixture>
     {
         // Project Types
         private const string TestProjectType = "TestProjectType";
@@ -33,15 +33,14 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         // Platforms
         private const string TestPlatform = "test";
 
-        public ProjectTemplateConfigurationTest(UiTemplatesFixture fixture)
+        public ProjectTemplateConfigurationTest(UITemplatesFixture fixture)
         {
-            fixture.InitializeFixture("test", ProgrammingLanguages.CSharp);
+            fixture.InitializeFixture(TestPlatform, ProgrammingLanguages.CSharp);
         }
 
         [Fact]
         public async Task ProjectInitUpdatedConfigurationAsync()
         {
-            // Default configuration: SplitView, MvvmToolkit, Blank page
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
@@ -59,232 +58,6 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             Assert.Equal(TestSecondProjectType, userSelection.Context.ProjectType);
             Assert.Equal(TestSecondPage, userSelection.Pages.First().TemplateId);
         }
-
-        //[Fact]
-        //public async Task ResolveDependenciesAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
-        //    var numOfDependencies = settingsTemplate.Dependencies?.Count();
-        //    await AddTemplateAsync(viewModel, settingsTemplate);
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Equal(2, userSelection.Pages.Count);
-        //    Assert.Equal(numOfDependencies, userSelection.Features.Count);
-        //    Assert.Equal(FeatureSettingsStorage, userSelection.Features.First().TemplateId);
-        //}
-
-        //[Fact]
-        //public async Task ResolveDependenciesAndLicensesAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.Single(userSelection.Pages);
-        //    Assert.Empty(userSelection.Features);
-        //    Assert.Equal(2, viewModel.UserSelection.Licenses.Count);
-        //    var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
-        //    var numOfDependencies = settingsTemplate.Dependencies?.Count();
-        //    await AddTemplateAsync(viewModel, settingsTemplate);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Equal(2, userSelection.Pages.Count);
-        //    Assert.Equal(numOfDependencies, userSelection.Features.Count);
-        //    Assert.Equal(3, viewModel.UserSelection.Licenses.Count);
-        //}
-
-        //[Fact]
-        //public async Task RemovePageAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.True(userSelection.Pages.Count == 2);
-        //    DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Single(userSelection.Pages);
-        //}
-
-        //[Fact]
-        //public async Task RemoveTemplateWithHiddenDependencyAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, ServiceWebApi));
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.Equal(3, userSelection.Services.Count);
-        //    DeleteTemplate(TemplateType.Service, viewModel.UserSelection, 2);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.True(userSelection.Services.Count == 1);
-        //}
-
-        //[Fact]
-        //public async Task CanNotRemoveHomePageAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 0);
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Single(userSelection.Pages);
-        //}
-
-        //[Fact]
-        //public async Task CanNotRemoveTemplateWithDependencyAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    viewModel.UserSelection.ResetUserSelection();
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    var settingsTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageSettings);
-        //    var numOfDependencies = settingsTemplate.Dependencies?.Count();
-        //    await AddTemplateAsync(viewModel, settingsTemplate);
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.Equal(numOfDependencies, userSelection.Features.Count);
-        //    DeleteTemplate(TemplateType.Feature, viewModel.UserSelection, 0);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Equal(numOfDependencies, userSelection.Features.Count);
-        //}
-
-        //[Fact]
-        //public async Task RemoveHiddenFeaturesAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    var chartTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageChart);
-        //    var gridTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageGrid);
-        //    var numOfDependencies = chartTemplate.Dependencies?.Count();
-        //    await AddTemplateAsync(viewModel, chartTemplate);
-        //    await AddTemplateAsync(viewModel, gridTemplate);
-
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.Equal(3, userSelection.Pages.Count);
-        //    Assert.Equal(numOfDependencies, userSelection.Services.Count);
-
-        //    DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 2);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.Equal(2, userSelection.Pages.Count);
-        //    Assert.Equal(numOfDependencies, userSelection.Services.Count);
-
-        //    DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.Single(userSelection.Pages);
-        //    Assert.Equal(numOfDependencies, userSelection.Services.Count + 1);
-        //}
-
-        //[Fact]
-        //public async Task ReorderPagesUsingKeyboardAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.True(userSelection.Pages[1].Name == "Blank");
-        //    Assert.True(userSelection.Pages[2].Name == "Blank1");
-        //    Assert.True(userSelection.Pages[3].Name == "Blank2");
-        //    Assert.True(userSelection.Pages[4].Name == "Blank3");
-        //    var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
-        //    pages.EnableOrdering(null);
-        //    pages.SelectedItem = pages.Items[2]; // Select Blank1
-        //    pages.MoveDownCommand.Execute(null);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.True(userSelection.Pages[1].Name == "Blank");
-        //    Assert.True(userSelection.Pages[2].Name == "Blank2");
-        //    Assert.True(userSelection.Pages[3].Name == "Blank1");
-        //    Assert.True(userSelection.Pages[4].Name == "Blank3");
-        //    pages.MoveUpCommand.Execute(null);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.True(userSelection.Pages[1].Name == "Blank");
-        //    Assert.True(userSelection.Pages[2].Name == "Blank1");
-        //    Assert.True(userSelection.Pages[3].Name == "Blank2");
-        //    Assert.True(userSelection.Pages[4].Name == "Blank3");
-        //}
-
-        //[Fact]
-        //public async Task UpdateHomePageAsync()
-        //{
-        //    // Default configuration: SplitView, MvvmToolkit, Blank page
-        //    var stylesProviders = new UITestStyleValuesProvider();
-        //    var viewModel = new MainViewModel(null, stylesProviders);
-        //    var context = new UserSelectionContext(GenContext.CurrentLanguage, Platforms.Uwp);
-        //    viewModel.Initialize(context);
-        //    await viewModel.OnTemplatesAvailableAsync();
-
-        //    await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, PageBlank));
-        //    var userSelection = viewModel.UserSelection.GetUserSelection();
-        //    Assert.True(userSelection.Pages[0].Name == "Main");
-        //    Assert.True(userSelection.Pages[1].Name == "Blank");
-        //    Assert.True(userSelection.HomeName == "Main");
-        //    var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
-        //    pages.EnableOrdering(null);
-        //    pages.SelectedItem = pages.Items[1]; // Select Blank
-        //    pages.MoveUpCommand.Execute(null);
-        //    userSelection = viewModel.UserSelection.GetUserSelection();
-        //    viewModel.UnsubscribeEventHandlers();
-
-        //    Assert.True(userSelection.Pages[0].Name == "Blank");
-        //    Assert.True(userSelection.Pages[1].Name == "Main");
-        //    Assert.True(userSelection.HomeName == "Blank");
-        //}
 
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
         {

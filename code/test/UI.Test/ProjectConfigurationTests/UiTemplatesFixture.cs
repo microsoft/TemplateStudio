@@ -11,10 +11,8 @@ using Microsoft.Templates.Fakes;
 
 namespace Microsoft.UI.Test.ProjectConfigurationTests
 {
-    public class UiTemplatesFixture
+    public class UITemplatesFixture
     {
-        private static bool syncExecuted = false;
-
         public TemplatesRepository Repository { get; private set; }
 
         [SuppressMessage(
@@ -25,14 +23,10 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
 
-            if (!syncExecuted)
-            {
-                var source = new UiTestsTemplatesSource(null);
-                GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
+            var source = new UITestsTemplatesSource(null);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
-                syncExecuted = true;
-            }
+            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
 
             Repository = GenContext.ToolBox.Repo;
 

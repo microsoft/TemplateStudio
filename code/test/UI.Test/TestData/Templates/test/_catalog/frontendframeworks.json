@@ -6,6 +6,7 @@
     "author": "Microsoft",
     "order": "1",
     "licenses": "",
-    "platform": "test"
+    "platform": "test",
+    "languages": [ "C#" ]
   }
 ]

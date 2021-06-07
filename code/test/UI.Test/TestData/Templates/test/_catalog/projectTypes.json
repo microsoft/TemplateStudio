@@ -11,8 +11,8 @@
   },
   {
     "name": "TestSecondProjectType",
-    "displayName": "Test Project Type Base",
-    "summary": "Test Project Type Base Summary",
+    "displayName": "Test Second Project Type Base",
+    "summary": "Test Second Project Type Base Summary",
     "author": "Microsoft",
     "order": "2",
     "licenses": "",

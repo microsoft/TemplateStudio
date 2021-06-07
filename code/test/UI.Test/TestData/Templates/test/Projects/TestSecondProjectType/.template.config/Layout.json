@@ -1,12 +1,8 @@
 [
   {
-    "name": "Item1",
-    "templateGroupIdentity": "Microsoft.UWPTemplates.Test.ProjectTemplate",
-    "readonly": "true"
-  },
-  {
-    "name": "Item2",
-    "templateGroupIdentity": "Microsoft.UWPTemplates.Test.PageTemplate",
-    "readonly": "false"
+    "name": "Main",
+    "templateGroupIdentity": "Microsoft.Templates.Test.TestSecondPageTemplate",
+    "readonly": "false",
+    "projecttype": "TestSecondProjectType"
   }
 ]

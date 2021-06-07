@@ -2,14 +2,14 @@
 
 namespace Microsoft.UI.Test.ProjectConfigurationTests
 {
-    public sealed class UiTestsTemplatesSource : LocalTemplatesSource
+    public sealed class UITestsTemplatesSource : LocalTemplatesSource
     {
-        public UiTestsTemplatesSource(string installedPackagePath)
+        public UITestsTemplatesSource(string installedPackagePath)
             : base(installedPackagePath)
         {
         }
 
-        public override string Id => "UnitTest" + GetAgentName();
+        public override string Id => "UITest" + GetAgentName();
 
         protected override string Origin => $@"..\..\..\UI.Test\TestData\{TemplatesFolderName}";
     }
