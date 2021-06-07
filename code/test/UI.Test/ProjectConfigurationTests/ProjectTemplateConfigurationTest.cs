@@ -23,6 +23,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         // Pages
         private const string TestPage = "Microsoft.Templates.Test.TestPageTemplate.CSharp";
         private const string TestSecondPage = "Microsoft.Templates.Test.TestSecondPageTemplate.CSharp";
+        private const string TestPageWithDependencies = "Microsoft.Templates.Test.TestPageWithDependenciesTemplate.CSharp";
 
         // Features
         private const string TestFeature = "Microsoft.Templates.Test.TestFeatureTemplate.CSharp";
@@ -57,6 +58,26 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
 
             Assert.Equal(TestSecondProjectType, userSelection.Context.ProjectType);
             Assert.Equal(TestSecondPage, userSelection.Pages.First().TemplateId);
+        }
+
+        [Fact]
+        public async Task ResolveDependenciesAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            var pageTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithDependencies);
+            var numOfDependencies = pageTemplate.Dependencies?.Count();
+            await AddTemplateAsync(viewModel, pageTemplate);
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Equal(2, userSelection.Pages.Count);
+            Assert.Equal(numOfDependencies, userSelection.Features.Count);
+            Assert.Equal(TestFeature, userSelection.Features.First().TemplateId);
         }
 
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)

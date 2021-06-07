@@ -13,7 +13,7 @@
     "wts.projecttype": "all",
     "wts.frontendframework": "all",
     "wts.type": "page",
-    "wts.displayOrder": "1",
+    "wts.displayOrder": "2",
     "wts.genGroup": "1",
     "wts.casing.sourceName": "kebab|camel|pascal|snake"
   },

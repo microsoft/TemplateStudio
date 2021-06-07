@@ -90,6 +90,8 @@
     </None>
     <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\description.md" />
     <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\description.md" />
     <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\test\Pages\TestSecondPageTemplate\.template.config\description.md" />
