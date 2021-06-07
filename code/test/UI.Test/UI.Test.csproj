@@ -102,6 +102,12 @@
     <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\description.md" />
     <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\Layout.json" />
     <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\test\_catalog\frontendframeworks.json" />
     <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestFramework.md" />
     <None Include="TestData\Templates\test\_catalog\projectTypes.json" />

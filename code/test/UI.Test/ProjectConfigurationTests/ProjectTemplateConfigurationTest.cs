@@ -29,7 +29,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         private const string TestFeature = "Microsoft.Templates.Test.TestFeatureTemplate.CSharp";
 
         // Services
-        private const string ServiceWebApi = "wts.Service.WebApi";
+        private const string TestService = "Microsoft.Templates.Test.ServiceTemplate.CSharp";
 
         // Platforms
         private const string TestPlatform = "test";
@@ -122,6 +122,25 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             viewModel.UnsubscribeEventHandlers();
 
             Assert.Single(userSelection.Pages);
+        }
+
+        [Fact]
+        public async Task RemoveTemplateWithHiddenDependencyAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Service].Groups, TestService));
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.Equal(3, userSelection.Services.Count);
+            DeleteTemplate(TemplateType.Service, viewModel.UserSelection, 2);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.True(userSelection.Services.Count == 1);
         }
 
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
