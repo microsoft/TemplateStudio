@@ -244,7 +244,7 @@ namespace Microsoft.Templates.UI.Services
                     {
                         // Prism doesn't have an activation service, but will have PageToken constants
                         return ExistsFileInProjectPath("ShellPage.xaml", "Views")
-                            && (ExistsFileInProjectPath("ActivationService.cs", "Services") || ExistsFileInProjectPath("Constants", "PageTokens.cs"));
+                            && (ExistsFileInProjectPath("ActivationService.cs", "Services") || ExistsFileInProjectPath("PageTokens.cs", "Constants"));
                     }
 
                     return ExistsFileInProjectPath("ActivationService.vb", "Services")
