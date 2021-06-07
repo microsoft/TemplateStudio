@@ -104,6 +104,26 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             Assert.Equal(3, viewModel.UserSelection.Licenses.Count);
         }
 
+        [Fact]
+        public async Task RemovePageAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPage));
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.True(userSelection.Pages.Count == 2);
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Single(userSelection.Pages);
+        }
+
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
         {
             await viewModel.ProcessItemAsync(viewModel.Framework.Items.First(pt => pt.Name == framework));
