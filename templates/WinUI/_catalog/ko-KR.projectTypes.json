@@ -5,6 +5,11 @@
     "summary": "이 기본 프로젝트는 앱을 구축할 빈 캔버스입니다."
   },
   {
+    "name": "BlankAdvanced",
+    "displayName": "Blank Advanced",
+    "summary": "A navigation frame and basic services and styles are included."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."
