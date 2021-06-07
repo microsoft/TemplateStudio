@@ -14,7 +14,8 @@
     "wts.frontendframework": "TestFramework",
     "wts.type": "feature",
     "wts.multipleInstance": "false",
-    "wts.isGroupExclusiveSelection": "true"
+    "wts.isGroupExclusiveSelection": "true",
+    "wts.licenses": "[textfeature1](urlfeature1)"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

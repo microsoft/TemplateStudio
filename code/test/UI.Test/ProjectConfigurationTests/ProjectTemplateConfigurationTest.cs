@@ -69,15 +69,39 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             viewModel.Initialize(context);
             await viewModel.OnTemplatesAvailableAsync();
 
-            var pageTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithDependencies);
-            var numOfDependencies = pageTemplate.Dependencies?.Count();
-            await AddTemplateAsync(viewModel, pageTemplate);
+            var pageWithDependenciesTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithDependencies);
+            var numOfDependencies = pageWithDependenciesTemplate.Dependencies?.Count();
+            await AddTemplateAsync(viewModel, pageWithDependenciesTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             viewModel.UnsubscribeEventHandlers();
 
             Assert.Equal(2, userSelection.Pages.Count);
             Assert.Equal(numOfDependencies, userSelection.Features.Count);
             Assert.Equal(TestFeature, userSelection.Features.First().TemplateId);
+        }
+
+        [Fact]
+        public async Task ResolveDependenciesAndLicensesAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.Single(userSelection.Pages);
+            Assert.Empty(userSelection.Features);
+            Assert.Equal(2, viewModel.UserSelection.Licenses.Count);
+            var pageWithDependenciesTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithDependencies);
+            var numOfDependencies = pageWithDependenciesTemplate.Dependencies?.Count();
+            await AddTemplateAsync(viewModel, pageWithDependenciesTemplate);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Equal(2, userSelection.Pages.Count);
+            Assert.Equal(numOfDependencies, userSelection.Features.Count);
+            Assert.Equal(3, viewModel.UserSelection.Licenses.Count);
         }
 
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)

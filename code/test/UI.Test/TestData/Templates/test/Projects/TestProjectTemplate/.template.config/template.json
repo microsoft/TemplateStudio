@@ -13,7 +13,7 @@
     "wts.platform": "test",
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",
-    "wts.group": "group1",
+    "wts.group": "group1"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true
