@@ -69,7 +69,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), _platform, _language);
 #else
                 var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
-                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(_platform, _language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), _platform, _language);
 #endif
             }
         }
