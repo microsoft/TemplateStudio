@@ -24,6 +24,8 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         private const string TestPage = "Microsoft.Templates.Test.TestPageTemplate.CSharp";
         private const string TestSecondPage = "Microsoft.Templates.Test.TestSecondPageTemplate.CSharp";
         private const string TestPageWithDependencies = "Microsoft.Templates.Test.TestPageWithDependenciesTemplate.CSharp";
+        private const string TestPageWithServiceDependencies = "Microsoft.Templates.Test.TestPageWithServiceDependenciesTemplate.CSharp";
+        private const string TestSecondPageWithServiceDependencies = "Microsoft.Templates.Test.TestSecondPageWithServiceDependenciesTemplate.CSharp";
 
         // Features
         private const string TestFeature = "Microsoft.Templates.Test.TestFeatureTemplate.CSharp";
@@ -180,6 +182,38 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             viewModel.UnsubscribeEventHandlers();
 
             Assert.Equal(numOfDependencies, userSelection.Features.Count);
+        }
+
+        [Fact]
+        public async Task RemoveHiddenFeaturesAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            var firstPageTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithServiceDependencies);
+            var secondPageTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestSecondPageWithServiceDependencies);
+            var numOfDependencies = firstPageTemplate.Dependencies?.Count();
+            await AddTemplateAsync(viewModel, firstPageTemplate);
+            await AddTemplateAsync(viewModel, secondPageTemplate);
+
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.Equal(3, userSelection.Pages.Count);
+            Assert.Equal(numOfDependencies, userSelection.Services.Count);
+
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 2);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.Equal(2, userSelection.Pages.Count);
+            Assert.Equal(numOfDependencies, userSelection.Services.Count);
+
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 1);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Single(userSelection.Pages);
+            Assert.Equal(numOfDependencies, userSelection.Services.Count + 1);
         }
 
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)

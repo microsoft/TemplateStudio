@@ -1,0 +1,23 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "TestSecondPageWithServiceDependenciesTemplate",
+  "description": "Generic description...",
+  "groupIdentity": "Microsoft.Templates.Test.TestSecondPageWithServiceDependenciesTemplate",
+  "identity": "Microsoft.Templates.Test.TestSecondPageWithServiceDependenciesTemplate.CSharp",
+  "shortName": "TestSecondPageWithServiceDependenciesTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.projecttype": "TestProjectType",
+    "wts.frontendframework": "TestFramework",
+    "wts.type": "page",
+    "wts.displayOrder": "4",
+    "wts.genGroup": "1",
+    "wts.casing.sourceName": "kebab|camel|pascal|snake",
+    "wts.dependencies": "Microsoft.Templates.Test.ServiceSecondTemplate.CSharp"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}
