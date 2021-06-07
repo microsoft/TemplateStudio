@@ -12,6 +12,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using Xunit;
@@ -95,7 +96,7 @@ namespace Microsoft.UI.Test.VisualTests
         protected void TakeScreenshot(string fileName)
         {
             var screenshot = WizardSession.GetScreenshot();
-            screenshot.SaveAsFile(fileName, ImageFormat.Png);
+            screenshot.SaveAsFile(fileName, OpenQA.Selenium.ScreenshotImageFormat.Png);
         }
 
         protected void ForEachPageInProjectWizard(string culture, string progLanguage, bool includeDetails, Action<string> action)
@@ -244,9 +245,9 @@ namespace Microsoft.UI.Test.VisualTests
 
         private void LaunchApp(string culture, string progLang = ProgrammingLanguages.CSharp, string appName = "", string ui = "Project")
         {
-            var appCapabilities = new DesiredCapabilities();
+            var appCapabilities = new AppiumOptions();
 
-            appCapabilities.SetCapability("app", @"..\..\..\VsEmulator\bin\Debug\VsEmulator.exe");
+            appCapabilities.AddAdditionalCapability("app", @"..\..\..\VsEmulator\bin\Debug\VsEmulator.exe");
 
             var cmdLineArgs = $"-c {culture} -l {progLang} -u {ui}";
 
@@ -255,8 +256,8 @@ namespace Microsoft.UI.Test.VisualTests
                 cmdLineArgs += $" -n {appName}";
             }
 
-            appCapabilities.SetCapability("appArguments", cmdLineArgs);  // e.g. -c en-US -l C# -n testapp -u Project
-            appCapabilities.SetCapability("appWorkingDir", Environment.CurrentDirectory);
+            appCapabilities.AddAdditionalCapability("appArguments", cmdLineArgs);  // e.g. -c en-US -l C# -n testapp -u Project
+            appCapabilities.AddAdditionalCapability("appWorkingDir", Environment.CurrentDirectory);
 
             WizardSession = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appCapabilities);
 
