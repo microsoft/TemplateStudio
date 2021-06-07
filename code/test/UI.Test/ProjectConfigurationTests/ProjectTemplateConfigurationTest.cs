@@ -143,6 +143,23 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             Assert.True(userSelection.Services.Count == 1);
         }
 
+        [Fact]
+        public async Task CanNotRemoveHomePageAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+
+            await viewModel.OnTemplatesAvailableAsync();
+
+            DeleteTemplate(TemplateType.Page, viewModel.UserSelection, 0);
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Single(userSelection.Pages);
+        }
+
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
         {
             await viewModel.ProcessItemAsync(viewModel.Framework.Items.First(pt => pt.Name == framework));

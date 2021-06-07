@@ -2,7 +2,7 @@
   {
     "name": "Main",
     "templateGroupIdentity": "Microsoft.Templates.Test.TestPageTemplate",
-    "readonly": "false",
+    "readonly": "true",
     "projecttype": "TestProjectType"
   }
 ]
