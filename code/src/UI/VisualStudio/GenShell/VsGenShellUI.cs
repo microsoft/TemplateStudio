@@ -188,7 +188,9 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             });
         }
 
+#pragma warning disable VSTHRD100 // Avoid async void methods
         private async void SolutionEvents_Opened()
+#pragma warning restore VSTHRD100 // Avoid async void methods
         {
             try
             {
