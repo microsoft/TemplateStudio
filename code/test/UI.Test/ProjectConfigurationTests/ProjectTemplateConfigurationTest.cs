@@ -160,6 +160,28 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             Assert.Single(userSelection.Pages);
         }
 
+        [Fact]
+        public async Task CanNotRemoveTemplateWithDependencyAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            viewModel.UserSelection.ResetUserSelection();
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            var pageWithDependenciesTemplate = GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPageWithDependencies);
+            var numOfDependencies = pageWithDependenciesTemplate.Dependencies?.Count();
+            await AddTemplateAsync(viewModel, pageWithDependenciesTemplate);
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+            Assert.Equal(numOfDependencies, userSelection.Features.Count);
+            DeleteTemplate(TemplateType.Feature, viewModel.UserSelection, 0);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Equal(numOfDependencies, userSelection.Features.Count);
+        }
+
         private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
         {
             await viewModel.ProcessItemAsync(viewModel.Framework.Items.First(pt => pt.Name == framework));
