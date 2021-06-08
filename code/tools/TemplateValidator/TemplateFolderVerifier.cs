@@ -21,7 +21,7 @@ namespace TemplateValidator
             @"\WinUI\Pages\Blank.UWP.Cpp\wts.ItemNamePage.idl",
         };
 
-        public static VerifierResult VerifyTemplateFolders(bool showWarnings, params string[] templateFolders)
+        public static VerifierResult VerifyTemplateFolders(bool showWarnings, IEnumerable<string> templateFolders)
         {
             var results = new List<string>();
 
@@ -307,7 +307,7 @@ namespace TemplateValidator
             return new VerifierResult(success, results);
         }
 
-        private static void CheckIconXamlFiles(string[] templateFolders, List<string> results)
+        private static void CheckIconXamlFiles(IEnumerable<string> templateFolders, List<string> results)
         {
             var iconFiles = new List<string>();
 

@@ -4,7 +4,7 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using CommandLine;
+using CommandLine.Text;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -42,6 +42,6 @@ using CommandLine;
 [assembly: AssemblyLicense("Licensed to the.NET Foundation under one or more agreements.", "The .NET Foundation licenses this file to you under the MIT license.", "See the LICENSE file in the project root for more information.")]
 
 [assembly: AssemblyUsage(
-    "Usage: TemplateValidator -f \"../../Templates/Pages/Blank/.template.config/template.json\" ",
-    "       TemplateValidator -d \"C:\\GitHub\\WindowsTemplateStudio\\templates\" ",
-    "       TemplateValidator -d \"C:\\GitHub\\WTS\\templates\" \"C:\\MyWtsTemplates\" ")]
+    "TemplateValidator -f \"../../Templates/Pages/Blank/.template.config/template.json\" ",
+    "TemplateValidator -d \"C:\\GitHub\\WindowsTemplateStudio\\templates\" ",
+    "TemplateValidator -d \"C:\\GitHub\\WTS\\templates\" \"C:\\MyWtsTemplates\" ")]

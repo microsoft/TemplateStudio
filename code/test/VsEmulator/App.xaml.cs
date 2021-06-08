@@ -9,7 +9,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using CommandLine;
+using CommandLine.Text;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -38,107 +41,111 @@ namespace Microsoft.Templates.VsEmulator
 
             if (e.Args.Any())
             {
-                LaunchWizardFromCommandLineForAutomatedTesting(e.Args);
+                var parserResult = Parser.Default.ParseArguments<CommandLineOptions>(e.Args);
+
+                var exitCode = parserResult
+                .MapResult(
+                    (CommandLineOptions options) => { return LaunchWizardFromCommandLineForAutomatedTesting(options); },
+                    errors => { return ShowErrorMessage(parserResult); });
+
+                Application.Current.Shutdown(exitCode);
             }
         }
 
-        private void LaunchWizardFromCommandLineForAutomatedTesting(string[] args)
+        private int ShowErrorMessage(ParserResult<CommandLineOptions> parserResult)
         {
+            try
+            {
+                // Ensure there's a console window available to display output
+                if (!NativeMethods.AttachConsole(-1))
+                {
+                    NativeMethods.AllocConsole();
+                }
+                var helpText = HelpText.AutoBuild(parserResult);
+                Console.Write(helpText);
+            }
+            finally
+            {
+                NativeMethods.FreeConsole();
+            }
+
+            return -1;
+
+        }
+
+        private int LaunchWizardFromCommandLineForAutomatedTesting(CommandLineOptions options)
+        {
+            var exitCode = 0;
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                var exitCode = 0;
-
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 try
                 {
-                    var options = new CommandLineOptions();
+                    var cultureArg = options.Culture;
 
-                    if (CommandLine.Parser.Default.ParseArguments(args, options))
+                    if (!string.IsNullOrWhiteSpace(cultureArg))
                     {
-                        var cultureArg = options.Culture;
+                        var culture = new CultureInfo(cultureArg);
 
-                        if (!string.IsNullOrWhiteSpace(cultureArg))
-                        {
-                            var culture = new CultureInfo(cultureArg);
-
-                            Thread.CurrentThread.CurrentCulture = culture;
-                            Thread.CurrentThread.CurrentUICulture = culture;
-                        }
-
-                        var progLanguage = options.ProgLang;
-
-                        var newProjectName = string.IsNullOrWhiteSpace(options.ProjectName)
-                            ? Path.GetFileName(Path.GetTempFileName().Replace(".", string.Empty))
-                            : options.ProjectName;
-
-                        GenContext.Bootstrap(
-                            new LocalTemplatesSource(string.Empty, "0.0.0.0", string.Empty),
-                            new FakeGenShell(Platforms.Uwp, progLanguage),
-                            new Version("0.0.0.0"),
-                            Platforms.Uwp,
-                            progLanguage);
-
-                        await GenContext.ToolBox.Repo.RefreshAsync();
-
-                        GenContext.SetCurrentLanguage(progLanguage);
-                        var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
-                        fakeShell?.SetCurrentLanguage(progLanguage);
-
-                        var newProjectLocation = Path.Combine(Path.GetTempPath(), "UiTest");
-
-                        var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
-
-                        GenContext.Current = new FakeContextProvider
-                        {
-                            ProjectName = newProjectName,
-                            DestinationPath = projectPath,
-                            GenerationOutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
-                        };
-
-                        // Set resources to be used for the UI
-                        FakeStyleValuesProvider.Instance.LoadResources("Light");
-
-                        switch (options.UI.ToUpperInvariant())
-                        {
-                            case "PAGE":
-                                EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userPageSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Page, WizardTypeEnum.AddPage);
-
-                                break;
-
-                            case "FEATURE":
-                                EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Feature, WizardTypeEnum.AddFeature);
-
-                                break;
-
-                            case "PROJECT":
-                            default:
-                                var context = new UserSelectionContext(progLanguage, Platforms.Uwp);
-                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, FakeStyleValuesProvider.Instance);
-
-                                break;
-                        }
+                        Thread.CurrentThread.CurrentCulture = culture;
+                        Thread.CurrentThread.CurrentUICulture = culture;
                     }
-                    else
+
+                    var progLanguage = options.ProgLang;
+
+                    var newProjectName = string.IsNullOrWhiteSpace(options.ProjectName)
+                        ? Path.GetFileName(Path.GetTempFileName().Replace(".", string.Empty))
+                        : options.ProjectName;
+
+                    GenContext.Bootstrap(
+                        new LocalTemplatesSource(string.Empty, "0.0.0.0", string.Empty),
+                        new FakeGenShell(Platforms.Uwp, progLanguage),
+                        new Version("0.0.0.0"),
+                        Platforms.Uwp,
+                        progLanguage);
+
+                    await GenContext.ToolBox.Repo.RefreshAsync();
+
+                    GenContext.SetCurrentLanguage(progLanguage);
+                    var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+                    fakeShell?.SetCurrentLanguage(progLanguage);
+
+                    var newProjectLocation = Path.Combine(Path.GetTempPath(), "UiTest");
+
+                    var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
+
+                    GenContext.Current = new FakeContextProvider
                     {
-                        try
-                        {
-                            // Ensure there's a console window available to display output
-                            if (!NativeMethods.AttachConsole(-1))
-                            {
-                                NativeMethods.AllocConsole();
-                            }
+                        ProjectName = newProjectName,
+                        DestinationPath = projectPath,
+                        GenerationOutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
+                    };
 
-                            Console.WriteLine(options.GetUsage());
-                            Console.ReadKey(true);
-                        }
-                        finally
-                        {
-                            NativeMethods.FreeConsole();
-                            exitCode = -1;
-                        }
+                    // Set resources to be used for the UI
+                    FakeStyleValuesProvider.Instance.LoadResources("Light");
+
+                    switch (options.UI.ToUpperInvariant())
+                    {
+                        case "PAGE":
+                            EnableRightClickSupportForProject(projectPath, progLanguage);
+                            var userPageSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Page, WizardTypeEnum.AddPage);
+
+                            break;
+
+                        case "FEATURE":
+                            EnableRightClickSupportForProject(projectPath, progLanguage);
+                            var userFeatureSelection = WizardLauncher.Instance.StartAddTemplate(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance, TemplateType.Feature, WizardTypeEnum.AddFeature);
+
+                            break;
+
+                        case "PROJECT":
+                        default:
+                            var context = new UserSelectionContext(progLanguage, Platforms.Uwp);
+                            var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, FakeStyleValuesProvider.Instance);
+
+                            break;
                     }
+
                 }
                 catch (WizardBackoutException)
                 {
@@ -149,9 +156,8 @@ namespace Microsoft.Templates.VsEmulator
                     MessageBox.Show(exception.Message, "Error");
                     exitCode = exception.HResult;
                 }
-
-                Application.Current.Shutdown(exitCode);
             });
+            return exitCode;
         }
 
         private void EnableRightClickSupportForProject(string projectPath, string progLanguage = null)
