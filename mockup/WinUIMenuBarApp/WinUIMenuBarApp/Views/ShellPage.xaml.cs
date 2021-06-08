@@ -22,7 +22,7 @@ namespace WinUIMenuBarApp.Views
             ViewModel = viewModel;
             InitializeComponent();
             ViewModel.NavigationService.Frame = shellFrame;
-            ViewModel.MenuBarService.Initialize(splitView, rightFrame);
+            ViewModel.RightPaneService.Initialize(rightFrame, splitView);
         }
 
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -31,6 +31,11 @@ namespace WinUIMenuBarApp.Views
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
+        }
+
+        private void OnUnloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.RightPaneService.CleanUp();
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

@@ -169,4 +169,43 @@
   <data name="ShellMenuItem_File_Settings.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="ShellMenuItem_Views_AppInfo.Text" xml:space="preserve">
+    <value>App Info</value>
+  </data>
+  <data name="AppInfo_Title.Text" xml:space="preserve">
+    <value>App Info</value>
+  </data>
+  <data name="ShellMenuItem_Views_WebView.Text" xml:space="preserve">
+    <value>WebView</value>
+  </data>
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="BrowserBackButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Browser back</value>
+  </data>
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
+  <data name="BrowserForwardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Browser forward</value>
+  </data>
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="OpenInBrowserButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="ReloadButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="WebView_Loading.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="WebView_Reload.Content" xml:space="preserve">
+    <value>Reload</value>
+  </data>
 </root>

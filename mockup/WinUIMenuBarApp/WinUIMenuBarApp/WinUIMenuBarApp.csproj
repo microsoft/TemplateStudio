@@ -13,6 +13,11 @@
   <PropertyGroup>
     <NoWarn>CA1416, $(NoWarn)</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Views\AppInfoPage.xaml" />
+    <None Remove="Views\ShellContentDialog.xaml" />
+    <None Remove="Views\WebViewPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -29,5 +34,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinUIMenuBarApp.Core\WinUIMenuBarApp.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\AppInfoPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Views\WebViewPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Views\ShellContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
