@@ -21,6 +21,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         private const string TestFramework = "TestFramework";
 
         // Pages
+        private const string MainPageName = "Main";
         private const string TestPage = "Microsoft.Templates.Test.TestPageTemplate.CSharp";
         private const string TestPageName = "TestPageTemplate";
         private const string TestSecondPage = "Microsoft.Templates.Test.TestSecondPageTemplate.CSharp";
@@ -265,9 +266,32 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             Assert.True(userSelection.Pages[4].Name == $"{TestPageName}3");
         }
 
-        private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
+        [Fact]
+        public async Task UpdateHomePageAsync()
         {
-            await viewModel.ProcessItemAsync(viewModel.Framework.Items.First(pt => pt.Name == framework));
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+
+            await AddTemplateAsync(viewModel, GetTemplate(viewModel.StepsViewModels[TemplateType.Page].Groups, TestPage));
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+
+            Assert.True(userSelection.Pages[0].Name == MainPageName);
+            Assert.True(userSelection.Pages[1].Name == TestPageName);
+            Assert.True(userSelection.HomeName == MainPageName);
+
+            var pages = viewModel.UserSelection.Groups.First(g => g.TemplateType == TemplateType.Page);
+            pages.EnableOrdering(null);
+            pages.SelectedItem = pages.Items[1];
+            pages.MoveUpCommand.Execute(null);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.True(userSelection.Pages[0].Name == TestPageName);
+            Assert.True(userSelection.Pages[1].Name == MainPageName);
+            Assert.True(userSelection.HomeName == TestPageName);
         }
 
         private async Task SetProjectTypeAsync(MainViewModel viewModel, string projectType)
