@@ -26,6 +26,7 @@ namespace Microsoft.Templates.UI.Services
 
         // ProjectType
         private const string Blank = "Blank";
+        private const string BlankAdvanced = "BlankAdvanced";
         private const string SplitView = "SplitView";
         private const string TabbedNav = "TabbedNav";
         private const string MenuBar = "MenuBar";
@@ -154,6 +155,10 @@ namespace Microsoft.Templates.UI.Services
             {
                 return SplitView;
             }
+            else if (IsBlankAdvanced(platform))
+            {
+                return BlankAdvanced;
+            }
             else if (IsBlank(platform))
             {
                 return Blank;
@@ -200,22 +205,31 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
+        private bool IsBlankAdvanced(string platform)
+        {
+            switch (platform)
+            {
+                case Platforms.WinUI:
+                    return ExistsFileInProjectPath("IActivationHandler.cs", "Activation");
+                default:
+                    return false;
+            }
+        }
+
         private bool IsBlank(string platform)
         {
             switch (platform)
             {
                 case Platforms.Uwp:
-                    return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                        || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
+                    return !(ExistsFileInProjectPath("ShellPage.xaml", "Views")
+                        || ExistsFileInProjectPath("PivotPage.xaml", "Views"));
                 case Platforms.Wpf:
-                    return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                    return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<Menu Grid.Row=\"0\" Focusable=\"False\">")
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu")
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
                 case Platforms.WinUI:
-                    return !(ExistsFileInProjectPath("Views", "ShellWindow.xaml")
-                        || ExistsFileInProjectPath("Views", "ShellPage.xaml"))
-                        || IsCppProject();
+                    return ExistsFileInProjectPath("MainWindow.xaml") || IsCppProject();
                 default:
                     return false;
             }
@@ -229,17 +243,17 @@ namespace Microsoft.Templates.UI.Services
                     if (IsCSharpProject())
                     {
                         // Prism doesn't have an activation service, but will have PageToken constants
-                        return ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                            && (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Constants", "PageTokens.cs"));
+                        return ExistsFileInProjectPath("ShellPage.xaml", "Views")
+                            && (ExistsFileInProjectPath("ActivationService.cs", "Services") || ExistsFileInProjectPath("PageTokens.cs", "Constants"));
                     }
 
-                    return ExistsFileInProjectPath("Services", "ActivationService.vb")
-                        && ExistsFileInProjectPath("Views", "ShellPage.xaml");
+                    return ExistsFileInProjectPath("ActivationService.vb", "Services")
+                        && ExistsFileInProjectPath("ShellPage.xaml", "Views");
                 case Platforms.Wpf:
-                    return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                    return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu");
                 case Platforms.WinUI:
-                    return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    return ExistsFileInProjectPath("ShellPage.xaml", "Views")
                         && FileContainsLine("Views", "ShellPage.xaml", "<NavigationView");
                 default:
                     return false;
@@ -251,12 +265,12 @@ namespace Microsoft.Templates.UI.Services
             switch (platform)
             {
                 case Platforms.Uwp:
-                    return ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                        && (ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.cs")
-                        || ExistsFileInProjectPath("Helpers", "MenuNavigationHelper.vb")
-                        || ExistsFileInProjectPath("Services", "MenuNavigationService.cs"));
+                    return ExistsFileInProjectPath("ShellPage.xaml", "Views")
+                        && (ExistsFileInProjectPath("MenuNavigationHelper.cs", "Helpers")
+                        || ExistsFileInProjectPath("MenuNavigationHelper.vb", "Helpers")
+                        || ExistsFileInProjectPath("MenuNavigationService.cs", "Services"));
                 case Platforms.Wpf:
-                    return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                    return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<Menu Grid.Row=\"0\" Focusable=\"False\">");
                 default:
                     return false;
@@ -279,7 +293,7 @@ namespace Microsoft.Templates.UI.Services
         {
             if (platform == Platforms.Wpf)
             {
-                return ExistsFileInProjectPath("Views", "ShellWindow.xaml")
+                return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
             }
 
@@ -293,16 +307,16 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Uwp:
                     if (IsCSharpProject())
                     {
-                        return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                            && ExistsFileInProjectPath("Helpers", "Observable.cs");
+                        return ExistsFileInProjectPath("ActivationService.cs", "Services")
+                            && ExistsFileInProjectPath("Observable.cs", "Helpers");
                     }
 
-                    return ExistsFileInProjectPath("Services", "ActivationService.vb")
-                        && ExistsFileInProjectPath("Helpers", "Observable.vb");
+                    return ExistsFileInProjectPath("ActivationService.vb", "Services")
+                        && ExistsFileInProjectPath("Observable.vb", "Helpers");
                 case Platforms.Wpf:
-                    return ExistsFileInProjectPath("Services", "ApplicationHostService.cs")
-                        && ExistsFileInProjectPath("Helpers", "Observable.cs")
-                        && ExistsFileInProjectPath("Helpers", "RelayCommand.cs");
+                    return ExistsFileInProjectPath("ApplicationHostService.cs", "Services")
+                        && ExistsFileInProjectPath("Observable.cs", "Helpers")
+                        && ExistsFileInProjectPath("RelayCommand.cs", "Helpers");
                 default:
                     return false;
             }
@@ -313,12 +327,12 @@ namespace Microsoft.Templates.UI.Services
             switch (platform)
             {
                 case Platforms.Uwp:
-                    return (ExistsFileInProjectPath("Services", "ActivationService.cs")
-                        || ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                    return (ExistsFileInProjectPath("ActivationService.cs", "Services")
+                        || ExistsFileInProjectPath("ActivationService.vb", "Services"))
                         && ContainsNugetPackage("MvvmLight");
                 case Platforms.Wpf:
-                    return ExistsFileInProjectPath("Services", "ApplicationHostService.cs")
-                        && ExistsFileInProjectPath("ViewModels", "ViewModelLocator.cs")
+                    return ExistsFileInProjectPath("ApplicationHostService.cs", "Services")
+                        && ExistsFileInProjectPath("ViewModelLocator.cs", "ViewModels")
                         && ContainsNugetPackage("MvvmLight");
                 default:
                     return false;
@@ -332,7 +346,7 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Uwp:
                     if (IsCSharpProject())
                     {
-                        if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+                        if (ExistsFileInProjectPath("ActivationService.cs", "Services"))
                         {
                             var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                             if (!string.IsNullOrEmpty(codebehindFile))
@@ -344,7 +358,7 @@ namespace Microsoft.Templates.UI.Services
                         }
                     }
 
-                    if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                    if (ExistsFileInProjectPath("ActivationService.vb", "Services"))
                     {
                         var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
@@ -357,7 +371,7 @@ namespace Microsoft.Templates.UI.Services
 
                     return false;
                 case Platforms.Wpf:
-                    if (ExistsFileInProjectPath("Services", "ApplicationHostService.cs"))
+                    if (ExistsFileInProjectPath("ApplicationHostService.cs", "Services"))
                     {
                         var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
@@ -410,8 +424,8 @@ namespace Microsoft.Templates.UI.Services
         {
             if (platform == Platforms.Uwp)
             {
-                return (ExistsFileInProjectPath("Services", "ActivationService.cs")
-                    || ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                return (ExistsFileInProjectPath("ActivationService.cs", "Services")
+                    || ExistsFileInProjectPath("ActivationService.vb", "Services"))
                     && ContainsNugetPackage("Caliburn.Micro");
             }
 
@@ -463,11 +477,17 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
-        private bool ExistsFileInProjectPath(string subPath, string fileName)
+        private bool ExistsFileInProjectPath(string fileName, string subPath = null)
         {
             try
             {
-                return Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Length > 0;
+                var path = _shell.Project.GetActiveProjectPath();
+                if (!string.IsNullOrEmpty(subPath))
+                {
+                    path = Path.Combine(path, subPath);
+                }
+
+                return Directory.Exists(path) && Directory.GetFiles(path, fileName, SearchOption.TopDirectoryOnly).Length > 0;
             }
             catch (DirectoryNotFoundException)
             {

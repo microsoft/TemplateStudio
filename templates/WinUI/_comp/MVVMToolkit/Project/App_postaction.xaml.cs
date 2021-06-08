@@ -53,9 +53,6 @@ namespace Param_RootNamespace
             // Core Services
 
             // Views and ViewModels
-            services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
-
             return services.BuildServiceProvider();
         }
 //}]}
