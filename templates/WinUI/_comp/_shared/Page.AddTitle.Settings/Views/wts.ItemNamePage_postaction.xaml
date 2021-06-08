@@ -1,0 +1,22 @@
+﻿<Page
+    Style="{StaticResource PageStyle}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+<!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="wts.ItemName_Title"
+            Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        <StackPanel
+<!--{[{-->
+            Grid.Row="1" 
+<!--}]}-->
+            x:Name="ContentArea">
+        </StackPanel>
+    </Grid>
+</Page>

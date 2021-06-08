@@ -13,7 +13,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.projecttype": "SplitView",
+    "wts.projecttype": "BlankAdvanced|SplitView",
     "wts.frontendframework": "MVVMToolkit",
     "wts.platform": "WinUI",
     "wts.appmodel": "Desktop",

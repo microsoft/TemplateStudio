@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "identity": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "shortName": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "WinUI",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == BlankAdvanced & groupidentity == wts.WinUI.Page.ContentGrid"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}
