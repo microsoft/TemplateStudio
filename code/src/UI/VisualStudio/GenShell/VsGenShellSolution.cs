@@ -59,7 +59,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             {
                 if (!await IsCpsProjectAsync(files.Key))
                 {
-                    await AddItemsAsync(files.Key, files.Value);
+                    await AddItemsToProjectAsync(files.Key, files.Value);
                 }
             }
 
@@ -84,14 +84,14 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             foreach (var project in orderedProject)
             {
                 var chrono = Stopwatch.StartNew();
-                await AddProjectAsync(project);
+                await AddProjectToSolutionAsync(project);
 
                 secAddProjects += chrono.Elapsed.TotalSeconds;
                 chrono.Restart();
 
                 if (!await IsCpsProjectAsync(project) && filesByProject.ContainsKey(project))
                 {
-                    await AddItemsAsync(project, filesByProject[project]);
+                    await AddItemsToProjectAsync(project, filesByProject[project]);
                 }
 
                 secAddFiles += chrono.Elapsed.TotalSeconds;
@@ -247,7 +247,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
         }
 
-        private async Task AddItemsAsync(string projPath, IEnumerable<string> projFiles)
+        private async Task AddItemsToProjectAsync(string projPath, IEnumerable<string> projFiles)
         {
             try
             {
@@ -396,7 +396,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
         }
 
-        private async Task AddProjectAsync(string project)
+        private async Task AddProjectToSolutionAsync(string project)
         {
             try
             {

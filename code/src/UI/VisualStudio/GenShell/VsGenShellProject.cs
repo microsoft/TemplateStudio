@@ -63,12 +63,43 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             });
         }
 
+        private async Task<string> GetActiveProjectLanguageAsync()
+        {
+            var p = await GetActiveProjectAsync();
+
+            if (p != null)
+            {
+                switch (Path.GetExtension(SafeGetFullName(p)))
+                {
+                    case ".csproj":
+                        return ProgrammingLanguages.CSharp;
+                    case ".vbproj":
+                        return ProgrammingLanguages.VisualBasic;
+                    case ".vcxproj":
+                        return ProgrammingLanguages.Cpp;
+                    default:
+                        return string.Empty;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public string GetActiveProjectName()
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 return await GetActiveProjectNameAsync();
             });
+        }
+
+        private async Task<string> GetActiveProjectNameAsync()
+        {
+            var p = await GetActiveProjectAsync();
+
+            return p?.Name;
         }
 
         public string GetActiveProjectNamespace()
@@ -79,12 +110,40 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             });
         }
 
+        private async Task<string> GetActiveProjectNamespaceAsync()
+        {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var p = await GetActiveProjectAsync();
+
+            if (p != null && p.Properties != null)
+            {
+                return p.Properties.Item("RootNamespace")?.Value?.ToString();
+            }
+
+            return null;
+        }
+
         public string GetActiveProjectPath()
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 return await GetActiveProjectPathAsync();
             });
+        }
+
+        private async Task<string> GetActiveProjectPathAsync()
+        {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var p = await GetActiveProjectAsync();
+
+            if (p != null)
+            {
+                return Path.GetDirectoryName(p.FileName);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public string GetActiveProjectTypeGuids()
@@ -95,12 +154,49 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             });
         }
 
+        private async Task<string> GetActiveProjectTypeGuidsAsync()
+        {
+            var project = await GetActiveProjectAsync();
+            return await GetProjectTypeGuidAsync(project);
+        }
+
         public Guid GetProjectGuidByName(string projectName)
         {
             return SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 return await GetProjectGuidByNameAsync(projectName);
             });
+        }
+
+        private async Task<Guid> GetProjectGuidByNameAsync(string projectName)
+        {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            var project = await GetProjectByNameAsync(projectName);
+            Guid projectGuid = Guid.Empty;
+            try
+            {
+                if (project != null)
+                {
+                    if (ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) is IVsSolution solution)
+                    {
+                        solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                        if (hierarchy != null)
+                        {
+                            hierarchy.GetGuidProperty(
+                                        VSConstants.VSITEMID_ROOT,
+                                        (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                        out projectGuid);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                projectGuid = Guid.Empty;
+            }
+
+            return projectGuid;
         }
 
         private string GetActiveProjectKind()
@@ -145,30 +241,6 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             return p;
         }
 
-        private async Task<string> GetActiveProjectLanguageAsync()
-        {
-            var p = await GetActiveProjectAsync();
-
-            if (p != null)
-            {
-                switch (Path.GetExtension(SafeGetFullName(p)))
-                {
-                    case ".csproj":
-                        return ProgrammingLanguages.CSharp;
-                    case ".vbproj":
-                        return ProgrammingLanguages.VisualBasic;
-                    case ".vcxproj":
-                        return ProgrammingLanguages.Cpp;
-                    default:
-                        return string.Empty;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private string SafeGetFullName(EnvDTE.Project p)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -181,47 +253,6 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             {
                 return string.Empty;
             }
-        }
-
-        private async Task<string> GetActiveProjectNameAsync()
-        {
-            var p = await GetActiveProjectAsync();
-
-            return p?.Name;
-        }
-
-        private async Task<string> GetActiveProjectNamespaceAsync()
-        {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var p = await GetActiveProjectAsync();
-
-            if (p != null && p.Properties != null)
-            {
-                return p.Properties.Item("RootNamespace")?.Value?.ToString();
-            }
-
-            return null;
-        }
-
-        private async Task<string> GetActiveProjectPathAsync()
-        {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var p = await GetActiveProjectAsync();
-
-            if (p != null)
-            {
-                return Path.GetDirectoryName(p.FileName);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private async Task<string> GetActiveProjectTypeGuidsAsync()
-        {
-            var project = await GetActiveProjectAsync();
-            return await GetProjectTypeGuidAsync(project);
         }
 
         private async Task<string> GetProjectTypeGuidAsync(Project project)
@@ -241,37 +272,6 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
 
             return string.Empty;
-        }
-
-        private async Task<Guid> GetProjectGuidByNameAsync(string projectName)
-        {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var project = await GetProjectByNameAsync(projectName);
-            Guid projectGuid = Guid.Empty;
-            try
-            {
-                if (project != null)
-                {
-                    if (ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) is IVsSolution solution)
-                    {
-                        solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                        if (hierarchy != null)
-                        {
-                            hierarchy.GetGuidProperty(
-                                        VSConstants.VSITEMID_ROOT,
-                                        (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
-                                        out projectGuid);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                projectGuid = Guid.Empty;
-            }
-
-            return projectGuid;
         }
 
         private async Task<Project> GetProjectByNameAsync(string projectName)
