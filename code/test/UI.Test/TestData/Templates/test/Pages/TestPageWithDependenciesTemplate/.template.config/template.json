@@ -15,7 +15,6 @@
     "wts.type": "page",
     "wts.displayOrder": "3",
     "wts.genGroup": "1",
-    "wts.casing.sourceName": "kebab|camel|pascal|snake",
     "wts.dependencies": "Microsoft.Templates.Test.TestFeatureTemplate.CSharp"
   },
   "sourceName": "App_Name",

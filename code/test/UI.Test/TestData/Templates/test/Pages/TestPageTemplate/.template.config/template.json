@@ -14,8 +14,7 @@
     "wts.frontendframework": "TestFramework",
     "wts.type": "page",
     "wts.displayOrder": "1",
-    "wts.genGroup": "1",
-    "wts.casing.sourceName": "kebab|camel|pascal|snake"
+    "wts.genGroup": "1"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true
