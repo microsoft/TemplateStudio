@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="ListDetailView" />
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="ListDetailsView" />
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">

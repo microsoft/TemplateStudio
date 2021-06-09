@@ -19,7 +19,7 @@ namespace Param_RootNamespace.ViewModels
         {
             Items.Clear();
 
-            var data = await SampleDataService.GetListDetailDataAsync();
+            var data = await SampleDataService.GetListDetailsDataAsync();
 
             Items.AddRange(data.Select(d => new wts.ItemNameDetailViewModel(d)));
         }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "ListDetail",
+  "name": "ListDetails",
   "description": "Das Listen-/Detailmuster verfügt über einen Listenbereich und einen Detailbereich für den Inhalt.",
   "identity": "wts.Page.ListDetails"
 }

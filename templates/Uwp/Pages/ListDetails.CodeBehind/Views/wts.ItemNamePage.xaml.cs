@@ -35,7 +35,7 @@ namespace Param_RootNamespace.Views
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetListDetailDataAsync();
+            var data = await SampleDataService.GetListDetailsDataAsync();
 
             foreach (var item in data)
             {

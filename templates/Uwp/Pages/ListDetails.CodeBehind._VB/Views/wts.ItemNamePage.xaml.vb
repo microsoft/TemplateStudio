@@ -28,7 +28,7 @@ Namespace Views
         Private Async Sub wts.ItemNamePage_Loaded(sender As Object, e As RoutedEventArgs)
             SampleItems.Clear()
 
-            Dim data = Await SampleDataService.GetListDetailDataAsync()
+            Dim data = Await SampleDataService.GetListDetailsDataAsync()
 
             For Each item As SampleOrder In data
                 SampleItems.Add(item)

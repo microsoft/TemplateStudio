@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Prism.Page.ListDetails_TabbedNav",
+  "identity": "Prism.Page.ListDetails_TabbedNav",
+  "shortName": "Prism.Page.ListDetails_TabbedNav",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == TabbedNav & $frontendframework == Prism & groupidentity == wts.Page.ListDetails"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

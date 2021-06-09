@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "ListDetail",
-  "shortName": "ListDetail",
+  "name": "ListDetails",
+  "shortName": "ListDetails",
   "groupIdentity": "wts.Page.ListDetails",
   "identity": "wts.Page.ListDetails.Prism",
   "description": "The list/details pattern has a list pane and a details pane for content.",

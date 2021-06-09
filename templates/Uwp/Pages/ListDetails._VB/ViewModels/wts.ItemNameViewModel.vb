@@ -25,7 +25,7 @@ Namespace ViewModels
         Public Async Function LoadDataAsync(viewState As ListDetailsViewState) As Task
             SampleItems.Clear()
 
-            Dim data = Await SampleDataService.GetListDetailDataAsync()
+            Dim data = Await SampleDataService.GetListDetailsDataAsync()
 
             For Each item As SampleOrder In data
                 SampleItems.Add(item)

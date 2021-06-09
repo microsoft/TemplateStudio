@@ -4,8 +4,8 @@
   "classifications": [
     "Universal"
   ],
-  "name": "ListDetail",
-  "shortName": "ListDetail",
+  "name": "ListDetails",
+  "shortName": "ListDetails",
   "groupIdentity": "wts.Page.ListDetails",
   "identity": "wts.Page.ListDetails.CaliburnMicro",
   "description": "The list/details pattern has a list pane and a details pane for content.",
@@ -39,10 +39,10 @@
       "path": "Views/wts.ItemNameDetail/DetailView.xaml.cs"
     },
     {
-      "path": "Views/wts.ItemNameDetail/ListDetailView.xaml"
+      "path": "Views/wts.ItemNameDetail/ListDetailsView.xaml"
     },
     {
-      "path": "Views/wts.ItemNameDetail/ListDetailView.xaml.cs"
+      "path": "Views/wts.ItemNameDetail/ListDetailsView.xaml.cs"
     },
     {
       "path": "ViewModels/wts.ItemNameViewModel.cs"
