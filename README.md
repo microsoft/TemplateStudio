@@ -8,7 +8,6 @@ Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerat
 
 ![Windows Template Studio WinUI 3 screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
 
-Note: :heavy_exclamation_mark: WinUI 3 Templates are still in development and will be available from version 4.0 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
