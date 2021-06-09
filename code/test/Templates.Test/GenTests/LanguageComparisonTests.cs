@@ -498,7 +498,7 @@ namespace Microsoft.Templates.Test
             {
                 var identifier = syntaxNode.ChildTokens().FirstOrDefault(t => t.RawKind == (int)SyntaxKind.IdentifierToken).ValueText;
 
-                if (identifier == null && syntaxNode is PropertyBlockSyntax)
+                if (string.IsNullOrEmpty(identifier) && syntaxNode is PropertyBlockSyntax)
                 {
                     identifier = (syntaxNode as PropertyBlockSyntax).PropertyStatement.Identifier.ValueText;
                 }
