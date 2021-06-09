@@ -41,8 +41,6 @@
                     <MenuBarItem x:Uid="ShellMenuBarItem_Views">
                         <MenuBarItem.Items>
                             <MenuFlyoutItem x:Uid="ShellMenuItem_Views_Main" Command="{x:Bind ViewModel.MenuViewsMainCommand}" />
-                            <MenuFlyoutItem x:Uid="ShellMenuItem_Views_WebView" Command="{x:Bind ViewModel.MenuViewsWebViewCommand}" />
-                            <MenuFlyoutItem x:Uid="ShellMenuItem_Views_AppInfo" Command="{x:Bind ViewModel.MenuViewsAppInfoCommand}" />
                         </MenuBarItem.Items>
                     </MenuBarItem>
                 </MenuBar.Items>

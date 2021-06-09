@@ -19,8 +19,6 @@ namespace WinUIMenuBarApp.Services
         public PageService()
         {
             Configure<MainViewModel, MainPage>();
-            Configure<AppInfoViewModel, AppInfoPage>();
-            Configure<WebViewViewModel, WebViewPage>();
             Configure<SettingsViewModel, SettingsPage>();
         }
 

@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml;
 
 using WinUIMenuBarApp.Activation;
 using WinUIMenuBarApp.Contracts.Services;
-using WinUIMenuBarApp.Contracts.Views;
 using WinUIMenuBarApp.Helpers;
 using WinUIMenuBarApp.Services;
 using WinUIMenuBarApp.ViewModels;
@@ -54,23 +53,15 @@ namespace WinUIMenuBarApp
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IRightPaneService, RightPaneService>();
-            services.AddSingleton<IWindowManagerService, WindowManagerService>();
-            services.AddTransient<IWebViewService, WebViewService>();
 
             // Core Services
 
             // Views and ViewModels
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
-            services.AddTransient<IShellContentDialog, ShellContentDialog>();
-            services.AddTransient<ShellContentDialogViewModel>();
 
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
-            services.AddTransient<AppInfoViewModel>();
-            services.AddTransient<AppInfoPage>();
-            services.AddTransient<WebViewViewModel>();
-            services.AddTransient<WebViewPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             return services.BuildServiceProvider();

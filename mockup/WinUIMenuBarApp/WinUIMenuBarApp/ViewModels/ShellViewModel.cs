@@ -18,16 +18,10 @@ namespace WinUIMenuBarApp.ViewModels
         private bool _isBackEnabled;
         private object _selected;
         private ICommand _menuViewsMainCommand;
-        private ICommand _menuViewsAppInfoCommand;
-        private ICommand _menuViewsWebViewCommand;
         private ICommand _menuFilesSettingsCommand;
         private ICommand _menuFileExitCommand;
 
         public ICommand MenuViewsMainCommand => _menuViewsMainCommand ?? (_menuViewsMainCommand = new RelayCommand(OnMenuViewsMain));
-
-        public ICommand MenuViewsAppInfoCommand => _menuViewsAppInfoCommand ?? (_menuViewsAppInfoCommand = new RelayCommand(OnMenuViewsAppInfo));
-
-        public ICommand MenuViewsWebViewCommand => _menuViewsWebViewCommand ?? (_menuViewsWebViewCommand = new RelayCommand(OnMenuViewsWebView));
 
         public ICommand MenuFileSettingsCommand => _menuFilesSettingsCommand ?? (_menuFilesSettingsCommand = new RelayCommand(OnMenuFileSettings));
 
@@ -36,8 +30,6 @@ namespace WinUIMenuBarApp.ViewModels
         public INavigationService NavigationService { get; }
 
         public IRightPaneService RightPaneService { get; }
-
-        public IWindowManagerService WindowManagerService { get; }
 
         public bool IsBackEnabled
         {
@@ -51,12 +43,11 @@ namespace WinUIMenuBarApp.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
-        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService, IWindowManagerService windowManagerService)
+        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)
         {
             NavigationService = navigationService;
             NavigationService.Navigated += OnNavigated;
             RightPaneService = rightPaneService;
-            WindowManagerService = windowManagerService;
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)
@@ -65,10 +56,6 @@ namespace WinUIMenuBarApp.ViewModels
         }
 
         private void OnMenuViewsMain() => NavigationService.NavigateTo(typeof(MainViewModel).FullName, null, true);
-        
-        private void OnMenuViewsAppInfo() => WindowManagerService.OpenInDialogAsync(typeof(AppInfoViewModel).FullName);
-
-        private void OnMenuViewsWebView() => NavigationService.NavigateTo(typeof(WebViewViewModel).FullName, null, true);
 
         private void OnMenuFileSettings() => RightPaneService.OpenInRightPane(typeof(SettingsViewModel).FullName);
 
