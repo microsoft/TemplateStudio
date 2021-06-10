@@ -46,7 +46,7 @@ You can open the Task List using the menu `Views -> Task List`.
 This app uses MVVM Toolkit, for more information see https://aka.ms/mvvmtoolkit.
 
 ### Project type
-This app uses Navigation Pane, for more information see [navigation pane docs](https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/projectTypes/navigationpane.md).
+This app uses MenuBar.
 
 ## Publish / Distribute
 
