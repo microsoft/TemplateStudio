@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,7 +15,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

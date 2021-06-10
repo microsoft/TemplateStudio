@@ -11,6 +11,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -184,7 +185,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public void SetContextInfo()
         {
-            SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+            SolutionFilePath = FakeGenShellHelper.SolutionPath;
             IsAddNewPageCommandVisible = HasTemplates(TemplateType.Page) ? Visibility.Visible : Visibility.Collapsed;
             IsAddNewFeatureCommandVisible = HasTemplates(TemplateType.Feature) ? Visibility.Visible : Visibility.Collapsed;
             IsAddNewServiceCommandVisible = HasTemplates(TemplateType.Service) ? Visibility.Visible : Visibility.Collapsed;
@@ -259,16 +260,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                    GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Item created!!!");
                 }
             }
             catch (WizardBackoutException)
             {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 
@@ -305,7 +306,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
-            Guid guid = GenContext.ToolBox.Shell.GetProjectGuidByName(GenContext.Current.ProjectName);
+            Guid guid = GenContext.ToolBox.Shell.Project.GetProjectGuidByName(GenContext.Current.ProjectName);
             return Path.Combine(path, guid.ToString());
         }
     }

@@ -9,6 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.VisualStudio;
+using Microsoft.Templates.UI.VisualStudio.GenShell;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -102,9 +103,9 @@ namespace Microsoft.Templates.UI.Services
         public static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
         {
             // If not in VS then assume all workloads are available.
-            if (GenContext.ToolBox.Shell is VsGenShell vsShell && vsShell.GetInstalledPackageIds().Any())
+            if (GenContext.ToolBox.Shell is VsGenShell vsShell && vsShell.VisualStudio.GetInstalledPackageIds().Any())
             {
-                var installedIds = vsShell.GetInstalledPackageIds();
+                var installedIds = vsShell.VisualStudio.GetInstalledPackageIds();
 
                 foreach (var workloadId in workloadIds)
                 {
