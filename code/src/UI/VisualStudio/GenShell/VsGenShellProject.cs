@@ -69,7 +69,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             if (p != null)
             {
-                switch (Path.GetExtension(SafeGetFullName(p)))
+                switch (Path.GetExtension(await SafeGetFullNameAsync(p)))
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
@@ -241,18 +241,15 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             return p;
         }
 
-        private string SafeGetFullName(EnvDTE.Project p)
+        private async Task<string> SafeGetFullNameAsync(Project project)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            if (project != null)
+            {
+                return project.FullName ?? string.Empty;
+            }
 
-            try
-            {
-                return p.FullName;
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            return string.Empty;
         }
 
         private async Task<string> GetProjectTypeGuidAsync(Project project)
