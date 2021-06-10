@@ -1,0 +1,8 @@
+﻿                    <MenuBarItem x:Uid="ShellMenuBarItem_Views">
+                        <MenuBarItem.Items>
+<!--^^-->
+<!--{[{-->
+                            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="Param_RootNamespace.ViewModels.wts.ItemNameViewModel" />
+<!--}]}-->
+                        </MenuBarItem.Items>
+                    </MenuBarItem>
