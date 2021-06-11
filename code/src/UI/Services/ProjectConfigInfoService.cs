@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Services;
@@ -32,16 +32,16 @@ namespace Microsoft.Templates.UI.Services
         private const string MenuBar = "MenuBar";
         private const string Ribbon = "Ribbon";
 
-        private readonly GenShell _shell;
+        private readonly IGenShell _shell;
 
-        public ProjectConfigInfoService(GenShell shell)
+        public ProjectConfigInfoService(IGenShell shell)
         {
             _shell = shell;
         }
 
         public ProjectMetadata ReadProjectConfiguration()
         {
-            var projectPath = _shell.GetActiveProjectPath();
+            var projectPath = _shell.Project.GetActiveProjectPath();
             var projectMetadata = ProjectMetadataService.GetProjectMetadata(projectPath);
 
             if (IsValid(projectMetadata))
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsUwp()
         {
-            var projectTypeGuids = _shell.GetActiveProjectTypeGuids();
+            var projectTypeGuids = _shell.Project.GetActiveProjectTypeGuids();
 
             if (projectTypeGuids != null && projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
             {
@@ -348,7 +348,7 @@ namespace Microsoft.Templates.UI.Services
                     {
                         if (ExistsFileInProjectPath("ActivationService.cs", "Services"))
                         {
-                            var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                            var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                             if (!string.IsNullOrEmpty(codebehindFile))
                             {
                                 var fileContent = File.ReadAllText(codebehindFile);
@@ -360,7 +360,7 @@ namespace Microsoft.Templates.UI.Services
 
                     if (ExistsFileInProjectPath("ActivationService.vb", "Services"))
                     {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
                         {
                             var fileContent = File.ReadAllText(codebehindFile);
@@ -373,7 +373,7 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Wpf:
                     if (ExistsFileInProjectPath("ApplicationHostService.cs", "Services"))
                     {
-                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                        var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                         if (!string.IsNullOrEmpty(codebehindFile))
                         {
                             var fileContent = File.ReadAllText(codebehindFile);
@@ -394,7 +394,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 if (IsCSharpProject())
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(_shell.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(_shell.Project.GetActiveProjectPath()), "*.xaml.cs", SearchOption.AllDirectories).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -446,17 +446,17 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsCSharpProject()
         {
-            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.csproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.csproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         private bool IsVisualBasicProject()
         {
-            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.vbproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.vbproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         private bool IsCppProject()
         {
-            return Directory.GetFiles(_shell.GetActiveProjectPath(), "*.vcxproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.vcxproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         public string GetProgrammingLanguage()
@@ -481,7 +481,7 @@ namespace Microsoft.Templates.UI.Services
         {
             try
             {
-                var path = _shell.GetActiveProjectPath();
+                var path = _shell.Project.GetActiveProjectPath();
                 if (!string.IsNullOrEmpty(subPath))
                 {
                     path = Path.Combine(path, subPath);
@@ -503,7 +503,7 @@ namespace Microsoft.Templates.UI.Services
         {
             try
             {
-                var filePath = Path.Combine(_shell.GetActiveProjectPath(), subPath, fileName);
+                var filePath = Path.Combine(_shell.Project.GetActiveProjectPath(), subPath, fileName);
                 var fileContent = FileHelper.GetFileContent(filePath);
                 return fileContent != null && fileContent.Contains(lineToFind);
             }
@@ -519,7 +519,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool ContainsNugetPackage(string packageId)
         {
-            var projfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var projfiles = Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in projfiles)
             {
                 if (File.ReadAllText(file).IndexOf($"<packagereference include=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
@@ -528,7 +528,7 @@ namespace Microsoft.Templates.UI.Services
                 }
             }
 
-            var configfiles = Directory.GetFiles(_shell.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
+            var configfiles = Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "packages.config", SearchOption.TopDirectoryOnly);
             foreach (string file in configfiles)
             {
                 if (File.ReadAllText(file).IndexOf($"<package id=\"{packageId}", StringComparison.OrdinalIgnoreCase) != -1)
@@ -542,7 +542,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool ContainsSDK(string sdkId)
         {
-            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
                 if (File.ReadAllText(file).IndexOf($"sdk=\"{sdkId}\"", StringComparison.OrdinalIgnoreCase) != -1)
@@ -556,7 +556,7 @@ namespace Microsoft.Templates.UI.Services
 
         private bool AppContainerApplication(string property, string value)
         {
-            var files = Directory.GetFiles(_shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
                 if (File.ReadAllText(file).Contains($"<{property}>{value}</{property}>"))

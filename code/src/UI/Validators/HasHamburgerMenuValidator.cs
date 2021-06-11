@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).ProjectType;
+            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath()).ProjectType;
 
             if (projectType == "SplitView" && HasHamburgerMenu())
             {
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasHamburgerMenu()
         {
-            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.Project.GetActiveProjectPath(), "Views", "ShellPage.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);
             return fileContent.Contains("<controls:HamburgerMenu");
         }
