@@ -8,6 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>$safeprojectname$</RootNamespace>
+    <Platforms>x86;x64;arm64</Platforms>
     <AssemblyName>$safeprojectname$</AssemblyName>
     <DefaultLanguage>$currentuiculturename$</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
