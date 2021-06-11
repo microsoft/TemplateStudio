@@ -30,8 +30,8 @@ namespace Microsoft.Templates.UI.Services
             catch (Exception ex)
             {
                 _dialogService.ShowError(ex, userSelection.ToString());
-                GenContext.ToolBox.Shell.CloseSolution();
-                GenContext.ToolBox.Shell.CancelWizard(false);
+                GenContext.ToolBox.Shell.Solution.CloseSolution();
+                GenContext.ToolBox.Shell.UI.CancelWizard(false);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.UI.Services
             catch (Exception ex)
             {
                 _dialogService.ShowError(ex, userSelection.ToString());
-                GenContext.ToolBox.Shell.CancelWizard(false);
+                GenContext.ToolBox.Shell.UI.CancelWizard(false);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.UI.Services
             catch (Exception ex)
             {
                 _dialogService.ShowError(ex, userSelection.ToString());
-                GenContext.ToolBox.Shell.CancelWizard(false);
+                GenContext.ToolBox.Shell.UI.CancelWizard(false);
             }
         }
     }

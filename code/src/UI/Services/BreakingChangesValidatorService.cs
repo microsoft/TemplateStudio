@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Services
 
         public static ValidationResult Validate()
         {
-            var projectMetadata = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath());
+            var projectMetadata = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath());
             var templatesVersion = GenContext.ToolBox.TemplatesVersion.ToVersion();
             var projectVersion = projectMetadata.TemplatesVersion.ToVersion();
 

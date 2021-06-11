@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.Services
 
         public bool IsVersionInstalled(Version version)
         {
-            return GenContext.ToolBox.Shell.IsSdkInstalled(version.ToString());
+            return GenContext.ToolBox.Shell.VisualStudio.IsSdkInstalled(version.ToString());
         }
     }
 }

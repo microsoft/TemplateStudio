@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var framework = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).Framework;
+            var framework = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath()).Framework;
             if (framework == "MVVMLight" && HasLocatorAsApplicationResource())
             {
                 var message = new ValidationMessage
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasLocatorAsApplicationResource()
         {
-            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "App.xaml");
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.Project.GetActiveProjectPath(), "App.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);
             return fileContent.Contains("<vms:ViewModelLocator x:Key=\"Locator\" />");
         }
