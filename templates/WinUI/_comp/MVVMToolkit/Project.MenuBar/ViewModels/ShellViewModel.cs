@@ -1,8 +1,10 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Navigation;
+
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Properties;
 
 namespace Param_RootNamespace.ViewModels
 {
@@ -44,8 +46,6 @@ namespace Param_RootNamespace.ViewModels
         {
             IsBackEnabled = NavigationService.CanGoBack;
         }
-
-        private void OnMenuViewsMain() => NavigationService.NavigateTo(typeof(MainViewModel).FullName, null, true);
 
         private void OnMenuFileExit() => Application.Current.Exit();
     }

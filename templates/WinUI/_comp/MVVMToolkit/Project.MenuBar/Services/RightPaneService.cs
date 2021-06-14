@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using MahApps.Metro.Controls;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
+using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.Services
 {
