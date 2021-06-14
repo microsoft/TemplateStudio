@@ -21,11 +21,16 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 2. Open the solution [Big.sln](../code/)
 3. Set the project "Installer" as Startup project for the solution. This is the Visual Studio Extension project for Windows Template Studio.
 4. Configure the "Installer" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
-   a. Open the "Installer" project properties.
-   b. Go to "Debug" properties.
-   c. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\"
-   d. In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
-   e. Save the changes.
+   
+   - Open the "Installer" project properties.
+   
+   - Go to "Debug" properties.
+   
+   - In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2019\*YOUR_VS_EDITION*\Common7\IDE\"
+   
+   - In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
+   
+   - Save the changes.
     ![Installer Configuration](./resources/getting-started/Installer.Debug.Config.PNG)
     *The project configuration should looks like this*
 5. Build the solution.
