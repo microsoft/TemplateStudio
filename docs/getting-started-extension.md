@@ -4,8 +4,8 @@
 
 ### Prerequisits for installing Windows Template Studio
 
-Windows Template Studio (WinTS) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
-- Visual Studio 2019 - Although VS 2019.2 is the minimum version, we recommend using WinTS with the latest Visual Studio Update.
+*Windows Template Studio* (aka *WinTS*) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
+- Visual Studio 2019 - Although VS 2019.2 is the minimum version, we recommend using *WinTS* with the latest Visual Studio Update.
 - .NET Framework 4.7.2
 
 ### Prerequisites for Universal Windows Platform
@@ -44,7 +44,7 @@ Windows Template Studio (WinTS) installs into your existing Visual Studio develo
 ### Download the extension
 You have two ways of acquiring the extension:
 
- - Inside Visual Studio. Select Extensions -> Manage Extensions.  Select the 'Online' node and search for Windows Template Studio then click **Download**.
+ - Inside Visual Studio. Select Extensions -> Manage Extensions.  Select the 'Online' node and search for *Windows Template Studio* then click **Download**.
  - Direct link and manually install from  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
 
 
@@ -53,11 +53,11 @@ You have two ways of acquiring the extension:
 Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
 
 
-Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see Windows Template Studio as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
+Once installed, open Visual Studio 2019 and select "Create a new Project" or "File→ New Project" and you should see *Windows Template Studio* as an option. You can use the search box or the filters to get to the Windows Template Studio project templates.
 
 ![New Project](resources/vsix/newProject2019.PNG)
 
-To add pages and features to an existing **Windows Template Studio** project, select the project and choose Windows Template Studio → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
+To add pages and features to an existing *Windows Template Studio* project, select the project and choose *Windows Template Studio* → 'New page', 'New feature', 'New service', or 'New testing project' from the context menu. For more info on adding new items see [here](newitem.md).
 
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
 
@@ -69,7 +69,7 @@ If you created a WinUI 3 app you can also add the following items from **Visual 
   - Resource Dictionary
   - Resources File
   - User Control
-    
+
 ![Add New Item](resources/vsix/VS-AddNewItem.PNG)
 
 ## Nightly / Pre-release feeds for Windows Template Studio
@@ -86,7 +86,7 @@ This feed will have stable extension versions so it is not thought to have break
 Open Visual Studio 2019 and go to **Extensions -> Manage Extensions**, then click on **Change your settings for Extensions** *(bottom left of the 'Mange Extensions' window)* and create an Additional Extension Gallery.
 ![Configure Additional Extension Gallery](resources/vsix/configurefeed.PNG)
 
-Then, go again to **Extensions -> Manage Extensions** and using the recently added online gallery *(added under the 'Online' node)*, download and install the Windows Template Studio extension. Note that you will likely need to restart Visual Studio for the install to complete.
+Then, go again to **Extensions -> Manage Extensions** and using the recently added online gallery *(added under the 'Online' node)*, download and install the *Windows Template Studio* extension. Note that you will likely need to restart Visual Studio for the install to complete.
 
 ![Install UWP Community Templates extension](resources/vsix/onlinefeed.PNG)
 
@@ -94,7 +94,7 @@ Once installed, you will see a new Project Template which allows you to access t
 
 ![File New Project](resources/vsix/newProject2019-pre.PNG)
 
-You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
+You can start working with *Windows Template Studio* by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
 
 ### Nightly Dev-release
 

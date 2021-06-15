@@ -1,13 +1,13 @@
 # Concepts of Windows Template Studio
 
-This section has the main concepts and definitions used in Windows Template Studio.
+This section has the main concepts and definitions used in *Windows Template Studio*.
 
 ## Main concepts
 
-Windows Template Studio is divided in the following main elements:
+*Windows Template Studio* is divided in the following main elements:
 
 - **Windows Template Studio Extension**: This is a Visual Studio Extension project, which, once installed, allows developers to have an improved experience when creating a new UWP or WPF App from the "File -> New Project..." menu.
-- **Generation Wizard**: After selecting the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
+- **Generation Wizard**: After selecting the *Windows Template Studio* project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
 - **Templates**: This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project.
 
 ### What is a Template

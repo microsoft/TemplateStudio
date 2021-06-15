@@ -1,6 +1,6 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 
-If you have an UWP project created with WinTS with project type **NavigationPane** and framework **CaliburnMicro** please follow these steps to update from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **CaliburnMicro** please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
 

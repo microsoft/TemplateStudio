@@ -1,6 +1,6 @@
 # Contributing to Windows Template Studio
 
-The foundation of **Windows Template Studio** is get a developer's File->New Project experience up and going as fast possible.
+The foundation of *Windows Template Studio* is get a developer's File->New Project experience up and going as fast possible.
 
 A developer should be able to quickly and easily add features, pages, and have a solid foundation to start with.  The starting code and XAML will be best practices, follow design guidelines and be commented to help aid in enabling everything a developer to get started and understand **why** something is like it is.
 
