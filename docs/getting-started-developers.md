@@ -30,7 +30,7 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
     ![Installer Configuration](./resources/getting-started/Installer.Debug.Config.PNG)
     *The project configuration should looks like this*
 5. Build the solution.
-6. Start debugging (F5) or start without debugging (Ctrl+F5).
+6. Start debugging (`F5`) or start without debugging (`Ctrl+F5`).
 
 With this steps, the *Windows Template Studio* Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to "File -> New Project..." to launch the Wizard.
 
@@ -42,7 +42,7 @@ To speed up the execution and development experience, we have created a [VsEmula
 
 1. Open the UI.sln solution
 2. Set the "test\VsEmulator" project as "StartUp"
-3. Start debugging (F5) or start without debugging (Ctrl+F5).
+3. Start debugging (`F5`) or start without debugging (`Ctrl+F5`).
 
 Using this solution while authoring templates or improving the Wizard have the following advantages:
 

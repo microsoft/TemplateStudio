@@ -36,7 +36,7 @@
    - **Desktop development with C++** workload.
    - The **C++ (v142) Universal Windows Platform tools** optional component for the **Universal Windows Platform development** workload.
 
- - If you previously installed the WinUI 3 Preview extension from an earlier WinUI 3 preview release, uninstall the extension. For more information about how to uninstall an extension, see Manage extensions for Visual Studio.
+ - If you previously installed the **WinUI 3** Preview extension from an earlier **WinUI 3** preview release, uninstall the extension. For more information about how to uninstall an extension, see Manage extensions for Visual Studio.
  - Make sure your system has a NuGet package source enabled for **nuget.org**. For more information, see [Common NuGet configurations](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior)
 
 
@@ -61,7 +61,7 @@ To add pages and features to an existing *Windows Template Studio* project, sele
 
 ![Add new Page/Feature](resources/vsix/addNewItem.PNG)
 
-If you created a WinUI 3 app you can also add the following items from **Visual Studio add new item dialog**.
+If you created a **WinUI 3** app you can also add the following items from **Visual Studio add new item dialog**.
 
   - Blank page
   - Blank Window (Desktop)

@@ -50,7 +50,7 @@ We encourage developers to follow the following guidances when submitting pull r
 * Do not use custom colors but instead rely on theme colors so high contrasts themes can be used with your control.
 * Add AutomationProperties.Name on all controls to define what the controls purpose (Name is minimum, but there are some other things too that can really help the screen reader).
 * Don't use the same Name on two different elements unless they have different control types.
-* Use Narrator Dev mode (Launch Narrator [WinKey+Enter], then CTRL+F12) to test the screen reader experience. Is the information sufficient, meaningful and helps the user navigate and understand your control.
+* Use Narrator Dev mode (Launch Narrator [WinKey+Enter], then `CTRL+F12`) to test the screen reader experience. Is the information sufficient, meaningful and helps the user navigate and understand your control.
 
 You can find more information about these topics [here](https://blogs.msdn.microsoft.com/winuiautomation/2015/07/14/building-accessible-windows-universal-apps-introduction).  This is to help as part of our effort to building accessible templates from the start.
 

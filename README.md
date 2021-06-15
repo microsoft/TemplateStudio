@@ -1,13 +1,13 @@
 # Windows Template Studio
 
-*Windows Template Studio* (aka *WinTS*) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP), Windows Presentation Foundation (WPF .NET Core 3.1) and WinUI 3 in Desktop apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
-*WinTS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and WinUI 3 in Desktop apps in C# or C++.
+*Windows Template Studio* (aka *WinTS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3** in Desktop apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
+*WinTS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3** in Desktop apps in C# or C++.
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
-![Windows Template Studio WinUI 3 screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
+![Windows Template Studio **WinUI 3** screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
 
 ## Build Status
 

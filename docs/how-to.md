@@ -4,7 +4,7 @@
 
 1. Install the extension following the steps from [Installing the Extension](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md)
 2. Open Visual Studio 2019
-3. From the New Project Dialog select "Create New Project" select "Windows Template Studio (Universal Windows)" for UWP projects, "Windows Template Studio (WPF .NET Core)" for WPF projects or "App (WinUI 3 in Desktop)" for WinUI 3 projects creation and click next.
+3. From the New Project Dialog select "Create New Project" select "Windows Template Studio (Universal Windows)" for UWP projects, "Windows Template Studio (WPF .NET Core)" for WPF projects or "App (**WinUI 3** in Desktop)" for **WinUI 3** projects creation and click next.
 4. Click Create
 5. Select a project type
 
@@ -28,7 +28,7 @@
 	The project details configuration works like a shopping cart. It provides an overview about everything you configured for your project and allows adjustments.
     * **Dropdowns:** The project type/design pattern dropdown allows you to change project type and design pattern. If you change it, your project will be reset, a warning is shown if you already added pages/features
     * **Delete:** You can delete items using the Del key or the delete button. If there is a dependency on the template it cannot be deleted and warning is shown. The last page cannot be deleted, there must always be at least one page
-    * **Reorder:** You can reorder the pages (except settings page) by drag and drop or with Ctrl + Arrow Keys
+    * **Reorder:** You can reorder the pages (except settings page) by drag and drop or with `Ctrl + Arrow Keys`
     * **Change names:** You can rename items as described above
 
 9) Create: By clicking on create your project is created.
