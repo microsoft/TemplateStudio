@@ -37,8 +37,8 @@
 
 Once your project is created you can add new pages/features.
 
-1. Open the context menu on the main project node (Universal Windows project for UWP, WPF project for WPF projects)
-2. Select *Windows Template Studio* -> New page, New feature, New service or New testing project
+1. Open the context menu on the main project node (Universal Windows project for **UWP**, WPF project for **WPF** projects)
+2. Select *Windows Template Studio* -> `New page`, `New feature`, `New service` or `New testing project`
 
 3. Select an item. Only one item can be selected at a time.
 

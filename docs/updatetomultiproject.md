@@ -1,10 +1,10 @@
 # Update from single project to multi-project solution
 
-If you created your project with version 1.x or 2.x of *WinTS* and have no core project please follow these steps to add a .NET Standard core project to your solution.
+If you created your project with version 1.x or 2.x of *WinTS* and have no core project please follow these steps to add a *.NET Standard* core project to your solution.
 
 ## 1. Add a .NET Standard Class Library project to your solution
 
-From the context menu of your solution file click "Add -> New Project" and choose "Class Library (.Net Standard)" from the .Net Standard Category
+From the context menu of your solution file click `Add -> New Project` and choose `Class Library (.Net Standard)` from the *.Net Standard* Category
 
 ![Solution context menu showing 'Add > New Project ...' option](resources/multi-project/add-new-project-1.PNG)
 
@@ -14,7 +14,7 @@ Name the project **YourAppName.Core**. If your project is called App1, the corre
 
 ## 2. Add a reference to the core project on your Uwp project
 
-From the context menu of your Uwp project choose "Add -> Reference" and check the YourAppName.Core project from the projects category.
+From the context menu of your Uwp project choose `Add -> Reference` and check the YourAppName.Core project from the projects category.
 
 ![Project context menu showing 'Add > References ...' option](resources/multi-project/add-reference-1.PNG)
 
