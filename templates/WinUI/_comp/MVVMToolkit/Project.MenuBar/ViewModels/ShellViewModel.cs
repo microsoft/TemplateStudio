@@ -36,10 +36,11 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
-        public ShellViewModel(INavigationService navigationService)
+        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)
         {
             NavigationService = navigationService;
             NavigationService.Navigated += OnNavigated;
+            RightPaneService = rightPaneService;
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)
