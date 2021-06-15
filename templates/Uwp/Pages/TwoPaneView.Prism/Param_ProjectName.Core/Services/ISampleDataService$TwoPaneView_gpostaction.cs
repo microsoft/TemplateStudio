@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block adds the method `GetListDetailDataAsync()` to the SampleDataService of your project.
+// This code block adds the method `GetTwoPaneViewDataAsync()` to the SampleDataService of your project.
 //**}
     public interface ISampleDataService
     {
