@@ -27,9 +27,9 @@
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|AnyCPU">
     <CustomParameters>
-      <CustomParameter Name="$ReunionNupkgVersion$" Value="0.8.0-preview" />
-      <CustomParameter Name="$ReunionFoundationNupkgVersion$" Value="0.8.0-preview" />
-      <CustomParameter Name="$ReunionWinUINupkgVersion$" Value="0.8.0-preview" />
+      <CustomParameter Name="$ReunionNupkgVersion$" Value="0.8.0-rc" />
+      <CustomParameter Name="$ReunionFoundationNupkgVersion$" Value="0.8.0-rc" />
+      <CustomParameter Name="$ReunionWinUINupkgVersion$" Value="0.8.0-rc" />
     </CustomParameters>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">Class1.cs</ProjectItem>
