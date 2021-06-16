@@ -21,8 +21,8 @@
         }
 //^^
 //{[{
-        private void OnMenuFileswts.ItemName() => RightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
 
+        private void OnMenuFileswts.ItemName() => RightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
 //}]}
     }
 }
