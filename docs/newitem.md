@@ -1,6 +1,6 @@
 # New item commands
 
-The commands in the right-click menu allows you to generate a new item and integrate it with your project.
+The commands in the right-click menu allow you to generate a new item and integrate it with your project.
 
 It is possible to add:
 
