@@ -19,8 +19,8 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 
 1. Clone this repo to your local machine
 2. Open the solution [Big.sln](../code/)
-3. Set the project "Installer" as `Startup project` for the solution. This is the Visual Studio Extension project for *Windows Template Studio*.
-4. Configure the "Installer" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
+3. Set the project `Installer` as `Startup project` for the solution. This is the Visual Studio Extension project for *Windows Template Studio*.
+4. Configure the `Installer` project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
 
    - Open the `Installer` project properties.
    - Go to `Debug` properties.
@@ -32,16 +32,23 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 5. Build the solution.
 6. Start debugging (`F5`) or start without debugging (`Ctrl+F5`).
 
-With this steps, the *Windows Template Studio* Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to `File -> New Project...` to launch the Wizard.
+With this steps, the *Windows Template Studio* Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to `File -> New Project...` to create a new project or open a project created with *Windows Template Studio* and right click on the main project and choose any of the options provided on the `Windows Template Studio` context menu.
 
-The extension wizard, when runs locally, uses the local [templates folder](../templates) as source for the Templates Repository.
+The entry points for project creation are the different project templates in the [ProjectTemplates folder](../code/src/ProjectTemplates).
+The default experience for *Windows Template Studio* is project generation using a wizard-based experience. The Wizard is invoked by all project templates that end with `Solution` using the `SolutionWizard` class from the `UI`project.
+There are a few other project templates (in the WinUI folder) that do not (yet) allow any user configuration, those project templates create the project using vstemplate generation without showing the Wizard.
+The entry point for right click additions is the RelayCommandPackage from the `Installer` project.
+
+When running inside Visual Studio the `VSGenShell` and the `VSStyleValuesProvider` are used for integration with Visual Studio Shell and Styles.
+
+When running locally, the local [templates folder](../templates) is used as source for the Templates Repository.
 
 ## Using the UI.sln solution
 
-To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the *Windows Template Studio* Wizard. This application, as well as the Wizard assembly, are available thru the UI.sln solution. To use it, follow this steps:
+To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the *Windows Template Studio* Wizard. This application, as well as the Wizard assembly, are available thru the `UI.sln` solution. To use it, follow this steps:
 
-1. Open the UI.sln solution
-2. Set the "test\VsEmulator" project as `Startup Project`
+1. Open the `UI.sln` solution
+2. Set the `test\VsEmulator` project as `Startup Project`
 3. Start debugging (`F5`) or start without debugging (`Ctrl+F5`).
 
 Using this solution while authoring templates or improving the Wizard have the following advantages:
@@ -49,7 +56,9 @@ Using this solution while authoring templates or improving the Wizard have the f
 1. Speed up the development since it does not deploy the `VSIX` to the VS Experimental instance every time you build.
 2. Simple and lightweight run / debug experience since it does not require to launch another instance of Visual Studio.
 
-So we encourage to use this solution for the general template authoring or code development and, once you are done, make some final local tests using the `Installer.sln` or `Big.sln` solution.
+When running outside of Visual Studio the `FakeGenShell` and the `FakeStyleValuesProvider` are used to mock the Visual Studio Shell and Styles.
+
+We encourage to use this solution for the general template authoring or code development and, once you are done, make some final local tests using the `Installer.sln` or `Big.sln` solution.
 
 ### Accessible UI
 
@@ -62,7 +71,8 @@ Following are described the contents for each folder:
 - [tools](../code/tools): tooling required for testing / validations.
 - [src](../code/src): solution source code
   - [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the *Windows Template Studio* Project Template and ensures that all required assets are deployed with it.
-  - [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the `File --> New Project...` experience. There are separate templates for **UWP (C# and Visual Basic)** and **WPF**.
+  - [ItemTemplates](../code/src/ItemTemplates): This folder contains the [Visual Studio Item Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the `Add --> New Item...` experience on WinUI 3 projects.
+  - [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the `File --> New Project...` experience. There are separate templates for **UWP (C# and Visual Basic)**, **WPF** and **WinUI 3 (C# and C++)**.
   - [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
 - [test](../code/test)
   - [Fakes](../code/test/Fakes): Common test elements.
@@ -158,9 +168,9 @@ The following list shows which tests are executed in which build. Within the `Te
 The tests run for each of the above builds are also in the ExecutionSets '_CIBuild', '_Full', '_OneByOne', and '_Wack'.
 
 To shorten test execution time traits in `Templates.Test` are run parallel using this [script](../_build/ParallelTestExecution.ps1).
-To execute this script locally use the following powershell command:
+To execute this script locally use the following powershell command after compiling the `Test.sln`in configuration `Analyze`:
 
-`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
+`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumWinUI', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
 
 where
 
@@ -182,6 +192,30 @@ When fetching changes, also execute `git submodule update` after doing `git fetc
 Changes on *Core Template Studio* should be done on the *Core Template Studio* repos.
 In *WinTS*, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
 
+## Troubleshooting
+
+When working on Windows Template Studio the following folders are useful to investigate any issue you run into:
+
+### Log File
+You can find the log file at %localAppData%/WinTS/Logs. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.
+
+### Templates Folder
+The templates folder is located in the %localAppData%/WinTS/Templates/ folder.
+When debugging locally this folder will have a shortcut pointing to the templates folder of your repository.
+When using the vsix, templates will be extracted from the mstx package to this folder.
+
+### Template Cache
+The template cache is located in the %userprofile%/.templateengine folder. Template caches are isolated by environment. 
+
+### Folder overview by Environment name
+
+| Environment|	Description |	Templates Folder | Templates Cache |
+| --------------- | ----------- | ---------------- | --------------- |
+| LocalVSIXEnv | Executing WinTS using Experimental Instance using `Installer` as startup project | %localAppData%\WinTS\Templates\LocalVsixEnv | %userprofile%\\.templateengine\LocalVsixEnv |
+| LocalEnvWinTS | Executing WinTS using `VSEmulator` as startup project | %localAppData%\WinTS\Templates\LocalEnvWinTS | %userprofile%\\.templateengine\LocalEnvWinTS |
+| Dev | Dev-nightly version | %localAppData%\WinTS\Templates\Dev | %userprofile%\\.templateengine\Dev |
+| Pre | Pre-release version | %localAppData%\WinTS\Templates\Pre | %userprofile%\\.templateengine\Pre |
+| Pro | Marketplace version | %localAppData%\WinTS\Templates\Pro | %userprofile%\\.templateengine\Pro |
 ---
 
 ## Learn more
