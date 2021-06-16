@@ -1,13 +1,13 @@
 # Concepts of Windows Template Studio
 
-This section has the main concepts and definitions used in Windows Template Studio.
+This section has the main concepts and definitions used in *Windows Template Studio*.
 
 ## Main concepts
 
-Windows Template Studio is divided in the following main elements:
+*Windows Template Studio* is divided in the following main elements:
 
-- **Windows Template Studio Extension**: This is a Visual Studio Extension project, which, once installed, allows developers to have an improved experience when creating a new UWP or WPF App from the "File -> New Project..." menu.
-- **Generation Wizard**: After selecting the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
+- **Windows Template Studio Extension**: This is a *Visual Studio Extension* project, which, once installed, allows developers to have an improved experience when creating a new **UWP**, **WPF** or **WinUI 3** App from the `File -> New Project...` menu.
+- **Generation Wizard**: After selecting the *Windows Template Studio* project type in the Visual Studio `File -> New Project...` dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
 - **Templates**: This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project.
 
 ### What is a Template
@@ -27,9 +27,9 @@ There are six different types of templates:
 
 The Generation Wizard guides the user through the available templates allowing them to compose their desired project.
 
-The End-User can select among the different Design Patterns and Project Types to define the basic layout and architecture for the App. They can then add different items (pages, features, services, and tests) to complete the App. Once selection is finished, the generation process is executed to create the App.
+The End-User can select among the different **Design Patterns** (Frameworks) and **Project Types** to define the basic layout and architecture for the App. They can then add different items (pages, features, services, and tests) to complete the App. Once selection is finished, the generation process is executed to create the App.
 
-The generation is made in a composite way, where Pages and Customer Features are Design Pattern and Project Type agnostics and is only at the generation time where the specifics are included.
+The generation is made in a composite way, where Pages and Customer Features are Design Pattern and Project Type agnostics, and is only at the generation time where the specifics are included.
 
 The templating functionality is based on the [dotnet Template Engine](https://github.com/dotnet/templating) project.
 

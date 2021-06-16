@@ -32,7 +32,7 @@ The deep linking feature also adds a sample page (SchemeActivationSamplePage.xam
 
 ## Debugging the app being launched via the URI
 
-- In project properties, go to the **Debug** tab and check the option 'Do no launch, but debug my code when it starts'
+- In project properties, go to the `Debug` tab and check the option 'Do no launch, but debug my code when it starts'
 
 ![Screenshot of project properties dialog showing the 'Do no launch, but debug my code when it starts' option](../resources/deep-linking/debug-when-my-code-starts.png)
 

@@ -27,7 +27,7 @@ In this example we are going to show how to save data on App suspension and rest
 
 ### 1. Create a new app with two pages
 
-Create a new application using WinTS with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
+Create a new application using *WinTS* with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
 
 The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes.
 

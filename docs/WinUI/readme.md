@@ -1,14 +1,14 @@
 # WinUI 3 Apps
 
-WinUI 3 project templates supported by Windows Template Studio:
+**WinUI 3** project templates supported by *Windows Template Studio*:
 
 C# templates:
-- App (WinUI 3 in Desktop)
-- Class Library (WinUI 3 in Desktop)
+- App (**WinUI 3 in Desktop**)
+- Class Library (**WinUI 3 in Desktop**)
 
 C++ Templates:
-- App (WinUI 3 in Desktop)
-- Windows Runtime Component (WinUI 3)
+- App (**WinUI 3 in Desktop**)
+- Windows Runtime Component (**WinUI 3**)
 
 We also offer the following item templates for C# and C++:
 - Blank page
@@ -20,7 +20,7 @@ We also offer the following item templates for C# and C++:
 
 # Using and extending your generated project
 
-WinUI 3 projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+**WinUI 3** projects created with *Windows Template Studio* (aka *WinTS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Windows Template Studio
 
@@ -31,11 +31,11 @@ The final generated code is the result of a project configuration (project type 
 
 ## Understanding concepts for Windows Template Studio
 
-Windows Template Studio approaches WinUI 3 Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
+*Windows Template Studio* approaches **WinUI 3** Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
 
 ### Project Types
 
-**Project types** define the basic look and feel of your WinUI 3 Desktop app.
+**Project types** define the basic look and feel of your **WinUI 3** Desktop app.
 
 | Project type | Description |
 |-------------:|:------------|
@@ -44,7 +44,7 @@ Windows Template Studio approaches WinUI 3 Desktop app creation using the follow
 
 ### Design patterns
 
-**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the following common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. *Windows Template Studio* currently supports the following common patterns:
 
 | Design pattern| Description |
 |--------------:|:------------|

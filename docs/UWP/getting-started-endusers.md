@@ -1,6 +1,6 @@
 # Using and extending your generated project
 
-UWP projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+UWP projects created with *Windows Template Studio* (aka *WinTS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Windows Template Studio
 
@@ -12,7 +12,7 @@ The final generated code is the result of a project configuration (project type 
 
 ## Understanding concepts for Windows Template Studio
 
-Windows Template Studio approaches UWP app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
+*Windows Template Studio* approaches UWP app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
 
 ### Project Types
 
@@ -27,14 +27,14 @@ Windows Template Studio approaches UWP app creation using the following attribut
 
 ### Design patterns
 
-**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the following common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. *Windows Template Studio* currently supports the following common patterns:
 
 | Design pattern| Description |
 |--------------:|:------------|
 | [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [Microsoft.Toolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
 | [Code Behind](./frameworks/codebehind.md) | Code is coupled directly with a XAML file using a .xaml.cs extension. If you developed in WinForms and feel comfortable with that style of development, this is a great option for you. |
-| [Prism](./frameworks/prism.md) | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications. It was originally based on guidance from Microsoft's Patterns and Practices team but is now supported by an open source community. It is designed to help build rich client applications that are flexible and easy to maintain by composing different modules and following design patterns.<br />WinTS only supports the use of Prism with projects created in C#. |
-| [Caliburn.Micro](./frameworks/caliburnmicro.md) | [Caliburn.Micro](https://caliburnmicro.com/) is a small, yet powerful framework, designed for building applications across all XAML platforms. Its strong support for MV* patterns will enable you to build your solution quickly, without the need to sacrifice code quality or testability.<br />It uses a convention based approach to mapping actions/events, bindings, and views to view models. While this framework is highly opinionated about how it should be used and apps should be constructed, it does allow for customization of it's behavior.<br />WinTS only supports the use of Caliburn.Micro with projects created in C#. <br />**Support for Caliburn.Micro is deprecated and will be removed in a future version.**|
+| [Prism](./frameworks/prism.md) | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications. It was originally based on guidance from Microsoft's Patterns and Practices team but is now supported by an open source community. It is designed to help build rich client applications that are flexible and easy to maintain by composing different modules and following design patterns.<br />*WinTS* only supports the use of Prism with projects created in C#. |
+| [Caliburn.Micro](./frameworks/caliburnmicro.md) | [Caliburn.Micro](https://caliburnmicro.com/) is a small, yet powerful framework, designed for building applications across all XAML platforms. Its strong support for MV* patterns will enable you to build your solution quickly, without the need to sacrifice code quality or testability.<br />It uses a convention based approach to mapping actions/events, bindings, and views to view models. While this framework is highly opinionated about how it should be used and apps should be constructed, it does allow for customization of it's behavior.<br />*WinTS* only supports the use of Caliburn.Micro with projects created in C#. <br />**Support for Caliburn.Micro is deprecated and will be removed in a future version.**|
 | [MVVM Basic](./frameworks/mvvmbasic.md) | MVVM Basic includes the minimum necessary to follow the MVVM pattern without including any extra libraries or dependencies. It is intended for people new to MVVM or who are unable to or do not wish to use a 3rd party framework.<br />**Support for MVVM Basic is deprecated and will be removed in a future version.**|
 | [MVVMLight](./frameworks/mvvmlight.md) | The [MVVM Light Toolkit](http://www.mvvmlight.net/) is a popular, 3rd party toolkit by Laurent Bugnion, which has the purpose of accelerating the creation and development of MVVM applications.  This toolkit puts a special emphasis on the "blend ability" of the created application (the ability to open and edit the user interface into Blend), including the creation of design-time data to enable Blend users to "see something" when they work with data controls.<br />As a toolkit, it provides a number of tools and features but there is no requirement to use all of them. This toolkit is popular with developers who want use parts of it to take care of the basics but still allow them to structure the code in their own way.<br />**Support for MVVM Light is deprecated and will be removed in a future version.**|
 
