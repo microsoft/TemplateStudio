@@ -154,7 +154,7 @@ The final generated code is the result of a project configuration (project type 
 
 ---
 
-## Pre-requisies
+## Pre-requisites
 
 The minimum supported Windows 10 version and which SDKs should be pre-installed are detailed in the [WinTS Principles](../../README.md#principles).
 
