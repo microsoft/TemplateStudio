@@ -1522,7 +1522,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout:.
+        ///   Looks up a localized string similar to Includes:.
         /// </summary>
         public static string TemplateDetailsLayout {
             get {

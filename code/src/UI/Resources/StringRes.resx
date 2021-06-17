@@ -756,8 +756,8 @@ Please verify the following list of packages needed by your project's code and m
     <comment>Remove error message: Template is read only</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Layout:</value>
-    <comment>Template details: Layout</comment>
+    <value>Includes:</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Frameworks:</value>
@@ -765,7 +765,7 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0} (optional)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>Report issue</value>
