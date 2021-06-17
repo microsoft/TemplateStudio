@@ -21,7 +21,7 @@ No reserved names for WinUI.
 
 ## Page suffixes
 
-For **Page** generation the suffixes 'Page' and 'ViewModel' will be added by *WinTS* to Page and ViewModel files.
+For **Page** generation the suffixes `Page` and `ViewModel` will be added by *WinTS* to Page and ViewModel files.
 
 **Example**
 

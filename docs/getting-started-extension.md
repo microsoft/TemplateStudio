@@ -84,6 +84,7 @@ The Pre-release build version allows you to get updates with stable features not
 This feed will have stable extension versions so it is not thought to have breaking changes (and can be installed side by side with the official one), anyway, installing this extension is at your own risk.
 
 Open *Visual Studio 2019* and go to `Extensions -> Manage Extensions`, then click on `Change your settings for Extensions` *(bottom left of the `Manage Extensions` window)* and `Add` an `Additional Extension Gallery`.
+
 ![Configure Additional Extension Gallery](resources/vsix/configurefeed.PNG)
 
 Then, go again to `Extensions -> Manage Extensions` and using the recently added online gallery *(added under the `Online` node)*, download and install the *Windows Template Studio* extension. Note that you will likely need to restart *Visual Studio* for the install to complete.
