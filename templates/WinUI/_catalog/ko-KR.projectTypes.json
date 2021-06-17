@@ -13,5 +13,10 @@
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "다른 페이지로 이동할 수 있는 메뉴가 추가되었습니다."
   }
 ]
