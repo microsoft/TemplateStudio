@@ -83,7 +83,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Prism.Unity",
-        "version": "8.0.0.1909",
+        "version": "8.1.97",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -94,7 +94,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Extensions.Configuration",
-        "version": "3.1.14",
+        "version": "3.1.16",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -105,7 +105,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Extensions.Configuration.Binder",
-        "version": "3.1.14",
+        "version": "3.1.16",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -116,7 +116,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Extensions.Configuration.CommandLine",
-        "version": "3.1.14",
+        "version": "3.1.16",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -127,7 +127,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "Microsoft.Extensions.Configuration.Json",
-        "version": "3.1.14",
+        "version": "3.1.16",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -138,7 +138,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId": "MahApps.Metro",
-        "version": "2.4.4",
+        "version": "2.4.6",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
