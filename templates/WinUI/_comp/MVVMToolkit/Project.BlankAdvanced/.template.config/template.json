@@ -1,0 +1,25 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.Project.BlankAdvanced",
+    "shortName": "wts.WinUI.Project.BlankAdvanced",
+    "identity": "wts.WinUI.Project.BlankAdvanced",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "WinUI",
+      "wts.version": "1.0.0",
+      "wts.compositionOrder": "0",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == BlankAdvanced & wts.type == project"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }

@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).ProjectType;
+            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath()).ProjectType;
 
             if (projectType == "TabbedPivot" && HasPivot())
             {
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasPivot()
         {
-            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "PivotPage.xaml");
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.Project.GetActiveProjectPath(), "Views", "PivotPage.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);
             return fileContent.Contains("<Pivot");
         }

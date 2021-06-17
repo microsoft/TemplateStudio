@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
@@ -108,10 +109,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.CollapseSolutionItems();
-            GenContext.ToolBox.Shell.OpenProjectOverview();
-            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
-            GenContext.ToolBox.Shell.ShowTaskList();
+            GenContext.ToolBox.Shell.Solution.CollapseSolutionItems();
+            GenContext.ToolBox.Shell.UI.OpenProjectOverview();
+            GenContext.ToolBox.Shell.UI.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.ToolBox.Shell.UI.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
