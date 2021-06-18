@@ -272,6 +272,9 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Wpf:
                     return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<Menu Grid.Row=\"0\" Focusable=\"False\">");
+                case Platforms.WinUI:
+                    return ExistsFileInProjectPath("ShellPage.xaml", "Views")
+                        && FileContainsLine("Views", "ShellPage.xaml", "<MenuBar");
                 default:
                     return false;
             }
