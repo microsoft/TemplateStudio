@@ -7,16 +7,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.Fakes.GenShell;
 
-namespace Microsoft.UI.Test
+namespace Microsoft.UI.Test.ProjectConfigurationTests
 {
-    public class TemplatesFixture
+    public class UITemplatesFixture
     {
-        private static bool syncExecuted = false;
-
         public TemplatesRepository Repository { get; private set; }
 
         [SuppressMessage(
@@ -27,14 +24,10 @@ namespace Microsoft.UI.Test
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
 
-            if (!syncExecuted)
-            {
-                var source = new LocalTemplatesSource(null, "UITest");
-                GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
+            var source = new UITestsTemplatesSource(null);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
-                syncExecuted = true;
-            }
+            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
 
             Repository = GenContext.ToolBox.Repo;
 
