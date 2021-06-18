@@ -15,7 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionOrder": "0",
       "wts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMBasic|MVVMLight|MVVMToolkit & wts.type == project",
-      "wts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)"
+      "wts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/8.0.3/License)"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
@@ -66,7 +66,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
           "packageId": "Fluent.Ribbon",
-          "version": "8.0.2",
+          "version": "8.0.3",
           "projectPath": "Param_ProjectName.csproj"
         },
         "continueOnError": true
