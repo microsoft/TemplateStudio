@@ -13,5 +13,10 @@
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
   }
 ]

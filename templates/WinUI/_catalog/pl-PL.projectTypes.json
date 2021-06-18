@@ -13,5 +13,10 @@
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Zawiera on menu typu „hamburger” do nawigowania między stronami."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Aby poruszać się między stronami, można dodać menu."
   }
 ]

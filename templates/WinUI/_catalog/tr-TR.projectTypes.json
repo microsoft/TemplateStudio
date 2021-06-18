@@ -13,5 +13,10 @@
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
   }
 ]
