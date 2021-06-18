@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿Questo tipo di progetto fornisce impalcature di cartelle che creano le cartelle più importanti come Servizi, Stili, Visualizzazioni e ViewModels.
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+Fornisce inoltre un set minimo di stili, dimensioni dei caratteri e valori di spessore che puoi usare per creare lo stile dell'app.
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+Questo tipo di progetto include anche servizi di base per l'attivazione e la navigazione. All'avvio dell'applicazione, la navigazione verso la home page viene eseguita con questi servizi.

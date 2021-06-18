@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿此项目类型提供文件夹脚手架，创建服务、样式、视图和视图模组等最重要的文件夹。
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+它还提供了一组最小的样式、字体大小和厚度值，您可以使用这些样式构建应用样式。
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+此项目类型还包括激活和导航的基本服务。在应用程序启动时，使用这些服务执行主页的导航。
