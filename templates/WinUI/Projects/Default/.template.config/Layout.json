@@ -3,12 +3,12 @@
         "name": "Main",
         "templateGroupIdentity": "wts.WinUI.Page.Blank",
         "readonly": "false",
-        "projecttype": "BlankAdvanced|SplitView"
+        "projecttype": "BlankAdvanced|SplitView|MenuBar"
     },
     {
         "name": "MSIX Packaging",
         "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging",
         "readonly": "true",
-        "projecttype": "BlankAdvanced|SplitView"
+        "projecttype": "BlankAdvanced|SplitView|MenuBar"
     }
 ]

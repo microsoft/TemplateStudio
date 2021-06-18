@@ -13,5 +13,10 @@
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "ページ間を移動するためのメニューが付加されます。"
   }
 ]

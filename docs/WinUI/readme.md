@@ -40,7 +40,9 @@ The final generated code is the result of a project configuration (project type 
 | Project type | Description |
 |-------------:|:------------|
 | [Blank](./projectTypes/blank.md) | This basic project is a blank canvas upon which to build your app. It provides no scaffolding and leaves everything up to you. |
+| [Blank Advanced](./projectTypes/blankadvanced.md) | It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels. It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's. This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services. |
 | [Navigation Pane](./projectTypes/navigationpane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages. This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed. The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen. |
+| [MenuBar](./projectTypes/menubar.md) | The project includes a menu bar on top of the screen that gives access to the pages of the application. Menu Bars are used a lot in desktop applications like Outlook, Word or Visual Studio. The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient. |
 
 ### Design patterns
 

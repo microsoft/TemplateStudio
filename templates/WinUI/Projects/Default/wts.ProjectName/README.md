@@ -28,7 +28,7 @@ You can open the Task List using the menu `Views -> Task List`.
 │ ├── Styles/ - custom style definitions
 │ ├── ViewModels/ - properties and commands consumed in the views
 │ ├── Views/ - UI pages
-│ │ ├── ShellPage.xaml - main app page with navigation frame
+│ │ ├── ShellPage.xaml - main app page with navigation frame (only for SplitView and MenuBar)
 │ │ └── ...
 │ └── App.xaml - app definition and lifecycle events
 ├── Param_ProjectName.Core/ - core project (.NET Standard)
@@ -43,10 +43,8 @@ You can open the Task List using the menu `Views -> Task List`.
 ```
 
 ### Design pattern
-This app uses MVVM Toolkit, for more information see https://aka.ms/mvvmtoolkit.
 
 ### Project type
-This app uses Navigation Pane, for more information see [navigation pane docs](https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/projectTypes/navigationpane.md).
 
 ## Publish / Distribute
 
