@@ -15,13 +15,13 @@ Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTIN
 
 ## Anatomy of Templates and Template Authoring
 
-For more info about how templates work see [Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/templates.md)
+Before starting make sure you read how templates are defined, composed and generated at [Understanding the Templates (Core Template Studio)](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/templates.md)
 
 ## Templates repository structure
 
 The [Templates Repository](../templates) has the following structure:
 
-- [Uwp](..templates/Uwp): this folder contains all templates used for UWP platform projects
+- [Uwp](../templates/Uwp): this folder contains all templates used for UWP platform projects
   - [_catalog](../templates/Uwp/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard.
   - [_comp](../templates/Uwp/_comp): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
   - [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
@@ -30,7 +30,7 @@ The [Templates Repository](../templates) has the following structure:
   - [Services](../templates/Uwp/Services): Service templates with the sources required to add different services to the target app.
   - [Testing](../templates/Uwp/Testing): Testing templates with the sources required to add testing projects to the target solution.
 
-This template repository structure is the same for [WPF templates](..templates/Wpf) and [WinUI 3 templates](..templates/WinUI).
+This template repository structure is the same for [WPF templates](../templates/Wpf) and [WinUI 3 templates](../templates/WinUI).
 
 
 ## Supporting VB.Net and C# versions of Templates
