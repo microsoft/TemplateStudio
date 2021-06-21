@@ -197,25 +197,25 @@ In *WinTS*, to update the submodule to the most recent commit, you have to run t
 When working on Windows Template Studio the following folders are useful to investigate any issue you run into:
 
 ### Log File
-You can find the log file at %localAppData%/WinTS/Logs. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.
+You can find the log file at `%localAppData%\WinTS\Logs`. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.
 
 ### Templates Folder
-The templates folder is located in the %localAppData%/WinTS/Templates/ folder.
+The templates folder is located in the `%localAppData%\WinTS\Templates\` folder.
 When debugging locally this folder will have a shortcut pointing to the templates folder of your repository.
 When using the vsix, templates will be extracted from the mstx package to this folder.
 
 ### Template Cache
-The template cache is located in the %userprofile%/.templateengine folder. Template caches are isolated by environment. 
+The template cache is located in the `%userprofile%\.templateengine` folder. Template caches are isolated by environment. 
 
 ### Folder overview by Environment name
 
 | Environment|	Description |	Templates Folder | Templates Cache |
 | --------------- | ----------- | ---------------- | --------------- |
-| LocalVSIXEnv | Executing WinTS using Experimental Instance using `Installer` as startup project | %localAppData%\WinTS\Templates\LocalVsixEnv | %userprofile%\\.templateengine\LocalVsixEnv |
-| LocalEnvWinTS | Executing WinTS using `VSEmulator` as startup project | %localAppData%\WinTS\Templates\LocalEnvWinTS | %userprofile%\\.templateengine\LocalEnvWinTS |
-| Dev | Dev-nightly version | %localAppData%\WinTS\Templates\Dev | %userprofile%\\.templateengine\Dev |
-| Pre | Pre-release version | %localAppData%\WinTS\Templates\Pre | %userprofile%\\.templateengine\Pre |
-| Pro | Marketplace version | %localAppData%\WinTS\Templates\Pro | %userprofile%\\.templateengine\Pro |
+| LocalVSIXEnv | Executing WinTS using Experimental Instance using `Installer` as startup project | `%localAppData%\WinTS\Templates\LocalVsixEnv` | `%userprofile%\.templateengine\LocalVsixEnv` |
+| LocalEnvWinTS | Executing WinTS using `VSEmulator` as startup project | `%localAppData%\WinTS\Templates\LocalEnvWinTS` | `%userprofile%\.templateengine\LocalEnvWinTS` |
+| Dev | Dev-nightly version | `%localAppData%\WinTS\Templates\Dev` | `%userprofile%\.templateengine\Dev` |
+| Pre | Pre-release version | `%localAppData%\WinTS\Templates\Pre` | `%userprofile%\.templateengine\Pre` |
+| Pro | Marketplace version | `%localAppData%\WinTS\Templates\Pro` | `%userprofile%\.templateengine\Pro` |
 ---
 
 ## Learn more
