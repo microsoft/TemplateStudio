@@ -38,7 +38,6 @@
                     </MenuBarItem>
                     <MenuBarItem x:Uid="ShellMenuBarItem_Views">
                         <MenuBarItem.Items>
-                            <MenuFlyoutItem x:Uid="ShellMenuItem_Views_Main" Command="{x:Bind ViewModel.MenuViewsMainCommand}" />
                         </MenuBarItem.Items>
                     </MenuBarItem>
                 </MenuBar.Items>
