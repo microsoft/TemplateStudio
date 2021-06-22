@@ -99,10 +99,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk">
-      <Version>16.9.4</Version>
+      <Version>16.10.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
