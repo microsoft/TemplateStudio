@@ -207,6 +207,12 @@ When using the vsix, templates will be extracted from the mstx package to this f
 ### Template Cache
 The template cache is located in the `%userprofile%\.templateengine` folder. Template caches are isolated by environment. 
 
+When working locally you need to refresh the template cache to see changes applied to the templates. There is a button to refresh the template cache on the VSEmulator's Main Page and in the Wizard when running in debug. 
+
+When working with the `Installer` you can manually delete the `%localAppData%\WinTS\Templates\LocalVsixEnv` folder to force a refresh of the cache before the wizard starts.
+For example you might need to do so if you rename an existing templates folder, as the template cache holds pointers to the templates folders. 
+ 
+
 ### Folder overview by Environment name
 
 | Environment|	Description |	Templates Folder | Templates Cache |
@@ -216,6 +222,7 @@ The template cache is located in the `%userprofile%\.templateengine` folder. Tem
 | Dev | Dev-nightly version | `%localAppData%\WinTS\Templates\Dev` | `%userprofile%\.templateengine\Dev` |
 | Pre | Pre-release version | `%localAppData%\WinTS\Templates\Pre` | `%userprofile%\.templateengine\Pre` |
 | Pro | Marketplace version | `%localAppData%\WinTS\Templates\Pro` | `%userprofile%\.templateengine\Pro` |
+
 ---
 
 ## Learn more
