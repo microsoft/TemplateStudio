@@ -6,7 +6,7 @@ Menu Bars are used a lot in desktop applications like Outlook, Word or Visual St
 
 The menu initially shows two entries, File and Views. Pages are added to the Views menu entry, Settings Page to the file entry. Once the project is created you can redistribute or create new menu entries as convenient.
 
-This project contains a top menu bar with File and Views menu entries and a Blank canvas to show your views. The project includes navigation methods to show views five different ways:
+This project contains a top menu bar with File and Views menu entries and a Blank canvas to show your views. The project includes navigation methods to show views in three different ways:
 
 - Update view
 - Navigate
@@ -23,7 +23,7 @@ This document covers:
 
 ## Use different ways to show pages
 
-The Menu bar project contains services that provides methods to show pages in five different ways.
+The Menu bar project contains services that provides methods to show pages in three different ways.
 
 ### 1.  Update view
 
@@ -35,7 +35,7 @@ Navigates to a page in the frame below the menu with the possibility to navigate
 
 ### 3. Open in the right pane
 
-Shows a page in the right pane of the SplitView contained in the ShellWindow. This is the default option in the settings page. You should use the OpenInRightPane method in the IRightPaneService class.
+Shows a page in the right pane of the SplitView contained in the ShellPage. This is the default option in the settings page. You should use the OpenInRightPane method in the IRightPaneService class.
 
 <a name="newmenuitems"></a>
 
