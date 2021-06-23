@@ -8,8 +8,8 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // You can show pages in different ways (update main view, navigate, right pane, new windows or dialog)
-    // using the NavigationService, RightPaneService and WindowManagerService.
+    // You can show pages in different ways (update main view, navigate or right pane)
+    // using the NavigationService and RightPaneService.
     // Read more about MenuBar project type here:
     // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/WinUI/projectTypes/menubar.md
     public class ShellViewModel : ObservableRecipient
