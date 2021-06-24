@@ -895,10 +895,10 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>새로운 WinUI3 데스크톱 앱</value>
+    <value>새로운 WinUI 3 데스크톱 앱</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>새로운 WinUI3 UWP 응용 프로그램</value>
+    <value>새로운 WinUI 3 UWP 응용 프로그램</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

@@ -1,3 +1,3 @@
-﻿Este proyecto básico en un lienzo en blanco en el que puedes compilar tu aplicación.
+﻿Este proyecto básico es un lienzo en blanco en el que puedes construir tu aplicación.
 
-Viene sin armadura y deja que tú lo hagas todo.
+Viene sin estructura y deja que tú lo hagas todo.

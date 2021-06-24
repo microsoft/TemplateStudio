@@ -2,17 +2,17 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Este proyecto básico en un lienzo en blanco en el que puedes compilar tu aplicación."
+    "summary": "Este proyecto básico es un lienzo en blanco en el que puedes construir tu aplicación."
   },
   {
     "name": "BlankAdvanced",
     "displayName": "Blank Advanced",
-    "summary": "Se incluye un marco de navegación y servicios y estilos básicos."
+    "summary": "Incluye un marco de navegación, servicios y estilos básicos."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "Se incluye un menú de hamburguesa para poder navegar entre las páginas."
+    "summary": "Incluye un menú de hamburguesa para poder navegar entre las páginas."
   },
   {
     "name": "MenuBar",
