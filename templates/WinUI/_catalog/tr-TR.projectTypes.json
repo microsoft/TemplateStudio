@@ -7,11 +7,16 @@
   {
     "name": "BlankAdvanced",
     "displayName": "Blank Advanced",
-    "summary": "A navigation frame and basic services and styles are included."
+    "summary": "Gezinti çerçevesi ve temel hizmetler ve stiller dahildir."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
   }
 ]

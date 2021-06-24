@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using CommandLine;
 using CommandLine.Text;
 
 namespace TemplateValidator
@@ -13,59 +14,54 @@ namespace TemplateValidator
     {
         public static void Main(string[] args)
         {
-            Task.Run(async () =>
+            var parserResult = Parser.Default.ParseArguments<CommandLineOptions>(args);
+            parserResult
+            .WithParsed<CommandLineOptions>(options => RunCommand(options))
+            .WithNotParsed(error => GetHelpText());
+        }
+
+        private static string GetHelpText()
+        {
+            return new HelpText
             {
-                var options = new CommandLineOptions();
+                Heading = HeadingInfo.Default,
+                Copyright = CopyrightInfo.Default,
+                AdditionalNewLineAfterOption = true,
+                AddDashesToOption = true,
+            };
+        }
 
-                if (args?.Any() != false && CommandLine.Parser.Default.ParseArguments(args, options))
+        private static int RunCommand(CommandLineOptions options)
+        {
+            Console.WriteLine(GetHelpText());
+
+            VerifierResult results = null;
+
+            if (!string.IsNullOrWhiteSpace(options.File))
+            {
+                Console.WriteLine(options.File);
+
+                results = TemplateJsonVerifier.VerifyTemplatePathAsync(options.File).Result;
+            }
+            else if (options.Directories.Any())
+            {
+                foreach (var directory in options.Directories)
                 {
-                    var appTitle = new HelpText
-                    {
-                        Heading = HeadingInfo.Default,
-                        Copyright = CopyrightInfo.Default,
-                        AdditionalNewLineAfterOption = true,
-                        AddDashesToOption = true,
-                    };
-
-                    Console.WriteLine(appTitle);
-
-                    VerifierResult results = null;
-
-                    if (!string.IsNullOrWhiteSpace(options.File))
-                    {
-                        Console.WriteLine(options.File);
-
-                        results = await TemplateJsonVerifier.VerifyTemplatePathAsync(options.File);
-                    }
-                    else if (options.Directories.Any())
-                    {
-                        foreach (var directory in options.Directories)
-                        {
-                            Console.WriteLine(directory);
-                        }
-
-                        results = TemplateFolderVerifier.VerifyTemplateFolders(!options.NoWarnings, options.Directories);
-                    }
-                    else
-                    {
-                        Console.WriteLine(options.GetUsage());
-                    }
-
-                    if (results != null)
-                    {
-                        foreach (var result in results.Messages)
-                        {
-                            Console.WriteLine(result);
-                        }
-                    }
+                    Console.WriteLine(directory);
                 }
-                else
+
+                results = TemplateFolderVerifier.VerifyTemplateFolders(!options.NoWarnings, options.Directories);
+            }
+
+            if (results != null)
+            {
+                foreach (var result in results.Messages)
                 {
-                    Console.WriteLine(options.GetUsage());
+                    Console.WriteLine(result);
                 }
-            }).Wait();
+            }
 
-            Console.ReadKey(true);
+            return 0;
         }
     }
 }

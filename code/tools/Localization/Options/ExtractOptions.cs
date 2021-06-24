@@ -6,6 +6,7 @@ using CommandLine;
 
 namespace Localization.Options
 {
+    [Verb("ext", HelpText = "Extract localizable items for different cultures.")]
     public class ExtractOptions
     {
         [Option(

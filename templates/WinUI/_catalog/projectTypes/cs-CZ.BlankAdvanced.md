@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿Tento typ projektu poskytuje lešení složek a vytváří nejdůležitější složky jako služby, styly, zobrazení a viewmodely.
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+Poskytuje také minimální sadu stylů, velikostí písma a hodnot tloušťky, které můžete použít k vytvoření stylu aplikace.
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+Tento typ projektu zahrnuje také základní služby pro aktivaci a navigaci. Při spuštění aplikace se s těmito službami provádí navigace na domovskou stránku.

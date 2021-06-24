@@ -7,11 +7,16 @@
   {
     "name": "BlankAdvanced",
     "displayName": "Blank Advanced",
-    "summary": "A navigation frame and basic services and styles are included."
+    "summary": "ナビゲーション フレームと基本的なサービスとスタイルが含まれています。"
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "ページ間を移動するためのメニューが付加されます。"
   }
 ]

@@ -2,7 +2,7 @@
 
 The commands in the right-click menu allow you to generate a new item and integrate it with your project.
 
-It is possible to add
+It is possible to add:
 
 - New features
 - New pages
@@ -34,7 +34,7 @@ The files will not be copied from the temporary generation folder to your projec
 
 ### Failed merges
 
-To include the new item, WinTS tried to modify files in your project, but could not do so.
+To include the new item, *WinTS* tried to modify files in your project, but could not do so.
 For example, when you add a new page to a project with navigation pane, there is a postaction that will add this page to the ShellViewModel.
 
 There are two possible reasons that could make this fail:

@@ -13,7 +13,7 @@
     "wts.type": "composition",
     "wts.platform" : "WinUI",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == BlankAdvanced & groupidentity == wts.WinUI.Page.ContentGrid"
+    "wts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.ContentGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

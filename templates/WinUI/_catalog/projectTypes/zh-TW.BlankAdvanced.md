@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿此專案類型提供資料夾腳手架，創建服務、樣式、檢視和視圖模組等最重要的資料夾。
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+它還提供了一組最小的樣式、字體大小和厚度值，您可以使用這些樣式構建應用樣式。
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+此項目類型還包括啟動和導航的基本服務。在應用程式啟動時，使用這些服務執行主頁的導航。

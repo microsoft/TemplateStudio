@@ -1,6 +1,6 @@
 # Using and extending your generated project
 
-WPF projects created with Windows Template Studio (WinTS) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+WPF projects created with *Windows Template Studio* (aka *WinTS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Windows Template Studio
 
@@ -8,7 +8,7 @@ The final generated code is the result of a project configuration (project type 
 
 ## Understanding concepts for Windows Template Studio
 
-Windows Template Studio approaches WPF app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
+*Windows Template Studio* approaches WPF app creation using the following attribute sets to decide how to best generate your app.  Below are descriptions of everything you can do.
 
 ### Project Types
 
@@ -23,7 +23,7 @@ Windows Template Studio approaches WPF app creation using the following attribut
 
 ### Design patterns
 
-**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the three most common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. *Windows Template Studio* currently supports the three most common patterns:
 
 | Design pattern| Description |
 |--------------:|:------------|

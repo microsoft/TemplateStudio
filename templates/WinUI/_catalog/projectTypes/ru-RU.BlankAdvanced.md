@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿Этот тип проекта предоставляет леса папок, создавая наиболее важные папки, такие как Услуги, Стили, Просмотры и ViewModels.
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+Он также обеспечивает минимальный набор стилей, размеров шрифтов и значения толщины, которые можно использовать для создания стиля приложения.
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+Этот тип проекта также включает в себя основные услуги для активации и навигации. При запуске приложения с помощью этих сервисов осуществляется навигация на главную страницу.

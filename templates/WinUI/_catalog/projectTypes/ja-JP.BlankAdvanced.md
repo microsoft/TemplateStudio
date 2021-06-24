@@ -1,5 +1,5 @@
-﻿It provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
+﻿このプロジェクトの種類は、サービス、スタイル、ビュー、およびビュー モデルとして最も重要なフォルダーを作成するフォルダースキャフォールディングを提供します。
 
-It also provides a minimal set of styles, font sizes and thickness values that you can use to build you app style's.
+また、アプリ スタイルの構築に使用できるスタイル、フォント サイズ、厚さの値の最小セットも提供します。
 
-This project type also includes basic services for activation and navigation. On application startup, the navigation to the home page is performed with these services.
+このプロジェクトの種類には、アクティブ化とナビゲーションの基本的なサービスも含まれています。アプリケーションの起動時に、これらのサービスを使用してホーム ページへのナビゲーションが実行されます。

@@ -25,5 +25,14 @@
       "order": "3",
       "platform": "WinUI",
       "languages": [ "C#" ]
+    },
+    {
+      "name": "MenuBar",
+      "displayName": "MenuBar",
+      "summary": "A menu is added to move around between pages.",
+      "author": "Microsoft",
+      "order": "4",
+      "platform": "WinUI",
+      "languages": [ "C#" ]
     }
 ]

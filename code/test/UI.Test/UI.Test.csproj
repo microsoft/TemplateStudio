@@ -65,12 +65,17 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="NewProjectTest.cs" />
+    <Compile Include="ProjectConfigurationTests\UITemplatesFixture.cs" />
+    <Compile Include="ProjectTests\NewWinUIProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWpfProjectTest.cs" />
+    <Compile Include="ProjectTests\NewUwpProjectTest.cs" />
+    <Compile Include="ProjectConfigurationTests\ProjectTemplateConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectConfigurationTests\UITestsTemplatesSource.cs" />
     <Compile Include="VisualTests\AutomatedWizardTestingBase.cs" />
     <Compile Include="VisualTests\CaptureWizardScreenshots.cs" />
     <Compile Include="VisualTests\WindowsElementExtensions.cs" />
-    <Compile Include="TemplatesFixture.cs" />
+    <Compile Include="ProjectTests\PlatformTemplatesFixture.cs" />
     <Compile Include="UITestStyleValuesProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +88,35 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageWithServiceDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageWithServiceDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithServiceDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithServiceDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\Layout.json" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\Layout.json" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestFramework.md" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes.json" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestSecondProjectType.md" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestProjectType.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
@@ -100,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver">
-      <Version>3.0.0.2</Version>
+      <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
       <Version>5.0.3</Version>
@@ -141,6 +175,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\icon.png" />
+    <Content Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\icon.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,6 +5,8 @@ using CommandLine;
 
 namespace Localization.Options
 {
+    [Verb("verify", HelpText = "Verify if exist localizable items for different cultures.")]
+
     public class VerifyOptions
     {
         [Option(

@@ -1,8 +1,8 @@
 # Multiple views
 
-Multiple views feature in Windows Template Studio helps your users to be more productive by letting them view independent parts of your app in separate windows.
+Multiple views feature in *Windows Template Studio* helps your users to be more productive by letting them view independent parts of your app in separate windows.
 
-In this documentation we are going to explain how to open and close pages on new windows using the Multiple Views feature of Windows Template Studio.
+In this documentation we are going to explain how to open and close pages on new windows using the Multiple Views feature of *Windows Template Studio*.
 
 For more information see the multiple view documentation on [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views) or checkout the [official sample](https://github.com/Microsoft/Windows-universal-samples/tree/master/Samples/MultipleViews).
 
@@ -27,7 +27,7 @@ In this example we are going to show how to open a photo detail in a new window.
 
 ## 1. Create a new app with two pages
 
-Create a new application using Windows Template Studio and add another blank page named `Secondary`. The idea is to create a button in the `Main` page to open the `Secondary` page in a new window.
+Create a new application using *Windows Template Studio* and add another blank page named `Secondary`. The idea is to create a button in the `Main` page to open the `Secondary` page in a new window.
 
 ## 2. Open the secondary page on a new window.
 

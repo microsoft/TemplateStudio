@@ -7,11 +7,16 @@
   {
     "name": "BlankAdvanced",
     "displayName": "Blank Advanced",
-    "summary": "A navigation frame and basic services and styles are included."
+    "summary": "Sono inclusi un frame di navigazione e servizi e stili di base."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
   }
 ]
