@@ -895,10 +895,10 @@ Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Nueva aplicación WinUI3 Desktop</value>
+    <value>Nueva aplicación WinUI 3 Desktop</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Nueva aplicación WinUI3 UWP</value>
+    <value>Nueva aplicación WinUI 3 UWP</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

@@ -895,10 +895,10 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>新温威3桌面应用程序</value>
+    <value>新的 WinUI 3 桌面应用程序</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>新的维努伊3 UWP应用程序</value>
+    <value>新的 WinUI 3 UWP 应用</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

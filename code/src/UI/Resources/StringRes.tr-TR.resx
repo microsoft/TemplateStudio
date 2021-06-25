@@ -895,10 +895,10 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Yeni WinUI3 Masaüstü uygulaması</value>
+    <value>Yeni WinUI 3 Masaüstü uygulaması</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Yeni WinUI3 UWP uygulaması</value>
+    <value>Yeni WinUI 3 UWP uygulaması</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>
