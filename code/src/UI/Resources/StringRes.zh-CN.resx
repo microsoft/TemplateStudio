@@ -864,8 +864,8 @@
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>布局:</value>
-    <comment>Template details: Layout</comment>
+    <value>包括：</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Framework:</value>
@@ -873,7 +873,7 @@
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0}(可选)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>报告问题</value>
@@ -895,10 +895,10 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>新温威3桌面应用程序</value>
+    <value>新的 WinUI 3 桌面应用程序</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>新的维努伊3 UWP应用程序</value>
+    <value>新的 WinUI 3 UWP 应用</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

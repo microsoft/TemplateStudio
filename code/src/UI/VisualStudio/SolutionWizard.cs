@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -17,13 +17,19 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.Utilities.Services;
+using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 
+#if !DEBUG
+// The following using directives are only required for the release configuration
+using System.Reflection;
+using Microsoft.Templates.Utilities.Services;
+#endif
+
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public abstract class SolutionWizard : IWizard, IContextProvider
+    public class SolutionWizard : IWizard, IContextProvider
     {
         private readonly GenerationService _generationService = GenerationService.Instance;
         private string _platform;
@@ -51,19 +57,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string platform, string language, string appModel = null)
+        protected void Initialize()
         {
-            _platform = platform;
-            _appModel = appModel;
-            _language = language;
+            _platform = _replacementsDictionary.SafeGet("$wts.platform$");
+            _appModel = _replacementsDictionary.SafeGet("$wts.appmodel$");
+            _language = _replacementsDictionary.SafeGet("$wts.language$");
 
-            if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
+            if (GenContext.CurrentLanguage != _language || GenContext.CurrentPlatform != _platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new LocalTemplatesSource(string.Empty), new VsGenShell(), _platform, _language);
 #else
                 var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates");
-                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(_platform, _language, mstxFilePath, new DigitalSignatureService()), new VsGenShell(), _platform, _language);
 #endif
             }
         }
@@ -85,23 +91,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
-
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await _generationService.GenerateProjectAsync(_userSelection);
-                    PostGenerationActions();
-
-                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
+                    await RunFinishedAsync();
                 },
                 JoinableTaskCreationOptions.LongRunning);
         }
 
+        public async Task RunFinishedAsync()
+        {
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await _generationService.GenerateProjectAsync(_userSelection);
+            PostGenerationActions();
+
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
+        }
+
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.CollapseSolutionItems();
-            GenContext.ToolBox.Shell.OpenProjectOverview();
-            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
-            GenContext.ToolBox.Shell.ShowTaskList();
+            GenContext.ToolBox.Shell.Solution.CollapseSolutionItems();
+            GenContext.ToolBox.Shell.UI.OpenProjectOverview();
+            GenContext.ToolBox.Shell.UI.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.ToolBox.Shell.UI.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -112,6 +123,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     _replacementsDictionary = replacementsDictionary;
 
+                    Initialize();
+
                     GenContext.Current = this;
 
                     var context = new UserSelectionContext(_language, _platform);
@@ -120,17 +133,14 @@ namespace Microsoft.Templates.UI.VisualStudio
                         context.AddAppModel(_appModel);
                     }
 
-                    var requiredVersion = _replacementsDictionary.ContainsKey("$wts.requiredversion$") ? _replacementsDictionary["$wts.requiredversion$"] : string.Empty;
-                    var requiredworkloads = _replacementsDictionary.ContainsKey("$wts.requiredworkloads$") ? _replacementsDictionary["$wts.requiredworkloads$"] : string.Empty;
+                    var requiredVersion = _replacementsDictionary.SafeGet("$wts.requiredversion$");
+                    var requiredworkloads = _replacementsDictionary.SafeGet("$wts.requiredworkloads$");
 
                     _userSelection = WizardLauncher.Instance.StartNewProject(context, requiredVersion, requiredworkloads, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)
             {
-                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
-                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
                 if (GenContext.ToolBox.Repo.SyncInProgress)
                 {
                     GenContext.ToolBox.Repo.CancelSynchronization();
@@ -147,7 +157,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             return true;
         }
 
-        private void CleanupDirectories(string projectDirectory)
+        private static void CleanupDirectories(string projectDirectory)
         {
             var parentDir = new DirectoryInfo(projectDirectory).Parent.FullName;
             Fs.SafeDeleteDirectory(projectDirectory);

@@ -154,11 +154,9 @@ namespace Microsoft.Templates.UI.Services
             if (e.Data.GetDataPresent(typeof(T)))
             {
                 // Get the data dropped object.
-                T data = e.Data.GetData(typeof(T)) as T;
-                if (data != null)
+                if (e.Data.GetData(typeof(T)) is T data)
                 {
-                    var itemsSource = _listView.ItemsSource as ObservableCollection<T>;
-                    if (itemsSource != null)
+                    if (_listView.ItemsSource is ObservableCollection<T> itemsSource)
                     {
                         int oldIndex = itemsSource.IndexOf(data);
                         int newIndex = GetIndexUnderDragCursor();
@@ -252,8 +250,10 @@ namespace Microsoft.Templates.UI.Services
         private AdornerLayer InitializeAdornerLayer(ListViewItem itemToDrag)
         {
             var brush = new VisualBrush(itemToDrag);
-            _dragAdornerLayer = new DragAdornerLayer(_listView, itemToDrag.RenderSize, brush);
-            _dragAdornerLayer.Opacity = _dragAdornerLayerOpacity;
+            _dragAdornerLayer = new DragAdornerLayer(_listView, itemToDrag.RenderSize, brush)
+            {
+                Opacity = _dragAdornerLayerOpacity,
+            };
 
             var adornerLayer = AdornerLayer.GetAdornerLayer(_listView);
             adornerLayer.Add(_dragAdornerLayer);

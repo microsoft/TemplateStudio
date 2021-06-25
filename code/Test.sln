@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates.Test", "test\Templates.Test\Templates.Test.csproj", "{1EE12A16-FE11-43AD-B509-668CE5D0DB16}"
 EndProject
@@ -31,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Test", "CoreTemplateStudio\code\test\Utilities.Test\Utilities.Test.csproj", "{80D4D7E7-FA07-4A43-A5A4-F3089CD3EB81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "CoreTemplateStudio\code\tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VsTemplates.Test", "test\VsTemplates.Test\VsTemplates.Test.csproj", "{1687FD9B-261D-401C-B34E-82E6B7A35868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,12 @@ Global
 		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18FE7361-241E-4B1B-98F5-C4A4D17496A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Analyze|Any CPU.ActiveCfg = Debug|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Analyze|Any CPU.Build.0 = Debug|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1687FD9B-261D-401C-B34E-82E6B7A35868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

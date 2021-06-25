@@ -864,8 +864,8 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Układ:</value>
-    <comment>Template details: Layout</comment>
+    <value>Zawiera:</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Frameworki:</value>
@@ -873,7 +873,7 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0} (opcjonalnie)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>Zgłoś problem</value>
@@ -895,10 +895,10 @@ Sprawdź następującą listę pakietów wymaganych przez kod źródłowy Twojeg
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Nowa aplikacja komputerowa WinUI3</value>
+    <value>Nowa aplikacja komputerowa WinUI 3</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Nowa aplikacja WinUI3 UWP</value>
+    <value>Nowa aplikacja WinUI 3 UWP</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

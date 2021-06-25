@@ -18,8 +18,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private void OnLostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            var textBox = sender as TextBox;
-            if (textBox != null)
+            if (sender is TextBox textBox)
             {
                 var command = textBox.Tag as ICommand;
                 command?.Execute(e);

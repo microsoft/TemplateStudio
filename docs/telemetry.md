@@ -1,6 +1,6 @@
 # Windows Template Studio Telemetry
 
-Windows Template studio relies on Core Template Studio for telemetry. For info about implementation, telemetry collected and configuration see [Core Template Studio Telemetry](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/telemetry.md).
+*Windows Template Studio* relies on Core Template Studio for telemetry. For info about implementation, telemetry collected and configuration see [Core Template Studio Telemetry](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/telemetry.md).
 
 ## Trends
 
@@ -8,7 +8,7 @@ Please head to our [Telemetry Data](telemetryData.md) where we show trends from 
 
 ## Usage telemetry collected
 
-For events related to session and project generation see [Core Template Studio -  Usage telemetry collected](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/telemetry.md#usage-telemetry-collected). On the Windows Template Studio Wizard we additionally collect the following events:
+For events related to session and project generation see [Core Template Studio -  Usage telemetry collected](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/telemetry.md#usage-telemetry-collected). On the *Windows Template Studio* Wizard we additionally collect the following events:
 
 |Event Name Tracked |Notes |
 |:-------------:|:-----|

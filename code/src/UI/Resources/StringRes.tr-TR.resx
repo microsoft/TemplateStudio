@@ -864,8 +864,8 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Düzen:</value>
-    <comment>Template details: Layout</comment>
+    <value>Içerir:</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Framework:</value>
@@ -873,7 +873,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0} (isteğe bağlı)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>Sorunu bildir</value>
@@ -895,10 +895,10 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Yeni WinUI3 Masaüstü uygulaması</value>
+    <value>Yeni WinUI 3 Masaüstü uygulaması</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Yeni WinUI3 UWP uygulaması</value>
+    <value>Yeni WinUI 3 UWP uygulaması</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

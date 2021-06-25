@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.InkDraw",
                 "wts.Page.InkDrawPicture",
                 "wts.Page.InkSmartCanvas",
-                "wts.Page.ListDetail",
+                "wts.Page.ListDetails",
                 "wts.Page.Settings",
                 "wts.Page.TabbedPivot",
             };
@@ -1088,9 +1088,9 @@ namespace Microsoft.Templates.Test
             var projectFolder = Path.Combine(rootFolder, "TestProject");
             var imagesFolder = Path.Combine(rootFolder, "Images");
 
-            Fs.EnsureFolder(rootFolder);
-            Fs.EnsureFolder(projectFolder);
-            Fs.EnsureFolder(imagesFolder);
+            Fs.EnsureFolderExists(rootFolder);
+            Fs.EnsureFolderExists(projectFolder);
+            Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
             Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
@@ -1146,9 +1146,9 @@ namespace Microsoft.Templates.Test
             var projectFolder = Path.Combine(rootFolder, "TestProject");
             var imagesFolder = Path.Combine(rootFolder, "Images");
 
-            Fs.EnsureFolder(rootFolder);
-            Fs.EnsureFolder(projectFolder);
-            Fs.EnsureFolder(imagesFolder);
+            Fs.EnsureFolderExists(rootFolder);
+            Fs.EnsureFolderExists(projectFolder);
+            Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
             Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
@@ -1208,9 +1208,9 @@ namespace Microsoft.Templates.Test
             var projectFolder = Path.Combine(rootFolder, "TestProject");
             var imagesFolder = Path.Combine(rootFolder, "Images");
 
-            Fs.EnsureFolder(rootFolder);
-            Fs.EnsureFolder(projectFolder);
-            Fs.EnsureFolder(imagesFolder);
+            Fs.EnsureFolderExists(rootFolder);
+            Fs.EnsureFolderExists(projectFolder);
+            Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
             Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);

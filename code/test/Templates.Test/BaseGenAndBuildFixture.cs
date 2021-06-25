@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,7 +15,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -123,6 +122,7 @@ namespace Microsoft.Templates.Test
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
             var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
+            var nugetExecutable = GetPath("nuget\\nuget.exe");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Test
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" \"{projectFile}\" ",
+                Arguments = $"\"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
@@ -208,8 +208,13 @@ namespace Microsoft.Templates.Test
             return BuildSolution(solutionName, outputPath, platform, "bat\\Uwp\\RestoreAndBuild.bat", "Debug", "x86");
         }
 
-        public (int exitCode, string outputFile) BuildSolutionWinUI(string solutionName, string outputPath, string platform)
+        public (int exitCode, string outputFile) BuildSolutionWinUI(string solutionName, string outputPath, string platform, string language)
         {
+            if(language == ProgrammingLanguages.Cpp)
+            {
+                return BuildSolution(solutionName, outputPath, platform, "bat\\WinUI\\RestoreAndBuildCpp.bat", "Debug", "x86");
+            }
+
             return BuildSolution(solutionName, outputPath, platform, "bat\\WinUI\\RestoreAndBuild.bat", "Debug", "x86");
         }
 
@@ -239,15 +244,15 @@ namespace Microsoft.Templates.Test
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
-            var batPath = Path.GetDirectoryName(GetPath(batfile));
+            var nugetExecutable = GetPath("nuget\\nuget.exe");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config} {batPath}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{batPath}\"",
+                Arguments = $"\"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{nugetExecutable}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,

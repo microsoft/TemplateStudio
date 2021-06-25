@@ -5,10 +5,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Services;
@@ -16,10 +16,16 @@ using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.Utilities.Services;
+using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
+
+#if !DEBUG
+// The following using directives are only required for the release configuration
+using System.Reflection;
+using Microsoft.Templates.Utilities.Services;
+#endif
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -35,7 +41,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private readonly GenerationService _generationService = GenerationService.Instance;
 
-        private static VsGenShell _shell;
+        private static IGenShell _shell;
 
         private const string BlankProjectType = "Blank";
 
@@ -69,13 +75,13 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
+                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
             }
         }
 
@@ -86,13 +92,13 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
+                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
             }
         }
 
@@ -103,13 +109,13 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddServiceSuccess, userSelection.Services[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddServiceCancelled);
+                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddServiceCancelled);
             }
         }
 
@@ -120,20 +126,20 @@ namespace Microsoft.Templates.UI.VisualStudio
             try
             {
                 SetContext();
-                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
+                var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
                 var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddTestingSuccess, userSelection.Testing[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddTestingCancelled);
+                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddTestingCancelled);
             }
         }
 
         public bool Visible(TemplateType templateType)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (!_shell.GetActiveProjectIsWts())
+            if (!_shell.Project.GetActiveProjectIsWts())
             {
                 return false;
             }
@@ -152,18 +158,18 @@ namespace Microsoft.Templates.UI.VisualStudio
                                         o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
                                         o.AppModel == configInfo?.AppModel);
 
-            return rightClickOptions != null ? rightClickOptions.TemplateTypes.Contains(templateType) : false;
+            return rightClickOptions != null && rightClickOptions.TemplateTypes.Contains(templateType);
         }
 
         public bool Visible()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            return _shell.GetActiveProjectIsWts();
+            return _shell.Project.GetActiveProjectIsWts();
         }
 
         public bool Enabled()
         {
-            return !_shell.IsDebuggerEnabled() && !_shell.IsBuildInProgress();
+            return !_shell.VisualStudio.IsDebuggerEnabled() && !_shell.VisualStudio.IsBuildInProgress();
         }
 
         public void OpenTempFolder()
@@ -186,14 +192,14 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             EnsureGenContextInitialized();
-            var language = _shell.GetActiveProjectLanguage();
+            var language = _shell.Project.GetActiveProjectLanguage();
             if (GenContext.CurrentLanguage == language)
             {
                 GenContext.Current = this;
 
-                DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                SafeProjectName = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
+                DestinationPath = GenContext.ToolBox.Shell.Project.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.Project.GetActiveProjectName();
+                SafeProjectName = GenContext.ToolBox.Shell.Project.GetActiveProjectNamespace();
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectInfo = new ProjectInfo();
@@ -223,14 +229,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             _generationService.FinishGeneration(userSelection);
-            await _shell.ShowStatusBarMessageAsync(statusBarMessage);
+
+            // TODO: Change all async GensShell methods to public
+            await (_shell.UI as VsGenShellUI).ShowStatusBarMessageAsync(statusBarMessage);
         }
 
         private bool EnsureGenContextInitialized()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var projectLanguage = _shell.GetActiveProjectLanguage();
-            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.GetActiveProjectPath()).Platform;
+            var projectLanguage = _shell.Project.GetActiveProjectLanguage();
+            var projectPlatform = ProjectMetadataService.GetProjectMetadata(_shell.Project.GetActiveProjectPath()).Platform;
 
             if (!string.IsNullOrEmpty(projectLanguage) && !string.IsNullOrEmpty(projectPlatform))
             {
@@ -253,13 +261,13 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static string GetTempGenerationFolder()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string projectGuid = _shell.GetProjectGuidByName(_shell.GetActiveProjectName()).ToString();
+            string projectGuid = _shell.Project.GetProjectGuidByName(_shell.Project.GetActiveProjectName()).ToString();
             return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 
         private static bool HasContent(string tempPath)
         {
-            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
         }
     }
 }

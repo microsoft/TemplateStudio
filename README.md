@@ -1,14 +1,14 @@
 # Windows Template Studio
 
-Windows Template Studio (WinTS) is a Visual Studio 2019 Extension that accelerates the creation of new Universal Windows Platform (UWP), Windows Presentation Foundation (WPF .NET Core 3.1) and WinUI 3 in Desktop apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights. 	WinTS supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and WinUI 3 in Desktop apps in C# or C++.
+*Windows Template Studio* (aka *WinTS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
+*WinTS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
 
 ![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
 ![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
-![Windows Template Studio WinUI 3 screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
+![Windows Template Studio **WinUI 3** screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
 
-Note: :heavy_exclamation_mark: WinUI 3 Templates are still in development and will be available from version 4.0 onwards. You can get a preview using our dev-nightly version. Find more instructions on installing the dev-nightly at https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio :heavy_exclamation_mark:
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
@@ -30,7 +30,7 @@ Note: :heavy_exclamation_mark: WinUI 3 Templates are still in development and wi
 
 ## Features
 
-Windows Template Studio approaches app creation using the following six attribute sets:
+*Windows Template Studio* approaches app creation using the following six attribute sets:
 
 ### **Project type**
 
@@ -40,7 +40,7 @@ First, how do you want your app's UI navigation to behave?
 
 - **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
-- **WinUI 3**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*.
+- **WinUI 3**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Blank Advanced](./docs/WinUI/projectTypes/blankadvanced.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WinUI/projectTypes/menubar.md)*.
 
 
 ### **App design pattern**
@@ -84,7 +84,7 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 ## Known issues
 
-- You can't have side-by-side versions (nightly/pre-release/release) of Windows Template Studio VSPackage into a single instance of Visual Studio.
+- You can't have side-by-side versions (nightly/pre-release/release) of *Windows Template Studio* VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
 

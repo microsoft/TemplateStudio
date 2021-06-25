@@ -15,16 +15,10 @@ namespace Microsoft.Templates.VsEmulator
         [Option('l', "proglang", Required = true, HelpText = "C# or VisualBasic")]
         public string ProgLang { get; set; }
 
-        [Option('n', "projectName", DefaultValue = "", Required = false, HelpText = "A random value will be generated if none provided")]
+        [Option('n', "projectName", Default = "", Required = false, HelpText = "A random value will be generated if none provided")]
         public string ProjectName { get; set; }
 
-        [Option('u', "ui", DefaultValue = "Project", Required = false, HelpText = "Project, Page, or Feature. ")]
+        [Option('u', "ui", Default = "Project", Required = false, HelpText = "Project, Page, or Feature. ")]
         public string UI { get; set; }
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
-        }
     }
 }

@@ -864,8 +864,8 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Layout:</value>
-    <comment>Template details: Layout</comment>
+    <value>Include:</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Framework:</value>
@@ -873,7 +873,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0} (facoltativo)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>Segnala problema</value>
@@ -895,10 +895,10 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Nuova app WinUI3 Desktop</value>
+    <value>Nuova app WinUI 3 Desktop</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Nuova app WinUI3 UWP</value>
+    <value>Nuova app WinUI 3 UWP</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

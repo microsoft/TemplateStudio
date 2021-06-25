@@ -5,6 +5,7 @@ using CommandLine;
 
 namespace Localization.Options
 {
+    [Verb("gen", HelpText = "Generate the missing localized files for different cultures in the templates.")]
     public class GenerationOptions
     {
         [Option(

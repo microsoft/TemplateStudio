@@ -3,11 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
@@ -49,10 +46,10 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasCoreProject()
         {
-            var extension = (GenContext.ToolBox.Shell.GetActiveProjectLanguage() == ProgrammingLanguages.CSharp) ? "csproj" : "vbproj";
+            var extension = (GenContext.ToolBox.Shell.Project.GetActiveProjectLanguage() == ProgrammingLanguages.CSharp) ? "csproj" : "vbproj";
 
-            var uwpProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-            var uwpProjectFolder = GenContext.ToolBox.Shell.GetActiveProjectPath();
+            var uwpProjectName = GenContext.ToolBox.Shell.Project.GetActiveProjectName();
+            var uwpProjectFolder = GenContext.ToolBox.Shell.Project.GetActiveProjectPath();
             var uwpProjectPath = Path.Combine(uwpProjectFolder, $"{uwpProjectName}.{extension}");
 
             var coreProjectName = $"{uwpProjectName}.Core";

@@ -6,6 +6,8 @@ using CommandLine;
 
 namespace Localization.Options
 {
+    [Verb("merge", HelpText = "Merge localizable items to projects and templates.")]
+
     public class MergeOptions
     {
         [Option(

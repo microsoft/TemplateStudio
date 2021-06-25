@@ -5,8 +5,18 @@
     "summary": "Dieses Basisprojekt ist ein leerer Zeichenbereich, in dem Sie Ihre App erstellen können."
   },
   {
+    "name": "BlankAdvanced",
+    "displayName": "Blank Advanced",
+    "summary": "Ein Navigationsbereich und grundlegende Dienste und Stile sind enthalten."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Für die Navigation zwischen den Seiten ist ein Hamburger-Menü enthalten."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Für die Navigation zwischen Seiten wurde ein Menü hinzugefügt."
   }
 ]

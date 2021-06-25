@@ -10,14 +10,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Threading;
-using Microsoft.Internal.VisualStudio.Shell.TableControl;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
+using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
@@ -249,7 +247,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                             AddStyleCop(userSelection, platform, language, appmodel);
                         }
                         await _generationService.GenerateProjectAsync(userSelection);
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                        GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Project created!!!");
                         newProject.SetProjectData(userSelection.Context, UseStyleCop);
                         newProject.SetContextInfo();
                         Projects.Insert(0, newProject);
@@ -261,11 +259,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardBackoutException)
             {
                 CleanUp();
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard cancelled");
             }
 
             return null;
@@ -289,7 +287,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         AddStyleCop(userSelection, userSelection.Context.Platform, userSelection.Context.Language, userSelection.Context.GetAppModel());
                     }
                     await _generationService.GenerateProjectAsync(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                    GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Project created!!!");
                     newProject.SetProjectData(userSelection.Context, UseStyleCop);
                     newProject.SetContextInfo();
                     Projects.Insert(0, newProject);
@@ -299,11 +297,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardBackoutException)
             {
                 CleanUp();
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard cancelled");
             }
 
             return null;
@@ -382,11 +380,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardBackoutException)
             {
                 CleanUp();
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 
@@ -516,13 +514,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task RefreshTemplateCacheAsync()
         {
             UpdateCanRefreshTemplateCache(false);
-            GenContext.ToolBox.Shell.ShowStatusBarMessage("Refreshing template cache ...");
+            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Refreshing template cache ...");
 
             await GenContext.ToolBox.Repo.RefreshAsync(true);
             AddLog($"{DateTime.Now.FormatAsTime()} - Template cache refreshed");
 
             UpdateCanRefreshTemplateCache(true);
-            GenContext.ToolBox.Shell.ShowStatusBarMessage("Template cache refresh completed");
+            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage("Template cache refresh completed");
         }
 
         private void ConfigureVersions()
@@ -611,7 +609,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProgrammingLanguages.CSharp);
 
             await GenContext.ToolBox.Repo.SynchronizeAsync();
-            await GenContext.ToolBox.Repo.RefreshAsync(true);
 
             UpdateCanRefreshTemplateCache(true);
         }

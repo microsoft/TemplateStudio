@@ -22,6 +22,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="Uwp"/>
+      <CustomParameter Name="$wts.language$" Value="C#"/>
       <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
       <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
@@ -29,6 +30,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCS</FullClassName>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

@@ -57,6 +57,13 @@ namespace Microsoft.Templates.Test.Wack.WinUI
             await BuildProjectAndRunWackAsync(projectType, framework, platform, language, appModel, templateSelector);
         }
 
+        [Theory]
+        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
+        public async Task WackTests_None_All_WinUI_CppAsync(string projectType, string framework, string platform, string language, string appModel)
+        {
+            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language, appModel);
+        }
+
 
         private async Task BuildProjectAndRunWackAsync(string projectType, string framework, string platform, string language, string appModel, Func<ITemplateInfo, bool> templateSelector)
         {
@@ -79,9 +86,11 @@ namespace Microsoft.Templates.Test.Wack.WinUI
 
             var packagingProjectName = projectName + " (Package)";
 
+            var batFile = language == ProgrammingLanguages.Cpp ? "bat\\WinUI\\RestoreAndBuildCppAppx.bat" : "bat\\WinUI\\RestoreAndBuildAppx.bat";
+
             // Create MSIXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var (exitCode, outputFile) = _fixture.BuildMsixBundle(projectName, projectPath, packagingProjectName, "wapproj", "bat\\WinUI\\RestoreAndBuildAppx.bat");
+            var (exitCode, outputFile) = _fixture.BuildMsixBundle(projectName, projectPath, packagingProjectName, "wapproj", batFile);
 
             Assert.True(exitCode.Equals(0), $"Failed to create MsixBundle for {packagingProjectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
 

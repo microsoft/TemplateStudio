@@ -6,4 +6,4 @@ For more information, visit the [Prism GitHub Page](https://github.com/PrismLibr
 
 Prism also provide a number of [productivity tools](https://prismlibrary.github.io/docs/getting-started/productivity-tools.html) that include snippets, item templates, and tools for working in platforms other than UWP.
 
-**Note.** Prism does not support for UWP with their version 7 release. Windows Template Studio continues to use version 6.3.
+**Note.** Prism does not support for UWP with their version 7 release. *Windows Template Studio* continues to use version 6.3.

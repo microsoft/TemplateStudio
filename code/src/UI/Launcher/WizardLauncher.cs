@@ -16,7 +16,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Views.Common;
-using Microsoft.Templates.UI.VisualStudio;
+using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
 using UIStringRes = Microsoft.Templates.UI.Resources.StringRes;
@@ -25,9 +25,9 @@ namespace Microsoft.Templates.UI.Launcher
 {
     public class WizardLauncher
     {
-        private DialogService _dialogService = DialogService.Instance;
+        private readonly DialogService _dialogService = DialogService.Instance;
         private BaseStyleValuesProvider _styleProvider;
-        private static Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
+        private static readonly Lazy<WizardLauncher> _instance = new Lazy<WizardLauncher>(() => new WizardLauncher());
 
         public static WizardLauncher Instance => _instance.Value;
 
@@ -77,17 +77,17 @@ namespace Microsoft.Templates.UI.Launcher
             return null;
         }
 
-        private void CleanStatusBar() => GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
+        private static void CleanStatusBar() => GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Empty);
 
-        private void CancelWizard() => GenContext.ToolBox.Shell.CancelWizard();
+        private static void CancelWizard() => GenContext.ToolBox.Shell.UI.CancelWizard();
 
-        private UserSelection LaunchWizardShell(IWizardShell wizardShell)
+        private static UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
-            GenContext.ToolBox.Shell.ShowModal(wizardShell as IWindow);
+            GenContext.ToolBox.Shell.UI.ShowModal(wizardShell as IWindow);
             return wizardShell.Result;
         }
 
-        private void SendTelemetry(WizardTypeEnum wizardType, UserSelection userSelection)
+        private static void SendTelemetry(WizardTypeEnum wizardType, UserSelection userSelection)
         {
             if (userSelection is null)
             {
@@ -112,27 +112,27 @@ namespace Microsoft.Templates.UI.Launcher
             SendTelemetryWizardComplete(wizardType, wizardAction);
         }
 
-        private void SendTelemetryWizardComplete(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
+        private static void SendTelemetryWizardComplete(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
         {
             AppHealth.Current.Telemetry.TrackWizardCompletedAsync(
                 wizardType,
                 wizardAction,
-                GenContext.ToolBox.Shell.GetVsVersion())
+                GenContext.ToolBox.Shell.VisualStudio.GetVsVersion())
                 .FireAndForget();
         }
 
-        private void SendTelemetryWizardCanceled(WizardTypeEnum wizardType)
+        private static void SendTelemetryWizardCanceled(WizardTypeEnum wizardType)
         {
             AppHealth.Current.Telemetry.TrackWizardCancelledAsync(
                 wizardType,
-                GenContext.ToolBox.Shell.GetVsVersion(),
+                GenContext.ToolBox.Shell.VisualStudio.GetVsVersion(),
                 GenContext.ToolBox.Repo.SyncInProgress)
                 .FireAndForget();
         }
 
         private void CheckVSVersion(string platform, string requiredVersion)
         {
-            var vsInfo = GenContext.ToolBox.Shell.GetVSTelemetryInfo();
+            var vsInfo = GenContext.ToolBox.Shell.Telemetry.GetVSTelemetryInfo();
             if (!string.IsNullOrEmpty(requiredVersion) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
             {
                 // VisualStudioExeVersion is Empty on UI Test or VSEmulator execution
@@ -146,7 +146,7 @@ namespace Microsoft.Templates.UI.Launcher
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
                     var info = new Views.Common.InfoDialog(vm);
-                    GenContext.ToolBox.Shell.ShowModal(info);
+                    GenContext.ToolBox.Shell.UI.ShowModal(info);
 
                     CancelWizard();
                 }
@@ -155,15 +155,14 @@ namespace Microsoft.Templates.UI.Launcher
 
         private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
         {
-            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-            if (vsShell != null)
+            if (!string.IsNullOrEmpty(requiredWorkloads) && GenContext.ToolBox.Shell is VsGenShell vsShell)
             {
                 var workloadsToCheck = requiredWorkloads.Split('|');
                 var missingWorkloads = new List<string>();
 
                 foreach (var workload in workloadsToCheck)
                 {
-                    if (!vsShell.GetInstalledPackageIds().Contains(workload))
+                    if (!vsShell.VisualStudio.GetInstalledPackageIds().Contains(workload))
                     {
                         missingWorkloads.Add(workload.GetRequiredWorkloadDisplayName());
                     }
@@ -177,7 +176,7 @@ namespace Microsoft.Templates.UI.Launcher
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
                     var info = new Views.Common.InfoDialog(vm);
-                    GenContext.ToolBox.Shell.ShowModal(info);
+                    GenContext.ToolBox.Shell.UI.ShowModal(info);
 
                     CancelWizard();
                 }
@@ -207,13 +206,13 @@ namespace Microsoft.Templates.UI.Launcher
                 var link = "https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/WTSNaming.md";
                 var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
                 var info = new Views.Common.InfoDialog(vm);
-                GenContext.ToolBox.Shell.ShowModal(info);
+                GenContext.ToolBox.Shell.UI.ShowModal(info);
 
                 CancelWizard();
             }
         }
 
-        private UserSelectionContext GetProjectConfigInfo(string language)
+        private static UserSelectionContext GetProjectConfigInfo(string language)
         {
             var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
             var configInfo = projectConfigInfoService.ReadProjectConfiguration();
@@ -221,7 +220,7 @@ namespace Microsoft.Templates.UI.Launcher
             {
                 var vm = new ProjectConfigurationViewModel(language);
                 var projectConfig = new ProjectConfigurationDialog(vm);
-                GenContext.ToolBox.Shell.ShowModal(projectConfig);
+                GenContext.ToolBox.Shell.UI.ShowModal(projectConfig);
 
                 if (vm.Result == DialogResult.Accept)
                 {
@@ -233,7 +232,7 @@ namespace Microsoft.Templates.UI.Launcher
                         configInfo.AppModel = vm.SelectedAppModel;
                     }
 
-                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.GetActiveProjectPath());
+                    ProjectMetadataService.SaveProjectMetadata(configInfo, GenContext.ToolBox.Shell.Project.GetActiveProjectPath());
                     var userSeletion = new UserSelectionContext(language, configInfo.Platform)
                     {
                         ProjectType = configInfo.ProjectType,

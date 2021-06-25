@@ -864,8 +864,8 @@
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>레이아웃:</value>
-    <comment>Template details: Layout</comment>
+    <value>포함:</value>
+    <comment>Template details: Includes</comment>
   </data>
   <data name="TemplateDetailsFrameworks" xml:space="preserve">
     <value>Framework:</value>
@@ -873,7 +873,7 @@
   </data>
   <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
     <value>{0}(선택 사항)</value>
-    <comment>The layout is optional</comment>
+    <comment>The include is optional</comment>
   </data>
   <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
     <value>보고서 문제점</value>
@@ -895,10 +895,10 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>새로운 WinUI3 데스크톱 앱</value>
+    <value>새로운 WinUI 3 데스크톱 앱</value>
   </data>
   <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>새로운 WinUI3 UWP 응용 프로그램</value>
+    <value>새로운 WinUI 3 UWP 응용 프로그램</value>
   </data>
   <data name="WinUI" xml:space="preserve">
     <value>Windows UI</value>

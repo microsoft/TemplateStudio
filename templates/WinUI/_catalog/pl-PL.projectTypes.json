@@ -5,8 +5,18 @@
     "summary": "Ten podstawowy projekt jest pustym obszarem, w którym tworzysz aplikację."
   },
   {
+    "name": "BlankAdvanced",
+    "displayName": "Blank Advanced",
+    "summary": "W zestawie znajduje się ramka nawigacji oraz podstawowe usługi i style."
+  },
+  {
     "name": "SplitView",
     "displayName": "Navigation Pane",
     "summary": "Zawiera on menu typu „hamburger” do nawigowania między stronami."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Aby poruszać się między stronami, można dodać menu."
   }
 ]

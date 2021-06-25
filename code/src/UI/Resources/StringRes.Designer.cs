@@ -874,7 +874,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New WinUI3 Desktop app.
+        ///   Looks up a localized string similar to New WinUI 3 Desktop app.
         /// </summary>
         public static string NewProjectTitleWinUIDesktop {
             get {
@@ -883,7 +883,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New WinUI3 UWP app.
+        ///   Looks up a localized string similar to New WinUI 3 UWP app.
         /// </summary>
         public static string NewProjectTitleWinUIUWP {
             get {
@@ -1522,7 +1522,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout:.
+        ///   Looks up a localized string similar to Includes:.
         /// </summary>
         public static string TemplateDetailsLayout {
             get {

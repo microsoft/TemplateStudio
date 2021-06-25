@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.NewProject;
@@ -12,7 +11,7 @@ namespace Microsoft.Templates.UI.Views.Common
 {
     public partial class CompositionToolWindow : Window
     {
-        private UserSelection _userSelection;
+        private readonly UserSelection _userSelection;
 
         public CompositionToolWindow(UserSelection userSelection)
         {

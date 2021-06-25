@@ -3,16 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
@@ -30,7 +26,7 @@ namespace Microsoft.Templates.UI.Validators
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.GetActiveProjectPath()).ProjectType;
+            var projectType = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath()).ProjectType;
 
             if (projectType == "SplitView" && HasOldNavigationView())
             {
@@ -50,7 +46,7 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasOldNavigationView()
         {
-            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.Project.GetActiveProjectPath(), "Views", "ShellPage.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);
             return fileContent.Contains("<NavigationView");
         }

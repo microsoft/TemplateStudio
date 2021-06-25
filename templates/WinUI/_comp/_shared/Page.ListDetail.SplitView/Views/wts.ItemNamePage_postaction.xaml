@@ -1,0 +1,55 @@
+﻿<Page
+    <!--^^-->
+    <!--{[{-->
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+    <!--}]}-->
+    Style="{StaticResource PageStyle}">
+
+    <Page.Resources>
+        <!--^^-->
+        <!--{[{-->
+        <DataTemplate x:Key="MinimalListHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    Margin="96,0,0,0"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}"
+                    Text="{Binding}" />
+            </Grid>
+        </DataTemplate>
+        <!--}]}-->
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--}]}-->
+        <controls:ListDetailsView
+            x:Uid="wts.ItemName"
+            x:Name="ListDetailsViewControl"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
+            <!--{--{-->
+            ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
+            <!--}--}-->
+            <!--^^-->
+            <!--{[{-->
+            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
+            <!--}]}-->
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
+    </Grid>
+</Page>
