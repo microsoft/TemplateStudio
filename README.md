@@ -130,7 +130,7 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
 - [Windows UI](https://github.com/microsoft/microsoft-ui-xaml)
-- [Project Reunion](https://github.com/microsoft/ProjectReunion)
+- [Windows App SDK](https://github.com/microsoft/WindowsAppSDK)
 - [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
 - [XAML Styler](https://github.com/Xavalon/XamlStyler)
 

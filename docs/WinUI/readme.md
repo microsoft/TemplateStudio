@@ -89,8 +89,8 @@ The final generated code is the result of a project configuration (project type 
 - [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
 
 ### Additional docs:
-- [Windows UI Library 3 - Project Reunion 0.5 (March 2021)](https://docs.microsoft.com/windows/apps/winui/winui3/)
+- [Windows UI Library (WinUI)](https://docs.microsoft.com/en-us/windows/apps/winui/)
 - [Windows UI Library on GitHub](https://github.com/Microsoft/microsoft-ui-xaml)
-- [Project Reunion on GitHub](https://github.com/microsoft/ProjectReunion)
-- [Windows Community Toolkit for Project Reunion 0.5](https://devblogs.microsoft.com/ifdef-windows/windows-community-toolkit-for-project-reunion-0-5/)
-- [Update existing projects to the latest release of Project Reunion](https://docs.microsoft.com/windows/apps/project-reunion/update-existing-projects-to-the-latest-release)
+- [Windows App SDK (previously known as Project Reunion)](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/)
+- [Windows App SDK on GitHub](https://github.com/microsoft/WindowsAppSDK)
+- [Update existing projects to the latest release of the Windows App SDK](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/update-existing-projects-to-the-latest-release)
