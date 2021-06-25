@@ -21,7 +21,7 @@
     "wts.dependencies": "wts.Service.SampleDataService.Prism",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
     "wts.outputToParent": "true"
   },
   "sourceName": "ContentGridView",

@@ -4,4 +4,4 @@ The web view page embeds a view into your app that renders web content using the
 
 [Is the Web view control right for you?](https://docs.microsoft.com/windows/communitytoolkit/controls/wpf-winforms/webview)
 
-View `Microsoft.Toolkit.Wpf.UI.Controls.WebView` license [here](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md).
+View `Microsoft.Toolkit.Wpf.UI.Controls.WebView` license [here](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md).

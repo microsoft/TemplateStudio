@@ -23,7 +23,7 @@
     "wts.genGroup": "0",
     "wts.isHidden": "false",
     "wts.rightClickEnabled": "true",
-    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
   "sourceName": "ImageGalleryView",
   "preferNameDirectory": true,

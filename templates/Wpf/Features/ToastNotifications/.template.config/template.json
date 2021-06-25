@@ -20,7 +20,7 @@
       "wts.displayOrder": "1",
       "wts.group": "UserInteraction",
       "wts.defaultInstance": "ToastNotifications",
-      "wts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
+      "wts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
       "wts.multipleInstance": "false",
       "wts.genGroup": "0",
       "wts.rightClickEnabled":"false"
