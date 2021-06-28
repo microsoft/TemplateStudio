@@ -23,7 +23,7 @@
     "wts.rightClickEnabled": "true",
     "wts.outputToParent": "true",
     "wts.dependencies": "wts.Service.SampleDataService.Prism",
-    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)|[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)|[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -15,7 +15,7 @@
       "wts.version": "1.0.0",
       "wts.compositionOrder": "0",
       "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == project",
-      "wts.licenses": "[Microsoft.Extensions.DependencyInjection](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+      "wts.licenses": "[Microsoft.Extensions.DependencyInjection](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
 
     },
     "sourceName": "wts.ItemName",
@@ -69,7 +69,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
           "packageId": "CommunityToolkit.Mvvm",
-          "version": "7.0.2",
+          "version": "7.0.3",
           "projectPath": "Param_ProjectName.csproj"
         },
         "continueOnError": true
