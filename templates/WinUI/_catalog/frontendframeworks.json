@@ -5,7 +5,7 @@
     "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
     "author": "Microsoft",
     "order": "1",
-    "licenses": "[Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
+    "licenses": "[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
     "platform": "WinUI",
     "languages": [ "C#" ]
   },

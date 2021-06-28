@@ -19,7 +19,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",
     "wts.group": "UserInteraction",
-    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
     "wts.dependencies":"wts.Feat.SettingsStorage.VB",
     "wts.defaultInstance": "LiveTile",
     "wts.multipleInstance": "false",
