@@ -15,7 +15,7 @@
     "wts.version": "1.0.0",
     "wts.compositionOrder": "0",
     "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == project",
-    "wts.licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

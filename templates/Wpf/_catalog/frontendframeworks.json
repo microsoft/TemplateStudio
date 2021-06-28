@@ -5,7 +5,7 @@
     "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
     "author": "Microsoft Community",
     "order": "0",
-    "licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/license.md)",
+    "licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
     "platform":  "Wpf",
     "languages": [ "C#" ]
   },
