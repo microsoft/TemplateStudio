@@ -6,18 +6,13 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-### 4.1
-- Add Blank Advanced ProjectType for WinUI 3 Desktop Apps
-- Add MenuBar ProjectType for WinUI 3 Desktop Apps
-
-[Track progress](https://github.com/microsoft/WindowsTemplateStudio/milestone/32)
-
 ## Future Releases
 
 You can see a list of other items we'd like to get to, and which will form part of future releases, on the [Backlog](https://github.com/Microsoft/WindowsTemplateStudio/milestone/5).
 
 
 ## Past releases
+- [4.1 - June 2021](https://github.com/microsoft/WindowsTemplateStudio/milestone/32)
 - [4.0 - June 2021](https://github.com/microsoft/WindowsTemplateStudio/milestone/31)
 - [3.10 - May 2021](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aissue+milestone%3A3.10)
 - [3.9 - December 2020](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A3.9)
