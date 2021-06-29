@@ -8,5 +8,15 @@
     "licenses": "",
     "platform": "test",
     "languages": [ "C#" ]
+  },
+  {
+    "name": "TestSecondFramework",
+    "displayName": "Test Second Framework Base",
+    "summary": "Test Second Framework Base Summary",
+    "author": "Microsoft",
+    "order": "2",
+    "licenses": "",
+    "platform": "test",
+    "languages": [ "C#" ]
   }
 ]

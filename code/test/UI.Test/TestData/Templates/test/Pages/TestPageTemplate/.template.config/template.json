@@ -11,7 +11,7 @@
     "type": "item",
     "wts.platform": "test",
     "wts.projecttype": "TestProjectType",
-    "wts.frontendframework": "TestFramework",
+    "wts.frontendframework": "all",
     "wts.type": "page",
     "wts.displayOrder": "1",
     "wts.genGroup": "1"
