@@ -23,6 +23,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
 
         // Frameworks
         private const string TestFramework = "TestFramework";
+        private const string TestSecondFramework = "TestSecondFramework";
 
         // Pages
         private const string MainPageName = "Main";
@@ -48,7 +49,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         }
 
         [Fact]
-        public async Task ProjectInitUpdatedConfigurationAsync()
+        public async Task ProjectInitUpdatedProjectTypeAsync()
         {
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
@@ -67,6 +68,29 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
 
             Assert.Equal(TestSecondProjectType, userSelection.Context.ProjectType);
             Assert.Equal(TestSecondPage, userSelection.Pages.First().TemplateId);
+        }
+
+        [Fact]
+        public async Task ProjectInitUpdatedFrameworkAsync()
+        {
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
+            var context = new UserSelectionContext(GenContext.CurrentLanguage, TestPlatform);
+            viewModel.Initialize(context);
+            await viewModel.OnTemplatesAvailableAsync();
+            var userSelection = viewModel.UserSelection.GetUserSelection();
+
+            Assert.Equal(TestProjectType, userSelection.Context.ProjectType);
+            Assert.Equal(TestFramework, userSelection.Context.FrontEndFramework);
+            Assert.Equal(TestPage, userSelection.Pages.First().TemplateId);
+
+            await SetFrameworkAsync(viewModel, TestSecondFramework);
+            userSelection = viewModel.UserSelection.GetUserSelection();
+            viewModel.UnsubscribeEventHandlers();
+
+            Assert.Equal(TestProjectType, userSelection.Context.ProjectType);
+            Assert.Equal(TestSecondFramework, userSelection.Context.FrontEndFramework);
+            Assert.Equal(TestPage, userSelection.Pages.First().TemplateId);
         }
 
         [Fact]
@@ -322,6 +346,11 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         {
             var group = groups.First(gr => gr.Items.Any(p => p.Identity == templateIdentity));
             return group.Items.First(t => t.Identity == templateIdentity);
+        }
+
+        private async Task SetFrameworkAsync(MainViewModel viewModel, string framework)
+        {
+            await viewModel.ProcessItemAsync(viewModel.Framework.Items.First(pt => pt.Name == framework));
         }
     }
 }

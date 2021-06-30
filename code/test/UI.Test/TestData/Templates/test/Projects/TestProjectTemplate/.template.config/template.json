@@ -9,7 +9,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.projecttype": "TestProjectType",
-    "wts.frontendframework": "TestFramework",
+    "wts.frontendframework": "TestFramework|TestSecondFramework",
     "wts.platform": "test",
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",

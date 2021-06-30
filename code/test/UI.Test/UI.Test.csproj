@@ -113,6 +113,7 @@
     <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\description.md" />
     <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\test\_catalog\frontendframeworks.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestSecondFramework.md" />
     <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestFramework.md" />
     <None Include="TestData\Templates\test\_catalog\projectTypes.json" />
     <None Include="TestData\Templates\test\_catalog\projectTypes\TestSecondProjectType.md" />
