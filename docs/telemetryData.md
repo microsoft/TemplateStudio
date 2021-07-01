@@ -41,16 +41,15 @@ As new features and pages roll out, percentages  will adjust.
 |:---|:---:|
 |Blank|46.4%|
 |Settings|10.6%|
+|ListDetails|6.8%|
 |DataGrid|5.4%|
 |Content Grid|4.6%|
-|ListDetail|4.5%|
 |Web View|3%|
 |TreeView|2.6%|
 |Chart|2.6%|
 |Map|2.5%|
 |Two Pane View|2.5%|
 |TabView|2.4%|
-|Master/Detail|2%|
 |Tabbed / Pivot|1.9%|
 |ImageGallery|1.9%|
 |Telerik Data Grid|1.7%|
@@ -59,7 +58,6 @@ As new features and pages roll out, percentages  will adjust.
 |Ink Draw Picture|0.8%|
 |Ink Smart Canvas|0.8%|
 |Ink Draw|0.8%|
-|ListDetails|0.3%|
 |Media Player|0%|
 
 ### Features
@@ -146,14 +144,11 @@ As new features and pages roll out, percentages  will adjust.
 |:---|:---:|
 |Blank|39%|
 |Settings|16.8%|
-|ListDetails|14.1%|
+|ListDetails|14.6%|
 |Data Grid|12.9%|
 |Content Grid|8.9%|
 |Web View|5.5%|
 |XAML Island|2.3%|
-|List Details|0.2%|
-|Master Detail|0.2%|
-|MasterDetail|0.1%|
 
 ### Features
 
