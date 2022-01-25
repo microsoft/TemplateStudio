@@ -12,19 +12,19 @@ resources:
     type: git
     ref: refs/heads/dev
 
-strategy:
-  matrix:
-    Analyze:
-      BuildConfiguration: Analyze
-      BuildPlatform: Any CPU
-    Release:
-      BuildConfiguration: Release
-      BuildPlatform: Any CPU
-
 jobs:
 - job: Build
   displayName: Build
   timeoutInMinutes: 240
+
+  strategy:
+    matrix:
+      Analyze:
+        BuildConfiguration: Analyze
+        BuildPlatform: Any CPU
+      Release:
+        BuildConfiguration: Release
+        BuildPlatform: Any CPU
 
   pool:
     vmImage: windows-2019
