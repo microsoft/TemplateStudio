@@ -143,6 +143,7 @@ As new features and pages roll out, percentages  will adjust.
 
 |Pages|Percentage|
 |:---|:---:|
+
 |Blank|37.7%|
 |Settings|17.6%|
 |ListDetails|13.3%|
@@ -186,7 +187,6 @@ As new features and pages roll out, percentages  will adjust.
 |Test Core library with NUnit|6.9%|
 |Test Core library with MSTest|6.9%|
 
-
 </details>
 
 <details>
@@ -199,14 +199,14 @@ As new features and pages roll out, percentages  will adjust.
 |Desktop|100%|
 
 ### Project Type
-
+  
 |Project|Percentage|
 |:---|:---:|
 |Navigation View|50%|
 |Blank|22.2%|
 |MenuBar|16.8%|
 |BlankAdvanced|11.1%|
-
+                                    
 ### Framework
 
 |Framework Type|Percentage|
@@ -234,7 +234,6 @@ As new features and pages roll out, percentages  will adjust.
 |Theme Selection|21.8%|
 |Sample Data|17.5%|
 
-
 </details>
 
 ### Windows Template Studio entry point
@@ -254,4 +253,3 @@ As new features and pages roll out, percentages  will adjust.
 |C#|95.3%|
 |VisualBasic|2.4%|
 |C++|2.3%|
-

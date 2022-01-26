@@ -1,0 +1,176 @@
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+
+pr: none
+
+schedules:
+- cron: 0 2 * * 1,3,5
+  branches:
+    include:
+    - dev
+- cron: 0 2 * * 2,4,6
+  branches:
+    include:
+    - release
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/dev
+
+jobs:
+- job:
+  displayName: WACK Tests WinUI
+  timeoutInMinutes: 6000
+  cancelTimeoutInMinutes: 1
+
+  strategy:
+    matrix:
+      Release:
+        BuildConfiguration: Release
+        BuildPlatform: Any CPU
+
+  pool:
+    vmImage: windows-2019
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: CmdLine@1
+    displayName: 'Clean Test Folder'
+    continueOnError: True
+    inputs:
+      filename: rd
+      arguments: E:\UIT /s /q
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: nuget restore
+    inputs:
+      solution: code/Test.sln
+      selectOrConfig: config
+      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+
+  - task: VSBuild@1
+    displayName: Build code/Test.sln
+    inputs:
+      solution: code/Test.sln
+      vsVersion: 16.0
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+
+  - task: CmdLine@1
+    displayName: 'Run WACK WinUI'
+    inputs:
+      filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
+      arguments: Code\test\Templates.Test\bin\$(BuildConfiguration)\Microsoft.Templates.Test.dll -xml $(Build.SourcesDirectory)\Templates.Test-Result.xml -parallel none -trait "ExecutionSet=LongRunningWinUI"
+
+- job:
+  displayName: WACK Tests WPF
+  timeoutInMinutes: 6000
+
+  strategy:
+    matrix:
+      Release:
+        BuildConfiguration: Release
+        BuildPlatform: Any CPU
+
+  pool:
+    vmImage: windows-2019
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: CmdLine@1
+    displayName: Clean Test Folder
+    continueOnError: True
+    inputs:
+      filename: rd
+      arguments: E:\UIT /s /q
+
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: nuget restore
+    inputs:
+      solution: code/Test.sln
+      selectOrConfig: config
+      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+
+  - task: VSBuild@1
+    displayName: Build code/Test.sln
+    inputs:
+      solution: code/Test.sln
+      vsVersion: 16.0
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+
+  - task: CmdLine@1
+    displayName: Run WACK WPF
+    inputs:
+      filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
+      arguments: Code\test\Templates.Test\bin\$(BuildConfiguration)\Microsoft.Templates.Test.dll -xml $(Build.SourcesDirectory)\Templates.Test-Result.xml -parallel none -trait "ExecutionSet=LongRunningWPF"
+
+- job:
+  displayName: WACK Tests UWP
+  timeoutInMinutes: 6000
+
+  strategy:
+    matrix:
+      Release:
+        BuildConfiguration: Release
+        BuildPlatform: Any CPU
+
+  pool:
+    vmImage: windows-2019
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: CmdLine@1
+    displayName: Clean Test Folder
+    continueOnError: True
+    inputs:
+      filename: rd
+      arguments: E:\UIT /s /q
+
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: nuget restore
+    inputs:
+      solution: code/Test.sln
+      selectOrConfig: config
+      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+
+  - task: VSBuild@1
+    displayName: Build code/Test.sln
+    inputs:
+      solution: code/Test.sln
+      vsVersion: 16.0
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+
+  - task: CmdLine@1
+    displayName: Run WACK UWP
+    inputs:
+      filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
+      arguments: Code\test\Templates.Test\bin\$(BuildConfiguration)\Microsoft.Templates.Test.dll -xml $(Build.SourcesDirectory)\Templates.Test-Result.xml -parallel none -trait "ExecutionSet=LongRunning"

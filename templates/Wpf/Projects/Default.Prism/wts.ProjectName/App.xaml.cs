@@ -17,7 +17,7 @@ using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace
 {
-    // For more inforation about application lifecyle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
+    // For more information about application lifecycle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
     // For docs about using Prism in WPF see https://prismlibrary.com/docs/wpf/introduction.html
 
     // WPF UI elements use language en-US by default.
