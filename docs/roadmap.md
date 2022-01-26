@@ -1,6 +1,6 @@
 # Roadmap
 
-Our priorities for this year include:
+Our priorities for 2022 include:
 
 * Supporting Visual Studio 2022
 * Simplifying extension installation and rebranding
