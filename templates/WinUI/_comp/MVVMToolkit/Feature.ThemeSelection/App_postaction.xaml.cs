@@ -1,7 +1,6 @@
-﻿private System.IServiceProvider ConfigureServices()
-{
-    // Services
+﻿            .ConfigureServices((context, services) =>
+            {
+                // Services
 //{[{
-    services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 //}]}
-}

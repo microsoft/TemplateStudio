@@ -10,7 +10,7 @@ namespace Param_RootNamespace.Views
 
         public wts.ItemNamePage()
         {
-            ViewModel = Ioc.Default.GetService<wts.ItemNameViewModel>();
+            ViewModel = App.GetService<wts.ItemNameViewModel>();
             InitializeComponent();
             ViewModel.WebViewService.Initialize(webView);
         }

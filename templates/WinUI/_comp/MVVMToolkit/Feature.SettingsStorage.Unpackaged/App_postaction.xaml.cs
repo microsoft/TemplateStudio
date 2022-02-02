@@ -1,7 +1,7 @@
-﻿private System.IServiceProvider ConfigureServices()
-{
-    // Services
+﻿            .ConfigureServices((context, services) =>
+            {
+                // Services
 //{[{
-    services.AddSingleton<ILocalSettingsService, LocalSettingsServiceUnpackaged>();
+                services.AddSingleton<ILocalSettingsService, LocalSettingsServiceUnpackaged>();
 //}]}
 }

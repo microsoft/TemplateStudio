@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
@@ -65,14 +64,14 @@ namespace Param_RootNamespace.Behaviors
         {
             base.OnAttached();
             _current = this;
-            var navigationService = Ioc.Default.GetService<INavigationService>();
+            var navigationService = App.GetService<INavigationService>();
             navigationService.Navigated += OnNavigated;
         }
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            var navigationService = Ioc.Default.GetService<INavigationService>();
+            var navigationService = App.GetService<INavigationService>();
             navigationService.Navigated -= OnNavigated;
         }
 

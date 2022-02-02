@@ -1,5 +1,4 @@
 ﻿//{[{
-using CommunityToolkit.Mvvm.DependencyInjection;
 using Param_RootNamespace.ViewModels;
 //}]}
 
@@ -14,7 +13,7 @@ namespace Param_RootNamespace.Views
         public wts.ItemNamePage()
         {
 //{[{
-            ViewModel = Ioc.Default.GetService<wts.ItemNameViewModel>();
+            ViewModel = App.GetService<wts.ItemNameViewModel>();
 //}]}
         }
     }

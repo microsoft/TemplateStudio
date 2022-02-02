@@ -1,6 +1,6 @@
 namespace Param_RootNamespace.Models
 {
-    internal class LocalSettingsOptions
+    public class LocalSettingsOptions
     {
         public string ApplicationDataFolder { get; set; }
 

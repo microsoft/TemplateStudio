@@ -1,9 +1,7 @@
-﻿private System.IServiceProvider ConfigureServices()
-{
-//^^
+﻿            .ConfigureServices((context, services) =>
+            {
+                // Views and ViewModels
 //{[{
-    services.AddTransient<wts.ItemNameViewModel>();
-    services.AddTransient<wts.ItemNamePage>();
+                services.AddTransient<wts.ItemNameViewModel>();
+                services.AddTransient<wts.ItemNamePage>();
 //}]}
-    return services.BuildServiceProvider();
-}

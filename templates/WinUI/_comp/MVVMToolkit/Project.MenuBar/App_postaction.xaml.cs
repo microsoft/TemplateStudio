@@ -1,12 +1,12 @@
-﻿        private System.IServiceProvider ConfigureServices()
-        {
-            // Services
+﻿            .ConfigureServices((context, services) =>
+            {
+                // Services
 //{[{
-            services.AddSingleton<IRightPaneService, RightPaneService>();
+                services.AddSingleton<IRightPaneService, RightPaneService>();
 //}]}
-            // Views and ViewModels
+
+                // Views and ViewModels
 //{[{
-            services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
+                services.AddTransient<ShellPage>();
+                services.AddTransient<ShellViewModel>();
 //}]}
-}

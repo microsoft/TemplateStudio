@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.ViewModels;
@@ -49,7 +48,7 @@ namespace Param_RootNamespace.Views
 
         private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            var navigationService = Ioc.Default.GetService<INavigationService>();
+            var navigationService = App.GetService<INavigationService>();
             var result = navigationService.GoBack();
             args.Handled = result;
         }

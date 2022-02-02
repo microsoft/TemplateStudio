@@ -2,7 +2,7 @@ using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,13 +17,10 @@ namespace Param_RootNamespace.Services
         private readonly string _localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private LocalSettingsOptions _options;
 
-        public LocalSettingsServiceUnpackaged(IFileService fileService)
+        public LocalSettingsServiceUnpackaged(IFileService fileService, IOptions<LocalSettingsOptions> options)
         {
             _fileService = fileService;
-
-            // https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration#basic-example
-            IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            _options = config.GetRequiredSection("LocalSettingsOptions").Get<LocalSettingsOptions>();
+            _options = options.Value;
         }
         public async Task<T> ReadSettingAsync<T>(string key)
         {
