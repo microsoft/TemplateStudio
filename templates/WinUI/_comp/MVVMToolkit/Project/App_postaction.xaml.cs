@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Core.Contracts.Services;
+using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.Services;
 using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
@@ -46,6 +48,7 @@ namespace Param_RootNamespace
             // Other Activation Handlers
 
             // Services
+            services.AddSingleton<IFileService, FileService>();
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
