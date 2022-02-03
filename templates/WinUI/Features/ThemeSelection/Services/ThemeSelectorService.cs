@@ -13,11 +13,11 @@ namespace Param_RootNamespace.Services
 
         public ElementTheme Theme { get; set; } = ElementTheme.Default;
 
-        private readonly ILocalSettingsService _persistAndRestoreService;
+        private readonly ILocalSettingsService _localSettingsService;
 
-        public ThemeSelectorService(ILocalSettingsService persistAndRestoreService)
+        public ThemeSelectorService(ILocalSettingsService localSettingsService)
         {
-            _persistAndRestoreService = persistAndRestoreService;
+            _localSettingsService = localSettingsService;
         }
 
         public async Task InitializeAsync()
@@ -47,7 +47,7 @@ namespace Param_RootNamespace.Services
         private async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
             ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = await _persistAndRestoreService.ReadSettingAsync<string>(SettingsKey);
+            string themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
 
             if (!string.IsNullOrEmpty(themeName))
             {
@@ -59,7 +59,7 @@ namespace Param_RootNamespace.Services
 
         private async Task SaveThemeInSettingsAsync(ElementTheme theme)
         {
-            await _persistAndRestoreService.SaveSettingAsync(SettingsKey, theme.ToString());
+            await _localSettingsService.SaveSettingAsync(SettingsKey, theme.ToString());
         }
     }
 }
