@@ -14,11 +14,7 @@
             GridLinesVisibility="Horizontal"
             ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
             <controls:DataGrid.Columns>
-                <!--
-                TODO:
-                Remove this column definitions and define columns for your data.
-                Consider adding header properties to Resources.resw
-                -->
+                <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
                 <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
                 <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                 <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
