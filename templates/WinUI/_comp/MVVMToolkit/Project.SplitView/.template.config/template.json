@@ -29,7 +29,7 @@
         "path": "Contracts/Services/INavigationViewService.cs"
       },
       {
-        "path": "Helpers/NavHelper.cs"
+        "path": "Helpers/NavigationHelper.cs"
       },
       {
         "path": "Services/NavigationViewService.cs"
