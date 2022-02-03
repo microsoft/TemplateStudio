@@ -63,6 +63,5 @@
   </data>
 	<data name="AppDescription" xml:space="preserve">
 		<value>Param_ProjectName</value>
-		<comment>Application description</comment>
   	</data>
 </root>
