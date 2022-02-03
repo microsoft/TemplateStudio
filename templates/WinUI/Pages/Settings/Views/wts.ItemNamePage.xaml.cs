@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Views
 {
-    // TODO: Change the URL for your privacy policy, currently set to https://YourPrivacyUrlGoesHere
+    // TODO: Set the URL for your privacy policy by updating SettingsPage_PrivacyTermsLink.NavigateUri in Resources.resw.
     public sealed partial class wts.ItemNamePage : Page
     {
         public wts.ItemNamePage()
