@@ -13,23 +13,30 @@ namespace Param_RootNamespace.Services
     public class LocalSettingsServiceUnpackaged : ILocalSettingsService
     {
         private readonly IFileService _fileService;
-        private IDictionary<string, object> _settings;
+        private readonly LocalSettingsOptions _options;
         private readonly string _localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        private LocalSettingsOptions _options;
+
+        private IDictionary<string, object> _settings;
 
         public LocalSettingsServiceUnpackaged(IFileService fileService, IOptions<LocalSettingsOptions> options)
         {
             _fileService = fileService;
             _options = options.Value;
         }
-        public async Task<T> ReadSettingAsync<T>(string key)
+
+        private async Task InitializeAsync()
         {
             if (_settings is null)
             {
                 var folderPath = Path.Combine(_localAppData, _options.ApplicationDataFolder);
                 var fileName = _options.LocalSettingsFile;
-                _settings = _fileService.Read<IDictionary<string, object>>(folderPath, fileName) ?? new Dictionary<string, object>();
+                _settings = await Task.Run(() => _fileService.Read<IDictionary<string, object>>(folderPath, fileName)) ?? new Dictionary<string, object>();
             }
+        }
+
+        public async Task<T> ReadSettingAsync<T>(string key)
+        {
+            await InitializeAsync();
 
             object obj = null;
 
@@ -43,6 +50,8 @@ namespace Param_RootNamespace.Services
 
         public async Task SaveSettingAsync<T>(string key, T value)
         {
+            await InitializeAsync();
+            
             _settings[key] = await Json.StringifyAsync(value);
 
             var folderPath = Path.Combine(_localAppData, _options.ApplicationDataFolder);
