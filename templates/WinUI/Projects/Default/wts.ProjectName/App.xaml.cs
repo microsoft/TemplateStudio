@@ -16,7 +16,7 @@ namespace Param_RootNamespace
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            // TODO WTS: Please log and handle the exception as appropriate to your scenario
+            // TODO: Please log and handle the exception as appropriate to your scenario
             // For more info see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs
         }
 
