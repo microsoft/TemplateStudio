@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
-using Microsoft.Toolkit.Wpf.UI.Controls;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Wpf;
 using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
@@ -22,7 +22,7 @@ namespace Param_RootNamespace.ViewModels
         private System.Windows.Input.ICommand _browserBackCommand;
         private System.Windows.Input.ICommand _browserForwardCommand;
         private ICommand _openInBrowserCommand;
-        private WebView _webView;
+        private WebView2 _webView2;
 
         public string Source
         {
@@ -64,9 +64,9 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new System.Windows.Input.ICommand(OnRefresh));
 
-        public System.Windows.Input.ICommand BrowserBackCommand => _browserBackCommand ?? (_browserBackCommand = new System.Windows.Input.ICommand(() => _webView?.GoBack(), () => _webView?.CanGoBack ?? false));
+        public System.Windows.Input.ICommand BrowserBackCommand => _browserBackCommand ?? (_browserBackCommand = new System.Windows.Input.ICommand(() => _webView2?.GoBack(), () => _webView2?.CanGoBack ?? false));
 
-        public System.Windows.Input.ICommand BrowserForwardCommand => _browserForwardCommand ?? (_browserForwardCommand = new System.Windows.Input.ICommand(() => _webView?.GoForward(), () => _webView?.CanGoForward ?? false));
+        public System.Windows.Input.ICommand BrowserForwardCommand => _browserForwardCommand ?? (_browserForwardCommand = new System.Windows.Input.ICommand(() => _webView2?.GoForward(), () => _webView2?.CanGoForward ?? false));
 
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new System.Windows.Input.ICommand(OnOpenInBrowser));
 
@@ -76,12 +76,12 @@ namespace Param_RootNamespace.ViewModels
             Source = DefaultUrl;
         }
 
-        public void Initialize(WebView webView)
+        public void Initialize(WebView2 webView2)
         {
-            _webView = webView;
+            _webView2 = webView2;
         }
 
-        public void OnNavigationCompleted(WebViewControlNavigationCompletedEventArgs e)
+        public void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             IsLoading = false;
             if (e != null && !e.IsSuccess)
@@ -95,7 +95,7 @@ namespace Param_RootNamespace.ViewModels
         {
             IsShowingFailedMessage = false;
             IsLoading = true;
-            _webView?.Refresh();
+            _webView2?.Reload();
         }
 
         private void OnOpenInBrowser()

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <Platforms>x64;x86;AnyCPU</Platforms>
     <RootNamespace>Param_RootNamespace.Tests.WinAppDriver</RootNamespace>
