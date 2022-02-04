@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Core.Services
     {
         /*
         For more information about using Identity, see
-        https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/WPF/services/identity.md
+        https://github.com/microsoft/TemplateStudio/blob/main/docs/WPF/services/identity.md
 
         Read more about Microsoft Identity Client here
         https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
