@@ -3,8 +3,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 trigger:
   branches:
     include:
-    - dev
-    - release
+    - main
   paths:
     exclude:
     - docs/*
@@ -15,13 +14,13 @@ schedules:
 - cron: 0 5 * * 1,2,3,4,5
   branches:
     include:
-    - dev
+    - main
     
 resources:
   repositories:
   - repository: self
     type: git
-    ref: refs/heads/dev
+    ref: refs/heads/main
     
 jobs:
 - job:

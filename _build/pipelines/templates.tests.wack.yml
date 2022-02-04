@@ -8,7 +8,7 @@ schedules:
 - cron: 0 2 * * 1,3,5
   branches:
     include:
-    - dev
+    - main
 - cron: 0 2 * * 2,4,6
   branches:
     include:
@@ -18,7 +18,7 @@ resources:
   repositories:
   - repository: self
     type: git
-    ref: refs/heads/dev
+    ref: refs/heads/main
 
 jobs:
 - job:

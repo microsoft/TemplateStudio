@@ -8,14 +8,13 @@ schedules:
 - cron: 0 5 * * 6
   branches:
     include:
-    - dev
-    - release
+    - main
 
 resources:
   repositories:
   - repository: self
     type: git
-    ref: refs/heads/dev
+    ref: refs/heads/main
 
 jobs:
 - job:

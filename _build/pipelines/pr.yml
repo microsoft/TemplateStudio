@@ -3,14 +3,13 @@ name: $(date:yyyyMMdd)$(rev:.r)
 trigger: none
 
 pr:
-- dev
-- release
+- main
 
 resources:
   repositories:
   - repository: self
     type: git
-    ref: refs/heads/dev
+    ref: refs/heads/main
 
 jobs:
 - job: Build

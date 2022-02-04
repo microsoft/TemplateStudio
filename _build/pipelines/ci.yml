@@ -3,8 +3,7 @@ name: $(date:yyyyMMdd)$(rev:.r)
 trigger:
   branches:
     include:
-    - dev
-    - release
+    - main
   batch: True
 
 pr: none
@@ -13,7 +12,7 @@ resources:
   repositories:
   - repository: self
     type: git
-    ref: refs/heads/dev
+    ref: refs/heads/main
 
 strategy:
   matrix:
