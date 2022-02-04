@@ -39,12 +39,12 @@ namespace Param_RootNamespace.ViewModels
             // We need to adapt the WebView to be able to show the right pane
             if (sender is SplitView splitView)
             {
-                _webView.Margin = new Thickness(0, 0, splitView.OpenPaneLength, 0);
+                _webView2.Margin = new Thickness(0, 0, splitView.OpenPaneLength, 0);
             }
         }
 
         private void OnRightPaneClosed(object sender, System.EventArgs e)
-         => _webView.Margin = new Thickness(0);
+         => _webView2.Margin = new Thickness(0);
 //}]}
     }
 }
