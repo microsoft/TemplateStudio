@@ -85,8 +85,8 @@ The final generated code is the result of a project configuration (project type 
 
 
 ### Known issues:
-- [Backbutton issue in ListDetail Page](https://github.com/microsoft/WindowsTemplateStudio/issues/4280)
-- [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
+- [Backbutton issue in ListDetail Page](https://github.com/microsoft/TemplateStudio/issues/4280)
+- [VisualStateManager initialization issue](https://github.com/microsoft/TemplateStudio/issues/4072)
 
 ### Additional docs:
 - [Windows UI Library (WinUI)](https://docs.microsoft.com/en-us/windows/apps/winui/)
