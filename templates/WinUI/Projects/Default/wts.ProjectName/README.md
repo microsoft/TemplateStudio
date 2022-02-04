@@ -3,7 +3,7 @@
 This project was created using [Microsoft Windows Template Studio](https://aka.ms/wts).
 
 ## Getting Started
-This app was built using WinUI 3 and Windows App SDK (previously known as Project Reunion).
+This app was built using WinUI 3 and the Windows App SDK.
 Windows UI Library (WinUI) 3 is a native user experience (UX) framework for both Windows Desktop and UWP apps.
 
 You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in the `App.xaml.cs` file. 
