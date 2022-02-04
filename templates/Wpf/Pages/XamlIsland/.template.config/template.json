@@ -20,6 +20,7 @@
     "wts.displayOrder": "7",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"false",
+    "wts.isHidden": "true",
     "wts.outputToParent": "true",
     "wts.requiredVersions":"UAP, Version=10.0.19041.0|dotnet, Version=3.1.7",
     "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
