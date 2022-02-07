@@ -16,10 +16,10 @@ namespace Param_RootNamespace
     {
 //{[{
         // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
-        // https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host
-        // https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection
-        // https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration
-        // https://docs.microsoft.com/en-us/dotnet/core/extensions/logging
+        // https://docs.microsoft.com/dotnet/core/extensions/generic-host
+        // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
+        // https://docs.microsoft.com/dotnet/core/extensions/configuration
+        // https://docs.microsoft.com/dotnet/core/extensions/logging
         private static IHost _host = Host
             .CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
