@@ -39,6 +39,12 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
     "wts.wizardVersion":
     {
       "type": "parameter",
