@@ -5,9 +5,10 @@ body:
 - type: textarea
   attributes:
     label: Describe the bug
-    description: Please provide a clear and concise description of what the problem.
+    description: Please provide a clear and concise description of the bug.
   validations:
     required: true
+
 - type: textarea
   attributes:
     label: To Reproduce
@@ -16,10 +17,11 @@ body:
 2. Click on '....'\n
 3. Scroll down to '....'\n
 4. See error"
+
 - type: textarea
   attributes:
-    label: Additional information
-    description: If applicable, add screenshots or any other context to help explain the situation.
+    label: Additional context
+    description: Add any other context or screenshots about the bug here.
 
 - type: checkboxes
   id: platforms
