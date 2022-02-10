@@ -27,7 +27,7 @@ jobs:
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -62,7 +62,7 @@ jobs:
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -135,7 +135,7 @@ jobs:
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -193,7 +193,7 @@ jobs:
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -251,7 +251,7 @@ jobs:
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
