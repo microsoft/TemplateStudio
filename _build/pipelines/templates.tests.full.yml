@@ -35,7 +35,7 @@ jobs:
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -113,7 +113,7 @@ jobs:
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -182,7 +182,7 @@ jobs:
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -216,9 +216,9 @@ jobs:
       modifyEnvironment: true
 
   - task: UseDotNet@2
-    displayName: 'Use .NET Core 3.1.x'
+    displayName: 'Use .NET 6.x'
     inputs:
-      version: '3.1.x'
+      version: '6.x'
 
   - task: PowerShell@1
     displayName: 'Run Template Tests (Minimum WPF)'
@@ -252,7 +252,7 @@ jobs:
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
