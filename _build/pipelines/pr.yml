@@ -170,9 +170,9 @@ jobs:
       modifyEnvironment: true
 
   - task: UseDotNet@2
-    displayName: 'Use .NET Core 5.x'
+    displayName: 'Use .NET 6.x'
     inputs:
-      version: '5.x'
+      version: '6.x'
 
   - task: PowerShell@1
     displayName: Run Template Tests - Minimum WinUI
