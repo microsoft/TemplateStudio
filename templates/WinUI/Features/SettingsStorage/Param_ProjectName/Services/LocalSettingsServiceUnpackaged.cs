@@ -51,7 +51,7 @@ namespace Param_RootNamespace.Services
         public async Task SaveSettingAsync<T>(string key, T value)
         {
             await InitializeAsync();
-            
+
             _settings[key] = await Json.StringifyAsync(value);
 
             var folderPath = Path.Combine(_localAppData, _options.ApplicationDataFolder);
