@@ -6,7 +6,7 @@
         <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP, WPF and WinUI 3 in Desktop apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
         <License>Content\EULA.rtf</License>
-        <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/readme.md</GettingStartedGuide>
+        <GettingStartedGuide>https://github.com/microsoft/TemplateStudio/blob/main/docs/readme.md</GettingStartedGuide>
         <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
         <Icon>Resources\windowsTemplateStudio_Logo_90x90.png</Icon>
         <Tags>Windows Template Studio UWP XAML MVVM WPF WinUI3</Tags>

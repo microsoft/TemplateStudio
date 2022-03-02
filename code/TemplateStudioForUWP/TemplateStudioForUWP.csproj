@@ -33,6 +33,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\TemplateStudioKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -80,14 +86,71 @@
       <Link>Styles\TemplateStudioStyles.xaml.cs</Link>
       <DependentUpon>TemplateStudioStyles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\TemplateStudioCommand.cs" />
+    <Compile Include="Commands\TemplateStudioForUwpPackage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateStudioForUwpPackage.vsct</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
+    <Compile Include="TemplateStudioForUwpPackage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EULA.cs-CZ.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.de-DE.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.es-ES.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.fr-FR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.it-IT.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.ja-JP.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.ko-KR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.pl-PL.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.pt-BR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.ru-RU.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.tr-TR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.zh-CN.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EULA.zh-TW.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tr-TR\Extension.vsixlangpack" />
+    <Content Include="zh-CN\Extension.vsixlangpack" />
+    <Content Include="zh-TW\Extension.vsixlangpack" />
+    <None Include="..\TemplateStudioKey.snk">
+      <Link>TemplateStudioKey.snk</Link>
+    </None>
+    <Content Include="CoreTemplateStudio.config.json" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
@@ -172,7 +235,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Commands\Resources\TemplateStudioCommand.png" />
+    <Content Include="Commands\TemplateStudioForUwpPackage.vsct">
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>TemplateStudioForUwpPackage1.cs</LastGenOutput>
+    </Content>
+    <Content Include="cs-CZ\Extension.vsixlangpack" />
+    <Content Include="de-DE\Extension.vsixlangpack" />
+    <Content Include="es-ES\Extension.vsixlangpack" />
+    <Content Include="fr-FR\Extension.vsixlangpack" />
+    <Content Include="it-IT\Extension.vsixlangpack" />
+    <Content Include="ja-JP\Extension.vsixlangpack" />
+    <Content Include="ko-KR\Extension.vsixlangpack" />
+    <Content Include="pl-PL\Extension.vsixlangpack" />
+    <Content Include="pt-BR\Extension.vsixlangpack" />
+    <Content Include="ru-RU\Extension.vsixlangpack" />
     <Content Include="TemplateStudioColors.pkgdef">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="TemplateStudio_Logo_90x90.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -201,6 +283,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
   </ItemGroup>
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />

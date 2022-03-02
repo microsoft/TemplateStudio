@@ -73,10 +73,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.IntializeTelemetryClient(shell);
 
-#if DEBUG
-                // Only show in debug as the file includes the AppInsights telemetry key
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
-#endif
 
                 string hostVersion = $"{shell.VisualStudio.GetVsVersionAndInstance()}-{wizardVersion}";
 

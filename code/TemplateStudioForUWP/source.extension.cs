@@ -8,11 +8,11 @@ namespace TemplateStudioForUWP
     internal sealed partial class Vsix
     {
         public const string Id = "TemplateStudioForUWP.587647be-736e-4495-9a0f-d0d08148ee9b";
-        public const string Name = "TemplateStudioForUWP";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Name = "Template Studio for UWP";
+        public const string Description = @"Windows Template Studio accelerates the creation of new UWP, WPF and WinUI 3 in Desktop apps using a wizard-based UI.";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Matt Lacey";
-        public const string Tags = "";
+        public const string Author = "Microsoft Corporation";
+        public const string Tags = "Template Studio, UWP, XAML, MVVM";
     }
 }
