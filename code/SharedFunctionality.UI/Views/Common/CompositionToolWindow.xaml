@@ -1,0 +1,88 @@
+﻿<Window
+    x:Class="Microsoft.Templates.UI.Views.Common.CompositionToolWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+    xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+    KeyDown="OnKeyDown"
+    ResizeMode="CanResize"
+    SizeToContent="Height"
+    WindowStartupLocation="CenterScreen"
+    Title="{x:Static res:StringRes.ButtonCompositionTool}"
+    Loaded="OnLoaded"
+    MinHeight="600" MinWidth="900">
+
+    <!--<Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/TemplateStudio.UI;component/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>-->
+
+    <Grid Style="{StaticResource WtsGridBasePage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" MinWidth="200" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3*" MinWidth="300" />
+        </Grid.ColumnDefinitions>
+        <TreeView ItemsSource="{Binding GenInfoGroups}" SelectedItemChanged="OnSelectedItemChanged" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding GenGroups}">
+                    <!--GenGroup-->
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Compositions}">
+                            <!--GenInfoGroup-->
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Files}">
+                                    <!--GenInfoComposition-->
+                                    <TextBlock Text="{Binding Template.Identity}" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
+                                    <HierarchicalDataTemplate.ItemTemplate>
+                                        <DataTemplate>
+                                            <!--CompositionFile-->
+                                            <TextBlock Text="{Binding Name}" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
+                                        </DataTemplate>
+                                    </HierarchicalDataTemplate.ItemTemplate>
+                                </HierarchicalDataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <GridSplitter
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            Width="5"/>
+        <Grid Grid.Column="2" Visibility="{Binding IsSelectedFileVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ContentPresenter Content="{Binding SelectedFile}">
+                <ContentPresenter.ContentTemplateSelector>
+                    <templateSelector:FileExtensionTemplateSelector>
+                        <templateSelector:FileExtensionTemplateSelector.CodeFileTemplate>
+                            <DataTemplate>
+                                <controls:CodeViewer Item="{Binding}" />
+                            </DataTemplate>
+                        </templateSelector:FileExtensionTemplateSelector.CodeFileTemplate>
+                        <templateSelector:FileExtensionTemplateSelector.ImageFileTemplate>
+                            <DataTemplate>
+                                <Image
+                                extensions:ImageExtensions.DisposableSource="{Binding TempFile}"
+                                Style="{StaticResource WtsImageNewItemImageFiles}" />
+                            </DataTemplate>
+                        </templateSelector:FileExtensionTemplateSelector.ImageFileTemplate>
+                    </templateSelector:FileExtensionTemplateSelector>
+                </ContentPresenter.ContentTemplateSelector>
+            </ContentPresenter>
+        </Grid>
+    </Grid>
+</Window>

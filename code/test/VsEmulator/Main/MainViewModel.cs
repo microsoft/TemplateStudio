@@ -132,7 +132,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             SystemService.Initialize();
             SelectedTheme = Themes.First();
-            await ConfigureGenContextAsync();
+            //  await ConfigureGenContextAsync();
+            await Task.CompletedTask;
         }
 
         private void NewProject(string parameter)
@@ -200,6 +201,34 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
         {
+            TemplatesSource ts = null;
+
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    ts = new UwpTestsTemplatesSource();
+                    break;
+                case Platforms.Wpf:
+                    ts = new WpfTestsTemplatesSource();
+                    break;
+                case Platforms.WinUI:
+                    if (language == ProgrammingLanguages.CSharp)
+                        ts = new WinUICsTestsTemplatesSource();
+                    else if (language == ProgrammingLanguages.Cpp)
+                        ts = new WinUICppTestsTemplatesSource();
+                    break;
+                default:
+                    ts = null;
+                    break;
+            }
+
+            GenContext.Bootstrap(
+                ts,
+                new FakeGenShell(platform, language, msg => SetState(msg), l => AddLog(l), _host),
+                WizardVersion,
+                platform,
+                language,
+                "0.1.0.1");
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
@@ -208,7 +237,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 SetCurrentAppModel(appmodel);
             }
-            
 
             try
             {
@@ -225,7 +253,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         context.AddAppModel(appmodel);
                     }
-                    
+
+                    Microsoft.Templates.UI.Styles.AllStylesDictionary.UseEmulator = true;
+
                     var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
@@ -337,7 +367,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         case AppModels.Uwp:
                             styleCopTemplate = "wts.WinUI.UWP.Feat.StyleCop";
                             break;
-                    }                    
+                    }
                     break;
             }
 
@@ -604,11 +634,13 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.Bootstrap(
                 new LocalTemplatesSource(string.Empty, TemplatesVersion, string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
-                new Version(WizardVersion),
+                WizardVersion,
                 Platforms.Uwp,
-                ProgrammingLanguages.CSharp);
+                ProgrammingLanguages.CSharp,
+                "0.1.0.1");
 
-            await GenContext.ToolBox.Repo.SynchronizeAsync();
+            //   await GenContext.ToolBox.Repo.SynchronizeAsync();
+            await Task.CompletedTask;
 
             UpdateCanRefreshTemplateCache(true);
         }
@@ -633,32 +665,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 f.Continue = false;
             };
 
-            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
+            _ = Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
             Dispatcher.PushFrame(frame);
-        }
-
-        private void CleanUpNotUsedContentVersions()
-        {
-            if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
-            {
-                var templatesFolder = GetTemplatesFolder();
-                if (Directory.Exists(templatesFolder))
-                {
-                    var dirs = Directory.EnumerateDirectories(templatesFolder);
-                    foreach (var dir in dirs)
-                    {
-                        if (!dir.EndsWith("0.0.0.0", StringComparison.OrdinalIgnoreCase))
-                        {
-                            Fs.SafeDeleteDirectory(dir);
-                        }
-                    }
-                }
-            }
-        }
-
-        private string GetTemplatesFolder()
-        {
-            return Path.Combine(SpecialFolder.LocalApplicationData.ToString(), @"\WinTS\Templates\LocalEnvWinTS");
         }
     }
 }

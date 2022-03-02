@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+        #container {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>    
+    <div id="container"/>
+    <script src="##ExecutingDirectory##/Assets/Html/min/vs/loader.js"></script>    
+    <script>
+        require.config({ paths: { 'vs': '##ExecutingDirectory##/Assets/Html/min/vs' } });
+        require(['vs/editor/editor.main'], function ()
+        {
+            var diffEditor = monaco.editor.createDiffEditor(document.getElementById('container'),
+            {
+                readOnly: true,
+                automaticLayout: true,
+                ##theme##
+                ##fontSize##
+                renderSideBySide: ##renderSideBySide##
+            });
+            diffEditor.setModel({
+                original: monaco.editor.createModel('##originalCode##', '##language##'),
+                modified: monaco.editor.createModel('##modifiedCode##', '##language##')
+            });
+        });
+    </script>    
+</body>
+</html>

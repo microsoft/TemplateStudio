@@ -96,7 +96,7 @@ namespace Microsoft.Templates.VsEmulator
                     GenContext.Bootstrap(
                         new LocalTemplatesSource(string.Empty, "0.0.0.0", string.Empty),
                         new FakeGenShell(Platforms.Uwp, progLanguage),
-                        new Version("0.0.0.0"),
+                        "0.0.0.0",
                         Platforms.Uwp,
                         progLanguage);
 
