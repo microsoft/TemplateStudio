@@ -260,20 +260,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CoreTemplateStudio\code\src\CoreTemplateStudio\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj">
-      <Project>{5f7ee68f-e773-47f3-a490-af16985cdf6e}</Project>
-      <Name>CoreTemplateStudio.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\UI\UI.csproj">
-      <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
-      <Name>UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fakes\Fakes.csproj">
-      <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
-      <Name>Fakes</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\vs.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +299,14 @@
       <Version>4.3.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharedResources\SharedResources.csproj">
+      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
+      <Name>SharedResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
+  <Import Project="..\..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

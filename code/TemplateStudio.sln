@@ -60,7 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateStudioForWPF", "Tem
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedFunctionality.Tests", "test\SharedFunctionality.Tests\SharedFunctionality.Tests.shproj", "{7496482F-BAD2-428D-A337-5DC0137ECA3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFunctionality.Core.Tests", "test\SharedFunctionality.Core.Tests\SharedFunctionality.Core.Tests.csproj", "{3CEF00D1-B49D-4339-A54C-769E7D2B71BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedFunctionality.Core.Tests", "test\SharedFunctionality.Core.Tests\SharedFunctionality.Core.Tests.csproj", "{3CEF00D1-B49D-4339-A54C-769E7D2B71BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFunctionality.UI.Tests", "test\SharedFunctionality.UI.Tests\SharedFunctionality.UI.Tests.csproj", "{61775323-739F-4765-82B8-FD43ED901A0B}"
 EndProject
@@ -77,8 +77,34 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{14171f44-37a1-4476-9877-92f9294c8864}*SharedItemsImports = 13
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{2533ec78-076a-4ad2-90e2-24ff40ed482b}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{2533ec78-076a-4ad2-90e2-24ff40ed482b}*SharedItemsImports = 4
+		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{2533ec78-076a-4ad2-90e2-24ff40ed482b}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{272b516c-0d73-4ba6-a97e-5c82d5c02abd}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{272b516c-0d73-4ba6-a97e-5c82d5c02abd}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{2bc38332-4102-4390-aa0f-a20e23d6bd7d}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{2bc38332-4102-4390-aa0f-a20e23d6bd7d}*SharedItemsImports = 4
+		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{2bc38332-4102-4390-aa0f-a20e23d6bd7d}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{3cef00d1-b49d-4339-a54c-769e7d2b71bb}*SharedItemsImports = 5
 		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{40caa13a-a94e-43f4-916d-070e15883878}*SharedItemsImports = 13
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{4baa29be-9854-4dd4-afc8-da50bf5752b9}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{4baa29be-9854-4dd4-afc8-da50bf5752b9}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{5b276821-d5be-4ae6-a8f8-bd54337aa2d9}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{5b276821-d5be-4ae6-a8f8-bd54337aa2d9}*SharedItemsImports = 4
+		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{5b276821-d5be-4ae6-a8f8-bd54337aa2d9}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{5e1508f0-8df5-4084-bb10-1e50e3d550f7}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{5e1508f0-8df5-4084-bb10-1e50e3d550f7}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{61775323-739f-4765-82b8-fd43ed901a0b}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{61775323-739f-4765-82b8-fd43ed901a0b}*SharedItemsImports = 4
+		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{61775323-739f-4765-82b8-fd43ed901a0b}*SharedItemsImports = 4
 		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{7496482f-bad2-428d-a337-5dc0137eca3f}*SharedItemsImports = 13
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{793ec1f7-3418-4af5-a074-a221ef4a8beb}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{793ec1f7-3418-4af5-a074-a221ef4a8beb}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{c662ad69-a1a7-4d95-a0a8-1dd33f537096}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{c662ad69-a1a7-4d95-a0a8-1dd33f537096}*SharedItemsImports = 4
+		test\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems*{c662ad69-a1a7-4d95-a0a8-1dd33f537096}*SharedItemsImports = 4
+		SharedFunctionality.Core\SharedFunctionality.Core.projitems*{d53bb989-5fa3-4f0c-b67a-69d61f488723}*SharedItemsImports = 4
+		SharedFunctionality.UI\SharedFunctionality.UI.projitems*{d53bb989-5fa3-4f0c-b67a-69d61f488723}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
