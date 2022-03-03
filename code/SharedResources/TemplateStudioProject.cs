@@ -14,10 +14,10 @@ namespace Microsoft.Templates.Resources
         public const string AssemblyName = "TemplateStudioForWpf";
 #elif _WINUICS_
         public static string AppName => StringRes.TemplateStudioForWinUI;
-        public const string AssemblyName = "TemplateStudioForWinUI";
+        public const string AssemblyName = "TemplateStudioForWinUICs";
 #elif _WINUICPP_
         public static string AppName => StringRes.TemplateStudioForWinUI;
-        public const string AssemblyName = "TemplateStudioForWinUI";
+        public const string AssemblyName = "TemplateStudioForWinUICpp";
 #else
 #error Invalid configuration selected
         // If not using an appropriate build configuration,
