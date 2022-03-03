@@ -5,10 +5,10 @@ using System.Threading;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.Shell;
-using TemplateStudioForUwp.Commands;
+using TemplateStudioForUWP.Commands;
 using Task = System.Threading.Tasks.Task;
 
-namespace TemplateStudioForUwp
+namespace TemplateStudioForUWP
 {
     [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideUIContextRule(ActivationContextGuid,

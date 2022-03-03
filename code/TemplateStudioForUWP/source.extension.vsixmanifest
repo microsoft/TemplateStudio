@@ -3,7 +3,7 @@
     <Metadata>
         <Identity Id="TemplateStudioForUWP.587647be-736e-4495-9a0f-d0d08148ee9b" Version="1.0" Language="en-US" Publisher="Microsoft Corporation" />
         <DisplayName>Template Studio for UWP</DisplayName>
-        <Description xml:space="preserve">Windows Template Studio accelerates the creation of new UWP, WPF and WinUI 3 in Desktop apps using a wizard-based UI.</Description>
+        <Description xml:space="preserve">Template Studio accelerates the creation of new UWP apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/Microsoft/TemplateStudio/</MoreInfo>
         <License>Content\EULA.rtf</License>
         <GettingStartedGuide>https://github.com/microsoft/TemplateStudio/blob/main/docs/readme.md</GettingStartedGuide>

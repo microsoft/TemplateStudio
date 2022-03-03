@@ -7,7 +7,7 @@
     <ProjectGuid>{D617CF2A-6CED-4A31-B87C-3A890D0DDE93}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharedResources</RootNamespace>
+    <RootNamespace>Microsoft.Templates.Resources</RootNamespace>
     <AssemblyName>SharedResources</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -130,7 +130,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.de-DE.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.Designer.cs" >
+    <Compile Include="StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.resx</DependentUpon>
@@ -198,19 +198,19 @@
   <ItemGroup>
     <EmbeddedResource Include="StringRes.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ru-RU1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.tr-TR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.tr-TR1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.zh-CN1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.zh-TW.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.zh-TW1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Assets\DefaultIcon.png" />
     <Resource Include="Assets\FileExtensions\CSharp.png" />
@@ -403,39 +403,39 @@
   <ItemGroup>
     <EmbeddedResource Include="StringRes.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.cs-CZ1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.de-DE1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.es-ES1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.fr-FR1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.it-IT.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.it-IT1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ja-JP1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ko-KR1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.pl-PL1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.pt-BR1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

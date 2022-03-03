@@ -3,7 +3,7 @@ using System.ComponentModel.Design;
 using Microsoft.Templates.Core;
 using Microsoft.VisualStudio.Shell;
 
-namespace TemplateStudioForUwp.Commands
+namespace TemplateStudioForUWP.Commands
 {
     internal sealed class TemplateStudioCommand
     {
