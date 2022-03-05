@@ -1,7 +1,8 @@
-﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
-	<TemplateData>
-		<Name>Template Studio for UWP</Name>
-		<Description>Quickly build a UWP app, using a wizard-based UI, based on leading patterns and best practices.</Description>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+	  <Name>Template Studio for UWP</Name>
+    <Description>Template Studio を使用して UWP アプリを簡単に構築します。ニーズを Windows 10 のパターンとベスト プラクティスに組み込むために、ウィザード ベースの UI を活用します。</Description>
 		<Icon>Ts4UwpVbTemplate.ico</Icon>
 		<ProjectType>VisualBasic</ProjectType>
 		<LanguageTag>visualbasic</LanguageTag>

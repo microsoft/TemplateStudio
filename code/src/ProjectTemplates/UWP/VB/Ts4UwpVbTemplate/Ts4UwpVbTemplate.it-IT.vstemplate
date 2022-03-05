@@ -1,11 +1,12 @@
-﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
-	<TemplateData>
-		<Name>Template Studio for UWP</Name>
-		<Description>Quickly build a UWP app, using a wizard-based UI, based on leading patterns and best practices.</Description>
-		<Icon>Ts4UwpVbTemplate.ico</Icon>
-		<ProjectType>VisualBasic</ProjectType>
-		<LanguageTag>visualbasic</LanguageTag>
-    <TemplateID>45bf1392-b62d-4b03-ae3c-23370cfcf0c1</TemplateID>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+	  <Name>Template Studio for UWP</Name>
+    <Description>Template Studio crea rapidamente un'app UWP, mediante un'interfaccia utente basata su procedure guidate per trasformare ogni esigenza in una base di motivi e procedure consigliate di Windows 10.</Description>
+	  <Icon>Ts4UwpVbTemplate.ico</Icon>
+	  <ProjectType>VisualBasic</ProjectType>
+	  <LanguageTag>visualbasic</LanguageTag>
+	  <TemplateID>45bf1392-b62d-4b03-ae3c-23370cfcf0c1</TemplateID>
 	  <SortOrder>10</SortOrder>
 	  <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
 	  <CreateNewFolder>true</CreateNewFolder>

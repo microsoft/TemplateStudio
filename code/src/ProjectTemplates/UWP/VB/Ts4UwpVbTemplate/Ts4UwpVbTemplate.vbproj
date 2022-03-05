@@ -73,6 +73,47 @@
   <ItemGroup>
     <VSTemplate Include="Ts4UwpVbTemplate.vstemplate" />
   </ItemGroup>
+  <ItemGroup>
+    <VSTemplate Include="Ts4UwpVbTemplate.cs-CZ.vstemplate">
+      <Culture>1029</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.de-DE.vstemplate">
+      <Culture>1031</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.es-ES.vstemplate">
+      <Culture>3082</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.fr-FR.vstemplate">
+      <Culture>1036</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.it-IT.vstemplate">
+      <Culture>1040</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.ja-JP.vstemplate">
+      <Culture>1041</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.ko-KR.vstemplate">
+      <Culture>1042</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.pl-PL.vstemplate">
+      <Culture>1045</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.pt-BR.vstemplate">
+      <Culture>1046</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.ru-RU.vstemplate">
+      <Culture>1049</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.tr-TR.vstemplate">
+      <Culture>1055</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.zh-CN.vstemplate">
+      <Culture>2052</Culture>
+    </VSTemplate>
+    <VSTemplate Include="Ts4UwpVbTemplate.zh-TW.vstemplate">
+      <Culture>1028</Culture>
+    </VSTemplate>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
