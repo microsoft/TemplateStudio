@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
 
                 var relativePath = path.Replace(templateRoot, string.Empty);
 
-                // TODO: ML: Update this to appropriate (smaller) value
+                // Update this to appropriate (even smaller--as small as practical) value
                 if (relativePath.Length > 130)
                 {
                     exceedingTemplates.Add(relativePath);

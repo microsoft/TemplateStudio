@@ -1,0 +1,26 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "PageTemplatePropertyBag",
+  "description": "Generic description...",
+  "groupIdentity": "Microsoft.Templates.Test.PageTemplatePropertyBag",
+  "identity": "Microsoft.Templates.Test.PageTemplatePropertyBag.CSharp",
+  "shortName": "page-test",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "fx4",
+    "wts.backendframework": "fx5",
+    "wts.pb1": "value1",
+    "wts.pb2": "all",
+    "wts.type": "page",
+    "wts.displayOrder": "1",
+    "wts.genGroup": "1",
+    "wts.export.baseclass": "ViewModelBase",
+    "wts.export.setter": "Set",
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

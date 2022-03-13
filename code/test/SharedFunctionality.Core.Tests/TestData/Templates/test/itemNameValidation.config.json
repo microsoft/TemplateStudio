@@ -1,0 +1,17 @@
+{  
+    "regexs" : [
+      {
+        "name": "itemEndsWithPage",
+        "pattern": ".*(?<!page)$"
+      },
+      {
+        "name": "badFormat",
+        "pattern": "^((?!\\d)\\w+)$"
+      }
+    ],
+    "reservedNames" : [
+      ],
+    "validateExistingNames": true,
+    "validateDefaultNames": true,
+    "validateEmptyNames": true
+}

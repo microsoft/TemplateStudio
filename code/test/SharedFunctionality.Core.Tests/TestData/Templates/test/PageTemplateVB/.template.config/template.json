@@ -1,0 +1,20 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "PageTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.PageTemplate",
+  "identity": "Microsoft.Templates.Test.PageTemplate.VisualBasic",
+  "shortName": "page-test",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "page",
+    "wts.genGroup": "1",
+    "wts.export.baseclass": "ViewModelBase",
+    "wts.export.setter": "Set",
+    "wts.casing.sourceName": "kebab|camel|pascal|snake"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

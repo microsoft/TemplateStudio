@@ -24,8 +24,7 @@ namespace Microsoft.UI.Test.ProjectTests
             fixture.InitializeFixture(Platforms.WinUI, ProgrammingLanguages.CSharp);
         }
 
-        // TODO: ML: Renenable when have WinUI support
-        ////[Fact]
+        [Fact]
         public async Task WinUiProjectLoadStepsAsync()
         {
             var stylesProviders = new UITestStyleValuesProvider();
@@ -41,8 +40,7 @@ namespace Microsoft.UI.Test.ProjectTests
             Assert.True(viewModel.StepsViewModels[TemplateType.Feature].Groups.Any());
         }
 
-        // TODO: ML: Renenable when have WinUI support
-        ////[Fact]
+        [Fact]
         public async Task WinUiProjectLoadDefaultStepsAsync()
         {
             // Default configuration: Blank, None

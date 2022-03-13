@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft USA",
+  "name": "ServiceTemplate",
+  "description": "US English...",
+  "identity": "Microsoft.Templates.Test.ServiceTemplate.CSharp"
+}

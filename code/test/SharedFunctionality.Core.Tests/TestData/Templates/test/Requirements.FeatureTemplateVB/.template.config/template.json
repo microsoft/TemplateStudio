@@ -1,0 +1,17 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "RequirementsTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.RequirementsTemplate",
+  "identity": "Microsoft.Templates.Test.RequirementsTemplate.VB",
+  "shortName": "RequirementsTemplate",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.requirements": "r1|r2"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

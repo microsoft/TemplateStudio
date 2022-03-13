@@ -1,0 +1,19 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "ServiceTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.ServiceTemplate",
+  "identity": "Microsoft.Templates.Test.ServiceTemplate.VisualBasic",
+  "shortName": "service-test",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "service",
+    "wts.genGroup": "1",
+    "wts.export.baseclass": "ViewModelBase",
+    "wts.export.setter": "Set"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

@@ -1,0 +1,17 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "OutputToParentTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.OutputToParentTemplate",
+  "identity": "Microsoft.Templates.Test.OutputToParentTemplate.CSharp",
+  "shortName": "OutputToParentTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.outputToParent": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

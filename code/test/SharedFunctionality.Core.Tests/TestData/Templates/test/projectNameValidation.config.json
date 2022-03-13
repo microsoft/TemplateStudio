@@ -1,0 +1,10 @@
+{  
+    "regexs" : [
+      {
+        "name": "projectStartWith$",
+        "pattern": "^[^\\$]"
+      }
+    ],
+    "reservedNames" : [
+    ]
+}

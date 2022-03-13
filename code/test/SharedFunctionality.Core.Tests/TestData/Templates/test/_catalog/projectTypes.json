@@ -1,0 +1,11 @@
+[
+  {
+    "name": "TestProjectType",
+    "displayName": "Test Project Type Base",
+    "summary": "Test Project Type Base Summary",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "",
+    "platform": "test"
+  }
+]

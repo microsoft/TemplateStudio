@@ -1,0 +1,18 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "LiveTile",
+  "groupIdentity": "Microsoft.Templates.Test.Naming.DefaultName",
+  "identity": "Microsoft.Templates.Test.Naming.DefaultName.VisualBasic",
+  "shortName": "naming-default",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "LiveTile"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}
