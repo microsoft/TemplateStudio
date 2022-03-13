@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "TreeView",
+  "description": "ツリービュー ページには、階層コンテンツを表示するツリー ビュー コントロールがあります。",
+  "identity": "wts.Page.TreeView"
+}

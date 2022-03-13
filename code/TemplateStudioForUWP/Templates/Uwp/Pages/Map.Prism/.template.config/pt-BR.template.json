@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Map",
+    "description": "A página de mapa é baseada no Controle de Mapa do Windows. O código inclui a adição de um Ícone de Mapa e a obtenção de sua localização.",
+    "identity": "wts.Page.Map.Prism"
+}

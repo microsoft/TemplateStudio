@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "What's New Prompt",
+  "description": "Afficher une invite lorsque l'application est utilisée pour la première fois après une mise à jour.",
+  "identity": "wts.Feat.WhatsNewPrompt"
+}

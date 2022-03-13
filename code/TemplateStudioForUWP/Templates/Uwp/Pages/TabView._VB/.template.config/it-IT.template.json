@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "La pagina di visualizzazione scheda include un controllo TabView che consente di mostrare i contenuti in diverse schede.",
+    "identity": "wts.Page.TabView.VB"
+}

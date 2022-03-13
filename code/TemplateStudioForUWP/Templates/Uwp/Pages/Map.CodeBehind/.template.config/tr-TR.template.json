@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Map",
+  "description": "Harita sayfası, Harita Denetimi'ni esas alır. Kod bir Harita Simgesi ekleme ve konumunuzu ayarlama işlevlerini içerir.",
+  "identity": "wts.Page.Map.CodeBehind"
+}

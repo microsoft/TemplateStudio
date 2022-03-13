@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Test App with MSTest",
+    "description": "MSTest kullanarak uygulamaya birim testleri için bir proje ekleyin.",
+    "identity": "wts.Testing.UnitTests.App.MSTest.VB"
+}

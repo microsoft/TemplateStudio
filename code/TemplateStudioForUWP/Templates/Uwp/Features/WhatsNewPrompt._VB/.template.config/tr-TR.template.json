@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "What\u0027s New Prompt",
+    "description": "Uygulama bir güncelleştirmeden sonra ilk kez kullanıldığında bir istem görüntüleyin.",
+    "identity": "wts.Feat.WhatsNewPrompt.VB"
+}

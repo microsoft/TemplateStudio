@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Camera",
+  "description": "用來從相機擷取及顯示影像的頁面。",
+  "identity": "wts.Page.Camera.CodeBehind"
+}

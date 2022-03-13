@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Capa_1" Width="48" Height="48" Canvas.Left="0" Canvas.Top="0">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <Canvas Name="g54">
+      <Canvas.RenderTransform>
+        <MatrixTransform Matrix="0.54135135 0 0 0.54134628 -16.601351 -16.090787"/>
+      </Canvas.RenderTransform>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path48" Fill="#000000"  StrokeThickness="0">
+        <Path.Data>
+          <PathGeometry Figures="M 119.3335 106.84619 H 30.6665 V 49.27246 h 27.41211 l 3.53223 -6.11865 h 26.77832 l 3.53223 6.11865 h 27.41211 z m -83.667 -5 h 78.66699 V 54.27246 H 89.03467 L 85.50244 48.15381 H 64.49756 l -3.53223 6.11865 H 35.6665 Z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path50" Fill="#000000" StrokeThickness="0">
+        <Path.Data>
+          <PathGeometry Figures="m 75.00049 93.9043 c -8.64551 0 -15.67871 -7.0332 -15.67871 -15.67773 0 -8.64502 7.0332 -15.67822 15.67871 -15.67822 8.64453 0 15.67773 7.0332 15.67773 15.67822 0 8.64452 -7.0332 15.67773 -15.67773 15.67773 z m 0 -26.35596 c -5.88867 0 -10.67871 4.79004 -10.67871 10.67822 0 5.8877 4.79004 10.67773 10.67871 10.67773 5.8877 0 10.67773 -4.79004 10.67773 -10.67773 0 -5.88818 -4.79004 -10.67822 -10.67773 -10.67822 z" FillRule="NonZero"/>
+        </Path.Data>
+      </Path>
+      <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="96.1" Canvas.Top="60.1" Width="3.8" Height="3.8" Name="circle52" Fill="#000000" StrokeThickness="0"/>
+    </Canvas>
+  </Canvas>
+</Viewbox>

@@ -1,0 +1,5 @@
+﻿        <RelativePanel>
+            <!--{[{-->
+            <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" TextTrimming="CharacterEllipsis" RelativePanel.LeftOf="toolbar" RelativePanel.AlignLeftWithPanel="True" />
+            <!--}]}-->
+        </RelativePanel>

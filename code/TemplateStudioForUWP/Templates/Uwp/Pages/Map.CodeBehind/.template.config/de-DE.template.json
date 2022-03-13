@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Map",
+  "description": "Die Kartenseite basiert auf dem Kartensteuerelement. Der Code umfasst die Hinzufügung eines Kartensymbols und die Festlegung Ihres Standorts.",
+  "identity": "wts.Page.Map.CodeBehind"
+}

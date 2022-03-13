@@ -1,0 +1,3 @@
+﻿Cette fonctionnalité permet d'ajouter des activités utilisateur au calendrier Windows à partir de votre application, puis de revenir à l'application à partir de l'activité utilisateur avec lien profond. Ces activités peuvent être créées avec des cartes adaptatives, du texte ou des descriptions.
+
+[En savoir plus sur les activités utilisateur et leur poursuite, même sur différents appareils.](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities)

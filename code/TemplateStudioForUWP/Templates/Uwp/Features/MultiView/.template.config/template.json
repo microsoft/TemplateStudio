@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Multiple views",
+  "shortName": "Multiple views",
+  "groupIdentity": "wts.Feat.MultiView",
+  "identity": "wts.Feat.MultiView",
+  "description": "Enable your users to view independent parts of your app in separate windows.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "CodeBehind|Prism|MVVMToolkit",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "3",
+    "wts.dependencies":"wts.Feature.ThemeSelection",
+    "wts.group": "ApplicationLifecycle",
+    "wts.defaultInstance": "MultiView",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"    
+  },
+  "sourceName": "MultiViewFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Services/ViewLifetimeControl.cs"
+    },
+    {
+      "path": "Services/WindowManagerService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

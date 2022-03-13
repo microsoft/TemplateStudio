@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Una biblioteca MVVM moderna, rápida y modular y parte del Kit de herramientas de la comunidad de Windows."
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Este es el modelo tradicional para una aplicación en la que la lógica se administra en el code-behind."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism es un framework para compilar aplicaciones XAML acopladas de forma imprecisa, fácil de mantener y con capacidad de prueba."
+  }
+]

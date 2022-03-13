@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="svg89" Width="210" Height="297">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: sodipodi:namedview-->
+    <!--Unknown tag: metadata-->
+    <Canvas Name="layer1">
+      <TextBlock xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="40" FontWeight="Normal" FontFamily="sans-serif" FontStyle="normal" Foreground="#000000" TextWrapping="Wrap" Name="flowRoot91" Width="202.85715" Height="171.42857" Canvas.Left="200" Canvas.Top="336.2"/>
+      <Canvas Name="flowRoot99" Opacity="1">
+        <Canvas.RenderTransform>
+          <MatrixTransform Matrix="5 0 0 5.0002187 -678.29236 -1618.118"/>
+        </Canvas.RenderTransform>
+        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path107" Fill="#FF000000">
+          <Path.Data>
+            <PathGeometry Figures="m 172.14258 350.37695 h 2.5 v 17.5 h -2.5 z m 2.5 -12.5 h -2.5 v -7.5 h 2.5 z m -1.25 2.5 q 0.78125 0 1.46484 0.29297 0.6836 0.29297 1.19141 0.80078 0.50781 0.50782 0.80078 1.19141 0.29297 0.68359 0.29297 1.46484 0 0.78125 -0.29297 1.46485 -0.29297 0.68359 -0.80078 1.1914 -0.50781 0.50782 -1.19141 0.80078 -0.68359 0.29297 -1.46484 0.29297 -0.78125 0 -1.46485 -0.29297 -0.68359 -0.29296 -1.1914 -0.80078 -0.50781 -0.50781 -0.80078 -1.1914 -0.29297 -0.6836 -0.29297 -1.46485 0 -0.78125 0.29297 -1.46484 0.29297 -0.68359 0.80078 -1.19141 0.50781 -0.50781 1.1914 -0.80078 0.6836 -0.29297 1.46485 -0.29297 z m -36.25 0 h 27.5 v 17.5 h -27.5 z m 2.5 15 h 22.5 v -12.5 h -22.5 z m 22.5 -25 h 2.5 v 7.5 h -27.5 v -7.5 h 2.5 v 5 h 22.5 z m -25 30 h 27.5 v 7.5 h -2.5 v -5 h -22.5 v 5 h -2.5 z" FillRule="NonZero"/>
+          </Path.Data>
+        </Path>
+      </Canvas>
+    </Canvas>
+  </Canvas>
+</Viewbox>

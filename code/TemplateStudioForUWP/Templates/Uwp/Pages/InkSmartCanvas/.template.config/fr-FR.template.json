@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "Page permettant de créer des annotations à l'aide de la reconnaissance des formes et de texte dans Windows Ink.",
+  "identity": "wts.Page.InkSmartCanvas"
+}

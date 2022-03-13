@@ -1,0 +1,20 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid>
+        <FlipView
+            SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
+        </FlipView>
+<!--{[{-->
+        <Button
+            x:Name="closeButton"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
+            Click="OnGoBack">
+            <SymbolIcon Symbol="Back" />
+        </Button>
+<!--}]}-->
+    </Grid>
+</Page>

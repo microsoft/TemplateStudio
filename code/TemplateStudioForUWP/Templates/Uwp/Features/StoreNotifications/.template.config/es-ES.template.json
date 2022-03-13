@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Dev Center Notifications",
+  "description": "Registra tu aplicación para recibir notificaciones de Store",
+  "identity": "wts.Feat.StoreNotifications"
+}

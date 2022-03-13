@@ -1,0 +1,15 @@
+﻿{  
+    "regexs" : [
+      {
+        "name" : "projectStartWith$",
+        "pattern" : "^[^\\$]"
+      }
+    ],
+    "reservedNames" : [
+        "Prism",
+        "CaliburnMicro",
+        "MVVMLight"
+    ],
+    "validateEmptyNames": true,
+    "ValidateExistingNames": false
+}

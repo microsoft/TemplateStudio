@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Drag & Drop",
+    "description": "Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamaların oluşturulmasını basitleştiren bir hizmet sunar.",
+    "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
+}

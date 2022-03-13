@@ -1,0 +1,2 @@
+﻿Las pestañas que aparecen en la parte superior permiten navegar rápidamente entre las páginas y dejar mucho espacio para el contenido de la aplicación.
+Esto se recomienda si tienes 5 o menos elementos de navegación superiores igual de importantes.

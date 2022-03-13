@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "索引標籤檢視頁面具有 TabView 控制項，將內容顯示在不同的索引標籤中。",
+    "identity": "wts.Page.TabView.CodeBehind.VB"
+}

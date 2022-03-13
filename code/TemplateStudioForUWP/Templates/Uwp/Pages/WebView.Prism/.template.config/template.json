@@ -1,0 +1,58 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "WebView",
+  "shortName": "WebView",
+  "groupIdentity": "wts.Page.WebView",
+  "identity": "wts.Page.WebView.Prism",
+  "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.telemName": "Web View",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "3",
+    "wts.rightClickEnabled": "true",
+    "wts.genGroup": "0"
+  },
+  "sourceName": "WebViewPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Views/WebViewPagePage.xaml"
+    },
+    {
+      "path": "Views/WebViewPagePage.xaml.cs"
+    },
+    {
+      "path": "ViewModels/WebViewPageViewModel.cs"
+    },
+    {
+      "path": "Services/IWebViewService.cs"
+    },
+    {
+      "path": "Services/WebViewService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  }
+}

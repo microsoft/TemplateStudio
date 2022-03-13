@@ -1,0 +1,37 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the CameraViewPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="Camera_Exception_UnauthorizedAccess" xml:space="preserve">
+    <value>The app was denied access to the camera or microphone.</value>
+  </data>
+  <data name="Camera_Exception_NotSupported" xml:space="preserve">
+    <value>No video capture devices found.</value>
+  </data>
+  <data name="Camera_Exception_InitializationError" xml:space="preserve">
+    <value>An error has occurred during camera control initialization.</value>
+  </data>
+  <data name="Camera_Exception_InitializationCanceled" xml:space="preserve">
+    <value>Camera control initialization has been canceled.</value>
+  </data>
+  <data name="CameraControl_CameraButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">    
+    <value>Take a photo</value>
+    <comment>Camera control button automation name property</comment>
+  </data>
+  <data name="CameraControl_CameraButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Take a photo</value>
+    <comment>Camera control button automation tooltip property</comment>
+  </data>
+  <data name="CameraControl_SwitchCameraButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">    
+    <value>Switch camera</value>
+    <comment>Camera control switch camera button automation name property</comment>
+  </data>
+  <data name="CameraControl_SwitchCameraButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Switch camera</value>
+    <comment>Camera control switch camera button automation tooltip property</comment>
+  </data>
+  <!--}]}-->
+</root>

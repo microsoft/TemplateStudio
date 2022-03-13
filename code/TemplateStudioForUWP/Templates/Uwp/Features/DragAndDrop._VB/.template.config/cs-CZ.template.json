@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Drag & Drop",
+    "description": "Funkce Přetahování poskytuje službu, která zjednodušuje vytváření aplikací podporujících přetahování.",
+    "identity": "wts.Feat.DragAndDrop.VB"
+}

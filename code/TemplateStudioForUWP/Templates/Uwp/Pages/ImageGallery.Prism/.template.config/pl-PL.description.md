@@ -1,0 +1,1 @@
+﻿Strona wyświetlająca galerię obrazów i umożliwiająca użytkownikowi przechodzenie między galerią i szczegółami obrazu.

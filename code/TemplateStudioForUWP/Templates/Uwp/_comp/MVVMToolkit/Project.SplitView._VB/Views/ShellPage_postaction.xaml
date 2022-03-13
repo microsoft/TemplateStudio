@@ -1,0 +1,28 @@
+﻿<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+<!--{[{-->
+    xmlns:behaviors="using:Param_RootNamespace.Behaviors"
+<!--}]}-->
+    mc:Ignorable="d">
+
+    <winui:NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        <i:Interaction.Behaviors>
+<!--{[{-->
+            <behaviors:NavigationViewHeaderBehavior
+                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding}"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Margin="{StaticResource SmallLeftRightMargin}" />
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
+<!--}]}-->
+        </i:Interaction.Behaviors>
+    </winui:NavigationView>
+</Page>

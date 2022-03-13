@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "Strona pozwalająca tworzyć notatki i rysunki przy użyciu funkcji Windows Ink.",
+  "identity": "wts.Page.InkDraw.CodeBehind"
+}

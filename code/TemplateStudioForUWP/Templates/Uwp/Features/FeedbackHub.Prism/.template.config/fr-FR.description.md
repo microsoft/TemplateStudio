@@ -1,0 +1,3 @@
+﻿Ajouter un lien Commentaires à la page des paramètres pour encourager vos clients à faire part de leur avis sur le Hub de commentaires.
+
+Le Hub de commentaires est une application préinstallée qui fournit un emplacement unique, regroupant tous les commentaires sur Windows et les applications installées. Tous les commentaires des clients ayant trait à votre application qui sont soumis via le Hub de commentaires sont recueillis et vous sont présentés dans le [Rapport de commentaires](https://docs.microsoft.com/windows/uwp/publish/feedback-report) dans le Tableau du centre de développement Windows afin que vous preniez connaissance de toute faille, suggestion et vote positif soumis par vos clients, le tout dans un seul et même rapport.

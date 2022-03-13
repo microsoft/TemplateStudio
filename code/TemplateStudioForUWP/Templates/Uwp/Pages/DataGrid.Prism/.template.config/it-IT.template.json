@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "Una pagina con una semplice griglia di dati.",
+  "identity": "wts.Page.DataGrid.Prism"
+}

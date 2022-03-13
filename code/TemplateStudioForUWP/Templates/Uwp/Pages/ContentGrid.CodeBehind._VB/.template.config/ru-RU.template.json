@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Content Grid",
+  "description": "Эта страница разрешает добавление пользовательских элементов в виде адаптивной сетки.",
+  "identity": "wts.Page.ContentGrid.CodeBehind.VB"
+}

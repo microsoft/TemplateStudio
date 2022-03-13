@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.SplitView.ListDetails",
+  "identity": "Page.SplitView.ListDetails",
+  "shortName": "Page.SplitView.ListDetails",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.ListDetails"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

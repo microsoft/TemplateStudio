@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "Stránka umožňující vytvářet poznámky pomocí rozpoznávání tvarů a textu v nástroji Windows Ink",
+  "identity": "wts.Page.InkSmartCanvas"
+}

@@ -1,0 +1,29 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Project.SplitView.VB",
+  "identity": "CodeBehind.Project.SplitView.VB",
+  "shortName": "CodeBehind.Project.SplitView.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

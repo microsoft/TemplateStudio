@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Optional Login",
+  "description": "애플리케이션에 로그인 옵션과 제한 기능을 제공합니다.",
+  "identity": "wts.Service.IdentityOptionalLogin.Prism"
+}

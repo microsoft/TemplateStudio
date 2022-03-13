@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Page.AddBackCommand.VB",
+  "identity": "MVVMToolkit.Page.AddBackCommand.VB",
+  "shortName": "MVVMToolkit.Page.AddBackCommand.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == Blank|MenuBar & groupidentity == wts.Page.ContentGrid.VB|wts.Page.ImageGallery.VB"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

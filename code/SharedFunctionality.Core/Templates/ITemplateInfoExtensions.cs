@@ -503,15 +503,24 @@ namespace Microsoft.Templates.Core
 
             string mntPointOrEquiv;
 
-            var mntPoint = CodeGen.Instance?.Cache?.MountPoint;
+            var tiMountPoint = ti.MountPointUri;
 
-            if (mntPoint != null)
+            if (tiMountPoint != null)
             {
-                mntPointOrEquiv = mntPoint.MountPointUri;
+                mntPointOrEquiv = tiMountPoint;
             }
             else
             {
-                mntPointOrEquiv = CodeGen.Instance.GetCurrentContentSource(null, null, null, null);
+                var mntPoint = CodeGen.Instance?.Cache?.MountPoint;
+
+                if (mntPoint != null)
+                {
+                    mntPointOrEquiv = mntPoint.MountPointUri;
+                }
+                else
+                {
+                    mntPointOrEquiv = CodeGen.Instance.GetCurrentContentSource(null, null, null, null);
+                }
             }
 
             var platform = ti.GetPlatform();

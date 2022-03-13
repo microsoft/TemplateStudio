@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "What's New Prompt",
+  "description": "Zeigen Sie eine Eingabeaufforderung an, wenn die App nach einem Update zum ersten Mal verwendet wird.",
+  "identity": "wts.Feat.WhatsNewPrompt"
+}

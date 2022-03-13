@@ -1,0 +1,40 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.Camera.AddResource.VB",
+  "identity": "Page.Camera.AddResource.VB",
+  "shortName": "Page.Camera.AddResource.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == wts.Page.Camera.VB"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "EventHandlers/CameraControlEventArgs.vb"
+    },
+    {
+      "path": "Helpers/CameraOrientationExtensions.vb"
+    },
+    {
+      "path": "Controls/CameraControl.xaml"
+    },
+    {
+      "path": "Controls/CameraControl.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Feedback Hub Link",
+  "description": "設定ページでフィードバック Hub にリンクを追加します。",
+  "identity": "wts.Feat.FeedbackHub.MVVMToolkit"
+}

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Background Task",
+    "description": "Umožňuje přidat vnitroprocesovou úlohu na pozadí, která je připravena spustit kód, i když není aplikace v popředí.",
+    "identity": "wts.Feat.BackgroundTask.VB"
+}

@@ -1,0 +1,17 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the TabbedPivotPagePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="TabbedPivotPage_PivotItem1.Header" xml:space="preserve">  
+    <value>Item 1</value>
+    <comment>First Pivot item title for TabbedPivotPage</comment>
+  </data>
+  <data name="TabbedPivotPage_PivotItem2.Header" xml:space="preserve">
+    <value>Item 2</value>
+    <comment>Second Pivot item title for TabbedPivotPage</comment>
+  </data>
+  <!--}]}-->
+</root>

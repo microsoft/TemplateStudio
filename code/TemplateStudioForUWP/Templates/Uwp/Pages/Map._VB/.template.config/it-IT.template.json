@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Map",
+    "description": "La pagina della mappa è basata su Controllo mappa di Windows. Il codice include l\u0027aggiunta di un\u0027icona mappa e il rilevamento dell\u0027itinerario.",
+    "identity": "wts.Page.Map.VB"
+}

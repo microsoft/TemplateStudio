@@ -1,0 +1,40 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.Ink.AddTransformService",
+  "identity": "Page.Ink.AddTransformService",
+  "shortName": "Page.Ink.AddTransformService",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == wts.Page.InkSmartCanvas"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Services/Ink/InkTransformService.cs"
+    },
+    {
+      "path": "Services/Ink/InkTransformResult.cs"
+    },
+    {
+      "path": "Services/Ink/UndoRedo/TransformUndoRedoOperation.cs"
+    },
+    {
+      "path": "Services/Ink/UndoRedo/ClearStrokesAndShapesUndoRedoOperation.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

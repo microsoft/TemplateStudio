@@ -1,0 +1,2 @@
+﻿Registerkarten oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten und lassen viel Platz zum App-Inhalt frei.
+Dies wird empfohlen, wenn Sie nicht mehr als fünf Navigationselemente auf oberster Ebene haben, die gleichermaßen wichtig sind.

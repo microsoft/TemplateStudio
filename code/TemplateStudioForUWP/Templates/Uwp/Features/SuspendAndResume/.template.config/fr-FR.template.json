@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Suspend and Resume",
+  "description": "Un service simple auquel vous pouvez vous inscrire pour gérer le départ, puis le retour d'un client dans l'application.",
+  "identity": "wts.Feat.SuspendAndResume"
+}

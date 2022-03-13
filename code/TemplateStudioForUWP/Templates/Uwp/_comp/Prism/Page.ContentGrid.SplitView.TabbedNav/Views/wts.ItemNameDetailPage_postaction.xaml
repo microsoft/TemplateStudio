@@ -1,0 +1,20 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid
+        x:Name="ContentArea">
+
+        <VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>
+        <ScrollViewer
+            x:Name="contentScroll"
+            IsTabStop="True">
+            <StackPanel
+<!--{[{-->
+                Margin="{StaticResource MediumLeftRightMargin}"
+<!--}]}-->
+                x:Name="contentPanel">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

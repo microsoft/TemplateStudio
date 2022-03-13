@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "顯示簡單資料方格的頁面。",
+  "identity": "wts.Page.DataGrid"
+}

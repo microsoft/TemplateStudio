@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Azure Notifications",
+    "description": "Azure Bildirim Hub\u0027larından gelen iletileri almak ve işlemek için kaydolun:",
+    "identity": "wts.Feat.HubNotifications.VB"
+}

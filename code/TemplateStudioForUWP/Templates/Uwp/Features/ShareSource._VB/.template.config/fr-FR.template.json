@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Share Source",
+    "description": "Vous permet de soutenir le contrat de partage de votre application UWP pour partager les données de votre application.",
+    "identity": "wts.Feat.ShareSource.VB"
+}

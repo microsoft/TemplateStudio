@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "一個頁面，允許您使用 Windows Ink 來製作筆記與繪圖。",
+  "identity": "wts.Page.InkDraw.CodeBehind"
+}

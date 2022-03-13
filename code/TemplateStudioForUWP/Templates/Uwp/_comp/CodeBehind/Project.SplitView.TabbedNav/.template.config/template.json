@@ -1,0 +1,61 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Project.SplitView.TabbedNav",
+  "identity": "CodeBehind.Project.SplitView.TabbedNav",
+  "shortName": "CodeBehind.Project.SplitView.TabbedNav",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "1",
+    "wts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView|TabbedNav & wts.type == project",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/NavHelper.cs"
+    },
+    {
+      "path": "Views/ShellPage.xaml"
+    },
+    {
+      "path": "Views/ShellPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type": "parameter",
+      "replaces": "Param_HomeName"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.UI.Xaml",
+        "version" : "2.5.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

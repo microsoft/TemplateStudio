@@ -1,0 +1,32 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Page.TwoPaneView.Blank.MenuBar",
+  "identity": "MVVMToolkit.Page.TwoPaneView.Blank.MenuBar",
+  "shortName": "MVVMToolkit.Page.TwoPaneView.Blank.MenuBar",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == Blank|MenuBar & $frontendframework == MVVMToolkit & groupidentity == wts.Page.TwoPaneView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  }
+}

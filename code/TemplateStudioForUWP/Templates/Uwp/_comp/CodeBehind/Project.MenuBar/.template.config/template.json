@@ -1,0 +1,51 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Project.MenuBar",
+  "identity": "CodeBehind.Project.MenuBar",
+  "shortName": "CodeBehind.Project.MenuBar",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$frontendframework == CodeBehind & $projectType == MenuBar & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/MenuNavigationHelper.cs"
+    },
+    {
+      "path": "Services/NavigationService.cs"
+    },
+    {
+      "path": "Views/ShellContentDialog.xaml"
+    },
+    {
+      "path": "Views/ShellContentDialog.xaml.cs"
+    },
+    {
+      "path": "Views/ShellPage.xaml"
+    },
+    {
+      "path": "Views/ShellPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}

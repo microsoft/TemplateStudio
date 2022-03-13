@@ -1,0 +1,16 @@
+﻿  <Applications>    
+      <Extensions>
+        <!--{[{-->
+        <uap:Extension Category="windows.shareTarget">
+          <uap:ShareTarget>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.jpg</uap:FileType>
+              <uap:FileType>.png</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DataFormat>URI</uap:DataFormat>
+            <uap:DataFormat>Bitmap</uap:DataFormat>
+          </uap:ShareTarget>
+        </uap:Extension>
+        <!--}]}-->
+      </Extensions>
+  </Applications>

@@ -53,6 +53,8 @@ namespace Microsoft.Templates.Core
 
         public string WizardVersion { get; private set; }
 
+        public List<ITemplateInfo> AdditionalTemplates { get; } = new List<ITemplateInfo>();
+
         ////public string CurrentContentFolder { get => Sync?.CurrentContent?.Path; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
 
@@ -132,14 +134,26 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> Get(Func<ITemplateInfo, bool> predicate)
         {
-            return GetAll()
-                        .Where(predicate);
+            var result = GetAll().Where(predicate).ToList();
+
+            if (AdditionalTemplates.Any())
+            {
+                result.AddRange(AdditionalTemplates.Where(predicate));
+            }
+
+            return result;
         }
 
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
-            return GetAll()
-                        .FirstOrDefault(predicate);
+            var result = GetAll().FirstOrDefault(predicate);
+
+            if (result is null)
+            {
+                result = AdditionalTemplates.FirstOrDefault(predicate);
+            }
+
+            return result;
         }
 
         public IEnumerable<MetadataInfo> GetProjectTypes(UserSelectionContext context)
@@ -274,6 +288,7 @@ namespace Microsoft.Templates.Core
                                                 && IsMatchFrontEnd(t, context.FrontEndFramework)
                                                 ////&& IsMatchBackEnd(t, context.BackEndFramework)
                                                 && IsMatchPropertyBag(t, context.PropertyBag)
+                                                && t.GetLanguage() == context.Language
                                                 && t.GetPlatform() == context.Platform);
 
                         if (template == null)
@@ -294,6 +309,17 @@ namespace Microsoft.Templates.Core
                             }
                         }
                     }
+                }
+            }
+        }
+
+        public void AddAdditionalTemplates(IEnumerable<ITemplateInfo> extraTemplates)
+        {
+            foreach (var item in extraTemplates)
+            {
+                if (!AdditionalTemplates.Any(t => t.Identity == item.Identity))
+                {
+                    AdditionalTemplates.Add(item);
                 }
             }
         }

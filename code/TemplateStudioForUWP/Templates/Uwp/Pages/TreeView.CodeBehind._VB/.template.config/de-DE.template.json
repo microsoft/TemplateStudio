@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TreeView",
+    "description": "Die Seite „Strukturansicht“ besitzt ein Strukturansicht-Steuerelement, um hierarchisch angeordnete Inhalte anzuzeigen.",
+    "identity": "wts.Page.TreeView.CodeBehind.VB"
+}

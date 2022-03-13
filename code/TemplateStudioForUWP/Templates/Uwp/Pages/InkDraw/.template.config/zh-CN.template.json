@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "该网页可让你使用 Windows Ink 创建笔记并进行绘画。",
+  "identity": "wts.Page.InkDraw"
+}

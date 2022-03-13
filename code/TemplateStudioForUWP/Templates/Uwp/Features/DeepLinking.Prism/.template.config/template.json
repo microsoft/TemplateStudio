@@ -1,0 +1,52 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Deep Linking",
+  "shortName": "Deep Linking",
+  "groupIdentity": "wts.Feat.DeepLinking",
+  "identity": "wts.Feat.DeepLinking.Prism",
+  "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "DeepLinking",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "DeepLinking",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Activation/SchemeActivationConfig.cs"
+    },
+    {
+      "path": "Activation/SchemeActivationData.cs"
+    },
+    {
+      "path": "ViewModels/SchemeActivationSampleViewModel.cs"
+    },
+    {
+      "path": "Views/SchemeActivationSamplePage.xaml"
+    },
+    {
+      "path": "Views/SchemeActivationSamplePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

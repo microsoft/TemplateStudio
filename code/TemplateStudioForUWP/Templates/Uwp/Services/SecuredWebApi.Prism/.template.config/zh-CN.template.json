@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Secured Web API",
+  "description": "包括一个用于验证 JWToken 的 ASP.NET Core Web API 项目。",
+  "identity": "wts.Service.SecuredWebApi.Prism"
+}

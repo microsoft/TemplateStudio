@@ -1,0 +1,3 @@
+﻿Estes recursos permitem que você adicione atividades do usuário de seu aplicativo à Linha do Tempo do Windows e retome seu aplicativo da atividade do usuário com vinculação profunda. Essas atividades podem ser criadas usando cartões adaptáveis ou um texto e uma descrição.
+
+[Saiba mais sobre Atividades do Usuário e como continuar com elas, mesmo entre dispositivos.](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities)

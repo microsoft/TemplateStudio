@@ -47,13 +47,11 @@ First, how do you want your app's UI navigation to behave?
 
 Next, what coding pattern do you want to use in your project.
 
-- **UWP**: *[MVVM Toolkit](./docs/UWP/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, *[Prism](./docs/UWP/frameworks/prism.md)*, *[MVVM Basic](./docs/UWP/frameworks/mvvmbasic.md)* *, *[MVVMLight](./docs/UWP/frameworks/mvvmlight.md)* * and *[Caliburn.Micro](./docs/UWP/frameworks/caliburnmicro.md)* *.
+- **UWP**: *[MVVM Toolkit](./docs/UWP/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
-- **WPF**: *[MVVM Toolkit](./docs/WPF/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, *[Prism](./docs/WPF/frameworks/prism.md)*,  *[MVVM Basic](./docs/WPF/frameworks/mvvmbasic.md)* * and *[MVVMLight](./docs/WPF/frameworks/mvvmlight.md)* *.
+- **WPF**: *[MVVM Toolkit](./docs/WPF/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, and *[Prism](./docs/WPF/frameworks/prism.md)*.
 
 - **WinUI 3**: *[MVVM Toolkit](./docs/WinUI/frameworks/mvvmtoolkit.md)*.
-
-(Frameworks marked with * were deprecated in Version 3.10 and will be removed in a future version)
 
 ### **App pages**
 

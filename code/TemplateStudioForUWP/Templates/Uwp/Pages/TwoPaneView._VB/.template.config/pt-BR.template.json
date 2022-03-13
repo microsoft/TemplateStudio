@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "TwoPaneView",
+  "description": "Página Master-Detail otimizada para dispositivos de tela dupla.",
+  "identity": "wts.Page.TwoPaneView.VB"
+}

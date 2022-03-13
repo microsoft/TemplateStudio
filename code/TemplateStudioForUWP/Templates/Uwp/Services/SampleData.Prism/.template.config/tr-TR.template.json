@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Sample Data",
+  "description": "SampleDataService bazı sayfaların oluşturulmuş sürümleri tarafından kullanılan örnek verileri içerir.",
+  "identity": "wts.Service.SampleDataService.Prism"
+}

@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This code adds SchemeActivationSamplePage to the NavigationView control in ShellPage -->
+<!--**}-->
+
+<winui:NavigationView.MenuItems>
+<!--^^-->
+<!--{[{-->
+    <winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" Icon="Document" helpers:NavHelper.NavigateTo="views:SchemeActivationSamplePage" />
+<!--}]}-->
+</winui:NavigationView.MenuItems>

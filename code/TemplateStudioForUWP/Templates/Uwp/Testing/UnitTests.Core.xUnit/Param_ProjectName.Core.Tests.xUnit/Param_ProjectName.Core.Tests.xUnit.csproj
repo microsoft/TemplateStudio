@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <RootNamespace>Param_RootNamespace.Core.Tests.xUnit</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Param_ProjectName.Core\Param_ProjectName.Core.csproj" />
+  </ItemGroup>
+  
+</Project>

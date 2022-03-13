@@ -1,0 +1,37 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Prism.Page.SplitView.TabbedNav.TwoPaneView",
+  "identity": "Prism.Page.SplitView.TabbedNav.TwoPaneView",
+  "shortName": "Prism.Page.SplitView.TabbedNav.TwoPaneView",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == SplitView|TabbedNav & $frontendframework == Prism & groupidentity == wts.Page.TwoPaneView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Helpers/IBackNavigationHandler.cs"
+    },
+    {
+      "path": "Services/BackNavigationService.cs"
+    },
+    {
+      "path": "Services/IBackNavigationService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

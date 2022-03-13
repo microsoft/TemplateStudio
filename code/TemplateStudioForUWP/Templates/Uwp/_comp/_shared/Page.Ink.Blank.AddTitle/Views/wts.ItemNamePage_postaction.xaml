@@ -1,0 +1,29 @@
+﻿        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="visualStateGroup">
+                <VisualState x:Name="SmallVisualState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    <!--{[{-->
+                        <Setter Target="headerTitle.Visibility" Value="Collapsed" />
+                    <!--}]}-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="BigVisualState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    <!--{[{-->
+                        <Setter Target="headerTitle.Visibility" Value="Visible" />
+                    <!--}]}-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>        
+        <RelativePanel>
+            <!--{[{-->
+            <TextBlock x:Name="headerTitle" x:Uid="wts.ItemNameHeader" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource PageTitleStyle}" MaxLines="1" TextTrimming="CharacterEllipsis" RelativePanel.LeftOf="toolbar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWith="toolbar" />
+            <!--}]}-->
+        </RelativePanel>

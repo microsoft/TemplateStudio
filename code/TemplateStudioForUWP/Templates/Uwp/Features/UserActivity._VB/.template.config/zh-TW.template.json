@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "User Activity",
+  "description": "新增能力，以將使用者活動加入到 Windows 時間軸 (Timeline)。",
+  "identity": "wts.Feat.UserActivity.VB"
+}

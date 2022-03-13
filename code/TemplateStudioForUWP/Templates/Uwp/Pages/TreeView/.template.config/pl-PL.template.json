@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "TreeView",
+  "description": "Strona z widokiem drzewa ma kontrolkę widoku drzewa służącą do wyświetlania zawartości hierarchicznej.",
+  "identity": "wts.Page.TreeView"
+}

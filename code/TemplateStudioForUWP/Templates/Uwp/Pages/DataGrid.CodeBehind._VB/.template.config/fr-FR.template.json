@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "DataGrid",
+    "description": "Une page affichant une grille de données simple.",
+    "identity": "wts.Page.DataGrid.CodeBehind.VB"
+}

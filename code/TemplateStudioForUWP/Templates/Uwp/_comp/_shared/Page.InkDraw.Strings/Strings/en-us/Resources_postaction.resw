@@ -1,0 +1,165 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the wts.ItemNamePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="wts.ItemName_LassoSelectionButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Lasso selection</value>
+    <comment>Lasso selection button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_LassoSelectionButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Lasso selection</value>
+    <comment>Lasso selection button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_TouchInkingButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Touch inking</value>
+    <comment>Touch inking button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_TouchInkingButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Touch inking</value>
+    <comment>Touch inking button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_MouseInkingButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Mouse inking</value>
+    <comment>Mouse inking button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_MouseInkingButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Mouse inking</value>
+    <comment>Mouse inking button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomInButton.Label" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ZoomInButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomInButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomOutButton.Label" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ZoomOutButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomOutButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_CutButton.Label" xml:space="preserve">
+    <value>Cut</value>
+    <comment>Cut button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_CutButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cut</value>
+    <comment>Cut button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_CutButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Cut</value>
+    <comment>Cut button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_CopyButton.Label" xml:space="preserve">
+    <value>Copy</value>
+    <comment>Copy button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_CopyButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy</value>
+    <comment>Copy button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_CopyButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Copy</value>
+    <comment>Copy button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_PasteButton.Label" xml:space="preserve">
+    <value>Paste</value>
+    <comment>Paste button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_PasteButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Paste</value>
+    <comment>Paste button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_PasteButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Paste</value>
+    <comment>Paste button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_UndoButton.Label" xml:space="preserve">
+    <value>Undo</value>
+    <comment>Undo button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_UndoButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Undo</value>
+    <comment>Undo button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_UndoButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Undo</value>
+    <comment>Undo button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_RedoButton.Label" xml:space="preserve">
+    <value>Redo</value>
+    <comment>Redo button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_RedoButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Redo</value>
+    <comment>Redo button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_RedoButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Redo</value>
+    <comment>Redo button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_LoadInkFileButton.Label" xml:space="preserve">
+    <value>Load ink file</value>
+    <comment>LoadInkFile button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_LoadInkFileButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Load ink file</value>
+    <comment>LoadInkFile button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_LoadInkFileButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Load ink file</value>
+    <comment>LoadInkFile button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_SaveInkFileButton.Label" xml:space="preserve">
+    <value>Save ink file</value>
+    <comment>SaveInkFile button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_SaveInkFileButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save ink file</value>
+    <comment>SaveInkFile button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_SaveInkFileButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Save ink file</value>
+    <comment>SaveInkFile button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ExportAsImageButton.Label" xml:space="preserve">
+    <value>Export as image</value>
+    <comment>ExportAsImage button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ExportAsImageButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Export as image</value>
+    <comment>ExportAsImage button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ExportAsImageButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Export as image</value>
+    <comment>ExportAsImage button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ClearAllButton.Label" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ClearAllButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ClearAllButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button automation name property for wts.ItemName</comment>
+  </data>
+  <!--}]}-->
+</root>

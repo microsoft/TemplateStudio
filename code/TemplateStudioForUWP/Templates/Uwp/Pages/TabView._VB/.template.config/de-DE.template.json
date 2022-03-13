@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "Die Seite „Registerkartenansicht“ besitzt ein TabView-Steuerelement, um Inhalte auf verschiedenen Registerkarten anzuzeigen.",
+    "identity": "wts.Page.TabView.VB"
+}

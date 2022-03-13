@@ -1,0 +1,31 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Feature.DeepLinking.AddLogoTextsAndAppxManifest",
+  "identity": "Feature.DeepLinking.AddLogoTextsAndAppxManifest",
+  "shortName": "Feature.DeepLinking.AddLogoTextsAndAppxManifest",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == wts.Feat.DeepLinking"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Assets/Logo.png"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+﻿<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+<!--^^-->
+<!--{[{-->
+    <Type Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.TreeView,Microsoft.UI.Xaml.Controls.TreeViewItemInvokedEventArgs}" MarshalObject="Public" />
+
+    <Type Name="Microsoft.UI.Xaml.Controls.TreeView">
+      <Event Name="ItemInvoked" Dynamic="Required"/>
+    </Type>
+
+<!--}]}-->
+  </Application>
+</Directives>

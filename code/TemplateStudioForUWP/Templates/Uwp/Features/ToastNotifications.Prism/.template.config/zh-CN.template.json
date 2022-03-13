@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Toast Notifications",
+    "description": "添加代码以说明如何显示 toast 并处理要用于启动应用的 toast。",
+    "identity": "wts.Feat.ToastNotifications.Prism"
+}

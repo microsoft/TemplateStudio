@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "App Config",
+    "description": "Добавляет пустой файл App.config в проект.",
+    "identity": "wts.Feat.AppDotConfig.VB"
+}

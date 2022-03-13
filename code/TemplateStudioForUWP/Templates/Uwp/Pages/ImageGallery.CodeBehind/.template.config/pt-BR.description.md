@@ -1,0 +1,1 @@
+﻿Uma página que exibe uma galeria de imagens e permite ao usuário navegar entre a galeria e detalhes de imagens.

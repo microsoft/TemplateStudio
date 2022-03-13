@@ -1,0 +1,3 @@
+﻿Mithilfe dieses Features können Sie Benutzeraktivitäten von Ihrer App auf die Windows-Zeitachse übertragen und Ihre App per Deep Linking über die Benutzeraktivität fortsetzen. Diese Aktivitäten können mithilfe adaptiver Karten oder von Text und Beschreibung erstellt werden.
+
+[Erfahren Sie, wie Sie Benutzeraktivitäten auch geräteübergreifend verwenden können.](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities)

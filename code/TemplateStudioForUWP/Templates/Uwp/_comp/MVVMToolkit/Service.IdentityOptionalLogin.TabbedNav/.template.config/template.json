@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Service.IdentityOptionalLogin.TabbedNav",
+  "identity": "MVVMToolkit.Service.IdentityOptionalLogin.TabbedNav",
+  "shortName": "MVVMToolkit.Service.IdentityOptionalLogin.TabbedNav",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == TabbedNav & groupidentity == wts.Service.IdentityOptionalLogin"
+ },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

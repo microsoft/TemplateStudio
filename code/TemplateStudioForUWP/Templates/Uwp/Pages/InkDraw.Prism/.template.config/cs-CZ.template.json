@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "Stránka umožňující vytvářet poznámky a kresby pomocí nástroje Windows Ink",
+  "identity": "wts.Page.InkDraw.Prism"
+}

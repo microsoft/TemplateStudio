@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "现代、快速、模块化的 MVVM 库和 Windows 社区工具包的一部分。"
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "这是应用程序的传统模型。该模型以 code-behind 的方式处理逻辑。"
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism 是一种用于构建松散耦合、可维护且可测试的 XAML 应用程序的 framework。"
+  }
+]

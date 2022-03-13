@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Share Target",
+  "description": "Ermöglicht Ihnen, mittels des Freigabevertrags in Ihrer UWP-App Daten zu empfangen, die von anderen Apps freigegeben wurden.",
+  "identity": "wts.Feat.ShareTarget.CodeBehind"
+}

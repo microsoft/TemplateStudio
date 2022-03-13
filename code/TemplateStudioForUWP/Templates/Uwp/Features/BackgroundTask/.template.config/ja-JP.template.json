@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Background Task",
+  "description": "アプリがフォアグラウンドにない場合でもコード実行の準備ができたインプロセス バックグラウンド タスクを追加します。",
+  "identity": "wts.Feat.BackgroundTask"
+}

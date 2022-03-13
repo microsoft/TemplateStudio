@@ -1,0 +1,53 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Project.AddCoreProject.VB",
+  "identity": "Project.AddCoreProject.VB",
+  "shortName": "Project.AddCoreProject.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "project",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.compositionFilter": "groupidentity == wts.Proj.Default.VB",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0"
+  },
+  "sourceName": "wts.projectName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": "Param_ProjectName.Core/Param_ProjectName.Core.vbproj" }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add reference to this project in main UWP app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

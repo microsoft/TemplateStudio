@@ -1,0 +1,88 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "TreeView",
+  "shortName": "TreeView",
+  "groupIdentity": "wts.Page.TreeView.VB",
+  "identity": "wts.Page.TreeView.VB",
+  "description": "The tree-view page has a tree view control to show hierarchical content.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMToolkit",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "7",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.dependencies": "wts.Service.SampleDataService.VB",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Behaviors/TreeViewCollapseBehavior.vb"
+    },
+    {
+      "path": "TemplateSelectors/SampleDataTemplateSelector.vb"
+    },
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.vb"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.UI.Xaml",
+        "version" : "2.5.0",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Microsoft.Toolkit.Uwp.UI.Controls",
+        "version" : "7.0.2",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

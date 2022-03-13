@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "Page.AddTitle.TabbedNav.VB",
+    "identity": "Page.AddTitle.TabbedNav.VB",
+    "shortName": "Page.AddTitle.TabbedNav.VB",
+    "tags": {
+      "language": "VisualBasic",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform" : "Uwp",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == wts.Page.TabbedNav.VB"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

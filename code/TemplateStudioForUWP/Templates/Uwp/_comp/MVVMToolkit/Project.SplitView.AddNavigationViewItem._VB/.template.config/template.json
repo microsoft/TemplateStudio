@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMToolkit.Project.SplitView.AddNavigationViewItem.VB",
+  "identity": "MVVMToolkit.Project.SplitView.AddNavigationViewItem.VB",
+  "shortName": "MVVMToolkit.Project.SplitView.AddNavigationViewItem.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.VB & $frontendframework == MVVMToolkit & $projectType == SplitView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

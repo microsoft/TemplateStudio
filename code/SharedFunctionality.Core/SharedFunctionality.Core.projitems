@@ -209,24 +209,59 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectAnyCPUTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICoreProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIDesktopProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIUwpProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfCoreProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectAnyCPUTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\XamlIslandProjectTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\UwpSolutionTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUICppSolutionTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUIUwpSolutionTemplate.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WpfSolutionTemplate.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICoreProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfCoreProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\XamlIslandProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\UwpSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUICppSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WpfSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

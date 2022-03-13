@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "User Activity",
+  "description": "Inclua a capacidade de adicionar atividades do usuário à Linha do Tempo do Windows.",
+  "identity": "wts.Feat.UserActivity"
+}

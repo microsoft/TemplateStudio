@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Camera",
+  "description": "Une page pour la saisie et l'affichage d'une image provenant de l'appareil photo.",
+  "identity": "wts.Page.Camera"
+}

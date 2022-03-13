@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Azure Notifications",
+  "description": "Azure Bildirim Hub'larından gelen iletileri almak ve işlemek için kaydolun:",
+  "identity": "wts.Feat.HubNotifications"
+}

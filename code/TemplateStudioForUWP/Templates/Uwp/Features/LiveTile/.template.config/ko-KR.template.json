@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Live Tile",
+  "description": "여러 타일 작업을 위한 코드와 타일 업데이트를 표시할 샘플을 추가합니다.",
+  "identity": "wts.Feat.LiveTile"
+}

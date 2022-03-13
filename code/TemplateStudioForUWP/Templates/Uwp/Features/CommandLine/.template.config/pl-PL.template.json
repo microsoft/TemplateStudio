@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Command Line Launch",
+  "description": "Obsługa przekazywania argumentów i uruchamiania z wiersza polecenia.",
+  "identity": "wts.Feat.CommandLine"
+}

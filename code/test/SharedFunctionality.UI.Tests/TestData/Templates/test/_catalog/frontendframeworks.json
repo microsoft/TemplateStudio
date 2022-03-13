@@ -1,0 +1,12 @@
+[
+  {
+    "name": "TestFramework",
+    "displayName": "Test Framework Base",
+    "summary": "Test Framework Base Summary",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "",
+    "platform": "test",
+    "languages": [ "C#" ]
+  }
+]

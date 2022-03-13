@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Web API",
+  "description": "ASP.NET Core Web API projesi ekleyin.",
+  "identity": "wts.Service.WebApi.Prism"
+}

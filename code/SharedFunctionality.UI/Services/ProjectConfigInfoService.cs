@@ -16,11 +16,8 @@ namespace Microsoft.Templates.UI.Services
     public class ProjectConfigInfoService
     {
         // Framework
-        public const string MVVMBasic = "MVVMBasic";
-        public const string MVVMLight = "MVVMLight";
         public const string CodeBehind = "CodeBehind";
         public const string None = "None";
-        public const string CaliburnMicro = "CaliburnMicro";
         public const string Prism = "Prism";
         public const string MvvmToolkit = "MVVMToolkit";
 
@@ -173,25 +170,13 @@ namespace Microsoft.Templates.UI.Services
 
         private string InferFramework(string platform)
         {
-            if (IsMVVMBasic(platform))
-            {
-                return MVVMBasic;
-            }
-            else if (IsMVVMLight(platform))
-            {
-                return MVVMLight;
-            }
-            else if (IsCodeBehind(platform))
+            if (IsCodeBehind(platform))
             {
                 return CodeBehind;
             }
             else if (IsNone(platform))
             {
                 return None;
-            }
-            else if (IsCaliburnMicro(platform))
-            {
-                return CaliburnMicro;
             }
             else if (IsPrism())
             {
@@ -303,45 +288,6 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private bool IsMVVMBasic(string platform)
-        {
-            switch (platform)
-            {
-                case Platforms.Uwp:
-                    if (IsCSharpProject())
-                    {
-                        return ExistsFileInProjectPath("ActivationService.cs", "Services")
-                            && ExistsFileInProjectPath("Observable.cs", "Helpers");
-                    }
-
-                    return ExistsFileInProjectPath("ActivationService.vb", "Services")
-                        && ExistsFileInProjectPath("Observable.vb", "Helpers");
-                case Platforms.Wpf:
-                    return ExistsFileInProjectPath("ApplicationHostService.cs", "Services")
-                        && ExistsFileInProjectPath("Observable.cs", "Helpers")
-                        && ExistsFileInProjectPath("RelayCommand.cs", "Helpers");
-                default:
-                    return false;
-            }
-        }
-
-        private bool IsMVVMLight(string platform)
-        {
-            switch (platform)
-            {
-                case Platforms.Uwp:
-                    return (ExistsFileInProjectPath("ActivationService.cs", "Services")
-                        || ExistsFileInProjectPath("ActivationService.vb", "Services"))
-                        && ContainsNugetPackage("MvvmLight");
-                case Platforms.Wpf:
-                    return ExistsFileInProjectPath("ApplicationHostService.cs", "Services")
-                        && ExistsFileInProjectPath("ViewModelLocator.cs", "ViewModels")
-                        && ContainsNugetPackage("MvvmLight");
-                default:
-                    return false;
-            }
-        }
-
         private bool IsCodeBehind(string platform)
         {
             switch (platform)
@@ -421,18 +367,6 @@ namespace Microsoft.Templates.UI.Services
         private bool IsPrism()
         {
             return ContainsNugetPackage("Prism.Unity");
-        }
-
-        private bool IsCaliburnMicro(string platform)
-        {
-            if (platform == Platforms.Uwp)
-            {
-                return (ExistsFileInProjectPath("ActivationService.cs", "Services")
-                    || ExistsFileInProjectPath("ActivationService.vb", "Services"))
-                    && ContainsNugetPackage("Caliburn.Micro");
-            }
-
-            return false;
         }
 
         private bool IsMicrosoftMvvmToolkit(string platform)

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "3D App Launcher",
+    "description": "Включите средство запуска 3D-приложений для использования приложений в среде смешанной реальности.",
+    "identity": "wts.Feat.3DLauncher.VB"
+}

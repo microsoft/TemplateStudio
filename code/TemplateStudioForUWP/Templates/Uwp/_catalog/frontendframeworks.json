@@ -1,0 +1,32 @@
+﻿[
+    {
+        "name": "MVVMToolkit",
+        "displayName": "MVVM Toolkit",
+        "summary": "A modern, fast, modular MVVM library and part of the Windows Community Toolkit.",
+        "author": "Microsoft Community",
+        "order": "0",
+        "licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
+        "platform":  "Uwp",
+        "languages": [ "C#", "VisualBasic" ]
+    },
+    {
+        "name": "CodeBehind",
+        "displayName": "Code Behind",
+        "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
+        "author": "Microsoft",
+        "order": "1",
+        "licenses": "",
+        "platform":  "Uwp",
+        "languages": [ "C#", "VisualBasic" ]
+    },
+    {
+        "name": "Prism",
+        "displayName": "Prism",
+        "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications.",
+        "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
+        "order": "2",
+        "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
+        "platform": "Uwp",
+        "languages": [ "C#" ]
+    }
+]

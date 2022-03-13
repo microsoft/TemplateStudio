@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "Strona pozwalająca załadować rysunek i rysować po nim przy użyciu funkcji Windows Ink.",
+  "identity": "wts.Page.InkDrawPicture"
+}

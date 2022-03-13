@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Feedback Hub Link",
+    "description": "在設定頁面上新增「意見反應中樞」的連結。",
+    "identity": "wts.Feat.FeedbackHub.MVVMToolkit.VB"
+}

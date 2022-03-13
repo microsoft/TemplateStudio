@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Content Grid",
+  "description": "このページでは、適応型グリッドのフォーム内にカスタム アイテムを追加できます。",
+  "identity": "wts.Page.ContentGrid.Prism"
+}

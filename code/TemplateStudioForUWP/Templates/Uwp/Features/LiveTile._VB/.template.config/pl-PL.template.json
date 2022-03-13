@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Live Tile",
+    "description": "Dodaje próbkę do wyświetlania aktualizacji kafelków oraz kod do pracy z wieloma kafelkami.",
+    "identity": "wts.Feat.LiveTile.VB"
+}

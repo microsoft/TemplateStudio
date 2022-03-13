@@ -1,0 +1,19 @@
+﻿
+    <Grid x:Name="ContentArea">
+    <!--{[{-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="visualStateGroup" CurrentStateChanged="VisualStateGroup_CurrentStateChanged">
+                <VisualState x:Name="SmallVisualState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="BigVisualState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--}]}-->       
+    </Grid>

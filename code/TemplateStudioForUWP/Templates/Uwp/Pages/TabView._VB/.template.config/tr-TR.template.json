@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "Sekme görünümü sayfasında farklı sekmelerdeki içeriğin gösterilmesini sağlayan bir TabView denetimi bulunmaktadır.",
+    "identity": "wts.Page.TabView.VB"
+}

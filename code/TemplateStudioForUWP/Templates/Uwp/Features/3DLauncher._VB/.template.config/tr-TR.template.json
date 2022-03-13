@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "3D App Launcher",
+    "description": "Uygulama bir Karma Gerçeklik ortamında kullanıldığında bir 3B uygulama başlatıcısı ekleyin.",
+    "identity": "wts.Feat.3DLauncher.VB"
+}

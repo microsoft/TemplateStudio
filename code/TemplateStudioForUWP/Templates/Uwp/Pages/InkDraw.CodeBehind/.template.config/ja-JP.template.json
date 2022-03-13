@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "Windows Ink を使ってノートと図面を作成することができるページです。",
+  "identity": "wts.Page.InkDraw.CodeBehind"
+}

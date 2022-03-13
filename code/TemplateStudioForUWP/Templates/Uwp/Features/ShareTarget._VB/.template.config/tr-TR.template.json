@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Share Target",
+    "description": "Diğer uygulamalar tarafından paylaşılan verileri UWP uygulamanızdaki paylaşım sözleşmesini kullanarak almanıza olanak tanır.",
+    "identity": "wts.Feat.ShareTarget.VB"
+}

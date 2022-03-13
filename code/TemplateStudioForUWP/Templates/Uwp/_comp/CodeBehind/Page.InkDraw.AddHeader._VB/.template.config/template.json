@@ -1,0 +1,29 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Page.InkDraw.AddHeader.VB",
+  "identity": "CodeBehind.Page.InkDraw.AddHeader.VB",
+  "shortName": "CodeBehind.Page.InkDraw.AddHeader.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionOrder": "0",
+    "wts.compositionFilter": "$frontendframework == CodeBehind & $projectType == Blank|TabbedNav|MenuBar & groupidentity == wts.Page.InkDraw.VB"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

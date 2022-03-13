@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Map",
+  "description": "Strona mapy opiera się na kontrolce mapy. Kod obejmuje dodawanie ikony mapy i ustawianie lokalizacji.",
+  "identity": "wts.Page.Map.CodeBehind"
+}

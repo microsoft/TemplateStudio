@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "TabView",
+    "description": "A página de exibição de guia tem um controle TabView para mostrar o conteúdo em diferentes guias.",
+    "identity": "wts.Page.TabView.VB"
+}

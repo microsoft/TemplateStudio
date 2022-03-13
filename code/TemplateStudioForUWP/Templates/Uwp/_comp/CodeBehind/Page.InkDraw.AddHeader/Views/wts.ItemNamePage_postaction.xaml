@@ -1,0 +1,57 @@
+﻿    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--}]}-->
+        <!--^^-->
+        <!--{[{-->
+        <RelativePanel>
+            <InkToolbar x:Name="toolbar" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind LassoSelectionButtonIsChecked, Mode=TwoWay}">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
+                </InkToolbarCustomToolButton>
+                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{x:Bind TouchInkingButtonIsChecked, Mode=TwoWay}">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
+                </InkToolbarCustomToggleButton>
+                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{x:Bind MouseInkingButtonIsChecked, Mode=TwoWay}">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
+                </InkToolbarCustomToggleButton>
+            </InkToolbar>
+            <CommandBar x:Name="topCommandBar" Style="{StaticResource InkCommandBarStyle}" RelativePanel.RightOf="toolbar" RelativePanel.AlignRightWithPanel="True">
+                <CommandBar.PrimaryCommands>
+                    <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                </CommandBar.PrimaryCommands>
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton x:Uid="wts.ItemName_CutButton" Icon="Cut" Click="Cut_Click" IsEnabled="{x:Bind CutButtonIsEnabled, Mode=OneWay}"  BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_CopyButton" Icon="Copy" Click="Copy_Click" IsEnabled="{x:Bind CopyButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_PasteButton" Icon="Paste" Click="Paste_Click" IsEnabled="{x:Bind PasteButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarSeparator />
+                    <AppBarButton x:Uid="wts.ItemName_UndoButton" Icon="Undo" Click="Undo_Click" IsEnabled="{x:Bind UndoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_RedoButton" Icon="Redo" Click="Redo_Click" IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarSeparator/>
+                    <AppBarButton x:Uid="wts.ItemName_LoadInkFileButton" Icon="OpenFile" Click="LoadInkFile_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_SaveInkFileButton" Icon="Save" Click="SaveInkFile_Click" IsEnabled="{x:Bind SaveInkFileButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarButton x:Uid="wts.ItemName_ExportAsImageButton" Icon="Download" Click="ExportAsImage_Click" IsEnabled="{x:Bind ExportAsImageButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    <AppBarSeparator/>
+                    <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{x:Bind ClearAllButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
+        </RelativePanel>
+        <!--}]}-->
+        <ScrollViewer
+            x:Name="canvasScroll"
+            <!--{[{-->
+            Grid.Row="1"
+            <!--}]}-->
+        </ScrollViewer>
+        <CommandBar
+            x:Name="bottomCommandBar"
+        <!--{[{-->
+            Grid.Row="2"
+        <!--}]}-->
+        </CommandBar>
+    </Grid>

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Multi-Instance",
+    "description": "Spustí více instancí aplikace.",
+    "identity": "wts.Feat.MultiInstance.VB"
+}

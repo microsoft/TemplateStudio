@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="Param_RootNamespace.Views.ImageGalleryViewDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Param_RootNamespace.Core.Models"
+    KeyDown="OnPageKeyDown"
+    mc:Ignorable="d">
+
+    <Grid>
+        <FlipView
+            animations:Connected.Key="galleryAnimationKey"
+            animations:Connected.AnchorElement="{Binding ElementName=detailImage}"
+            ItemsSource="{x:Bind Source, Mode=OneWay}"
+            SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="models:SampleImage">
+                    <Viewbox StretchDirection="DownOnly">
+                        <Image                            
+                            x:Name="detailImage"
+                            Source="{x:Bind Source}" 
+                            Stretch="None" />
+                    </Viewbox>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </Grid>
+</Page>

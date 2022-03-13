@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Optional Login",
+  "description": "Richten Sie für Ihre Anwendung eine optionale Anmeldung und eingeschränkte Features ein.",
+  "identity": "wts.Service.IdentityOptionalLogin.Prism"
+}

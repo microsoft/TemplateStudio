@@ -1,0 +1,1 @@
+﻿La page Plans s'appuie sur la commande Plan de Windows. Le code inclut l'ajout d'une icône Plan, la géolocalisation à partir des services de localisation et la définition du point central de la carte.

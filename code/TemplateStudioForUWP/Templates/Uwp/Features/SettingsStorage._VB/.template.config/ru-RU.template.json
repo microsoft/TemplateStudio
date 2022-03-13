@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Settings Storage",
+  "description": "Хранилище параметров упрощает хранение данных в папке данных приложения.",
+  "identity": "wts.Feat.SettingsStorage.VB"
+}

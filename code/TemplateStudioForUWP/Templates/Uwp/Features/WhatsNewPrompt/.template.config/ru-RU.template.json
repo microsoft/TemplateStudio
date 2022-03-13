@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "What's New Prompt",
+  "description": "Отображение приглашения при первом запуске приложения после обновления.",
+  "identity": "wts.Feat.WhatsNewPrompt"
+}

@@ -1,0 +1,66 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Live Tile",
+  "shortName": "Live Tile",
+  "groupIdentity": "wts.Feat.LiveTile",
+  "identity": "wts.Feat.LiveTile.Prism",
+  "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "4",
+    "wts.group": "UserInteraction",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
+    "wts.dependencies":"wts.Feat.SettingsStorage",
+    "wts.defaultInstance": "LiveTile",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"    
+  },
+  "sourceName": "LiveTileFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Services/ILiveTileFeatureService.cs"
+    },
+    {
+      "path": "Services/LiveTileFeatureService.cs"
+    },
+    {
+      "path": "Services/LiveTileFeatureService.Samples.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.Notifications",
+        "version" : "7.0.2",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

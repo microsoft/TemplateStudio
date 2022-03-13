@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Content Grid",
+  "description": "Esta página permite adicionar itens personalizados na forma de uma Grade adaptável.",
+  "identity": "wts.Page.ContentGrid.CodeBehind"
+}

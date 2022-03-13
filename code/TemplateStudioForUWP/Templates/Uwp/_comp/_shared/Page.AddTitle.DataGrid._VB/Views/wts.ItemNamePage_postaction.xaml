@@ -1,0 +1,25 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
+<!--{--{-->
+        <Grid>
+<!--}--}-->
+<!--^^-->
+<!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="wts.ItemName_Title"
+            Margin="{StaticResource SmallLeftMargin}"
+            Style="{StaticResource PageTitleStyle}" />
+        <Grid Grid.Row="1">
+<!--}]}-->
+            <controls:DataGrid  
+            </controls:DataGrid>
+        </Grid>
+    </Grid>
+</Page>

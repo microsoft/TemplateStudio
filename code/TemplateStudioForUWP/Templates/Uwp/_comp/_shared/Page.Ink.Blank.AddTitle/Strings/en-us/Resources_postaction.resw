@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the wts.ItemName Header to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="wts.ItemNameHeader.Text" xml:space="preserve">
+    <value>wts.ItemName</value>
+    <comment>wts.ItemName header title</comment>
+  </data>
+    <!--}]}-->
+</root>

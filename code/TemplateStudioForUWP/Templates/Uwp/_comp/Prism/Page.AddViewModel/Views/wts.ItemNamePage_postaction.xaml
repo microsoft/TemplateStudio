@@ -1,0 +1,8 @@
+﻿<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    <!--{[{-->
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
+    <!--}]}-->
+    mc:Ignorable="d">
+</Page>

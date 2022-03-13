@@ -1,0 +1,42 @@
+﻿[
+    {
+      "name": "Blank",
+      "displayName": "Blank",
+      "summary": "This basic project is a blank canvas upon which to build your app.",
+      "author": "Microsoft",
+      "order": "2",
+      "licenses": "",
+      "platform":  "Uwp",
+      "languages": [ "C#", "VisualBasic" ]
+    },
+    {
+      "name": "SplitView",
+      "displayName": "Navigation Pane",
+      "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
+      "author": "Microsoft",
+      "order": "1",
+      "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
+      "platform":  "Uwp",
+      "languages": [ "C#", "VisualBasic" ]
+    },
+    {
+      "name": "TabbedNav",
+      "displayName": "Horizontal Navigation Pane",
+      "summary": "Navigation Items across the top allow for quickly navigating between pages.",
+      "author": "Microsoft",
+      "order": "3",
+      "licenses": "",
+      "platform":  "Uwp",
+      "languages": [ "C#", "VisualBasic" ]
+    },
+    {
+      "name": "MenuBar",
+      "displayName": "MenuBar",
+      "summary": "A menu is added to move around between pages.",
+      "author": "Microsoft",
+      "order": "4",
+      "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
+      "platform":  "Uwp",
+      "languages": [ "C#", "VisualBasic" ]
+    }
+]

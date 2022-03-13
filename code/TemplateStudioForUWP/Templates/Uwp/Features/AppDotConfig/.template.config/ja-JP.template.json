@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "App Config",
+  "description": "プロジェクトに空の App.config ファイルを追加します。",
+  "identity": "wts.Feat.AppDotConfig"
+}
