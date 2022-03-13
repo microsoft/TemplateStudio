@@ -13,10 +13,10 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.Build.Uwp
 {
-    [Collection("GenerationCollection")]
+    [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseUwpVisualComparisonTests
     {
-        public AccessibilityTests(GenerationFixture fixture)
+        public AccessibilityTests(UwpGenTemplatesTestFixture fixture)
             : base(fixture)
         {
         }

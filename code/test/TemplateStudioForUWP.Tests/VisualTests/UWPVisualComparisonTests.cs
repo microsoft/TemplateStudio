@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Helpers;
 using OpenQA.Selenium.Appium.Windows;
@@ -19,7 +18,7 @@ namespace Microsoft.Templates.Test.Build.Uwp
 {
     public class UWPVisualComparisonTests : BaseUwpVisualComparisonTests
     {
-        public UWPVisualComparisonTests(GenerationFixture fixture)
+        public UWPVisualComparisonTests(UwpGenTemplatesTestFixture fixture)
         : base(fixture)
         {
         }

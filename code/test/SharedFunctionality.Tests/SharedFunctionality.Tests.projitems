@@ -37,8 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)BaseProjectFileTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseTemplateFolderValidationTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseTemplateJsonValidationTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BuildCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BuildFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BuildTemplatesTests\BuildTemplatesTestFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Frameworks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenTests\GenerationCollection.cs" />

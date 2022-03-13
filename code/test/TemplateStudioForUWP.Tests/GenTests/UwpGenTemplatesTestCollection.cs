@@ -6,8 +6,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("BuildCollection")]
-    public class BuildCollection : ICollectionFixture<BuildFixture>
+    [CollectionDefinition(nameof(UwpGenTemplatesTestCollection))]
+    public class UwpGenTemplatesTestCollection : ICollectionFixture<UwpGenTemplatesTestFixture>
     {
     }
 }

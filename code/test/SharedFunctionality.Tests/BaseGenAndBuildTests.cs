@@ -13,12 +13,10 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI.Services;
 using Xunit;
-////using Microsoft.Templates.Test.BuildWithLegacy;
 
 namespace Microsoft.Templates.Test
 {

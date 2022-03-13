@@ -14,6 +14,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
@@ -24,6 +25,10 @@ namespace Microsoft.Templates.Test
     public abstract class BaseGenAndBuildFixture
     {
         protected const string All = "all";
+
+        private static Dictionary<string, bool> syncExecuted = new Dictionary<string, bool>();
+
+        public virtual TemplatesSource Source => null;
 
         public abstract string GetTestRunPath();
 
@@ -201,6 +206,23 @@ namespace Microsoft.Templates.Test
             }
 
             throw new ApplicationException("No valid randomName could be generated");
+        }
+
+        public static string ShortFrameworkName(string framework)
+        {
+            switch (framework)
+            {
+                case Frameworks.Prism:
+                    return "P";
+                case Frameworks.CodeBehind:
+                    return "CB";
+                case Frameworks.MVVMToolkit:
+                    return "MTM";
+                case "":
+                    return "_";
+                default:
+                    return framework;
+            }
         }
 
         public (int exitCode, string outputFile) BuildSolutionUwp(string solutionName, string outputPath, string platform)
@@ -381,6 +403,107 @@ namespace Microsoft.Templates.Test
             GenContext.SetCurrentPlatform(platform);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
+        }
+
+        public static void InitializeTemplates(TemplatesSource source, string programmingLanguage)
+        {
+            if (syncExecuted.ContainsKey(source.Id) && syncExecuted[ShortFrameworkName(source.Id)] == true)
+            {
+                return;
+            }
+
+            GenContext.Bootstrap(source, new FakeGenShell(source.Platform, programmingLanguage), source.Platform, programmingLanguage, TestConstants.TemplateVersionNumber);
+
+            syncExecuted.Add(source.Id, true);
+        }
+
+        public static IEnumerable<object[]> GetProjectTemplates(TemplatesSource templateSource, string frameworkFilter, string programmingLanguage, string selectedPlatform)
+        {
+            //InitializeTemplates(new LocalTemplatesSource(null, ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(templateSource, programmingLanguage);
+
+            List<object[]> result = new List<object[]>();
+
+            var languagesOfInterest = ProgrammingLanguages.GetAllLanguages().ToList();
+
+            if (!string.IsNullOrWhiteSpace(programmingLanguage))
+            {
+                languagesOfInterest.Clear();
+                languagesOfInterest.Add(programmingLanguage);
+            }
+
+            var platformsOfInterest = Platforms.GetAllPlatforms().ToList();
+
+            if (!string.IsNullOrWhiteSpace(selectedPlatform))
+            {
+                platformsOfInterest.Clear();
+                platformsOfInterest.Add(selectedPlatform);
+            }
+
+            foreach (var language in languagesOfInterest)
+            {
+                SetCurrentLanguage(language);
+                foreach (var platform in platformsOfInterest)
+                {
+                    SetCurrentPlatform(platform);
+
+                    if (platform == Platforms.WinUI)
+                    {
+                        ////var appModels = AppModels.GetAllAppModels().ToList();
+                        ////foreach (var appModel in appModels)
+                        ////{
+                        ////    if (appModel == AppModels.Desktop)
+                        ////    {
+                        result.AddRange(GetContextOptions(frameworkFilter, language, platform, AppModels.Desktop));
+                        ////    }
+                        ////}
+                    }
+                    else
+                    {
+                        result.AddRange(GetContextOptions(frameworkFilter, language, platform, string.Empty));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        protected static List<object[]> GetContextOptions(string frameworkFilter, string language, string platform, string appModel)
+        {
+            List<object[]> result = new List<object[]>();
+
+            var context = new UserSelectionContext(language, platform);
+            if (!string.IsNullOrEmpty(appModel))
+            {
+                context.AddAppModel(appModel);
+            }
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(context)
+                    .Where(m => !string.IsNullOrEmpty(m.Description))
+                    .Select(m => m.Name);
+
+            foreach (var projectType in projectTypes)
+            {
+                context.ProjectType = projectType;
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrontEndFrameworks(context)
+                                            .Where(m => m.Name == frameworkFilter)
+                                            .Select(m => m.Name)
+                                            .ToList();
+
+                foreach (var framework in targetFrameworks)
+                {
+                    if (!string.IsNullOrEmpty(appModel))
+                    {
+                        result.Add(new object[] { projectType, framework, platform, language, appModel });
+                    }
+                    else
+                    {
+                        result.Add(new object[] { projectType, framework, platform, language });
+                    }
+                }
+            }
+
+            return result;
         }
 
         private static bool IsMatchPropertyBag(ITemplateInfo info, Dictionary<string, string> propertyBag)

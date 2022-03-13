@@ -8,7 +8,7 @@ using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Test
 {
-    public class UwpBuildTemplatesTestFixture : BuildTemplatesTestFixture
+    public class UwpGenTemplatesTestFixture : GenerationFixture
     {
         public override TemplatesSource Source => new UwpTestsTemplatesSource();
 

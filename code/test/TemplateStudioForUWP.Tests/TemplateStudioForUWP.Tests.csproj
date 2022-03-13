@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GenTests\ResourceUsageTests.cs" />
+    <Compile Include="GenTests\UwpGenTemplatesTestCollection.cs" />
+    <Compile Include="GenTests\UwpGenTemplatesTestFixture.cs" />
     <Compile Include="ProjectFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateFolderValidationTests.cs" />

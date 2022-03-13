@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Test.Build
             WinAppDriverHelper.StartIfNotRunning();
 
             var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
-            var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
+            var runTestsScript = $"& \"{GetVstestsConsoleExePath()}\" \"{buildOutput}\" ";
 
             // Test failures will be treated as an error but they are handled below
             var output = ExecutePowerShellScript(runTestsScript, outputOnError: true);
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Test.Build
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"{GetMsBuildExePath()}\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -181,7 +181,7 @@ namespace Microsoft.Templates.Test.Build
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"{GetMsBuildExePath()}\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -243,7 +243,7 @@ namespace Microsoft.Templates.Test.Build
             // build test project
             var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
             ExecutePowerShellScript(restoreNugetScript);
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            var buildSolutionScript = $"& \"{GetMsBuildExePath()}\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -299,7 +299,7 @@ ForEach ($i in $dump)
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
             var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            var buildSolutionScript = $"& \"{GetMsBuildExePath()}\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
             ExecutePowerShellScript(buildSolutionScript);
 
             result.CertificatePath = InstallCertificate(baseSetup);
@@ -340,10 +340,47 @@ Write-Output $packageFullName";
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
             var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
+            var buildSolutionScript = $"& \"{GetMsBuildExePath()}\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
             ExecutePowerShellScript(buildSolutionScript);
 
             return baseSetup;
+        }
+
+        private List<string> VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
+
+        private string GetVstestsConsoleExePath()
+        {
+            var basePath = "C:\\Program Files\\Microsoft Visual Studio\\2022\\{0}\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe";
+
+            foreach (var edition in VsEditions)
+            {
+                var possPath = string.Format(basePath, edition);
+
+                if (File.Exists(possPath))
+                {
+                    return possPath;
+                }
+            }
+
+            throw new FileNotFoundException("vstest.console.exe could not be found. If you installed Visual Studio somewhere other than the default location you will need to modify the test code.");
+
+        }
+
+        private string GetMsBuildExePath()
+        {
+            var basePath = "C:\\Program Files\\Microsoft Visual Studio\\2022\\{0}\\MSBuild\\Current\\Bin\\MSBuild.exe";
+
+            foreach (var edition in VsEditions)
+            {
+                var possPath = string.Format(basePath, edition);
+
+                if (File.Exists(possPath))
+                {
+                    return possPath;
+                }
+            }
+
+            throw new FileNotFoundException("MSBuild.exe could not be found. If you installed Visual Studio somewhere other than the default location you will need to modify the test code.");
         }
 
         private void ReplaceInFiles(string find, string replace, string rootDirectory, string fileFilter)

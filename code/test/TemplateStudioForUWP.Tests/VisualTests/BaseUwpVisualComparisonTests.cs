@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Appium.Windows;
 
@@ -12,7 +11,7 @@ namespace Microsoft.Templates.Test.Build
 {
     public class BaseUwpVisualComparisonTests : BaseVisualComparisonTests
     {
-        public BaseUwpVisualComparisonTests(GenerationFixture fixture)
+        public BaseUwpVisualComparisonTests(UwpGenTemplatesTestFixture fixture)
         : base(fixture)
         {
         }
