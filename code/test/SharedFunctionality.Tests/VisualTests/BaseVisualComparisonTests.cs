@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test.Build
             Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
-            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+            Fs.CopyRecursive(@".\VisualTests\TestProjectSource", projectFolder, overwrite: true);
 
             // enable appropriate test
             var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Test.Build
             Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
-            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+            Fs.CopyRecursive(@".\VisualTests\TestProjectSource", projectFolder, overwrite: true);
 
             // enable appropriate test
             var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");
@@ -198,7 +198,7 @@ namespace Microsoft.Templates.Test.Build
             Fs.EnsureFolderExists(imagesFolder);
 
             // Copy base project
-            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+            Fs.CopyRecursive(@".\VisualTests\TestProjectSource", projectFolder, overwrite: true);
 
             // enable appropriate test
             var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");

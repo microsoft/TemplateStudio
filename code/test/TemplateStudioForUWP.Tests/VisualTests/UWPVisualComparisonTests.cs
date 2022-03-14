@@ -16,6 +16,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.Build.Uwp
 {
+    [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class UWPVisualComparisonTests : BaseUwpVisualComparisonTests
     {
         public UWPVisualComparisonTests(UwpGenTemplatesTestFixture fixture)
@@ -768,6 +769,11 @@ namespace Microsoft.Templates.Test.Build.Uwp
                     // Don't leave the app maximized in case we want to open the app again.
                     // Some controls handle layout differently when the app is first opened maximized
                     VirtualKeyboard.RestoreMaximizedWindow();
+                }
+                catch (Exception exc)
+                {
+                    System.Diagnostics.Debug.WriteLine(exc.ToString());
+                    throw;
                 }
                 finally
                 {
