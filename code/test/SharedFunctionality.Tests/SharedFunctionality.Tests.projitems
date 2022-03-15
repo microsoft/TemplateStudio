@@ -9,7 +9,9 @@
     <Import_RootNamespace>SharedFunctionality.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)bat\RunWackTest.bat" />
+    <None Include="$(MSBuildThisFileDirectory)bat\RunWackTest.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)GeneratedCode\TemplateTestDataGen.t4" />
     <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\app.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
