@@ -1,0 +1,20 @@
+﻿<controls:MetroWindow
+<!--^^-->
+<!--{[{-->
+    xmlns:behaviors="clr-namespace:Param_RootNamespace.Behaviors"
+<!--}]}-->
+    Style="{StaticResource CustomMetroWindow}"
+    Title="{x:Static properties:Resources.AppDisplayName}">
+    <controls:MetroWindow.Content>
+        <controls:HamburgerMenu
+            ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}">
+<!--{[{-->
+            <i:Interaction.Behaviors>
+                <behaviors:MenuItemsEnabledBehavior
+                    IsEnabled="{Binding IsAuthorized}"
+                    ApplyTo="{Binding IsPageRestricted}" />
+            </i:Interaction.Behaviors>
+<!--}]}-->
+        </controls:HamburgerMenu>
+    </controls:MetroWindow.Content>
+</controls:MetroWindow>

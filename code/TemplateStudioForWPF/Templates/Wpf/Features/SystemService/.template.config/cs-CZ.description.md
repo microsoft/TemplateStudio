@@ -1,0 +1,1 @@
+﻿SystemService obsahuje operace, které interagují s funkcemi a nativními rozhraními API operačního systému.

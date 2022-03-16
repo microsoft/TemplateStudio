@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
+    "shortName": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
+    "identity": "wts.Wpf.MVVMToolkit.Page.AddViewModel",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "wts.type": "composition",
+      "wts.platform": "Wpf",
+      "wts.version": "1.0.0",
+      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type==page"
+    },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

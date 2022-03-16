@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Современная, быстрая, модульная библиотека MVVM и часть инструментария сообщества Windows."
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "Такая модель традиционно используется для приложений, где логика обрабатывается в коде программной части (code-behind)."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism — это framework для создания приложений XAML со слабым связыванием и возможностями тестирования и поддержки."
+  }
+]

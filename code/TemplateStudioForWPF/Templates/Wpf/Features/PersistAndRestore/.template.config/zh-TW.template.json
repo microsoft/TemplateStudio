@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Persist And Restore",
+  "description": "保存和還原有助於簡化使用者本機 AppData 資料夾內的資料儲存方式。",
+  "identity": "wts.Wpf.Feat.PersistAndRestore"
+}

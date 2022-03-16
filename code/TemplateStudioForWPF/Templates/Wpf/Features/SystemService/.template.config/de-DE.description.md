@@ -1,0 +1,1 @@
+﻿„SystemService“ enthält Verfahren, die mit Funktionen und nativen APIs des Betriebssystems interagieren.

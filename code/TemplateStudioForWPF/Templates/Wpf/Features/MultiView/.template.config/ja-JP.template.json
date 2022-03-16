@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Multiple views",
+  "description": "ユーザーがアプリの個別の部分を独立したウィンドウに表示できるようにします。",
+  "identity": "wts.Wpf.Feat.MultiView"
+}

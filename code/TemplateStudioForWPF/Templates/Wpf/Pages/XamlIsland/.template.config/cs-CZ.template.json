@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "XAML Island",
+  "description": "Stránka, která hostuje ovládací prvek UWP pomocí ostrova XAML.",
+  "identity": "wts.Wpf.Page.XamlIsland"
+}

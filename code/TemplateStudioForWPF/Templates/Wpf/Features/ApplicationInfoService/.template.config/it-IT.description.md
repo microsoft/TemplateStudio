@@ -1,0 +1,1 @@
+﻿ApplicationInfoService contiene operazioni che restituiscono informazioni sull'applicazione corrente.

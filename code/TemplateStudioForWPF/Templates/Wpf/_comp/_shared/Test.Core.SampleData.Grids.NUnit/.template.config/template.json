@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "identity": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "shortName": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Wpf",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $page == wts.Wpf.Page.DataGrid|wts.Wpf.Page.DataGrid.CodeBehind",
+    "wts.compositionOrder" : "2"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

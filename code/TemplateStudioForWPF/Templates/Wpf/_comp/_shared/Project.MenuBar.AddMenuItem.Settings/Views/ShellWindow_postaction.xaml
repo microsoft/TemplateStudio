@@ -1,0 +1,6 @@
+﻿<MenuItem Header="{x:Static properties:Resources.ShellMenuFileHeader}" AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource Self}}">
+<!--{[{-->
+    <MenuItem Header="{x:Static properties:Resources.ShellMenuItemFilewts.ItemNamePageHeader}" Command="{Binding MenuFilewts.ItemNameCommand}" AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource Self}}" />
+    <Separator />
+<!--}]}-->
+</MenuItem>

@@ -1,0 +1,1 @@
+﻿ApplicationInfoService, geçerli uygulama yla ilgili bilgileri döndüren işlemleri içerir.

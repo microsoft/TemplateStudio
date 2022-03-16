@@ -1,0 +1,6 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<# 
+var root = @"..\..\..\TemplateStudioForWpf\Templates\Wpf";
+var outputNamespace = "TemplateStudioForWPF.Tests";
+#>
+<#@ include file="..\..\SharedFunctionality.Tests\GeneratedCode\TemplateTestDataGen.t4" #>

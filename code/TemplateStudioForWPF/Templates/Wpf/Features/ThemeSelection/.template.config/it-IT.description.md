@@ -1,0 +1,1 @@
+﻿Questa funzionalità consente di cambiare il tema della tua app tra chiaro e scuro.

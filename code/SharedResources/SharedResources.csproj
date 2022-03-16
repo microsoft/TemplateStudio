@@ -439,7 +439,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes1.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

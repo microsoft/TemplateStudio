@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci."
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "Zahrnuje také nabídku typu „hamburger“ pro navigaci mezi stránkami."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Je přidána nabídka pro přecházení mezi stránkami."
+  },
+  {
+    "name": "Ribbon",
+    "displayName": "Ribbon",
+    "summary": "Pás s kartami seskupenými podle funkcí. Karty představují akce v nabídce."
+  }
+]

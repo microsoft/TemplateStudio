@@ -1,0 +1,10 @@
+﻿
+<ResourceDictionary>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/_FontSizes.xaml" />
+        <ResourceDictionary Source="/Styles/_Thickness.xaml" />
+<!--{[{-->
+        <ResourceDictionary Source="/Styles/ListView.xaml" />
+<!--}]}-->
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

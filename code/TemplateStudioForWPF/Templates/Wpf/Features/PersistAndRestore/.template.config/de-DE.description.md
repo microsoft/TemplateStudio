@@ -1,0 +1,1 @@
+﻿„Persist And Restore“ bietet einen Service, der das Arbeiten mit Anwendungsdaten erleichtert. Er wickelt das Laden, Speichern und Serialisieren von Dateien und einzelnen Datenausschnitten im lokalen Datenordner der App des Benutzers ab.

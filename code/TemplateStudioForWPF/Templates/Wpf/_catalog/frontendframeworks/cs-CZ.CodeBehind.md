@@ -1,0 +1,1 @@
+﻿Kód na pozadí (code-behind) je pojem, který se používá k popisu kódu spárovaného se souborem XAML.  Pokud jste vyvíjeli ve Formulářích Windows a tento styl vývoje vám vyhovoval, bude to pro vás zřejmě skvělá volba.

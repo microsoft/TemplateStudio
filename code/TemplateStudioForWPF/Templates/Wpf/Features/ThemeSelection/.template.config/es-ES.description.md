@@ -1,0 +1,1 @@
+﻿Esta característica permite cambiar el tema de la aplicación entre Claro y Oscuro.

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+  </PropertyGroup>
+<!--{[{-->
+  <ItemGroup>
+    <None Remove="Assets\DefaultIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\DefaultIcon.png" />
+  </ItemGroup>
+<!--}]}-->
+</Project>

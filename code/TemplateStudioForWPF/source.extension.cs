@@ -8,11 +8,11 @@ namespace TemplateStudioForWPF
     internal sealed partial class Vsix
     {
         public const string Id = "TemplateStudioForWPF.f4e060e0-bdf6-4ed0-9924-983506ec9862";
-        public const string Name = "TemplateStudioForWPF";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Name = "Template Studio for WPF";
+        public const string Description = @"Template Studio accelerates the creation of new WPF apps using a wizard-based UI.";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Matt Lacey";
-        public const string Tags = "";
+        public const string Author = "Microsoft Corporation";
+        public const string Tags = "Template Studio, WPF, XAML, MVVM, Desktop";
     }
 }
