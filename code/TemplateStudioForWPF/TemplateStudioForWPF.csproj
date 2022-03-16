@@ -88,6 +88,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\TemplateStudioKey.snk">
+      <Link>TemplateStudioKey.snk</Link>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
