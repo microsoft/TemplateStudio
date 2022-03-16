@@ -54,6 +54,9 @@
     <ApplicationIcon>WindowsTemplateStudio.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Internal.VisualStudio.Interop">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

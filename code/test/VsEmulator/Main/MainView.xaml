@@ -34,12 +34,13 @@
                 </Grid.RowDefinitions>
                 <Grid Margin="12,12,12,12">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
+                    <StackPanel Grid.Column="1">
                         <TextBlock Text="Universal Windows Platform" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink x:Name="newCSharpUwpProjectButton" Command="{Binding NewProjectCommand}" CommandParameter="Uwp,C#">
@@ -72,7 +73,7 @@
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Column="1">
+                    <StackPanel Grid.Column="2">
                         <TextBlock Text="Windows Presentation Foundation" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="Wpf,C#">
@@ -95,28 +96,28 @@
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Column="2">
+                    <StackPanel Grid.Column="3">
                         <TextBlock Text="WinUI" FontWeight="Bold" FontSize="12" />
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#,Desktop">
                                 <TextBlock Text="New project C# (Desktop)"/>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,0">
+                        <!--<TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C#,Uwp">
                                 <TextBlock Text="New project C# (Uwp)"/>
                             </Hyperlink>
-                        </TextBlock>
+                        </TextBlock>-->
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Desktop">
                                 <TextBlock Text="New project C++ (Desktop)"/>
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="0,6,0,0">
+                        <!--<TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding NewProjectCommand}" CommandParameter="WinUI,C++,Uwp">
                                 <TextBlock Text="New project C++ (Uwp)"/>
                             </Hyperlink>
-                        </TextBlock>
+                        </TextBlock>-->
                         <TextBlock Margin="0,12,0,0">
                             <Hyperlink Command="{Binding AnalyzeSelectionCommand}" CommandParameter="WinUI,C#,Desktop">
                                 <TextBlock Text="Analyze C# (Desktop)"/>
@@ -133,7 +134,7 @@
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Column="3">
+                    <StackPanel Grid.Column="4">
                         <TextBlock Text="Generation options" FontWeight="Bold" FontSize="12" />
                         <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                             <CheckBox IsChecked="{Binding UseStyleCop, Mode=TwoWay}" VerticalAlignment="Center" />

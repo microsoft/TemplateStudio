@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
@@ -199,8 +200,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
+        private void SetupForProjectCreation(string platform, string language, string appmodel = null)
         {
+
             TemplatesSource ts = null;
 
             switch (platform)
@@ -237,6 +239,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 SetCurrentAppModel(appmodel);
             }
+        }
+
+        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
+        {
+            SetupForProjectCreation(platform, language, appmodel);
 
             try
             {
@@ -340,9 +347,17 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddStyleCop(UserSelection userSelection, string platform, string language, string appmodel = null)
         {
             var styleCopTemplate = string.Empty;
+            IEnumerable<ITemplateInfo> styleCopTemplates = null;
+
             switch (platform)
             {
                 case Platforms.Uwp:
+
+                    var path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForUWP.Tests\TestData\UWP");
+                    var scanResult = CodeGen.Instance.Scanner.Scan(path);
+                    styleCopTemplates = scanResult.Templates.Where(t => t.GetLanguage() == language);
+                    GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
+
                     switch (language)
                     {
                         case "C#":
@@ -364,31 +379,30 @@ namespace Microsoft.Templates.VsEmulator.Main
                         case AppModels.Desktop:
                             styleCopTemplate = "wts.WinUI.Feat.StyleCop";
                             break;
-                        case AppModels.Uwp:
-                            styleCopTemplate = "wts.WinUI.UWP.Feat.StyleCop";
-                            break;
                     }
                     break;
             }
 
-
-            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
-            if (testingFeature != null)
+            if (styleCopTemplates != null)
             {
-                var userSelectionItem = new UserSelectionItem()
+                var testingFeature = styleCopTemplates.FirstOrDefault(t => t.Identity == styleCopTemplate);
+                if (testingFeature != null)
                 {
-                    Name = styleCopTemplate,
-                    TemplateId = styleCopTemplate,
-                };
+                    var userSelectionItem = new UserSelectionItem()
+                    {
+                        Name = styleCopTemplate,
+                        TemplateId = styleCopTemplate,
+                    };
 
-                userSelection.Add(userSelectionItem, testingFeature.GetTemplateType());
+                    userSelection.Add(userSelectionItem, testingFeature.GetTemplateType());
+                }
             }
         }
 
         private void AnalyzeNewProject(string platform, string language)
         {
-            SetCurrentLanguage(language);
-            SetCurrentPlatform(platform);
+            SetupForProjectCreation(platform, language);
+
             try
             {
                 var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
@@ -398,6 +412,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 newProject.SetContext();
 
                 var context = new UserSelectionContext(language, platform);
+
+                Microsoft.Templates.UI.Styles.AllStylesDictionary.UseEmulator = true;
 
                 var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
@@ -640,9 +656,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 "0.1.0.1");
 
             //   await GenContext.ToolBox.Repo.SynchronizeAsync();
-            await Task.CompletedTask;
 
             UpdateCanRefreshTemplateCache(true);
+
+            await Task.CompletedTask;
         }
 
         private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)

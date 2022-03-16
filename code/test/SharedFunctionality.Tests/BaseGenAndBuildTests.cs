@@ -179,7 +179,7 @@ namespace Microsoft.Templates.Test
 
         protected IEnumerable<ITemplateInfo> GetAdditionalTemplates(string mountpoint)
         {
-            // The following relies on the TemplateRepositiory having been initilized - but that should be done during fixture initialization.
+            // The following relies on the TemplateRepository having been initilized - but that should be done during fixture initialization.
             try
             {
                 var scanResult = CodeGen.Instance.Scanner.Scan(mountpoint);

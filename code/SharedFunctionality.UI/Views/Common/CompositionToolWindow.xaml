@@ -46,7 +46,7 @@
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <HierarchicalDataTemplate ItemsSource="{Binding Files}">
                                     <!--GenInfoComposition-->
-                                    <TextBlock Text="{Binding Template.Identity}" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
+                                    <TextBlock Text="{Binding }" Style="{StaticResource WtsTextBlockCompositionToolTreeViewText}" />
                                     <HierarchicalDataTemplate.ItemTemplate>
                                         <DataTemplate>
                                             <!--CompositionFile-->
