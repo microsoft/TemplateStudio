@@ -346,38 +346,25 @@ Write-Output $packageFullName";
             return baseSetup;
         }
 
-        private List<string> VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
-
         private string GetVstestsConsoleExePath()
         {
-            var basePath = "C:\\Program Files\\Microsoft Visual Studio\\2022\\{0}\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe";
+            var possPath = $"{BaseGenAndBuildFixture.GetVsInstallRoot()}\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe";
 
-            foreach (var edition in VsEditions)
+            if (File.Exists(possPath))
             {
-                var possPath = string.Format(basePath, edition);
-
-                if (File.Exists(possPath))
-                {
-                    return possPath;
-                }
+                return possPath;
             }
 
             throw new FileNotFoundException("vstest.console.exe could not be found. If you installed Visual Studio somewhere other than the default location you will need to modify the test code.");
-
         }
 
         private string GetMsBuildExePath()
         {
-            var basePath = "C:\\Program Files\\Microsoft Visual Studio\\2022\\{0}\\MSBuild\\Current\\Bin\\MSBuild.exe";
+            var possPath = $"{BaseGenAndBuildFixture.GetVsInstallRoot()}\\MSBuild\\Current\\Bin\\MSBuild.exe";
 
-            foreach (var edition in VsEditions)
+            if (File.Exists(possPath))
             {
-                var possPath = string.Format(basePath, edition);
-
-                if (File.Exists(possPath))
-                {
-                    return possPath;
-                }
+                return possPath;
             }
 
             throw new FileNotFoundException("MSBuild.exe could not be found. If you installed Visual Studio somewhere other than the default location you will need to modify the test code.");

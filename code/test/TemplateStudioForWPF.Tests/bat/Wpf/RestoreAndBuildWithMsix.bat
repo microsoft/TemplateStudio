@@ -3,8 +3,8 @@ REM #Setup MsBuild context by brute force, restore packages and build the soluti
 call "%~1\Common7\Tools\VsMSBuildCmd.bat"
 	
 ECHO ON
-	
-msbuild "%~2" /t:Restore;Rebuild /p:RestorePackagesPath="C:\Packs" /p:Configuration=%4;Platform=%3;AppxPackageSigningEnabled=false
+
+msbuild "%~2" /t:Restore;Rebuild /p:RestorePackagesPath="C:\Packs" /p:Configuration=%4;Platform=%3;RuntimeIdentifier=win-x86
 IF %ERRORLEVEL% NEQ 0 ( 
 	GOTO ERROR 
 )
@@ -15,3 +15,5 @@ GOTO END
 :ERROR
 	EXIT 1
 :END
+
+

@@ -268,13 +268,15 @@ namespace Microsoft.Templates.Test
 
             var nugetExecutable = GetPath("nuget\\nuget.exe");
 
+            var vsRoot = GetVsInstallRoot();
+
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\" {buildPlatform} {config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" {buildPlatform} {config}");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{nugetExecutable}\"",
+                Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{nugetExecutable}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
@@ -391,6 +393,31 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        public static string GetVsInstallRoot()
+        {
+            var VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
+
+            // Try both of these to allow for wonderful inconsistencies in resolving 
+            var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles") };
+
+            var basePath = "{0}\\Microsoft Visual Studio\\2022\\{1}\\";
+
+            foreach (var progFiles in progFileLocations)
+            {
+                foreach (var edition in VsEditions)
+                {
+                    var possPath = string.Format(basePath, progFiles, edition);
+
+                    if (Directory.Exists(possPath))
+                    {
+                        return possPath;
+                    }
+                }
+            }
+
+            throw new DirectoryNotFoundException("Visual Studio 2022 install location could not be found.");
+        }
+
         public static void SetCurrentLanguage(string language)
         {
             GenContext.SetCurrentLanguage(language);
@@ -407,7 +434,7 @@ namespace Microsoft.Templates.Test
 
         public static void InitializeTemplates(TemplatesSource source, string programmingLanguage)
         {
-            if (syncExecuted.ContainsKey(source.Id) && syncExecuted[ShortFrameworkName(source.Id)] == true)
+            if (syncExecuted.ContainsKey(source.Id) && syncExecuted[source.Id] == true)
             {
                 return;
             }
@@ -533,8 +560,8 @@ namespace Microsoft.Templates.Test
                 ////{
                 ////    if (appModel == AppModels.Desktop)
                 ////    {
-                        // Any use of appmodels (for distinguishing between UWP & Desktop -- for WinUI) has been dropped
-                        result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, AppModels.Desktop));
+                // Any use of appmodels (for distinguishing between UWP & Desktop -- for WinUI) has been dropped
+                result.AddRange(GetTemplateOptions(frameworkFilter, language, platform, excludedItem, AppModels.Desktop));
                 ////    }
                 ////}
             }
