@@ -143,7 +143,7 @@
                         </StackPanel>
                         <TextBlock Text="Theme" FontWeight="Bold" FontSize="12" Margin="0,12,0,0" />
                         <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Style="{StaticResource VSEmulatorComboBox}" Margin="0,6,0,0" />
-                        <TextBlock Text="Version" FontWeight="Bold" FontSize="12" Margin="0,16,0,0" />
+                        <!--<TextBlock Text="Version" FontWeight="Bold" FontSize="12" Margin="0,16,0,0" />
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                                 <TextBlock Text="Configure versions..."/>
@@ -157,7 +157,7 @@
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,6,0,0">
                             <TextBlock Text="Templates Version:" />
                             <TextBlock Text="{Binding TemplatesVersion}" Margin="6,0,0,0" />
-                        </StackPanel>
+                        </StackPanel>-->
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
