@@ -129,13 +129,15 @@ namespace Microsoft.Templates.Test
             var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
             var nugetExecutable = GetPath("nuget\\nuget.exe");
 
+            var vsRoot = GetVsInstallRoot();
+
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{solutionFile}\"");
+            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"",
+                Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
