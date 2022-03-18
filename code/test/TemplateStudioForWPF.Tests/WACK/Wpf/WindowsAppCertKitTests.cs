@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Helpers;
 using TemplateStudioForWPF.Tests;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Wack.Wpf
+namespace Microsoft.Templates.Test.WPF.Wack
 {
     //// *** WARNING ***
     //// Running this requires:

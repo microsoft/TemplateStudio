@@ -11,7 +11,7 @@ using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseUwpVisualComparisonTests

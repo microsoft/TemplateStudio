@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Gen;
 using TemplateStudioForWPF.Tests;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Wpf
+namespace Microsoft.Templates.Test.WPF.Build
 {
     [Collection(nameof(WpfBuildTemplatesTestCollection))]
     public class BuildMVVMToolkitProjectTests : WpfBaseGenAndBuildTests

@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Helpers;
 using TemplateStudioForUWP.Tests;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Wack.Uwp
+namespace Microsoft.Templates.Test.UWP.Wack
 {
     //// *** WARNING ***
     //// Running this requires:

@@ -18,7 +18,7 @@ using Microsoft.Templates.Core.Helpers;
 using TemplateStudioForUWP.Tests;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class LanguageComparisonTests : UwpBaseGenAndBuildTests

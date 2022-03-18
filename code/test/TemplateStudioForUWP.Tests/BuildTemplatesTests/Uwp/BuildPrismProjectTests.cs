@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Gen;
 using TemplateStudioForUWP.Tests;
 using System.Linq;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildPrismProjectTests : UwpBaseGenAndBuildTests

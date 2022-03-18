@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection("VBStyleCollection")]
     [Trait("ExecutionSet", "BuildVBStyle")]

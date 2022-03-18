@@ -16,7 +16,7 @@ using Microsoft.Templates.Fakes;
 using TemplateStudioForUWP.Tests;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class ResourceUsageTests : UwpBaseGenAndBuildTests

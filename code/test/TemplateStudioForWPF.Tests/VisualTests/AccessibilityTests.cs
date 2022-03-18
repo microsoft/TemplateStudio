@@ -11,7 +11,7 @@ using Microsoft.Templates.Core;
 using Xunit;
 using System.Collections.Generic;
 
-namespace Microsoft.Templates.Test.Build.Wpf
+namespace Microsoft.Templates.Test.WPF.Build
 {
     [Collection("GenerationCollection")]
     public class AccessibilityTests : BaseVisualComparisonTests

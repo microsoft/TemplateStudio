@@ -14,7 +14,7 @@ using OpenQA.Selenium.Appium.Windows;
 using WindowsTestHelpers;
 using Xunit;
 
-namespace Microsoft.Templates.Test.Build.Uwp
+namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class UWPVisualComparisonTests : BaseUwpVisualComparisonTests
