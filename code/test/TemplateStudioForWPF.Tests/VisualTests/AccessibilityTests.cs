@@ -3,13 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using WindowsTestHelpers;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Test.Build;
+using WindowsTestHelpers;
 using Xunit;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {

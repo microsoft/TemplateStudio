@@ -5,9 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Templates.Test.Build;
 using OpenQA.Selenium.Appium.Windows;
 
-namespace Microsoft.Templates.Test.Build
+namespace Microsoft.Templates.Test.UWP.Build
 {
     public class BaseUwpVisualComparisonTests : BaseVisualComparisonTests
     {

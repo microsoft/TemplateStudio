@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Test
     {
         public override TemplatesSource Source => new WpfTestsTemplatesSource();
 
-        public static new IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Wpf, string excludedItem = "")
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.Wpf, string excludedItem = "")
         {
             InitializeTemplates(new WpfTestsTemplatesSource(ShortFrameworkName(frameworkFilter)), language);
 
