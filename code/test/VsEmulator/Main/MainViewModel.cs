@@ -371,6 +371,12 @@ namespace Microsoft.Templates.VsEmulator.Main
                     }
                     break;
                 case Platforms.Wpf:
+
+                    var wpfScPath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForWPF.Tests\TestData\WPF");
+                    var wpfScanResult = CodeGen.Instance.Scanner.Scan(wpfScPath);
+                    styleCopTemplates = wpfScanResult.Templates.Where(t => t.GetLanguage() == language);
+                    GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
+
                     styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
                 case Platforms.WinUI:
