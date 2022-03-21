@@ -25,7 +25,7 @@
 		</CustomParameters>
 	</TemplateContent>
 	<WizardExtension>
-		<Assembly>TemplateStudioForWPF, Version=5.1.0.0, Culture=neutral, PublicKeyToken=0cfbcdcd2e735c07</Assembly>
+		<Assembly>TemplateStudioForWPF, Version=5.1.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
 		<FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
 	</WizardExtension>
 </VSTemplate>
