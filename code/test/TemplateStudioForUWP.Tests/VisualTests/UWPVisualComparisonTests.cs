@@ -16,6 +16,9 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
+    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "ManualOnly")]
+    [Trait("Type", "WinAppDriver")]
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class UWPVisualComparisonTests : BaseUwpVisualComparisonTests
     {
@@ -126,8 +129,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Splitting them up like this makes it easier to rerun and debug failed tests.
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.CodeBehind, page);
@@ -135,8 +136,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.Blank, Frameworks.CodeBehind, page);
@@ -144,8 +143,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.CodeBehind, page);
@@ -153,8 +150,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.CodeBehind, page);
@@ -162,8 +157,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
@@ -171,8 +164,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.CodeBehind, page);
@@ -180,8 +171,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
@@ -189,8 +178,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmToolkit_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.SplitView, Frameworks.MVVMToolkit, page);
@@ -198,8 +185,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
@@ -207,8 +192,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmToolkit_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync(ProjectTypes.TabbedNav, Frameworks.MVVMToolkit, page);
@@ -283,8 +266,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
         [MemberData(nameof(GetAllSinglePageAppsCSharp))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string page, string[] frameworks)
         {
             var genIdentities = new[] { page };
@@ -360,8 +341,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
         [MemberData(nameof(GetAllFrameworksForBothVbAndCs))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
             await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, ProjectTypes.SplitView);
@@ -371,8 +350,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
         [MemberData(nameof(GetAllFrameworksForBothVbAndCs))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInMenuBarAsync(string framework)
         {
             await EnsureLanguagesProduceIdenticalOutputForEachPageAsync(framework, ProjectTypes.MenuBar);
@@ -437,8 +414,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Note. Visual Studio MUST be running as Admin to run this test.
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Fact]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
             var genIdentities = AllPagesThatSupportSimpleTestingOnAllFrameworks();
@@ -502,8 +477,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // Note. Visual Studio MUST be running as Admin to run this test.
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Fact]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureCsFrameworksProduceIdenticalOutputForEachPageInMenuBarAsync()
         {
             var genIdentities = AllPagesThatSupportSimpleTestingOnAllFrameworks();
@@ -566,8 +539,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageInNavViewWithoutErrorAsync(string framework, string language)
         {
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.SplitView);
@@ -575,8 +546,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
         {
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.TabbedNav);
@@ -584,8 +553,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageWithMenuBarWithoutErrorAsync(string framework, string language)
         {
             await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, ProjectTypes.MenuBar);

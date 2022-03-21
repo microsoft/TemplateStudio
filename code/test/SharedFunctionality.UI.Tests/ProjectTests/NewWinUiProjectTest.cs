@@ -13,7 +13,7 @@ using Xunit;
 namespace Microsoft.UI.Test.ProjectTests
 {
     [Collection("UI")]
-    [Trait("ExecutionSet", "Minimum")]
+    [Trait("Group", "Minimum")]
     public class NewWinUIProjectTest : IClassFixture<PlatformTemplatesFixture>
     {
         private const string DefaultProjectType = "Blank";

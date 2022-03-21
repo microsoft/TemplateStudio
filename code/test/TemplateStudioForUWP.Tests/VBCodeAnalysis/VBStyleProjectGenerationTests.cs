@@ -15,8 +15,7 @@ using Xunit;
 namespace Microsoft.Templates.Test.UWP.Build
 {
     [Collection("VBStyleCollection")]
-    [Trait("ExecutionSet", "BuildVBStyle")]
-    [Trait("ExecutionSet", "_Full")]
+    [Trait("Group", "TS4UWP")]
     public class VBStyleProjectGenerationTests : BaseGenAndBuildTests
     {
         public VBStyleProjectGenerationTests(VBStyleGenerationTestsFixture fixture)

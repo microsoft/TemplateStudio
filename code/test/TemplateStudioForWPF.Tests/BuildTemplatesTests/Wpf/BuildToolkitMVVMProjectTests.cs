@@ -14,6 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {
+    [Trait("Group", "TS4WPF")]
     [Collection(nameof(WpfBuildTemplatesTestCollection))]
     public class BuildMVVMToolkitProjectTests : WpfBaseGenAndBuildTests
     {
@@ -24,8 +25,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_WpfAsync(string projectType, string framework, string platform, string language)
         {
@@ -42,8 +41,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
         public async Task Build_All_ProjectNameValidation_G1_WpfAsync(string projectType, string framework, string platform, string language)
@@ -71,8 +68,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
         [Trait("Type", "BuildRandomNamesWpf")]
         public async Task Build_All_ProjectNameValidation_G2_WpfAsync(string projectType, string framework, string platform, string language)
@@ -100,9 +95,7 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "MinimumWpf")]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumWPF")]
         [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
@@ -133,10 +126,7 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "MinimumWpf")]
-        [Trait("ExecutionSet", "MinimumMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumWPF")]
         [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
@@ -167,8 +157,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
         public async Task Build_AllWithMsix_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -194,8 +182,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_Full")]
         public async Task Build_AllWithMsix_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -221,8 +207,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
-        [Trait("ExecutionSet", "BuildOneByOneMVVMToolkitWpf")]
-        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMToolkitWpf")]
         public async Task Build_MVVMToolkit_OneByOneItems_WpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

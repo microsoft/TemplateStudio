@@ -14,7 +14,6 @@ namespace TemplateStudioForUwp.Tests
 {
     [Trait("Group", "TS4UWP")]
     [Trait("Group", "MinimumUWP")]
-    [Trait("Group", "Minimum")]
     public class CodeStyleEnforcementTests : BaseCodeStyleEnforcementTests
     {
         public override string TemplatesRoot() => TestConstants.Ts4UwpRelativeTemplatesRoot;

@@ -6,13 +6,15 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using WindowsTestHelpers;
 using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
+using WindowsTestHelpers;
 using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
+    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "ManualOnly")]
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseUwpVisualComparisonTests
     {
@@ -38,7 +40,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         /// There may still be value in running this test and reviewing the actual results with known external issues.
         /// </summary>
         [Fact]
-        [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         [Trait("Type", "UWP")]
         public async Task RunBasicAccessibilityChecksAgainstEachPageUwpAsync()

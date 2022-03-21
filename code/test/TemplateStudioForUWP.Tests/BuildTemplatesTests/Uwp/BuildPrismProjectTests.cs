@@ -16,6 +16,8 @@ using System.Linq;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
+    [Trait("Group", "TS4UWP")]
+
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildPrismProjectTests : UwpBaseGenAndBuildTests
     {
@@ -26,8 +28,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -47,8 +47,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G1_UwpAsync(string projectType, string framework, string platform, string language)
@@ -75,8 +73,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G2_UwpAsync(string projectType, string framework, string platform, string language)
@@ -103,10 +99,7 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumPrism")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumUWP")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -136,9 +129,7 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumUWP")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -168,8 +159,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildPrism")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -188,8 +177,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
-        [Trait("ExecutionSet", "BuildOneByOnePrism")]
-        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOnePrism")]
         public async Task Build_Prism_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

@@ -14,6 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
+    [Trait("Group", "TS4UWP")]
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildCodeBehindProjectTests : UwpBaseGenAndBuildTests
     {
@@ -24,8 +25,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -45,8 +44,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G1_UwpAsync(string projectType, string framework, string platform, string language)
@@ -74,8 +71,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G2_UwpAsync(string projectType, string framework, string platform, string language)
@@ -103,10 +98,7 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "MinimumCodeBehind")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumUWP")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -136,9 +128,7 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumUWP")]
         [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -168,8 +158,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.CodeBehind, "", Platforms.Uwp)]
-        [Trait("ExecutionSet", "BuildCodeBehind")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
         {
@@ -188,8 +176,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
-        [Trait("ExecutionSet", "BuildOneByOneCodeBehind")]
-        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneCodeBehind")]
         public async Task Build_CodeBehind_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
@@ -206,8 +192,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
-        [Trait("ExecutionSet", "BuildOneByOneCodeBehind")]
-        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneCodeBehind")]
         public async Task Build_CodeBehind_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

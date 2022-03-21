@@ -20,6 +20,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
+    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "ManualOnly")]
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class LanguageComparisonTests : UwpBaseGenAndBuildTests
     {
@@ -32,7 +34,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
-        [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G1_Async(string projectType, string framework)
         {
@@ -43,7 +44,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
-        [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G2_Async(string projectType, string framework)
         {

@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Composition;
-using Microsoft.Templates.Test;
 using Newtonsoft.Json;
 using TemplateValidator;
 using Xunit;
 
 namespace TemplateStudioForUwp.Tests
 {
+    [Trait("Group", "TS4UWP")]
     [Trait("Group", "ManualOnly")]
     public class TemplateJsonLanguageConsistencyTests
     {

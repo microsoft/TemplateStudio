@@ -12,7 +12,7 @@ using Xunit;
 namespace Microsoft.UI.Test.ProjectTests
 {
     [Collection("UI")]
-    [Trait("ExecutionSet", "Minimum")]
+    [Trait("Group", "Minimum")]
     public class NewWpfProjectTest : IClassFixture<WpfPlatformTemplatesFixture>
     {
         private const string DefaultProjectType = "SplitView";
