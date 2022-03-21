@@ -19,6 +19,9 @@ namespace Microsoft.Templates.Test
         {
             var exceedingTemplates = new List<string>();
 
+            // Update this to appropriate (even smaller--as small as practical) value
+            var maxLength = 120;
+
             foreach (var file in GetFiles(templatesRoot))
             {
                 var path = Path.GetFullPath(file);
@@ -26,14 +29,14 @@ namespace Microsoft.Templates.Test
 
                 var relativePath = path.Replace(templateRoot, string.Empty);
 
-                // Update this to appropriate (even smaller--as small as practical) value
-                if (relativePath.Length > 130)
+
+                if (relativePath.Length > maxLength)
                 {
-                    exceedingTemplates.Add(relativePath);
+                    exceedingTemplates.Add($"{relativePath} ({relativePath.Length})");
                 }
             }
 
-            Assert.True(exceedingTemplates.Count == 0, $"Following template paths exceed 225 chars:  {string.Join(Environment.NewLine, exceedingTemplates.ToArray())}");
+            Assert.True(exceedingTemplates.Count == 0, $"Following relative template paths exceed {maxLength} chars:{Environment.NewLine}{string.Join(Environment.NewLine, exceedingTemplates.ToArray())}");
         }
 
         private IEnumerable<string> GetFiles(string directory)

@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
 
         private static readonly TemplatesSource StaticSource = new UwpTestsTemplatesSource("VBStyle");
 
-        public TemplatesSource Source => StaticSource;
+        public override TemplatesSource Source => StaticSource;
 
         [SuppressMessage(
    "Usage",
