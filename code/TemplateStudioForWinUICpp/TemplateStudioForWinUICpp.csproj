@@ -165,10 +165,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cs-CZ\Extension.vsixlangpack" />
+    <Content Include="de-DE\Extension.vsixlangpack" />
+    <Content Include="es-ES\Extension.vsixlangpack" />
+    <Content Include="fr-FR\Extension.vsixlangpack" />
+    <Content Include="it-IT\Extension.vsixlangpack" />
+    <Content Include="ja-JP\Extension.vsixlangpack" />
+    <Content Include="ko-KR\Extension.vsixlangpack" />
+    <Content Include="pl-PL\Extension.vsixlangpack" />
+    <Content Include="pt-BR\Extension.vsixlangpack" />
+    <Content Include="ru-RU\Extension.vsixlangpack" />
     <Content Include="TemplateStudioColors.pkgdef">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="tr-TR\Extension.vsixlangpack" />
+    <Content Include="zh-CN\Extension.vsixlangpack" />
+    <Content Include="zh-TW\Extension.vsixlangpack" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -194,6 +207,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
   </ItemGroup>
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
