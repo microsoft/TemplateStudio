@@ -1,8 +1,0 @@
-[
-  {
-    "name": "Main",
-    "templateGroupIdentity": "Microsoft.Templates.Test.TestPageTemplate",
-    "readonly": "true",
-    "projecttype": "TestProjectType"
-  }
-]
