@@ -1,1 +1,0 @@
-﻿Cette fonctionnalité vous permet de changer le thème de votre application en sombre ou clair.

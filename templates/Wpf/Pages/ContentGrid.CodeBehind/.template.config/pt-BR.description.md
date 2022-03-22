@@ -1,1 +1,0 @@
-﻿Esta página permite adicionar conteúdo personalizado em uma grade de conteúdo com base em um controle ListView. Clicar em um item mostra uma página de detalhes.

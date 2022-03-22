@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "ListDetails",
-    "description": "Le modèle liste/détails a un volet de liste et un volet de détails pour le contenu.",
-    "identity": "wts.Page.ListDetails.VB"
-}

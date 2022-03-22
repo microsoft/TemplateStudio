@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Camera",
-    "description": "카메라의 이미지를 캡처하여 표시하는 페이지입니다.",
-    "identity": "wts.Page.Camera.Prism"
-}

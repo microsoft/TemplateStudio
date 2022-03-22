@@ -1,3 +1,0 @@
-﻿La página de vista web inserta una vista en tu aplicación que presenta contenido web usando el motor de representación de Microsoft Edge. Los hipervínculos también pueden aparecer y funcionar en un control de vista web.  Puedes usar un control de vista web para mostrar contenido HTML con un formato enriquecido desde un servidor web remoto, código generado dinámicamente o archivos de contenido en el paquete de tu aplicación. El contenido enriquecido también puede incluir código de script y comunicarse entre el script y el código de tu aplicación.
-
-[¿Es adecuado para ti el control de vista web?](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/web-view)

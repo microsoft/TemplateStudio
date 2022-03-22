@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "SQL Server Data",
-  "description": "Obtient des données depuis SQL Server à utiliser dans l’application.",
-  "identity": "wts.Service.SqlServerDataService"
-}

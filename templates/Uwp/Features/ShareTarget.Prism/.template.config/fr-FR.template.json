@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Share Target",
-    "description": "Vous permet de recevoir les données partagées par d\u0027autres applications en utilisant le contrat de partage de votre application UWP.",
-    "identity": "wts.Feat.ShareTarget.Prism"
-}

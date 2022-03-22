@@ -1,1 +1,0 @@
-﻿Pusty plik app.config.

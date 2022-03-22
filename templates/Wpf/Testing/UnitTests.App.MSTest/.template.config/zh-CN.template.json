@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test App with MSTest",
-  "description": "使用 MSTest 为应用单元测试添加项目。",
-  "identity": "wts.Wpf.Testing.UnitTests.App.MSTest"
-}

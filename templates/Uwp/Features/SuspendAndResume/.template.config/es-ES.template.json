@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Suspend and Resume",
-  "description": "Un servicio sencillo al que puedes acceder para administrar cuando un usuario deja y vuelve a la aplicación.",
-  "identity": "wts.Feat.SuspendAndResume"
-}

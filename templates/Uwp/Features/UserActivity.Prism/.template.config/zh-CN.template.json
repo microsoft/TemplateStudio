@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "User Activity",
-  "description": "添加将用户活动添加至 Windows 日程表的功能。",
-  "identity": "wts.Feat.UserActivity.Prism"
-}

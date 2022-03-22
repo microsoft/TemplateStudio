@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "ListDetails",
-  "description": "Шаблон списка/детали имеет панель списка и панели деталей для содержания.",
-  "identity": "wts.Page.ListDetails.CaliburnMicro"
-}

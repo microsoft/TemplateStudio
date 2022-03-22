@@ -1,1 +1,0 @@
-﻿Die Einstellungsseite ist die Seite, auf der Sie die Konfigurationseinstellungen Ihrer Anwendung platzieren sollten, beispielsweise ein dunkles oder helles Design. Dies könnte auch Lizenzen, Versionsnummer und Datenschutzbestimmungen einschließen.

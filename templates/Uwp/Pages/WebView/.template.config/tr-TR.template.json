@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "Web görünümü sayfası, web içeriğini Microsoft Edge işleme altyapısını kullanarak işler.",
-  "identity": "wts.Page.WebView"
-}

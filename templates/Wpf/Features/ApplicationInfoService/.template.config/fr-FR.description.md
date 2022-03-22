@@ -1,1 +1,0 @@
-﻿ApplicationInfoService contient des opérations qui renvoient des informations sur l’application en cours.

@@ -1,1 +1,0 @@
-﻿La fonction Persistance et restauration fournit un service simplifiant le travail avec les données d'application. Elle gère le chargement, l'enregistrement et la sérialisation de vos fichiers et données individuelles dans le dossier local des données d'application d'un utilisateur.

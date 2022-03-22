@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "System Service",
-  "description": "SystemService, işletim sisteminin yerel API'leri ve işlevsellikleriyle etkileşim kuran işlemleri içerir.",
-  "identity": "wts.Wpf.Feat.SystemService"
-}

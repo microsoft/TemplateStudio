@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Web API",
-  "description": "包括 ASP.NET Core Web API 项目。",
-  "identity": "wts.Service.WebApi.Prism"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Persist And Restore",
-  "description": "La fonctionnalité Persistance et restauration permet de simplifier le stockage des données à l'intérieur du dossier local des données d'application de l'utilisateur.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
-}

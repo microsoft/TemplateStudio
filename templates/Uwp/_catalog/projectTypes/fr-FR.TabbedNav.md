@@ -1,2 +1,0 @@
-﻿Les onglets figurant sur la partie supérieure permettent de naviguer rapidement entre les pages et laissent de l'espace pour le contenu de l'application.
-Pensez-y si vous avez jusqu'à 5 éléments de navigation d'importance égale sur la partie supérieure.

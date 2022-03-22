@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Chart",
-  "description": "Eine Seite mit einem einfachen Diagramm, unterstützt von Telerik UI for UWP-Steuerelementen.",
-  "identity": "wts.Page.Chart.CodeBehind"
-}

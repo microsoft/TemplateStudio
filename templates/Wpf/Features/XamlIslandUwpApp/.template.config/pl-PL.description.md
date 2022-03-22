@@ -1,1 +1,0 @@
-﻿Ten szablon jest zużywany dla strony XAML Island i zapewnia infrastrukturę do tworzenia wystąpienia formantów platformy uniwersalnej systemu w aplikacji WPF .NET Core.

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Suspend and Resume",
-  "description": "사용자가 앱을 사용 중지한 후 다시 사용할 때는 간단한 서비스 연결로 처리합니다.",
-  "identity": "wts.Feat.SuspendAndResume"
-}

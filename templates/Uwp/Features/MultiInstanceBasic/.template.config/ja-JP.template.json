@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Multi-Instance",
-  "description": "アプリの複数のインスタンスを起動します。",
-  "identity": "wts.Feat.MultiInstance"
-}

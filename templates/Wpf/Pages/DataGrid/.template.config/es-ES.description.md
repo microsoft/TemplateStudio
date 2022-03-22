@@ -1,1 +1,0 @@
-﻿Una página que muestra un DataGrid, este control presenta datos en una tabla personalizable de filas y columnas.

@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Test App with xUnit",
-    "description": "Aggiungi un progetto per gli unit test nell'app tramite xUnit.",
-    "identity": "wts.Testing.UnitTests.App.xUnit.VB"
-}

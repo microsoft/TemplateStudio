@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "ListDetails",
-    "description": "Wzorzec listy/szczegółów zawiera okienko listy i okienko szczegółów zawartości.",
-    "identity": "wts.Page.ListDetails.VB"
-}

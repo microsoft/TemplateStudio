@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Settings Storage",
-  "description": "A configuração de armazenamento ajuda a simplificar o armazenamento de dados na pasta de dados do aplicativo.",
-  "identity": "wts.WinUI.Feat.SettingsStorage"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Content Grid",
-  "description": "此页面允许你通过自适应网格的形式添加自定义项。",
-  "identity": "wts.Page.ContentGrid.CodeBehind"
-}

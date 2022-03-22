@@ -1,1 +1,0 @@
-﻿Liste/ayrıntılar deseninin liste bölmesi (genellikle liste görünümüyle) ve içerik için ayrıntılar bölmesi vardır. Listedeki bir öğe seçildiğinde, ayrıntılar bölmesi güncelleştirilir. Bu desen genellikle e-posta ve adres defterleri için kullanılır.

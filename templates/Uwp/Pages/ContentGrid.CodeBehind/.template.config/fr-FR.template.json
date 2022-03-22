@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Content Grid",
-  "description": "Cette page vous permet d'ajouter du contenu personnalisé affiché en grille adaptative.",
-  "identity": "wts.Page.ContentGrid.CodeBehind"
-}

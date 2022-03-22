@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Win App Driver",
-  "description": "Добавление проекта для тестирования пользовательского интерфейса с использованием Appium в Windows Application Driver.",
-  "identity": "wts.Wpf.Testing.WinAppDriver"
-}

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "XAML Island",
-  "description": "XAML 섬을 사용하여 UWP 컨트롤을 호스팅하는 페이지입니다.",
-  "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
-}

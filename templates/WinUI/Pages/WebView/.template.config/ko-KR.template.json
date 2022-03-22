@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "웹 보기 페이지는 WebView2(크롬이 있는 Microsoft Edge)를 사용하여 웹 콘텐츠를 렌더링합니다.",
-  "identity": "wts.WinUI.Page.WebView"
-}

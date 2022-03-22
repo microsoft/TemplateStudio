@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test App with xUnit",
-  "description": "Добавление проекта для модульного тестирования приложений с помощью xUnit.",
-  "identity": "wts.Wpf.Testing.UnitTests.App.xUnit"
-}

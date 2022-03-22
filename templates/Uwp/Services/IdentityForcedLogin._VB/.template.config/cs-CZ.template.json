@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Forced Login",
-  "description": "Doplní do vaší aplikace požadavek na přihlášení uživatele.",
-  "identity": "wts.Service.IdentityForcedLogin.VB"
-}

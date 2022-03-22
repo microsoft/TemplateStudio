@@ -1,3 +1,0 @@
-﻿La página WebView incrusta un control WebView2 en la aplicación que representa contenido web mediante el motor de representación Microsoft Edge with Chromium. También pueden aparecer hipervínculos y funcionar con este control. Puede usar el control WebView2 de la página para mostrar contenido HTML con formato enriquecido desde un servidor web remoto, código generado dinámicamente o archivos de contenido en el paquete de la aplicación. El contenido enriquecido también puede contener código de script y comunicarse entre el script y el código de la aplicación.
-
-[Comience con WebView2 en WinUI 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

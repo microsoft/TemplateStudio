@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleDataService détient des données d'échantillon utilisées par la version générée de certaines pages.",
-  "identity": "wts.Service.SampleDataService"
-}

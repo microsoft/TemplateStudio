@@ -1,1 +1,0 @@
-﻿"None" to termin opisujący, że nie ma wstępnie wybranego wzoru projektowego. Tylko minimalny kod jest generowany, aby uzyskać aplikację działa. Można utworzyć własną strukturę folderów i dodać dowolny wzorzec projektu po wygenerowaniu kodu.

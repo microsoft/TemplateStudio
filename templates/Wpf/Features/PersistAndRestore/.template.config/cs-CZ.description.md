@@ -1,1 +1,0 @@
-﻿Funkce Uchovat a obnovit usnadňuje práci s daty aplikací. Zajišťuje načítání, ukládání a serializaci jak souborů, tak i samostatných dat v místní složce AppData uživatele.

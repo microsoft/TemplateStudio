@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "First Run Prompt",
-    "description": "Exiba um prompt quando o aplicativo for usado pela primeira vez.",
-    "identity": "wts.Feat.FirstRunPrompt.Prism"
-}

@@ -1,1 +1,0 @@
-﻿Il modello elenco/dettagli ha un riquadro elenco (in genere con una visualizzazione elenco) e un riquadro dei dettagli per il contenuto. Quando un elemento dell'elenco è selezionato, il riquadro dei dettagli viene aggiornato. Questo modello viene spesso utilizzato per la posta elettronica e le rubrica.

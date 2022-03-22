@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test App with NUnit",
-  "description": "NUnit を使用してアプリの単体テストを行うためのプロジェクトを追加します。",
-  "identity": "wts.Wpf.Testing.UnitTests.App.NUnit"
-}

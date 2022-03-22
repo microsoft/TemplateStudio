@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Toast Notifications",
-  "description": "Добавляет код, позволяющий отобразить всплывающее уведомление и обработать его использование для запуска приложения.",
-  "identity": "wts.Wpf.Feat.ToastNotifications"
-}

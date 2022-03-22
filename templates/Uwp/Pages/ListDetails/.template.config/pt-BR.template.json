@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "ListDetails",
-  "description": "O padrão lista/detalhes tem um painel de lista e um painel de detalhes para o conteúdo.",
-  "identity": "wts.Page.ListDetails"
-}

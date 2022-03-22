@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Optional Login",
-  "description": "Haz que tu aplicación tenga un inicio de sesión opcional y características restringidas.",
-  "identity": "wts.Service.IdentityOptionalLogin"
-}

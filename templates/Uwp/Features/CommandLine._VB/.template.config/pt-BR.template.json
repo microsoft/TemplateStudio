@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Command Line Launch",
-    "description": "Suporte para passar argumentos e iniciar por meio da linha de comando.",
-    "identity": "wts.Feat.CommandLine.VB"
-}

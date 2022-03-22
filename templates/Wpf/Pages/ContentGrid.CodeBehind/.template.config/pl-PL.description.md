@@ -1,1 +1,0 @@
-﻿Ta strona umożliwia dodawanie zawartości niestandardowej w siatce zawartości na podstawie kontrolki ListView. Kliknięcie elementu pokazuje stronę szczegółów.

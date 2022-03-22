@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "First Run Prompt",
-    "description": "앱을 처음 사용할 때 프롬프트가 표시됩니다.",
-    "identity": "wts.Feat.FirstRunPrompt.VB"
-}

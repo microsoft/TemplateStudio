@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Drag & Drop",
-    "description": "Функция перетаскивания предоставляет службу, которая позволяет упросить создание приложений с поддержкой перетаскивания.",
-    "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
-}

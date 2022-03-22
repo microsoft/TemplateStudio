@@ -1,6 +1,0 @@
-﻿<controls:MetroWindow
-<!--^^-->
-<!--{[{-->
-    AutomationProperties.AutomationId="Param_RootNamespaceMainWindow"
-<!--}]}-->
-    Title="{x:Static properties:Resources.AppDisplayName}">

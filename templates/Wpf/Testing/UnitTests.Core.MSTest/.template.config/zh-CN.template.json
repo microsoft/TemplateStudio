@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Test Core library with MSTest",
-  "description": "使用 MSTest 添加项目以测试核心库中的代码。",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.MSTest"
-}

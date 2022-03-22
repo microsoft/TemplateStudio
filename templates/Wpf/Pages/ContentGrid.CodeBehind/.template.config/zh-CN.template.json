@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "此页包含基于 ListView 的基本内容网格。",
-  "identity": "wts.Wpf.Page.ContentGrid.CodeBehind"
-}

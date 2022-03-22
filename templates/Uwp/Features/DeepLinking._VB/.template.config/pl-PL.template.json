@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Deep Linking",
-    "description": "Dodaj możliwość uruchomienia i link bezpośredni do aplikacji z niestandardowym schematem URI.",
-    "identity": "wts.Feat.DeepLinking.VB"
-}

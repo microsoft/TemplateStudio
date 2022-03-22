@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleDataService przechowuje dane próbne używane przez wygenerowane wersje niektórych stron.",
-  "identity": "wts.Service.SampleDataService"
-}

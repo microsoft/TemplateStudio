@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Suspend and Resume",
-  "description": "Prosta usługa, którą możesz wprowadzić do obsługi sytuacji, w których użytkownik zamyka aplikację, a później do niej wraca.",
-  "identity": "wts.Feat.SuspendAndResume"
-}

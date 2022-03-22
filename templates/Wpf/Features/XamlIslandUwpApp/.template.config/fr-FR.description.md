@@ -1,1 +1,0 @@
-﻿Ce modèle est consommé pour la page XAML Island et fournit l’infrastructure pour instancier les contrôles UWP dans une application WPF .NET Core.

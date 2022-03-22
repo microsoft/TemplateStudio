@@ -1,3 +1,0 @@
-﻿Web görünümü sayfası, Chromium işleme altyapısına sahip Microsoft Edge'i kullanarak web içeriğini işleyen bir WebView2 denetimini uygulamanıza katıştırır. Köprüler de görünebilir ve bu denetimi işleyebilir.  Uzak bir web sunucusundan, dinamik olarak oluşturulan koddan veya uygulama paketinizdeki içerik dosyalarından zengin biçimlendirilmiş HTML içeriğini görüntülemek için sayfadaki WebView2 denetimini kullanabilirsiniz. Zengin içerik ayrıca komut dosyası kodu içerebilir ve komut dosyası ile uygulamanızın kodu arasında iletişim kurabilir.
-
-[WinUI 3'te WebView2'yi kullanmaya başlama](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

@@ -1,1 +1,0 @@
-﻿Kalıcı Yap ve Geri Yükle, uygulama verileriyle çalışmayı kolaylaştıran bir hizmet sunar. Kullanıcının yerel uygulama verileri klasöründeki bağımsız veri parçalarının ve dosyaların yüklenmesini, kaydedilmesini ve seri hale getirilmesini sağlar.

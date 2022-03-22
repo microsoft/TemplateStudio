@@ -1,1 +1,0 @@
-﻿O padrão lista/detalhes tem um painel de lista (geralmente com uma exibição de lista) e um painel de detalhes para conteúdo. Quando um item da lista é selecionado, o painel de detalhes é atualizado. Este padrão é frequentemente usado para livros de e-mail e endereços.

@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "Toast Notifications",
-  "description": "Fügt Code hinzu, um ein Popup anzuzeigen und dieses zu bearbeiten, um beim Start der App verwendet zu werden.",
-  "identity": "wts.Wpf.Feat.ToastNotifications"
-}

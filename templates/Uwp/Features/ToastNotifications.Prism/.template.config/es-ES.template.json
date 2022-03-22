@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft",
-    "name": "Toast Notifications",
-    "description": "Agrega código para mostrar la visualización de una notificación del sistema y administrarla cuando se usa para iniciar la aplicación.",
-    "identity": "wts.Feat.ToastNotifications.Prism"
-}

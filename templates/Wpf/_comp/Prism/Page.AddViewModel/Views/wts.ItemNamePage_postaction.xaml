@@ -1,6 +1,0 @@
-﻿<UserControl
-<!--^^-->
-<!--{[{-->
-    Style="{StaticResource BaseUserControlStyle}"
-<!--}]}-->
-    mc:Ignorable="d"
