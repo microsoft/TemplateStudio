@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Internal.VisualStudio.Interop">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -69,10 +69,13 @@
     <Compile Include="ProjectConfigurationTests\UiTemplatesFixture.cs" />
     <Compile Include="ProjectConfigurationTests\UiTestsTemplatesSource.cs" />
     <Compile Include="ProjectTests\NewUwpProjectTest.cs" />
-    <Compile Include="ProjectTests\NewWinUiProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWinUICppProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWinUICsProjectTest.cs" />
     <Compile Include="ProjectTests\NewWpfProjectTest.cs" />
     <Compile Include="ProjectTests\PlatformTemplatesFixture.cs" />
     <Compile Include="ProjectTests\UwpPlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\WinUICppPlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\WinUICsPlatformTemplatesFixture.cs" />
     <Compile Include="ProjectTests\WpfPlatformTemplatesFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UITestStyleValuesProvider.cs" />

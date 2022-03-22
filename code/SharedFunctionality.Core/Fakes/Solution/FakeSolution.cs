@@ -268,14 +268,7 @@ EndProject
                     }
                     else
                     {
-                        if (appmodel == "Desktop")
-                        {
-                            return File.ReadAllText(@"Fakes\Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt");
-                        }
-                        else
-                        {
-                            return File.ReadAllText(@"Fakes\Solution\SolutionTemplates\WinUIUwpSolutionTemplate.txt");
-                        }
+                        return File.ReadAllText(@"Fakes\Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt"); 
                     }
             }
 

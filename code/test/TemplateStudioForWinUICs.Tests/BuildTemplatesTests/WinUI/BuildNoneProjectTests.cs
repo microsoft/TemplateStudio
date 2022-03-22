@@ -9,14 +9,14 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
 using TemplateStudioForWinUICs.Tests;
 using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICs.Build
 {
+    [Trait("Group", "TS4WinUICS")]
     [Collection(nameof(WinUICsBuildTemplatesTestCollection))]
-    public class BuildNoneProjectTests : WinUICSBaseGenAndBuildTests
+    public class BuildNoneProjectTests : WinUICsBaseGenAndBuildTests
     {
         public BuildNoneProjectTests(WinUICsBuildTemplatesTestFixture fixture)
             : base(fixture, null, Frameworks.None)
@@ -24,9 +24,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneWinUI")]
-        [Trait("ExecutionSet", "_Full")]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneAsync(string projectType, string framework, string platform, string language, string appModel)
         {
@@ -46,9 +44,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneWinUI")]
-        [Trait("ExecutionSet", "_Full")]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
@@ -70,41 +66,6 @@ namespace Microsoft.Templates.Test.WinUICs.Build
             context.AddAppModel(appModel);
 
             var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetRandomName);
-
-            AssertBuildProject(projectPath, projectName, platform);
-        }
-
-        // Don't need this as it's for "Blank (not Advanced)" which is going away
-        // [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "MinimumWinUI")]
-        [Trait("ExecutionSet", "MinimumNoneWinUI")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
-        [Trait("Type", "CodeStyle")]
-        public async Task Build_All_CheckWithStyleCop_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
-        {
-            bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
-                && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
-                && t.GetPlatform() == platform
-                && t.GetPropertyBagValuesList("appmodel").Contains(appModel)
-                && !t.GetIsHidden()
-                || (t.Identity == "wts.WinUI.Feat.StyleCop" && appModel == "Desktop");
-
-            var projectName = $"{projectType}{framework}AllStyleCop";
-
-            var context = new UserSelectionContext(language, platform)
-            {
-                ProjectType = projectType,
-                FrontEndFramework = framework,
-            };
-            context.AddAppModel(appModel);
-
-            var styleCopTemplates = GetAdditionalTemplates(System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\TestData\WinUI"));
-            GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
-
-            var projectPath = await AssertGenerateProjectAsync(projectName, context, templateSelector, BaseGenAndBuildFixture.GetDefaultName, includeMultipleInstances: true, styleCopTemplates);
 
             AssertBuildProject(projectPath, projectName, platform);
         }

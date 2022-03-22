@@ -4,11 +4,11 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Test;
 
-namespace TemplateStudioForWinUICs.Tests
+namespace TemplateStudioForWinUICpp.Tests
 {
-    public class WinUICsBaseGenAndBuildTests : BaseGenAndBuildTests
+    public class WinUICppBaseGenAndBuildTests : BaseGenAndBuildTests
     {
-        public WinUICsBaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
+        public WinUICppBaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
             : base(fixture, contextProvider, framework)
         {
         }
@@ -22,12 +22,12 @@ namespace TemplateStudioForWinUICs.Tests
             {
                 foreach (var fwork in Frameworks.All)
                 {
-                    result.AddRange(BuildTemplatesTestFixture.GetProjectTemplates(new WinUICsTestsTemplatesSource(), fwork, programmingLanguage, platform));
+                    result.AddRange(BuildTemplatesTestFixture.GetProjectTemplates(new WinUICppTestsTemplatesSource(), fwork, programmingLanguage, platform));
                 }
             }
             else
             {
-                result = BuildTemplatesTestFixture.GetProjectTemplates(new WinUICsTestsTemplatesSource(), framework, programmingLanguage, platform).ToList();
+                result = BuildTemplatesTestFixture.GetProjectTemplates(new WinUICppTestsTemplatesSource(), framework, programmingLanguage, platform).ToList();
             }
 
             return result;
@@ -37,7 +37,7 @@ namespace TemplateStudioForWinUICs.Tests
         {
             IEnumerable<object[]> result = new List<object[]>();
 
-            result = WinUICsBuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
+            result = WinUICppBuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
 
             return result;
         }

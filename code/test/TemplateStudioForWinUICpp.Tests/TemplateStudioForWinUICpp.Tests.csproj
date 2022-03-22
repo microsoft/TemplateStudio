@@ -78,6 +78,7 @@
     <Compile Include="TemplateJsonValidationTests.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
+    <Compile Include="WinUICppBaseGenAndBuildTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ApiAnalysis.SimpleJsonAnalyzer">
@@ -181,6 +182,42 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\tools\nuget.exe">
+      <Link>nuget\nuget.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\LockScreenLogo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Logo.png">
+      <Link>TestData\NonDefaultAssets\Logo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\SplashScreen.scale-200.png">
+      <Link>TestData\NonDefaultAssets\SplashScreen.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square150x150Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Square150x150Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square44x44Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Square44x44Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Link>TestData\NonDefaultAssets\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\StoreLogo.png">
+      <Link>TestData\NonDefaultAssets\StoreLogo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Generated Code\WinUICppTestData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>WinUICppTestData.cs</LastGenOutput>

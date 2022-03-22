@@ -12,7 +12,6 @@ namespace TemplateStudioForWinUICpp.Tests
 {
     [Trait("Group", "TS4WinUICPP")]
     [Trait("Group", "MinimumWinUICPP")]
-    [Trait("Group", "Minimum")]
     public partial class TemplateJsonValidationTests : BaseTemplateJsonValidationTests
     {
         [Theory]

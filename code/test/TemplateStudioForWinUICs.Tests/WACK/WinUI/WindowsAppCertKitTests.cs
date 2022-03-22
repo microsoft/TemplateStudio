@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test.WinUICs.Wack
     [Collection(nameof(WinUICsBuildTemplatesTestCollection))]
     [Trait("ExecutionSet", "LongRunningWinUI")]
     [Trait("ExecutionSet", "_Wack")]
-    public class WindowsAppCertKitTests : WinUICSBaseGenAndBuildTests
+    public class WindowsAppCertKitTests : WinUICsBaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(WinUICsBuildTemplatesTestFixture fixture)
             : base(fixture)

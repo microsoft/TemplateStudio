@@ -78,6 +78,10 @@
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
     <Compile Include="TestConstants.cs" />
+    <Content Include="..\..\tools\nuget.exe">
+      <Link>nuget\nuget.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\WinUI\SC\StyleCop\Param_ProjectName\GlobalSuppressions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -85,7 +89,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
-    <Compile Include="WinUICSBaseGenAndBuildTests.cs" />
+    <Compile Include="WinUICsBaseGenAndBuildTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ApiAnalysis.SimpleJsonAnalyzer">
@@ -246,9 +250,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="nuget\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

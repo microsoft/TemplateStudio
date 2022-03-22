@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Test
     {
         public override TemplatesSource Source => new WinUICsTestsTemplatesSource();
 
-        public static new IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.WinUI, string excludedItem = "")
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string frameworkFilter, string language = ProgrammingLanguages.CSharp, string platform = Platforms.WinUI, string excludedItem = "")
         {
             InitializeTemplates(new WinUICsTestsTemplatesSource(ShortFrameworkName(frameworkFilter)), language);
 

@@ -1,22 +1,12 @@
 REM #Setup MsBuild context by brute force, restore packages and build the solution
 
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community" (
-	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\VsMSBuildCmd.bat"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional" (
-	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsMSBuildCmd.bat"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise" (
-	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview" (
-	call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\Common7\Tools\VsMSBuildCmd.bat"
-)
+
+call "%~1\Common7\Tools\VsMSBuildCmd.bat"
 	
 ECHO ON
 REM #Nuget restore (the nuget.exe path is a param)
-"%~4" restore "%~1"
-msbuild "%~1" /p:Configuration=%3 /p:Platform=%2
+"%~5" restore "%~2"
+msbuild "%~2" /p:Configuration=%4 /p:Platform=%3
 IF %ERRORLEVEL% NEQ 0 ( 
 	GOTO ERROR 
 )

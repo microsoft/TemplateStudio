@@ -9,13 +9,14 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
+using TemplateStudioForWinUICpp.Tests;
 using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICpp.Build
 {
+    [Trait("Group", "TS4WinUICPP")]
     [Collection(nameof(WinUICppBuildTemplatesTestCollection))]
-    public class BuildNoneProjectTests : BaseGenAndBuildTests
+    public class BuildNoneProjectTests : WinUICppBaseGenAndBuildTests
     {
         public BuildNoneProjectTests(WinUICppBuildTemplatesTestFixture fixture)
             : base(fixture, null, Frameworks.None)
@@ -23,9 +24,8 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "MinimumNoneWinUI")]
-        [Trait("ExecutionSet", "_Full")]
+        [MemberData(nameof(WinUICppBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
+        [Trait("Group", "MinimumWinUICPP")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneCppAsync(string projectType, string framework, string platform, string language, string appModel)
         {
@@ -45,9 +45,7 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
         }
 
         [Theory]
-        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildNoneWinUI")]
-        [Trait("ExecutionSet", "_Full")]
+        [MemberData(nameof(WinUICppBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_WinUICppAsync(string projectType, string framework, string platform, string language, string appModel)

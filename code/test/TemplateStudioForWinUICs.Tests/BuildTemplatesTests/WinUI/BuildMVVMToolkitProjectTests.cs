@@ -15,7 +15,7 @@ using Xunit;
 namespace Microsoft.Templates.Test.WinUICs.Build
 {
     [Collection(nameof(WinUICsBuildTemplatesTestCollection))]
-    public class BuildMVVMToolkitProjectTests : WinUICSBaseGenAndBuildTests
+    public class BuildMVVMToolkitProjectTests : WinUICsBaseGenAndBuildTests
     {
         public BuildMVVMToolkitProjectTests(WinUICsBuildTemplatesTestFixture fixture)
             : base(fixture, null, Frameworks.MVVMToolkit)
@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "MinimumWinUI")]
         [Trait("ExecutionSet", "MinimumMVVMToolkitWinUI")]
         [Trait("ExecutionSet", "_CIBuild")]
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
         [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
         }
 
         [Theory]
-        [MemberData(nameof(WinUICSBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
+        [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
         [Trait("ExecutionSet", "BuildOneByOneMVVMToolkitWinUI")]
         [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMToolkitWinUI")]

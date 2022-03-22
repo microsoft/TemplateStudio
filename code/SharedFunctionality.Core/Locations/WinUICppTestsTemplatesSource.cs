@@ -13,6 +13,11 @@ namespace Microsoft.Templates.Core.Locations
         {
         }
 
+        public WinUICppTestsTemplatesSource(string id)
+            : base(string.Empty, id)
+        {
+        }
+
         public override string Id => "WinUICppTest" + GetAgentName();
 
         public override string GetContentRootFolder()
