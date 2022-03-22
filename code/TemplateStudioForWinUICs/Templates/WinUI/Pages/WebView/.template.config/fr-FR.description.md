@@ -1,0 +1,3 @@
+﻿La page de vue Web intègre un contrôle WebView2 dans votre application qui rend le contenu Web à l’aide du Microsoft Edge avec moteur de rendu Chrome. Les hyperliens peuvent également apparaître et fonctionner ce contrôle.  Vous pouvez utiliser le contrôle WebView2 de la page pour afficher du contenu HTML richement formaté à partir d’un serveur Web distant, d’un code généré dynamiquement ou de fichiers de contenu dans votre paquet d’applications. Le contenu riche peut également contenir du code de script et communiquer entre le script et le code de votre application.
+
+[Démarrer avec WebView2 dans WinUI 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

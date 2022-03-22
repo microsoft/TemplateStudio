@@ -89,6 +89,137 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
+    <Compile Include="Templates\WinUI\Features\SampleData\Param_ProjectName.Core\Contracts\Services\ISampleDataService.cs" />
+    <Compile Include="Templates\WinUI\Features\SampleData\Param_ProjectName.Core\Models\SampleCompany.cs" />
+    <Compile Include="Templates\WinUI\Features\SampleData\Param_ProjectName.Core\Models\SampleOrder.cs" />
+    <Compile Include="Templates\WinUI\Features\SampleData\Param_ProjectName.Core\Models\SampleOrderDetail.cs" />
+    <Compile Include="Templates\WinUI\Features\SampleData\Param_ProjectName.Core\Services\SampleDataService.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName.Core\Helpers\Json.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Templates\WinUI\Features\ThemeSelection\Contracts\Services\IThemeSelectorService.cs" />
+    <Compile Include="Templates\WinUI\Features\ThemeSelection\Services\ThemeSelectorService.cs" />
+    <Compile Include="Templates\WinUI\Pages\Blank\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\Blank\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\ViewModels\wts.ItemNameDetailViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml.cs">
+      <DependentUpon>wts.ItemNameDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\DataGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\DataGrid\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\DataGrid\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\DataGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\Form\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\Form\Param_ProjectName.Core\Models\SampleSymbol.cs" />
+    <Compile Include="Templates\WinUI\Pages\Form\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\Form\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\Form\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs" />
+    <Compile Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Views\wts.ItemNameDetailControl.xaml.cs">
+      <DependentUpon>wts.ItemNameDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\Settings\Helpers\EnumToBooleanConverter.cs" />
+    <Compile Include="Templates\WinUI\Pages\Settings\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\Settings\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Pages\WebView\Contracts\Services\IWebViewService.cs" />
+    <Compile Include="Templates\WinUI\Pages\WebView\Services\WebViewService.cs" />
+    <Compile Include="Templates\WinUI\Pages\WebView\ViewModels\wts.ItemNameViewModel.cs" />
+    <Compile Include="Templates\WinUI\Pages\WebView\Views\wts.ItemNamePage.xaml.cs">
+      <DependentUpon>wts.ItemNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Debug\netstandard2.0\wts.ProjectName.Core.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Release\netstandard2.0\wts.ProjectName.Core.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\Contracts\ViewModels\INavigationAware.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\Helpers\ResourceExtensions.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfo.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\Contracts\Services\INavigationService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\Services\NavigationService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Feature.SampleData\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\Services\ActivationService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\ViewModels\wts.ItemNameDetailViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\Services\PageService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\ViewModels\wts.ItemNameDetailViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\Views\wts.ItemNameDetailPage_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\Services\PageService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\ViewModels\wts.ItemNameViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\Views\wts.ItemNamePage_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Page.WebView\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\ViewModels\ShellViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\ViewModels\ShellViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Contracts\Services\IRightPaneService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Services\ActivationService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Services\RightPaneService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\ViewModels\ShellViewModel.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Views\ShellPage.xaml.cs">
+      <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\Services\NavigationViewService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\ViewModels\ShellViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Behaviors\NavigationViewHeaderBehavior.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Contracts\Services\INavigationViewService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Helpers\NavHelper.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Services\ActivationService_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Services\NavigationViewService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\ViewModels\ShellViewModel.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Views\ShellPage.xaml.cs">
+      <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\ActivationHandler.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\DefaultActivationHandler.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\IActivationHandler.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\IActivationService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\INavigationService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\IPageService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Helpers\FrameExtensions.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\ActivationService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\NavigationService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\PageService.cs" />
+    <Compile Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml.cs">
+      <DependentUpon>wts.ItemNamePage_postaction.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\EULA.cs-CZ.rtf">
@@ -152,6 +283,508 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Package.appinstaller" />
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Param_ProjectName %28Package%29.wapproj" />
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Strings\en-us\Resources.resw" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Features\SampleData\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Features\ThemeSelection\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\itemNameValidation.config.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\Blank\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\ContentGrid\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\DataGrid\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\Form\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\Form\Param_ProjectName\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\ListDetails\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\Settings\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\Settings\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Pages\WebView\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Pages\WebView\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\projectNameValidation.config.json" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\.template.config\Layout.json" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\.template.config\template.json" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\app.manifest" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.csproj.AssemblyReference.cache" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.csproj.AssemblyReference.cache" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-arm64.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-x64.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-x86.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\wts.ProjectName.csproj" />
+    <None Include="Templates\WinUI\Projects\Default\.template.config\Layout.json" />
+    <None Include="Templates\WinUI\Projects\Default\.template.config\template.json" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\Models\-.-" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Debug\netstandard2.0\wts.ProjectName.Core.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Debug\netstandard2.0\wts.ProjectName.Core.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Release\netstandard2.0\wts.ProjectName.Core.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\obj\Release\netstandard2.0\wts.ProjectName.Core.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\wts.ProjectName.Core.csproj" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\app.manifest" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\wts.ProjectName.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.AssemblyInfoInputs.cache" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\wts.ProjectName.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Properties\PublishProfiles\win10-arm64.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Properties\PublishProfiles\win10-x64.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Properties\PublishProfiles\win10-x86.pubxml" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\README.md" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Strings\en-us\Resources.resw" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\wts.ProjectName.csproj" />
+    <None Include="Templates\WinUI\_catalog\cs-CZ.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\cs-CZ.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\de-DE.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\de-DE.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\es-ES.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\es-ES.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\fr-FR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\fr-FR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\cs-CZ.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\cs-CZ.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\de-DE.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\de-DE.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\es-ES.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\es-ES.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\fr-FR.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\fr-FR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\it-IT.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\it-IT.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ja-JP.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ja-JP.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ko-KR.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ko-KR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pl-PL.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pl-PL.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pt-BR.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pt-BR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ru-RU.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ru-RU.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\tr-TR.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\tr-TR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-CN.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-CN.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-TW.MVVMToolkit.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-TW.None.md" />
+    <None Include="Templates\WinUI\_catalog\it-IT.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\it-IT.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ja-JP.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ja-JP.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ko-KR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ko-KR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\pl-PL.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\pl-PL.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\de-DE.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\de-DE.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\de-DE.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\de-DE.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\es-ES.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\es-ES.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\es-ES.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\es-ES.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\fr-FR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\fr-FR.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\fr-FR.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\fr-FR.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\it-IT.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\it-IT.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\it-IT.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\it-IT.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ja-JP.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ja-JP.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ja-JP.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ja-JP.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ko-KR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ko-KR.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ko-KR.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ko-KR.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pl-PL.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pl-PL.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pl-PL.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pl-PL.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pt-BR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pt-BR.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pt-BR.MenuBar.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pt-BR.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ru-RU.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ru-RU.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ru-RU.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\tr-TR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\tr-TR.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\tr-TR.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-CN.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-CN.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-CN.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-TW.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-TW.BlankAdvanced.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-TW.SplitView.md" />
+    <None Include="Templates\WinUI\_catalog\pt-BR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\pt-BR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ru-RU.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ru-RU.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\tr-TR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\tr-TR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\zh-CN.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\zh-CN.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\zh-TW.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\zh-TW.projectTypes.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\ExportParams.Page\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\ExportParams.Project\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Feature.SampleData\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddCommandNS\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddIocNS\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Page.WebView\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.BlankAdvanced\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.BlankAdvanced\README_postaction.md" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\README_postaction.md" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\README_postaction.md" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MVVMToolkit\Project\README_postaction.md" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Blank\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.ContentGrid\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.DataGrid\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Form\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Settings\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.StringResources\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.AddTitle.StringResources\Strings\en-us\Resources_postaction.resw" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.ListDetail.Blank.MenuBar\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.ListDetail.SplitView\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton.Cpp\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Project.Core.AddPlatforms\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\_shared\Project.Core.AddPlatforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights">
@@ -238,6 +871,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\SplashScreen.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square150x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\StoreLogo.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\WTS.ProjectConfig.xml" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\readme.txt" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\WTS.ProjectConfig.xml" />
+    <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton.Cpp\wts.ItemNamePage_postaction.xaml.cpp" />
+    <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton.Cpp\wts.ItemNamePage_postaction.xaml.h" />
     <Content Include="tr-TR\Extension.vsixlangpack" />
     <Content Include="zh-CN\Extension.vsixlangpack" />
     <Content Include="zh-TW\Extension.vsixlangpack" />
@@ -266,9 +911,226 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Templates\WinUI\Features\MSIX\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Features\SampleData\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Features\SettingsStorage\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Features\ThemeSelection\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Blank\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Blank\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ContentGrid\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ContentGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\DataGrid\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\DataGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Form\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Form\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ListDetails\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Styles\TextBlock_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Views\wts.ItemNameDetailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\ListDetails\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Settings\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\Settings\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\WebView\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Pages\WebView\Views\wts.ItemNamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\_FontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\frontendframeworks\MVVMToolkit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\frontendframeworks\None.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\projectTypes\Blank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\projectTypes\BlankAdvanced.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\projectTypes\MenuBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\projectTypes\SplitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\Views\wts.ItemNameDetailPage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\Views\ShellPage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\Views\ShellPage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Views\ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\Views\ShellPage_searchreplace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\Views\ShellPage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Views\ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Blank\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.AddTitle.ContentGrid\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.AddTitle.DataGrid\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Form\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Settings\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.ListDetail.SplitView\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton.Cpp\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Templates\" />
+    <Folder Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\bin\Debug\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\bin\Release\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\bin\Debug\netstandard2.0\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\bin\Release\netstandard2.0\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName\bin\Debug\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName\bin\Release\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Debug\net5.0-windows10.0.19041.0\ref\" />
+    <Folder Include="Templates\WinUI\Projects\Default\wts.ProjectName\obj\Release\net5.0-windows10.0.19041.0\ref\" />
   </ItemGroup>
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />

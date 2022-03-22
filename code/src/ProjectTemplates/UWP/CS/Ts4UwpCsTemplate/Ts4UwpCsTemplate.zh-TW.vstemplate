@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VSTemplate Version="3.0.0" 
-            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
+<VSTemplate Version="3.0.0"
+            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
-  <TemplateData>
-	  <Name>Template Studio for UWP</Name>
-    <Description>Windows Template Studio 可快速建立 UWP 應用程式，它會使用精靈式 UI 將您的需求轉換成 Windows 10 模式和最佳做法的基礎。</Description>
-	  <Icon>Ts4UwpCsTemplate.ico</Icon>
-	  <ProjectType>CSharp</ProjectType>
-	  <LanguageTag>csharp</LanguageTag>
-	  <SortOrder>10</SortOrder>
-	  <TemplateID>61f19320-3820-4efd-a3e8-e1b1cca3352f</TemplateID>
-	  <CreateNewFolder>true</CreateNewFolder>
-	  <DefaultName>App</DefaultName>
-	  <ProvideDefaultName>true</ProvideDefaultName>
-	  <LanguageTag>XAML</LanguageTag>
-	  <PlatformTag>Windows</PlatformTag>
-	  <PlatformTag>Xbox</PlatformTag>
-	  <ProjectTypeTag>UWP</ProjectTypeTag>
-	  <ProjectTypeTag>Desktop</ProjectTypeTag>
-  </TemplateData>
-  <TemplateContent>
-	  <CustomParameters>
-		  <CustomParameter Name="$wts.platform$" Value="Uwp"/>
-		  <CustomParameter Name="$wts.language$" Value="C#"/>
-		  <CustomParameter Name="$wts.category$" Value="TemplateStudio"/>
-		  <CustomParameter Name="$wts.version$" Value="5.0"/>
-		  <CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
-		  <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
-	  </CustomParameters>
-  </TemplateContent>
-  <WizardExtension>
-	  <Assembly>TemplateStudioForUWP, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
-	  <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
-  </WizardExtension>
+	<TemplateData>
+		<Name>Template Studio for UWP</Name>
+		<Description>Windows Template Studio 可快速建立 UWP 應用程式，它會使用精靈式 UI 將您的需求轉換成 Windows 10 模式和最佳做法的基礎。</Description>
+		<Icon>Ts4UwpCsTemplate.ico</Icon>
+		<ProjectType>CSharp</ProjectType>
+		<LanguageTag>csharp</LanguageTag>
+		<SortOrder>10</SortOrder>
+		<TemplateID>61f19320-3820-4efd-a3e8-e1b1cca3352f</TemplateID>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>App</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<LanguageTag>XAML</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<PlatformTag>Xbox</PlatformTag>
+		<ProjectTypeTag>UWP</ProjectTypeTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+	</TemplateData>
+	<TemplateContent>
+		<CustomParameters>
+			<CustomParameter Name="$wts.platform$" Value="Uwp"/>
+			<CustomParameter Name="$wts.language$" Value="C#"/>
+			<CustomParameter Name="$wts.category$" Value="TemplateStudio"/>
+			<CustomParameter Name="$wts.version$" Value="5.0"/>
+			<CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
+			<CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
+		</CustomParameters>
+	</TemplateContent>
+	<WizardExtension>
+		<Assembly>TemplateStudioForUWP, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+		<FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
+	</WizardExtension>
 </VSTemplate>

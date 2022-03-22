@@ -1,0 +1,1 @@
+﻿Žádný z nich není termín, který by popisovat, že není předem vybrán žádný návrhový vzor. Pro spuštění aplikace je generován pouze minimální kód. Po vygenerování kódu můžete vytvořit vlastní strukturu složek a přidat libovolný návrhový vzor.

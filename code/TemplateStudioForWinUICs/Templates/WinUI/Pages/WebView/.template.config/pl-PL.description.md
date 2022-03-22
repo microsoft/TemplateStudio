@@ -1,0 +1,3 @@
+﻿Strona widoku sieci Web osadza formant WebView2 w aplikacji, która renderuje zawartość sieci Web przy użyciu aparatu renderowania programu Microsoft Edge z chromem. Hiperłącza mogą również pojawiać się i działać w tym formancie.  Za pomocą formantu WebView2 na stronie można wyświetlać bogato sformatowaną zawartość HTML ze zdalnego serwera sieci Web, dynamicznie generowany kod lub pliki zawartości w pakiecie aplikacji. Zawartość bogata może również zawierać kod skryptu i komunikować się między skryptem a kodem aplikacji.
+
+[Wprowadzenie do webview2 w winui 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

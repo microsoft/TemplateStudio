@@ -1,0 +1,1 @@
+﻿"None" es un término para describir que no hay ningún patrón de diseño preseleccionado. Solo se genera el código mínimo para que la aplicación se ejecute. Puede crear su propia estructura de carpetas y agregar cualquier patrón de diseño una vez generado el código.

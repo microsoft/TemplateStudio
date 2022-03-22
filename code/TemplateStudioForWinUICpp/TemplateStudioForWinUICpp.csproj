@@ -149,6 +149,102 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.description.md" />
+    <None Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.template.json" />
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Param_ProjectName %28Package%29.wapproj" />
+    <None Include="Templates\WinUI\itemNameValidation.config.json" />
+    <None Include="Templates\WinUI\projectNameValidation.config.json" />
+    <None Include="Templates\WinUI\Projects\Default\.template.config\Layout.json" />
+    <None Include="Templates\WinUI\Projects\Default\.template.config\template.json" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\app.manifest" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\packages.config" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\PropertySheet.props" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj" />
+    <None Include="Templates\WinUI\_catalog\cs-CZ.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\cs-CZ.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\de-DE.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\de-DE.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\es-ES.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\es-ES.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\fr-FR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\fr-FR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\cs-CZ.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\de-DE.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\es-ES.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\fr-FR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\it-IT.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ja-JP.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ko-KR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pl-PL.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\pt-BR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\ru-RU.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\tr-TR.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-CN.None.md" />
+    <None Include="Templates\WinUI\_catalog\frontendframeworks\zh-TW.None.md" />
+    <None Include="Templates\WinUI\_catalog\it-IT.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\it-IT.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ja-JP.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ja-JP.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ko-KR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ko-KR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\pl-PL.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\pl-PL.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\de-DE.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\es-ES.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\fr-FR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\it-IT.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ja-JP.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ko-KR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pl-PL.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\pt-BR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\ru-RU.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\tr-TR.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-CN.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\projectTypes\zh-TW.Blank.md" />
+    <None Include="Templates\WinUI\_catalog\pt-BR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\pt-BR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\ru-RU.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\ru-RU.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\tr-TR.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\tr-TR.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\zh-CN.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\zh-CN.projectTypes.json" />
+    <None Include="Templates\WinUI\_catalog\zh-TW.frontendframeworks.json" />
+    <None Include="Templates\WinUI\_catalog\zh-TW.projectTypes.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights">
@@ -235,6 +331,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\SplashScreen.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square150x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\StoreLogo.png" />
+    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.idl" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml.cpp" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml.h" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.idl" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml.cpp" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml.h" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\pch.cpp" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\pch.h" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\readme.txt" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\WTS.ProjectConfig.xml" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj.filters" />
     <Content Include="tr-TR\Extension.vsixlangpack" />
     <Content Include="zh-CN\Extension.vsixlangpack" />
     <Content Include="zh-TW\Extension.vsixlangpack" />
@@ -263,10 +377,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Templates\WinUI\Features\MSIX\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\frontendframeworks\None.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\_catalog\projectTypes\Blank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

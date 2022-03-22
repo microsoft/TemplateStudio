@@ -1,0 +1,28 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "wts.WinUI.Page.AddTitle.Settings",
+    "identity": "wts.WinUI.Page.AddTitle.Settings",
+    "shortName": "wts.WinUI.Page.AddTitle.Settings",
+    "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "WinUI",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.Settings"
+  },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
+    }
+  }

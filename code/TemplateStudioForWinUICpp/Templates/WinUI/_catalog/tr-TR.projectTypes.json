@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Blank",
+    "displayName": "Blank",
+    "summary": "Bu temel proje, uygulamanız için temel olarak kullanabileceğiniz boş bir tuvaldir."
+  },
+  {
+    "name": "BlankAdvanced",
+    "displayName": "Blank Advanced",
+    "summary": "Gezinti çerçevesi ve temel hizmetler ve stiller dahildir."
+  },
+  {
+    "name": "SplitView",
+    "displayName": "Navigation Pane",
+    "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "MenuBar",
+    "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
+  }
+]

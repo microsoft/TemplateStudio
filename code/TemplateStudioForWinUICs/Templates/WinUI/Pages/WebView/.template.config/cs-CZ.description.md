@@ -1,0 +1,3 @@
+﻿Stránka webového zobrazení vloží ovládací prvek WebView2 do aplikace, který vykresluje webový obsah pomocí Microsoft Edge s vykreslovacím strojem Chromium. Hypertextové odkazy se také mohou zobrazit a fungovat tento ovládací prvek.  Ovládací prvek WebView2 na stránce můžete použít k zobrazení bohatě formátovaného obsahu HTML ze vzdáleného webového serveru, dynamicky generovaného kódu nebo souborů obsahu v balíčku aplikace. Bohatý obsah může také obsahovat kód skriptu a komunikovat mezi skriptem a kódem aplikace.
+
+[Začínáme s WebView2 ve WinUI 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

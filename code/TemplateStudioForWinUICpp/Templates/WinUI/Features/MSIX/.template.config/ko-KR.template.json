@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "Microsoft Store를 통한 사이드 로딩 또는 배포를 위한 패키지 생성을 허용합니다.",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}

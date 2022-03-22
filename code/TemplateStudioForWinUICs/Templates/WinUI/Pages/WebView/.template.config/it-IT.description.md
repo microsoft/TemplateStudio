@@ -1,0 +1,3 @@
+﻿La pagina di visualizzazione Web incorpora un controllo WebView2 nell'app che esegue il rendering del contenuto Web usando il motore di rendering Microsoft Edge with Chromium. Possono essere visualizzati anche collegamenti ipertestuali che funzionano con questo controllo.  Puoi usare il controllo WebView2 nella pagina per visualizzare contenuto HTML formattato in modo completo da un server Web remoto, codice generato dinamicamente o file di contenuto nel pacchetto dell'app. Il contenuto ricco può anche contenere codice script e comunicare tra lo script e il codice dell'app.
+
+[Introduzione a WebView2 in WinUI 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

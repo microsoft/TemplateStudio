@@ -1,0 +1,3 @@
+﻿Die Webseite bettet ein WebView2-Steuerelement in Ihre App ein, das Webinhalte mithilfe des Microsoft Edge mit Chromium-Renderingmodul rendert. Darüber hinaus können Hyperlinks angezeigt werden. Sie können das WebView2-Steuerelement auf der Seite verwenden, um reich formatierte HTML-Inhalte von einem Remotewebserver, dynamisch generierten Code oder Inhaltsdateien in Ihrem App-Paket anzuzeigen. Umfangreich formatierte Inhalte können auch Skriptcode enthalten und zwischen dem Skript und dem Code Ihrer App kommunizieren.
+
+[Erste Schritte mit WebView2 in WinUI 3](https://docs.microsoft.com/microsoft-edge/webview2/gettingstarted/winui)

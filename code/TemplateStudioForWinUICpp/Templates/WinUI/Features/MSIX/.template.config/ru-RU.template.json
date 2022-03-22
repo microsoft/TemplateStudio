@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "MSIX Packaging",
+  "description": "Позволяет создавать пакеты для боковой загрузки или распространения через Microsoft Store.",
+  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp"
+}
