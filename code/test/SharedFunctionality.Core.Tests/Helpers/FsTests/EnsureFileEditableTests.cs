@@ -14,7 +14,6 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
 {
     [Collection("Unit Test Logs")]
     [Trait("Group", "Minimum")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "Testing purposes only")]
     public class EnsureFileEditableTests : IDisposable
     {
         private readonly FSTestsFixture _fixture;

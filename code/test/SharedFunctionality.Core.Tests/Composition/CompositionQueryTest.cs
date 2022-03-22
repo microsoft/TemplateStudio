@@ -4,7 +4,6 @@
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Composition;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Composition

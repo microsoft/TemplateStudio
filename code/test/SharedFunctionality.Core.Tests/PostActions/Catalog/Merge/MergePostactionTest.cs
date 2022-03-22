@@ -10,7 +10,6 @@ using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge.CodeStyleProviders;
 using Microsoft.Templates.Core.Test.TestFakes;
 using Microsoft.Templates.Resources;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

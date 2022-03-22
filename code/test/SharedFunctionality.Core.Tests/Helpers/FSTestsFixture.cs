@@ -9,7 +9,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Helpers.FsTests.Helpers
 {
@@ -125,11 +124,5 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests.Helpers
                 Directory.Delete(TestPath, true);
             }
         }
-    }
-
-    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation")]
-    [CollectionDefinition("Unit Test Logs")]
-    public class LogCollection : ICollectionFixture<FSTestsFixture>
-    {
     }
 }

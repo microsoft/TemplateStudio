@@ -8,7 +8,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge.CodeStyleProviders;
 using Microsoft.Templates.Core.Test.TestFakes;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

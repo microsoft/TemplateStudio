@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics

@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using Microsoft.Templates.Core.Casing;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Templates

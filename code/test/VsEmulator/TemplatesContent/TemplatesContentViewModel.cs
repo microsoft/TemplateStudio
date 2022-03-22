@@ -3,11 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
-
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.UI.Mvvm;
 

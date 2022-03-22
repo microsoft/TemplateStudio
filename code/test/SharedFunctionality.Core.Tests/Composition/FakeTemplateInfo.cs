@@ -4,9 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Utils;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {

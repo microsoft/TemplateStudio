@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Resources;
 
 namespace Microsoft.Templates.Core.PostActions
 {

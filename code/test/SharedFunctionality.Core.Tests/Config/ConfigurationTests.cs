@@ -6,10 +6,8 @@ using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Config

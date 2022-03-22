@@ -46,7 +46,9 @@ namespace Microsoft.Templates.Test
 
                 // No longer needed...for some reason 🤷
                 // Ensure using strong SSL certificates (Necessary for github URLs)
+#pragma warning disable RS0030 // Do not used banned APIs - Using as don't know a suitable alternative
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
+#pragma warning restore RS0030 // Do not used banned APIs
                 ServicePointManager.ServerCertificateValidationCallback = (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) => { return true; };
 
                 var req = new HttpClient();

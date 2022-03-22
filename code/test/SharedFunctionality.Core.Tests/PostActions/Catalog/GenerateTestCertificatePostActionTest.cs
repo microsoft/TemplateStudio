@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
@@ -13,7 +12,6 @@ using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Core.Test.TestFakes;
 using Microsoft.Templates.Core.Test.TestFakes.GenShell;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

@@ -8,7 +8,6 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.Templates.UI.VisualStudio.GenShell;
 
 namespace Microsoft.Templates.UI.Services

@@ -2,13 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Core.Test.TestFakes.GenShell;
-
-using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -18,10 +14,6 @@ namespace Microsoft.Templates.Core.Test
 
         private bool _syncExecuted = false;
 
-        [SuppressMessage(
-            "Usage",
-            "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
-            Justification = "Required por unit testing.")]
         public void InitializeFixture(string platform, string language)
         {
             var source = new UnitTestsTemplatesSource(null);
@@ -35,11 +27,5 @@ namespace Microsoft.Templates.Core.Test
 
             Repository = GenContext.ToolBox.Repo;
         }
-    }
-
-    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation")]
-    [CollectionDefinition("Unit Test Templates")]
-    public class TemplatesCollection : ICollectionFixture<TemplatesFixture>
-    {
     }
 }

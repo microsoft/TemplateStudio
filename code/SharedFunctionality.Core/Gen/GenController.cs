@@ -14,7 +14,6 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Core.Templates;
 using Microsoft.Templates.Resources;
 
 namespace Microsoft.Templates.Core.Gen

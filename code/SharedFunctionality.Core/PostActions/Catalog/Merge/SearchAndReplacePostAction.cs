@@ -7,10 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
-using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {

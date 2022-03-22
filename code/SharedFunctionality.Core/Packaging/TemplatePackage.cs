@@ -16,7 +16,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Resources;
 
 namespace Microsoft.Templates.Core.Packaging

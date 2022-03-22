@@ -6,11 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Core.Locations

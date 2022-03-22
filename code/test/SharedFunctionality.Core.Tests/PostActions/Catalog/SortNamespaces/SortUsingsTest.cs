@@ -3,15 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
-    [SuppressMessage("StyleCop", "SA1122", Justification = "The code is cleaner")]
     [Trait("Group", "Minimum")]
     public class SortUsingsTest
     {

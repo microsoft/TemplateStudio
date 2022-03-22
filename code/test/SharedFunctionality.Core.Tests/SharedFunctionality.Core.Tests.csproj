@@ -42,6 +42,7 @@
     <Compile Include="Helpers\FsTests\SafeDeleteFileTests.cs" />
     <Compile Include="Helpers\FsTests\SafeMoveFileTests.cs" />
     <Compile Include="Helpers\FsTests\SafeRenameDirectoryTests.cs" />
+    <Compile Include="Helpers\LogCollection.cs" />
     <Compile Include="Locations\TemplateSourceConfigTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Naming\FolderNameValidatorTests.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Templates\TemplateLicenseEqualityComparerTest.cs" />
     <Compile Include="Templates\TemplateRepositoryTests.cs" />
+    <Compile Include="Templates\TemplatesCollection.cs" />
     <Compile Include="Templates\TemplatesFixture.cs" />
     <None Include="TestData\Merge\NoSource_postaction.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

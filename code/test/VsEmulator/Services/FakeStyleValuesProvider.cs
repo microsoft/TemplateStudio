@@ -6,7 +6,6 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.VsEmulator.Main;
 
 namespace Microsoft.Templates.VsEmulator.Services
 {

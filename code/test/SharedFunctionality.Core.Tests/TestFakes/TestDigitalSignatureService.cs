@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Packaging;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
 using Microsoft.Templates.Core.Packaging;

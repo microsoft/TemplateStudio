@@ -4,7 +4,6 @@
 
 using System.IO;
 using Microsoft.Templates.Core.Locations;
-
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Locations
