@@ -14,7 +14,7 @@
     "wts.outputToParent": "true",
     "wts.platform": "WinUI",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.StyleCop",
+    "wts.compositionFilter": "groupidentity == wts.WinUI.Feat.StyleCop",
     "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",

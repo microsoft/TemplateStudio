@@ -61,7 +61,23 @@
       <Link>Styles\TemplateStudioStyles.xaml.cs</Link>
       <DependentUpon>TemplateStudioStyles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuildTemplatesTests\WinUICppBuildTemplatesTestCollection.cs" />
+    <Compile Include="BuildTemplatesTests\WinUICppBuildTemplatesTestFixture.cs" />
+    <Compile Include="BuildTemplatesTests\WinUI\BuildNoneProjectTests.cs" />
+    <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="ExternalLinksTest.cs" />
+    <Compile Include="FileEncodingTests.cs" />
+    <Compile Include="Generated Code\WinUICppTestData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WinUICppTestData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateFolderValidationTests.cs" />
+    <Compile Include="TemplateJsonValidationTests.cs" />
+    <Compile Include="TestConstants.cs" />
+    <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ApiAnalysis.SimpleJsonAnalyzer">
@@ -163,6 +179,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Generated Code\WinUICppTestData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WinUICppTestData.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="bat\WinUI\RestoreAndBuildCpp.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\WinUI\RestoreAndBuildCppAppx.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="..\..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems" Label="Shared" />

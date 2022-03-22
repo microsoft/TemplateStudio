@@ -61,7 +61,31 @@
       <Link>Styles\TemplateStudioStyles.xaml.cs</Link>
       <DependentUpon>TemplateStudioStyles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuildTemplatesTests\WinUICsBuildTemplatesTestCollection.cs" />
+    <Compile Include="BuildTemplatesTests\WinUICsBuildTemplatesTestFixture.cs" />
+    <Compile Include="BuildTemplatesTests\WinUI\BuildMVVMToolkitProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\WinUI\BuildNoneProjectTests.cs" />
+    <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="ExternalLinksTest.cs" />
+    <Compile Include="FileEncodingTests.cs" />
+    <Compile Include="Generated Code\WinUICsTestData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WinUICsTestData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateFolderValidationTests.cs" />
+    <Compile Include="TemplateJsonValidationTests.cs" />
+    <Compile Include="TestConstants.cs" />
+    <Content Include="TestData\WinUI\SC\StyleCop\Param_ProjectName\GlobalSuppressions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\WinUI\SC\_comp\_shared\Project.Core.AddSc\Param_ProjectName.Core\GlobalSuppressions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="WACK\WinUI\WindowsAppCertKitTests.cs" />
+    <Compile Include="WinUICSBaseGenAndBuildTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ApiAnalysis.SimpleJsonAnalyzer">
@@ -163,6 +187,70 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\LockScreenLogo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Logo.png">
+      <Link>TestData\NonDefaultAssets\Logo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\SplashScreen.scale-200.png">
+      <Link>TestData\NonDefaultAssets\SplashScreen.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square150x150Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Square150x150Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square44x44Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Square44x44Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Link>TestData\NonDefaultAssets\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\StoreLogo.png">
+      <Link>TestData\NonDefaultAssets\StoreLogo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SharedFunctionality.Tests\TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
+      <Link>TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Generated Code\WinUICsTestData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WinUICsTestData.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bat\WinUI\RestoreAndBuild.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bat\WinUI\RestoreAndBuildAppx.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="TestData\WinUI\SC\StyleCop\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\WinUI\SC\StyleCop\Param_ProjectName\Param_ProjectName_postaction.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\WinUI\SC\_comp\_shared\Project.Core.AddSc\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\WinUI\SC\_comp\_shared\Project.Core.AddSc\Param_ProjectName.Core\Param_ProjectName.Core_searchreplace.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="nuget\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="..\..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems" Label="Shared" />
