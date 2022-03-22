@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
 	<TemplateData>
 		<Name>Template Studio for WinUI (C#)</Name>
 		<Description>Quickly build an app, using a wizard-based UI, based on leading patterns and best practices.</Description>
@@ -28,7 +28,7 @@
 		</CustomParameters>
 	</TemplateContent>
 	<WizardExtension>
-		<Assembly>TemplateStudioForUWP, Version=5.2.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+		<Assembly>TemplateStudioForWinUICs, Version=5.2.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
 		<FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
 	</WizardExtension>
 </VSTemplate>

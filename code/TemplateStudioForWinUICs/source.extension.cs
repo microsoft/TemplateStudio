@@ -8,11 +8,11 @@ namespace TemplateStudioForWinUICs
     internal sealed partial class Vsix
     {
         public const string Id = "TemplateStudioForWinUICs.843dd154-7a62-4aab-8482-1ce4c73cb580";
-        public const string Name = "TemplateStudioForWinUICs";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Name = "Template Studio for WinUI (C#)";
+        public const string Description = @"Template Studio accelerates the creation of new WinUI apps using a wizard-based UI.";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Matt Lacey";
-        public const string Tags = "";
+        public const string Author = "Microsoft Corporation";
+        public const string Tags = "Template Studio, WinUI, XAML, MVVM, Desktop";
     }
 }

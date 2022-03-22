@@ -1,0 +1,6 @@
+{
+    "RemoteTelemetryKey": "VSIX Key",
+    "LogFileFolderPath": "TS4WinUICPP\\Logs",
+    "RepositoryFolderName": "TS4WinUICPP",
+    "DiagnosticsTraceLevel": "Verbose"
+}

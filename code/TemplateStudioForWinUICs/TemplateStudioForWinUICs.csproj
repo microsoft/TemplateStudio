@@ -34,7 +34,10 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\TemplateStudioKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -178,12 +181,24 @@
       <Link>Styles\TemplateStudioStyles.xaml.cs</Link>
       <DependentUpon>TemplateStudioStyles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\TemplateStudioCommand.cs" />
+    <Compile Include="Commands\TemplateStudioForWinuiPackage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateStudioForWinuiPackage.vsct</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
+    <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Commands\Resources\TemplateStudioCommand.png" />
+    <Content Include="Commands\TemplateStudioForWinuiPackage.vsct">
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>TemplateStudioForWinuiPackage.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\EULA.cs-CZ.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -240,6 +255,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="CoreTemplateStudio.config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\TemplateStudioKey.snk">
+      <Link>TemplateStudioKey.snk</Link>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
@@ -257,6 +278,10 @@
     <Content Include="pl-PL\Extension.vsixlangpack" />
     <Content Include="pt-BR\Extension.vsixlangpack" />
     <Content Include="ru-RU\Extension.vsixlangpack" />
+    <Content Include="TemplateStudio_Logo_90x90.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="tr-TR\Extension.vsixlangpack" />
     <Content Include="zh-CN\Extension.vsixlangpack" />
     <Content Include="zh-TW\Extension.vsixlangpack" />
@@ -395,145 +420,145 @@
     <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Helpers\ResourceExtensions.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\Contracts\Services\INavigationService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\AddConnectedAnimation\Contracts\Services\INavigationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\Services\NavigationService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\AddConnectedAnimation\Services\NavigationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Feature.SampleData\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Feature.SampleData\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Feature.ThemeSelection\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\Services\ActivationService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Feature.ThemeSelection\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddBackCommand\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\Services\PageService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\Views\wts.ItemNameDetailPage_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\Views\wts.ItemNameDetailPage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModel\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\Services\PageService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModel\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModel\ViewModels\wts.ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModel\Views\wts.ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.WebView\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Page.WebView\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\ViewModels\ShellViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\ViewModels\ShellViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\ViewModels\ShellViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem\ViewModels\ShellViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Contracts\Services\IRightPaneService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Contracts\Services\IRightPaneService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Services\ActivationService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Services\RightPaneService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Services\RightPaneService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\ViewModels\ShellViewModel.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\ViewModels\ShellViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Views\ShellPage.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Views\ShellPage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\Services\NavigationViewService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem.Settings\Services\NavigationViewService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\ViewModels\ShellViewModel_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem.Settings\ViewModels\ShellViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Behaviors\NavigationViewHeaderBehavior.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Behaviors\NavigationViewHeaderBehavior.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Behaviors\NavigationViewHeaderMode.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Behaviors\NavigationViewHeaderMode.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Contracts\Services\INavigationViewService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Contracts\Services\INavigationViewService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Helpers\NavHelper.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Helpers\NavHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Services\ActivationService_postaction.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Services\NavigationViewService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Services\NavigationViewService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\ViewModels\ShellViewModel.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\ViewModels\ShellViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Views\ShellPage.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Views\ShellPage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\ActivationHandler.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Activation\ActivationHandler.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\DefaultActivationHandler.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Activation\DefaultActivationHandler.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Activation\IActivationHandler.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Activation\IActivationHandler.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\App_postaction.xaml.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\IActivationService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Contracts\Services\IActivationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\INavigationService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Contracts\Services\INavigationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Contracts\Services\IPageService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Contracts\Services\IPageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Helpers\FrameExtensions.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Helpers\FrameExtensions.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\ActivationService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Services\ActivationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\NavigationService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Services\NavigationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\Services\PageService.cs">
+    <Content Include="Templates\WinUI\_comp\MT\Project\Services\PageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml.cs">
@@ -1871,85 +1896,85 @@
     <Content Include="Templates\WinUI\_catalog\zh-TW.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\AddConnectedAnimation\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\AddConnectedAnimation\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\ExportParams.Page\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\ExportParams.Page\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\ExportParams.Project\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\ExportParams.Project\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Feature.SampleData\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Feature.SampleData\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Feature.ThemeSelection\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Feature.ThemeSelection\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddBackCommand\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddCommandNS\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddCommandNS\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddIocNS\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddIocNS\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModelDetail\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddViewModel\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModel\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.WebView\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Page.WebView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.BlankAdvanced\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.BlankAdvanced\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.BlankAdvanced\README_postaction.md">
+    <Content Include="Templates\WinUI\_comp\MT\Project.BlankAdvanced\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\Strings\en-us\Resources_postaction.resw">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\Strings\en-us\Resources_postaction.resw">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\README_postaction.md">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Strings\en-us\Resources_postaction.resw">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem.Settings\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\Strings\en-us\Resources_postaction.resw">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\README_postaction.md">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\.template.config\template.json">
+    <Content Include="Templates\WinUI\_comp\MT\Project\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project\README_postaction.md">
+    <Content Include="Templates\WinUI\_comp\MT\Project\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Blank\.template.config\template.json">
@@ -2126,25 +2151,25 @@
     <Content Include="Templates\WinUI\_catalog\projectTypes\SplitView.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Page.AddBackCommand\Views\wts.ItemNameDetailPage_postaction.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Page.AddBackCommand\Views\wts.ItemNameDetailPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem.Settings\Views\ShellPage_postaction.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar.AddNavigationViewItem\Views\ShellPage_postaction.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar.AddNavViewItem\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.MenuBar\Views\ShellPage.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.MenuBar\Views\ShellPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem.Settings\Views\ShellPage_searchreplace.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem.Settings\Views\ShellPage_searchreplace.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView.AddNavigationViewItem\Views\ShellPage_postaction.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView.AddNavViewItem\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MVVMToolkit\Project.SplitView\Views\ShellPage.xaml">
+    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\_shared\Page.AddTitle.Blank\Views\wts.ItemNamePage_postaction.xaml">
@@ -2178,6 +2203,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
