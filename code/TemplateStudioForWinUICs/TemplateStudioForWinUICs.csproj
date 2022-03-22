@@ -268,23 +268,49 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cs-CZ\Extension.vsixlangpack" />
-    <Content Include="de-DE\Extension.vsixlangpack" />
-    <Content Include="es-ES\Extension.vsixlangpack" />
-    <Content Include="fr-FR\Extension.vsixlangpack" />
-    <Content Include="it-IT\Extension.vsixlangpack" />
-    <Content Include="ja-JP\Extension.vsixlangpack" />
-    <Content Include="ko-KR\Extension.vsixlangpack" />
-    <Content Include="pl-PL\Extension.vsixlangpack" />
-    <Content Include="pt-BR\Extension.vsixlangpack" />
-    <Content Include="ru-RU\Extension.vsixlangpack" />
+    <Content Include="cs-CZ\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="de-DE\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="es-ES\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="fr-FR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="it-IT\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ja-JP\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ko-KR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="pl-PL\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="pt-BR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ru-RU\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="TemplateStudio_Logo_90x90.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="tr-TR\Extension.vsixlangpack" />
-    <Content Include="zh-CN\Extension.vsixlangpack" />
-    <Content Include="zh-TW\Extension.vsixlangpack" />
+    <Content Include="tr-TR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="zh-CN\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="zh-TW\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="TemplateStudioColors.pkgdef">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
