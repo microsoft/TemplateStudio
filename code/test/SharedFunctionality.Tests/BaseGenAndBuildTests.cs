@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Test
                 && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == context.Platform
-                && t.GetExclusionsList().Count() == 0
+                && t.GetExclusionsList().Count == 0
                 && (!t.GetIsGroupExclusiveSelection() || (t.GetIsGroupExclusiveSelection() && exclusiveSelectionGroups.Contains(t)))
                 && !t.GetIsHidden();
 
@@ -167,7 +167,7 @@ namespace Microsoft.Templates.Test
 
             // Assert
             Assert.True(Directory.Exists(resultPath));
-            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
+            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Length > 2);
 
             if (context.Platform == Platforms.Uwp)
             {
@@ -367,7 +367,7 @@ namespace Microsoft.Templates.Test
             // Assert on project
             Assert.True(Directory.Exists(project));
 
-            int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
+            int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Length;
             Assert.True(emptyProjecFileCount > 2);
 
             var rightClickTemplates = _fixture.Templates().Where(
@@ -383,7 +383,7 @@ namespace Microsoft.Templates.Test
             await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, context.ProjectType, context.FrontEndFramework, context.Platform, context.Language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
-            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
+            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Length;
 
             if (emptyProject)
             {
@@ -466,7 +466,7 @@ namespace Microsoft.Templates.Test
 
             // Assert
             Assert.True(Directory.Exists(resultPath));
-            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
+            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Length > 2);
 
             // Clean
             if (cleanGeneration)

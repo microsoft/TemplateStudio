@@ -79,12 +79,12 @@ namespace Microsoft.Templates.Core.Packaging
         {
             if (string.IsNullOrWhiteSpace(source))
             {
-                throw new ArgumentException("source");
+                throw new ArgumentException(nameof(source));
             }
 
             if (string.IsNullOrWhiteSpace(outFile))
             {
-                throw new ArgumentException("outFile");
+                throw new ArgumentException(nameof(outFile));
             }
 
             FileInfo[] files = GetSourceFiles(source);
@@ -145,7 +145,7 @@ namespace Microsoft.Templates.Core.Packaging
         {
             if (signingCert == null)
             {
-                throw new ArgumentException("signingCert");
+                throw new ArgumentException(nameof(signingCert));
             }
 
             using (Package package = Package.Open(file, FileMode.Open))
@@ -293,7 +293,7 @@ namespace Microsoft.Templates.Core.Packaging
         {
             if (package == null)
             {
-                throw new ArgumentNullException("ValidateSignatures(package)");
+                throw new ArgumentNullException(nameof(package));
             }
 
             return _digitalSignatureService.IsSigned(package)
@@ -392,12 +392,12 @@ namespace Microsoft.Templates.Core.Packaging
         {
             if (package == null)
             {
-                throw new ArgumentNullException("SignAllParts(package)");
+                throw new ArgumentNullException(nameof(package));
             }
 
             if (cert == null)
             {
-                throw new ArgumentNullException("SignAllParts(cert)");
+                throw new ArgumentNullException(nameof(cert));
             }
 
             try
@@ -458,7 +458,7 @@ namespace Microsoft.Templates.Core.Packaging
                 uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, string.Empty);
                 if (!File.Exists(source))
                 {
-                    uriString = uriString + Path.DirectorySeparatorChar;
+                    uriString += Path.DirectorySeparatorChar;
                 }
             }
             else
@@ -466,7 +466,7 @@ namespace Microsoft.Templates.Core.Packaging
                 uriString = Path.GetDirectoryName(source);
                 if (!File.Exists(source))
                 {
-                    uriString = uriString + Path.DirectorySeparatorChar;
+                    uriString += Path.DirectorySeparatorChar;
                 }
             }
 
@@ -492,7 +492,7 @@ namespace Microsoft.Templates.Core.Packaging
                 files = new FileInfo[] { new FileInfo(source) };
             }
 
-            if (files == null || files.Count() == 0)
+            if (files == null || files.Length == 0)
             {
                 throw new FileNotFoundException(string.Format(StringRes.TemplatePackageGetSourceFilesMessage, source));
             }

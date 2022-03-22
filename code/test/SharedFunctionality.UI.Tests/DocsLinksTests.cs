@@ -92,9 +92,9 @@ namespace Microsoft.Templates.Test.Documentation
             var errorMessage = new System.Text.StringBuilder();
             errorMessage.AppendLine("Some Docs links failed:");
 
-            foreach (var brokenLink in filesWithBrokenLinks)
+            foreach ((string file, string uri, int statusCode) in filesWithBrokenLinks)
             {
-                errorMessage.AppendLine($"Got a {brokenLink.statusCode} when requesting '{brokenLink.uri}' for '{brokenLink.file}'");
+                errorMessage.AppendLine($"Got a {statusCode} when requesting '{uri}' for '{file}'");
             }
 
             Assert.True(!filesWithBrokenLinks.Any(), errorMessage.ToString());

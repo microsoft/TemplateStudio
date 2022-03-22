@@ -20,10 +20,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public NewProjectMainPage()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
-            this.Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
-            this.Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
+            Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
+            Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
 
             DataContext = MainViewModel.Instance;
             InitializeComponent();

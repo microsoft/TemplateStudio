@@ -43,7 +43,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Frameworks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenTests\GenerationCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenTests\GenerationFixture.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ProjectTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\PostActionInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\PrimaryOutput.cs" />

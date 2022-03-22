@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core
                 {
                     if (actual[i].Length > item.TrimEnd().Length)
                     {
-                        if (actual[i].Substring(0, item.TrimEnd().Count()).Equals(item.TrimEnd(), StringComparison.OrdinalIgnoreCase))
+                        if (actual[i].Substring(0, item.TrimEnd().Length).Equals(item.TrimEnd(), StringComparison.OrdinalIgnoreCase))
                         {
                             return skip + i;
                         }

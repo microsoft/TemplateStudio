@@ -15,10 +15,10 @@ namespace Microsoft.Templates.UI.Views.NewItem
     {
         public NewItemMainPage()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
-            this.Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
-            this.Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
-            this.Resources.Add("StepVisibilityConverter", new StepVisibilityConverter());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
+            Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
+            Resources.Add("StepVisibilityConverter", new StepVisibilityConverter());
 
             DataContext = MainViewModel.Instance;
             InitializeComponent();

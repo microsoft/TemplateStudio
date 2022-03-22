@@ -15,7 +15,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public ChangesSummaryPage(NewItemGenerationResult output)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             _output = output;
             DataContext = MainViewModel.Instance;

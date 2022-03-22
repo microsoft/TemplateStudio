@@ -17,8 +17,8 @@ namespace Microsoft.Templates.UI.Views.Common
 
         public CompositionToolWindow(UserSelection userSelection)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
-            this.Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
 
             _userSelection = userSelection;
             DataContext = MainViewModel.Instance.CompositionTool;

@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Views.Common
     {
         public QuestionDialogWindow(QuestionDialogViewModel vm)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
             DataContext = vm;
             vm.CloseAction = () => Close();
 

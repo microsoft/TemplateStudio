@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public TemplatesStepPage(TemplateType templateType)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             DataContext = MainViewModel.Instance.StepsViewModels[templateType];
             InitializeComponent();

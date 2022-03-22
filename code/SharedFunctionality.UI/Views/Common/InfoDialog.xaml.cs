@@ -18,8 +18,8 @@ namespace Microsoft.Templates.UI.Views.Common
     {
         public InfoDialog(InfoDialogViewModel vm)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
-            this.Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
 
             DataContext = vm;
             vm.CloseAction = () => Close();

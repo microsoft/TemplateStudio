@@ -12,7 +12,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public ProjectTypePage()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             DataContext = MainViewModel.Instance;
             InitializeComponent();

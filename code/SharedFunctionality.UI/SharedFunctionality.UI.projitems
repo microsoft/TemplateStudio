@@ -259,15 +259,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\ProjectConfigurationDialog.xaml.cs">
       <DependentUpon>ProjectConfigurationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\TemplateSelectionPage.xaml.cs">
-      <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\TemplateSelectionPage.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\FrameworkPage.xaml.cs">
       <DependentUpon>FrameworkPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectMainPage.xaml.cs">
-      <DependentUpon>NewProjectMainPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectMainPage.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectWizardShell.xaml.cs">
       <DependentUpon>NewProjectWizardShell.xaml</DependentUpon>
     </Compile>

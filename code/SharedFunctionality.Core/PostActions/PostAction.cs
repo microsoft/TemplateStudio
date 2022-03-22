@@ -39,11 +39,11 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 if (!ContinueOnError)
                 {
-                    throw new Exception(string.Format(StringRes.PostActionException, this.GetType(), RelatedTemplate), ex);
+                    throw new Exception(string.Format(StringRes.PostActionException, GetType(), RelatedTemplate), ex);
                 }
                 else
                 {
-                    string msg = string.Format(StringRes.PostActionContinuerOnErrorWarning, this.GetType(), RelatedTemplate);
+                    string msg = string.Format(StringRes.PostActionContinuerOnErrorWarning, GetType(), RelatedTemplate);
                     AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
                 }
             }

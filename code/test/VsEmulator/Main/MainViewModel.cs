@@ -522,7 +522,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                string language = String.Empty;
+                string language = string.Empty;
                 switch (Path.GetExtension(projFile))
                 {
                     case ".vbproj":

@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.Controls
 
         public NotificationsControl()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             _instance = this;
             InitializeComponent();

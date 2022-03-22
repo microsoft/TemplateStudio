@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.Controls
 
         public SequentialFlow()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             Instance = this;
             InitializeComponent();

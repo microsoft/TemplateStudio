@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 if (insertIndex <= _result.Count && insertIndex > -1)
                 {
                     var lastContextLine = insertIndex != 0 ? _result[insertIndex - 1] : string.Empty;
-                    var nextContextLine = insertIndex != _result.Count() ? _result[insertIndex] : string.Empty;
+                    var nextContextLine = insertIndex != _result.Count ? _result[insertIndex] : string.Empty;
 
                     if (_codeStyleProvider != null)
                     {

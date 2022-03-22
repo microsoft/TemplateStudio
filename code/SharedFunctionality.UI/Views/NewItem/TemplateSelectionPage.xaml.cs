@@ -14,10 +14,10 @@ namespace Microsoft.Templates.UI.Views.NewItem
     {
         public TemplateSelectionPage()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
-            this.Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
-            this.Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
-            this.Resources.Add("SavedTemplateGridConverter", new SavedTemplateGridConverter());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
+            Resources.Add("BoolToVisibilityConverter", new BoolToVisibilityConverter());
+            Resources.Add("SavedTemplateGridConverter", new SavedTemplateGridConverter());
 
             DataContext = MainViewModel.Instance;
             InitializeComponent();

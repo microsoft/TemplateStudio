@@ -17,24 +17,24 @@ namespace Microsoft.Templates.UI.Controls
     {
         public NotificationMarkdownBlock()
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             var markdown = new Markdown
             {
-                DocumentStyle = (Style)this.Resources["DocumentStyle"],
-                Heading1Style = (Style)this.Resources["H1Style"],
-                Heading2Style = (Style)this.Resources["H2Style"],
-                Heading3Style = (Style)this.Resources["H3Style"],
-                Heading4Style = (Style)this.Resources["H4Style"],
-                LinkStyle = (Style)this.Resources["WtsHyperlink"],
-                ImageStyle = (Style)this.Resources["ImageStyle"],
-                SeparatorStyle = (Style)this.Resources["SeparatorStyle"],
+                DocumentStyle = (Style)Resources["DocumentStyle"],
+                Heading1Style = (Style)Resources["H1Style"],
+                Heading2Style = (Style)Resources["H2Style"],
+                Heading3Style = (Style)Resources["H3Style"],
+                Heading4Style = (Style)Resources["H4Style"],
+                LinkStyle = (Style)Resources["WtsHyperlink"],
+                ImageStyle = (Style)Resources["ImageStyle"],
+                SeparatorStyle = (Style)Resources["SeparatorStyle"],
                 AssetPathRoot = Environment.CurrentDirectory,
             };
-            this.Resources.Add(nameof(Markdown), markdown);
+            Resources.Add(nameof(Markdown), markdown);
 
             var ttfdc = new TextToFlowDocumentConverter { Markdown = markdown };
-            this.Resources.Add(nameof(TextToFlowDocumentConverter), ttfdc);
+            Resources.Add(nameof(TextToFlowDocumentConverter), ttfdc);
 
             InitializeComponent();
 

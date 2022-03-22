@@ -42,7 +42,7 @@ namespace TemplateStudioForWPF
         {
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
-            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             await InitializeCommandsAsync();
 
@@ -51,9 +51,9 @@ namespace TemplateStudioForWPF
 
         private async Task InitializeCommandsAsync()
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(this.DisposalToken);
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(DisposalToken);
 
-            OleMenuCommandService commandService = await this.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
 
             addPageCommand = new TemplateStudioCommand(
                  this,

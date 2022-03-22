@@ -20,10 +20,10 @@ namespace Microsoft.Templates.UI.Views.Common
 
         public TemplateInfoPage(BasicInfoViewModel basicInfoViewModel)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
-            this.Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
-            this.Resources.Add("StringVisibilityConverter", new StringVisibilityConverter());
-            this.Resources.Add("BrushToColorConverter", new BrushToColorConverter());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.Add("HasItemsVisibilityConverter", new HasItemsVisibilityConverter());
+            Resources.Add("StringVisibilityConverter", new StringVisibilityConverter());
+            Resources.Add("BrushToColorConverter", new BrushToColorConverter());
 
             ViewModel = basicInfoViewModel;
             DataContext = ViewModel;

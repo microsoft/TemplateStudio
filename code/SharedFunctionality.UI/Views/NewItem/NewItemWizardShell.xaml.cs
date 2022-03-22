@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public NewItemWizardShell(TemplateType templateType, UserSelectionContext context, BaseStyleValuesProvider provider)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             _templateType = templateType;
             _context = context;

@@ -39,11 +39,7 @@ namespace TemplateStudioForWinUICs.Tests
 
         public static new IEnumerable<object[]> GetPageAndFeatureTemplatesForBuild(string framework, string language, string platform, string excludedItem = "")
         {
-            IEnumerable<object[]> result = new List<object[]>();
-
-            result = WinUICsBuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
-
-            return result;
+            return WinUICsBuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework, language, platform, excludedItem);
         }
     }
 }

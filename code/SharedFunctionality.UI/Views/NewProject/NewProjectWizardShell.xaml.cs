@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public NewProjectWizardShell(UserSelectionContext context, BaseStyleValuesProvider provider)
         {
-            this.Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
+            Resources.MergedDictionaries.Add(AllStylesDictionary.GetMergeDictionary());
 
             _context = context;
             Current = this;

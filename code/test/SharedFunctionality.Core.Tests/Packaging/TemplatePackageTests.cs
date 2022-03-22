@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public async Task Pack_FolderAsync()
         {
-            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"C:\Temp\PackTests";
             var outFile = Path.Combine(outDir, "JustPacked.mstx");
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None);
 
-            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Length;
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
 
             Directory.Delete(outDir, true);
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public async Task Pack_FolderWithDefaultNamingAsync()
         {
-            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"C:\Temp\PackTests";
             var extractDir = Path.Combine(outDir, "Extraction");
@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await _templatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None);
 
-            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Length;
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
 
             File.Delete(outFile);
@@ -72,14 +72,14 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"OutFolder\Extraction";
 
             string signedFile = await _templatePackage.PackAndSignAsync(inFolder, cert);
             await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None);
 
-            int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Length;
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
 
             File.Delete(signedFile);
@@ -92,14 +92,14 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = _templatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"C:\Temp\OutFolder\Extraction";
 
             string signedFile = await _templatePackage.PackAndSignAsync(inFolder, cert);
             await _templatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None);
 
-            int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Length;
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
 
             File.Delete(signedFile);
