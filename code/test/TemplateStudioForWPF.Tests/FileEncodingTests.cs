@@ -9,7 +9,6 @@ namespace TemplateStudioForWPF.Tests
 {
     [Trait("Group", "TS4WPF")]
     [Trait("Group", "MinimumWPF")]
-    [Trait("Group", "Minimum")]
     public class FileEncodingTests : BaseFileEncodingTests
     {
         [Fact]

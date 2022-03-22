@@ -8,8 +8,8 @@ using Xunit;
 
 namespace TemplateStudioForWinUICpp.Tests
 {
-    [Trait("Group", "TS4WinUICPP")]
-    [Trait("Group", "ReleaseWinUICPP")]
+    [Trait("Group", "TS4WinUICpp")]
+    [Trait("Group", "ReleaseWinUICpp")]
     [Trait("Group", "Release")]
     public class ExternalLinksTest : BaseExternalLinksTests
     {

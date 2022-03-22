@@ -14,6 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICs.Build
 {
+    [Trait("Group", "TS4WinUICs")]
     [Collection(nameof(WinUICsBuildTemplatesTestCollection))]
     public class BuildMVVMToolkitProjectTests : WinUICsBaseGenAndBuildTests
     {
@@ -24,8 +25,6 @@ namespace Microsoft.Templates.Test.WinUICs.Build
 
         [Theory]
         [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_MVVMToolkitAsync(string projectType, string framework, string platform, string language, string appModel)
         {
@@ -46,8 +45,6 @@ namespace Microsoft.Templates.Test.WinUICs.Build
 
         [Theory]
         [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
@@ -75,10 +72,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
 
         [Theory]
         [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "MinimumWinUI")]
-        [Trait("ExecutionSet", "MinimumMVVMToolkitWinUI")]
-        [Trait("ExecutionSet", "_CIBuild")]
-        [Trait("ExecutionSet", "_Full")]
+        [Trait("Group", "MinimumWinUICs")]
         [Trait("Type", "CodeStyle")]
         public async Task Build_All_CheckWithStyleCop_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
         {
@@ -109,8 +103,6 @@ namespace Microsoft.Templates.Test.WinUICs.Build
 
         [Theory]
         [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        [Trait("ExecutionSet", "BuildMVVMToolkitWinUI")]
-        [Trait("ExecutionSet", "_Full")]
         [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_WinUIAsync(string projectType, string framework, string platform, string language, string appModel)
         {
@@ -130,8 +122,6 @@ namespace Microsoft.Templates.Test.WinUICs.Build
 
         [Theory]
         [MemberData(nameof(WinUICsBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI, "")]
-        [Trait("ExecutionSet", "BuildOneByOneMVVMToolkitWinUI")]
-        [Trait("ExecutionSet", "_OneByOne")]
         [Trait("Type", "BuildOneByOneMVVMToolkitWinUI")]
         public async Task Build_MVVMToolkit_OneByOneItems_WinUIAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, string appModel)
         {

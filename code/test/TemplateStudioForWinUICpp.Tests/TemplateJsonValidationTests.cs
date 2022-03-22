@@ -10,8 +10,8 @@ using Xunit;
 
 namespace TemplateStudioForWinUICpp.Tests
 {
-    [Trait("Group", "TS4WinUICPP")]
-    [Trait("Group", "MinimumWinUICPP")]
+    [Trait("Group", "TS4WinUICpp")]
+    [Trait("Group", "MinimumWinUICpp")]
     public partial class TemplateJsonValidationTests : BaseTemplateJsonValidationTests
     {
         [Theory]

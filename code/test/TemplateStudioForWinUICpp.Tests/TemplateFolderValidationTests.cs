@@ -10,9 +10,8 @@ using Xunit;
 
 namespace TemplateStudioForWinUICpp.Tests
 {
-    [Trait("Group", "TS4WinUICPP")]
-    [Trait("Group", "MinimumWinUICPP")]
-    [Trait("Group", "Minimum")]
+    [Trait("Group", "TS4WinUICpp")]
+    [Trait("Group", "MinimumWinUICpp")]
     public class TemplateFolderValidationTests : BaseTemplateFolderValidationTests
     {
         [Fact]

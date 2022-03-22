@@ -7,9 +7,8 @@ using Xunit;
 
 namespace TemplateStudioForWinUICs.Tests
 {
-    [Trait("Group", "TS4WinUICS")]
-    [Trait("Group", "MinimumWinUICS")]
-    [Trait("Group", "Minimum")]
+    [Trait("Group", "TS4WinUICs")]
+    [Trait("Group", "MinimumWinUICs")]
     public class CodeStyleEnforcementTests : BaseCodeStyleEnforcementTests
     {
         public override string TemplatesRoot() => TestConstants.Ts4WinuiCsRelativeTemplatesRoot;

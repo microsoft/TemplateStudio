@@ -13,7 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICpp.Build
 {
-    [Trait("Group", "TS4WinUICPP")]
+    [Trait("Group", "TS4WinUICpp")]
     [Collection(nameof(WinUICppBuildTemplatesTestCollection))]
     public class BuildNoneProjectTests : WinUICppBaseGenAndBuildTests
     {
@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
 
         [Theory]
         [MemberData(nameof(WinUICppBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("Group", "MinimumWinUICPP")]
+        [Trait("Group", "MinimumWinUICpp")]
         [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneCppAsync(string projectType, string framework, string platform, string language, string appModel)
         {
