@@ -1,7 +1,7 @@
 ﻿            if (App.MainWindow.Content == null)
             {
 //{[{
-                _shell = Ioc.Default.GetService<ShellPage>();
+                _shell = App.GetService<ShellPage>();
 //}]}
                 App.MainWindow.Content = _shell ?? new Frame();
             }

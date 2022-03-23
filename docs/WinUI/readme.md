@@ -1,6 +1,6 @@
 # WinUI 3 Apps
 
-**WinUI 3** project templates supported by *Windows Template Studio*:
+**WinUI 3** project templates supported by *Template Studio*:
 
 C# templates:
 - App (**WinUI 3 in Desktop**)
@@ -20,18 +20,18 @@ We also offer the following item templates for C# and C++:
 
 # Using and extending your generated project
 
-**WinUI 3** projects created with *Windows Template Studio* (aka *WinTS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+**WinUI 3** projects created with *Template Studio* (aka *TS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
-## Understanding generated code from Windows Template Studio
+## Understanding generated code from Template Studio
 
 The final generated code is the result of a project configuration (project type and design pattern) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
 
 - [Application activation](./activation.md)
 - [Navigation between pages](./navigation.md)
 
-## Understanding concepts for Windows Template Studio
+## Understanding concepts for Template Studio
 
-*Windows Template Studio* approaches **WinUI 3** Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
+*Template Studio* approaches **WinUI 3** Desktop app creation using the following attribute sets to decide how to best generate your app. Below are descriptions of everything you can do.
 
 ### Project Types
 
@@ -46,7 +46,7 @@ The final generated code is the result of a project configuration (project type 
 
 ### Design patterns
 
-**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. *Windows Template Studio* currently supports the following common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. *Template Studio* currently supports the following common patterns:
 
 | Design pattern| Description |
 |--------------:|:------------|
@@ -85,8 +85,8 @@ The final generated code is the result of a project configuration (project type 
 
 
 ### Known issues:
-- [Backbutton issue in ListDetail Page](https://github.com/microsoft/WindowsTemplateStudio/issues/4280)
-- [VisualStateManager initialization issue](https://github.com/microsoft/WindowsTemplateStudio/issues/4072)
+- [Backbutton issue in ListDetail Page](https://github.com/microsoft/TemplateStudio/issues/4280)
+- [VisualStateManager initialization issue](https://github.com/microsoft/TemplateStudio/issues/4072)
 
 ### Additional docs:
 - [Windows UI Library (WinUI)](https://docs.microsoft.com/en-us/windows/apps/winui/)

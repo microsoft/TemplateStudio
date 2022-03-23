@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
-using Windows.Storage;
+
 using Param_RootNamespace.Contracts.Services;
-using Param_RootNamespace.Helpers;
+
+using Microsoft.UI.Xaml;
 
 namespace Param_RootNamespace.Services
 {
@@ -12,6 +12,13 @@ namespace Param_RootNamespace.Services
         private const string SettingsKey = "AppBackgroundRequestedTheme";
 
         public ElementTheme Theme { get; set; } = ElementTheme.Default;
+
+        private readonly ILocalSettingsService _localSettingsService;
+
+        public ThemeSelectorService(ILocalSettingsService localSettingsService)
+        {
+            _localSettingsService = localSettingsService;
+        }
 
         public async Task InitializeAsync()
         {
@@ -40,7 +47,7 @@ namespace Param_RootNamespace.Services
         private async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
             ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
+            string themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
 
             if (!string.IsNullOrEmpty(themeName))
             {
@@ -52,7 +59,7 @@ namespace Param_RootNamespace.Services
 
         private async Task SaveThemeInSettingsAsync(ElementTheme theme)
         {
-            await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString());
+            await _localSettingsService.SaveSettingAsync(SettingsKey, theme.ToString());
         }
     }
 }

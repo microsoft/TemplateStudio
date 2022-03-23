@@ -16,7 +16,7 @@
 //^^
 //{[{
 
-        private void OnMenuViewswts.ItemName() => NavigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName, null, true);
+        private void OnMenuViewswts.ItemName() => NavigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName);
 //}]}
     }
 }

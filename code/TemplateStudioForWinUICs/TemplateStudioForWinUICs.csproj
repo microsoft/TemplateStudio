@@ -172,6 +172,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\FontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -194,6 +202,18 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Contracts\Services\ILocalSettingsService.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Models\LocalSettingsOptions.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Services\LocalSettingsServicePackaged.cs" />
+    <Compile Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Services\LocalSettingsServiceUnpackaged.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\Contracts\Services\IFileService.cs" />
+    <Compile Include="Templates\WinUI\Projects\Default\wts.ProjectName.Core\Services\FileService.cs" />
+    <Compile Include="Templates\WinUI\_comp\MT\Feature.SettingsStorage.Packaged\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MT\Feature.SettingsStorage.Unpackaged\App_postaction.xaml.cs" />
+    <Compile Include="Templates\WinUI\_comp\MT\Page.Settings.Packaged\ViewModels\wts.ItemNameViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MT\Page.Settings.Unpackaged\ViewModels\wts.ItemNameViewModel_postaction.cs" />
+    <Compile Include="Templates\WinUI\_comp\MT\Project.SplitView\Helpers\NavigationHelper.cs" />
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
     <Content Include="Commands\TemplateStudioForWinuiPackage.vsct">
       <Generator>VsctGenerator</Generator>
@@ -266,6 +286,25 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <None Include="Templates\WinUI\Features\MSIX\Param_ProjectName_postaction.csproj" />
+    <None Include="Templates\WinUI\Features\MSIX\Properties\launchsettings.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\appsettings.json" />
+    <None Include="Templates\WinUI\Features\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Package.appinstaller" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Properties\launchsettings.json" />
+    <None Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Strings\en-us\Resources.resw" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Package.appinstaller" />
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\WinUI\Projects\Default\wts.ProjectName\Properties\launchsettings.json" />
+    <None Include="Templates\WinUI\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MT\Feature.SettingsStorage.Unpackaged\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MT\Page.Settings.Packaged\.template.config\template.json" />
+    <None Include="Templates\WinUI\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
@@ -302,6 +341,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\SplashScreen.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\StoreLogo.png" />
+    <Content Include="Templates\WinUI\Projects\Default.Blank\wts.ProjectName\Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\SplashScreen.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\StoreLogo.png" />
+    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="tr-TR\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -467,9 +520,6 @@
     <Content Include="Templates\WinUI\_comp\MT\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MT\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -539,9 +589,6 @@
     <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Contracts\Services\INavigationViewService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Helpers\NavHelper.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\WinUI\_comp\MT\Project.SplitView\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -585,9 +632,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\MT\Project\Services\PageService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.description.md">
@@ -1943,9 +1987,6 @@
     <Content Include="Templates\WinUI\_comp\MT\Page.AddCommandNS\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_comp\MT\Page.AddIocNS\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\WinUI\_comp\MT\Page.AddViewModelDetail\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2034,15 +2075,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\_comp\_shared\Project.Core.AddPlatforms\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\_comp\_shared\Project.Core.AddPlatforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png">
@@ -2153,12 +2185,6 @@
     <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\TextBlock.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\_FontSizes.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\Styles\_Thickness.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\WinUI\_catalog\frontendframeworks\MVVMToolkit.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2223,9 +2249,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\WinUI\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\wts.ItemNamePage_postaction.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\WinUI\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

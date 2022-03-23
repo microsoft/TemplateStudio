@@ -20,12 +20,11 @@
     "wts.outputToParent": "true",
     "wts.version": "1.0.0",
     "wts.displayOrder": "0",
-    "wts.licenses": "[Microsoft.ProjectReunion](https://www.nuget.org/packages/Microsoft.ProjectReunion/0.8.0/License)"
+    "wts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
-  "guids": [
-  ],
+  "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [
     { "path": "wts.ProjectName/wts.ProjectName.csproj" },
     { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
@@ -40,6 +39,12 @@
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
+    },
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
     },
     "wts.wizardVersion":
     {
@@ -85,7 +90,7 @@
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
         "packageId" : "Microsoft.Xaml.Behaviors.WinUI.Managed",
-        "version" : "2.0.4",
+        "version" : "2.0.8",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true
@@ -95,8 +100,8 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId": "Microsoft.ProjectReunion",
-        "version": "0.8.0",
+        "packageId": "Microsoft.WindowsAppSDK",
+        "version": "1.0.1",
         "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": true

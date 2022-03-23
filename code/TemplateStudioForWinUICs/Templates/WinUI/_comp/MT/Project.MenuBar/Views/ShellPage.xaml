@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
             <MenuBar VerticalAlignment="Top">
                 <!--
-                TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw
+                TODO: You can edit the text for the menu in String/en-US/Resources.resw
                 Adding <MenuBar.Items> xaml code is a workaround to the following issue
                 https://github.com/microsoft/microsoft-ui-xaml/issues/4385
                 -->

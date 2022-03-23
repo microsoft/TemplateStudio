@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.ViewModels;
@@ -7,7 +6,7 @@ using Windows.System;
 
 namespace Param_RootNamespace.Views
 {
-    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    // TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page
     {
         private readonly KeyboardAccelerator _altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
@@ -45,7 +44,7 @@ namespace Param_RootNamespace.Views
 
         private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            var navigationService = Ioc.Default.GetService<INavigationService>();
+            var navigationService = App.GetService<INavigationService>();
             var result = navigationService.GoBack();
             args.Handled = result;
         }

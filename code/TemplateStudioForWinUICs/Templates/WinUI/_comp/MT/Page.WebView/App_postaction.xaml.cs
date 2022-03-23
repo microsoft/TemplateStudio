@@ -1,7 +1,8 @@
-﻿private System.IServiceProvider ConfigureServices()
-{
-    // Services
+﻿
+            .ConfigureServices((context, services) =>
+            {
+                // Services
 //{[{
-    services.AddTransient<IWebViewService, WebViewService>();
+                services.AddTransient<IWebViewService, WebViewService>();
 //}]}
 }

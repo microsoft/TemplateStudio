@@ -3,7 +3,7 @@
 namespace Param_RootNamespace.Activation
 {
     // For more information on understanding activation flow see
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/WinUI/activation.md
+    // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md
     //
     // Extend this class to implement new ActivationHandlers
     public abstract class ActivationHandler<T> : IActivationHandler

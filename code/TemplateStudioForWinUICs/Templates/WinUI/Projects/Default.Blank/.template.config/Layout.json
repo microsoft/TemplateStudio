@@ -2,7 +2,7 @@
     {
         "name": "MSIX Packaging",
         "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging",
-        "readonly": "true",
+        "readonly": "false",
         "projecttype": "Blank"
     }
 ]

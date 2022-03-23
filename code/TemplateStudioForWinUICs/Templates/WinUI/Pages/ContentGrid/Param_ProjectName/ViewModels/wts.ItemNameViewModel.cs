@@ -28,7 +28,7 @@ namespace Param_RootNamespace.ViewModels
         {
             Source.Clear();
 
-            // Replace this with your actual data
+            // TODO: Replace with real data.
             var data = await _sampleDataService.GetContentGridDataAsync();
             foreach (var item in data)
             {

@@ -23,16 +23,13 @@
     "wts.displayOrder": "1",
     "wts.defaultInstance": "MSIX Packaging",
     "wts.multipleInstance": "false",
-    "wts.rightClickEnabled": "false",
-    "wts.outputToParent": "true",
-    "wts.requiredVersions":"UAP, Version=10.0.19041.0",
-    "wts.requiredVsWorkload": "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging"
+    "wts.rightClickEnabled": "false"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
+  "guids": [
+  ],
   "PrimaryOutputs": [
-    { "path": "Param_ProjectName (Package)/Param_ProjectName (Package).wapproj" }
   ],
   "symbols": {
     "wts.rootNamespace": {

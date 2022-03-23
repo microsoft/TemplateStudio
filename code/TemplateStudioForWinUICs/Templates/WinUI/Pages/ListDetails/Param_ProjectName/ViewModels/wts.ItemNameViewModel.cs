@@ -30,7 +30,7 @@ namespace Param_RootNamespace.ViewModels
         {
             SampleItems.Clear();
 
-            // Replace this with your actual data
+            // TODO: Replace with real data.
             var data = await _sampleDataService.GetListDetailsDataAsync();
 
             foreach (var item in data)

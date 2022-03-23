@@ -11,7 +11,7 @@ namespace Param_RootNamespace.ViewModels
     // You can show pages in different ways (update main view, navigate or right pane)
     // using the NavigationService and RightPaneService.
     // Read more about MenuBar project type here:
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/WinUI/projectTypes/menubar.md
+    // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/projectTypes/menubar.md
     public class ShellViewModel : ObservableRecipient
     {
         private bool _isBackEnabled;
