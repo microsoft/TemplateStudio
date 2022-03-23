@@ -243,7 +243,6 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                ////  CodeGen.Instance.Cache = CodeGen.Instance.Scanner.Scan(_content.LatestContentFolder);
                 CodeGen.Instance.Cache = CodeGen.Instance.Scanner.Scan(_content.TemplatesFolder);
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Ready });

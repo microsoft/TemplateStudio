@@ -10,7 +10,7 @@ namespace TemplateStudioForWinUICpp.Tests
     {
         public static IEnumerable<object[]> GetAllRelativeTemplateJsonFiles()
         {
-             yield return new object[] { @"..\..\TemplateStudioForWinUICpp\Templates\WinUI\Features\MSIX\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICpp\Templates\Features\MSIX\.template.config\template.json" };
         }
     }
 }
