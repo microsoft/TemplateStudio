@@ -679,13 +679,9 @@ namespace Microsoft.Templates.Core
                 currentContentFolderOverride = CurrentContentFolder;
             }
 
-            var configRoot = currentContentFolderOverride.EndsWith(CurrentPlatform, StringComparison.InvariantCultureIgnoreCase)
-                           ? currentContentFolderOverride
-                           : Path.Combine(currentContentFolderOverride, CurrentPlatform);
-
             if (ProjectNameValidationConfig == null)
             {
-                var projectNameValidationConfigFile = Path.Combine(configRoot, ProjectNameValidationConfigFile);
+                var projectNameValidationConfigFile = Path.Combine(currentContentFolderOverride, ProjectNameValidationConfigFile);
                 if (File.Exists(projectNameValidationConfigFile))
                 {
                     var projectNameValidationConfigString = File.ReadAllText(projectNameValidationConfigFile);
@@ -699,7 +695,7 @@ namespace Microsoft.Templates.Core
 
             if (ItemNameValidationConfig == null)
             {
-                var itemNameValidationConfigFile = Path.Combine(configRoot, ItemNameValidationConfigFile);
+                var itemNameValidationConfigFile = Path.Combine(currentContentFolderOverride, ItemNameValidationConfigFile);
                 if (File.Exists(itemNameValidationConfigFile))
                 {
                     var itemNameValidationConfigString = File.ReadAllText(itemNameValidationConfigFile);
