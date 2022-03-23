@@ -1,0 +1,97 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "XAML Island",
+  "shortName": "XAML Island",
+  "identity": "wts.Wpf.Page.XamlIsland",
+  "groupIdentity": "wts.Wpf.Page.XamlIsland",
+  "description": "Page that hosts an UWP control using a XAML Island.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "Prism|MVVMToolkit",
+    "wts.platform": "Wpf",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "7",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "false",
+    "wts.isHidden": "true",
+    "wts.outputToParent": "true",
+    "wts.requiredVersions": "UAP, Version=10.0.19041.0|dotnet, Version=3.1.7",
+    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
+    "wts.dependencies": "wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.XamlIslandUwpApp",
+    "wts.licenses": "[Microsoft.Toolkit.Wpf.UI.XamlHost](https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/blob/master/license.md)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Param_ProjectName/Program.cs"
+    },
+    {
+      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName/Converters/ColorConverter.cs"
+    },
+    {
+      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml"
+    },
+    {
+      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "pagetype": {
+      "type": "parameter",
+      "replaces": "System.Windows.Controls.Page"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Wpf.UI.XamlHost",
+        "version" : "6.1.2",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <IsPackable>false</IsPackable>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;CORETEST</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;CORETEST</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Composition\CompositionQueryTest.cs" />
+    <Compile Include="Composition\FakeTemplateInfo.cs" />
+    <Compile Include="Config\ConfigurationTests.cs" />
+    <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
+    <Compile Include="Diagnostics\HealthTest.cs" />
+    <Compile Include="Diagnostics\TelemetryFixture.cs" />
+    <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
+    <Compile Include="Diagnostics\TestHealthWriter.cs" />
+    <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\DictionaryExtensionsTests.cs" />
+    <Compile Include="Extensions\IEnumerableExtensionsTests.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Extensions\TemplateTypeExtensionsTests.cs" />
+    <Compile Include="Extensions\VersionExtensionsTests.cs" />
+    <Compile Include="Gen\GenComposerTests.cs" />
+    <Compile Include="Helpers\FileHelpersTests.cs" />
+    <Compile Include="Helpers\FSTestsFixture.cs" />
+    <Compile Include="Helpers\FsTests\EnsureFileEditableTests.cs" />
+    <Compile Include="Helpers\FsTests\EnsureFolderExistsTests.cs" />
+    <Compile Include="Helpers\FsTests\GetExistingFolderNamesTests.cs" />
+    <Compile Include="Helpers\FsTests\SafeCopyFileTests.cs" />
+    <Compile Include="Helpers\FsTests\SafeDeleteDirectoryTests.cs" />
+    <Compile Include="Helpers\FsTests\SafeDeleteFileTests.cs" />
+    <Compile Include="Helpers\FsTests\SafeMoveFileTests.cs" />
+    <Compile Include="Helpers\FsTests\SafeRenameDirectoryTests.cs" />
+    <Compile Include="Helpers\LogCollection.cs" />
+    <Compile Include="Locations\TemplateSourceConfigTests.cs" />
+    <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
+    <Compile Include="Naming\FolderNameValidatorTests.cs" />
+    <Compile Include="Naming\ItemNameServiceTests.cs" />
+    <Compile Include="Naming\NamingTests.cs" />
+    <Compile Include="Naming\ProjectNameServiceTests.cs" />
+    <Compile Include="Naming\Validators\DefaultNamesValidatorTests.cs" />
+    <Compile Include="Naming\Validators\EmptyNameValidatorTests.cs" />
+    <Compile Include="Naming\Validators\ExistingNamesValidatorTests.cs" />
+    <Compile Include="Naming\Validators\FileNameValidatorTests.cs" />
+    <Compile Include="Naming\Validators\FolderNameValidatorTests.cs" />
+    <Compile Include="Naming\Validators\RegExValidatorTests.cs" />
+    <Compile Include="Naming\Validators\ReservedNamesValidatorTests.cs" />
+    <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddJsonDictionaryItemPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
+    <Compile Include="PostActions\Catalog\FakeTemplateDefinedPostAction.cs" />
+    <Compile Include="PostActions\Catalog\GenerateTestCertificatePostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\CodeStyleProviders\BaseCodeStyleProviderTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\CodeStyleProviders\CSharpStyleProviderTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeHandlerTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergePostactionTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostactionTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\NewItemGeneration\GenerateMergeInfoPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\NewItemGeneration\GetMergeFilesFromProjectPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortImportsTest.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsTest.cs" />
+    <Compile Include="Templates\CasingExtensionsTests.cs" />
+    <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
+    <Compile Include="Templates\TemplateLicenseEqualityComparerTest.cs" />
+    <Compile Include="Templates\TemplateRepositoryTests.cs" />
+    <Compile Include="Templates\TemplatesCollection.cs" />
+    <Compile Include="Templates\TemplatesFixture.cs" />
+    <None Include="TestData\Merge\NoSource_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\SourceWithOptionalContextLines.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_expectedmergeinfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_expectedWithOptionalContextLines.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_fail.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_fail_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_gpostaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="TestFakes\GenShell\TestGenShell.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellCertificate.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellProject.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellSolution.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellTelemetry.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellUI.cs" />
+    <Compile Include="TestFakes\GenShell\TestGenShellVisualStudio.cs" />
+    <Compile Include="TestFakes\TestCertificateService.cs" />
+    <Compile Include="TestFakes\TestContextProvider.cs" />
+    <Compile Include="TestFakes\TestDigitalSignatureService.cs" />
+    <Content Include="..\..\TestCert.pfx" Link="Packaging\TestCert.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="TestData\SearchReplace\NoSource_searchreplace.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source_expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source_searchreplace.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="TestData\Templates\test\CompositionTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\CompositionTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Dependencies.FeatureTemplate.dp1\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Dependencies.FeatureTemplate.dp2\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Dependencies.FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Dependencies.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Exclusions.FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Exclusions.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Hidden.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Naming.DefaultNameTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Naming.DefaultNameTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\OutputToParent.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\PageTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplateVB\.template.config\icon.png" />
+    <Content Include="TestData\Templates\test\ProjectTemplateVB\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate\.template.config\icon.png" />
+    <Content Include="TestData\Templates\test\ProjectTemplate\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_FrontAndBack\.template.config\icon.png" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_FrontAndBack\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_FrontAndBack\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_PropertyBag\.template.config\icon.png" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_PropertyBag\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_PropertyBag\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Requirements.FeatureTemplate.r1\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Requirements.FeatureTemplate.r2\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Requirements.FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\Requirements.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\RightClick.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ServiceTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\TelemetryName.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\TestingTemplate\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\ServiceTemplate\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\ProjectTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_PropertyBag\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\ProjectTemplate_FrontAndBack\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\ProjectTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate_PropertyBag\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\PageTemplate\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplateVB\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\test\FeatureTemplate\.template.config\es-ES.description.md" />
+    <None Include="TestData\TestProject\Test.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.20.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="6.0.200" />
+    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="6.0.200" />
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.0.31902.203" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NuGet.Frameworks" Version="6.1.0" />
+    <PackageReference Include="NuGet.VisualStudio" Version="6.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.Diagnostics.Tracing" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.IO.Packaging" Version="6.0.0" />
+    <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.console" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Microsoft.Templates.Core.Test</AssemblyName>
+    <RootNamespace>Microsoft.Templates.Core.Test</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DefineConstants>$(DefineConstants)TRACE;CORETEST</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Analyze|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DefineConstants>$(DefineConstants)TRACE;CORETEST</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;CORETEST</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Packaging\SampleConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Ok.config.valid.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Partial.config.valid.json">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Error.config.no.valid.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharedResources\SharedResources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="CERTENROLLLib">
+      <Guid>{728AB348-217D-11DA-B2A4-000E7BBB2B09}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\test\TestingTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\UnspecifiedTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\test\UnspecifiedTemplate\.template.config\template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Packaging\MsSigned\Templates.mstx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Packaging\SampleContent.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\GenerationSummary_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Merge\Style.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Merge\Style_expected.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Merge\Style_fail.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Merge\Style_fail_postaction.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Merge\Style_postaction.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Steps to include new item generation_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\TestJson\TestJson.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\TestJson\TestJson_expected.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Import Project="..\..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
+
+</Project>

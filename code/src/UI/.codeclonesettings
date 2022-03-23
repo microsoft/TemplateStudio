@@ -1,6 +1,0 @@
-﻿<CodeCloneSettings>
-  <Exclusions>
-    <Type>Microsoft.Templates.UI.Services.UIStylesService</Type>
-    <FunctionName>Microsoft.Templates.UI.Services.VSStyleValuesProvider.GetFontSize</FunctionName>
-  </Exclusions>
-</CodeCloneSettings>

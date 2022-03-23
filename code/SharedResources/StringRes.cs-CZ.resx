@@ -1,0 +1,1431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTestingAction" xml:space="preserve">
+    <value>Přidat testování</value>
+  </data>
+  <data name="AddServiceAction" xml:space="preserve">
+    <value>Přidat službu</value>
+  </data>
+  <data name="AddFeatureAction" xml:space="preserve">
+    <value>Přidat funkci</value>
+  </data>
+  <data name="AddPageAction" xml:space="preserve">
+    <value>Přidat stránku</value>
+  </data>
+  <data name="AddProjectAction" xml:space="preserve">
+    <value>Přidat projekt</value>
+  </data>
+  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
+    <value>Template Studio: {0}</value>
+    <comment>Generic MessageBox Title</comment>
+  </data>
+  <data name="UIStatusMsgPattern" xml:space="preserve">
+    <value>Template Studio: {0}</value>
+  </data>
+  <data name="UnexpectedExPattern" xml:space="preserve">
+    <value>Neočekávaná výjimka\n{0}</value>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Prohlížeč kódu</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Název stránky</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Popisný text chyby</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Navigační nabídka</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>Ikona nového souboru položek</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Oznamovací panel</value>
+    <comment> Notification panel label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Typy projektů</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Ovládací prvek sekvenčního toku</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Seznam šablon</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>Stránky výběru uživatele</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>Přidat funkce</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
+  </data>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>Přidat stránky</value>
+    <comment>Add pages title on AddPagesPage</comment>
+  </data>
+  <data name="AddServiceTitle" xml:space="preserve">
+    <value>Přidat služby</value>
+    <comment>AddService title on AddServicePage</comment>
+  </data>
+  <data name="AddTestingTitle" xml:space="preserve">
+    <value>Přidat testování</value>
+    <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>Změny způsobující další chyby</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>Zjistili jsme nekompatibilitu mezi vaším projektem a poslední verzí šablon. Prověřte tyto změny:</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>Zpět</value>
+    <comment>MainPage Back button</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Zrušit</value>
+    <comment>MainPage Cancel button</comment>
+  </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Zavřít</value>
+    <comment>Notification button close</comment>
+  </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Nástroj Kompozice</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Vytvořit</value>
+    <comment>MainPage Create button</comment>
+  </data>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Podrobnosti</value>
+    <comment>Details button</comment>
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>Podrobnosti šablony {0}</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Maximalizovat</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>Další</value>
+    <comment>MainPage Next button</comment>
+  </data>
+  <data name="ButtonNo" xml:space="preserve">
+    <value>Ne</value>
+    <comment>No Button</comment>
+  </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>OK</value>
+    <comment>Error dialog and information window ok button content</comment>
+  </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Aktualizovat mezipaměť šablon</value>
+    <comment>Refresh templates cache button</comment>
+  </data>
+  <data name="ButtonRemove" xml:space="preserve">
+    <value>Odebrat</value>
+    <comment>Remove template button</comment>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Obnovit</value>
+  </data>
+  <data name="ButtonYes" xml:space="preserve">
+    <value>Ano</value>
+    <comment>Yes Button</comment>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Neslučovat změny (generovat do dočasné složky)</value>
+    <comment>Do not merge changes checkbox text</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
+    <value>Konfliktní soubory</value>
+    <comment>Changes summary group title for: Conflicting files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
+    <value>Tento soubor ve vašem projektu už existuje, byl ale také vygenerován jakou součást nové položky. Aktuální soubor nebude upraven ani přepsán. Porovnejte je a ujistěte se, že je všechno na správném místě. V případě potřeby můžete přistupovat ke generovanému souboru po dokončení.</value>
+    <comment>Changes summary description for: Conflicting files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
+    <value>Konfliktní soubory stylů</value>
+    <comment>Changes summary group title for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
+    <value>Nemůžeme zahrnout styly do slovníku prostředků.</value>
+    <comment>Changes summary description for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
+    <value>Upravené soubory</value>
+    <comment>Changes summary group title for: Modified files</comment>
+  </data>
+  <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
+    <value>Tento soubor bude upraven tak, aby zahrnoval požadovaný obsah.</value>
+    <comment>Changes summary description for: Modified files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
+    <value>Nové soubory</value>
+    <comment>Changes summary group title for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
+    <value>Tento soubor bude přidán jako nový soubor do projektu.</value>
+    <comment>Changes summary description for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
+    <value>Nezměněné soubory</value>
+    <comment>Changes summary group title for: Unchanged files</comment>
+  </data>
+  <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
+    <value>Tento soubor ve vašem projektu už existuje a není třeba provést žádnou další akci. Soubor zůstane beze změn.</value>
+    <comment>Changes summary description for: Unchanged files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
+    <value>Soubory varování</value>
+    <comment>Changes summary group title for: Warning files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
+    <value>Nemůžeme zahrnout požadované změny. V případě potřeby můžete přistupovat ke generovanému souboru po dokončení.</value>
+    <comment>Changes summary description for: Warning files</comment>
+  </data>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>další informace</value>
+    <comment>Changes summary more info link</comment>
+  </data>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Zastaralé</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Při přidávání položek do projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Při přidávání projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Při přidávání referencí mezi projekty došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Při přidávání sad SDK do projektu {0} došlo k chybě.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Zobrazit podrobnosti</value>
+    <comment>Error dialog show details link button</comment>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Něco se nepovedlo :-(</value>
+    <comment>Error dialog title</comment>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Neplatný typ požadavku {0}</value>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Některé balíčky NuGet nebylo možné do vašeho projektu {0} přidat. K tomu mohlo dojít, pokud jste byli offline. 
+Ověřte následující seznam balíčků požadovaných v kódu vašeho projektu a ručně přidejte chybějící balíčky: 
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Projekt {0} nebyl nalezen.</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Přehled projektu se nepodařilo otevřít.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Nelze nastavit výchozí konfiguraci řešení.</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>Při sbalování stromu řešení došlo k chybě. Příklad:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
+  </data>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>Při zobrazování stavové zprávy došlo k chybě. Příklad:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Otevřít na nové záložce prohlížeče</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="FrameworkTitle" xml:space="preserve">
+    <value>Vybrat návrhový vzor (design pattern)</value>
+    <comment>Title on FrameworkPage</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>Po stisknutí klávesy Enter se přidá {0}</value>
+    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
+  </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Je požadována novější verze</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} projektu vyžaduje visual studio verze 2019 {1} nebo vyšší.</value>
+    <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>Chybí aplikační úloha</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>Další informace</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>Chcete-li vytvořit {0} projekt, je třeba nainstalovat následující úlohy: {1}</value>
+  </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou funkci.</value>
+    <comment>Feature already added {0}: Feature name</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou stránku.</value>
+    <comment>Page already added {0}: Page name</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>Služba {0} je už součástí vašeho projektu. Zvolte jinou službu.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>Testování {0} je už součástí vašeho projektu. Zvolte jiný testovací projekt.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewItemStepOne" xml:space="preserve">
+    <value>Výběr šablon</value>
+    <comment>New Item: Naviagtion step one </comment>
+  </data>
+  <data name="NewItemStepTwo" xml:space="preserve">
+    <value>Souhrn změn</value>
+    <comment>New Item: Naviagtion step two</comment>
+  </data>
+  <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
+    <value>Závislosti</value>
+    <comment>New item: Dependencies section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licence</value>
+    <comment>New item: Licenses section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
+    <value>Název</value>
+    <comment>New item: Name section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
+    <value>Informace o šabloně</value>
+    <comment>New item: Template Details</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>Nová funkce</value>
+    <comment>New item: new feature title</comment>
+  </data>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>Nová stránka</value>
+    <comment>New item: new page title</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Nová služba</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Nový testovací projekt</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Návrhový vzor (design pattern)</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>Funkce</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Stránky</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Typ projektu</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Služby</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Testování</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectTitleUWP" xml:space="preserve">
+    <value>Nová aplikace UWP</value>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
+    <value>Nová aplikace WinUI 3 Desktop</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>Nová aplikace WinUI 3 UWP </value>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>Nová aplikace WPF</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>Není k dispozici žádný obsah.</value>
+    <comment>Message in no content panel</comment>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>Není možné přidat šablonu **{0}**, protože následující šablony nejsou kompatibilní: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Není možné přidat šablonu **{0}**, protože její přidání požaduje, aby byly nejprve přidány následující šablony: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Chybí následující verze, nainstalujte je a restartujte visual studio: {0}</value>
+  </data>
+  <data name="NotificationRemoveError_Dependency" xml:space="preserve">
+    <value>Šablonu **{0}** nelze odebrat, protože na ní závisejí tyto šablony: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>**{0}**, protože je vyžadován pro vybraný typ projektu.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Nelze odebrat šablonu **{0}**, protože je požadována pro: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationSyncError_Refresh" xml:space="preserve">
+    <value>Při aktualizaci šablon došlo k chybě. Podrobnější informace najdete v okně výstupu.</value>
+    <comment>Error message for sync refresh</comment>
+  </data>
+  <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
+    <value>Jsou dostupné nové šablony (verze {0}). Probíhá stahování... {1} %</value>
+    <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Kontrola dostupnosti aktualizací...</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
+  </data>
+  <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
+    <value>Při stahování šablon (verze {0}) došlo k chybě. Zkusíme to znovu později.</value>
+    <comment>Notification message for Sync Error, {0}:Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
+    <value>Je dostupná verze Windows Template Studio {0}. Aktualizací rozšíření získáte přístup k nejnovějším funkcím.</value>
+    <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
+    <value>Příprava šablon (verze {0})... {1}%</value>
+    <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Šablony byly aktualizovány.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updating" xml:space="preserve">
+    <value>Aktualizace mezipaměti šablon...</value>
+    <comment>Notification message for Sync Status: Updating</comment>
+  </data>
+  <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
+    <value>Název už existuje.</value>
+    <comment>Validation error message: Already exists</comment>
+  </data>
+  <data name="NotificationValidationError_BadFormat" xml:space="preserve">
+    <value>Jsou povoleny jen alfanumerické znaky a znak podtržítka (_).</value>
+    <comment>Validation error message: Bad format</comment>
+  </data>
+  <data name="NotificationValidationError_Empty" xml:space="preserve">
+    <value>Název nesmí být prázdný.</value>
+    <comment>Validation error message: Empty</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Název nemůže končit řetězcem Page. Ten bude přidán automaticky. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Název projektu neodpovídá názvu složky projektu. Upravte, abyste zajistili správné generování.</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>Ověření regulárního výrazu {0} se nezdařilo.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="NotificationValidationError_ReservedName" xml:space="preserve">
+    <value>Název je vyhrazený.</value>
+    <comment>Validation error message: Reserved name</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Na konec zadaného názvu bude přidán řetězec Page. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>Nemůžeme najít metadata konfigurace projektu v souboru Package.appxmanifest. Můžete poskytnout konfiguraci projektu, kterou jste vybrali při jeho vytváření?</value>
+    <comment>ProjectConfiguration view description</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Vybrat AppModel</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Vybrat návrhový vzor (design pattern):</value>
+    <comment>Project configuration window select framework title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Vybrat platformu</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Vybrat typ projektu:</value>
+    <comment>Project configuration window select project type title</comment>
+  </data>
+  <data name="ProjectConfigurationTitleText" xml:space="preserve">
+    <value>Vybrat konfiguraci projektu</value>
+    <comment>Project configuration window title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>Oznámit problém</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>About section link</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
+    <value>Verze šablon:</value>
+    <comment>About section templates version</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
+    <value>O nástroji</value>
+    <comment>About section title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
+    <value>Verze průvodce:</value>
+    <comment>About section wizard version</comment>
+  </data>
+  <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
+    <value>Funkce</value>
+    <comment>Feature list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
+    <value>Změnili jste svůj výběr návrhového vzoru (design pattern). Přijdete o stránky a funkce, které jste zvolili. Chcete pokračovat?</value>
+    <comment>Framework changed message</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
+    <value>Byl změněn návrhový vzor (design pattern).</value>
+    <comment>Framework changed title</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
+    <value>Návrhový vzor (design pattern)</value>
+    <comment>Framework combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licence</value>
+    <comment>New project: Licenses section</comment>
+  </data>
+  <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
+    <value>Stránky</value>
+    <comment>Page list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>Změnili jste svůj výběr typu projektu. Přijdete o šablony, které jste zvolili. Chcete pokračovat?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
+    <value>Byl změněn typ projektu.</value>
+    <comment>Project type changed title</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
+    <value>Typ projektu</value>
+    <comment>Project type combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Služby</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Testování</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTitle" xml:space="preserve">
+    <value>Informace o vašem projektu</value>
+    <comment>Project details header on MainPage</comment>
+  </data>
+  <data name="ProjectTypeTitle" xml:space="preserve">
+    <value>Vybrat typ projektu</value>
+    <comment>ProjectType Title on ProjectTypePage</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Pořadí stránek můžete změnit klávesovými zkratkami Ctrl+Šipka nahoru a Ctrl+Šipka dolů.</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>nebo</value>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Přidávání položky {0} do projektu...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Přidávání balíčku NuGet {0} do projektu...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Přidávání projektu {0} do řešení...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Přidávání referencí mezi projekty...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>Vytváření projektu ve Windows Template Studiu...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
+  </data>
+  <data name="StatusBarGenerationFinished" xml:space="preserve">
+    <value>Generování bylo dokončeno.</value>
+    <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Přidání nové funkce bylo zrušeno.</value>
+    <comment>Status bar message for Add new feature cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
+    <value>Funkce {0} byla úspěšně přidána.</value>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
+    <value>Přidání nové stránky bylo zrušeno.</value>
+    <comment>Status bar message for Add new page cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
+    <value>Stránka {0} byla úspěšně přidána.</value>
+    <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Přidání nové služby bylo zrušeno.</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Služba {0} byla úspěšně přidána.</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Přidání nového testovacího projektu bylo zrušeno.</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Testovací projekt {0} byl úspěšně přidán.</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Přidáno</value>
+    <comment>Template added label</comment>
+  </data>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Autor:</value>
+    <comment>Template details: Autor</comment>
+  </data>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Závislosti:</value>
+    <comment>Template details: Dependencies</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Vyloučení:</value>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Rámce (Framework):</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Tato položka není nyní k dispozici, protože chybí aplikační úloha / komponenta sady Visual Studio.</value>
+  </data>
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Zahrnuje:</value>
+    <comment>Template details: Includes</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (volitelné)</value>
+    <comment>The include is optional</comment>
+  </data>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Licence:</value>
+    <comment>Template details: Licenses</comment>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimální verze jádra .NET:</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Požadované sady Windows SDK:</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Požadované aplikační úlohy / komponenty sady Visual Studio:</value>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Požadavky:</value>
+  </data>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Verze:</value>
+    <comment>Template details: Version</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analýza</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Spuštění aplikace</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Životní cyklus aplikace</value>
+    <comment>Group header for application lifecycle templates</comment>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Práce na pozadí</value>
+    <comment>Group header for background work templates</comment>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Propojená prostředí</value>
+    <comment>Group header for Connected Experiences templates</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Data</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (vyberte jednu)</value>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Vytváření balíčků</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Nástroje</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>Interakce uživatele</value>
+    <comment>Group header for user interaction templates</comment>
+  </data>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Vyberte šablonu, kterou chcete přidat.</value>
+    <comment>Template selection title</comment>
+  </data>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>Pokud budete pokračovat, vyjádříte tím souhlas s podmínkami všech licencí v oblasti pro licence.</value>
+    <comment>Licenses Terms and conditions text</comment>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Template Studio změnilo ActivationService, aby bylo možné zahrnout funkce Identity.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
+    <comment>Has hamburger menu validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>Ovládací prvek HamburgerMenu je zastaralý a Windows Template Studio teď podporuje ovládací prvek NavigationView. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Template Studio nyní přidává základní projekt. </value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>Změnili jsme naši implementaci třídy ViewModelLocator, která je součástí rámce MVVMLight, tak aby podporovala vícenásobné zobrazení v rámci MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Template Studio teď používá ovládací prvek NavigationView z knihovny uživatelského rozhraní Windows.</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Template Studio teď v projektech, které využívají ovládací prvek Pivot, používá horizontální ovládací prvek NavigationView. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>Windows template studio label</comment>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>Vývoj desktopových aplikací .NET</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>MSIX Packaging Tools</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>Vývoj aplikací ASP.NET a webových aplikací</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>Vývoj aplikací UWP</value>
+  </data>
+  <data name="WPF" xml:space="preserve">
+    <value>WPF (.NET Core)</value>
+  </data>
+  <data name="AdditionalMessageString" xml:space="preserve">
+    <value>Další zpráva</value>
+  </data>
+  <data name="AddtionalExceptionInfoString" xml:space="preserve">
+    <value>Další informace o výjimce</value>
+  </data>
+  <data name="AssemblyFileVersionString" xml:space="preserve">
+    <value>Verze souboru sestavení</value>
+  </data>
+  <data name="CompositionQueryParseMessage" xml:space="preserve">
+    <value>Dotaz {0} není platný. Jsou povolené operátory == a !=. K oddělování jednotlivých podmínek se používá znak &amp;.</value>
+    <comment>{0}: Query</comment>
+  </data>
+  <data name="ConfigurationFileLoadedString" xml:space="preserve">
+    <value>Konfigurační soubor byl načten.</value>
+  </data>
+  <data name="CurrentContentExpirationString" xml:space="preserve">
+    <value>Vypršení platnosti aktuálního obsahu</value>
+  </data>
+  <data name="ErrorCreatingFolder" xml:space="preserve">
+    <value>Error creating folder '{0}': {1}</value>
+    <comment>{0} Name of the folder, {1} exception message</comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>V šabloně {0} byla zjištěna cyklická závislost se šablonou {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Ve výběru uživatele nebyla nalezena závislá šablona {0}.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Závislá položka {0} je neplatná. Závislosti je nutné nakonfigurovat jako multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Nebyla nalezena šablona závislosti {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Závislá položka {0} je neplatná. Závislé položky musí být typu Stránka nebo Funkce.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorExcludedTemplatesFound" xml:space="preserve">
+    <value>Ve výběru uživatele byla nalezena vyloučená šablona {0}.</value>
+  </data>
+  <data name="ErrorExclusionAndDependency" xml:space="preserve">
+    <value>Vyloučená šablona {0} je definována jako vyloučená a závislá pro šablonu {1}.</value>
+  </data>
+  <data name="ErrorExclusionAndRequirement" xml:space="preserve">
+    <value>Vyloučená šablona {0} je definována jako vyloučená a požadovaná pro šablonu {1}.</value>
+  </data>
+  <data name="ErrorExclusionNotFound" xml:space="preserve">
+    <value>Nebyla nalezena vyloučená šablona {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorExclusionRightClick" xml:space="preserve">
+    <value>Šablony s vyloučeními nemohou umožňovat kliknutí pravým tlačítkem.</value>
+  </data>
+  <data name="ErrorExclusionType" xml:space="preserve">
+    <value>Vyloučená položka {0} je neplatná. Vyloučené položky musí být typu Stránka, Funkce, Služba nebo Testování.</value>
+    <comment>Invalid exclusion exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorExtraWhitespacesInMultiValues" xml:space="preserve">
+    <value>Multivalue field: '{0}' contains trailing or leading whitespaces.</value>
+    <comment>{0}: multivalue string</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Šablona {0}, název: {1}, důvod: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Položka rozložení {0} je neplatná. Položky rozvržení musí být typu Stránka nebo Funkce.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorNamingValidationFailed" xml:space="preserve">
+    <value>Název šablony {0} není platný. Chyby: {1}</value>
+  </data>
+  <data name="ErrorProjectAlreadyExists" xml:space="preserve">
+    <value>Projekt {0} již ve složce {1} existuje. Zvolte jiný název projektu.</value>
+  </data>
+  <data name="ErrorProjectNameValidationFailed" xml:space="preserve">
+    <value>Název projektu {0} není platný. Chyby: {1}</value>
+  </data>
+  <data name="ErrorProjectReservedName" xml:space="preserve">
+    <value>{0} je vyhrazený název. Zvolte jiný název a zopakujte akci.</value>
+    <comment>Message box text for project reserved names.</comment>
+  </data>
+  <data name="ErrorProjectStartsWith" xml:space="preserve">
+    <value>{0} není platný název. Název projektu nemůže začínat na {1}.</value>
+    <comment>Message box text for project name can not start with.</comment>
+  </data>
+  <data name="ErrorRecursiveRequirement" xml:space="preserve">
+    <value>V šabloně {0} se šablonou {1} byl zjištěn rekurzivní požadavek.</value>
+    <comment>Recursive requirement exception message. {0}:Template id, {1}: Requirement Template id</comment>
+  </data>
+  <data name="ErrorRequirementMissing" xml:space="preserve">
+    <value>Ve výběru uživatele nebyla nalezena požadovaná šablona {0}.</value>
+    <comment>Missing requirement exception message. {0}:Requirement Template id</comment>
+  </data>
+  <data name="ErrorRequirementMultipleInstance" xml:space="preserve">
+    <value>Požadovaná položka {0} je neplatná. Požadavky je nutné nakonfigurovat jako multipleInstance = false.</value>
+    <comment>Invalid requirement exception message. {0}:Requirement Template id </comment>
+  </data>
+  <data name="ErrorRequirementNotFound" xml:space="preserve">
+    <value>Nebyla nalezena požadovaná šablona {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Required Template not found exception message. {0}:Requirement Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorRequirementRightClick" xml:space="preserve">
+    <value>Požadovaná položka v šabloně {0} je neplatná. Položky, které umožňují kliknutí pravým tlačítkem, nemohou mít požadavky.</value>
+  </data>
+  <data name="ErrorRequirementType" xml:space="preserve">
+    <value>Požadovaná položka {0} je neplatná. Závislé položky musí být typu Stránka, Funkce, Služba nebo Testování.</value>
+    <comment>Invalid requirement exception message. {0}:Requirement  Template id</comment>
+  </data>
+  <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
+    <value>Neplatný název projektu</value>
+    <comment>Message box title for project invalid names.</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Telemetrie sledování výjimky během generování</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Nelze rozpoznat platformu.</value>
+  </data>
+  <data name="ExceptionInfoString" xml:space="preserve">
+    <value>Informace o výjimce</value>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Nebyl nalezen soubor projektu pro položku: {0}</value>
+    <comment>{0}: Filepath</comment>
+  </data>
+  <data name="ExceptionString" xml:space="preserve">
+    <value>Výjimka</value>
+  </data>
+  <data name="ExceptionTrackedString" xml:space="preserve">
+    <value>Sledovaná výjimka</value>
+  </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Nebyl nalezen soubor {0} pro zahrnutí následujících změn. Projděte bloky kódu a na místech, kde to projekt vyžaduje, vložte změny ručně. Související šablona: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>Styl s klíčem {0} je v tomto souboru už definován s odlišnou hodnotou nebo odlišnými elementy. Projděte styly a na místech, kde to projekt vyžaduje, vložte změny ručně. Související šablona: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru (postaction) ručně. Související šablona: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
+  <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">
+    <value>Soubor {0} používá kódování {1}, zatímco soubor {2} používá kódování {3}. Zajistěte, aby oba soubory používaly stejné kódování.</value>
+    <comment>{0} first file name, {1} first encoding name, {2} other file name, {3} other encoding name</comment>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Nelze odebrat ochranu prostřednictvím nastavení jen pro čtení ze souboru: {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="FsSafeCopyFileMessage" xml:space="preserve">
+    <value>Soubor {0} nelze zkopírovat do {1}. Chyba: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
+    <value>Složku {0} nelze odstranit. Chyba: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="FsSafeDeleteFileMessage" xml:space="preserve">
+    <value>Soubor {0} nelze odstranit. Chyba: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
+  </data>
+  <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
+    <value>Složku {0} nelze přesunout do {1}. Chyba: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
+  </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>Soubor {0} nelze přesunout do {1}. Chyba: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Složku {0} nelze přejmenovat. Chyba: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="GenContextBootstrapError" xml:space="preserve">
+    <value>Při inicializaci GenContext došlo ke kritické chybě.</value>
+  </data>
+  <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
+    <value>Není k dispozici žádný kontext pro provedení aktuálního generování, nejprve vyvolejte Current_set.</value>
+  </data>
+  <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
+    <value>Při generování certifikátu došlo k chybě.</value>
+  </data>
+  <data name="LogStartedString" xml:space="preserve">
+    <value>Bylo zahájeno protokolování.</value>
+  </data>
+  <data name="MarkdownHeader" xml:space="preserve">
+    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>Neexistuje žádný cíl sloučení pro soubor {0}. Související šablona: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Nebyl nalezen řádek {0} v souboru {1}. Související šablona: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
+  <data name="NamingErrorConfigFileNotFound" xml:space="preserve">
+    <value>Nebyl nalezen konfigurační soubor názvů {0}.</value>
+  </data>
+  <data name="NamingInferMessage" xml:space="preserve">
+    <value>Nelze odvodit název. Příliš mnoho iterací.</value>
+  </data>
+  <data name="PackageCertificateString" xml:space="preserve">
+    <value>Certifikát balíčku</value>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Chyba při provádění následné akce {0}. Ignorování chyby prostřednictvím akce Pokračovat při chybě je povoleno. Související šablona: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Chyba při provádění následné akce {0}. Související šablona: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Identifikátor PostAction.ActionId {0} definovaný v šabloně neodpovídá očekávanému identifikátoru třídy ActionId {1}. Není možné pokračovat. Související šablona: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Žádné</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
+    <value>Při stahování z {0} došlo k chybě. Ke stažení aktualizací šablony je vyžadováno připojení k internetu.</value>
+    <comment>{0}:Url</comment>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
+    <value>Obsah šablon nelze právě teď stáhnout, zkusíme to později.</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
+    <value>Obsah šablon byl stažen z {1} do {0}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
+  </data>
+  <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
+    <value>Při synchronizaci šablon došlo k chybě. Stav:</value>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Vytváření funkce {0}...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Vytváření stránky {0}...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Vytváření projektu {0}...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="StatusBarGeneratingServiceMessage" xml:space="preserve">
+    <value>Vytváření služby {0}...</value>
+    <comment>Status bar message generating service. {0}: Service name</comment>
+  </data>
+  <data name="StatusBarGeneratingTestingMessage" xml:space="preserve">
+    <value>Vytváření testování {0}...</value>
+    <comment>Status bar message generating testing. {0}: Testing name</comment>
+  </data>
+  <data name="StatusOpeningItems" xml:space="preserve">
+    <value>Otevírání generovaných souborů...</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>### Změny vyžadované v souboru {0}:</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>{1}</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>### Změny v souboru {0}:</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>Nemohly být integrovány následující změny: {2}</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>### Změny v souboru {0}:</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Podívejte se na konečný výsledek: {2}</value>
+  </data>
+  <data name="SyncInstructionsFileName" xml:space="preserve">
+    <value>Kroky pro zahrnutí generování nové položky.md</value>
+  </data>
+  <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
+    <value>## Konfliktní soubory:
+Tyto soubory ve vašem projektu už existují a byly také generovány jako součást nové položky.
+Porovnejte je a ujistěte se, že je všechno na správném místě:
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
+  </data>
+  <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
+    <value>## Upravené soubory:
+Pokud chcete integrovat novou položku se stávajícím projektem, proveďte následující změny:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
+  </data>
+  <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
+    <value>## Nové soubory:
+Zkopírujte a přidejte následující soubory do projektu:
+{0}</value>
+    <comment>{0}: List of new files</comment>
+  </data>
+  <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
+    <value>## Nezměněné soubory:
+Tyto soubory ve vašem projektu už existují, není třeba provést žádnou akci:
+{0}</value>
+    <comment>{0}: List of unchanged files</comment>
+  </data>
+  <data name="SyncInstructionsTemplate" xml:space="preserve">
+    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+# Kroky pro zahrnutí generování nové položky
+Při zahrnování nové položky do projektu postupujte podle následujících pokynů:
+Všechny odkazované soubory najdete v dočasné složce pro generování: {0}
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files (SyncInstructionsSectionNewFiles), 
+{2}: Modified Files (SyncInstructionsSectionModifiedFiles), 
+{3}: Conflicting Files (SyncInstructionsSectionConflictingFiles), 
+{4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
+  </data>
+  <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
+    <value>## Konfliktní soubory:
+Tyto soubory ve vašem projektu už existují a byly také generovány jako součást nové položky.
+Porovnejte je a ujistěte se, že je všechno na správném místě.
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
+  </data>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Neúspěšné změny v souborech:
+Nezdařila se sloučení v následujících souborech:
+{0}</value>
+  </data>
+  <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
+    <value>## Upravené soubory:
+Byly provedeny následující změny:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
+  </data>
+  <data name="SyncSummarySectionNewFiles" xml:space="preserve">
+    <value>## Nové soubory:
+Tyto soubory byly přidány do projektu.
+{0}</value>
+    <comment>{0}: List of new files</comment>
+  </data>
+  <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
+    <value>Temp</value>
+  </data>
+  <data name="SyncSummaryTemplate" xml:space="preserve">
+    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+# Souhrnné informace o generování
+Do projektu byly začleněny následující změny:
+Soubory vytvořené při generování najdete v dočasné složce pro generování: {0}
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files, 
+{2}: Modified Files, 
+{3}: Failed Merge Files, 
+{4}: Conflicting Files</comment>
+  </data>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatePackageExtractMessage" xml:space="preserve">
+    <value>V {0} jsou neplatné digitální podpisy. Příčinou může být neoprávněná změna obsahu nebo chybějící, neplatný nebo nepovolený certifikát.  Nelze pokračovat.</value>
+    <comment>{0}: FilePath</comment>
+  </data>
+  <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
+    <value>V úložišti {2} bylo nalezeno {0} certifikátů odpovídajících kryptografickému otisku {1}.</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
+  </data>
+  <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
+    <value>Nalezený certifikát nemá privátní klíč.</value>
+  </data>
+  <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
+    <value>Kryptografickému otisku odpovídá více než jeden certifikát. Vrací se první z nich.</value>
+  </data>
+  <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
+    <value>Zadaný zdroj {0} je neplatný, soubor neexistuje nebo je složka prázdná.</value>
+    <comment>{0}: Source File Path</comment>
+  </data>
+  <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
+    <value>Nebyl nalezen certifikát, který odpovídá kryptografickému otisku {0}. Byla prohledána úložiště CurrentUser/My a LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
+  </data>
+  <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
+    <value>Certifikát s kryptografickým otiskem {0} nelze najít v úložišti CurrentUser/My ani v úložišti LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
+  </data>
+  <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
+    <value>Při podepisování balíčku došlo k chybě.</value>
+  </data>
+  <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
+    <value>Ověření certifikátu podpisu balíčku bylo neúspěšné.</value>
+  </data>
+  <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
+    <value>Ověření certifikátu {0} bylo dokončeno se stavem {1}.</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
+  </data>
+  <data name="TemplatesContentExtractedToString" xml:space="preserve">
+    <value>Šablony byly extrahovány do</value>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Při čtení zdrojového konfiguračního souboru došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
+    <value>Šablony nelze extrahovat.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Místní cesta k šablonám je prázdná.</value>
+  </data>
+  <data name="TemplatesSynchronizationError" xml:space="preserve">
+    <value>Error synchronizing templates.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Při získávání obsahu došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Při stahování zdrojového konfiguračního souboru došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Při extrahování obsahu nainstalovaných šablon došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Při aktualizaci obsahu šablon došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
+    <value>Nelze vymazat starý obsah.</value>
+  </data>
+  <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
+    <value>Další instance synchronizuje šablony... Čekání po dobu 5 sekund</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
+    <value>Při vytváření souboru zamknutí instance došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
+    <value>Při odstraňování souboru zamknutí instance došlo k chybě.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
+    <value>Při čtení souboru zamknutí instance došlo k chybě.</value>
+  </data>
+  <data name="Zobrazit náhled změn v: {2}" xml:space="preserve">
+    <value>{0}:FileName, {1}: Postaction Code, {2}:Preview</value>
+  </data>
+  <data name="{1}" xml:space="preserve">
+    <value>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</value>
+  </data>
+  <data name="{1}1" xml:space="preserve">
+    <value>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</value>
+  </data>
+</root>

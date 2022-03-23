@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "path": "TemplateStudio.sln",
+    "projects": [
+      "SharedFunctionality.Core\\SharedFunctionality.Core.shproj",
+      "SharedFunctionality.UI\\SharedFunctionality.UI.shproj",
+      "SharedResources\\SharedResources.csproj",
+      "TemplateStudioForWinUICs\\TemplateStudioForWinUICs.csproj",
+      "src\\ProjectTemplates\\WinUI\\CS\\Ts4WinUICsTemplate\\Ts4WinUICsTemplate.csproj",
+      "test\\SharedFunctionality.Core.Tests\\SharedFunctionality.Core.Tests.csproj",
+      "test\\SharedFunctionality.Tests\\SharedFunctionality.Tests.shproj",
+      "test\\SharedFunctionality.UI.Tests\\SharedFunctionality.UI.Tests.csproj",
+      "test\\TemplateStudioForWinUICs.Tests\\TemplateStudioForWinUICs.Tests.csproj",
+      "test\\VsEmulator\\VsEmulator.csproj"
+    ]
+  }
+}

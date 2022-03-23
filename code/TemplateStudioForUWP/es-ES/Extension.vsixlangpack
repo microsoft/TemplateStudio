@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
+  <LocalizedName>Template Studio for UWP</LocalizedName>
+  <LocalizedDescription>Template Studio acelera la creación de nuevas aplicaciones para UWP, WPF Y WinUI 3 en escritorio mediante una interfaz de usuario basada en asistente.</LocalizedDescription>  
+  <License>..\Content\EULA.es-ES.rtf</License>
+  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+</VsixLanguagePack>

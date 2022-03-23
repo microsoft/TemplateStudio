@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>40caa13a-a94e-43f4-916d-070e15883878</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedFunctionality.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Casing\CasingType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Casing\StringCasingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Casing\TextCasing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodeGen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\CompositionQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\InvalidCompositionQueryException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\QueryableProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\QueryablePropertyDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\QueryNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Composition\QueryOperator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\BreakingChangeVersion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\Configuration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\AppHealth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\EditItemActionEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\ExceptionTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\FileHealthWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\GenItemsTelemetryData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\GenSourceEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\GenStatusEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\HealthWriters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\IHealthWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\NewItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\ProjectMetricsEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\ShellHealthWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TelemetryEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TelemetryMetrics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TelemetryProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TelemetryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TelemetryTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TraceHealthWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\TraceTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\VSTelemetryInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\WizardActionEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\WizardStatusEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\WizardTypeEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DateTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DictionaryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\PathExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TaskExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TemplateTypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\VersionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\FakeContextProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellCertificate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellProject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellSolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\GenShell\FakeGenShellVisualStudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\MSBuild\FakeMsBuildProject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\MSBuild\FakePackagesConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\MSBuild\VsItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\MSBuild\VsItemTypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\Solution\FakeSolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fakes\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FrameworkTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\CompositionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\FileRenameParameterReplacements.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenComposer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenParams.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\GenToolBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\IContextProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\IWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\LayoutInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\NewItemGenController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\NewItemGenerationFileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\NewItemGenerationResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\NewProjectGenController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\NugetReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\ProjectConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\ProjectInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\ProjectReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\SdkReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellCertificate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellProject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellSolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\Shell\IGenShellVisualStudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\SupportedFramework.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\TempGenerationResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\TemplateInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\UserSelection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\UserSelectionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gen\UserSelectionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Fs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ProjectHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\LocalTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\NativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\ProgressEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\SyncStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\SyncStatusEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesContentInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesPackageInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesSourceConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplatesSynchronization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\TemplateSynchronizationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\UwpTestsTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\VsixTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\WinUICppTestsTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\WinUICsTestsTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\WpfTestsTemplatesSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Config\ItemNameValidationConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Config\ProjectNameValidationConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Config\RegExConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\ItemNameService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\NamingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\ProjectNameService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\ValidationError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\ValidationErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\ValidationResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\DefaultNamesValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\EmptyNameValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\ExistingNamesValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\FileNameValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\FolderNameValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\RegExValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\ReservedNamesValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Naming\Validators\Validator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\CertInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\IDigitalSignatureService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\InvalidSignatureException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\SignCertNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\TemplatePackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platforms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddContextItemsToSolutionAndProjectPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddItemToContextPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddJsonDictionaryItem\AddJsonDictionaryItemPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddJsonDictionaryItem\DictionaryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddNugetReferenceToContextPostaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddProjectConfigurationToContextPostaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddProjectToContextPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\AddSdkReferencesToContextPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\ChangeSolutionConfigurationPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\CodeStyleProviders\BaseCodeStyleProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\CodeStyleProviders\CSharpStyleProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\CodeStyleProviders\VBStyleProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\CodeStyleProviders\XmlStyleProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeFailureType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeMacros.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergePostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\MergeResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\NewItemGeneration\FailedMergePostActionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\NewItemGeneration\GenerateMergeInfoPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\NewItemGeneration\GetMergeFilesFromProjectPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\NewItemGeneration\MergeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\NewItemGeneration\PostactionFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\NewItemGeneration\OpenFilesPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\ImportsComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\NamespaceComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\SortImportsPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\SortNamespacesPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\NewItemPostActionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\NewProjectPostActionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\PostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\PostActionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostActions\TemplateDefinedPostAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProgrammingLanguages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\ITemplateInfoExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\LayoutItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\MetadataInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\MetadataLocalizedInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\MetadataType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\TemplateLicense.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\TemplateLicenseEqualityComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\TemplateOutputType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\TemplatesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\TemplateType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\CertificateService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\IValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Uwp\UwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXCppProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\MSIXProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICoreProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUICppUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIDesktopProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\WinUI\WinUIUwpProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\MSIXProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfCoreProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectAnyCPUTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\WpfProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\ProjectConfigurationTemplates\Wpf\XamlIslandProjectTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\UwpSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUICppSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WinUIDesktopSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Fakes\Solution\SolutionTemplates\WpfSolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

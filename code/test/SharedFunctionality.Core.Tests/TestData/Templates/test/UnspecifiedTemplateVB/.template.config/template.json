@@ -1,0 +1,15 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "UnspecifiedTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.UnspecifiedTemplate",
+  "identity": "Microsoft.Templates.Test.UnspecifiedTemplate.VisualBasic",
+  "shortName": "unspecified-test",
+  "tags": {
+    "language": "VisualBasic",
+    "wts.platform": "test"
+
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

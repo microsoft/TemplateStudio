@@ -1,0 +1,1420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTestingAction" xml:space="preserve">
+    <value>Aggiungi test</value>
+  </data>
+  <data name="AddServiceAction" xml:space="preserve">
+    <value>Aggiungi servizio</value>
+  </data>
+  <data name="AddFeatureAction" xml:space="preserve">
+    <value>Aggiungi funzionalità</value>
+  </data>
+  <data name="AddPageAction" xml:space="preserve">
+    <value>Aggiungi pagina</value>
+  </data>
+  <data name="AddProjectAction" xml:space="preserve">
+    <value>Aggiungi progetto</value>
+  </data>
+  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
+    <value>Template Studio: {0}</value>
+    <comment>Generic MessageBox Title</comment>
+  </data>
+  <data name="UIStatusMsgPattern" xml:space="preserve">
+    <value>Template Studio: {0}</value>
+  </data>
+  <data name="UnexpectedExPattern" xml:space="preserve">
+    <value>Eccezione non prevista.\n{0}</value>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Visualizzatore codice</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design patterns</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Nome della pagina</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Descrizione testo errore</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Menu navigazione</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>Icona file nuovo elemento</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Pannello notifiche</value>
+    <comment> Notification panel label to accessibility</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Tipi di progetto</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Controllo di flusso sequenziale</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Elenco di modelli</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>Pagine selezione utente</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>Aggiungi funzionalità</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
+  </data>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>Aggiungi pagine</value>
+    <comment>Add pages title on AddPagesPage</comment>
+  </data>
+  <data name="AddServiceTitle" xml:space="preserve">
+    <value>Aggiungi servizi</value>
+    <comment>AddService title on AddServicePage</comment>
+  </data>
+  <data name="AddTestingTitle" xml:space="preserve">
+    <value>Aggiungi test</value>
+    <comment>AddTesting title on AddTestingPage</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>Interruzione modifiche</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>Abbiamo rilevato delle incompatibilità tra il progetto e l'ultima versione dei modelli. Rivedi le modifiche:</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>Indietro</value>
+    <comment>MainPage Back button</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Annulla</value>
+    <comment>MainPage Cancel button</comment>
+  </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Chiudi</value>
+    <comment>Notification button close</comment>
+  </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Strumento composizione</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Crea</value>
+    <comment>MainPage Create button</comment>
+  </data>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Dettagli</value>
+    <comment>Details button</comment>
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>Dettagli di {0}</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Massimizzare</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>Avanti</value>
+    <comment>MainPage Next button</comment>
+  </data>
+  <data name="ButtonNo" xml:space="preserve">
+    <value>No</value>
+    <comment>No Button</comment>
+  </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>Ok</value>
+    <comment>Error dialog and information window ok button content</comment>
+  </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Aggiorna cache modelli</value>
+    <comment>Refresh templates cache button</comment>
+  </data>
+  <data name="ButtonRemove" xml:space="preserve">
+    <value>Rimuovi</value>
+    <comment>Remove template button</comment>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Restaurare</value>
+  </data>
+  <data name="ButtonYes" xml:space="preserve">
+    <value>Sì</value>
+    <comment>Yes Button</comment>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Non unire modifiche (genera in una cartella temp).</value>
+    <comment>Do not merge changes checkbox text</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
+    <value>File in conflitto</value>
+    <comment>Changes summary group title for: Conflicting files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
+    <value>Il file esiste già nel progetto, ma è anche stato generato come parte del nuovo elemento. Il file corrente non verrà modificato né sovrascritto. Confronta e assicurati che non vi siano errori. Se necessario, potrai accedere al file generato alla fine.</value>
+    <comment>Changes summary description for: Conflicting files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
+    <value>File di stile in conflitto</value>
+    <comment>Changes summary group title for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
+    <value>Impossibile introdurre gli stili nel dizionario di risorse.</value>
+    <comment>Changes summary description for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
+    <value>File modificati</value>
+    <comment>Changes summary group title for: Modified files</comment>
+  </data>
+  <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
+    <value>Il file verrà modificato per includere il contenuto necessario.</value>
+    <comment>Changes summary description for: Modified files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
+    <value>Nuovi file</value>
+    <comment>Changes summary group title for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
+    <value>Il file verrà aggiunto come nuovo file al progetto.</value>
+    <comment>Changes summary description for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
+    <value>File non modificati</value>
+    <comment>Changes summary group title for: Unchanged files</comment>
+  </data>
+  <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
+    <value>Il file esiste già nel progetto e non sono necessarie ulteriori azioni. Il file non verrà modificato.</value>
+    <comment>Changes summary description for: Unchanged files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
+    <value>Avviso file</value>
+    <comment>Changes summary group title for: Warning files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
+    <value>Impossibile introdurre le modifiche necessarie. Se necessario, potrai accedere al file generato alla fine.</value>
+    <comment>Changes summary description for: Warning files</comment>
+  </data>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>altre info</value>
+    <comment>Changes summary more info link</comment>
+  </data>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Deprecato</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Errore durante l'aggiunta di elementi al progetto {0}</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Errore durante l'aggiunta del progetto {0}</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Errore durante l'aggiunta di riferimenti tra i progetti</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Errore durante l'aggiunta di SDK al progetto {0}.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Mostra dettagli</value>
+    <comment>Error dialog show details link button</comment>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Errore:-(</value>
+    <comment>Error dialog title</comment>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Tipo di requisito non valido {0}</value>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Impossibile aggiungere alcuni pacchetti NuGet al progetto {0}. È possibile che fossi offline. 
+Verifica il seguente elenco di pacchetti necessario al codice del progetto e aggiungi manualmente i pacchetti mancanti: 
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Impossibile trovare il progetto {0}</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Impossibile aprire la panoramica del progetto.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Impossibile impostare la configurazione predefinita della soluzione</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>Errore di compressione dell'albero della soluzione. Es:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
+  </data>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>Errore di visualizzazione del messaggio di stato. Es:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Apri in una nuova scheda del browser</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="FrameworkTitle" xml:space="preserve">
+    <value>Seleziona un design pattern</value>
+    <comment>Title on FrameworkPage</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>Premi Invio per aggiungere {0}</value>
+    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
+  </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Versione successiva richiesta</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} creazione di progetti richiede che la versione di Visual Studio 2019 {1} o superiore.</value>
+    <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>Carico di lavoro mancante</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>Altre informazioni</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>È necessario installare i carichi di lavoro seguenti per creare un progetto {0}: {1}</value>
+  </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} fa già parte del progetto. Scegli un'altra funzionalità.</value>
+    <comment>Feature already added {0}: Feature name</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} fa già parte del progetto. Scegli un'altra pagina.</value>
+    <comment>Page already added {0}: Page name</comment>
+  </data>
+  <data name="NewItemHasNoChangesService" xml:space="preserve">
+    <value>{0} fa già parte del progetto. Scegli un altro servizio.</value>
+    <comment>Service already added {0}: Service name</comment>
+  </data>
+  <data name="NewItemHasNoChangesTesting" xml:space="preserve">
+    <value>{0} fa già parte del progetto. Scegli un altro progetto di test.</value>
+    <comment>Testing project already added {0}: Testing project name</comment>
+  </data>
+  <data name="NewItemStepOne" xml:space="preserve">
+    <value>Selezione modello</value>
+    <comment>New Item: Naviagtion step one </comment>
+  </data>
+  <data name="NewItemStepTwo" xml:space="preserve">
+    <value>Riepilogo delle modifiche</value>
+    <comment>New Item: Naviagtion step two</comment>
+  </data>
+  <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
+    <value>Dipendenze</value>
+    <comment>New item: Dependencies section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licenze</value>
+    <comment>New item: Licenses section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
+    <value>Nome</value>
+    <comment>New item: Name section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
+    <value>Dettagli modello</value>
+    <comment>New item: Template Details</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>Nuova funzionalità</value>
+    <comment>New item: new feature title</comment>
+  </data>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>Nuova pagina</value>
+    <comment>New item: new page title</comment>
+  </data>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Nuovo servizio</value>
+    <comment>New item: new service title</comment>
+  </data>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Nuovo progetto di test</value>
+    <comment>New item: new testing project title</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
+  <data name="NewProjectStepFeatures" xml:space="preserve">
+    <value>Funzionalità</value>
+    <comment>New project: Navigation step features</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Pagine</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Tipo di progetto</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepServices" xml:space="preserve">
+    <value>Servizi</value>
+    <comment>New project: Navigation step services</comment>
+  </data>
+  <data name="NewProjectStepTesting" xml:space="preserve">
+    <value>Test</value>
+    <comment>New project: Navigation step testing</comment>
+  </data>
+  <data name="NewProjectTitleUWP" xml:space="preserve">
+    <value>Nuova app per la piattaforma UWP (Universal Windows Platform)</value>
+    <comment>Wizard title on WizardShell page for UWP projects</comment>
+  </data>
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
+    <value>Nuova app WinUI 3 Desktop</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>Nuova app WinUI 3 UWP</value>
+  </data>
+  <data name="NewProjectTitleWPF" xml:space="preserve">
+    <value>Nuova app WPF</value>
+    <comment>Wizard title on WizardShell page for WPF projects</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>nessun contenuto disponibile.</value>
+    <comment>Message in no content panel</comment>
+  </data>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>Impossibile aggiungere **{0}** perché i modelli seguenti non sono compatibili: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Impossibile aggiungere **{0}**. È prima necessario aggiungere uno dei seguenti modelli: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Mancano le seguenti versioni, installarle e riavviare Visual Studio: {0}</value>
+  </data>
+  <data name="NotificationRemoveError_Dependency" xml:space="preserve">
+    <value>Impossibile rimuovere **{0}** perché questi modelli dipendono da esso: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>Non è possibile rimuovere **{0}** perché è necessario per il tipo di progetto selezionato.</value>
+    <comment>Remove error message: Template is read only</comment>
+  </data>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Impossibile rimuovere **{0}** perché è necessario per: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationSyncError_Refresh" xml:space="preserve">
+    <value>Errore di aggiornamento modelli. Per ulteriori dettagli, vedi la finestra di output.</value>
+    <comment>Error message for sync refresh</comment>
+  </data>
+  <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
+    <value>Sono disponibili nuovi modelli (v{0}). Download in corso… {1}%</value>
+    <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Controllo aggiornamenti in corso...</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
+  </data>
+  <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
+    <value>Errore durante il download dei modelli (v{0}). Riprova più tardi.</value>
+    <comment>Notification message for Sync Error, {0}:Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
+    <value>La versione {0} di Windows Template Studio è disponibile. Aggiorna l'estensione per usufruire delle funzionalità più recenti.</value>
+    <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
+    <value>Preparazione dei modelli (v{0}) in corso... {1}%</value>
+    <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Modelli aggiornati.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updating" xml:space="preserve">
+    <value>Aggiornamento cache dei modelli in corso...</value>
+    <comment>Notification message for Sync Status: Updating</comment>
+  </data>
+  <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
+    <value>Il nome esiste già</value>
+    <comment>Validation error message: Already exists</comment>
+  </data>
+  <data name="NotificationValidationError_BadFormat" xml:space="preserve">
+    <value>Sono consentiti solo i caratteri alfanumerici e '_'</value>
+    <comment>Validation error message: Bad format</comment>
+  </data>
+  <data name="NotificationValidationError_Empty" xml:space="preserve">
+    <value>Il nome non può essere vuoto</value>
+    <comment>Validation error message: Empty</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Il nome non può terminare con "Page", poiché questa parola verrà aggiunta automaticamente. [Altre informazioni sulla denominazione.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Il nome del progetto non corrisponde al nome della cartella del progetto. Si prega di regolare per garantire una generazione corretta.</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>Convalida RegEx {0} non riuscita.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="NotificationValidationError_ReservedName" xml:space="preserve">
+    <value>Nome riservato</value>
+    <comment>Validation error message: Reserved name</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>La parola "Page" verrà aggiunta alla fine del nome specificato. [Altre informazioni sulla denominazione.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>Impossibile trovare i metadati di configurazione del progetto nel file Package.appxmanifest. Puoi fornire la configurazione del progetto che hai selezionato quando quest'ultimo è stato creato?</value>
+    <comment>ProjectConfiguration view description</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Seleziona AppModel</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Seleziona design pattern:</value>
+    <comment>Project configuration window select framework title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Seleziona piattaforma</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Seleziona tipo di progetto:</value>
+    <comment>Project configuration window select project type title</comment>
+  </data>
+  <data name="ProjectConfigurationTitleText" xml:space="preserve">
+    <value>Scegli configurazione progetto</value>
+    <comment>Project configuration window title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>Segnala problema</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>About section link</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
+    <value>Versione modelli:</value>
+    <comment>About section templates version</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
+    <value>Informazioni su</value>
+    <comment>About section title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
+    <value>Versione procedura guidata:</value>
+    <comment>About section wizard version</comment>
+  </data>
+  <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
+    <value>Funzionalità</value>
+    <comment>Feature list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
+    <value>Hai modificato la scelta del design pattern. Le pagine e le funzionalità selezionate andranno perse. Vuoi continuare?</value>
+    <comment>Framework changed message</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
+    <value>Design pattern modificato</value>
+    <comment>Framework changed title</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>Framework combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licenze</value>
+    <comment>New project: Licenses section</comment>
+  </data>
+  <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
+    <value>Pagine</value>
+    <comment>Page list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>Hai modificato la scelta del tipo di progetto. I modelli selezionati andranno persi. Vuoi continuare?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
+    <value>Tipo di progetto modificato</value>
+    <comment>Project type changed title</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
+    <value>Tipo di progetto</value>
+    <comment>Project type combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Servizi</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Test</value>
+    <comment>Testing list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTitle" xml:space="preserve">
+    <value>Dettagli progetto</value>
+    <comment>Project details header on MainPage</comment>
+  </data>
+  <data name="ProjectTypeTitle" xml:space="preserve">
+    <value>Seleziona un tipo di progetto</value>
+    <comment>ProjectType Title on ProjectTypePage</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Usa CTRL+freccia su o CTRL+freccia giù per cambiare l'ordine delle pagine</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Aggiunta di {0} al progetto in corso...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Aggiunta del pacchetto NuGet {0} al progetto...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Aggiunta del progetto {0} alla soluzione in corso...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Aggiunta di riferimenti tra progetti...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>Creazione progetto Windows Template Studio in corso...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
+  </data>
+  <data name="StatusBarGenerationFinished" xml:space="preserve">
+    <value>Generazione terminata</value>
+    <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Aggiunta nuova funzionalità annullata</value>
+    <comment>Status bar message for Add new feature cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
+    <value>Funzionalità {0} aggiunta correttamente</value>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
+    <value>Aggiunta nuova pagina annullata</value>
+    <comment>Status bar message for Add new page cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
+    <value>Pagina {0} aggiunta correttamente</value>
+    <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceCancelled" xml:space="preserve">
+    <value>Aggiunta nuovo servizio annullata</value>
+    <comment>Status bar message for Add new service cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddServiceSuccess" xml:space="preserve">
+    <value>Servizio {0} aggiunto</value>
+    <comment>Status bar message for Service successfully added, {0}: Service name</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingCancelled" xml:space="preserve">
+    <value>Aggiunta nuovo progetto di test annullata</value>
+    <comment>Status bar message for Add new testing project cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddTestingSuccess" xml:space="preserve">
+    <value>Progetto di test {0} aggiunto</value>
+    <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
+  </data>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Aggiunto</value>
+    <comment>Template added label</comment>
+  </data>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Autore:</value>
+    <comment>Template details: Autor</comment>
+  </data>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Dipendenze:</value>
+    <comment>Template details: Dependencies</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Esclusioni:</value>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Framework:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Questo elemento non è attualmente disponibile a causa della mancanza di carichi di lavoro/componenti Visual Studio.</value>
+  </data>
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Include:</value>
+    <comment>Template details: Includes</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (facoltativo)</value>
+    <comment>The include is optional</comment>
+  </data>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Licenze:</value>
+    <comment>Template details: Licenses</comment>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Versione minima di .NET Core:</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Componenti Windows SDK necessari:</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Carichi di lavoro/componenti Visual Studio necessari:</value>
+  </data>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Requisiti:</value>
+  </data>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Versione:</value>
+    <comment>Template details: Version</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analisi</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Avvio dell'applicazione</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Application Lifecycle</value>
+    <comment>Group header for application lifecycle templates</comment>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Lavoro in background</value>
+    <comment>Group header for background work templates</comment>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Esperienze connesse</value>
+    <comment>Group header for Connected Experiences templates</comment>
+  </data>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Dati</value>
+    <comment>Group header for Data templates</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (scegli uno)</value>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Creazione di pacchetti</value>
+    <comment>Group header for Packaging templates</comment>
+  </data>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Strumenti</value>
+    <comment>Group header for 'Tools' templates</comment>
+  </data>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>Interazione utente</value>
+    <comment>Group header for user interaction templates</comment>
+  </data>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Seleziona il modello che desideri aggiungere</value>
+    <comment>Template selection title</comment>
+  </data>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>Continuando accetti le condizioni di tutte le licenze riportate nella sezione relativa.</value>
+    <comment>Licenses Terms and conditions text</comment>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has ActivationService before Identity link documentation message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Template Studio ha modificato ActivationService in modo da includere le funzionalità di Identity.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
+    <comment>Has hamburger menu validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>Il controllo HamburgerMenu è obsoleto e Windows Template Studio ora supporta NavigationView. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Template Studio sta ora aggiungendo un progetto core. </value>
+    <comment>Has no core project validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>Abbiamo modificato la nostra implementazione di MVVMLight ViewModelLocator per supportate MultiView in MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Template Studio sta ora utilizzando NavigationView della Libreria interfaccia utente di Windows.</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Guarda la documentazione per l'aggiornamento.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Template Studio sta ora utilizzando NavigationView orizzontale nei progetti Pivot. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>Windows template studio label</comment>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
+    <value>Sviluppo desktop .NET</value>
+  </data>
+  <data name="WorkloadDisplayNameMsixPackaging" xml:space="preserve">
+    <value>Strumenti per la creazione di pacchetti MSIX</value>
+  </data>
+  <data name="WorkloadDisplayNameNetWeb" xml:space="preserve">
+    <value>ASP.NET e sviluppo Web</value>
+  </data>
+  <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
+    <value>Sviluppo Universal Windows Platform</value>
+  </data>
+  <data name="WPF" xml:space="preserve">
+    <value>WPF (.NET Core)</value>
+  </data>
+  <data name="AdditionalMessageString" xml:space="preserve">
+    <value>Messaggio aggiuntivo</value>
+  </data>
+  <data name="AddtionalExceptionInfoString" xml:space="preserve">
+    <value>Info eccezione aggiuntive</value>
+  </data>
+  <data name="Anteprima modifiche in: {2}" xml:space="preserve">
+    <value>{0}:FileName, {1}: Postaction Code, {2}:Preview</value>
+  </data>
+  <data name="AssemblyFileVersionString" xml:space="preserve">
+    <value>Versione file assembly</value>
+  </data>
+  <data name="CompositionQueryParseMessage" xml:space="preserve">
+    <value>La query "{0}" non è valida. Gli operatori consentiti sono '==' o '!='. Le condizioni multiple sono separate da '&amp;'.</value>
+    <comment>{0}: Query</comment>
+  </data>
+  <data name="ConfigurationFileLoadedString" xml:space="preserve">
+    <value>File di configurazione caricato</value>
+  </data>
+  <data name="CurrentContentExpirationString" xml:space="preserve">
+    <value>Scadenza contenuto corrente</value>
+  </data>
+  <data name="ErrorCreatingFolder" xml:space="preserve">
+    <value>Error creating folder '{0}': {1}</value>
+    <comment>{0} Name of the folder, {1} exception message</comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Dipendenza circolare rilevata sul modello {0} con {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Modello di dipendenza {0} non trovato alla selezione utente.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Elemento dipendenza non valido {0}. Le dipendenze devono essere configurate come multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Modello di dipendenza {0} non trovato per framework {1} e piattaforma {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Elemento dipendenza non valido {0}. Gli elementi dipendenza devono essere di tipo Pagina o Funzionalità.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorExcludedTemplatesFound" xml:space="preserve">
+    <value>Modello escluso {0} non trovato alla selezione utente.</value>
+  </data>
+  <data name="ErrorExclusionAndDependency" xml:space="preserve">
+    <value>Il modello di esclusione {0} è definito come esclusione e dipendenza per il modello {1}.</value>
+  </data>
+  <data name="ErrorExclusionAndRequirement" xml:space="preserve">
+    <value>Il modello di esclusione {0} è definito come esclusione e requisito per il modello {1}.</value>
+  </data>
+  <data name="ErrorExclusionNotFound" xml:space="preserve">
+    <value>Modello di esclusione {0} non trovato per framework {1} e piattaforma {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorExclusionRightClick" xml:space="preserve">
+    <value>I modelli con esclusioni non possono essere disponibili con l'operazione di clic con il pulsante destro del mouse.</value>
+  </data>
+  <data name="ErrorExclusionType" xml:space="preserve">
+    <value>Elemento esclusione non valido {0}. Gli elementi esclusione devono essere di tipo pagina, funzionalità, servizio o test.</value>
+    <comment>Invalid exclusion exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorExtraWhitespacesInMultiValues" xml:space="preserve">
+    <value>Multivalue field: '{0}' contains trailing or leading whitespaces.</value>
+    <comment>{0}: multivalue string</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Modello '{0}', nome: '{1}', motivo: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Modello layout {0} non trovato per framework {1} e piattaforma {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Elemento layout non valido {0}. Gli elementi layout devono essere di tipo Pagina o Funzionalità.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorNamingValidationFailed" xml:space="preserve">
+    <value>Nome modello {0} non valido. Errori: {1}</value>
+  </data>
+  <data name="ErrorProjectNameValidationFailed" xml:space="preserve">
+    <value>Nome progetto {0} non valido. Errori: {1}</value>
+  </data>
+  <data name="ErrorRecursiveRequirement" xml:space="preserve">
+    <value>Requisito ricorsivo rilevato sul modello {0} con {1}.</value>
+    <comment>Recursive requirement exception message. {0}:Template id, {1}: Requirement Template id</comment>
+  </data>
+  <data name="ErrorRequirementMissing" xml:space="preserve">
+    <value>Modello obbligatorio {0} non trovato nella selezione utente.</value>
+    <comment>Missing requirement exception message. {0}:Requirement Template id</comment>
+  </data>
+  <data name="ErrorRequirementMultipleInstance" xml:space="preserve">
+    <value>Elemento di requisito non valido {0}. I requisiti devono essere configurati come multipleInstance = false.</value>
+    <comment>Invalid requirement exception message. {0}:Requirement Template id </comment>
+  </data>
+  <data name="ErrorRequirementNotFound" xml:space="preserve">
+    <value>Modello obbligatorio {0} non trovato per framework {1} e piattaforma {2}.</value>
+    <comment>Required Template not found exception message. {0}:Requirement Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorRequirementRightClick" xml:space="preserve">
+    <value>Elemento di requisito sul modello non valido {0}. Agli elementi abilitati con il clic del pulsante destro del mouse non possono essere associati requisiti.</value>
+  </data>
+  <data name="ErrorRequirementType" xml:space="preserve">
+    <value>Elemento di requisito non valido {0}. Gli elementi dipendenza devono essere di tipo pagina, funzionalità, servizio o test.</value>
+    <comment>Invalid requirement exception message. {0}:Requirement  Template id</comment>
+  </data>
+  <data name="ErrorTitleInvalidProjectName" xml:space="preserve">
+    <value>Nome progetto non valido</value>
+    <comment>Message box title for project invalid names.</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Telemetria per il rilevamento delle eccezioni durante la generazione.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Impossibile risolvere la piattaforma.</value>
+  </data>
+  <data name="ExceptionInfoString" xml:space="preserve">
+    <value>Info eccezione</value>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Impossibile trovare il file di progetto per l'elemento {0}</value>
+    <comment>{0}: Filepath</comment>
+  </data>
+  <data name="ExceptionString" xml:space="preserve">
+    <value>Eccezione</value>
+  </data>
+  <data name="ExceptionTrackedString" xml:space="preserve">
+    <value>Eccezione verificata</value>
+  </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Impossibile trovare il file '{0}' per includere le seguenti modifiche. Rivedi i blocchi di codice per includere le modifiche manualmente ove richiesto nel progetto. Modello relativo: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>Lo stile con la chiave '{0}' è già definito con valore o elementi diversi in questo file. Rivedi gli stili per includere le modifiche manualmente ove richiesto nel progetto. Modello relativo: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Impossibile trovare la riga prevista '{0}' nel file '{1}'. Unisci manualmente il contenuto dal file postaction. Modello relativo: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
+  <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">
+    <value>La codifica del file '{0}' è '{1}' mentre quella del file '{2}' è '{3}'. Assicurati che per entrambi i file sia usata la stessa codifica.</value>
+    <comment>{0} first file name, {1} first encoding name, {2} other file name, {3} other encoding name</comment>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Impossibile rimuovere la protezione di sola lettura dal file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="FsSafeCopyFileMessage" xml:space="preserve">
+    <value>Impossibile copiare il file {0} in {1}. Errore: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
+    <value>Impossibile eliminare la cartella {0}. Errore: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="FsSafeDeleteFileMessage" xml:space="preserve">
+    <value>Impossibile eliminare il file {0}. Errore: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
+  </data>
+  <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
+    <value>Impossibile spostare la cartella {0} in {1}. Errore: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
+  </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>Impossibile spostare in {1} il file {0}. Errore: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Impossibile rinominare la cartella {0}. Errore: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="GenContextBootstrapError" xml:space="preserve">
+    <value>Errore critico durante l'inizializzazione di GenContext.</value>
+  </data>
+  <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
+    <value>Nessuno contesto per l'esecuzione gen corrente, chiamare prima Current_set</value>
+  </data>
+  <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
+    <value>Errore durante la generazione del certificato.</value>
+  </data>
+  <data name="LogStartedString" xml:space="preserve">
+    <value>Log iniziato</value>
+  </data>
+  <data name="MarkdownHeader" xml:space="preserve">
+    <value>*Visualizzatore markdown consigliato: [Estensione di VS Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>Nessuna destinazione di unione per il file '{0}'. Modello relativo: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Riga {0} non trovata nel file '{1}'. Modello relativo: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
+  <data name="NamingErrorConfigFileNotFound" xml:space="preserve">
+    <value>Impossibile trovare il file di configurazione di denominazione {0}.</value>
+  </data>
+  <data name="NamingInferMessage" xml:space="preserve">
+    <value>Impossibile dedurre un nome. Troppe iterazioni</value>
+  </data>
+  <data name="PackageCertificateString" xml:space="preserve">
+    <value>Certificato pacchetto</value>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Errore durante l'esecuzione di '{0}'. Ignora l'errore poiché è abilitato Continua in caso di errori. Modello relativo: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Errore durante l'esecuzione di '{0}'. Modello relativo: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>L'elemento PostAction.ActionId '{0}' definito nel modello non corrisponde alla classe ActionId '{1}' prevista. Impossibile proseguire. Modello relativo: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
+    <value>Errore durante il download da {0}. Connessione Internet necessaria per scaricare gli aggiornamenti dei modelli.</value>
+    <comment>{0}:Url</comment>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
+    <value>Impossibile scaricare ora il contenuto dei modelli. Riprova più tardi.</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
+    <value>Contenuto modelli scaricato in {0} da {1}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
+  </data>
+  <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
+    <value>Errore di sincronizzazione modelli. Stato:</value>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Creazione funzionalità '{0}' in corso...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Creazione pagina '{0}' in corso...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Creazione progetto '{0}' in corso...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="StatusBarGeneratingServiceMessage" xml:space="preserve">
+    <value>Creazione servizio '{0}'...</value>
+    <comment>Status bar message generating service. {0}: Service name</comment>
+  </data>
+  <data name="StatusBarGeneratingTestingMessage" xml:space="preserve">
+    <value>Creazione test '{0}'...</value>
+    <comment>Status bar message generating testing. {0}: Testing name</comment>
+  </data>
+  <data name="StatusOpeningItems" xml:space="preserve">
+    <value>Apertura file generati in corso...</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>### Modifiche necessarie nel file '{0}':</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>{1}</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>### Modifiche nel file '{0}':</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>Impossibile integrare le seguenti modifiche: {2}</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>### Modifiche nel file '{0}':</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Vedi il risultato finale: {2}</value>
+  </data>
+  <data name="SyncInstructionsFileName" xml:space="preserve">
+    <value>Passaggi per includere il nuovo elemento generation.md</value>
+  </data>
+  <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
+    <value>## File in conflitto:
+Questi file esistono già nel progetto e sono anche stati generati come parte del nuovo elemento.
+Confronta e assicurati che non vi siano errori:
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
+  </data>
+  <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
+    <value>## File modificati:
+Per integrare il nuovo elemento al progetto esistente, applica le seguenti modifiche:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
+  </data>
+  <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
+    <value>## Nuovi file:
+Copia e aggiungi i seguenti file al progetto:
+{0}</value>
+    <comment>{0}: List of new files</comment>
+  </data>
+  <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
+    <value>## File non modificati:
+Questi file esistono già nel progetto e non sono necessarie ulteriori azioni:
+{0}</value>
+    <comment>{0}: List of unchanged files</comment>
+  </data>
+  <data name="SyncInstructionsTemplate" xml:space="preserve">
+    <value>*Visualizzatore markdown consigliato: [Estensione di VS Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+# Passaggi per includere la generazione del nuovo elemento
+Segui le istruzioni per includere il nuovo elemento nel progetto:
+Puoi trovare tutti i file a cui si fa riferimento nella cartella di generazione temporanea: {0}
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files (SyncInstructionsSectionNewFiles), 
+{2}: Modified Files (SyncInstructionsSectionModifiedFiles), 
+{3}: Conflicting Files (SyncInstructionsSectionConflictingFiles), 
+{4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
+  </data>
+  <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
+    <value>## File in conflitto:
+Questi file esistono già nel progetto e sono anche stati generati come parte del nuovo elemento.
+Confronta e assicurati che non vi siano errori.
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
+  </data>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Modifiche non riuscite nei file:
+Unioni nei seguenti file non riuscite:
+{0}</value>
+  </data>
+  <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
+    <value>## File modificati:
+Sono state applicate le seguenti modifiche:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
+  </data>
+  <data name="SyncSummarySectionNewFiles" xml:space="preserve">
+    <value>## Nuovi file:
+Questi file sono stati aggiunti al progetto.
+{0}</value>
+    <comment>{0}: List of new files</comment>
+  </data>
+  <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
+    <value>Temp</value>
+  </data>
+  <data name="SyncSummaryTemplate" xml:space="preserve">
+    <value>*Visualizzatore markdown consigliato: [Estensione di VS Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+# Riepilogo generazione
+Le seguenti modifiche sono state incorporate nel progetto:
+Puoi trovare i file della generazione nella cartella di generazione temporanea: {0}
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files, 
+{2}: Modified Files, 
+{3}: Failed Merge Files, 
+{4}: Conflicting Files</comment>
+  </data>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatePackageExtractMessage" xml:space="preserve">
+    <value>Firme digitali non valide in '{0}'. Il contenuto è stato alterato o il certificato non è presente, non è valido o non è consentito.  Impossibile continuare.</value>
+    <comment>{0}: FilePath</comment>
+  </data>
+  <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
+    <value>Trovati {0} certificati corrispondenti all'identificazione personale {1} nell'archivio {2}</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
+  </data>
+  <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
+    <value>Il certificato trovato non possiede una chiave privata.</value>
+  </data>
+  <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
+    <value>Trovato più di un certificato corrispondente all'identificazione personale. Restituzione del primo.</value>
+  </data>
+  <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
+    <value>L'origine specificata '{0}' non è valida, il file non esiste o la cartella è vuota.</value>
+    <comment>{0}: Source File Path</comment>
+  </data>
+  <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
+    <value>Nessuno certificato trovato corrispondente all'identificazione personale {0}. Ricerca eseguita in CurrentUser/My and LocalMachine/My stores.</value>
+    <comment>{0}:Thumbprint</comment>
+  </data>
+  <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
+    <value>Impossibile trovare il certificato con identificazione personale {0} in CurrentUser/My o LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
+  </data>
+  <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
+    <value>Errore di firma del pacchetto.</value>
+  </data>
+  <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
+    <value>Convalida certificato di firma pacchetto non superata.</value>
+  </data>
+  <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
+    <value>Verifica certificato '{0}' terminata con stato '{1}'</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
+  </data>
+  <data name="TemplatesContentExtractedToString" xml:space="preserve">
+    <value>Modelli estratti in</value>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Errore durante la lettura del file di configurazione di origine.</value>
+  </data>
+  <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
+    <value>Impossibile estrarre i modelli.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Il percorso locale dei modelli è vuoto.</value>
+  </data>
+  <data name="TemplatesSynchronizationError" xml:space="preserve">
+    <value>Error synchronizing templates.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Errore durante l'acquisizione del contenuto.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Errore durante il download del file di configurazione di origine.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Errore durante l'estrazione del contenuto dei modelli installati.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Errore durante l'aggiornamento del contenuto dei modelli.</value>
+  </data>
+  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
+    <value>Impossibile eliminare il contenuto precedente.</value>
+  </data>
+  <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
+    <value>L'altra istanza sta sincronizzando i modelli... Attendi 5 secondi.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
+    <value>Errore durante la creazione del file di blocco dell'istanza.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
+    <value>Errore durante l'eliminazione del file di blocco dell'istanza.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
+    <value>Errore durante la lettura del file di blocco dell'istanza.</value>
+  </data>
+  <data name="{1}" xml:space="preserve">
+    <value>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</value>
+  </data>
+  <data name="{1}1" xml:space="preserve">
+    <value>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</value>
+  </data>
+</root>

@@ -1,0 +1,17 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "ExclusionsTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.ExclusionsTemplate",
+  "identity": "Microsoft.Templates.Test.ExclusionsTemplate.VB",
+  "shortName": "ExclusionsTemplate",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.exclusions": "e1|e2"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

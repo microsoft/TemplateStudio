@@ -1,0 +1,26 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "ProjectTemplatePropertyBag",
+  "groupIdentity": "Microsoft.Templates.Test.ProjectTemplatePropertyBag",
+  "identity": "Microsoft.Templates.Test.ProjectTemplatePropertyBag.CSharp",
+  "shortName": "ProjectTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "pt1",
+    "wts.frontendframework": "fx4",
+    "wts.pb1": "value1",
+    "wts.pb2": "all",
+    "wts.platform": "test",
+    "wts.version": "1.0.0",
+    "wts.licenses": "[text1](url1)|[text2](url2)",
+    "wts.group": "group1",
+    "wts.defaultInstance": "DefaultName",
+    "wts.requiredVersions": "sdk1|sdk2"
+
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

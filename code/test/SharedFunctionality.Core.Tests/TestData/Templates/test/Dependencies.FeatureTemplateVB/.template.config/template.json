@@ -1,0 +1,17 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "DependenciesTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.DependenciesTemplate",
+  "identity": "Microsoft.Templates.Test.DependenciesTemplate.VB",
+  "shortName": "DependenciesTemplate",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.dependencies": "dp1|dp2"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

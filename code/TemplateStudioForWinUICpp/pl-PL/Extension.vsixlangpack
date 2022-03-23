@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
+  <LocalizedName>Template Studio for WinUI</LocalizedName>
+  <LocalizedDescription>Template Studio przyspiesza tworzenie nowych platformy uniwersalnej systemu Windows, WPF i WinUI 3 w aplikacjach klasycznych przy użyciu interfejsu użytkownika z elementami kreatora.</LocalizedDescription>  
+  <License>..\Content\EULA.pl-PL.rtf</License>
+  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+</VsixLanguagePack>

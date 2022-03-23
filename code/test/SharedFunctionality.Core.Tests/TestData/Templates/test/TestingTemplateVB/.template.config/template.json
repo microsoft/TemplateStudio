@@ -1,0 +1,18 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "TestingTemplate",
+  "description": "Generic Testing description...",
+  "groupIdentity": "Microsoft.Templates.Test.TestingTemplate",
+  "identity": "Microsoft.Templates.Test.TestingTemplate.VB",
+  "shortName": "TestingTemplate",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "testing",
+    "wts.isGroupExclusiveSelection": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

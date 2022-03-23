@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "path": "TemplateStudio.sln",
+    "projects": [
+      "SharedFunctionality.Core\\SharedFunctionality.Core.shproj",
+      "SharedFunctionality.UI\\SharedFunctionality.UI.shproj",
+      "SharedResources\\SharedResources.csproj",
+      "TemplateStudioForWPF\\TemplateStudioForWPF.csproj",
+      "src\\ProjectTemplates\\WPF\\CS\\Ts4WpfCsTemplate\\Ts4WpfCsTemplate.csproj",
+      "test\\SharedFunctionality.Core.Tests\\SharedFunctionality.Core.Tests.csproj",
+      "test\\SharedFunctionality.Tests\\SharedFunctionality.Tests.shproj",
+      "test\\SharedFunctionality.UI.Tests\\SharedFunctionality.UI.Tests.csproj",
+      "test\\TemplateStudioForWPF.Tests\\TemplateStudioForWPF.Tests.csproj",
+      "test\\VsEmulator\\VsEmulator.csproj"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+﻿"None" è un termine per descrivere che non esiste un modello di progettazione preselezione. Viene generato solo il codice minimo per far funzionare l'app. È possibile creare una struttura di cartelle propria e aggiungere qualsiasi modello di progettazione una volta generato il codice.

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>Template Studio for WPF</Name>
+		<Description>Template Studio compila rápidamente una aplicación de .NET Core para WPF, mediante una interfaz de usuario basada en asistente para convertir tus necesidades en los cimientos de prácticas recomendadas y modelos para WPF.</Description>
+		<Icon>Ts4WpfCsTemplate.ico</Icon>
+		<ProjectType>CSharp</ProjectType>
+		<LanguageTag>csharp</LanguageTag>
+		<SortOrder>10</SortOrder>
+		<TemplateID>4cf9118e-0b52-4fff-82a6-09cee34aea74</TemplateID>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>App</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+	</TemplateData>
+	<TemplateContent>
+		<CustomParameters>
+			<CustomParameter Name="$wts.platform$" Value="Wpf"/>
+			<CustomParameter Name="$wts.language$" Value="C#"/>
+			<CustomParameter Name="$wts.category$" Value="TemplateStudio"/>
+			<CustomParameter Name="$wts.version$" Value="2.1.0"/>
+			<CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
+			<CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
+		</CustomParameters>
+	</TemplateContent>
+	<WizardExtension>
+		<Assembly>TemplateStudioForWPF, Version=5.1.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+		<FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
+	</WizardExtension>
+</VSTemplate>

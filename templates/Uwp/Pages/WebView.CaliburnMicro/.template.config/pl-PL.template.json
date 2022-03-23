@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "WebView",
-  "description": "Strona widoku sieci Web wyświetla treści internetowe za pomocą aparatu renderowania programu Microsoft Edge.",
-  "identity": "wts.Page.WebView.CaliburnMicro"
-}

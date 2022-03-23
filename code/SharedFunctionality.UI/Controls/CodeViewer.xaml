@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Microsoft.Templates.UI.Controls.CodeViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+             xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+             mc:Ignorable="d"
+             Focusable="False"
+             AutomationProperties.Name="{x:Static res:StringRes.AccessibilityCodeViewerControl}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}">
+        <WebBrowser x:Name="webBrowser"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    Visibility="Collapsed"
+                    AutomationProperties.Name="{x:Static res:StringRes.AccessibilityCodeViewerControl}"
+                    LoadCompleted="WebBrowser_LoadCompleted" />
+    </Grid>
+</UserControl>

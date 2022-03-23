@@ -1,0 +1,19 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "CompositionTemplate",
+  "identity": "Microsoft.Templates.Test.CompositionTemplate.CSharp",
+  "shortName": "CompositionTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == Microsoft.Templates.Test.PageTemplate",
+    "wts.compositionOrder": "1",
+    "wts.export.testkey": "testValue"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

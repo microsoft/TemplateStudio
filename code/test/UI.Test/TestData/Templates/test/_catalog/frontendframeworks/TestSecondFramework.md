@@ -1,1 +1,0 @@
-Test Second Framework Base Description

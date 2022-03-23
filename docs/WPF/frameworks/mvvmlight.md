@@ -10,4 +10,4 @@ MVVM Light is a popular, 3rd party framework based on the [Model-View-ViewModel 
 
 This toolkit puts a special emphasis on the "blend ability" of the created application (i.e. the ability to open and edit the user interface into Blend), including the creation of design-time data to enable the Blend users to "see something" when they work with data controls.
 
-You can find more out at [MVVM Light's homepage](http://www.mvvmlight.net/)
+You can find more out at [MVVM Light's homepage](https://github.com/lbugnion/mvvmlight)

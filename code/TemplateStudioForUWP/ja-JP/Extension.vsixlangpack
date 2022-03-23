@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
+  <LocalizedName>Template Studio for UWP</LocalizedName>
+  <LocalizedDescription>Template Studio では、ウィザード ベースの UI を使用してデスクトップ アプリで新しい UWP、WPF、WinUI 3 の作成が高速化されます。</LocalizedDescription>  
+  <License>..\Content\EULA.ja-JP.rtf</License>
+  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+</VsixLanguagePack>

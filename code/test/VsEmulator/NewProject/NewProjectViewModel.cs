@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
-
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.UI.Mvvm;
 

@@ -1,0 +1,18 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "FeatureTemplate",
+  "description": "Generic Feature description...",
+  "groupIdentity": "Microsoft.Templates.Test.FeatureTemplate",
+  "identity": "Microsoft.Templates.Test.FeatureTemplate.VB",
+  "shortName": "FeatureTemplate",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.isGroupExclusiveSelection": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

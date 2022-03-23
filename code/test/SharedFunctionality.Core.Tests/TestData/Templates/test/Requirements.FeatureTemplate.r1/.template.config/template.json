@@ -1,0 +1,19 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "r1",
+  "groupIdentity": "r1",
+  "identity": "r1",
+  "shortName": "r1",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.multipleInstance": "false",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "all"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

@@ -1,0 +1,90 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "TwoPaneView",
+  "shortName": "TwoPaneView",
+  "groupIdentity": "wts.Page.TwoPaneView.VB",
+  "identity": "wts.Page.TwoPaneView.VB",
+  "description": "Master-Detail page optimized for dual-screen devices.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.telemName": "Two Pane View",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "MVVMToolkit",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "6",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true",
+    "wts.dependencies": "wts.Service.SampleDataService.VB",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)|[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "ViewModels/wts.ItemNameViewModel.vb"
+    },
+    {
+      "path": "Views/wts.ItemNameDetailControl.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNameDetailControl.xaml.vb"
+    },
+    {
+      "path": "Views/wts.ItemNameListItemControl.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNameListItemControl.xaml.vb"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml"
+    },
+    {
+      "path": "Views/wts.ItemNamePage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.UI.Xaml",
+        "version" : "2.5.0",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Controls",
+        "version" : "7.0.2",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": true
+    }
+  ]
+}

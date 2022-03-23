@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using CommandLine;
-using CommandLine.Text;
 
 namespace Microsoft.Templates.VsEmulator
 {

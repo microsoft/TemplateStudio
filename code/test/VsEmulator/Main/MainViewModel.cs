@@ -11,9 +11,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
@@ -25,7 +25,6 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
-using static System.Environment;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -132,7 +131,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             SystemService.Initialize();
             SelectedTheme = Themes.First();
-            await ConfigureGenContextAsync();
+            //  await ConfigureGenContextAsync();
+            await Task.CompletedTask;
         }
 
         private void NewProject(string parameter)
@@ -198,8 +198,37 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
+        private void SetupForProjectCreation(string platform, string language, string appmodel = null)
         {
+
+            TemplatesSource ts = null;
+
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    ts = new UwpTestsTemplatesSource();
+                    break;
+                case Platforms.Wpf:
+                    ts = new WpfTestsTemplatesSource();
+                    break;
+                case Platforms.WinUI:
+                    if (language == ProgrammingLanguages.CSharp)
+                        ts = new WinUICsTestsTemplatesSource();
+                    else if (language == ProgrammingLanguages.Cpp)
+                        ts = new WinUICppTestsTemplatesSource();
+                    break;
+                default:
+                    ts = null;
+                    break;
+            }
+
+            GenContext.Bootstrap(
+                ts,
+                new FakeGenShell(platform, language, msg => SetState(msg), l => AddLog(l), _host),
+                WizardVersion,
+                platform,
+                language,
+                "0.1.0.1");
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
@@ -208,7 +237,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 SetCurrentAppModel(appmodel);
             }
-            
+        }
+
+        private async Task<UserSelection> NewProjectAsync(string platform, string language, string appmodel = null)
+        {
+            SetupForProjectCreation(platform, language, appmodel);
 
             try
             {
@@ -225,7 +258,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         context.AddAppModel(appmodel);
                     }
-                    
+
+                    Microsoft.Templates.UI.Styles.AllStylesDictionary.UseEmulator = true;
+
                     var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
                     switch (platform)
                     {
@@ -310,9 +345,17 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddStyleCop(UserSelection userSelection, string platform, string language, string appmodel = null)
         {
             var styleCopTemplate = string.Empty;
+            IEnumerable<ITemplateInfo> styleCopTemplates = null;
+
             switch (platform)
             {
                 case Platforms.Uwp:
+
+                    var path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForUWP.Tests\TestData\UWP");
+                    var scanResult = CodeGen.Instance.Scanner.Scan(path);
+                    styleCopTemplates = scanResult.Templates.Where(t => t.GetLanguage() == language);
+                    GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
+
                     switch (language)
                     {
                         case "C#":
@@ -326,6 +369,12 @@ namespace Microsoft.Templates.VsEmulator.Main
                     }
                     break;
                 case Platforms.Wpf:
+
+                    var wpfScPath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForWPF.Tests\TestData\WPF");
+                    var wpfScanResult = CodeGen.Instance.Scanner.Scan(wpfScPath);
+                    styleCopTemplates = wpfScanResult.Templates.Where(t => t.GetLanguage() == language);
+                    GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
+
                     styleCopTemplate = "wts.Wpf.Feat.StyleCop";
                     break;
                 case Platforms.WinUI:
@@ -334,31 +383,30 @@ namespace Microsoft.Templates.VsEmulator.Main
                         case AppModels.Desktop:
                             styleCopTemplate = "wts.WinUI.Feat.StyleCop";
                             break;
-                        case AppModels.Uwp:
-                            styleCopTemplate = "wts.WinUI.UWP.Feat.StyleCop";
-                            break;
-                    }                    
+                    }
                     break;
             }
 
-
-            var testingFeature = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == styleCopTemplate);
-            if (testingFeature != null)
+            if (styleCopTemplates != null)
             {
-                var userSelectionItem = new UserSelectionItem()
+                var testingFeature = styleCopTemplates.FirstOrDefault(t => t.Identity == styleCopTemplate);
+                if (testingFeature != null)
                 {
-                    Name = styleCopTemplate,
-                    TemplateId = styleCopTemplate,
-                };
+                    var userSelectionItem = new UserSelectionItem()
+                    {
+                        Name = styleCopTemplate,
+                        TemplateId = styleCopTemplate,
+                    };
 
-                userSelection.Add(userSelectionItem, testingFeature.GetTemplateType());
+                    userSelection.Add(userSelectionItem, testingFeature.GetTemplateType());
+                }
             }
         }
 
         private void AnalyzeNewProject(string platform, string language)
         {
-            SetCurrentLanguage(language);
-            SetCurrentPlatform(platform);
+            SetupForProjectCreation(platform, language);
+
             try
             {
                 var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
@@ -368,6 +416,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 newProject.SetContext();
 
                 var context = new UserSelectionContext(language, platform);
+
+                Microsoft.Templates.UI.Styles.AllStylesDictionary.UseEmulator = true;
 
                 var userSelection = WizardLauncher.Instance.StartNewProject(context, string.Empty, string.Empty, Services.FakeStyleValuesProvider.Instance);
 
@@ -472,7 +522,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                string language = String.Empty;
+                string language = string.Empty;
                 switch (Path.GetExtension(projFile))
                 {
                     case ".vbproj":
@@ -604,13 +654,16 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.Bootstrap(
                 new LocalTemplatesSource(string.Empty, TemplatesVersion, string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
-                new Version(WizardVersion),
+                WizardVersion,
                 Platforms.Uwp,
-                ProgrammingLanguages.CSharp);
+                ProgrammingLanguages.CSharp,
+                "0.1.0.1");
 
-            await GenContext.ToolBox.Repo.SynchronizeAsync();
+            //   await GenContext.ToolBox.Repo.SynchronizeAsync();
 
             UpdateCanRefreshTemplateCache(true);
+
+            await Task.CompletedTask;
         }
 
         private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)
@@ -633,32 +686,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 f.Continue = false;
             };
 
-            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
+            _ = Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
             Dispatcher.PushFrame(frame);
-        }
-
-        private void CleanUpNotUsedContentVersions()
-        {
-            if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
-            {
-                var templatesFolder = GetTemplatesFolder();
-                if (Directory.Exists(templatesFolder))
-                {
-                    var dirs = Directory.EnumerateDirectories(templatesFolder);
-                    foreach (var dir in dirs)
-                    {
-                        if (!dir.EndsWith("0.0.0.0", StringComparison.OrdinalIgnoreCase))
-                        {
-                            Fs.SafeDeleteDirectory(dir);
-                        }
-                    }
-                }
-            }
-        }
-
-        private string GetTemplatesFolder()
-        {
-            return Path.Combine(SpecialFolder.LocalApplicationData.ToString(), @"\WinTS\Templates\LocalEnvWinTS");
         }
     }
 }

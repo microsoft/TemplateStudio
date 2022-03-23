@@ -1,5 +1,0 @@
-﻿**Hinweis: Die Unterstützung für Caliburn.Micro wurde veraltet und wird als Option in einer zukünftigen Version von Windows Template Studio entfernt.**
-
-Caliburn.Micro ist ein verbreitetes Drittanbieter-framework auf der Basis des [Model-View-ViewModel-Musters](https://de.wikipedia.org/wiki/Model_View_ViewModel). Das framework hilft Ihnen, Ansicht und Modell zu trennen. Dies ermöglicht das Erstellen von Anwendungen, die sauberer sind und daher einfacher gewartet und erweitert werden können. Darüber hinaus können so Anwendungen entwickelt werden, die getestet werden können, und die Benutzeroberflächenschicht ist sehr viel schmaler (es ist schwieriger, diese Schicht automatisch zu testen).
-
-Weitere Informationen finden Sie auf der [Website von Caliburn.Micro] (http://caliburnmicro.com/).

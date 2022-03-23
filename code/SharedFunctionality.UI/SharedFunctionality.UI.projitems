@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>14171f44-37a1-4476-9877-92f9294c8864</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedFunctionality.UI</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutomationPeers\ExpanderButtonAutomationPeer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExpanderButtonAutomationPeerControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Markdown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\StepData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\StepDataEventsArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\HasItemsVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IntegerVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SavedTemplateGridConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StepVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\AnimationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\FocusExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ImageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ListViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObservableCollectionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SelectableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SyncStatusEventArgsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TemplateTypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TextBlockExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TextBoxExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\UserSelectionContextExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ValidationResultExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\WindowExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Launcher\WizardLauncher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mvvm\Observable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mvvm\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BreakingChangesValidatorService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DispatcherService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\DragAdornerLayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\DragAndDropService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\DragAndDropService.Members.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\MouseUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DragAndDropService\NativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\GenerationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LicensesService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\OrderingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ProjectConfigInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ProjectMetadataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\IRequirementValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\RequiredVersionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\RequiredVersionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\RequirementType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\Validators\DotNetValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequiredVersionValidation\Validators\WindowsSDKValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ResourcesService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\BaseStyleValuesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.CommonControlColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.CommonDocumentColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.Environment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.FontSizes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.InfoBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.Styles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.ThemedDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\UIStylesService.WindowsTemplateStudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\VSStyleValuesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SystemService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ValidationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateSelectors\FileExtensionTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateSelectors\FileStatusTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Threading\SafeThreading.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\HasNoCoreProjectValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\HasOldNavigationViewValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\HasPivotValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\IBreakingChangeValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\GenGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\GenInfoComposition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\GenInfoGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\FileExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\FileStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\FrameworkMetaDataViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\LayoutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\LicenseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\ProjectTypeMetaDataViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\ErrorDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\InfoDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\QuestionDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\Selectable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\SelectableGroup`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\WizardNavigation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItem\BreakingChangeMessageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItem\ChangesSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItem\TemplateSelectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\FrameworkViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\ProjectTypeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\TemplatesStepViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\UserSelectionGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellCertificate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellProject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellSolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsGenShellVisualStudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\GenShell\VsShellService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\IPackageInstallerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\RightClickActions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\RightClickAvailability.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsOutputPane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VSTelemetryService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CodeViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CodeViewer.xaml.cs"/>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\MarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NotificationMarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NotificationsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\SequentialFlow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Common\CompositionToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Common\ErrorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Common\InfoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Common\QuestionDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Common\TemplateInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewItem\ChangesSummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewItem\NewItemMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewItem\NewItemWizardShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewItem\ProjectConfigurationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewItem\TemplateSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewProject\FrameworkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectWizardShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewProject\ProjectTypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\NewProject\TemplatesStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MarkdownBlock.xaml.cs">
+      <DependentUpon>MarkdownBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Notification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NotificationMarkdownBlock.xaml.cs">
+      <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NotificationsControl.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SequentialFlow.xaml.cs">
+      <DependentUpon>SequentialFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Common\CompositionToolWindow.xaml.cs">
+      <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Common\ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Common\InfoDialog.xaml.cs">
+      <DependentUpon>InfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Common\QuestionDialogWindow.xaml.cs">
+      <DependentUpon>QuestionDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Common\TemplateInfoPage.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IWizardShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\ChangesSummaryPage.xaml.cs">
+      <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\NewItemMainPage.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\NewItemWizardShell.xaml.cs">
+      <DependentUpon>NewItemWizardShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\ProjectConfigurationDialog.xaml.cs">
+      <DependentUpon>ProjectConfigurationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItem\TemplateSelectionPage.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\FrameworkPage.xaml.cs">
+      <DependentUpon>FrameworkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectMainPage.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\NewProjectWizardShell.xaml.cs">
+      <DependentUpon>NewProjectWizardShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\ProjectTypePage.xaml.cs">
+      <DependentUpon>ProjectTypePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewProject\TemplatesStepPage.xaml.cs">
+      <DependentUpon>TemplatesStepPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Services\Styles\WindowsTemplateStudioColors.xml" />
+  </ItemGroup>
+</Project>

@@ -1,3 +1,0 @@
-﻿Das Listen-/Detailmuster verfügt über einen Listenbereich (in der Regel mit listenansicht) und einen Detailbereich für Inhalt. Wenn ein Element in der Liste ausgewählt ist, wird der Detailbereich aktualisiert. Dieses Muster wird häufig für E-Mail- und Adressbücher verwendet.
-
-Weitere Informationen zum Listen-/Detailmuster finden Sie unter [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/list-details).

@@ -1,0 +1,40 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "3D App Launcher",
+  "shortName": "3D App Launcher",
+  "groupIdentity": "wts.Feat.3DLauncher",
+  "identity": "wts.Feat.3DLauncher",
+  "description": "Include a 3D app launcher when the app is used in a Mixed Reality environment.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.projecttype": "all",
+    "wts.frontendframework": "CodeBehind|Prism|MVVMToolkit",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "3DLauncher",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "3DLauncherAsset",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": "Assets/3dlogo.glb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

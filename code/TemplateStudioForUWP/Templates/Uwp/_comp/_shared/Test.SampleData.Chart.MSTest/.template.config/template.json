@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Testing.UnitTests.Core.SampleData.Chart.MSTest",
+  "identity": "Testing.UnitTests.Core.SampleData.Chart.MSTest",
+  "shortName": "Testing.UnitTests.Core.SampleData.Chart.MSTest",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.outputToParent": "true",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Testing.UnitTests.Core.MSTest & $page == wts.Page.Chart|wts.Page.Chart.CodeBehind",
+    "wts.compositionOrder" : "1"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    }
+  }
+}

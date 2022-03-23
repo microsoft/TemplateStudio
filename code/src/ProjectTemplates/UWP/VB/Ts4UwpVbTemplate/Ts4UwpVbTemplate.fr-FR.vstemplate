@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+	  <Name>Template Studio for UWP</Name>
+    <Description>Template Studio permet de concevoir rapidement une application UWP à l'aide d'une interface utilisateur basée sur un assistant, afin que vos besoins deviennent la base de modèles et de bonnes pratiques sur Windows 10.</Description>
+	  <Icon>Ts4UwpVbTemplate.ico</Icon>
+	  <ProjectType>VisualBasic</ProjectType>
+	  <LanguageTag>visualbasic</LanguageTag>
+	  <TemplateID>45bf1392-b62d-4b03-ae3c-23370cfcf0c1</TemplateID>
+	  <SortOrder>10</SortOrder>
+	  <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+	  <CreateNewFolder>true</CreateNewFolder>
+	  <DefaultName>App</DefaultName>
+	  <ProvideDefaultName>true</ProvideDefaultName>
+	  <LanguageTag>XAML</LanguageTag>
+	  <PlatformTag>Windows</PlatformTag>
+	  <PlatformTag>Xbox</PlatformTag>
+	  <ProjectTypeTag>UWP</ProjectTypeTag>
+	  <ProjectTypeTag>Desktop</ProjectTypeTag>
+  </TemplateData>
+  <TemplateContent>
+	  <CustomParameters>
+		  <CustomParameter Name="$wts.platform$" Value="Uwp"/>
+		  <CustomParameter Name="$wts.language$" Value="VisualBasic"/>
+		  <CustomParameter Name="$wts.category$" Value="TemplateStudio4"/>
+		  <CustomParameter Name="$wts.version$" Value="2.1.0"/>
+		  <CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
+		  <CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
+	  </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+	  <Assembly>TemplateStudio4UWP, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+	  <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

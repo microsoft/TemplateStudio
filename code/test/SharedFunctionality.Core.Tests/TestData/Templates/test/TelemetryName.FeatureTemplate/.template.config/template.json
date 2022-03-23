@@ -1,0 +1,17 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "TelemetryNameTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.TelemetryNameTemplate",
+  "identity": "Microsoft.Templates.Test.TelemetryNameTemplate.CSharp",
+  "shortName": "TelemetryNameTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.telemName": "TelemName"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

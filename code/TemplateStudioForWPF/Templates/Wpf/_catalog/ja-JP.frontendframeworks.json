@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "最新の高速なモジュール式の MVVM ライブラリと、Windows コミュニティ ツールキットの一部。"
+  },
+  {
+    "name": "CodeBehind",
+    "displayName": "Code Behind",
+    "summary": "これは、ロジックが code-behind で処理されるアプリケーションの従来型のモデルです。"
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism は、メンテナンス可能かつテスト可能な疎結合型の XAML アプリケーションを構築するためのframeworkです。"
+  }
+]

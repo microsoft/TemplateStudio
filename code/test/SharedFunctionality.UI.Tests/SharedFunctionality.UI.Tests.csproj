@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61775323-739F-4765-82B8-FD43ED901A0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharedFunctionality.UI.Tests</RootNamespace>
+    <AssemblyName>SharedFunctionality.UI.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_TEST_</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;_TEST_</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Internal.VisualStudio.Interop">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SharedStyles\AllStylesDictionary.cs">
+      <Link>Styles\AllStylesDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedStyles\TemplateStudioStyles.xaml.cs">
+      <Link>Styles\TemplateStudioStyles.xaml.cs</Link>
+      <DependentUpon>TemplateStudioStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DocsLinksTests.cs" />
+    <Compile Include="ProjectConfigurationTests\ProjectTemplateConfigurationTest.cs" />
+    <Compile Include="ProjectConfigurationTests\UiTemplatesFixture.cs" />
+    <Compile Include="ProjectConfigurationTests\UiTestsTemplatesSource.cs" />
+    <Compile Include="ProjectTests\NewUwpProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWinUICppProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWinUICsProjectTest.cs" />
+    <Compile Include="ProjectTests\NewWpfProjectTest.cs" />
+    <Compile Include="ProjectTests\PlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\UwpPlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\WinUICppPlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\WinUICsPlatformTemplatesFixture.cs" />
+    <Compile Include="ProjectTests\WpfPlatformTemplatesFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UITestStyleValuesProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ApiAnalysis.SimpleJsonAnalyzer">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Appium.WebDriver">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights">
+      <Version>2.20.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <Version>6.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ServiceHub.Framework">
+      <Version>3.1.2036</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TemplateEngine.Edge">
+      <Version>6.0.200</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
+      <Version>6.0.200</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
+      <Version>17.0.1313-pre</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.SDK">
+      <Version>17.0.32112.339</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
+      <Version>17.0.31902.203</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="NuGet.VisualStudio">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="NuGet.VisualStudio.Contracts">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="StreamJsonRpc">
+      <Version>2.10.41</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Extensions">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsTestHelpers">
+      <Version>0.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="WriteableBitmapEx">
+      <Version>1.6.8</Version>
+    </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.analyzers">
+      <Version>0.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.core">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.console">
+      <Version>2.4.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CERTENROLLLib">
+      <Guid>{728AB348-217D-11DA-B2A4-000E7BBB2B09}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharedResources\SharedResources.csproj">
+      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
+      <Name>SharedResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\..\SharedStyles\TemplateStudioStyles.xaml">
+      <Link>Styles\TemplateStudioStyles.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="test.config.json" />
+    <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Features\TestFeatureTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithServiceDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestPageWithServiceDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageWithServiceDependenciesTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Pages\TestSecondPageWithServiceDependenciesTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\Layout.json" />
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\Layout.json" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceSecondTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\description.md" />
+    <None Include="TestData\Templates\test\Services\ServiceThirdTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks.json" />
+    <None Include="TestData\Templates\test\_catalog\frontendframeworks\TestFramework.md" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes.json" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestProjectType.md" />
+    <None Include="TestData\Templates\test\_catalog\projectTypes\TestSecondProjectType.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Templates\test\Projects\TestProjectTemplate\.template.config\icon.png" />
+    <None Include="TestData\Templates\test\Projects\TestSecondProjectType\.template.config\icon.png" />
+  </ItemGroup>
+  <Import Project="..\..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
+  <Import Project="..\SharedFunctionality.Tests\SharedFunctionality.Tests.projitems" Label="Shared" />
+  <Import Project="..\..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

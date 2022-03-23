@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
-  <LocalizedName>WTS (local)</LocalizedName>
-  <LocalizedDescription>Windows Template Studio ускоряет создание новых приложений UWP, WPF и WinUI 3 в настольных приложениях с использованием пользовательского интерфейса на основе мастеров.</LocalizedDescription>  
-  <License>..\Content\EULA.ru-RU.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
-</VsixLanguagePack>

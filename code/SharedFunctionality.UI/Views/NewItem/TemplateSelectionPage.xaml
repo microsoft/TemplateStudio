@@ -1,0 +1,164 @@
+﻿<Page
+    x:Class="Microsoft.Templates.UI.Views.NewItem.TemplateSelectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300">
+
+    <!--<Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/TemplateStudio.UI;component/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
+            <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>-->
+
+    <Grid Style="{StaticResource WtsGridMainPage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="252" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Text="{x:Static res:StringRes.TemplateSelectionTitle}"
+                Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
+                Style="{StaticResource WtsTextBlockSectionTitle}" />
+            <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">
+                <ItemsControl
+                    Focusable="False"
+                    ItemsSource="{Binding TemplateSelection.Groups}"
+                    ItemTemplate="{StaticResource WtsNewItemGroupTemplatePageFeature}" />
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+        <ScrollViewer Grid.Column="2" Style="{StaticResource WtsScrollViewer}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftTopRight}"
+                        Text="{x:Static res:StringRes.NewItemTemplateDetailsTitle}" />
+                    <TextBlock
+                        Text="{x:Static res:StringRes.NewItemTemplateDetailsNameSectionTitle}"
+                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
+                    <Grid>
+                        <Grid Style="{Binding TemplateSelection.HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
+                        <TextBox
+                            Style="{StaticResource WtsTextBoxStyle}"
+                            Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="16,12,26,12"
+                            Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
+                            extensions:TextBoxExtensions.IsTextSelected="{Binding TemplateSelection.IsTextSelected}"
+                            AutomationProperties.Name="{x:Static res:StringRes.AccessibilityEditPageItem}"
+                            Tag="{Binding TemplateSelection.LostKeyboardFocusCommand}"
+                            LostKeyboardFocus="OnLostKeyboardFocus">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <TextBlock
+                            Text="{Binding TemplateSelection.Name, Mode=OneWay}"
+                            Style="{StaticResource WtsTextBlockSavedTemplateName}"
+                            Margin="23,17,16,17"
+                            Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                    </Grid>
+                    <StackPanel Visibility="{Binding TemplateSelection.Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                            Text="{x:Static res:StringRes.NewItemTemplateDetailsDependenciesSectionTitle}" />
+                            <ItemsControl
+                            Style="{StaticResource WtsItemsControl}"
+                            ItemsSource="{Binding TemplateSelection.Dependencies}"
+                            Margin="20,4,4,4"
+                            ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding TemplateSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                            Text="{x:Static res:StringRes.NewItemTemplateDetailsLicensesSectionTitle}" />
+                        <ItemsControl
+                            Style="{StaticResource WtsItemsControl}"
+                            ItemsSource="{Binding TemplateSelection.Licenses}"
+                            Margin="20,4,4,4"
+                            ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
+
+                    </StackPanel>
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                        Text="{x:Static res:StringRes.ProjectDetailsAboutSectionTitle}" />
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                            <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    <TextBox
+                        Style="{StaticResource WtsTextBoxVersion}"
+                        Margin="{StaticResource Margin_M1_LeftRight_S_Top}"
+                        Text="{Binding WizardStatus.Versions}"
+                        AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="1">
+                    <Border
+                        Background="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}"
+                        Margin="{StaticResource Margin_S_Top}">
+                        <StackPanel
+                            Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
+                            Visibility="{Binding BreakingChangesErrors, Converter={StaticResource HasItemsVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource WtsIconWarning}"
+                                    Style="{StaticResource WtsBreakingChangesImageIcon}" />
+                                <TextBlock
+                                    Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                    Margin="{StaticResource Margin_XS_Left}"
+                                    VerticalAlignment="Bottom"
+                                    Text="{x:Static res:StringRes.BreakingChanges}" />
+                            </StackPanel>
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                Margin="{StaticResource Margin_M_Top}"
+                                Text="{x:Static res:StringRes.BreakingChangesDialogMessage}" />
+                            <ItemsControl
+                                Style="{StaticResource WtsItemsControl}"
+                                ItemsSource="{Binding BreakingChangesErrors}"
+                                ItemTemplate="{StaticResource WtsItemTemplateBreakingChanges}" />
+                        </StackPanel>
+                    </Border>
+                    <!--<Button
+                        Margin="16,8,26,0"
+                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                        Content="{x:Static res:StringRes.ButtonRefreshTemplatesCache}"
+                        Command="{Binding RefreshTemplatesCacheCommand}"
+                        Visibility="{Binding RefreshTemplateCacheVisibility}" />-->
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

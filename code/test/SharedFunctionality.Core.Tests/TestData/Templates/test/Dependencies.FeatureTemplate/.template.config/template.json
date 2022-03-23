@@ -1,0 +1,28 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "DependenciesTemplate",
+  "groupIdentity": "Microsoft.Templates.Test.DependenciesTemplate",
+  "identity": "Microsoft.Templates.Test.DependenciesTemplate.CSharp",
+  "shortName": "DependenciesTemplate",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "test",
+    "wts.type": "feature",
+    "wts.dependencies": "dp1|dp2"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true,
+  "symbols": {
+    "dp1": {
+      "type": "parameter",
+      "replaces": "Param_dp1"
+    },
+    "dp2": {
+      "type": "parameter",
+      "replaces": "Param_dp2"
+    }
+
+  }
+}

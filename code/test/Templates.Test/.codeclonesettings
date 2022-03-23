@@ -1,5 +1,0 @@
-﻿<CodeCloneSettings>  
-  <Exclusions>
-    <Namespace>Microsoft.Templates.Test*</Namespace>
-  </Exclusions>  
-</CodeCloneSettings>  

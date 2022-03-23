@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7496482f-bad2-428d-a337-5dc0137eca3f</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedFunctionality.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)bat\RunWackTest.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)GeneratedCode\TemplateTestDataGen.t4" />
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\AutomatedUITests.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\AutomatedUITests.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\nuget.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseCodeStyleEnforcementTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseExternalLinksTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseFileEncodingTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseGenAndBuildFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseGenAndBuildTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseLinkTestLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseProjectFileTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseTemplateFolderValidationTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseTemplateJsonValidationTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BuildTemplatesTests\BuildTemplatesTestFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Frameworks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenTests\GenerationCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenTests\GenerationFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProjectTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\PostActionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\PrimaryOutput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\SymbolInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\TemplateFolderVerifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\TemplateJsonVerifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\ValidationTemplateInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\VerifierResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualTests\BaseVisualComparisonTests.cs" />
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\TestAppInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllMenuBarPages.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllNavViewPages.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)test.config.json" />
+  </ItemGroup>
+</Project>
