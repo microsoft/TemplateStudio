@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsNotBusy = !IsBusy;
         }
 
-        private void OnOpenWebSite() => Process.Start("https://github.com/mrlacey/TemplateStudio");
+        private void OnOpenWebSite() => Process.Start("https://github.com/microsoft/TemplateStudio");
 
         private void OnCreateIssue()
         {
