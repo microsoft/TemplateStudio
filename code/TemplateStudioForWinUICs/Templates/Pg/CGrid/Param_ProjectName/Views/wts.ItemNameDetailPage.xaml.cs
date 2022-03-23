@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.RegisterElementForConnectedAnimation("animationKeyContentGrid", itemHero);
+            RegisterElementForConnectedAnimation("animationKeyContentGrid", itemHero);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
