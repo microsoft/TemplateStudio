@@ -18,15 +18,21 @@ jobs:
 
   strategy:
     matrix:
-      Analyze:
-        BuildConfiguration: Analyze
+      ReleaseWinUICs:
+        BuildConfiguration: ReleaseWinUICs
         BuildPlatform: Any CPU
-      Release:
-        BuildConfiguration: Release
+      ReleaseWinUICpp:
+        BuildConfiguration: ReleaseWinUICpp
+        BuildPlatform: Any CPU
+      ReleaseWPF:
+        BuildConfiguration: ReleaseWPF
+        BuildPlatform: Any CPU
+      ReleaseUWP:
+        BuildConfiguration: ReleaseUWP
         BuildPlatform: Any CPU
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -41,27 +47,25 @@ jobs:
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
-      solution: Code/Big.sln
-      selectOrConfig: config
-      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+      solution: code/TemplateStudio.sln
 
   - task: VSBuild@1
-    displayName: 'Build solution code/Big.sln'
+    displayName: 'Build'
     inputs:
-      solution: code/Big.sln
-      vsVersion: 16.0
+      solution: code/TemplateStudio.sln
+      vsVersion: 17.0
       msbuildArgs: /p:DeployExtension=false
       platform: $(BuildPlatform)
       configuration: $(BuildConfiguration)
       clean: true
 
 - job:
-  displayName: Test WTS
+  displayName: Test - Template Studio for WinUI (C#)
   timeoutInMinutes: 240
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -76,90 +80,15 @@ jobs:
   - task: NuGetCommand@2
     displayName: NuGet restore
     inputs:
-      solution: code/Test.sln
-      selectOrConfig: config
-      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+      solution: code/TemplateStudio.WinUICs.slnf
 
   - task: VSBuild@1
-    displayName: Build solution code/Test.sln
+    displayName: Build
     inputs:
-      solution: code/Test.sln
-      vsVersion: 16.0
+      solution: code/TemplateStudio.WinUICs.slnf
+      vsVersion: 17.0
+      configuration: DebugWinUICs
       platform: Any CPU
-      configuration: Debug
-      clean: true
-
-  - task: BatchScript@1
-    displayName: Set Agent Drive and Clean Test Folder
-    inputs:
-      filename: _build/SetAgentDriveAndCleanTestFolder.bat
-      modifyEnvironment: true
-
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core 3.1.x'
-    inputs:
-      version: '3.1.x'
-
-  - task: DotNetCoreCLI@2
-    displayName: Run Core Tests
-    inputs:
-      command: test
-      projects: '**\code\CoreTemplateStudio\code\test\CoreTemplateStudio.Core.Test'
-      arguments: --logger:trx --configuration Debug
-      testRunTitle: Core Tests
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Run VSTemplate Tests'
-    inputs:
-      command: test
-      projects: '**\code\test\VsTemplates.Test'
-      arguments: --logger:trx --configuration Debug
-      testRunTitle: VSTemplate Tests
-
-  - task: CmdLine@1
-    displayName: Run Utilities Tests
-    inputs:
-      filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
-      arguments: 'code\CoreTemplateStudio\code\test\Utilities.Test\bin\Debug\Utilities.Test.dll -xml $(Build.SourcesDirectory)\TEST-Utilities-Result.xml -parallel none'
-
-  - task: CmdLine@1
-    displayName: Run UI Tests
-    inputs:
-      filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
-      arguments: Code\test\UI.Test\bin\Debug\Microsoft.UI.Test.dll -notrait "ExecutionSet=ManualOnly" -xml $(Build.SourcesDirectory)\TEST-UI-Result.xml -parallel none
-
-- job:
-  displayName: Template Tests WinUI
-  timeoutInMinutes: 240
-  dependsOn: Build
-
-  pool:
-    vmImage: windows-2019
-
-  steps:
-  - checkout: self
-    clean: true
-    submodules: recursive
-
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
-    inputs:
-      checkLatest: true
-
-  - task: NuGetCommand@2
-    displayName: NuGet restore
-    inputs:
-      solution: code/Test.sln
-      selectOrConfig: config
-      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
-
-  - task: VSBuild@1
-    displayName: Build solution code/Test.sln
-    inputs:
-      solution: code/Test.sln
-      vsVersion: 16.0
-      platform: any cpu
-      configuration: Debug
       clean: true
 
   - task: BatchScript@1
@@ -174,25 +103,25 @@ jobs:
       version: '5.x'
 
   - task: PowerShell@1
-    displayName: Run Template Tests - Minimum WinUI
+    displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary $(Build.SourcesDirectory)\Code\test\Templates.Test\bin\Debug\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumMVVMToolkitWinUI', 'ExecutionSet=MinimumNoneWinUI' -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioForWinUICs.Tests/bin/Debug/code/test/TemplateStudioForWinUICs.Tests/bin/Debug/TemplateStudioForWinUICs.Tests.dll -traits 'ExecutionSet=MinimumWinUICs' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
-    displayName: Publish Test Results **\TEST-*.xml
+    displayName: Publish Test Results
     condition: succeededOrFailed()
     inputs:
       testRunner: XUnit
-      testResultsFiles: '**\TEST-*.xml'
+      testResultsFiles: '**/TEST-*.xml'
 
 - job:
-  displayName: Template Tests WPF
+  displayName: Test - Template Studio for WinUI (C++)
   timeoutInMinutes: 240
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -207,17 +136,15 @@ jobs:
   - task: NuGetCommand@2
     displayName: NuGet restore
     inputs:
-      solution: Code/Test.sln
-      selectOrConfig: config
-      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+      solution: code/TemplateStudio.WinUICpp.slnf
 
   - task: VSBuild@1
-    displayName: Build solution code/Test.sln
+    displayName: Build
     inputs:
-      solution: code/Test.sln
-      vsVersion: 16.0
-      platform: any cpu
-      configuration: Debug
+      solution: code/TemplateStudio.WinUICpp.slnf
+      vsVersion: 17.0
+      configuration: DebugWinUICpp
+      platform: Any CPU
       clean: true
 
   - task: BatchScript@1
@@ -227,30 +154,30 @@ jobs:
       modifyEnvironment: true
 
   - task: UseDotNet@2
-    displayName: 'Use .NET Core 3.1.x'
+    displayName: 'Use .NET Core 5.x'
     inputs:
-      version: '3.1.x'
+      version: '5.x'
 
   - task: PowerShell@1
-    displayName: Run Template Tests - Minimum WPF
+    displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary $(Build.SourcesDirectory)\Code\test\Templates.Test\bin\Debug\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumMVVMLightWpf', 'ExecutionSet=MinimumCodeBehindWpf', 'ExecutionSet=MinimumMVVMBasicWpf', 'ExecutionSet=MinimumMVVMToolkitWpf', 'ExecutionSet=MinimumPrismWpf' -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioForWinUICpp.Tests/bin/Debug/code/test/TemplateStudioForWinUICpp.Tests/bin/Debug/TemplateStudioForWinUICpp.Tests.dll -traits 'ExecutionSet=MinimumWinUICpp' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
-    displayName: Publish Test Results **\TEST-*.xml
+    displayName: Publish Test Results
     condition: succeededOrFailed()
     inputs:
       testRunner: XUnit
-      testResultsFiles: '**\TEST-*.xml'
+      testResultsFiles: '**/TEST-*.xml'
 
 - job:
-  displayName: Template Tests UWP
+  displayName: Test - Template Studio for WPF
   timeoutInMinutes: 240
   dependsOn: Build
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
 
   steps:
   - checkout: self
@@ -265,17 +192,15 @@ jobs:
   - task: NuGetCommand@2
     displayName: NuGet restore
     inputs:
-      solution: Code/Test.sln
-      selectOrConfig: config
-      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+      solution: code/TemplateStudio.WPF.slnf
 
   - task: VSBuild@1
-    displayName: Build solution code/Test.sln
+    displayName: Build
     inputs:
-      solution: code/Test.sln
-      vsVersion: 16.0
-      platform: any cpu
-      configuration: Debug
+      solution: code/TemplateStudio.WPF.slnf
+      vsVersion: 17.0
+      configuration: DebugWPF
+      platform: Any CPU
       clean: true
 
   - task: BatchScript@1
@@ -284,15 +209,76 @@ jobs:
       filename: _build/SetAgentDriveAndCleanTestFolder.bat
       modifyEnvironment: true
 
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core 5.x'
+    inputs:
+      version: '5.x'
+
   - task: PowerShell@1
-    displayName: Run Template Tests - Minimum UWP
+    displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary $(Build.SourcesDirectory)\Code\test\Templates.Test\bin\Debug\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumCodebehind', 'ExecutionSet=MinimumMVVMLight', 'ExecutionSet=MinimumMVVMBasic', 'ExecutionSet=MinimumMVVMToolkit', 'ExecutionSet=MinimumCaliburnMicro', 'ExecutionSet=MinimumPrism','ExecutionSet=BuildVBStyle', 'ExecutionSet=TemplateValidation'  -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioForWPF.Tests/bin/Debug/code/test/TemplateStudioForWPF.Tests/bin/Debug/TemplateStudioForWPF.Tests.dll -traits 'ExecutionSet=MinimumWPF' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
-    displayName: Publish Test Results **\TEST-*.xml
+    displayName: Publish Test Results
     condition: succeededOrFailed()
     inputs:
       testRunner: XUnit
-      testResultsFiles: '**\TEST-*.xml'
+      testResultsFiles: '**/TEST-*.xml'
+
+- job:
+  displayName: Test - Template Studio for UWP
+  timeoutInMinutes: 240
+  dependsOn: Build
+
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.UWP.slnf
+
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: code/TemplateStudio.UWP.slnf
+      vsVersion: 17.0
+      configuration: DebugUWP
+      platform: Any CPU
+      clean: true
+
+  - task: BatchScript@1
+    displayName: Set Agent Drive and Clean Test Folder
+    inputs:
+      filename: _build/SetAgentDriveAndCleanTestFolder.bat
+      modifyEnvironment: true
+
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core 5.x'
+    inputs:
+      version: '5.x'
+
+  - task: PowerShell@1
+    displayName: Test
+    inputs:
+      scriptName: _build/ParallelTestExecution.ps1
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioForUWP.Tests/bin/Debug/code/test/TemplateStudioForUWP.Tests/bin/Debug/TemplateStudioForUWP.Tests.dll -traits 'ExecutionSet=MinimumUWP' -outputDir $(Build.SourcesDirectory)
+
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: XUnit
+      testResultsFiles: '**/TEST-*.xml'
