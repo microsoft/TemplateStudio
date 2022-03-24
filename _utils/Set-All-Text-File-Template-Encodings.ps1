@@ -42,7 +42,9 @@ function Is-EncodedCorrectly
 # *.xaml
 # *.xml
 
-Get-ChildItem -Path ..\templates -Recurse -Include *.appxmanifest, *.cs, *.csproj, *.json, *.md, *.resw, *.vb, *.vbproj, *.xaml, *.xml |
+foreach ($templateRoot in "..\code\TemplateStudioForUWP\Templates", "..\code\TemplateStudioForWinUICpp\Templates", "..\code\TemplateStudioForWinUICs\Templates", "..\code\TemplateStudioForWPF\Templates", "..\code\Test\TemplateStudioForUWP.Tests\TestData\UWP", "..\code\Test\TemplateStudioForWinUICs.Tests\TestData\WinUI", "..\code\Test\TemplateStudioForWPF.Tests\TestData\WPF")
+{
+Get-ChildItem -Path $templateRoot -Recurse -Include *.appxmanifest, *.cs, *.csproj, *.json, *.md, *.resw, *.vb, *.vbproj, *.xaml, *.xml |
 ForEach-Object {
     if (-NOT (Is-EncodedCorrectly $_.FullName))
     {
@@ -51,4 +53,5 @@ ForEach-Object {
        # the encoding value of 'utf8' does include the Byte Order Mark (signature)
        (Get-Content $_.FullName) | Out-File $_.FullName -Encoding utf8;
     }
+}
 }
