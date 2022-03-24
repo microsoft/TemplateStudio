@@ -523,12 +523,12 @@ namespace Microsoft.Templates.Core
                 }
             }
 
-            var platform = ti.GetPlatform();
+            //var platform = ti.GetPlatform();
 
-            if (!mntPointOrEquiv.EndsWith($"\\{platform}", StringComparison.InvariantCultureIgnoreCase))
-            {
-                mntPointOrEquiv = Path.Combine(mntPointOrEquiv, platform);
-            }
+            //if (!mntPointOrEquiv.EndsWith($"\\{platform}", S  tringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    mntPointOrEquiv = Path.Combine(mntPointOrEquiv, platform);
+            //}
 
             // Strip leading separator from ConfigPlace so Combine works as expected
             return Path.GetDirectoryName(Path.GetFullPath(Path.Combine(mntPointOrEquiv, ti.ConfigPlace.TrimStart('/', '\\'))));

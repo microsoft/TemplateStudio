@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Locations
         public override string GetContentRootFolder()
         {
             var dir = Path.GetDirectoryName(System.Environment.CurrentDirectory);
-            dir = Path.Combine(dir, @"..\..\..\TemplateStudioForWinUICpp\Templates\WinUI");
+            dir = Path.Combine(dir, @"..\..\..\TemplateStudioForWinUICpp\Templates");
 
             return dir;
         }
