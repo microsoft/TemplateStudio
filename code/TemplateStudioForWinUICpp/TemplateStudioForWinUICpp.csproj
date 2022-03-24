@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -304,355 +304,355 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\cs-CZ.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\cs-CZ.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\cs-CZ.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\de-DE.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\de-DE.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\de-DE.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\es-ES.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\es-ES.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\es-ES.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\fr-FR.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\fr-FR.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\fr-FR.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\it-IT.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\it-IT.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\it-IT.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\ja-JP.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ja-JP.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\ja-JP.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\ko-KR.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ko-KR.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\ko-KR.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\pl-PL.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\pl-PL.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\pl-PL.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\pt-BR.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\pt-BR.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\pt-BR.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\ru-RU.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\ru-RU.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\ru-RU.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\tr-TR.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\tr-TR.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\tr-TR.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\zh-CN.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\zh-CN.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\zh-CN.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.description.md">
+    <Content Include="Templates\Features\MSIX\.template.config\zh-TW.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\zh-TW.template.json">
+    <Content Include="Templates\Features\MSIX\.template.config\zh-TW.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Package.appxmanifest">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Package.appxmanifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Param_ProjectName %28Package%29.wapproj">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Param_ProjectName %28Package%29.wapproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\itemNameValidation.config.json">
+    <Content Include="Templates\itemNameValidation.config.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\projectNameValidation.config.json">
+    <Content Include="Templates\projectNameValidation.config.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\.template.config\Layout.json">
+    <Content Include="Templates\Projects\Default\.template.config\Layout.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\.template.config\template.json">
+    <Content Include="Templates\Projects\Default\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\app.manifest">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\app.manifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\packages.config">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\packages.config">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\PropertySheet.props">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\PropertySheet.props">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\cs-CZ.frontendframeworks.json">
+    <Content Include="Templates\_catalog\cs-CZ.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\cs-CZ.projectTypes.json">
+    <Content Include="Templates\_catalog\cs-CZ.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\de-DE.frontendframeworks.json">
+    <Content Include="Templates\_catalog\de-DE.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\de-DE.projectTypes.json">
+    <Content Include="Templates\_catalog\de-DE.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\es-ES.frontendframeworks.json">
+    <Content Include="Templates\_catalog\es-ES.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\es-ES.projectTypes.json">
+    <Content Include="Templates\_catalog\es-ES.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\fr-FR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\fr-FR.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\fr-FR.projectTypes.json">
+    <Content Include="Templates\_catalog\fr-FR.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks.json">
+    <Content Include="Templates\_catalog\frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\cs-CZ.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\cs-CZ.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\de-DE.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\de-DE.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\es-ES.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\es-ES.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\fr-FR.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\fr-FR.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\it-IT.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\it-IT.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\ja-JP.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\ja-JP.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\ko-KR.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\ko-KR.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\pl-PL.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\pl-PL.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\pt-BR.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\pt-BR.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\ru-RU.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\ru-RU.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\tr-TR.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\tr-TR.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\zh-CN.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\zh-CN.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\zh-TW.None.md">
+    <Content Include="Templates\_catalog\frontendframeworks\zh-TW.None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\it-IT.frontendframeworks.json">
+    <Content Include="Templates\_catalog\it-IT.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\it-IT.projectTypes.json">
+    <Content Include="Templates\_catalog\it-IT.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ja-JP.frontendframeworks.json">
+    <Content Include="Templates\_catalog\ja-JP.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ja-JP.projectTypes.json">
+    <Content Include="Templates\_catalog\ja-JP.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ko-KR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\ko-KR.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ko-KR.projectTypes.json">
+    <Content Include="Templates\_catalog\ko-KR.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\pl-PL.frontendframeworks.json">
+    <Content Include="Templates\_catalog\pl-PL.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\pl-PL.projectTypes.json">
+    <Content Include="Templates\_catalog\pl-PL.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes.json">
+    <Content Include="Templates\_catalog\projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\cs-CZ.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\cs-CZ.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\de-DE.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\de-DE.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\es-ES.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\es-ES.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\fr-FR.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\fr-FR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\it-IT.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\it-IT.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\ja-JP.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\ja-JP.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\ko-KR.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\ko-KR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\pl-PL.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\pl-PL.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\pt-BR.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\pt-BR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\ru-RU.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\ru-RU.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\tr-TR.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\tr-TR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\zh-CN.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\zh-CN.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\zh-TW.Blank.md">
+    <Content Include="Templates\_catalog\projectTypes\zh-TW.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\pt-BR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\pt-BR.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\pt-BR.projectTypes.json">
+    <Content Include="Templates\_catalog\pt-BR.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ru-RU.frontendframeworks.json">
+    <Content Include="Templates\_catalog\ru-RU.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\ru-RU.projectTypes.json">
+    <Content Include="Templates\_catalog\ru-RU.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\tr-TR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\tr-TR.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\tr-TR.projectTypes.json">
+    <Content Include="Templates\_catalog\tr-TR.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\zh-CN.frontendframeworks.json">
+    <Content Include="Templates\_catalog\zh-CN.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\zh-CN.projectTypes.json">
+    <Content Include="Templates\_catalog\zh-CN.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\zh-TW.frontendframeworks.json">
+    <Content Include="Templates\_catalog\zh-TW.frontendframeworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\zh-TW.projectTypes.json">
+    <Content Include="Templates\_catalog\zh-TW.projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\SplashScreen.scale-200.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\SplashScreen.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square150x150Logo.scale-200.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\Square150x150Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.scale-200.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\StoreLogo.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\StoreLogo.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png">
+    <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.idl">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\App.idl">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml.cpp">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml.h">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.idl">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.idl">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml.cpp">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml.h">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\pch.cpp">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\pch.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\pch.h">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\pch.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\readme.txt">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\readme.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\WTS.ProjectConfig.xml">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\WTS.ProjectConfig.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj.filters">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj.filters">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Features\MSIX\.template.config\icon.xaml">
+    <Content Include="Templates\Features\MSIX\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\App.xaml">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\Projects\Default\wts.ProjectName\MainWindow.xaml">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\frontendframeworks\None.xaml">
+    <Content Include="Templates\_catalog\frontendframeworks\None.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\WinUI\_catalog\projectTypes\Blank.xaml">
+    <Content Include="Templates\_catalog\projectTypes\Blank.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <# 
-var root = @"..\..\..\TemplateStudioForWinUICs\Templates\WinUI";
+var root = @"..\..\..\TemplateStudioForWinUICs\Templates";
 var outputNamespace = "TemplateStudioForWinUICs.Tests";
 #>
 <#@ include file="..\..\SharedFunctionality.Tests\GeneratedCode\TemplateTestDataGen.t4" #>

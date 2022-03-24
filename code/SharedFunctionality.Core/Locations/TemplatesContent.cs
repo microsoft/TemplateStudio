@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesContent(string workingFolder, string sourceId, string wizardVersion, TemplatesSource source, string tengineCurrentContent)
         {
-            TemplatesFolder = Path.Combine(tengineCurrentContent, source.Platform);
+            TemplatesFolder = tengineCurrentContent;
 
             LoadAvailableContents();
 

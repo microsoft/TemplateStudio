@@ -19,7 +19,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
         {
             var dir = System.IO.Path.GetDirectoryName(System.Environment.CurrentDirectory);
 
-            dir = System.IO.Path.Combine(dir, @"..\..\UI.Test\TestData\Templates\test");
+            dir = System.IO.Path.Combine(dir, @"..\..\SharedFunctionality.UI.Tests\TestData\Templates\test");
 
             return dir;
         }

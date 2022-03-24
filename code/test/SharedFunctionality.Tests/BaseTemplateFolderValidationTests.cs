@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -20,7 +21,7 @@ namespace Microsoft.Templates.Test
             var exceedingTemplates = new List<string>();
 
             // Update this to appropriate (even smaller--as small as practical) value
-            var maxLength = 120;
+            var maxLength = 100;
 
             foreach (var file in GetFiles(templatesRoot))
             {
@@ -29,14 +30,13 @@ namespace Microsoft.Templates.Test
 
                 var relativePath = path.Replace(templateRoot, string.Empty);
 
-
                 if (relativePath.Length > maxLength)
                 {
                     exceedingTemplates.Add($"{relativePath} ({relativePath.Length})");
                 }
             }
 
-            Assert.True(exceedingTemplates.Count == 0, $"Following relative template paths exceed {maxLength} chars:{Environment.NewLine}{string.Join(Environment.NewLine, exceedingTemplates.ToArray())}");
+            Assert.True(exceedingTemplates.Count == 0, $"The following {exceedingTemplates.Count} relative template paths exceed {maxLength} chars:{Environment.NewLine}{string.Join(Environment.NewLine, exceedingTemplates.OrderBy(t => t).ToArray())}");
         }
 
         private IEnumerable<string> GetFiles(string directory)
