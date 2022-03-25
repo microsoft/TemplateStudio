@@ -113,9 +113,9 @@ jobs:
       modifyEnvironment: true
 
   - task: UseDotNet@2
-    displayName: 'Use .NET Core 5.x'
+    displayName: 'Use .NET Framework 4.7.2'
     inputs:
-      version: '5.x'
+      version: '4.7.2'
 
   - task: PowerShell@1
     displayName: Test
