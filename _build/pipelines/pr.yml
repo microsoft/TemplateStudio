@@ -91,12 +91,6 @@ jobs:
     clean: true
     submodules: recursive
 
-  - task: DotNetCoreCLI@2
-    displayName: dotnet restore
-    inputs:
-      command: restore
-      projects: code/TemplateStudio.$(Moniker).slnf
-
   - task: VSBuild@1
     displayName: Build
     inputs:
