@@ -492,15 +492,6 @@ namespace Microsoft.Templates.Core
 
         private static string GetConfigDir(ITemplateInfo ti)
         {
-            ////CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file, out IMountPoint mountPoint);
-
-            ////if (file?.Parent == null || mountPoint == null)
-            ////{
-            ////    return null;
-            ////}
-
-            ////return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
-
             string mntPointOrEquiv;
 
             var tiMountPoint = ti.MountPointUri;
@@ -522,13 +513,6 @@ namespace Microsoft.Templates.Core
                     mntPointOrEquiv = CodeGen.Instance.GetCurrentContentSource(null, null, null, null);
                 }
             }
-
-            //var platform = ti.GetPlatform();
-
-            //if (!mntPointOrEquiv.EndsWith($"\\{platform}", S  tringComparison.InvariantCultureIgnoreCase))
-            //{
-            //    mntPointOrEquiv = Path.Combine(mntPointOrEquiv, platform);
-            //}
 
             // Strip leading separator from ConfigPlace so Combine works as expected
             return Path.GetDirectoryName(Path.GetFullPath(Path.Combine(mntPointOrEquiv, ti.ConfigPlace.TrimStart('/', '\\'))));
