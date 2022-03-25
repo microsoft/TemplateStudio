@@ -40,17 +40,17 @@ jobs:
     submodules: recursive
 
   - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
+    displayName: Use NuGet
     inputs:
       checkLatest: true
 
   - task: NuGetCommand@2
-    displayName: 'NuGet restore'
+    displayName: NuGet restore
     inputs:
       solution: code/TemplateStudio.sln
 
   - task: VSBuild@1
-    displayName: 'Build'
+    displayName: Build
     inputs:
       solution: code/TemplateStudio.sln
       vsVersion: 17.0
@@ -91,11 +91,15 @@ jobs:
     clean: true
     submodules: recursive
 
-  - task: DotNetCoreCLI@2
-    displayName: dotnet restore
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
     inputs:
-      command: restore
-      projects: code/TemplateStudio.$(Moniker).slnf
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.sln
 
   - task: VSBuild@1
     displayName: Build
@@ -113,7 +117,7 @@ jobs:
       modifyEnvironment: true
 
   - task: UseDotNet@2
-    displayName: 'Use .NET Framework 4.7.2'
+    displayName: Use .NET Framework 4.7.2
     inputs:
       version: '4.7.2'
 
