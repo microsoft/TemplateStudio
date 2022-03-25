@@ -249,7 +249,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <AssemblyName>Microsoft.Templates.Core.Test</AssemblyName>
+    <AssemblyName>SharedFunctionality.Core.Tests</AssemblyName>
     <RootNamespace>Microsoft.Templates.Core.Test</RootNamespace>
   </PropertyGroup>
 
