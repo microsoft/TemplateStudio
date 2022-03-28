@@ -120,7 +120,7 @@ jobs:
     displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioFor$(Moniker).Tests/bin/Debug/TemplateStudioFor$(Moniker).Tests.dll -traits 'ExecutionSet=Minimum$(Moniker)' -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioFor$(Moniker).Tests/bin/Debug/TemplateStudioFor$(Moniker).Tests.dll -traits 'Group=Minimum$(Moniker)' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
     displayName: Publish Test Results
@@ -184,7 +184,7 @@ jobs:
     displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/SharedFunctionality.$(Moniker).Tests/bin/Debug/$(FrameworkDirectory)/SharedFunctionality.$(Moniker).Tests.dll -traits 'ExecutionSet=Minimum' -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/SharedFunctionality.$(Moniker).Tests/bin/Debug/$(FrameworkDirectory)/SharedFunctionality.$(Moniker).Tests.dll -traits 'Group=Minimum' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
     displayName: Publish Test Results
