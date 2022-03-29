@@ -34,6 +34,7 @@ namespace Microsoft.Templates.Core.Test.Naming.Validators
         public void Validate_RecognizesNotExistingFolderAsValid()
         {
             var tempDir = Path.GetFullPath(@".\temp\");
+            Directory.CreateDirectory(tempDir);
 
             var validator = new FileNameValidator(tempDir);
 
