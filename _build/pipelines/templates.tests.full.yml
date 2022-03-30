@@ -10,6 +10,8 @@ trigger:
     - README.md
   batch: True
 
+pr: none
+
 schedules:
 - cron: 0 5 * * 1,2,3,4,5
   branches:
