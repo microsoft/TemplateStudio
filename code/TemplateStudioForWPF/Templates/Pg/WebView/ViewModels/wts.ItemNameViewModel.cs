@@ -95,7 +95,7 @@ namespace Param_RootNamespace.ViewModels
         {
             IsShowingFailedMessage = false;
             IsLoading = true;
-            _webView?.Refresh();
+            _webView?.Reload();
         }
 
         private void OnOpenInBrowser()

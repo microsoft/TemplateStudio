@@ -19,7 +19,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <wv2:WebView
+        <wv2:WebView2
             x:Name="webView"
             Source="{Binding Source}"
             NavigationCompleted="OnNavigationCompleted"/>
