@@ -22,7 +22,7 @@ workflow pbatch {
     foreach -parallel ($trait in $traits) {
         $outData = InlineScript {
             . $Using:testrunner $Using:testLibrary -xml "$Using:outputDir\TEST-$Using:trait-Result.xml" -parallel none -trait $Using:trait 
-        } -AppendOutput $true -MergeErrorToOutput $true
+        } -AppendOutput $true -MergeErrorToOutput $false
      
         Write-output "Trait $trait execution:" $outData "" "" 
      }
