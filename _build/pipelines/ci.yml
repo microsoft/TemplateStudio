@@ -6,7 +6,8 @@ trigger:
     - main
   batch: True
 
-pr: none
+pr:
+- main
 
 resources:
   repositories:
@@ -14,86 +15,199 @@ resources:
     type: git
     ref: refs/heads/main
 
-strategy:
-  matrix:
-    Analyze:
-      BuildConfiguration: Analyze
-      BuildPlatform: Any CPU
-    Release:
-      BuildConfiguration: Release
-      BuildPlatform: Any CPU
-    
-pool:
-  vmImage: windows-2019
+jobs:
+- job: Build
+  displayName: Build
+  timeoutInMinutes: 240
 
-steps:
-- checkout: self
-  clean: true
-  submodules: recursive
+  strategy:
+    matrix:
+      WinUICs:
+        BuildConfiguration: ReleaseWinUICs
+        BuildPlatform: Any CPU
+      WinUICpp:
+        BuildConfiguration: ReleaseWinUICpp
+        BuildPlatform: Any CPU
+      WPF:
+        BuildConfiguration: ReleaseWPF
+        BuildPlatform: Any CPU
+      UWP:
+        BuildConfiguration: ReleaseUWP
+        BuildPlatform: Any CPU
 
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet'
-  inputs:
-    checkLatest: true
+  pool:
+    vmImage: windows-2022
 
-- task: NuGetCommand@2
-  displayName: nuget restore
-  inputs:
-    solution: Code/Big.sln
-    selectOrConfig: config
-    nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
-    noCache: true
-
-- task: VSBuild@1
-  displayName: Build code/Big.sln
-  inputs:
-    solution: Code/Big.sln
-    vsVersion: 16.0
-    msbuildArgs: /p:DeployExtension=false
-    platform: $(BuildPlatform)
-    configuration: $(BuildConfiguration)
+  steps:
+  - checkout: self
     clean: true
+    submodules: recursive
 
-- task: DotNetCoreCLI@2
-  displayName: Run Core Tests
-  inputs:
-    command: test
-    projects: '**\code\CoreTemplateStudio\code\test\CoreTemplateStudio.Core.Test'
-    arguments: --logger:trx --configuration $(BuildConfiguration)
-    testRunTitle: Core Tests
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
 
-- task: DotNetCoreCLI@2
-  displayName: Run VSTemplate Tests
-  inputs:
-    command: test
-    projects: '**\code\test\VsTemplates.Test'
-    arguments: --logger:trx --configuration $(BuildConfiguration)
-    testRunTitle: VSTemplate Tests
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.sln
 
-- task: CmdLine@1
-  displayName: Run Utilities Tests
-  inputs:
-    filename: $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe
-    arguments: 'code\CoreTemplateStudio\code\test\Utilities.Test\bin\$(BuildConfiguration)\Utilities.Test.dll  -xml $(Build.SourcesDirectory)\TEST-Utilities-Result.xml  -parallel none '
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: code/TemplateStudio.sln
+      vsVersion: 17.0
+      msbuildArgs: /p:DeployExtension=false
+      configuration: $(BuildConfiguration)
+      platform: $(BuildPlatform)
+      clean: true
 
-- task: CmdLine@1
-  displayName: Run LocalizationTool Verify
-  inputs:
-    filename: $(Build.SourcesDirectory)\code\tools\Localization\bin\$(BuildConfiguration)\Localization.exe
-    arguments: verify -s $(Build.SourcesDirectory)
-    failOnStandardError: true
-
-- task: CopyFiles@1
-  displayName: 'Copy Files to $(Build.ArtifactStagingDirectory)'
-  condition: succeededOrFailed()
-  inputs:
-    SourceFolder: $(Build.SourcesDirectory)
-    Contents: '**\bin\$(BuildConfiguration)\**'
-    TargetFolder: $(Build.ArtifactStagingDirectory)
+  - task: CopyFiles@1
+    displayName: Copy Artifacts
+    condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)
+      Contents: '**\bin\$(BuildConfiguration)\**'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
     
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  condition: succeededOrFailed()
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
-    TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+
+- job:
+  displayName: Test
+  timeoutInMinutes: 240
+  dependsOn: Build  
+
+  strategy:
+    matrix:
+      WinUICs:
+        Moniker: WinUICs
+        BuildConfiguration: DebugWinUICs
+        BuildPlatform: Any CPU
+      WinUICpp:
+        Moniker: WinUICpp
+        BuildConfiguration: DebugWinUICpp
+        BuildPlatform: Any CPU
+      WPF:
+        Moniker: WPF
+        BuildConfiguration: DebugWPF
+        BuildPlatform: Any CPU
+      UWP:
+        Moniker: UWP
+        BuildConfiguration: DebugUWP
+        BuildPlatform: Any CPU
+
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.sln
+
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: code/TemplateStudio.$(Moniker).slnf
+      vsVersion: 17.0
+      configuration: $(BuildConfiguration)
+      platform: $(BuildPlatform)
+      clean: true
+
+  - task: BatchScript@1
+    displayName: Set Agent Drive and Clean Test Folder
+    inputs:
+      filename: _build/SetAgentDriveAndCleanTestFolder.bat
+      modifyEnvironment: true
+
+  - task: PowerShell@1
+    displayName: Test
+    inputs:
+      scriptName: _build/ParallelTestExecution.ps1
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioFor$(Moniker).Tests/bin/Debug/TemplateStudioFor$(Moniker).Tests.dll -traits 'Group=Minimum$(Moniker)' -outputDir $(Build.SourcesDirectory)
+
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: XUnit
+      testResultsFiles: '**/TEST-*.xml'
+
+- job:
+  displayName: Test Shared
+  timeoutInMinutes: 240
+  dependsOn: Build  
+
+  strategy:
+    matrix:
+      Core:
+        Moniker: Core
+        FrameworkDirectory: net472
+        BuildConfiguration: DebugALL
+        BuildPlatform: Any CPU
+      UI:
+        Moniker: UI
+        FrameworkDirectory: .
+        BuildConfiguration: DebugALL
+        BuildPlatform: Any CPU
+
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.sln
+
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: code/TemplateStudio.sln
+      vsVersion: 17.0
+      configuration: $(BuildConfiguration)
+      platform: $(BuildPlatform)
+      clean: true
+
+  - task: BatchScript@1
+    displayName: Set Agent Drive and Clean Test Folder
+    inputs:
+      filename: _build/SetAgentDriveAndCleanTestFolder.bat
+      modifyEnvironment: true
+
+  - task: PowerShell@1
+    displayName: Test
+    inputs:
+      scriptName: _build/ParallelTestExecution.ps1
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/SharedFunctionality.$(Moniker).Tests/bin/Debug/$(FrameworkDirectory)/SharedFunctionality.$(Moniker).Tests.dll -traits 'Group=Minimum' -outputDir $(Build.SourcesDirectory)
+
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: XUnit
+      testResultsFiles: '**/TEST-*.xml'
