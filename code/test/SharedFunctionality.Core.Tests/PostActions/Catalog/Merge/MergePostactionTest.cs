@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.Equal(string.Format(StringRes.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void MergePostAction_Execute_LineNotFound_NoError()
         {
             var templateName = "Test";
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void MergePostAction_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";

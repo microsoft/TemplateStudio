@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("Group", "Minimum")]
     public class AddProjectReferenceToContextPostActionTest
     {
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void AddProjectReferenceToContext_Execute()
         {
             var templateName = "Test";
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.Contains(GenContext.Current.ProjectInfo.ProjectReferences, p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd)));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void AddSdkReferenceToContext_Execute_AlreadyThere()
         {
             var templateName = "Test";

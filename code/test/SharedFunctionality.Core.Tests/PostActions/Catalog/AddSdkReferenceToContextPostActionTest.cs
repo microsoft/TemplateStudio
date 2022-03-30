@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void AddSdkReferenceToContext_Execute_AlreadyThere()
         {
             var templateName = "Test";

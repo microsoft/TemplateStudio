@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             _templatePackage = new TemplatePackage(digitalSignatureService);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public async Task Pack_FolderAsync()
         {
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;

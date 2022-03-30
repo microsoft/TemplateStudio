@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("Group", "Minimum")]
     public class SearchAndReplacePostActionTest
     {
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void SearchAndReplace_Execute_Success()
         {
             var templateName = "Test";
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.Equal(string.Format(StringRes.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void SearchAndReplace_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";

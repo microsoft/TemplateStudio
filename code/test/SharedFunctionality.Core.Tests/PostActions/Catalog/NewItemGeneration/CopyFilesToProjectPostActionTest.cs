@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("Group", "Minimum")]
     public class CopyFilesToProjectPostActionTest
     {
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void CopyFilesToProject_Execute_NewFile()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.Contains(finalFile, GenContext.Current.FilesToOpen);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void CopyFilesToProject_Execute_ModifiedFile()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");

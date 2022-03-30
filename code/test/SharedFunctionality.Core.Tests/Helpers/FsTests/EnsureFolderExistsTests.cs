@@ -70,7 +70,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             Assert.True(Directory.Exists(directoryToCreate));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void EnsureFolderExists_ErrorCreatingDirectory_ShouldLogException()
         {
             // To force an error creating a Directory
