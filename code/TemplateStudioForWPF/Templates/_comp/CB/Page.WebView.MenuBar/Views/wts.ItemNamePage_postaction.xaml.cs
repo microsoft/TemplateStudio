@@ -1,5 +1,6 @@
 ﻿//{[{
 using Param_RootNamespace.Contracts.Services;
+using Microsoft.Web.WebView2.Core;
 using MahApps.Metro.Controls;
 //}]}
 namespace Param_RootNamespace.Views
@@ -50,7 +51,7 @@ namespace Param_RootNamespace.Views
         private void OnRightPaneClosed(object sender, System.EventArgs e)
          => webView.Margin = new Thickness(0);
 //}]}
-        private void OnNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e)
+        private void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
         }
     }

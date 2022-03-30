@@ -1,14 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
-using Microsoft.Toolkit.Wpf.UI.Controls;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Wpf;
 using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO WTS: Set the URI of the page to show by default
+        // TODO: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 
         private readonly ISystemService _systemService;
@@ -22,7 +22,7 @@ namespace Param_RootNamespace.ViewModels
         private System.Windows.Input.ICommand _browserBackCommand;
         private System.Windows.Input.ICommand _browserForwardCommand;
         private ICommand _openInBrowserCommand;
-        private WebView _webView;
+        private WebView2 _webView;
 
         public string Source
         {
@@ -76,12 +76,12 @@ namespace Param_RootNamespace.ViewModels
             Source = DefaultUrl;
         }
 
-        public void Initialize(WebView webView)
+        public void Initialize(WebView2 webView)
         {
             _webView = webView;
         }
 
-        public void OnNavigationCompleted(WebViewControlNavigationCompletedEventArgs e)
+        public void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             IsLoading = false;
             if (e != null && !e.IsSuccess)

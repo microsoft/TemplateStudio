@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
+using Microsoft.Web.WebView2.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Views;
 
@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Views
 {
     public partial class wts.ItemNamePage : Page, INotifyPropertyChanged, INavigationAware
     {
-        // TODO WTS: Set the URI of the page to show by default
+        // TODO: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 
         private readonly ISystemService _systemService;
@@ -95,13 +95,13 @@ namespace Param_RootNamespace.Views
         {
             IsShowingFailedMessage = false;
             IsLoading = true;
-            webView.Refresh();
+            webView.Reload();
         }
 
         private void OnOpenInBrowser(object sender, RoutedEventArgs e)
             => _systemService.OpenInWebBrowser(Source);
 
-        private void OnNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e)
+        private void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             IsLoading = false;
             if (e != null && !e.IsSuccess)
