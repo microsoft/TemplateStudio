@@ -39,7 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Internal.VisualStudio.Interop">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll')">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll')">C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll')">C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\PrivateAssemblies\Microsoft.Internal.VisualStudio.Interop.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

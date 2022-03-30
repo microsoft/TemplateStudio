@@ -671,18 +671,6 @@
     <Content Include="Templates\Ft\MSIX\.template.config\zh-TW.template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Package.appinstaller">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Package.appxmanifest">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Param_ProjectName %28Package%29.wapproj">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Strings\en-us\Resources.resw">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Ft\SampleData\.template.config\cs-CZ.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2042,27 +2030,6 @@
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\LockScreenLogo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\SplashScreen.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\Square150x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\StoreLogo.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\WTS.ProjectConfig.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2346,6 +2313,12 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default\wts.ProjectName\Properties\launchsettings.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Properties\launchsettings.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

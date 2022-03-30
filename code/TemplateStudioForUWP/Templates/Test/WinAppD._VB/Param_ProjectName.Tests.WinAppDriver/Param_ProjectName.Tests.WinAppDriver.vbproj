@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Param_RootNamespace.Tests.WinAppDriver</RootNamespace>
     <AssemblyName>Param_ProjectName.Tests.WinAppDriver</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <Deterministic>true</Deterministic>

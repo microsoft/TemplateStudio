@@ -27,14 +27,29 @@
   },
   "sourceName": "SettingsStorageFeature",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.cs"
-    },
-    {
-      "path": "Param_ProjectName.Core/Helpers/Json.cs"
-    }
-  ],
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Helpers/Json.cs"
+        },
+        {
+            "path": "Param_ProjectName/appsettings.json"
+        },
+        {
+            "path": "Param_ProjectName/Contracts/Services/ILocalSettingsService.cs"
+        },
+        {
+            "path": "Param_ProjectName/Models/LocalSettingsOptions.cs"
+        },
+        {
+            "path": "Param_ProjectName/Services/LocalSettingsServicePackaged.cs"
+        },
+        {
+            "path": "Param_ProjectName/Services/LocalSettingsServiceUnpackaged.cs"
+        }
+    ],
   "symbols": {
     "wts.projectName": {
       "type": "parameter",
