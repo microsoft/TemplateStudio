@@ -1,0 +1,861 @@
+# 'Allow scripts to access the OAuth token' was selected in pipeline.  Add the following YAML to any steps requiring access:
+#       env:
+#           MY_ACCESS_TOKEN: $(System.AccessToken)
+# Variable 'config.BreakingChangesHasHamburgerMenuVersion' was defined in the Variables tab
+# Variable 'config.BreakingChangesHasNoCoreProjectVersion' was defined in the Variables tab
+# Variable 'config.BreakingChangesHasOldNavigationView' was defined in the Variables tab
+# Variable 'config.BreakingChangesHasPivotVersion' was defined in the Variables tab
+# Variable 'config.BreakingChangesOldMvvmLightLocator' was defined in the Variables tab
+# Variable 'config.CdnUrl' was defined in the Variables tab
+# Variable 'config.CustomTelemetryEndpoint' was defined in the Variables tab
+# Variable 'config.DiagnosticsTraceLevel' was defined in the Variables tab
+# Variable 'config.Environment' was defined in the Variables tab
+# Variable 'config.GitHubDocsUrl' was defined in the Variables tab
+# Variable 'config.RemoteTelemetryKey' was defined in the Variables tab
+# Variable 'config.RepositoryFolderName' was defined in the Variables tab
+# Variable 'config.VsOutputWindowGuid' was defined in the Variables tab
+# Variable 'config.VsOutputWindowSuffix' was defined in the Variables tab
+# Variable 'gitHub.apiKey' was defined in the Variables tab
+# Variable 'myget.pushVsix.apiKey' was defined in the Variables tab
+# Variable 'NugetSecurityAnalysisWarningLevel' was defined in the Variables tab
+# Variable 'signingCertThumbprint' was defined in the Variables tab
+# Variable 'version.major' was defined in the Variables tab
+# Variable 'version.minor' was defined in the Variables tab
+# Variable 'vsix.cmdMenuName' was defined in the Variables tab
+# Variable 'vsix.cmdPackageGuid' was defined in the Variables tab
+# Variable 'vsix.cmdSetGuid' was defined in the Variables tab
+# Variable 'vsix.displayName' was defined in the Variables tab
+# Variable 'vsix.identity' was defined in the Variables tab
+# Variable 'vsix.publicKeyToken' was defined in the Variables tab
+# Variable 'vsTemplate.environmentid' was defined in the Variables tab
+# Variable 'vsTemplate.environmentname' was defined in the Variables tab
+# Variable 'wizardversion' was defined in the Variables tab
+name: pro.version_$(version.major).$(version.minor).$(Year:yy)$(DayOfYear)$(Rev:.rr)
+
+trigger: none
+
+pr: none
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+jobs:
+- job: Phase_1
+  displayName: Phase 1
+  timeoutInMinutes: 360
+  cancelTimeoutInMinutes: 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+    persistCredentials: True
+  - task: AzureKeyVault@1
+    displayName: 'Azure Key Vault: wtskeyvault'
+    inputs:
+      ConnectedServiceName: 10211b79-8726-4039-8faf-977c6b9cbf73
+      KeyVaultName: wtskeyvault
+      SecretsFilter: wtssnk
+  - task: UseDotNet@2
+    displayName: Use .NET Core SDK 3.1.x
+    inputs:
+      version: 3.1.x
+  - task: PowerShell@2
+    displayName: PowerShell Script
+    inputs:
+      targetType: inline
+      script: >-
+        $snkBytes = [System.Convert]::FromBase64String('$(wtssnk)')
+
+        $snkFileName = "$(Build.SourcesDirectory)\code\TestKey.snk"
+
+        $snkFileNameCore = "$(Build.SourcesDirectory)\code\CoreTemplateStudio\code\TestKey.snk"
+
+
+        Write-Host "Saving remote content to $snkFileName and $snkFileNameCore"
+
+        [System.IO.File]::WriteAllBytes($snkFileName, $snkBytes)
+
+        [System.IO.File]::WriteAllBytes($snkFileNameCore, $snkBytes)
+  - task: PowerShell@2
+    displayName: Set Core Identity
+    inputs:
+      filePath: code/CoreTemplateStudio/_build/Core-SetVersion.ps1
+      arguments: -buildNumber "$(Build.BuildNumber)"
+      script: >-
+        # Write your powershell commands here.
+
+
+        Write-Host "Hello World"
+
+
+        # Use the environment variables input below to pass secret variables to this script.
+  - task: PowerShell@1
+    name: PowerShell11
+    displayName: Set Installer Identity & Version
+    inputs:
+      scriptName: _build/Extension-SetIdentityAndVersion.ps1
+      arguments: -vsixManifestFile "code/src/Installer/source.extension.vsixmanifest" -vsixIdentity "$(vsix.identity)" -vsixDisplayName "$(vsix.displayName)" -buildNumber "$(Build.BuildNumber)" -vsixProjFile "code/src/Installer/Installer.csproj" -isProductComponent "false" -vsixCommandMenuName "$(vsix.cmdMenuName)" -packageGuid "$(vsix.cmdPackageGuid)" -cmdSetGuid "$(vsix.cmdSetGuid)" -publicKeyToken "$(vsix.publicKeyToken)"
+  - task: PowerShell@1
+    name: PowerShell13
+    displayName: Set VS Project Template Data
+    inputs:
+      scriptName: _build/ProjectTemplate-SetPublishingData.ps1
+      arguments: -buildNumber "$(Build.BuildNumber)" -environmentname "$(vsTemplate.environmentname)" -environmentid "$(vsTemplate.environmentid)"
+  - task: PowerShell@1
+    name: PowerShell14
+    displayName: Set Tokeinzed Configuration
+    inputs:
+      scriptName: code/CoreTemplateStudio/_build/Replace-TokensInFile.ps1
+      arguments: -TokenizedFile $(Build.SourcesDirectory)/_build/WindowsTemplateStudio.tokenized.config.json -Tokens "CdnUrl", "RemoteTelemetryKey", "RepositoryFolderName", "DiagnosticsTraceLevel","Environment","CustomTelemetryEndpoint","GitHubDocsUrl",  "BreakingChangesHasHamburgerMenuVersion","BreakingChangesOldMvvmLightLocator", "BreakingChangesHasOldNavigationView", "BreakingChangesHasPivotVersion", "BreakingChangesHasNoCoreProjectVersion" -Replacements "$(config.CdnUrl)","$(config.RemoteTelemetryKey)","$(config.RepositoryFolderName)","$(config.DiagnosticsTraceLevel)","$(config.Environment)","$(config.CustomTelemetryEndpoint)","$(config.GitHubDocsUrl)", "$(config.BreakingChangesHasHamburgerMenuVersion)", "$(config.BreakingChangesOldMvvmLightLocator)", "$(config.BreakingChangesHasOldNavigationView)", "$(config.BreakingChangesHasPivotVersion)" ,"$(config.BreakingChangesHasNoCoreProjectVersion)" -TargetConfigFile $(Build.SourcesDirectory)/code/src/Installer/CoreTemplateStudio.config.json
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet '
+    inputs:
+      checkLatest: true
+  - task: NuGetCommand@2
+    name: NuGetInstaller_1
+    displayName: NuGet restore code/Big.sln
+    inputs:
+      solution: code/Big.sln
+      selectOrConfig: config
+      nugetConfigPath: code/CoreTemplateStudio/code/Nuget.Config
+  - task: VSBuild@1
+    name: VSBuild_2
+    displayName: Build solution code/Big.sln
+    inputs:
+      solution: code/Big.sln
+      vsVersion: 16.0
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+      clean: true
+  - task: PowerShell@1
+    name: PowerShell1
+    displayName: Get version number
+    inputs:
+      scriptType: inlineScript
+      arguments: -buildNumber $(Build.BuildNumber)
+      inlineScript: >-
+        Param(
+           [string]$buildNumber
+        )
+
+
+        $TfsBuildVersionRegEx = "_(\d+)\.(\S+)\.(\d+)"
+
+
+        if($buildNumber -match $TfsBuildVersionRegEx){
+          $versionNumber = $matches[0].Replace("_","")
+          Write-Host "Version Number" $versionNumber
+           Write-Host "##vso[task.setvariable variable=version]$versionNumber"
+        }
+
+        else{
+          throw "Build format does not match the expected pattern (buildName_version)"
+        }
+  - task: PowerShell@1
+    name: PowerShell2
+    displayName: WTS Packaging Tool - Prepare Package VB
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -p $(Build.SourcesDirectory)\templates -e "SC;VBStyleAnalysis" -v $(version) -t "Uwp" -l "VisualBasic"  --verbose
+  - task: PowerShell@1
+    name: PowerShell3
+    displayName: WTS Packaging  Tool - Package VB
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -n $(Build.SourcesDirectory)\Preparation_v$(version)\Templates\ -f $(Build.ArtifactStagingDirectory)/templates/Uwp.VB.Templates.mstx --verbose
+  - task: DeleteFiles@1
+    displayName: 'Cleanup preparation folder '
+    inputs:
+      SourceFolder: (Build.SourcesDirectory)
+      Contents: Preparation_v$(version)**
+  - task: PowerShell@1
+    displayName: 'WTS Packaging Tool - Prepare Package WinUI C# '
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -p $(Build.SourcesDirectory)\templates -e "StyleCop;SC;Form;UWP" -v $(version) -t "WinUI" -l "C#"  --verbose
+  - task: PowerShell@1
+    displayName: WTS  Packaging Tool - Package WinUI C#
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -n $(Build.SourcesDirectory)\Preparation_v$(version)\Templates\ -f $(Build.ArtifactStagingDirectory)/templates/WinUI.CS.Templates.mstx --verbose
+  - task: DeleteFiles@1
+    displayName: 'Cleanup preparation folder '
+    inputs:
+      SourceFolder: (Build.SourcesDirectory)
+      Contents: Preparation_v$(version)**
+  - task: PowerShell@1
+    displayName: WTS Packaging Tool - Prepare Package WinUI C++
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -p $(Build.SourcesDirectory)\templates -e "UWP" -v $(version) -t "WinUI" -l "C++"  --verbose
+  - task: PowerShell@1
+    displayName: WTS  Packaging Tool - Package WinUI C++
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -n $(Build.SourcesDirectory)\Preparation_v$(version)\Templates\ -f $(Build.ArtifactStagingDirectory)/templates/WinUI.Cpp.Templates.mstx --verbose
+  - task: DeleteFiles@1
+    displayName: 'Cleanup preparation folder '
+    inputs:
+      SourceFolder: (Build.SourcesDirectory)
+      Contents: Preparation_v$(version)**
+  - task: PowerShell@1
+    displayName: WTS Packaging Tool - Prepare Package Wpf C#
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -p $(Build.SourcesDirectory)\templates -e "StyleCop;SC" -v $(version) -t "Wpf" -l "C#"  --verbose
+  - task: PowerShell@1
+    displayName: 'WTS Packaging  Tool - Package WPF C# '
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -n $(Build.SourcesDirectory)\Preparation_v$(version)\Templates\ -f $(Build.ArtifactStagingDirectory)/templates/Wpf.CS.Templates.mstx --verbose
+  - task: DeleteFiles@1
+    displayName: Cleanup preparation folder
+    inputs:
+      SourceFolder: (Build.SourcesDirectory)
+      Contents: Preparation_v$(version)**
+  - task: PowerShell@1
+    displayName: WTS Packaging Tool - Prepare Package C#
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -p $(Build.SourcesDirectory)\templates -e "StyleCop;SC" -v $(version) -t "Uwp" -l "C#"  --verbose
+  - task: PowerShell@1
+    displayName: WTS Packaging  Tool - Package C#
+    inputs:
+      scriptName: $(Build.SourcesDirectory)\code\CoreTemplateStudio\code\tools\WtsPackagingTool\bin\$(BuildConfiguration)\WtsPackagingTool.exe
+      arguments: package-task -n $(Build.SourcesDirectory)\Preparation_v$(version)\Templates\ -f $(Build.ArtifactStagingDirectory)/templates/Uwp.CS.Templates.mstx --verbose
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Templates
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\templates
+      Pattern: >
+        Uwp.VB.Templates.mstx,Uwp.CS.Templates.mstx,Wpf.CS.Templates.mstx,WinUI.CS.Templates.mstx, WinUI.Cpp.Templates.mstx
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-233016",
+                    "OperationCode" : "OpcSign",
+                    "Parameters" : {
+                        "FileDigest" : "/fd SHA256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-233016",
+                    "OperationCode" : "OpcVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: CopyFiles@2
+    name: CopyFiles18
+    displayName: Copy Signed Templates for VSIX
+    inputs:
+      SourceFolder: $(build.artifactstagingdirectory)\templates
+      TargetFolder: $(Build.SourcesDirectory)/code/src/Installer/Content/
+      OverWrite: true
+      flattenFolders: true
+  - task: VSBuild@1
+    name: ClonedVSBuild_218
+    displayName: Build solution code/Big.sln
+    inputs:
+      solution: code/Big.sln
+      vsVersion: 16.0
+      msbuildArgs: /p:DeployExtension=false /p:HighEntropyVA=true
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+      clean: true
+  - task: ComponentGovernanceComponentDetection@0
+    displayName: Component Detection
+  - task: DotNetCoreCLI@2
+    displayName: Run Core Tests
+    inputs:
+      command: test
+      projects: '**\code\CoreTemplateStudio\code\test\CoreTemplateStudio.Core.Test'
+      arguments: --logger:trx --configuration Debug
+      testRunTitle: Core Tests
+  - task: CopyFiles@2
+    name: CopyFiles16
+    displayName: Copy Vsix to Artifacts
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)
+      Contents: >-
+        code\src\Installer\bin\$(BuildConfiguration)\*.vsix
+
+        code\src\Installer\UwpTemplates.config.json
+      TargetFolder: $(build.artifactstagingdirectory)\vsix
+      flattenFolders: true
+  - task: PowerShell@1
+    displayName: Extract Files to Sign
+    inputs:
+      scriptName: _build/CodeSign_ExtractFilesToSign.ps1
+      arguments: -vsixFilePath $(build.artifactstagingdirectory)\vsix\Microsoft.Templates.vsix -outputPath $(build.artifactstagingdirectory)\itemsToSign
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        Microsoft.Templates.dll,Microsoft.Templates.Core.dll,Microsoft.Templates.UI.dll,Microsoft.Templates.Utilities.dll,WriteableBitmapEx.Wpf.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies cs-CZ
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        cs-CZ/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies de-DE
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        de-DE/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies en-US
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        en-US/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies es-ES
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        es-ES/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies fr-FR
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        fr-FR/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies it-IT
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        it-IT/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies ja-JP
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        ja-JP/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies ko-KR
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        ko-KR/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies pl-PL
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        pl-PL/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies pt-BR
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        pt-BR/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies ru-RU
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        ru-RU/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies tr-TR
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        tr-TR/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies zh-CN
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        zh-CN/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning Assemblies zh-TW
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign
+      Pattern: >
+        zh-TW/**.dll
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning JS
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\itemsToSign\Assets\Html\min\vs
+      Pattern: >
+        *.js
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolSign",
+                    "Parameters" : {
+                        "OpusName" : "Microsoft",
+                        "OpusInfo" : "http://www.microsoft.com",
+                        "FileDigest" : "/fd \"SHA256\"",
+                        "PageHash" : "/NPH",
+                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-230012",
+                    "OperationCode" : "SigntoolVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: CopyFiles@2
+    displayName: Copy signed files to signedItems
+    inputs:
+      SourceFolder: $(build.artifactstagingdirectory)\itemsToSign
+      Contents: '**/*.+(dll|js)'
+      TargetFolder: $(build.artifactstagingdirectory)\signedItems
+  - task: PowerShell@1
+    displayName: Include Signed Files in VSIX
+    inputs:
+      scriptName: _build/CodeSign_IncludeSignedFiles.ps1
+      arguments: -vsixFilePath $(build.artifactstagingdirectory)\vsix\Microsoft.Templates.vsix -inputPath $(build.artifactstagingdirectory)\signedItems
+  - task: EsrpCodeSigning@1
+    displayName: ESRP CodeSigning VSIX
+    inputs:
+      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      FolderPath: $(build.artifactstagingdirectory)\vsix
+      Pattern: Microsoft.Templates.vsix
+      signConfigType: inlineSignParams
+      inlineOperation: >-
+        [
+                {
+                    "KeyCode" : "CP-233016",
+                    "OperationCode" : "OpcSign",
+                    "Parameters" : {
+                        "FileDigest" : "/fd SHA256"
+                    },
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                },
+                {
+                    "KeyCode" : "CP-233016",
+                    "OperationCode" : "OpcVerify",
+                    "Parameters" : {},
+                    "ToolName" : "sign",
+                    "ToolVersion" : "1.0"
+                }
+            ]
+  - task: PublishBuildArtifacts@1
+    name: PublishBuildArtifacts_10
+    displayName: 'Publish Artifact: drop'
+    condition: succeededOrFailed()
+    inputs:
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+  - task: CopyFiles@2
+    displayName: Collect Build Symbols
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)
+      Contents: '**/$(BuildConfiguration)/*.+(pdb|exe|dll)'
+      TargetFolder: $(Build.ArtifactStagingDirectory)/symbols
+  - task: PublishSymbols@1
+    displayName: Enable Source Server
+    inputs:
+      SymbolsFolder: $(Build.ArtifactStagingDirectory)/symbols
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Symbols Artifacts
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)/symbols
+      ArtifactName: symbols
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+  - task: artifactSymbolTask@0
+    displayName: Publish to Symbols to Artifact Services
+    enabled: False
+    inputs:
+      symbolServiceURI: https://microsoft.artifacts.visualstudio.com/DefaultCollection
+      sourcePath: $(Build.ArtifactStagingDirectory)/symbols
+      usePat: false
