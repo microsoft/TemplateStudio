@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             Assert.NotEqual(originalLastModificationTime, updatedLastModificationTime);
         }
 
-        [Theory]
+        [Theory(Skip = "See issue #4421")]
         [InlineData(null)]
         [InlineData("")]
         public void SafeCopyFile_SourceFileNullOrEmpty_ShouldLogException(string filePath)
@@ -141,7 +141,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             Assert.True(_fixture.IsErrorMessageInLogFile(_logDate, ErrorLevel, ErrorMessage));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void SafeCopyFile_AccessToPathDenied_ShouldLogException()
         {
             // to force an exception while trying to copy a file. File without permissions instead of valid folder

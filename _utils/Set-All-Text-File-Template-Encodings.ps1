@@ -8,6 +8,8 @@
 # Any files that don't have the desired encoding will be changed
 #  so they are encoded as desired.
 
+#Requires -PSEdition Core
+
 function Is-EncodedCorrectly
 {
    [OutputType([Boolean])]
@@ -17,7 +19,7 @@ function Is-EncodedCorrectly
      [string]$Path
    )
 
-   [byte[]]$byte = get-content -Encoding byte -ReadCount 3 -TotalCount 3 -Path $Path
+   [byte[]]$byte = Get-Content -AsByteStream -Raw -Path $Path
 
    # EF BB BF (UTF8 + BOM)
    if ( $byte[0] -eq 0xef -and $byte[1] -eq 0xbb -and $byte[2] -eq 0xbf )

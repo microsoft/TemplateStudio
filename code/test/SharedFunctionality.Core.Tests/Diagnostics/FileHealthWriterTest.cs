@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public async Task LogErrorAsync()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";

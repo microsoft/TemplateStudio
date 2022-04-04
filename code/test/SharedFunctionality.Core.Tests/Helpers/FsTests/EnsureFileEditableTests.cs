@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             }
         }
 
-        [Theory]
+        [Theory(Skip = "See issue #4421")]
         [InlineData("")]
         [InlineData(null)]
         public void EnsureFileEditable_FilePathNullOrEmpty_ShouldLogError(string filePath)
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             Assert.True(_fixture.IsErrorMessageInLogFile(_logDate, ErrorLevel, ErrorMessage));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void EnsureFileEditable_FileDoesNotExist_ShouldLogError()
         {
             var testScenarioName = "FileDoesNotExist";

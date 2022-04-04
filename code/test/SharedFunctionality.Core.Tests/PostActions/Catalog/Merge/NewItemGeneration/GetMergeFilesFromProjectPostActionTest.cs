@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("Group", "Minimum")]
     public class GetMergeFilesFromProjectPostActionTest
     {
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void GetMergeFilesFromProject_Execute_Postaction()
         {
             var templateName = "Test";
@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void GetMergeFilesFromProject_Execute_Postaction_FileFound()
         {
             var templateName = "Test";
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.False(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void GetMergeFilesFromProject_Execute_GlobalPostaction()
         {
             var templateName = "Test";

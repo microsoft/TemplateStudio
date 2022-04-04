@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Test.Helpers.FsTests
             Assert.True(_fixture.IsErrorMessageInLogFile(_logDate, ErrorLevel, $"{testScenarioName}_Original {ErrorMessage}"));
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void SafeRenameDirectory_WrongDestinationFolder_ShouldLogException()
         {
             // to throw the exception we create a file with the same name we try to create the new directory
