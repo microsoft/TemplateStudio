@@ -6,13 +6,13 @@ A developer should be able to quickly and easily add features, pages, and have a
 
 That's why many of the guidelines of this document are obvious and serve only one purpose: **Simplicity.**
 
-Also remember that the Pull Requests must be done against the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
+Also remember that the Pull Requests must be done against the **[dev branch](https://github.com/microsoft/TemplateStudio/tree/main)**.
 
 ## Before you begin
 
 While we're grateful for any and all contributions, we don't want you to waste anyone's time. Please consider the following points before you start working on any contribution.
 
-* Please comment on an [issue](https://github.com/microsoft/WindowsTemplateStudio/issues) to let us know you're interested in working on something before you start the work. Not only does this avoid multiple people unexpectedly working on the same thing at the same time but it enables us to make sure everyone is clear on what should be done to implement any new functionality. It's less work for everyone, in the long run, to establish this up front.
+* Please comment on an [issue](https://github.com/microsoft/TemplateStudio/issues) to let us know you're interested in working on something before you start the work. Not only does this avoid multiple people unexpectedly working on the same thing at the same time but it enables us to make sure everyone is clear on what should be done to implement any new functionality. It's less work for everyone, in the long run, to establish this up front.
 * The code that is output in the generated projects may end up in thousands of apps so it must be of the highest quality. Expect it to be reviewed very thoroughly and it must meet our standards for standards for style, structure, and format. There are details below and automated tests to verify their use.
 * Get familiar with the automated tests that are part of the project. With so many possible combinations of output, it's impossible to verify everything manually. You will need to make sure they all pass.
 * When adding anything new it should be created to work with all supported frameworks. If this is going to be a problem, discuss it before beginning work.
@@ -22,8 +22,8 @@ While we're grateful for any and all contributions, we don't want you to waste a
 
 Every contribution has to come with:
 
-* Before starting coding, **you must open an [issue](https://github.com/microsoft/WindowsTemplateStudio/issues)** and start discussing with the community to see if the idea/feature is interesting enough.
-* A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/release/docs).
+* Before starting coding, **you must open an [issue](https://github.com/microsoft/TemplateStudio/issues)** and start discussing with the community to see if the idea/feature is interesting enough.
+* A documentation page in the [documentation folder](https://github.com/microsoft/TemplateStudio/tree/main/docs).
 * Unit tests (If applicable, or an explanation why they're not)
 
 * If you've changed the UI:
@@ -31,7 +31,7 @@ Every contribution has to come with:
   - Be sure you have reviewed the [accesibility checklist](docs/accessibility.md).
 
 * If you've included a new template:
-  - Be sure you reviewed the [Template Verification Checklist](https://github.com/microsoft/WindowsTemplateStudio/wiki/Checklist:-Template-Verification).
+  - Be sure you reviewed the [Template Verification Checklist](https://github.com/microsoft/TemplateStudio/wiki/Checklist:-Template-Verification).
 
 * You tested your code with two most recent Windows 10 SDKs. (Build 18362 and 19041)
 * You've run all existing tests to make sure you've not broken anything.

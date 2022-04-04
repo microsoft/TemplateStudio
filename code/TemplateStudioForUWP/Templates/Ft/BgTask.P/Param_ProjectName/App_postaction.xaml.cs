@@ -36,7 +36,7 @@ namespace Param_RootNamespace
             {
                 // Edge case where the in-process background task's activation trigger is handled when the application is just shut down.
                 // Known issue: NullReferenceException in the OnSuspending method for the short application activation to handle the trigger.
-                // This will be fixed in the next Prism release, more info see https://github.com/Microsoft/WindowsTemplateStudio/issues/2632
+                // This will be fixed in the next Prism release, more info see https://github.com/microsoft/TemplateStudio/issues/2632
                 CreateAndConfigureContainer();
             }
 

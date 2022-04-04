@@ -66,7 +66,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace YourAppName.Services
 {
-    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.md
+    // For more information on application activation see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.md
     internal class ActivationService
     {
         private readonly App _app;
@@ -468,7 +468,7 @@ namespace YourAppName.Views
 
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Workaround for Issue https://github.com/microsoft/TemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
             ViewModel.ItemInvokedCommand.Execute(args);
         }

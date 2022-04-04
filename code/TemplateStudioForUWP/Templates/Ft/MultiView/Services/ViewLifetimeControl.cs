@@ -156,7 +156,7 @@ namespace Param_RootNamespace.Services
                 UnregisterForEvents();
                 if (InternalReleased == null)
                 {
-                    // For more information about using Multiple Views, see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/multiple-views.md
+                    // For more information about using Multiple Views, see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/multiple-views.md
                     throw new InvalidOperationException("All pages opened in a new window must subscribe to the Released Event.");
                 }
 

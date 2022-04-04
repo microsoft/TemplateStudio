@@ -95,7 +95,7 @@ Once installed, you will see a **new Project Template** which allows you to acce
 
 ![File New Project](resources/vsix/newProject2019-pre.PNG)
 
-You can start working with *Windows Template Studio* by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
+You can start working with *Windows Template Studio* by cloning [our repo](https://github.com/microsoft/TemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
 
 ### Nightly Dev-release
 

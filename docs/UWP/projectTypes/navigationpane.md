@@ -39,7 +39,7 @@ The code below shows the symbols used to create the app shown in the image above
     <!--
     TODO WTS: Change the symbols for each item as appropriate for your app
     More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-    Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/projectTypes/navigationpane.md
+    Or to use an IconElement instead of a Symbol see https://github.com/microsoft/TemplateStudio/blob/main/docs/projectTypes/navigationpane.md
     Edit String/en-US/Resources.resw: Add a menu item title for each page
     -->
     <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="views:MainPage" />
@@ -165,7 +165,7 @@ You can see an example of an advanced use of `CommandBar` and `NavigationViewHea
 
 When using MVVMBasic, MVVMLight, Caliburn or Prism, you can use x:Bind to bind properties to your ViewModel, associated to the HeaderContext.
 
-When using CodeBehind, the HeaderContext is associated to the page's code behind file and x:Bind is not working correctly. More info on issue [2711](https://github.com/Microsoft/WindowsTemplateStudio/issues/2711)
+When using CodeBehind, the HeaderContext is associated to the page's code behind file and x:Bind is not working correctly. More info on issue [2711](https://github.com/microsoft/TemplateStudio/issues/2711)
 
 We're working on a solution with the NavView team, meanwhile you can use Binding and access the CodeBehind properties through the shellFrame's Content as the Datatemplate is executed in the Context of the NavigationView.
 

@@ -2,7 +2,7 @@
 Imports Param_RootNamespace.Services
 
 Namespace ViewModels
-    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/settings.md
+    ' TODO WTS: Add other settings as necessary. For help see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/pages/settings.md
     Public Class SettingsPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 

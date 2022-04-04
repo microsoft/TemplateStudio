@@ -60,7 +60,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace YourAppName.Services
 {
-    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.md
+    // For more information on application activation see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.md
     internal class ActivationService
     {
         private readonly App _app;

@@ -51,7 +51,7 @@ Imports Windows.UI.Core
 Imports YourAppName.Activation
 
 Namespace Services
-    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.vb.md
+    ' For more information on application activation see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.vb.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _shell As Lazy(Of UIElement)

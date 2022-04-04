@@ -13,8 +13,8 @@
 
 |Branch   |CI                |Test Version|Version|
 |:--------|:----------------:|:---------------:|:---------------:|
-|release|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=release)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?no-cache)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
-|dev|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+|release|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=release)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?no-cache)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 |Branch   |Full Tests       |OneByOne Tests       |WACK Tests       |
 |:--------|:---------------:|:---------------:|:---------------:|
@@ -86,9 +86,9 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 ## Feedback, Requests and Roadmap
 
-Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.
+Please use [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) for feedback, questions or comments.
 
-If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
+If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) section as well.  We would love to see what you are thinking.
 
 Here is what we're currently thinking in our [roadmap](./docs/roadmap.md).
 

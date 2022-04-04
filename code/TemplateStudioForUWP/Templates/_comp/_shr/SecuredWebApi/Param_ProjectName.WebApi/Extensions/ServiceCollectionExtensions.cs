@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     // Read more about Microsoft Identity Platform at https://docs.microsoft.com/azure/active-directory/develop/v2-overview
     // You can find detailed info on protecting Web API's on https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
-    // For more info about this class and the Secured Web Api Feature configuration steps see https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/services/secured-web-api.md
+    // For more info about this class and the Secured Web Api Feature configuration steps see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/services/secured-web-api.md
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection ProtectWebApiWithJwtBearer(this IServiceCollection services, IConfiguration configuration)

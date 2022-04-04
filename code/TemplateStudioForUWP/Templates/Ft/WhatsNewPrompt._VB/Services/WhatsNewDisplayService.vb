@@ -6,7 +6,7 @@ Imports Windows.ApplicationModel.Core
 Imports Windows.UI.Core
 
 Namespace Services
-    ' For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/whats-new-prompt.md
+    ' For instructions on testing this service see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/whats-new-prompt.md
     Public Module WhatsNewDisplayService
         Dim shown As Boolean = False
 
