@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("Group", "Minimum")]
     public class GenerateMergeInfoPostActionTest
     {
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void GenerateMergeInfo_Execute_Success()
         {
             var templateName = "Test";

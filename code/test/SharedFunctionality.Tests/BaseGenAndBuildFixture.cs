@@ -18,7 +18,6 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes.GenShell;
 using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Templates.Test
 {
@@ -132,8 +131,9 @@ namespace Microsoft.Templates.Test
             var vsRoot = GetVsInstallRoot();
 
             Console.Out.WriteLine();
-            Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"");
+            Console.Out.WriteLine($"### > Ready to start building (MSIX)");
+            Console.Out.WriteLine($"### > VSRoot: {vsRoot}");
+            Console.Out.WriteLine($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Test
 
             Console.Out.WriteLine();
             Console.Out.WriteLine("### > Ready to run WACK test");
-            Console.Out.Write($"### > Running following command: {GetPath("bat\\RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
+            Console.Out.WriteLine($"### > Running following command: {GetPath("bat\\RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
 
             var startInfo = new ProcessStartInfo(GetPath("bat\\RunWackTest.bat"))
             {
@@ -263,68 +263,91 @@ namespace Microsoft.Templates.Test
 
         private (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform, string batfile, string config, string buildPlatform)
         {
-            var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
-
-            // Build
-            var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
-
-            var nugetExecutable = GetPath("nuget\\nuget.exe");
-
-            var vsRoot = GetVsInstallRoot();
-
-            Console.Out.WriteLine();
-            Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" {buildPlatform} {config}");
-
-            var startInfo = new ProcessStartInfo(GetPath(batfile))
+            try
             {
-                Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{nugetExecutable}\"",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = false,
-                WorkingDirectory = outputPath,
-            };
+                var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
-            var process = Process.Start(startInfo);
+                // Build
+                var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+                var nugetExecutable = GetPath("nuget\\nuget.exe");
 
-            process.WaitForExit();
+                var vsRoot = GetVsInstallRoot();
 
-            return (process.ExitCode, outputFile);
+                var batPath = GetPath(batfile);
+
+                Console.Out.WriteLine($"### > Running following command: {batPath} \"{vsRoot}\" \"{solutionFile}\" \"{buildPlatform}\" \"{config}\"");
+
+                var startInfo = new ProcessStartInfo(batPath)
+                {
+                    Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{buildPlatform}\" \"{config}\" \"{nugetExecutable}\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = false,
+                    WorkingDirectory = outputPath,
+                };
+
+                var process = Process.Start(startInfo);
+
+                File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+                process.WaitForExit();
+
+                return (process.ExitCode, outputFile);
+            }
+            catch (Exception exc)
+            {
+                Console.Out.WriteLine();
+                Console.Out.WriteLine($"### !> {exc}");
+                Console.Out.WriteLine();
+                throw;
+            }
         }
 
         public (int exitCode, string outputFile) RunTests(string projectName, string outputPath)
         {
-            var outputFile = Path.Combine(outputPath, $"_testOutput_{projectName}.txt");
-
-            var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
-
-            const string batFile = "bat\\Uwp\\RunTests.bat";
-
-            // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
-            var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.MSTest.dll\" ";
-            var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.NUnit.dll\" ";
-            var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.xUnit.dll\" ";
-
-            var batPath = Path.GetDirectoryName(GetPath(batFile));
-
-            var startInfo = new ProcessStartInfo(GetPath(batFile))
+            try
             {
-                Arguments = $"{mstestPath} {nunitPath} {xunitPath}",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = false,
-                WorkingDirectory = outputPath,
-            };
+                var outputFile = Path.Combine(outputPath, $"_testOutput_{projectName}.txt");
 
-            var process = Process.Start(startInfo);
+                var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
 
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+                const string batFile = "bat\\Uwp\\RunTests.bat";
 
-            process.WaitForExit();
+                // Just run the tests against code in the core library. Can't run UI related/dependent code from the cmd line / on the server
+                var mstestPath = $"\"{outputPath}\\{projectName}.Core.Tests.MSTest\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.MSTest.dll\" ";
+                var nunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.NUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.NUnit.dll\" ";
+                var xunitPath = $"\"{outputPath}\\{projectName}.Core.Tests.xUnit\\bin\\Debug\\netcoreapp3.1\\{projectName}.Core.Tests.xUnit.dll\" ";
 
-            return (process.ExitCode, outputFile);
+                var batPath = GetPath(batFile);
+                var vsRoot = GetVsInstallRoot();
+
+                Console.Out.WriteLine($"### > Running following command: {batPath} \"{vsRoot}\" {mstestPath} {nunitPath} {xunitPath}");
+
+                var startInfo = new ProcessStartInfo(batPath)
+                {
+                    Arguments = $"\"{vsRoot}\" {mstestPath} {nunitPath} {xunitPath}",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = false,
+                    WorkingDirectory = outputPath,
+                };
+
+                var process = Process.Start(startInfo);
+
+                File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+                process.WaitForExit();
+
+                return (process.ExitCode, outputFile);
+            }
+            catch (Exception exc)
+            {
+                Console.Out.WriteLine();
+                Console.Out.WriteLine($"### !> {exc}");
+                Console.Out.WriteLine();
+                throw;
+            }
         }
 
         public string GetErrorLines(string filePath)
@@ -390,7 +413,7 @@ namespace Microsoft.Templates.Test
                 {
                     // This can happen when a test run as admin (such as some WinAppDriver tests) failed
                     // but now running a test when not admin and can't tidy up the files previously left behind.
-                    Assert.Fail($"There was an exception while tidying up old test files. Manually delete the contents of '{dir.FullName}'.");
+                    Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail($"There was an exception while tidying up old test files. Manually delete the contents of '{dir.FullName}'.");
                 }
             }
         }
@@ -399,7 +422,7 @@ namespace Microsoft.Templates.Test
         {
             var VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
 
-            // Try both of these to allow for wonderful inconsistencies in resolving 
+            // Try both of these to allow for wonderful inconsistencies in resolving
             var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles") };
 
             var basePath = "{0}\\Microsoft Visual Studio\\2022\\{1}\\";

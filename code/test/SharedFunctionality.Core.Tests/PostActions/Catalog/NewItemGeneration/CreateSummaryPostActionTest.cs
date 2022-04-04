@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             CultureInfo.CurrentUICulture = cultureInfo;
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void CreateSummary_Execute_SyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(outputPath).FullName, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4421")]
         public void CreateSummary_Execute_NotSyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
