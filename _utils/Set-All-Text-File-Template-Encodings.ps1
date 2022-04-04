@@ -8,13 +8,7 @@
 # Any files that don't have the desired encoding will be changed
 #  so they are encoded as desired.
 
-if ($PSVersionTable.PSEdition -eq "Desktop") {
-    Write-Host "The latest version of PowerShell is required to run this script. Windows PowerShell is not supported."
-    Write-Host ""
-    Write-Host "Install the latest stable release of PowerShell from https://aka.ms/powershell-release?tag=stable."
-
-    return;
-}
+#Requires -PSEdition Core
 
 function Is-EncodedCorrectly
 {
