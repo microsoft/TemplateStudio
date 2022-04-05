@@ -183,30 +183,3 @@ jobs:
                     "ToolVersion" : "1.0"
                 }
             ]
-
-  - task: CopyFiles@2
-    displayName: Copy Symbol Artifacts
-    inputs:
-      SourceFolder: $(Build.SourcesDirectory)
-      Contents: '**/$(BuildConfiguration)/*.+(pdb|exe|dll)'
-      TargetFolder: $(Build.ArtifactStagingDirectory)/symbols
-
-  - task: PublishSymbols@1
-    displayName: Enable Source Server
-    inputs:
-      SymbolsFolder: $(Build.ArtifactStagingDirectory)/symbols
-
-  - task: PublishBuildArtifacts@1
-    displayName: Publish Symbol Artifacts
-    inputs:
-      PathtoPublish: $(Build.ArtifactStagingDirectory)/symbols
-      ArtifactName: symbols
-      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
-
-  - task: artifactSymbolTask@0
-    displayName: Publish Symbols to Artifact Services
-    enabled: False
-    inputs:
-      symbolServiceURI: https://microsoft.artifacts.visualstudio.com/DefaultCollection
-      sourcePath: $(Build.ArtifactStagingDirectory)/symbols
-      usePat: false
