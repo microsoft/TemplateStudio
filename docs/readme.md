@@ -1,6 +1,6 @@
 # Template Studio - Documentation
 
-*Template Studio* (aka *WinTS*) documentation is divided into three areas.
+*Template Studio* (aka *TS*) documentation is divided into three areas.
 
 ## General
 
@@ -11,9 +11,9 @@ Everyone should read these.
 - [How to create a new app and add new pages/features](./how-to.md)
 - [3rd party libraries updates and breaking changes](./third-party-libraries.md)
 
-## Using WinTS to build apps
+## Using TS to build apps
 
-These will help if using *WinTS* to build apps.
+These will help if using *TS* to build apps.
 
 ### Universal Windows Platform
 
@@ -34,11 +34,11 @@ These will help if using *WinTS* to build apps.
 - [Handling app activation](./WinUI/activation.md)
 - [Handling navigation within the app](./WinUI/navigation.md)
 
-## Working on WinTS
+## Working on TS
 
-These will help if you want to know more about *WinTS* or contribute to the project.
+These will help if you want to know more about *TS* or contribute to the project.
 
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [Ensuring generated code is accessible](./accessibility.md)

@@ -6,6 +6,6 @@ The application includes a call to the Microsoft Graph to show user info and pho
 
 By default this features works with Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com) and gives the option to exclude personal Microsoft accounts, limit access to a specific directory or use integrated auth.
 
-[Learn more about using identity in WinTS generated apps](./identity.md).
+[Learn more about using identity in TS generated apps](./identity.md).
 
 [Learn more about Microsoft Identity platform.](https://docs.microsoft.com/azure/active-directory/develop/v2-overview)

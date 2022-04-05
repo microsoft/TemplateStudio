@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to NavigationView in CodeBehind
 
-If you have an UWP project created with WinTS with project type **NavigationPane** and framework **CodeBehind**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with TS with project type **NavigationPane** and framework **CodeBehind**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 

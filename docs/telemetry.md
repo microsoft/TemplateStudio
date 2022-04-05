@@ -18,7 +18,7 @@ For events related to session and project generation see [Core Template Studio -
 
 ## Learn more
 
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Ensuring generated code is accessible](./accessibility.md)
 - [All docs](./readme.md)

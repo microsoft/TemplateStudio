@@ -2,7 +2,7 @@
 
 **Windows Presentation Foundation (WPF)** is a UI framework that creates desktop client applications.
 
-Here is a compilation of useful links to the documentation that will help you to adapt your *WinTS* generated application to add some platform-specific features.
+Here is a compilation of useful links to the documentation that will help you to adapt your *TS* generated application to add some platform-specific features.
 
 ## Requisites
 

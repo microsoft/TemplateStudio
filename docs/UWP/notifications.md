@@ -1,6 +1,6 @@
 # Notifications on Template Studio
 
-## WinTS Features
+## TS Features
 
 *Template Studio* supports three different type of notifications.
 

@@ -4,8 +4,8 @@
 
 ### Prerequisites for installing Template Studio
 
-*Template Studio* (aka *WinTS*) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
-- `Visual Studio 2019` - Although VS 2019.2 is the minimum version, we recommend using *WinTS* with the **latest Visual Studio Update**.
+*Template Studio* (aka *TS*) installs into your existing Visual Studio development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/windows/downloads).
+- `Visual Studio 2019` - Although VS 2019.2 is the minimum version, we recommend using *TS* with the **latest Visual Studio Update**.
 - `.NET Framework 4.7.2`
 
 ### Prerequisites for Universal Windows Platform
@@ -108,5 +108,5 @@ If you want to have updates from in-progress changes.  This feed will have the r
 - [Core concepts](./concepts.md)
 - [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
 - [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
 - [All docs](./readme.md)

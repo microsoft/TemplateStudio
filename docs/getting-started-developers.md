@@ -174,7 +174,7 @@ To execute this script locally use the following powershell command after compil
 
 where
 
-- `<wts directory>` : Directory where *WinTS* is cloned
+- `<wts directory>` : Directory where *TS* is cloned
 - `<output directory>`: Directory where test xml result files will be generated
 
 ## Core
@@ -186,21 +186,21 @@ The submodule points to a specific commit in the release branch of *Core Templat
 
 ![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
 
-When you clone *WinTS* you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from *Core Template Studio*.
+When you clone *TS* you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from *Core Template Studio*.
 When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
 
 Changes on *Core Template Studio* should be done on the *Core Template Studio* repos.
-In *WinTS*, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
+In *TS*, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
 
 ## Troubleshooting
 
 When working on Template Studio the following folders are useful to investigate any issue you run into:
 
 ### Log File
-You can find the log file at `%localAppData%\WinTS\Logs`. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.
+You can find the log file at `%localAppData%\TS\Logs`. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.
 
 ### Templates Folder
-The templates folder is located in the `%localAppData%\WinTS\Templates\` folder.
+The templates folder is located in the `%localAppData%\TS\Templates\` folder.
 When debugging locally this folder will have a shortcut pointing to the templates folder of your repository.
 When using the vsix, templates will be extracted from the mstx package to this folder.
 
@@ -209,7 +209,7 @@ The template cache is located in the `%userprofile%\.templateengine` folder. Tem
 
 When working locally you need to refresh the template cache to see changes applied to the templates. There is a button to refresh the template cache on the VSEmulator's Main Page and in the Wizard when running in debug. 
 
-When working with the `Installer` you can manually delete the `%localAppData%\WinTS\Templates\LocalVsixEnv` folder to force a refresh of the cache before the wizard starts.
+When working with the `Installer` you can manually delete the `%localAppData%\TS\Templates\LocalVsixEnv` folder to force a refresh of the cache before the wizard starts.
 For example you might need to do so if you rename an existing templates folder, as the template cache holds pointers to the templates folders. 
  
 
@@ -217,11 +217,11 @@ For example you might need to do so if you rename an existing templates folder, 
 
 | Environment|	Description |	Templates Folder | Templates Cache |
 | --------------- | ----------- | ---------------- | --------------- |
-| LocalVSIXEnv | Executing WinTS using Experimental Instance using `Installer` as startup project | `%localAppData%\WinTS\Templates\LocalVsixEnv` | `%userprofile%\.templateengine\LocalVsixEnv` |
-| LocalEnvWinTS | Executing WinTS using `VSEmulator` as startup project | `%localAppData%\WinTS\Templates\LocalEnvWinTS` | `%userprofile%\.templateengine\LocalEnvWinTS` |
-| Dev | Dev-nightly version | `%localAppData%\WinTS\Templates\Dev` | `%userprofile%\.templateengine\Dev` |
-| Pre | Pre-release version | `%localAppData%\WinTS\Templates\Pre` | `%userprofile%\.templateengine\Pre` |
-| Pro | Marketplace version | `%localAppData%\WinTS\Templates\Pro` | `%userprofile%\.templateengine\Pro` |
+| LocalVSIXEnv | Executing TS using Experimental Instance using `Installer` as startup project | `%localAppData%\TS\Templates\LocalVsixEnv` | `%userprofile%\.templateengine\LocalVsixEnv` |
+| LocalEnvTS | Executing TS using `VSEmulator` as startup project | `%localAppData%\TS\Templates\LocalEnvTS` | `%userprofile%\.templateengine\LocalEnvTS` |
+| Dev | Dev-nightly version | `%localAppData%\TS\Templates\Dev` | `%userprofile%\.templateengine\Dev` |
+| Pre | Pre-release version | `%localAppData%\TS\Templates\Pre` | `%userprofile%\.templateengine\Pre` |
+| Pro | Marketplace version | `%localAppData%\TS\Templates\Pro` | `%userprofile%\.templateengine\Pro` |
 
 ---
 

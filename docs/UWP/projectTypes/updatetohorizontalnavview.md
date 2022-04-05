@@ -1,6 +1,6 @@
 # Update from Pivot to Horizontal WinUI NavigationView
 
-If you have an UWP project created with *WinTS* and the project type **Pivot** please follow these steps to update from Pivot to Horizontal Windows UI NavigationView. Code examples are shown for framework MVVMBasic, if you have doubts about how to adjust the code to the framework you are using, please generate a new Horizontal NavigationView project for reference with your framework or open an issue.
+If you have an UWP project created with *TS* and the project type **Pivot** please follow these steps to update from Pivot to Horizontal Windows UI NavigationView. Code examples are shown for framework MVVMBasic, if you have doubts about how to adjust the code to the framework you are using, please generate a new Horizontal NavigationView project for reference with your framework or open an issue.
 
 ## 1. Ensure target version in project properties
 

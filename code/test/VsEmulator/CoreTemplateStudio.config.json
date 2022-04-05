@@ -1,9 +1,9 @@
 {
-  "Environment": "LocalEnvWinTS",
+  "Environment": "LocalEnvTS",
   "CdnUrl": "",
   "RemoteTelemetryKey": "VSIX Key",
-  "LogFileFolderPath": "WinTS\\Logs",
-  "RepositoryFolderName": "WinTS",
+  "LogFileFolderPath": "TS\\Logs",
+  "RepositoryFolderName": "TS",
   "DiagnosticsTraceLevel": "Verbose",
   "GitHubDocsUrl": "https://github.com/microsoft/TemplateStudio/blob/main/docs/",
   "DaysToKeepDiagnosticsLogs": 5,

@@ -136,7 +136,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private string GetTemplatesFolder()
         {
-            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnvWinTS";
+            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnvTS";
         }
     }
 }

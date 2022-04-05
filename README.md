@@ -1,7 +1,7 @@
 # Template Studio
 
-*Template Studio* (aka *WinTS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
-*WinTS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
+*Template Studio* (aka *TS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
+*TS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
 
 ![Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
@@ -75,10 +75,10 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 - [Installing the extension](./docs/getting-started-extension.md)
 - [Understand the core concepts](./docs/concepts.md)
-- [Using WinTS to build UWP apps](./docs/UWP/getting-started-endusers.md)
-- [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
-- [Using WinTS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
-- [Working on WinTS](./docs/getting-started-developers.md)
+- [Using TS to build UWP apps](./docs/UWP/getting-started-endusers.md)
+- [Using TS to build WPF apps](./docs/WPF/getting-started-endusers.md)
+- [Using TS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
+- [Working on TS](./docs/getting-started-developers.md)
 
 ## Known issues
 

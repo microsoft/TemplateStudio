@@ -1,6 +1,6 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 
-If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with *TS* with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update ViewModelLocator instance mode in your MVVMLight project
 

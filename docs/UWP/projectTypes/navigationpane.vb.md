@@ -157,7 +157,7 @@ headerContextBinding.Mode = BindingMode.OneWay
 SetBinding(NavigationViewHeaderBehavior.HeaderContextProperty, headerContextBinding
 ```
 
-You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in the InkPages in *WinTS*.
+You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in the InkPages in *TS*.
 
 When using MVVMBasic, MVVMLight, Caliburn or Prism, you can use x:Bind to bind properties to your ViewModel, associated to the HeaderContext.
 

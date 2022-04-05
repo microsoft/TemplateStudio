@@ -1,6 +1,6 @@
 # Using and extending your generated project
 
-WPF projects created with *Template Studio* (aka *WinTS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
+WPF projects created with *Template Studio* (aka *TS*) are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Template Studio
 

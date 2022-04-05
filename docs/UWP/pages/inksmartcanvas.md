@@ -5,4 +5,4 @@ This page uses InkAnalyzer and allows you to select the nodes and transform them
 
 [Find out more about pen interactions and Windows Ink in UWP apps.](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
 
-We also have [additional documentation on using Ink in a WinTS generated app](./ink.md).
+We also have [additional documentation on using Ink in a TS generated app](./ink.md).
