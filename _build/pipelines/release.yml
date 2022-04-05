@@ -74,7 +74,7 @@ jobs:
   - task: EsrpCodeSigning@1
     displayName: Sign Assemblies
     inputs:
-      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      ConnectedServiceName: ESRP CodeSigning - Template Studio
       FolderPath: $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
       Pattern: TemplateStudioFor$(Moniker).dll,SharedResources.dll,WriteableBitmapEx.Wpf.dll
       signConfigType: inlineSignParams
@@ -105,7 +105,7 @@ jobs:
   - task: EsrpCodeSigning@1
     displayName: Sign JS
     inputs:
-      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      ConnectedServiceName: ESRP CodeSigning - Template Studio
       FolderPath: $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)\Assets\Html\min\vs
       Pattern: '*.js'
       signConfigType: inlineSignParams
@@ -142,7 +142,7 @@ jobs:
   - task: EsrpCodeSigning@1
     displayName: Sign VSIX
     inputs:
-      ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
+      ConnectedServiceName: ESRP CodeSigning - Template Studio
       FolderPath: $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\
       Pattern: TemplateStudioFor$(Moniker).vsix
       signConfigType: inlineSignParams
