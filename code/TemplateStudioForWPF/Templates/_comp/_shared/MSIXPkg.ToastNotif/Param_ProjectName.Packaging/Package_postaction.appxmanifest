@@ -6,7 +6,7 @@
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
 <!--}]}-->
-  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
   IgnorableNamespaces="uap rescap genTemplate<!--{[{--> com desktop<!--}]}-->">
   <Applications>
     <Application Id="App"
