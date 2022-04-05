@@ -10,7 +10,6 @@ namespace TemplateStudioForWinUICpp.Tests
 {
     [Trait("Group", "TS4WinUICpp")]
     [Trait("Group", "ReleaseWinUICpp")]
-    [Trait("Group", "Release")]
     public class ExternalLinksTest : BaseExternalLinksTests
     {
         [Fact]

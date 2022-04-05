@@ -10,7 +10,6 @@ namespace TemplateStudioForWPF.Tests
 {
     [Trait("Group", "TS4WPF")]
     [Trait("Group", "ReleaseWPF")]
-    [Trait("Group", "Release")]
     public class ExternalLinksTest : BaseExternalLinksTests
     {
         [Fact]
