@@ -173,6 +173,14 @@ jobs:
       SourceFolder: $(Build.SourcesDirectory)
       Contents: '**\bin\$(BuildConfiguration)\**'
       TargetFolder: $(Build.ArtifactStagingDirectory)
+
+  - task: CopyFiles@1
+    displayName: Aggregate VSIX Artifacts
+    condition: succeededOrFailed()
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)
+      Contents: '**\bin\$(BuildConfiguration)\**\*.vsix'
+      TargetFolder: $(Build.ArtifactStagingDirectory)\vsix
     
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifacts
