@@ -20,8 +20,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
-    [Trait("Group", "TS4UWP")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyUWP")]
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class LanguageComparisonTests : UwpBaseGenAndBuildTests
     {

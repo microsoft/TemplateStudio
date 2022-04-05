@@ -13,7 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICpp.Build
 {
-    [Trait("Group", "TS4WinUICpp")]
+    [Trait("Group", "BuildWinUICpp")]
     [Collection(nameof(WinUICppBuildTemplatesTestCollection))]
     public class BuildNoneProjectTests : WinUICppBaseGenAndBuildTests
     {

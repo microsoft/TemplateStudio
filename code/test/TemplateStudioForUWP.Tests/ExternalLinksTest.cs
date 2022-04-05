@@ -8,7 +8,6 @@ using Xunit;
 
 namespace TemplateStudioForUwp.Tests
 {
-    [Trait("Group", "TS4UWP")]
     [Trait("Group", "ReleaseUWP")]
     public class ExternalLinksTest : BaseExternalLinksTests
     {

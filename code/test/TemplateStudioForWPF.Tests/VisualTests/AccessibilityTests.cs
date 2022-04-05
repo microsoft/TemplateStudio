@@ -13,8 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {
-    [Trait("Group", "TS4WPF")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyWPF")]
     [Collection(nameof(WpfGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseWpfVisualComparisonTests
     {

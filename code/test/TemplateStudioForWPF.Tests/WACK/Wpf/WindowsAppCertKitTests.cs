@@ -23,8 +23,7 @@ namespace Microsoft.Templates.Test.WPF.Wack
     //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
     //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
     [Collection(nameof(WpfBuildTemplatesTestCollection))]
-    [Trait("Group", "TS4WPF")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyWPF")]
     public class WindowsAppCertKitTests : WpfBaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(WpfBuildTemplatesTestFixture fixture)

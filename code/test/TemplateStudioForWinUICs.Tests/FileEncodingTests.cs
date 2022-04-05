@@ -7,7 +7,6 @@ using Xunit;
 
 namespace TemplateStudioForWinUICs.Tests
 {
-    [Trait("Group", "TS4WinUICs")]
     [Trait("Group", "MinimumWinUICs")]
     public class FileEncodingTests : BaseFileEncodingTests
     {

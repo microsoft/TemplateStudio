@@ -14,7 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {
-    [Trait("Group", "TS4WPF")]
+    [Trait("Group", "BuildWPF")]
     [Collection(nameof(WpfBuildTemplatesTestCollection))]
     public class BuildCodeBehindProjectTests : WpfBaseGenAndBuildTests
     {

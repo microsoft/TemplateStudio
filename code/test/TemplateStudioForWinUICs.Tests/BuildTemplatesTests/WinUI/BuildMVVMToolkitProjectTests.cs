@@ -14,7 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICs.Build
 {
-    [Trait("Group", "TS4WinUICs")]
+    [Trait("Group", "BuildWinUICs")]
     [Collection(nameof(WinUICsBuildTemplatesTestCollection))]
     public class BuildMVVMToolkitProjectTests : WinUICsBaseGenAndBuildTests
     {

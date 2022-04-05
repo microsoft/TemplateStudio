@@ -7,7 +7,6 @@ using Xunit;
 
 namespace TemplateStudioForUwp.Tests
 {
-    [Trait("Group", "TS4UWP")]
     [Trait("Group", "MinimumUWP")]
     public class FileEncodingTests : BaseFileEncodingTests
     {

@@ -15,7 +15,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
-    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "BuildUWP")]
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildMvvmToolkitProjectTests : UwpBaseGenAndBuildTests
     {
