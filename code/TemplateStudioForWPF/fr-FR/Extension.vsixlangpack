@@ -3,5 +3,5 @@
   <LocalizedName>Template Studio for WPF</LocalizedName>
   <LocalizedDescription>Template Studio permet d’accélérer la création de nouvelles applications UWP, WPF et WinUI 3 dans desktop grâce à une interface utilisateur basée sur un assistant.</LocalizedDescription>  
   <License>..\Content\EULA.fr-FR.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>
