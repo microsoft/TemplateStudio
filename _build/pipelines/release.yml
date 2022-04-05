@@ -107,7 +107,7 @@ jobs:
     inputs:
       ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
       FolderPath: $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)\Assets\Html\min\vs
-      Pattern: *.js
+      Pattern: '*.js'
       signConfigType: inlineSignParams
       inlineOperation: >-
         [
