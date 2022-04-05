@@ -9,7 +9,7 @@
 Add-Type -Assembly System.IO.Compression
 Add-Type -Assembly System.IO.Compression.FileSystem
 
-$files= Get-ChildItem -Recurse $inputPath | Where-Object {!$_.PSIsContainer}
+$files = Get-ChildItem -Recurse $inputPath | Where-Object { $_.FullName -like '*.dll' -or $_.FullName -like '*.js' }
 
 $vsix = [System.IO.Compression.ZipFile]::Open($vsixFilePath, [System.IO.Compression.ZipArchiveMode]::Update)
 $inputDir = (Get-Item "$inputPath\").Target
