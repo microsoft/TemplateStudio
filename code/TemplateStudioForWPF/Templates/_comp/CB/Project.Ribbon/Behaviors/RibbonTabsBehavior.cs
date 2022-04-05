@@ -10,7 +10,7 @@ using Param_RootNamespace.Models;
 
 namespace Param_RootNamespace.Behaviors
 {
-    // See how to add new Tabs and new groups in Home Tab from your pages https://github.com/microsoft/WindowsTemplateStudio/blob/release/docs/WPF/projectTypes/ribbon.md
+    // See how to add new Tabs and new groups in Home Tab from your pages https://github.com/microsoft/TemplateStudio/blob/main/docs/WPF/projectTypes/ribbon.md
     public class RibbonTabsBehavior : Behavior<Ribbon>
     {
         private INavigationService _navigationService;

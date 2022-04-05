@@ -5,7 +5,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : ObservableObject
     {
-        public void OnNavigationCompleted(WebViewControlNavigationCompletedEventArgs e)
+        public void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             IsLoading = false;
 //^^

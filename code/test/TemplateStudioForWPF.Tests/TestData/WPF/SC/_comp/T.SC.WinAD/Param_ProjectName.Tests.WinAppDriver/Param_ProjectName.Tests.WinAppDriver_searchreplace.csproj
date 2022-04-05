@@ -1,5 +1,5 @@
-﻿<TargetFramework>netcoreapp3.1</TargetFramework>
+﻿<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 ^^^-searchabove-replacebelow-vvv
-<TargetFramework>netcoreapp3.1</TargetFramework>
+<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 <NoWarn>CS0618</NoWarn>

@@ -1,4 +1,8 @@
-﻿namespace Param_RootNamespace.Views
+﻿//{[{
+using Microsoft.Web.WebView2.Core;
+//}]}
+
+namespace Param_RootNamespace.Views
 {
     public partial class wts.ItemNamePage : Page
     {
@@ -17,8 +21,8 @@
 //^^
 //{[{
 
-        private void OnNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e)
-            => _viewModel.OnNavigationCompleted(e);
+        private void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+            => _viewModel.OnNavigationCompleted(sender, e);
 //}]}
     }
 }
