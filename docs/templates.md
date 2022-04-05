@@ -1,13 +1,13 @@
 ﻿# Understanding the Templates
 
-Templates are used to generate the code. In *Windows Template Studio* we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
+Templates are used to generate the code. In *Template Studio* we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
 
 For example, consider the following scenarios:
 
 - **Scenario #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a list details page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
 - **Scenario #2** you want to create as in *Scenario #1* but without depending on an external framework and adding Live Tiles support.
 
-The *Windows Template Studio* allows you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in *Windows Template Studio* are extensible.
+The *Template Studio* allows you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in *Template Studio* are extensible.
 
 ## Interested in contributing
 

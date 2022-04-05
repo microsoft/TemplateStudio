@@ -550,7 +550,7 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Je dostupná verze Windows Template Studio {0}. Aktualizací rozšíření získáte přístup k nejnovějším funkcím.</value>
+    <value>Je dostupná verze Template Studio {0}. Aktualizací rozšíření získáte přístup k nejnovějším funkcím.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -875,7 +875,7 @@ Ověřte následující seznam balíčků požadovaných v kódu vašeho projek
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Ovládací prvek HamburgerMenu je zastaralý a Windows Template Studio teď podporuje ovládací prvek NavigationView. </value>
+    <value>Ovládací prvek HamburgerMenu je zastaralý a Template Studio teď podporuje ovládací prvek NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">

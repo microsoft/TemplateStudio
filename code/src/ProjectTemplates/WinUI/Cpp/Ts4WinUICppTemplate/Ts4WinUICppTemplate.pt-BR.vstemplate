@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
 	<TemplateData>
 		<Name>Template Studio for WinUI (C++)</Name>
-		<Description>O Windows Template Studio cria rapidamente um aplicativo UWP, usando uma interface do usuário baseada em assistente para transformar suas necessidades em uma base de padrões e práticas recomendadas do Windows 10.</Description>
+		<Description>O Template Studio cria rapidamente um aplicativo UWP, usando uma interface do usuário baseada em assistente para transformar suas necessidades em uma base de padrões e práticas recomendadas do Windows 10.</Description>
 		<Icon>Ts4WinUICppTemplate.png</Icon>
 		<ProjectType>VC</ProjectType>
 		<LanguageTag>cpp</LanguageTag>

@@ -1,6 +1,6 @@
-# Windows Template Studio - Documentation
+# Template Studio - Documentation
 
-*Windows Template Studio* (aka *WinTS*) documentation is divided into three areas.
+*Template Studio* (aka *WinTS*) documentation is divided into three areas.
 
 ## General
 

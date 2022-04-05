@@ -550,7 +550,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>La versione {0} di Windows Template Studio è disponibile. Aggiorna l'estensione per usufruire delle funzionalità più recenti.</value>
+    <value>La versione {0} di Template Studio è disponibile. Aggiorna l'estensione per usufruire delle funzionalità più recenti.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -715,7 +715,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <comment>Status bar message for adding project references</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Creazione progetto Windows Template Studio in corso...</value>
+    <value>Creazione progetto Template Studio in corso...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
@@ -875,7 +875,7 @@ Verifica il seguente elenco di pacchetti necessario al codice del progetto e agg
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Il controllo HamburgerMenu è obsoleto e Windows Template Studio ora supporta NavigationView. </value>
+    <value>Il controllo HamburgerMenu è obsoleto e Template Studio ora supporta NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">

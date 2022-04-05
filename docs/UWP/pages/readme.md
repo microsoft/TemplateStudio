@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Pages
+# Template Studio - UWP Pages
 
 The following pages are supported in UWP apps.
 

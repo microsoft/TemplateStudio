@@ -875,7 +875,7 @@
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Die HamburgerMenu-Steuerung ist veraltet, und Windows Template Studio unterstützt jetzt NavigationView. </value>
+    <value>Die HamburgerMenu-Steuerung ist veraltet, und Template Studio unterstützt jetzt NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">

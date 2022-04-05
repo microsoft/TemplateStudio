@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Design Patterns (frameworks)
+# Template Studio - UWP Design Patterns (frameworks)
 
 The following design patterns are supported in UWP apps.
 

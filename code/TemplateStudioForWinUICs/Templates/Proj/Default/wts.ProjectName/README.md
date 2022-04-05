@@ -1,6 +1,6 @@
 ﻿*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor).*
 
-This project was created using [Microsoft Windows Template Studio](https://aka.ms/wts).
+This project was created using [Microsoft Template Studio](https://aka.ms/wts).
 
 ## Getting Started
 This app was built using WinUI 3 and the Windows App SDK.

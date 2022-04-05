@@ -1,8 +1,8 @@
-# Notifications on Windows Template Studio
+# Notifications on Template Studio
 
 ## WinTS Features
 
-*Windows Template Studio* supports three different type of notifications.
+*Template Studio* supports three different type of notifications.
 
 - [Toast notifications](./features/toast-notifications.md)
 - [Azure Hub notifications](./features/azure-notifications.md)

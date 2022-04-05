@@ -1,3 +1,3 @@
-# Notifications on Windows Template Studio
+# Notifications on Template Studio
 
 These details have [moved here](./UWP/notifications.md).

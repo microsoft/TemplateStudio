@@ -1,4 +1,4 @@
-# Windows Template Studio - ChangeLog
+# Template Studio - ChangeLog
 
 You can find a record of past changes by looking at our [releases](https://github.com/microsoft/TemplateStudio/releases).
 

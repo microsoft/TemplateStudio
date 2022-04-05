@@ -1,4 +1,4 @@
-# Windows Template Studio (WinTS) Naming
+# Template Studio (WinTS) Naming
 
 ## Project reserved names
 

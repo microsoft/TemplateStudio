@@ -149,7 +149,7 @@ Example:
         Localization gen -s "C:\\MyFolder\\wts"</value>
   </data>
   <data name="HelpCommand" xml:space="preserve">
-    <value>Provides Help information for Windows Template Studio Localization Tool.
+    <value>Provides Help information for Template Studio Localization Tool.
 
 Localization help [command]
 
@@ -162,7 +162,7 @@ EXT        Extract localizable items for different cultures.
 GEN        Generates Project Templates for different cultures.
 MERGE      Merge localizable items to projects and templates.
 VERIFY     Verify if exist localizable items for different cultures.
-HELP       Provides Help information for Windows Template Studio Localization Tool.</value>
+HELP       Provides Help information for Template Studio Localization Tool.</value>
   </data>
   <data name="MergeCommand" xml:space="preserve">
     <value>Merge localizable items to projects and templates.

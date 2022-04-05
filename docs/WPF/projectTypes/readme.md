@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Project Types
+# Template Studio - WPF Project Types
 
 The following project types are supported in WPF apps.
 

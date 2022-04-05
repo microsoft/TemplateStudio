@@ -1,8 +1,8 @@
 # Getting started with the generator codebase
 
-If you are authoring templates for *Windows Template Studio*, or interested in [contributing](../CONTRIBUTING.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
+If you are authoring templates for *Template Studio*, or interested in [contributing](../CONTRIBUTING.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
-If you just want to take advantage from *Windows Template Studio* extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
+If you just want to take advantage from *Template Studio* extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
 
 ## Repo Solutions
 
@@ -10,7 +10,7 @@ Under the [code](../code/) folder, the repo has different solutions to aid devel
 
 - **Big.sln**: This is the solution which contains all the projects available, including test projects.
 - **Installer.sln**: This solution is focused on the Visual Studio extension, it has the extension project and all the dependencies and is thought to run the extension in the Visual Studio Experimental IDE.
-- **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the *Windows Template Studio* wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
+- **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the *Template Studio* wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
 - **Test.sln**: This solution is used to work with the project integration tests.
 
 ## Running the Extension Locally
@@ -19,7 +19,7 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 
 1. Clone this repo to your local machine
 2. Open the solution [Big.sln](../code/)
-3. Set the project `Installer` as `Startup project` for the solution. This is the Visual Studio Extension project for *Windows Template Studio*.
+3. Set the project `Installer` as `Startup project` for the solution. This is the Visual Studio Extension project for *Template Studio*.
 4. Configure the `Installer` project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
 
    - Open the `Installer` project properties.
@@ -32,10 +32,10 @@ First of all, be sure you are running [Visual Studio 2019](https://www.visualstu
 5. Build the solution.
 6. Start debugging (`F5`) or start without debugging (`Ctrl+F5`).
 
-With this steps, the *Windows Template Studio* Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to `File -> New Project...` to create a new project or open a project created with *Windows Template Studio* and right click on the main project and choose any of the options provided on the `Windows Template Studio` context menu.
+With this steps, the *Template Studio* Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to `File -> New Project...` to create a new project or open a project created with *Template Studio* and right click on the main project and choose any of the options provided on the `Template Studio` context menu.
 
 The entry points for project creation are the different project templates in the [ProjectTemplates folder](../code/src/ProjectTemplates).
-The default experience for *Windows Template Studio* is project generation using a wizard-based experience. The Wizard is invoked by all project templates that end with `Solution` using the `SolutionWizard` class from the `UI`project.
+The default experience for *Template Studio* is project generation using a wizard-based experience. The Wizard is invoked by all project templates that end with `Solution` using the `SolutionWizard` class from the `UI`project.
 There are a few other project templates (in the WinUI folder) that do not (yet) allow any user configuration, those project templates create the project using vstemplate generation without showing the Wizard.
 The entry point for right click additions is the RelayCommandPackage from the `Installer` project.
 
@@ -45,7 +45,7 @@ When running locally, the local [templates folder](../templates) is used as sour
 
 ## Using the UI.sln solution
 
-To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the *Windows Template Studio* Wizard. This application, as well as the Wizard assembly, are available thru the `UI.sln` solution. To use it, follow this steps:
+To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the *Template Studio* Wizard. This application, as well as the Wizard assembly, are available thru the `UI.sln` solution. To use it, follow this steps:
 
 1. Open the `UI.sln` solution
 2. Set the `test\VsEmulator` project as `Startup Project`
@@ -70,7 +70,7 @@ Following are described the contents for each folder:
 
 - [tools](../code/tools): tooling required for testing / validations.
 - [src](../code/src): solution source code
-  - [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the *Windows Template Studio* Project Template and ensures that all required assets are deployed with it.
+  - [Installer](../code/src/Installer): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the *Template Studio* Project Template and ensures that all required assets are deployed with it.
   - [ItemTemplates](../code/src/ItemTemplates): This folder contains the [Visual Studio Item Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the `Add --> New Item...` experience on WinUI 3 projects.
   - [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the `File --> New Project...` experience. There are separate templates for **UWP (C# and Visual Basic)**, **WPF** and **WinUI 3 (C# and C++)**.
   - [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
@@ -179,9 +179,9 @@ where
 
 ## Core
 
-*Windows Template Studio* relies on *Core Template Studio* for template synchronization and template composition, generation and postaction. *Core Template Studio* has it's own Github repository [github.com/Microsoft/CoreTemplateStudio](https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project *Web Template Studio* [github.com/Microsoft/WebTemplateStudio](https://github.com/Microsoft/WebTemplateStudio).
+*Template Studio* relies on *Core Template Studio* for template synchronization and template composition, generation and postaction. *Core Template Studio* has it's own Github repository [github.com/Microsoft/CoreTemplateStudio](https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project *Web Template Studio* [github.com/Microsoft/WebTemplateStudio](https://github.com/Microsoft/WebTemplateStudio).
 
-*Core Template Studio* is integrated into *Windows Template Studio* using a git submodule under the folder (`../code/CoreTemplateStudio`).
+*Core Template Studio* is integrated into *Template Studio* using a git submodule under the folder (`../code/CoreTemplateStudio`).
 The submodule points to a specific commit in the release branch of *Core Template Studio*, that you can see in github:
 
 ![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
@@ -194,7 +194,7 @@ In *WinTS*, to update the submodule to the most recent commit, you have to run t
 
 ## Troubleshooting
 
-When working on Windows Template Studio the following folders are useful to investigate any issue you run into:
+When working on Template Studio the following folders are useful to investigate any issue you run into:
 
 ### Log File
 You can find the log file at `%localAppData%\WinTS\Logs`. Log files are separated by environment, the diagnostic trace level can be set using the property DiagnosticsTraceLevel in the config.json file.

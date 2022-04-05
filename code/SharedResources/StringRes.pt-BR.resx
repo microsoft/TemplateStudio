@@ -550,7 +550,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>O Windows Template Studio Versão {0} está disponível. Atualize a extensão para aproveitar os últimos recursos.</value>
+    <value>O Template Studio Versão {0} está disponível. Atualize a extensão para aproveitar os últimos recursos.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -715,7 +715,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Status bar message for adding project references</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Criando projeto do Windows Template Studio...</value>
+    <value>Criando projeto do Template Studio...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
@@ -863,7 +863,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>O Windows Template Studio alterou o serviço de ativação para conseguir incluir recursos de Identity.</value>
+    <value>O Template Studio alterou o serviço de ativação para conseguir incluir recursos de Identity.</value>
     <comment>Has ActivationService before Identity error message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
@@ -875,7 +875,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>O controle HamburgerMenu está obsoleto, e agora o Windows Template Studio dá suporte a NavigationView. </value>
+    <value>O controle HamburgerMenu está obsoleto, e agora o Template Studio dá suporte a NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
@@ -887,7 +887,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Has no core project validation link documentation message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
-    <value>O Windows Template Studio está adicionando um projeto principal. </value>
+    <value>O Template Studio está adicionando um projeto principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -911,7 +911,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>O Windows Template Studio agora está usando o NavigationView da Biblioteca de IU do Windows.</value>
+    <value>O Template Studio agora está usando o NavigationView da Biblioteca de IU do Windows.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ValidatorHasPivotLink" xml:space="preserve">
@@ -923,7 +923,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>O Windows Template Studio agora está usando o NavigationView horizontal em projetos de Tabela Dinâmica. </value>
+    <value>O Template Studio agora está usando o NavigationView horizontal em projetos de Tabela Dinâmica. </value>
     <comment>Has pivot validation error message</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">

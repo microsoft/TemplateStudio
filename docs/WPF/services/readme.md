@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Services
+# Template Studio - WPF Services
 
 The following services are supported in WPF apps.
 

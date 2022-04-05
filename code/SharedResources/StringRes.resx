@@ -338,7 +338,7 @@
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <value>Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -474,7 +474,7 @@
     <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
-    <value>Windows Template Studio</value>
+    <value>Template Studio</value>
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
@@ -630,15 +630,15 @@
     <comment>Help text to add template item. {0}: name of template</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
+    <value>HamburgerMenu control is obsolete and Template Studio now supports NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
+    <value>Template Studio is now using horizontal NavigationView in Pivot projects. </value>
     <comment>Has pivot validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>Template Studio is now using the NavigationView from Windows UI Library.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
