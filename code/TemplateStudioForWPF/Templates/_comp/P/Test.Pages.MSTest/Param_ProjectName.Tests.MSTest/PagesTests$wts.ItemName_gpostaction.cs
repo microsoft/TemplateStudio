@@ -5,7 +5,7 @@
     {
 //^^
 //{[{
-        // TODO WTS: Add tests for functionality you add to wts.ItemNameViewModel.
+        // TODO: Add tests for functionality you add to wts.ItemNameViewModel.
         [TestMethod]
         public void Testwts.ItemNameViewModelCreation()
         {

@@ -6,7 +6,7 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // TODO WTS: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
+    // TODO: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
     public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         private readonly AppConfig _appConfig;

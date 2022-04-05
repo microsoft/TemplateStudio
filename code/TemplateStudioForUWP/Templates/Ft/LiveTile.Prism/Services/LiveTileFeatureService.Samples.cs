@@ -80,7 +80,7 @@ namespace Param_RootNamespace.Services
 
         public async Task SamplePinSecondaryAsync(string pageName)
         {
-            // TODO WTS: Call this method to Pin a Secondary Tile from a page.
+            // TODO: Call this method to Pin a Secondary Tile from a page.
             // You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
             var tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
             tile.Arguments = pageName;

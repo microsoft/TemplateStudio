@@ -6,9 +6,9 @@ namespace Param_RootNamespace.Activation
 {
     public class SchemeActivationData
     {
-        // TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
+        // TODO: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
         // More details about this functionality can be found at https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/deep-linking.md
-        // TODO WTS: Change the image in Assets/Logo.png to one for display if the OS asks the user which app to launch.
+        // TODO: Change the image in Assets/Logo.png to one for display if the OS asks the user which app to launch.
         // Also update this protocol name with the same value as package.appxmanifest.
         private const string ProtocolName = "wtsapp";
 

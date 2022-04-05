@@ -47,7 +47,7 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                // TODO: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
                 return false;
             }
         }

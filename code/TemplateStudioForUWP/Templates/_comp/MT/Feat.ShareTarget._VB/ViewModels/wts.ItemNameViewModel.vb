@@ -36,12 +36,12 @@ Namespace ViewModels
         End Sub
 
         Public Async Function LoadAsync(shareOperation As ShareOperation) As Task
-            ' TODO WTS: Configure the Share Target Declaration for the formats you require.
+            ' TODO: Configure the Share Target Declaration for the formats you require.
             ' Share Target declarations are defined in Package.appxmanifest.
             ' Current declarations allow to share WebLink and image files with the app.
             ' ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
 
-            ' TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            ' TODO: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
             _shareOperation = shareOperation
             If shareOperation.Data.Contains(StandardDataFormats.StorageItems) Then
                 SharedData = New SharedDataStorageItemsViewModel()
@@ -55,7 +55,7 @@ Namespace ViewModels
         End Function
 
         Private Sub OnComplete()
-            ' TODO WTS: Implement any other logic or add a QuickLink before completing the share operation.
+            ' TODO: Implement any other logic or add a QuickLink before completing the share operation.
             ' More details at https://docs.microsoft.com/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted()
         End Sub

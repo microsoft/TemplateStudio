@@ -23,7 +23,7 @@ Navigate to `ViewModels/ShellViewModel.cs` and change the `MenuItems` property.
 The code below shows the symbols used to create the app shown in the image above.
 
 ```csharp
-// TODO WTS: Change the icons and titles for all HamburgerMenuItems here.
+// TODO: Change the icons and titles for all HamburgerMenuItems here.
 public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
 {
     new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE8A5", TargetPageType = typeof(MainViewModel) },

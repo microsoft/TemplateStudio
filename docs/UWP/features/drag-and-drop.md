@@ -115,7 +115,7 @@ public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
 {
     foreach(var item in items)
     {
-        //TODO WTS: Process storage item
+        //TODO: Process storage item
     }
 }
 ```
@@ -147,7 +147,7 @@ public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
 {
     foreach(var item in items)
     {
-        //TODO WTS: Process storage item
+        //TODO: Process storage item
     }
 }
 ```

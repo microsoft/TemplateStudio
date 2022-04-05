@@ -396,7 +396,7 @@ The resulting code should look like this:
 Imports YourAppName.ViewModels
 
 Namespace Views
-    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    ' TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
       Inherits Page
 

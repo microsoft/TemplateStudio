@@ -118,7 +118,7 @@ End Property
 
 Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
     For Each item In items
-        ' TODO WTS: Process storage item
+        ' TODO: Process storage item
     Next
 End Sub
 ```
@@ -153,7 +153,7 @@ End Property
 
 Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
     For Each item In items
-        ' TODO WTS: Process storage item
+        ' TODO: Process storage item
     Next
 End Sub
 ```

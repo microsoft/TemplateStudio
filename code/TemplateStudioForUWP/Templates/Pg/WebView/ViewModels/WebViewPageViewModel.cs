@@ -7,7 +7,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class WebViewPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO WTS: Set the URI of the page to show by default
+        // TODO: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
 
         private Uri _source;

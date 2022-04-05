@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Views
     {
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
-        // TODO WTS: Change the grid as appropriate to your app, adjust the column definitions on DataGridViewPage.xaml.
+        // TODO: Change the grid as appropriate to your app, adjust the column definitions on DataGridViewPage.xaml.
         // For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid
         public DataGridViewPage()
         {

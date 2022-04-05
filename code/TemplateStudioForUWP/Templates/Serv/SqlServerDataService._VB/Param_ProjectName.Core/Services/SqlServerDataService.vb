@@ -6,10 +6,10 @@ Namespace Services
 
     ' This class holds sample data used by some generated pages to show how they can be used.
     ' More information on using and configuring this service can be found at https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/services/sql-server-data-service.md
-    ' TODO WTS: Change your code to use this instead of the SampleDataService.
+    ' TODO: Change your code to use this instead of the SampleDataService.
     Public Module SqlServerDataService
 
-        ' TODO WTS: Specify the connection string in a config file or below.
+        ' TODO: Specify the connection string in a config file or below.
         Private Function GetConnectionString() As String
             ' Attempt to get the connection string from a config file
             ' Learn more about specifying the connection string in a config file at https://docs.microsoft.com/dotnet/api/system.configuration.configurationmanager?view=netframework-4.7.2
@@ -32,7 +32,7 @@ Namespace Services
 
         ' This method returns data with the same structure as the SampleDataService but based on the NORTHWIND sample database.
         ' Use this as an alternative to the sample data to test using a different datasource without changing any other code.
-        ' TODO WTS: Remove this when or if it isn't needed.
+        ' TODO: Remove this when or if it isn't needed.
         Public Async Function AllCompanies() As Task(Of IEnumerable(Of SampleCompany))
             ' This hard-coded SQL statement is included to make this sample simpler.
             ' You can use Stored procedure, ORMs, or whatever is appropriate to access data in your app.

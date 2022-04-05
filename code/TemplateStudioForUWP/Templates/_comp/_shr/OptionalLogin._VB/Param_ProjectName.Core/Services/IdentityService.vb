@@ -17,7 +17,7 @@ Namespace Services
         Private _client As IPublicClientApplication
         Private _authenticationResult As AuthenticationResult
 
-        ' TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
+        ' TODO: Please create a ClientID following these steps and update the app.config IdentityClientId.
         ' https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
         Private _clientId As String = ConfigurationManager.AppSettings("IdentityClientId")
 
@@ -72,7 +72,7 @@ Namespace Services
         End Function
 
         Public Function IsAuthorized() As Boolean
-            ' TODO WTS: You can also add extra authorization checks here.
+            ' TODO: You can also add extra authorization checks here.
             ' i.e.: Checks permisions of _authenticationResult.Account.Username in a database.
             Return True
         End Function
@@ -93,7 +93,7 @@ Namespace Services
                 _authenticationResult = Nothing
                 RaiseEvent LoggedOut(Me, EventArgs.Empty)
             Catch ex As MsalException
-                ' TODO WTS: LogoutAsync can fail please handle exceptions as appropriate to your scenario
+                ' TODO: LogoutAsync can fail please handle exceptions as appropriate to your scenario
                 ' For more info on MsalExceptions see
                 ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
             End Try
@@ -148,7 +148,7 @@ Namespace Services
                 End If
 
             Catch ex As MsalException
-                ' TODO WTS: Silentauth failed, please handle this exception as appropriate to your scenario
+                ' TODO: Silentauth failed, please handle this exception as appropriate to your scenario
                 ' For more info on MsalExceptions see
                 ' https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
                 Return False

@@ -31,7 +31,7 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                // TODO: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
             }
         }
 
@@ -48,7 +48,7 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                // TODO: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
                 return false;
             }
         }
@@ -77,14 +77,14 @@ namespace Param_RootNamespace.Services
         private bool LaunchFromSecondaryTile(LaunchActivatedEventArgs args)
         {
             // If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO: Implement your own logic to determine if you can handle the SecondaryTile activation
             return false;
         }
 
         private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
         {
             // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            // TODO: Implement your own logic to determine if you can handle the LiveTile notification update activation
             return false;
         }
     }

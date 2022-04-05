@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <winui:MenuBar VerticalAlignment="Top">
                 <!--
-                TODO WTS: You can edit the text for the menu in String/en-US/Resources.resw
+                TODO: You can edit the text for the menu in String/en-US/Resources.resw
                 -->
                 <winui:MenuBarItem x:Uid="ShellMenuBarItem_File">
                     <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Click="ShellMenuItemClick_File_Exit" />

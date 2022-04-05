@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection ProtectWebApiWithJwtBearer(this IServiceCollection services, IConfiguration configuration)
         {
-            // TODO WTS: Follow these steps to register your Web API and expose scopes and roles,
+            // TODO: Follow these steps to register your Web API and expose scopes and roles,
             // afterwards populate the appsettings.json with ClientId, Tenant, Audience and Scope
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
@@ -72,7 +72,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         OnAuthenticationFailed = context =>
                         {
-                            // TODO WTS: This event is invoked if there where errors during token validation,
+                            // TODO: This event is invoked if there where errors during token validation,
                             // please handle as appropriate to your scenario.
                             return Task.CompletedTask;
                         }

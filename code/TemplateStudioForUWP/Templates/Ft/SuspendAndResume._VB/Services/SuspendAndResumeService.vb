@@ -42,7 +42,7 @@ Namespace Services
                 Await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs)
                 Return True
             Catch ex As Exception
-                ' TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                ' TODO: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
                 Return False
             End Try
         End Function

@@ -37,7 +37,7 @@ The code below shows the symbols used to create the app shown in the image above
 ```xml
 <winui:NavigationView.MenuItems>
     <!--
-    TODO WTS: Change the symbols for each item as appropriate for your app
+    TODO: Change the symbols for each item as appropriate for your app
     More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
     Or to use an IconElement instead of a Symbol see https://github.com/microsoft/TemplateStudio/blob/main/docs/projectTypes/navigationpane.md
     Edit String/en-US/Resources.resw: Add a menu item title for each page

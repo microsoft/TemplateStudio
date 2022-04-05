@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Core.Tests.MSTest
 {
-    // TODO WTS: Add appropriate unit tests.
+    // TODO: Add appropriate unit tests.
     [TestClass]
     public class Tests
     {

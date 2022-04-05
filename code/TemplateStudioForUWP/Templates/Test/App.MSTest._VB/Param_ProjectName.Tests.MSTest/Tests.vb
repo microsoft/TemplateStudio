@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-' TODO WTS: Add appropriate tests
+' TODO: Add appropriate tests
 <TestClass>
 Public Class Tests
     <TestMethod>

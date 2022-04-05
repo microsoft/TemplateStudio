@@ -12,7 +12,7 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source, Mode=OneWay}" AutoGenerateColumns="False" >
                 <tg:RadDataGrid.Columns>
-                    <!--TODO WTS:
+                    <!--TODO:
                       Remove this column definitions and define columns for your data.
                       Consider adding header properties to Resources.resw-->
                     <tg:DataGridTextColumn PropertyName="OrderID" />

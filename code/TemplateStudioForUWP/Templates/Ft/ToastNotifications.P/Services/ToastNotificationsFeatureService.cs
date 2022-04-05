@@ -13,7 +13,7 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                // TODO: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
             }
         }
     }

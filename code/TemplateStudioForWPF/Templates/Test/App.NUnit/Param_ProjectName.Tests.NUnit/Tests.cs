@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Tests.NUnit
 {
-    // TODO WTS: Add appropriate unit tests.
+    // TODO: Add appropriate unit tests.
     public class Tests
     {
         [Test]

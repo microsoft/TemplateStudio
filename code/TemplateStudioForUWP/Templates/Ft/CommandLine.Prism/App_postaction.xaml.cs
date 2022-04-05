@@ -45,7 +45,7 @@ namespace Param_RootNamespace
                 // This is typically not the install location of the app itself, but could be any arbitrary path.
                 var activationPath = cmdLineDetails.activationPath;
 
-                //// TODO WTS: parse the cmdLineString to determine what to do.
+                //// TODO: parse the cmdLineString to determine what to do.
                 //// If the arguments warrant showing a different view on launch, that can be done here.
                 //// await LaunchApplicationAsync(PageTokens.CmdLineActivationSamplePage, cmdLineString);
                 //// If you do nothing, the app will launch like normal.

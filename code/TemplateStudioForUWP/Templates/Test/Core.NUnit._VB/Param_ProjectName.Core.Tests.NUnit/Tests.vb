@@ -1,6 +1,6 @@
 ﻿Imports NUnit.Framework
 
-' TODO WTS: Add appropriate unit tests.
+' TODO: Add appropriate unit tests.
 Public Class Tests
 
     <SetUp>

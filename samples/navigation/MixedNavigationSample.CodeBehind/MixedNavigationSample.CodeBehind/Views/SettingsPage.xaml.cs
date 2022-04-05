@@ -13,8 +13,8 @@ namespace MixedNavigationSample.CodeBehind.Views
 {
     public sealed partial class SettingsPage : Page, INotifyPropertyChanged
     {
-        //// TODO WTS: Add other settings as necessary. For help see https://github.com/microsoft/TemplateStudio/blob/main/docs/pages/settings-codebehind.md
-        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        //// TODO: Add other settings as necessary. For help see https://github.com/microsoft/TemplateStudio/blob/main/docs/pages/settings-codebehind.md
+        //// TODO: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
 
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 

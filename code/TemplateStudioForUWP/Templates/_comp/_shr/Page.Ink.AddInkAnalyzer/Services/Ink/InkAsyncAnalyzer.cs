@@ -10,7 +10,7 @@ using Param_RootNamespace.EventHandlers.Ink;
 
 namespace Param_RootNamespace.Services.Ink
 {
-    // TODO WTS: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
+    // TODO: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
     // For more info see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/pages/ink.md#install-handwriting-recognition
     public class InkAsyncAnalyzer
     {
