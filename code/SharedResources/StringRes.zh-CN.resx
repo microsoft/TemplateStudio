@@ -715,7 +715,7 @@
     <comment>Status bar message for adding project references</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>正在创建 Windows Template Studio 项目...</value>
+    <value>正在创建 Template Studio 项目...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
@@ -875,7 +875,7 @@
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu 控件已过时，Windows Template Studio 现在支持 NavigationView。</value>
+    <value>HamburgerMenu 控件已过时，Template Studio 现在支持 NavigationView。</value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">

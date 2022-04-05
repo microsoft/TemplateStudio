@@ -3,5 +3,5 @@
   <LocalizedName>Template Studio for WPF</LocalizedName>
   <LocalizedDescription>Template Studio, sihirbaz tabanlı bir kullanıcı arabirimi kullanarak Masaüstü uygulamalarında yeni UWP, WPF ve WinUI 3 oluşturulmasını hızlandırır.</LocalizedDescription>  
   <License>..\Content\EULA.tr-TR.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

@@ -875,7 +875,7 @@
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu 제어를 사용하지 않고 이제 Windows Template Studio는 NavigationView를 지원합니다. </value>
+    <value>HamburgerMenu 제어를 사용하지 않고 이제 Template Studio는 NavigationView를 지원합니다. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
@@ -911,7 +911,7 @@
     <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>이제 Windows Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
+    <value>이제 Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ValidatorHasPivotLink" xml:space="preserve">

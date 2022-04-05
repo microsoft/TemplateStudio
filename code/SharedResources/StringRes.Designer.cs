@@ -1558,7 +1558,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features..
+        ///   Looks up a localized string similar to Template Studio Version {0} is available. Update the extension to enjoy the latest features..
         /// </summary>
         public static string NotificationSyncStatus_NewWizardVersionAvailable {
             get {
@@ -2893,7 +2893,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. .
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and Template Studio now supports NavigationView. .
         /// </summary>
         public static string ValidatorHasHamburgerMenuMessage {
             get {
@@ -2974,7 +2974,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio is now using the NavigationView from Windows UI Library..
+        ///   Looks up a localized string similar to Template Studio is now using the NavigationView from Windows UI Library..
         /// </summary>
         public static string ValidatorHasOldNavigationViewMessage {
             get {
@@ -3001,7 +3001,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio is now using horizontal NavigationView in Pivot projects. .
+        ///   Looks up a localized string similar to Template Studio is now using horizontal NavigationView in Pivot projects. .
         /// </summary>
         public static string ValidatorHasPivotMessage {
             get {
@@ -3010,7 +3010,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio.
+        ///   Looks up a localized string similar to Template Studio.
         /// </summary>
         public static string WindowsTemplateStudio {
             get {

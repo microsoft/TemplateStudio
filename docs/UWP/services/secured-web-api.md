@@ -33,7 +33,7 @@ Update the App.config's IdentityClientId, ResourceId (WebAPI's ClientID) and Web
 
 ## Understanding the code
 
-This feature uses Forced or Optional Login from the Identity Service Group. [Learn more about using identity in WinTS generated apps](./identity.md).
+This feature uses Forced or Optional Login from the Identity Service Group. [Learn more about using identity in TS generated apps](./identity.md).
 
 ### ServiceCollectionExtensions
 

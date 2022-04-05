@@ -1,4 +1,4 @@
-# Windows Template Studio
+# Template Studio
 
 Copyright (c) .NET Foundation and Contributors.
 

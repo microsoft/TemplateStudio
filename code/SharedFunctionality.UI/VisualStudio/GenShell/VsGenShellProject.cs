@@ -121,7 +121,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             if (!string.IsNullOrEmpty(activeProjectPath) && projectKind != VsGenShellProperties.PackagingProjectTypeGuid)
             {
-                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                var metadataFileNames = new List<string>() { "Package.appxmanifest", "TemplateStudio.xml" };
                 var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(activeProjectPath, fileName)));
 
                 if (!string.IsNullOrEmpty(metadataFile))

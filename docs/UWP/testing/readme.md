@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Testing
+# Template Studio - UWP Testing
 
 The following test projects are supported in UWP apps.
 

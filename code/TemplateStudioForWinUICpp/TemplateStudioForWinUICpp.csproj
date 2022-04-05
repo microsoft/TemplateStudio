@@ -634,7 +634,7 @@
     <Content Include="Templates\Projects\Default\wts.ProjectName\readme.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\WTS.ProjectConfig.xml">
+    <Content Include="Templates\Projects\Default\wts.ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj.filters">

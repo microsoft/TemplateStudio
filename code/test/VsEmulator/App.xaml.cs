@@ -166,7 +166,7 @@ namespace Microsoft.Templates.VsEmulator
   xmlns=""http://schemas.microsoft.com/appx/manifest/foundation/windows10""
   xmlns:mp=""http://schemas.microsoft.com/appx/2014/phone/manifest""
   xmlns:uap=""http://schemas.microsoft.com/appx/manifest/uap/windows10""
-  xmlns:genTemplate=""http://schemas.microsoft.com/appx/developer/windowsTemplateStudio""
+  xmlns:genTemplate=""http://schemas.microsoft.com/appx/developer/templatestudio""
   IgnorableNamespaces=""uap mp genTemplate"">
   <genTemplate:Metadata>
     <genTemplate:Item Name=""generator"" Value=""Template Studio""/>

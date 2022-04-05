@@ -550,7 +550,7 @@
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Доступна версия Windows Template Studio {0}. Обновите расширение, чтобы оценить новейшие функции.</value>
+    <value>Доступна версия Template Studio {0}. Обновите расширение, чтобы оценить новейшие функции.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -863,7 +863,7 @@
     <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
   <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Расширение Windows Template Studio изменило службу ActivationService так, чтобы она могла включать возможности Identity.</value>
+    <value>Расширение Template Studio изменило службу ActivationService так, чтобы она могла включать возможности Identity.</value>
     <comment>Has ActivationService before Identity error message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">

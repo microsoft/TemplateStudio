@@ -10,10 +10,10 @@ namespace Param_RootNamespace.Tests.WinAppDriver
     [TestClass]
     public class BasicTests
     {
-        // TODO WTS: install WinAppDriver and start it before running tests: https://github.com/Microsoft/WinAppDriver
+        // TODO: install WinAppDriver and start it before running tests: https://github.com/Microsoft/WinAppDriver
         protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
 
-        // TODO WTS: set the app launch ID.
+        // TODO: set the app launch ID.
         // The part before "!App" will be in Package.Appxmanifest > Packaging > Package Family Name.
         // The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
         // If your project doesn't contain MSIX Packaging set AppToLaunch .exe path.
@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Tests.WinAppDriver
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-            // TODO WTS: change the location where screenshots are saved.
+            // TODO: change the location where screenshots are saved.
             // Create separate folders for saving the results of each test run.
             _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now:dd_HHmm}\\";
             _screenshotFilePath = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png");
@@ -82,7 +82,7 @@ namespace Param_RootNamespace.Tests.WinAppDriver
             }
         }
 
-        // TODO WTS: Add other tests as appropriate.
+        // TODO: Add other tests as appropriate.
         [TestMethod]
         public void TakeScreenshotOfLaunchPage()
         {

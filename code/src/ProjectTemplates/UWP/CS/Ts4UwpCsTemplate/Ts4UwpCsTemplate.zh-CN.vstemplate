@@ -4,7 +4,7 @@
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
 	<TemplateData>
 		<Name>Template Studio for UWP</Name>
-		<Description>Windows Template Studio 使用基于向导的 UI，将你的需求变成 Windows 10 模式和最佳实践的基础，以此构建 UWP 应用。</Description>
+		<Description>Template Studio 使用基于向导的 UI，将你的需求变成 Windows 10 模式和最佳实践的基础，以此构建 UWP 应用。</Description>
 		<Icon>Ts4UwpCsTemplate.ico</Icon>
 		<ProjectType>CSharp</ProjectType>
 		<LanguageTag>csharp</LanguageTag>

@@ -1,7 +1,7 @@
 # Platform Specific Recommendations
 
 The Universal Windows Platform (UWP) lets you build apps for any Windows device (PCs, Xbox One, HoloLens, Surface Hub, IoT and more).
-Here is a compilation of useful links to the documentation that will help you to adapt your *WinTS* generated application to add some platform-specific features.
+Here is a compilation of useful links to the documentation that will help you to adapt your *TS* generated application to add some platform-specific features.
 
 ## General
 

@@ -1,5 +1,5 @@
 ﻿Namespace Models
-    ' TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data.
+    ' TODO: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data.
     Public Class DataPoint
         Public Property Value As Double
 

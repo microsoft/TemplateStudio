@@ -1,8 +1,8 @@
-# Windows Template Studio (WinTS) Naming
+# Template Studio (TS) Naming
 
 ## Project reserved names
 
-*WinTS* has some reserved names. You can't use those names for naming your project:
+*TS* has some reserved names. You can't use those names for naming your project:
 
 ### Universal Windows Platform
 
@@ -21,7 +21,7 @@ No reserved names for WinUI.
 
 ## Page suffixes
 
-For **Page** generation the suffixes `Page` and `ViewModel` will be added by *WinTS* to Page and ViewModel files.
+For **Page** generation the suffixes `Page` and `ViewModel` will be added by *TS* to Page and ViewModel files.
 
 **Example**
 
@@ -35,7 +35,7 @@ A page named **Main** in the wizard will result in the generation of the followi
 
 ## Pages and features reserved names
 
-*WinTS* has some reserved names. You can't use those names for naming pages and features:
+*TS* has some reserved names. You can't use those names for naming pages and features:
 
 ### Universal Windows Platform
 

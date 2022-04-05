@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Controls
             set { SetValue(TextProperty, value); }
         }
 
-        // TODO WTS: Add any Dependency properties you need to add to your control
+        // TODO: Add any Dependency properties you need to add to your control
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(wts.ItemNameControl), new PropertyMetadata(string.Empty));
 
         public wts.ItemNameControl()
@@ -50,7 +50,7 @@ namespace Param_RootNamespace.Controls
                 _universalControl = xamlIsland;
                 ApplyColors();
 
-                // TODO WTS: Set bindings to your UWP DependencyProperty XAMLIsland control
+                // TODO: Set bindings to your UWP DependencyProperty XAMLIsland control
                 _universalControl.SetBinding(wts.ItemNameControlUniversal.TextProperty, new Windows.UI.Xaml.Data.Binding() { Path = new Windows.UI.Xaml.PropertyPath(nameof(Text)), Mode = Windows.UI.Xaml.Data.BindingMode.TwoWay });
             }
         }

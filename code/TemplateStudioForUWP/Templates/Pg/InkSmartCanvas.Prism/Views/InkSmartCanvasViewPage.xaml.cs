@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    // For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/ink.md
+    // For more information regarding Windows Ink documentation and samples see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/pages/ink.md
     public sealed partial class InkSmartCanvasViewPage : Page
     {
         public InkSmartCanvasViewPage()

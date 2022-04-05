@@ -8,7 +8,7 @@ using Param_RootNamespace.WebApi.Models;
 
 namespace Param_RootNamespace.WebApi.Controllers
 {
-    // TODO WTS: Update or replace this controller as necessary for your needs.
+    // TODO: Update or replace this controller as necessary for your needs.
     // Learn more at https://dotnet.microsoft.com/apps/aspnet/apis
     [Route("api/[controller]")]
     [ApiController]

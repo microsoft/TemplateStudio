@@ -10,7 +10,7 @@ Namespace Services
     ' In case the App is resumed without being terminated no data should be lost, a resume event is fired that allows you to refresh App data that might
     ' be outdated (e.g data from online feeds)
     ' Documentation:
-    '     * How to implement and test: https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/suspend-and-resume.md
+    '     * How to implement and test: https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/suspend-and-resume.md
     '     * Application Lifecycle: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
     Friend Class SuspendAndResumeService
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
@@ -42,7 +42,7 @@ Namespace Services
                 Await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs)
                 Return True
             Catch ex As Exception
-                ' TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                ' TODO: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
                 Return False
             End Try
         End Function

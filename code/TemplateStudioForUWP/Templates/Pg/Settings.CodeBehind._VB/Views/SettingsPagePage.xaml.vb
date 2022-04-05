@@ -2,8 +2,8 @@
 Imports Param_RootNamespace.Services
 
 Namespace Views
-    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/settings-codebehind.vb.md
-    ' TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+    ' TODO: Add other settings as necessary. For help see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/pages/settings-codebehind.vb.md
+    ' TODO: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     Public NotInheritable Partial Class SettingsPagePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged

@@ -3,5 +3,5 @@
   <LocalizedName>Template Studio for WinUI</LocalizedName>
   <LocalizedDescription>Template Studio przyspiesza tworzenie nowych platformy uniwersalnej systemu Windows, WPF i WinUI 3 w aplikacjach klasycznych przy użyciu interfejsu użytkownika z elementami kreatora.</LocalizedDescription>  
   <License>..\Content\EULA.pl-PL.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

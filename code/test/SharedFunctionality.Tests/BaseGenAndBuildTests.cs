@@ -205,7 +205,7 @@ namespace Microsoft.Templates.Test
 
         protected void RemoveProjectConfigInfoFromProject()
         {
-            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "TemplateStudio.xml" };
             var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
             var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
 
@@ -243,7 +243,7 @@ namespace Microsoft.Templates.Test
 
         protected void AssertProjectConfigInfoRecreated(UserSelectionContext context)
         {
-            var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+            var metadataFileNames = new List<string>() { "Package.appxmanifest", "TemplateStudio.xml" };
             var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(GenContext.Current.DestinationPath, fileName)));
             var metadataFilePath = Path.Combine(GenContext.Current.DestinationPath, metadataFile);
 

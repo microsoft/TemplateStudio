@@ -4,7 +4,7 @@ Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Services
 
 Namespace Views
-    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    ' TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged

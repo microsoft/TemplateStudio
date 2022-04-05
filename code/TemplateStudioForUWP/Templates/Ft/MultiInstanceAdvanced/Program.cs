@@ -12,7 +12,7 @@ namespace Param_RootNamespace
         // {
         //     global::Windows.UI.Xaml.Application.Start((p) => new App());
         // }
-        // TODO WTS: Update the logic in this method if you want to control the launching of multiple instances.
+        // TODO: Update the logic in this method if you want to control the launching of multiple instances.
         // You may find the `AppInstance.GetActivatedEventArgs()` useful for your app-defined logic.
         public static void Main(string[] args)
         {

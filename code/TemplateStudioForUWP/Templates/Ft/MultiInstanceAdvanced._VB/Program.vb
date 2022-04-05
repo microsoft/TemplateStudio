@@ -7,7 +7,7 @@ Public Module Program
     ' Sub Main(args As String())
     '     Global.Windows.UI.Xaml.Application.Start(Function(p) New App())
     ' End Sub
-    ' TODO WTS: Update the logic in this method if you want to control the launching of multiple instances.
+    ' TODO: Update the logic in this method if you want to control the launching of multiple instances.
     ' You may find the `AppInstance.GetActivatedEventArgs()` useful for your app-defined logic.
     <MTAThread>
     Public Sub Main(args As String())

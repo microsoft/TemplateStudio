@@ -9,10 +9,10 @@ Namespace Services
 
         Public Async Function InitializeAsync() As Task
             Try
-                ' TODO WTS: Set your Hub Name
+                ' TODO: Set your Hub Name
                 Dim hubName = String.Empty
 
-                ' TODO WTS: Set your DefaultListenSharedAccessSignature
+                ' TODO: Set your DefaultListenSharedAccessSignature
                 Dim accessSignature = String.Empty
 
                 Dim channel = Await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync()
@@ -29,12 +29,12 @@ Namespace Services
             Catch ex As ArgumentNullException
                 ' Until a valid accessSignature and hubName are provided this code will throw an ArgumentNullException.
             Catch ex As Exception
-                ' TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
+                ' TODO: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
             End Try
         End Function
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
-            ' TODO WTS: Handle activation from toast notification,
+            ' TODO: Handle activation from toast notification,
             ' Be sure to use the template 'ToastGeneric' in the toast notification configuration XML
             ' to ensure OnActivated is called when launching from a Toast Notification sent from Azure
             '

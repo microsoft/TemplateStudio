@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to NavigationView in MVVM Light
 
-If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **MVVM Light**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with *TS* with project type **NavigationPane** and framework **MVVM Light**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update ViewModelLocator instance mode in your MVVMLight project
 
@@ -55,7 +55,7 @@ Imports Windows.UI.Core
 Imports YourAppName.Activation
 
 Namespace Services
-    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.vb.md
+    ' For more information on application activation see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.vb.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _shell As Lazy(Of UIElement)
@@ -410,7 +410,7 @@ The resulting code should look like this:
 Imports YourAppName.ViewModels
 
 Namespace Views
-    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    ' TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
         Inherits Page
 
@@ -427,7 +427,7 @@ Namespace Views
         End Sub
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-            ' Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            ' Workaround for Issue https://github.com/microsoft/TemplateStudio/issues/2774
             ' Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
             ViewModel.ItemInvokedCommand.Execute(args)
         End Sub

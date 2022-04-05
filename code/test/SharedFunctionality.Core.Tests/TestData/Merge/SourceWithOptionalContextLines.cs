@@ -111,7 +111,7 @@ namespace TestData
             {
                 var toastArgs = args as ToastNotificationActivatedEventArgs;
                 var arguments = toastArgs.Argument;
-                // TODO WTS: Handle activation from toast notification,  
+                // TODO: Handle activation from toast notification,  
                 //for more info handling activation see  
                 //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
             }

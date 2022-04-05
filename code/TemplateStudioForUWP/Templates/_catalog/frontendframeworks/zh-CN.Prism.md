@@ -2,4 +2,4 @@
 
 有关详细信息，请访问 [Prism GitHub Page] (https://github.com/PrismLibrary/Prism)。
 
-**注意。**Prism 在发行版本 7 中不支持 UWP。Windows Template Studio 继续采用版本 6.3。
+**注意。**Prism 在发行版本 7 中不支持 UWP。Template Studio 继续采用版本 6.3。

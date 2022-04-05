@@ -1,20 +1,20 @@
-# Windows Template Studio
+# Template Studio
 
-*Windows Template Studio* (aka *WinTS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
-*WinTS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
+*Template Studio* (aka *TS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
+*TS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
 
-![Windows Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+![Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
-![Windows Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
+![Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
 
-![Windows Template Studio **WinUI 3** screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
+![Template Studio **WinUI 3** screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
 
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
 |:--------|:----------------:|:---------------:|:---------------:|
-|release|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=release)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?no-cache)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
-|dev|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+|release|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=release)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?no-cache)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 |Branch   |Full Tests       |OneByOne Tests       |WACK Tests       |
 |:--------|:---------------:|:---------------:|:---------------:|
@@ -30,7 +30,7 @@
 
 ## Features
 
-*Windows Template Studio* approaches app creation using the following six attribute sets:
+*Template Studio* approaches app creation using the following six attribute sets:
 
 ### **Project type**
 
@@ -75,20 +75,20 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 - [Installing the extension](./docs/getting-started-extension.md)
 - [Understand the core concepts](./docs/concepts.md)
-- [Using WinTS to build UWP apps](./docs/UWP/getting-started-endusers.md)
-- [Using WinTS to build WPF apps](./docs/WPF/getting-started-endusers.md)
-- [Using WinTS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
-- [Working on WinTS](./docs/getting-started-developers.md)
+- [Using TS to build UWP apps](./docs/UWP/getting-started-endusers.md)
+- [Using TS to build WPF apps](./docs/WPF/getting-started-endusers.md)
+- [Using TS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
+- [Working on TS](./docs/getting-started-developers.md)
 
 ## Known issues
 
-- You can't have side-by-side versions (nightly/pre-release/release) of *Windows Template Studio* VSPackage into a single instance of Visual Studio.
+- You can't have side-by-side versions (nightly/pre-release/release) of *Template Studio* VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
 
-Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.
+Please use [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) for feedback, questions or comments.
 
-If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
+If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) section as well.  We would love to see what you are thinking.
 
 Here is what we're currently thinking in our [roadmap](./docs/roadmap.md).
 

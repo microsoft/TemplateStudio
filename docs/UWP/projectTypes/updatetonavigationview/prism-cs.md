@@ -1,6 +1,6 @@
 # Update from HamburgerMenu to WinUI NavigationView in Prism
 
-If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
+If you have an UWP project created with *TS* with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -356,7 +356,7 @@ namespace YourAppName.Views
 
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Workaround for Issue https://github.com/microsoft/TemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
             ViewModel.ItemInvokedCommand.Execute(args);
         }

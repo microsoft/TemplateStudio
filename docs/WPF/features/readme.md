@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Features
+# Template Studio - WPF Features
 
 The following features are supported in WPF apps.
 

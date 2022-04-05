@@ -1,6 +1,6 @@
 # Update from NavigationView to WinUI NavigationView
 
-*WinTS* is now using Windows UI in NavigationView for NavigationPane projects.
+*TS* is now using Windows UI in NavigationView for NavigationPane projects.
 
 Switch from NavigationView to WinUI.NavigationView is not a drop-in replacement, but we prepared the following step-by-step instructions:
 

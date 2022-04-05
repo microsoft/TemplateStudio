@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
 	<TemplateData>
 		<Name>Template Studio for WinUI (C++)</Name>
-		<Description>Windows Template Studio에서는 마법사 UI를 통해 신속하게 UWP 앱을 빌드할 수 있고, Windows 10 패턴 및 베스트 프랙티스를 바탕으로 개발자의 요구를 충족합니다.</Description>
+		<Description>Template Studio에서는 마법사 UI를 통해 신속하게 UWP 앱을 빌드할 수 있고, Windows 10 패턴 및 베스트 프랙티스를 바탕으로 개발자의 요구를 충족합니다.</Description>
 		<Icon>Ts4WinUICppTemplate.png</Icon>
 		<ProjectType>VC</ProjectType>
 		<LanguageTag>cpp</LanguageTag>

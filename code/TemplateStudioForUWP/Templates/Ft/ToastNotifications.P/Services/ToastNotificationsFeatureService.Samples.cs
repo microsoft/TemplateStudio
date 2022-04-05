@@ -50,7 +50,7 @@ namespace Param_RootNamespace.Services
             // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
+                // TODO: Set a unique identifier for this notification within the notification group. (optional)
                 // More details at https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification.tag
                 Tag = "ToastTag"
             };

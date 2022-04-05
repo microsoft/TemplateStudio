@@ -12,7 +12,7 @@ using Param_RootNamespace.Activation;
 namespace Param_RootNamespace.Services
 {
     // For more information on understanding and extending activation flow see
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.md
+    // https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.md
     internal class ActivationService
     {
         private readonly App _app;

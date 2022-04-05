@@ -11,7 +11,7 @@ namespace ToastNotificationSample.Services
             // Create the toast content
             var content = new ToastContent()
             {
-                // TODO WTS: Check this documentation to know more about the Launch property
+                // TODO: Check this documentation to know more about the Launch property
                 // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
                 Launch = "ToastContentActivationParams",
 
@@ -38,7 +38,7 @@ namespace ToastNotificationSample.Services
                 {
                     Buttons =
                     {
-                        // TODO WTS: Check this documentation to know more about Toast Buttons
+                        // TODO: Check this documentation to know more about Toast Buttons
                         // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
                         new ToastButton("OK", "ToastButtonActivationArguments")
                         {
@@ -53,7 +53,7 @@ namespace ToastNotificationSample.Services
             // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
                 // Documentation: https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
                 Tag = "ToastTag"
             };

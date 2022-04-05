@@ -21,7 +21,7 @@ namespace Param_RootNamespace.Core.Services
         https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         https://docs.microsoft.com/azure/active-directory/develop/v2-overview
 
-        TODO WTS: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
+        TODO: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
         https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 
         The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
@@ -130,7 +130,7 @@ namespace Param_RootNamespace.Core.Services
 
         public bool IsAuthorized()
         {
-            // TODO WTS: You can also add extra authorization checks here.
+            // TODO: You can also add extra authorization checks here.
             // i.e.: Checks permisions of _authenticationResult.Account.Username in a database.
             return true;
         }
@@ -156,7 +156,7 @@ namespace Param_RootNamespace.Core.Services
             }
             catch (MsalException)
             {
-                // TODO WTS: LogoutAsync can fail please handle exceptions as appropriate to your scenario
+                // TODO: LogoutAsync can fail please handle exceptions as appropriate to your scenario
                 // For more info on MsalExceptions see
                 // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
             }
@@ -236,7 +236,7 @@ namespace Param_RootNamespace.Core.Services
             }
             catch (MsalException)
             {
-                // TODO WTS: Silentauth failed, please handle this exception as appropriate to your scenario
+                // TODO: Silentauth failed, please handle this exception as appropriate to your scenario
                 // For more info on MsalExceptions see
                 // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
                 return false;

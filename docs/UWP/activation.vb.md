@@ -86,7 +86,7 @@ The `HandleActivation` method gets the first `ActivationHandler` that can handle
 
 We are going to create a new `ActivationHandler` to show how to extend the `ActivationService` in your project. In this case, we are going to add a reader for markdown (.md) files.
 
-The following sample code is to be added in a *WinTS* generated app using the MVVM Toolkit.
+The following sample code is to be added in a *TS* generated app using the MVVM Toolkit.
 
 For viewing the markdown a `MarkdownTextBlock` from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) is used.
 

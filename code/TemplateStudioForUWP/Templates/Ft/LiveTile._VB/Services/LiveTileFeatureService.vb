@@ -22,7 +22,7 @@ Namespace Services
             Try
                 TileUpdateManager.CreateTileUpdaterForApplication().Update(notification)
             Catch ex As Exception
-                ' TODO WTS: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                ' TODO: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
             End Try
         End Sub
 
@@ -34,7 +34,7 @@ Namespace Services
 
                 Return False
             Catch ex As Exception
-                ' TODO WTS: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                ' TODO: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
                 Return False
             End Try
         End Function
@@ -59,13 +59,13 @@ Namespace Services
 
         Private Function LaunchFromSecondaryTile(args As LaunchActivatedEventArgs) As Boolean
             ' If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            ' TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
+            ' TODO: Implement your own logic to determine if you can handle the SecondaryTile activation
             Return False
         End Function
 
         Private Function LaunchFromLiveTileUpdate(args As LaunchActivatedEventArgs) As Boolean
             ' If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            ' TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            ' TODO: Implement your own logic to determine if you can handle the LiveTile notification update activation
             Return False
         End Function
     End Class

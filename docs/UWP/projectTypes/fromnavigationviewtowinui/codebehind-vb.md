@@ -1,6 +1,6 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 
-If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **Code Behind** please follow these steps to update from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with *TS* with project type **NavigationPane** and framework **Code Behind** please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -51,7 +51,7 @@ Imports Windows.UI.Core
 Imports YourAppName.Activation
 
 Namespace Services
-    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.vb.md
+    ' For more information on application activation see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.vb.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _shell As Lazy(Of UIElement)
@@ -403,7 +403,7 @@ Imports YourAppName.Helpers
 Imports YourAppName.Services
 
 Namespace Views
-    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    ' TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged

@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Services
+# Template Studio - UWP Services
 
 The following services are supported in UWP apps.
 

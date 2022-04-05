@@ -4,7 +4,7 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
+  xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
   IgnorableNamespaces="uap rescap genTemplate">
 
  <Identity
@@ -48,7 +48,7 @@
   </Capabilities>
 
   <genTemplate:Metadata>
-    <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
+    <genTemplate:Item Name="generator" Value="Template Studio"/>
     <genTemplate:Item Name="wizardVersion" Version="Param_Wizard.Version" />
     <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
     <genTemplate:Item Name="projectType" Value="Param_ProjectType" />

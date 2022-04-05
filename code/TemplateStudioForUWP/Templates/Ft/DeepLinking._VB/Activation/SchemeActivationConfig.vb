@@ -1,6 +1,6 @@
 ﻿Namespace Activation
     Friend Module SchemeActivationConfig
-        ' TODO WTS: Add the pages that can be opened from scheme activation in your app here.
+        ' TODO: Add the pages that can be opened from scheme activation in your app here.
         Private ReadOnly _activationPages As Dictionary(Of String, Type) = New Dictionary(Of String, Type)() From
         {
             {"sample", GetType(Views.SchemeActivationSamplePage)}

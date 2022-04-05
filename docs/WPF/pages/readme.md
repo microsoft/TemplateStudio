@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Pages
+# Template Studio - WPF Pages
 
 The following pages are supported in WPF apps.
 

@@ -51,7 +51,7 @@ For more info, read:
 
 ## Learn more
 
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [All docs](./readme.md)

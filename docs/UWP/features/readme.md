@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Features
+# Template Studio - UWP Features
 
 The following features are supported in UWP apps.
 
