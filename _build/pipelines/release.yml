@@ -65,31 +65,17 @@ jobs:
   - task: ComponentGovernanceComponentDetection@0
     displayName: Component Detection
 
-  - task: CopyFiles@1
-    displayName: Copy Build Artifacts
-    condition: succeededOrFailed()
-    inputs:
-      SourceFolder: $(Build.SourcesDirectory)
-      Contents: '**\bin\$(BuildConfiguration)\**'
-      TargetFolder: $(Build.ArtifactStagingDirectory)
-    
-  - task: PublishBuildArtifacts@1
-    displayName: Publish Build Artifacts
-    condition: succeededOrFailed()
-    inputs:
-      PathtoPublish: $(Build.ArtifactStagingDirectory)
-      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
-
   - task: PowerShell@1
-    displayName: Extract Files to Sign
+    displayName: Extract Unsigned Files from VSIX
     inputs:
       scriptName: _build/CodeSign_ExtractFilesToSign.ps1
-      arguments: -vsixFilePath $(Build.ArtifactStagingDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -outputPath $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\itemsToSign
+      arguments: -vsixFilePath $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -outputPath $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
+
   - task: EsrpCodeSigning@1
-    displayName: ESRP CodeSigning Assemblies
+    displayName: Sign Assemblies
     inputs:
       ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
-      FolderPath: $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\itemsToSign
+      FolderPath: $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
       Pattern: TemplateStudioFor$(Moniker).dll,SharedResources.dll,WriteableBitmapEx.Wpf.dll
       signConfigType: inlineSignParams
       inlineOperation: >-
@@ -115,13 +101,13 @@ jobs:
                     "ToolVersion" : "1.0"
                 }
             ]
+
   - task: EsrpCodeSigning@1
-    displayName: ESRP CodeSigning JS
+    displayName: Sign JS
     inputs:
       ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
-      FolderPath: $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\itemsToSign\Assets\Html\min\vs
-      Pattern: >
-        *.js
+      FolderPath: $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)\Assets\Html\min\vs
+      Pattern: *.js
       signConfigType: inlineSignParams
       inlineOperation: >-
         [
@@ -146,22 +132,18 @@ jobs:
                     "ToolVersion" : "1.0"
                 }
             ]
-  - task: CopyFiles@2
-    displayName: Copy signed files to signedItems
-    inputs:
-      SourceFolder: $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\itemsToSign
-      Contents: '**/*.+(dll|js)'
-      TargetFolder: $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\signedItems
+
   - task: PowerShell@1
     displayName: Include Signed Files in VSIX
     inputs:
       scriptName: _build/CodeSign_IncludeSignedFiles.ps1
-      arguments: -vsixFilePath $(Build.ArtifactStagingDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -inputPath $(Build.ArtifactStagingDirectory)\TemplateStudioFor$(Moniker)\signedItems
+      arguments: -vsixFilePath $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -inputPath $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
+
   - task: EsrpCodeSigning@1
-    displayName: ESRP CodeSigning VSIX
+    displayName: Sign VSIX
     inputs:
       ConnectedServiceName: 5d4d1ff7-2f2b-47d7-ac4a-405b7dcfa06a
-      FolderPath: $(Build.ArtifactStagingDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\
+      FolderPath: $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\
       Pattern: TemplateStudioFor$(Moniker).vsix
       signConfigType: inlineSignParams
       inlineOperation: >-
@@ -183,3 +165,18 @@ jobs:
                     "ToolVersion" : "1.0"
                 }
             ]
+
+  - task: CopyFiles@1
+    displayName: Copy Artifacts
+    condition: succeededOrFailed()
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)
+      Contents: '**\bin\$(BuildConfiguration)\**'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+    
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    condition: succeededOrFailed()
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
