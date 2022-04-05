@@ -80,27 +80,27 @@ jobs:
       signConfigType: inlineSignParams
       inlineOperation: >-
         [
-                {
-                    "KeyCode" : "CP-230012",
-                    "OperationCode" : "SigntoolSign",
-                    "Parameters" : {
-                        "OpusName" : "Microsoft",
-                        "OpusInfo" : "http://www.microsoft.com",
-                        "FileDigest" : "/fd \"SHA256\"",
-                        "PageHash" : "/NPH",
-                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                    },
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                },
-                {
-                    "KeyCode" : "CP-230012",
-                    "OperationCode" : "SigntoolVerify",
-                    "Parameters" : {},
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                }
-            ]
+          {
+            "KeyCode" : "CP-230012",
+            "OperationCode" : "SigntoolSign",
+            "Parameters" : {
+              "OpusName" : "Microsoft",
+              "OpusInfo" : "http://www.microsoft.com",
+              "FileDigest" : "/fd \"SHA256\"",
+              "PageHash" : "/NPH",
+              "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+            },
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          },
+          {
+            "KeyCode" : "CP-230012",
+            "OperationCode" : "SigntoolVerify",
+            "Parameters" : {},
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          }
+        ]
 
   - task: EsrpCodeSigning@1
     displayName: Sign JS
@@ -111,27 +111,27 @@ jobs:
       signConfigType: inlineSignParams
       inlineOperation: >-
         [
-                {
-                    "KeyCode" : "CP-230012",
-                    "OperationCode" : "SigntoolSign",
-                    "Parameters" : {
-                        "OpusName" : "Microsoft",
-                        "OpusInfo" : "http://www.microsoft.com",
-                        "FileDigest" : "/fd \"SHA256\"",
-                        "PageHash" : "/NPH",
-                        "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                    },
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                },
-                {
-                    "KeyCode" : "CP-230012",
-                    "OperationCode" : "SigntoolVerify",
-                    "Parameters" : {},
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                }
-            ]
+          {
+            "KeyCode" : "CP-230012",
+            "OperationCode" : "SigntoolSign",
+            "Parameters" : {
+              "OpusName" : "Microsoft",
+              "OpusInfo" : "http://www.microsoft.com",
+              "FileDigest" : "/fd \"SHA256\"",
+              "PageHash" : "/NPH",
+              "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+            },
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          },
+          {
+            "KeyCode" : "CP-230012",
+            "OperationCode" : "SigntoolVerify",
+            "Parameters" : {},
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          }
+        ]
 
   - task: PowerShell@1
     displayName: Include Signed Files in VSIX
@@ -148,23 +148,23 @@ jobs:
       signConfigType: inlineSignParams
       inlineOperation: >-
         [
-                {
-                    "KeyCode" : "CP-233016",
-                    "OperationCode" : "OpcSign",
-                    "Parameters" : {
-                        "FileDigest" : "/fd SHA256"
-                    },
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                },
-                {
-                    "KeyCode" : "CP-233016",
-                    "OperationCode" : "OpcVerify",
-                    "Parameters" : {},
-                    "ToolName" : "sign",
-                    "ToolVersion" : "1.0"
-                }
-            ]
+          {
+            "KeyCode" : "CP-233016",
+            "OperationCode" : "OpcSign",
+            "Parameters" : {
+                "FileDigest" : "/fd SHA256"
+            },
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          },
+          {
+            "KeyCode" : "CP-233016",
+            "OperationCode" : "OpcVerify",
+            "Parameters" : {},
+            "ToolName" : "sign",
+            "ToolVersion" : "1.0"
+          }
+        ]
 
   - task: CopyFiles@1
     displayName: Copy Artifacts
