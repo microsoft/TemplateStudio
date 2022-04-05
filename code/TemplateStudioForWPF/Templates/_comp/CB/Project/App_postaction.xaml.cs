@@ -48,7 +48,7 @@ namespace Param_RootNamespace
 //{[{
         private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
-            // TODO WTS: Register your services, viewmodels and pages here
+            // TODO: Register your services, viewmodels and pages here
 
             // App Host
             services.AddHostedService<ApplicationHostService>();

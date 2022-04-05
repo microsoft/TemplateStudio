@@ -10,12 +10,12 @@ Namespace Services
             Try
                 ToastNotificationManager.CreateToastNotifier().Show(toastNotification)
             Catch ex As Exception
-                ' TODO WTS: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                ' TODO: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
             End Try
         End Sub
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
-            ' TODO WTS: Handle activation from toast notification
+            ' TODO: Handle activation from toast notification
             ' More details at https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
 
             Await Task.CompletedTask

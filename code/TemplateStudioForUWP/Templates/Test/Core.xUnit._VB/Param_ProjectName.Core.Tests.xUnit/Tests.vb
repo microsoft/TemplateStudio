@@ -1,6 +1,6 @@
 ﻿Imports Xunit
 
-' TODO WTS: Add appropriate unit tests.
+' TODO: Add appropriate unit tests.
 Public Class Tests
 
     <Fact>

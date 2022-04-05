@@ -54,16 +54,16 @@ Namespace Services
                     If response.IsSuccessStatusCode Then
                         Return response.Content
                     Else
-                        ' TODO WTS: Please handle other status codes as appropriate to your scenario
+                        ' TODO: Please handle other status codes as appropriate to your scenario
                     End If
                 End Using
 
             Catch hre As HttpRequestException
-                ' TODO WTS: The request failed due to an underlying issue such as
+                ' TODO: The request failed due to an underlying issue such as
                 ' network connectivity, DNS failure, server certificate validation or timeout.
                 ' Please handle this exception as appropriate to your scenario
             Catch ex As Exception
-                ' TODO WTS: This call can fail please handle exceptions as appropriate to your scenario
+                ' TODO: This call can fail please handle exceptions as appropriate to your scenario
             End Try
 
             Return Nothing

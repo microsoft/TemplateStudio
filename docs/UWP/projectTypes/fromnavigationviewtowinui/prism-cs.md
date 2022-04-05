@@ -1,6 +1,6 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 
-If you have an UWP project created with *WinTS* with project type **NavigationPane** and framework **Prism**  please follow these steps to update from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with *TS* with project type **NavigationPane** and framework **Prism**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
 
@@ -318,7 +318,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace YourAppName.Views
 {
-    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    // TODO: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page
     {
         private ShellViewModel ViewModel => DataContext as ShellViewModel;
@@ -339,7 +339,7 @@ namespace YourAppName.Views
 
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Workaround for Issue https://github.com/microsoft/TemplateStudio/issues/2774
             // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
             ViewModel.ItemInvokedCommand.Execute(args);
         }

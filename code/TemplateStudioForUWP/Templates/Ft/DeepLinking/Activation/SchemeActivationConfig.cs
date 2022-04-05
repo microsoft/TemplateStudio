@@ -8,7 +8,7 @@ namespace Param_RootNamespace.Activation
     {
         private static readonly Dictionary<string, Type> _activationPages = new Dictionary<string, Type>()
         {
-            // TODO WTS: Add the pages that can be opened from scheme activation in your app here.
+            // TODO: Add the pages that can be opened from scheme activation in your app here.
             { "sample", typeof(Views.SchemeActivationSamplePage) }
         };
 

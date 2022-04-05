@@ -4,7 +4,7 @@
         <Identity Id="TemplateStudioForWinUICpp.98f70df4-a2c9-4ae2-86d6-a9e2b5bf05c6" Version="1.0" Language="en-US" Publisher="Microsoft Corporation" />
         <DisplayName>TemplateStudioForWinUICpp</DisplayName>
         <Description xml:space="preserve">Template Studio accelerates the creation of new WinUI apps using a wizard-based UI.</Description>
-        <MoreInfo>https://github.com/Microsoft/TemplateStudio/</MoreInfo>
+        <MoreInfo>https://github.com/microsoft/TemplateStudio/</MoreInfo>
         <License>Content\EULA.rtf</License>
         <GettingStartedGuide>https://github.com/microsoft/TemplateStudio/blob/main/docs/readme.md</GettingStartedGuide>
         <Icon>TemplateStudio_Logo_90x90.png</Icon>

@@ -19,7 +19,7 @@ Namespace Activation
             ' This is typically not the install location of the app itself, but could be any arbitrary path.
             Dim activationPath As String = operation.CurrentDirectoryPath
 
-            ' TODO WTS: parse the cmdLineString to determine what to do.
+            ' TODO: parse the cmdLineString to determine what to do.
             ' If doing anything async, get a deferral first.
             ' Using deferral = operation.GetDeferral()
             '     Await ParseCmdString(cmdLineString, activationPath)

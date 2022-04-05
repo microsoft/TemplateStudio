@@ -73,7 +73,7 @@ namespace Localization
   <LocalizedName>{0}</LocalizedName>
   <LocalizedDescription>{1}</LocalizedDescription>  
   <License>..\Content\EULA.{2}.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>";
 
         internal const string ResourcesFilePath = "StringRes.resx";

@@ -2,4 +2,4 @@
 
 Служба перетаскивания представляет собой оболочку для [стандартных функций перетаскивания универсальной платформы Windows] (https://docs.microsoft.com/ru-ru/windows/uwp/design/input/drag-and-drop). Она упрощает написание кода для поддержки перетаскивания и встраивается в шаблон framework создаваемого вами приложения.
 
-[Дополнительные сведения](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/drag-and-drop.md)
+[Дополнительные сведения](https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/drag-and-drop.md)

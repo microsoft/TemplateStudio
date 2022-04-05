@@ -25,7 +25,7 @@ namespace Param_RootNamespace.Activation
             // This is typically not the install location of the app itself, but could be any arbitrary path.
             string activationPath = operation.CurrentDirectoryPath;
 
-            //// TODO WTS: parse the cmdLineString to determine what to do.
+            //// TODO: parse the cmdLineString to determine what to do.
             //// If doing anything async, get a deferral first.
             //// using (var deferral = operation.GetDeferral())
             //// {

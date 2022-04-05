@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.Services
         private const string VersionAttribLiteral = "Version";
         private const string ItemLiteral = "Item";
 
-        private static readonly XNamespace NS = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
+        private static readonly XNamespace NS = "http://schemas.microsoft.com/appx/developer/templatestudio";
 
         public static ProjectMetadata GetProjectMetadata(string projectPath)
         {
@@ -38,12 +38,12 @@ namespace Microsoft.Templates.Core.Services
             {
                 if (!string.IsNullOrEmpty(projectPath))
                 {
-                    var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                    var metadataFileNames = new List<string>() { "Package.appxmanifest", "TemplateStudio.xml" };
                     var metadataFile = metadataFileNames.FirstOrDefault(fileName => File.Exists(Path.Combine(projectPath, fileName)));
                     if (!string.IsNullOrEmpty(metadataFile))
                     {
                         var manifest = XElement.Load(Path.Combine(projectPath, metadataFile));
-                        XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
+                        XNamespace ns = "http://schemas.microsoft.com/appx/developer/templatestudio";
 
                         var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
 
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.Services
             try
             {
                 var projectFiles = Directory.GetParent(projectPath).GetFiles("*.*", SearchOption.AllDirectories);
-                var metadataFileNames = new List<string>() { "Package.appxmanifest", "WTS.ProjectConfig.xml" };
+                var metadataFileNames = new List<string>() { "Package.appxmanifest", "TemplateStudio.xml" };
                 var metadataFiles = projectFiles.Where(f => metadataFileNames.Any(mf => mf == f.Name));
                 foreach (var file in metadataFiles)
                 {

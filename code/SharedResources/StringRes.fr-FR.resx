@@ -550,7 +550,7 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>La version {0} de Windows Template Studio est disponible. Mettez à jour l'extension pour profiter des fonctionnalités les plus récentes.</value>
+    <value>La version {0} de Template Studio est disponible. Mettez à jour l'extension pour profiter des fonctionnalités les plus récentes.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
@@ -715,7 +715,7 @@ Vérifiez la liste suivante reprenant les packages requis par le code de votre p
     <comment>Status bar message for adding project references</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Création du projet Windows Template Studio…</value>
+    <value>Création du projet Template Studio…</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">

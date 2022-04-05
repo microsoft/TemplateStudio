@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Testing
+# Template Studio - WPF Testing
 
 The following test projects are supported in WPF apps.
 

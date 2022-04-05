@@ -9,11 +9,11 @@ using Param_RootNamespace.Core.Models;
 namespace Param_RootNamespace.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
-    // More information on using and configuring this service can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/services/sql-server-data-service.md
-    // TODO WTS: Change your code to use this instead of the SampleDataService.
+    // More information on using and configuring this service can be found at https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/services/sql-server-data-service.md
+    // TODO: Change your code to use this instead of the SampleDataService.
     public static class SqlServerDataService
     {
-        // TODO WTS: Specify the connection string in a config file or below.
+        // TODO: Specify the connection string in a config file or below.
         private static string GetConnectionString()
         {
             // Attempt to get the connection string from a config file
@@ -40,7 +40,7 @@ namespace Param_RootNamespace.Core.Services
 
         // This method returns data with the same structure as the SampleDataService but based on the NORTHWIND sample database.
         // Use this as an alternative to the sample data to test using a different datasource without changing any other code.
-        // TODO WTS: Remove this when or if it isn't needed.
+        // TODO: Remove this when or if it isn't needed.
         public static async Task<IEnumerable<SampleCompany>> AllCompanies()
         {
             // This hard-coded SQL statement is included to make this sample simpler.

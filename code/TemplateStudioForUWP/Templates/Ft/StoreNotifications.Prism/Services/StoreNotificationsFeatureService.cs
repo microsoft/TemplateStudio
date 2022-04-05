@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
+                // TODO: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
             }
         }
     }

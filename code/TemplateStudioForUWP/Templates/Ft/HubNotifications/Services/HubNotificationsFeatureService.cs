@@ -15,10 +15,10 @@ namespace Param_RootNamespace.Services
         {
             try
             {
-                // TODO WTS: Set your Hub Name
+                // TODO: Set your Hub Name
                 var hubName = string.Empty;
 
-                // TODO WTS: Set your DefaultListenSharedAccessSignature
+                // TODO: Set your DefaultListenSharedAccessSignature
                 var accessSignature = string.Empty;
 
                 var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -39,13 +39,13 @@ namespace Param_RootNamespace.Services
             }
             catch (Exception)
             {
-                // TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
+                // TODO: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
             }
         }
 
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
-            // TODO WTS: Handle activation from toast notification,
+            // TODO: Handle activation from toast notification,
             // Be sure to use the template 'ToastGeneric' in the toast notification configuration XML
             // to ensure OnActivated is called when launching from a Toast Notification sent from Azure
             //

@@ -2,7 +2,7 @@
 
 ## Feature Overview
 
-*WinTS* includes three ink pages for different scenarios. The pages  include functionality that initially is most interesting for the pages purpose. As functionality is implemented in services, you can easily integrate functionality from one page into another.
+*TS* includes three ink pages for different scenarios. The pages  include functionality that initially is most interesting for the pages purpose. As functionality is implemented in services, you can easily integrate functionality from one page into another.
 
 Here is an overview of what is implemented where:
 

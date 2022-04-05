@@ -7,7 +7,7 @@ using Param_RootNamespace.Core.Services;
 
 namespace Param_RootNamespace.WebApi.Models
 {
-    // TODO WTS: Replace or update this class when no longer using sample data.
+    // TODO: Replace or update this class when no longer using sample data.
     public class ItemRepository : IItemRepository
     {
         private static Dictionary<string, SampleCompany> items =

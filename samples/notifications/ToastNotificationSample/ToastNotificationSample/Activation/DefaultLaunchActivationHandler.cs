@@ -23,7 +23,7 @@ namespace ToastNotificationSample.Activation
             // the new page by passing required information in the navigation parameter
             NavigationService.Navigate(_navElement, args.Arguments);
 
-            // TODO WTS: This is a sample on how to show a toast notification.
+            // TODO: This is a sample on how to show a toast notification.
             // You can use this sample to create toast notifications where needed in your app.
             Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             await Task.CompletedTask;

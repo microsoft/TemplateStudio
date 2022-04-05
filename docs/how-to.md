@@ -2,9 +2,9 @@
 
 ##  ... create a new project:
 
-1. Install the extension following the steps from [Installing the Extension](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/getting-started-extension.md)
+1. Install the extension following the steps from [Installing the Extension](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md)
 2. Open Visual Studio 2019
-3. From the New Project Dialog select "Create New Project" select "Windows Template Studio (Universal Windows)" for UWP projects, "Windows Template Studio (WPF .NET Core)" for WPF projects or "App (**WinUI 3 in Desktop**)" for **WinUI 3** projects creation and click next.
+3. From the New Project Dialog select "Create New Project" select "Template Studio (Universal Windows)" for UWP projects, "Template Studio (WPF .NET Core)" for WPF projects or "App (**WinUI 3 in Desktop**)" for **WinUI 3** projects creation and click next.
 4. Click Create
 5. Select a project type
 
@@ -38,7 +38,7 @@
 Once your project is created you can add new pages/features.
 
 1. Open the context menu on the main project node (Universal Windows project for **UWP**, WPF project for **WPF** projects)
-2. Select *Windows Template Studio* -> `New page`, `New feature`, `New service` or `New testing project`
+2. Select *Template Studio* -> `New page`, `New feature`, `New service` or `New testing project`
 
 3. Select an item. Only one item can be selected at a time.
 

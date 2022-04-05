@@ -3,5 +3,5 @@
   <LocalizedName>Template Studio for WPF</LocalizedName>
   <LocalizedDescription>Template Studio스튜디오는 마법사 기반 UI를 사용하여 데스크톱 앱에서 새로운 UWP, WPF 및 WinUI 3의 생성을 가속화합니다.</LocalizedDescription>  
   <License>..\Content\EULA.ko-KR.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

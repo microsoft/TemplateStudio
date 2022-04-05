@@ -7,7 +7,7 @@ using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace.Services
 {
-    // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/whats-new-prompt.md
+    // For instructions on testing this service see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/whats-new-prompt.md
     public class WhatsNewDisplayService : IWhatsNewDisplayService
     {
         private static bool shown = false;

@@ -12,12 +12,12 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     // Read more about Microsoft Identity Platform at https://docs.microsoft.com/azure/active-directory/develop/v2-overview
     // You can find detailed info on protecting Web API's on https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
-    // For more info about this class and the Secured Web Api Feature configuration steps see https://github.com/microsoft/WindowsTemplateStudio/blob/dev/docs/UWP/services/secured-web-api.md
+    // For more info about this class and the Secured Web Api Feature configuration steps see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/services/secured-web-api.md
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection ProtectWebApiWithJwtBearer(this IServiceCollection services, IConfiguration configuration)
         {
-            // TODO WTS: Follow these steps to register your Web API and expose scopes and roles,
+            // TODO: Follow these steps to register your Web API and expose scopes and roles,
             // afterwards populate the appsettings.json with ClientId, Tenant, Audience and Scope
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
             // https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
@@ -72,7 +72,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         OnAuthenticationFailed = context =>
                         {
-                            // TODO WTS: This event is invoked if there where errors during token validation,
+                            // TODO: This event is invoked if there where errors during token validation,
                             // please handle as appropriate to your scenario.
                             return Task.CompletedTask;
                         }

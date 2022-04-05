@@ -2,4 +2,4 @@
 
 詳細については、[Prism GitHub ページ](https://github.com/PrismLibrary/Prism) を参照してください。
 
-**注** Prism のバージョン 7 リリースでは UWP がサポートされていません。Windows Template Studio では引き続きバージョン 6.3 を使用します。
+**注** Prism のバージョン 7 リリースでは UWP がサポートされていません。Template Studio では引き続きバージョン 6.3 を使用します。

@@ -62,19 +62,19 @@ namespace Param_RootNamespace.Core.Services
                     }
                     else
                     {
-                        // TODO WTS: Please handle other status codes as appropriate to your scenario
+                        // TODO: Please handle other status codes as appropriate to your scenario
                     }
                 }
             }
             catch (HttpRequestException)
             {
-                // TODO WTS: The request failed due to an underlying issue such as
+                // TODO: The request failed due to an underlying issue such as
                 // network connectivity, DNS failure, server certificate validation or timeout.
                 // Please handle this exception as appropriate to your scenario
             }
             catch (Exception)
             {
-                // TODO WTS: This call can fail please handle exceptions as appropriate to your scenario
+                // TODO: This call can fail please handle exceptions as appropriate to your scenario
             }
 
             return null;

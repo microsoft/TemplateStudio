@@ -1,13 +1,13 @@
-# Concepts of Windows Template Studio
+# Concepts of Template Studio
 
-This section has the main concepts and definitions used in *Windows Template Studio*.
+This section has the main concepts and definitions used in *Template Studio*.
 
 ## Main concepts
 
-*Windows Template Studio* is divided in the following main elements:
+*Template Studio* is divided in the following main elements:
 
-- **Windows Template Studio Extension**: This is a *Visual Studio Extension* project, which, once installed, allows developers to have an improved experience when creating a new **UWP**, **WPF** or **WinUI 3** App from the `File -> New Project...` menu.
-- **Generation Wizard**: After selecting the *Windows Template Studio* project type in the Visual Studio `File -> New Project...` dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
+- **Template Studio Extension**: This is a *Visual Studio Extension* project, which, once installed, allows developers to have an improved experience when creating a new **UWP**, **WPF** or **WinUI 3** App from the `File -> New Project...` menu.
+- **Generation Wizard**: After selecting the *Template Studio* project type in the Visual Studio `File -> New Project...` dialog, the Generation Wizard will guide a person through some steps to create the desired project. The Generation Wizard allows the user to select from the available Project Types, Design Patterns, Pages, Features, Services, and Test Projects.
 - **Templates**: This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project.
 
 ### What is a Template
@@ -47,5 +47,5 @@ The Templates Repository is the place where all templates are made available (ho
 - [Installing the extension](./getting-started-extension.md)
 - [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
 - [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
 - [All docs](./readme.md)

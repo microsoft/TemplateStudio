@@ -1,10 +1,10 @@
 # Update from HamburgerMenu to NavigationView
 
-*WinTS* is now using Windows UI NavigationView for NavigationPane projects. With NavigationView being in place, Hamburger menu was marked obsolete and will be removed in a future Windows Community Toolkit Update.
+*TS* is now using Windows UI NavigationView for NavigationPane projects. With NavigationView being in place, Hamburger menu was marked obsolete and will be removed in a future Windows Community Toolkit Update.
 
 The HamburgerMenu and NavigationView share the same concepts and provide the same functionality with one major exception being the NavigationView take advantage of the new fluent design system. In fact, the NavigationView does everything the HamburgerMenu does and even more. Also generated code is getting easier and more straight-forward.
 
-*WinTS* projects used a class ShellNavigationItems to manage menu items on Hamburger Menu in two collections (primary and secondary items). This class is no longer necessary, as NavigationView provides the NavigationViewItem class to manage items. Settings page is shown/hidden by setting the property IsSettingsVisible.
+*TS* projects used a class ShellNavigationItems to manage menu items on Hamburger Menu in two collections (primary and secondary items). This class is no longer necessary, as NavigationView provides the NavigationViewItem class to manage items. Settings page is shown/hidden by setting the property IsSettingsVisible.
 
 Switch from HamburgerMenu to NavigationView is not a drop-in replacement, but we prepared the following step-by-step instructions:
 

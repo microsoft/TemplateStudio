@@ -36,7 +36,7 @@ namespace Param_RootNamespace.Services
             return new SchemeActivationData(typeof(SchemeActivationSamplePage), parameters);
         }
 
-        // TODO WTS: Change this to configure your own adaptive card
+        // TODO: Change this to configure your own adaptive card
         // For more info about adaptive cards see http://adaptivecards.io/
         private static IAdaptiveCard CreateAdaptiveCardSample(string displayText, string description, string imageUrl)
         {

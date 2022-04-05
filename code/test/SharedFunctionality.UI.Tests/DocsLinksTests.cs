@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test.Documentation
                 var fileContents = File.ReadAllText(file);
                 var links = Regex.Matches(fileContents, pattern, RegexOptions.IgnorePatternWhitespace);
 
-                var httpRoot = "https://github.com/Microsoft/WindowsTemplateStudio/tree/dev/docs";
+                var httpRoot = "https://github.com/microsoft/TemplateStudio/tree/main/docs";
 
                 foreach (Match link in links)
                 {

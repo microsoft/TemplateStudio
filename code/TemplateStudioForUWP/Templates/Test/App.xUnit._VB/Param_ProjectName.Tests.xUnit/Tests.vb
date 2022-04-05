@@ -1,6 +1,6 @@
 ﻿Imports Xunit
 
-' TODO WTS: Add appropriate tests
+' TODO: Add appropriate tests
 Public Class Tests
     <Fact>
     Public Sub TestMethod1()

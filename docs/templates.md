@@ -1,13 +1,13 @@
 ﻿# Understanding the Templates
 
-Templates are used to generate the code. In *Windows Template Studio* we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
+Templates are used to generate the code. In *Template Studio* we have the following kinds of templates: Frameworks, Projects Types, Pages, Features, Services and Testing.
 
 For example, consider the following scenarios:
 
 - **Scenario #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a list details page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
 - **Scenario #2** you want to create as in *Scenario #1* but without depending on an external framework and adding Live Tiles support.
 
-The *Windows Template Studio* allows you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in *Windows Template Studio* are extensible.
+The *Template Studio* allows you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in *Template Studio* are extensible.
 
 ## Interested in contributing
 
@@ -15,7 +15,7 @@ Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTIN
 
 ## Anatomy of Templates and Template Authoring
 
-Before starting make sure you read how templates are defined, composed and generated at [Understanding the Templates (Core Template Studio)](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/templates.md)
+Before starting make sure you read how templates are defined, composed and generated at [Understanding the Templates (Core Template Studio)](https://github.com/microsoft/CoreTemplateStudio/tree/main/docs/templates.md)
 
 ## Templates repository structure
 
@@ -39,9 +39,9 @@ We aim to offer all functionality for apps created using C# and VB.Net. The exce
 
 The expectation is that the C# version of a template will be created first and the VB.Net version created after.
 
-The script [List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/_utils/List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1) can identify C# templates without VB.Net equivalents. For this to work it relies on the C# and VB versions having comparable template folder structures and that they follow the naming conventions already in use. This is particularly important for composition templates. Because VB.Net supports fewer frameworks it may be possible to produce the same output for the VB version of an item with fewer composition templates. This should be avoided as doing so will cause the above script to produce incorrect results.
+The script [List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1](https://github.com/microsoft/TemplateStudio/blob/main/_utils/List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1) can identify C# templates without VB.Net equivalents. For this to work it relies on the C# and VB versions having comparable template folder structures and that they follow the naming conventions already in use. This is particularly important for composition templates. Because VB.Net supports fewer frameworks it may be possible to produce the same output for the VB version of an item with fewer composition templates. This should be avoided as doing so will cause the above script to produce incorrect results.
 
-It is assumed that non-code files used by different language versions of the same template will be identical. If one needs to be modified, change the one in the C# template and then run the script [Synchronize-Files-Used-By-VisualBasic-Templates.ps1](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/_utils/Synchronize-Files-Used-By-VisualBasic-Templates.ps1) and this will copy the file to the equivalent VB locations.
+It is assumed that non-code files used by different language versions of the same template will be identical. If one needs to be modified, change the one in the C# template and then run the script [Synchronize-Files-Used-By-VisualBasic-Templates.ps1](https://github.com/microsoft/TemplateStudio/blob/main/_utils/Synchronize-Files-Used-By-VisualBasic-Templates.ps1) and this will copy the file to the equivalent VB locations.
 
 Additionally, there are automated test called `EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G1_Async` and `EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G2_Async` that will generate an app using both language versions of supported templates and then use reflection of the generated apps to check for differences.
 
@@ -95,8 +95,8 @@ There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actio
 
 ## Learn more
 
-- [Getting started with the WinTS codebase](./getting-started-developers.md)
-- [Templates doc in Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/dev/docs/templates.md)
+- [Getting started with the TS codebase](./getting-started-developers.md)
+- [Templates doc in Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/main/docs/templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [Ensuring generated code is accessible](./accessibility.md)
 - [All docs](./readme.md)

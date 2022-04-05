@@ -11,13 +11,13 @@ namespace Param_RootNamespace.Core.Services
     public class IdentityService
     {
         // For more information about using Identity, see
-        // https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/services/identity.md
+        // https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/services/identity.md
         //
         // Read more about Microsoft Identity Client here
         // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
         // https://docs.microsoft.com/azure/active-directory/develop/v2-overview
 
-        // TODO WTS: Please create a ClientID following these steps and update the app.config IdentityClientId.
+        // TODO: Please create a ClientID following these steps and update the app.config IdentityClientId.
         // https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
         private readonly string _clientId = ConfigurationManager.AppSettings["IdentityClientId"];
 
@@ -105,7 +105,7 @@ namespace Param_RootNamespace.Core.Services
 
         public bool IsAuthorized()
         {
-            // TODO WTS: You can also add extra authorization checks here.
+            // TODO: You can also add extra authorization checks here.
             // i.e.: Checks permisions of _authenticationResult.Account.Username in a database.
             return true;
         }
@@ -131,7 +131,7 @@ namespace Param_RootNamespace.Core.Services
             }
             catch (MsalException)
             {
-                // TODO WTS: LogoutAsync can fail please handle exceptions as appropriate to your scenario
+                // TODO: LogoutAsync can fail please handle exceptions as appropriate to your scenario
                 // For more info on MsalExceptions see
                 // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
             }
@@ -207,7 +207,7 @@ namespace Param_RootNamespace.Core.Services
             }
             catch (MsalException)
             {
-                // TODO WTS: Silentauth failed, please handle this exception as appropriate to your scenario
+                // TODO: Silentauth failed, please handle this exception as appropriate to your scenario
                 // For more info on MsalExceptions see
                 // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
                 return false;

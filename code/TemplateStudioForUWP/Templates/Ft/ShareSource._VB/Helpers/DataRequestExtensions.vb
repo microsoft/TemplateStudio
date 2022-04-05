@@ -5,7 +5,7 @@ Imports Windows.Storage.Streams
 Imports Param_RootNamespace.Models
 
 Namespace Helpers
-    ' TODO WTS: Start sharing data from your pages / views with these steps:
+    ' TODO: Start sharing data from your pages / views with these steps:
     ' - Step 1. Setup a DataTransferManager object in your page / view and add a DataRequested event handler
     '   (i.e. OnDataRequested) to be called whenever the user invokes share.
     ' - Step 2. Within the OnDataRequested event handler create a ShareSourceData instance and add the data you want to share.

@@ -2,4 +2,4 @@
 
 [Dowiedz się, kiedy i jak używać wielu widoków aplikacji.](https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views)
 
-[Naucz się wykorzystywać i rozszerzać tę funkcjonalność w swojej aplikacji.](https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/features/multiple-views.md)
+[Naucz się wykorzystywać i rozszerzać tę funkcjonalność w swojej aplikacji.](https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/features/multiple-views.md)

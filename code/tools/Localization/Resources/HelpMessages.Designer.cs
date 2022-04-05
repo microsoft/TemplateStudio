@@ -100,7 +100,7 @@ namespace Localization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Help information for Windows Template Studio Localization Tool.
+        ///   Looks up a localized string similar to Provides Help information for Template Studio Localization Tool.
         ///
         ///Localization help [command]
         ///
@@ -119,7 +119,7 @@ namespace Localization.Resources {
         ///GEN        Generates Project Templates for different cultures.
         ///MERGE      Merge localizable items to projects and templates.
         ///VERIFY     Verify if exist localizable items for different cultures.
-        ///HELP       Provides Help information for Windows Template Studio Localization Tool..
+        ///HELP       Provides Help information for Template Studio Localization Tool..
         /// </summary>
         public static string Info {
             get {

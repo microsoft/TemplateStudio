@@ -15,7 +15,7 @@
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
                 <controls:DataGrid.Columns>
                     <!--
-                        TODO WTS:
+                        TODO:
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->

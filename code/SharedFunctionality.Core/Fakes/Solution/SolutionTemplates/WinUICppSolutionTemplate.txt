@@ -1,5 +1,5 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# This solution was created by the WinTS emulator and might differ from what Visual Studio creates
+# This solution was created by the TS emulator and might differ from what Visual Studio creates
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1

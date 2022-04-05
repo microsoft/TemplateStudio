@@ -8,12 +8,12 @@ Namespace ViewModels
     Public Class MapPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
-        ' TODO WTS: Set your preferred default zoom level
+        ' TODO: Set your preferred default zoom level
         Private Const DefaultZoomLevel As Double = 17
 
         Private ReadOnly locationService As LocationService
 
-        ' TODO WTS: Set your preferred default location if a geolock can't be found.
+        ' TODO: Set your preferred default location if a geolock can't be found.
         Private ReadOnly defaultPosition As New BasicGeoposition() With {
             .Latitude = 47.609425,
             .Longitude = -122.3417
@@ -65,7 +65,7 @@ Namespace ViewModels
             End If
 
             If map IsNot Nothing Then
-                ' TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
+                ' TODO: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 ' map.MapServiceToken = String.Empty
                 AddMapIcon(map, Center, "Map_YourLocation".GetLocalized())
             End If

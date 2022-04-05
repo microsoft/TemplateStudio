@@ -1,4 +1,4 @@
-# Windows Template Studio - UWP Project Types
+# Template Studio - UWP Project Types
 
 The following project types are supported in UWP apps.
 

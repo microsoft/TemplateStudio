@@ -29,7 +29,7 @@ Param(
   [string]$cmdSetGuid,
 
   [Parameter(Mandatory=$False,Position=10)]
-  [string]$targetVsixCommandMenuName = "Windows Template Studio (local)",
+  [string]$targetVsixCommandMenuName = "Template Studio (local)",
 
   [Parameter(Mandatory=$False,Position=11)]
   [string]$targetPackageGuid = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd",

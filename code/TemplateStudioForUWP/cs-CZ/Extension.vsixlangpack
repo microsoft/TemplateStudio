@@ -3,5 +3,5 @@
   <LocalizedName>Template Studio for UWP</LocalizedName>
   <LocalizedDescription>Template Studio urychluje vytváření nových UWP, WPF a WinUI 3 v desktopových aplikacích pomocí uživatelského rozhraní založeného na průvodci.</LocalizedDescription>  
   <License>..\Content\EULA.cs-CZ.rtf</License>
-  <MoreInfoUrl>https://github.com/Microsoft/TemplateStudio/</MoreInfoUrl>  
+  <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>

@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Views
     {
         public ObservableCollection<DataPoint> Source { get; } = new ObservableCollection<DataPoint>();
 
-        // TODO WTS: Change the chart as appropriate to your app.
+        // TODO: Change the chart as appropriate to your app.
         // For help see http://docs.telerik.com/windows-universal/controls/radchart/getting-started
         public ChartViewPage()
         {

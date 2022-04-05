@@ -2,4 +2,4 @@
 
 For more information, visit the [Prism GitHub Page](https://github.com/PrismLibrary/Prism).
 
-**Note.** Prism does not support for UWP with their version 7 release. Windows Template Studio continues to use version 6.3.
+**Note.** Prism does not support for UWP with their version 7 release. Template Studio continues to use version 6.3.

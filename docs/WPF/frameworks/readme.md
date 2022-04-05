@@ -1,4 +1,4 @@
-# Windows Template Studio - WPF Design Patterns (frameworks)
+# Template Studio - WPF Design Patterns (frameworks)
 
 The following design patterns are supported in WPF apps.
 

@@ -2,4 +2,4 @@
 
 Další informace najdete na stránce [Prism GitHub Page](https://github.com/PrismLibrary/Prism).
 
-**Poznámka:** Prism ve verzi 7 nepodporuje UWP. Windows Template Studio nadále podporuje verzi 6.3.
+**Poznámka:** Prism ve verzi 7 nepodporuje UWP. Template Studio nadále podporuje verzi 6.3.

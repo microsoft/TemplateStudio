@@ -9,14 +9,14 @@ namespace Param_RootNamespace.Activation
         // https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking
         // https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/
         //
-        // TODO WTS: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
+        // TODO: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
         private const string Host = "myapp.website.com";
         private const string Section1 = "/MySection1";
         private const string Section2 = "/MySection2";
 
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
         {
-            // TODO WTS: Handle navigation based on the original URI
+            // TODO: Handle navigation based on the original URI
             // Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
             switch (args.Uri.AbsolutePath)
             {

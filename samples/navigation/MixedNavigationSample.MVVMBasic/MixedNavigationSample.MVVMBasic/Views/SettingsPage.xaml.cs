@@ -11,7 +11,7 @@ namespace MixedNavigationSample.MVVMBasic.Views
     {
         public SettingsViewModel ViewModel { get; } = new SettingsViewModel();
 
-        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        //// TODO: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
 
         public SettingsPage()
         {

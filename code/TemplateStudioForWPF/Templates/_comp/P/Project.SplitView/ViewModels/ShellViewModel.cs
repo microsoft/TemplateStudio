@@ -27,7 +27,7 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _selectedMenuItem, value); }
         }
 
-        // TODO WTS: Change the icons and titles for all HamburgerMenuItems here.
+        // TODO: Change the icons and titles for all HamburgerMenuItems here.
         public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
         {
         };

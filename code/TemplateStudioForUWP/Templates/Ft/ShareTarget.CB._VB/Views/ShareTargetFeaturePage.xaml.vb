@@ -5,7 +5,7 @@ Imports Param_RootNamespace.Helpers
 Imports Param_RootNamespace.Models
 
 Namespace Views
-    ' TODO WTS: Remove this example page when/if it's not needed.
+    ' TODO: Remove this example page when/if it's not needed.
     ' This page is an example of how to handle data that is shared with your app.
     ' You can either change this page to meet your needs, or use another and delete this page.
     Public NotInheritable Partial Class ShareTargetFeaturePage
@@ -30,7 +30,7 @@ Namespace Views
         End Sub
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
-            ' TODO WTS: Configure the Share Target Declaration for the formats you require.
+            ' TODO: Configure the Share Target Declaration for the formats you require.
             ' Share Target declarations are defined in Package.appxmanifest.
             ' Current declarations allow to share WebLink and image files with the app.
             ' ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
@@ -38,7 +38,7 @@ Namespace Views
             ' ShareOperation contains all the information required to handle the action.
             MyBase.OnNavigatedTo(e)
 
-            ' TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            ' TODO: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
             _shareOperation = TryCast(e.Parameter, ShareOperation)
 
             If _shareOperation.Data.Contains(StandardDataFormats.WebLink) Then
@@ -89,7 +89,7 @@ Namespace Views
         End Sub
 
         Private Sub CompleteButton_Click(sender As Object, e As RoutedEventArgs)
-            ' TODO WTS: Implement any other logic or add a QuickLink before completing the share operation.
+            ' TODO: Implement any other logic or add a QuickLink before completing the share operation.
             ' More details at https://docs.microsoft.com/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted()
         End Sub

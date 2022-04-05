@@ -24,7 +24,7 @@ namespace Param_RootNamespace.XamlIsland
             set { SetValue(UseDarkThemeProperty, value); }
         }
 
-        // TODO WTS: Add any Dependency properties you need to add to your UWP control
+        // TODO: Add any Dependency properties you need to add to your UWP control
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(wts.ItemNameControlUniversal), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty BackgroundColorProperty = DependencyProperty.Register(nameof(BackgroundColor), typeof(Brush), typeof(wts.ItemNameControlUniversal), new PropertyMetadata(null));

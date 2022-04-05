@@ -1,4 +1,4 @@
-# Telemetry for Windows Template Studio - 2021.12
+# Telemetry for Template Studio - 2021.12
 
 As new features and pages roll out, percentages  will adjust.
 
@@ -234,7 +234,7 @@ As new features and pages roll out, percentages  will adjust.
 
 </details>
 
-### Windows Template Studio entry point
+### Template Studio entry point
 
 |Entry point|Percentage|
 |:---|:---:|

@@ -4,4 +4,4 @@ This page contains an ink canvas and an ink toolbar that allows you to draw usin
 
 [Find out more about pen interactions and Windows Ink in UWP apps.](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
 
-We also have [additional documentation on using Ink in a WinTS generated app](./ink.md).
+We also have [additional documentation on using Ink in a TS generated app](./ink.md).

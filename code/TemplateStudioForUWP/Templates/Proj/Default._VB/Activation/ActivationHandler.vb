@@ -1,6 +1,6 @@
 ﻿Namespace Activation
     ' For more information on understanding and extending activation flow see
-    ' https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/activation.md
+    ' https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.md
     Friend MustInherit Class ActivationHandler
         Public MustOverride Function CanHandle(args As Object) As Boolean
 

@@ -10,7 +10,7 @@ Namespace Services
                 Dim engagementManager As StoreServicesEngagementManager = StoreServicesEngagementManager.GetDefault()
                 Await engagementManager.RegisterNotificationChannelAsync()
             Catch ex As Exception
-                ' TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
+                ' TODO: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
             End Try
         End Function
 

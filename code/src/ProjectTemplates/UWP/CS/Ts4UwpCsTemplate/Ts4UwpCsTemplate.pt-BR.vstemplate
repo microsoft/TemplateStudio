@@ -4,7 +4,7 @@
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
 	<TemplateData>
 		<Name>Template Studio for UWP</Name>
-		<Description>O Windows Template Studio cria rapidamente um aplicativo UWP, usando uma interface do usuário baseada em assistente para transformar suas necessidades em uma base de padrões e práticas recomendadas do Windows 10.</Description>
+		<Description>O Template Studio cria rapidamente um aplicativo UWP, usando uma interface do usuário baseada em assistente para transformar suas necessidades em uma base de padrões e práticas recomendadas do Windows 10.</Description>
 		<Icon>Ts4UwpCsTemplate.ico</Icon>
 		<ProjectType>CSharp</ProjectType>
 		<LanguageTag>csharp</LanguageTag>

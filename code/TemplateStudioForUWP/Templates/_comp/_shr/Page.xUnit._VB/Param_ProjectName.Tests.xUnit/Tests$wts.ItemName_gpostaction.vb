@@ -6,7 +6,7 @@ Public Class Tests
     '^^
     '{[{
 
-    ' TODO WTS: Add tests for functionality you add to wts.ItemNameViewModel.
+    ' TODO: Add tests for functionality you add to wts.ItemNameViewModel.
     <Fact>
     Public Sub Testwts.ItemNameViewModelCreation()
         ' This test is trivial. Add your own tests for the logic you add to the ViewModel.

@@ -2,7 +2,7 @@
 
 Namespace Services
     ' This module holds sample data used by some generated pages to show how they can be used.
-    ' TODO WTS: The following classes have been created to display sample data. Delete these files once your app is using real data.
+    ' TODO: The following classes have been created to display sample data. Delete these files once your app is using real data.
     ' 1. Services/SampleDataService.vb
     ' 2. Models/SampleCompany.vb
     ' 3. Models/SampleOrder.vb

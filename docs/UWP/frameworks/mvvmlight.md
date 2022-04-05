@@ -1,6 +1,6 @@
 ﻿# MVVM Light
 
-**Notice: MVVM Light is no longer actively developed or maintained and will be removed as an option in a future version of Windows Template Studio.**
+**Notice: MVVM Light is no longer actively developed or maintained and will be removed as an option in a future version of Template Studio.**
 
 A guide is available if you want to use the new MVVM Toolkit and are [migrating from MvvmLight](https://docs.microsoft.com/windows/communitytoolkit/mvvm/migratingfrommvvmlight?WT.mc_id=WDIT-MVP-5001397).
 

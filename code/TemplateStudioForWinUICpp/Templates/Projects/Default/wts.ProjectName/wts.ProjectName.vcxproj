@@ -144,7 +144,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="WTS.ProjectConfig.xml" />
+    <Xml Include="TemplateStudio.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

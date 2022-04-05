@@ -875,7 +875,7 @@
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu コントロールは廃止されました。Windows Template Studio が現在サポートするのは NavigationView です。</value>
+    <value>HamburgerMenu コントロールは廃止されました。Template Studio が現在サポートするのは NavigationView です。</value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
@@ -911,7 +911,7 @@
     <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>現在、Windows Template Studio は Windows UI ライブラリの NavigationView を使用しています。</value>
+    <value>現在、Template Studio は Windows UI ライブラリの NavigationView を使用しています。</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ValidatorHasPivotLink" xml:space="preserve">
@@ -923,7 +923,7 @@
     <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>現在、Windows Template Studio はピボット プロジェクトの水平方向の NavigationView を使用しています。</value>
+    <value>現在、Template Studio はピボット プロジェクトの水平方向の NavigationView を使用しています。</value>
     <comment>Has pivot validation error message</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">

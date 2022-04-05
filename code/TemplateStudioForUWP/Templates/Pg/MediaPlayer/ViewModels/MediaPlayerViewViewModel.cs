@@ -6,7 +6,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class MediaPlayerViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO WTS: Set your default video and image URIs
+        // TODO: Set your default video and image URIs
         private const string DefaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
 
         // The poster image is displayed until the video is started

@@ -2,7 +2,7 @@
 Imports Param_RootNamespace.ViewModels
 
 Namespace Views
-    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/pages/ink.md
+    ' For more information regarding Windows Ink documentation and samples see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/pages/ink.md
     Public NotInheritable Partial Class InkDrawPictureViewPage
         Inherits Page
 

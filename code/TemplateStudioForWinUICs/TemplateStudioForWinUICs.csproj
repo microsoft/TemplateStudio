@@ -2030,13 +2030,13 @@
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\WTS.ProjectConfig.xml">
+    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\wts.ProjectName.Core\readme.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\WTS.ProjectConfig.xml">
+    <Content Include="Templates\Proj\Default\wts.ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\icon.xaml">
