@@ -115,48 +115,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void OnOpenWebSite() => Process.Start("https://github.com/microsoft/TemplateStudio");
 
-        private void OnCreateIssue()
-        {
-            var vsInfo = GenContext.ToolBox.Shell.Telemetry.GetVSTelemetryInfo();
-
-            var sb = new StringBuilder();
-            sb.AppendLine("**Describe the bug**");
-            sb.AppendLine("A clear and concise description of what the bug is.");
-            sb.AppendLine();
-            sb.AppendLine("**To Reproduce**");
-            sb.AppendLine("Steps to reproduce the behavior:");
-            sb.AppendLine("1. Go to '...'");
-            sb.AppendLine("2. Click on '....'");
-            sb.AppendLine("3. Scroll down to '....'");
-            sb.AppendLine("4. See error");
-            sb.AppendLine();
-            sb.AppendLine("**Expected behavior**");
-            sb.AppendLine("A clear and concise description of what you expected to happen.");
-            sb.AppendLine();
-            sb.AppendLine("**Screenshots**");
-            sb.AppendLine("If applicable, add screenshots to help explain your problem.");
-            sb.AppendLine();
-            sb.AppendLine("**Additional context**");
-            sb.AppendLine("Add any other context about the problem here.");
-            sb.AppendLine();
-            sb.AppendLine("**System**");
-            sb.AppendLine();
-            if (!string.IsNullOrEmpty(vsInfo.VisualStudioEdition) && !string.IsNullOrEmpty(vsInfo.VisualStudioExeVersion))
-            {
-                sb.AppendLine($"* **VS Version: {vsInfo.VisualStudioEdition} {vsInfo.VisualStudioExeVersion}**");
-            }
-            else
-            {
-                sb.AppendLine($"* **VS Version:**");
-            }
-
-            sb.AppendLine($"* **WTS Wizard Version: {GenContext.ToolBox.WizardVersion}**");
-            sb.AppendLine($"* **WTS Template Version: {GenContext.ToolBox.TemplatesVersion}**");
-            sb.AppendLine($"* **Windows Build: {Environment.OSVersion.Version}**");
-
-            var body = HttpUtility.UrlEncode(sb.ToString());
-
-            Process.Start($"https://github.com/Microsoft/TemplateStudio/issues/new?body={body}");
-        }
+        private void OnCreateIssue() => Process.Start($"https://github.com/microsoft/TemplateStudio/issues/new/choose");
     }
 }

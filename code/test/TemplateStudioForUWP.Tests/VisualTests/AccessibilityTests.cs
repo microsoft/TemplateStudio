@@ -35,8 +35,8 @@ namespace Microsoft.Templates.Test.UWP.Build
         /// TabView - https://github.com/microsoft/microsoft-ui-xaml/issues/2995
         /// Telerik DataGrid - https://github.com/telerik/UI-For-UWP/issues/466
         /// TreeView - https://github.com/windows-toolkit/WindowsCommunityToolkit/issues/3399
-        /// WebView - The content loaded in the page may not be fully accessible and so cause the test to fail. 
-        /// 
+        /// WebView - The content loaded in the page may not be fully accessible and so cause the test to fail.
+        ///
         /// There may still be value in running this test and reviewing the actual results with known external issues.
         /// </summary>
         [Fact]

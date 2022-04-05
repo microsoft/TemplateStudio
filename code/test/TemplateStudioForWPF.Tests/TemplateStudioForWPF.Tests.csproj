@@ -74,6 +74,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WpfTestData.tt</DependentUpon>
     </Compile>
+    <Compile Include="GenTests\WpfGenTemplatesTestCollection.cs" />
+    <Compile Include="GenTests\WpfGenTemplatesTestFixture.cs" />
     <Compile Include="ProjectFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateFolderValidationTests.cs" />
@@ -111,6 +113,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="VisualTests\AccessibilityTests.cs" />
+    <Compile Include="VisualTests\BaseWpfVisualComparisonTests.cs" />
     <Compile Include="WACK\Wpf\WindowsAppCertKitTests.cs" />
     <Compile Include="WpfBaseGenAndBuildTests.cs" />
   </ItemGroup>

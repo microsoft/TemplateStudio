@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Test.Build;
 using WindowsTestHelpers;
 using Xunit;
 
@@ -16,10 +15,10 @@ namespace Microsoft.Templates.Test.WPF.Build
 {
     [Trait("Group", "TS4WPF")]
     [Trait("Group", "ManualOnly")]
-    [Collection("GenerationCollection")]
-    public class AccessibilityTests : BaseVisualComparisonTests
+    [Collection(nameof(WpfGenTemplatesTestCollection))]
+    public class AccessibilityTests : BaseWpfVisualComparisonTests
     {
-        public AccessibilityTests(GenerationFixture fixture)
+        public AccessibilityTests(WpfGenTemplatesTestFixture fixture)
             : base(fixture)
         {
         }
@@ -32,8 +31,8 @@ namespace Microsoft.Templates.Test.WPF.Build
         ///
         /// Symbols in the MetroWindow (& WebView buttons) - https://github.com/dotnet/wpf/issues/3296
         /// MetroWindow - https://github.com/MahApps/MahApps.Metro/issues/3894
-        /// WebView - The content loaded in the page may not be fully accessible and so cause the test to fail. 
-        /// 
+        /// WebView - The content loaded in the page may not be fully accessible and so cause the test to fail.
+        ///
         /// There may still be value in running this test and reviewing the actual results with known external issues.
         /// </summary>
         [Fact]
@@ -91,7 +90,7 @@ namespace Microsoft.Templates.Test.WPF.Build
 
                 var appDetails = await SetUpWpfProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, Frameworks.MVVMToolkit, wpfTestPages);
 
-                var exePath = Path.Combine(appDetails.ProjectPath, appDetails.ProjectName, "bin", "Release", "netcoreapp3.1", $"{appDetails.ProjectName}.exe");
+                var exePath = Path.Combine(appDetails.ProjectPath, appDetails.ProjectName, "bin", "Release", "net6.0-windows10.0.19041.0", $"{appDetails.ProjectName}.exe");
 
                 using (var appSession = WinAppDriverHelper.LaunchExe(exePath))
                 {

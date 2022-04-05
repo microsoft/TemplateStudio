@@ -6,22 +6,20 @@
 	[string]$inputPath
 )
 
-
 Add-Type -Assembly System.IO.Compression
 Add-Type -Assembly System.IO.Compression.FileSystem
 
-
-$files= Get-ChildItem $inputPath -rec | where {!$_.PSIsContainer}
+$files = Get-ChildItem -Recurse $inputPath | Where-Object { $_.FullName -like '*.dll' -or $_.FullName -like '*.js' }
 
 $vsix = [System.IO.Compression.ZipFile]::Open($vsixFilePath, [System.IO.Compression.ZipArchiveMode]::Update)
-$inputDir = (get-Item "$inputPath\").Target
+$inputDir = (Get-Item "$inputPath\").Target
 
 foreach ($file in $files)
 {
     Write-Host "Processing file "$file.FullName
     $newFileName = $file.FullName.Replace("$inputDir\", '').Replace("\", "/")
 
-    $entry = $vsix.Entries | where {$_.FullName -eq $newFileName}
+    $entry = $vsix.Entries | Where-Object {$_.FullName -eq $newFileName}
 
     if ($entry)
     {
@@ -38,5 +36,4 @@ foreach ($file in $files)
     [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($vsix, $file.FullName, $newFileName) > $null 
 }
 
-#free object
 $vsix.Dispose()
