@@ -9,7 +9,6 @@
         <GettingStartedGuide>https://github.com/microsoft/TemplateStudio/blob/main/docs/readme.md</GettingStartedGuide>
         <Icon>TemplateStudio_Logo_90x90.png</Icon>
         <Tags>Template Studio, WPF, XAML, MVVM, Desktop</Tags>
-        <Preview>true</Preview>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
