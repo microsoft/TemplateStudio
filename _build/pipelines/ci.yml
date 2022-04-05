@@ -70,7 +70,7 @@ jobs:
       SourceFolder: $(Build.SourcesDirectory)
       Contents: '**\bin\$(BuildConfiguration)\**'
       TargetFolder: $(Build.ArtifactStagingDirectory)
-    
+
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifacts
     condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
@@ -81,7 +81,7 @@ jobs:
 - job:
   displayName: Test
   timeoutInMinutes: 240
-  dependsOn: Build  
+  dependsOn: Build
 
   strategy:
     matrix:
@@ -151,7 +151,7 @@ jobs:
 - job:
   displayName: Test Shared
   timeoutInMinutes: 240
-  dependsOn: Build  
+  dependsOn: Build
 
   strategy:
     matrix:
