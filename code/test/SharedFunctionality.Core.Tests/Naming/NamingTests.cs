@@ -13,7 +13,6 @@ namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("Group", "Minimum")]
-    [Trait("Type", "Naming")]
     public class NamingTests
     {
         private readonly TemplatesFixture _fixture;

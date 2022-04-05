@@ -15,11 +15,9 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    // These tests are all manual as they require network connection to external sites
+    // These tests should all be run manually as they require network connection to external sites
     // Any failures need to be manually verified and so this should not force the build to fail.
-    // We don't want failing build because an external site is temporarily inaccessible
-    [Trait("Type", "CodeStyle")]
-    [Trait("ExecutionSet", "ManualOnly")]
+    // We don't want a failing build because an external site is temporarily inaccessible.
     public abstract class BaseExternalLinksTests : BaseLinkTestLogic
     {
         public abstract Task LicenseLinksAreCorrectAsync();

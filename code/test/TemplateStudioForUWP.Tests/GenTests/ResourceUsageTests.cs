@@ -31,7 +31,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), "", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureReswResourceInGeneratedProjectsAreUsedAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}Resw";
@@ -107,7 +106,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), "", ProgrammingLanguages.CSharp, Platforms.Uwp)]
-        [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureDefinedUidsHaveResourceEntriesAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}Uids";

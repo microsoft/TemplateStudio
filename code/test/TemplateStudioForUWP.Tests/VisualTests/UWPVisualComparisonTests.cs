@@ -18,7 +18,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 {
     [Trait("Group", "TS4UWP")]
     [Trait("Group", "ManualOnly")]
-    [Trait("Type", "WinAppDriver")]
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class UWPVisualComparisonTests : BaseUwpVisualComparisonTests
     {

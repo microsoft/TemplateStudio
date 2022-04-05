@@ -14,7 +14,6 @@ namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("Group", "Minimum")]
-    [Trait("Type", "ProjectGeneration")]
     public class ITemplateInfoExtensionsTest
     {
         private readonly TemplatesFixture _fixture;
@@ -435,7 +434,6 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDisplayOrder()
         {
             SetUpFixtureForTesting(ProgrammingLanguages.CSharp);

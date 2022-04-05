@@ -25,7 +25,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForVBStyle))]
-        [Trait("Type", "CodeStyle")]
         public async Task GenerateAllWithOptionalLoginRunTestsAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -54,7 +53,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(GetProjectTemplatesForVBStyle))]
-        [Trait("Type", "CodeStyle")]
         public async Task GenerateAllWithForcedLoginRunTestsAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()

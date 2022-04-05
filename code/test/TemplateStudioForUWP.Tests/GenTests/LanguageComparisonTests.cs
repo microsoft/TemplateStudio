@@ -34,7 +34,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
-        [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G1_Async(string projectType, string framework)
         {
             await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group2);
@@ -44,7 +43,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the C# changes are made.
         [Theory]
         [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
-        [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent_G2_Async(string projectType, string framework)
         {
             await EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(projectType, framework, excludedTemplates_Uwp_Group1);
@@ -80,7 +78,7 @@ namespace Microsoft.Templates.Test.UWP.Build
         private List<string> GetAllItemTemplateIdentites(string projectType, string framework, List<string> excludedTemplates)
         {
             return GenContext.ToolBox.Repo.GetAll()
-                             .Where(t =>t.GetTemplateType().IsItemTemplate()
+                             .Where(t => t.GetTemplateType().IsItemTemplate()
                                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                                 && t.GetPlatform() == Platforms.Uwp
