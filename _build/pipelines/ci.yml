@@ -102,8 +102,8 @@ jobs:
         Moniker: WPF
         BuildConfiguration: DebugWPF
         BuildPlatform: Any CPU
-      # Reenable as part of #4441
-      #UWP:
+      # #4441
+      # UWP:
       #  Moniker: UWP
       #  BuildConfiguration: DebugUWP
       #  BuildPlatform: Any CPU
