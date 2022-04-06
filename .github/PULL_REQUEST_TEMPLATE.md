@@ -6,9 +6,9 @@
 
 **Applies to the following platforms:**
 
-- [] WinUI
-- [] WPF
-- [] UWP
+- [ ] WinUI
+- [ ] WPF
+- [ ] UWP
 
 **Anything that requires particular review or attention?**
 

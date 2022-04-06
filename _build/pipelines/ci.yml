@@ -15,8 +15,14 @@ resources:
     type: git
     ref: refs/heads/main
 
+variables:
+- name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+  value: 20
+- name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+  value: 20
+
 jobs:
-- job: Build
+- job:
   displayName: Build
   timeoutInMinutes: 240
 
@@ -81,7 +87,6 @@ jobs:
 - job:
   displayName: Test
   timeoutInMinutes: 240
-  dependsOn: Build
 
   strategy:
     matrix:
@@ -97,10 +102,11 @@ jobs:
         Moniker: WPF
         BuildConfiguration: DebugWPF
         BuildPlatform: Any CPU
-      UWP:
-        Moniker: UWP
-        BuildConfiguration: DebugUWP
-        BuildPlatform: Any CPU
+      # #4441
+      # UWP:
+      #  Moniker: UWP
+      #  BuildConfiguration: DebugUWP
+      #  BuildPlatform: Any CPU
 
   pool:
     vmImage: windows-2022
@@ -151,18 +157,17 @@ jobs:
 - job:
   displayName: Test Shared
   timeoutInMinutes: 240
-  dependsOn: Build
 
   strategy:
     matrix:
-      Core:
-        Moniker: Core
-        FrameworkDirectory: net472
-        BuildConfiguration: DebugALL
-        BuildPlatform: Any CPU
       UI:
         Moniker: UI
         FrameworkDirectory: .
+        BuildConfiguration: DebugALL
+        BuildPlatform: Any CPU
+      Core:
+        Moniker: Core
+        FrameworkDirectory: net472
         BuildConfiguration: DebugALL
         BuildPlatform: Any CPU
 
@@ -187,7 +192,7 @@ jobs:
   - task: VSBuild@1
     displayName: Build
     inputs:
-      solution: code/TemplateStudio.sln
+      solution: code/TemplateStudio.SharedTests.CI.slnf
       vsVersion: 17.0
       configuration: $(BuildConfiguration)
       platform: $(BuildPlatform)
