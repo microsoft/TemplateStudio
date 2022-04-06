@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Ts4WinUICsTemplate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Matt Lacey")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Ts4WinUICsTemplate")]
-[assembly: AssemblyCopyright("Copyright © Matt Lacey 2022")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

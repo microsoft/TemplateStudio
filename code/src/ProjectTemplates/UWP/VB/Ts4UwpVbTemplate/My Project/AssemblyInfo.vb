@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Ts4UwpVbTemplate")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Matt Lacey")>
+<Assembly: AssemblyCompany("Microsoft")>
 <Assembly: AssemblyProduct("Ts4UwpVbTemplate")>
-<Assembly: AssemblyCopyright("Copyright © Matt Lacey 2022")>
+<Assembly: AssemblyCopyright("Copyright © Microsoft 2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
