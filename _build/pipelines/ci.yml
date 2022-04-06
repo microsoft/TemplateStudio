@@ -81,7 +81,7 @@ jobs:
 - job:
   displayName: Test
   timeoutInMinutes: 240
-  dependsOn: Build  
+  #dependsOn: Build  
 
   strategy:
     matrix:
