@@ -16,9 +16,9 @@ resources:
     type: git
     ref: refs/heads/main
 
+jobs:
 - job:
   displayName: Test
-  dependsOn: Build
 
   strategy:
     matrix:
