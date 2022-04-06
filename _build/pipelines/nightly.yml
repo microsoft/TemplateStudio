@@ -98,14 +98,14 @@ jobs:
 
   strategy:
     matrix:
-      Core:
-        Moniker: Core
-        FrameworkDirectory: net472
-        BuildConfiguration: DebugALL
-        BuildPlatform: Any CPU
       UI:
         Moniker: UI
         FrameworkDirectory: .
+        BuildConfiguration: DebugALL
+        BuildPlatform: Any CPU
+      Core:
+        Moniker: Core
+        FrameworkDirectory: net472
         BuildConfiguration: DebugALL
         BuildPlatform: Any CPU
 
