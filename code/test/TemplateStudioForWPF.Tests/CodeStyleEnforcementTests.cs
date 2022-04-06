@@ -7,7 +7,6 @@ using Xunit;
 
 namespace TemplateStudioForWPF.Tests
 {
-    [Trait("Group", "TS4WPF")]
     [Trait("Group", "MinimumWPF")]
     public class CodeStyleEnforcementTests : BaseCodeStyleEnforcementTests
     {

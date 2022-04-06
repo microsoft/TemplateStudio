@@ -3,20 +3,18 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
-
-using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
-
-using Xunit;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using TemplateStudioForUWP.Tests;
-using System.Linq;
+using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
-    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "BuildUWP")]
 
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildPrismProjectTests : UwpBaseGenAndBuildTests
@@ -28,7 +26,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var context = new UserSelectionContext(language, platform)
@@ -47,8 +44,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -73,8 +68,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -100,7 +93,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Group", "MinimumUWP")]
-        [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -130,7 +122,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Group", "MinimumUWP")]
-        [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -159,7 +150,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, "", Platforms.Uwp)]
-        [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRightClick";
@@ -177,7 +167,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
-        [Trait("Type", "BuildOneByOnePrism")]
         public async Task Build_Prism_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var context = new UserSelectionContext(language, platform)

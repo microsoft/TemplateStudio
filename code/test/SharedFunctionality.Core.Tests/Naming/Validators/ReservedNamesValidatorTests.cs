@@ -9,7 +9,6 @@ using Xunit;
 namespace Microsoft.Templates.Core.Test.Naming.Validators
 {
     [Trait("Group", "Minimum")]
-    [Trait("Type", "Naming")]
     public class ReservedNamesValidatorTests
     {
         [Fact]

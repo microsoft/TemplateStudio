@@ -23,8 +23,7 @@ namespace Microsoft.Templates.Test.WinUICpp.Wack
     //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
     //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
     [Collection(nameof(WinUICppBuildTemplatesTestCollection))]
-    [Trait("Group", "TS4WinUICpp")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyWinUICpp")]
     public class WindowsAppCertKitTests : WinUICppBaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(WinUICppBuildTemplatesTestFixture fixture)

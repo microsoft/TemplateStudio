@@ -13,7 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WinUICpp.Build
 {
-    [Trait("Group", "TS4WinUICpp")]
+    [Trait("Group", "BuildWinUICpp")]
     [Collection(nameof(WinUICppBuildTemplatesTestCollection))]
     public class BuildNoneProjectTests : WinUICppBaseGenAndBuildTests
     {
@@ -25,7 +25,6 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
         [Theory]
         [MemberData(nameof(WinUICppBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
         [Trait("Group", "MinimumWinUICpp")]
-        [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_NoneCppAsync(string projectType, string framework, string platform, string language, string appModel)
         {
             var context = new UserSelectionContext(language, platform)
@@ -45,8 +44,6 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
 
         [Theory]
         [MemberData(nameof(WinUICppBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.Cpp, Platforms.WinUI)]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_WinUICppAsync(string projectType, string framework, string platform, string language, string appModel)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()

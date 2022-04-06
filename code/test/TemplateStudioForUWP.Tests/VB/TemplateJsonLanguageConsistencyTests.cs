@@ -13,8 +13,7 @@ using Xunit;
 
 namespace TemplateStudioForUwp.Tests
 {
-    [Trait("Group", "TS4UWP")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyUWP")]
     public class TemplateJsonLanguageConsistencyTests
     {
         [Fact]

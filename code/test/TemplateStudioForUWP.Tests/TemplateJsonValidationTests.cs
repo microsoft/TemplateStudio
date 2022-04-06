@@ -10,7 +10,6 @@ using Xunit;
 
 namespace TemplateStudioForUwp.Tests
 {
-    [Trait("Group", "TS4UWP")]
     [Trait("Group", "MinimumUWP")]
     public partial class TemplateJsonValidationTests : BaseTemplateJsonValidationTests
     {
