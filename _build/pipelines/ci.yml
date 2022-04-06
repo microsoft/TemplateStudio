@@ -15,6 +15,12 @@ resources:
     type: git
     ref: refs/heads/main
 
+variables:
+- name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+  value: 20
+- name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+  value: 20
+
 jobs:
 - job:
   displayName: Build
