@@ -87,7 +87,6 @@ jobs:
 
 - job:
   displayName: Test Shared
-  dependsOn: Build
 
   strategy:
     matrix:
