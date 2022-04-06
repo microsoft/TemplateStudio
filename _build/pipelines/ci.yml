@@ -16,7 +16,7 @@ resources:
     ref: refs/heads/main
 
 jobs:
-- job:
+- job: Build
   displayName: Build
   timeoutInMinutes: 240
 
