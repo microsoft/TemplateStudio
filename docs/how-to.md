@@ -56,7 +56,7 @@ Once your project is created you can add new pages/features.
     * Unchanged Files:
       Files that were generated for the new page/feature but already where in your project and have not been modified
     * Failed merges:
-      To include the new feature/page WTS tried to modify files from your project, but could not do so.
+      To include the new feature/page TS tried to modify files from your project, but could not do so.
       The center of the screen shows the reason of the error message and the code that was tried to be introduced.
 
 6. Create: Click create to integrate the changes in your project. There is the option to check "Do not merge changes" which will result in a generation in a temporary folder.

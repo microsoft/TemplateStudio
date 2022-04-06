@@ -84,7 +84,7 @@ We've created some Visual Studio Code Snippets to help creating the template.jso
 
 - Open Preferences: Configure User Snippets (Ctrl + Shift + P, type snippets).
 - Open Json.json on language files list.
-- Open and copy the code snippets on [WTS code snippets file](.//..//_utils//code-snippets.json).
+- Open and copy the code snippets on [TS code snippets file](.//..//_utils//code-snippets.json).
 - Paste those code snippets on the opened Json.json file.
 
 #### Using the code snippets
