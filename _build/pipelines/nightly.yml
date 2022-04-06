@@ -19,6 +19,7 @@ resources:
 jobs:
 - job:
   displayName: Test
+  timeoutInMinutes: 0
 
   strategy:
     matrix:
@@ -87,6 +88,7 @@ jobs:
 
 - job:
   displayName: Test Shared
+  timeoutInMinutes: 0
 
   strategy:
     matrix:
