@@ -270,7 +270,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\Package.appxmanifest">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
