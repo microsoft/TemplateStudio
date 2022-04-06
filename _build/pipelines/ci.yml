@@ -182,7 +182,7 @@ jobs:
   - task: NuGetCommand@2
     displayName: NuGet restore
     inputs:
-      solution: code/TemplateStudio.SharedTests.CI.slnf
+      solution: code/TemplateStudio.sln
 
   - task: VSBuild@1
     displayName: Build
