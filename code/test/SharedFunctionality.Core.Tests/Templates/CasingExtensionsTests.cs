@@ -9,7 +9,6 @@ namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("Group", "Minimum")]
-    [Trait("Type", "ProjectGeneration")]
     public class CasingExtensionsTests
     {
         [Fact]

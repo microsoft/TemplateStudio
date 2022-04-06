@@ -11,7 +11,6 @@ namespace Microsoft.Templates.Core.Test.Naming.Validators
 {
     [Collection("Unit Test Templates")]
     [Trait("Group", "Minimum")]
-    [Trait("Type", "Naming")]
     public class DefaultNamesValidatorTests
     {
         private TemplatesFixture _fixture;

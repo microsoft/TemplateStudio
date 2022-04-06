@@ -15,7 +15,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
-    [Trait("Group", "TS4UWP")]
+    [Trait("Group", "BuildUWP")]
     [Collection(nameof(UwpBuildTemplatesTestCollection))]
     public class BuildMvvmToolkitProjectTests : UwpBaseGenAndBuildTests
     {
@@ -26,7 +26,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
-        [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_InferConfig_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var context = new UserSelectionContext(language, platform)
@@ -45,8 +44,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -72,8 +69,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
-        [Trait("Type", "BuildAllPagesAndFeatures")]
-        [Trait("Type", "BuildRandomNames")]
         public async Task Build_All_ProjectNameValidation_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -100,7 +95,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Group", "MinimumUWP")]
-        [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G2_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -131,7 +125,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Group", "MinimumUWP")]
-        [Trait("Type", "CodeStyle")]
         public async Task BuildAndTest_All_CheckWithStyleCop_G1_UwpAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -161,7 +154,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, "", Platforms.Uwp)]
-        [Trait("Type", "BuildRightClick")]
         public async Task Build_Empty_AddRightClick_UwpAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
@@ -179,7 +171,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.Uwp, "")]
-        [Trait("Type", "BuildOneByOneMvvmToolkit")]
         public async Task Build_MVVMToolkit_CS_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
 
@@ -196,7 +187,6 @@ namespace Microsoft.Templates.Test.UWP.Build
 
         [Theory]
         [MemberData(nameof(UwpBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.VisualBasic, Platforms.Uwp, "")]
-        [Trait("Type", "BuildOneByOneMvvmToolkit")]
         public async Task Build_MVVMToolkit_VB_OneByOneItems_UwpAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var context = new UserSelectionContext(language, platform)

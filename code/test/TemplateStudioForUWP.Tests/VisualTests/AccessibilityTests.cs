@@ -13,8 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.UWP.Build
 {
-    [Trait("Group", "TS4UWP")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyUWP")]
     [Collection(nameof(UwpGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseUwpVisualComparisonTests
     {
@@ -40,8 +39,6 @@ namespace Microsoft.Templates.Test.UWP.Build
         /// There may still be value in running this test and reviewing the actual results with known external issues.
         /// </summary>
         [Fact]
-        [Trait("Type", "WinAppDriver")]
-        [Trait("Type", "UWP")]
         public async Task RunBasicAccessibilityChecksAgainstEachPageUwpAsync()
         {
             // This test does not run against all combinations as other tests ensure output is the same for each combination.

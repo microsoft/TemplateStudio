@@ -10,7 +10,6 @@ using Xunit;
 
 namespace TemplateStudioForWPF.Tests
 {
-    [Trait("Group", "TS4WPF")]
     [Trait("Group", "MinimumWPF")]
     public partial class TemplateJsonValidationTests : BaseTemplateJsonValidationTests
     {

@@ -13,8 +13,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {
-    [Trait("Group", "TS4WPF")]
-    [Trait("Group", "ManualOnly")]
+    [Trait("Group", "ManualOnlyWPF")]
     [Collection(nameof(WpfGenTemplatesTestCollection))]
     public class AccessibilityTests : BaseWpfVisualComparisonTests
     {
@@ -36,7 +35,6 @@ namespace Microsoft.Templates.Test.WPF.Build
         /// There may still be value in running this test and reviewing the actual results with known external issues.
         /// </summary>
         [Fact]
-        [Trait("Type", "WinAppDriver")]
         public async Task RunBasicAccessibilityChecksAgainstEachPageWpfAsync()
         {
             // This test does not run against all combinations but relies on other tests to ensure output is the same for each combination.

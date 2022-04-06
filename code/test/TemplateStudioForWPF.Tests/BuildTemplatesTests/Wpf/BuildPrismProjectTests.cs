@@ -14,7 +14,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test.WPF.Build
 {
-    [Trait("Group", "TS4WPF")]
+    [Trait("Group", "BuildWPF")]
     [Collection(nameof(WpfBuildTemplatesTestCollection))]
     public class BuildPrismProjectTests : WpfBaseGenAndBuildTests
     {
@@ -25,7 +25,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("Type", "BuildProjects")]
         public async Task Build_EmptyProject_WpfAsync(string projectType, string framework, string platform, string language)
         {
             var context = new UserSelectionContext(language, platform)
@@ -41,8 +40,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
-        [Trait("Type", "BuildRandomNamesWpf")]
         public async Task Build_All_G2_ProjectNameValidation_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -68,8 +65,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("Type", "BuildAllPagesAndFeaturesWpf")]
-        [Trait("Type", "BuildRandomNamesWpf")]
         public async Task Build_All_G1_ProjectNameValidation_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -96,7 +91,6 @@ namespace Microsoft.Templates.Test.WPF.Build
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("Group", "MinimumWPF")]
-        [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G1_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -127,7 +121,6 @@ namespace Microsoft.Templates.Test.WPF.Build
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
         [Trait("Group", "MinimumWPF")]
-        [Trait("Type", "CodeStyleWpf")]
         public async Task Build_All_CheckWithStyleCop_G2_WpfAsync(string projectType, string framework, string platform, string language)
         {
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
@@ -208,7 +201,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetProjectTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf)]
-        [Trait("Type", "BuildRightClickWpf")]
         public async Task Build_Empty_AddRightClick_WpfAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{ShortProjectType(projectType)}AllRC{ShortLanguageName(language)}";
@@ -226,7 +218,6 @@ namespace Microsoft.Templates.Test.WPF.Build
 
         [Theory]
         [MemberData(nameof(WpfBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.Prism, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
-        [Trait("Type", "BuildOneByOnePrismWpf")]
         public async Task Build_Prism_OneByOneItems_WpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var context = new UserSelectionContext(language, platform)
