@@ -33,10 +33,10 @@ jobs:
         Moniker: WinUICs
         BuildConfiguration: DebugWinUICs
         BuildPlatform: Any CPU
-      WinUICpp:
-        Moniker: WinUICpp
-        BuildConfiguration: DebugWinUICpp
-        BuildPlatform: Any CPU
+      # WinUICpp:
+      #   Moniker: WinUICpp
+      #   BuildConfiguration: DebugWinUICpp
+      #   BuildPlatform: Any CPU
       WPF:
         Moniker: WPF
         BuildConfiguration: DebugWPF
