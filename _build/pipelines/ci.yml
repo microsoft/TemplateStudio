@@ -16,7 +16,7 @@ resources:
     ref: refs/heads/main
 
 jobs:
-- job: Build
+- job:
   displayName: Build
   timeoutInMinutes: 240
 
@@ -81,18 +81,9 @@ jobs:
 - job:
   displayName: Test
   timeoutInMinutes: 240
-  #dependsOn: Build  
 
   strategy:
     matrix:
-      UWP:
-        Moniker: UWP
-        BuildConfiguration: DebugUWP
-        BuildPlatform: Any CPU
-      WPF:
-        Moniker: WPF
-        BuildConfiguration: DebugWPF
-        BuildPlatform: Any CPU
       WinUICs:
         Moniker: WinUICs
         BuildConfiguration: DebugWinUICs
@@ -100,6 +91,14 @@ jobs:
       WinUICpp:
         Moniker: WinUICpp
         BuildConfiguration: DebugWinUICpp
+        BuildPlatform: Any CPU
+      WPF:
+        Moniker: WPF
+        BuildConfiguration: DebugWPF
+        BuildPlatform: Any CPU
+      UWP:
+        Moniker: UWP
+        BuildConfiguration: DebugUWP
         BuildPlatform: Any CPU
 
   pool:
@@ -151,7 +150,6 @@ jobs:
 - job:
   displayName: Test Shared
   timeoutInMinutes: 240
-  dependsOn: Build  
 
   strategy:
     matrix:
