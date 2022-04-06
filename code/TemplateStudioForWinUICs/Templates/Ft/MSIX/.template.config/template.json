@@ -27,8 +27,7 @@
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "guids": [
-  ],
+  "guids": ["07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [
   ],
   "symbols": {
