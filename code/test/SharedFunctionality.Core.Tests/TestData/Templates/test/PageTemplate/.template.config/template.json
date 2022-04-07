@@ -18,7 +18,7 @@
     "ts.genGroup": "1",
     "ts.export.baseclass": "ViewModelBase",
     "ts.export.setter": "Set",
-    "wts.casing.sourceName": "kebab|camel|pascal|snake"
+    "ts.casing.sourceName": "kebab|camel|pascal|snake"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

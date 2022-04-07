@@ -339,7 +339,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 var value = textCasing.Key == "sourceName"
                     ? name
-                    : genInfo.Parameters.SafeGet($"wts.{textCasing.Key}");
+                    : genInfo.Parameters.SafeGet($"ts.{textCasing.Key}");
 
                 if (!string.IsNullOrEmpty(value))
                 {
