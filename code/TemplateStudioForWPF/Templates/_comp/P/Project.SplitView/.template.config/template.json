@@ -10,11 +10,11 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "Wpf",
-      "wts.version": "1.0.0",
-      "wts.compositionOrder": "1",
-      "wts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & wts.type == project"
+      "ts.type": "composition",
+      "ts.platform": "Wpf",
+      "ts.version": "1.0.0",
+      "ts.compositionOrder": "1",
+      "ts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & ts.type == project"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

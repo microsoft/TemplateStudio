@@ -9,13 +9,13 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.projecttype": "all",
-    "wts.frontendframework": "fx1",
-    "wts.backendframework": "fx3",
-    "wts.type": "testing",
-    "wts.multipleInstance": "false",
-    "wts.isGroupExclusiveSelection": "true"
+    "ts.platform": "test",
+    "ts.projecttype": "all",
+    "ts.frontendframework": "fx1",
+    "ts.backendframework": "fx3",
+    "ts.type": "testing",
+    "ts.multipleInstance": "false",
+    "ts.isGroupExclusiveSelection": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

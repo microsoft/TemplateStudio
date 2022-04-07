@@ -8,15 +8,15 @@
   "tags": {
     "language": "VisualBasic",
     "type": "project",
-    "wts.type": "project",
-    "wts.projecttype": "pt1|pt2|TestProjectType",
-    "wts.frontendframework": "fx1|TestFramework",
-    "wts.platform": "test",
-    "wts.version": "1.0.0",
-    "wts.licenses": "[text1](url1)|[text2](url2)",
-    "wts.group": "group1",
-    "wts.defaultInstance": "DefaultName",
-    "wts.requiredVersions": "sdk1|sdk2"
+    "ts.type": "project",
+    "ts.projecttype": "pt1|pt2|TestProjectType",
+    "ts.frontendframework": "fx1|TestFramework",
+    "ts.platform": "test",
+    "ts.version": "1.0.0",
+    "ts.licenses": "[text1](url1)|[text2](url2)",
+    "ts.group": "group1",
+    "ts.defaultInstance": "DefaultName",
+    "ts.requiredVersions": "sdk1|sdk2"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

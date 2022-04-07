@@ -10,12 +10,12 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "Wpf",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == CodeBehind & wts.type == feature",
-      "wts.export.configtype": "IOptions<AppConfig>",
-      "wts.export.configvalue": "appConfig.Value"
+      "ts.type": "composition",
+      "ts.platform": "Wpf",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == CodeBehind & ts.type == feature",
+      "ts.export.configtype": "IOptions<AppConfig>",
+      "ts.export.configvalue": "appConfig.Value"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

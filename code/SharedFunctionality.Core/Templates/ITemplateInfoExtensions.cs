@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core
     public static class ITemplateInfoExtensions
     {
         private const string Separator = "|";
-        private const string TagPrefix = "wts.";
+        private const string TagPrefix = "ts.";
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)

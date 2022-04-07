@@ -10,11 +10,11 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "WinUI",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == page",
-      "wts.export.baseclass": "ObservableRecipient"
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == page",
+      "ts.export.baseclass": "ObservableRecipient"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

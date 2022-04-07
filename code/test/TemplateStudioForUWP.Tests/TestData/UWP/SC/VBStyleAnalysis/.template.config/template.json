@@ -11,14 +11,14 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "feature",
-    "wts.outputToParent": "true",
-    "wts.platform": "Uwp",
-    "wts.version": "1.0.0",
-    "wts.multipleInstance": "false",
-    "wts.isHidden": "true",
-    "wts.compositionFilter": "wts.type == project",
-    "wts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/main/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
+    "ts.type": "feature",
+    "ts.outputToParent": "true",
+    "ts.platform": "Uwp",
+    "ts.version": "1.0.0",
+    "ts.multipleInstance": "false",
+    "ts.isHidden": "true",
+    "ts.compositionFilter": "ts.type == project",
+    "ts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/main/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

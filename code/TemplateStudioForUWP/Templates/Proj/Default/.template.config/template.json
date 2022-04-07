@@ -10,13 +10,13 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "project",
-    "wts.frontendframework": "CodeBehind|MVVMToolkit",
-    "wts.projecttype":"Blank|SplitView|TabbedNav|MenuBar",
-    "wts.platform": "Uwp",
-    "wts.version": "1.0.0",
-    "wts.displayOrder": "1", 
-    "wts.requiredVersions":"UAP, Version=10.0.19041.0"
+    "ts.type": "project",
+    "ts.frontendframework": "CodeBehind|MVVMToolkit",
+    "ts.projecttype":"Blank|SplitView|TabbedNav|MenuBar",
+    "ts.platform": "Uwp",
+    "ts.version": "1.0.0",
+    "ts.displayOrder": "1", 
+    "ts.requiredVersions":"UAP, Version=10.0.19041.0"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,

@@ -10,12 +10,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform" : "Uwp",
-    "wts.version": "1.0.0",
-    "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView|TabbedNav & wts.type == project",
-    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
+    "ts.type": "composition",
+    "ts.platform" : "Uwp",
+    "ts.version": "1.0.0",
+    "ts.compositionOrder": "1",
+    "ts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView|TabbedNav & ts.type == project",
+    "ts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -17,13 +17,13 @@
 		"  \"tags\": {",
 		"    \"language\": \"${5|C#,VisualBasic|}\",",
 		"    \"type\": \"item\",",
-		"    \"wts.type\": \"${6|page,feature,service,testing|}\",",
-		"    \"wts.projecttype\": \"all\",",
-		"    \"wts.frontendframework\": \"all\",",
-		"    \"wts.platform\": \"Uwp\",",
-		"    \"wts.version\": \"1.0.0\",",
-		"    \"wts.genGroup\": \"0\",",
-		"    \"wts.rightClickEnabled\": \"true\"",
+		"    \"ts.type\": \"${6|page,feature,service,testing|}\",",
+		"    \"ts.projecttype\": \"all\",",
+		"    \"ts.frontendframework\": \"all\",",
+		"    \"ts.platform\": \"Uwp\",",
+		"    \"ts.version\": \"1.0.0\",",
+		"    \"ts.genGroup\": \"0\",",
+		"    \"ts.rightClickEnabled\": \"true\"",
 		"  },",
 		"  \"sourceName\": \"wts.ItemName\",",
 		"  \"preferNameDirectory\": true,",
@@ -54,10 +54,10 @@
       "  \"tags\": {",
       "    \"language\": \"${3|C#,VisualBasic|}\",",
       "    \"type\": \"item\",",
-      "    \"wts.type\": \"composition\",",
-      "    \"wts.platform\": \"Uwp\",",
-      "    \"wts.version\": \"1.0.0\",",
-      "    \"wts.compositionFilter\": \"\",",
+      "    \"ts.type\": \"composition\",",
+      "    \"ts.platform\": \"Uwp\",",
+      "    \"ts.version\": \"1.0.0\",",
+      "    \"ts.compositionFilter\": \"\",",
       "  },",
       "  \"sourceName\": \"wts.ItemName\",",
       "  \"preferNameDirectory\": true,",
@@ -175,32 +175,32 @@
 	// TAGS
 	"wts.tag.outputToParent": {
 		"prefix": "wts.tag.outputToParent",
-		"body": "\"wts.outputToParent\": \"true\"",
+		"body": "\"ts.outputToParent\": \"true\"",
 		"description": "Add WTS tag outputToParent"
 	},
 	"wts.tag.defaultInstance": {
 		"prefix": "wts.tag.defaultInstance",
-		"body": "\"wts.defaultInstance\": \"true\"",
+		"body": "\"ts.defaultInstance\": \"true\"",
 		"description": "Add WTS tag defaultInstance"
 	},
 	"wts.tag.multipleInstance": {
 		"prefix": "wts.tag.multipleInstance",
-		"body": "\"wts.multipleInstance\": \"true\"",
+		"body": "\"ts.multipleInstance\": \"true\"",
 		"description": "Add WTS tag multipleInstance"
 	},
 	"wts.tag.compositionOrder": {
 		"prefix": "wts.tag.compositionOrder",
-		"body": "\"wts.compositionOrder\": \"0\"",
+		"body": "\"ts.compositionOrder\": \"0\"",
 		"description": "Add WTS tag compositionOrder"
 	},
 	"wts.tag.licenses": {
 		"prefix": "wts.tag.licenses",
-		"body": "\"wts.licenses\": \"[]()\"",
+		"body": "\"ts.licenses\": \"[]()\"",
 		"description": "Add WTS tag licenses"
 	},
 	"wts.tag.dependencies": {
 		"prefix": "wts.tag.dependencies",
-		"body": "\"wts.dependencies\": \"\"",
+		"body": "\"ts.dependencies\": \"\"",
 		"description": "Add WTS tag dependencies"
 	},
 

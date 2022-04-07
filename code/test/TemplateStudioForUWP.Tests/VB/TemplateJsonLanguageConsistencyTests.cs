@@ -56,10 +56,10 @@ namespace TemplateStudioForUwp.Tests
                             }
                         }
 
-                        if (csTemplate.TagsCollection.ContainsKey("wts.compositionFilter"))
+                        if (csTemplate.TagsCollection.ContainsKey("ts.compositionFilter"))
                         {
-                            var vbFilter = vbTemplate?.TagsCollection["wts.compositionFilter"];
-                            var csFilter = csTemplate.TagsCollection["wts.compositionFilter"];
+                            var vbFilter = vbTemplate?.TagsCollection["ts.compositionFilter"];
+                            var csFilter = csTemplate.TagsCollection["ts.compositionFilter"];
 
                             var vbquery = CompositionQuery.Parse(vbFilter);
                             var csquery = CompositionQuery.Parse(csFilter);
@@ -84,8 +84,8 @@ namespace TemplateStudioForUwp.Tests
                             }
                         }
 
-                        var csCompOrder = csTemplate.TagsCollection.ContainsKey("wts.compositionOrder") ? csTemplate.TagsCollection["wts.compositionOrder"] : null;
-                        var vbCompOrder = vbTemplate?.TagsCollection.ContainsKey("wts.compositionOrder") ?? false ? vbTemplate.TagsCollection["wts.compositionOrder"] : null;
+                        var csCompOrder = csTemplate.TagsCollection.ContainsKey("ts.compositionOrder") ? csTemplate.TagsCollection["ts.compositionOrder"] : null;
+                        var vbCompOrder = vbTemplate?.TagsCollection.ContainsKey("ts.compositionOrder") ?? false ? vbTemplate.TagsCollection["ts.compositionOrder"] : null;
 
                         if (csCompOrder != vbCompOrder)
                         {

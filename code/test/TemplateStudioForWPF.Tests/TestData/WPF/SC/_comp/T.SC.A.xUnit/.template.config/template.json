@@ -10,13 +10,13 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.outputToParent": "true",
-    "wts.platform" : "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Wpf.Testing.UnitTests.App.xUnit & $feature == wts.Wpf.Feat.StyleCop",
-    "wts.compositionOrder": "1",
-    "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
+    "ts.type": "composition",
+    "ts.outputToParent": "true",
+    "ts.platform" : "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "identity == wts.Wpf.Testing.UnitTests.App.xUnit & $feature == wts.Wpf.Feat.StyleCop",
+    "ts.compositionOrder": "1",
+    "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

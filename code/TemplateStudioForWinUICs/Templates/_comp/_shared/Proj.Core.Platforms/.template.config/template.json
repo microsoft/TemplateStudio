@@ -10,11 +10,11 @@
     "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.outputToParent": "true",
-    "wts.platform": "WinUI",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.MSIXPackaging"
+    "ts.type": "composition",
+    "ts.outputToParent": "true",
+    "ts.platform": "WinUI",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.MSIXPackaging"
   },
   "sourceName": "wts.ItemName",
   "symbols": {

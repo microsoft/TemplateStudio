@@ -52,8 +52,8 @@ namespace TemplateValidator
         public IReadOnlyDictionary<string, ICacheTag> Tags { get; }
 
         // We just use strings for tags. The template engine uses a converter but this is fine for testing purposes
-        [ApiAnalysisMandatoryKeys("language", "type", "wts.type", "wts.platform")]
-        [ApiAnalysisOptionalKeys("wts.displayOrder", "wts.compositionOrder", "wts.frontendframework", "wts.backendframework", "wts.projecttype", "wts.version", "wts.genGroup", "wts.rightClickEnabled", "wts.compositionFilter", "wts.licenses", "wts.group", "wts.multipleInstance", "wts.dependencies", "wts.requirements", "wts.exclusions", "wts.defaultInstance", "wts.export.baseclass", "wts.export.setter", "wts.isHidden", "wts.telemName", "wts.outputToParent", "wts.isGroupExclusiveSelection", "wts.requiredVsWorkload", "wts.requiredVersions", "wts.export.configtype", "wts.export.configvalue", "wts.export.commandclass", "wts.export.pagetype", "wts.export.canExecuteChangedMethodName", "wts.export.onNavigatedToParams", "wts.export.onNavigatedFromParams", "wts.appmodel")]
+        [ApiAnalysisMandatoryKeys("language", "type", "ts.type", "ts.platform")]
+        [ApiAnalysisOptionalKeys("ts.displayOrder", "ts.compositionOrder", "ts.frontendframework", "ts.backendframework", "ts.projecttype", "ts.version", "ts.genGroup", "ts.rightClickEnabled", "ts.compositionFilter", "ts.licenses", "ts.group", "ts.multipleInstance", "ts.dependencies", "ts.requirements", "ts.exclusions", "ts.defaultInstance", "ts.export.baseclass", "ts.export.setter", "ts.isHidden", "ts.telemName", "ts.outputToParent", "ts.isGroupExclusiveSelection", "ts.requiredVsWorkload", "ts.requiredVersions", "ts.export.configtype", "ts.export.configvalue", "ts.export.commandclass", "ts.export.pagetype", "ts.export.canExecuteChangedMethodName", "ts.export.onNavigatedToParams", "ts.export.onNavigatedFromParams", "ts.appmodel")]
         [JsonProperty("tags")]
         public IReadOnlyDictionary<string, string> TagsCollection { get; set; }
 

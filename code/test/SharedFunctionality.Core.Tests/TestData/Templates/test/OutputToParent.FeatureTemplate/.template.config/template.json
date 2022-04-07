@@ -8,9 +8,9 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "feature",
-    "wts.outputToParent": "true"
+    "ts.platform": "test",
+    "ts.type": "feature",
+    "ts.outputToParent": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

@@ -9,15 +9,15 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.projecttype": "all",
-    "wts.frontendframework": "all",
-    "wts.type": "service",
-    "wts.displayOrder": "1",
-    "wts.genGroup": "0",
-    "wts.isHidden": "true",
-    "wts.defaultInstance": "ServiceSecondTemplateInstance",
-    "wts.multipleInstance": "false"
+    "ts.platform": "test",
+    "ts.projecttype": "all",
+    "ts.frontendframework": "all",
+    "ts.type": "service",
+    "ts.displayOrder": "1",
+    "ts.genGroup": "0",
+    "ts.isHidden": "true",
+    "ts.defaultInstance": "ServiceSecondTemplateInstance",
+    "ts.multipleInstance": "false"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

@@ -9,13 +9,13 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.projecttype": "TestProjectType",
-    "wts.frontendframework": "TestFramework",
-    "wts.type": "feature",
-    "wts.multipleInstance": "false",
-    "wts.isGroupExclusiveSelection": "true",
-    "wts.licenses": "[textfeature1](urlfeature1)"
+    "ts.platform": "test",
+    "ts.projecttype": "TestProjectType",
+    "ts.frontendframework": "TestFramework",
+    "ts.type": "feature",
+    "ts.multipleInstance": "false",
+    "ts.isGroupExclusiveSelection": "true",
+    "ts.licenses": "[textfeature1](urlfeature1)"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

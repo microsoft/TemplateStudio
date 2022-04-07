@@ -10,10 +10,10 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform" : "Uwp",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView|TabbedNav & groupidentity == wts.Page.ContentGrid.VB"
+    "ts.type": "composition",
+    "ts.platform" : "Uwp",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView|TabbedNav & groupidentity == wts.Page.ContentGrid.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

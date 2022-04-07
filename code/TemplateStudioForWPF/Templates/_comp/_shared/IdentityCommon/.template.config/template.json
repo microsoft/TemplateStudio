@@ -10,13 +10,13 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionOrder": "0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
-    "wts.outputToParent": "true",
-    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionOrder": "0",
+    "ts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
+    "ts.outputToParent": "true",
+    "ts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

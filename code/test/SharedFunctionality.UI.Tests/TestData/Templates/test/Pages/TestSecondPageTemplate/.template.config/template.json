@@ -9,12 +9,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.projecttype": "all",
-    "wts.frontendframework": "all",
-    "wts.type": "page",
-    "wts.displayOrder": "2",
-    "wts.genGroup": "1"
+    "ts.platform": "test",
+    "ts.projecttype": "all",
+    "ts.frontendframework": "all",
+    "ts.type": "page",
+    "ts.displayOrder": "2",
+    "ts.genGroup": "1"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

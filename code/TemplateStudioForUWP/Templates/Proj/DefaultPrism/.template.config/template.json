@@ -10,14 +10,14 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "project",
-    "wts.frontendframework": "Prism",
-    "wts.projecttype": "Blank|SplitView|TabbedNav|MenuBar",
-	  "wts.platform": "Uwp",
-    "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
-    "wts.licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
-    "wts.requiredVersions":"UAP, Version=10.0.19041.0"
+    "ts.type": "project",
+    "ts.frontendframework": "Prism",
+    "ts.projecttype": "Blank|SplitView|TabbedNav|MenuBar",
+	  "ts.platform": "Uwp",
+    "ts.version": "1.0.0",
+    "ts.displayOrder": "1",
+    "ts.licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
+    "ts.requiredVersions":"UAP, Version=10.0.19041.0"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,

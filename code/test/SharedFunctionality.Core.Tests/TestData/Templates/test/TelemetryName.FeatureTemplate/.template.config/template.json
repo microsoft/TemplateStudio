@@ -8,9 +8,9 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "feature",
-    "wts.telemName": "TelemName"
+    "ts.platform": "test",
+    "ts.type": "feature",
+    "ts.telemName": "TelemName"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

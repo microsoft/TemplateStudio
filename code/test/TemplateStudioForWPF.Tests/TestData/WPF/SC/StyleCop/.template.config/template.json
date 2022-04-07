@@ -11,14 +11,14 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.platform": "Wpf",
-      "wts.type": "feature",
-      "wts.outputToParent": "true",
-      "wts.version": "1.0.0",
-      "wts.multipleInstance": "false",
-      "wts.isHidden": "true",
-      "wts.compositionFilter": "wts.type == project",
-      "wts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
+      "ts.platform": "Wpf",
+      "ts.type": "feature",
+      "ts.outputToParent": "true",
+      "ts.version": "1.0.0",
+      "ts.multipleInstance": "false",
+      "ts.isHidden": "true",
+      "ts.compositionFilter": "ts.type == project",
+      "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

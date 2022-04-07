@@ -183,111 +183,111 @@ namespace TemplateValidator
                     case "type":
                         VerifyTypeTagValue(tag, results);
                         break;
-                    case "wts.type":
+                    case "ts.type":
                         VerifyWtsTypeTagValue(tag, results);
                         VerifyWtsTypeFeatureMultipleInstancesRule(tag, template, results);
                         break;
-                    case "wts.order":
+                    case "ts.order":
                         VerifyWtsOrderTagValue(results);
                         break;
-                    case "wts.displayOrder":
+                    case "ts.displayOrder":
                         VerifyWtsDisplayOrderTagValue(tag, results);
                         break;
-                    case "wts.compositionOrder":
+                    case "ts.compositionOrder":
                         VerifyWtsCompositionOrderTagValue(tag, results);
                         break;
-                    case "wts.frontendframework":
-                    case "wts.backendframework":
+                    case "ts.frontendframework":
+                    case "ts.backendframework":
                         VerifyWtsFrameworkTagValue(tag, results);
                         break;
-                    case "wts.projecttype":
+                    case "ts.projecttype":
                         VerifyWtsProjecttypeTagValue(tag, results);
                         break;
-                    case "wts.platform":
+                    case "ts.platform":
                         VerifyPlatformTagValue(tag, results);
                         break;
-                    case "wts.version":
+                    case "ts.version":
                         VerifyWtsVersionTagValue(tag, results);
                         break;
-                    case "wts.genGroup":
+                    case "ts.genGroup":
                         VerifyWtsGengroupTagValue(tag, results);
                         break;
-                    case "wts.rightClickEnabled":
+                    case "ts.rightClickEnabled":
                         VerifyWtsRightclickenabledTagValue(tag, results);
                         break;
-                    case "wts.compositionFilter":
+                    case "ts.compositionFilter":
                         VerifyWtsCompositionFilterTagValue(tag, results);
                         VerifyWtsCompositionFilterLogic(template, tag, results);
                         break;
-                    case "wts.licenses":
+                    case "ts.licenses":
                         VerifyWtsLicensesTagValue(tag, results);
                         break;
-                    case "wts.group":
+                    case "ts.group":
                         VerifyWtsGroupTagValue(tag, results);
                         break;
-                    case "wts.multipleInstance":
+                    case "ts.multipleInstance":
                         VerifyWtsMultipleinstanceTagValue(tag, results);
                         break;
-                    case "wts.dependencies":
+                    case "ts.dependencies":
                         // This value is checked with the TemplateFolderVerifier
                         break;
-                    case "wts.requirements":
+                    case "ts.requirements":
                         // This value is checked with the TemplateFolderVerifier
                         break;
-                    case "wts.exclusions":
+                    case "ts.exclusions":
                     // This value is checked with the TemplateFolderVerifier
-                    case "wts.defaultInstance":
+                    case "ts.defaultInstance":
                         VerifyWtsDefaultinstanceTagValue(tag, results);
                         break;
-                    case "wts.isHidden":
+                    case "ts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
-                    case "wts.isGroupExclusiveSelection":
+                    case "ts.isGroupExclusiveSelection":
                         VerifyWtsWtsIsGroupExclusiveSelectionTagValue(tag, results);
                         break;
-                    case "wts.telemName":
+                    case "ts.telemName":
                         VerifyWtsTelemNameTagValue(tag, results);
                         break;
-                    case "wts.outputToParent":
+                    case "ts.outputToParent":
                         VerifyWtsOutputToParentTagValue(tag, results);
                         break;
-                    case "wts.requiredVsWorkload":
+                    case "ts.requiredVsWorkload":
                         VerifyRequiredVsWorkloadTagValue(tag, results);
                         break;
-                    case "wts.requiredSdks":
+                    case "ts.requiredSdks":
                         VerifyRequiredSdkTagValue(results);
                         break;
-                    case "wts.requiredVersions":
+                    case "ts.requiredVersions":
                         VerifyRequiredVersionsTagValue(tag, results);
                         break;
-                    case "wts.export.baseclass":
+                    case "ts.export.baseclass":
                         VerifyWtsExportBaseclassTagValue(tag, results);
                         break;
-                    case "wts.export.setter":
+                    case "ts.export.setter":
                         VerifyWtsExportSetterTagValue(tag, results);
                         break;
-                    case "wts.export.configtype":
+                    case "ts.export.configtype":
                         VerifyWtsExportConfigTypeTagValue(tag, results);
                         break;
-                    case "wts.export.configvalue":
+                    case "ts.export.configvalue":
                         VerifyWtsExportConfigValueTagValue(tag, results);
                         break;
-                    case "wts.export.commandclass":
+                    case "ts.export.commandclass":
                         VerifyWtsExportCommandClassTagValue(tag, results);
                         break;
-                    case "wts.export.pagetype":
+                    case "ts.export.pagetype":
                         VerifyWtsExportPageTypeTagValue(tag, results);
                         break;
-                    case "wts.export.canExecuteChangedMethodName":
+                    case "ts.export.canExecuteChangedMethodName":
                         VerifyWtsExportCanExecuteChangedMethodNameTagValue(tag, results);
                         break;
-                    case "wts.export.onNavigatedToParams":
+                    case "ts.export.onNavigatedToParams":
                         VerifyWtsExportOnNavigatedToParamsTagValue(tag, results);
                         break;
-                    case "wts.export.onNavigatedFromParams":
+                    case "ts.export.onNavigatedFromParams":
                         VerifyWtsExportOnNavigatedFromParamsTagValue(tag, results);
                         break;
-                    case "wts.appmodel":
+                    case "ts.appmodel":
                         VerifyWtsAppModelTagValue(tag, results);
                         break;
                     default:
@@ -296,9 +296,9 @@ namespace TemplateValidator
                 }
             }
 
-            if (template.TagsCollection.ContainsKey("language") && template.TagsCollection.ContainsKey("wts.frontendframework"))
+            if (template.TagsCollection.ContainsKey("language") && template.TagsCollection.ContainsKey("ts.frontendframework"))
             {
-                VerifyFrameworksAreAppropriateForLanguage(template.TagsCollection["language"], template.TagsCollection["wts.frontendframework"], results);
+                VerifyFrameworksAreAppropriateForLanguage(template.TagsCollection["language"], template.TagsCollection["ts.frontendframework"], results);
             }
         }
 
@@ -306,7 +306,7 @@ namespace TemplateValidator
         {
             if (!BoolStrings.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.outputToParent tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.outputToParent tag.");
             }
         }
 
@@ -314,7 +314,7 @@ namespace TemplateValidator
         {
             if (string.IsNullOrWhiteSpace(tag.Value))
             {
-                results.Add("The tag wts.telemName cannot be blank if specified.");
+                results.Add("The tag ts.telemName cannot be blank if specified.");
             }
         }
 
@@ -330,7 +330,7 @@ namespace TemplateValidator
         {
             if (!BoolStrings.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.isHidden tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.isHidden tag.");
             }
         }
 
@@ -338,7 +338,7 @@ namespace TemplateValidator
         {
             if (!BoolStrings.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.isGroupExclusiveSelection tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.isGroupExclusiveSelection tag.");
             }
         }
 
@@ -346,7 +346,7 @@ namespace TemplateValidator
         {
             if (!new[] { "Observable", "ObservableObject", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.baseclass tag.");
             }
         }
 
@@ -354,7 +354,7 @@ namespace TemplateValidator
         {
             if (!new[] { "Set", "SetProperty" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.setter tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.setter tag.");
             }
         }
 
@@ -362,7 +362,7 @@ namespace TemplateValidator
         {
             if (!new[] { "IOptions<AppConfig>", "AppConfig" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.configtype tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.configtype tag.");
             }
         }
 
@@ -370,7 +370,7 @@ namespace TemplateValidator
         {
             if (!new[] { "appConfig.Value", "appConfig" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.configvalue tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.configvalue tag.");
             }
         }
 
@@ -378,7 +378,7 @@ namespace TemplateValidator
         {
             if (!new[] { "RelayCommand", "DelegateCommand" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.commandclass tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.commandclass tag.");
             }
         }
 
@@ -386,7 +386,7 @@ namespace TemplateValidator
         {
             if (!new[] { "Page", "UserControl" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.pageType tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.pagetype tag.");
             }
         }
 
@@ -394,7 +394,7 @@ namespace TemplateValidator
         {
             if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged", "NotifyCanExecuteChanged" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.canExecuteChangedMethodName tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.canExecuteChangedMethodName tag.");
             }
         }
 
@@ -402,7 +402,7 @@ namespace TemplateValidator
         {
             if (!new[] { "object parameter", "NavigationContext navigationContext" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.onNavigatedToParams tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.onNavigatedToParams tag.");
             }
         }
 
@@ -410,7 +410,7 @@ namespace TemplateValidator
         {
             if (!new[] { string.Empty, "NavigationContext navigationContext" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.onNavigatedFromParams tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.export.onNavigatedFromParams tag.");
             }
         }
 
@@ -418,7 +418,7 @@ namespace TemplateValidator
         {
             if (!new[] { "all", "Desktop", "Uwp" }.Contains(tag.Value))
             {
-                results.Add($"Unexpected value '{tag.Value}' specified in the wts.appmodel tag.");
+                results.Add($"Unexpected value '{tag.Value}' specified in the ts.appmodel tag.");
             }
         }
 
@@ -426,7 +426,7 @@ namespace TemplateValidator
         {
             if (string.IsNullOrWhiteSpace(tag.Value))
             {
-                results.Add("The tag wts.defaultInstance cannot be blank if specified.");
+                results.Add("The tag ts.defaultInstance cannot be blank if specified.");
             }
         }
 
@@ -434,7 +434,7 @@ namespace TemplateValidator
         {
             if (!BoolStrings.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.multipleInstance tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.multipleInstance tag.");
             }
         }
 
@@ -442,7 +442,7 @@ namespace TemplateValidator
         {
             if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing", "Data", "Tools", "Packaging" }.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.group tag.");
             }
         }
 
@@ -456,7 +456,7 @@ namespace TemplateValidator
                 // This is a really crude regex designed to catch basic variation from a markdown URI link
                 if (!new Regex(@"^\[([\w .\-]){3,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(value))
                 {
-                    results.Add($"'{value}' specified in the wts.licenses tag does not match the expected format.");
+                    results.Add($"'{value}' specified in the ts.licenses tag does not match the expected format.");
                 }
             }
         }
@@ -469,7 +469,7 @@ namespace TemplateValidator
             }
             catch (InvalidCompositionQueryException ex)
             {
-                results.Add($"Unable to parse the wts.compositionFilter value of '{tag.Value}': {ex}.");
+                results.Add($"Unable to parse the ts.compositionFilter value of '{tag.Value}': {ex}.");
             }
         }
 
@@ -481,7 +481,7 @@ namespace TemplateValidator
                 // This can't catch everything but is better than nothing
                 if (tag.Value.Contains("identity") && !tag.Value.Contains(".VB"))
                 {
-                    results.Add($" wts.compositionFilter identitiy value does not match the language. ({tag.Value}).");
+                    results.Add($" ts.compositionFilter identitiy value does not match the language. ({tag.Value}).");
                 }
             }
         }
@@ -490,7 +490,7 @@ namespace TemplateValidator
         {
             if (!BoolStrings.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.rightClickEnabled tag.");
             }
         }
 
@@ -498,7 +498,7 @@ namespace TemplateValidator
         {
             if (!int.TryParse(tag.Value, out int ignoredGetGroupResult))
             {
-                results.Add($"The wts.genGroup tag must be an integer. Not '{tag.Value}'.");
+                results.Add($"The ts.genGroup tag must be an integer. Not '{tag.Value}'.");
             }
         }
 
@@ -507,7 +507,7 @@ namespace TemplateValidator
             if (!new Regex(@"^\d{1,2}.\d{1,2}.\d{1,2}$").IsMatch(tag.Value))
             {
                 results.Add(
-                    $"'{tag.Value}' specified in the wts.version tag does not match the expected format of 'X.Y.Z'.");
+                    $"'{tag.Value}' specified in the ts.version tag does not match the expected format of 'X.Y.Z'.");
             }
         }
 
@@ -519,7 +519,7 @@ namespace TemplateValidator
             {
                 if (!new[] { "Blank", "BlankAdvanced", "SplitView", "TabbedNav", "MenuBar", "all" }.Contains(projectType))
                 {
-                    results.Add($"Invalid value '{tag.Value}' specified in the wts.projecttype tag.");
+                    results.Add($"Invalid value '{tag.Value}' specified in the ts.projecttype tag.");
                 }
             }
         }
@@ -539,7 +539,7 @@ namespace TemplateValidator
                 {
                     if (!AllFrameworks.Contains(frameworkValue))
                     {
-                        results.Add($"Invalid value '{tag.Value}' specified in the wts.framework tag.");
+                        results.Add($"Invalid value '{tag.Value}' specified in the ts.framework tag.");
                     }
                 }
             }
@@ -572,14 +572,14 @@ namespace TemplateValidator
 
         private static void VerifyWtsOrderTagValue(List<string> results)
         {
-            results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
+            results.Add($"The ts.order tag is no longer supported. Please use the ts.displayOrder or the ts.compositionOrder tag.");
         }
 
         private static void VerifyWtsDisplayOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
-                results.Add($"The wts.displayOrder tag must be an integer. Not '{tag.Value}'.");
+                results.Add($"The ts.displayOrder tag must be an integer. Not '{tag.Value}'.");
             }
         }
 
@@ -587,7 +587,7 @@ namespace TemplateValidator
         {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
-                results.Add($"The wts.compositionOrder tag must be an integer. Not '{tag.Value}'.");
+                results.Add($"The ts.compositionOrder tag must be an integer. Not '{tag.Value}'.");
             }
         }
 
@@ -595,7 +595,7 @@ namespace TemplateValidator
         {
             if (!new[] { "composition", "page", "feature", "service", "testing" }.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the ts.type tag.");
             }
         }
 
@@ -603,14 +603,14 @@ namespace TemplateValidator
         {
             if ("feature".Equals(tag.Value, StringComparison.Ordinal))
             {
-                if (template.TagsCollection.Keys.Contains("wts.multipleInstance"))
+                if (template.TagsCollection.Keys.Contains("ts.multipleInstance"))
                 {
-                    bool.TryParse(template.TagsCollection["wts.multipleInstance"], out var allowMultipleInstances);
+                    bool.TryParse(template.TagsCollection["ts.multipleInstance"], out var allowMultipleInstances);
                     if (!allowMultipleInstances)
                     {
-                        if (!template.TagsCollection.Keys.Contains("wts.defaultInstance") || string.IsNullOrWhiteSpace(template.TagsCollection["wts.defaultInstance"]))
+                        if (!template.TagsCollection.Keys.Contains("ts.defaultInstance") || string.IsNullOrWhiteSpace(template.TagsCollection["ts.defaultInstance"]))
                         {
-                            results.Add($"Template must define a valid value for wts.defaultInstance tag as wts.Type is '{tag.Value}' and wts.multipleInstance is 'false'.");
+                            results.Add($"Template must define a valid value for ts.defaultInstance tag as ts.type is '{tag.Value}' and ts.multipleInstance is 'false'.");
                         }
                     }
                 }
@@ -641,14 +641,14 @@ namespace TemplateValidator
             {
                 if (!allRequiredWorkloads.Contains(requiredWorkload))
                 {
-                    results.Add($"Invalid value '{requiredWorkload}' specified in the wts.requiredVsWorkload tag.");
+                    results.Add($"Invalid value '{requiredWorkload}' specified in the ts.requiredVsWorkload tag.");
                 }
             }
         }
 
         private static void VerifyRequiredSdkTagValue(List<string> results)
         {
-            results.Add($"The wts.requiredSdks tag is no longer supported. Please use the wts.requiredVersions tag.");
+            results.Add($"The ts.requiredSdks tag is no longer supported. Please use the ts.requiredVersions tag.");
         }
 
         private static void VerifyRequiredVersionsTagValue(KeyValuePair<string, string> tag, List<string> results)
@@ -659,7 +659,7 @@ namespace TemplateValidator
             {
                 if (!allVersions.Contains(version))
                 {
-                    results.Add($"Invalid value '{version}' specified in the wts.requiredVersions tag.");
+                    results.Add($"Invalid value '{version}' specified in the ts.requiredVersions tag.");
                 }
             }
         }
@@ -700,7 +700,7 @@ namespace TemplateValidator
 
         private static void VerifyLicensesAndProjPostactions(ValidationTemplateInfo template, List<string> results)
         {
-            if (template.TagsCollection.ContainsKey("wts.licenses") && !string.IsNullOrEmpty(template.TagsCollection["wts.licenses"]))
+            if (template.TagsCollection.ContainsKey("ts.licenses") && !string.IsNullOrEmpty(template.TagsCollection["ts.licenses"]))
             {
                 if (template.PostActions?.Count == 0)
                 {

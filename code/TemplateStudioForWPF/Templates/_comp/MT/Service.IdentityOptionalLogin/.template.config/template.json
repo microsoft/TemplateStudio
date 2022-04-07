@@ -10,10 +10,10 @@
     "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

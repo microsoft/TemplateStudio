@@ -10,11 +10,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $page == wts.Wpf.Page.Settings",
-    "wts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $page == wts.Wpf.Page.Settings",
+    "ts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

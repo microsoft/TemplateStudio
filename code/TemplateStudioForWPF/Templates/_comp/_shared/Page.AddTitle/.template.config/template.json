@@ -10,10 +10,10 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.ListDetails|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid|wts.Wpf.Page.XamlIsland"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.Blank|wts.Wpf.Page.Settings|wts.Wpf.Page.ListDetails|wts.Wpf.Page.ContentGrid|wts.Wpf.Page.DataGrid|wts.Wpf.Page.XamlIsland"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

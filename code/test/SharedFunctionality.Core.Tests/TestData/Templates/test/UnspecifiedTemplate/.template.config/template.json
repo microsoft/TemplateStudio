@@ -7,7 +7,7 @@
   "shortName": "UnspecifiedTemplate",
   "tags": {
     "language": "C#",
-    "wts.platform": "test"
+    "ts.platform": "test"
 
   },
   "sourceName": "App_Name",

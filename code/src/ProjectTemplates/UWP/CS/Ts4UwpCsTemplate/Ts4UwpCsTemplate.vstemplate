@@ -22,12 +22,12 @@
 	</TemplateData>
 	<TemplateContent>
 		<CustomParameters>
-			<CustomParameter Name="$wts.platform$" Value="Uwp"/>
-			<CustomParameter Name="$wts.language$" Value="C#"/>
-			<CustomParameter Name="$wts.category$" Value="TemplateStudio"/>
-			<CustomParameter Name="$wts.version$" Value="5.0"/>
-			<CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
-			<CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
+			<CustomParameter Name="$ts.platform$" Value="Uwp"/>
+			<CustomParameter Name="$ts.language$" Value="C#"/>
+			<CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
+			<CustomParameter Name="$ts.version$" Value="5.0"/>
+			<CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
+			<CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
 		</CustomParameters>
 	</TemplateContent>
 	<WizardExtension>

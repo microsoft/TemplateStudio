@@ -8,14 +8,14 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.frontendframework": "CodeBehind|Prism|MVVMToolkit",
-    "wts.platform": "Uwp",
-    "wts.compositionFilter": "groupidentity == wts.Service.SecuredWebApi",
-    "wts.version": "1.0.0",
-    "wts.compositionOrder": "1",
-    "wts.outputToParent": "true",
-    "wts.licenses": "[AspNetCore](https://github.com/dotnet/aspnetcore/blob/master/LICENSE.txt)"
+    "ts.type": "composition",
+    "ts.frontendframework": "CodeBehind|Prism|MVVMToolkit",
+    "ts.platform": "Uwp",
+    "ts.compositionFilter": "groupidentity == wts.Service.SecuredWebApi",
+    "ts.version": "1.0.0",
+    "ts.compositionOrder": "1",
+    "ts.outputToParent": "true",
+    "ts.licenses": "[AspNetCore](https://github.com/dotnet/aspnetcore/blob/master/LICENSE.txt)"
   },
   "sourceName": "WebApiFeature",
   "preferNameDirectory": true,

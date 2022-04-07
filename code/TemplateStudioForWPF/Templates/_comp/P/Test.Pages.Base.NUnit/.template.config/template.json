@@ -10,12 +10,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.outputToParent": "true",
-    "wts.platform" : "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == Prism & groupIdentity == wts.Wpf.Testing.UnitTests.App.NUnit",
-    "wts.compositionOrder" : "1"
+    "ts.type": "composition",
+    "ts.outputToParent": "true",
+    "ts.platform" : "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$frontendframework == Prism & groupIdentity == wts.Wpf.Testing.UnitTests.App.NUnit",
+    "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
