@@ -11,22 +11,12 @@
 
 ## Build Status
 
-|Branch   |CI                |Test Version|Version|
-|:--------|:----------------:|:---------------:|:---------------:|
-|release|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=release)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?no-cache)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
-|dev|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Studio%20CI?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/microsoft/TemplateStudio/blob/main/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+|Branch   |CI                |Nightly           |
+|:--------|:----------------:|:----------------:|
+|main|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/CI?branchName=main)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=main)|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Nightly?branchName=main)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=193&branchName=main)|
 
-|Branch   |Full Tests       |OneByOne Tests       |WACK Tests       |
-|:--------|:---------------:|:---------------:|:---------------:|
-|release|[![Full Integration Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(Full)?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=189&branchName=release)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(OneByOne)?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=190&branchName=release)|[![WACK Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(WACK)?branchName=release)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=191&branchName=release)
-|dev|[![Full Integration Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(Full)?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=189&branchName=dev)|[![OneByOne Integration Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(OneByOne)?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=190&branchName=dev)|[![WACK Tests](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Template%20Tests%20(WACK)?branchName=dev)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=191&branchName=dev)
-
-> The builds include test verifications to validate the contributions:
->
-> - *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
-> - *Full Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
-> - *One By One Tests*: Includes tests to verify every template individually from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs once every week and takes longer to be completed.
-> - *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
+- [CI](https://github.com/microsoft/TemplateStudio/blob/main/_build/pipelines/ci.yml): Runs for all PRs and integrations and performs basic validation. Executes all tests in the Minimum* Groups.
+- [Nightly](https://github.com/microsoft/TemplateStudio/blob/main/_build/pipelines/nightly.yml): Runs on a nightly schedule and generates and builds all combinations of project templates in addition to performing more exhaustive tests than CI. Executes all tests in the Build* Groups.
 
 ## Features
 
