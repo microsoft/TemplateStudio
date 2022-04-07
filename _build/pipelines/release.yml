@@ -182,7 +182,7 @@ jobs:
       Contents: '**\bin\$(BuildConfiguration)\**\*.vsix'
       TargetFolder: $(Build.ArtifactStagingDirectory)\vsix
       flattenFolders: true
-    
+
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifacts
     condition: succeededOrFailed()

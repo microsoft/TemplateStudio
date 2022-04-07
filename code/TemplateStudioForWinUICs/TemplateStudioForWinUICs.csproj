@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -266,6 +266,12 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <Content Include="Templates\Ft\MSIX\Package.appinstaller">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Package.appxmanifest">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
@@ -300,6 +306,27 @@
     </Content>
     <Content Include="TemplateStudio_Logo_90x90.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\LockScreenLogo.scale-200.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\SplashScreen.scale-200.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\Square150x150Logo.scale-200.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\Square44x44Logo.scale-200.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\StoreLogo.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\MSIX\Assets\Wide310x150Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="tr-TR\Extension.vsixlangpack">
@@ -2192,27 +2219,6 @@
     <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\LockScreenLogo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\SplashScreen.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\Square150x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\Square44x44Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\StoreLogo.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Assets\Wide310x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2240,27 +2246,6 @@
     <Content Include="Templates\Proj\Default\wts.ProjectName.Core\Services\FileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\LockScreenLogo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\SplashScreen.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\Square150x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\Square44x44Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\StoreLogo.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Assets\Wide310x150Logo.scale-200.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\wts.ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2286,18 +2271,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Package.appinstaller">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Package.appxmanifest">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Package.appinstaller">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Package.appxmanifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Strings\en-us\Resources.resw">

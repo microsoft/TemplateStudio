@@ -24,7 +24,7 @@
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
-  "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
+  "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e"],
   "PrimaryOutputs": [
     { "path": "wts.ProjectName/wts.ProjectName.csproj" },
     { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
@@ -96,15 +96,26 @@
       "continueOnError": true
     },
     {
-      "description": "Add nuget package",
-      "manualInstructions": [ ],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "Microsoft.WindowsAppSDK",
-        "version": "1.0.1",
-        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
-      },
-      "continueOnError": true
+        "description": "Add nuget package",
+        "manualInstructions": [],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+            "packageId": "Microsoft.WindowsAppSDK",
+            "version": "1.0.1",
+            "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+        },
+        "continueOnError": true
+    },
+    {
+        "description": "Add nuget package",
+        "manualInstructions": [],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+            "packageId": "Newtonsoft.Json",
+            "version": "13.0.1",
+            "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+        },
+        "continueOnError": true
     },
     {
       "description": "Add reference to core project",
