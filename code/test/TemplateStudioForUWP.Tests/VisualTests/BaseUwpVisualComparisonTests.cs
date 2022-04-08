@@ -51,9 +51,9 @@ namespace Microsoft.Templates.Test.UWP.Build
             var result = new List<string>();
 
             result.AddRange(AllPagesThatSupportSimpleTestingOnAllFrameworks());
-            result.Add("wts.Page.TabView");
-            result.Add("wts.Page.TreeView");
-            result.Add("wts.Page.TwoPaneView");
+            result.Add("ts.Page.TabView");
+            result.Add("ts.Page.TreeView");
+            result.Add("ts.Page.TwoPaneView");
 
             return result.ToArray();
         }
@@ -62,18 +62,18 @@ namespace Microsoft.Templates.Test.UWP.Build
         {
             return new[]
             {
-                "wts.Page.Blank",
-                "wts.Page.Chart",
-                "wts.Page.ContentGrid",
-                "wts.Page.DataGrid",
-                "wts.Page.Grid",
-                "wts.Page.ImageGallery",
-                "wts.Page.InkDraw",
-                "wts.Page.InkDrawPicture",
-                "wts.Page.InkSmartCanvas",
-                "wts.Page.ListDetails",
-                "wts.Page.Settings",
-                "wts.Page.TabbedPivot",
+                "ts.Page.Blank",
+                "ts.Page.Chart",
+                "ts.Page.ContentGrid",
+                "ts.Page.DataGrid",
+                "ts.Page.Grid",
+                "ts.Page.ImageGallery",
+                "ts.Page.InkDraw",
+                "ts.Page.InkDrawPicture",
+                "ts.Page.InkSmartCanvas",
+                "ts.Page.ListDetails",
+                "ts.Page.Settings",
+                "ts.Page.TabbedPivot",
             };
         }
 
@@ -81,9 +81,9 @@ namespace Microsoft.Templates.Test.UWP.Build
         {
             return new[]
             {
-                "wts.Page.Camera",
-                "wts.Page.WebView",
-                "wts.Page.MediaPlayer",
+                "ts.Page.Camera",
+                "ts.Page.WebView",
+                "ts.Page.MediaPlayer",
             };
         }
 
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test.UWP.Build
         {
             return new[]
             {
-                "wts.Page.Map", // Map page cannot be relied on to load the same details on the screen (buildings, road names, etc.) and so cannot use screenshots to compare displayed output
+                "ts.Page.Map", // Map page cannot be relied on to load the same details on the screen (buildings, road names, etc.) and so cannot use screenshots to compare displayed output
             };
         }
 

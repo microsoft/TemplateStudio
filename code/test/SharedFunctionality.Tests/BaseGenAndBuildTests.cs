@@ -25,12 +25,12 @@ namespace Microsoft.Templates.Test
         protected BaseGenAndBuildFixture _fixture;
         protected const string All = "all";
 
-        protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
-        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" }; // Add multiinstance templates on this group if possible
+        protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "ts.Service.IdentityOptionalLogin", "ts.Feat.MultiInstanceAdvanced", "ts.Feat.MultiInstance" };
+        protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "ts.Service.IdentityForcedLogin", "ts.Feat.BackgroundTask" }; // Add multiinstance templates on this group if possible
         protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "ts.WPF.Service.IdentityOptionalLogin" };
         protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "ts.WPF.Service.IdentityForcedLogin" }; // Add multiinstance templates on this group if possible
-        protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
-        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" }; // Add multiinstance templates on this group if possible
+        protected List<string> excludedTemplatesGroup1VB = new List<string>() { "ts.Service.IdentityOptionalLogin.VB", "ts.Feat.MultiInstanceAdvanced.VB", "ts.Feat.MultiInstance.VB" };
+        protected List<string> excludedTemplatesGroup2VB = new List<string>() { "ts.Service.IdentityForcedLogin.VB", "ts.Feat.BackgroundTask.VB" }; // Add multiinstance templates on this group if possible
 
         public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
         {
@@ -610,9 +610,9 @@ namespace Microsoft.Templates.Test
         {
             return new[]
             {
-                "wts.Service.WebApi",
-                "wts.Service.SecuredWebApi",
-                "wts.Service.SecuredWebApi.CodeBehind",
+                "ts.Service.WebApi",
+                "ts.Service.SecuredWebApi",
+                "ts.Service.SecuredWebApi.CodeBehind",
             };
         }
 
