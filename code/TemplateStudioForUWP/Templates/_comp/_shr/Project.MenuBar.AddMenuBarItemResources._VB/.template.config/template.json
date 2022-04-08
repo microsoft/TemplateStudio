@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "ts.type==page & $projectType == MenuBar & groupIdentity != wts.Page.Settings.VB"
+    "ts.compositionFilter": "ts.type==page & $projectType == MenuBar & groupIdentity != ts.Page.Settings.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

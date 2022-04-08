@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Feedback Hub Link",
   "description": "Fügen Sie auf der Einstellungsseite einen Link zum Feedback-Hub hinzu.",
-  "identity": "wts.Feat.FeedbackHub.MVVMToolkit"
+  "identity": "ts.Feat.FeedbackHub.MVVMToolkit"
 }

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Dev Center Notifications",
     "description": "登錄應用程式即可從市集接收通知。",
-    "identity": "wts.Feat.StoreNotifications.VB"
+    "identity": "ts.Feat.StoreNotifications.VB"
 }

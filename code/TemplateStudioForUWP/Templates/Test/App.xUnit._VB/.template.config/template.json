@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test App with xUnit",
   "shortName": "Test App with xUnit",
-  "groupIdentity": "wts.Testing.UnitTests.App.xUnit.VB",
-  "identity": "wts.Testing.UnitTests.App.xUnit.VB",
+  "groupIdentity": "ts.Testing.UnitTests.App.xUnit.VB",
+  "identity": "ts.Testing.UnitTests.App.xUnit.VB",
   "description": "Add a project for unit tests against the app using xUnit.",
   "tags": {
     "language": "VisualBasic",

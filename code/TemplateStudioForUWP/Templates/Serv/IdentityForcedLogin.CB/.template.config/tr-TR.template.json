@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Uygulamanızın kullanıcının oturum açmasını gerektirmesini sağlayın.",
-  "identity": "wts.Service.IdentityForcedLogin.CodeBehind"
+  "identity": "ts.Service.IdentityForcedLogin.CodeBehind"
 }

@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Default",
   "shortName": "Default",
-  "groupIdentity": "wts.Proj.Default.VB",
-  "identity": "wts.Proj.Default.VB",
+  "groupIdentity": "ts.Proj.Default.VB",
+  "identity": "ts.Proj.Default.VB",
   "description": "",
   "tags": {
     "language": "VisualBasic",

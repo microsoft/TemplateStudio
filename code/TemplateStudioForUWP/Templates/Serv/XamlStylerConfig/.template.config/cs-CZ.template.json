@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "XAML Styler Config",
   "description": "Výchozí konfigurační soubor XAML Styler",
-  "identity": "wts.Service.XAMLStyler"
+  "identity": "ts.Service.XAMLStyler"
 }

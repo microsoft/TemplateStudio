@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "identity": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

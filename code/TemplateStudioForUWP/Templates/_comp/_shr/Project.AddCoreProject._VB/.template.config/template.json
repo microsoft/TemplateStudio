@@ -10,7 +10,7 @@
     "type": "project",
     "ts.type": "composition",
     "ts.outputToParent": "true",
-    "ts.compositionFilter": "groupidentity == wts.Proj.Default.VB",
+    "ts.compositionFilter": "groupidentity == ts.Proj.Default.VB",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0"
   },

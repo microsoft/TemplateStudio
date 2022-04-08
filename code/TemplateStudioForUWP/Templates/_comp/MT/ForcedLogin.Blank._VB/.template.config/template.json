@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == Blank & groupidentity == wts.Service.IdentityForcedLogin.VB"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == Blank & groupidentity == ts.Service.IdentityForcedLogin.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

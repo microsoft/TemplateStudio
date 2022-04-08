@@ -6,8 +6,8 @@
   ],
   "name": "Multi-Instance Advanced",
   "shortName": "Multi-Instance Advanced",
-  "groupIdentity": "wts.Feat.MultiInstanceAdvanced.VB",
-  "identity": "wts.Feat.MultiInstanceAdvanced.VB",
+  "groupIdentity": "ts.Feat.MultiInstanceAdvanced.VB",
+  "identity": "ts.Feat.MultiInstanceAdvanced.VB",
   "description": "Control how multiple instances of the app are launched.",
   "tags": {
     "language": "VisualBasic",
@@ -22,7 +22,7 @@
     "ts.defaultInstance": "MultiInstanceAdvanced",
     "ts.multipleInstance": "false",
     "ts.genGroup": "0",
-    "ts.dependencies": "wts.Feat.MultiInstance.VB",
+    "ts.dependencies": "ts.Feat.MultiInstance.VB",
     "ts.rightClickEnabled": "false",
     "ts.exclusions": "wts.Feat.BackgroundTask.VB"
   },

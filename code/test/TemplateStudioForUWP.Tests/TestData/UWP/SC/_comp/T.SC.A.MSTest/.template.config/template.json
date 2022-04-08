@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Testing.UnitTests.App.MSTest & $feature == wts.Feat.StyleCop",
+    "ts.compositionFilter": "identity == ts.Testing.UnitTests.App.MSTest & $feature == ts.Feat.StyleCop",
     "ts.compositionOrder": "1",
     "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },

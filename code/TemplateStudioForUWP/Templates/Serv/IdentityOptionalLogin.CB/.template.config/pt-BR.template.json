@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Faça seu aplicativo ter um logon opcional e recursos restritos.",
-  "identity": "wts.Service.IdentityOptionalLogin.CodeBehind"
+  "identity": "ts.Service.IdentityOptionalLogin.CodeBehind"
 }

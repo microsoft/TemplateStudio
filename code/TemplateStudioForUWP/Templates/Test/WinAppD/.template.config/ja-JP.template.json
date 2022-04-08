@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Win App Driver",
   "description": "Windows Application Driverから Appium を使用して UI テストを行うためのプロジェクトを追加します。",
-  "identity": "wts.Testing.WinAppDriver"
+  "identity": "ts.Testing.WinAppDriver"
 }

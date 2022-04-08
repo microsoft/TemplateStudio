@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "TwoPaneView",
   "description": "Stránka s podokny Hlavní a Podrobné optimalizovaná pro dvoudisplejová zařízení",
-  "identity": "wts.Page.TwoPaneView.VB"
+  "identity": "ts.Page.TwoPaneView.VB"
 }

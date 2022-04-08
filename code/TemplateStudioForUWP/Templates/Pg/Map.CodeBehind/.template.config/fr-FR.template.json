@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Map",
   "description": "La page Plan s'appuie sur la commande Plan. Le code inclut l'ajout d'une icône Plan et la définition de votre emplacement.",
-  "identity": "wts.Page.Map.CodeBehind"
+  "identity": "ts.Page.Map.CodeBehind"
 }

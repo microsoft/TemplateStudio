@@ -6,8 +6,8 @@
   ],
   "name": "Toast Notifications",
   "shortName": "Toast Notifications",
-  "groupIdentity": "wts.Feat.ToastNotifications",
-  "identity": "wts.Feat.ToastNotifications",
+  "groupIdentity": "ts.Feat.ToastNotifications",
+  "identity": "ts.Feat.ToastNotifications",
   "description": "Adds code to show displaying a toast and handling it being used to launch the app.",
   "tags": {
     "language": "C#",

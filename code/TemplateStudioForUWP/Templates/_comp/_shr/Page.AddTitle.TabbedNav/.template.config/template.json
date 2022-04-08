@@ -13,7 +13,7 @@
       "ts.type": "composition",
       "ts.platform" : "Uwp",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == wts.Page.TabbedNav"
+      "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.Page.TabbedNav"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

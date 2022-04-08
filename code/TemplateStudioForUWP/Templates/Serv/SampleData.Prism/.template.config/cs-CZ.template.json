@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Sample Data",
   "description": "V úložišti SampleDataService jsou uchovávána ukázková data používaná generovanou verzí některých stránek.",
-  "identity": "wts.Service.SampleDataService.Prism"
+  "identity": "ts.Service.SampleDataService.Prism"
 }

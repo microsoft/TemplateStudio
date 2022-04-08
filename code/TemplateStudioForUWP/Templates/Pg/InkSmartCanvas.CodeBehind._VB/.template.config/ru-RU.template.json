@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Smart Canvas",
   "description": "Страница, на которой можно создавать заметки с использованием распознавания фигур и текста Windows Ink.",
-  "identity": "wts.Page.InkSmartCanvas.CodeBehind.VB"
+  "identity": "ts.Page.InkSmartCanvas.CodeBehind.VB"
 }

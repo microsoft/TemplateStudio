@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "App Config",
   "shortName": "App Config",
-  "groupIdentity": "wts.Feat.AppDotConfig.VB",
-  "identity": "wts.Feat.AppDotConfig.VB",
+  "groupIdentity": "ts.Feat.AppDotConfig.VB",
+  "identity": "ts.Feat.AppDotConfig.VB",
   "description": "Adds an empty App.config file to the project.",
   "tags": {
     "language": "VisualBasic",

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "DataGrid",
     "description": "Eine Seite mit einem einfachen Datenraster.",
-    "identity": "wts.Page.DataGrid.CodeBehind.VB"
+    "identity": "ts.Page.DataGrid.CodeBehind.VB"
 }

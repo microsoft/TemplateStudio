@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Settings",
     "description": "Ayarlar sayfası, uygulamanız için yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır.",
-    "identity": "wts.Page.Settings.CodeBehind.VB"
+    "identity": "ts.Page.Settings.CodeBehind.VB"
 }

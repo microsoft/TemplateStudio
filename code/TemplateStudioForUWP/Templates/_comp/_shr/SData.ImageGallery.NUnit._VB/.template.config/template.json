@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Testing.UnitTests.Core.NUnit.VB & $page == wts.Page.ImageGallery.VB|wts.Page.ImageGallery.CodeBehind.VB",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == ts.Testing.UnitTests.Core.NUnit.VB & $page == ts.Page.ImageGallery.VB|ts.Page.ImageGallery.CodeBehind.VB",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

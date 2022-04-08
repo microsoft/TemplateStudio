@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Haz que tu aplicación exija al usuario que inicie sesión.",
-  "identity": "wts.Service.IdentityForcedLogin.VB"
+  "identity": "ts.Service.IdentityForcedLogin.VB"
 }

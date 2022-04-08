@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Dev Center Notifications",
     "description": "Zaregistrujte svou aplikaci, aby mohla přijímat oznámení z úložiště.",
-    "identity": "wts.Feat.StoreNotifications.VB"
+    "identity": "ts.Feat.StoreNotifications.VB"
 }

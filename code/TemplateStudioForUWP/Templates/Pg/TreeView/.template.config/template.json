@@ -6,8 +6,8 @@
   ],
   "name": "TreeView",
   "shortName": "TreeView",
-  "groupIdentity": "wts.Page.TreeView",
-  "identity": "wts.Page.TreeView",
+  "groupIdentity": "ts.Page.TreeView",
+  "identity": "ts.Page.TreeView",
   "description": "The tree-view page has a tree view control to show hierarchical content.",
   "tags": {
     "language": "C#",
@@ -20,7 +20,7 @@
     "ts.displayOrder": "7",
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true",
-    "ts.dependencies": "wts.Service.SampleDataService",
+    "ts.dependencies": "ts.Service.SampleDataService",
     "ts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",

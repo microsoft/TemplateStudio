@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Dev Center Notifications",
     "description": "Zarejestruj swoją aplikację, aby otrzymywać powiadomienia ze sklepu.",
-    "identity": "wts.Feat.StoreNotifications.VB"
+    "identity": "ts.Feat.StoreNotifications.VB"
 }

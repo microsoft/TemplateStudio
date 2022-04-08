@@ -6,8 +6,8 @@
   ],
   "name": "Camera",
   "shortName": "Camera",
-  "groupIdentity": "wts.Page.Camera.VB",
-  "identity": "wts.Page.Camera.CodeBehind.VB",
+  "groupIdentity": "ts.Page.Camera.VB",
+  "identity": "ts.Page.Camera.CodeBehind.VB",
   "description": "A page for capturing and displaying an image from the camera.",
   "tags": {
     "language": "VisualBasic",

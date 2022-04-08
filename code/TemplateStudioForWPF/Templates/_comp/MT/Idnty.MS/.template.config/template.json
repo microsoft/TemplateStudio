@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
+  "name": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
+  "identity": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
+  "shortName": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",

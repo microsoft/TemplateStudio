@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Toast Notifications",
     "description": "Fügt Code hinzu, um ein Popup anzuzeigen und dieses zu bearbeiten, um beim Start der App verwendet zu werden.",
-    "identity": "wts.Feat.ToastNotifications.VB"
+    "identity": "ts.Feat.ToastNotifications.VB"
 }

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Settings",
     "description": "Stránka nastavení je stránka, na kterou doporučujeme umístit konfigurační nastavení pro vaši aplikaci.",
-    "identity": "wts.Page.Settings.VB"
+    "identity": "ts.Page.Settings.VB"
 }

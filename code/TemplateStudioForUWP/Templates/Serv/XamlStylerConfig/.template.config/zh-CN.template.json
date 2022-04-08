@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "XAML Styler Config",
   "description": "默认的 XAML Styler 配置文件。",
-  "identity": "wts.Service.XAMLStyler"
+  "identity": "ts.Service.XAMLStyler"
 }

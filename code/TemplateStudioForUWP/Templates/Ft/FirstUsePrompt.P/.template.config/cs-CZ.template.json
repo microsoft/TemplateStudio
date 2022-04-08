@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "First Run Prompt",
     "description": "Umožňuje zobrazit výzvu při prvním použití aplikace.",
-    "identity": "wts.Feat.FirstRunPrompt.Prism"
+    "identity": "ts.Feat.FirstRunPrompt.Prism"
 }

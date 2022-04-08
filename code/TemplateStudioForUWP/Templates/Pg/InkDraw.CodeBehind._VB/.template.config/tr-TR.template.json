@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Draw",
   "description": "Windows Ink kullanarak notlar ve çizimler oluşturabileceğiniz bir sayfadır.",
-  "identity": "wts.Page.InkDraw.CodeBehind.VB"
+  "identity": "ts.Page.InkDraw.CodeBehind.VB"
 }

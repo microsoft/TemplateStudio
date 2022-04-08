@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "3D App Launcher",
   "description": "Pro případy, kdy se aplikace používá v prostředí hybridní reality, zahrňte 3D spouštěč aplikace.",
-  "identity": "wts.Feat.3DLauncher"
+  "identity": "ts.Feat.3DLauncher"
 }

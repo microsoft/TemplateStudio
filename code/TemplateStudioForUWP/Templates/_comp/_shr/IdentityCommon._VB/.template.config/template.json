@@ -14,7 +14,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
-    "ts.compositionFilter": "groupIdentity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB",
+    "ts.compositionFilter": "groupIdentity == ts.Service.IdentityForcedLogin.VB|ts.Service.IdentityOptionalLogin.VB",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

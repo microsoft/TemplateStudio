@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Page.InkDraw|wts.Page.InkDrawPicture"
+    "ts.compositionFilter": "groupidentity == ts.Page.InkDraw|ts.Page.InkDrawPicture"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

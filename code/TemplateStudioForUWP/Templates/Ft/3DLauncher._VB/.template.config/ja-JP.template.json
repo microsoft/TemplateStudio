@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "3D App Launcher",
     "description": "アプリを Mixed Reality 環境で使用するとき、3D アプリ ランチャーが含まれます。",
-    "identity": "wts.Feat.3DLauncher.VB"
+    "identity": "ts.Feat.3DLauncher.VB"
 }

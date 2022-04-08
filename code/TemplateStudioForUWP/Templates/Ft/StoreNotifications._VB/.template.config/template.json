@@ -6,8 +6,8 @@
   ],
   "name": "Dev Center Notifications",
   "shortName": "Dev Center Notifications",
-  "groupIdentity": "wts.Feat.StoreNotifications.VB",
-  "identity": "wts.Feat.StoreNotifications.VB",
+  "groupIdentity": "ts.Feat.StoreNotifications.VB",
+  "identity": "ts.Feat.StoreNotifications.VB",
   "description": "Register your app to receive notifications from the store.",
   "tags": {
     "language": "VisualBasic",

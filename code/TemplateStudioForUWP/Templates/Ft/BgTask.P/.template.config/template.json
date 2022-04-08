@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Background Task",
   "shortName": "Background Task",
-  "groupIdentity": "wts.Feat.BackgroundTask",
-  "identity": "wts.Feat.BackgroundTask.Prism",
+  "groupIdentity": "ts.Feat.BackgroundTask",
+  "identity": "ts.Feat.BackgroundTask.Prism",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
   "tags": {
     "language": "C#",

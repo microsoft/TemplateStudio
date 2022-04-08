@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Azure Notifications",
     "description": "Azure Bildirim Hub\u0027larından gelen iletileri almak ve işlemek için kaydolun:",
-    "identity": "wts.Feat.HubNotifications.Prism"
+    "identity": "ts.Feat.HubNotifications.Prism"
 }

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Telerik DataGrid",
     "description": "Pagina contenente una semplice griglia con i controlli dell\u0027interfaccia utente Telerik per UWP.",
-    "identity": "wts.Page.Grid.VB"
+    "identity": "ts.Page.Grid.VB"
 }

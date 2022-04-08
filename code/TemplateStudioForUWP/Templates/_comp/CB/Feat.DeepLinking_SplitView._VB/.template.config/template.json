@@ -14,7 +14,7 @@
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "1",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == wts.Feat.DeepLinking.VB & $projectType == SplitView"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == ts.Feat.DeepLinking.VB & $projectType == SplitView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

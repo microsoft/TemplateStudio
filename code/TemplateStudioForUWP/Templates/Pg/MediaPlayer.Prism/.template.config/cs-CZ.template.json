@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "MediaPlayer",
   "description": "Na této stránce se zobrazuje video s povolenými systémovými ovládacími prvky pro média.",
-  "identity": "wts.Page.MediaPlayer.Prism"
+  "identity": "ts.Page.MediaPlayer.Prism"
 }

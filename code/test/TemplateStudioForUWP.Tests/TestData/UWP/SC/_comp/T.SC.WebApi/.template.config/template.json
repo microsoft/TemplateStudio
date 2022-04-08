@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Service.WebApi & $feature == wts.Feat.StyleCop",
+    "ts.compositionFilter": "groupIdentity == ts.Service.WebApi & $feature == ts.Feat.StyleCop",
     "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",

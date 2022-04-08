@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Camera",
     "description": "Uma página para capturar e exibir uma imagem da câmera.",
-    "identity": "wts.Page.Camera.VB"
+    "identity": "ts.Page.Camera.VB"
 }

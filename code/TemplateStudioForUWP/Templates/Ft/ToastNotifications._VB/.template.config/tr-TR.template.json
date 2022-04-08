@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Toast Notifications",
     "description": "Bildirim görüntülemeyi ve uygulama başlatılırken kullanılacak şekilde işlemeyi gösteren kodu ekleyin.",
-    "identity": "wts.Feat.ToastNotifications.VB"
+    "identity": "ts.Feat.ToastNotifications.VB"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Web to App link",
   "description": "Ein Web-zu-App-Link verknüpft Ihre App mit einer Website, sodass Ihre App gestartet wird, wenn auf einen Link zu Ihrer Website geklickt wird.",
-  "identity": "wts.Feat.WebToAppLink"
+  "identity": "ts.Feat.WebToAppLink"
 }

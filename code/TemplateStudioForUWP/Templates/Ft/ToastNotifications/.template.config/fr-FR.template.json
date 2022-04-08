@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Toast Notifications",
   "description": "Ajoute un code pour afficher une notification toast et gérer cette dernière lorsqu'elle est utilisée pour lancer l'application.",
-  "identity": "wts.Feat.ToastNotifications"
+  "identity": "ts.Feat.ToastNotifications"
 }

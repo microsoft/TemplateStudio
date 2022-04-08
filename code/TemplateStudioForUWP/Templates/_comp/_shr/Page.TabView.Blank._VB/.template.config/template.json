@@ -14,7 +14,7 @@
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "2",
-    "ts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TabView.VB"
+    "ts.compositionFilter": "$projectType == Blank & groupidentity == ts.Page.TabView.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

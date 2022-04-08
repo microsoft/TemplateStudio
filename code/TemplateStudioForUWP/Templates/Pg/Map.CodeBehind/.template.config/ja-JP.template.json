@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Map",
   "description": "このマップ ページは、マップ コントロールに基づきます。コードには、マップ アイコンの追加や場所の設定が含まれます。",
-  "identity": "wts.Page.Map.CodeBehind"
+  "identity": "ts.Page.Map.CodeBehind"
 }

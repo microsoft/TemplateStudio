@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with xUnit",
   "description": "コア ライブラリのコードを xUnit を使用してテストするプロジェクトを追加します。",
-  "identity": "wts.Testing.UnitTests.Core.xUnit"
+  "identity": "ts.Testing.UnitTests.Core.xUnit"
 }

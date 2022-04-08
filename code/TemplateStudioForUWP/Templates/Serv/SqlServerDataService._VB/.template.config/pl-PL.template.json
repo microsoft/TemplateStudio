@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "SQL Server Data",
     "description": "Uzyskaj dane z SQL Server, aby użyć ich w aplikacji.",
-    "identity": "wts.Service.SqlServerDataService.VB"
+    "identity": "ts.Service.SqlServerDataService.VB"
 }

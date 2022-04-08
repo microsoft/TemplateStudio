@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Background Task",
     "description": "Aggiungi un\u0027attività in background in-process per eseguire il codice anche quando l\u0027app non è in primo piano.",
-    "identity": "wts.Feat.BackgroundTask.Prism"
+    "identity": "ts.Feat.BackgroundTask.Prism"
 }

@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.TwoPaneView|wts.Page.ListDetails"
+    "ts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == ts.Page.TwoPaneView|ts.Page.ListDetails"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

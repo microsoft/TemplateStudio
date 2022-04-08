@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test App with MSTest",
   "description": "Ajoutez un projet pour les tests unitaires de l'application avec MSTest.",
-  "identity": "wts.Testing.UnitTests.App.MSTest"
+  "identity": "ts.Testing.UnitTests.App.MSTest"
 }

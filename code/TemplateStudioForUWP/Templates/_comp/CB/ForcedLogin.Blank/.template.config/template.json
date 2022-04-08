@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projecttype == Blank & identity == wts.Service.IdentityForcedLogin.CodeBehind"
+    "ts.compositionFilter": "$projecttype == Blank & identity == ts.Service.IdentityForcedLogin.CodeBehind"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

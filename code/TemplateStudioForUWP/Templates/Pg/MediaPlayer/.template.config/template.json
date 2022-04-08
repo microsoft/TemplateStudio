@@ -6,8 +6,8 @@
   ],
   "name": "MediaPlayer",
   "shortName": "MediaPlayer",
-  "groupIdentity": "wts.Page.MediaPlayer",
-  "identity": "wts.Page.MediaPlayer",
+  "groupIdentity": "ts.Page.MediaPlayer",
+  "identity": "ts.Page.MediaPlayer",
   "description": "A page for showing video with system media controls enabled.",
   "tags": {
     "language": "C#",

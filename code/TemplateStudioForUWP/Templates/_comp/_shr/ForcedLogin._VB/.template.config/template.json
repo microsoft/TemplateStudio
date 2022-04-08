@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityForcedLogin.CodeBehind.VB",
+    "ts.compositionFilter": "identity == ts.Service.IdentityForcedLogin.VB|ts.Service.IdentityForcedLogin.CodeBehind.VB",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

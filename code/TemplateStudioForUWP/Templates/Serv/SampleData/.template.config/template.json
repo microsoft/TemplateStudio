@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Sample Data",
   "shortName": "Sample Data",
-  "groupIdentity": "wts.Service.SampleDataService",
-  "identity": "wts.Service.SampleDataService",
+  "groupIdentity": "ts.Service.SampleDataService",
+  "identity": "ts.Service.SampleDataService",
   "description": "SampleDataService holds sample data used by the generated version of some pages.",
   "tags": {
     "language": "C#",

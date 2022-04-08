@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multiple views",
     "description": "Позволяет пользователям просматривать независимые компоненты приложения в отдельных окнах.",
-    "identity": "wts.Feat.MultiView.VB"
+    "identity": "ts.Feat.MultiView.VB"
 }

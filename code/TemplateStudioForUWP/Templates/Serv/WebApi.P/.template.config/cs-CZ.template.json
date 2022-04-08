@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Web API",
   "description": "Přidá projekt ASP.NET Core Web API.",
-  "identity": "wts.Service.WebApi.Prism"
+  "identity": "ts.Service.WebApi.Prism"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Doplní do vaší aplikace volitelné přihlašování a omezené funkce.",
-  "identity": "wts.Service.IdentityOptionalLogin.Prism"
+  "identity": "ts.Service.IdentityOptionalLogin.Prism"
 }

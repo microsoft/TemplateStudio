@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Azure Notifications",
     "description": "Azure Notification Hub에서 메시지를 수신하고 처리하려면 등록하십시오.",
-    "identity": "wts.Feat.HubNotifications.VB"
+    "identity": "ts.Feat.HubNotifications.VB"
 }

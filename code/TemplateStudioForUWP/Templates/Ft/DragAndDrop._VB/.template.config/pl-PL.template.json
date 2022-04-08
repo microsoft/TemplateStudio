@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Drag & Drop",
     "description": "Funkcja Przeciągnij i upuść oferuje usługę upraszczającą tworzenie aplikacji, które mają obsługiwać tę funkcję.",
-    "identity": "wts.Feat.DragAndDrop.VB"
+    "identity": "ts.Feat.DragAndDrop.VB"
 }

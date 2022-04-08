@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Camera",
     "description": "Une page pour la saisie et l\u0027affichage d\u0027une image provenant de l\u0027appareil photo.",
-    "identity": "wts.Page.Camera.Prism"
+    "identity": "ts.Page.Camera.Prism"
 }

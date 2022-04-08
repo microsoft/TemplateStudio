@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == page & $testing == wts.Testing.UnitTests.App.MSTest"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == page & $testing == ts.Testing.UnitTests.App.MSTest"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

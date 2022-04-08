@@ -6,8 +6,8 @@
   ],
   "name": "Multi-Instance",
   "shortName": "Multi-Instance",
-  "groupIdentity": "wts.Feat.MultiInstance",
-  "identity": "wts.Feat.MultiInstance",
+  "groupIdentity": "ts.Feat.MultiInstance",
+  "identity": "ts.Feat.MultiInstance",
   "description": "Launch multiple instances of the app.",
   "tags": {
     "language": "C#",

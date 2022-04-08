@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "MediaPlayer",
   "description": "Videoyu sistem medya denetimleri etkin bir şekilde göstermek için kullanılan sayfa.",
-  "identity": "wts.Page.MediaPlayer.CodeBehind"
+  "identity": "ts.Page.MediaPlayer.CodeBehind"
 }

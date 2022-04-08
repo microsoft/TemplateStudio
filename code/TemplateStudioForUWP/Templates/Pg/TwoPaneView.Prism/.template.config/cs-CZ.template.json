@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "TwoPaneView",
   "description": "Stránka s podokny Hlavní a Podrobné optimalizovaná pro dvoudisplejová zařízení",
-  "identity": "wts.Page.TwoPaneView.Prism"
+  "identity": "ts.Page.TwoPaneView.Prism"
 }

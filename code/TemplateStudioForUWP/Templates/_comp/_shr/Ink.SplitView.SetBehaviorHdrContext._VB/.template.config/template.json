@@ -14,7 +14,7 @@
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "1",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == wts.Page.InkDraw.VB|wts.Page.InkSmartCanvas.VB|wts.Page.InkDrawPicture.VB"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == ts.Page.InkDraw.VB|ts.Page.InkSmartCanvas.VB|ts.Page.InkDrawPicture.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

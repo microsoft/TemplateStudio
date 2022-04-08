@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Blank",
   "description": "Esta es la página más básica. Un lienzo en blanco para convertirlo en lo que quieras.",
-  "identity": "wts.Page.Blank.VB"
+  "identity": "ts.Page.Blank.VB"
 }

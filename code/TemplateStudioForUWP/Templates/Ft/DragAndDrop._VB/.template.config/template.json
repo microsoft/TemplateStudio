@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Drag & Drop",
   "shortName": "Drag & Drop",
-  "groupIdentity": "wts.Feat.DragAndDrop.VB",
-  "identity": "wts.Feat.DragAndDrop.VB",
+  "groupIdentity": "ts.Feat.DragAndDrop.VB",
+  "identity": "ts.Feat.DragAndDrop.VB",
   "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
   "tags": {
     "language": "VisualBasic",

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "User Activity",
   "description": "Windows Timeline にユーザー アクティビティを追加できる能力を追加します。",
-  "identity": "wts.Feat.UserActivity.VB"
+  "identity": "ts.Feat.UserActivity.VB"
 }

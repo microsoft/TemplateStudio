@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "VS App Center Analytics",
     "description": "傳送分析至 Visual Studio 應用程式中心。",
-    "identity": "wts.Feat.VSAppCenterAnalytics.VB"
+    "identity": "ts.Feat.VSAppCenterAnalytics.VB"
 }

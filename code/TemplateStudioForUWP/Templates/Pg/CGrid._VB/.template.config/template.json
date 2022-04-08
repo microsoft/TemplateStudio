@@ -6,8 +6,8 @@
   ],
   "name": "Content Grid",
   "shortName": "Content Grid",
-  "groupIdentity": "wts.Page.ContentGrid.VB",
-  "identity": "wts.Page.ContentGrid.VB",
+  "groupIdentity": "ts.Page.ContentGrid.VB",
+  "identity": "ts.Page.ContentGrid.VB",
   "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
   "tags": {
     "language": "VisualBasic",
@@ -18,7 +18,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.displayOrder": "8",
-    "ts.dependencies": "wts.Service.SampleDataService.VB",
+    "ts.dependencies": "ts.Service.SampleDataService.VB",
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"

@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Settings Storage",
   "description": "La configuración del almacenamiento ayuda a simplificar los datos de la carpeta de datos de la aplicación.",
-  "identity": "wts.Feat.SettingsStorage.VB"
+  "identity": "ts.Feat.SettingsStorage.VB"
 }

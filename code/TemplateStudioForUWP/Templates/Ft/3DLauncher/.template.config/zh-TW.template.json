@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "3D App Launcher",
   "description": "在混合實境環境中使用應用程式時，包含 3D 應用程式啟動器。",
-  "identity": "wts.Feat.3DLauncher"
+  "identity": "ts.Feat.3DLauncher"
 }

@@ -4,7 +4,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.xUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.xUnit",
   "identity": "ts.WPF.Testing.UnitTests.Core.SampleData.xUnit",
   "shortName": "ts.WPF.Testing.UnitTests.Core.SampleData.xUnit",
   "tags": {

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Draw Picture",
   "description": "Page permettant de charger une image et de dessiner dessus avec Windows Ink.",
-  "identity": "wts.Page.InkDrawPicture.Prism"
+  "identity": "ts.Page.InkDrawPicture.Prism"
 }

@@ -14,7 +14,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "2",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == wts.Feat.DeepLinking & $projectType == TabbedNav"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == ts.Feat.DeepLinking & $projectType == TabbedNav"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

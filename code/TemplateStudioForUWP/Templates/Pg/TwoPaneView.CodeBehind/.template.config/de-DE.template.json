@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "TwoPaneView",
   "description": "Master-Detail-Seite für Dual-Screen-Geräte optimiert.",
-  "identity": "wts.Page.TwoPaneView.CodeBehind"
+  "identity": "ts.Page.TwoPaneView.CodeBehind"
 }

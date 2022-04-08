@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Camera",
   "description": "Kameradan bir görüntü yakalamak ve görüntülemek için kullanılan sayfa.",
-  "identity": "wts.Page.Camera.CodeBehind"
+  "identity": "ts.Page.Camera.CodeBehind"
 }

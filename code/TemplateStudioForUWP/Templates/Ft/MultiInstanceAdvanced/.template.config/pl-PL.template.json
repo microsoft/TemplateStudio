@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Multi-Instance Advanced",
   "description": "Pozwala kontrolować sposób uruchamiania wielu instancji aplikacji.",
-  "identity": "wts.Feat.MultiInstanceAdvanced"
+  "identity": "ts.Feat.MultiInstanceAdvanced"
 }

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multi-Instance Advanced",
     "description": "Controlla in che modo vengono avviate più istanze dell'app.",
-    "identity": "wts.Feat.MultiInstanceAdvanced.VB"
+    "identity": "ts.Feat.MultiInstanceAdvanced.VB"
 }

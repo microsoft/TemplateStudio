@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Feat.DeepLinking & $projectType == MenuBar"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.Feat.DeepLinking & $projectType == MenuBar"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

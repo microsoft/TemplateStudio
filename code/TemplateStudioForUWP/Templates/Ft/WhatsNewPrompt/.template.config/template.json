@@ -4,8 +4,8 @@
   "classifications": [ "Universal" ],
   "name": "What's New Prompt",
   "shortName": "What's New Prompt",
-  "groupIdentity": "wts.Feat.WhatsNewPrompt",
-  "identity": "wts.Feat.WhatsNewPrompt",
+  "groupIdentity": "ts.Feat.WhatsNewPrompt",
+  "identity": "ts.Feat.WhatsNewPrompt",
   "description": "Display a prompt when the app is first used after an update.",
   "tags": {
     "language": "C#",

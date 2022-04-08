@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Web API",
   "description": "Include il progetto API Web ASP.NET Core.",
-  "identity": "wts.Service.WebApi"
+  "identity": "ts.Service.WebApi"
 }

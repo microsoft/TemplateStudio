@@ -6,8 +6,8 @@
   ],
   "name": "Multi-Instance",
   "shortName": "Multi-Instance",
-  "groupIdentity": "wts.Feat.MultiInstance.VB",
-  "identity": "wts.Feat.MultiInstance.VB",
+  "groupIdentity": "ts.Feat.MultiInstance.VB",
+  "identity": "ts.Feat.MultiInstance.VB",
   "description": "Launch multiple instances of the app.",
   "tags": {
     "language": "VisualBasic",

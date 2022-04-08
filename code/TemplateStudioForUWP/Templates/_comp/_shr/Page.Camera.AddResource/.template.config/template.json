@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Page.Camera"
+    "ts.compositionFilter": "groupidentity == ts.Page.Camera"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

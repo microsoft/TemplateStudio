@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Share Source",
     "description": "Uygulamanızdan verileri başkalarıyla paylaşmanıza olanak tanıyan UWP uygulamanızdaki paylaşım sözleşmesinin desteklenmesine yardımcı olur.",
-    "identity": "wts.Feat.ShareSource.VB"
+    "identity": "ts.Feat.ShareSource.VB"
 }

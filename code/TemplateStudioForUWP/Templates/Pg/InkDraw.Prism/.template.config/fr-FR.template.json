@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Draw",
   "description": "Page permettant de créer des annotations et dessins avec Windows Ink.",
-  "identity": "wts.Page.InkDraw.Prism"
+  "identity": "ts.Page.InkDraw.Prism"
 }

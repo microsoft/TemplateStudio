@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "MediaPlayer",
     "description": "Uma página para mostrar vídeo com controles de mídia do sistema habilitados.",
-    "identity": "wts.Page.MediaPlayer.CodeBehind.VB"
+    "identity": "ts.Page.MediaPlayer.CodeBehind.VB"
 }

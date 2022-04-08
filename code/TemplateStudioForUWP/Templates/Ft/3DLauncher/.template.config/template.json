@@ -6,8 +6,8 @@
   ],
   "name": "3D App Launcher",
   "shortName": "3D App Launcher",
-  "groupIdentity": "wts.Feat.3DLauncher",
-  "identity": "wts.Feat.3DLauncher",
+  "groupIdentity": "ts.Feat.3DLauncher",
+  "identity": "ts.Feat.3DLauncher",
   "description": "Include a 3D app launcher when the app is used in a Mixed Reality environment.",
   "tags": {
     "language": "C#",

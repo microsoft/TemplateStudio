@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Live Tile",
     "description": "Fügt ein Beispiel hinzu, um die Aktualisierung der Kachel zu zeigen, sowie Code für das Arbeiten mit mehreren Dateien.",
-    "identity": "wts.Feat.LiveTile.VB"
+    "identity": "ts.Feat.LiveTile.VB"
 }

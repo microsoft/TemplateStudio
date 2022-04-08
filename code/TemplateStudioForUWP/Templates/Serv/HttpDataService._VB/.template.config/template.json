@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "HTTP Data Service",
   "shortName": "HTTP Data Service",
-  "groupIdentity": "wts.Service.HttpDataService.VB",
-  "identity": "wts.Service.HttpDataService.VB",
+  "groupIdentity": "ts.Service.HttpDataService.VB",
+  "identity": "ts.Service.HttpDataService.VB",
   "description": "Access content over HTTP.",
   "tags": {
     "language": "VisualBasic",

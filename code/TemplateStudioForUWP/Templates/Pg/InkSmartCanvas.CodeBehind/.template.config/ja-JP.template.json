@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Smart Canvas",
   "description": "Windows Ink で認識するシェイプとテキストを作成することができるページです。",
-  "identity": "wts.Page.InkSmartCanvas.CodeBehind"
+  "identity": "ts.Page.InkSmartCanvas.CodeBehind"
 }

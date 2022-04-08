@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Live Tile",
   "description": "タイルの更新と複数タイルで動作するコードを示すために、サンプルを追加します。",
-  "identity": "wts.Feat.LiveTile"
+  "identity": "ts.Feat.LiveTile"
 }

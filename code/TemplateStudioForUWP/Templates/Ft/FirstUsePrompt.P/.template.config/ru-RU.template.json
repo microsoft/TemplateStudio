@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "First Run Prompt",
     "description": "Отображение приглашения в случае, если приложение используется первый раз.",
-    "identity": "wts.Feat.FirstRunPrompt.Prism"
+    "identity": "ts.Feat.FirstRunPrompt.Prism"
 }

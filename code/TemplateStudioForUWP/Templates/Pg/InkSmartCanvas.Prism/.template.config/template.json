@@ -6,8 +6,8 @@
   ],
   "name": "Ink Smart Canvas",
   "shortName": "Ink Smart Canvas",
-  "groupIdentity": "wts.Page.InkSmartCanvas",
-  "identity": "wts.Page.InkSmartCanvas.Prism",
+  "groupIdentity": "ts.Page.InkSmartCanvas",
+  "identity": "ts.Page.InkSmartCanvas.Prism",
   "description": "A page that allows you to create notes using shape and text recognition with Windows Ink.",
   "tags": {
     "language": "C#",

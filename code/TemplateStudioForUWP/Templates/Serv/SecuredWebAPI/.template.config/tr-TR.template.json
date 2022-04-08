@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Secured Web API",
   "description": "JWToken öğesini doğrulayan bir ASP.NET Core Web API projesi ekleyin.",
-  "identity": "wts.Service.SecuredWebApi"
+  "identity": "ts.Service.SecuredWebApi"
 }

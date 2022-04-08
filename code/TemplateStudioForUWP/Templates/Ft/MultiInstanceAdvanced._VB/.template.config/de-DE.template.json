@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multi-Instance Advanced",
     "description": "Steuert, wie mehrere Instanzen der App gestartet werden.",
-    "identity": "wts.Feat.MultiInstanceAdvanced.VB"
+    "identity": "ts.Feat.MultiInstanceAdvanced.VB"
 }

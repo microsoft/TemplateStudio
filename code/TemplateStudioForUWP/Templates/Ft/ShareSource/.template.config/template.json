@@ -4,8 +4,8 @@
   "classifications": [ "Universal" ],
   "name": "Share Source",
   "shortName": "Share Source",
-  "groupIdentity": "wts.Feat.ShareSource",
-  "identity": "wts.Feat.ShareSource",
+  "groupIdentity": "ts.Feat.ShareSource",
+  "identity": "ts.Feat.ShareSource",
   "description": "Helps supporting the share contract in your UWP app to share data from your app with others.",
   "tags": {
     "language": "C#",

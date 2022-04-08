@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Background Task",
     "description": "添加即使应用不在前台也可运行代码的进程内后台任务。",
-    "identity": "wts.Feat.BackgroundTask.Prism"
+    "identity": "ts.Feat.BackgroundTask.Prism"
 }

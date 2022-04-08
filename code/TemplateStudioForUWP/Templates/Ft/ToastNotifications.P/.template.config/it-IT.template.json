@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Toast Notifications",
     "description": "Aggiunge il codice per mostrare la visualizzazione e la gestione di un avviso popup per l\u0027avio dell\u0027app.",
-    "identity": "wts.Feat.ToastNotifications.Prism"
+    "identity": "ts.Feat.ToastNotifications.Prism"
 }

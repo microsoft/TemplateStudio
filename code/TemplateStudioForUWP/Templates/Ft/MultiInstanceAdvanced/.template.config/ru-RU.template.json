@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Multi-Instance Advanced",
   "description": "Управляет количеством запускаемых экземпляров приложения.",
-  "identity": "wts.Feat.MultiInstanceAdvanced"
+  "identity": "ts.Feat.MultiInstanceAdvanced"
 }

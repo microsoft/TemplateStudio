@@ -6,8 +6,8 @@
   ],
   "name": "VBStyleAnalysis",
   "shortName": "VBStyleAnalysis",
-  "groupIdentity": "wts.Feat.VBStyleAnalysis",
-  "identity": "wts.Feat.VBStyleAnalysis",
+  "groupIdentity": "ts.Feat.VBStyleAnalysis",
+  "identity": "ts.Feat.VBStyleAnalysis",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

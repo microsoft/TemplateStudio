@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Azure Notifications",
   "description": "登録して、Azure Notification Hubs からのメッセージを受信および処理します。",
-  "identity": "wts.Feat.HubNotifications"
+  "identity": "ts.Feat.HubNotifications"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Draw",
   "description": "Eine Seite, auf der Sie in Windows Ink Notizen und Zeichnungen erstellen können.",
-  "identity": "wts.Page.InkDraw.CodeBehind"
+  "identity": "ts.Page.InkDraw.CodeBehind"
 }

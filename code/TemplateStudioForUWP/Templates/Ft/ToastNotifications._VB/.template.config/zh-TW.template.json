@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Toast Notifications",
     "description": "新增程式碼來示範如何顯示快顯通知，並處理它來用於啟動應用程式。",
-    "identity": "wts.Feat.ToastNotifications.VB"
+    "identity": "ts.Feat.ToastNotifications.VB"
 }

@@ -1,13 +1,13 @@
 ﻿[
     {
         "name": "Main",
-        "templateGroupIdentity": "wts.Page.Blank",
+        "templateGroupIdentity": "ts.Page.Blank",
         "readonly": "false",
         "projecttype": "Blank|SplitView|TabbedNav|MenuBar"
     },
     {
         "name": "Multiple views",
-        "templateGroupIdentity": "wts.Feat.MultiView",
+        "templateGroupIdentity": "ts.Feat.MultiView",
         "readonly": "true",
         "projecttype": "MenuBar"
     }

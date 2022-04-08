@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Dodaje obsługę motywów do aplikacji.",
-  "identity": "wts.Feature.ThemeSelection.VB"
+  "identity": "ts.Feature.ThemeSelection.VB"
 }

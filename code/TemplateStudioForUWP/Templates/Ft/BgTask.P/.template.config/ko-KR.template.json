@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Background Task",
     "description": "앱이 포그라운드에 없는 경우에도 코드를 실행할 준비가 된 In-process 백그라운드 작업을 추가합니다.",
-    "identity": "wts.Feat.BackgroundTask.Prism"
+    "identity": "ts.Feat.BackgroundTask.Prism"
 }

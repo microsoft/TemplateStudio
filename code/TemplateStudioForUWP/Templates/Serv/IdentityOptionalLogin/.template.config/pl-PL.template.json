@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Określ, by logowanie do aplikacji było opcjonalne i by aplikacja zawierała treści z ograniczonym dostępem.",
-  "identity": "wts.Service.IdentityOptionalLogin"
+  "identity": "ts.Service.IdentityOptionalLogin"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Ergänzt Ihre Anwendung mit Designunterstützung.",
-  "identity": "wts.Feature.ThemeSelection.VB"
+  "identity": "ts.Feature.ThemeSelection.VB"
 }

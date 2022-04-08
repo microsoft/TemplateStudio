@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Określ, aby użytkownik musiał zalogować się do aplikacji.",
-  "identity": "wts.Service.IdentityForcedLogin.VB"
+  "identity": "ts.Service.IdentityForcedLogin.VB"
 }

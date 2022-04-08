@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
+  "identity": "ts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SampleData.ListDetails.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

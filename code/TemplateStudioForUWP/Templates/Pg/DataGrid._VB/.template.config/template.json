@@ -6,8 +6,8 @@
   ],
   "name": "DataGrid",
   "shortName": "DataGrid",
-  "groupIdentity": "wts.Page.DataGrid.VB",
-  "identity": "wts.Page.DataGrid.VB",
+  "groupIdentity": "ts.Page.DataGrid.VB",
+  "identity": "ts.Page.DataGrid.VB",
   "description": "A page displaying a simple data grid.",
   "tags": {
     "language": "VisualBasic",
@@ -20,7 +20,7 @@
     "ts.version": "1.0.0",
     "ts.displayOrder": "9",
     "ts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
-    "ts.dependencies": "wts.Service.SampleDataService.VB",
+    "ts.dependencies": "ts.Service.SampleDataService.VB",
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true"
   },

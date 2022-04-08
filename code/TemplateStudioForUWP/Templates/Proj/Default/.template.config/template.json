@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Default",
   "shortName": "Default",
-  "groupIdentity": "wts.Proj.Default",
-  "identity": "wts.Proj.Default",
+  "groupIdentity": "ts.Proj.Default",
+  "identity": "ts.Proj.Default",
   "description": "",
   "tags": {
     "language": "C#",

@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == wts.Page.Camera.VB|wts.Page.WebView.VB|wts.Page.MediaPlayer.VB"
+    "ts.compositionFilter": "$projectType == SplitView & $frontendframework != Prism & groupidentity == ts.Page.Camera.VB|ts.Page.WebView.VB|ts.Page.MediaPlayer.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

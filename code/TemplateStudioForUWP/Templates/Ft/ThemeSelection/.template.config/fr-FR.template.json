@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Ajoute la prise en charge des thèmes pour votre application.",
-  "identity": "wts.Feature.ThemeSelection"
+  "identity": "ts.Feature.ThemeSelection"
 }

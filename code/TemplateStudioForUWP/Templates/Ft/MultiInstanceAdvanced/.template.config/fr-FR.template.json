@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Multi-Instance Advanced",
   "description": "Vérifie la façon dont plusieurs instances de l’application sont lancées.",
-  "identity": "wts.Feat.MultiInstanceAdvanced"
+  "identity": "ts.Feat.MultiInstanceAdvanced"
 }

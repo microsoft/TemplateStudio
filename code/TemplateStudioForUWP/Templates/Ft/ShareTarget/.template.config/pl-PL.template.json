@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Share Target",
   "description": "Pozwala odbierać dane udostępniane przez inne aplikacje przy użyciu funkcji Udostępnij w aplikacji UWP.",
-  "identity": "wts.Feat.ShareTarget"
+  "identity": "ts.Feat.ShareTarget"
 }

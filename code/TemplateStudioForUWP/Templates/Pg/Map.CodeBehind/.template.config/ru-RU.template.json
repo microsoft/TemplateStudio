@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Map",
   "description": "Страница карты основана на Map Control. Код включает добавление значка карты и задание местоположения.",
-  "identity": "wts.Page.Map.CodeBehind"
+  "identity": "ts.Page.Map.CodeBehind"
 }

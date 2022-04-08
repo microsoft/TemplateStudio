@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Sample Data",
   "shortName": "Sample Data",
-  "groupIdentity": "wts.Service.SampleDataService.VB",
-  "identity": "wts.Service.SampleDataService.VB",
+  "groupIdentity": "ts.Service.SampleDataService.VB",
+  "identity": "ts.Service.SampleDataService.VB",
   "description": "SampleDataService holds sample data used by the generated version of some pages.",
   "tags": {
     "language": "VisualBasic",

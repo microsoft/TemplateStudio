@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "DataGrid",
   "description": "シンプルなデータ グリッドを表示するページです。",
-  "identity": "wts.Page.DataGrid.CodeBehind"
+  "identity": "ts.Page.DataGrid.CodeBehind"
 }

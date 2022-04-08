@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "TwoPaneView",
   "description": "Página de detalles maestra optimizada para dispositivos de doble pantalla.",
-  "identity": "wts.Page.TwoPaneView.CodeBehind.VB"
+  "identity": "ts.Page.TwoPaneView.CodeBehind.VB"
 }

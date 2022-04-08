@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "VS App Center Analytics",
   "description": "分析を Visual Studio App Center に送信します。",
-  "identity": "wts.Feat.VSAppCenterAnalytics"
+  "identity": "ts.Feat.VSAppCenterAnalytics"
 }

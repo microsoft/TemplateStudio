@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
+  "identity": "ts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SampleData.ContentGrid.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

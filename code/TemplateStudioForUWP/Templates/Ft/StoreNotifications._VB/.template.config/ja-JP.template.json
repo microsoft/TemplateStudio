@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Dev Center Notifications",
     "description": "ストアから通知を受け取るには、アプリを登録してください。",
-    "identity": "wts.Feat.StoreNotifications.VB"
+    "identity": "ts.Feat.StoreNotifications.VB"
 }

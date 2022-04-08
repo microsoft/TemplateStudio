@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test Core library with xUnit",
   "shortName": "Test Core library with xUnit",
-  "groupIdentity": "wts.Testing.UnitTests.Core.xUnit.VB",
-  "identity": "wts.Testing.UnitTests.Core.xUnit.VB",
+  "groupIdentity": "ts.Testing.UnitTests.Core.xUnit.VB",
+  "identity": "ts.Testing.UnitTests.Core.xUnit.VB",
   "description": "Add a project to test code in the Core library with xUnit.",
   "tags": {
     "language": "VisualBasic",

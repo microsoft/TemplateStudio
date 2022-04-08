@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Page.Camera.VB"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.Page.Camera.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

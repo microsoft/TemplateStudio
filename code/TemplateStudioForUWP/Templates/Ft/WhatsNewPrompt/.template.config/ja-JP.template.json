@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "What's New Prompt",
   "description": "アップデート後に初めてアプリを使用するとき、プロンプト メッセージを表示します。",
-  "identity": "wts.Feat.WhatsNewPrompt"
+  "identity": "ts.Feat.WhatsNewPrompt"
 }

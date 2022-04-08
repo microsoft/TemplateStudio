@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "App Config",
   "description": "Dodaje pusty plik App.config do projektu.",
-  "identity": "wts.Feat.AppDotConfig"
+  "identity": "ts.Feat.AppDotConfig"
 }

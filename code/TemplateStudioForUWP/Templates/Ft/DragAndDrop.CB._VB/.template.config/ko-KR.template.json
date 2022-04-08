@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Drag & Drop",
     "description": "끌어서 놓기 기능은 끌어서 놓기 기능의 앱을 간단하게 만드는 서비스를 제공합니다.",
-    "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
+    "identity": "ts.Feat.DragAndDrop.CodeBehind.VB"
 }

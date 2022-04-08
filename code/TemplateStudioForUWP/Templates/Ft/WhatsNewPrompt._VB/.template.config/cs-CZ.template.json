@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "What\u0027s New Prompt",
     "description": "Umožňuje zobrazit výzvu při prvním použití aplikace po aktualizaci.",
-    "identity": "wts.Feat.WhatsNewPrompt.VB"
+    "identity": "ts.Feat.WhatsNewPrompt.VB"
 }

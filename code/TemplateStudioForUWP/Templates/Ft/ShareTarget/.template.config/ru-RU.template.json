@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Share Target",
   "description": "Позволяет получать данные, предоставленные другими приложениями с помощью контракта отправки данных, в вашем приложении UWP.",
-  "identity": "wts.Feat.ShareTarget"
+  "identity": "ts.Feat.ShareTarget"
 }

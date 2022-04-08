@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Azure Notifications",
     "description": "注册以从 Azure 通知中心接收消息并加以处理。",
-    "identity": "wts.Feat.HubNotifications.VB"
+    "identity": "ts.Feat.HubNotifications.VB"
 }

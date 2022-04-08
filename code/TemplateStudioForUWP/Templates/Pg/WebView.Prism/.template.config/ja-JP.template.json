@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "この Web ビュー ページは、Microsoft Edge レンダリング エンジンを使用して Web コンテンツをレンダリングします。",
-  "identity": "wts.Page.WebView.Prism"
+  "identity": "ts.Page.WebView.Prism"
 }

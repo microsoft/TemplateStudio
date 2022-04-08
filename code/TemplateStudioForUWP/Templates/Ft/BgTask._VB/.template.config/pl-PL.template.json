@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Background Task",
     "description": "Dodaj wewnątrzprocesowe zadanie w tle gotowe do uruchomienia kodu nawet wtedy, gdy aplikacja nie jest na pierwszym planie.",
-    "identity": "wts.Feat.BackgroundTask.VB"
+    "identity": "ts.Feat.BackgroundTask.VB"
 }

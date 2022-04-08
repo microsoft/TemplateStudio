@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Web to App link",
     "description": "O link Web para App associa seu aplicativo com um site, assim quando alguém abre um link para seu site.",
-    "identity": "wts.Feat.WebToAppLink.Prism"
+    "identity": "ts.Feat.WebToAppLink.Prism"
 }

@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Tabbed Pivot",
     "description": "Sekmeli sayfa sıklıkla erişilen farklı içerik kategorilerine ulaşmak için kullanılır.",
-    "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
+    "identity": "ts.Page.TabbedPivot.CodeBehind.VB"
 }

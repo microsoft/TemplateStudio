@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & groupidentity == wts.Page.Grid.VB|wts.Page.DataGrid.VB",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & groupidentity == ts.Page.Grid.VB|ts.Page.DataGrid.VB",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

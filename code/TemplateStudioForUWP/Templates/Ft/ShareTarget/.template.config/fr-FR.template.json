@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Share Target",
   "description": "Vous permet de recevoir les données partagées par d'autres applications en utilisant le contrat de partage de votre application UWP.",
-  "identity": "wts.Feat.ShareTarget"
+  "identity": "ts.Feat.ShareTarget"
 }

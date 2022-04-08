@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "HTTP Data Service",
   "shortName": "HTTP Data Service",
-  "groupIdentity": "wts.Service.HttpDataService",
-  "identity": "wts.Service.HttpDataService",
+  "groupIdentity": "ts.Service.HttpDataService",
+  "identity": "ts.Service.HttpDataService",
   "description": "Access content over HTTP.",
   "tags": {
     "language": "C#",

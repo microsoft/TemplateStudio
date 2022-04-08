@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Command Line Launch",
     "description": "支援傳遞引數以及從命令列啟動。",
-    "identity": "wts.Feat.CommandLine.VB"
+    "identity": "ts.Feat.CommandLine.VB"
 }

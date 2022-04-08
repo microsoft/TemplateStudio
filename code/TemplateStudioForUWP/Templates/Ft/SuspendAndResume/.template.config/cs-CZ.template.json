@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Suspend and Resume",
   "description": "Tuto jednoduchou službu můžete volat, aby obsloužila situace, kdy uživatel opustí aplikaci nebo se do ní vrátí.",
-  "identity": "wts.Feat.SuspendAndResume"
+  "identity": "ts.Feat.SuspendAndResume"
 }

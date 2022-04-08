@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "App Config",
     "description": "Agrega un archivo App.config vacío al proyecto.",
-    "identity": "wts.Feat.AppDotConfig.VB"
+    "identity": "ts.Feat.AppDotConfig.VB"
 }

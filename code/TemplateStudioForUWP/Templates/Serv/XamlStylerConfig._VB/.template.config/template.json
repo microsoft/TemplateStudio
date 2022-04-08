@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "XAML Styler Config",
   "shortName": "XAML Styler Config",
-  "groupIdentity": "wts.Service.XAMLStyler.VB",
-  "identity": "wts.Service.XAMLStyler.VB",
+  "groupIdentity": "ts.Service.XAMLStyler.VB",
+  "identity": "ts.Service.XAMLStyler.VB",
   "description": "Default XAML Styler config file.",
   "tags": {
     "language": "VisualBasic",

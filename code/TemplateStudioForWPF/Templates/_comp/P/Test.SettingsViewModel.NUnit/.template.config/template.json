@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
+  "name": "ts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
+  "identity": "ts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SettingsViewModel.Prism.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",

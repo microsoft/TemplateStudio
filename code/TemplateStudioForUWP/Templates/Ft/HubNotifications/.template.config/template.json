@@ -6,8 +6,8 @@
   ],
   "name": "Azure Notifications",
   "shortName": "Azure Notifications",
-  "groupIdentity": "wts.Feat.HubNotifications",
-  "identity": "wts.Feat.HubNotifications",
+  "groupIdentity": "ts.Feat.HubNotifications",
+  "identity": "ts.Feat.HubNotifications",
   "description": "Register to receive and handle messages from Azure Notification Hubs.",
   "tags": {
     "language": "C#",
