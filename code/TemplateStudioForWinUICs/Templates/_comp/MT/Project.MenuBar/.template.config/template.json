@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Project.MenuBar",
-    "shortName": "wts.WinUI.Project.MenuBar",
-    "identity": "wts.WinUI.Project.MenuBar",
+    "name": "ts.WinUI.Project.MenuBar",
+    "shortName": "ts.WinUI.Project.MenuBar",
+    "identity": "ts.WinUI.Project.MenuBar",
     "tags": {
       "language": "C#",
       "type": "item",

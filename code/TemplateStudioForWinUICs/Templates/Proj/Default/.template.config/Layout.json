@@ -1,13 +1,13 @@
 ﻿[
     {
         "name": "Main",
-        "templateGroupIdentity": "wts.WinUI.Page.Blank",
+        "templateGroupIdentity": "ts.WinUI.Page.Blank",
         "readonly": "false",
         "projecttype": "BlankAdvanced|SplitView|MenuBar"
     },
     {
         "name": "MSIX Packaging",
-        "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging",
+        "templateGroupIdentity": "ts.WinUI.Feat.MSIXPackaging",
         "readonly": "false",
         "projecttype": "BlankAdvanced|SplitView|MenuBar"
     }

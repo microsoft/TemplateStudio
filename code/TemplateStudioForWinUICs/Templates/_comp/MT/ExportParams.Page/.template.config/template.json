@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.ExportParams.Page",
-    "shortName": "wts.WinUI.MVVMToolkit.ExportParams.Page",
-    "identity": "wts.WinUI.MVVMToolkit.ExportParams.Page",
+    "name": "ts.WinUI.MVVMToolkit.ExportParams.Page",
+    "shortName": "ts.WinUI.MVVMToolkit.ExportParams.Page",
+    "identity": "ts.WinUI.MVVMToolkit.ExportParams.Page",
     "tags": {
       "language": "C#",
       "type": "item",

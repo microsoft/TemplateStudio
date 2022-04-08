@@ -6,8 +6,8 @@
   ],
   "name": "Settings",
   "shortName": "Settings",
-  "identity": "wts.WinUI.Page.Settings",
-  "groupIdentity": "wts.WinUI.Page.Settings",
+  "identity": "ts.WinUI.Page.Settings",
+  "groupIdentity": "ts.WinUI.Page.Settings",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
   "tags": {
     "language": "C#",
@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.multipleInstance": "false",
     "ts.defaultInstance": "Settings",
-    "ts.dependencies":"wts.WinUI.Feat.ThemeSelection"
+    "ts.dependencies":"ts.WinUI.Feat.ThemeSelection"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

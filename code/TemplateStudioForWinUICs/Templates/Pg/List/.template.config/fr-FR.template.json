@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Le modèle liste/détails a un volet de liste et un volet de détails pour le contenu.",
-  "identity": "wts.WinUI.Page.ListDetails"
+  "identity": "ts.WinUI.Page.ListDetails"
 }

@@ -6,8 +6,8 @@
   ],
   "name": "Form",
   "shortName": "Form",
-  "identity": "wts.WinUI.Page.Form",
-  "groupIdentity": "wts.WinUI.Page.Form",
+  "identity": "ts.WinUI.Page.Form",
+  "groupIdentity": "ts.WinUI.Page.Form",
   "description": "This page contains a basic form page with validators.",
   "tags": {
     "language": "C#",
@@ -23,7 +23,7 @@
     "ts.isHidden": "true",
     "ts.rightClickEnabled":"true",
     "ts.outputToParent": "true",
-    "ts.dependencies":"wts.WinUI.Feat.SampleData"
+    "ts.dependencies":"ts.WinUI.Feat.SampleData"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

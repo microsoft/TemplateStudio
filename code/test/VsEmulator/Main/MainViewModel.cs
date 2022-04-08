@@ -381,7 +381,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     switch (appmodel)
                     {
                         case AppModels.Desktop:
-                            styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                            styleCopTemplate = "ts.WinUI.Feat.StyleCop";
                             break;
                     }
                     break;

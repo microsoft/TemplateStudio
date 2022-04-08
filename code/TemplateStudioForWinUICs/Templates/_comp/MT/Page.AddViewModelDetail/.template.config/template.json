@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
-    "shortName": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
-    "identity": "wts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
+    "name": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
+    "shortName": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
+    "identity": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "WinUI",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.ContentGrid"
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WinUI.Page.ContentGrid"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

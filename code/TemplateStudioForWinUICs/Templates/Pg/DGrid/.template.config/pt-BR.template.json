@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "DataGrid",
   "description": "Uma página exibindo uma grade de dados simples.",
-  "identity": "wts.WinUI.Page.DataGrid"
+  "identity": "ts.WinUI.Page.DataGrid"
 }

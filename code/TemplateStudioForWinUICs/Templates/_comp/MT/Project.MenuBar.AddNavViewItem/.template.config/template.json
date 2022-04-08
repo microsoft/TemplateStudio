@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Project.MenuBar.AddNavigationViewItem",
-    "identity": "wts.WinUI.Project.MenuBar.AddNavigationViewItem",
-    "shortName": "wts.WinUI.Project.MenuBar.AddNavigationViewItem",
+    "name": "ts.WinUI.Project.MenuBar.AddNavigationViewItem",
+    "identity": "ts.WinUI.Project.MenuBar.AddNavigationViewItem",
+    "shortName": "ts.WinUI.Project.MenuBar.AddNavigationViewItem",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "WinUI",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == page & identity != wts.WinUI.Page.Settings"
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == page & identity != ts.WinUI.Page.Settings"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

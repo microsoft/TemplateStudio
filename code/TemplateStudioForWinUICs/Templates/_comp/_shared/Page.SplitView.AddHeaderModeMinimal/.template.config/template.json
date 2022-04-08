@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.SplitView.AddHeaderModeMinimal",
-  "identity": "wts.WinUI.Page.SplitView.AddHeaderModeMinimal",
-  "shortName": "wts.WinUI.Page.SplitView.AddHeaderModeMinimal",
+  "name": "ts.WinUI.Page.SplitView.AddHeaderModeMinimal",
+  "identity": "ts.WinUI.Page.SplitView.AddHeaderModeMinimal",
+  "shortName": "ts.WinUI.Page.SplitView.AddHeaderModeMinimal",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & groupidentity == wts.WinUI.Page.WebView"
+    "ts.compositionFilter": "$projectType == SplitView & groupidentity == ts.WinUI.Page.WebView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

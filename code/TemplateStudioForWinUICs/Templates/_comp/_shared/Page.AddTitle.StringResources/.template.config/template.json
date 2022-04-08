@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Page.StringResources",
-    "identity": "wts.WinUI.Page.StringResources",
-    "shortName": "wts.WinUI.Page.StringResources",
+    "name": "ts.WinUI.Page.StringResources",
+    "identity": "ts.WinUI.Page.StringResources",
+    "shortName": "ts.WinUI.Page.StringResources",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.Blank|wts.WinUI.Page.ContentGrid|wts.WinUI.Page.DataGrid|wts.WinUI.Page.Form|wts.WinUI.Page.Settings"
+    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.Blank|ts.WinUI.Page.ContentGrid|ts.WinUI.Page.DataGrid|ts.WinUI.Page.Form|ts.WinUI.Page.Settings"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Sample Data",
   "shortName": "Sample Data",
-  "groupIdentity": "wts.WinUI.Feat.SampleData",
-  "identity": "wts.WinUI.Feat.SampleData",
+  "groupIdentity": "ts.WinUI.Feat.SampleData",
+  "identity": "ts.WinUI.Feat.SampleData",
   "description": "SampleData holds sample data used by the generated version of some pages.",
   "tags": {
     "language": "C#",

@@ -6,8 +6,8 @@
   ],
   "name": "DataGrid",
   "shortName": "DataGrid",
-  "identity": "wts.WinUI.Page.DataGrid",
-  "groupIdentity": "wts.WinUI.Page.DataGrid",
+  "identity": "ts.WinUI.Page.DataGrid",
+  "groupIdentity": "ts.WinUI.Page.DataGrid",
   "description": "A page displaying a simple data grid.",
   "tags": {
     "language": "C#",
@@ -22,7 +22,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true",
     "ts.outputToParent": "true",
-    "ts.dependencies":"wts.WinUI.Feat.SampleData",
+    "ts.dependencies":"ts.WinUI.Feat.SampleData",
     "ts.licenses": "[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
   "sourceName": "wts.ItemName",

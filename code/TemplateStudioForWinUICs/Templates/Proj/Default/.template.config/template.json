@@ -4,10 +4,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Proj.Default",
-  "shortName": "wts.WinUI.Proj.Default",
-  "identity": "wts.WinUI.Proj.Default",
-  "groupIdentity": "wts.WinUI.Proj.Default",
+  "name": "ts.WinUI.Proj.Default",
+  "shortName": "ts.WinUI.Proj.Default",
+  "identity": "ts.WinUI.Proj.Default",
+  "groupIdentity": "ts.WinUI.Proj.Default",
   "description": "",
   "tags": {
     "language": "C#",

@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Project.Core.StyleCop",
-  "shortName": "wts.WinUI.Project.Core.StyleCop",
-  "identity": "wts.WinUI.Project.Core.StyleCop",
+  "name": "ts.WinUI.Project.Core.StyleCop",
+  "shortName": "ts.WinUI.Project.Core.StyleCop",
+  "identity": "ts.WinUI.Project.Core.StyleCop",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.WinUI.Feat.StyleCop",
+    "ts.compositionFilter": "groupidentity == ts.WinUI.Feat.StyleCop",
     "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",

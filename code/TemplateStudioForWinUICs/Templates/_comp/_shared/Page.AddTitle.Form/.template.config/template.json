@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Page.AddTitle.Form",
-    "identity": "wts.WinUI.Page.AddTitle.Form",
-    "shortName": "wts.WinUI.Page.AddTitle.Form",
+    "name": "ts.WinUI.Page.AddTitle.Form",
+    "identity": "ts.WinUI.Page.AddTitle.Form",
+    "shortName": "ts.WinUI.Page.AddTitle.Form",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.Form"
+    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.Form"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Content Grid",
   "description": "Questa pagina ti permette di aggiungere elementi personalizzati sotto forma di una griglia adattiva.",
-  "identity": "wts.WinUI.Page.ContentGrid"
+  "identity": "ts.WinUI.Page.ContentGrid"
 }
