@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Project.Blank",
-    "shortName": "wts.Wpf.Prism.Project.Blank",
-    "identity": "wts.Wpf.Prism.Project.Blank",
+    "name": "ts.WPF.Prism.Project.Blank",
+    "shortName": "ts.WPF.Prism.Project.Blank",
+    "identity": "ts.WPF.Prism.Project.Blank",
     "tags": {
       "language": "C#",
       "type": "item",

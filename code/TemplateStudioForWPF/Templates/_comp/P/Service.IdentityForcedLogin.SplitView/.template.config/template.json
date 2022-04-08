@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
-    "shortName": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
-    "identity": "wts.Wpf.Prism.Service.IdentityForcedLogin.SplitView",
+    "name": "ts.WPF.Prism.Service.IdentityForcedLogin.SplitView",
+    "shortName": "ts.WPF.Prism.Service.IdentityForcedLogin.SplitView",
+    "identity": "ts.WPF.Prism.Service.IdentityForcedLogin.SplitView",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "ts.compositionFilter": "$frontendframework == Prism & $projectType == SplitView & groupidentity == ts.WPF.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

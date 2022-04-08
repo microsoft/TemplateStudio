@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multiple views",
     "description": "允许用户在不同的窗口查看你的应用的独立部分。",
-    "identity": "wts.Feat.MultiView.VB"
+    "identity": "ts.Feat.MultiView.VB"
 }

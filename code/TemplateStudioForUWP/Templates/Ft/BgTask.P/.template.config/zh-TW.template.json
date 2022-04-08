@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Background Task",
     "description": "新增已備妥的同處理序背景工作，即便應用程式不在前景還是可以執行程式碼。",
-    "identity": "wts.Feat.BackgroundTask.Prism"
+    "identity": "ts.Feat.BackgroundTask.Prism"
 }

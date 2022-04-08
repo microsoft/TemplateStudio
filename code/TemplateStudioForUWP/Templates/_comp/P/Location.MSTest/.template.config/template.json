@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Page.Map.Prism & $testing == wts.Testing.UnitTests.App.MSTest",
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.Page.Map.Prism & $testing == ts.Testing.UnitTests.App.MSTest",
     "ts.licenses": "[Moq](https://raw.githubusercontent.com/moq/moq4/master/License.txt)"
   },
   "sourceName": "wts.ItemName",

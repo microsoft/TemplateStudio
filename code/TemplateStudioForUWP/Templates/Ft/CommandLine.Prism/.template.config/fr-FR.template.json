@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Command Line Launch",
   "description": "Prend en charge le passage des arguments et le lancement à partir de la ligne de commande.",
-  "identity": "wts.Feat.CommandLine.Prism"
+  "identity": "ts.Feat.CommandLine.Prism"
 }

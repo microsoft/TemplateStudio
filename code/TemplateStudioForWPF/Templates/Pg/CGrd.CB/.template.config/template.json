@@ -6,8 +6,8 @@
   ],
   "name": "Content Grid",
   "shortName": "Content Grid",
-  "identity": "wts.Wpf.Page.ContentGrid.CodeBehind",
-  "groupIdentity": "wts.Wpf.Page.ContentGrid",
+  "identity": "ts.WPF.Page.ContentGrid.CodeBehind",
+  "groupIdentity": "ts.WPF.Page.ContentGrid",
   "description": "This page contains a basic content grid based on a ListView.",
   "tags": {
     "language": "C#",
@@ -21,7 +21,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true",
     "ts.outputToParent": "true",
-    "ts.dependencies":"wts.Wpf.Feat.SampleData"
+    "ts.dependencies":"ts.WPF.Feat.SampleData"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

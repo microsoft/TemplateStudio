@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Telerik DataGrid",
     "description": "Eine Seite mit einem einfachen Raster, unterstützt von Telerik UI for UWP-Steuerelementen.",
-    "identity": "wts.Page.Grid.VB"
+    "identity": "ts.Page.Grid.VB"
 }

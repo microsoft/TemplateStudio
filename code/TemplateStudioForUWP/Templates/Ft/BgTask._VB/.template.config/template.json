@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Background Task",
   "shortName": "Background Task",
-  "groupIdentity": "wts.Feat.BackgroundTask.VB",
-  "identity": "wts.Feat.BackgroundTask.VB",
+  "groupIdentity": "ts.Feat.BackgroundTask.VB",
+  "identity": "ts.Feat.BackgroundTask.VB",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
   "tags": {
     "language": "VisualBasic",
@@ -21,7 +21,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "false",
     "ts.outputToParent": "true",
-    "ts.exclusions": "wts.Feat.MultiInstance.VB|wts.Feat.MultiInstanceAdvanced.VB"
+    "ts.exclusions": "ts.Feat.MultiInstance.VB|ts.Feat.MultiInstanceAdvanced.VB"
 
   },
   "sourceName": "BackgroundTaskFeature",

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "Web ビュー ページは、WebView2 (クロム付きのマイクロソフト エッジ) を使用して Web コンテンツをレンダリングします。",
-  "identity": "wts.WinUI.Page.WebView"
+  "identity": "ts.WinUI.Page.WebView"
 }

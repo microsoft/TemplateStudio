@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Deep Linking",
     "description": "Aggiungi la capacità di avviare e stabilire un collegamento diretto con l\u0027app con uno schema URI personalizzato.",
-    "identity": "wts.Feat.DeepLinking.VB"
+    "identity": "ts.Feat.DeepLinking.VB"
 }

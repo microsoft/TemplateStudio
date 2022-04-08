@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Background Task",
   "description": "Ajouter une tâche d'arrière-plan en traitement pour exécuter le code même lorsque l'application n'est pas au premier plan.",
-  "identity": "wts.Feat.BackgroundTask"
+  "identity": "ts.Feat.BackgroundTask"
 }

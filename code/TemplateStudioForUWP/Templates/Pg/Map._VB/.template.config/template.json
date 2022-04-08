@@ -6,8 +6,8 @@
   ],
   "name": "Map",
   "shortName": "Map",
-  "groupIdentity": "wts.Page.Map.VB",
-  "identity": "wts.Page.Map.VB",
+  "groupIdentity": "ts.Page.Map.VB",
+  "identity": "ts.Page.Map.VB",
   "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
   "tags": {
     "language": "VisualBasic",

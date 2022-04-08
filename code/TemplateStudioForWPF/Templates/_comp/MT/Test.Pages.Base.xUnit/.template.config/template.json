@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
+  "name": "ts.WPF.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
+  "identity": "ts.WPF.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
+  "shortName": "ts.WPF.Testing.UnitTests.Pages.MVVMToolkit.Base.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupIdentity == wts.Wpf.Testing.UnitTests.App.xUnit",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupIdentity == ts.WPF.Testing.UnitTests.App.xUnit",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

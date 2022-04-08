@@ -4,10 +4,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Proj.Default.Desktop.Cpp",
-  "shortName": "wts.WinUI.Proj.Default.Desktop.Cpp",
-  "identity": "wts.WinUI.Proj.Default.Desktop.Cpp",
-  "groupIdentity": "wts.WinUI.Proj.Default.Desktop.Cpp",
+  "name": "ts.WinUI.Proj.Default.Desktop.Cpp",
+  "shortName": "ts.WinUI.Proj.Default.Desktop.Cpp",
+  "identity": "ts.WinUI.Proj.Default.Desktop.Cpp",
+  "groupIdentity": "ts.WinUI.Proj.Default.Desktop.Cpp",
   "description": "",
   "tags": {
     "language": "C++",

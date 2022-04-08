@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
+  "name": "ts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
+  "identity": "ts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SettingsViewModel.MVVMToolkit.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == wts.Wpf.Testing.UnitTests.App.xUnit & $page == wts.Wpf.Page.Settings",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WPF.Testing.UnitTests.App.xUnit & $page == ts.WPF.Page.Settings",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

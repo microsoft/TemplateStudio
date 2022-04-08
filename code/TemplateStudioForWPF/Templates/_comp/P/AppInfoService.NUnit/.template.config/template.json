@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
+  "name": "ts.WPF.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
+  "identity": "ts.WPF.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
+  "shortName": "ts.WPF.Testing.UnitTests.Feature.Prism.ApplicationInfoService.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Feat.ApplicationInfoService & $testing == wts.Wpf.Testing.UnitTests.App.NUnit",
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.WPF.Feat.ApplicationInfoService & $testing == ts.WPF.Testing.UnitTests.App.NUnit",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

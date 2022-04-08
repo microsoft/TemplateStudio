@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Suspend and Resume",
   "description": "一项可连入以在用户离开并返回到应用时处理的简单服务。",
-  "identity": "wts.Feat.SuspendAndResume.VB"
+  "identity": "ts.Feat.SuspendAndResume.VB"
 }

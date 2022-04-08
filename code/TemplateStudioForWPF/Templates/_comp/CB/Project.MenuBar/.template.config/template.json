@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.MenuBar.CodeBehind",
-    "shortName": "wts.Wpf.Project.MenuBar.CodeBehind",
-    "identity": "wts.Wpf.Project.MenuBar.CodeBehind",
+    "name": "ts.WPF.Project.MenuBar.CodeBehind",
+    "shortName": "ts.WPF.Project.MenuBar.CodeBehind",
+    "identity": "ts.WPF.Project.MenuBar.CodeBehind",
     "tags": {
       "language": "C#",
       "type": "item",

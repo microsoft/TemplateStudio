@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "MediaPlayer",
     "description": "Страница для отображения видео с включенными системными элементами управления мультимедиа.",
-    "identity": "wts.Page.MediaPlayer.VB"
+    "identity": "ts.Page.MediaPlayer.VB"
 }

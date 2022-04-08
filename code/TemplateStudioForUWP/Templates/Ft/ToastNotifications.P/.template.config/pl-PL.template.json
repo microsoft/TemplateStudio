@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Toast Notifications",
     "description": "Dodaj kod do wyświetlania wyskakujących powiadomień i uruchamiania aplikacji za ich pomocą.",
-    "identity": "wts.Feat.ToastNotifications.Prism"
+    "identity": "ts.Feat.ToastNotifications.Prism"
 }

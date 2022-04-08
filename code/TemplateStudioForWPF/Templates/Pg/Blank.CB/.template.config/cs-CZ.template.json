@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Blank",
   "description": "Toto je nejzákladnější stránka. Obsahuje prázdné plátno, které můžete přetvářet libovolným požadovaným způsobem.",
-  "identity": "wts.Wpf.Page.Blank.CodeBehind"
+  "identity": "ts.WPF.Page.Blank.CodeBehind"
 }

@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "identity": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SampleData.Grids.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $page == wts.Wpf.Page.DataGrid|wts.Wpf.Page.DataGrid.CodeBehind",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.NUnit & $page == ts.WPF.Page.DataGrid|ts.WPF.Page.DataGrid.CodeBehind",
     "ts.compositionOrder" : "2"
   },
   "sourceName": "wts.ItemName",

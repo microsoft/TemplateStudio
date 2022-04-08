@@ -6,8 +6,8 @@
   ],
   "name": "WebView",
   "shortName": "WebView",
-  "groupIdentity": "wts.Page.WebView.VB",
-  "identity": "wts.Page.WebView.VB",
+  "groupIdentity": "ts.Page.WebView.VB",
+  "identity": "ts.Page.WebView.VB",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
   "tags": {
     "language": "VisualBasic",

@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.CodeBehind"
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == ts.Feat.ShareTarget|ts.Feat.ShareTarget.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

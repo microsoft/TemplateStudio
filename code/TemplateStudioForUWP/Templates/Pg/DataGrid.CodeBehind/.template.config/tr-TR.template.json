@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "DataGrid",
   "description": "Basit bir veri kılavuzunun gösterildiği sayfa.",
-  "identity": "wts.Page.DataGrid.CodeBehind"
+  "identity": "ts.Page.DataGrid.CodeBehind"
 }

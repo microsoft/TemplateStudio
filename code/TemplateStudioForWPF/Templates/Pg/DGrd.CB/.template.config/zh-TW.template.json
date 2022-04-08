@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "DataGrid",
   "description": "顯示簡單數據網格的頁面。",
-  "identity": "wts.Wpf.Page.DataGrid.CodeBehind"
+  "identity": "ts.WPF.Page.DataGrid.CodeBehind"
 }

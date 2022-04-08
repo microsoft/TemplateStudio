@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "Strona widoku sieci Web wyświetla treści internetowe za pomocą aparatu renderowania programu Microsoft Edge.",
-  "identity": "wts.Page.WebView.CodeBehind"
+  "identity": "ts.Page.WebView.CodeBehind"
 }

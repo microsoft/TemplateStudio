@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Blank",
   "description": "To jest najbardziej podstawowa strona. Jest to pusta przestrzeń, którą możesz dowolnie kształtować.",
-  "identity": "wts.Wpf.Page.Blank.CodeBehind"
+  "identity": "ts.WPF.Page.Blank.CodeBehind"
 }

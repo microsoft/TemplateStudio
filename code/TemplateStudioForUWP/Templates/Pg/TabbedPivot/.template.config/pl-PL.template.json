@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Tabbed Pivot",
   "description": "Strona z kartami służy do nawigacji między różnymi często używanymi kategoriami treści.",
-  "identity": "wts.Page.TabbedPivot"
+  "identity": "ts.Page.TabbedPivot"
 }

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Page.AddTitle.DataGrid",
-    "identity": "wts.WinUI.Page.AddTitle.DataGrid",
-    "shortName": "wts.WinUI.Page.AddTitle.DataGrid",
+    "name": "ts.WinUI.Page.AddTitle.DataGrid",
+    "identity": "ts.WinUI.Page.AddTitle.DataGrid",
+    "shortName": "ts.WinUI.Page.AddTitle.DataGrid",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.DataGrid"
+    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.DataGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

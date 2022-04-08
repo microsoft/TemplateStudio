@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Live Tile",
   "description": "新增範例，以示範更新磚以及使用多個磚的程式碼。",
-  "identity": "wts.Feat.LiveTile"
+  "identity": "ts.Feat.LiveTile"
 }

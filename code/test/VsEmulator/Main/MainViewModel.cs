@@ -375,13 +375,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                     styleCopTemplates = wpfScanResult.Templates.Where(t => t.GetLanguage() == language);
                     GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
 
-                    styleCopTemplate = "wts.Wpf.Feat.StyleCop";
+                    styleCopTemplate = "ts.WPF.Feat.StyleCop";
                     break;
                 case Platforms.WinUI:
                     switch (appmodel)
                     {
                         case AppModels.Desktop:
-                            styleCopTemplate = "wts.WinUI.Feat.StyleCop";
+                            styleCopTemplate = "ts.WinUI.Feat.StyleCop";
                             break;
                     }
                     break;

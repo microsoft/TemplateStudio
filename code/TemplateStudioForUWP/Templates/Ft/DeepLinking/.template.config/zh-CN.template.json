@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Deep Linking",
   "description": "添加使用自定义 URI 方案启动并深入链接应用的功能。",
-  "identity": "wts.Feat.DeepLinking"
+  "identity": "ts.Feat.DeepLinking"
 }

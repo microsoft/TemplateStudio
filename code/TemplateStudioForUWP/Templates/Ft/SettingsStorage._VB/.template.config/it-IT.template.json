@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Settings Storage",
   "description": "L'impostazione dell'archiviazione semplifica l'archiviazione dei dati all'interno della cartella dei dati dell'applicazione.",
-  "identity": "wts.Feat.SettingsStorage.VB"
+  "identity": "ts.Feat.SettingsStorage.VB"
 }

@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Testing.UnitTests.App.xUnit.VB & $feature == wts.Feat.VBStyleAnalysis",
+    "ts.compositionFilter": "identity == ts.Testing.UnitTests.App.xUnit.VB & $feature == ts.Feat.VBStyleAnalysis",
     "ts.licenses": "[VBStyleAnalyzer](https://github.com/mrlacey/VBStyleAnalyzer/blob/main/LICENSE)|[SonarAnalyzer.VisualBasic](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)"
   },
   "sourceName": "wts.ItemName",

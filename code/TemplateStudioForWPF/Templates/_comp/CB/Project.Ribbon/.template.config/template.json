@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.Ribbon.CodeBehind",
-    "shortName": "wts.Wpf.Project.Ribbon.CodeBehind",
-    "identity": "wts.Wpf.Project.Ribbon.CodeBehind",
+    "name": "ts.WPF.Project.Ribbon.CodeBehind",
+    "shortName": "ts.WPF.Project.Ribbon.CodeBehind",
+    "identity": "ts.WPF.Project.Ribbon.CodeBehind",
     "tags": {
       "language": "C#",
       "type": "item",

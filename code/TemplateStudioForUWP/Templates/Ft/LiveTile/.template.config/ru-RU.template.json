@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Live Tile",
   "description": "Добавляет пример, чтобы продемонстрировать обновление плитки, а также код для работы с несколькими плитками.",
-  "identity": "wts.Feat.LiveTile"
+  "identity": "ts.Feat.LiveTile"
 }

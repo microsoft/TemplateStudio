@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Page.Settings.Unpackaged",
-    "shortName": "wts.WinUI.Page.Settings.Unpackaged",
-    "identity": "wts.WinUI.Page.Settings.Unpackaged",
+    "name": "ts.WinUI.Page.Settings.Unpackaged",
+    "shortName": "ts.WinUI.Page.Settings.Unpackaged",
+    "identity": "ts.WinUI.Page.Settings.Unpackaged",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Page.Settings & $feature != wts.WinUI.Feat.MSIXPackaging"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Page.Settings & $feature != ts.WinUI.Feat.MSIXPackaging"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

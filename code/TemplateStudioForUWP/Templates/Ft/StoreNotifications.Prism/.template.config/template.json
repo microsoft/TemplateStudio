@@ -6,8 +6,8 @@
   ],
   "name": "Dev Center Notifications",
   "shortName": "Dev Center Notifications",
-  "groupIdentity": "wts.Feat.StoreNotifications",
-  "identity": "wts.Feat.StoreNotifications.Prism",
+  "groupIdentity": "ts.Feat.StoreNotifications",
+  "identity": "ts.Feat.StoreNotifications.Prism",
   "description": "Register your app to receive notifications from the store.",
   "tags": {
     "language": "C#",

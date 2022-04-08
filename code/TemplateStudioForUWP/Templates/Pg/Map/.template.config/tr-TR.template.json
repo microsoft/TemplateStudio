@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Map",
   "description": "Harita sayfası, Windows Harita Denetimi'ni esas alır. Kod bir Harita Simgesi ekleme ve konumunuzu alma işlevlerini içerir.",
-  "identity": "wts.Page.Map"
+  "identity": "ts.Page.Map"
 }

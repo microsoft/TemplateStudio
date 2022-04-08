@@ -1,7 +1,7 @@
 ﻿[
     {
         "name": "MSIX Packaging",
-        "templateGroupIdentity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
+        "templateGroupIdentity": "ts.WinUI.Feat.MSIXPackaging.Cpp",
         "readonly": "true",
         "projecttype": "Blank"
     }

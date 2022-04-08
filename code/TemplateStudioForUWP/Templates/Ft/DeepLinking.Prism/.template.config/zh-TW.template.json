@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Deep Linking",
   "description": "新增使用自訂 URI 配置啟動應用程式並與它建立深層連結的功能。",
-  "identity": "wts.Feat.DeepLinking.Prism"
+  "identity": "ts.Feat.DeepLinking.Prism"
 }

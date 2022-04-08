@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Wzorzec listy/szczegółów zawiera okienko listy i okienko szczegółów zawartości.",
-  "identity": "wts.WinUI.Page.ListDetails"
+  "identity": "ts.WinUI.Page.ListDetails"
 }

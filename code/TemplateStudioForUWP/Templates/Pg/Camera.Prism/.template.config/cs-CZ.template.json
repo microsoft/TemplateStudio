@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Camera",
     "description": "Tato stránka umožňuje zachytit a zobrazit snímek z fotoaparátu.",
-    "identity": "wts.Page.Camera.Prism"
+    "identity": "ts.Page.Camera.Prism"
 }

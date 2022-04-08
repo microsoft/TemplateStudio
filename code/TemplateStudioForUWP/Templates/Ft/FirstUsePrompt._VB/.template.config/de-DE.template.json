@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "First Run Prompt",
     "description": "Zeigen Sie eine Eingabeaufforderung an, wenn die App zum ersten Mal verwendet wird.",
-    "identity": "wts.Feat.FirstRunPrompt.VB"
+    "identity": "ts.Feat.FirstRunPrompt.VB"
 }

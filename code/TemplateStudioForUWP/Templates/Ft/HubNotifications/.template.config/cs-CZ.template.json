@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Azure Notifications",
   "description": "Proveďte registraci, která zajistí přijímání a zpracovávání zpráv z center oznámení Azure.",
-  "identity": "wts.Feat.HubNotifications"
+  "identity": "ts.Feat.HubNotifications"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Imposta l'applicazione in modo da disporre di funzionalità con restrizioni o di accesso facoltativo.",
-  "identity": "wts.Service.IdentityOptionalLogin.CodeBehind.VB"
+  "identity": "ts.Service.IdentityOptionalLogin.CodeBehind.VB"
 }

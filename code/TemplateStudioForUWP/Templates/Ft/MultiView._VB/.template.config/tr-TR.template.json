@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multiple views",
     "description": "Kullanıcılarınızın uygulamanızın bağımsız parçalarını ayrı pencerelerde görüntülemelerine olanak tanıyın.",
-    "identity": "wts.Feat.MultiView.VB"
+    "identity": "ts.Feat.MultiView.VB"
 }

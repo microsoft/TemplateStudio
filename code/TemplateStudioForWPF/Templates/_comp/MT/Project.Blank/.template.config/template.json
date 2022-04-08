@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Project.Blank",
-    "shortName": "wts.Wpf.MVVMToolkit.Project.Blank",
-    "identity": "wts.Wpf.MVVMToolkit.Project.Blank",
+    "name": "ts.WPF.MVVMToolkit.Project.Blank",
+    "shortName": "ts.WPF.MVVMToolkit.Project.Blank",
+    "identity": "ts.WPF.MVVMToolkit.Project.Blank",
     "tags": {
       "language": "C#",
       "type": "item",

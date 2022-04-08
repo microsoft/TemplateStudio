@@ -6,8 +6,8 @@
   ],
   "name": "VS App Center Analytics",
   "shortName": "VS App Center Analytics",
-  "groupIdentity": "wts.Feat.VSAppCenterAnalytics.VB",
-  "identity": "wts.Feat.VSAppCenterAnalytics.VB",
+  "groupIdentity": "ts.Feat.VSAppCenterAnalytics.VB",
+  "identity": "ts.Feat.VSAppCenterAnalytics.VB",
   "description": "Send analytics to the Visual Studio App Center.",
   "tags": {
     "language": "VisualBasic",

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
-    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
-    "identity": "wts.Wpf.Service.IdentityOptionalLogin.SplitView",
+    "name": "ts.WPF.Service.IdentityOptionalLogin.SplitView",
+    "shortName": "ts.WPF.Service.IdentityOptionalLogin.SplitView",
+    "identity": "ts.WPF.Service.IdentityOptionalLogin.SplitView",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == ts.WPF.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

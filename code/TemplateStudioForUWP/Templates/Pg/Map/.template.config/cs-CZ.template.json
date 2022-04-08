@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Map",
   "description": "Stránka mapy je založena na ovládacím prvku Mapa z Windows. Kód zahrnuje přidání ikony Mapa a získání vaší polohy.",
-  "identity": "wts.Page.Map"
+  "identity": "ts.Page.Map"
 }

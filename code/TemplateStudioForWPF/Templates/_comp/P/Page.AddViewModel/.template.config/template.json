@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Page.AddViewModel",
-    "shortName": "wts.Wpf.Prism.Page.AddViewModel",
-    "identity": "wts.Wpf.Prism.Page.AddViewModel",
+    "name": "ts.WPF.Prism.Page.AddViewModel",
+    "shortName": "ts.WPF.Prism.Page.AddViewModel",
+    "identity": "ts.WPF.Prism.Page.AddViewModel",
     "tags": {
       "language": "C#",
       "type": "item",

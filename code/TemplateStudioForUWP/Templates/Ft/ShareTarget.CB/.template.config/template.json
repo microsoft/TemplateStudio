@@ -4,8 +4,8 @@
   "classifications": [ "Universal" ],
   "name": "Share Target",
   "shortName": "Share Target",
-  "groupIdentity": "wts.Feat.ShareTarget",
-  "identity": "wts.Feat.ShareTarget.CodeBehind",
+  "groupIdentity": "ts.Feat.ShareTarget",
+  "identity": "ts.Feat.ShareTarget.CodeBehind",
   "description": "Allows you to receive data shared by other apps using the share contract in your UWP app.",
   "tags": {
     "language": "C#",

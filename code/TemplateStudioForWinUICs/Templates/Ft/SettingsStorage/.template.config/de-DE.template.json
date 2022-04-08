@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings Storage",
   "description": "„Setting storage“ hilft, das Speichern von Daten in Ihrem Anwendungsdatenordner zu vereinfachen.",
-  "identity": "wts.WinUI.Feat.SettingsStorage"
+  "identity": "ts.WinUI.Feat.SettingsStorage"
 }

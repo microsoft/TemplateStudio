@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "TreeView",
   "description": "Ağaç görünümü sayfasında hiyerarşik içeriğin gösterilmesini sağlayan bir ağaç görünümü denetimi bulunmaktadır.",
-  "identity": "wts.Page.TreeView.CodeBehind"
+  "identity": "ts.Page.TreeView.CodeBehind"
 }

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Page.WebView.MenuBar",
-    "shortName": "wts.Wpf.Prism.Page.WebView.MenuBar",
-    "identity": "wts.Wpf.Prism.Page.WebView.MenuBar",
+    "name": "ts.WPF.Prism.Page.WebView.MenuBar",
+    "shortName": "ts.WPF.Prism.Page.WebView.MenuBar",
+    "identity": "ts.WPF.Prism.Page.WebView.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Page.WebView & $projectType == MenuBar"
+    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Page.WebView & $projectType == MenuBar"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

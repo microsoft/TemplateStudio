@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Live Tile",
     "description": "Agrega una muestra para mostrar la actualización del mosaico y el código para trabajar con varios mosaicos.",
-    "identity": "wts.Feat.LiveTile.Prism"
+    "identity": "ts.Feat.LiveTile.Prism"
 }

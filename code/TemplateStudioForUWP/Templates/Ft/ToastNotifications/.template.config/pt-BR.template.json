@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Toast Notifications",
   "description": "Adiciona código para ser mostrado, exibindo uma notificação do sistema e lidando com seu uso para iniciar o aplicativo.",
-  "identity": "wts.Feat.ToastNotifications"
+  "identity": "ts.Feat.ToastNotifications"
 }

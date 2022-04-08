@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
+  "name": "ts.WPF.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
+  "shortName": "ts.WPF.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
+  "identity": "ts.WPF.Testing.UnitTests.MenuBar.Pages.MVVMToolkit.WebView.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.WebView & $frontendframework == MVVMToolkit & $testing == wts.Wpf.Testing.UnitTests.App.MSTest & $projectType == MenuBar",
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.WebView & $frontendframework == MVVMToolkit & $testing == ts.WPF.Testing.UnitTests.App.MSTest & $projectType == MenuBar",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

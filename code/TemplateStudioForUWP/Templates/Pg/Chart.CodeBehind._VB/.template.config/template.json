@@ -6,8 +6,8 @@
   ],
   "name": "Chart",
   "shortName": "Chart",
-  "groupIdentity": "wts.Page.Chart.VB",
-  "identity": "wts.Page.Chart.CodeBehind.VB",
+  "groupIdentity": "ts.Page.Chart.VB",
+  "identity": "ts.Page.Chart.CodeBehind.VB",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "VisualBasic",
@@ -19,7 +19,7 @@
     "ts.version": "1.0.0",
     "ts.displayOrder": "11",
     "ts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "ts.dependencies": "wts.Service.SampleDataService.VB",
+    "ts.dependencies": "ts.Service.SampleDataService.VB",
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true"
   },

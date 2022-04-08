@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multiple views",
     "description": "ユーザーがアプリの個別の部分を独立したウィンドウに表示できるようにします。",
-    "identity": "wts.Feat.MultiView.VB"
+    "identity": "ts.Feat.MultiView.VB"
 }

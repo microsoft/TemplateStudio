@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test Core library with NUnit",
   "shortName": "Test Core library with NUnit",
-  "groupIdentity": "wts.Testing.UnitTests.Core.NUnit.VB",
-  "identity": "wts.Testing.UnitTests.Core.NUnit.VB",
+  "groupIdentity": "ts.Testing.UnitTests.Core.NUnit.VB",
+  "identity": "ts.Testing.UnitTests.Core.NUnit.VB",
   "description": "Add a project to test code in the Core library with NUnit.",
   "tags": {
     "language": "VisualBasic",

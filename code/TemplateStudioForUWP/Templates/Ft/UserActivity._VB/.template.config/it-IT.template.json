@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "User Activity",
   "description": "Aggiungi la possibilità di inserire attività utente in Windows Timeline.",
-  "identity": "wts.Feat.UserActivity.VB"
+  "identity": "ts.Feat.UserActivity.VB"
 }

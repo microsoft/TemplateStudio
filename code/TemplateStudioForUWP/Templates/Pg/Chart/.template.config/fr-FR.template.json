@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Chart",
   "description": "Une page affichant un tableau simple, gérée par les commandes d'interface utilisateur Telerik pour plateforme UWP.",
-  "identity": "wts.Page.Chart"
+  "identity": "ts.Page.Chart"
 }

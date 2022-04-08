@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project",
-    "shortName": "wts.Wpf.Project",
-    "identity": "wts.Wpf.Project",
+    "name": "ts.WPF.Project",
+    "shortName": "ts.WPF.Project",
+    "identity": "ts.WPF.Project",
     "tags": {
       "language": "C#",
       "type": "item",

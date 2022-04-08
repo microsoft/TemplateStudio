@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Aggiunge il supporto del tema alla tua applicazione.",
-  "identity": "wts.WinUI.Feat.ThemeSelection"
+  "identity": "ts.WinUI.Feat.ThemeSelection"
 }

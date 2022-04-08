@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "WebView",
     "description": "Die Webansichtseite rendert Webinhalte mittels des Microsoft Edge-Renderingmoduls.",
-    "identity": "wts.Page.WebView.CodeBehind.VB"
+    "identity": "ts.Page.WebView.CodeBehind.VB"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "MSIX Packaging",
   "description": "Umožňuje vytváření balíčků pro side-loading nebo distribuci prostřednictvím Microsoft Storu.",
-  "identity": "wts.Wpf.Feat.MSIXPackaging"
+  "identity": "ts.WPF.Feat.MSIXPackaging"
 }

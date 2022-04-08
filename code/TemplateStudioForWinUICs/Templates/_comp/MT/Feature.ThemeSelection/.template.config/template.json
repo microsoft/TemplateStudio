@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Feat.ThemeSelection",
-    "shortName": "wts.WinUI.MVVMToolkit.Feat.ThemeSelection",
-    "identity": "wts.WinUI.MVVMToolkit.Feat.ThemeSelection",
+    "name": "ts.WinUI.MVVMToolkit.Feat.ThemeSelection",
+    "shortName": "ts.WinUI.MVVMToolkit.Feat.ThemeSelection",
+    "identity": "ts.WinUI.MVVMToolkit.Feat.ThemeSelection",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.ThemeSelection"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

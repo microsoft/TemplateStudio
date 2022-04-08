@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Settings Storage",
   "description": "Ayar deposu, verilerinizi uygulama verileri klasörünüzde depolamanızı kolaylaştırır.",
-  "identity": "wts.Feat.SettingsStorage.VB"
+  "identity": "ts.Feat.SettingsStorage.VB"
 }

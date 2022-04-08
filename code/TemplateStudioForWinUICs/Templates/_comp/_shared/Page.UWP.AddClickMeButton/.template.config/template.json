@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.UWP.AddClickMeButton",
-  "shortName": "wts.WinUI.Page.UWP.AddClickMeButton",
-  "identity": "wts.WinUI.Page.UWP.AddClickMeButton",
+  "name": "ts.WinUI.Page.UWP.AddClickMeButton",
+  "shortName": "ts.WinUI.Page.UWP.AddClickMeButton",
+  "identity": "ts.WinUI.Page.UWP.AddClickMeButton",
     "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "WinUI",
     "ts.appmodel": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projecttype == Blank & groupidentity == wts.WinUI.Page.Blank & $ishomepage == true"
+    "ts.compositionFilter": "$projecttype == Blank & groupidentity == ts.WinUI.Page.Blank & $ishomepage == true"
   },
   "sourceName": "wts.ItemName",
   "symbols": {

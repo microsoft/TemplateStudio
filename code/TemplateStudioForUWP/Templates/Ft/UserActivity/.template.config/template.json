@@ -6,8 +6,8 @@
   ],
   "name": "User Activity",
   "shortName": "User Activity",
-  "groupIdentity": "wts.Feat.UserActivity",
-  "identity": "wts.Feat.UserActivity",
+  "groupIdentity": "ts.Feat.UserActivity",
+  "identity": "ts.Feat.UserActivity",
   "description": "Add the ability to add user activities to the Windows Timeline.",
   "tags": {
     "language": "C#",
@@ -23,7 +23,7 @@
     "ts.defaultInstance": "UserActivity",
     "ts.multipleInstance": "false",
     "ts.genGroup": "0",
-    "ts.dependencies":"wts.Feat.DeepLinking",
+    "ts.dependencies":"ts.Feat.DeepLinking",
     "ts.rightClickEnabled":"true"
   },
   "sourceName": "wts.itemName",

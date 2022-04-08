@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings Storage",
   "description": "设置存储有助于简化在应用程序数据文件夹中存储数据的过程。",
-  "identity": "wts.WinUI.Feat.SettingsStorage"
+  "identity": "ts.WinUI.Feat.SettingsStorage"
 }

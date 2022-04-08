@@ -14,7 +14,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
-    "ts.compositionFilter": "identity == wts.Service.IdentityOptionalLogin|wts.Service.IdentityOptionalLogin.CodeBehind",
+    "ts.compositionFilter": "identity == ts.Service.IdentityOptionalLogin|ts.Service.IdentityOptionalLogin.CodeBehind",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

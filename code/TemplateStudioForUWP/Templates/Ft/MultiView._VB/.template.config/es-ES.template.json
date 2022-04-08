@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multiple views",
     "description": "Permite que tus usuarios puedan ver partes independientes de tu aplicación en ventanas diferentes.",
-    "identity": "wts.Feat.MultiView.VB"
+    "identity": "ts.Feat.MultiView.VB"
 }

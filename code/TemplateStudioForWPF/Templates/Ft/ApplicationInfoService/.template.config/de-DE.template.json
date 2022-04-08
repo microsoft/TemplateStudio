@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Application Info Service",
   "description": "ApplicationInfoService enthält Vorgänge, die Informationen über die aktuelle Anwendung zurückgeben.",
-  "identity": "wts.Wpf.Feat.ApplicationInfoService"
+  "identity": "ts.WPF.Feat.ApplicationInfoService"
 }

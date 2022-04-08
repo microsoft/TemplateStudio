@@ -6,8 +6,8 @@
   ],
   "name": "Web to App link",
   "shortName": "Web to App link",
-  "groupIdentity": "wts.Feat.WebToAppLink.VB",
-  "identity": "wts.Feat.WebToAppLink.VB",
+  "groupIdentity": "ts.Feat.WebToAppLink.VB",
+  "identity": "ts.Feat.WebToAppLink.VB",
   "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
   "tags": {
     "language": "VisualBasic",

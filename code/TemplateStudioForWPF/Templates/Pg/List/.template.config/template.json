@@ -6,8 +6,8 @@
   ],
   "name": "ListDetails",
   "shortName": "ListDetails",
-  "identity": "wts.Wpf.Page.ListDetails",
-  "groupIdentity": "wts.Wpf.Page.ListDetails",
+  "identity": "ts.WPF.Page.ListDetails",
+  "groupIdentity": "ts.WPF.Page.ListDetails",
   "description": "The list/details pattern has a list pane and a details pane for content.",
   "tags": {
     "language": "C#",
@@ -21,7 +21,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true",
     "ts.outputToParent": "true",
-    "ts.dependencies": "wts.Wpf.Feat.SampleData"
+    "ts.dependencies": "ts.WPF.Feat.SampleData"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

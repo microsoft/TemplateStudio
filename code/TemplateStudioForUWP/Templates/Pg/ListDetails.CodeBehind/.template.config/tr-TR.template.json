@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Liste/ayrıntılar deseninin liste bölmesi ve içerik için ayrıntılar bölmesi vardır.",
-  "identity": "wts.Page.ListDetails.CodeBehind"
+  "identity": "ts.Page.ListDetails.CodeBehind"
 }

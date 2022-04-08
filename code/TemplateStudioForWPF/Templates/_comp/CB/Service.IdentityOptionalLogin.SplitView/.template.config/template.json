@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityOptionalLogin.SplitView.CodeBehind",
-    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.SplitView.CodeBehind",
-    "identity": "wts.Wpf.Service.IdentityOptionalLogin.SplitView.CodeBehind",
+    "name": "ts.WPF.Service.IdentityOptionalLogin.SplitView.CodeBehind",
+    "shortName": "ts.WPF.Service.IdentityOptionalLogin.SplitView.CodeBehind",
+    "identity": "ts.WPF.Service.IdentityOptionalLogin.SplitView.CodeBehind",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & identity == wts.Wpf.Service.IdentityOptionalLogin.CodeBehind"
+    "ts.compositionFilter": "$projectType == SplitView & identity == ts.WPF.Service.IdentityOptionalLogin.CodeBehind"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

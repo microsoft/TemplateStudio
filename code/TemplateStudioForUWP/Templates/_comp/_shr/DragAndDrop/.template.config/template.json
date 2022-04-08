@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|Prism|MVVMToolkit & identity == wts.Feat.DragAndDrop|wts.Feat.DragAndDrop.CodeBehind",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|Prism|MVVMToolkit & identity == ts.Feat.DragAndDrop|ts.Feat.DragAndDrop.CodeBehind",
     "ts.compositionOrder": "0"
   },
   "sourceName": "wts.ItemName",

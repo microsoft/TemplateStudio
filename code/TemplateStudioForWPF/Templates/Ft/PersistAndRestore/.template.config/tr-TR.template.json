@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Persist And Restore",
   "description": "Kalıcı Yap ve Geri Yükle, verilerin Kullanıcı Yerel AppData klasöründe depolanmasını kolaylaştırır.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
+  "identity": "ts.WPF.Feat.PersistAndRestore"
 }

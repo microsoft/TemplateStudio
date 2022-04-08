@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Dev Center Notifications",
   "description": "Mağazadan bildirimler almak için uygulamanızı kaydedin.",
-  "identity": "wts.Feat.StoreNotifications"
+  "identity": "ts.Feat.StoreNotifications"
 }

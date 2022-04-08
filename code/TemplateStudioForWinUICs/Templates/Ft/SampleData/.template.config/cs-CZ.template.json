@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Sample Data",
   "description": "V úložišti SampleData jsou uchovávána ukázková data používaná generovanou verzí některých stránek.",
-  "identity": "wts.WinUI.Feat.SampleData"
+  "identity": "ts.WinUI.Feat.SampleData"
 }

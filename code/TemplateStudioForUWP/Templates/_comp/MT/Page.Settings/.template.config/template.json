@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Page.Settings"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

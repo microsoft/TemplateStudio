@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Default",
   "shortName": "Default",
-  "groupIdentity": "wts.Proj.Default",
-  "identity": "wts.Proj.DefaultPrism",
+  "groupIdentity": "ts.Proj.Default",
+  "identity": "ts.Proj.DefaultPrism",
   "description": "",
   "tags": {
     "language": "C#",

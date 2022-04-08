@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Feat.ToastNotif.ForceLogin",
-    "shortName": "wts.Wpf.Prism.Feat.ToastNotif.ForceLogin",
-    "identity": "wts.Wpf.Prism.Feat.ToastNotif.ForceLogin",
+    "name": "ts.WPF.Prism.Feat.ToastNotif.ForceLogin",
+    "shortName": "ts.WPF.Prism.Feat.ToastNotif.ForceLogin",
+    "identity": "ts.WPF.Prism.Feat.ToastNotif.ForceLogin",
     "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "2",
-    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Feat.ToastNotifications & $service == wts.Wpf.Service.IdentityForcedLogin"
+    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Feat.ToastNotifications & $service == ts.WPF.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

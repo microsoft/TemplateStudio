@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Background Task",
   "description": "Adicione uma tarefa em segundo plano no processo pronta para executar o código mesmo enquanto o aplicativo não estiver em primeiro plano.",
-  "identity": "wts.Feat.BackgroundTask"
+  "identity": "ts.Feat.BackgroundTask"
 }

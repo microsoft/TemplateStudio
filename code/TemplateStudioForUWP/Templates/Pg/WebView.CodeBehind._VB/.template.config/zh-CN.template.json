@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "WebView",
     "description": "Web 视图页面使用 Microsoft Edge 呈现引擎呈现 Web 内容。",
-    "identity": "wts.Page.WebView.CodeBehind.VB"
+    "identity": "ts.Page.WebView.CodeBehind.VB"
 }

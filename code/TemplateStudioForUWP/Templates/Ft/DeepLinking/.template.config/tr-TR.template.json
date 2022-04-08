@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Deep Linking",
   "description": "Özel bir URl düzeniyle, başlatma ve ayrıntılı bağlantı verme özelliklerini uygulamanıza ekleyin.",
-  "identity": "wts.Feat.DeepLinking"
+  "identity": "ts.Feat.DeepLinking"
 }

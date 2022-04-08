@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Map",
     "description": "A página de mapa é baseada no Controle de Mapa. O código inclui a adição de um Ícone de Mapa e a definição de sua localização.",
-    "identity": "wts.Page.Map.CodeBehind.VB"
+    "identity": "ts.Page.Map.CodeBehind.VB"
 }

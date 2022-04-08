@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Service.IdentityCommon.CodeBehind",
-  "identity": "wts.Wpf.Service.IdentityCommon.CodeBehind",
-  "shortName": "wts.Wpf.Service.IdentityCommon.CodeBehind",
+  "name": "ts.WPF.Service.IdentityCommon.CodeBehind",
+  "identity": "ts.WPF.Service.IdentityCommon.CodeBehind",
+  "shortName": "ts.WPF.Service.IdentityCommon.CodeBehind",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin & $frontendframework == CodeBehind"
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin & $frontendframework == CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

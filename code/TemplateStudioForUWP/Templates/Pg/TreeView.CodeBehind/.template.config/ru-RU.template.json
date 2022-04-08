@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "TreeView",
   "description": "Страница иерархического представления содержит элемент управления иерархического представления для отображения иерархического содержимого.",
-  "identity": "wts.Page.TreeView.CodeBehind"
+  "identity": "ts.Page.TreeView.CodeBehind"
 }

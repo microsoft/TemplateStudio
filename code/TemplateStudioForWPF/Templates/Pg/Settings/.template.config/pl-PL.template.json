@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings",
   "description": "Na stronie ustawień zalecamy umieszczenie ustawień konfiguracji aplikacji.",
-  "identity": "wts.Wpf.Page.Settings"
+  "identity": "ts.WPF.Page.Settings"
 }

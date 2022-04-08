@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "System Service",
   "description": "SystemService содержит операции, которые взаимодействуют с функциональными возможностями и собственными API-интерфейсами операционной системы.",
-  "identity": "wts.Wpf.Feat.SystemService"
+  "identity": "ts.WPF.Feat.SystemService"
 }

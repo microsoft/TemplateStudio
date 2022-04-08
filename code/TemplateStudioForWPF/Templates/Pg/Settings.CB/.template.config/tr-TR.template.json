@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings",
   "description": "Ayarlar sayfası, uygulamanız için yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır.",
-  "identity": "wts.Wpf.Page.Settings.CodeBehind"
+  "identity": "ts.WPF.Page.Settings.CodeBehind"
 }

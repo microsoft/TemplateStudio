@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Blank",
   "description": "Dies ist die einfachste Seite. Ein leerer Zeichenbereich, den Sie in alles verwandeln können, was Sie möchten.",
-  "identity": "wts.WinUI.Page.Blank"
+  "identity": "ts.WinUI.Page.Blank"
 }

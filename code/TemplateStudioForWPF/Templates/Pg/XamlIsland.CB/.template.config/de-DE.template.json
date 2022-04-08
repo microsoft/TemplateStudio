@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "XAML Island",
   "description": "Seite, die ein UWP-Steuerelement mit einer XAML-Insel hostet.",
-  "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
+  "identity": "ts.WPF.Page.XamlIsland.CodeBehind"
 }

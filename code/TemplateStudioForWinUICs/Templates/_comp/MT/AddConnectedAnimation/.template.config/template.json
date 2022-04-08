@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.AddConnectedAnimation",
-    "shortName": "wts.WinUI.MVVMToolkit.AddConnectedAnimation",
-    "identity": "wts.WinUI.MVVMToolkit.AddConnectedAnimation",
+    "name": "ts.WinUI.MVVMToolkit.AddConnectedAnimation",
+    "shortName": "ts.WinUI.MVVMToolkit.AddConnectedAnimation",
+    "identity": "ts.WinUI.MVVMToolkit.AddConnectedAnimation",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Page.ContentGrid"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Page.ContentGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

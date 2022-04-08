@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Persist And Restore",
   "description": "Persist And Restore 有助于简化在用户本地 AppData 文件夹中存储数据的过程。",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
+  "identity": "ts.WPF.Feat.PersistAndRestore"
 }

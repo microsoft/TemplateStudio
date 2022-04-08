@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Testing.UnitTests.Core.xUnit & $page == wts.Page.ContentGrid.Prism",
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.Testing.UnitTests.Core.xUnit & $page == ts.Page.ContentGrid.Prism",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

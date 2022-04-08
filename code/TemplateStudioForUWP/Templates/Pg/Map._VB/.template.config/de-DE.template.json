@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Map",
     "description": "Die Kartenseite basiert auf dem Windows-Kartensteuerelement. Der Code umfasst die Hinzufügung eines Kartensymbols und den Abruf Ihres Standorts.",
-    "identity": "wts.Page.Map.VB"
+    "identity": "ts.Page.Map.VB"
 }

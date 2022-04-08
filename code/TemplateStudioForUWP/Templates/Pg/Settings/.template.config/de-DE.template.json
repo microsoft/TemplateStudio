@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings",
   "description": "Die Einstellungsseite ist die Seite, auf der Sie die Konfigurationseinstellungen für Ihre App platzieren sollten.",
-  "identity": "wts.Page.Settings"
+  "identity": "ts.Page.Settings"
 }

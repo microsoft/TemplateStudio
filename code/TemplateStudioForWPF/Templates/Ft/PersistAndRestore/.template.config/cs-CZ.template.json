@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Persist And Restore",
   "description": "Funkce Uchovat a obnovit zjednodušuje ukládání dat do místní složky AppData uživatele.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
+  "identity": "ts.WPF.Feat.PersistAndRestore"
 }

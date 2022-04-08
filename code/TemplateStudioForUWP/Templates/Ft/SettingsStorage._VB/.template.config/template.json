@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Settings Storage",
   "shortName": "Settings Storage",
-  "groupIdentity": "wts.Feat.SettingsStorage.VB",
-  "identity": "wts.Feat.SettingsStorage.VB",
+  "groupIdentity": "ts.Feat.SettingsStorage.VB",
+  "identity": "ts.Feat.SettingsStorage.VB",
   "description": "Setting storage helps simplify storing data inside your application data folder.",
   "tags": {
     "language": "VisualBasic",

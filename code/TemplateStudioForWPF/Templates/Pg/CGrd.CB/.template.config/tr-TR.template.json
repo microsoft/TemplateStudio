@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Content Grid",
   "description": "Bu sayfa, ListView tabanlı temel bir içerik ızgarası içerir.",
-  "identity": "wts.Wpf.Page.ContentGrid.CodeBehind"
+  "identity": "ts.WPF.Page.ContentGrid.CodeBehind"
 }

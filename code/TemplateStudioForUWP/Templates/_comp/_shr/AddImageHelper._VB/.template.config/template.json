@@ -14,7 +14,7 @@
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "0",
-    "ts.compositionFilter": "groupidentity == wts.Page.InkDrawPicture.VB|wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB"
+    "ts.compositionFilter": "groupidentity == ts.Page.InkDrawPicture.VB|ts.Service.IdentityForcedLogin.VB|ts.Service.IdentityOptionalLogin.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

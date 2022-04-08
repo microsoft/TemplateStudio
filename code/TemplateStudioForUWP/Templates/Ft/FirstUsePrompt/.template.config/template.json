@@ -4,8 +4,8 @@
   "classifications": [ "Universal" ],
   "name": "First Run Prompt",
   "shortName": "First Run Prompt",
-  "groupIdentity": "wts.Feat.FirstRunPrompt",
-  "identity": "wts.Feat.FirstRunPrompt",
+  "groupIdentity": "ts.Feat.FirstRunPrompt",
+  "identity": "ts.Feat.FirstRunPrompt",
   "description": "Display a prompt when the app is used for the first time.",
   "tags": {
     "language": "C#",

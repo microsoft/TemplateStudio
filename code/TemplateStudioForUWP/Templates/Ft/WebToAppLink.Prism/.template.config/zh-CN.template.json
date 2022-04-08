@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Web to App link",
     "description": "“Web 到应用”链接可以将你的应用与网站关联起来。当用户打开你的网站链接时。",
-    "identity": "wts.Feat.WebToAppLink.Prism"
+    "identity": "ts.Feat.WebToAppLink.Prism"
 }

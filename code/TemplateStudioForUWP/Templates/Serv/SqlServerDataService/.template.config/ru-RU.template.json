@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "SQL Server Data",
   "description": "Получение данных от SQL Server для использования в приложении.",
-  "identity": "wts.Service.SqlServerDataService"
+  "identity": "ts.Service.SqlServerDataService"
 }

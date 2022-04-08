@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Service.IdentityForcedLogin.Prism|wts.Service.IdentityOptionalLogin.Prism",
+    "ts.compositionFilter": "identity == ts.Service.IdentityForcedLogin.Prism|ts.Service.IdentityOptionalLogin.Prism",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

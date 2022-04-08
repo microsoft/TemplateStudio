@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Přidává do vaší aplikace podporu motivů.",
-  "identity": "wts.Wpf.Feat.ThemeSelection"
+  "identity": "ts.WPF.Feat.ThemeSelection"
 }

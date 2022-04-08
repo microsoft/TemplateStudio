@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem.Settings",
-    "identity": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem.Settings",
-    "shortName": "wts.Wpf.Prism.Project.MenuBar.AddMenuItem.Settings",
+    "name": "ts.WPF.Prism.Project.MenuBar.AddMenuItem.Settings",
+    "identity": "ts.WPF.Prism.Project.MenuBar.AddMenuItem.Settings",
+    "shortName": "ts.WPF.Prism.Project.MenuBar.AddMenuItem.Settings",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "ts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == Prism & $projectType == MenuBar"
+      "ts.compositionFilter": "ts.type == page & identity == ts.WPF.Page.Settings & $frontendframework == Prism & $projectType == MenuBar"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

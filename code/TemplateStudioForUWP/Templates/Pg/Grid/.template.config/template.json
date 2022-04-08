@@ -6,8 +6,8 @@
   ],
   "name": "Telerik DataGrid",
   "shortName": "Telerik DataGrid",
-  "groupIdentity": "wts.Page.Grid",
-  "identity": "wts.Page.Grid",
+  "groupIdentity": "ts.Page.Grid",
+  "identity": "ts.Page.Grid",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
@@ -20,7 +20,7 @@
     "ts.version": "1.0.0",
     "ts.displayOrder": "10",
     "ts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "ts.dependencies": "wts.Service.SampleDataService",
+    "ts.dependencies": "ts.Service.SampleDataService",
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true"
   },

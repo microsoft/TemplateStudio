@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Share Target",
   "description": "UWP アプリで共有コントラクトを使用して、他のアプリによって共有されるデータを受け取ることができるようにします。",
-  "identity": "wts.Feat.ShareTarget.CodeBehind"
+  "identity": "ts.Feat.ShareTarget.CodeBehind"
 }

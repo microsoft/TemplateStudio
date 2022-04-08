@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Map",
     "description": "此地圖頁面是根據 Windows 地圖控制項所建立。程式碼包括新增地圖圖示及取得您的位置。",
-    "identity": "wts.Page.Map.VB"
+    "identity": "ts.Page.Map.VB"
 }

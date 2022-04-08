@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.ListDetail.SplitView",
-  "identity": "wts.WinUI.Page.ListDetail.SplitView",
-  "shortName": "wts.WinUI.Page.ListDetail.SplitView",
+  "name": "ts.WinUI.Page.ListDetail.SplitView",
+  "identity": "ts.WinUI.Page.ListDetail.SplitView",
+  "shortName": "ts.WinUI.Page.ListDetail.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & groupidentity == wts.WinUI.Page.ListDetails"
+    "ts.compositionFilter": "$projectType == SplitView & groupidentity == ts.WinUI.Page.ListDetails"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

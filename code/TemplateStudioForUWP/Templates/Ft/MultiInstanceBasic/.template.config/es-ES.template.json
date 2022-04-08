@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Multi-Instance",
   "description": "Lanza varias instancias de la aplicación.",
-  "identity": "wts.Feat.MultiInstance"
+  "identity": "ts.Feat.MultiInstance"
 }

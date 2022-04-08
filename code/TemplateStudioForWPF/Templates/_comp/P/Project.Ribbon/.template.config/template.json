@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Project.Ribbon",
-    "shortName": "wts.Wpf.Prism.Project.Ribbon",
-    "identity": "wts.Wpf.Prism.Project.Ribbon",
+    "name": "ts.WPF.Prism.Project.Ribbon",
+    "shortName": "ts.WPF.Prism.Project.Ribbon",
+    "identity": "ts.WPF.Prism.Project.Ribbon",
     "tags": {
       "language": "C#",
       "type": "item",

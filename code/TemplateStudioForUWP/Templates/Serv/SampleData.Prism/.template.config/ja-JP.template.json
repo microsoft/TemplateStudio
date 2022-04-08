@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Sample Data",
   "description": "SampleDataService には、生成されたバージョンの一部のファイルが使用するサンプル データが含まれます。",
-  "identity": "wts.Service.SampleDataService.Prism"
+  "identity": "ts.Service.SampleDataService.Prism"
 }

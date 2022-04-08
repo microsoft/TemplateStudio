@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "XAML Island",
   "description": "XAML Adası kullanarak UWP denetimi barındıran sayfa.",
-  "identity": "wts.Wpf.Page.XamlIsland.CodeBehind"
+  "identity": "ts.WPF.Page.XamlIsland.CodeBehind"
 }

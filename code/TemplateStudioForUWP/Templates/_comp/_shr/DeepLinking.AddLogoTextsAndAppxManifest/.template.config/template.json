@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Feat.DeepLinking"
+    "ts.compositionFilter": "groupidentity == ts.Feat.DeepLinking"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

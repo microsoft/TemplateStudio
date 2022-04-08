@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Dev Center Notifications",
   "description": "Inscrivez votre application pour recevoir des notifications de la part du Microsoft Store.",
-  "identity": "wts.Feat.StoreNotifications.Prism"
+  "identity": "ts.Feat.StoreNotifications.Prism"
 }

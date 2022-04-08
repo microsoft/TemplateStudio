@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
-  "identity": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
-  "shortName": "wts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "name": "ts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "identity": "ts.WinUI.MVVMToolkit.Page.AddBackCommand",
+  "shortName": "ts.WinUI.MVVMToolkit.Page.AddBackCommand",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.ContentGrid"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

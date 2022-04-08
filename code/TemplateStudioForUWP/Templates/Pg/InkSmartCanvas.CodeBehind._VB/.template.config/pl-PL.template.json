@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Ink Smart Canvas",
   "description": "Strona pozwalająca tworzyć notatki przy użyciu rozpoznawania kształtów i tekstu za pomocą funkcji Windows Ink.",
-  "identity": "wts.Page.InkSmartCanvas.CodeBehind.VB"
+  "identity": "ts.Page.InkSmartCanvas.CodeBehind.VB"
 }

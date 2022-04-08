@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Content Grid",
   "description": "Cette page contient une grille de contenu de base basée sur une ListView.",
-  "identity": "wts.Wpf.Page.ContentGrid"
+  "identity": "ts.WPF.Page.ContentGrid"
 }

@@ -6,8 +6,8 @@
   ],
   "name": "MSIX Packaging",
   "shortName": "MSIX Packaging",
-  "groupIdentity": "wts.WinUI.Feat.MSIXPackaging",
-  "identity": "wts.WinUI.Feat.MSIXPackaging",
+  "groupIdentity": "ts.WinUI.Feat.MSIXPackaging",
+  "identity": "ts.WinUI.Feat.MSIXPackaging",
   "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
   "tags": {
     "language": "C#",

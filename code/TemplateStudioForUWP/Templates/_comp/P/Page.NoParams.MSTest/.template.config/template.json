@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Page.Camera.Prism|wts.Page.WebView.Prism|wts.Page.TabbedPivot|wts.Page.Blank|wts.Page.InkSmartCanvas.Prism|wts.Page.InkDraw.Prism|wts.Page.InkDrawPicture.Prism|wts.Page.Settings.Prism & $testing == wts.Testing.UnitTests.App.MSTest"
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.Page.Camera.Prism|ts.Page.WebView.Prism|ts.Page.TabbedPivot|ts.Page.Blank|ts.Page.InkSmartCanvas.Prism|ts.Page.InkDraw.Prism|ts.Page.InkDrawPicture.Prism|ts.Page.Settings.Prism & $testing == ts.Testing.UnitTests.App.MSTest"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

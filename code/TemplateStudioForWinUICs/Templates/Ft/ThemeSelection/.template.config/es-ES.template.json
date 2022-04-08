@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "Agrega compatibilidad de temas a tu aplicación.",
-  "identity": "wts.WinUI.Feat.ThemeSelection"
+  "identity": "ts.WinUI.Feat.ThemeSelection"
 }

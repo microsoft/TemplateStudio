@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Deep Linking",
     "description": "Umožňuje přidat schopnost spouštět aplikaci a přímo na ni odkazovat pomocí vlastního schématu identifikátoru URI.",
-    "identity": "wts.Feat.DeepLinking.VB"
+    "identity": "ts.Feat.DeepLinking.VB"
 }

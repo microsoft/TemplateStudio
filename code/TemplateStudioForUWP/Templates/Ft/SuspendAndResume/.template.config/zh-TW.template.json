@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Suspend and Resume",
   "description": "您可以掛接的簡單服務，可處理使用者何時離開及返回應用程式的情況。",
-  "identity": "wts.Feat.SuspendAndResume"
+  "identity": "ts.Feat.SuspendAndResume"
 }

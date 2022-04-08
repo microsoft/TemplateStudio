@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Content Grid",
   "description": "Tato stránka umožňuje přidat vlastní položky formou adaptivní mřížky.",
-  "identity": "wts.Page.ContentGrid.VB"
+  "identity": "ts.Page.ContentGrid.VB"
 }

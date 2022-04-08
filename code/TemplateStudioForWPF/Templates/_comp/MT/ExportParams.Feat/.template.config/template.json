@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
-    "shortName": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
-    "identity": "wts.Wpf.MVVMToolkit.ExportParams.Feat",
+    "name": "ts.WPF.MVVMToolkit.ExportParams.Feat",
+    "shortName": "ts.WPF.MVVMToolkit.ExportParams.Feat",
+    "identity": "ts.WPF.MVVMToolkit.ExportParams.Feat",
     "tags": {
       "language": "C#",
       "type": "item",

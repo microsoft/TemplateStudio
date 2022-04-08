@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Multi-Instance Advanced",
     "description": "Určuje, jak se spouští více instancí aplikace.",
-    "identity": "wts.Feat.MultiInstanceAdvanced.VB"
+    "identity": "ts.Feat.MultiInstanceAdvanced.VB"
 }

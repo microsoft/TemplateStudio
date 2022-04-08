@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Blank",
   "description": "Это самая простая страница. Пустой холст, который можно превратить во что угодно.",
-  "identity": "wts.Wpf.Page.Blank.CodeBehind"
+  "identity": "ts.WPF.Page.Blank.CodeBehind"
 }

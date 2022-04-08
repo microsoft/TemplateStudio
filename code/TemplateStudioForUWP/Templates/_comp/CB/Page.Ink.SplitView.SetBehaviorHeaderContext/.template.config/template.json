@@ -14,7 +14,7 @@
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "1",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView & groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & $projectType == SplitView & groupidentity == ts.Page.InkDraw|ts.Page.InkSmartCanvas|ts.Page.InkDrawPicture"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

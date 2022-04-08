@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                 && !excludedTemplates_Wpf_Group2.Contains(t.GroupIdentity)
-                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
+                && t.Identity != "ts.WPF.Feat.MSIXPackaging"
                 && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All))
                 && t.GetPlatform() == platform
                  && !excludedTemplates_Wpf_Group1.Contains(t.GroupIdentity)
-                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
+                && t.Identity != "ts.WPF.Feat.MSIXPackaging"
                 && !t.GetIsHidden();
 
             var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}G1{ShortLanguageName(language)}";
@@ -99,8 +99,8 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && t.GetPlatform() == platform
                 && !excludedTemplates_Wpf_Group2.Contains(t.GroupIdentity)
                 && !t.GetIsHidden()
-                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
-                || t.Identity == "wts.Wpf.Feat.StyleCop";
+                && t.Identity != "ts.WPF.Feat.MSIXPackaging"
+                || t.Identity == "ts.WPF.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllG1";
 
@@ -129,8 +129,8 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && t.GetPlatform() == platform
                 && !excludedTemplates_Wpf_Group1.Contains(t.GroupIdentity)
                 && !t.GetIsHidden()
-                && t.Identity != "wts.Wpf.Feat.MSIXPackaging"
-                || t.Identity == "wts.Wpf.Feat.StyleCop";
+                && t.Identity != "ts.WPF.Feat.MSIXPackaging"
+                || t.Identity == "ts.WPF.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllG2";
 
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && t.GetPlatform() == platform
                 && !excludedTemplates_Wpf_Group2.Contains(t.GroupIdentity)
                 && !t.GetIsHidden()
-                || t.Identity == "wts.Wpf.Feat.StyleCop";
+                || t.Identity == "ts.WPF.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllMsix";
 
@@ -183,7 +183,7 @@ namespace Microsoft.Templates.Test.WPF.Build
                 && t.GetPlatform() == platform
                 && !excludedTemplates_Wpf_Group1.Contains(t.GroupIdentity)
                 && !t.GetIsHidden()
-                || t.Identity == "wts.Wpf.Feat.StyleCop";
+                || t.Identity == "ts.WPF.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllMsix";
 
@@ -216,7 +216,7 @@ namespace Microsoft.Templates.Test.WPF.Build
         }
 
         [Theory]
-        [MemberData(nameof(WpfBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Wpf, "wts.Wpf.Feat.MSIXPackaging")]
+        [MemberData(nameof(WpfBaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), Frameworks.CodeBehind, ProgrammingLanguages.CSharp, Platforms.Wpf, "ts.WPF.Feat.MSIXPackaging")]
         public async Task Build_CodeBehind_OneByOneItems_WpfAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             var context = new UserSelectionContext(language, platform)

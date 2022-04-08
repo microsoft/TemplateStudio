@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with NUnit",
   "description": "NUnit를 사용해 코어 라이브러리의 코드를 테스트할 프로젝트를 추가합니다.",
-  "identity": "wts.Testing.UnitTests.Core.NUnit"
+  "identity": "ts.Testing.UnitTests.Core.NUnit"
 }

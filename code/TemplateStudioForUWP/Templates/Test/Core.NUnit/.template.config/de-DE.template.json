@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with NUnit",
   "description": "Fügen Sie ein Projekt für das Testen von Code in der Core-Bibliothek unter Verwendung von NUnit ein.",
-  "identity": "wts.Testing.UnitTests.Core.NUnit"
+  "identity": "ts.Testing.UnitTests.Core.NUnit"
 }

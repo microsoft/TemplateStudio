@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with NUnit",
   "description": "Přidá projekt pro testování kódu v knihovně kódu pomocí nástroje NUnit.",
-  "identity": "wts.Testing.UnitTests.Core.NUnit"
+  "identity": "ts.Testing.UnitTests.Core.NUnit"
 }

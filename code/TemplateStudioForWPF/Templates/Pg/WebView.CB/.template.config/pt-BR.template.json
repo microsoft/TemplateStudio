@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "A página de exibição na Web renderiza o conteúdo da Web usando o mecanismo de renderização do Microsoft Edge.",
-  "identity": "wts.Wpf.Page.WebView.CodeBehind"
+  "identity": "ts.WPF.Page.WebView.CodeBehind"
 }

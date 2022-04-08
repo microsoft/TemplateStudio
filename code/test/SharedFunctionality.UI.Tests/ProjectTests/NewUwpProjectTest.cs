@@ -17,7 +17,7 @@ namespace Microsoft.UI.Test.ProjectTests
     {
         private const string DefaultProjectType = "SplitView";
         private const string DefaultFramework = "MVVMToolkit";
-        private const string DefaultPage = "wts.Page.Blank";
+        private const string DefaultPage = "ts.Page.Blank";
 
         public NewUwpProjectTest(UwpPlatformTemplatesFixture fixture)
         {

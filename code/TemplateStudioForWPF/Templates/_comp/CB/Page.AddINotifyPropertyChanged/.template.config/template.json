@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChanged",
-    "shortName": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChanged",
-    "identity": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChanged",
+    "name": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChanged",
+    "shortName": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChanged",
+    "identity": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChanged",
     "tags": {
       "language": "C#",
       "type": "item",

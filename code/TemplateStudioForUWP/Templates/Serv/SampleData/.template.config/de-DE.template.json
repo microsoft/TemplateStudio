@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Sample Data",
   "description": "SampleDataService enthält Beispieldaten, die von der generierten Version einiger Seiten verwendet werden.",
-  "identity": "wts.Service.SampleDataService"
+  "identity": "ts.Service.SampleDataService"
 }

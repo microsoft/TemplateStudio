@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Service.IdentityOptionalLogin",
-    "shortName": "wts.Wpf.MVVMToolkit.Service.IdentityOptionalLogin",
-    "identity": "wts.Wpf.MVVMToolkit.Service.IdentityOptionalLogin",
+    "name": "ts.WPF.MVVMToolkit.Service.IdentityOptionalLogin",
+    "shortName": "ts.WPF.MVVMToolkit.Service.IdentityOptionalLogin",
+    "identity": "ts.WPF.MVVMToolkit.Service.IdentityOptionalLogin",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

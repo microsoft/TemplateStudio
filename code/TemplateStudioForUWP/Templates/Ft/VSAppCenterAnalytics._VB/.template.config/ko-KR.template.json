@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "VS App Center Analytics",
     "description": "Visual Studio App Center로 분석을 보내십시오.",
-    "identity": "wts.Feat.VSAppCenterAnalytics.VB"
+    "identity": "ts.Feat.VSAppCenterAnalytics.VB"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with NUnit",
   "description": "コア ライブラリのコードを NUnit を使用してテストするプロジェクトを追加します。",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.NUnit"
+  "identity": "ts.WPF.Testing.UnitTests.Core.NUnit"
 }

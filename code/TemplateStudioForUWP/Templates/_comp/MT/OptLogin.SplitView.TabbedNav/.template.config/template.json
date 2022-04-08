@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == SplitView|TabbedNav & groupidentity == wts.Service.IdentityOptionalLogin"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projecttype == SplitView|TabbedNav & groupidentity == ts.Service.IdentityOptionalLogin"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

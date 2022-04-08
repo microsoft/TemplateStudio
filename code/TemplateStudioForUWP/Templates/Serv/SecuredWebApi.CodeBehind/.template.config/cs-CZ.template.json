@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Secured Web API",
   "description": "Přidá projekt ASP.NET Core Web API, který ověřuje token JWToken.",
-  "identity": "wts.Service.SecuredWebApi.CodeBehind"
+  "identity": "ts.Service.SecuredWebApi.CodeBehind"
 }

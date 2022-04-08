@@ -6,8 +6,8 @@
   ],
   "name": "MSIX Packaging",
   "shortName": "MSIX Packaging",
-  "groupIdentity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
-  "identity": "wts.WinUI.Feat.MSIXPackaging.Cpp",
+  "groupIdentity": "ts.WinUI.Feat.MSIXPackaging.Cpp",
+  "identity": "ts.WinUI.Feat.MSIXPackaging.Cpp",
   "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
   "tags": {
     "language": "C++",

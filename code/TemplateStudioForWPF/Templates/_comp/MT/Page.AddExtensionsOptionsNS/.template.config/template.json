@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.MVVMToolkit.Page.AddExtensionsOptionsNS",
-  "identity": "wts.Wpf.MVVMToolkit.Page.AddExtensionsOptionsNS",
-  "shortName": "wts.Wpf.MVVMToolkit.Page.AddExtensionsOptionsNS",
+  "name": "ts.WPF.MVVMToolkit.Page.AddExtensionsOptionsNS",
+  "identity": "ts.WPF.MVVMToolkit.Page.AddExtensionsOptionsNS",
+  "shortName": "ts.WPF.MVVMToolkit.Page.AddExtensionsOptionsNS",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Page.Settings"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

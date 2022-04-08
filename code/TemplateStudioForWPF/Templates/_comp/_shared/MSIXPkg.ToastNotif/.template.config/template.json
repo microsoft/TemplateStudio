@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Feature.Feature.MSIXPackaging.UpdateManifestToastNotifications",
-    "shortName": "wts.Wpf.Feature.MSIXPackaging.UpdateManifestToastNotifications",
-    "identity": "wts.Wpf.Feature.MSIXPackaging.UpdateManifestToastNotifications",
+    "name": "ts.WPF.Feature.Feature.MSIXPackaging.UpdateManifestToastNotifications",
+    "shortName": "ts.WPF.Feature.MSIXPackaging.UpdateManifestToastNotifications",
+    "identity": "ts.WPF.Feature.MSIXPackaging.UpdateManifestToastNotifications",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.outputToParent": "true",
-    "ts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $feature == wts.Wpf.Feat.ToastNotifications"
+    "ts.compositionFilter": "identity == ts.WPF.Feat.MSIXPackaging & $feature == ts.WPF.Feat.ToastNotifications"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

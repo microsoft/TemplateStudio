@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test App with NUnit",
   "description": "Ajoutez un projet pour les tests unitaires de l'application avec NUnit.",
-  "identity": "wts.Wpf.Testing.UnitTests.App.NUnit"
+  "identity": "ts.WPF.Testing.UnitTests.App.NUnit"
 }

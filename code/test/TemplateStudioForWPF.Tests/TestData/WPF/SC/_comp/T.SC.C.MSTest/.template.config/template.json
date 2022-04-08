@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Wpf.Testing.UnitTests.Core.MSTest & $feature == wts.Wpf.Feat.StyleCop",
+    "ts.compositionFilter": "identity == ts.WPF.Testing.UnitTests.Core.MSTest & $feature == ts.WPF.Feat.StyleCop",
     "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
   },
   "sourceName": "wts.ItemName",

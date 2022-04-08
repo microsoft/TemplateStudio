@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Page.AddViewModelDetail",
-    "shortName": "wts.Wpf.MVVMToolkit.Page.AddViewModelDetail",
-    "identity": "wts.Wpf.MVVMToolkit.Page.AddViewModelDetail",
+    "name": "ts.WPF.MVVMToolkit.Page.AddViewModelDetail",
+    "shortName": "ts.WPF.MVVMToolkit.Page.AddViewModelDetail",
+    "identity": "ts.WPF.MVVMToolkit.Page.AddViewModelDetail",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Page.ContentGrid"
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Page.ContentGrid"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

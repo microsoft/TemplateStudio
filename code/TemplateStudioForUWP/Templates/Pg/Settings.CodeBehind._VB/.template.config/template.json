@@ -6,8 +6,8 @@
   ],
   "name": "Settings",
   "shortName": "Settings",
-  "groupIdentity": "wts.Page.Settings.VB",
-  "identity": "wts.Page.Settings.CodeBehind.VB",
+  "groupIdentity": "ts.Page.Settings.VB",
+  "identity": "ts.Page.Settings.CodeBehind.VB",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
   "tags": {
     "language": "VisualBasic",
@@ -18,7 +18,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.displayOrder": "2",
-    "ts.dependencies":"wts.Feature.ThemeSelection.VB",
+    "ts.dependencies":"ts.Feature.ThemeSelection.VB",
     "ts.multipleInstance": "false",
     "ts.genGroup": "1",
     "ts.rightClickEnabled":"true"

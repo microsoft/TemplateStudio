@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Settings",
     "description": "Na stronie ustawień zalecamy umieszczenie ustawień konfiguracji aplikacji.",
-    "identity": "wts.Page.Settings.CodeBehind.VB"
+    "identity": "ts.Page.Settings.CodeBehind.VB"
 }

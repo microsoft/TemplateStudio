@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "向你的应用程序添加主题支持。",
-  "identity": "wts.Feature.ThemeSelection.VB"
+  "identity": "ts.Feature.ThemeSelection.VB"
 }

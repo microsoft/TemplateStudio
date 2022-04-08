@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
-    "shortName": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
-    "identity": "wts.Wpf.Service.IdentityOptionalLogin.MenuBar",
+    "name": "ts.WPF.Service.IdentityOptionalLogin.MenuBar",
+    "shortName": "ts.WPF.Service.IdentityOptionalLogin.MenuBar",
+    "identity": "ts.WPF.Service.IdentityOptionalLogin.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & groupidentity == wts.Wpf.Service.IdentityOptionalLogin"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & groupidentity == ts.WPF.Service.IdentityOptionalLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

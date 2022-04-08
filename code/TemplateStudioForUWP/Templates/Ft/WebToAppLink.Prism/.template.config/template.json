@@ -6,8 +6,8 @@
   ],
   "name": "Web to App link",
   "shortName": "Web to App link",
-  "groupIdentity": "wts.Feat.WebToAppLink",
-  "identity": "wts.Feat.WebToAppLink.Prism",
+  "groupIdentity": "ts.Feat.WebToAppLink",
+  "identity": "ts.Feat.WebToAppLink.Prism",
   "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
   "tags": {
     "language": "C#",

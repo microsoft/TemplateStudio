@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test App with xUnit",
   "shortName": "Test App with xUnit",
-  "groupIdentity": "wts.Testing.UnitTests.App.xUnit",
-  "identity": "wts.Testing.UnitTests.App.xUnit",
+  "groupIdentity": "ts.Testing.UnitTests.App.xUnit",
+  "identity": "ts.Testing.UnitTests.App.xUnit",
   "description": "Add a project for unit tests against the app using xUnit.",
   "tags": {
     "language": "C#",

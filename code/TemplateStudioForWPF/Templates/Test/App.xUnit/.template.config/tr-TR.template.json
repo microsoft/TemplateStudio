@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test App with xUnit",
   "description": "xUnit kullanan uygulamanın birim testleri için bir proje ekleyin.",
-  "identity": "wts.Wpf.Testing.UnitTests.App.xUnit"
+  "identity": "ts.WPF.Testing.UnitTests.App.xUnit"
 }

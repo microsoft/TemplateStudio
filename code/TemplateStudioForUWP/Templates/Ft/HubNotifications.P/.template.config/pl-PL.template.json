@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Azure Notifications",
     "description": "Zarejestruj się, aby otrzymywać i obsługiwać wiadomości z Azure Notification Hubs.",
-    "identity": "wts.Feat.HubNotifications.Prism"
+    "identity": "ts.Feat.HubNotifications.Prism"
 }

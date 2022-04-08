@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Chart",
   "description": "一个显示简单图表的页面，由适用于 UWP 的 Telerik UI 控件提供支持。",
-  "identity": "wts.Page.Chart"
+  "identity": "ts.Page.Chart"
 }

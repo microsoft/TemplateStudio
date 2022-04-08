@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "First Run Prompt",
   "description": "Muestra un aviso cuando la aplicación se utiliza por primera vez.",
-  "identity": "wts.Feat.FirstRunPrompt"
+  "identity": "ts.Feat.FirstRunPrompt"
 }

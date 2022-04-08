@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB|wts.Feat.ShareTarget.VB",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.Service.IdentityForcedLogin.VB|ts.Service.IdentityOptionalLogin.VB|ts.Feat.ShareTarget.VB",
     "ts.export.baseclass": "ObservableObject",
     "ts.export.setter": "SetProperty"
   },

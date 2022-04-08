@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.SystemService",
-    "shortName": "wts.Wpf.CodeBehind.Feat.SystemService",
-    "identity": "wts.Wpf.CodeBehind.Feat.SystemService",
+    "name": "ts.WPF.CodeBehind.Feat.SystemService",
+    "shortName": "ts.WPF.CodeBehind.Feat.SystemService",
+    "identity": "ts.WPF.CodeBehind.Feat.SystemService",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Wpf.Feat.SystemService"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == ts.WPF.Feat.SystemService"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Page.WebView",
-    "shortName": "wts.WinUI.MVVMToolkit.Page.WebView",
-    "identity": "wts.WinUI.MVVMToolkit.Page.WebView",
+    "name": "ts.WinUI.MVVMToolkit.Page.WebView",
+    "shortName": "ts.WinUI.MVVMToolkit.Page.WebView",
+    "identity": "ts.WinUI.MVVMToolkit.Page.WebView",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Page.WebView"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Page.WebView"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

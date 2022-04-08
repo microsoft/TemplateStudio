@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Settings",
     "description": "На странице параметров рекомендуется указать параметры конфигурации приложения.",
-    "identity": "wts.Page.Settings.VB"
+    "identity": "ts.Page.Settings.VB"
 }

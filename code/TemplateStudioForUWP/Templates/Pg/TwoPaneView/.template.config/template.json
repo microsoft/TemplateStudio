@@ -6,8 +6,8 @@
   ],
   "name": "TwoPaneView",
   "shortName": "TwoPaneView",
-  "groupIdentity": "wts.Page.TwoPaneView",
-  "identity": "wts.Page.TwoPaneView",
+  "groupIdentity": "ts.Page.TwoPaneView",
+  "identity": "ts.Page.TwoPaneView",
   "description": "Master-Detail page optimized for dual-screen devices.",
   "tags": {
     "language": "C#",
@@ -21,7 +21,7 @@
     "ts.displayOrder": "6",
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true",
-    "ts.dependencies": "wts.Service.SampleDataService",
+    "ts.dependencies": "ts.Service.SampleDataService",
     "ts.licenses": "[Windows UI Library](https://aka.ms/winui_license)|[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
   "sourceName": "wts.ItemName",

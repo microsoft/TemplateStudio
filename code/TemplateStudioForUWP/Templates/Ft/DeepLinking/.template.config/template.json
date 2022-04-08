@@ -6,8 +6,8 @@
   ],
   "name": "Deep Linking",
   "shortName": "Deep Linking",
-  "groupIdentity": "wts.Feat.DeepLinking",
-  "identity": "wts.Feat.DeepLinking",
+  "groupIdentity": "ts.Feat.DeepLinking",
+  "identity": "ts.Feat.DeepLinking",
   "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
   "tags": {
     "language": "C#",

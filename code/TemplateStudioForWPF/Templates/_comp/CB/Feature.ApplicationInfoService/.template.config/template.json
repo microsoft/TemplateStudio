@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.ApplicationInfoService",
-    "shortName": "wts.Wpf.CodeBehind.Feat.ApplicationInfoService",
-    "identity": "wts.Wpf.CodeBehind.Feat.ApplicationInfoService",
+    "name": "ts.WPF.CodeBehind.Feat.ApplicationInfoService",
+    "shortName": "ts.WPF.CodeBehind.Feat.ApplicationInfoService",
+    "identity": "ts.WPF.CodeBehind.Feat.ApplicationInfoService",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == wts.Wpf.Feat.ApplicationInfoService"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & identity == ts.WPF.Feat.ApplicationInfoService"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

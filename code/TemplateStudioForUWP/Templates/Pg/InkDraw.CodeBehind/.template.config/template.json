@@ -6,8 +6,8 @@
   ],
   "name": "Ink Draw",
   "shortName": "Ink Draw",
-  "groupIdentity": "wts.Page.InkDraw",
-  "identity": "wts.Page.InkDraw.CodeBehind",
+  "groupIdentity": "ts.Page.InkDraw",
+  "identity": "ts.Page.InkDraw.CodeBehind",
   "description": "A page that allows you to create notes and drawings using Windows Ink.",
   "tags": {
     "language": "C#",

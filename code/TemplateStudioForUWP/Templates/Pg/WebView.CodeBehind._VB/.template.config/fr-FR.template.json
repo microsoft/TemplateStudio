@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "WebView",
     "description": "La page Vue web intègre un rendu du contenu Web à l'aide du moteur de rendu Microsoft Edge.",
-    "identity": "wts.Page.WebView.CodeBehind.VB"
+    "identity": "ts.Page.WebView.CodeBehind.VB"
 }

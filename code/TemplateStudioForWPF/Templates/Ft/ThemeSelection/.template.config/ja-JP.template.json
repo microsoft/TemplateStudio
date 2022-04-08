@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Theme Selection",
   "description": "アプリケーションにテーマのサポートを追加します。",
-  "identity": "wts.Wpf.Feat.ThemeSelection"
+  "identity": "ts.WPF.Feat.ThemeSelection"
 }

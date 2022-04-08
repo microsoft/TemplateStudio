@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Command Line Launch",
     "description": "Admite el envío de argumentos y el lanzamiento desde la línea de comandos.",
-    "identity": "wts.Feat.CommandLine.VB"
+    "identity": "ts.Feat.CommandLine.VB"
 }

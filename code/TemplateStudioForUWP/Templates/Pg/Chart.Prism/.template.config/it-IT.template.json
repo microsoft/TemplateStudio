@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Chart",
     "description": "Pagina contenente un semplice grafico con i controlli dell\u0027interfaccia utente Telerik per UWP.",
-    "identity": "wts.Page.Chart.Prism"
+    "identity": "ts.Page.Chart.Prism"
 }

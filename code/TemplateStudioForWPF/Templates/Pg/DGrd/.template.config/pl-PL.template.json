@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "DataGrid",
   "description": "Strona wyświetlająca prostą siatkę danych.",
-  "identity": "wts.Wpf.Page.DataGrid"
+  "identity": "ts.WPF.Page.DataGrid"
 }

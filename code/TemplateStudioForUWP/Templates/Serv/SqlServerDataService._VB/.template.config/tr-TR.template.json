@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "SQL Server Data",
     "description": "Uygulamada kullanılacak verileri SQL Server'dan alın.",
-    "identity": "wts.Service.SqlServerDataService.VB"
+    "identity": "ts.Service.SqlServerDataService.VB"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings Storage",
   "description": "Хранилище параметров упрощает хранение данных в папке данных приложения.",
-  "identity": "wts.Feat.SettingsStorage"
+  "identity": "ts.Feat.SettingsStorage"
 }

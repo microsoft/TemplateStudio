@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projecttype == SplitView & identity == wts.Service.IdentityOptionalLogin.CodeBehind"
+    "ts.compositionFilter": "$projecttype == SplitView & identity == ts.Service.IdentityOptionalLogin.CodeBehind"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

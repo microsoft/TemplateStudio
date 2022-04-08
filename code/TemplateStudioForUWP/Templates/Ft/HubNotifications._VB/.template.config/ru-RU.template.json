@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Azure Notifications",
     "description": "Зарегистрируйтесь, чтобы получать и обрабатывать сообщения из центров уведомлений Azure.",
-    "identity": "wts.Feat.HubNotifications.VB"
+    "identity": "ts.Feat.HubNotifications.VB"
 }

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChangedDetail",
-    "shortName": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChangedDetail",
-    "identity": "wts.Wpf.CodeBehind.Page.AddINotifyPropertyChangedDetail",
+    "name": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChangedDetail",
+    "shortName": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChangedDetail",
+    "identity": "ts.WPF.CodeBehind.Page.AddINotifyPropertyChangedDetail",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "identity == wts.Wpf.Page.ContentGrid.CodeBehind"
+      "ts.compositionFilter": "identity == ts.WPF.Page.ContentGrid.CodeBehind"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

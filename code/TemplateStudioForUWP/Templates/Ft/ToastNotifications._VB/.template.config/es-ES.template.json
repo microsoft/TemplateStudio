@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Toast Notifications",
     "description": "Agrega código para mostrar la visualización de una notificación del sistema y administrarla cuando se usa para iniciar la aplicación.",
-    "identity": "wts.Feat.ToastNotifications.VB"
+    "identity": "ts.Feat.ToastNotifications.VB"
 }

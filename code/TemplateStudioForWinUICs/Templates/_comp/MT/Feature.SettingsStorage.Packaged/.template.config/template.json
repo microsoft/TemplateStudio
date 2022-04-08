@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Feat.SettingsStorage.Packaged",
-    "shortName": "wts.WinUI.Feat.SettingsStorage.Packaged",
-    "identity": "wts.WinUI.Feat.SettingsStorage.Packaged",
+    "name": "ts.WinUI.Feat.SettingsStorage.Packaged",
+    "shortName": "ts.WinUI.Feat.SettingsStorage.Packaged",
+    "identity": "ts.WinUI.Feat.SettingsStorage.Packaged",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Feat.SettingsStorage & $feature == wts.WinUI.Feat.MSIXPackaging"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Feat.SettingsStorage & $feature == ts.WinUI.Feat.MSIXPackaging"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

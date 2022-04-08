@@ -4,10 +4,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Proj.Default",
-  "shortName": "wts.Wpf.Proj.Default",
-  "identity": "wts.Wpf.Proj.Default",
-  "groupIdentity": "wts.Wpf.Proj.Default",
+  "name": "ts.WPF.Proj.Default",
+  "shortName": "ts.WPF.Proj.Default",
+  "identity": "ts.WPF.Proj.Default",
+  "groupIdentity": "ts.WPF.Proj.Default",
   "description": "",
   "tags": {
     "language": "C#",

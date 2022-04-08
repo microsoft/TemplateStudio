@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Suspend and Resume",
   "description": "Простая служба, которая позволяет обрабатывать выходы пользователя из приложения и входы в него.",
-  "identity": "wts.Feat.SuspendAndResume"
+  "identity": "ts.Feat.SuspendAndResume"
 }

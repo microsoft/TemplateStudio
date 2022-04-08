@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Feat.PersistAndRestore",
-    "shortName": "wts.Wpf.MVVMToolkit.Feat.PersistAndRestore",
-    "identity": "wts.Wpf.MVVMToolkit.Feat.PersistAndRestore",
+    "name": "ts.WPF.MVVMToolkit.Feat.PersistAndRestore",
+    "shortName": "ts.WPF.MVVMToolkit.Feat.PersistAndRestore",
+    "identity": "ts.WPF.MVVMToolkit.Feat.PersistAndRestore",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.PersistAndRestore"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Feat.PersistAndRestore"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

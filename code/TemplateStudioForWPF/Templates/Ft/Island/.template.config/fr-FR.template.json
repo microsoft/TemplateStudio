@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "XAML Island UWP App",
   "description": "Infrastructure pour les îles XAML.",
-  "identity": "wts.Wpf.Feat.XamlIslandUwpApp"
+  "identity": "ts.WPF.Feat.XamlIslandUwpApp"
 }

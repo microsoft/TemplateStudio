@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Page.ListDetail.Blank.MenuBar",
-  "identity": "wts.WinUI.Page.ListDetail.Blank.MenuBar",
-  "shortName": "wts.WinUI.Page.ListDetail.Blank.MenuBar",
+  "name": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
+  "identity": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
+  "shortName": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == wts.WinUI.Page.ListDetails"
+    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.ListDetails"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

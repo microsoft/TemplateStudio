@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Camera",
     "description": "Strona do przechwytywania i wyświetlania obrazu z aparatu.",
-    "identity": "wts.Page.Camera.CodeBehind.VB"
+    "identity": "ts.Page.Camera.CodeBehind.VB"
 }

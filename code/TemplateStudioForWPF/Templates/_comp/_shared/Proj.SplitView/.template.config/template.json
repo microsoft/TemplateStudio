@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.SplitView",
-    "shortName": "wts.Wpf.Project.SplitView",
-    "identity": "wts.Wpf.Project.SplitView",
+    "name": "ts.WPF.Project.SplitView",
+    "shortName": "ts.WPF.Project.SplitView",
+    "identity": "ts.WPF.Project.SplitView",
     "tags": {
       "language": "C#",
       "type": "item",

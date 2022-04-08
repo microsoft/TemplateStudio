@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "DataGrid",
   "description": "Uma página exibindo uma grade de dados simples.",
-  "identity": "wts.Page.DataGrid.Prism"
+  "identity": "ts.Page.DataGrid.Prism"
 }

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Feature.SystemService.AddOpenInWebBrowser",
-    "shortName": "wts.Wpf.Feature.SystemService.AddOpenInWebBrowser",
-    "identity": "wts.Wpf.Feature.SystemService.AddOpenInWebBrowser",
+    "name": "ts.WPF.Feature.SystemService.AddOpenInWebBrowser",
+    "shortName": "ts.WPF.Feature.SystemService.AddOpenInWebBrowser",
+    "identity": "ts.WPF.Feature.SystemService.AddOpenInWebBrowser",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.WebView|wts.Wpf.Page.Settings"
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.WebView|ts.WPF.Page.Settings"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

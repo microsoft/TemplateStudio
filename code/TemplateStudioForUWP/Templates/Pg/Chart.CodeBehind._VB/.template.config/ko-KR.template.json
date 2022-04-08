@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Chart",
     "description": "UWP의 Telerik UI 컨트롤을 통해 생성된 간단한 차트를 표시하는 페이지입니다.",
-    "identity": "wts.Page.Chart.CodeBehind.VB"
+    "identity": "ts.Page.Chart.CodeBehind.VB"
 }

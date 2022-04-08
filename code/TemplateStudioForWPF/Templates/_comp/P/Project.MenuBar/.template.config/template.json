@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Project.MenuBar",
-    "shortName": "wts.Wpf.Prism.Project.MenuBar",
-    "identity": "wts.Wpf.Prism.Project.MenuBar",
+    "name": "ts.WPF.Prism.Project.MenuBar",
+    "shortName": "ts.WPF.Prism.Project.MenuBar",
+    "identity": "ts.WPF.Prism.Project.MenuBar",
     "tags": {
       "language": "C#",
       "type": "item",

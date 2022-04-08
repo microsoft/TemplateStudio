@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Theme Selection",
   "shortName": "Theme Selection",
-  "groupIdentity": "wts.WinUI.Feat.ThemeSelection",
-  "identity": "wts.WinUI.Feat.ThemeSelection",
+  "groupIdentity": "ts.WinUI.Feat.ThemeSelection",
+  "identity": "ts.WinUI.Feat.ThemeSelection",
   "description": "Adds theming support to your application.",
   "tags": {
     "language": "C#",
@@ -21,7 +21,7 @@
     "ts.defaultInstance": "ThemeSelection",
     "ts.multipleInstance": "false",
     "ts.genGroup": "0",
-    "ts.dependencies":"wts.WinUI.Feat.SettingsStorage",
+    "ts.dependencies":"ts.WinUI.Feat.SettingsStorage",
     "ts.rightClickEnabled":"true"
   },
   "sourceName": "ThemeSelectionFeature",

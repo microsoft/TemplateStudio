@@ -6,8 +6,8 @@
   ],
   "name": "ListDetails",
   "shortName": "ListDetails",
-  "groupIdentity": "wts.Page.ListDetails.VB",
-  "identity": "wts.Page.ListDetails.CodeBehind.VB",
+  "groupIdentity": "ts.Page.ListDetails.VB",
+  "identity": "ts.Page.ListDetails.CodeBehind.VB",
   "description": "The list/details pattern has a list pane and a details pane for content.",
   "tags": {
     "language": "VisualBasic",
@@ -18,7 +18,7 @@
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
     "ts.displayOrder": "5",
-    "ts.dependencies": "wts.Service.SampleDataService.VB",
+    "ts.dependencies": "ts.Service.SampleDataService.VB",
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true",
     "ts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"

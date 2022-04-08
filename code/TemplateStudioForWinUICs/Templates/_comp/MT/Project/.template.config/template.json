@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Project",
-    "shortName": "wts.WinUI.MVVMToolkit.Project",
-    "identity": "wts.WinUI.MVVMToolkit.Project",
+    "name": "ts.WinUI.MVVMToolkit.Project",
+    "shortName": "ts.WinUI.MVVMToolkit.Project",
+    "identity": "ts.WinUI.MVVMToolkit.Project",
     "tags": {
       "language": "C#",
       "type": "item",

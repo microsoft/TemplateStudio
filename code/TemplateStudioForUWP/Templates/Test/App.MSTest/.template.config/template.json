@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test App with MSTest",
   "shortName": "Test App with MSTest",
-  "groupIdentity": "wts.Testing.UnitTests.App.MSTest",
-  "identity": "wts.Testing.UnitTests.App.MSTest",
+  "groupIdentity": "ts.Testing.UnitTests.App.MSTest",
+  "identity": "ts.Testing.UnitTests.App.MSTest",
   "description": "Add a project for unit tests against the app using MSTest.",
   "tags": {
     "language": "C#",

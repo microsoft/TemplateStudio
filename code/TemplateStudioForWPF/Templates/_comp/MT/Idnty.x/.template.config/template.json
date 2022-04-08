@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
-  "identity": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
+  "name": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
+  "identity": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SettingsViewModel.Identity.MVVMToolkit.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == wts.Wpf.Testing.UnitTests.App.xUnit & groupidentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WPF.Testing.UnitTests.App.xUnit & groupidentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin",
     "ts.compositionOrder" : "2"
   },
   "sourceName": "wts.ItemName",

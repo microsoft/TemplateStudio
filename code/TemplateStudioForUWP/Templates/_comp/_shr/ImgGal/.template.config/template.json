@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & groupidentity == wts.Page.ImageGallery",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & groupidentity == ts.Page.ImageGallery",
     "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",

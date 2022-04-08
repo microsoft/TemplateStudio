@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Map",
   "shortName": "Map",
-  "groupIdentity": "wts.Page.Map",
-  "identity": "wts.Page.Map.CodeBehind",
+  "groupIdentity": "ts.Page.Map",
+  "identity": "ts.Page.Map.CodeBehind",
   "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
   "tags":
   {

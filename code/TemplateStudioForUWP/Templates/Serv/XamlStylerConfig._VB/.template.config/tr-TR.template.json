@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "XAML Styler Config",
     "description": "Varsayılan XAML Styler yapılandırma dosyası.",
-    "identity": "wts.Service.XAMLStyler.VB"
+    "identity": "ts.Service.XAMLStyler.VB"
 }

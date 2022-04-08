@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.FileService.MSTest",
-  "identity": "wts.Testing.UnitTests.Core.FileService.MSTest",
-  "shortName": "wts.Testing.UnitTests.Core.FileService.MSTest",
+  "name": "ts.Testing.UnitTests.Core.FileService.MSTest",
+  "identity": "ts.Testing.UnitTests.Core.FileService.MSTest",
+  "shortName": "ts.Testing.UnitTests.Core.FileService.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.MSTest & $feature == wts.Wpf.Feat.PersistAndRestore",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.MSTest & $feature == ts.WPF.Feat.PersistAndRestore",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

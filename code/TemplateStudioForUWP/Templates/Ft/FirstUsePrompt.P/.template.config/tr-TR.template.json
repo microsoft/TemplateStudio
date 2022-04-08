@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "First Run Prompt",
     "description": "Uygulama ilk kez kullanıldığında bir istem görüntüleyin.",
-    "identity": "wts.Feat.FirstRunPrompt.Prism"
+    "identity": "ts.Feat.FirstRunPrompt.Prism"
 }

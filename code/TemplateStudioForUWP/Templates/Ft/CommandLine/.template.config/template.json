@@ -6,8 +6,8 @@
   ],
   "name": "Command Line Launch",
   "shortName": "Command Line Launch",
-  "groupIdentity": "wts.Feat.CommandLine",
-  "identity": "wts.Feat.CommandLine",
+  "groupIdentity": "ts.Feat.CommandLine",
+  "identity": "ts.Feat.CommandLine",
   "description": "Support passing arguments and launching from the command line.",
   "tags": {
     "language": "C#",

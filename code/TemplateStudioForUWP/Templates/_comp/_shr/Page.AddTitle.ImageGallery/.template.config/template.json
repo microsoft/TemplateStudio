@@ -13,7 +13,7 @@
       "ts.type": "composition",
       "ts.platform" : "Uwp",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == wts.Page.ImageGallery"
+      "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.Page.ImageGallery"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Feat.DragAndDrop.VB|wts.Feat.DragAndDrop.CodeBehind.VB",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == ts.Feat.DragAndDrop.VB|ts.Feat.DragAndDrop.CodeBehind.VB",
     "ts.compositionOrder": "0"
   },
   "sourceName": "wts.ItemName",

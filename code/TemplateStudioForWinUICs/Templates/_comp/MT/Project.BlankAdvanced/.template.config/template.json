@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.Project.BlankAdvanced",
-    "shortName": "wts.WinUI.Project.BlankAdvanced",
-    "identity": "wts.WinUI.Project.BlankAdvanced",
+    "name": "ts.WinUI.Project.BlankAdvanced",
+    "shortName": "ts.WinUI.Project.BlankAdvanced",
+    "identity": "ts.WinUI.Project.BlankAdvanced",
     "tags": {
       "language": "C#",
       "type": "item",

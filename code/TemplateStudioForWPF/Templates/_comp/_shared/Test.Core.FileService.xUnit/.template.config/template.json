@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.FileService.xUnit",
-  "identity": "wts.Testing.UnitTests.Core.FileService.xUnit",
-  "shortName": "wts.Testing.UnitTests.Core.FileService.xUnit",
+  "name": "ts.Testing.UnitTests.Core.FileService.xUnit",
+  "identity": "ts.Testing.UnitTests.Core.FileService.xUnit",
+  "shortName": "ts.Testing.UnitTests.Core.FileService.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.xUnit & $feature == wts.Wpf.Feat.PersistAndRestore",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.xUnit & $feature == ts.WPF.Feat.PersistAndRestore",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

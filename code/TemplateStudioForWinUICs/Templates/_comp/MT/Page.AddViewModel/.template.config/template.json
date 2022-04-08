@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.WinUI.MVVMToolkit.Page.AddViewModel",
-    "shortName": "wts.WinUI.MVVMToolkit.Page.AddViewModel",
-    "identity": "wts.WinUI.MVVMToolkit.Page.AddViewModel",
+    "name": "ts.WinUI.MVVMToolkit.Page.AddViewModel",
+    "shortName": "ts.WinUI.MVVMToolkit.Page.AddViewModel",
+    "identity": "ts.WinUI.MVVMToolkit.Page.AddViewModel",
     "tags": {
       "language": "C#",
       "type": "item",

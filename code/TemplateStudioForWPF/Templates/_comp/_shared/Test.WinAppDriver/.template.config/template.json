@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Wpf.Testing.WinAppDriver",
+    "ts.compositionFilter": "identity == ts.WPF.Testing.WinAppDriver",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

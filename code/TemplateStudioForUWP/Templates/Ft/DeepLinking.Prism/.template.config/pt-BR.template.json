@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Deep Linking",
   "description": "Adicione a capacidade de iniciar e usar vínculos profundos no aplicativo com um esquema de URI personalizado.",
-  "identity": "wts.Feat.DeepLinking.Prism"
+  "identity": "ts.Feat.DeepLinking.Prism"
 }

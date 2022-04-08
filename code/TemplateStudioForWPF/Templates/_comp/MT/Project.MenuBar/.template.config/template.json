@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Project.MenuBar",
-    "shortName": "wts.Wpf.MVVMToolkit.Project.MenuBar",
-    "identity": "wts.Wpf.MVVMToolkit.Project.MenuBar",
+    "name": "ts.WPF.MVVMToolkit.Project.MenuBar",
+    "shortName": "ts.WPF.MVVMToolkit.Project.MenuBar",
+    "identity": "ts.WPF.MVVMToolkit.Project.MenuBar",
     "tags": {
       "language": "C#",
       "type": "item",

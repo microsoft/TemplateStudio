@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Live Tile",
   "description": "Dodaje próbkę do wyświetlania aktualizacji kafelków oraz kod do pracy z wieloma kafelkami.",
-  "identity": "wts.Feat.LiveTile"
+  "identity": "ts.Feat.LiveTile"
 }

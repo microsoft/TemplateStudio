@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.TwoPaneView"
+    "ts.compositionFilter": "$projectType == SplitView & groupidentity == ts.Page.TwoPaneView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

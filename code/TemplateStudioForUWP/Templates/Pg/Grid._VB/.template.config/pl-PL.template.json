@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Telerik DataGrid",
     "description": "Strona wyświetlająca prostą siatkę obsługiwaną przez kontrolki interfejsu użytkownika Telerik dla platformy UWP.",
-    "identity": "wts.Page.Grid.VB"
+    "identity": "ts.Page.Grid.VB"
 }

@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Sample Data",
   "shortName": "Sample Data",
-  "groupIdentity": "wts.Wpf.Feat.SampleData",
-  "identity": "wts.Wpf.Feat.SampleData",
+  "groupIdentity": "ts.WPF.Feat.SampleData",
+  "identity": "ts.WPF.Feat.SampleData",
   "description": "SampleData holds sample data used by the generated version of some pages.",
   "tags": {
     "language": "C#",

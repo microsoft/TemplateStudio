@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test.WinUICs.Build
                 && t.GetPlatform() == platform
                 && t.GetPropertyBagValuesList("appmodel").Contains(appModel)
                 && !t.GetIsHidden()
-                || (t.Identity == "wts.WinUI.Feat.StyleCop");
+                || (t.Identity == "ts.WinUI.Feat.StyleCop");
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 

@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "TwoPaneView",
   "description": "Страница Master-Detail оптимизирована для устройств с двумя экранами.",
-  "identity": "wts.Page.TwoPaneView.VB"
+  "identity": "ts.Page.TwoPaneView.VB"
 }

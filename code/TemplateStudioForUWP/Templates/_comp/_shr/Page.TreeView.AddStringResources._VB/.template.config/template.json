@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform": "Uwp",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Page.TreeView.VB"
+    "ts.compositionFilter": "groupidentity == ts.Page.TreeView.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

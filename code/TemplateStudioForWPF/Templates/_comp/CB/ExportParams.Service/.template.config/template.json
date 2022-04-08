@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.ExportParams.Service",
-    "shortName": "wts.Wpf.CodeBehind.ExportParams.Service",
-    "identity": "wts.Wpf.CodeBehind.ExportParams.Service",
+    "name": "ts.WPF.CodeBehind.ExportParams.Service",
+    "shortName": "ts.WPF.CodeBehind.ExportParams.Service",
+    "identity": "ts.WPF.CodeBehind.ExportParams.Service",
     "tags": {
       "language": "C#",
       "type": "item",

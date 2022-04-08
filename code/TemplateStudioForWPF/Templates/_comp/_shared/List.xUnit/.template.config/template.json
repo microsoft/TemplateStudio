@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
-  "identity": "wts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
-  "shortName": "wts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
+  "name": "ts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
+  "identity": "ts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
+  "shortName": "ts.Testing.UnitTests.Core.SampleData.ListDetails.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.xUnit & $page == wts.Wpf.Page.ListDetails|wts.Wpf.Page.ListDetails.CodeBehind",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.xUnit & $page == ts.WPF.Page.ListDetails|ts.WPF.Page.ListDetails.CodeBehind",
     "ts.compositionOrder" : "2"
   },
   "sourceName": "wts.ItemName",

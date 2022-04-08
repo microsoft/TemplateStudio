@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.ExportParams.Project",
-    "shortName": "wts.Wpf.MVVMToolkit.ExportParams.Project",
-    "identity": "wts.Wpf.MVVMToolkit.ExportParams.Project",
+    "name": "ts.WPF.MVVMToolkit.ExportParams.Project",
+    "shortName": "ts.WPF.MVVMToolkit.ExportParams.Project",
+    "identity": "ts.WPF.MVVMToolkit.ExportParams.Project",
     "tags": {
       "language": "C#",
       "type": "item",

@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with xUnit",
   "description": "Přidá projekt pro testování kódu v knihovně kódu pomocí nástroje xUnit.",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.xUnit"
+  "identity": "ts.WPF.Testing.UnitTests.Core.xUnit"
 }

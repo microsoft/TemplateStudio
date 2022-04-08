@@ -2,5 +2,5 @@
     "author": "Microsoft Community",
     "name": "Tabbed Pivot",
     "description": "Страница со вкладками используется для навигации по часто посещаемым отдельным категориям содержимого.",
-    "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
+    "identity": "ts.Page.TabbedPivot.CodeBehind.VB"
 }

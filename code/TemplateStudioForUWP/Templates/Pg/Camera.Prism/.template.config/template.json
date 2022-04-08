@@ -6,8 +6,8 @@
   ],
   "name": "Camera",
   "shortName": "Camera",
-  "groupIdentity": "wts.Page.Camera",
-  "identity": "wts.Page.Camera.Prism",
+  "groupIdentity": "ts.Page.Camera",
+  "identity": "ts.Page.Camera.Prism",
   "description": "A page for capturing and displaying an image from the camera.",
   "tags": {
     "language": "C#",

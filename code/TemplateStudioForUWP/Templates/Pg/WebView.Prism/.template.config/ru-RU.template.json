@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "Страница веб-представления отображает веб-содержимое с помощью подсистемы отрисовки Microsoft Edge.",
-  "identity": "wts.Page.WebView.Prism"
+  "identity": "ts.Page.WebView.Prism"
 }

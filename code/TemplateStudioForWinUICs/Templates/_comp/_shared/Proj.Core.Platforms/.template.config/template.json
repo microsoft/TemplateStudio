@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.WinUI.Project.Core.AddPlatforms",
-  "shortName": "wts.WinUI.Project.Core.AddPlatforms",
-  "identity": "wts.WinUI.Project.Core.AddPlatforms",
+  "name": "ts.WinUI.Project.Core.AddPlatforms",
+  "shortName": "ts.WinUI.Project.Core.AddPlatforms",
+  "identity": "ts.WinUI.Project.Core.AddPlatforms",
     "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform": "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projecttype != Blank & groupidentity == wts.WinUI.Feat.MSIXPackaging"
+    "ts.compositionFilter": "$projecttype != Blank & groupidentity == ts.WinUI.Feat.MSIXPackaging"
   },
   "sourceName": "wts.ItemName",
   "symbols": {
