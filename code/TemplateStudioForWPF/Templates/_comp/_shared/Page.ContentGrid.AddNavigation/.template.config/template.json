@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Page.ContentGrid.AddNavigation",
-    "shortName": "wts.Wpf.Page.ContentGrid.AddNavigation",
-    "identity": "wts.Wpf.Page.ContentGrid.AddNavigation",
+    "name": "ts.WPF.Page.ContentGrid.AddNavigation",
+    "shortName": "ts.WPF.Page.ContentGrid.AddNavigation",
+    "identity": "ts.WPF.Page.ContentGrid.AddNavigation",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Page.ContentGrid"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Page.ContentGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

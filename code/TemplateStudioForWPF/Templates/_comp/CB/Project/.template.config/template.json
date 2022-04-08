@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Project",
-    "shortName": "wts.Wpf.CodeBehind.Project",
-    "identity": "wts.Wpf.CodeBehind.Project",
+    "name": "ts.WPF.CodeBehind.Project",
+    "shortName": "ts.WPF.CodeBehind.Project",
+    "identity": "ts.WPF.CodeBehind.Project",
     "tags": {
       "language": "C#",
       "type": "item",

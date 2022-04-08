@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "リスト/詳細パターンには、リスト ペインとコンテンツの詳細ペインがあります。",
-  "identity": "wts.Wpf.Page.ListDetails"
+  "identity": "ts.WPF.Page.ListDetails"
 }

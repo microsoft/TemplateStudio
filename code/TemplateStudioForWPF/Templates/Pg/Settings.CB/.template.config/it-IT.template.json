@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Settings",
   "description": "La pagina delle impostazioni è destinata a contenere le impostazioni di configurazione per l'app.",
-  "identity": "wts.Wpf.Page.Settings.CodeBehind"
+  "identity": "ts.WPF.Page.Settings.CodeBehind"
 }

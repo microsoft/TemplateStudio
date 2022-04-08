@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test Core library with MSTest",
   "shortName": "Test Core library with MSTest",
-  "groupIdentity": "wts.Wpf.Testing.UnitTests.Core.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.MSTest",
+  "groupIdentity": "ts.WPF.Testing.UnitTests.Core.MSTest",
+  "identity": "ts.WPF.Testing.UnitTests.Core.MSTest",
   "description": "Add a project to test code in the Core library with MSTest.",
   "tags": {
     "language": "C#",

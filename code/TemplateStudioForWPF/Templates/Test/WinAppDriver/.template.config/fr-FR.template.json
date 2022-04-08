@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Win App Driver",
   "description": "Ajoutez un projet pour les tests d'interface utilisateur avec Appium via Windows Application Driver.",
-  "identity": "wts.Wpf.Testing.WinAppDriver"
+  "identity": "ts.WPF.Testing.WinAppDriver"
 }

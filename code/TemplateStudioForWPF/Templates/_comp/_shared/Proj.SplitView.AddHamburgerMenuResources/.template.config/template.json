@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.SplitView.AddHamburgerMenuResources",
-    "identity": "wts.Wpf.Project.SplitView.AddHamburgerMenuResources",
-    "shortName": "wts.Wpf.Project.SplitView.AddHamburgerMenuResources",
+    "name": "ts.WPF.Project.SplitView.AddHamburgerMenuResources",
+    "identity": "ts.WPF.Project.SplitView.AddHamburgerMenuResources",
+    "shortName": "ts.WPF.Project.SplitView.AddHamburgerMenuResources",
     "tags": {
       "language": "C#",
       "type": "item",

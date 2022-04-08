@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Sample Data",
   "description": "SampleData contém dados de exemplo usados pela versão gerada de algumas páginas.",
-  "identity": "wts.Wpf.Feat.SampleData"
+  "identity": "ts.WPF.Feat.SampleData"
 }

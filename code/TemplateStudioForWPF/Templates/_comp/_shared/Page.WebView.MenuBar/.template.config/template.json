@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Page.WebView.MenuBar",
-    "shortName": "wts.Wpf.Page.WebView.MenuBar",
-    "identity": "wts.Wpf.Page.WebView.MenuBar",
+    "name": "ts.WPF.Page.WebView.MenuBar",
+    "shortName": "ts.WPF.Page.WebView.MenuBar",
+    "identity": "ts.WPF.Page.WebView.MenuBar",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Page.WebView & $projectType == MenuBar"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Page.WebView & $projectType == MenuBar"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

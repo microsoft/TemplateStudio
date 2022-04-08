@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $page == wts.Wpf.Page.ListDetails|wts.Wpf.Page.ListDetails.CodeBehind",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.NUnit & $page == ts.WPF.Page.ListDetails|ts.WPF.Page.ListDetails.CodeBehind",
     "ts.compositionOrder" : "2"
   },
   "sourceName": "wts.ItemName",

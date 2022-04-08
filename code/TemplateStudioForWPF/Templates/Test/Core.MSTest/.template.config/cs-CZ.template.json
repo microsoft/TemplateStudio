@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Test Core library with MSTest",
   "description": "Přidá projekt pro testování kódu v knihovně kódu pomocí nástroje MSTest.",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.MSTest"
+  "identity": "ts.WPF.Testing.UnitTests.Core.MSTest"
 }

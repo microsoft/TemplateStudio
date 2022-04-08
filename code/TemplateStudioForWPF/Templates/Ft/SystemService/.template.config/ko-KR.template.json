@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "System Service",
   "description": "SystemService는 운영 체제의 기능 및 네이티브 API와 상호 작용하는 조작을 포함합니다.",
-  "identity": "wts.Wpf.Feat.SystemService"
+  "identity": "ts.WPF.Feat.SystemService"
 }

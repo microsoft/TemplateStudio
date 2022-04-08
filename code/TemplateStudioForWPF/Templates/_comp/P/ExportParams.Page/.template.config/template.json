@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.ExportParams.Page",
-    "shortName": "wts.Wpf.Prism.ExportParams.Page",
-    "identity": "wts.Wpf.Prism.ExportParams.Page",
+    "name": "ts.WPF.Prism.ExportParams.Page",
+    "shortName": "ts.WPF.Prism.ExportParams.Page",
+    "identity": "ts.WPF.Prism.ExportParams.Page",
     "tags": {
       "language": "C#",
       "type": "item",

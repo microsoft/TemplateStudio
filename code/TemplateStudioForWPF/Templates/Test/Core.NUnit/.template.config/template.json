@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "Test Core library with NUnit",
   "shortName": "Test Core library with NUnit",
-  "groupIdentity": "wts.Wpf.Testing.UnitTests.Core.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.NUnit",
+  "groupIdentity": "ts.WPF.Testing.UnitTests.Core.NUnit",
+  "identity": "ts.WPF.Testing.UnitTests.Core.NUnit",
   "description": "Add a project to test code in the Core library with NUnit.",
   "tags": {
     "language": "C#",

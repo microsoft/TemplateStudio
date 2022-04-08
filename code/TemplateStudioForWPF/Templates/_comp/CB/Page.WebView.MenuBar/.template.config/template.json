@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Page.WebView.MenuBar.CodeBehind",
-    "shortName": "wts.Wpf.Page.WebView.MenuBar.CodeBehind",
-    "identity": "wts.Wpf.Page.WebView.MenuBar.CodeBehind",
+    "name": "ts.WPF.Page.WebView.MenuBar.CodeBehind",
+    "shortName": "ts.WPF.Page.WebView.MenuBar.CodeBehind",
+    "identity": "ts.WPF.Page.WebView.MenuBar.CodeBehind",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Wpf.Page.WebView.CodeBehind & $projectType == MenuBar"
+    "ts.compositionFilter": "identity == ts.WPF.Page.WebView.CodeBehind & $projectType == MenuBar"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

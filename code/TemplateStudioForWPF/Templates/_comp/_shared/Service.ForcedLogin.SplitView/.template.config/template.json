@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
-    "shortName": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
-    "identity": "wts.Wpf.Service.IdentityForcedLogin.SplitView",
+    "name": "ts.WPF.Service.IdentityForcedLogin.SplitView",
+    "shortName": "ts.WPF.Service.IdentityForcedLogin.SplitView",
+    "identity": "ts.WPF.Service.IdentityForcedLogin.SplitView",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == wts.Wpf.Service.IdentityForcedLogin"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & groupidentity == ts.WPF.Service.IdentityForcedLogin"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

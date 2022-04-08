@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem",
-    "identity": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem",
-    "shortName": "wts.Wpf.Project.SplitView.AddHamburgerMenuItem",
+    "name": "ts.WPF.Project.SplitView.AddHamburgerMenuItem",
+    "identity": "ts.WPF.Project.SplitView.AddHamburgerMenuItem",
+    "shortName": "ts.WPF.Project.SplitView.AddHamburgerMenuItem",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "ts.type == page & identity != wts.Wpf.Page.Settings & $frontendframework == MVVMToolkit & $projectType == SplitView"
+      "ts.compositionFilter": "ts.type == page & identity != ts.WPF.Page.Settings & $frontendframework == MVVMToolkit & $projectType == SplitView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.MVVMToolkit.Page.Settings",
-  "shortName": "wts.Wpf.MVVMToolkit.Page.Settings",
-  "identity": "wts.Wpf.MVVMToolkit.Page.Settings",
+  "name": "ts.WPF.MVVMToolkit.Page.Settings",
+  "shortName": "ts.WPF.MVVMToolkit.Page.Settings",
+  "identity": "ts.WPF.MVVMToolkit.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Page.Settings"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

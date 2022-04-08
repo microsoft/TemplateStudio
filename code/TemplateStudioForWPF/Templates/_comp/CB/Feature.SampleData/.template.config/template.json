@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.SampleData",
-    "shortName": "wts.Wpf.CodeBehind.Feat.SampleData",
-    "identity": "wts.Wpf.CodeBehind.Feat.SampleData",
+    "name": "ts.WPF.CodeBehind.Feat.SampleData",
+    "shortName": "ts.WPF.CodeBehind.Feat.SampleData",
+    "identity": "ts.WPF.CodeBehind.Feat.SampleData",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Wpf.Feat.SampleData"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == ts.WPF.Feat.SampleData"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Feat.SampleData",
-    "shortName": "wts.Wpf.MVVMToolkit.Feat.SampleData",
-    "identity": "wts.Wpf.MVVMToolkit.Feat.SampleData",
+    "name": "ts.WPF.MVVMToolkit.Feat.SampleData",
+    "shortName": "ts.WPF.MVVMToolkit.Feat.SampleData",
+    "identity": "ts.WPF.MVVMToolkit.Feat.SampleData",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.SampleData"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Feat.SampleData"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

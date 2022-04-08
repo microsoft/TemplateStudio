@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
+  "name": "ts.WPF.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
+  "identity": "ts.WPF.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
+  "shortName": "ts.WPF.Testing.UnitTests.Feature.Prism.SystemService.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Feat.SystemService & $testing == wts.Wpf.Testing.UnitTests.App.MSTest",
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.WPF.Feat.SystemService & $testing == ts.WPF.Testing.UnitTests.App.MSTest",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

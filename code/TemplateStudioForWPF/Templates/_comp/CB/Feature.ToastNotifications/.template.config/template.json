@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.ToastNotifications",
-    "shortName": "wts.Wpf.CodeBehind.Feat.ToastNotifications",
-    "identity": "wts.Wpf.CodeBehind.Feat.ToastNotifications",
+    "name": "ts.WPF.CodeBehind.Feat.ToastNotifications",
+    "shortName": "ts.WPF.CodeBehind.Feat.ToastNotifications",
+    "identity": "ts.WPF.CodeBehind.Feat.ToastNotifications",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Wpf.Feat.ToastNotifications"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == ts.WPF.Feat.ToastNotifications"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Feat.ThemeSelection",
-    "shortName": "wts.Wpf.Prism.Feat.ThemeSelection",
-    "identity": "wts.Wpf.Prism.Feat.ThemeSelection",
+    "name": "ts.WPF.Prism.Feat.ThemeSelection",
+    "shortName": "ts.WPF.Prism.Feat.ThemeSelection",
+    "identity": "ts.WPF.Prism.Feat.ThemeSelection",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Feat.ThemeSelection"
+    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Project.AddPlatforms",
-  "identity": "wts.Wpf.Project.AddPlatforms",
-  "shortName": "wts.Wpf.Project.AddPlatforms",
+  "name": "ts.WPF.Project.AddPlatforms",
+  "identity": "ts.WPF.Project.AddPlatforms",
+  "shortName": "ts.WPF.Project.AddPlatforms",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.outputToParent": "true",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.XamlIsland|wts.Wpf.Feat.MSIXPackaging"
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.XamlIsland|ts.WPF.Feat.MSIXPackaging"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

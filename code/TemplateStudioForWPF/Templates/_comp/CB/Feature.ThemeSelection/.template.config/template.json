@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.ThemeSelection",
-    "shortName": "wts.Wpf.CodeBehind.Feat.ThemeSelection",
-    "identity": "wts.Wpf.CodeBehind.Feat.ThemeSelection",
+    "name": "ts.WPF.CodeBehind.Feat.ThemeSelection",
+    "shortName": "ts.WPF.CodeBehind.Feat.ThemeSelection",
+    "identity": "ts.WPF.CodeBehind.Feat.ThemeSelection",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Wpf.Feat.ThemeSelection"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == ts.WPF.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

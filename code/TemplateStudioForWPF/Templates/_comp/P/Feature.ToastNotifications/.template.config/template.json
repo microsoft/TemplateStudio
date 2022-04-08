@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Feat.ToastNotifications",
-    "shortName": "wts.Wpf.Prism.Feat.ToastNotifications",
-    "identity": "wts.Wpf.Prism.Feat.ToastNotifications",
+    "name": "ts.WPF.Prism.Feat.ToastNotifications",
+    "shortName": "ts.WPF.Prism.Feat.ToastNotifications",
+    "identity": "ts.WPF.Prism.Feat.ToastNotifications",
     "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "1",
-    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Feat.ToastNotifications"
+    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Feat.ToastNotifications"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

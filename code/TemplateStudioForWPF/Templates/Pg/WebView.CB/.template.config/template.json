@@ -6,8 +6,8 @@
   ],
   "name": "WebView",
   "shortName": "WebView",
-  "identity": "wts.Wpf.Page.WebView.CodeBehind",
-  "groupIdentity": "wts.Wpf.Page.WebView",
+  "identity": "ts.WPF.Page.WebView.CodeBehind",
+  "groupIdentity": "ts.WPF.Page.WebView",
   "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
   "tags": {
     "language": "C#",
@@ -22,7 +22,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "true",
     "ts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
-    "ts.dependencies": "wts.Wpf.Feat.SystemService"
+    "ts.dependencies": "ts.WPF.Feat.SystemService"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

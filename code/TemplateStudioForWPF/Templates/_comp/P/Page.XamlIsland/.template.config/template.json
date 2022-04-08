@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Prism.Page.XamlIsland",
-    "shortName": "wts.Wpf.Prism.Page.XamlIsland",
-    "identity": "wts.Wpf.Prism.Page.XamlIsland",
+    "name": "ts.WPF.Prism.Page.XamlIsland",
+    "shortName": "ts.WPF.Prism.Page.XamlIsland",
+    "identity": "ts.WPF.Prism.Page.XamlIsland",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == wts.Wpf.Page.XamlIsland"
+    "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Page.XamlIsland"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

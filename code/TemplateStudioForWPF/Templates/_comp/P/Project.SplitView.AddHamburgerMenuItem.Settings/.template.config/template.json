@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
-    "identity": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
-    "shortName": "wts.Wpf.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
+    "name": "ts.WPF.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
+    "identity": "ts.WPF.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
+    "shortName": "ts.WPF.Project.Prism.SplitView.AddHamburgerMenuItem.Settings",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "ts.type == page & identity == wts.Wpf.Page.Settings & $frontendframework == Prism & $projectType == SplitView"
+      "ts.compositionFilter": "ts.type == page & identity == ts.WPF.Page.Settings & $frontendframework == Prism & $projectType == SplitView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

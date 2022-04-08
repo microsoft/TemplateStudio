@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Service.IdentityCommon.MVVM",
-  "identity": "wts.Wpf.Service.IdentityCommon.MVVM",
-  "shortName": "wts.Wpf.Service.IdentityCommon.MVVM",
+  "name": "ts.WPF.Service.IdentityCommon.MVVM",
+  "identity": "ts.WPF.Service.IdentityCommon.MVVM",
+  "shortName": "ts.WPF.Service.IdentityCommon.MVVM",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin & $frontendframework != CodeBehind"
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin & $frontendframework != CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

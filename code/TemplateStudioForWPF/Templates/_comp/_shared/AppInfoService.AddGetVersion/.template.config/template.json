@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Feature.ApplicationInfoService.AddGetVersion",
-    "shortName": "wts.Wpf.Feature.ApplicationInfoService.AddGetVersion",
-    "identity": "wts.Wpf.Feature.ApplicationInfoService.AddGetVersion",
+    "name": "ts.WPF.Feature.ApplicationInfoService.AddGetVersion",
+    "shortName": "ts.WPF.Feature.ApplicationInfoService.AddGetVersion",
+    "identity": "ts.WPF.Feature.ApplicationInfoService.AddGetVersion",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.Settings"
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.Settings"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

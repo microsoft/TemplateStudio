@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Project.Ribbon",
-    "shortName": "wts.Wpf.MVVMToolkit.Project.Ribbon",
-    "identity": "wts.Wpf.MVVMToolkit.Project.Ribbon",
+    "name": "ts.WPF.MVVMToolkit.Project.Ribbon",
+    "shortName": "ts.WPF.MVVMToolkit.Project.Ribbon",
+    "identity": "ts.WPF.MVVMToolkit.Project.Ribbon",
     "tags": {
       "language": "C#",
       "type": "item",

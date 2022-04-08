@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Feature.Feature.MSIXPackaging.UpdateApplicationInfoService",
-    "shortName": "wts.Wpf.Feature.MSIXPackaging.UpdateApplicationInfoService",
-    "identity": "wts.Wpf.Feature.MSIXPackaging.UpdateApplicationInfoService",
+    "name": "ts.WPF.Feature.Feature.MSIXPackaging.UpdateApplicationInfoService",
+    "shortName": "ts.WPF.Feature.MSIXPackaging.UpdateApplicationInfoService",
+    "identity": "ts.WPF.Feature.MSIXPackaging.UpdateApplicationInfoService",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $page == wts.Wpf.Page.Settings",
+    "ts.compositionFilter": "identity == ts.WPF.Feat.MSIXPackaging & $page == ts.WPF.Page.Settings",
     "ts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)"
   },
     "sourceName": "wts.ItemName",

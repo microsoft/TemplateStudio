@@ -27,8 +27,8 @@ namespace Microsoft.Templates.Test
 
         protected List<string> excludedTemplates_Uwp_Group1 = new List<string>() { "wts.Service.IdentityOptionalLogin", "wts.Feat.MultiInstanceAdvanced", "wts.Feat.MultiInstance" };
         protected List<string> excludedTemplates_Uwp_Group2 = new List<string>() { "wts.Service.IdentityForcedLogin", "wts.Feat.BackgroundTask" }; // Add multiinstance templates on this group if possible
-        protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "wts.Wpf.Service.IdentityOptionalLogin" };
-        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "wts.Wpf.Service.IdentityForcedLogin" }; // Add multiinstance templates on this group if possible
+        protected List<string> excludedTemplates_Wpf_Group1 = new List<string>() { "ts.WPF.Service.IdentityOptionalLogin" };
+        protected List<string> excludedTemplates_Wpf_Group2 = new List<string>() { "ts.WPF.Service.IdentityForcedLogin" }; // Add multiinstance templates on this group if possible
         protected List<string> excludedTemplatesGroup1VB = new List<string>() { "wts.Service.IdentityOptionalLogin.VB", "wts.Feat.MultiInstanceAdvanced.VB", "wts.Feat.MultiInstance.VB" };
         protected List<string> excludedTemplatesGroup2VB = new List<string>() { "wts.Service.IdentityForcedLogin.VB", "wts.Feat.BackgroundTask.VB" }; // Add multiinstance templates on this group if possible
 

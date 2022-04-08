@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
+  "name": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
+  "identity": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
+  "shortName": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ApplicationInfoService.xUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Feat.ApplicationInfoService & $testing == wts.Wpf.Testing.UnitTests.App.xUnit",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Feat.ApplicationInfoService & $testing == ts.WPF.Testing.UnitTests.App.xUnit",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

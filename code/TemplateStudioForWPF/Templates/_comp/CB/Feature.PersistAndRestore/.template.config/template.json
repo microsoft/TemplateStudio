@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.Feat.PersistAndRestore",
-    "shortName": "wts.Wpf.CodeBehind.Feat.PersistAndRestore",
-    "identity": "wts.Wpf.CodeBehind.Feat.PersistAndRestore",
+    "name": "ts.WPF.CodeBehind.Feat.PersistAndRestore",
+    "shortName": "ts.WPF.CodeBehind.Feat.PersistAndRestore",
+    "identity": "ts.WPF.CodeBehind.Feat.PersistAndRestore",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == wts.Wpf.Feat.PersistAndRestore"
+    "ts.compositionFilter": "$frontendframework == CodeBehind & groupidentity == ts.WPF.Feat.PersistAndRestore"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.ExportParams.Service",
-    "shortName": "wts.Wpf.MVVMToolkit.ExportParams.Service",
-    "identity": "wts.Wpf.MVVMToolkit.ExportParams.Service",
+    "name": "ts.WPF.MVVMToolkit.ExportParams.Service",
+    "shortName": "ts.WPF.MVVMToolkit.ExportParams.Service",
+    "identity": "ts.WPF.MVVMToolkit.ExportParams.Service",
     "tags": {
       "language": "C#",
       "type": "item",

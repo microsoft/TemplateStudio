@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Feat.ToastNotifications",
-    "shortName": "wts.Wpf.MVVMToolkit.Feat.ToastNotifications",
-    "identity": "wts.Wpf.MVVMToolkit.Feat.ToastNotifications",
+    "name": "ts.WPF.MVVMToolkit.Feat.ToastNotifications",
+    "shortName": "ts.WPF.MVVMToolkit.Feat.ToastNotifications",
+    "identity": "ts.WPF.MVVMToolkit.Feat.ToastNotifications",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.ToastNotifications"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Feat.ToastNotifications"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

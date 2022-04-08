@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.Ribbon",
-    "shortName": "wts.Wpf.Project.Ribbon",
-    "identity": "wts.Wpf.Project.Ribbon",
+    "name": "ts.WPF.Project.Ribbon",
+    "shortName": "ts.WPF.Project.Ribbon",
+    "identity": "ts.WPF.Project.Ribbon",
     "tags": {
       "language": "C#",
       "type": "item",

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Wzorzec listy/szczegółów zawiera okienko listy i okienko szczegółów zawartości.",
-  "identity": "wts.Wpf.Page.ListDetails.CodeBehind"
+  "identity": "ts.WPF.Page.ListDetails.CodeBehind"
 }

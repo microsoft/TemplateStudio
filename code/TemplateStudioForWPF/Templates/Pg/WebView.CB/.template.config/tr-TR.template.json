@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "WebView",
   "description": "Web görünümü sayfası, web içeriğini Microsoft Edge işleme altyapısını kullanarak işler.",
-  "identity": "wts.Wpf.Page.WebView.CodeBehind"
+  "identity": "ts.WPF.Page.WebView.CodeBehind"
 }

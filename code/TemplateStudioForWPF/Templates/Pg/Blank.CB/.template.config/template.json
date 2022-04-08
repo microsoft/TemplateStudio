@@ -6,8 +6,8 @@
   ],
   "name": "Blank",
   "shortName": "Blank",
-  "identity": "wts.Wpf.Page.Blank.CodeBehind",
-  "groupIdentity": "wts.Wpf.Page.Blank",
+  "identity": "ts.WPF.Page.Blank.CodeBehind",
+  "groupIdentity": "ts.WPF.Page.Blank",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
   "tags": {
     "language": "C#",

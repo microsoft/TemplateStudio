@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
+  "name": "ts.WPF.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
+  "shortName": "ts.WPF.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
+  "identity": "ts.WPF.Testing.UnitTests.MenuBar.Pages.Prism.WebView.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.WebView & $frontendframework == Prism & $testing == wts.Wpf.Testing.UnitTests.App.NUnit & $projectType == MenuBar",
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.WebView & $frontendframework == Prism & $testing == ts.WPF.Testing.UnitTests.App.NUnit & $projectType == MenuBar",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

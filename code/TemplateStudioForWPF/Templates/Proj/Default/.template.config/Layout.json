@@ -1,13 +1,13 @@
 ﻿[
     {
         "name": "Main",
-        "templateGroupIdentity": "wts.Wpf.Page.Blank",
+        "templateGroupIdentity": "ts.WPF.Page.Blank",
         "readonly": "false",
         "projecttype": "Blank|SplitView|MenuBar|Ribbon"
     },
     {
         "name": "Multiple views",
-        "templateGroupIdentity": "wts.Wpf.Feat.MultiView",
+        "templateGroupIdentity": "ts.WPF.Feat.MultiView",
         "readonly": "true",
         "projecttype": "MenuBar|Ribbon"
     }

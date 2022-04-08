@@ -80,10 +80,10 @@ namespace Microsoft.Templates.Test.WPF.Build
             {
                 var wpfTestPages = new List<string>
                 {
-                    "wts.Wpf.Page.Blank",
-                    "wts.Wpf.Page.ListDetails",
-                    "wts.Wpf.Page.Settings",
-                    "wts.Wpf.Page.WebView",
+                    "ts.WPF.Page.Blank",
+                    "ts.WPF.Page.ListDetails",
+                    "ts.WPF.Page.Settings",
+                    "ts.WPF.Page.WebView",
                 };
 
                 var appDetails = await SetUpWpfProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, ProjectTypes.SplitView, Frameworks.MVVMToolkit, wpfTestPages);

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Vzor seznamu a podrobností obsahuje podokno seznamu a podokno podrobností pro obsah.",
-  "identity": "wts.Wpf.Page.ListDetails.CodeBehind"
+  "identity": "ts.WPF.Page.ListDetails.CodeBehind"
 }

@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Service.Prism.Identity.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Service.Prism.Identity.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Service.Prism.Identity.MSTest",
+  "name": "ts.WPF.Testing.UnitTests.Service.Prism.Identity.MSTest",
+  "identity": "ts.WPF.Testing.UnitTests.Service.Prism.Identity.MSTest",
+  "shortName": "ts.WPF.Testing.UnitTests.Service.Prism.Identity.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & $testing == wts.Wpf.Testing.UnitTests.App.MSTest & identity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
+    "ts.compositionFilter": "$frontendframework == Prism & $testing == ts.WPF.Testing.UnitTests.App.MSTest & identity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

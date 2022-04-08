@@ -6,8 +6,8 @@
   ],
   "name": "XAML Island",
   "shortName": "XAML Island",
-  "identity": "wts.Wpf.Page.XamlIsland",
-  "groupIdentity": "wts.Wpf.Page.XamlIsland",
+  "identity": "ts.WPF.Page.XamlIsland",
+  "groupIdentity": "ts.WPF.Page.XamlIsland",
   "description": "Page that hosts an UWP control using a XAML Island.",
   "tags": {
     "language": "C#",
@@ -24,7 +24,7 @@
     "ts.outputToParent": "true",
     "ts.requiredVersions": "UAP, Version=10.0.19041.0|dotnet, Version=3.1.7",
     "ts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal",
-    "ts.dependencies": "wts.Wpf.Feat.ThemeSelection|wts.Wpf.Feat.XamlIslandUwpApp",
+    "ts.dependencies": "ts.WPF.Feat.ThemeSelection|ts.WPF.Feat.XamlIslandUwpApp",
     "ts.licenses": "[Microsoft.Toolkit.Wpf.UI.XamlHost](https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",

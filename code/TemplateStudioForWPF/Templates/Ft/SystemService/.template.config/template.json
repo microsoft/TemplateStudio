@@ -4,8 +4,8 @@
   "classifications": ["Universal"],
   "name": "System Service",
   "shortName": "SystemService",
-  "groupIdentity": "wts.Wpf.Feat.SystemService",
-  "identity": "wts.Wpf.Feat.SystemService",
+  "groupIdentity": "ts.WPF.Feat.SystemService",
+  "identity": "ts.WPF.Feat.SystemService",
   "description": "SystemService contains operations that interact with functionalities and native APIs of the operating system.",
   "tags": {
     "language": "C#",

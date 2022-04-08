@@ -4,10 +4,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Proj.Default.Prism",
-  "shortName": "wts.Wpf.Proj.Default.Prism",
-  "identity": "wts.Wpf.Proj.Default.Prism",
-  "groupIdentity": "wts.Wpf.Proj.Default.Prism",
+  "name": "ts.WPF.Proj.Default.Prism",
+  "shortName": "ts.WPF.Proj.Default.Prism",
+  "identity": "ts.WPF.Proj.Default.Prism",
+  "groupIdentity": "ts.WPF.Proj.Default.Prism",
   "description": "",
   "tags": {
     "language": "C#",

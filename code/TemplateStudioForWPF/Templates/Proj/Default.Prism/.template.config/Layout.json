@@ -1,7 +1,7 @@
 ﻿[
     {
         "name": "Main",
-        "templateGroupIdentity": "wts.Wpf.Page.Blank",
+        "templateGroupIdentity": "ts.WPF.Page.Blank",
         "readonly": "false",
         "projecttype": "Blank|SplitView|MenuBar|Ribbon"
     }

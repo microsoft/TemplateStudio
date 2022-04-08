@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Feature.Feature.XamlIsland.Theming",
-    "shortName": "wts.Wpf.Feature.XamlIsland.Theming",
-    "identity": "wts.Wpf.Feature.XamlIsland.Theming",
+    "name": "ts.WPF.Feature.Feature.XamlIsland.Theming",
+    "shortName": "ts.WPF.Feature.XamlIsland.Theming",
+    "identity": "ts.WPF.Feature.XamlIsland.Theming",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == wts.Wpf.Page.XamlIsland & $feature == wts.Wpf.Feat.ThemeSelection"
+    "ts.compositionFilter": "groupidentity == ts.WPF.Page.XamlIsland & $feature == ts.WPF.Feat.ThemeSelection"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

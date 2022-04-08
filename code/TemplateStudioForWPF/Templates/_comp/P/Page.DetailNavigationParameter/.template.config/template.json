@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Prism.Page.Page.DetailNavigationParameter",
-  "identity": "wts.Wpf.Prism.Page.Page.DetailNavigationParameter",
-  "shortName": "wts.Wpf.Prism.Page.Page.DetailNavigationParameter",
+  "name": "ts.WPF.Prism.Page.Page.DetailNavigationParameter",
+  "identity": "ts.WPF.Prism.Page.Page.DetailNavigationParameter",
+  "shortName": "ts.WPF.Prism.Page.Page.DetailNavigationParameter",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == Prism & identity == wts.Wpf.Page.ContentGrid"
+    "ts.compositionFilter": "$frontendframework == Prism & identity == ts.WPF.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.Project.MenuBar.AddMenuItem.CodeBehind",
-    "identity": "wts.Wpf.Project.MenuBar.AddMenuItem.CodeBehind",
-    "shortName": "wts.Wpf.Project.MenuBar.AddMenuItem.CodeBehind",
+    "name": "ts.WPF.Project.MenuBar.AddMenuItem.CodeBehind",
+    "identity": "ts.WPF.Project.MenuBar.AddMenuItem.CodeBehind",
+    "shortName": "ts.WPF.Project.MenuBar.AddMenuItem.CodeBehind",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "Wpf",
       "ts.version": "1.0.0",
-      "ts.compositionFilter": "ts.type == page & groupidentity != wts.Wpf.Page.Settings & $frontendframework == CodeBehind & $projectType == MenuBar"
+      "ts.compositionFilter": "ts.type == page & groupidentity != ts.WPF.Page.Settings & $frontendframework == CodeBehind & $projectType == MenuBar"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

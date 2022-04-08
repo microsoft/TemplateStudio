@@ -4,16 +4,16 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Page.AddINavigationAwareNSDetail",
-  "identity": "wts.Wpf.Page.AddINavigationAwareNSDetail",
-  "shortName": "wts.Wpf.Page.AddINavigationAwareNSDetail",
+  "name": "ts.WPF.Page.AddINavigationAwareNSDetail",
+  "identity": "ts.WPF.Page.AddINavigationAwareNSDetail",
+  "shortName": "ts.WPF.Page.AddINavigationAwareNSDetail",
   "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Page.ContentGrid"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

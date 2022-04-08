@@ -6,8 +6,8 @@
   ],
   "name": "XAML Island UWP App",
   "shortName": "XAML Island UWP App",
-  "identity": "wts.Wpf.Feat.XamlIslandUwpApp",
-  "groupIdentity": "wts.Wpf.Feat.XamlIslandUwpApp",
+  "identity": "ts.WPF.Feat.XamlIslandUwpApp",
+  "groupIdentity": "ts.WPF.Feat.XamlIslandUwpApp",
   "description": "Infrastructure for XAML Islands.",
   "tags": {
     "language": "C#",

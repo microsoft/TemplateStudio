@@ -5,8 +5,8 @@
     "Universal"
   ],
   "name": "wts.Testing.UnitTests.Core.SampleData.NUnit",
-  "identity": "wts.Wpf.Testing.UnitTests.Core.SampleData.NUnit",
-  "shortName": "wts.Wpf.Testing.UnitTests.Core.SampleData.NUnit",
+  "identity": "ts.WPF.Testing.UnitTests.Core.SampleData.NUnit",
+  "shortName": "ts.WPF.Testing.UnitTests.Core.SampleData.NUnit",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Testing.UnitTests.Core.NUnit & $feature == wts.Wpf.Feat.SampleData",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.NUnit & $feature == ts.WPF.Feat.SampleData",
     "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",

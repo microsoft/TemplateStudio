@@ -4,16 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.MVVMToolkit.Feat.MultiView",
-    "shortName": "wts.Wpf.MVVMToolkit.Feat.MultiView",
-    "identity": "wts.Wpf.MVVMToolkit.Feat.MultiView",
+    "name": "ts.WPF.MVVMToolkit.Feat.MultiView",
+    "shortName": "ts.WPF.MVVMToolkit.Feat.MultiView",
+    "identity": "ts.WPF.MVVMToolkit.Feat.MultiView",
     "tags": {
     "language": "C#",
     "type": "item",
     "ts.type": "composition",
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.Wpf.Feat.MultiView"
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WPF.Feat.MultiView"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

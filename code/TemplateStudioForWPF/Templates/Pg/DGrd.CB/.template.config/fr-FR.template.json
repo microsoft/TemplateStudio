@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "DataGrid",
   "description": "Page affichant une grille de données simple.",
-  "identity": "wts.Wpf.Page.DataGrid.CodeBehind"
+  "identity": "ts.WPF.Page.DataGrid.CodeBehind"
 }

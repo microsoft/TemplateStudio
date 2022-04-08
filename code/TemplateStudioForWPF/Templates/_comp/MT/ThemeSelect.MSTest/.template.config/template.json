@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
-  "identity": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
-  "shortName": "wts.Wpf.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
+  "name": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
+  "identity": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
+  "shortName": "ts.WPF.Testing.UnitTests.Feature.MVVMToolkit.ThemeSelection.MSTest",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.outputToParent": "true",
     "ts.platform" : "Wpf",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.Wpf.Feat.ThemeSelection & $testing == wts.Wpf.Testing.UnitTests.App.MSTest",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Feat.ThemeSelection & $testing == ts.WPF.Testing.UnitTests.App.MSTest",
     "ts.compositionOrder" : "3"
   },
   "sourceName": "wts.ItemName",

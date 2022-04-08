@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "Шаблон списка/детали имеет панель списка и панели деталей для содержания.",
-  "identity": "wts.Wpf.Page.ListDetails.CodeBehind"
+  "identity": "ts.WPF.Page.ListDetails.CodeBehind"
 }

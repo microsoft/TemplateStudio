@@ -4,9 +4,9 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Wpf.Service.IdentityCommon",
-  "identity": "wts.Wpf.Service.IdentityCommon",
-  "shortName": "wts.Wpf.Service.IdentityCommon",
+  "name": "ts.WPF.Service.IdentityCommon",
+  "identity": "ts.WPF.Service.IdentityCommon",
+  "shortName": "ts.WPF.Service.IdentityCommon",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "ts.platform": "Wpf",
     "ts.version": "1.0.0",
     "ts.compositionOrder": "0",
-    "ts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin",
+    "ts.compositionFilter": "groupIdentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin",
     "ts.outputToParent": "true",
     "ts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
   },

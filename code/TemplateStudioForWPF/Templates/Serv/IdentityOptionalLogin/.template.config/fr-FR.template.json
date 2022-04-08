@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Optional Login",
   "description": "Faites en sorte que votre application dispose d'une connexion facultative et de fonctionnalités restreintes.",
-  "identity": "wts.Wpf.Service.IdentityOptionalLogin"
+  "identity": "ts.WPF.Service.IdentityOptionalLogin"
 }

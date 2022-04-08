@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "XAML Island",
   "description": "Page qui héberge un contrôle UWP à l’aide d’une île XAML.",
-  "identity": "wts.Wpf.Page.XamlIsland"
+  "identity": "ts.WPF.Page.XamlIsland"
 }

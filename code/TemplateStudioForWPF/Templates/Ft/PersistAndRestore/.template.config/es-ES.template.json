@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Persist And Restore",
   "description": "Persistir y restaurar ayuda a simplificar los datos de la carpeta AppData local del usuario.",
-  "identity": "wts.Wpf.Feat.PersistAndRestore"
+  "identity": "ts.WPF.Feat.PersistAndRestore"
 }

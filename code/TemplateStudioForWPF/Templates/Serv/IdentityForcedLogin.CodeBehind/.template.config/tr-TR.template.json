@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Forced Login",
   "description": "Uygulamanızın kullanıcının oturum açmasını gerektirmesini sağlayın.",
-  "identity": "wts.Wpf.Service.IdentityForcedLogin.CodeBehind"
+  "identity": "ts.WPF.Service.IdentityForcedLogin.CodeBehind"
 }

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Application Info Service",
   "description": "應用程式資訊服務包含返回有關當前應用程式的資訊的操作。",
-  "identity": "wts.Wpf.Feat.ApplicationInfoService"
+  "identity": "ts.WPF.Feat.ApplicationInfoService"
 }

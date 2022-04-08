@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "ListDetails",
   "description": "El patrón de lista/detalles tiene un panel de lista y un panel de detalles para el contenido.",
-  "identity": "wts.Wpf.Page.ListDetails"
+  "identity": "ts.WPF.Page.ListDetails"
 }

@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "wts.Wpf.CodeBehind.ExportParams.Feat",
-    "shortName": "wts.Wpf.CodeBehind.ExportParams.Feat",
-    "identity": "wts.Wpf.CodeBehind.ExportParams.Feat",
+    "name": "ts.WPF.CodeBehind.ExportParams.Feat",
+    "shortName": "ts.WPF.CodeBehind.ExportParams.Feat",
+    "identity": "ts.WPF.CodeBehind.ExportParams.Feat",
     "tags": {
       "language": "C#",
       "type": "item",

@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Application Info Service",
   "description": "ApplicationInfoService contiene operazioni che restituiscono informazioni sull'applicazione corrente.",
-  "identity": "wts.Wpf.Feat.ApplicationInfoService"
+  "identity": "ts.WPF.Feat.ApplicationInfoService"
 }

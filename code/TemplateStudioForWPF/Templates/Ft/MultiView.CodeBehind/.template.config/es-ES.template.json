@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Multiple views",
   "description": "Permite que tus usuarios puedan ver partes independientes de tu aplicación en ventanas diferentes.",
-  "identity": "wts.Wpf.Feat.MultiView.CodeBehind"
+  "identity": "ts.WPF.Feat.MultiView.CodeBehind"
 }
