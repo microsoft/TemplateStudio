@@ -23,7 +23,7 @@
     "ts.multipleInstance": "false",
     "ts.genGroup": "0",
     "ts.dependencies": "ts.Feat.MultiInstance",
-    "ts.exclusions" : "wts.Feat.BackgroundTask",
+    "ts.exclusions" : "ts.Feat.BackgroundTask",
     "ts.rightClickEnabled":"false"
   },
   "sourceName": "MultiInstanceAdvanced",

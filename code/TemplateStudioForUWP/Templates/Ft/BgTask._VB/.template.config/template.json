@@ -21,7 +21,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "false",
     "ts.outputToParent": "true",
-    "ts.exclusions": "wts.Feat.MultiInstance.VB|wts.Feat.MultiInstanceAdvanced.VB"
+    "ts.exclusions": "ts.Feat.MultiInstance.VB|ts.Feat.MultiInstanceAdvanced.VB"
 
   },
   "sourceName": "BackgroundTaskFeature",

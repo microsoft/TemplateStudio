@@ -21,7 +21,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"false",
     "ts.outputToParent":"true",
-    "ts.exclusions": "wts.Feat.MultiInstance|wts.Feat.MultiInstanceAdvanced"
+    "ts.exclusions": "ts.Feat.MultiInstance|ts.Feat.MultiInstanceAdvanced"
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,

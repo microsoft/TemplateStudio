@@ -23,7 +23,7 @@
     "ts.multipleInstance": "false",
     "ts.genGroup": "0",
     "ts.rightClickEnabled": "false",
-    "ts.exclusions": "wts.Feat.BackgroundTask.VB"
+    "ts.exclusions": "ts.Feat.BackgroundTask.VB"
   },
   "sourceName": "MultiInstance",
   "preferNameDirectory": true,
