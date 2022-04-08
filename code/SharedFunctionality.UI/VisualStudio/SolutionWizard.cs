@@ -53,10 +53,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         protected void Initialize()
         {
-            _platform = _replacementsDictionary.SafeGet("$wts.platform$");
-            _appModel = _replacementsDictionary.SafeGet("$wts.appmodel$");
-            _language = _replacementsDictionary.SafeGet("$wts.language$");
-            var templateVersion = _replacementsDictionary.SafeGet("$wts.version$");
+            _platform = _replacementsDictionary.SafeGet("$ts.platform$");
+            _appModel = _replacementsDictionary.SafeGet("$ts.appmodel$");
+            _language = _replacementsDictionary.SafeGet("$ts.language$");
+            var templateVersion = _replacementsDictionary.SafeGet("$ts.version$");
 
             TelemetryService.Current.TemplateVersion = templateVersion;
             TelemetryService.Current.WizardVersion = GenContext.GetWizardVersionFromAssembly().ToString();
@@ -137,8 +137,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                         context.AddAppModel(_appModel);
                     }
 
-                    var requiredVersion = _replacementsDictionary.SafeGet("$wts.requiredversion$");
-                    var requiredworkloads = _replacementsDictionary.SafeGet("$wts.requiredworkloads$");
+                    var requiredVersion = _replacementsDictionary.SafeGet("$ts.requiredversion$");
+                    var requiredworkloads = _replacementsDictionary.SafeGet("$ts.requiredworkloads$");
 
                     _userSelection = WizardLauncher.Instance.StartNewProject(context, requiredVersion, requiredworkloads, new VSStyleValuesProvider());
                 }

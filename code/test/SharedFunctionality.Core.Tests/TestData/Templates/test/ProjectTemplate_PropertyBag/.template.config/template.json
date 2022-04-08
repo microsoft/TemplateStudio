@@ -8,17 +8,17 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "project",
-    "wts.projecttype": "pt1",
-    "wts.frontendframework": "fx4",
-    "wts.pb1": "value1",
-    "wts.pb2": "all",
-    "wts.platform": "test",
-    "wts.version": "1.0.0",
-    "wts.licenses": "[text1](url1)|[text2](url2)",
-    "wts.group": "group1",
-    "wts.defaultInstance": "DefaultName",
-    "wts.requiredVersions": "sdk1|sdk2"
+    "ts.type": "project",
+    "ts.projecttype": "pt1",
+    "ts.frontendframework": "fx4",
+    "ts.pb1": "value1",
+    "ts.pb2": "all",
+    "ts.platform": "test",
+    "ts.version": "1.0.0",
+    "ts.licenses": "[text1](url1)|[text2](url2)",
+    "ts.group": "group1",
+    "ts.defaultInstance": "DefaultName",
+    "ts.requiredVersions": "sdk1|sdk2"
 
   },
   "sourceName": "App_Name",

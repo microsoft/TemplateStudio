@@ -10,12 +10,12 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "WinUI",
-      "wts.version": "1.0.0",
-      "wts.compositionOrder": "0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == project",
-      "wts.licenses": "[Microsoft.Extensions.DependencyInjection](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionOrder": "0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == project",
+      "ts.licenses": "[Microsoft.Extensions.DependencyInjection](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
 
     },
     "sourceName": "wts.ItemName",

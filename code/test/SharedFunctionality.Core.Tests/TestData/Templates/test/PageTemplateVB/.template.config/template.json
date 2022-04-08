@@ -8,12 +8,12 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "page",
-    "wts.genGroup": "1",
-    "wts.export.baseclass": "ViewModelBase",
-    "wts.export.setter": "Set",
-    "wts.casing.sourceName": "kebab|camel|pascal|snake"
+    "ts.platform": "test",
+    "ts.type": "page",
+    "ts.genGroup": "1",
+    "ts.export.baseclass": "ViewModelBase",
+    "ts.export.setter": "Set",
+    "ts.casing.sourceName": "kebab|camel|pascal|snake"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

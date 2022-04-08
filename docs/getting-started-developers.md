@@ -170,11 +170,11 @@ The tests run for each of the above builds are also in the ExecutionSets '_CIBui
 To shorten test execution time traits in `Templates.Test` are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command after compiling the `Test.sln`in configuration `Analyze`:
 
-`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumWinUI', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
+`<ts directory>\_build\ParallelTestExecution.ps1 -testRunner $(UserProfile)\.nuget\packages\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe -testLibrary <ts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=MinimumWinUI', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
 
 where
 
-- `<wts directory>` : Directory where *TS* is cloned
+- `<ts directory>` : Directory where *TS* is cloned
 - `<output directory>`: Directory where test xml result files will be generated
 
 ## Core

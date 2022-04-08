@@ -7,11 +7,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "composition",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == Microsoft.Templates.Test.PageTemplate",
-    "wts.compositionOrder": "1",
+    "ts.platform": "test",
+    "ts.type": "composition",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "groupidentity == Microsoft.Templates.Test.PageTemplate",
+    "ts.compositionOrder": "1",
     "wts.export.testkey": "testValue"
   },
   "sourceName": "App_Name",

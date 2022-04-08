@@ -10,11 +10,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.outputToParent": "true",
-    "wts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $feature == wts.Wpf.Feat.ToastNotifications"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.outputToParent": "true",
+    "ts.compositionFilter": "identity == wts.Wpf.Feat.MSIXPackaging & $feature == wts.Wpf.Feat.ToastNotifications"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

@@ -8,11 +8,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "feature",
-    "wts.multipleInstance": "false",
-    "wts.projecttype": "all",
-    "wts.frontendframework": "all"
+    "ts.platform": "test",
+    "ts.type": "feature",
+    "ts.multipleInstance": "false",
+    "ts.projecttype": "all",
+    "ts.frontendframework": "all"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

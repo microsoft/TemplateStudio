@@ -8,10 +8,10 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "feature",
-    "wts.multipleInstance": "false",
-    "wts.defaultInstance": "LiveTile"
+    "ts.platform": "test",
+    "ts.type": "feature",
+    "ts.multipleInstance": "false",
+    "ts.defaultInstance": "LiveTile"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

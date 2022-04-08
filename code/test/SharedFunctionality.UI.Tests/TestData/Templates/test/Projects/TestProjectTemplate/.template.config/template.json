@@ -7,13 +7,13 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "project",
-    "wts.projecttype": "TestProjectType",
-    "wts.frontendframework": "TestFramework",
-    "wts.platform": "test",
-    "wts.version": "1.0.0",
-    "wts.licenses": "[text1](url1)|[text2](url2)",
-    "wts.group": "group1"
+    "ts.type": "project",
+    "ts.projecttype": "TestProjectType",
+    "ts.frontendframework": "TestFramework",
+    "ts.platform": "test",
+    "ts.version": "1.0.0",
+    "ts.licenses": "[text1](url1)|[text2](url2)",
+    "ts.group": "group1"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true

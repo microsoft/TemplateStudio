@@ -10,10 +10,10 @@
     "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "WinUI",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Page.ContentGrid"
+    "ts.type": "composition",
+    "ts.platform": "WinUI",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == wts.WinUI.Page.ContentGrid"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

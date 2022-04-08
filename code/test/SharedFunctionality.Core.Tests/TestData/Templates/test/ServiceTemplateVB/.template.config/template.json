@@ -8,11 +8,11 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "service",
-    "wts.genGroup": "1",
-    "wts.export.baseclass": "ViewModelBase",
-    "wts.export.setter": "Set"
+    "ts.platform": "test",
+    "ts.type": "service",
+    "ts.genGroup": "1",
+    "ts.export.baseclass": "ViewModelBase",
+    "ts.export.setter": "Set"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

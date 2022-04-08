@@ -56,7 +56,7 @@ Get-ChildItem ..\templates\* -Recurse -include *template.json | where { $_.FullN
         # Not every template contains "name" or "description" properties so only look at those that do.
         if (($vbJson.PSobject.Properties.name -match "name") -and ($csJson.PSobject.Properties.name -match "name"))
         {
-            if ($vbJson.name -ne $csJson.name -and $vbJson.tags.'wts.type' -ne "composition")
+            if ($vbJson.name -ne $csJson.name -and $vbJson.tags.'ts.type' -ne "composition")
             {
                 $vbJson.name = $csJson.name
                 $somethingWasChanged = $true;

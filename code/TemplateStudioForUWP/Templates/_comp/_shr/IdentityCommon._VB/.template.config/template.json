@@ -10,12 +10,12 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Uwp",
-    "wts.version": "1.0.0",
-    "wts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
-    "wts.compositionFilter": "groupIdentity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB",
-    "wts.outputToParent": "true"
+    "ts.type": "composition",
+    "ts.platform": "Uwp",
+    "ts.version": "1.0.0",
+    "ts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)",
+    "ts.compositionFilter": "groupIdentity == wts.Service.IdentityForcedLogin.VB|wts.Service.IdentityOptionalLogin.VB",
+    "ts.outputToParent": "true"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

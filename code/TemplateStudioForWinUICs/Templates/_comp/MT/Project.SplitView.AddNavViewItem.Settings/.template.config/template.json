@@ -10,10 +10,10 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "WinUI",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & wts.type == page & identity == wts.WinUI.Page.Settings"
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & ts.type == page & identity == wts.WinUI.Page.Settings"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

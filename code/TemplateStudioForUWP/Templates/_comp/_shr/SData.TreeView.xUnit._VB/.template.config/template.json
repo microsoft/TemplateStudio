@@ -10,12 +10,12 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "composition",
-    "wts.outputToParent": "true",
-    "wts.platform" : "Uwp",
-    "wts.version": "1.0.0",
-    "wts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Testing.UnitTests.Core.xUnit.VB & $page == wts.Page.TreeView.VB|wts.Page.TreeView.CodeBehind.VB",
-    "wts.compositionOrder" : "1"
+    "ts.type": "composition",
+    "ts.outputToParent": "true",
+    "ts.platform" : "Uwp",
+    "ts.version": "1.0.0",
+    "ts.compositionFilter": "$frontendframework == CodeBehind|MVVMToolkit & identity == wts.Testing.UnitTests.Core.xUnit.VB & $page == wts.Page.TreeView.VB|wts.Page.TreeView.CodeBehind.VB",
+    "ts.compositionOrder" : "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

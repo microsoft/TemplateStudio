@@ -10,10 +10,10 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "WinUI",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.Settings|wts.WinUI.Page.ContentGrid|wts.WinUI.Page.Form|wts.WinUI.Page.WebView"
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == wts.WinUI.Page.Settings|wts.WinUI.Page.ContentGrid|wts.WinUI.Page.Form|wts.WinUI.Page.WebView"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

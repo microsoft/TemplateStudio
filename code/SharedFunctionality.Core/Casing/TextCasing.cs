@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.Casing
         public CasingType Type { get; set; }
 
 #pragma warning disable CA1308 // Normalize strings to uppercase
-        public string ParameterName => $"wts.{Key}.casing.{Type.ToString().ToLowerInvariant()}";
+        public string ParameterName => $"ts.{Key}.casing.{Type.ToString().ToLowerInvariant()}";
 #pragma warning restore CA1308 // Normalize strings to uppercase
 
         public string Transform(string value)

@@ -10,14 +10,14 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "Wpf",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == MVVMToolkit & wts.type == feature",
-      "wts.export.configtype": "IOptions<AppConfig>",
-      "wts.export.configvalue": "appConfig.Value",
-      "wts.export.baseclass": "ObservableObject",
-      "wts.export.commandclass": "RelayCommand"
+      "ts.type": "composition",
+      "ts.platform": "Wpf",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == feature",
+      "ts.export.configtype": "IOptions<AppConfig>",
+      "ts.export.configvalue": "appConfig.Value",
+      "ts.export.baseclass": "ObservableObject",
+      "ts.export.commandclass": "RelayCommand"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

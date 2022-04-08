@@ -10,11 +10,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",
-    "wts.platform": "Wpf",
-    "wts.version": "1.0.0",
-    "wts.compositionOrder": "0",
-    "wts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin & $frontendframework == CodeBehind"
+    "ts.type": "composition",
+    "ts.platform": "Wpf",
+    "ts.version": "1.0.0",
+    "ts.compositionOrder": "0",
+    "ts.compositionFilter": "groupIdentity == wts.Wpf.Service.IdentityForcedLogin|wts.Wpf.Service.IdentityOptionalLogin & $frontendframework == CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private string WtsType(GenInfo genInfo)
         {
-            return genInfo.Template.TagsCollection.First(tag => tag.Key == "wts.type").Value;
+            return genInfo.Template.TagsCollection.First(tag => tag.Key == "ts.type").Value;
         }
     }
 }

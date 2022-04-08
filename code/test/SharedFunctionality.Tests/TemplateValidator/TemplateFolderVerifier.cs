@@ -139,27 +139,27 @@ namespace TemplateValidator
                     }
 
                     // Get list of dependencies while the file is open. These are all checked later
-                    if (template.TagsCollection.ContainsKey("wts.dependencies"))
+                    if (template.TagsCollection.ContainsKey("ts.dependencies"))
                     {
-                        allDependencies.Add(templateFilePath, template.TagsCollection["wts.dependencies"]);
+                        allDependencies.Add(templateFilePath, template.TagsCollection["ts.dependencies"]);
                     }
 
                     // Get list of requirements while the file is open. These are all checked later
-                    if (template.TagsCollection.ContainsKey("wts.requirements"))
+                    if (template.TagsCollection.ContainsKey("ts.requirements"))
                     {
-                        allRequirements.Add(templateFilePath, template.TagsCollection["wts.requirements"]);
+                        allRequirements.Add(templateFilePath, template.TagsCollection["ts.requirements"]);
                     }
 
                     // Get list of exclusions while the file is open. These are all checked later
-                    if (template.TagsCollection.ContainsKey("wts.exclusions"))
+                    if (template.TagsCollection.ContainsKey("ts.exclusions"))
                     {
-                        allExclusions.Add(templateFilePath, template.TagsCollection["wts.exclusions"]);
+                        allExclusions.Add(templateFilePath, template.TagsCollection["ts.exclusions"]);
                     }
 
                     // Get list of filters while the file is open. These are all checked later
-                    if (template.TagsCollection.ContainsKey("wts.compositionFilter"))
+                    if (template.TagsCollection.ContainsKey("ts.compositionFilter"))
                     {
-                        allCompFilters.Add(templateFilePath, template.TagsCollection["wts.compositionFilter"]);
+                        allCompFilters.Add(templateFilePath, template.TagsCollection["ts.compositionFilter"]);
                     }
 
                     var templateRoot = templateFilePath.Replace("\\.template.config\\template.json", string.Empty);

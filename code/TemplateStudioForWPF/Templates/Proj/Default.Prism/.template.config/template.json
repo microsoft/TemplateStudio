@@ -12,14 +12,14 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "wts.type": "project",
-    "wts.projecttype": "Blank|SplitView|MenuBar|Ribbon",
-    "wts.frontendframework": "Prism",
-    "wts.platform": "Wpf",
-    "wts.outputToParent": "true",
-    "wts.version": "1.0.0",
-    "wts.displayOrder": "0",
-    "wts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)|[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)"
+    "ts.type": "project",
+    "ts.projecttype": "Blank|SplitView|MenuBar|Ribbon",
+    "ts.frontendframework": "Prism",
+    "ts.platform": "Wpf",
+    "ts.outputToParent": "true",
+    "ts.version": "1.0.0",
+    "ts.displayOrder": "0",
+    "ts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)|[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)"
   },
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,

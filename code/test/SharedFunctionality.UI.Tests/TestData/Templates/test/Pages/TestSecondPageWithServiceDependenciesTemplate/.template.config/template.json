@@ -9,13 +9,13 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.platform": "test",
-    "wts.projecttype": "TestProjectType",
-    "wts.frontendframework": "TestFramework",
-    "wts.type": "page",
-    "wts.displayOrder": "4",
-    "wts.genGroup": "1",
-    "wts.dependencies": "Microsoft.Templates.Test.ServiceSecondTemplate.CSharp"
+    "ts.platform": "test",
+    "ts.projecttype": "TestProjectType",
+    "ts.frontendframework": "TestFramework",
+    "ts.type": "page",
+    "ts.displayOrder": "4",
+    "ts.genGroup": "1",
+    "ts.dependencies": "Microsoft.Templates.Test.ServiceSecondTemplate.CSharp"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

@@ -9,9 +9,9 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.platform": "test",
-    "wts.type": "feature",
-    "wts.isGroupExclusiveSelection": "true"
+    "ts.platform": "test",
+    "ts.type": "feature",
+    "ts.isGroupExclusiveSelection": "true"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

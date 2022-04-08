@@ -188,7 +188,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<TemplateLicense> GetLicenses(TemplateValidator.ValidationTemplateInfo ti)
         {
-            var licenses = GetValueFromTemplateTag(ti, "wts.licenses");
+            var licenses = GetValueFromTemplateTag(ti, "ts.licenses");
 
             if (string.IsNullOrWhiteSpace(licenses))
             {

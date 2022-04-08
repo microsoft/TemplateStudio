@@ -14,28 +14,28 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void ParseInvalidQueries()
         {
-            var query1 = "wts.frontendframework = framework & wts.type != Page&$name == Map";
+            var query1 = "ts.frontendframework = framework & ts.type != Page&$name == Map";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
             {
                 var result = CompositionQuery.Parse(query1);
             });
 
-            var query2 = "wts.frontendframework= framework &wts.type ! Page&$name != Map";
+            var query2 = "ts.frontendframework= framework &ts.type ! Page&$name != Map";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
             {
                 var result = CompositionQuery.Parse(query2);
             });
 
-            var query3 = "wts.frontendframework==framework&wts.type!Page&$name == Map";
+            var query3 = "ts.frontendframework==framework&ts.type!Page&$name == Map";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
             {
                 var result = CompositionQuery.Parse(query3);
             });
 
-            var query4 = "wts.frontendframework   == framework & wts.type=Page& $name == Map";
+            var query4 = "ts.frontendframework   == framework & ts.type=Page& $name == Map";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
             {
@@ -46,21 +46,21 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse()
         {
-            var query = "wts.frontendframework == framework & wts.type != Page&$name == Map";
+            var query = "ts.frontendframework == framework & ts.type != Page&$name == Map";
             var result = CompositionQuery.Parse(query);
 
             Assert.Collection(
                 result.Items,
                 r1 =>
                 {
-                    Assert.Equal("wts.frontendframework", r1.Field);
+                    Assert.Equal("ts.frontendframework", r1.Field);
                     Assert.Equal(QueryOperator.Equals, r1.Operator);
                     Assert.Equal("framework", r1.Value);
                     Assert.False(r1.IsContext);
                 },
                 r2 =>
                 {
-                    Assert.Equal("wts.type", r2.Field);
+                    Assert.Equal("ts.type", r2.Field);
                     Assert.Equal(QueryOperator.NotEquals, r2.Operator);
                     Assert.Equal("Page", r2.Value);
                     Assert.False(r2.IsContext);
@@ -79,8 +79,8 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var query = new string[]
             {
-                "wts.frontendframework == framework",
-                "wts.type != Page",
+                "ts.frontendframework == framework",
+                "ts.type != Page",
                 "$name == Map",
             };
 
@@ -90,14 +90,14 @@ namespace Microsoft.Templates.Core.Test.Composition
                 result.Items,
                 r1 =>
                 {
-                    Assert.Equal("wts.frontendframework", r1.Field);
+                    Assert.Equal("ts.frontendframework", r1.Field);
                     Assert.Equal(QueryOperator.Equals, r1.Operator);
                     Assert.Equal("framework", r1.Value);
                     Assert.False(r1.IsContext);
                 },
                 r2 =>
                 {
-                    Assert.Equal("wts.type", r2.Field);
+                    Assert.Equal("ts.type", r2.Field);
                     Assert.Equal(QueryOperator.NotEquals, r2.Operator);
                     Assert.Equal("Page", r2.Value);
                     Assert.False(r2.IsContext);
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse_NoValueInParam()
         {
-            var query = "wts.frontendframework == framework & wts.type";
+            var query = "ts.frontendframework == framework & ts.type";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
             {

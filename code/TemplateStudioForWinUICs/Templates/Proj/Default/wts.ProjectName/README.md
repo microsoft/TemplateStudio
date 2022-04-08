@@ -53,7 +53,7 @@ Right click on the packaging project and click `Publish -> Create App Packages..
 
 ## Additional Documentation
 
-- [WTS WinUI 3 docs](https://github.com/microsoft/TemplateStudio/tree/main/docs/WinUI)
+- [TS WinUI 3 docs](https://github.com/microsoft/TemplateStudio/tree/main/docs/WinUI)
 - [WinUI 3 docs](https://docs.microsoft.com/windows/apps/winui/winui3/)
 - [WinUI 3 GitHub repo](https://github.com/microsoft/microsoft-ui-xaml)
 - [Windows App SDK GitHub repo](https://github.com/microsoft/WindowsAppSDK)

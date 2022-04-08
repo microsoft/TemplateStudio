@@ -19,13 +19,13 @@
 	</TemplateData>
 	<TemplateContent>
 		<CustomParameters>
-			<CustomParameter Name="$wts.platform$" Value="WinUI"/>
-			<CustomParameter Name="$wts.appmodel$" Value="Desktop"/>
-			<CustomParameter Name="$wts.language$" Value="C#"/>
-			<CustomParameter Name="$wts.category$" Value="TemplateStudio4"/>
-			<CustomParameter Name="$wts.version$" Value="2.1.0"/>
-			<CustomParameter Name="$wts.requiredversion$" Value="17.0"/>
-			<CustomParameter Name="$wts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
+			<CustomParameter Name="$ts.platform$" Value="WinUI"/>
+			<CustomParameter Name="$ts.appmodel$" Value="Desktop"/>
+			<CustomParameter Name="$ts.language$" Value="C#"/>
+			<CustomParameter Name="$ts.category$" Value="TemplateStudio4"/>
+			<CustomParameter Name="$ts.version$" Value="2.1.0"/>
+			<CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
+			<CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
 		</CustomParameters>
 	</TemplateContent>
 	<WizardExtension>

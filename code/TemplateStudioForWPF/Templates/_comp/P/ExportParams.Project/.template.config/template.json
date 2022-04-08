@@ -10,13 +10,13 @@
     "tags": {
       "language": "C#",
       "type": "item",
-      "wts.type": "composition",
-      "wts.platform": "Wpf",
-      "wts.version": "1.0.0",
-      "wts.compositionFilter": "$frontendframework == Prism & wts.type == project",
-      "wts.export.baseclass": "BindableBase",
-      "wts.export.setter": "SetProperty",
-      "wts.export.commandclass": "DelegateCommand"
+      "ts.type": "composition",
+      "ts.platform": "Wpf",
+      "ts.version": "1.0.0",
+      "ts.compositionFilter": "$frontendframework == Prism & ts.type == project",
+      "ts.export.baseclass": "BindableBase",
+      "ts.export.setter": "SetProperty",
+      "ts.export.commandclass": "DelegateCommand"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
