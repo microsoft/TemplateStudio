@@ -2144,12 +2144,6 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\TextBlock.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\_FontSizes.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\_Thickness.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\frontendframeworks\MVVMToolkit.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
