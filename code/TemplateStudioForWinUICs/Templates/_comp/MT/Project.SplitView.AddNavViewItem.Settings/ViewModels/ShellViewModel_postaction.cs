@@ -7,7 +7,7 @@
         {
             IsBackEnabled = NavigationService.CanGoBack;
 //{[{
-            if (e.SourcePageType == typeof(wts.ItemNamePage))
+            if (e.SourcePageType == typeof(Param_ItemNamePage))
             {
                 Selected = NavigationViewService.SettingsItem;
                 return;

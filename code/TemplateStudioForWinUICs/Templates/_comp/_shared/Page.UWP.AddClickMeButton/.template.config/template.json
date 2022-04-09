@@ -16,7 +16,7 @@
     "ts.version": "1.0.0",
     "ts.compositionFilter": "$projecttype == Blank & groupidentity == ts.WinUI.Page.Blank & $ishomepage == true"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "symbols": {
     "ts.projectName": {
       "type": "parameter",

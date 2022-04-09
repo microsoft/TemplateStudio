@@ -5,18 +5,18 @@
         private bool _isBackEnabled;
         private object _selected;
 //{[{
-        private ICommand _menuViewswts.ItemNameCommand;
+        private ICommand _menuViewsParam_ItemNameCommand;
 //}]}
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
 //{[{
 
-        public ICommand MenuViewswts.ItemNameCommand => _menuViewswts.ItemNameCommand ?? (_menuViewswts.ItemNameCommand = new RelayCommand(OnMenuViewswts.ItemName));
+        public ICommand MenuViewsParam_ItemNameCommand => _menuViewsParam_ItemNameCommand ?? (_menuViewsParam_ItemNameCommand = new RelayCommand(OnMenuViewsParam_ItemName));
 //}]}
         public INavigationService NavigationService { get; }
 //^^
 //{[{
 
-        private void OnMenuViewswts.ItemName() => NavigationService.NavigateTo(typeof(wts.ItemNameViewModel).FullName);
+        private void OnMenuViewsParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
 //}]}
     }
 }
