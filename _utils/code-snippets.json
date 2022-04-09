@@ -30,7 +30,7 @@
 		"  \"PrimaryOutputs\": [",
 		"  ],",
 		"  \"symbols\": {",
-		"    \"wts.rootNamespace\": {",
+		"    \"ts.rootNamespace\": {",
 		"      \"type\": \"parameter\",",
 		"      \"replaces\": \"Param_RootNamespace\"",
 		"    }",
@@ -64,7 +64,7 @@
       "  \"PrimaryOutputs\": [",
       "  ],",
       "  \"symbols\": {",
-      "    \"wts.rootNamespace\": {",
+      "    \"ts.rootNamespace\": {",
       "      \"type\": \"parameter\",",
       "      \"replaces\": \"Param_RootNamespace\"",
       "    }",
@@ -78,7 +78,7 @@
 	"wts.symbols.rootNamespace":{
 		"prefix": "wts.symbols.rootNamespace",
 		"body": [
-		"\"wts.rootNamespace\": {",
+		"\"ts.rootNamespace\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_RootNamespace\"",
 		"}"
@@ -133,7 +133,7 @@
 	"wts.symbols.homePageName":{
 		"prefix": "wts.symbols.homePageName",
 		"body": [
-		"\"wts.homePageName\": {",
+		"\"ts.homePageName\": {",
 		"  \"type\": \"parameter\",",
 		"  \"replaces\": \"Param_HomeName\"",
 		"}"

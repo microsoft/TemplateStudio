@@ -30,11 +30,11 @@
       }
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },
-      "wts.homePageName": {
+      "ts.homePageName": {
         "type":"parameter",
         "replaces":"Param_HomeName"
       },

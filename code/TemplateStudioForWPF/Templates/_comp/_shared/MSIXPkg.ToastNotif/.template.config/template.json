@@ -22,7 +22,7 @@
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.projectName": {
+      "ts.projectName": {
         "type": "parameter",
         "replaces": "Param_ProjectName",
         "fileRename": "Param_ProjectName"

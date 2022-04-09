@@ -29,12 +29,12 @@
     { "path": "Param_ProjectName.Core.Tests.xUnit/Param_ProjectName.Core.Tests.xUnit.csproj" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

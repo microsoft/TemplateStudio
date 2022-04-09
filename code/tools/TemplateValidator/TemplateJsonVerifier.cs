@@ -157,7 +157,7 @@ namespace TemplateValidator
                 "configtype", "configvalue",
                 "pagetype",
                 "canExecuteChangedMethodName",
-                "wts.generation.appmodel",
+                "ts.generation.appmodel",
             };
 
             foreach (var symbol in template.Symbols)

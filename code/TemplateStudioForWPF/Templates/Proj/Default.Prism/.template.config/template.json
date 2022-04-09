@@ -30,39 +30,39 @@
     { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
   ],
   "symbols": {
-    "wts.projectName":
+    "ts.projectName":
     {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.wizardVersion":
+    "ts.wizardVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
+    "ts.templatesVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Templates.Version"
     },
-    "wts.generationProjectType":
+    "ts.generationProjectType":
     {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
+    "ts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
+    "ts.generationPlatform":
     {
       "type": "parameter",
       "replaces": "Param_Platform"

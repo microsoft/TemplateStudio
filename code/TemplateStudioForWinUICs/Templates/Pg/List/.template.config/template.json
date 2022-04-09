@@ -45,7 +45,7 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
@@ -53,7 +53,7 @@
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
     },
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
