@@ -2083,32 +2083,27 @@
     </Content>
     <Content Include="Templates\Pg\Blank\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\CGrid\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNameDetailPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\DGrid\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\DGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\Form\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Form\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\List\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -2118,25 +2113,21 @@
     </Content>
     <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNameDetailControl.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\Settings\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Settings\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Pg\WebView\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\WebView\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -2179,7 +2170,6 @@
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddBackCommand\Views\Param_ItemNameDetailPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -2201,43 +2191,33 @@
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.DataGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.Form\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.Settings\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
