@@ -488,13 +488,13 @@
     <Content Include="Templates\_comp\MT\Feature.ThemeSelection\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddBackCommand\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddBackCommand\ViewModels\Param_ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddCommandNS\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddIocNS\Views\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\App_postaction.xaml.cs">
@@ -503,10 +503,10 @@
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\ViewModels\Param_ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Views\wts.ItemNameDetailPage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Views\Param_ItemNameDetailPage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModel\App_postaction.xaml.cs">
@@ -515,10 +515,10 @@
     <Content Include="Templates\_comp\MT\Page.AddViewModel\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModel\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModel\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModel\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModel\Views\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.WebView\App_postaction.xaml.cs">
@@ -611,7 +611,7 @@
     <Content Include="Templates\_comp\MT\Project\Services\PageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\cs-CZ.description.md">
@@ -2177,8 +2177,9 @@
     <Content Include="Templates\_catalog\projectTypes\SplitView.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddBackCommand\Views\wts.ItemNameDetailPage_postaction.xaml">
+    <Content Include="Templates\_comp\MT\Page.AddBackCommand\Views\Param_ItemNameDetailPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -2198,35 +2199,45 @@
     <Content Include="Templates\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.DataGrid\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.DataGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Form\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Form\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Settings\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Settings\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -2255,10 +2266,10 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Services\FileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\Helpers\NavigationHelper.cs">

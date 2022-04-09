@@ -7,7 +7,7 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameDetailViewModel : ObservableRecipient, INavigationAware
+    public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAware
     {
 //{[{
         private readonly INavigationService _navigationService;
@@ -19,7 +19,7 @@ namespace Param_RootNamespace.ViewModels
         public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
 //}]}
 
-        public wts.ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
+        public Param_ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
         {
 //{[{
             _navigationService = navigationService;

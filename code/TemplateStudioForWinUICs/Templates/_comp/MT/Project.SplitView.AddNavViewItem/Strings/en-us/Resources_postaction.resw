@@ -2,8 +2,8 @@
 <root>
 <!--^^-->
 <!--{[{-->
-  <data name="Shell_wts.ItemName.Content" xml:space="preserve">
-    <value>wts.ItemName</value>
+  <data name="Shell_Param_ItemName.Content" xml:space="preserve">
+    <value>Param_ItemName</value>
   </data>
 <!--}]}-->
 </root>

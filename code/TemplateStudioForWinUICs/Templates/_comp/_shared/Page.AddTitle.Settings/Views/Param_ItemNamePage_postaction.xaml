@@ -1,6 +1,6 @@
 ﻿<Page
     Style="{StaticResource PageStyle}">
-    <Grid x:Name="ContentArea">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
 <!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -9,15 +9,14 @@
 
         <TextBlock
             Grid.Row="0"
-            x:Uid="wts.ItemName_Title"
-            Margin="{StaticResource MediumLeftRightMargin}"
+            x:Uid="Param_ItemName_Title"
             Style="{StaticResource PageTitleStyle}" />
 <!--}]}-->
-        <controls:AdaptiveGridView
+        <StackPanel
 <!--{[{-->
-            Grid.Row="1"
+            Grid.Row="1" 
 <!--}]}-->
-            StretchContentForSingleRow="False">
-        </controls:AdaptiveGridView>
+            x:Name="ContentArea">
+        </StackPanel>
     </Grid>
 </Page>

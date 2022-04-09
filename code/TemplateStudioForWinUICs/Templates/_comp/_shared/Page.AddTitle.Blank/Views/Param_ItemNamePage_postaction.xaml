@@ -9,14 +9,14 @@
 
         <TextBlock
             Grid.Row="0"
-            x:Uid="wts.ItemName_Title"
+            x:Uid="Param_ItemName_Title"
             Style="{StaticResource PageTitleStyle}" />
 <!--}]}-->
-        <controls:DataGrid
+        <Grid
 <!--{[{-->
-            Grid.Row="1"
+            Grid.Row="1" 
 <!--}]}-->
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-        </controls:DataGrid>
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        </Grid>
     </Grid>
 </Page>

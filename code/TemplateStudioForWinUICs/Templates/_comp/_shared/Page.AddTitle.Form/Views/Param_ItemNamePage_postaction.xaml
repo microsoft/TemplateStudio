@@ -4,7 +4,7 @@
         <StackPanel
             MaxWidth="650">
 <!--{[{-->
-            <TextBlock x:Uid="wts.ItemName_Title" Style="{StaticResource PageTitleStyle}" />
+            <TextBlock x:Uid="Param_ItemName_Title" Style="{StaticResource PageTitleStyle}" />
 <!--}]}-->
         </StackPanel>
     </ScrollViewer>

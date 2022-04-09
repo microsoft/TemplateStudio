@@ -1,4 +1,4 @@
-﻿public sealed partial class wts.ItemNamePage : Page
+﻿public sealed partial class Param_ItemNamePage : Page
 {
 //^^
 //{[{
