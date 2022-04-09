@@ -89,7 +89,7 @@ We've created some Visual Studio Code Snippets to help creating the template.jso
 
 #### Using the code snippets
 
-After creating an empty template.json file, type wts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
+After creating an empty template.json file, type ts.template and click Enter, the code snippet will add a template json with different variables to complete, you can use the tab key to navigate between them.
 There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actions.
 
 
