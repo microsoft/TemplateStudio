@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplates_Uwp_Group1.Contains(t.GroupIdentity)
-                || t.Identity == "wts.Feat.StyleCop";
+                || t.Identity == "ts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopG2";
 
@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplates_Uwp_Group2.Contains(t.GroupIdentity)
-                || t.Identity == "wts.Feat.StyleCop";
+                || t.Identity == "ts.Feat.StyleCop";
 
             var projectName = $"{projectType}{framework}AllStyleCopG1";
 

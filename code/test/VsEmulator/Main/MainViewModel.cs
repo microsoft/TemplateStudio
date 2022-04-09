@@ -359,10 +359,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                     switch (language)
                     {
                         case "C#":
-                            styleCopTemplate = "wts.Feat.StyleCop";
+                            styleCopTemplate = "ts.Feat.StyleCop";
                             break;
                         case "VisualBasic":
-                            styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                            styleCopTemplate = "ts.Feat.VBStyleAnalysis";
                             break;
                         default:
                             return;

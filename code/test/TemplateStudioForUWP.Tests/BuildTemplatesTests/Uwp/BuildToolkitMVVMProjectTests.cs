@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplates_Uwp_Group1.Contains(t.GroupIdentity)
-                || t.Identity == "wts.Feat.StyleCop";
+                || t.Identity == "ts.Feat.StyleCop";
 
             // Use the short version of the framework name to avoid failures with cryptic error messages that are actually the result of unreported MAX_PATH issues elsewhere
             var projectName = $"{projectType}{UwpBuildTemplatesTestFixture.ShortFrameworkName(framework)}AllStyleCopG2";
@@ -133,7 +133,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplates_Uwp_Group2.Contains(t.GroupIdentity)
-                || t.Identity == "wts.Feat.StyleCop";
+                || t.Identity == "ts.Feat.StyleCop";
 
             // Use the short version of the framework name to avoid failures with cryptic error messages that are actually the result of unreported MAX_PATH issues elsewhere
             var projectName = $"{projectType}{UwpBuildTemplatesTestFixture.ShortFrameworkName(framework)}AllStyleCopG1";

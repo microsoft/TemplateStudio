@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplatesGroup2VB.Contains(t.GroupIdentity)
-                || (t.Identity == "wts.Feat.VBStyleAnalysis");
+                || (t.Identity == "ts.Feat.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyleG1";
 
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test.UWP.Build
                 && t.GetPlatform() == platform
                 && !t.GetIsHidden()
                 && !excludedTemplatesGroup1VB.Contains(t.GroupIdentity)
-                || (t.Identity == "wts.Feat.VBStyleAnalysis");
+                || (t.Identity == "ts.Feat.VBStyleAnalysis");
 
             var projectName = $"{projectType}{framework}AllVBStyleG2";
 
