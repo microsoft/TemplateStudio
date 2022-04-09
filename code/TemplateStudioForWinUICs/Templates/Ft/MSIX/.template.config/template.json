@@ -25,7 +25,7 @@
     "ts.multipleInstance": "false",
     "ts.rightClickEnabled": "false"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "guids": ["07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [

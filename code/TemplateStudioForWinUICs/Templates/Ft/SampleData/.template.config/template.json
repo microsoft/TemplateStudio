@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.outputToParent": "true"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

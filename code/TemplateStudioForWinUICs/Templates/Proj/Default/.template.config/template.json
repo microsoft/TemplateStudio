@@ -22,7 +22,7 @@
     "ts.displayOrder": "0",
     "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
   },
-  "sourceName": "wts.ProjectName",
+  "sourceName": "Param_ProjectName",
   "preferNameDirectory": true,
   "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e"],
     "PrimaryOutputs": [
