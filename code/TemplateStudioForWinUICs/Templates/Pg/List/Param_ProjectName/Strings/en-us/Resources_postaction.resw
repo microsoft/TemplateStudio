@@ -2,10 +2,10 @@
 <root>
 <!--^^-->
 <!--{[{-->
-  <data name="wts.ItemName.ListHeader" xml:space="preserve">
-    <value>wts.ItemName</value>
+  <data name="Param_ItemName.ListHeader" xml:space="preserve">
+    <value>Param_ItemName</value>
   </data>
-  <data name="wts.ItemName_NoSelection.Text" xml:space="preserve">
+  <data name="Param_ItemName_NoSelection.Text" xml:space="preserve">
     <value>Select an item from the list.</value>
   </data>
 <!--}]}-->

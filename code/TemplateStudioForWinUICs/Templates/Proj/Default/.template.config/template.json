@@ -25,10 +25,10 @@
   "sourceName": "wts.ProjectName",
   "preferNameDirectory": true,
   "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e"],
-  "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
-  ],
+    "PrimaryOutputs": [
+        { "path": "Param_ProjectName/Param_ProjectName.csproj" },
+        { "path": "Param_ProjectName.Core/Param_ProjectName.Core.csproj" }
+    ],
   "symbols": {
     "wts.projectName":
     {

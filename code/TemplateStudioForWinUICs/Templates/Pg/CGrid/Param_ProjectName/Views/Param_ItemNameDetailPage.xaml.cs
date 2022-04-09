@@ -6,9 +6,9 @@ using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class wts.ItemNameDetailPage : Page
+    public sealed partial class Param_ItemNameDetailPage : Page
     {
-        public wts.ItemNameDetailPage()
+        public Param_ItemNameDetailPage()
         {
             InitializeComponent();
         }

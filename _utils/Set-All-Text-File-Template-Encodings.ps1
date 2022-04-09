@@ -6,7 +6,7 @@
 # the UTF8+BOM encoding.
 # This encoding allows for the use of other languages in files.
 # Any files that don't have the desired encoding will be changed
-#  so they are encoded as desired.
+# so they are encoded as desired.
 
 #Requires -PSEdition Core
 
@@ -19,41 +19,42 @@ function Is-EncodedCorrectly
      [string]$Path
    )
 
-   [byte[]]$byte = Get-Content -AsByteStream -Raw -Path $Path
+   [byte[]] $byte = Get-Content -AsByteStream -Raw -Path $Path
 
    # EF BB BF (UTF8 + BOM)
-   if ( $byte[0] -eq 0xef -and $byte[1] -eq 0xbb -and $byte[2] -eq 0xbf )
-   {
-       return $true 
-   }
-   else
-   { 
-       return $false
-   }
+   return $byte[0] -eq 0xEF -and $byte[1] -eq 0xBB -and $byte[2] -eq 0xBF
 }
 
-# Filtering is done by file extension. We care about:
-# *.appxmanifest
-# *.cs
-# *.csproj
-# *.json
-# *.md
-# *.resw
-# *.vb
-# *.vbproj
-# *.xaml
-# *.xml
+# Template paths.
+$templateRoots = "..\code\TemplateStudioForWinUICs\Templates",
+                 "..\code\TemplateStudioForWinUICpp\Templates",
+                 "..\code\TemplateStudioForWPF\Templates",
+                 "..\code\TemplateStudioForUWP\Templates",
+                 "..\code\Test\TemplateStudioForWinUICs.Tests\TestData\WinUI",
+                 "..\code\Test\TemplateStudioForWPF.Tests\TestData\WPF",
+                 "..\code\Test\TemplateStudioForUWP.Tests\TestData\UWP"
 
-foreach ($templateRoot in "..\code\TemplateStudioForUWP\Templates", "..\code\TemplateStudioForWinUICpp\Templates", "..\code\TemplateStudioForWinUICs\Templates", "..\code\TemplateStudioForWPF\Templates", "..\code\Test\TemplateStudioForUWP.Tests\TestData\UWP", "..\code\Test\TemplateStudioForWinUICs.Tests\TestData\WinUI", "..\code\Test\TemplateStudioForWPF.Tests\TestData\WPF")
+# File extension filters.
+$extensions = "*.appxmanifest",
+              "*.cs",
+              "*.csproj",
+              "*.json",
+              "*.md",
+              "*.resw",
+              "*.vb",
+              "*.vbproj",
+              "*.xaml",
+              "*.xml"
+
+foreach ($templateRoot in $templateRoots)
 {
-Get-ChildItem -Path $templateRoot -Recurse -Include *.appxmanifest, *.cs, *.csproj, *.json, *.md, *.resw, *.vb, *.vbproj, *.xaml, *.xml |
-ForEach-Object {
-    if (-NOT (Is-EncodedCorrectly $_.FullName))
-    {
-       Write-Host "Changing encoding of" $_.FullName;
+    Get-ChildItem -Path $templateRoot -Recurse -Include $extensions |
+    ForEach-Object {
+        if (-not (Is-EncodedCorrectly $_.FullName))
+        {
+            Write-Host "Changing encoding of" $_.FullName;
 
-       # the encoding value of 'utf8' does include the Byte Order Mark (signature)
-       (Get-Content $_.FullName) | Out-File $_.FullName -Encoding utf8;
+            Get-Content $_.FullName | Out-File $_.FullName -Encoding utf8BOM;
+        }
     }
-}
 }

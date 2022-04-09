@@ -22,7 +22,7 @@
     "ts.genGroup": "0",
     "ts.rightClickEnabled":"true"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
@@ -32,13 +32,13 @@
       "path": "Services/WebViewService.cs"
     },
     {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
+      "path": "ViewModels/Param_ItemNameViewModel.cs"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml"
+      "path": "Views/Param_ItemNamePage.xaml"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml.cs"
+      "path": "Views/Param_ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

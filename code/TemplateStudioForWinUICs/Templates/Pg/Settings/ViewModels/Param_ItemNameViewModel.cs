@@ -6,7 +6,7 @@ using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly IThemeSelectorService _themeSelectorService;
         private ElementTheme _elementTheme;
@@ -50,7 +50,7 @@ namespace Param_RootNamespace.ViewModels
             }
         }
 
-        public wts.ItemNameViewModel(IThemeSelectorService themeSelectorService)
+        public Param_ItemNameViewModel(IThemeSelectorService themeSelectorService)
         {
             _themeSelectorService = themeSelectorService;
             _elementTheme = _themeSelectorService.Theme;

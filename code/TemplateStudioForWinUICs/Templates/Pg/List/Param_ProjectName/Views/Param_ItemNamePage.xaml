@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Param_RootNamespace.Views.wts.ItemNamePage"
+    x:Class="Param_RootNamespace.Views.Param_ItemNamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -34,14 +34,14 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <views:wts.ItemNameDetailControl ListDetailsMenuItem="{Binding}" />
+                <views:Param_ItemNameDetailControl ListDetailsMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    x:Uid="wts.ItemName_NoSelection"
+                    x:Uid="Param_ItemName_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -61,7 +61,7 @@
 
     <Grid x:Name="ContentArea">
         <controls:ListDetailsView
-            x:Uid="wts.ItemName"
+            x:Uid="Param_ItemName"
             x:Name="ListDetailsViewControl"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"

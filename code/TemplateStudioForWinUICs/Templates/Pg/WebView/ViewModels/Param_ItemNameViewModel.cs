@@ -12,7 +12,7 @@ namespace Param_RootNamespace.ViewModels
     //
     // You can also read more about WebView2 control at
     // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
-    public class wts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+    public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         // TODO: Set the URI of the page to show by default
         private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
@@ -59,7 +59,7 @@ namespace Param_RootNamespace.ViewModels
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new RelayCommand(async
             () => await Windows.System.Launcher.LaunchUriAsync(Source)));
 
-        public wts.ItemNameViewModel(IWebViewService webViewService)
+        public Param_ItemNameViewModel(IWebViewService webViewService)
         {
             WebViewService = webViewService;
         }

@@ -8,7 +8,7 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : ObservableValidator
+    public class Param_ItemNameViewModel : ObservableValidator
     {
         private readonly ISampleDataService _sampleDataService;
 
@@ -64,7 +64,7 @@ namespace Param_RootNamespace.ViewModels
         }
 
         [Required]
-        [CustomValidation(typeof(wts.ItemNameViewModel), "ValidateDoubleProperty")]
+        [CustomValidation(typeof(Param_ItemNameViewModel), "ValidateDoubleProperty")]
         public string OrderTotal
         {
             get { return _orderTotal; }
@@ -72,7 +72,7 @@ namespace Param_RootNamespace.ViewModels
         }
 
         [Required]
-        [CustomValidation(typeof(wts.ItemNameViewModel), "ValidateDoubleProperty")]
+        [CustomValidation(typeof(Param_ItemNameViewModel), "ValidateDoubleProperty")]
         public string Freight
         {
             get { return _freight; }
@@ -129,7 +129,7 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand SubmitCommand => _submitCommand ?? (_submitCommand = new RelayCommand(Submit));
 
-        public wts.ItemNameViewModel(ISampleDataService sampleDataService)
+        public Param_ItemNameViewModel(ISampleDataService sampleDataService)
         {
             _sampleDataService = sampleDataService;
             Status = StatusValues.First();

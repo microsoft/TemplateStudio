@@ -6,13 +6,13 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : ObservableRecipient, INavigationAware
+    public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
         private readonly ISampleDataService _sampleDataService;
 
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
-        public wts.ItemNameViewModel(ISampleDataService sampleDataService)
+        public Param_ItemNameViewModel(ISampleDataService sampleDataService)
         {
             _sampleDataService = sampleDataService;
         }

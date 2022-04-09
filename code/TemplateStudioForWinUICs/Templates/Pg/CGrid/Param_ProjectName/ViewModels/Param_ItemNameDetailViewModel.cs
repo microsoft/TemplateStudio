@@ -6,7 +6,7 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameDetailViewModel : ObservableRecipient, INavigationAware
+    public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAware
     {
         private readonly ISampleDataService _sampleDataService;
         private SampleOrder _item;
@@ -17,7 +17,7 @@ namespace Param_RootNamespace.ViewModels
             set { SetProperty(ref _item, value); }
         }
 
-        public wts.ItemNameDetailViewModel(ISampleDataService sampleDataService)
+        public Param_ItemNameDetailViewModel(ISampleDataService sampleDataService)
         {
             _sampleDataService = sampleDataService;
         }

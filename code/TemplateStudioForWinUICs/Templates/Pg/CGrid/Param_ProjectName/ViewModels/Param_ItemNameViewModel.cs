@@ -8,7 +8,7 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : ObservableRecipient, INavigationAware
+    public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
@@ -18,7 +18,7 @@ namespace Param_RootNamespace.ViewModels
 
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
-        public wts.ItemNameViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        public Param_ItemNameViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
         {
             _navigationService = navigationService;
             _sampleDataService = sampleDataService;
@@ -45,7 +45,7 @@ namespace Param_RootNamespace.ViewModels
             if (clickedItem != null)
             {
                 _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.NavigateTo(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderID);
+                _navigationService.NavigateTo(typeof(Param_ItemNameDetailViewModel).FullName, clickedItem.OrderID);
             }
         }
     }

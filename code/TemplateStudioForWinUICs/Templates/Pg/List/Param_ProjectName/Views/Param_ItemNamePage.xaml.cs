@@ -3,9 +3,9 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Views
 {
-    public sealed partial class wts.ItemNamePage : Page
+    public sealed partial class Param_ItemNamePage : Page
     {
-        public wts.ItemNamePage()
+        public Param_ItemNamePage()
         {
             InitializeComponent();
         }
