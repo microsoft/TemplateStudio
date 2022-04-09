@@ -45,24 +45,24 @@ namespace TemplateStudioForUwp.Tests
             }
 
             // The placeholder "Param_RootNamespace" should be used instead, to ensure that all namespaces are created equally
-            EnsureDoNotUse("namespace wts.DefaultProject", "*.cs");
-            EnsureDoNotUse("namespace wts.DefaultProject", "*.vb");
+            EnsureDoNotUse("namespace ts.DefaultProject", "*.cs");
+            EnsureDoNotUse("namespace ts.DefaultProject", "*.vb");
             EnsureDoNotUse("namespace Param_ProjectName", "*.cs");
             EnsureDoNotUse("namespace Param_ProjectName", "*.vb");
             EnsureDoNotUse("namespace Param_ItemNamespace", "*.cs");
             EnsureDoNotUse("namespace Param_ItemNamespace", "*.vb");
-            EnsureDoNotUse("namespace wts.ItemName", "*.cs");
-            EnsureDoNotUse("namespace wts.ItemName", "*.vb");
-            EnsureDoNotUse("using wts.ItemName.", "*.cs");
-            EnsureDoNotUse("Imports wts.ItemName.", "*.vb");
-            EnsureDoNotUse("using wts.DefaultProject", "*.cs");
-            EnsureDoNotUse("Imports wts.DefaultProject", "*.vb");
+            EnsureDoNotUse("namespace ts.ItemName", "*.cs");
+            EnsureDoNotUse("namespace ts.ItemName", "*.vb");
+            EnsureDoNotUse("using ts.ItemName.", "*.cs");
+            EnsureDoNotUse("Imports ts.ItemName.", "*.vb");
+            EnsureDoNotUse("using ts.DefaultProject", "*.cs");
+            EnsureDoNotUse("Imports ts.DefaultProject", "*.vb");
             EnsureDoNotUse("using Param_ItemNamespace", "*.cs");
             EnsureDoNotUse("Imports Param_ItemNamespace", "*.vb");
             EnsureDoNotUse("using Param_ProjectName", "*.cs");
             EnsureDoNotUse("Imports Param_ProjectName", "*.vb");
-            EnsureDoNotUse("x:Class=\"wts.DefaultProject", "*.xaml");
-            EnsureDoNotUse("using:wts.ItemName", "*.xaml");
+            EnsureDoNotUse("x:Class=\"ts.DefaultProject", "*.xaml");
+            EnsureDoNotUse("using:ts.ItemName", "*.xaml");
 
             Assert.True(!result.Any(), string.Join(Environment.NewLine, result));
         }
