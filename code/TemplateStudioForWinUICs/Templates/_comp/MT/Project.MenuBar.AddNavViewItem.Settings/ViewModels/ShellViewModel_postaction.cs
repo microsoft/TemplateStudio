@@ -5,12 +5,12 @@
         private bool _isBackEnabled;
         private object _selected;
 //{[{
-        private ICommand _menuFilewts.ItemNameCommand;
+        private ICommand _menuFileParam_ItemNameCommand;
 //}]}
         public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
 //{[{
 
-        public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new RelayCommand(OnMenuFilewts.ItemName));
+        public ICommand MenuFileParam_ItemNameCommand => _menuFileParam_ItemNameCommand ?? (_menuFileParam_ItemNameCommand = new RelayCommand(OnMenuFileParam_ItemName));
 //}]}
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
@@ -22,7 +22,7 @@
 //^^
 //{[{
 
-        private void OnMenuFilewts.ItemName() => RightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
+        private void OnMenuFileParam_ItemName() => RightPaneService.OpenInRightPane(typeof(Param_ItemNameViewModel).FullName);
 //}]}
     }
 }

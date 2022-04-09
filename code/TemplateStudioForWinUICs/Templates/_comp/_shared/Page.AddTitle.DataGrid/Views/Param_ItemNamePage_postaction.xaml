@@ -1,0 +1,22 @@
+﻿<Page
+    Style="{StaticResource PageStyle}">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+<!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="Param_ItemName_Title"
+            Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        <controls:DataGrid
+<!--{[{-->
+            Grid.Row="1"
+<!--}]}-->
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+        </controls:DataGrid>
+    </Grid>
+</Page>

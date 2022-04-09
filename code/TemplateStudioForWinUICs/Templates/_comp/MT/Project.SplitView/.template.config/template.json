@@ -16,7 +16,7 @@
       "ts.compositionOrder": "1",
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == SplitView & ts.type == project"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {

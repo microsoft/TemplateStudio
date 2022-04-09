@@ -1,6 +1,6 @@
 ﻿<NavigationView.MenuItems>
 <!--^^-->
 <!--{[{-->
-    <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavigationHelper.NavigateTo="Param_RootNamespace.ViewModels.wts.ItemNameViewModel" />
+    <NavigationViewItem x:Uid="Shell_Param_ItemName" Icon="Document" helpers:NavigationHelper.NavigateTo="Param_RootNamespace.ViewModels.Param_ItemNameViewModel" />
 <!--}]}-->
 </NavigationView.MenuItems>

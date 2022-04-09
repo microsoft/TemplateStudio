@@ -2,6 +2,6 @@
             {
                 // Views and ViewModels
 //{[{
-                services.AddTransient<wts.ItemNameViewModel>();
-                services.AddTransient<wts.ItemNamePage>();
+                services.AddTransient<Param_ItemNameViewModel>();
+                services.AddTransient<Param_ItemNamePage>();
 //}]}

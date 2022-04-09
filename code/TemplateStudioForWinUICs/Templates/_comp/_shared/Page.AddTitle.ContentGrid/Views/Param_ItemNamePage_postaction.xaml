@@ -1,0 +1,23 @@
+﻿<Page
+    Style="{StaticResource PageStyle}">
+    <Grid x:Name="ContentArea">
+<!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="Param_ItemName_Title"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        <controls:AdaptiveGridView
+<!--{[{-->
+            Grid.Row="1"
+<!--}]}-->
+            StretchContentForSingleRow="False">
+        </controls:AdaptiveGridView>
+    </Grid>
+</Page>

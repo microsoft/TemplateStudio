@@ -371,79 +371,79 @@
     <Content Include="Templates\Ft\ThemeSelection\Services\ThemeSelectorService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Blank\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\Blank\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Blank\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\Blank\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName.Core\Services\SampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\ViewModels\wts.ItemNameDetailViewModel.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\ViewModels\Param_ItemNameDetailViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNameDetailPage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\DGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\DGrid\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\DGrid\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\DGrid\Param_ProjectName.Core\Services\SampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\DGrid\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\DGrid\Param_ProjectName\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\DGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\DGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Form\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\Form\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Form\Param_ProjectName.Core\Models\SampleSymbol.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Form\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\Form\Param_ProjectName.Core\Services\SampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Form\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\Form\Param_ProjectName\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Form\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\Form\Param_ProjectName\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\List\Param_ProjectName.Core\Contracts\Services\ISampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName.Core\Services\SampleDataService%24wts.ItemName_gpostaction.cs">
+    <Content Include="Templates\Pg\List\Param_ProjectName.Core\Services\SampleDataService%24Param_ItemName_gpostaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\List\Param_ProjectName\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName\Views\wts.ItemNameDetailControl.xaml.cs">
+    <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNameDetailControl.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Settings\Helpers\EnumToBooleanConverter.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Settings\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\Settings\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Settings\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\Settings\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\WebView\Contracts\Services\IWebViewService.cs">
@@ -452,25 +452,25 @@
     <Content Include="Templates\Pg\WebView\Services\WebViewService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\WebView\ViewModels\wts.ItemNameViewModel.cs">
+    <Content Include="Templates\Pg\WebView\ViewModels\Param_ItemNameViewModel.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\WebView\Views\wts.ItemNamePage.xaml.cs">
+    <Content Include="Templates\Pg\WebView\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\App.xaml.cs">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\App.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\MainWindow.xaml.cs">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\MainWindow.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\App.xaml.cs">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Contracts\ViewModels\INavigationAware.cs">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Contracts\ViewModels\INavigationAware.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Helpers\ResourceExtensions.cs">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\ResourceExtensions.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\AddConnectedAnimation\Contracts\Services\INavigationService_postaction.cs">
@@ -488,13 +488,13 @@
     <Content Include="Templates\_comp\MT\Feature.ThemeSelection\Services\ActivationService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddBackCommand\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddBackCommand\ViewModels\Param_ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddCommandNS\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddCommandNS\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddIocNS\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddIocNS\Views\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\App_postaction.xaml.cs">
@@ -503,10 +503,10 @@
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\ViewModels\wts.ItemNameDetailViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\ViewModels\Param_ItemNameDetailViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Views\wts.ItemNameDetailPage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\Views\Param_ItemNameDetailPage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModel\App_postaction.xaml.cs">
@@ -515,10 +515,10 @@
     <Content Include="Templates\_comp\MT\Page.AddViewModel\Services\PageService_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModel\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModel\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddViewModel\Views\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Page.AddViewModel\Views\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.WebView\App_postaction.xaml.cs">
@@ -611,7 +611,7 @@
     <Content Include="Templates\_comp\MT\Project\Services\PageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml.cs">
+    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\cs-CZ.description.md">
@@ -1562,19 +1562,19 @@
     <Content Include="Templates\Proj\Default.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\app.manifest">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\app.manifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-arm64.pubxml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-arm64.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-x64.pubxml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-x64.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Properties\PublishProfiles\win10-x86.pubxml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-x86.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\wts.ProjectName.csproj">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Param_ProjectName.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\.template.config\Layout.json">
@@ -1583,31 +1583,31 @@
     <Content Include="Templates\Proj\Default\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName.Core\Models\-.-">
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Models\-.-">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName.Core\wts.ProjectName.Core.csproj">
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Param_ProjectName.Core.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\app.manifest">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\app.manifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Properties\PublishProfiles\win10-arm64.pubxml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\PublishProfiles\win10-arm64.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Properties\PublishProfiles\win10-x64.pubxml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\PublishProfiles\win10-x64.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Properties\PublishProfiles\win10-x86.pubxml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\PublishProfiles\win10-x86.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\README.md">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\README.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Strings\en-us\Resources.resw">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Strings\en-us\Resources.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\wts.ProjectName.csproj">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Param_ProjectName.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\cs-CZ.frontendframeworks.json">
@@ -2057,13 +2057,13 @@
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\TemplateStudio.xml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName.Core\readme.txt">
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\readme.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\TemplateStudio.xml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\icon.xaml">
@@ -2081,28 +2081,28 @@
     <Content Include="Templates\Pg\Blank\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Blank\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\Blank\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\CGrid\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNameDetailPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\CGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\DGrid\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\DGrid\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\DGrid\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Form\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Form\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\Form\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\List\.template.config\icon.xaml">
@@ -2111,43 +2111,43 @@
     <Content Include="Templates\Pg\List\Param_ProjectName\Styles\TextBlock_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName\Views\wts.ItemNameDetailControl.xaml">
+    <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNameDetailControl.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\List\Param_ProjectName\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\List\Param_ProjectName\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\Settings\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\Settings\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\Settings\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Pg\WebView\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Pg\WebView\Views\wts.ItemNamePage.xaml">
+    <Content Include="Templates\Pg\WebView\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\App.xaml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\MainWindow.xaml">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\MainWindow.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\App.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\Page.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\Page.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\TextBlock.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\TextBlock.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\_FontSizes.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\_FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\_Thickness.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\_Thickness.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\frontendframeworks\MVVMToolkit.xaml">
@@ -2168,7 +2168,7 @@
     <Content Include="Templates\_catalog\projectTypes\SplitView.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddBackCommand\Views\wts.ItemNameDetailPage_postaction.xaml">
+    <Content Include="Templates\_comp\MT\Page.AddBackCommand\Views\Param_ItemNameDetailPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml">
@@ -2189,40 +2189,40 @@
     <Content Include="Templates\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.DataGrid\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.DataGrid\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Form\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Form\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Settings\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Settings\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.ListDetail.Blank.MenuBar\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\wts.ItemNamePage_postaction.xaml">
+    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\FontSizes.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Styles\Thickness.xaml">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\Thickness.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\App_postaction.xaml.cs">
@@ -2240,16 +2240,16 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsServiceUnpackaged.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName.Core\Contracts\Services\IFileService.cs">
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Contracts\Services\IFileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName.Core\Services\FileService.cs">
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Services\FileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\wts.ItemNameViewModel_postaction.cs">
+    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\Helpers\NavigationHelper.cs">
@@ -2273,7 +2273,7 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Strings\en-us\Resources.resw">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Strings\en-us\Resources.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json">
@@ -2288,10 +2288,10 @@
     <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\wts.ProjectName\Properties\launchsettings.json">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\launchsettings.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\wts.ProjectName\Properties\launchsettings.json">
+    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\launchsettings.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

@@ -25,20 +25,20 @@
     "ts.defaultInstance": "Settings",
     "ts.dependencies":"ts.WinUI.Feat.ThemeSelection"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": "Helpers/EnumToBooleanConverter.cs"
     },
     {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
+      "path": "ViewModels/Param_ItemNameViewModel.cs"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml"
+      "path": "Views/Param_ItemNamePage.xaml"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml.cs"
+      "path": "Views/Param_ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

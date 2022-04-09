@@ -1,0 +1,13 @@
+﻿<Page
+    Style="{StaticResource PageStyle}">
+
+    <Grid x:Name="ContentArea">
+        <controls:ListDetailsView
+            x:Uid="Param_ItemName"
+            x:Name="ListDetailsViewControl"
+<!--{[{-->
+            BackButtonBehavior="Inline"
+<!--}]}-->
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
+    </Grid>
+</Page>
