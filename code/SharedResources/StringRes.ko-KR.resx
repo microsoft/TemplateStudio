@@ -578,7 +578,7 @@
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>이름이 자동으로 추가되므로 'Page'로 끝날 수 없습니다. [이름 지정에 대한 자세한 정보.]({0}WTSNaming.md)</value>
+    <value>이름이 자동으로 추가되므로 'Page'로 끝날 수 없습니다. [이름 지정에 대한 자세한 정보.]({0}naming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
@@ -593,7 +593,7 @@
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>'Page'가 지정된 이름의 끝에 추가됩니다. [이름 지정에 대한 자세한 정보.]({0}WTSNaming.md)</value>
+    <value>'Page'가 지정된 이름의 끝에 추가됩니다. [이름 지정에 대한 자세한 정보.]({0}naming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
