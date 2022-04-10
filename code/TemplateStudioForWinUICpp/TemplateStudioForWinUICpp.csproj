@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -406,16 +406,16 @@
     <Content Include="Templates\Projects\Default\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\app.manifest">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\app.manifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\packages.config">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\packages.config">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\PropertySheet.props">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\PropertySheet.props">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\Param_ProjectName.vcxproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\cs-CZ.frontendframeworks.json">
@@ -607,46 +607,46 @@
     <Content Include="Templates\Features\MSIX\Param_ProjectName %28Package%29\Images\Wide310x150Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\App.idl">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\App.idl">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml.cpp">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\App.xaml.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml.h">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\App.xaml.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.idl">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\MainWindow.idl">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml.cpp">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\MainWindow.xaml.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml.h">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\MainWindow.xaml.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\pch.cpp">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\pch.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\pch.h">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\pch.h">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\readme.txt">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\readme.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\TemplateStudio.xml">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\wts.ProjectName.vcxproj.filters">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\Param_ProjectName.vcxproj.filters">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Features\MSIX\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\App.xaml">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Projects\Default\wts.ProjectName\MainWindow.xaml">
+    <Content Include="Templates\Projects\Default\Param_ProjectName\MainWindow.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\frontendframeworks\None.xaml">

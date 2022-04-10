@@ -3,7 +3,7 @@
 ========================================================================
 
 This project demonstrates how to get started writing WinUI3 apps directly
-with standard C++, using the Project Reunion and C++/WinRT packages and 
+with standard C++, using the Windows App SDK and C++/WinRT packages and 
 XAML compiler support to generate implementation headers from interface 
 (IDL) files. These headers can then be used to implement the local 
 Windows Runtime classes referenced in the app's XAML pages.
@@ -18,8 +18,8 @@ Steps:
     Windows Runtime classes.
 
 ========================================================================
-Learn more about Project Reunion here:
-https://docs.microsoft.com/en-us/windows/apps/project-reunion/
+Learn more about Windows App SDK here:
+https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/
 Learn more about WinUI3 here:
 https://docs.microsoft.com/en-us/windows/apps/winui/winui3/
 Learn more about C++/WinRT here:
