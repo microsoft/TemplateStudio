@@ -37,7 +37,7 @@
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.Page.Settings.Prism": {
+    "ts.Page.Settings.Prism": {
       "type": "parameter",
       "replaces": "Param_SettingsPageName",
       "fileRename": "Param_SettingsPageName"
