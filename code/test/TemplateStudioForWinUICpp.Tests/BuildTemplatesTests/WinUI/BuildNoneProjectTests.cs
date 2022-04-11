@@ -53,7 +53,9 @@ namespace Microsoft.Templates.Test.WinUICpp.Build
                 && t.GetPropertyBagValuesList("appmodel").Contains(appModel)
                 && !t.GetIsHidden();
 
-            var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}";
+            // This no longer works - Need to investigate supported characters in a C++ project name.
+            ////var projectName = $"{ShortProjectType(projectType)}{CharactersThatMayCauseProjectNameIssues()}";
+            var projectName = $"{ShortProjectType(projectType)}{framework}";
 
             var context = new UserSelectionContext(language, platform)
             {
