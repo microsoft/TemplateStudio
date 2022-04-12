@@ -463,7 +463,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     Debug.WriteLine($" - {shortFilePath}");
 
-                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
+                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("ts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
 
                     if (!generatedFileList.ContainsKey(configuredName))
                     {
