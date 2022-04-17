@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Questo progetto di base è una tela vuota su cui creare un'app."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Sono inclusi un frame di navigazione e servizi e stili di base."
   },
   {

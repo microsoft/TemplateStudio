@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Dieses Basisprojekt ist ein leerer Zeichenbereich, in dem Sie Ihre App erstellen können."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Ein Navigationsbereich und grundlegende Dienste und Stile sind enthalten."
   },
   {

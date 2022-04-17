@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "此基本项目是空白画布，你的应用要基于该画布构建。"
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "包括导航框架、基本服务和样式。"
   },
   {

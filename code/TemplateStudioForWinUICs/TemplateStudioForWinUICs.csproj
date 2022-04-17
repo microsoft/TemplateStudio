@@ -1721,13 +1721,7 @@
     <Content Include="Templates\_catalog\projectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\cs-CZ.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\cs-CZ.BlankAdvanced.md">
@@ -1739,9 +1733,6 @@
     <Content Include="Templates\_catalog\projectTypes\cs-CZ.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\de-DE.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\de-DE.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1749,9 +1740,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\de-DE.SplitView.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\es-ES.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\es-ES.BlankAdvanced.md">
@@ -1763,9 +1751,6 @@
     <Content Include="Templates\_catalog\projectTypes\es-ES.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\fr-FR.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\fr-FR.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1773,9 +1758,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\fr-FR.SplitView.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\it-IT.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\it-IT.BlankAdvanced.md">
@@ -1787,9 +1769,6 @@
     <Content Include="Templates\_catalog\projectTypes\it-IT.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\ja-JP.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\ja-JP.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1797,9 +1776,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\ja-JP.SplitView.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\ko-KR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\ko-KR.BlankAdvanced.md">
@@ -1814,9 +1790,6 @@
     <Content Include="Templates\_catalog\projectTypes\MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\pl-PL.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\pl-PL.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1824,9 +1797,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\pl-PL.SplitView.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\pt-BR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\pt-BR.BlankAdvanced.md">
@@ -1838,9 +1808,6 @@
     <Content Include="Templates\_catalog\projectTypes\pt-BR.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\ru-RU.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\ru-RU.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1850,25 +1817,16 @@
     <Content Include="Templates\_catalog\projectTypes\SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\tr-TR.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\tr-TR.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\tr-TR.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\zh-CN.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-CN.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-CN.SplitView.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\zh-TW.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-TW.BlankAdvanced.md">
@@ -2112,9 +2070,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\frontendframeworks\None.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\Blank.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\BlankAdvanced.xaml">
