@@ -17,7 +17,7 @@
     "ts.compositionFilter": "$frontendframework == Prism & identity == ts.WPF.Feat.PersistAndRestore & $testing == ts.WPF.Testing.UnitTests.App.NUnit",
     "ts.compositionOrder" : "3"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

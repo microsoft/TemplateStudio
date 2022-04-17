@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[Appium Webdriver](https://raw.githubusercontent.com/appium/appium-dotnet-driver/master/LICENSE)|[MSTest](https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm)"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "ts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.WinAppDriver/Param_ProjectName.Tests.WinAppDriver.csproj" }

@@ -16,7 +16,7 @@
     "ts.compositionOrder": "2",
     "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Feat.ToastNotifications & $service == ts.WPF.Service.IdentityForcedLogin"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "symbols": {
       "ts.rootNamespace": {

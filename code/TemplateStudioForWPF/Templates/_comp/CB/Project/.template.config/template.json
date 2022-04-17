@@ -16,7 +16,7 @@
       "ts.compositionOrder": "1",
       "ts.compositionFilter": "$frontendframework == CodeBehind & ts.type == project"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {

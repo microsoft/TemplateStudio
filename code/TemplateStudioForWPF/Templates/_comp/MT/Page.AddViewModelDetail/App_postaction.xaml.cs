@@ -1,9 +1,9 @@
 ﻿private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
 {
-//^^
-//{[{
-    services.AddTransient<wts.ItemNameDetailViewModel>();
-    services.AddTransient<wts.ItemNameDetailPage>();
-//}]}
+    //^^
+    //{[{
+    services.AddTransient<ts.ItemNameDetailViewModel>();
+    services.AddTransient<ts.ItemNameDetailPage>();
+    //}]}
     // Configuration
 }

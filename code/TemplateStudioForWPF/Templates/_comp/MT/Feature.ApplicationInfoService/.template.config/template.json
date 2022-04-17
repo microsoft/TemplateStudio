@@ -15,7 +15,7 @@
     "ts.version": "1.0.0",
     "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Feat.ApplicationInfoService"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

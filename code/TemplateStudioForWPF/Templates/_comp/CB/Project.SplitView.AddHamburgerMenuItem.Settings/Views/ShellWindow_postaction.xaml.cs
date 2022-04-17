@@ -24,7 +24,7 @@
 
         public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
         {
-            new HamburgerMenuGlyphItem() { Label = Properties.Resources.Shellwts.ItemNamePage, Glyph = "\uE713", TargetPageType = typeof(wts.ItemNamePage) }
+            new HamburgerMenuGlyphItem() { Label = Properties.Resources.Shellts.ItemNamePage, Glyph = "\uE713", TargetPageType = typeof(ts.ItemNamePage) }
         };
 //}]}
         public ShellWindow(INavigationService navigationService)

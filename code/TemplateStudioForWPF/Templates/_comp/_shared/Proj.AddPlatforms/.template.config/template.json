@@ -16,7 +16,7 @@
     "ts.outputToParent": "true",
     "ts.compositionFilter": "groupidentity == ts.WPF.Page.XamlIsland|ts.WPF.Feat.MSIXPackaging"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

@@ -17,7 +17,7 @@
     "ts.compositionFilter": "groupidentity == ts.WPF.Page.WebView & $frontendframework == Prism & $testing == ts.WPF.Testing.UnitTests.App.NUnit & $projectType == MenuBar",
     "ts.compositionOrder" : "3"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

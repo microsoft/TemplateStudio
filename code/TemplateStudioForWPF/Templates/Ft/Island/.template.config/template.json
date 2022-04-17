@@ -24,7 +24,7 @@
     "ts.multipleInstance": "false",
     "ts.outputToParent": "true"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "guids": ["A737182C-BD90-42FD-836D-C22FCB786BF1", "a7ad0c59-b47b-41df-9721-ddb2ea574d9a", "CC2CFE6D-4013-408B-BB9C-006B7ECEB684"],
   "PrimaryOutputs": [

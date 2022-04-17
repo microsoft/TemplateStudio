@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[xUnit](https://github.com/xunit/xunit/blob/main/LICENSE)"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "ts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.xUnit/Param_ProjectName.Tests.xUnit.csproj" }

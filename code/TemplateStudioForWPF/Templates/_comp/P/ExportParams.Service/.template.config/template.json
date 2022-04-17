@@ -24,7 +24,7 @@
       "ts.export.onNavigatedToParams": "NavigationContext navigationContext",
       "ts.export.onNavigatedFromParams": "NavigationContext navigationContext"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

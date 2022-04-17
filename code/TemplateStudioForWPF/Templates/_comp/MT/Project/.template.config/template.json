@@ -17,7 +17,7 @@
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == project",
       "ts.licenses": "[Microsoft.Toolkit.MVVM](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {

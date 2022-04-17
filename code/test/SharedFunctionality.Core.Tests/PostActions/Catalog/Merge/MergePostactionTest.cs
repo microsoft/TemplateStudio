@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Assert.Equal(string.Format(StringRes.PostActionException, typeof(MergePostAction), templateName), ex.Message);
             Assert.Equal(typeof(InvalidDataException), ex.InnerException.GetType());
-            Assert.Equal(string.Format(StringRes.MergeLineNotFoundExceptionMessage, "namespace TestData", sourceFile, templateName), ex.InnerException.Message);
+            Assert.Equal(string.Format(StringRes.MergeLineNotFoundExceptionMessage, "(10)'namespace TestData'", sourceFile, templateName), ex.InnerException.Message);
         }
 
         [Fact]

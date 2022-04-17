@@ -17,7 +17,7 @@
     "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.MSTest & $page == ts.WPF.Page.ListDetails|ts.WPF.Page.ListDetails.CodeBehind",
     "ts.compositionOrder" : "2"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

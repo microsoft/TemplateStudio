@@ -25,7 +25,7 @@
       "ts.genGroup": "0",
       "ts.rightClickEnabled":"false"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {

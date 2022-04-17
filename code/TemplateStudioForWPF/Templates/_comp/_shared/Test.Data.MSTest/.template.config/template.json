@@ -17,7 +17,7 @@
     "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.MSTest & $feature == ts.WPF.Feat.SampleData",
     "ts.compositionOrder" : "1"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Core.Tests.MSTest/SampleDataServiceTests.cs" }

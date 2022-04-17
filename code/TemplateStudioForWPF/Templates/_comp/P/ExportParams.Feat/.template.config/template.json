@@ -17,7 +17,7 @@
       "ts.export.configtype": "AppConfig",
       "ts.export.configvalue": "appConfig"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

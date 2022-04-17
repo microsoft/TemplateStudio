@@ -16,7 +16,7 @@
     "ts.compositionOrder": "0",
     "ts.compositionFilter": "groupIdentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin & $frontendframework != CodeBehind"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

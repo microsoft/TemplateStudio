@@ -1,24 +1,24 @@
 ﻿{
     "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft Community",
+    "author": "Microsoft Community",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WPF.Page.AddTitle",
     "shortName": "ts.WPF.Page.AddTitle",
     "identity": "ts.WPF.Page.AddTitle",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "composition",
-    "ts.platform": "Wpf",
-    "ts.version": "1.0.0",
-    "ts.compositionFilter": "groupidentity == ts.WPF.Page.Blank|ts.WPF.Page.Settings|ts.WPF.Page.ListDetails|ts.WPF.Page.ContentGrid|ts.WPF.Page.DataGrid|ts.WPF.Page.XamlIsland"
-  },
-    "sourceName": "wts.ItemName",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "Wpf",
+        "ts.version": "1.0.0",
+        "ts.compositionFilter": "groupidentity == ts.WPF.Page.Blank|ts.WPF.Page.Settings|ts.WPF.Page.ListDetails|ts.WPF.Page.ContentGrid|ts.WPF.Page.DataGrid|ts.WPF.Page.XamlIsland"
+    },
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
     }
-  }
+}

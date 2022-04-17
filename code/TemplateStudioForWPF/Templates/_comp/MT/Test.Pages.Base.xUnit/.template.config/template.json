@@ -17,7 +17,7 @@
     "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupIdentity == ts.WPF.Testing.UnitTests.App.xUnit",
     "ts.compositionOrder" : "1"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.xUnit/PagesTests.cs" }

@@ -17,7 +17,7 @@
       "ts.compositionFilter": "$frontendframework == Prism & $projectType == Ribbon & ts.type == project",
       "ts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/7.0.0/license)"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {

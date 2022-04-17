@@ -2,8 +2,8 @@
 {
 //^^
 //{[{
-    services.AddTransient<wts.ItemNameViewModel>();
-    services.AddTransient<wts.ItemNamePage>();
+    services.AddTransient<ts.ItemNameViewModel>();
+    services.AddTransient<ts.ItemNamePage>();
 //}]}
     // Configuration
 }

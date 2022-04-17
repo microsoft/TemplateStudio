@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[MSTest](https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm)|[Moq](https://github.com/moq/moq/blob/master/LICENSE)"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "ts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.csproj" }

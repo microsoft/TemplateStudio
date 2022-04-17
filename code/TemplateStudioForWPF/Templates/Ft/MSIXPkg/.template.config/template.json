@@ -27,7 +27,7 @@
     "ts.requiredVersions":"UAP, Version=10.0.19041.0",
     "ts.requiredVsWorkload": "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "guids": ["86bd6ace-0448-48d7-9ae6-7c914cfab635", "07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [

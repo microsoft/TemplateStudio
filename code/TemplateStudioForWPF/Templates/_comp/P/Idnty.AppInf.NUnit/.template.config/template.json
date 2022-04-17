@@ -17,7 +17,7 @@
     "ts.compositionFilter": "$frontendframework == Prism & $testing == ts.WPF.Testing.UnitTests.App.NUnit & identity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin",
     "ts.compositionOrder" : "3"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

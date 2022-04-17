@@ -21,13 +21,13 @@
     "ts.displayOrder": "0",
     "ts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)"
   },
-  "sourceName": "wts.ProjectName",
+  "sourceName": "ts.ProjectName",
   "preferNameDirectory": true,
   "guids": [
   ],
   "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+    { "path": "ts.ProjectName/ts.ProjectName.csproj" },
+    { "path": "ts.ProjectName.Core/ts.ProjectName.Core.csproj" }
   ],
   "symbols": {
     "ts.projectName":
