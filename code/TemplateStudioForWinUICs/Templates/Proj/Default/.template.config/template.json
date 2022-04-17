@@ -13,7 +13,7 @@
     "language": "C#",
     "type": "project",
     "ts.type": "project",
-    "ts.projecttype": "BlankAdvanced|SplitView|MenuBar",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
     "ts.frontendframework": "MVVMToolkit",
     "ts.platform": "WinUI",
     "ts.appmodel": "Desktop",
