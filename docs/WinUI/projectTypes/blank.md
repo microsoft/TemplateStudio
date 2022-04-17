@@ -1,4 +1,4 @@
-# Blank Advanced
+# Blank
 
 This project type provides folder scaffolding creating the most important folders as Services, Styles, Views and ViewModels.
 
