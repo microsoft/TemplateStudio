@@ -43,7 +43,6 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.ListDetail.SplitView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Proj.Core.Platforms\.template.config\template.json" };
         }
     }
