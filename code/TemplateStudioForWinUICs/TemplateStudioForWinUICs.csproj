@@ -1898,10 +1898,10 @@
     <Content Include="Templates\_comp\MT\Page.WebView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.BlankAdvanced\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Project.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.BlankAdvanced\README_postaction.md">
+    <Content Include="Templates\_comp\MT\Project.Blank\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\.template.config\template.json">
