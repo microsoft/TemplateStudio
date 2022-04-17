@@ -28,16 +28,16 @@
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.Page.Settings.Prism": {
+    "ts.Page.Settings.Prism": {
       "type": "parameter",
       "replaces": "Param_SettingsPageName",
       "fileRename": "Param_SettingsPageName"

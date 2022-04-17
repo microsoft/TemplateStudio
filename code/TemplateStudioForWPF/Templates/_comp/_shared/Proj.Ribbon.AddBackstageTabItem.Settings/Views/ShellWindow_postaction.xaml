@@ -3,8 +3,8 @@
 <!--^^-->
 <!--{[{-->
         <Fluent:BackstageTabItem
-            Tag="Param_RootNamespace.ViewModels.wts.ItemNameViewModel"
-            Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabwts.ItemNameHeader}" />
+            Tag="Param_RootNamespace.ViewModels.ts.ItemNameViewModel"
+            Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabts.ItemNameHeader}" />
 <!--}]}-->
     </Fluent:BackstageTabControl>
 </Fluent:Backstage>

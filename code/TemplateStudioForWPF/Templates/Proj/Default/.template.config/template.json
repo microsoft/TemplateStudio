@@ -21,48 +21,48 @@
     "ts.displayOrder": "0",
     "ts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/Apache-2.0)|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro/blob/master/LICENSE)"
   },
-  "sourceName": "wts.ProjectName",
+  "sourceName": "ts.ProjectName",
   "preferNameDirectory": true,
   "guids": [
   ],
   "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+    { "path": "ts.ProjectName/ts.ProjectName.csproj" },
+    { "path": "ts.ProjectName.Core/ts.ProjectName.Core.csproj" }
   ],
   "symbols": {
-    "wts.projectName":
+    "ts.projectName":
     {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.wizardVersion":
+    "ts.wizardVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
+    "ts.templatesVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Templates.Version"
     },
-    "wts.generationProjectType":
+    "ts.generationProjectType":
     {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
+    "ts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
+    "ts.generationPlatform":
     {
       "type": "parameter",
       "replaces": "Param_Platform"

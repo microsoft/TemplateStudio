@@ -18,7 +18,6 @@ namespace TemplateValidator
     {
         private static string[] excludedPrimaryOutputFiles = new string[]
         {
-            @"\WinUI\Pages\Blank.UWP.Cpp\wts.ItemNamePage.idl",
         };
 
         public static VerifierResult VerifyTemplateFolders(bool showWarnings, IEnumerable<string> templateFolders)
@@ -69,7 +68,7 @@ namespace TemplateValidator
                     try
                     {
                         template = JsonConvert.DeserializeObject<ValidationTemplateInfo>(fileContents);
-                                            }
+                    }
                     catch (Exception exc)
                     {
                         results.Add($"Failed to deserialize '{templateFilePath}': {exc.Message}");

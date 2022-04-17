@@ -36,8 +36,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var documentationEndIndex = merge.SafeIndexOf(merge.FirstOrDefault(m => m.Contains(MergeMacros.MacroEndDocumentation)), 0);
             var diffTrivia = FindDiffLeadingTrivia(source, merge, documentationEndIndex);
 
+            var lineNo = 0;
+
             foreach (var mergeLine in merge)
             {
+                lineNo++;
+
                 // try to find context line
                 if (mergeMode == MergeMode.Context || mergeMode == MergeMode.OptionalContext || mergeMode == MergeMode.Remove)
                 {
@@ -89,6 +93,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                                 {
                                     Success = false,
                                     ErrorLine = mergeLine,
+                                    ErrorLineNumber = lineNo,
                                     Result = source,
                                 };
                             }
@@ -106,9 +111,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 Success = true,
                 ErrorLine = string.Empty,
+                ErrorLineNumber = -1,
                 Result = _result,
             };
-    }
+        }
 
         private bool LineHasInlineAdditions(string mergeLine)
         {

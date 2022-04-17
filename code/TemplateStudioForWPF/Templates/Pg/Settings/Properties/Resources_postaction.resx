@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 <!--{[{-->
-    <data name="wts.ItemNamePageAboutText" xml:space="preserve">
-        <value>wts.ItemName page placeholder text.  Your app description goes here.</value>
+    <data name="ts.ItemNamePageAboutText" xml:space="preserve">
+        <value>ts.ItemName page placeholder text.  Your app description goes here.</value>
     </data>
-    <data name="wts.ItemNamePageAboutTitle" xml:space="preserve">
+    <data name="ts.ItemNamePageAboutTitle" xml:space="preserve">
         <value>About this application</value>
     </data>
-    <data name="wts.ItemNamePageChooseThemeText" xml:space="preserve">
+    <data name="ts.ItemNamePageChooseThemeText" xml:space="preserve">
         <value>Choose Theme</value>
     </data>
-    <data name="wts.ItemNamePagePersonalizationTitle" xml:space="preserve">
+    <data name="ts.ItemNamePagePersonalizationTitle" xml:space="preserve">
         <value>Personalization</value>
     </data>
-    <data name="wts.ItemNamePagePrivacyStatementText" xml:space="preserve">
+    <data name="ts.ItemNamePagePrivacyStatementText" xml:space="preserve">
         <value>Privacy Statement</value>
     </data>
-    <data name="wts.ItemNamePageRadioButtonDarkTheme" xml:space="preserve">
+    <data name="ts.ItemNamePageRadioButtonDarkTheme" xml:space="preserve">
         <value>Dark</value>
     </data>
-    <data name="wts.ItemNamePageRadioButtonLightTheme" xml:space="preserve">
+    <data name="ts.ItemNamePageRadioButtonLightTheme" xml:space="preserve">
         <value>Light</value>
     </data>
-    <data name="wts.ItemNamePageRadioButtonWindowsDefaultTheme" xml:space="preserve">
+    <data name="ts.ItemNamePageRadioButtonWindowsDefaultTheme" xml:space="preserve">
         <value>Default</value>
     </data>
 <!--}]}-->

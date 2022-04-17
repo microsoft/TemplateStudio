@@ -2,6 +2,6 @@
 {
 //^^
 //{[{
-    Configure<wts.ItemNameViewModel, wts.ItemNamePage>();
+    Configure<ts.ItemNameViewModel, ts.ItemNamePage>();
 //}]}
 }

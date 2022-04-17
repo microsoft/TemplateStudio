@@ -2,6 +2,6 @@
 {
 //^^
 //{[{
-    new HamburgerMenuGlyphItem() { Label = Properties.Resources.Shellwts.ItemNamePage, Glyph = "\uE8A5", TargetPageType = typeof(wts.ItemNamePage) },
+    new HamburgerMenuGlyphItem() { Label = Properties.Resources.Shellts.ItemNamePage, Glyph = "\uE8A5", TargetPageType = typeof(ts.ItemNamePage) },
 //}]}
 };

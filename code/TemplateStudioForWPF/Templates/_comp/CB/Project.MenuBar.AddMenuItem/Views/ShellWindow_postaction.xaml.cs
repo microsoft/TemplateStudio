@@ -2,11 +2,11 @@
 {
     public partial class ShellWindow : MetroWindow, IShellWindow, INotifyPropertyChanged
     {
-//^^
-//{[{
-        private void OnMenuViewswts.ItemName(object sender, RoutedEventArgs e)
-            => _navigationService.NavigateTo(typeof(wts.ItemNamePage), null, true);
-//}]}
+        //^^
+        //{[{
+        private void OnMenuViewsts.ItemName(object sender, RoutedEventArgs e)
+            => _navigationService.NavigateTo(typeof(ts.ItemNamePage), null, true);
+        //}]}
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

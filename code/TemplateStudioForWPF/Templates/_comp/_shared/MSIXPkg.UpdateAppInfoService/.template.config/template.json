@@ -16,16 +16,16 @@
     "ts.compositionFilter": "identity == ts.WPF.Feat.MSIXPackaging & $page == ts.WPF.Page.Settings",
     "ts.licenses": "[OSVersionHelper](https://github.com/novotnyllc/OSVersionHelper/blob/main/LICENSE.txt)"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },
-      "wts.projectName": {
+      "ts.projectName": {
         "type": "parameter",
         "replaces": "Param_ProjectName"
       }

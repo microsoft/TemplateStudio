@@ -12,7 +12,7 @@
     "ts.version": "1.0.0",
     "ts.compositionFilter": "groupidentity == Microsoft.Templates.Test.PageTemplate",
     "ts.compositionOrder": "1",
-    "wts.export.testkey": "testValue"
+    "ts.export.testkey": "testValue"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

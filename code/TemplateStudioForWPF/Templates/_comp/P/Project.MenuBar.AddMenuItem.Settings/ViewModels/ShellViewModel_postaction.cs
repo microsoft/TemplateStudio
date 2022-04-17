@@ -10,13 +10,13 @@ namespace Param_RootNamespace.ViewModels
 //}]}
         private DelegateCommand _goBackCommand;
 //{[{
-        private ICommand _menuFilewts.ItemNameCommand;
+        private ICommand _menuFilets.ItemNameCommand;
 //}]}
         private ICommand _loadedCommand;
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
 //{[{
 
-        public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new DelegateCommand(OnMenuFilewts.ItemName));
+        public ICommand MenuFilets.ItemNameCommand => _menuFilets.ItemNameCommand ?? (_menuFilets.ItemNameCommand = new DelegateCommand(OnMenuFilets.ItemName));
 //}]}
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
@@ -40,8 +40,8 @@ namespace Param_RootNamespace.ViewModels
 //^^
 //{[{
 
-        private void OnMenuFilewts.ItemName()
-            => RequestNavigateOnRightPane(PageKeys.wts.ItemName);
+        private void OnMenuFilets.ItemName()
+            => RequestNavigateOnRightPane(PageKeys.ts.ItemName);
 //}]}
     }
 }

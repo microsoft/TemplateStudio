@@ -17,18 +17,18 @@
     "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.NUnit & $feature == ts.WPF.Feat.SampleData",
     "ts.compositionOrder" : "1"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Core.Tests.NUnit/SampleDataServiceTests.cs" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

@@ -1,0 +1,6 @@
+﻿<UserControl
+<!--^^-->
+<!--{[{-->
+    Loaded="ts.ItemNamePage_OnLoaded"
+<!--}]}-->
+    mc:Ignorable="d"

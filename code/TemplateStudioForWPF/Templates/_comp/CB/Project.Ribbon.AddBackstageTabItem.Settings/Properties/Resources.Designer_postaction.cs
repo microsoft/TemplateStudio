@@ -1,14 +1,16 @@
-﻿public class Resources {
-//^^
-//{[{
+﻿    public class Resources {
+        //^^
+        //{[{
 
-    /// <summary>
-    ///   Looks up a localized string similar to ShellPageRibbonBackstageTabwts.ItemNameHeader.
-    /// </summary>
-    public static string ShellPageRibbonBackstageTabwts.ItemNameHeader {
-        get {
-            return ResourceManager.GetString("ShellPageRibbonBackstageTabwts.ItemNameHeader", resourceCulture);
+        /// <summary>
+        ///   Looks up a localized string similar to ShellPageRibbonBackstageTabts.ItemNameHeader.
+        /// </summary>
+        public static string ShellPageRibbonBackstageTabts.ItemNameHeader
+        {
+            get
+            {
+                return ResourceManager.GetString("ShellPageRibbonBackstageTabts.ItemNameHeader", resourceCulture);
+            }
         }
+        //}]}
     }
-//}]}
-}

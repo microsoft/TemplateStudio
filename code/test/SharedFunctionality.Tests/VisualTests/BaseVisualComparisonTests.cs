@@ -286,7 +286,7 @@ ForEach ($i in $dump)
                 {
                     var page = pages.First();
 
-                    if (page == "wts.Page.MediaPlayer")
+                    if (page == "ts.Page.MediaPlayer")
                     {
                         // Change auto-play to false so not trying to compare images of screen-shot with video playing
                         ReplaceInFiles("AutoPlay=\"True\"", "AutoPlay=\"False\"", baseSetup.ProjectPath, "*.xaml");

@@ -359,10 +359,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                     switch (language)
                     {
                         case "C#":
-                            styleCopTemplate = "wts.Feat.StyleCop";
+                            styleCopTemplate = "ts.Feat.StyleCop";
                             break;
                         case "VisualBasic":
-                            styleCopTemplate = "wts.Feat.VBStyleAnalysis";
+                            styleCopTemplate = "ts.Feat.VBStyleAnalysis";
                             break;
                         default:
                             return;
@@ -463,7 +463,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     Debug.WriteLine($" - {shortFilePath}");
 
-                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
+                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("ts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
 
                     if (!generatedFileList.ContainsKey(configuredName))
                     {

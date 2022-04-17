@@ -17,17 +17,17 @@
     "ts.compositionFilter": "groupIdentity == ts.WPF.Testing.UnitTests.Core.NUnit & $page == ts.WPF.Page.DataGrid|ts.WPF.Page.DataGrid.CodeBehind",
     "ts.compositionOrder" : "2"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

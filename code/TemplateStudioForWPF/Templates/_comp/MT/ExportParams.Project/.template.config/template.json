@@ -18,7 +18,7 @@
       "ts.export.setter": "SetProperty",
       "ts.export.commandclass": "RelayCommand"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

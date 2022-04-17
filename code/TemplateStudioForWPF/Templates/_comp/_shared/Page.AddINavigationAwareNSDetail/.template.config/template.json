@@ -15,12 +15,12 @@
     "ts.version": "1.0.0",
     "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WPF.Page.ContentGrid"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

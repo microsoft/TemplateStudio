@@ -2,7 +2,7 @@
 {
 //^^
 //{[{
-    services.AddTransient<wts.ItemNamePage>();
+    services.AddTransient<ts.ItemNamePage>();
 //}]}
     // Configuration
 }

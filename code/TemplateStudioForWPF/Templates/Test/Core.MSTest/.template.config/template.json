@@ -23,18 +23,18 @@
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[MSTest](https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm)"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "ts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Core.Tests.MSTest/Param_ProjectName.Core.Tests.MSTest.csproj" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

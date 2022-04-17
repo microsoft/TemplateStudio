@@ -4,7 +4,7 @@
     {
 //^^
 //{[{
-        public const string wts.ItemName = "wts.ItemName";
+        public const string ts.ItemName = "ts.ItemName";
 //}]}
     }
 }

@@ -17,16 +17,16 @@
     "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WPF.Testing.UnitTests.App.NUnit & groupidentity == ts.WPF.Service.IdentityForcedLogin|ts.WPF.Service.IdentityOptionalLogin",
     "ts.compositionOrder" : "2"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

@@ -578,7 +578,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>O nome não pode terminar com 'Page', pois isso será adicionado automaticamente. [Mais informações sobre nomenclatura.]({0}WTSNaming.md)</value>
+    <value>O nome não pode terminar com 'Page', pois isso será adicionado automaticamente. [Mais informações sobre nomenclatura.]({0}naming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
@@ -593,7 +593,7 @@ Verifique a seguinte lista de pacotes necessários para o código de seu projeto
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>Observe que 'Page' será adicionado ao fim do nome especificado. [Mais informações sobre nomenclatura.]({0}WTSNaming.md)</value>
+    <value>Observe que 'Page' será adicionado ao fim do nome especificado. [Mais informações sobre nomenclatura.]({0}naming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">

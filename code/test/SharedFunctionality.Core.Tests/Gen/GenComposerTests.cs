@@ -205,7 +205,7 @@ namespace Microsoft.Templates.Core.Test.Gen
 
             AssertBasicParameters(genQueue, context);
 
-            var property = new KeyValuePair<string, string>("wts.generation.pb1", "value1");
+            var property = new KeyValuePair<string, string>("ts.generation.pb1", "value1");
 
             Assert.True(genQueue.Where(g => g.Name == "ProjectTemplatePropertyBag").All(g => g.Parameters.Contains(property)));
         }
