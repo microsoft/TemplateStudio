@@ -13,5 +13,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public IEnumerable<string> Result { get; set; }
 
         public string ErrorLine { get; set; }
+
+        public int ErrorLineNumber { get; set; }
     }
 }
