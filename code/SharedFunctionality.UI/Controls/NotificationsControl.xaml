@@ -18,45 +18,45 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate x:Key="InformationTemplate">
-                <Grid Style="{StaticResource WtsGridNotification}">
+                <Grid Style="{StaticResource TSGridNotification}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}"  />
-                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}"  />
+                    <Button Grid.Column="2" Style="{StaticResource TSButtonCloseNotification}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="WarningTemplate">
-                <Grid Style="{StaticResource WtsGridNotification}">
+                <Grid Style="{StaticResource TSGridNotification}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
-                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}" />
+                    <Button Grid.Column="2" Style="{StaticResource TSButtonCloseNotification}" Command="{Binding CloseCommand}" />
                 </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="ErrorTemplate">
-                <Grid Style="{StaticResource WtsGridNotification}">
+                <Grid Style="{StaticResource TSGridNotification}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}" />
                 </Grid>
             </DataTemplate>
 
@@ -78,47 +78,47 @@
                     <ts:NotificationTemplateSelector>
                         <ts:NotificationTemplateSelector.Information>
                             <DataTemplate>
-                                <Grid Style="{StaticResource WtsGridNotification}">
+                                <Grid Style="{StaticResource TSGridNotification}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}"  />
-                                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}"  />
+                                    <Button Grid.Column="2" Style="{StaticResource TSButtonCloseNotification}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
                                 </Grid>
                             </DataTemplate>
                         </ts:NotificationTemplateSelector.Information>
                         <ts:NotificationTemplateSelector.Warning>
                             <DataTemplate>
-                                <Grid Style="{StaticResource WtsGridNotification}">
+                                <Grid Style="{StaticResource TSGridNotification}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
-                                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" />
+                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}" />
+                                    <Button Grid.Column="2" Style="{StaticResource TSButtonCloseNotification}" Command="{Binding CloseCommand}" />
                                 </Grid>
                             </DataTemplate>
                         </ts:NotificationTemplateSelector.Warning>
                         <ts:NotificationTemplateSelector.Error>
                             <DataTemplate>
-                                <Grid Style="{StaticResource WtsGridNotification}">
+                                <Grid Style="{StaticResource TSGridNotification}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{StaticResource WtsIconInfo}"
-                        Style="{StaticResource WtsImageNotificationIcon}"
+                                    <Image Source="{StaticResource TSIconInfo}"
+                        Style="{StaticResource TSImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
+                                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TSNotificationMarkdownStyle}" />
                                 </Grid>
                             </DataTemplate>
                         </ts:NotificationTemplateSelector.Error>

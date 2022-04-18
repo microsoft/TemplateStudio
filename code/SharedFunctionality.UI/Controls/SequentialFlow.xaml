@@ -23,6 +23,6 @@
         Loaded="ListViewSequentialFlow_OnLoaded"
         IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
         ItemsSource="{Binding Steps, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
-        Style="{DynamicResource WtsListViewSequentialFlow}" />
+        Style="{DynamicResource TSListViewSequentialFlow}" />
 
 </UserControl>

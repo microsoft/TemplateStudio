@@ -22,7 +22,7 @@
                         Heading2Style="{StaticResource H2Style}"
                         Heading3Style="{StaticResource H3Style}"
                         Heading4Style="{StaticResource H4Style}"
-                        LinkStyle="{StaticResource WtsHyperlink}"
+                        LinkStyle="{StaticResource TSHyperlink}"
                         ImageStyle="{StaticResource ImageStyle}"
                         SeparatorStyle="{StaticResource SeparatorStyle}"
                         AssetPathRoot="{x:Static system:Environment.CurrentDirectory}" />

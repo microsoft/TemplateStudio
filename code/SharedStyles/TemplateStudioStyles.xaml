@@ -21,7 +21,7 @@
 
     <!--#region DrawingImage-->
 
-    <DrawingImage x:Key="WtsIconWarning">
+    <DrawingImage x:Key="TSIconWarning">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -34,7 +34,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage x:Key="WtsIconError">
+    <DrawingImage x:Key="TSIconError">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -47,7 +47,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage x:Key="WtsIconInfo">
+    <DrawingImage x:Key="TSIconInfo">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -60,7 +60,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage x:Key="WtsIconRestoreWindow">
+    <DrawingImage x:Key="TSIconRestoreWindow">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -72,7 +72,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage x:Key="WtsIconMaximizeWindow">
+    <DrawingImage x:Key="TSIconMaximizeWindow">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -84,7 +84,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage x:Key="WtsIconCloseWindow">
+    <DrawingImage x:Key="TSIconCloseWindow">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -158,7 +158,7 @@
 
     <!--#region Image -->
 
-    <Style TargetType="Image" x:Key="WtsImageNewItemFileIcon">
+    <Style TargetType="Image" x:Key="TSImageNewItemFileIcon">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Stretch" Value="None"/>
@@ -166,14 +166,14 @@
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityNewItemFileIcon}"/>
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageNewItemImageFiles">
+    <Style TargetType="Image" x:Key="TSImageNewItemImageFiles">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Stretch" Value="None"/>
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageDialogIcon">
+    <Style TargetType="Image" x:Key="TSImageDialogIcon">
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
         <Setter Property="StretchDirection" Value="Both" />
@@ -181,7 +181,7 @@
         <Setter Property="Margin" Value="{StaticResource Margin_M_Right}" />
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageNotificationIcon">
+    <Style TargetType="Image" x:Key="TSImageNotificationIcon">
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
         <Setter Property="StretchDirection" Value="Both" />
@@ -189,40 +189,40 @@
         <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageRestoreButtonIcon">
+    <Style TargetType="Image" x:Key="TSImageRestoreButtonIcon">
         <Setter Property="Width" Value="10" />
         <Setter Property="Height" Value="10" />
         <Setter Property="Stretch" Value="None" />
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageMaximizeButtonIcon">
+    <Style TargetType="Image" x:Key="TSImageMaximizeButtonIcon">
         <Setter Property="Width" Value="10" />
         <Setter Property="Height" Value="10" />
         <Setter Property="Stretch" Value="None" />
     </Style>
 
-    <Style TargetType="Image" x:Key="WtsImageCloseButtonIcon">
+    <Style TargetType="Image" x:Key="TSImageCloseButtonIcon">
         <Setter Property="Width" Value="10" />
         <Setter Property="Height" Value="10" />
         <Setter Property="Stretch" Value="None" />
     </Style>
 
 
-    <Style TargetType="Image" x:Key="WtsBreakingChangesImageIcon">
+    <Style TargetType="Image" x:Key="TSBreakingChangesImageIcon">
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
         <Setter Property="StretchDirection" Value="Both" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style TargetType="imaging:CrispImage" x:Key="WtsCrispImageCardDeprecatedIcon">
+    <Style TargetType="imaging:CrispImage" x:Key="TSCrispImageCardDeprecatedIcon">
         <Setter Property="Height" Value="16" />
         <Setter Property="Width" Value="16" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="{StaticResource Margin_XS_Right}" />
     </Style>
 
-    <Style TargetType="imaging:CrispImage" x:Key="WtsCrispImageTemplateDetailsDeprecatedIcon">
+    <Style TargetType="imaging:CrispImage" x:Key="TSCrispImageTemplateDetailsDeprecatedIcon">
         <Setter Property="Height" Value="20" />
         <Setter Property="Width" Value="20" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -233,7 +233,7 @@
 
     <!--#region Button -->
 
-    <Style TargetType="Button" x:Key="WtsBaseButton">
+    <Style TargetType="Button" x:Key="TSBaseButton">
         <Setter Property="Foreground" Value="{Binding ButtonText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding Button, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ButtonBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -294,16 +294,16 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButton" BasedOn="{StaticResource WtsBaseButton}">
+    <Style TargetType="Button" x:Key="TSButton" BasedOn="{StaticResource TSBaseButton}">
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="23" />
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonFinish" BasedOn="{StaticResource WtsButton}">
+    <Style TargetType="Button" x:Key="TSButtonFinish" BasedOn="{StaticResource TSButton}">
         <Setter Property="BorderBrush" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonIcon">
+    <Style TargetType="Button" x:Key="TSButtonIcon">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0"/>
@@ -356,7 +356,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonCloseNotification">
+    <Style TargetType="Button" x:Key="TSButtonCloseNotification">
         <Setter Property="Background" Value="{Binding IBCloseButton, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding IBCloseButtonBorder, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding IBCloseButtonGlyph, Source={x:Static services:UIStylesService.Instance}}" />
@@ -419,7 +419,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonDeleteTemplate" BasedOn="{StaticResource WtsButtonIcon}">
+    <Style TargetType="Button" x:Key="TSButtonDeleteTemplate" BasedOn="{StaticResource TSButtonIcon}">
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="{StaticResource Margin_XS_LeftTopRightBottom}" />
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
@@ -434,48 +434,48 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonWindowButtons" BasedOn="{StaticResource WtsBaseButton}">
+    <Style TargetType="Button" x:Key="TSButtonWindowButtons" BasedOn="{StaticResource TSBaseButton}">
         <Setter Property="Padding" Value="16,12,16,12" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonRestoreWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
+    <Style TargetType="Button" x:Key="TSButtonRestoreWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRestore}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRestore}" />
         <Setter Property="Content">
             <Setter.Value>
-                <Image Source="{StaticResource WtsIconRestoreWindow}"
-                   Style="{StaticResource WtsImageRestoreButtonIcon}" />
+                <Image Source="{StaticResource TSIconRestoreWindow}"
+                   Style="{StaticResource TSImageRestoreButtonIcon}" />
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonMaximizeWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
+    <Style TargetType="Button" x:Key="TSButtonMaximizeWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonMaximize}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonMaximize}" />
         <Setter Property="Content">
             <Setter.Value>
-                <Image Source="{StaticResource WtsIconMaximizeWindow}"
-                   Style="{StaticResource WtsImageMaximizeButtonIcon}" />
+                <Image Source="{StaticResource TSIconMaximizeWindow}"
+                   Style="{StaticResource TSImageMaximizeButtonIcon}" />
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonCloseWindow" BasedOn="{StaticResource WtsButtonWindowButtons}">
+    <Style TargetType="Button" x:Key="TSButtonCloseWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="Content">
             <Setter.Value>
-                <Image Source="{StaticResource WtsIconCloseWindow}"
-                   Style="{StaticResource WtsImageCloseButtonIcon}" />
+                <Image Source="{StaticResource TSIconCloseWindow}"
+                   Style="{StaticResource TSImageCloseButtonIcon}" />
             </Setter.Value>
         </Setter>
     </Style>
 
 
-    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle" BasedOn="{StaticResource WtsBaseButton}">
+    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle" BasedOn="{StaticResource TSBaseButton}">
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="23" />
@@ -484,7 +484,7 @@
 
     <!--#region CheckBox -->
 
-    <Style x:Key="WtsCheckBoxStyle" TargetType="{x:Type CheckBox}">
+    <Style x:Key="TSCheckBoxStyle" TargetType="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding CheckBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding CheckBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -571,7 +571,7 @@
 
     <!--#region ImageEx -->
 
-    <Style TargetType="controls:ImageEx" x:Key="WtsImageEx">
+    <Style TargetType="controls:ImageEx" x:Key="TSImageEx">
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{Binding CardIcon, Source={x:Static services:UIStylesService.Instance}}" />
@@ -580,7 +580,7 @@
         <Setter Property="MaxWidth" Value="48" />
     </Style>
 
-    <Style TargetType="controls:ImageEx" BasedOn="{StaticResource WtsImageEx}" x:Key="WtsImageExWithDisabled">
+    <Style TargetType="controls:ImageEx" BasedOn="{StaticResource TSImageEx}" x:Key="TSImageExWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -588,7 +588,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="controls:ImageEx" x:Key="WtsImageExProjectDetails" BasedOn="{StaticResource WtsImageEx}">
+    <Style TargetType="controls:ImageEx" x:Key="TSImageExProjectDetails" BasedOn="{StaticResource TSImageEx}">
         <Setter Property="MaxHeight" Value="20" />
         <Setter Property="MaxWidth" Value="20" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -600,7 +600,7 @@
     <!--#region TextBlock -->
 
     <!--Global-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockWizardTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockWizardTitle">
         <Setter Property="FontSize" Value="{Binding Environment200PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -612,11 +612,11 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockWizardTitle}" x:Key="WtsTextBlockWizardTitleSecondary">
+    <Style TargetType="TextBlock" BasedOn="{StaticResource TSTextBlockWizardTitle}" x:Key="TSTextBlockWizardTitleSecondary">
         <Setter Property="Foreground" Value="{Binding HeaderTextSecondary, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSectionTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSectionTitle">
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -626,7 +626,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSubSectionTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSubSectionTitle">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -636,7 +636,7 @@
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSubSectionText">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSubSectionText">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -646,11 +646,11 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockAboutSubSectionText" BasedOn="{StaticResource WtsTextBlockSubSectionText}">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockAboutSubSectionText" BasedOn="{StaticResource TSTextBlockSubSectionText}">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTermsAndConditions">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTermsAndConditions">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WizardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -665,7 +665,7 @@
 
 
     <!--Sequential Flow-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSequentialFlow">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -677,7 +677,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlowCheckMark">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSequentialFlowCheckMark">
         <Setter Property="Text" Value="&#xE001;" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
@@ -689,7 +689,7 @@
     </Style>
 
     <!--Card-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardTitle">
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardTitleText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -699,7 +699,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardTitle}" x:Key="WtsTextBlockCardTitleWithDisabled">
+    <Style TargetType="TextBlock" BasedOn="{StaticResource TSTextBlockCardTitle}" x:Key="TSTextBlockCardTitleWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -708,7 +708,7 @@
 
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardDescription">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardDescription">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardDescriptionText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -718,7 +718,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardDescription}" x:Key="WtsTextBlockCardDescriptionWithDisabled">
+    <Style TargetType="TextBlock" BasedOn="{StaticResource TSTextBlockCardDescription}" x:Key="TSTextBlockCardDescriptionWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -726,7 +726,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardAddedText">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardAddedText">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -737,7 +737,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardMouseOverAddIcon">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardMouseOverAddIcon">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -749,7 +749,7 @@
         <Setter Property="Margin" Value="0"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardTemplatesCount">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardTemplatesCount">
         <Setter Property="Foreground" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -759,7 +759,7 @@
         <Setter Property="Margin" Value="0"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardAddedIcon">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardAddedIcon">
         <Setter Property="Foreground" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -771,7 +771,7 @@
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
 
-    <Style TargetType="Run" x:Key="WtsRunHyperlink">
+    <Style TargetType="Run" x:Key="TSRunHyperlink">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
@@ -779,7 +779,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="BaselineAlignment" Value="Center" />
     </Style>
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlink">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockHyperlink">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
@@ -790,11 +790,11 @@
         <Setter Property="Margin" Value="0"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlinkAbout" BasedOn="{StaticResource WtsTextBlockHyperlink}">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockHyperlinkAbout" BasedOn="{StaticResource TSTextBlockHyperlink}">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardDeprecatedMessage">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCardDeprecatedMessage">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardTitleText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -802,7 +802,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockCardDeprecatedMessage}" x:Key="WtsTextBlockCardDeprecatedMessageWithDisabled">
+    <Style TargetType="TextBlock" BasedOn="{StaticResource TSTextBlockCardDeprecatedMessage}" x:Key="TSTextBlockCardDeprecatedMessageWithDisabled">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Disabled}" Value="true">
                 <Setter Property="Foreground" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -811,7 +811,7 @@
     </Style>
 
     <!--Project Details-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockComboBoxItem">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockComboBoxItem">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -822,7 +822,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSavedTemplateName">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockSavedTemplateName">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -834,7 +834,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockDragAndDropTemplate">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockDragAndDropTemplate">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{Binding CardIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Text" Value="&#xE784;" />
@@ -846,33 +846,33 @@
     </Style>
 
     <!--TemplateDetails-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTemplateDetailsTitle">
         <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsDisabledText">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTemplateDetailsDisabledText">
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyLabel">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTemplateDetailsPropertyLabel">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyValue">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTemplateDetailsPropertyValue">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockNewItemFileSubject">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockNewItemFileSubject">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -880,7 +880,7 @@
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsDeprecatedMessage">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockTemplateDetailsDeprecatedMessage">
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -890,7 +890,7 @@
     </Style>
 
     <!--Changes Summary-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockFileStatusDescription">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockFileStatusDescription">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -900,7 +900,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockChangesSummaryDetailFileHeader">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockChangesSummaryDetailFileHeader">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding ChangesSummaryDetailFileHeaderText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -912,7 +912,7 @@
     </Style>
 
     <!--Dialog-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockDialogTitle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockDialogTitle">
         <Setter Property="FontSize" Value="{Binding Environment155PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -921,7 +921,7 @@
         <Setter Property="TextAlignment" Value="Left" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockDialogDescription">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockDialogDescription">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -932,7 +932,7 @@
     </Style>
 
     <!--Project Configuration-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockProjectConfigurationDescriptionStyle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockProjectConfigurationDescriptionStyle">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -941,7 +941,7 @@
 
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockProjectConfigurationComboBoxHeaderStyle">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockProjectConfigurationComboBoxHeaderStyle">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -949,7 +949,7 @@
     </Style>
 
     <!--Composition Tool-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCompositionToolTreeViewText">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockCompositionToolTreeViewText">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -958,7 +958,7 @@
     </Style>
 
     <!-- Bullet -->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockBullet">
+    <Style TargetType="TextBlock" x:Key="TSTextBlockBullet">
         <Setter Property="Text" Value="&#xE915;" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
@@ -1026,7 +1026,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
+    <Style x:Key="TSComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -1067,7 +1067,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsComboBoxStyle" TargetType="{x:Type ComboBox}">
+    <Style x:Key="TSComboBoxStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -1079,7 +1079,7 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSComboBoxItemStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -1197,7 +1197,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsComboBoxItemMetadataStyle" TargetType="{x:Type ComboBoxItem}">
+    <Style x:Key="TSComboBoxItemMetadataStyle" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -1221,13 +1221,13 @@
                                 x:Name="icon"
                                 Grid.Column="0"
                                 SourcePath="{Binding Icon}"
-                                Style="{StaticResource WtsImageExProjectDetails}" />
+                                Style="{StaticResource TSImageExProjectDetails}" />
                             <TextBlock
                                 x:Name="name"
                                 Grid.Column="1"
                                 Text="{Binding Title}"
                                 Margin="{StaticResource Margin_M_Left}"
-                                Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                                Style="{StaticResource TSTextBlockComboBoxItem}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -1267,7 +1267,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsComboBoxProjectTypeStyle" TargetType="{x:Type ComboBox}">
+    <Style x:Key="TSComboBoxProjectTypeStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -1279,7 +1279,7 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemMetadataStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSComboBoxItemMetadataStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -1348,13 +1348,13 @@
                                     x:Name="icon"
                                     Grid.Column="0"
                                     SourcePath="{Binding ProjectType.Selected.Icon}"
-                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                    Style="{StaticResource TSImageExProjectDetails}" />
                                 <TextBlock
                                     Grid.Column="1"
                                     Text="{Binding ProjectType.Selected.Title}"
                                     Foreground="{TemplateBinding Foreground}"
                                     Margin="{StaticResource Margin_M_Left}"
-                                    Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                                    Style="{StaticResource TSTextBlockComboBoxItem}" />
                             </Grid>
                             <Border
                                 Grid.Column="1"
@@ -1412,7 +1412,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsComboBoxFrameworkStyle" TargetType="{x:Type ComboBox}">
+    <Style x:Key="TSComboBoxFrameworkStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -1424,7 +1424,7 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemMetadataStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSComboBoxItemMetadataStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -1493,13 +1493,13 @@
                                     x:Name="icon"
                                     Grid.Column="0"
                                     SourcePath="{Binding Framework.Selected.Icon}"
-                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                    Style="{StaticResource TSImageExProjectDetails}" />
                                 <TextBlock
                                     Grid.Column="1"
                                     Text="{Binding Framework.Selected.Title}"
                                     Foreground="{TemplateBinding Foreground}"
                                     Margin="{StaticResource Margin_M_Left}"
-                                    Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                                    Style="{StaticResource TSTextBlockComboBoxItem}" />
                             </Grid>
                             <Border
                                 Grid.Column="1"
@@ -1610,7 +1610,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsExpander" TargetType="{x:Type Expander}">
+    <Style x:Key="TSExpander" TargetType="{x:Type Expander}">
         <Setter Property="Foreground" Value="{Binding PageSideBarExpanderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding PageSideBarExpanderBody, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -1673,40 +1673,40 @@
 
     <!--#region Grid -->
 
-    <Style TargetType="Grid" x:Key="WtsGridBasePage">
+    <Style TargetType="Grid" x:Key="TSGridBasePage">
         <Setter Property="Background" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridMainPage" BasedOn="{StaticResource WtsGridBasePage}">
+    <Style TargetType="Grid" x:Key="TSGridMainPage" BasedOn="{StaticResource TSGridBasePage}">
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridMainFooter">
+    <Style TargetType="Grid" x:Key="TSGridMainFooter">
         <Setter Property="Background" Value="{Binding WizardFooter, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSectionDividerHorizontal">
+    <Style TargetType="Grid" x:Key="TSGridSectionDividerHorizontal">
         <Setter Property="Background" Value="{Binding SectionDivider, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Height" Value="1.5" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSectionDividerVertical">
+    <Style TargetType="Grid" x:Key="TSGridSectionDividerVertical">
         <Setter Property="Background" Value="{Binding SectionDivider, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Width" Value="1.5" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridNotification">
+    <Style TargetType="Grid" x:Key="TSGridNotification">
         <Setter Property="Background" Value="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSavedTemplate">
+    <Style TargetType="Grid" x:Key="TSGridSavedTemplate">
         <Setter Property="Background" Value="Transparent" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSavedTemplateError">
+    <Style TargetType="Grid" x:Key="TSGridSavedTemplateError">
         <Setter Property="Background" Value="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridChangesSummaryDetailFileHeader">
+    <Style TargetType="Grid" x:Key="TSGridChangesSummaryDetailFileHeader">
         <Setter Property="Background" Value="{Binding ChangesSummaryDetailFileHeader, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
@@ -1714,7 +1714,7 @@
 
     <!--#region Hyperlink -->
 
-    <Style TargetType="Hyperlink" x:Key="WtsHyperlink">
+    <Style TargetType="Hyperlink" x:Key="TSHyperlink">
         <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Setter Property="BaselineAlignment" Value="Bottom" />
@@ -1814,7 +1814,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsVerticalScrollBarStyle" TargetType="{x:Type ScrollBar}">
+    <Style x:Key="TSVerticalScrollBarStyle" TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
         <Setter Property="Background" Value="Transparent" />
@@ -1933,7 +1933,7 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="WtsScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
+    <ControlTemplate x:Key="TSScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
         <Grid x:Name="Grid" Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -1964,8 +1964,8 @@
         </Grid>
     </ControlTemplate>
 
-    <Style TargetType="ScrollViewer" x:Key="WtsScrollViewer">
-        <Setter Property="Template" Value="{StaticResource WtsScrollViewerControlTemplate}" />
+    <Style TargetType="ScrollViewer" x:Key="TSScrollViewer">
+        <Setter Property="Template" Value="{StaticResource TSScrollViewerControlTemplate}" />
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="PanningMode" Value="VerticalFirst" />
     </Style>
@@ -1974,15 +1974,15 @@
 
     <!--#region ItemsControl -->
 
-    <Style TargetType="ItemsControl" x:Key="WtsItemsControl">
+    <Style TargetType="ItemsControl" x:Key="TSItemsControl">
         <Setter Property="Focusable" Value="False" />
     </Style>
 
-    <Style TargetType="ItemsControl" x:Key="WtsItemsControlWithScroll" BasedOn="{StaticResource WtsItemsControl}">
+    <Style TargetType="ItemsControl" x:Key="TSItemsControlWithScroll" BasedOn="{StaticResource TSItemsControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <ScrollViewer Style="{StaticResource WtsScrollViewer}">
+                    <ScrollViewer Style="{StaticResource TSScrollViewer}">
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>
@@ -1996,7 +1996,7 @@
 
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
 
-    <Style x:Key="WtsTextBoxStyle" TargetType="{x:Type TextBox}">
+    <Style x:Key="TSTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{Binding TextBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding TextBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding TextBoxText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -2056,7 +2056,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WtsTextBoxPlainText" TargetType="{x:Type TextBox}">
+    <Style x:Key="TSTextBoxPlainText" TargetType="{x:Type TextBox}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="IsTabStop" Value="False" />
@@ -2095,7 +2095,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="TextBox" x:Key="WtsTextBoxVersion" BasedOn="{StaticResource WtsTextBoxPlainText}">
+    <Style TargetType="TextBox" x:Key="TSTextBoxVersion" BasedOn="{StaticResource TSTextBoxPlainText}">
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -2106,7 +2106,7 @@
 
 
     <!--Error Dialog-->
-    <Style TargetType="TextBox" x:Key="WtsTextBlockErrorDialogErrorStackTrace" BasedOn="{StaticResource WtsTextBoxStyle}">
+    <Style TargetType="TextBox" x:Key="TSTextBlockErrorDialogErrorStackTrace" BasedOn="{StaticResource TSTextBoxStyle}">
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
@@ -2119,7 +2119,7 @@
 
     <!--#region Ellipse -->
 
-    <Style TargetType="Ellipse" x:Key="WtsEllipseNewItemFileCircle">
+    <Style TargetType="Ellipse" x:Key="TSEllipseNewItemFileCircle">
         <Setter Property="Width" Value="10" />
         <Setter Property="Height" Value="10" />
         <Setter Property="StrokeThickness" Value="1" />
@@ -2131,7 +2131,7 @@
     <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
 
-    <ItemsPanelTemplate x:Key="WtsItemsPanelTemplate">
+    <ItemsPanelTemplate x:Key="TSItemsPanelTemplate">
         <WrapPanel Margin="{StaticResource Margin_M2_LeftRight}" Orientation="Horizontal" />
     </ItemsPanelTemplate>
 
@@ -2139,7 +2139,7 @@
 
     <!-- New Project Project type / Framework -->
 
-    <Style x:Key="WtsListViewItemSingleSelection" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="TSListViewItemSingleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="{StaticResource CardBorderThickness}" />
         <Setter Property="BorderBrush" Value="{Binding CardBorderDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
@@ -2216,7 +2216,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WtsListViewSingleSelection" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewSingleSelection" TargetType="{x:Type ListView}">
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -2228,14 +2228,14 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="0" />
-        <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSingleSelection}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource TSItemsPanelTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemSingleSelection}" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="0" Margin="0" SnapsToDevicePixels="true">
-                        <ScrollViewer Focusable="false" Margin="0" Padding="0" Style="{StaticResource WtsScrollViewer}">
+                        <ScrollViewer Focusable="false" Margin="0" Padding="0" Style="{StaticResource TSScrollViewer}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0"/>
                         </ScrollViewer>
                     </Border>
@@ -2256,7 +2256,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsListViewSingleSelectionWithoutScroll" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewSingleSelectionWithoutScroll" TargetType="{x:Type ListView}">
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -2264,8 +2264,8 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="0" />
-        <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSingleSelection}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource TSItemsPanelTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemSingleSelection}" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2280,7 +2280,7 @@
 
 
 
-    <Style x:Key="WtsListViewItemMultipleSelection" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="TSListViewItemMultipleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="{StaticResource CardBorderThickness}" />
         <Setter Property="BorderBrush" Value="{Binding CardBorderDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
@@ -2309,7 +2309,7 @@
                         </Border>
                         <Grid x:Name="addIcon" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="30"  Margin="{StaticResource Margin_M3_LeftTop}">
                             <Ellipse Fill="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" Stroke="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1"/>
-                            <TextBlock Style="{StaticResource WtsTextBlockCardMouseOverAddIcon}" />
+                            <TextBlock Style="{StaticResource TSTextBlockCardMouseOverAddIcon}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -2347,7 +2347,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WtsListViewMultipleSelection" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewMultipleSelection" TargetType="{x:Type ListView}">
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -2360,8 +2360,8 @@
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemMultipleSelection}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource TSItemsPanelTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemMultipleSelection}" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2388,7 +2388,7 @@
 
 
 
-    <Style x:Key="WtsListViewItemSequentialFlow" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="TSListViewItemSequentialFlow" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
@@ -2414,14 +2414,14 @@
                                 Grid.Column="0"
                                 x:Name="text"
                                 Foreground="{TemplateBinding Foreground}"
-                                Style="{StaticResource WtsTextBlockSequentialFlow}"
+                                Style="{StaticResource TSTextBlockSequentialFlow}"
                                 extensions:TextBlockExtensions.SequentialFlowStep="{Binding}"
                                 extensions:TextBlockExtensions.SequentialFlowStepIndex="{Binding Index}"
                                 extensions:TextBlockExtensions.SequentialFlowStepCompleted="{Binding Completed}" />
                             <TextBlock
                                 Grid.Column="1"
                                 x:Name="checkMark"
-                                Style="{StaticResource WtsTextBlockSequentialFlowCheckMark}"                                    
+                                Style="{StaticResource TSTextBlockSequentialFlowCheckMark}"                                    
                                 Foreground="{TemplateBinding Foreground}"
                                 Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
@@ -2460,14 +2460,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsListViewSequentialFlow" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewSequentialFlow" TargetType="{x:Type ListView}">
         <Setter Property="Margin" Value="26,20" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSequentialFlow}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemSequentialFlow}" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityNavigationMenu}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2479,7 +2479,7 @@
     </Style>
 
 
-    <Style x:Key="WtsListViewItemProjectDetailsTemplates" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="TSListViewItemProjectDetailsTemplates" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
@@ -2510,16 +2510,16 @@
                                     x:Name="mouseOverDragAndDropTextBlock"
                                     Opacity="0"
                                     Visibility="{Binding IsReorderEnabled, Converter={StaticResource BoolToVisibilityConverter}}"
-                                    Style="{StaticResource WtsTextBlockDragAndDropTemplate}"/>
+                                    Style="{StaticResource TSTextBlockDragAndDropTemplate}"/>
                                 <controls:ImageEx
                                     Grid.Column="1"
                                     SourcePath="{Binding Icon}"
-                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                    Style="{StaticResource TSImageExProjectDetails}" />
                                 <Grid
                                     Grid.Column="2">
                                     <TextBox
                                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        Style="{StaticResource WtsTextBoxStyle}"
+                                        Style="{StaticResource TSTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                                         AutomationProperties.Name="{x:Static res:StringRes.AccessibilityEditPageItem}"
@@ -2532,13 +2532,13 @@
                                     </TextBox>
                                     <TextBlock
                                         Text="{Binding Name, Mode=OneWay}"
-                                        Style="{StaticResource WtsTextBlockSavedTemplateName}"
+                                        Style="{StaticResource TSTextBlockSavedTemplateName}"
                                         Margin="{StaticResource Margin_M_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                                 <Button x:Name="mouseOverDeleteTemplateButton" Grid.Column="3">
                                     <Button.Style>
-                                        <Style TargetType="Button" BasedOn="{StaticResource WtsButtonDeleteTemplate}">
+                                        <Style TargetType="Button" BasedOn="{StaticResource TSButtonDeleteTemplate}">
                                             <Setter Property="Opacity" Value="0" />
                                             <Setter Property="Command" Value="{Binding DeleteCommand}" />
                                         </Style>
@@ -2600,13 +2600,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsListViewProjectDetailsTemplates" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewProjectDetailsTemplates" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityUserSelectionPageList}" />
@@ -2629,7 +2629,7 @@
 
 
 
-    <Style x:Key="WtsListViewItemNewItemFile" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="TSListViewItemNewItemFile" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
@@ -2651,9 +2651,9 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Style="{StaticResource WtsEllipseNewItemFileCircle}" Margin="{StaticResource Margin_XS_Left}" />
-                            <Image Grid.Column="1" Source="{Binding Icon}" Style="{StaticResource WtsImageNewItemFileIcon}" Margin="{StaticResource Margin_XS_Left}" />
-                            <TextBlock x:Name="fileName" Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" Margin="{StaticResource Margin_XS_LeftRight}" />
+                            <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Style="{StaticResource TSEllipseNewItemFileCircle}" Margin="{StaticResource Margin_XS_Left}" />
+                            <Image Grid.Column="1" Source="{Binding Icon}" Style="{StaticResource TSImageNewItemFileIcon}" Margin="{StaticResource Margin_XS_Left}" />
+                            <TextBlock x:Name="fileName" Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource TSTextBlockNewItemFileSubject}" Margin="{StaticResource Margin_XS_LeftRight}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -2686,14 +2686,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WtsListViewNewItemFile" TargetType="{x:Type ListView}">
+    <Style x:Key="TSListViewNewItemFile" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemNewItemFile}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemNewItemFile}" />
         <Setter Property="SelectionMode" Value="Single" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
@@ -2715,7 +2715,7 @@
 
     <!--#region DataTemplate -->
 
-    <DataTemplate x:Key="WtsItemTemplateBasicInfo">
+    <DataTemplate x:Key="TSItemTemplateBasicInfo">
         <Grid Width="162" Height="200">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
@@ -2731,11 +2731,11 @@
                 <controls:ImageEx
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
-                    Style="{StaticResource WtsImageEx}"/>
+                    Style="{StaticResource TSImageEx}"/>
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"
-                    Style="{StaticResource WtsTextBlockCardTitle}" />
+                    Style="{StaticResource TSTextBlockCardTitle}" />
                 <StackPanel
                     Grid.Row="2"
                     Orientation="Horizontal"
@@ -2743,34 +2743,34 @@
                     Visibility="{Binding Deprecated, Converter={StaticResource BoolToVisibilityConverter}}"
                     theming:ImageThemingUtilities.ImageBackgroundColor="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Converter={StaticResource BrushToColorConverter}}">
                     <imaging:CrispImage
-                        Style="{StaticResource WtsCrispImageCardDeprecatedIcon}"
+                        Style="{StaticResource TSCrispImageCardDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
                         Text="{x:Static res:StringRes.DeprecatedMessage}" 
-                        Style="{StaticResource WtsTextBlockCardDeprecatedMessage}"/>
+                        Style="{StaticResource TSTextBlockCardDeprecatedMessage}"/>
                 </StackPanel>
                 <TextBlock
                     Grid.Row="3"
                     Text="{Binding Summary}"
-                    Style="{StaticResource WtsTextBlockCardDescription}"
+                    Style="{StaticResource TSTextBlockCardDescription}"
                     Margin="0,0,0,12" />
             </Grid>
             <TextBlock VerticalAlignment="Bottom"
                        AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
                        AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                 <Hyperlink Command="{Binding DetailsCommand}"
-                           Style="{StaticResource WtsHyperlink}"
+                           Style="{StaticResource TSHyperlink}"
                            AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
                            AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
-                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
+                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
                 </Hyperlink>
             </TextBlock>
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateCard">
+    <DataTemplate x:Key="TSItemTemplateCard">
         <Grid>
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
@@ -2787,30 +2787,30 @@
                 <controls:ImageEx
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
-                    Style="{StaticResource WtsImageExWithDisabled}"/>
+                    Style="{StaticResource TSImageExWithDisabled}"/>
                 <TextBlock
                     Grid.Row="1"
                     Text="{Binding Title}"
-                    Style="{StaticResource WtsTextBlockCardTitleWithDisabled}" />
+                    Style="{StaticResource TSTextBlockCardTitleWithDisabled}" />
                 <TextBlock
                     Grid.Row="2"
                     Text="{Binding Summary}"
-                    Style="{StaticResource WtsTextBlockCardDescriptionWithDisabled}"
+                    Style="{StaticResource TSTextBlockCardDescriptionWithDisabled}"
                     Margin="{StaticResource Margin_XS_Top}"/>
                 <Grid Grid.Row="3" Margin="0,0,0,-4">
                     <!--Multiple Instance added feedback-->
                     <Grid Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Right">
                         <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
                             <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <TextBlock Text="{Binding Count}" Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
+                            <TextBlock Text="{Binding Count}" Style="{StaticResource TSTextBlockCardTemplatesCount}" />
                         </Grid>
                     </Grid>
                     <!--Single Instance added feedback-->
                     <StackPanel Orientation="Horizontal" Visibility="{Binding ShowAddedText, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Right">
-                        <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource WtsTextBlockCardAddedText}" />
+                        <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource TSTextBlockCardAddedText}" />
                         <Grid Width="18" Height="18" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_Left}">
                             <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
-                            <TextBlock Style="{StaticResource WtsTextBlockCardAddedIcon}" />
+                            <TextBlock Style="{StaticResource TSTextBlockCardAddedIcon}" />
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -2819,18 +2819,18 @@
                        AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
                        AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                 <Hyperlink Command="{Binding DetailsCommand}"
-                           Style="{StaticResource WtsHyperlink}"
+                           Style="{StaticResource TSHyperlink}"
                            AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
                        AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
-                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
+                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
                 </Hyperlink>
             </TextBlock>
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsGroupTemplateCard">
+    <DataTemplate x:Key="TSGroupTemplateCard">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -2840,17 +2840,17 @@
                 Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
                 Text="{Binding Name}"
                 Margin="{StaticResource Margin_L_LeftRight_M_Top}"
-                Style="{StaticResource WtsTextBlockSubSectionTitle}" />
+                Style="{StaticResource TSTextBlockSubSectionTitle}" />
             <ListView
                 Grid.Row="1"
-                Style="{StaticResource WtsListViewMultipleSelection}"
+                Style="{StaticResource TSListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplateCard}"
+                ItemTemplate="{StaticResource TSItemTemplateCard}"
                 AutomationProperties.Name="{Binding AccessibleName}"/>
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsNewItemGroupTemplatePageFeature">
+    <DataTemplate x:Key="TSNewItemGroupTemplatePageFeature">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -2860,59 +2860,59 @@
                 Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
                 Text="{Binding Name}"
                 Margin="{StaticResource Margin_L_LeftRight_M_Top}"
-                Style="{StaticResource WtsTextBlockSectionTitle}" />
+                Style="{StaticResource TSTextBlockSectionTitle}" />
             <ListView
                 Grid.Row="1"
-                Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
+                Style="{StaticResource TSListViewSingleSelectionWithoutScroll}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
+                ItemTemplate="{StaticResource TSItemTemplateBasicInfo}"
                 AutomationProperties.Name="{Binding AccessibleName}" />
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateDependency">
+    <DataTemplate x:Key="TSItemTemplateDependency">
         <TextBlock AutomationProperties.Name="{Binding Title}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
+            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
                 <Grid Background="Transparent">
-                    <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                    <TextBlock Text="{Binding Title}" Style="{StaticResource TSTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateRequiredSdk">
-        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+    <DataTemplate x:Key="TSItemTemplateRequiredSdk">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource TSTextBlockTemplateDetailsPropertyValue}">
         </TextBlock>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateRequiredDotNetVersion">
-        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+    <DataTemplate x:Key="TSItemTemplateRequiredDotNetVersion">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource TSTextBlockTemplateDetailsPropertyValue}">
         </TextBlock>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateRequiredVisualStudioWorkload">
-        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}">
+    <DataTemplate x:Key="TSItemTemplateRequiredVisualStudioWorkload">
+        <TextBlock AutomationProperties.Name="{Binding}" Text="{Binding}" Style="{StaticResource TSTextBlockTemplateDetailsPropertyValue}">
         </TextBlock>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateLayout">
+    <DataTemplate x:Key="TSItemTemplateLayout">
         <TextBlock AutomationProperties.Name="{Binding Template.Title}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Template.Title}">
+            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding Template.DetailsCommand}"  AutomationProperties.Name="{Binding Template.Title}">
                 <Grid Background="Transparent">
-                    <TextBlock Text="{Binding Template.Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                    <TextBlock Text="{Binding Template.Title}" Style="{StaticResource TSTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsItemTemplateLicense">
+    <DataTemplate x:Key="TSItemTemplateLicense">
         <TextBlock AutomationProperties.Name="{Binding Text}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}"
+            <Hyperlink Style="{StaticResource TSHyperlink}"
                        Command="{Binding OpenCommand}"
                        AutomationProperties.Name="{Binding Text}"
                        ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
                 <Grid Background="Transparent">
-                    <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TSTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
             </Hyperlink>
         </TextBlock>
@@ -2921,79 +2921,79 @@
 
     <!--Changes Summary-->
 
-    <DataTemplate x:Key="WtsNewItemFileGroupHeader">
-        <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" />
+    <DataTemplate x:Key="TSNewItemFileGroupHeader">
+        <TextBlock Text="{Binding}" Style="{StaticResource TSTextBlockNewItemFileSubject}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsNewItemFileGroup">
+    <DataTemplate x:Key="TSNewItemFileGroup">
         <controls:ExpanderButtonAutomationPeerControl
             Header="{Binding Title}"
-            Style="{StaticResource WtsExpander}"
-            HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
+            Style="{StaticResource TSExpander}"
+            HeaderTemplate="{StaticResource TSNewItemFileGroupHeader}">
             <ListView
                 ItemsSource="{Binding Items}"
-                Style="{StaticResource WtsListViewNewItemFile}"
+                Style="{StaticResource TSListViewNewItemFile}"
                 AutomationProperties.Name="{Binding Title}"/>
         </controls:ExpanderButtonAutomationPeerControl>
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
+    <DataTemplate x:Key="TSDataTemplateChangesSummaryConflictingFileDetailTemplate">
         <Grid Background="{Binding NewItemFileStatusConflictingFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingStylesFileDetailTemplate">
+    <DataTemplate x:Key="TSDataTemplateChangesSummaryConflictingStylesFileDetailTemplate">
         <Grid Background="{Binding NewItemFileStatusConflictingStylesFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryCodeViewer">
+    <DataTemplate x:Key="TSDataTemplateChangesSummaryCodeViewer">
         <controls:CodeViewer Item="{Binding}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryImageViewer">
+    <DataTemplate x:Key="TSDataTemplateChangesSummaryImageViewer">
         <Image
             extensions:ImageExtensions.DisposableSource="{Binding TempFile}"
-            Style="{StaticResource WtsImageNewItemImageFiles}" />
+            Style="{StaticResource TSImageNewItemImageFiles}" />
     </DataTemplate>
 
     <templateSelector:FileExtensionTemplateSelector
         x:Key="fileExtensionTemplateSelector"
-        ImageFileTemplate="{StaticResource WtsDataTemplateChangesSummaryImageViewer}"
-        CodeFileTemplate="{StaticResource WtsDataTemplateChangesSummaryCodeViewer}" />
+        ImageFileTemplate="{StaticResource TSDataTemplateChangesSummaryImageViewer}"
+        CodeFileTemplate="{StaticResource TSDataTemplateChangesSummaryCodeViewer}" />
 
     <templateSelector:FileStatusTemplateSelector x:Key="FileStatusTemplateSelector">
         <templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
             <DataTemplate>
                 <TextBlock
                     Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
         <templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
             <DataTemplate>
                 <TextBlock
                     Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingStylesFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
         <templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
             <DataTemplate>
                 <TextBlock
                     Text="{x:Static res:StringRes.ChangesSummaryGroupModifiedFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
         <templateSelector:FileStatusTemplateSelector.NewFileTemplate>
             <DataTemplate>
                 <TextBlock
                     Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.NewFileTemplate>
         <templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
             <DataTemplate>
                 <TextBlock
                     Text="{x:Static res:StringRes.ChangesSummaryGroupUnchangedFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
         <templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
@@ -3001,17 +3001,17 @@
                 <StackPanel>
                     <TextBlock
                         Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
-                        Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                        Style="{StaticResource TSTextBlockFileStatusDescription}" />
                     <TextBlock
                         Margin="{StaticResource Margin_XS_Top}"
                         Text="{Binding Description}"
-                        Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                        Style="{StaticResource TSTextBlockFileStatusDescription}" />
                 </StackPanel>
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
     </templateSelector:FileStatusTemplateSelector>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryDetailTemplate">
+    <DataTemplate x:Key="TSDataTemplateChangesSummaryDetailTemplate">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -3028,13 +3028,13 @@
                     Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
                 <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
-                    <Hyperlink Style="{StaticResource WtsHyperlink}"
+                    <Hyperlink Style="{StaticResource TSHyperlink}"
                                Command="{Binding MoreDetailsCommand}"
                                AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}"
                                ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">                        
                         <Grid Background="Transparent">
                             <TextBlock
-                                Style="{StaticResource WtsTextBlockHyperlink}"
+                                Style="{StaticResource TSTextBlockHyperlink}"
                                 Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                                 Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
                         </Grid>
@@ -3043,7 +3043,7 @@
             </Grid>
             <Grid
                 Grid.Row="1"
-                Style="{StaticResource WtsGridChangesSummaryDetailFileHeader}">
+                Style="{StaticResource TSGridChangesSummaryDetailFileHeader}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -3052,12 +3052,12 @@
                     Grid.Column="0"
                     Source="{Binding Icon}"
                     Margin="{StaticResource Margin_M_Left_S_TopBottom}"
-                    Style="{StaticResource WtsImageNewItemFileIcon}" />
+                    Style="{StaticResource TSImageNewItemFileIcon}" />
                 <TextBlock
                     Grid.Column="1"
                     Text="{Binding Subject}"
                     Margin="{StaticResource Margin_M_Left_S_TopBottom}"
-                    Style="{StaticResource WtsTextBlockChangesSummaryDetailFileHeader}" />
+                    Style="{StaticResource TSTextBlockChangesSummaryDetailFileHeader}" />
             </Grid>
             <ContentPresenter
                 Grid.Row="2"
@@ -3068,20 +3068,20 @@
     </DataTemplate>
 
 
-    <DataTemplate x:Key="WtsItemTemplateBreakingChanges">
+    <DataTemplate x:Key="TSItemTemplateBreakingChanges">
         <Grid Margin="{StaticResource Margin_M_Top}">
             <BulletDecorator>
                 <BulletDecorator.Bullet>
-                    <TextBlock Style="{StaticResource WtsTextBlockBullet}"/>
+                    <TextBlock Style="{StaticResource TSTextBlockBullet}"/>
                 </BulletDecorator.Bullet>
                 <TextBlock TextWrapping="Wrap" Margin="{StaticResource Margin_XS_Left}">
                     <Run Text="{Binding Message}" />
-                    <Hyperlink Style="{StaticResource WtsHyperlink}"
+                    <Hyperlink Style="{StaticResource TSHyperlink}"
                            Command="{Binding OpenLinkCommand}"
                            AutomationProperties.Name="{Binding HyperLinkMessage}"
                            ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
                         <Grid Background="Transparent">
-                            <TextBlock Text="{Binding HyperLinkMessage}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                            <TextBlock Text="{Binding HyperLinkMessage}" Style="{StaticResource TSTextBlockHyperlink}" />
                         </Grid>
                     </Hyperlink>
                 </TextBlock>
@@ -3143,7 +3143,7 @@
     </Style>
 
     <!-- Notification markdown -->
-    <Style x:Key="WtsNotificationMarkdownStyle" TargetType="controls:NotificationMarkdownBlock">
+    <Style x:Key="TSNotificationMarkdownStyle" TargetType="controls:NotificationMarkdownBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTopRightBottom}" />

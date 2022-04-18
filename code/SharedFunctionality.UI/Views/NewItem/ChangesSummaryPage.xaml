@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </Page.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridMainPage}">
+    <Grid Style="{StaticResource TSGridMainPage}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -24,12 +24,12 @@
         </Grid.ColumnDefinitions>
         <ContentPresenter
             Content="{Binding ChangesSummary.Selected}"
-            ContentTemplate="{StaticResource WtsDataTemplateChangesSummaryDetailTemplate}" />
-        <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+            ContentTemplate="{StaticResource TSDataTemplateChangesSummaryDetailTemplate}" />
+        <Grid Grid.Column="1" Style="{StaticResource TSGridSectionDividerVertical}" />
         <ItemsControl Grid.Column="2" 
                 ItemsSource="{Binding ChangesSummary.FileGroups}"
-                ItemTemplate="{StaticResource WtsNewItemFileGroup}"
-                Style="{StaticResource WtsItemsControlWithScroll}"/>
+                ItemTemplate="{StaticResource TSNewItemFileGroup}"
+                Style="{StaticResource TSItemsControlWithScroll}"/>
     </Grid>
 
 </Page>

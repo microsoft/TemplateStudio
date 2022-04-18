@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Controls
                 Heading2Style = (Style)Resources["H2Style"],
                 Heading3Style = (Style)Resources["H3Style"],
                 Heading4Style = (Style)Resources["H4Style"],
-                LinkStyle = (Style)Resources["WtsHyperlink"],
+                LinkStyle = (Style)Resources["TSHyperlink"],
                 ImageStyle = (Style)Resources["ImageStyle"],
                 SeparatorStyle = (Style)Resources["SeparatorStyle"],
                 AssetPathRoot = Environment.CurrentDirectory,
