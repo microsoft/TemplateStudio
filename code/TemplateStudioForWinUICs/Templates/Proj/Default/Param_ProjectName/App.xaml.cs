@@ -16,8 +16,8 @@ namespace Param_RootNamespace
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            // TODO: Please log and handle the exception as appropriate to your scenario
-            // For more info see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs
+            // TODO: Log and handle exceptions as appropriate.
+            // For more details, see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs.
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
