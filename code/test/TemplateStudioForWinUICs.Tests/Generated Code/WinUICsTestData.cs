@@ -26,7 +26,7 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.WebView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.BlankAdvanced\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.Blank\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar.AddNavViewItem\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\.template.config\template.json" };
@@ -43,7 +43,6 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.ListDetail.SplitView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Proj.Core.Platforms\.template.config\template.json" };
         }
     }

@@ -13,7 +13,7 @@
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.Blank|ts.WinUI.Page.ContentGrid|ts.WinUI.Page.DataGrid|ts.WinUI.Page.Form|ts.WinUI.Page.Settings"
+    "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.WinUI.Page.Blank|ts.WinUI.Page.ContentGrid|ts.WinUI.Page.DataGrid|ts.WinUI.Page.Form|ts.WinUI.Page.Settings"
   },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,

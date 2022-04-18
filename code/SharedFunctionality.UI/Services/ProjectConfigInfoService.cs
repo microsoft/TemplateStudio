@@ -23,7 +23,6 @@ namespace Microsoft.Templates.UI.Services
 
         // ProjectType
         private const string Blank = "Blank";
-        private const string BlankAdvanced = "BlankAdvanced";
         private const string SplitView = "SplitView";
         private const string TabbedNav = "TabbedNav";
         private const string MenuBar = "MenuBar";
@@ -152,10 +151,6 @@ namespace Microsoft.Templates.UI.Services
             {
                 return SplitView;
             }
-            else if (IsBlankAdvanced(platform))
-            {
-                return BlankAdvanced;
-            }
             else if (IsBlank(platform))
             {
                 return Blank;
@@ -190,17 +185,6 @@ namespace Microsoft.Templates.UI.Services
             return string.Empty;
         }
 
-        private bool IsBlankAdvanced(string platform)
-        {
-            switch (platform)
-            {
-                case Platforms.WinUI:
-                    return ExistsFileInProjectPath("IActivationHandler.cs", "Activation");
-                default:
-                    return false;
-            }
-        }
-
         private bool IsBlank(string platform)
         {
             switch (platform)
@@ -214,7 +198,7 @@ namespace Microsoft.Templates.UI.Services
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu")
                         && !FileContainsLine("Views", "ShellWindow.xaml", "<Fluent:Ribbon x:Name=\"ribbonControl\" Grid.Row=\"0\">");
                 case Platforms.WinUI:
-                    return ExistsFileInProjectPath("MainWindow.xaml") || IsCppProject();
+                    return ExistsFileInProjectPath("IActivationHandler.cs", "Activation") || IsCppProject();
                 default:
                     return false;
             }

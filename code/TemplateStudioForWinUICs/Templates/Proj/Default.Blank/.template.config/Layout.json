@@ -1,8 +1,0 @@
-﻿[
-    {
-        "name": "MSIX Packaging",
-        "templateGroupIdentity": "ts.WinUI.Feat.MSIXPackaging",
-        "readonly": "false",
-        "projecttype": "Blank"
-    }
-]

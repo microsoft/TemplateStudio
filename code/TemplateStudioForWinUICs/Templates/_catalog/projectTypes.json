@@ -2,18 +2,9 @@
     {
       "name": "Blank",
       "displayName": "Blank",
-      "summary": "This basic project is a blank canvas upon which to build your app.",
-      "author": "Microsoft",
-      "order": "1",
-      "platform": "WinUI",
-      "languages": [ "C#", "C++" ]
-    },
-    {
-      "name": "BlankAdvanced",
-      "displayName": "Blank Advanced",
       "summary": "A navigation frame and basic services and styles are included.",
       "author": "Microsoft",
-      "order": "2",
+      "order": "1",
       "platform": "WinUI",
       "languages": [ "C#" ]
     },
@@ -22,7 +13,7 @@
       "displayName": "Navigation Pane",
       "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
       "author": "Microsoft",
-      "order": "3",
+      "order": "2",
       "platform": "WinUI",
       "languages": [ "C#" ]
     },
@@ -31,7 +22,7 @@
       "displayName": "MenuBar",
       "summary": "A menu is added to move around between pages.",
       "author": "Microsoft",
-      "order": "4",
+      "order": "3",
       "platform": "WinUI",
       "languages": [ "C#" ]
     }

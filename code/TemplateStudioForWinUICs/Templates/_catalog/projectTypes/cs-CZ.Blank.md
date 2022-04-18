@@ -1,3 +1,5 @@
-﻿Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci.
+﻿Tento typ projektu poskytuje lešení složek a vytváří nejdůležitější složky jako služby, styly, zobrazení a viewmodely.
 
-Neposkytuje generování uživatelského rozhraní a nechává všechno na vás.
+Poskytuje také minimální sadu stylů, velikostí písma a hodnot tloušťky, které můžete použít k vytvoření stylu aplikace.
+
+Tento typ projektu zahrnuje také základní služby pro aktivaci a navigaci. Při spuštění aplikace se s těmito službami provádí navigace na domovskou stránku.

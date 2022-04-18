@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Ce projet basique est une toile blanche à partir de laquelle vous pouvez développer votre application."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Un cadre de navigation et des services et styles de base sont inclus."
   },
   {

@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Este proyecto básico es un lienzo en blanco en el que puedes construir tu aplicación."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Incluye un marco de navegación, servicios y estilos básicos."
   },
   {

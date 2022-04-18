@@ -458,12 +458,6 @@
     <Content Include="Templates\Pg\WebView\Views\Param_ItemNamePage.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\App.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\MainWindow.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -609,9 +603,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project\Services\PageService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\cs-CZ.description.md">
@@ -1556,27 +1547,6 @@
     <Content Include="Templates\projectNameValidation.config.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\.template.config\Layout.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\app.manifest">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-arm64.pubxml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-x64.pubxml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\PublishProfiles\win10-x86.pubxml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Param_ProjectName.csproj">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\.template.config\Layout.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1751,13 +1721,7 @@
     <Content Include="Templates\_catalog\projectTypes\Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\cs-CZ.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\cs-CZ.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\cs-CZ.MenuBar.md">
@@ -1769,9 +1733,6 @@
     <Content Include="Templates\_catalog\projectTypes\de-DE.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\de-DE.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\de-DE.MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1779,9 +1740,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\es-ES.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\es-ES.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\es-ES.MenuBar.md">
@@ -1793,9 +1751,6 @@
     <Content Include="Templates\_catalog\projectTypes\fr-FR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\fr-FR.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\fr-FR.MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1803,9 +1758,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\it-IT.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\it-IT.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\it-IT.MenuBar.md">
@@ -1817,9 +1769,6 @@
     <Content Include="Templates\_catalog\projectTypes\ja-JP.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\ja-JP.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\ja-JP.MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1827,9 +1776,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\ko-KR.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\ko-KR.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\ko-KR.MenuBar.md">
@@ -1844,9 +1790,6 @@
     <Content Include="Templates\_catalog\projectTypes\pl-PL.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\pl-PL.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\pl-PL.MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1854,9 +1797,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\pt-BR.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\pt-BR.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\pt-BR.MenuBar.md">
@@ -1868,9 +1808,6 @@
     <Content Include="Templates\_catalog\projectTypes\ru-RU.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\ru-RU.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\ru-RU.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1880,25 +1817,16 @@
     <Content Include="Templates\_catalog\projectTypes\tr-TR.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\tr-TR.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\tr-TR.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-CN.Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\projectTypes\zh-CN.BlankAdvanced.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-CN.SplitView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-TW.Blank.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\zh-TW.BlankAdvanced.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\zh-TW.SplitView.md">
@@ -1967,10 +1895,10 @@
     <Content Include="Templates\_comp\MT\Page.WebView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.BlankAdvanced\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Project.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.BlankAdvanced\README_postaction.md">
+    <Content Include="Templates\_comp\MT\Project.Blank\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\.template.config\template.json">
@@ -2048,16 +1976,10 @@
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\TemplateStudio.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\readme.txt">
@@ -2129,12 +2051,6 @@
     <Content Include="Templates\Pg\WebView\Views\Param_ItemNamePage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\App.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\MainWindow.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2151,9 +2067,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\Blank.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_catalog\projectTypes\BlankAdvanced.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\projectTypes\MenuBar.xaml">
@@ -2210,9 +2123,6 @@
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.UWP.AddClickMeButton\Param_ItemNamePage_postaction.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\FontSizes.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2267,9 +2177,6 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Strings\en-us\Resources.resw">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2283,9 +2190,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\launchsettings.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default.Blank\Param_ProjectName\Properties\launchsettings.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

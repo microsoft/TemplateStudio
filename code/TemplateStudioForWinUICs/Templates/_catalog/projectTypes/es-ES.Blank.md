@@ -1,3 +1,5 @@
-﻿Este proyecto básico es un lienzo en blanco en el que puedes construir tu aplicación.
+﻿Este tipo de proyecto proporciona una estructura de carpetas creando las carpetas más importantes como Servicios, Estilos, Vistas y ViewModels.
 
-Viene sin estructura y deja que tú lo hagas todo.
+También proporciona un conjunto mínimo de estilos, tamaños de fuente y valores de grosores y márgenes que puedes usar para crear estilos de aplicación.
+
+Este tipo de proyecto también incluye servicios básicos para la activación y la navegación. Estos servicios realizan la navegación a la página principal en el inicio de la aplicación.
