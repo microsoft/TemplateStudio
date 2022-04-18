@@ -4,7 +4,7 @@ This project was created using [Microsoft Template Studio](https://aka.ms/templa
 
 ## Getting Started
 This app was built using WinUI 3 and the Windows App SDK.
-Windows UI Library (WinUI) 3 is a native user experience (UX) framework for both Windows Desktop and UWP apps.
+Windows UI Library (WinUI) 3 is a native user experience (UX) framework for Windows Desktop apps.
 
 You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in the `App.xaml.cs` file. 
 Add a breakpoint in the `OnLaunched` method and debug the code. Step into the `ActivationService` methods to understand the app lifecycle.
@@ -31,14 +31,12 @@ You can open the Task List using the menu `Views -> Task List`.
 │ │ ├── ShellPage.xaml - main app page with navigation frame (only for SplitView and MenuBar)
 │ │ └── ...
 │ └── App.xaml - app definition and lifecycle events
+│ └── Package.appxmanifest - app properties and declarations
 ├── Param_ProjectName.Core/ - core project (.NET Standard)
 │ ├── Contracts/ - class interfaces
 │ ├── Helpers/ - static helper classes
 │ ├── Models/ - business models
 │ └── Services/ - services implementations
-├── Param_ProjectName (Package)/ - MSIX packaging project
-│ ├── Strings/en-us/Resources.resw - localized string resources
-│ └── Package.appxmanifest - app properties and declarations
 └── README.md
 ```
 
@@ -48,8 +46,7 @@ You can open the Task List using the menu `Views -> Task List`.
 
 ## Publish / Distribute
 
-Use the [packaging project](http://aka.ms/msix) to create the app package to distribute your app and future updates. 
-Right click on the packaging project and click `Publish -> Create App Packages...` to create an app package.
+Right-click on the application project and select `Package and Publish -> Create App Packages...` to create an MSIX package.
 
 ## Additional Documentation
 
