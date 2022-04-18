@@ -38,7 +38,7 @@
         </ResourceDictionary>
     </Window.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridBasePage}">
+    <Grid Style="{StaticResource TSGridBasePage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -52,18 +52,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Source="{StaticResource WtsIconWarning}"
-                   Style="{StaticResource WtsImageDialogIcon}"
+            <Image Source="{StaticResource TSIconWarning}"
+                   Style="{StaticResource TSImageDialogIcon}"
                    Grid.RowSpan="2" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource TSTextBlockDialogTitle}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource TSTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}" />
         </Grid>
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+        <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static res:StringRes.ButtonYes}" Command="{Binding AcceptCommand}" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static res:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonYes}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </Window>

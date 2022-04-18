@@ -40,7 +40,7 @@
         </ResourceDictionary>
     </Window.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridBasePage}">
+    <Grid Style="{StaticResource TSGridBasePage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -55,18 +55,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Source="{StaticResource WtsIconError}"
-                   Style="{StaticResource WtsImageDialogIcon}"
+            <Image Source="{StaticResource TSIconError}"
+                   Style="{StaticResource TSImageDialogIcon}"
                    Grid.RowSpan="2" />
             <TextBlock
                 Grid.Column="1"
                 Text="{Binding Title}"
-                Style="{StaticResource WtsTextBlockDialogTitle}" />
+                Style="{StaticResource TSTextBlockDialogTitle}" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
                 Text="{Binding Description}"
-                Style="{StaticResource WtsTextBlockDialogDescription}"
+                Style="{StaticResource TSTextBlockDialogDescription}"
                 Margin="{StaticResource Margin_XS_Top}" />
             <TextBox
                 Grid.Row="2"
@@ -74,21 +74,21 @@
                 Text="{Binding ErrorStackTrace}"
                 Visibility="{Binding ShowDetails, Converter={StaticResource BoolToVisibilityConverter}}"
                 Margin="{StaticResource Margin_L_Top}"
-                Style="{StaticResource WtsTextBlockErrorDialogErrorStackTrace}" />
+                Style="{StaticResource TSTextBlockErrorDialogErrorStackTrace}" />
         </Grid>
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+        <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <CheckBox
                     IsChecked="{Binding ShowDetails}"
                     Content="{x:Static res:StringRes.ErrorDialogShowDetails}"
-                    Style="{StaticResource WtsCheckBoxStyle}" />
+                    Style="{StaticResource TSCheckBoxStyle}" />
                 <Button
-                    Style="{StaticResource WtsButtonFinish}"
+                    Style="{StaticResource TSButtonFinish}"
                     Content="{x:Static res:StringRes.ButtonOk}"
                     Command="{Binding AcceptCommand}"
                     HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </Window>

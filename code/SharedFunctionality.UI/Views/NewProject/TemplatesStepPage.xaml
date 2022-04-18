@@ -23,12 +23,12 @@
             Grid.Row="0"
             Text="{Binding Title}"
             Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
-            Style="{StaticResource WtsTextBlockSectionTitle}" />
-        <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">
+            Style="{StaticResource TSTextBlockSectionTitle}" />
+        <ScrollViewer Grid.Row="1" Style="{StaticResource TSScrollViewer}">
             <ItemsControl
                 Focusable="False"
                 ItemsSource="{Binding Groups}"
-                ItemTemplate="{StaticResource WtsGroupTemplateCard}"/>
+                ItemTemplate="{StaticResource TSGroupTemplateCard}"/>
         </ScrollViewer>
     </Grid>
 </Page>

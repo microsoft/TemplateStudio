@@ -40,7 +40,7 @@
         </ResourceDictionary>
     </Window.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridBasePage}">
+    <Grid Style="{StaticResource TSGridBasePage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -55,40 +55,40 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Source="{StaticResource WtsIconInfo}"
-                   Style="{StaticResource WtsImageDialogIcon}"
+            <Image Source="{StaticResource TSIconInfo}"
+                   Style="{StaticResource TSImageDialogIcon}"
                    Grid.RowSpan="2" />
             <TextBlock
                 Grid.Column="1"
                 Text="{Binding Title}"
-                Style="{StaticResource WtsTextBlockDialogTitle}" />
+                Style="{StaticResource TSTextBlockDialogTitle}" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
                 Text="{Binding Description}"
-                Style="{StaticResource WtsTextBlockDialogDescription}"
+                Style="{StaticResource TSTextBlockDialogDescription}"
                 Margin="{StaticResource Margin_XS_Top}" />
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"
                 AutomationProperties.Name="{x:Static res:StringRes.InfoDialogMoreInfoLinkText}"
                 Margin="{StaticResource Margin_M_Top}">
-                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenWebSiteCommand}" >
-                        <TextBlock Text="{x:Static res:StringRes.InfoDialogMoreInfoLinkText}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                    <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding OpenWebSiteCommand}" >
+                        <TextBlock Text="{x:Static res:StringRes.InfoDialogMoreInfoLinkText}" Style="{StaticResource TSTextBlockHyperlink}" />
                     </Hyperlink>
             </TextBlock>
      
               
         </Grid>
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+        <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Button
-                    Style="{StaticResource WtsButtonFinish}"
+                    Style="{StaticResource TSButtonFinish}"
                     Content="{x:Static res:StringRes.ButtonOk}"
                     Command="{Binding AcceptCommand}"
                     HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </Window>
