@@ -45,7 +45,6 @@ You can open the Task List using the menu `Views -> Task List`.
 ### Project type
 
 ## Publish / Distribute
-
 Right-click on the application project and select `Package and Publish -> Create App Packages...` to create an MSIX package.
 
 ## Additional Documentation
