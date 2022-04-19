@@ -130,6 +130,19 @@ In the above example, you can see from the `ts.compositionFilter` tag that this 
 
 The `ts.compositionFilter` indicates that the composition template will be applied to this base Project template when the conditions in the filter are met.
 
+Below are the fields that can be evaluated in a composition filter:
+
+* template.json fields
+  * `name`
+  * `identity`
+  * `groupIdentity`
+  * any `tag`
+* context parameters
+  * `$frontendframework`
+  * `$projectType`
+
+Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators.
+
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
 Another staple of composition templates are [merge post actions](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#merge-post-action). Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a merge post action applied to the .csproj file.
