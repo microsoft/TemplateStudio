@@ -200,4 +200,4 @@ In addition to ensuring all extensions build successfully, the CI pipelines run 
 
 The pull request template lists additional considerations when modifying templates. Ensure all considerations are accounted for in your changes and update the pull request description accordingly.
 
-Once all required tests pass and the request is approved, the pull request can be merged.
+Once all required tests pass and the changes are approved, the pull request will be merged.
