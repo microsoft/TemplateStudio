@@ -145,7 +145,7 @@ Conditionals can be combined with the `&` operator and fields can be compared to
 
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
-Another staple of composition templates are [merge post actions](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#merge-post-action). Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a merge post action applied to the .csproj file.
+Existing files can be modified with [merge post actions](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#merge-post-action). Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a merge post action applied to the .csproj file.
 
 Merge post actions on a file are defined by adding a file to the composition template with the same name as the original file but with a _postaction suffix before the file extension (e.g. `Param_ProjectName_postaction.csproj`).
 
