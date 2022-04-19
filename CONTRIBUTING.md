@@ -64,7 +64,7 @@ To avoid the maintenance overhead and combinatorial complexity of static templat
 
 Base templates contain the core part of the templates that are unaffected by other options selected in the wizard. Composition templates within _comp conditionally modify the base templates based on the options selected in the wizard (e.g. to add an MVVMToolkit ViewModel to base Page templates when the MVVMToolkit frontend framework is selected).
 
-Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the .NET Templating Engine, so the `template.json` format is inherited from .NET. Template Studio extended the .NET model to support composition filters.
+Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the [.NET Templating Engine](https://github.com/dotnet/templating/wiki/Reference-for-template.json), so the `template.json` format is inherited from .NET. Template Studio extended the .NET model to support composition filters.
 
 ### Composition Templates
 
