@@ -51,16 +51,99 @@ The templates for a given Template Studio extension live within the Templates fo
 
 To avoid the maintenance overhead and combinatorial complexity of static templates for every combination of options in the wizard, Template Studio templates are dynamically composed based on the selected options. For every project created with the wizard, there is a base project as well as additional templates that extend or modify the base project. Below are the various folders that make up these components:
 
-* Proj - defines base project templates
+* Proj - defines base Project templates
 * Pg - defines base Page templates
 * Ft - defines base Feature templates
 * Serv - defines base Services templates
 * Test - defines base Testing templates
-* _comp - defines composition fragments
+* _comp - defines composition templates
 
-Base templates contain the core part of the templates that are unaffected by other options selected in the wizard. Composition fragments within _comp conditionally modify the base templates based on the options selected in the wizard (e.g. to add an MVVMToolkit ViewModel to base Page templates when the MVVMToolkit frontend framework is selected).
+Base templates contain the core part of the templates that are unaffected by other options selected in the wizard. Composition templates within _comp conditionally modify the base templates based on the options selected in the wizard (e.g. to add an MVVMToolkit ViewModel to base Page templates when the MVVMToolkit frontend framework is selected).
 
 Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the .NET Templating Engine, so the `template.json` format is inherited from .NET. Template Studio extended the .NET model to support composition filters.
+
+### Composition Templates
+
+Composition templates are just like other templates except that they include a `ts.compositionFilter` tag in `template.json` that qualifies when they will be applied.
+
+```json
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "ts.WinUI.Project.Blank",
+    "shortName": "ts.WinUI.Project.Blank",
+    "identity": "ts.WinUI.Project.Blank",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionOrder": "0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == Blank & ts.type == project"
+    },
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }
+```
+In the above example, you can see from the `ts.compositionFilter` tag that this template will be applied when the  selected frontend framework (`$frontendframework`) is `MVVMToolkit`, the selected project type is `Blank` (`$projectType`), and the template being processed is of type `project` (`ts.type`). The matching template that satisifes these conditions is below.
+
+```json
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "ts.WinUI.Proj.Default",
+  "shortName": "ts.WinUI.Proj.Default",
+  "identity": "ts.WinUI.Proj.Default",
+  "groupIdentity": "ts.WinUI.Proj.Default",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "ts.type": "project",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
+    "ts.frontendframework": "MVVMToolkit",
+    "ts.platform": "WinUI",
+    "ts.appmodel": "Desktop",
+    "ts.outputToParent": "true",
+    "ts.version": "1.0.0",
+    "ts.displayOrder": "0",
+    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
+  },
+  ...
+}
+```
+
+The `ts.compositionFilter` indicates that the composition template will be applied to this base Project template when the conditions in the filter are met.
+
+New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
+
+Another staple of composition templates are merge post actions. Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a post action applied to the .csproj file.
+
+Merge post actions on a file are defined by adding a file to the composition template with the same name as the original file but with a _postaction suffix before the file extension (e.g. `Param_ProjectName_postaction.csproj`).
+
+Merge post action files use pattern matching and special syntax to identify a location within the original file and then either add or remove content at that location.
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+<!--{--{-->
+    <WindowsPackageType>None</WindowsPackageType>
+<!--}--}-->
+  </PropertyGroup>
+```
+The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
 
 ### Modifying the Wizard
 
