@@ -132,11 +132,11 @@ The `ts.compositionFilter` indicates that the composition template will be appli
 
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
-Another staple of composition templates are merge post actions. Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a post action applied to the .csproj file.
+Another staple of composition templates are [merge post actions](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#merge-post-action). Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a merge post action applied to the .csproj file.
 
 Merge post actions on a file are defined by adding a file to the composition template with the same name as the original file but with a _postaction suffix before the file extension (e.g. `Param_ProjectName_postaction.csproj`).
 
-Merge post action files use pattern matching and special syntax to identify a location within the original file and then either add or remove content at that location.
+Merge post action files use pattern matching and special comments to identify a location within the original file and then either add or remove content at that location.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -147,7 +147,7 @@ Merge post action files use pattern matching and special syntax to identify a lo
 <!--}--}-->
   </PropertyGroup>
 ```
-The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
+The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
 
 ### Modifying the Wizard
 
