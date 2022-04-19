@@ -488,9 +488,6 @@
     <Content Include="Templates\_comp\MT\Page.AddCommandNS\ViewModels\Param_ItemNameViewModel_postaction.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.AddIocNS\Views\Param_ItemNamePage_postaction.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1881,9 +1878,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddCommandNS\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.AddIocNS\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.AddViewModelDetail\.template.config\template.json">
