@@ -13,8 +13,8 @@
 		<ProvideDefaultName>true</ProvideDefaultName>
 		<LanguageTag>XAML</LanguageTag>
 		<PlatformTag>Windows</PlatformTag>
-		<ProjectTypeTag>WINUI</ProjectTypeTag>
 		<ProjectTypeTag>desktop</ProjectTypeTag>
+		<ProjectTypeTag>WinUI</ProjectTypeTag>
 	</TemplateData>
 	<TemplateContent>
 		<CustomParameters>
