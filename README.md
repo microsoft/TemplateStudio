@@ -11,11 +11,19 @@ Projects created with these extensions contain well-formed, readable code and in
 
 To get started, install the appropriate extension, then select the corresponding Template Studio project template when creating a new project in Visual Studio. Name your project, then click Create to launch the Template Studio wizard.
 
+<figcaption>VS New Project Dialog</figcaption>
+
 ![VS New Project screenshot](./docs/resources/getting-started/VS-NewProject-WinUI.png)
+
+<figcaption>Template Studio for WinUI (C#)</figcaption>
 
 ![Template Studio for WinUI screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-WinUI.png)
 
+<figcaption>Template Studio for WPF</figcaption>
+
 ![Template Studio for WPF screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-WPF.png)
+
+<figcaption>Template Studio for UWP</figcaption>
 
 ![Template Studio for UWP screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-UWP.png)
 
