@@ -97,7 +97,7 @@ Composition templates are just like other templates except that they include a `
     }
   }
 ```
-In the above example, you can see from the `ts.compositionFilter` tag that this template will be applied when the  selected frontend framework (`$frontendframework`) is `MVVMToolkit`, the selected project type is `Blank` (`$projectType`), and the template being processed is of type `project` (`ts.type`). The matching template that satisifes these conditions is below.
+In the above example, you can see from the `ts.compositionFilter` tag that this template will be applied when the selected frontend framework (`$frontendframework`) is `MVVMToolkit`, the selected project type is `Blank` (`$projectType`), and the template being processed is of type `project` (`ts.type`). The matching template that satisfies these conditions is below.
 
 ```json
 {
