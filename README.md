@@ -7,7 +7,7 @@ Template Studio is a suite of Visual Studio 2022 extensions that accelerates the
 * Template Studio for WPF
 * Template Studio for UWP
 
-Projects created with these extensions contain well-formed, readable code and incorporate latest development features while implementing proven patterns and leading practices. The generated code also includes links to documentation and TODO comments that provide useful insight and guidance for turning the generated projects into production applications.
+Projects created with these extensions contain well-formed, readable code and incorporate the latest development features while implementing proven patterns and leading practices. The generated code includes links to documentation and TODO comments that provide useful insight and guidance for turning the generated projects into production applications.
 
 To get started, install the appropriate extension, then select the corresponding Template Studio project template when creating a new project in Visual Studio. Name your project, then click Create to launch the Template Studio wizard.
 
