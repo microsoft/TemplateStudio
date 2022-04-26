@@ -45,7 +45,7 @@ When you F5 to debug or start without debugging, Visual Studio will install the 
 
 ## Templates
 
-The templates for a given Template Studio extension live within the Templates folder for that extension (e.g. [code/TemplateStudioForWinUICs/Templates](https://github.com/microsoft/TemplateStudio/tree/main/code/TemplateStudioForWinUICs/Templates) for the Template Studio for WinUI (C#) extension). If you are adding new options to the Template Studio wizard or fixing bugs in existing templates, you'll primarily be working within these folders.
+The templates for a given Template Studio extension live within the `Templates` folder for that extension (e.g. [code/TemplateStudioForWinUICs/Templates](https://github.com/microsoft/TemplateStudio/tree/main/code/TemplateStudioForWinUICs/Templates) for the Template Studio for WinUI (C#) extension). If you are adding new options to the Template Studio wizard or fixing bugs in existing templates, you'll primarily be working within these folders.
 
 * [Template Structure](#Template-Structure)
 * [Composition Templates](#Composition-Templates)
