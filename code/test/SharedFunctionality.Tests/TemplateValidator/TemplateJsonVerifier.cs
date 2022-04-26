@@ -243,7 +243,7 @@ namespace TemplateValidator
                         VerifyTSIshiddenTagValue(tag, results);
                         break;
                     case "ts.isGroupExclusiveSelection":
-                        VerifyTSWtsIsGroupExclusiveSelectionTagValue(tag, results);
+                        VerifyTSIsGroupExclusiveSelectionTagValue(tag, results);
                         break;
                     case "ts.telemName":
                         VerifyTSTelemNameTagValue(tag, results);
@@ -334,7 +334,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyTSWtsIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {

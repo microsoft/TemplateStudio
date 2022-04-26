@@ -127,7 +127,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
 
-            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, resultSummary);
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.TSGen, result, resultSummary);
 
             foreach (var key in properties.Keys)
             {
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
 
-            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsWizard, result, "Wizard cancelled");
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.TSWizard, result, "Wizard cancelled");
 
             foreach (var key in properties.Keys)
             {

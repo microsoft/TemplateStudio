@@ -1960,7 +1960,7 @@
                 Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
                 Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                 ViewportSize="{TemplateBinding ViewportHeight}"
-                Style="{DynamicResource WtsVerticalScrollBarStyle}" />
+                Style="{DynamicResource TSVerticalScrollBarStyle}" />
         </Grid>
     </ControlTemplate>
 

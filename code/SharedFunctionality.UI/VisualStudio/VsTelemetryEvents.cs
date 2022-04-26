@@ -6,10 +6,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsTelemetryEvents
     {
-        public const string Prefix = "Wts.";
+        public const string Prefix = "TS.";
 
-        public static string WtsGen { get; private set; } = "vs/templatestudio/wts-generated";
+        public static string TSGen { get; private set; } = "vs/templatestudio/ts-generated";
 
-        public static string WtsWizard { get; private set; } = "vs/templatestudio/wts-wizard";
+        public static string TSWizard { get; private set; } = "vs/templatestudio/ts-wizard";
     }
 }
