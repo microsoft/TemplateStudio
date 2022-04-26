@@ -1,13 +1,31 @@
 # Template Studio
 
-*Template Studio* (aka *TS*) is a Visual Studio 2019 Extension that accelerates the creation of new **Universal Windows Platform (UWP)**, **Windows Presentation Foundation (WPF .NET Core 3.1)** and **WinUI 3 in Desktop** apps using a wizard-based experience. The resulting project is well-formed, readable code that incorporates great development features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links to documentation to provide useful insights.
-*TS* supports creating UWP apps in C# or VB.Net, WPF (.NET Core 3.1) apps in C# and **WinUI 3 in Desktop** apps in C# or C++.
+Template Studio is a suite of Visual Studio 2022 extensions that accelerate the creation of new WinUI 3, WPF, and UWP apps using a wizard-based experience.
 
-![Template Studio UWP screenshot](./docs/resources/getting-started/WTS%20-%20Project%20Type.png)
+* Template Studio for WinUI (C#)
+* Template Studio for WinUI (C++) (FUTURE)
+* Template Studio for WPF
+* Template Studio for UWP
 
-![Template Studio WPF screenshot](./docs/resources/getting-started/WTSProjectTypeWPF.png)
+Projects created with these extensions contain well-formed, readable code and incorporate the latest development features while implementing proven patterns and leading practices. The generated code includes links to documentation and TODO comments that provide useful insight and guidance for turning the generated projects into production applications.
 
-![Template Studio **WinUI 3** screenshot](./docs/resources/getting-started/WTSProjectTypeWinUI.png)
+To get started, install the appropriate extension, then select the corresponding Template Studio project template when creating a new project in Visual Studio. Name your project, then click Create to launch the Template Studio wizard.
+
+<figcaption>VS New Project Dialog</figcaption>
+
+![VS New Project screenshot](./docs/resources/getting-started/VS-NewProject-WinUI.png)
+
+<figcaption>Template Studio for WinUI (C#)</figcaption>
+
+![Template Studio for WinUI screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-WinUI.png)
+
+<figcaption>Template Studio for WPF</figcaption>
+
+![Template Studio for WPF screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-WPF.png)
+
+<figcaption>Template Studio for UWP</figcaption>
+
+![Template Studio for UWP screenshot](./docs/resources/getting-started/Wizard-ProjectTypes-UWP.png)
 
 ## Build Status
 
@@ -20,28 +38,27 @@
 
 ## Features
 
-*Template Studio* approaches app creation using the following six attribute sets:
+Template Studio approaches app creation using the following six attribute sets:
 
 ### **Project type**
 
 First, how do you want your app's UI navigation to behave?
 
-- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[Navigation Pane](./docs/UWP/projectTypes/navigationpane.md)*, *[Horizontal Navigation Pane](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[Menu Bar](./docs/UWP/projectTypes/menubar.md)*.
+- **WinUI 3**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WinUI/projectTypes/menubar.md)*.
 
 - **WPF**: *[Blank](./docs/WPF/projectTypes/blank.md)*, *[Navigation Pane](./docs/WPF/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WPF/projectTypes/menubar.md)* and a *[Ribbon](./docs/WPF/projectTypes/ribbon.md)*.
 
-- **WinUI 3**: *[Blank](./docs/WinUI/projectTypes/blank.md)*, *[Navigation Pane](./docs/WinUI/projectTypes/navigationpane.md)*, *[Menu Bar](./docs/WinUI/projectTypes/menubar.md)*.
-
+- **UWP**: *[Blank](./docs/UWP/projectTypes/blank.md)*, *[Navigation Pane](./docs/UWP/projectTypes/navigationpane.md)*, *[Horizontal Navigation Pane](./docs/UWP/projectTypes/horizontalnavigationpane.md)*, and a *[Menu Bar](./docs/UWP/projectTypes/menubar.md)*.
 
 ### **App design pattern**
 
 Next, what coding pattern do you want to use in your project.
 
-- **UWP**: *[MVVM Toolkit](./docs/UWP/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
+- **WinUI 3**: *[MVVM Toolkit](./docs/WinUI/frameworks/mvvmtoolkit.md)*.
 
 - **WPF**: *[MVVM Toolkit](./docs/WPF/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/WPF/frameworks/codebehind.md)*, and *[Prism](./docs/WPF/frameworks/prism.md)*.
 
-- **WinUI 3**: *[MVVM Toolkit](./docs/WinUI/frameworks/mvvmtoolkit.md)*.
+- **UWP**: *[MVVM Toolkit](./docs/UWP/frameworks/mvvmtoolkit.md)*, *[Code Behind](./docs/UWP/frameworks/codebehind.md)*, and *[Prism](./docs/UWP/frameworks/prism.md)*.
 
 ### **App pages**
 
