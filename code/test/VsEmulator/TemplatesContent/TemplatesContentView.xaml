@@ -26,8 +26,8 @@
             <TextBlock Grid.Row="0" Text="Wizard Version:" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UseWizardVersion}" IsEnabled="{Binding IsWizardVersionReconfigurable}" Style="{StaticResource FieldValue}"></TextBox>
 
-            <TextBlock  Grid.Row="1" Text="Templates Version:" />
-            <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding UseTemplatesVersion}" Style="{StaticResource FieldValue}"></TextBox>
+            <!--<TextBlock  Grid.Row="1" Text="Templates Version:" />
+            <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding UseTemplatesVersion}" Style="{StaticResource FieldValue}"></TextBox>-->
 
             <TextBlock Grid.Row="2"  Grid.Column="0" Text="Current Location:" />
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TemplatesLocation, Mode=TwoWay}" Style="{StaticResource FieldValue}" />

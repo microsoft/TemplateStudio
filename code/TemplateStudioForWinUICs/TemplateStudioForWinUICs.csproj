@@ -236,7 +236,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Content\EULA.rtf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Content\EULA.ru-RU.rtf">
@@ -305,7 +305,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="TemplateStudio_Logo_90x90.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\Assets\LockScreenLogo.scale-200.png">
@@ -339,7 +339,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="TemplateStudioColors.pkgdef">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

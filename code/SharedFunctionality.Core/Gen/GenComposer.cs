@@ -321,7 +321,6 @@ namespace Microsoft.Templates.Core.Gen
         {
             projectGenInfo?.Parameters.Add(GenParams.Username, Environment.UserName);
             projectGenInfo?.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
-            projectGenInfo?.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             projectGenInfo?.Parameters.Add(GenParams.ProjectType, userSelection.Context.ProjectType);
             projectGenInfo?.Parameters.Add(GenParams.FrontEndFramework, userSelection.Context.FrontEndFramework ?? string.Empty);
             projectGenInfo?.Parameters.Add(GenParams.BackEndFramework, userSelection.Context.BackEndFramework ?? string.Empty);

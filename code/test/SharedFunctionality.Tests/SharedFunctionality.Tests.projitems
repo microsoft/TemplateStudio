@@ -51,7 +51,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\TemplateJsonVerifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\ValidationTemplateInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TemplateValidator\VerifierResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualTests\BaseVisualComparisonTests.cs" />
     <None Include="$(MSBuildThisFileDirectory)VisualTests\TestProjectSource\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

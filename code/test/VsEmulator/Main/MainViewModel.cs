@@ -49,7 +49,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             _host = host;
             _wizardVersion = "0.0.0.0";
-            _templatesVersion = "0.0.0.0";
             Themes.Add("Light");
             Themes.Add("Dark");
             SystemService = new SystemService();
@@ -117,14 +116,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get => _wizardVersion;
             set => SetProperty(ref _wizardVersion, value);
-        }
-
-        private string _templatesVersion;
-
-        public string TemplatesVersion
-        {
-            get => _templatesVersion;
-            set => SetProperty(ref _templatesVersion, value);
         }
 
         public async Task InitializeAsync()
@@ -227,8 +218,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new FakeGenShell(platform, language, msg => SetState(msg), l => AddLog(l), _host),
                 WizardVersion,
                 platform,
-                language,
-                "0.1.0.1");
+                language);
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
@@ -575,15 +565,14 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureVersions()
         {
-            var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion);
+            var dialog = new TemplatesContentView(WizardVersion);
             dialog.Owner = _host;
 
             var dialogRes = dialog.ShowDialog();
 
             if (dialogRes.HasValue && dialogRes.Value)
             {
-                WizardVersion = dialog.ViewModel.Result.WizardVersion;
-                TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
+                WizardVersion = dialog.ViewModel.Result;
                 ConfigureGenContextAsync().FireAndForget();
             }
         }
@@ -652,12 +641,11 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task ConfigureGenContextAsync()
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSource(string.Empty, TemplatesVersion, string.Empty),
+                new LocalTemplatesSource(installedPackagePath: string.Empty, id: string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 WizardVersion,
                 Platforms.Uwp,
-                ProgrammingLanguages.CSharp,
-                "0.1.0.1");
+                ProgrammingLanguages.CSharp);
 
             //   await GenContext.ToolBox.Repo.SynchronizeAsync();
 

@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Services
         private const string GeneratorLiteral = "generator";
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
-        private const string TemplatesVersionLiteral = "templatesVersion";
+        private const string WizardVersionLiteral = "wizardVersion";
         private const string PlatformLiteral = "platform";
         private const string AppModelLiteral = "appmodel";
         private const string MetadataLiteral = "Metadata";
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Services
                         projectMetadata.Framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
                         projectMetadata.Platform = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == PlatformLiteral)?.Attribute(ValueAttribLiteral)?.Value;
                         projectMetadata.AppModel = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == AppModelLiteral)?.Attribute(ValueAttribLiteral)?.Value;
-                        projectMetadata.TemplatesVersion = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == TemplatesVersionLiteral)?.Attribute(VersionAttribLiteral)?.Value;
+                        projectMetadata.WizardVersion = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == WizardVersionLiteral)?.Attribute(VersionAttribLiteral)?.Value;
                     }
                 }
             }
@@ -114,8 +114,6 @@ namespace Microsoft.Templates.Core.Services
        Justification = "For simplicity we're allowing generic and non-generic versions in one file.")]
     public class ProjectMetadata
     {
-        public string TemplatesVersion { get; set; }
-
         public string ProjectType { get; set; }
 
         public string Framework { get; set; }
@@ -123,5 +121,7 @@ namespace Microsoft.Templates.Core.Services
         public string Platform { get; set; }
 
         public string AppModel { get; set; }
+
+        public string WizardVersion { get; set; }
     }
 }

@@ -49,9 +49,9 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public static void Bootstrap(TemplatesSource source, IGenShell shell, string platform, string language, string templateVersion)
+        public static void Bootstrap(TemplatesSource source, IGenShell shell, string platform, string language)
         {
-            Bootstrap(source, shell, GetWizardVersionFromAssembly(), platform, language, templateVersion);
+            Bootstrap(source, shell, GetWizardVersionFromAssembly(), platform, language);
         }
 
         public static void SetCurrentLanguage(string language)
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.Gen
             ToolBox.Repo.CurrentPlatform = platform;
         }
 
-        public static void Bootstrap(TemplatesSource source, IGenShell shell, string wizardVersion, string platform, string language, string templateVersion)
+        public static void Bootstrap(TemplatesSource source, IGenShell shell, string wizardVersion, string platform, string language)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Core.Gen
 
                 CodeGen.Initialize($"{source.Id}", hostVersion, source.GetContentRootFolder());
 
-                var repository = new TemplatesRepository(source, wizardVersion, platform, language, templateVersion);
+                var repository = new TemplatesRepository(source, wizardVersion, platform, language);
 
                 ToolBox = new GenToolBox(repository, shell);
                 PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);

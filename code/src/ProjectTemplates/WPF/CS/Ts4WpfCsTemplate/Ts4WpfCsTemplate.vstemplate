@@ -19,7 +19,6 @@
 			<CustomParameter Name="$ts.platform$" Value="Wpf"/>
 			<CustomParameter Name="$ts.language$" Value="C#"/>
 			<CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
-			<CustomParameter Name="$ts.version$" Value="2.1.0"/>
 			<CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
 			<CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
 		</CustomParameters>

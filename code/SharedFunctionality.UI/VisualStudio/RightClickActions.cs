@@ -304,7 +304,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (!string.IsNullOrEmpty(projectLanguage) && !string.IsNullOrEmpty(projectPlatform))
             {
                 // Don't have a way to get the template version when all packaged together (so just use string.empty)
-                GenContext.Bootstrap(new VsixTemplatesSource(string.Empty, platform: projectPlatform), _shell, projectPlatform, projectLanguage, templateVersion: string.Empty);
+                GenContext.Bootstrap(new VsixTemplatesSource(string.Empty, platform: projectPlatform), _shell, projectPlatform, projectLanguage);
 
                 return true;
             }

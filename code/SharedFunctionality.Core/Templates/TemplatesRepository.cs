@@ -39,8 +39,6 @@ namespace Microsoft.Templates.Core
 
         private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml", ".svg" };
 
-        private string _templateVersion;
-
         public string CurrentPlatform { get; set; }
 
         public string CurrentLanguage { get; set; }
@@ -55,24 +53,18 @@ namespace Microsoft.Templates.Core
 
         public List<ITemplateInfo> AdditionalTemplates { get; } = new List<ITemplateInfo>();
 
-        ////public string CurrentContentFolder { get => Sync?.CurrentContent?.Path; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
-
-        ////public string TemplatesVersion { get => Sync?.CurrentContent?.Version.ToString() ?? string.Empty; }
-        public string TemplatesVersion { get => _templateVersion; }
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
         private CancellationTokenSource _cts;
 
-        public TemplatesRepository(TemplatesSource source, string wizardVersion, string platform, string language, string templateVersion)
+        public TemplatesRepository(TemplatesSource source, string wizardVersion, string platform, string language)
         {
             CurrentPlatform = platform;
             CurrentLanguage = language;
             WizardVersion = wizardVersion;
             Sync = new TemplatesSynchronization(source, wizardVersion);
-
-            _templateVersion = templateVersion;
 
             string currentContentFolder = source.GetContentRootFolder(); // CodeGen.Instance?.GetCurrentContentSource(Configuration.Current.RepositoryFolderName, source.Id, source.Platform, source.Language);
             LoadNamingConfigs(currentContentFolder);

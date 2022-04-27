@@ -97,8 +97,7 @@ namespace Microsoft.Templates.VsEmulator
                         new FakeGenShell(Platforms.Uwp, progLanguage),
                         "0.0.0.0",
                         Platforms.Uwp,
-                        progLanguage,
-                        "0.1.8.9");
+                        progLanguage);
 
                     await GenContext.ToolBox.Repo.RefreshAsync();
 
@@ -171,7 +170,6 @@ namespace Microsoft.Templates.VsEmulator
   <genTemplate:Metadata>
     <genTemplate:Item Name=""generator"" Value=""Template Studio""/>
     <genTemplate:Item Name=""wizardVersion"" Version=""v0.0.0.0"" />
-    <genTemplate:Item Name=""templatesVersion"" Version=""v0.0.0.0"" />
     <genTemplate:Item Name=""platform"" Value=""Uwp"" />
     <genTemplate:Item Name=""projectType"" Value=""Blank"" />
     <genTemplate:Item Name=""framework"" Value=""CodeBehind"" />
