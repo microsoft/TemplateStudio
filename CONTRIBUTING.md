@@ -25,7 +25,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ## Set up your development environment
 
 * Install [Visual Studio 2022 (.NET Desktop and Visual Studio Extension Workloads)](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false)
-* Install [Visual Studio Code](https://code.visualstudio.com/Download)
+* Install [Visual Studio Code](https://code.visualstudio.com/Download) for easier navigation of the repo and improved Markdown editor
 * Clone the [repo](https://github.com/microsoft/TemplateStudio.git)
 
 ## Extensions
