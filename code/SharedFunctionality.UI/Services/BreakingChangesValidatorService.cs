@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.Services
         public static ValidationResult Validate()
         {
             var projectMetadata = ProjectMetadataService.GetProjectMetadata(GenContext.ToolBox.Shell.Project.GetActiveProjectPath());
-            var projectVersion = projectMetadata.TemplatesVersion.ToVersion();
+            var projectVersion = projectMetadata.WizardVersion.ToVersion();
 
             var validations = _validators
                                 .Where(v => projectVersion <= v.BreakingVersion)

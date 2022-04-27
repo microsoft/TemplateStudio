@@ -9,7 +9,6 @@ namespace Microsoft.Templates.Core.Gen
         public const string Username = "ts.userName";
         public const string RootNamespace = "ts.rootNamespace";
         public const string WizardVersion = "ts.wizardVersion";
-        public const string TemplatesVersion = "ts.templatesVersion";
         public const string HomePageName = "ts.homePageName";
         public const string ProjectType = "ts.generationProjectType";
         public const string FrontEndFramework = "ts.generationFrontEndFramework";

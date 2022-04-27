@@ -16,11 +16,10 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private readonly Window _host;
 
-        public TemplatesContentViewModel(Window host, string wizardVersion, string templateVersion)
+        public TemplatesContentViewModel(Window host, string wizardVersion)
         {
             _host = host;
             _useWizardVersion = wizardVersion;
-            _useTemplatesVersion = templateVersion;
             _isWizardVersionReconfigurable = wizardVersion == "0.0.0.0";
 
             AvailableContent = new ObservableCollection<string>();
@@ -56,14 +55,6 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             set => SetProperty(ref _useWizardVersion, value);
         }
 
-        private string _useTemplatesVersion;
-
-        public string UseTemplatesVersion
-        {
-            get => _useTemplatesVersion;
-            set => SetProperty(ref _useTemplatesVersion, value);
-        }
-
         private bool _isWizardVersionReconfigurable;
 
         public bool IsWizardVersionReconfigurable
@@ -72,7 +63,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             set => SetProperty(ref _isWizardVersionReconfigurable, value);
         }
 
-        public (string WizardVersion, string TemplatesVersion) Result { get; private set; }
+        public string Result { get; private set; }
 
         private ObservableCollection<string> _availableContent;
 
@@ -117,7 +108,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private void SetVersionAndClose()
         {
-            Result = (_useWizardVersion, _useTemplatesVersion);
+            Result = _useWizardVersion;
 
             _host.DialogResult = true;
             _host.Close();
