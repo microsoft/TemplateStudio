@@ -56,12 +56,6 @@
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "ts.templatesVersion":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_Templates.Version"
-    },
     "ts.generationProjectType":
     {
       "type": "parameter",
