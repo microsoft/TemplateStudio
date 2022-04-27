@@ -1,6 +1,6 @@
 {
-  "RemoteTelemetryKey": "VSIX Key",
-  "LogFileFolderPath": "TS4WPF\\Logs",
-  "RepositoryFolderName": "TS4WPF",
-  "DiagnosticsTraceLevel": "Verbose"
+    "RemoteTelemetryKey": "$(RemoteTelemetryKey)",
+    "LogFileFolderPath": "TS4WPF\\Logs",
+    "RepositoryFolderName": "TS4WPF",
+    "DiagnosticsTraceLevel": "Verbose"
 }
