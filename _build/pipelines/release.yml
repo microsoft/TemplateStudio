@@ -52,6 +52,15 @@ jobs:
     inputs:
       solution: code/TemplateStudio.sln
 
+  - task: PowerShell@2
+    displayName: Update VSIX Configuration
+    inputs:
+      targetType: inline
+      script: |
+        (Get-Content $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\CoreTemplateStudio.config.json) -replace '<RemoteTelemetryKey>', '$(RemoteTelemetryKey)' |
+        Set-Content $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\CoreTemplateStudio.config.json
+      pwsh: true
+
   - task: VSBuild@1
     displayName: Build
     inputs:

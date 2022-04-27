@@ -223,6 +223,7 @@
     </Content>
     <Content Include="CoreTemplateStudio.config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
       <Generator>VsixManifestGenerator</Generator>

@@ -244,6 +244,7 @@
     </Content>
     <Content Include="CoreTemplateStudio.config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\TemplateStudioKey.snk">
       <Link>TemplateStudioKey.snk</Link>
