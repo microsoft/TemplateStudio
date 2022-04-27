@@ -57,7 +57,7 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        (Get-Content $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\CoreTemplateStudio.config.json) -replace '<RemoteTelemetryKey>', $(RemoteTelemetryKey) |
+        (Get-Content $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\CoreTemplateStudio.config.json) -replace '<RemoteTelemetryKey>', '$(RemoteTelemetryKey)' |
         (Set-Content $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\CoreTemplateStudio.config.json)
       pwsh: true
 
