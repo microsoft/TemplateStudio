@@ -1,88 +1,206 @@
-# Contributing to Template Studio
+# Contributing
 
-The foundation of *Template Studio* is get a developer's `File -> New Project` experience up and going as fast possible.
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
-A developer should be able to quickly and easily add features, pages, and have a solid foundation to start with.  The starting code and XAML will be best practices, follow design guidelines and be commented to help aid in enabling everything a developer to get started and understand **why** something is like it is.
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
 
-That's why many of the guidelines of this document are obvious and serve only one purpose: **Simplicity.**
+You can contribute to this project by contributing to:
 
-Also remember that the Pull Requests must be done against the **[dev branch](https://github.com/microsoft/TemplateStudio/tree/main)**.
+* [Issues](https://github.com/microsoft/TemplateStudio/issues)
+* [Discussions](https://github.com/microsoft/TemplateStudio/discussions)
+* [Templates](#Templates)
 
-## Before you begin
+If you intend to contribute code changes, learn how to [set up your development environment](#Set-up-your-development-environment).
 
-While we're grateful for any and all contributions, we don't want you to waste anyone's time. Please consider the following points before you start working on any contribution.
+When contributing template changes, [validate](#Validating-changes) your changes by generating projects with updated templates and running appropriate tests, then file a PR to trigger CI validation.
 
-* Please comment on an [issue](https://github.com/microsoft/TemplateStudio/issues) to let us know you're interested in working on something before you start the work. Not only does this avoid multiple people unexpectedly working on the same thing at the same time but it enables us to make sure everyone is clear on what should be done to implement any new functionality. It's less work for everyone, in the long run, to establish this up front.
-* The code that is output in the generated projects may end up in thousands of apps so it must be of the highest quality. Expect it to be reviewed very thoroughly and it must meet our standards for standards for style, structure, and format. There are details below and automated tests to verify their use.
-* Get familiar with the automated tests that are part of the project. With so many possible combinations of output, it's impossible to verify everything manually. You will need to make sure they all pass.
-* When adding anything new it should be created to work with all supported frameworks. If this is going to be a problem, discuss it before beginning work.
-* We support templates for apps built with both C# and VB.Net but appreciate that not evevryone wants to work in both languages. For this reason we have a C#-first approach. This approach means that new functionality is first created in the C# templates and the VB.Net version is created after. If contributing something it is ok to submit a PR that just contains the C# version. For all non-code files (xaml, images, etc.) the different language versions should use identical copies of files. The VB templates contain a copy of such files so that it is possible to change the templates for each language separately.
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-## A good pull request
+## Set up your development environment
 
-Every contribution has to come with:
+* Install [Visual Studio 2022 (.NET Desktop and Visual Studio Extension Workloads)](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false)
+* Install [Visual Studio 2022 Extensibility Essentials](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2022)
+* Install [Visual Studio Code](https://code.visualstudio.com/Download) for easier navigation of the repo and improved Markdown editor
+* Clone the [repo](https://github.com/microsoft/TemplateStudio.git)
 
-* Before starting coding, **you must open an [issue](https://github.com/microsoft/TemplateStudio/issues)** and start discussing with the community to see if the idea/feature is interesting enough.
-* A documentation page in the [documentation folder](https://github.com/microsoft/TemplateStudio/tree/main/docs).
-* Unit tests (If applicable, or an explanation why they're not)
+## Extensions
 
-* If you've changed the UI:
-  - Be sure you are including screenshots to show the changes.
-  - Be sure you have reviewed the [accesibility checklist](docs/accessibility.md).
+[TemplateStudio.sln](https://github.com/microsoft/TemplateStudio/blob/main/code/TemplateStudio.sln) is a multi-project solution that contains all of the extension projects and associated tests and assets. Each extension lives under a corresponding `TemplateStudioFor*` project in this solution.
 
-* If you've included a new template:
-  - Be sure you reviewed the [Template Verification Checklist](https://github.com/microsoft/TemplateStudio/wiki/Checklist:-Template-Verification).
+There are also `*.slnf` files that load the subset of projects needed for a specific extension if you want a more focused and potentially more performant workspace:
 
-* You tested your code with two most recent Windows 10 SDKs. (Build 18362 and 19041)
-* You've run all existing tests to make sure you've not broken anything.
-* PR has to target dev branch.
+* [TemplateStudio.WinUICs.slnf](https://github.com/microsoft/TemplateStudio/blob/main/code/TemplateStudio.WinUICs.slnf)
+* [TemplateStudio.WinUICpp.slnf](https://github.com/microsoft/TemplateStudio/blob/main/code/TemplateStudio.WinUICpp.slnf)
+* [TemplateStudio.WPF.slnf](https://github.com/microsoft/TemplateStudio/blob/main/code/TemplateStudio.WPF.slnf)
+* [TemplateStudio.UWP.slnf](https://github.com/microsoft/TemplateStudio/blob/main/code/TemplateStudio.UWP.slnf)
 
-PR has to be validated by at least two core members before being merged. Once merged, it will be in the next dev-nightly package. To find out more, head to [Installing / Using the extension](docs/getting-started-extension.md).
+Regardless of the solution you load, you need to make sure the extension project you want to work on is set as the startup project, and you need to ensure you select an appropriate Debug or Release configuration specific to that extension (e.g. `DebugWinUICs`/`ReleaseWinUICs`).
 
-## Quality insurance for pull requests for XAML
+When you F5 to debug or start without debugging, Visual Studio will install the extensions in the Visual Studio Experimental Instance. Once loaded, you can test the extensions by creating a new project and selecting the appropriate `Template Studio for *` template.
 
-We encourage developers to follow the following guidances when submitting pull requests for XAML:
+You can also build and run the [VSEmulator](https://github.com/microsoft/TemplateStudio/tree/main/code/test/VsEmulator) to iterate faster on templates without needing to rebuild and redeploy the extensions. The VSEmulator reads template content directly from the local repository so will immediately honor any changes you make to the templates without needing to be rebuilt.
 
-* Your XAML must be usable and efficient with keyboard only.
-* Tab order must be logical.
-* Focused controls must be visible.
-* Action must be triggered when hitting Enter key.
-* Do not use custom colors but instead rely on theme colors so high contrasts themes can be used with your control.
-* Add `AutomationProperties.Name` on all controls to define what the controls purpose (Name is minimum, but there are some other things too that can really help the screen reader).
-* Don't use the same Name on two different elements unless they have different control types.
-* Use Narrator Dev mode (Launch Narrator `WinKey+Enter`, then `CTRL+F12`) to test the screen reader experience. Is the information sufficient, meaningful and helps the user navigate and understand your control?
+## Templates
 
-You can find more information about these topics [here](https://blogs.msdn.microsoft.com/winuiautomation/2015/07/14/building-accessible-windows-universal-apps-introduction). This is to help as part of our effort to building accessible templates from the start.
+The templates for a given Template Studio extension live within the `Templates` folder for that extension (e.g. [code/TemplateStudioForWinUICs/Templates](https://github.com/microsoft/TemplateStudio/tree/main/code/TemplateStudioForWinUICs/Templates) for the Template Studio for WinUI (C#) extension). If you are adding new options to the Template Studio wizard or fixing bugs in existing templates, you'll primarily be working within these folders. Below are three core concepts to understand when working on templates:
 
-## General rules
+* [Template Structure](#Template-Structure)
+* [Composition Templates](#Composition-Templates)
+* [Modifying the Wizard](#Modifying-the-Wizard)
 
-* DO NOT require that users perform any extensive initialization before they can start programming basic scenarios.
-* DO NOT use regions. DO use partial classes instead.
-* DO NOT seal controls.
-* DO NOT use verbs that are not already used like fetch.
-* DO NOT return true or false to give sucess status. Throw exceptions if there was a failure.
-* DO provide good defaults for all values associated with parameters, options, etc.
-* DO ensure that APIs are intuitive and can be successfully used in basic scenarios without referring to the reference documentation.
-* DO communicate incorrect usage of APIs as soon as possible.
-* DO design an API by writing code samples for the main scenarios. Only then, you define the object model that supports those code samples.
-* DO declare static dependency properties at the top of their file.
-* DO use extension methods over static methods where possible.
-* DO use verbs like GET.
+### Template Structure
 
-## Naming conventions
+To avoid the maintenance overhead and combinatorial complexity of static templates for every combination of options in the wizard, Template Studio templates are dynamically composed based on the selected options. For every project created with the wizard, there is a base project as well as additional templates that extend or modify the base project. Below are the various folders that make up these components:
 
-* We are following the coding guidelines of [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
+* Proj - defines base Project templates
+* Pg - defines base Page templates
+* Ft - defines base Feature templates
+* Serv - defines base Services templates
+* Test - defines base Testing templates
+* _comp - defines composition templates
 
-## Documentation
+Base templates contain the core part of the templates that are unaffected by other options selected in the wizard. Composition templates within _comp conditionally modify the base templates based on the options selected in the wizard (e.g. to add an MVVMToolkit ViewModel to base Page templates when the MVVMToolkit frontend framework is selected).
 
-* DO NOT expect that your code is so well designed that it needs no documentation. No code is that intuitive.
-* DO provide great documentation with all new features and code.
-* DO use readable and self-documenting identifier names.
-* DO use consistent naming and terminology.
-* DO provide strongly typed APIs.
-* DO use verbose identifier names.
+Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the [.NET Templating Engine](https://github.com/dotnet/templating/wiki/Reference-for-template.json), so the `template.json` format is inherited from .NET. Template Studio extends the .NET model to support composition filters.
 
-## Files and folders
+### Composition Templates
 
-* DO associate no more than one class per file.
-* DO use folders to group classes based on features.
+Composition templates are just like other templates except that they include a `ts.compositionFilter` tag in `template.json` that qualifies when they will be applied.
+
+```json
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "ts.WinUI.Project.Blank",
+    "shortName": "ts.WinUI.Project.Blank",
+    "identity": "ts.WinUI.Project.Blank",
+    "tags": {
+      "language": "C#",
+      "type": "item",
+      "ts.type": "composition",
+      "ts.platform": "WinUI",
+      "ts.version": "1.0.0",
+      "ts.compositionOrder": "0",
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == Blank & ts.type == project"
+    },
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+    }
+  }
+```
+In the above example, you can see from the `ts.compositionFilter` tag that this template will be applied when the selected frontend framework (`$frontendframework`) is `MVVMToolkit`, the selected project type is `Blank` (`$projectType`), and the template being processed is of type `project` (`ts.type`). The matching template that satisfies these conditions is below.
+
+```json
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "ts.WinUI.Proj.Default",
+  "shortName": "ts.WinUI.Proj.Default",
+  "identity": "ts.WinUI.Proj.Default",
+  "groupIdentity": "ts.WinUI.Proj.Default",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "ts.type": "project",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
+    "ts.frontendframework": "MVVMToolkit",
+    "ts.platform": "WinUI",
+    "ts.appmodel": "Desktop",
+    "ts.outputToParent": "true",
+    "ts.version": "1.0.0",
+    "ts.displayOrder": "0",
+    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
+  },
+  ...
+}
+```
+
+The `ts.compositionFilter` indicates that the composition template will be applied to this base Project template when the conditions in the filter are met.
+
+Below are the fields that can be evaluated in a composition filter:
+
+* template.json fields
+  * `name`
+  * `identity`
+  * `groupIdentity`
+  * any `tag`
+* context parameters
+  * `$frontendframework`
+  * `$projectType`
+
+Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators.
+
+New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
+
+Existing files can be modified with [merge post actions](https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#merge-post-action). Merge post actions are what allow you to modify existing files in the template. For example, if you want to add or remove properties from the base Project template .csproj file, you can do so in the composition template with a merge post action applied to the .csproj file.
+
+Merge post actions on a file are defined by adding a file to the composition template with the same name as the original file but with a _postaction suffix before the file extension (e.g. `Param_ProjectName_postaction.csproj`).
+
+Merge post action files use pattern matching and special comments to identify a location within the original file and then either add or remove content at that location.
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+<!--{--{-->
+    <WindowsPackageType>None</WindowsPackageType>
+<!--}--}-->
+  </PropertyGroup>
+```
+The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
+
+### Modifying the Wizard
+
+The Template Studio wizard enables developers to produce a custom project template based on the options they select. To add new options to the wizard or to modify the relationships or dependencies between options, you'll need to modify one or more of the following:
+
+* Add a new project type to _catalog/projectTypes.json
+  * Examples of project types include Blank, SplitView, and MenuBar.
+* Add a new frontend framework to _catalog/frontendframeworks.json
+  * Examples of frontend frameworks include MVVMToolkit and ReactiveUI.
+* Add `ts.projecttype` and `ts.frontendframework` filters to base template.json files
+  * Enables you to associate a template with specific project types and/or frontend frameworks
+* Add `ts.dependencies` to base template.json files to associate dependencies between templates which will link them in the wizard
+* Add a `Layout.json` file to a base Project template
+  * Enables you to mark a feature as readonly
+
+Note: Composition filters within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
+
+## Validating changes
+
+F5 or start without debugging to launch the extensions in the Visual Studio Experimental Instance and validate changes. Once the Experimental Instance is loaded, create a new project and select the appropriate `Template Studio for *` template.
+
+Below is a checklist to follow when validating changes:
+
+* Are changes to the new project wizard reflected as expected?
+* Can you create new projects without errors?
+* Does the generated code look as expected?
+* Does the generated project build and deploy without errors?
+* Do all relevant tests pass?
+
+Once all changes pass basic validation, submit them for review by filing a pull request.
+
+## Filing a pull request
+
+All contributions are expected to be reviewed and merged via pull requests into the main branch.
+
+In addition to ensuring all extensions build successfully, the CI pipelines run all tests in the Minimum* Groups. If any of these tests fail, the pull request will be blocked from merging.
+
+The pull request template lists additional considerations when modifying templates. Ensure all considerations are accounted for in your changes and update the pull request description accordingly.
+
+Once all required tests pass and the changes are approved, the pull request will be merged.
