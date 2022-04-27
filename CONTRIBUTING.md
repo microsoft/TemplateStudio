@@ -16,7 +16,7 @@ You can contribute to this project by contributing to:
 
 If you intend to contribute code changes, learn how to [set up your development environment](#Set-up-your-development-environment).
 
-When contributing template changes, [validate](#Validating-changes) your changes by generating projects with updated templates, then file a PR to trigger CI validation.
+When contributing template changes, [validate](#Validating-changes) your changes by generating projects with updated templates and running appropriate tests, then file a PR to trigger CI validation.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
