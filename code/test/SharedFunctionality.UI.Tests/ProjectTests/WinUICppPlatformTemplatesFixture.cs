@@ -22,7 +22,7 @@ namespace Microsoft.UI.Test.ProjectTests
 
             var source = new WinUICppTestsTemplatesSource();
 
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language, "0.0.0.5");
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
             Repository = GenContext.ToolBox.Repo;
 

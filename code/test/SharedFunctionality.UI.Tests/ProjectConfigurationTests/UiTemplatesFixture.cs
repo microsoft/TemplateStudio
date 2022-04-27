@@ -25,7 +25,7 @@ namespace Microsoft.UI.Test.ProjectConfigurationTests
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
 
             var source = new UITestsTemplatesSource();
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language, "0.0.0.0");
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
 
             Repository = GenContext.ToolBox.Repo;
 

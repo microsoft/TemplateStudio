@@ -227,8 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new FakeGenShell(platform, language, msg => SetState(msg), l => AddLog(l), _host),
                 WizardVersion,
                 platform,
-                language,
-                "0.1.0.1");
+                language);
 
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
@@ -656,8 +655,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 WizardVersion,
                 Platforms.Uwp,
-                ProgrammingLanguages.CSharp,
-                "0.1.0.1");
+                ProgrammingLanguages.CSharp);
 
             //   await GenContext.ToolBox.Repo.SynchronizeAsync();
 

@@ -30,12 +30,12 @@ namespace Microsoft.Templates.Test
    "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
    Justification = "Required for unit testing.")]
         private static void InitializeTemplates(TemplatesSource source)
-        {    
+        {
             if (!syncExecuted == true)
             {
-                GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), Platforms.Uwp, ProgrammingLanguages.VisualBasic, TestConstants.TemplateVersionNumber);
+                GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), Platforms.Uwp, ProgrammingLanguages.VisualBasic);
 
-            //    GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+                //    GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
                 syncExecuted = true;
             }
         }

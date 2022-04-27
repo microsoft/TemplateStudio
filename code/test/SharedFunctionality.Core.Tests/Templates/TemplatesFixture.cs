@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource(null);
 
-            GenContext.Bootstrap(source, new TestGenShell(), platform, language, "0.0.0.7");
+            GenContext.Bootstrap(source, new TestGenShell(), platform, language);
             if (!_syncExecuted)
             {
                 ////GenContext.ToolBox.Repo.OnTemplatesAvailableAsync();

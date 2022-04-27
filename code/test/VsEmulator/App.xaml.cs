@@ -97,8 +97,7 @@ namespace Microsoft.Templates.VsEmulator
                         new FakeGenShell(Platforms.Uwp, progLanguage),
                         "0.0.0.0",
                         Platforms.Uwp,
-                        progLanguage,
-                        "0.1.8.9");
+                        progLanguage);
 
                     await GenContext.ToolBox.Repo.RefreshAsync();
 

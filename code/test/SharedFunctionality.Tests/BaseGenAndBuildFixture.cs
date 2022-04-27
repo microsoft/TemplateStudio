@@ -464,7 +464,7 @@ namespace Microsoft.Templates.Test
                 return;
             }
 
-            GenContext.Bootstrap(source, new FakeGenShell(source.Platform, programmingLanguage), source.Platform, programmingLanguage, TestConstants.TemplateVersionNumber);
+            GenContext.Bootstrap(source, new FakeGenShell(source.Platform, programmingLanguage), source.Platform, programmingLanguage);
 
             syncExecuted.Add(source.Id, true);
         }

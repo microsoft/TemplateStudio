@@ -18,8 +18,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public bool IsEnabled { get; private set; }
 
-        public string TemplateVersion { get; set; }
-
         public string WizardVersion { get; set; }
 
         private readonly Configuration _currentConfig;
@@ -157,7 +155,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Session.Id = Guid.NewGuid().ToString();
             _client.Context.Component.Version = GetVersion();
             _client.Context.GlobalProperties.Add(TelemetryProperties.WizardFileVersion, WizardVersion);
-            _client.Context.GlobalProperties.Add(TelemetryProperties.WizardContentVersion, TemplateVersion);
         }
 
         public void SetContentVersionToContext(Version contentVersion)
