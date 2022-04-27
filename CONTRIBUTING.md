@@ -100,6 +100,7 @@ Composition templates are just like other templates except that they include a `
     }
   }
 ```
+
 In the above example, you can see from the `ts.compositionFilter` tag that this template will be applied when the selected frontend framework (`$frontendframework`) is `MVVMToolkit`, the selected project type is `Blank` (`$projectType`), and the template being processed is of type `project` (`ts.type`). The matching template that satisfies these conditions is below.
 
 ```json
@@ -163,6 +164,7 @@ Merge post action files use pattern matching and special comments to identify a 
 <!--}--}-->
   </PropertyGroup>
 ```
+
 The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
 
 ### Modifying the Wizard
@@ -180,6 +182,12 @@ The Template Studio wizard enables developers to produce a custom project templa
   * Enables you to mark a feature as readonly
 
 Note: Composition filters within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
+
+## Updating the shared code
+
+The displayed wizard and the logic that generates an app from the selected templates is in the `SharedFunctionality.UI` and `SharedFunctionality.Core` projects. If wanting to work on these it is important to be working in the `TemplateStudio.sln` file and not a `*.slnf` file. You should also use the `DebugAll` configuration as this ensures that all projects are compiled, which is important as these shared projects are included in all the extensions. Switch to using a configuration specific to the extension you are testing when wanting to debug any changes.
+
+It may also be useful to note that because of the limited support for working with XAML files inside a shared project used by an extension, you may get misleading compilation errors if you have any of the `.xaml` files open in the editor when compiling. Simply close the file(s) and any spurious errors will go away.
 
 ## Validating changes
 
