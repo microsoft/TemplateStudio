@@ -1,5 +1,5 @@
 {
-    "RemoteTelemetryKey": "$(RemoteTelemetryKey)",
+    "RemoteTelemetryKey": "<RemoteTelemetryKey>",
     "LogFileFolderPath": "TS4WinUICpp\\Logs",
     "RepositoryFolderName": "TS4WinUICpp",
     "DiagnosticsTraceLevel": "Verbose"
