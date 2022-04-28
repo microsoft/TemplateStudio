@@ -12,7 +12,7 @@ namespace TemplateStudioForWPF
         public const string Description = @"Template Studio accelerates the creation of new WPF apps using a wizard-based UI.";
         public const string Language = "en-US";
         public const string Version = "5.0";
-        public const string Author = "Microsoft Corporation";
+        public const string Author = "Microsoft";
         public const string Tags = "Template Studio, WPF, XAML, MVVM, Desktop";
     }
 }

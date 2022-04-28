@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="TemplateStudioForWinUICs.843dd154-7a62-4aab-8482-1ce4c73cb580" Version="5.0" Language="en-US" Publisher="Microsoft Corporation" />
+        <Identity Id="TemplateStudioForWinUICs.843dd154-7a62-4aab-8482-1ce4c73cb580" Version="5.0" Language="en-US" Publisher="Microsoft" />
         <DisplayName>Template Studio for WinUI (C#)</DisplayName>
         <Description xml:space="preserve">Template Studio accelerates the creation of new WinUI apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/microsoft/TemplateStudio/</MoreInfo>
