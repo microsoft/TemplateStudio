@@ -2,10 +2,10 @@
 
 Template Studio is a suite of Visual Studio 2022 extensions that accelerate the creation of new WinUI 3, WPF, and UWP apps using a wizard-based experience.
 
-* Template Studio for WinUI (C#)
-* Template Studio for WinUI (C++) (FUTURE)
-* Template Studio for WPF
-* Template Studio for UWP
+  * [Template Studio for WinUI (C#)](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForWinUICs)
+  * Template Studio for WinUI (C++) (FUTURE)
+  * [Template Studio for WPF](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForWPF)
+  * [Template Studio for UWP](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForUWP)
 
 Projects created with these extensions contain well-formed, readable code and incorporate the latest development features while implementing proven patterns and leading practices. The generated code includes links to documentation and TODO comments that provide useful insight and guidance for turning the generated projects into production applications.
 
