@@ -1,0 +1,42 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+  branches:
+    include:
+    - main
+  batch: True
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - code\TemplateStudioForWinUICs
+      - code\src\ProjectTemplates\WinUI\Cs
+      - code\test\TemplateStudioForWinUICs.Tests
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+
+variables:
+- name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+  value: 20
+- name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+  value: 20
+
+jobs:
+- template: templates/build.yml
+  parameters:
+    Moniker: WinUICs
+    BuildConfiguration: ReleaseWinUICs
+    BuildPlatform: Any CPU
+
+- template: templates/test.yml
+  parameters:
+    Moniker: WinUICs
+    BuildConfiguration: DebugWinUICs
+    BuildPlatform: Any CPU
