@@ -4,6 +4,9 @@ trigger:
   branches:
     include:
     - main
+  paths:
+    include:
+      - code
   batch: True
 
 pr:

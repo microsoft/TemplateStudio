@@ -4,6 +4,19 @@ trigger:
   branches:
     include:
     - main
+  paths:
+    include:
+      - code
+    exclude:
+      - code\TemplateStudioForWinUICs
+      - code\TemplateStudioForWinUICpp
+      - code\TemplateStudioForUWP
+      - code\src\ProjectTemplates\WinUI\Cs
+      - code\src\ProjectTemplates\WinUI\Cpp
+      - code\src\ProjectTemplates\UWP
+      - code\test\TemplateStudioForWinUICs.Tests
+      - code\test\TemplateStudioForWinUICpp.Tests
+      - code\test\TemplateStudioForUWP.Tests
   batch: True
 
 pr:
@@ -12,9 +25,17 @@ pr:
       - main
   paths:
     include:
-      - code\TemplateStudioForWPF
-      - code\src\ProjectTemplates\WPF
-      - code\test\TemplateStudioForWPF.Tests
+      - code
+    exclude:
+      - code\TemplateStudioForWinUICs
+      - code\TemplateStudioForWinUICpp
+      - code\TemplateStudioForUWP
+      - code\src\ProjectTemplates\WinUI\Cs
+      - code\src\ProjectTemplates\WinUI\Cpp
+      - code\src\ProjectTemplates\UWP
+      - code\test\TemplateStudioForWinUICs.Tests
+      - code\test\TemplateStudioForWinUICpp.Tests
+      - code\test\TemplateStudioForUWP.Tests
 
 resources:
   repositories:
