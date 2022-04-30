@@ -12,9 +12,9 @@ pr:
       - main
   paths:
     include:
-      - code\TemplateStudioForWinUICs
-      - code\src\ProjectTemplates\WinUI\Cs
-      - code\test\TemplateStudioForWinUICs.Tests
+      - code\TemplateStudioForWPF
+      - code\src\ProjectTemplates\WPF
+      - code\test\TemplateStudioForWPF.Tests
 
 resources:
   repositories:
@@ -31,12 +31,12 @@ variables:
 jobs:
 - template: templates/ci-build.yml
   parameters:
-    Moniker: WinUICs
-    BuildConfiguration: ReleaseWinUICs
+    Moniker: WPF
+    BuildConfiguration: ReleaseWPF
     BuildPlatform: Any CPU
 
 - template: templates/ci-test.yml
   parameters:
-    Moniker: WinUICs
-    BuildConfiguration: DebugWinUICs
+    Moniker: WPF
+    BuildConfiguration: DebugWPF
     BuildPlatform: Any CPU
