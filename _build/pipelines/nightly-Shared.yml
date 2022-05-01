@@ -1,18 +1,14 @@
 name: $(date:yyyyMMdd)$(rev:.r)
 
-trigger:
+trigger: none
+
+pr: none
+
+schedules:
+- cron: 0 5 * * *
   branches:
     include:
     - main
-  paths:
-    include:
-      - code
-  batch: True
-
-pr:
-  branches:
-    include:
-      - main
   paths:
     include:
       - code
@@ -36,7 +32,7 @@ jobs:
     FrameworkDirectory: .
     BuildConfiguration: DebugALL
     BuildPlatform: Any CPU
-    Group: Minimum
+    Group: Build
     
 - template: templates/shared.yml
   parameters:
@@ -44,4 +40,4 @@ jobs:
     FrameworkDirectory: net472
     BuildConfiguration: DebugALL
     BuildPlatform: Any CPU
-    Group: Minimum
+    Group: Build

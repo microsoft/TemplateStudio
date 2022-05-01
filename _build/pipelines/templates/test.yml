@@ -5,11 +5,13 @@ parameters:
   type: string
 - name: BuildPlatform
   type: string
+- name: Group
+  type: string
 
 jobs:
 - job:
   displayName: Test ${{ parameters.Moniker }}
-  timeoutInMinutes: 240
+  timeoutInMinutes: 0
   pool:
     vmImage: windows-2022
 
@@ -47,7 +49,7 @@ jobs:
     displayName: Test
     inputs:
       scriptName: _build/ParallelTestExecution.ps1
-      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioFor${{ parameters.Moniker }}.Tests/bin/Debug/TemplateStudioFor${{ parameters.Moniker }}.Tests.dll -traits 'Group=Minimum${{ parameters.Moniker }}' -outputDir $(Build.SourcesDirectory)
+      arguments: -testRunner $(UserProfile)/.nuget/packages/xunit.runner.console/2.4.1/tools/net47/xunit.console.exe -testLibrary $(Build.SourcesDirectory)/code/test/TemplateStudioFor${{ parameters.Moniker }}.Tests/bin/Debug/TemplateStudioFor${{ parameters.Moniker }}.Tests.dll -traits 'Group=${{ parameters.Group }}' -outputDir $(Build.SourcesDirectory)
 
   - task: PublishTestResults@2
     displayName: Publish Test Results
