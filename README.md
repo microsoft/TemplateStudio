@@ -33,8 +33,8 @@ To get started, install the appropriate extension, then select the corresponding
 |:--------|:----------------:|:----------------:|
 |main|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/CI?branchName=main)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=187&branchName=main)|[![Build Status](https://winappstudio.visualstudio.com/WTS/_apis/build/status/Template%20Studio/Nightly?branchName=main)](https://winappstudio.visualstudio.com/WTS/_build/latest?definitionId=193&branchName=main)|
 
-- [CI](https://github.com/microsoft/TemplateStudio/blob/main/_build/pipelines/ci.yml): Runs for all PRs and integrations and performs basic validation. Executes all tests in the Minimum* Groups.
-- [Nightly](https://github.com/microsoft/TemplateStudio/blob/main/_build/pipelines/nightly.yml): Runs on a nightly schedule and generates and builds all combinations of project templates in addition to performing more exhaustive tests than CI. Executes all tests in the Build* Groups.
+- CI: Runs for all PRs and integrations and performs basic validation. Executes all tests in the Minimum* Groups.
+- Nightly: Runs on a nightly schedule and generates and builds all combinations of project templates in addition to performing more exhaustive tests than CI. Executes all tests in the Build* Groups.
 
 ## Features
 
