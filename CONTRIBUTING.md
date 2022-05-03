@@ -181,7 +181,7 @@ The Template Studio wizard enables developers to produce a custom project templa
 * Add a `Layout.json` file to a base Project template
   * Enables you to mark a feature as readonly
 
-Note: Composition filters within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
+Note: Composition templates within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
 
 ## Updating the shared code
 
