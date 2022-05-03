@@ -24,7 +24,7 @@
             TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
             https://docs.microsoft.com/windows/uwp/app-resources/localize-strings-ui-manifest#refer-to-a-string-resource-identifier-from-xaml
             
-            TODO: Update item symbols by updating FontIcon.Glyph properties.
+            TODO: Update item icons by updating FontIcon.Glyph properties.
             https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
             -->
         </NavigationView.MenuItems>
