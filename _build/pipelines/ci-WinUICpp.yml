@@ -1,0 +1,64 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+      - code
+    exclude:
+      - code\TemplateStudioForWinUICs
+      - code\TemplateStudioForWPF
+      - code\TemplateStudioForUWP
+      - code\src\ProjectTemplates\WinUI\Cs
+      - code\src\ProjectTemplates\WPF
+      - code\src\ProjectTemplates\UWP
+      - code\test\TemplateStudioForWinUICs.Tests
+      - code\test\TemplateStudioForWPF.Tests
+      - code\test\TemplateStudioForUWP.Tests
+  batch: True
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - code
+    exclude:
+      - code\TemplateStudioForWinUICs
+      - code\TemplateStudioForWPF
+      - code\TemplateStudioForUWP
+      - code\src\ProjectTemplates\WinUI\Cs
+      - code\src\ProjectTemplates\WPF
+      - code\src\ProjectTemplates\UWP
+      - code\test\TemplateStudioForWinUICs.Tests
+      - code\test\TemplateStudioForWPF.Tests
+      - code\test\TemplateStudioForUWP.Tests
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+
+variables:
+- name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+  value: 20
+- name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+  value: 20
+
+jobs:
+- template: templates/build.yml
+  parameters:
+    Moniker: WinUICpp
+    BuildConfiguration: ReleaseWinUICpp
+    BuildPlatform: Any CPU
+
+- template: templates/test.yml
+  parameters:
+    Moniker: WinUICpp
+    BuildConfiguration: DebugWinUICpp
+    BuildPlatform: Any CPU
+    Group: MinimumWinUICpp
