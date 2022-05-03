@@ -21,10 +21,11 @@
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
-            TODO: Change the symbols for each item as appropriate for your app
-            More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            Or to use an IconElement instead of a Symbol see https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/projectTypes/navigationpane.md
-            Edit String/en-US/Resources.resw: Add a menu item title for each page
+            TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
+            https://docs.microsoft.com/windows/uwp/app-resources/localize-strings-ui-manifest#refer-to-a-string-resource-identifier-from-xaml
+            
+            TODO: Update item symbols by updating FontIcon.Glyph properties.
+            https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
             -->
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
