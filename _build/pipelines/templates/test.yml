@@ -10,7 +10,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: Test ${{ parameters.Moniker }}
+  displayName: Test
   timeoutInMinutes: 0
   pool:
     vmImage: windows-2022

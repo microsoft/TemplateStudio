@@ -12,7 +12,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: Test Shared ${{ parameters.Moniker }}
+  displayName: Test ${{ parameters.Moniker }}
   timeoutInMinutes: 0
   pool:
     vmImage: windows-2022

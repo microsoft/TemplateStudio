@@ -8,7 +8,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: Build ${{ parameters.Moniker }}
+  displayName: Build
   timeoutInMinutes: 240
   pool:
     vmImage: windows-2022
@@ -31,7 +31,7 @@ jobs:
   - task: VSBuild@1
     displayName: Build
     inputs:
-      solution: code/TemplateStudio.sln
+      solution: code/TemplateStudio.${{ parameters.Moniker }}.slnf
       vsVersion: 17.0
       msbuildArgs: /p:DeployExtension=false
       configuration: ${{ parameters.BuildConfiguration }}
