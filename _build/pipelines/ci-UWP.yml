@@ -8,15 +8,15 @@ trigger:
     include:
       - code
     exclude:
-      - code\TemplateStudioForWinUICs
-      - code\TemplateStudioForWinUICpp
-      - code\TemplateStudioForWPF
-      - code\src\ProjectTemplates\WinUI\Cs
-      - code\src\ProjectTemplates\WinUI\Cpp
-      - code\src\ProjectTemplates\WPF
-      - code\test\TemplateStudioForWinUICs.Tests
-      - code\test\TemplateStudioForWinUICpp.Tests
-      - code\test\TemplateStudioForWPF.Tests
+      - code/TemplateStudioForWinUICs
+      - code/TemplateStudioForWinUICpp
+      - code/TemplateStudioForWPF
+      - code/src/ProjectTemplates/WinUI/Cs
+      - code/src/ProjectTemplates/WinUI/Cpp
+      - code/src/ProjectTemplates/WPF
+      - code/test/TemplateStudioForWinUICs.Tests
+      - code/test/TemplateStudioForWinUICpp.Tests
+      - code/test/TemplateStudioForWPF.Tests
   batch: True
 
 pr:
@@ -27,15 +27,15 @@ pr:
     include:
       - code
     exclude:
-      - code\TemplateStudioForWinUICs
-      - code\TemplateStudioForWinUICpp
-      - code\TemplateStudioForWPF
-      - code\src\ProjectTemplates\WinUI\Cs
-      - code\src\ProjectTemplates\WinUI\Cpp
-      - code\src\ProjectTemplates\WPF
-      - code\test\TemplateStudioForWinUICs.Tests
-      - code\test\TemplateStudioForWinUICpp.Tests
-      - code\test\TemplateStudioForWPF.Tests
+      - code/TemplateStudioForWinUICs
+      - code/TemplateStudioForWinUICpp
+      - code/TemplateStudioForWPF
+      - code/src/ProjectTemplates/WinUI/Cs
+      - code/src/ProjectTemplates/WinUI/Cpp
+      - code/src/ProjectTemplates/WPF
+      - code/test/TemplateStudioForWinUICs.Tests
+      - code/test/TemplateStudioForWinUICpp.Tests
+      - code/test/TemplateStudioForWPF.Tests
 
 resources:
   repositories:
