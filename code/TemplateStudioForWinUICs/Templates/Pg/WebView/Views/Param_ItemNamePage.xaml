@@ -36,18 +36,18 @@
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}">
             <StackPanel Orientation="Horizontal">
                 <Button x:Uid="BrowserBackButton" Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE72B;" />
                 </Button>
                 <Button x:Uid="BrowserForwardButton" Command="{x:Bind ViewModel.BrowserForwardCommand, Mode=OneWay}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72A;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE72A;" />
                 </Button>
             </StackPanel >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Uid="ReloadButton" Command="{x:Bind ViewModel.ReloadCommand}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE72C;" />
                 </Button>
                 <Button x:Uid="OpenInBrowserButton" Command="{x:Bind ViewModel.OpenInBrowserCommand}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE774;" />
                 </Button>
             </StackPanel>
         </Grid>
