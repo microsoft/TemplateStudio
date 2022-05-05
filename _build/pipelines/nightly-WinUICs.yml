@@ -9,19 +9,6 @@ schedules:
   branches:
     include:
     - main
-  paths:
-    include:
-      - code
-    exclude:
-      - code/TemplateStudioForWinUICpp
-      - code/TemplateStudioForWPF
-      - code/TemplateStudioForUWP
-      - code/src/ProjectTemplates/WinUI/Cpp
-      - code/src/ProjectTemplates/WPF
-      - code/src/ProjectTemplates/UWP
-      - code/test/TemplateStudioForWinUICpp.Tests
-      - code/test/TemplateStudioForWPF.Tests
-      - code/test/TemplateStudioForUWP.Tests
 
 resources:
   repositories:

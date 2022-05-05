@@ -9,9 +9,6 @@ schedules:
   branches:
     include:
     - main
-  paths:
-    include:
-      - code
 
 resources:
   repositories:
