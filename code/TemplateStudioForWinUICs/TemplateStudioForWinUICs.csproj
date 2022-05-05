@@ -273,6 +273,9 @@
     <Content Include="Templates\Ft\MSIX\Package.appxmanifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Proj\Default\.vsconfig">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
