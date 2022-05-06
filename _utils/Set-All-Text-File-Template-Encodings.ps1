@@ -52,9 +52,9 @@ foreach ($templateRoot in $templateRoots)
     ForEach-Object {
         if (-not (Is-EncodedCorrectly $_.FullName))
         {
-            Write-Host "Changing encoding of" $_.FullName;
+            Write-Host "Changing encoding of" $_.FullName
 
-            Get-Content $_.FullName | Out-File $_.FullName -Encoding utf8BOM;
+            Get-Content $_.FullName | Out-File $_.FullName -Encoding utf8BOM
         }
     }
 }

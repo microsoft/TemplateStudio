@@ -1411,4 +1411,8 @@ See the final result: {2}
   <data name="TemplateStudioForWinUI" xml:space="preserve">
     <value>Template Studio for WinUI</value>
   </data>
+  <data name="TemplateGroup_Deployment" xml:space="preserve">
+    <value>Deployment</value>
+    <comment>Group header for Deployment</comment>
+  </data>
 </root>

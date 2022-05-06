@@ -178,6 +178,10 @@ The Template Studio wizard enables developers to produce a custom project templa
 * Add `ts.projecttype` and `ts.frontendframework` filters to base template.json files
   * Enables you to associate a template with specific project types and/or frontend frameworks
 * Add `ts.dependencies` to base template.json files to associate dependencies between templates which will link them in the wizard
+* Add `ts.group` to base template.json files to group features in the wizard
+  * This requires adding a corresponding `TemplateGroup_<GROUPNAME>` string resource in SharedResources/StringRes.resx.
+* Add `ts.displayOrder` to base template.json files to change the display order in the wizard
+* Add `description.md` and `icon.xaml` files to base .template.config folders to update the description and icon presented in the wizard
 * Add a `Layout.json` file to a base Project template
   * Enables you to mark a feature as readonly
 
