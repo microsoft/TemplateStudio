@@ -93,7 +93,7 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 ## Known issues
 
-- You can't have side-by-side versions (nightly/pre-release/release) of *Template Studio* VSPackage into a single instance of Visual Studio.
+- TODO
 
 ## Feedback, Requests and Roadmap
 
