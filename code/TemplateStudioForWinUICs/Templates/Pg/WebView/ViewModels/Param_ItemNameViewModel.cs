@@ -29,8 +29,8 @@ namespace Param_RootNamespace.ViewModels
 
         public Uri Source
         {
-            get { return _source; }
-            set { SetProperty(ref _source, value); }
+            get => _source;
+            set => SetProperty(ref _source, value);
         }
 
         public bool IsLoading
@@ -45,19 +45,19 @@ namespace Param_RootNamespace.ViewModels
             set => SetProperty(ref _hasFailures, value);
         }
 
-        public ICommand BrowserBackCommand => _browserBackCommand ?? (_browserBackCommand = new RelayCommand(
-            () => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false));
+        public ICommand BrowserBackCommand => _browserBackCommand ??= new RelayCommand(
+            () => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false);
 
-        public ICommand BrowserForwardCommand => _browserForwardCommand ?? (_browserForwardCommand = new RelayCommand(
-            () => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false));
+        public ICommand BrowserForwardCommand => _browserForwardCommand ??= new RelayCommand(
+            () => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false);
 
-        public ICommand ReloadCommand => _reloadCommand ?? (_reloadCommand = new RelayCommand(
-            () => WebViewService?.Reload()));
+        public ICommand ReloadCommand => _reloadCommand ??= new RelayCommand(
+            () => WebViewService?.Reload());
 
-        public ICommand RetryCommand => _retryCommand ?? (_retryCommand = new RelayCommand(OnRetry));
+        public ICommand RetryCommand => _retryCommand ??= new RelayCommand(OnRetry);
 
-        public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new RelayCommand(async
-            () => await Windows.System.Launcher.LaunchUriAsync(Source)));
+        public ICommand OpenInBrowserCommand => _openInBrowserCommand ??= new RelayCommand(async
+            () => await Windows.System.Launcher.LaunchUriAsync(Source));
 
         public Param_ItemNameViewModel(IWebViewService webViewService)
         {

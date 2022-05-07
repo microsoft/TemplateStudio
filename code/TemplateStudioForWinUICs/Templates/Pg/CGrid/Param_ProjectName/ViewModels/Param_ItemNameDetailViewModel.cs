@@ -13,8 +13,8 @@ namespace Param_RootNamespace.ViewModels
 
         public SampleOrder Item
         {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
+            get => _item;
+            set => SetProperty(ref _item, value);
         }
 
         public Param_ItemNameDetailViewModel(ISampleDataService sampleDataService)
