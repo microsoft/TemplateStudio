@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Fakes.GenShell
 
                 var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(FakeGenShellHelper.SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString();
+                var projGuid = !string.IsNullOrEmpty(msbuildProj.Guid) ? msbuildProj.Guid : Guid.NewGuid().ToString().ToUpperInvariant();
 
                 solutionFile.AddProjectToSolution(Platform, AppModel, Language, msbuildProj.Name, projGuid, projectRelativeToSolutionPath, IsCpsProject(project), HasPlatforms(project));
 
