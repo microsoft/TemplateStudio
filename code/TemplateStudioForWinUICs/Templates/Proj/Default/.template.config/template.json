@@ -20,7 +20,7 @@
     "ts.outputToParent": "true",
     "ts.version": "1.0.0",
     "ts.displayOrder": "0",
-    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
+    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.1-preview3/License)"
   },
   "sourceName": "Param_ProjectName",
   "preferNameDirectory": true,
@@ -95,7 +95,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
             "packageId": "Microsoft.WindowsAppSDK",
-            "version": "1.0.1",
+            "version": "1.1-preview3",
             "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
         },
         "continueOnError": true
