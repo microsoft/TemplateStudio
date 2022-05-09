@@ -14,7 +14,7 @@ namespace Param_RootNamespace.ViewModels
         private readonly ISampleDataService _sampleDataService;
         private ICommand _itemClickCommand;
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
+        public ICommand ItemClickCommand => _itemClickCommand ??= new RelayCommand<SampleOrder>(OnItemClick);
 
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 

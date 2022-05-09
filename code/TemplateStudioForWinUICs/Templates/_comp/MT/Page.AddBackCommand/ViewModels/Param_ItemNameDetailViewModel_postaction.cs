@@ -16,7 +16,7 @@ namespace Param_RootNamespace.ViewModels
 //{[{
         private ICommand _goBackCommand;
 
-        public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
+        public ICommand GoBackCommand => _goBackCommand ??= new RelayCommand(OnGoBack);
 //}]}
 
         public Param_ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
