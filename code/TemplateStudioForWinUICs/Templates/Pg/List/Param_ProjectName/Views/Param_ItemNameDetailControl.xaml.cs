@@ -8,8 +8,8 @@ namespace Param_RootNamespace.Views
     {
         public SampleOrder ListDetailsMenuItem
         {
-            get { return GetValue(ListDetailsMenuItemProperty) as SampleOrder; }
-            set { SetValue(ListDetailsMenuItemProperty, value); }
+            get => GetValue(ListDetailsMenuItemProperty) as SampleOrder;
+            set => SetValue(ListDetailsMenuItemProperty, value);
         }
 
         public static readonly DependencyProperty ListDetailsMenuItemProperty = DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(Param_ItemNameDetailControl), new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
