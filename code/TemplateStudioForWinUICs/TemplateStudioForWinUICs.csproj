@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -176,23 +176,18 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Views\ShellPage_postaction.xaml">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListView\Views\ShellPage_postaction.xaml">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Views\ShellPage_postaction.xaml">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Views\ShellPage_postaction.xaml">
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
