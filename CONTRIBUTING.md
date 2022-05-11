@@ -74,6 +74,7 @@ Below is a checklist to follow when adding new templates:
 * Copy an existing similar template as a starting point
 * Set descriptive `name` and `shortName` fields in `.template.config/template.json`
 * Set unique `identity` and `groupIdentity` fields in `.template.config/template.json`
+  * By default, `groupIdentity` should be the same as `identity` unless you have a good reason to change it
 * Update other metadata in `.template.config/template.json` as appropriate
   * See [Modifying the Wizard](#Modifying-the-Wizard) and [template.json reference](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
 * Modify the content of the template
