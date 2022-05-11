@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
@@ -181,7 +181,7 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListView\Views\ShellPage_postaction.xaml">
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Views\ShellPage_postaction.xaml">
@@ -315,10 +315,10 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListView\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListView\Strings\en-us\Resources_postaction.resw">
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\.template.config\template.json">
