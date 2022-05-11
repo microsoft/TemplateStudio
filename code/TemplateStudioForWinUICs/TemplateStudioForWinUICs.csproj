@@ -175,6 +175,21 @@
     <Content Include="Templates\Ft\SelfContained\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -286,6 +301,36 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\SelfContained\Param_ProjectName_postaction.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -1935,12 +1980,6 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Settings\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\Strings\en-us\Resources_postaction.resw">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2098,9 +2137,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Settings\Views\ShellPage_searchreplace.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
