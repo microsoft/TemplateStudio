@@ -69,6 +69,25 @@ Base templates contain the core part of the templates that are unaffected by oth
 
 Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the [.NET Templating Engine](https://github.com/dotnet/templating/wiki/Reference-for-template.json), so the `template.json` format is inherited from .NET. Template Studio extends the .NET model to support composition filters.
 
+Below is a checklist to follow when adding new templates:
+
+* Copy an existing similar template as a starting point
+* Set descriptive `name` and `shortName` fields in `.template.config/template.json`
+* Set unique `identity` and `groupIdentity` fields in `.template.config/template.json`
+* Modify the content of the template
+* Set `Include in VSIX` to `true` in the Properties window for all the files in the template
+
+To determine whether code should be part of a base template vs. a composition template, ask yourself these questions:
+
+* Is the code the same regardless of other options selected in the Template Studio wizard?
+  * Yes? It should be included in a base template.
+  * No? It should be included in a composition template.
+* Is the code dependent on the frontend framework selected in the Template Studio wizard?
+  * Yes? It should be included in a composition template under `_comp/<FRONTENDFRAMEWORK>`.
+  * No? It should be included in a composition template under `_comp/_shared`.
+
+Determining what code should be part of a base template vs. a composition template is the most important and challenging step when adding new templates. Once this is established, implementing the templates becomes straightforward.
+
 ### Composition Templates
 
 Composition templates are just like other templates except that they include a `ts.compositionFilter` tag in `template.json` that qualifies when they will be applied.
