@@ -91,6 +91,8 @@ To determine whether code should be part of a base template vs. a composition te
 
 Determining what code should be part of a base template vs. a composition template is the most important and challenging step when adding new templates. Once this is established, implementing the templates becomes straightforward.
 
+When proposing non-trivial changes to templates, creating a git repository from a fully generated Template Studio project and then committing changes can help track and communicate the differences. The git diffs can then be used to identify net new content that should be added to base templates and changes to existing content that should be added to composition templates.
+
 ### Composition Templates
 
 Composition templates are just like other templates except that they include a `ts.compositionFilter` tag in `template.json` that qualifies when they will be applied.
