@@ -46,15 +46,14 @@ namespace Param_RootNamespace.Services
 
         private async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
-            ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
+            var themeName = await _localSettingsService.ReadSettingAsync<string>(SettingsKey);
 
-            if (!string.IsNullOrEmpty(themeName))
+            if (Enum.TryParse(themeName, out ElementTheme cacheTheme))
             {
-                Enum.TryParse(themeName, out cacheTheme);
+                return cacheTheme;
             }
 
-            return cacheTheme;
+            return ElementTheme.Default;
         }
 
         private async Task SaveThemeInSettingsAsync(ElementTheme theme)

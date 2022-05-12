@@ -15,7 +15,7 @@ namespace Param_RootNamespace.Activation
             _navigationService = navigationService;
         }
 
-        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+        protected async override Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName, args.Arguments);
             await Task.CompletedTask;

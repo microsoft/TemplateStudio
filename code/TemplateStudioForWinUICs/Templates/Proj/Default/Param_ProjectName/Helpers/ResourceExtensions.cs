@@ -2,9 +2,9 @@
 
 namespace Param_RootNamespace.Helpers
 {
-    internal static class ResourceExtensions
+    static internal class ResourceExtensions
     {
-        private static ResourceLoader _resourceLoader = new ResourceLoader();
+        private static readonly ResourceLoader _resourceLoader = new();
 
         public static string GetLocalized(this string resourceKey)
         {

@@ -54,9 +54,8 @@ namespace Param_RootNamespace.Services
             else
             {
                 var selectedItem = args.InvokedItemContainer as NavigationViewItem;
-                var pageKey = selectedItem.GetValue(NavigationHelper.NavigateToProperty) as string;
 
-                if (pageKey != null)
+                if (selectedItem.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
                 {
                     _navigationService.NavigateTo(pageKey);
                 }
@@ -84,8 +83,7 @@ namespace Param_RootNamespace.Services
 
         private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
-            var pageKey = menuItem.GetValue(NavigationHelper.NavigateToProperty) as string;
-            if (pageKey != null)
+            if (menuItem.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
             {
                 return _pageService.GetPageType(pageKey) == sourcePageType;
             }

@@ -9,7 +9,7 @@ namespace Param_RootNamespace.Services
     {
         public async Task<T> ReadSettingAsync<T>(string key)
         {
-            object obj = null;
+            object obj;
 
             if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out obj))
             {

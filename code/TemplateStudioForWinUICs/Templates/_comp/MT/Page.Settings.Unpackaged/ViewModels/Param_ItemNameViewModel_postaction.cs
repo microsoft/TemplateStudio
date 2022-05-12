@@ -2,7 +2,7 @@
 using System.Reflection;
 //}]}
 
-        private string GetVersionDescription()
+        private static string GetVersionDescription()
         {
             //{[{
             var appName = "AppDisplayName".GetLocalized();

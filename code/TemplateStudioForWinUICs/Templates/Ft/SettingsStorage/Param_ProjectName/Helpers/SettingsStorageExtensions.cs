@@ -52,7 +52,7 @@ namespace Param_RootNamespace.Helpers
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
         {
-            object obj = null;
+            object obj;
 
             if (settings.Values.TryGetValue(key, out obj))
             {
@@ -86,7 +86,7 @@ namespace Param_RootNamespace.Helpers
             if ((item != null) && item.IsOfType(StorageItemTypes.File))
             {
                 var storageFile = await folder.GetFileAsync(fileName);
-                byte[] content = await storageFile.ReadBytesAsync();
+                var content = await storageFile.ReadBytesAsync();
                 return content;
             }
 
@@ -97,16 +97,12 @@ namespace Param_RootNamespace.Helpers
         {
             if (file != null)
             {
-                using (IRandomAccessStream stream = await file.OpenReadAsync())
-                {
-                    using (var reader = new DataReader(stream.GetInputStreamAt(0)))
-                    {
-                        await reader.LoadAsync((uint)stream.Size);
-                        var bytes = new byte[stream.Size];
-                        reader.ReadBytes(bytes);
-                        return bytes;
-                    }
-                }
+                using IRandomAccessStream stream = await file.OpenReadAsync();
+                using var reader = new DataReader(stream.GetInputStreamAt(0));
+                await reader.LoadAsync((uint)stream.Size);
+                var bytes = new byte[stream.Size];
+                reader.ReadBytes(bytes);
+                return bytes;
             }
 
             return null;

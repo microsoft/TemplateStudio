@@ -13,14 +13,12 @@ namespace Param_RootNamespace.Services
     {
         private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
         private readonly IEnumerable<IActivationHandler> _activationHandlers;
-        private readonly INavigationService _navigationService;
         private UIElement _shell = null;
 
-        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
+        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers)
         {
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
-            _navigationService = navigationService;
         }
 
         public async Task ActivateAsync(object activationArgs)

@@ -20,7 +20,7 @@ namespace Param_RootNamespace
         // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
         // https://docs.microsoft.com/dotnet/core/extensions/configuration
         // https://docs.microsoft.com/dotnet/core/extensions/logging
-        private static IHost _host = Host
+        private static readonly IHost _host = Host
             .CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
@@ -48,7 +48,7 @@ namespace Param_RootNamespace
             => _host.Services.GetService(typeof(T)) as T;
 //}]}
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
 //^^
 //{[{

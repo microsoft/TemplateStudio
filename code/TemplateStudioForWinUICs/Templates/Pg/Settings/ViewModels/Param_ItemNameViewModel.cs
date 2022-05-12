@@ -57,7 +57,7 @@ namespace Param_RootNamespace.ViewModels
             VersionDescription = GetVersionDescription();
         }
 
-        private string GetVersionDescription()
+        private static string GetVersionDescription()
         {
         }
     }
