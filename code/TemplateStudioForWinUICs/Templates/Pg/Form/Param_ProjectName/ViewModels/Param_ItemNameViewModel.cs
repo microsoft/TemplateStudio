@@ -29,83 +29,83 @@ namespace Param_RootNamespace.ViewModels
         [Range(10000, 99999)]
         public long OrderID
         {
-            get { return _orderID; }
-            set { SetProperty(ref _orderID, value, true); }
+            get => _orderID;
+            set => SetProperty(ref _orderID, value, true);
         }
 
         [Required]
         [DataType(DataType.Date)]
         public DateTimeOffset OrderDate
         {
-            get { return _orderDate; }
-            set { SetProperty(ref _orderDate, value, true); }
+            get => _orderDate;
+            set => SetProperty(ref _orderDate, value, true);
         }
 
         [Required]
         [DataType(DataType.Time)]
         public TimeSpan OrderTime
         {
-            get { return _orderTime; }
-            set { SetProperty(ref _orderTime, value, true); }
+            get => _orderTime;
+            set => SetProperty(ref _orderTime, value, true);
         }
 
         [Required]
         public string Company
         {
-            get { return _company; }
-            set { SetProperty(ref _company, value, true); }
+            get => _company;
+            set => SetProperty(ref _company, value, true);
         }
 
         [Required]
         public SampleSymbol Symbol
         {
-            get { return _symbol; }
-            set { SetProperty(ref _symbol, value, true); }
+            get => _symbol;
+            set => SetProperty(ref _symbol, value, true);
         }
 
         [Required]
         [CustomValidation(typeof(Param_ItemNameViewModel), "ValidateDoubleProperty")]
         public string OrderTotal
         {
-            get { return _orderTotal; }
-            set { SetProperty(ref _orderTotal, value, true); }
+            get => _orderTotal;
+            set => SetProperty(ref _orderTotal, value, true);
         }
 
         [Required]
         [CustomValidation(typeof(Param_ItemNameViewModel), "ValidateDoubleProperty")]
         public string Freight
         {
-            get { return _freight; }
-            set { SetProperty(ref _freight, value, true); }
+            get => _freight;
+            set => SetProperty(ref _freight, value, true);
         }
 
         [Required]
         public string Status
         {
-            get { return _status; }
-            set { SetProperty(ref _status, value, true); }
+            get => _status;
+            set => SetProperty(ref _status, value, true);
         }
 
         [Required]
         public string ShipperName
         {
-            get { return _shipperName; }
-            set { SetProperty(ref _shipperName, value, true); }
+            get => _shipperName;
+            set => SetProperty(ref _shipperName, value, true);
         }
 
         [Required]
         [Phone]
         public string ShipperPhone
         {
-            get { return _shipperPhone; }
-            set { SetProperty(ref _shipperPhone, value, true); }
+            get => _shipperPhone;
+            set => SetProperty(ref _shipperPhone, value, true);
         }
 
         [Required]
         public string ShipTo
         {
-            get { return _shipTo; }
-            set { SetProperty(ref _shipTo, value, true); }
+            get => _shipTo;
+            set => SetProperty(ref _shipTo, value, true);
         }
 
         public IEnumerable<string> StatusValues { get; } = new List<string>()

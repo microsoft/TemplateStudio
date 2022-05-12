@@ -7,10 +7,10 @@
 //{[{
         private ICommand _menuFileParam_ItemNameCommand;
 //}]}
-        public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
+        public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 //{[{
 
-        public ICommand MenuFileParam_ItemNameCommand => _menuFileParam_ItemNameCommand ?? (_menuFileParam_ItemNameCommand = new RelayCommand(OnMenuFileParam_ItemName));
+        public ICommand MenuFileParam_ItemNameCommand => _menuFileParam_ItemNameCommand ??= new RelayCommand(OnMenuFileParam_ItemName);
 //}]}
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {

@@ -7,10 +7,10 @@
 //{[{
         private ICommand _menuViewsParam_ItemNameCommand;
 //}]}
-        public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
+        public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 //{[{
 
-        public ICommand MenuViewsParam_ItemNameCommand => _menuViewsParam_ItemNameCommand ?? (_menuViewsParam_ItemNameCommand = new RelayCommand(OnMenuViewsParam_ItemName));
+        public ICommand MenuViewsParam_ItemNameCommand => _menuViewsParam_ItemNameCommand ??= new RelayCommand(OnMenuViewsParam_ItemName);
 //}]}
         public INavigationService NavigationService { get; }
 //^^

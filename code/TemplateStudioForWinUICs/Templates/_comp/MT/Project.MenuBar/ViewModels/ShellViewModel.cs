@@ -18,7 +18,7 @@ namespace Param_RootNamespace.ViewModels
         private object _selected;
         private ICommand _menuFileExitCommand;
 
-        public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
+        public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 
         public INavigationService NavigationService { get; }
 
@@ -26,14 +26,14 @@ namespace Param_RootNamespace.ViewModels
 
         public bool IsBackEnabled
         {
-            get { return _isBackEnabled; }
-            set { SetProperty(ref _isBackEnabled, value); }
+            get => _isBackEnabled;
+            set => SetProperty(ref _isBackEnabled, value);
         }
 
         public object Selected
         {
-            get { return _selected; }
-            set { SetProperty(ref _selected, value); }
+            get => _selected;
+            set => SetProperty(ref _selected, value);
         }
 
         public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)

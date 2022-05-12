@@ -32,13 +32,6 @@ namespace Microsoft.Templates.Test.WinUICs.Wack
         }
 
         [Theory]
-        [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.None, ProgrammingLanguages.CSharp, Platforms.WinUI)]
-        public async Task WackTests_None_All_WinUI_CSAsync(string projectType, string framework, string platform, string language, string appModel)
-        {
-            await RunWackOnProjectWithAllPagesAndFeaturesAsync(projectType, framework, platform, language, appModel);
-        }
-
-        [Theory]
         [MemberData(nameof(GetProjectTemplatesForBuild), Frameworks.MVVMToolkit, ProgrammingLanguages.CSharp, Platforms.WinUI)]
         public async Task WackTests_MvvmToolkit_All_WinUI_CSAsync(string projectType, string framework, string platform, string language, string appModel)
         {

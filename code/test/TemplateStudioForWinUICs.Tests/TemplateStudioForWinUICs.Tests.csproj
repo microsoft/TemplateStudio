@@ -64,7 +64,6 @@
     <Compile Include="BuildTemplatesTests\WinUICsBuildTemplatesTestCollection.cs" />
     <Compile Include="BuildTemplatesTests\WinUICsBuildTemplatesTestFixture.cs" />
     <Compile Include="BuildTemplatesTests\WinUI\BuildMVVMToolkitProjectTests.cs" />
-    <Compile Include="BuildTemplatesTests\WinUI\BuildNoneProjectTests.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="ExternalLinksTest.cs" />
     <Compile Include="FileEncodingTests.cs" />
