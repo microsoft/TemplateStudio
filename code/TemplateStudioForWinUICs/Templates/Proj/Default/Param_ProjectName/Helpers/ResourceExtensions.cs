@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Helpers
 {
-    static internal class ResourceExtensions
+    internal static class ResourceExtensions
     {
         private static readonly ResourceLoader _resourceLoader = new();
 
