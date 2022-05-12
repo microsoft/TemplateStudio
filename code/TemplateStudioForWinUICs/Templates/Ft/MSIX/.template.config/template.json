@@ -19,7 +19,7 @@
     "ts.appmodel": "Desktop",
     "ts.version": "1.0.0",
     "ts.genGroup": "0",
-    "ts.group": "Packaging",
+    "ts.group": "Deployment",
     "ts.displayOrder": "1",
     "ts.defaultInstance": "MSIX Packaging",
     "ts.multipleInstance": "false",
