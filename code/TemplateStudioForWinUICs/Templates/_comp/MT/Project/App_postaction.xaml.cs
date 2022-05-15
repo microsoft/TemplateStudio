@@ -43,9 +43,7 @@ namespace Param_RootNamespace
             })
             .Build();
 
-        public static T GetService<T>()
-            where T : class
-            => _host.Services.GetService(typeof(T)) as T;
+        public static T GetService<T>() where T : class => _host.Services.GetService(typeof(T)) as T;
 //}]}
 
         protected async override void OnLaunched(LaunchActivatedEventArgs args)
