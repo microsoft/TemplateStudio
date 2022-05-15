@@ -11,14 +11,14 @@ namespace Param_RootNamespace.Services
     public class NavigationViewService : INavigationViewService
     {
         private readonly INavigationService _navigationService;
+
         private readonly IPageService _pageService;
+
         private NavigationView _navigationView;
 
-        public IList<object> MenuItems
-            => _navigationView.MenuItems;
+        public IList<object> MenuItems => _navigationView.MenuItems;
 
-        public object SettingsItem
-            => _navigationView.SettingsItem;
+        public object SettingsItem => _navigationView.SettingsItem;
 
         public NavigationViewService(INavigationService navigationService, IPageService pageService)
         {
@@ -39,17 +39,15 @@ namespace Param_RootNamespace.Services
             _navigationView.ItemInvoked -= OnItemInvoked;
         }
 
-        public NavigationViewItem GetSelectedItem(Type pageType)
-            => GetSelectedItem(_navigationView.MenuItems, pageType);
+        public NavigationViewItem GetSelectedItem(Type pageType) => GetSelectedItem(_navigationView.MenuItems, pageType);
 
-        private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-            => _navigationService.GoBack();
+        private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => _navigationService.GoBack();
 
         private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                // Navigate to the settings page - implement as appropriate if needed
+                // Navigate to the settings page.
             }
             else
             {

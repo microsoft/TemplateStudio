@@ -15,16 +15,17 @@ namespace Param_RootNamespace.Activation
             _navigationService = navigationService;
         }
 
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+        {
+            // None of the ActivationHandlers has handled the activation.
+            return _navigationService.Frame.Content == null;
+        }
+
         protected async override Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName, args.Arguments);
-            await Task.CompletedTask;
-        }
 
-        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
-        {
-            // None of the ActivationHandlers has handled the app activation
-            return _navigationService.Frame.Content == null;
+            await Task.CompletedTask;
         }
     }
 }

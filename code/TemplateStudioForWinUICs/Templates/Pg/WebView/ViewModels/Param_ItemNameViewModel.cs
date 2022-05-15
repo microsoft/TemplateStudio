@@ -6,12 +6,10 @@ using Param_RootNamespace.Contracts.ViewModels;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // TODO: Review best practices and distribution guidelines for apps using WebView2.
+    // TODO: Review best practices and distribution guidelines for WebView2.
+    // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
     // https://docs.microsoft.com/microsoft-edge/webview2/concepts/developer-guide
     // https://docs.microsoft.com/microsoft-edge/webview2/concepts/distribution
-    //
-    // You can also read more about WebView2 control at
-    // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui.
     public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
     {
         // TODO: Set the default URL to display.
@@ -45,19 +43,20 @@ namespace Param_RootNamespace.ViewModels
             set => SetProperty(ref _hasFailures, value);
         }
 
-        public ICommand BrowserBackCommand => _browserBackCommand ??= new RelayCommand(
-            () => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false);
+        public ICommand BrowserBackCommand => _browserBackCommand ??=
+            new RelayCommand(() => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false);
 
-        public ICommand BrowserForwardCommand => _browserForwardCommand ??= new RelayCommand(
-            () => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false);
+        public ICommand BrowserForwardCommand => _browserForwardCommand ??=
+            new RelayCommand(() => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false);
 
-        public ICommand ReloadCommand => _reloadCommand ??= new RelayCommand(
-            () => WebViewService?.Reload());
+        public ICommand ReloadCommand => _reloadCommand ??=
+            new RelayCommand(() => WebViewService?.Reload());
 
-        public ICommand RetryCommand => _retryCommand ??= new RelayCommand(OnRetry);
+        public ICommand RetryCommand => _retryCommand ??=
+            new RelayCommand(OnRetry);
 
-        public ICommand OpenInBrowserCommand => _openInBrowserCommand ??= new RelayCommand(async
-            () => await Windows.System.Launcher.LaunchUriAsync(Source));
+        public ICommand OpenInBrowserCommand => _openInBrowserCommand ??=
+            new RelayCommand(async() => await Windows.System.Launcher.LaunchUriAsync(Source));
 
         public Param_ItemNameViewModel(IWebViewService webViewService)
         {
@@ -83,7 +82,6 @@ namespace Param_RootNamespace.ViewModels
             OnPropertyChanged(nameof(BrowserForwardCommand));
             if (webErrorStatus != default)
             {
-                // Use `webErrorStatus` to vary the displayed message based on the error reason
                 HasFailures = true;
             }
         }
