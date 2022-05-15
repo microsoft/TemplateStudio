@@ -56,7 +56,7 @@ namespace Param_RootNamespace.ViewModels
             new RelayCommand(OnRetry);
 
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ??=
-            new RelayCommand(async() => await Windows.System.Launcher.LaunchUriAsync(Source));
+            new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
 
         public Param_ItemNameViewModel(IWebViewService webViewService)
         {
