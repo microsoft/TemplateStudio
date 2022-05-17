@@ -3,10 +3,8 @@
 //^^
 //{[{
 
-            SettingsButton.AddHandler(UIElement.PointerPressedEvent,
-                new PointerEventHandler(SettingsButton_PointerPressed), true);
-            SettingsButton.AddHandler(UIElement.PointerReleasedEvent,
-                new PointerEventHandler(SettingsButton_PointerReleased), true);
+            SettingsButton.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(SettingsButton_PointerPressed), true);
+            SettingsButton.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(SettingsButton_PointerReleased), true);
 //}]}
         }
 
@@ -15,10 +13,8 @@
 //^^
 //{[{
 
-            SettingsButton.RemoveHandler(UIElement.PointerPressedEvent,
-                (PointerEventHandler)SettingsButton_PointerPressed);
-            SettingsButton.RemoveHandler(UIElement.PointerReleasedEvent,
-                (PointerEventHandler)SettingsButton_PointerReleased);
+            SettingsButton.RemoveHandler(UIElement.PointerPressedEvent, (PointerEventHandler)SettingsButton_PointerPressed);
+            SettingsButton.RemoveHandler(UIElement.PointerReleasedEvent, (PointerEventHandler)SettingsButton_PointerReleased);
 //}]}
         }
 
