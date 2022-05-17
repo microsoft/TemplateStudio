@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
@@ -33,7 +32,7 @@
             <HyperlinkButton x:Uid="WebView_Reload" Command="{x:Bind ViewModel.ReloadCommand}" HorizontalAlignment="Center" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}">
+        <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Button x:Uid="BrowserBackButton" Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}" Margin="{StaticResource XSmallLeftTopRightBottomMargin}" Padding="{StaticResource XXSmallLeftTopRightBottomMargin}">
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE72B;" />

@@ -7,8 +7,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Param_RootNamespace.Core.Models"
     xmlns:views="using:Param_RootNamespace.Views"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="models:SampleOrder">
             <Grid Height="60">
@@ -33,13 +32,13 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid>
                 <views:Param_ItemNameDetailControl ListDetailsMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid>
                 <TextBlock
                     x:Uid="Param_ItemName_NoSelection"
                     HorizontalAlignment="Center"
@@ -70,7 +69,6 @@
             ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
-            ViewStateChanged="OnViewStateChanged"
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
+            ViewStateChanged="OnViewStateChanged"/>
     </Grid>
 </Page>

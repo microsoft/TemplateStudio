@@ -24,5 +24,7 @@
     <Thickness x:Key="XXSmallLeftTopRightBottomMargin">4, 4, 4, 4</Thickness>
 
     <Thickness x:Key="DetailPageMargin">52,40,52,0</Thickness>
+    <Thickness x:Key="SettingsHyperLink">-12, 4, 0, 0</Thickness>
+    <Thickness x:Key="NavigationViewContentMargin">68, 24, 0, 0</Thickness>
 
 </ResourceDictionary>
