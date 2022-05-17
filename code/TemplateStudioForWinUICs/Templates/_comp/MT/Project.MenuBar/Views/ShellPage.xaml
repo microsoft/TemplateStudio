@@ -22,7 +22,7 @@
         </SplitView.Pane>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -33,7 +33,7 @@
                 <MenuBar Grid.Column="0" VerticalAlignment="Top">
                     <!--
                     TODO: You can edit the text for the menu in String/en-US/Resources.resw
-                    Adding <MenuBar.Items> xaml code is a workaround to the following issue
+                    Adding <MenuBar.Items> xaml code is as workaround to the following issue
                     https://github.com/microsoft/microsoft-ui-xaml/issues/4385
                     -->
                     
