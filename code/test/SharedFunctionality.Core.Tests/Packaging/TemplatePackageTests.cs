@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(outDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task Pack_FolderWithDefaultNamingAsync()
         {
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Length;
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(outDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_FolderAsync()
         {
             var certPass = GetTestCertPassword();
@@ -86,7 +86,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(outDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_FolderExtractToAbsoluteDirAsync()
         {
             var certPass = GetTestCertPassword();
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(outDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_CertNotFoundAsync()
         {
             SignCertNotFoundException ex = await Assert.ThrowsAsync<SignCertNotFoundException>(async () =>
@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             });
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_CertFromFile_RelativeInOutPathAsync()
         {
             var certPass = GetTestCertPassword();
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_CertFromFile_AbsoluteInRelativeOutPathAsync()
         {
             var certPass = GetTestCertPassword();
@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_CertFromFile_RelativeInAbsouluteOutPathAsync()
         {
             var certPass = GetTestCertPassword();
@@ -157,7 +157,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_CertFromFile_AbsouluteInOutPathAsync()
         {
             var certPass = GetTestCertPassword();
@@ -171,7 +171,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task PackAndSign_WithThumbprintAsync()
         {
             EnsureTestCertificateInStore();
@@ -185,7 +185,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task ExtractRelativeDirsAsync()
         {
             var certPass = GetTestCertPassword();
@@ -206,7 +206,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(extractionDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task ExtractAbsoluteDirsAsync()
         {
             var certPass = GetTestCertPassword();
@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(extractionDir, true);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task ExtractFileAndPacksInCurrentDirAsync()
         {
             var certPass = GetTestCertPassword();
@@ -249,7 +249,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(inFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task ExtractFileCurrentDirAsync()
         {
             var certPass = GetTestCertPassword();
@@ -268,7 +268,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public async Task ExtractConcurrentReadAsync()
         {
             var inFile = @"Packaging\MsSigned\Templates.mstx";
@@ -328,7 +328,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
     **/
-        [Fact]
+        [Fact(Skip = "See issue #4493")]
         public void ValidateSignatureFromMsSigned()
         {
             var msSignedFile = @"Packaging\MsSigned\Templates.mstx";
