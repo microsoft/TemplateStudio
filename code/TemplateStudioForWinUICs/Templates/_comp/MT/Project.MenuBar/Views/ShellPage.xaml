@@ -4,6 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" 
+    xmlns:muxc="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
     mc:Ignorable="d"
@@ -24,24 +27,27 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <MenuBar VerticalAlignment="Top">
-                <!--
-                TODO: You can edit the text for the menu in String/en-US/Resources.resw
-                Adding <MenuBar.Items> xaml code is a workaround to the following issue
-                https://github.com/microsoft/microsoft-ui-xaml/issues/4385
-                -->
-                <MenuBar.Items>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <MenuBar Grid.Column="0" VerticalAlignment="Top">
+                    <!--
+                    TODO: You can edit the text for the menu in String/en-US/Resources.resw
+                    Adding <MenuBar.Items> xaml code is a workaround to the following issue
+                    https://github.com/microsoft/microsoft-ui-xaml/issues/4385
+                    -->
+                    
                     <MenuBarItem x:Uid="ShellMenuBarItem_File">
-                        <MenuBarItem.Items>
-                            <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
-                        </MenuBarItem.Items>
+                        <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
                     </MenuBarItem>
                     <MenuBarItem x:Uid="ShellMenuBarItem_Views">
                         <MenuBarItem.Items>
                         </MenuBarItem.Items>
                     </MenuBarItem>
-                </MenuBar.Items>
-            </MenuBar>
+                </MenuBar>
+            </Grid>
             <Grid Grid.Row="1">
                 <Frame x:Name="shellFrame" />
             </Grid>

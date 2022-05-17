@@ -190,6 +190,10 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml.cs">
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
