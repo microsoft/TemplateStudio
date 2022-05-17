@@ -32,11 +32,9 @@
                 </Grid.ColumnDefinitions>
                 <MenuBar Grid.Column="0" VerticalAlignment="Top">
                     <!--
-                    TODO: You can edit the text for the menu in String/en-US/Resources.resw
-                    Adding <MenuBar.Items> xaml code is as workaround to the following issue
-                    https://github.com/microsoft/microsoft-ui-xaml/issues/4385
+                    TODO: Update item titles by updating <x:Uid>.Text entries in Strings/en-us/Resources.resw.
+                    https://docs.microsoft.com/windows/uwp/app-resources/localize-strings-ui-manifest#refer-to-a-string-resource-identifier-from-xaml
                     -->
-                    
                     <MenuBarItem x:Uid="ShellMenuBarItem_File">
                         <MenuFlyoutItem x:Uid="ShellMenuItem_File_Exit" Command="{x:Bind ViewModel.MenuFileExitCommand}" />
                     </MenuBarItem>
