@@ -9,9 +9,7 @@ namespace Param_RootNamespace.Services
     {
         public async Task<T> ReadSettingAsync<T>(string key)
         {
-            object obj;
-
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out obj))
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
             {
                 return await Json.ToObjectAsync<T>((string)obj);
             }
