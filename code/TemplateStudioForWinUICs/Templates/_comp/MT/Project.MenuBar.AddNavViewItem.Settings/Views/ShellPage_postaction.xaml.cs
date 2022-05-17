@@ -1,17 +1,48 @@
-﻿                </MenuBar>
-<!--{[{-->
-                <AppBarButton Grid.Column="1" x:Name="SettingsButton" AnimatedIcon.State="Normal"
-                                                  PointerEntered="SettingsButton_PointerEntered"
-                                                  PointerExited="SettingsButton_PointerExited"
-                                                  Command="{x:Bind ViewModel.MenuSettingsCommand}">
-                    <muxc:AnimatedIcon x:Name='AnimatedIcon'>
-                        <muxc:AnimatedIcon.Source>
-                            <animatedvisuals:AnimatedSettingsVisualSource/>
-                        </muxc:AnimatedIcon.Source>
-                        <muxc:AnimatedIcon.FallbackIconSource>
-            <muxc:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE713;"/>
-                        </muxc:AnimatedIcon.FallbackIconSource>
-                    </muxc:AnimatedIcon>
-                </AppBarButton>
-<!--}]}-->
+﻿        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+//^^
+//{[{
 
+            SettingsButton.AddHandler(UIElement.PointerPressedEvent,
+                new PointerEventHandler(SettingsButton_PointerPressed), true);
+            SettingsButton.AddHandler(UIElement.PointerReleasedEvent,
+                new PointerEventHandler(SettingsButton_PointerReleased), true);
+//}]}
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+//^^
+//{[{
+
+            SettingsButton.RemoveHandler(UIElement.PointerPressedEvent,
+                (PointerEventHandler)SettingsButton_PointerPressed);
+            SettingsButton.RemoveHandler(UIElement.PointerReleasedEvent,
+                (PointerEventHandler)SettingsButton_PointerReleased);
+//}]}
+        }
+
+//^^
+//{[{
+        private void SettingsButton_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            AnimatedIcon.SetState((UIElement)sender, "PointerOver");
+        }
+
+        private void SettingsButton_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            AnimatedIcon.SetState((UIElement)sender, "Pressed");
+        }
+
+        private void SettingsButton_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            AnimatedIcon.SetState((UIElement)sender, "Normal");
+        }
+
+        private void SettingsButton_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            AnimatedIcon.SetState((UIElement)sender, "Normal");
+        }
+//}]}
+    }
+}
