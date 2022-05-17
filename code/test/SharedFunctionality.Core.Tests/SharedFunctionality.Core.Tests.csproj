@@ -227,7 +227,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="6.0.200" />
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="6.0.200" />
-    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.0.31902.203" />
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.2.32505.113" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NuGet.Frameworks" Version="6.1.0" />
     <PackageReference Include="NuGet.VisualStudio" Version="6.0.0" />
