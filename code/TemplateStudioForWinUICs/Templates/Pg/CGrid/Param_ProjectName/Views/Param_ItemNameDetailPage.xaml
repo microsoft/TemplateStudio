@@ -8,8 +8,7 @@
     xmlns:models="using:Param_RootNamespace.Core.Models"
     mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea">
+    <Grid x:Name="ContentArea">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
