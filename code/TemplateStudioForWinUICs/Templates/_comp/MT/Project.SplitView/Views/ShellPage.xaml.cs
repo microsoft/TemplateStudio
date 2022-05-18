@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.ViewModels;
 using Windows.System;
@@ -22,6 +23,7 @@ namespace Param_RootNamespace.Views
             ViewModel.NavigationViewService.Initialize(navigationView);
             App.MainWindow.ExtendsContentIntoTitleBar = true;
             App.MainWindow.SetTitleBar(AppTitleBar);
+            AppTitleBarText.Text = "AppDisplayName".GetLocalized();
         }
 
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
