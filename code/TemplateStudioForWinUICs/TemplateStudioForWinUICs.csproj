@@ -390,10 +390,6 @@
     <Content Include="Templates\Ft\MSIX\Assets\Wide310x150Logo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\Param_ItemNamePage_postaction.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="tr-TR\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2144,6 +2140,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.ContentGrid\Views\Param_ItemNamePage_postaction.xaml">
