@@ -1,4 +1,4 @@
-  </ItemGroup>
+﻿  </ItemGroup>
 <!--{[{-->
   <ItemGroup>
     <None Update="appsettings.json">
