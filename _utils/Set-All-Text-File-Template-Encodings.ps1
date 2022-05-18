@@ -22,7 +22,7 @@ function Is-EncodedCorrectly
    [byte[]] $byte = Get-Content -AsByteStream -Raw -Path $Path
 
    # EF BB BF (UTF8 + BOM)
-   return $byte[0] -eq 0xEF -and $byte[1] -eq 0xBB -and $byte[2] -eq 0xBF
+   return $byte.Length -ge 3 -and ($byte[0] -eq 0xEF -and $byte[1] -eq 0xBB -and $byte[2] -eq 0xBF)
 }
 
 # Template paths.
@@ -54,7 +54,9 @@ foreach ($templateRoot in $templateRoots)
         {
             Write-Host "Changing encoding of" $_.FullName
 
-            Get-Content $_.FullName | Out-File $_.FullName -Encoding utf8BOM
+            $tmpFile = New-TemporaryFile
+            Get-Content $_.FullName | Out-File $tmpFile -Encoding utf8BOM
+            Get-Content $tmpFile | Out-File $_.FullName -Encoding utf8BOM
         }
     }
 }
