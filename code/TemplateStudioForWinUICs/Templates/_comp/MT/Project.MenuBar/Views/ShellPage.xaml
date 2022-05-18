@@ -21,10 +21,14 @@
         </SplitView.Pane>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <MenuBar VerticalAlignment="Top">
+            <Grid Grid.Row="0" x:Name="AppTitleBar">
+                <TextBlock x:Name="AppTitleBarText" Text="App Title" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="28, 0, 0, 0"/>
+            </Grid>
+            <MenuBar VerticalAlignment="Top" Grid.Row="1">
                 <!--
                 TODO: You can edit the text for the menu in String/en-US/Resources.resw
                 Adding <MenuBar.Items> xaml code is a workaround to the following issue
@@ -42,7 +46,7 @@
                     </MenuBarItem>
                 </MenuBar.Items>
             </MenuBar>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Frame x:Name="shellFrame" />
             </Grid>
         </Grid>

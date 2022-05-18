@@ -20,6 +20,8 @@ namespace Param_RootNamespace.Views
             InitializeComponent();
             ViewModel.NavigationService.Frame = shellFrame;
             ViewModel.NavigationViewService.Initialize(navigationView);
+            App.MainWindow.ExtendsContentIntoTitleBar = true;
+            App.MainWindow.SetTitleBar(AppTitleBar);
         }
 
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
