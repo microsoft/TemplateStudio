@@ -102,14 +102,13 @@ namespace Param_RootNamespace.Services
             return false;
         }
 
-        public void CleanNavigation()
-            => _frame.BackStack.Clear();
+        public void CleanNavigation() => _frame.BackStack.Clear();
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
             if (sender is Frame frame)
             {
-                bool clearNavigation = (bool)frame.Tag;
+                var clearNavigation = (bool)frame.Tag;
                 if (clearNavigation)
                 {
                     frame.BackStack.Clear();

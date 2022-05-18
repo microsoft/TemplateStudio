@@ -176,7 +176,7 @@ namespace Param_RootNamespace.ViewModels
             ClearErrors();
         }
 
-        public static ValidationResult ValidateDoubleProperty(string property)
-            => double.TryParse(property, out var result) ? ValidationResult.Success : new ValidationResult("Double property required");
+        public static ValidationResult ValidateDoubleProperty(string property) =>
+            double.TryParse(property, out var result) ? ValidationResult.Success : new ValidationResult("Double property required");
     }
 }

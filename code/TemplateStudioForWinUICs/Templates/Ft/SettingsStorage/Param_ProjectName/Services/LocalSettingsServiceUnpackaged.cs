@@ -38,7 +38,7 @@ namespace Param_RootNamespace.Services
         {
             await InitializeAsync();
 
-            object obj = null;
+            object obj;
 
             if (_settings.TryGetValue(key, out obj))
             {

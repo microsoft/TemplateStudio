@@ -8,8 +8,7 @@ namespace Param_RootNamespace.Services
     {
 //^^
 //{[{
-        public void SetListDataItemForNextConnectedAnimation(object item)
-            => Frame.SetListDataItemForNextConnectedAnimation(item);
+        public void SetListDataItemForNextConnectedAnimation(object item) => Frame.SetListDataItemForNextConnectedAnimation(item);
 //}]}
     }
 }

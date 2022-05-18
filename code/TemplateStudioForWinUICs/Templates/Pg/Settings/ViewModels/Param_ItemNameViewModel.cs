@@ -14,7 +14,6 @@ namespace Param_RootNamespace.ViewModels
         public ElementTheme ElementTheme
         {
             get => _elementTheme;
-
             set => SetProperty(ref _elementTheme, value);
         }
 
@@ -23,7 +22,6 @@ namespace Param_RootNamespace.ViewModels
         public string VersionDescription
         {
             get => _versionDescription;
-
             set => SetProperty(ref _versionDescription, value);
         }
 
@@ -57,7 +55,7 @@ namespace Param_RootNamespace.ViewModels
             VersionDescription = GetVersionDescription();
         }
 
-        private string GetVersionDescription()
+        private static string GetVersionDescription()
         {
         }
     }

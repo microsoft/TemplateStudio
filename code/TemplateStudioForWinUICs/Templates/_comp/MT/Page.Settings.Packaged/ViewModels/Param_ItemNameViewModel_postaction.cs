@@ -2,7 +2,7 @@
 using Windows.ApplicationModel;
 //}]}
 
-        private string GetVersionDescription()
+        private static string GetVersionDescription()
         {
             //{[{
             var appName = "AppDisplayName".GetLocalized();

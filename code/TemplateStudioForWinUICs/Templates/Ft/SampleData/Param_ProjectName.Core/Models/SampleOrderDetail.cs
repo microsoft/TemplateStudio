@@ -2,9 +2,7 @@
 
 namespace Param_RootNamespace.Core.Models
 {
-    // Remove this class once your pages/features are using your data.
-    // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and ListDetails.
+    // Model for the SampleDataService. Replace with your own model.
     public class SampleOrderDetail
     {
         public long ProductID { get; set; }

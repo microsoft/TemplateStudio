@@ -8,7 +8,7 @@
             if (args.IsSettingsInvoked)
             {
 //{--{
-                // Navigate to the settings page - implement as appropriate if needed
+                // Navigate to the settings page.
 //}--}
 //{[{
                 _navigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
