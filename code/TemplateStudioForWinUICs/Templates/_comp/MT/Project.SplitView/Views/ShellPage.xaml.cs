@@ -52,6 +52,5 @@ namespace Param_RootNamespace.Views
             var result = navigationService.GoBack();
             args.Handled = result;
         }
-
     }
 }
