@@ -175,6 +175,9 @@
     <Content Include="Templates\Ft\SelfContained\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Assets\WindowIcon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
