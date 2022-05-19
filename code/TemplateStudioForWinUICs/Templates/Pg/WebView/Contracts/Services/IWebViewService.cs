@@ -6,20 +6,20 @@ namespace Param_RootNamespace.Contracts.Services
 {
     public interface IWebViewService
     {
-        event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
-
         bool CanGoBack { get; }
 
         bool CanGoForward { get; }
 
-        void Initialize(WebView2 webView);
+        event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
 
-        void UnregisterEvents();
+        void Initialize(WebView2 webView);
 
         void GoBack();
 
         void GoForward();
 
         void Reload();
+
+        void UnregisterEvents();
     }
 }

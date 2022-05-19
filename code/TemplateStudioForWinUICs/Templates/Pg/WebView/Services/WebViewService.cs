@@ -9,11 +9,9 @@ namespace Param_RootNamespace.Services
     {
         private WebView2 _webView;
 
-        public bool CanGoBack
-            => _webView.CanGoBack;
+        public bool CanGoBack => _webView.CanGoBack;
 
-        public bool CanGoForward
-            => _webView.CanGoForward;
+        public bool CanGoForward => _webView.CanGoForward;
 
         public event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
 
@@ -27,23 +25,14 @@ namespace Param_RootNamespace.Services
             _webView.NavigationCompleted += OnWebViewNavigationCompleted;
         }
 
-        public void UnregisterEvents()
-        {
-            _webView.NavigationCompleted -= OnWebViewNavigationCompleted;
-        }
+        public void GoBack() => _webView.GoBack();
 
-        private void OnWebViewNavigationCompleted(WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
-        {
-            NavigationCompleted?.Invoke(this, args.WebErrorStatus);
-        }
+        public void GoForward() => _webView.GoForward();
 
-        public void GoBack()
-            => _webView.GoBack();
+        public void Reload() => _webView.Reload();
 
-        public void GoForward()
-            => _webView.GoForward();
+        public void UnregisterEvents() => _webView.NavigationCompleted -= OnWebViewNavigationCompleted;
 
-        public void Reload()
-            => _webView.Reload();
+        private void OnWebViewNavigationCompleted(WebView2 sender, CoreWebView2NavigationCompletedEventArgs args) => NavigationCompleted?.Invoke(this, args.WebErrorStatus);
     }
 }

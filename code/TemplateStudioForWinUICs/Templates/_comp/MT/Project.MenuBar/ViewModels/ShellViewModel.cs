@@ -43,10 +43,7 @@ namespace Param_RootNamespace.ViewModels
             RightPaneService = rightPaneService;
         }
 
-        private void OnNavigated(object sender, NavigationEventArgs e)
-        {
-            IsBackEnabled = NavigationService.CanGoBack;
-        }
+        private void OnNavigated(object sender, NavigationEventArgs e) => IsBackEnabled = NavigationService.CanGoBack;
 
         private void OnMenuFileExit() => Application.Current.Exit();
     }
