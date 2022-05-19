@@ -26,6 +26,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" x:Name="AppTitleBar">
+                <Image Source="design\Assets\Logo\TemplateStudio_16.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
                 <TextBlock x:Name="AppTitleBarText" Text="App Title" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="28, 0, 0, 0"/>
             </Grid>
             <MenuBar VerticalAlignment="Top" Grid.Row="1">

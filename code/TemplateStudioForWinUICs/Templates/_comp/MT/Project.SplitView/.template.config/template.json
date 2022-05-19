@@ -45,9 +45,9 @@
       }
     ],
     "symbols": {
-        "ts.rootNamespace": {
-            "type": "parameter",
-            "replaces": "Param_RootNamespace"
-        }
+      "ts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      }
     }
   }
