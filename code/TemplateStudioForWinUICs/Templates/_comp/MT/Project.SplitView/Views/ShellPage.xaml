@@ -32,8 +32,7 @@
                 <Grid>
                     <TextBlock
                         Text="{Binding}"
-                        Style="{ThemeResource TitleTextBlockStyle}"
-                        Margin="{StaticResource SmallLeftRightMargin}" />
+                        Style="{ThemeResource TitleTextBlockStyle}" />
                 </Grid>
             </DataTemplate>
         </NavigationView.HeaderTemplate>
@@ -45,8 +44,7 @@
                         <Grid>
                             <TextBlock
                                 Text="{Binding}"
-                                Style="{ThemeResource TitleTextBlockStyle}"
-                                Margin="{StaticResource SmallLeftRightMargin}" />
+                                Style="{ThemeResource TitleTextBlockStyle}" />
                         </Grid>
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>

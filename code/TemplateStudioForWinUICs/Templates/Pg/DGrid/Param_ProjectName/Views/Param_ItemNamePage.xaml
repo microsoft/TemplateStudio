@@ -24,7 +24,6 @@
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <FontIcon
-                                    Margin="{StaticResource SmallLeftRightMargin}"
                                     HorizontalAlignment="Left"
                                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                     Glyph="{Binding Symbol}"
