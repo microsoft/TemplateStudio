@@ -4,7 +4,7 @@
                               PointerEntered="SettingsButton_PointerEntered"
                               PointerExited="SettingsButton_PointerExited"
                               Command="{x:Bind ViewModel.MenuSettingsCommand}">
-                    <AnimatedIcon x:Name='AnimatedIcon'>
+                    <AnimatedIcon x:Name="AnimatedIcon">
                         <AnimatedIcon.Source>
                             <animatedvisuals:AnimatedSettingsVisualSource/>
                         </AnimatedIcon.Source>
