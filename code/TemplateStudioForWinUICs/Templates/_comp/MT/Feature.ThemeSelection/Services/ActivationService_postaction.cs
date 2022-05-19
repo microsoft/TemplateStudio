@@ -2,7 +2,7 @@
 {
     public class ActivationService : IActivationService
     {
-        private readonly INavigationService _navigationService;
+        private readonly IEnumerable<IActivationHandler> _activationHandlers;
 //{[{
         private readonly IThemeSelectorService _themeSelectorService;
 //}]}

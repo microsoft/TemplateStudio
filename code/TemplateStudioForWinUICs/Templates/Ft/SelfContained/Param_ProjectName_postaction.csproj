@@ -5,3 +5,13 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 <!--}]}-->
   </PropertyGroup>
+
+<!--^^-->
+<!--{[{-->
+  <Target Name="_RemoveFrameworkReferences" BeforeTargets="_ConvertItems;_CalculateInputsForGenerateCurrentProjectAppxManifest">
+    <ItemGroup>
+      <FrameworkSdkReference Remove="@(FrameworkSdkReference)" Condition="$([System.String]::Copy('%(FrameworkSdkReference.SDKName)').StartsWith('Microsoft.WindowsAppRuntime.'))"/>
+    </ItemGroup>
+  </Target>
+<!--}]}-->
+</Project>

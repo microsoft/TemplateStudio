@@ -20,7 +20,7 @@ namespace Param_RootNamespace
             // For more details, see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs.
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
             base.OnLaunched(args);
         }
