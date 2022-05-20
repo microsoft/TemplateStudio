@@ -7,8 +7,7 @@
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
     <SplitView
         x:Name="splitView"
         PanePlacement="Right"
@@ -44,7 +43,7 @@
                     </MenuBarItem>
                 </MenuBar>
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="{StaticResource MenuBarContentMargin}">
                 <Frame x:Name="shellFrame" />
             </Grid>
         </Grid>

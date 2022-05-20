@@ -1,5 +1,5 @@
 ﻿<Page
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <controls:ListDetailsView
@@ -8,6 +8,6 @@
 <!--{[{-->
             BackButtonBehavior="Inline"
 <!--}]}-->
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
+            ViewStateChanged="OnViewStateChanged"/>
     </Grid>
 </Page>
