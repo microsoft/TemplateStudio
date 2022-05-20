@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
@@ -29,7 +30,7 @@ namespace Param_RootNamespace.Views
             AppTitleBarText.Text = "AppDisplayName".GetLocalized();
         }
 
-        private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
@@ -37,7 +38,7 @@ namespace Param_RootNamespace.Views
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
-        private void OnUnloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             ViewModel.RightPaneService.CleanUp();
         }
