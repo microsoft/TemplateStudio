@@ -7,6 +7,7 @@
     xmlns:helpers="using:Param_RootNamespace.Helpers"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    Style="{StaticResource PageStyle}"
     Loaded="OnLoaded">
 
     <NavigationView
