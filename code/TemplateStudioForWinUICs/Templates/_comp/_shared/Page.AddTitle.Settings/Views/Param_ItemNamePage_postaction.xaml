@@ -1,6 +1,6 @@
 ﻿<Page
-    Style="{StaticResource PageStyle}">
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    mc:Ignorable="d">
+    <Grid>
 <!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

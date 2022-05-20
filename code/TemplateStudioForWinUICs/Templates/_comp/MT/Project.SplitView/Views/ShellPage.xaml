@@ -7,8 +7,7 @@
     xmlns:helpers="using:Param_RootNamespace.Helpers"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    Loaded="OnLoaded"
-    Style="{StaticResource PageStyle}">
+    Loaded="OnLoaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -43,8 +42,7 @@
                     <Grid>
                         <TextBlock
                             Text="{Binding}"
-                            Style="{ThemeResource TitleTextBlockStyle}"
-                            Margin="{StaticResource SmallLeftRightMargin}" />
+                            Style="{ThemeResource TitleTextBlockStyle}" />
                     </Grid>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
@@ -56,17 +54,15 @@
                             <Grid>
                                 <TextBlock
                                     Text="{Binding}"
-                                    Style="{ThemeResource TitleTextBlockStyle}"
-                                    Margin="{StaticResource SmallLeftRightMargin}" />
+                                    Style="{ThemeResource TitleTextBlockStyle}" />
                             </Grid>
                         </DataTemplate>
                     </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                 </behaviors:NavigationViewHeaderBehavior>
             </i:Interaction.Behaviors>
-            <Grid>
+            <Grid Margin="{StaticResource NavigationViewContentMargin}">
                 <Frame x:Name="shellFrame" />
             </Grid>
         </NavigationView>
     </Grid>
-    
 </Page>

@@ -1,6 +1,7 @@
 ﻿<Page
-    Style="{StaticResource PageStyle}">
-    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
 <!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -11,12 +12,9 @@
             Grid.Row="0"
             x:Uid="Param_ItemName_Title"
             Style="{StaticResource PageTitleStyle}" />
-<!--}]}-->
-        <Grid
-<!--{[{-->
-            Grid.Row="1" 
-<!--}]}-->
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+
+        <Grid Grid.Row="1">
+            
         </Grid>
-    </Grid>
+<!--}]}-->
 </Page>

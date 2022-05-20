@@ -6,8 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
     <SplitView
         x:Name="splitView"
         PanePlacement="Right"
@@ -46,7 +45,7 @@
                     </MenuBarItem>
                 </MenuBar.Items>
             </MenuBar>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Margin="{StaticResource MenuBarContentMargin}">
                 <Frame x:Name="shellFrame" />
             </Grid>
         </Grid>
