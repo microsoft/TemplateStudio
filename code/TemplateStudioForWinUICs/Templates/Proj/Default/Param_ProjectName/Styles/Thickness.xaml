@@ -22,11 +22,10 @@
 
     <Thickness x:Key="XXSmallTopMargin">0, 4, 0, 0</Thickness>
     <Thickness x:Key="XXSmallLeftTopRightBottomMargin">4, 4, 4, 4</Thickness>
-
-    <Thickness x:Key="DetailPageMargin">52,40,52,0</Thickness>
-    <Thickness x:Key="SettingsPageHyperlinkButtonMargin">-12, 4, 0, 0</Thickness>
     
     <Thickness x:Key="NavigationViewContentMargin">55, 24, 0, 0</Thickness>
     <Thickness x:Key="MenuBarContentMargin">36, 24, 0, 0</Thickness>
 
+    <Thickness x:Key="SettingsPageHyperlinkButtonMargin">-12, 4, 0, 0</Thickness>
+    
 </ResourceDictionary>
