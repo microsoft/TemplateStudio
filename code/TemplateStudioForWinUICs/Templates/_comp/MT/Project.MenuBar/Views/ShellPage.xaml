@@ -16,7 +16,7 @@
                 x:Name="rightFrame"
                 BorderThickness="1,1,0,0"
                 BorderBrush="Gray"
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
         </SplitView.Pane>
         <Grid>
             <Grid.RowDefinitions>
