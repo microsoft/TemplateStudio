@@ -1,8 +1,7 @@
 ﻿<Page
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea">
+    <Grid x:Name="ContentArea">
 <!--{[{-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

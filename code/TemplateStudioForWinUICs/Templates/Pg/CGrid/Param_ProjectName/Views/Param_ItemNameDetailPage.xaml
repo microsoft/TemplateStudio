@@ -6,11 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Param_RootNamespace.Core.Models"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea">
+    <Grid x:Name="ContentArea">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -33,7 +31,6 @@
         <ScrollViewer
             IsTabStop="True">
             <StackPanel
-                Margin="{StaticResource MediumLeftRightMargin}"
                 x:Name="contentPanel">
                 <RelativePanel>
                     <Grid
@@ -44,7 +41,6 @@
                         Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.AlignLeftWithPanel="True">
                         <FontIcon
