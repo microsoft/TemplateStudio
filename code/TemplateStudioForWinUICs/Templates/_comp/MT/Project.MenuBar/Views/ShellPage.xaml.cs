@@ -19,7 +19,6 @@ namespace Param_RootNamespace.Views
             ViewModel = viewModel;
             InitializeComponent();
             ViewModel.NavigationService.Frame = shellFrame;
-            ViewModel.RightPaneService.Initialize(rightFrame, splitView);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -32,7 +31,6 @@ namespace Param_RootNamespace.Views
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.RightPaneService.CleanUp();
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

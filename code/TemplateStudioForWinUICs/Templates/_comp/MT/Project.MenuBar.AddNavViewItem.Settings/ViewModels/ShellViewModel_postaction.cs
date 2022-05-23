@@ -11,18 +11,9 @@
 //{[{
 
         public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
-//}]}
-        public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
-        {
-//^^
-//{[{
-            RightPaneService = rightPaneService;
-//}]}
-        }
-//^^
-//{[{
 
         private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
+
 //}]}
     }
 }
