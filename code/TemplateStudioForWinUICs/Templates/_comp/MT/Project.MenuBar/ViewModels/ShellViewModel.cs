@@ -8,10 +8,6 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels
 {
-    // You can show pages in different ways (update main view, navigate or right pane)
-    // using the NavigationService and RightPaneService.
-    // Read more about MenuBar project type here:
-    // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/projectTypes/menubar.md
     public class ShellViewModel : ObservableRecipient
     {
         private bool _isBackEnabled;
@@ -21,8 +17,6 @@ namespace Param_RootNamespace.ViewModels
         public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 
         public INavigationService NavigationService { get; }
-
-        public IRightPaneService RightPaneService { get; }
 
         public bool IsBackEnabled
         {
@@ -36,11 +30,10 @@ namespace Param_RootNamespace.ViewModels
             set => SetProperty(ref _selected, value);
         }
 
-        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)
+        public ShellViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
             NavigationService.Navigated += OnNavigated;
-            RightPaneService = rightPaneService;
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e) => IsBackEnabled = NavigationService.CanGoBack;

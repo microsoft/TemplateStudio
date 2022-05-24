@@ -20,7 +20,6 @@ namespace Param_RootNamespace.Views
             ViewModel = viewModel;
             InitializeComponent();
             ViewModel.NavigationService.Frame = shellFrame;
-            ViewModel.RightPaneService.Initialize(rightFrame, splitView);
 
             // TODO: Set the title bar icon by updating /Assets/WindowIcon.png.
             // A custom title bar is required for full window theme and Mica support.
@@ -40,7 +39,6 @@ namespace Param_RootNamespace.Views
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.RightPaneService.CleanUp();
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
