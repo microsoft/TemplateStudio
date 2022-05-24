@@ -22,8 +22,6 @@ namespace Param_RootNamespace.ViewModels
 
         public INavigationService NavigationService { get; }
 
-        public IRightPaneService RightPaneService { get; }
-
         public bool IsBackEnabled
         {
             get => _isBackEnabled;
@@ -36,11 +34,10 @@ namespace Param_RootNamespace.ViewModels
             set => SetProperty(ref _selected, value);
         }
 
-        public ShellViewModel(INavigationService navigationService, IRightPaneService rightPaneService)
+        public ShellViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
             NavigationService.Navigated += OnNavigated;
-            RightPaneService = rightPaneService;
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e) => IsBackEnabled = NavigationService.CanGoBack;
