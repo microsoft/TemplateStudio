@@ -11,10 +11,15 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" x:Name="AppTitleBar">
+            <Image Source="/Assets/WindowIcon.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
+            <TextBlock x:Name="AppTitleBarText" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="32, 0, 0, 0"/>
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -33,7 +38,7 @@
                 </MenuBarItem>
             </MenuBar>
         </Grid>
-        <Grid Grid.Row="1" Margin="{StaticResource MenuBarContentMargin}">
+        <Grid Grid.Row="2" Margin="{StaticResource MenuBarContentMargin}">
             <Frame x:Name="shellFrame" />
         </Grid>
     </Grid>
