@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <MenuBar Grid.Column="0" VerticalAlignment="Top">
+            <MenuBar Grid.Column="0" VerticalAlignment="Center">
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Text entries in Strings/en-us/Resources.resw.
                 https://docs.microsoft.com/windows/uwp/app-resources/localize-strings-ui-manifest#refer-to-a-string-resource-identifier-from-xaml
