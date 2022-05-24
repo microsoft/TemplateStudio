@@ -11,9 +11,11 @@
 //{[{
 
         public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
+//}]}
+        private void OnMenuFileExit() => Application.Current.Exit();
+//{[{
 
         private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
-
 //}]}
     }
 }
