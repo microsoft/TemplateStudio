@@ -1,17 +1,17 @@
-﻿                </MenuBar>
+﻿            </MenuBar>
 <!--{[{-->
-                <AppBarButton Grid.Column="1" x:Name="ShellMenuBarSettingsButton" x:Uid="ShellMenuBarSettingsButton"
-                              AnimatedIcon.State="Normal"
-                              PointerEntered="ShellMenuBarSettingsButton_PointerEntered"
-                              PointerExited="ShellMenuBarSettingsButton_PointerExited"
-                              Command="{x:Bind ViewModel.MenuSettingsCommand}">
-                    <AnimatedIcon x:Name="ShellMenuBarSettingsButtonIcon">
-                        <AnimatedIcon.Source>
-                            <animatedvisuals:AnimatedSettingsVisualSource/>
-                        </AnimatedIcon.Source>
-                        <AnimatedIcon.FallbackIconSource>
-                            <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE713;"/>
-                        </AnimatedIcon.FallbackIconSource>
-                    </AnimatedIcon>
-                </AppBarButton>
+            <AppBarButton Grid.Column="1" x:Name="ShellMenuBarSettingsButton" x:Uid="ShellMenuBarSettingsButton"
+                          AnimatedIcon.State="Normal"
+                          PointerEntered="ShellMenuBarSettingsButton_PointerEntered"
+                          PointerExited="ShellMenuBarSettingsButton_PointerExited"
+                          Command="{x:Bind ViewModel.MenuSettingsCommand}">
+                <AnimatedIcon x:Name="ShellMenuBarSettingsButtonIcon">
+                    <AnimatedIcon.Source>
+                        <animatedvisuals:AnimatedSettingsVisualSource/>
+                    </AnimatedIcon.Source>
+                    <AnimatedIcon.FallbackIconSource>
+                        <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE713;"/>
+                    </AnimatedIcon.FallbackIconSource>
+                </AnimatedIcon>
+            </AppBarButton>
 <!--}]}-->
