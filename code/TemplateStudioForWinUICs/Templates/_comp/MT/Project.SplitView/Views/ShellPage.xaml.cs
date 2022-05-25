@@ -28,6 +28,8 @@ namespace Param_RootNamespace.Views
 
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
+            TitleBarHelper.UpdateTitleBar(RequestedTheme);
+
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);

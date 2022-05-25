@@ -7,7 +7,7 @@
     xmlns:helpers="using:Param_RootNamespace.Helpers"
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    Style="{StaticResource PageStyle}"
+    Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
     Loaded="OnLoaded">
 
     <Grid>
@@ -27,8 +27,7 @@
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             IsSettingsVisible="False"
             ExpandedModeThresholdWidth="1280"
-            Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
-            Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
             <NavigationView.MenuItems>
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
