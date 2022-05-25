@@ -12,15 +12,15 @@ namespace Param_RootNamespace.Helpers
     // https://github.com/microsoft/TemplateStudio/issues/4516
     internal class TitleBarHelper
     {
-        private const int WA_INACTIVE = 0x00;
-        private const int WA_ACTIVE = 0x01;
-        private const int WM_ACTIVATE = 0x0006;
+        private const int WAINACTIVE = 0x00;
+        private const int WAACTIVE = 0x01;
+        private const int WMACTIVATE = 0x0006;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetActiveWindow();
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, IntPtr lParam);
 
         public static void UpdateTitleBar(ElementTheme theme)
         {
@@ -71,13 +71,13 @@ namespace Param_RootNamespace.Helpers
                 var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
                 if (hwnd == GetActiveWindow())
                 {
-                    SendMessage(hwnd, WM_ACTIVATE, WA_INACTIVE, IntPtr.Zero);
-                    SendMessage(hwnd, WM_ACTIVATE, WA_ACTIVE, IntPtr.Zero);
+                    SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
+                    SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
                 }
                 else
                 {
-                    SendMessage(hwnd, WM_ACTIVATE, WA_ACTIVE, IntPtr.Zero);
-                    SendMessage(hwnd, WM_ACTIVATE, WA_INACTIVE, IntPtr.Zero);
+                    SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
+                    SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
                 }
             }
         }
