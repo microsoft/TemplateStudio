@@ -11,17 +11,25 @@
     Loaded="OnLoaded">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" x:Name="AppTitleBar">
-            <Image Source="/Assets/WindowIcon.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
-            <TextBlock x:Name="AppTitleBarText" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="28, 0, 0, 0"/>
+        <Grid x:Name="AppTitleBar"
+              Canvas.ZIndex="1"
+              Height="{Binding ElementName=navigationView, Path=CompactPaneLength}"
+              IsHitTestVisible="True"
+              Padding="48,0,0,0"
+              VerticalAlignment="Top">
+            <Image Source="/Assets/WindowIcon.png"
+                   HorizontalAlignment="Left"
+                   Width="16"
+                   Height="16" />
+            <TextBlock x:Name="AppTitleBarText"
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="28, 0, 0, 0"/>
         </Grid>
         <NavigationView
-            Grid.Row="1"
             x:Name="navigationView"
+            Canvas.ZIndex="0"
             IsBackButtonVisible="Visible"
             IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
@@ -60,7 +68,7 @@
                     </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                 </behaviors:NavigationViewHeaderBehavior>
             </i:Interaction.Behaviors>
-            <Grid Margin="{StaticResource NavigationViewContentMargin}">
+            <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
                 <Frame x:Name="shellFrame" />
             </Grid>
         </NavigationView>
