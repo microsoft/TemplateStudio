@@ -77,6 +77,8 @@ Below is a checklist to follow when adding new templates:
   * By default, `groupIdentity` should be the same as `identity` unless you have a good reason to change it
 * Update other metadata in `.template.config/template.json` as appropriate
   * See [Modifying the Wizard](#Modifying-the-Wizard) and [template.json reference](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
+* Update `.template.config/icon.xaml` as appropriate
+  * Requests for new icons can be filed at https://aka.ms/d3icons
 * Modify the content of the template
 * Set `Include in VSIX` to `true` in the Properties window for all the files in the template
 
@@ -208,6 +210,8 @@ The Template Studio wizard enables developers to produce a custom project templa
 * Add `description.md` and `icon.xaml` files to base .template.config folders to update the description and icon presented in the wizard
 * Add a `Layout.json` file to a base Project template
   * Enables you to mark a feature as readonly
+
+Each template contains a `.template.config/icon.xaml` file that defines the icon that is displayed in the wizard for that template. Visual Studio designers are available to help recommend icons from their [existing icon library](https://d3assets.azurewebsites.net/icons/vswin2022) or to design new icons. Requests for new icons can be filed at https://aka.ms/d3icons.
 
 Note: Composition templates within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
 
