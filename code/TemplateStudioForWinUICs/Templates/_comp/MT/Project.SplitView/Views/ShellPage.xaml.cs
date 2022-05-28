@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
@@ -19,8 +20,10 @@ namespace Param_RootNamespace.Views
         {
             ViewModel = viewModel;
             InitializeComponent();
+
             ViewModel.NavigationService.Frame = shellFrame;
-            ViewModel.NavigationViewService.Initialize(navigationView);
+            ViewModel.NavigationViewService.Initialize(NavigationViewControl);
+
             App.MainWindow.ExtendsContentIntoTitleBar = true;
             App.MainWindow.SetTitleBar(AppTitleBar);
             AppTitleBarText.Text = "AppDisplayName".GetLocalized();
@@ -53,6 +56,17 @@ namespace Param_RootNamespace.Views
             var navigationService = App.GetService<INavigationService>();
             var result = navigationService.GoBack();
             args.Handled = result;
+        }
+
+        private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+        {
+            AppTitleBar.Margin = new Thickness()
+            {
+                Left = sender.CompactPaneLength * (sender.DisplayMode == NavigationViewDisplayMode.Minimal ? 2 : 1),
+                Top = AppTitleBar.Margin.Top,
+                Right = AppTitleBar.Margin.Right,
+                Bottom = AppTitleBar.Margin.Bottom
+            };
         }
     }
 }
